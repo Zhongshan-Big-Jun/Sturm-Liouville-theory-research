@@ -1633,3 +1633,8 @@
     可由用户在网页端删除: https://github.com/Zhongshan-Big-Jun/rigorous-open-math-research-legacy/settings
     (Danger Zone -> Delete this repository). 删除后整体结构即为 xsoc1 父 + org fork.
 - 待办/后续: 用户网页端删除 legacy; 若日后授予 delete_repo 作用域, 也可由代理 API 删除.
+### 2026-08-10 会话 57 (父仓库设为 public)
+- 任务: 把父仓库 xsoc1/rigorous-open-math-research 改为公开.
+- 完成: PATCH /repos/xsoc1/rigorous-open-math-research {"private": false}, 返回 private=false, visibility=public;
+  描述同步改为中性 (Codex skills for rigorous open mathematics research and research-program management).
+- 备注: org fork (Zhongshan-Big-Jun/rigorous-open-math-research) 可见性独立, 仍为 private; 如需公开可另行设置.
