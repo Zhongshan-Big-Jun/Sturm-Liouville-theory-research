@@ -1570,3 +1570,11 @@
   工作记录入口 (AGENTS.md). 本次提交一并推送至 origin/main.
 - 备注: 全局代理 7897 仍未运行, 推送使用 git -c http.proxy= -c https.proxy= 直连覆盖;
   未改动全局代理配置.
+
+### 2026-08-10 会话 53 (移除全局 git 代理配置)
+- 任务: 用户授权修改代理配置, 使 git 直连可用.
+- 完成: 移除全局 git 配置中的 http.proxy 与 https.proxy (原值
+  http://127.0.0.1:7897, 已备份于 %TEMP%\git_proxy_backup.txt), 直连验证通过
+  (git ls-remote origin 正常, 无需 -c http.proxy= 覆盖); 本会话记录随本次提交推送.
+- 备注: 若日后需要恢复代理, 可执行 git config --global http.proxy
+  http://127.0.0.1:7897 与 https.proxy 同名设置.
