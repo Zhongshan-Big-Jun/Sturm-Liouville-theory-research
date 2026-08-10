@@ -1608,3 +1608,16 @@
     ~/.codex/skills/.
 - 备注: 会话 53 已移除全局代理, 本次推送直连成功; 暂存区保留供后续更新.
 - 待办/后续: 若仓库需公开, 先确认无版权/隐私顾虑; 后续技能迭代直接更新暂存区并推送.
+### 2026-08-10 会话 55 (GitHub 结构转换: xsoc1 为父仓库, org 改为 fork)
+- 任务: 用户要求把个人主页仓库设为父仓库, org 仓库改为其 fork.
+- 完成:
+  - 父仓库: xsoc1/rigorous-open-math-research (私有, 独立无 parent, allow_forking=true), 内容 c5ab9ac.
+  - org 仓库无法直接删除: API DELETE 返回 403 (token 作用域 gist/repo/workflow, 无 delete_repo; 组织成员角色为 member).
+  - 采用改名+重建 fork 方案: org 仓库先改名为 rigorous-open-math-research-legacy (内容保留, 同为 c5ab9ac), 随后
+    POST /repos/xsoc1/rigorous-open-math-research/forks {"organization": "Zhongshan-Big-Jun"} 创建
+    Zhongshan-Big-Jun/rigorous-open-math-research, 确认 parent/source = xsoc1/rigorous-open-math-research, 私有.
+  - 核对: 三个仓库 HEAD 均为 c5ab9ac, 内容一致; 本地暂存区 (skills-upload-20260810) 双 remote
+    (origin=org fork, personal=xsoc1 parent) fetch 同步, 工作树干净.
+- 备注: org 下 legacy 副本为迁移残留 (与父仓库内容完全相同), 因缺 delete_repo 权限无法由 API 删除;
+  可由仓库管理员在网页端删除, 或授予 delete_repo 作用域后由代理删除.
+- 待办/后续: 可选更新父仓库 README 安装路径指向 xsoc1; 若父仓库设为公开, 可用 GitHub 同步 fork 功能更新 org 副本.
