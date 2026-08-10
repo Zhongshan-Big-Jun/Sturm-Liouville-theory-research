@@ -1621,3 +1621,15 @@
 - 备注: org 下 legacy 副本为迁移残留 (与父仓库内容完全相同), 因缺 delete_repo 权限无法由 API 删除;
   可由仓库管理员在网页端删除, 或授予 delete_repo 作用域后由代理删除.
 - 待办/后续: 可选更新父仓库 README 安装路径指向 xsoc1; 若父仓库设为公开, 可用 GitHub 同步 fork 功能更新 org 副本.
+### 2026-08-10 会话 56 (README 指向父仓库 + legacy 副本清理跟进)
+- 任务: 用户确认两件事都要做: (1) README 安装路径改指父仓库并同步到 fork; (2) 清理 org 下的 legacy 副本.
+- 完成 (README):
+  - 安装路径改为 xsoc1/rigorous-open-math-research/tree/main/<skill 目录> (父仓库); 新增"仓库结构"说明
+    (xsoc1 为父仓库, Zhongshan-Big-Jun/rigorous-open-math-research 为其 fork 副本, 可 Sync fork 跟进).
+  - 提交 92490eb 已推送到父仓库 xsoc1 与 org fork, 两处 HEAD 一致 (92490ebc6813b770519dc0b3a5c34a1ded2d63be).
+- 完成情况 (legacy 清理):
+  - API DELETE 仍返回 403 (token 作用域 gist/repo/workflow, 缺 delete_repo, 与成员身份无关).
+  - 查得 org 设置 members_can_delete_repositories=true; 账号对该 legacy 仓库有 admin (此前改名成功),
+    可由用户在网页端删除: https://github.com/Zhongshan-Big-Jun/rigorous-open-math-research-legacy/settings
+    (Danger Zone -> Delete this repository). 删除后整体结构即为 xsoc1 父 + org fork.
+- 待办/后续: 用户网页端删除 legacy; 若日后授予 delete_repo 作用域, 也可由代理 API 删除.
