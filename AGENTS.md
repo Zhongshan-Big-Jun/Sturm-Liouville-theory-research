@@ -1561,3 +1561,12 @@
 - 待办/后续: 若用户希望 git 不再走 7897 代理, 可执行
   git config --global --unset http.proxy 与 https.proxy; 后续新提交直接
   git add -A + git commit + git push.
+
+### 2026-08-10 会话 52 (新增 README.md)
+- 任务: 为 GitHub 仓库添加 README.
+- 完成: 新建根目录 README.md (中文): 项目简介 (两主题), 主要结果 (截至 2026-08-10,
+  含 n=1/n>=2 相邻间距极端值, 比值上确界/下确界, H^s 完备性), 目录结构表,
+  文档编译方式 (xelatex 两遍, docs/build/), 复现与审计 (脚本清单与证据分层约定),
+  工作记录入口 (AGENTS.md). 本次提交一并推送至 origin/main.
+- 备注: 全局代理 7897 仍未运行, 推送使用 git -c http.proxy= -c https.proxy= 直连覆盖;
+  未改动全局代理配置.
