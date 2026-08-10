@@ -1578,3 +1578,33 @@
   (git ls-remote origin 正常, 无需 -c http.proxy= 覆盖); 本会话记录随本次提交推送.
 - 备注: 若日后需要恢复代理, 可执行 git config --global http.proxy
   http://127.0.0.1:7897 与 https.proxy 同名设置.
+### 2026-08-10 会话 54 (git 同步功能加入 skill + 上传两个 skill 至 GitHub)
+- 任务: 把"自动与 git 仓库检查同步"功能加入两个 skill, 然后将两个 skill 上传至
+  https://github.com/Zhongshan-Big-Jun/rigorous-open-math-research.
+- 完成 (功能加入):
+  - manage-math-research-program/SKILL.md: 新增工作流第 0 步 "Automatic git repository sync"
+    (会话开始 git status --porcelain + git fetch 检查未提交/未跟踪/ahead-behind; 脏状态或落后时
+    先提交或拉取或显式记录; 提交前更新 AGENTS.md 并遵守 .gitignore; 阶段收尾提交+推送并验证;
+    远程不可达时保留本地提交并记录失败); 第 9 步检查点新增提交+推送动作; 完成标准新增
+    "仓库已提交且与远程同步"; 参考文件清单新增 references/git-sync.md.
+  - 新增 manage-math-research-program/references/git-sync.md: 检查时机, 命令 (status/fetch/add/
+    commit/push/status -sb), 代理绕过说明, 卫生规则 (秘密不入库, 忽略 __pycache__ 等, AGENTS.md
+    先于提交更新, 推送失败保留本地提交重试).
+  - rigorous-open-math-research/SKILL.md: Phase 0 新增第 7 条 (工作区为 git 仓库时记录提交哈希与
+    脏文件, 不静默覆盖未提交工件); Phase 10 新增 (停止前提交运行工件并把提交哈希记入可复现清单);
+    Phase 12 新增 (报告前提交最终工件, 记录提交哈希与工作树状态, 显式说明未提交残留).
+  - MANIFEST.sha256 重算: 44 个真实文件 + 自引用条目 (自引用哈希取"不含自引用行"的确定性约定),
+    逐条校验 44/44 匹配.
+- 完成 (上传):
+  - 目标仓库 https://github.com/Zhongshan-Big-Jun/rigorous-open-math-research 已存在且为空,
+    默认分支 main; 本地身份沿用 xsoc1 / 175226580+xsoc1@users.noreply.github.com.
+  - 暂存区 C:\Users\HuangZY\AppData\Local\Temp\skills-upload-20260810: 两个 skill 完整内容
+    (排除 __pycache__/*.pyc) + README.md (目录表, 安装方式, 使用说明, 版本记录) + .gitignore
+    + .gitattributes (* text=auto eol=lf); 敏感内容扫描无命中, 无 >5MB 文件.
+  - 提交 c5ab9ac (53 文件) 推送 origin/main, ls-remote 与 git status -sb 确认本地远程同步
+    (54 个跟踪文件).
+  - README 安装路径: 经 $skill-installer 安装
+    Zhongshan-Big-Jun/rigorous-open-math-research/tree/main/<skill 目录>, 或手动复制到
+    ~/.codex/skills/.
+- 备注: 会话 53 已移除全局代理, 本次推送直连成功; 暂存区保留供后续更新.
+- 待办/后续: 若仓库需公开, 先确认无版权/隐私顾虑; 后续技能迭代直接更新暂存区并推送.
