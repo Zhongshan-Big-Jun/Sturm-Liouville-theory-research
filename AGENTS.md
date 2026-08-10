@@ -1543,3 +1543,21 @@
 - 待办/后续: (1) 修复 O3a lines 412-439 相位分支论证 (数行, 审计已给短证思路);
   (2) 继续缺口 (a') 对称线 1D 分析 R>3/2 段; (3) (c) 定理 A 独立复核; (4) (d)
   全局 good-root 论证.
+
+### 2026-08-10 会话 51 (GitHub 接入与项目迁移)
+- 任务: 接入用户 GitHub 账号, 把整个项目迁移到
+  https://github.com/Zhongshan-Big-Jun/Sturm-Liouville-theory-research.
+- 完成:
+  - 本机无 gh CLI; 使用 Git Credential Manager (2.6.1) OAuth 设备码流程登录,
+    认证账号为 xsoc1 (id 175226580), 令牌已存入 GCM (不落盘明文).
+  - 目标仓库为 Organization 私有仓库, 默认分支 main, 初始为空; 账号有读写权限.
+  - 项目初始化 git 仓库 (git init -b main), 新增 .gitignore (__pycache__, *.pyc,
+    .DS_Store, Thumbs.db); 本地身份 xsoc1 / 175226580+xsoc1@users.noreply.github.com.
+  - 首次提交 6c71825 (2595 个文件, 约 79 MB, 无 >50MB 文件, 无凭据类敏感文本),
+    已推送 origin/main; git ls-remote 与 git status 确认本地远程同步.
+  - 环境说明: 全局 git 曾配置 http.proxy/https.proxy=127.0.0.1:7897 但代理未运行,
+    导致 git 无法联网; 本次临时清除代理后直连 GitHub 成功, 操作结束后已恢复原配置.
+  - 仓库为私有, 含 papers/ 版权文献与扫描页, 仅账号可访问; 如需公开需先评估版权.
+- 待办/后续: 若用户希望 git 不再走 7897 代理, 可执行
+  git config --global --unset http.proxy 与 https.proxy; 后续新提交直接
+  git add -A + git commit + git push.
