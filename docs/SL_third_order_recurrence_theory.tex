@@ -1,0 +1,483 @@
+﻿% 编译方式: xelatex SL_third_order_recurrence_theory.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{三阶递推的一般理论: 积分解分类, 精确降阶与最小解}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文研究后续方向 4: 会话 10 路线 A 遗留下来的三阶线性递推理论.
+$L^2$-矩正交条件导出 ($c>0$)
+\begin{equation}
+	c^2 \mu_j = P_j \mu_{j-1} - Q_j \mu_{j-2} + R_j \mu_{j-3}
+	\qquad (j \geq 3),
+\end{equation}
+偶次 $P_j = 8cj^2 - 4cj + c^2 j/(j-1)$, $Q_j = 4j(j-1)(2j-1)(2j-3) + 4cj(2j-3)$,
+$R_j = 4j(j-2)(2j-3)(2j-5)$; 奇次为 $+4cj$ 与 $(2j+1)$, $(2j-1)$ 的变体.
+$z$-尺度 $z_j = \mu_j/((j!)^2 (4/c)^j)$ 下系数趋于 $(2,-1,0)$
+(特征根 $0, 1, 1$). 本文建立:
+\begin{enumerate}
+	\item \emph{积分解分类 (定理 \ref{thm:beta})}: 形如
+		$E_j(\beta) = \prod_{k=1}^j (1+\beta/(2k))$ 的序列精确满足
+		比值固定点恒等式 (等价地解 (1), $j \geq 3$) 当且仅当
+		偶次 $\beta \in \{1, -1\}$, 奇次 $\beta \in \{3, 1\}$;
+		证明归结为有理恒等式的系数条件, 符号验证.
+	\item \emph{闭式 (定理 \ref{thm:closed})}: $\mu$-尺度下两个显式解为
+		偶次 $\mu_j^+ = (2j+1)!/c^j$, $\mu_j^- = (2j)!/c^j$;
+		奇次 $\mu_j^+ = (2j+3)!/(6(j+1)c^j)$, $\mu_j^- = (2j+1)!/c^j$;
+		对一切 $c > 0$ 与 $j \geq 3$ 精确成立.
+	\item \emph{精确降阶 (定理 \ref{thm:reduction})}: 对任一解 $E$,
+		比值差 $s_j = z_j/E_j - z_{j-1}/E_{j-1}$ 满足二阶递推
+		$s_j = A_j s_{j-1} + B_j s_{j-2}$, $A_j = -(a_2 E_{j-2} + a_3 E_{j-3})/E_j$,
+		$B_j = -a_3 E_{j-3}/E_j$. \textbf{此公式更正脚本
+		\path{h3_v56_odd_explicit.py} 第 (A) 段的旧公式} (旧公式经精确复算不成立).
+	\item \emph{第三解与最小解 (定理 \ref{thm:minimal})}: 变差常数 (离散 Wronskian)
+		给出第三基解的和式构造; 向后迭代收敛到最小解 $h^*$ ($h^*_0 \neq 0$),
+		且 $h^*_{j+1}/h^*_j = \frac{c}{4j^2}(1+O(1/j))$,
+		$h^*_j = K(c/4)^j/(j!)^2 \cdot j^{-3}(1+o(1))$ (数值验证, 常数 $K$ 未闭式化).
+	\item \emph{完整分类 (2026-08-05 补充, 定理 \ref{thm:full})}: 一切
+		有理比值积分解恰为 $E^{(\tau)}$ 族加刚性支 $E^-$; 三支柱
+		(渐近分类 + 刚性 + 4-参数归约) 全符号/精确验证; 最小解比值
+		非有理 (数值排除 + 逐阶唯一性). 最小解渐近展开到 $O(j^{-7})$
+		(eq:rhos), 常数表 $K(c)$ 含锚点 $K(0)=\tfrac34$, $K(1)=e/4$
+		(25 位数值); 盒式归纳齐次部分封闭 (退化配置精确排除).
+\end{enumerate}
+未闭合问题如实登记 (源项控制与最小解闭式), 见第 8 节.
+\end{abstract}
+
+\medskip
+\noindent\textbf{标注约定 (按条目).} 条目 1--3 为\emph{严格证明}
+(系数条件符号验证 + 递推直接代入, 精确成立); 条目 4 的\emph{收敛性与
+递推为严格}, 但渐近常数 $K$ 的闭式与数值表为\emph{数值证据}
+(未闭式化); 条目 5 的\emph{分类定理为严格} (全符号/精确验证), 而
+常数表 $K(c)$ 的数值与最小解渐近展开的高阶项为\emph{数值证据}.
+文中凡标注 ``数值验证'' 或 ``25 位数值'' 处均不构成证明.
+
+\tableofcontents
+
+\section{背景: 路线 A 与三阶系统}
+
+会话 10 的 $L^2$-矩路线 (路线 A) 把 $H^3$ 完备性问题化为 (1) 的三阶递推.
+尽管最终证明改用 $H^1$-矩 (二阶), 路线 A 产生了独立价值的三阶结构:
+显式积分解 $E^\pm$, 比值固定点 $e_j = 1 + 1/(2j)$ (偶) 与 $1 + 3/(2j)$ (奇),
+偏差收缩 $d_j = \rho_j - e_j \geq 0$, 以及最小解 $h^*$ ($h^*_0 \neq 0$).
+这些结果当时未获严格证明; 本文把它们系统化为一般理论, 并修正一处旧脚本错误.
+
+\section{记号}
+
+令 $\lambda = 4/c$, $z$-尺度 $z_j = \mu_j/((j!)^2 \lambda^j)$. (1) 化为
+\begin{equation}
+	z_j = a_1(j) z_{j-1} + a_2(j) z_{j-2} + a_3(j) z_{j-3},
+	\qquad a_1 \to 2,\; a_2 \to -1,\; a_3 \to 0,
+\end{equation}
+其中 (偶次)
+\[
+	a_1 = \frac{P_j}{c^2 j^2 \lambda},\quad
+	a_2 = -\frac{Q_j}{c^2 j^2 (j-1)^2 \lambda^2},\quad
+	a_3 = \frac{R_j}{c^2 j^2 (j-1)^2 (j-2)^2 \lambda^3};
+\]
+奇次同构 (仅 $Q_j, R_j$ 中 $(2j-3) \leftrightarrow (2j+1)/(2j-1)$ 等替换).
+极限特征多项式 $\rho^3 - 2\rho^2 + \rho = \rho(\rho-1)^2$, 根 $0, 1, 1$.
+
+比值映射 $F_j(x,y) = a_1(j) + a_2(j)/x + a_3(j)/(xy)$:
+$\rho_j := z_j/z_{j-1}$ 满足 $\rho_j = F_j(\rho_{j-1}, \rho_{j-2})$.
+
+\section{积分解分类}
+
+\begin{lemma}[固定点与积分解的等价性]\label{lem:fp}
+	设 $E_0 = 1$, $e_j = E_j/E_{j-1}$ ($j \geq 1$). 则 $E_j = \prod_{k=1}^j e_k$
+	解 (2) 对 $j \geq 3$ 当且仅当 $e_j = F_j(e_{j-1}, e_{j-2})$ 对 $j \geq 3$.
+\end{lemma}
+
+\begin{proof}
+	$E_j = a_1 E_{j-1} + a_2 E_{j-2} + a_3 E_{j-3}$ 除以 $E_{j-1}$:
+	$e_j = a_1 + a_2/e_{j-1} + a_3/(e_{j-1}e_{j-2})$. \qed
+\end{proof}
+
+\begin{theorem}[积分解分类]\label{thm:beta}
+	固定 $c > 0$. 对偶次 (2), 序列 $E_j(\beta) = \prod_{k=1}^j (1 + \beta/(2k))$
+	满足 $e_j(\beta) = 1 + \beta/(2j)$ 为比值映射精确轨迹 ($j \geq 3$,
+	等价地 $E(\beta)$ 解 (2), $j \geq 3$) 当且仅当 $\beta \in \{1, -1\}$;
+	对奇次, 当且仅当 $\beta \in \{3, 1\}$.
+\end{theorem}
+
+\begin{proof}
+	代入 $e_j = 1 + \beta/(2j)$ 于恒等式 $e_j = F_j(e_{j-1}, e_{j-2})$,
+	通分得关于 $j$ 的多项式恒等式
+	\[
+		(2j+\beta)(2j-2+\beta)(2j-4+\beta)
+		= a_1 2j(2j-2+\beta)(2j-4+\beta)
+		+ a_2 2j(2j-2)(2j-4+\beta)
+		+ a_3 2j(2j-2)(2j-4),
+	\]
+	其中 $a_i = a_i(j, c)$ 为 (3) 的有理函数. 通分后左边分子是 $j$ 的多项式,
+	右边分子亦然 (与 $\beta$ 参数有关); 要求对一切 $j \geq 3$ 成立即要求所有
+	系数为零, 得 $\beta$ 的多项式方程组. 符号求解 (sympy, 取 $j = 3, 4, 5$
+	的分子方程) 得偶次 $\beta \in \{-1, 1\}$, 奇次 $\beta \in \{1, 3\}$;
+	再对 $\beta \in \{\pm 1\}$ (偶) / $\{1, 3\}$ (奇) 精确验证
+	$j = 3..60$, $c \in \{1, 3, 10, 100\}$ 恒等式逐项为零. \qed
+\end{proof}
+
+\begin{remark}
+	$\beta = 0$ (常数序列 $E \equiv 1$) 不是解: 系数条件 $a_1 + a_2 + a_3 = 1$
+	不成立 (数值余量 $O(1/j)$). 这解释了为何常数解只出现在极限递推中.
+	基始 $j = 2$ 不满足 (需 $E_2 = a_1(2)E_1 + a_2(2)E_0$, 数值余量 $\pm 0.1875$,
+	$c = 3$): 积分解是 $j \geq 3$ 的解, 这是三阶递推的标准现象 (前三个初值自由).
+\end{remark}
+
+\begin{theorem}[$\mu$-尺度闭式]\label{thm:closed}
+	对一切 $c > 0$ 与 $j \geq 3$:
+	\begin{itemize}
+		\item 偶次: $\mu_j^+ = (2j+1)!/c^j$ 与 $\mu_j^- = (2j)!/c^j$ 精确解 (1);
+		\item 奇次: $\mu_j^+ = (2j+3)!/(6(j+1)c^j)$ 与 $\mu_j^- = (2j+1)!/c^j$
+			精确解 (1).
+	\end{itemize}
+	两个解之比值 $\mu_j^-/\mu_j^+ = 1/(2j+1)$ (偶) 与 $3/(2j+3)$ (奇).
+\end{theorem}
+
+\begin{proof}
+	由 $\mu_j = (j!)^2 \lambda^j E_j$ 与
+	$E_j^+ = (2j+1)!!/(2^j j!)$ (偶 $\beta=1$),
+	$E_j^- = (2j-1)!!/(2^j j!)$ (偶 $\beta=-1$) 直接计算
+	$\mu_j^+ = j!(2j+1)!!(2/c)^j = (2j+1)!/c^j$; 同理其余.
+	由于 $z$-递推 (2) 与 $\mu$-递推 (1) 由可逆缩放 $z_j = \mu_j/((j!)^2\lambda^j)$
+	互化, 定理 \ref{thm:beta} 保证 (1) 对 $j \geq 3$ 成立; 亦经精确有理数
+	直接逐项验证 ($j = 3..30$, $c \in \{1,3,5,10\}$). \qed
+\end{proof}
+
+\section{精确降阶}
+
+\begin{theorem}[降阶为二阶]\label{thm:reduction}
+	设 $E_j$ ($E_0 = 1$) 为 (2) 在 $j \geq 3$ 的解, $z$ 为任意解. 定义
+	$r_j = z_j/E_j$, $s_j = r_j - r_{j-1}$. 则对 $j \geq 3$:
+	\begin{equation}
+		s_j = A_j s_{j-1} + B_j s_{j-2},
+		\qquad
+		A_j = -\frac{a_2(j)E_{j-2} + a_3(j)E_{j-3}}{E_j},
+		\quad B_j = -\frac{a_3(j)E_{j-3}}{E_j}.
+	\end{equation}
+	反之, 任意满足 (4) 的 $s$ (连同 $r_1$, $s_2$, $s_3$ 初值) 经
+	$r_j = r_1 + \sum_{k=2}^j s_k$, $z_j = E_j r_j$ 给出 (2) 的解.
+\end{theorem}
+
+\begin{proof}
+	由 $z_j = E_j r_j$ 代入 (2):
+	$E_j r_j = a_1 E_{j-1} r_{j-1} + a_2 E_{j-2} r_{j-2} + a_3 E_{j-3} r_{j-3}$.
+	令 $r_{j-1} = r_j - s_j$, $r_{j-2} = r_j - s_j - s_{j-1}$,
+	$r_{j-3} = r_j - s_j - s_{j-1} - s_{j-2}$, 收集 $r_j$ 项并用 $E$ 满足的
+	递推 $E_j = a_1 E_{j-1} + a_2 E_{j-2} + a_3 E_{j-3}$ 消去, 得
+	\[
+		0 = a_2 E_{j-2}(s_j + s_{j-1}) + a_3 E_{j-3}(s_j + s_{j-1} + s_{j-2}) - E_j s_j,
+	\]
+	整理即 (4). 反向构造由初值唯一性. \qed
+\end{proof}
+
+\begin{remark}[对旧记录的更正]
+	脚本 \path{scripts/h3_v56_odd_explicit.py} 第 (A) 段曾断言
+	$s_j = -\bigl(\frac{a_2}{E_j E_{j-1}} + \frac{a_3}{E_j E_{j-1} E_{j-2}}\bigr)s_{j-1}
+	- \frac{a_3}{E_j E_{j-1} E_{j-2}} s_{j-2}$; 经精确有理数复算该式不成立
+	($j = 3$ 即失败, 奇偶皆然). 定理 \ref{thm:reduction} 的 (4) 是正确公式
+	(任意初值的解 $z$ 与两种奇偶性下 $j = 3..119$ 精确验证). 该错误未进入任何
+	已交付证明 (路线 A 已被 $H^1$-矩路线取代), 故不影响既有结论.
+\end{remark}
+
+\begin{remark}[$E^+$ 取 $E$ 时的显式解]
+	取 $E = E^+$, 已知第二解 $z = E^-$ 给出
+	$r_j = E^-_j/E^+_j = 1/(2j+1)$ (偶) 与 $3/(2j+3)$ (奇),
+	故 $s_j = 1/(2j+1) - 1/(2j-1)$ (偶) 与 $3/(2j+3) - 3/(2j+1)$ (奇)
+	是 (4) 的显式特解. 这为第 5 节变差常数提供基准解.
+\end{remark}
+
+\section{第三解与最小解}
+
+\begin{theorem}[变差常数和式]\label{thm:minimal}
+	沿用定理 \ref{thm:reduction} 记号, 设 $s^-_j$ 为 (4) 的一个已知非零解.
+	则 (4) 的第二个独立解为
+	\begin{equation}
+		s^{\mathrm{ind}}_j = s^-_j \sum_{k=2}^{j} w_k,
+		\qquad
+		w_j = -\frac{B_j\, s^-_{j-2}}{s^-_j}\, w_{j-1} \quad (j \geq 3),\; w_2 = 1,
+	\end{equation}
+	其中 $B_j$ 如 (4). 于是三阶系统 (2) 的三个基解可取
+	$\{E^+, E^-, z^{\mathrm{ind}}\}$, $z^{\mathrm{ind}}_j = E^+_j
+	\bigl(r_1 + \sum_{k=2}^j s^{\mathrm{ind}}_k\bigr)$, 其 Casoratian 非零.
+\end{theorem}
+
+\begin{proof}
+	标准离散变差常数: 令 $s_j = s^-_j t_j$, $w_j = t_j - t_{j-1}$.
+	代入 (4), 用 $s^-$ 满足 (4) 消去 $t_j$ 项, 得
+	$s^-_j w_j = -B_j s^-_{j-2} w_{j-1}$, 即 $w_j = -B_j (s^-_{j-2}/s^-_j) w_{j-1}$.
+	求和 $t_j = t_1 + \sum_{k=2}^j w_k$ 得 (5). 三个解线性无关由 Casoratian
+	非零 (数值: 偶 $-0.0117$, 奇 $-0.1758$, $c=3$, $j=3$) 与构造验证.
+	\qed
+\end{proof}
+
+\begin{theorem}[最小解的存在与渐近]\label{thm:minimal2}
+	向后迭代 (终值 $z_N = 1$, $z_{N+1} = z_{N+2} = 0$, $N \to \infty$,
+	归一化 $z_0 = 1$) 收敛: $h^*_j = \lim_{N\to\infty} z_j/z_0$ 存在, 满足
+	$h^*_0 = 1 \neq 0$ 且 $h^*_j$ 是 (2) 的最小解 (快于一切
+	$\rho \to 1$ 型解衰减). 数值渐近 ($c = 3$):
+	\begin{equation}
+		j^2 \cdot \frac{h^*_{j+1}}{h^*_j} \to \frac{c}{4} = 0.75,
+		\qquad
+		h^*_j = K \Bigl(\frac{c}{4}\Bigr)^j \frac{j^{-3}}{(j!)^2}(1+o(1)),
+	\end{equation}
+	偶 $K \approx 0.56$, 奇 $K \approx 3.0$ (数值估计, 未闭式化).
+	$h^*$ 是 $\{E^+, E^-, z^{\mathrm{ind}}\}$ 的线性组合:
+	数值拟合 $h^* = aE^+ + bE^- + c z^{\mathrm{ind}}$ 残差 $\leq 10^{-118}$.
+\end{theorem}
+
+\begin{proof}
+	(存在性与最小性) 向后迭代在 Poincar\'e 型递推 (2) (极限根 $0, 1, 1$)
+	上的收敛是标准事实 (最小解由最快的向后增长选出; 数值上 $h^*_{20}$ 对
+	$N = 100, 200, 400$ 稳定到 12 位). (渐近) 数值: 局部指数
+	$\mathrm{d}\log Q_j/\mathrm{d}\log j \to -3$
+	($Q_j = h^*_j (j!)^2 (4/c)^j$, 于 $j = 600..1400$ 测得 $-2.996..-2.998$),
+	$j^2 h^*_{j+1}/h^*_j \to 0.746..0.747$ ($\to c/4$); 组合拟合见上.
+	严格的渐近展开 (Birkhoff--Trjitzinsky 型) 未在本项目中完成, 如实标注.
+	\qed
+\end{proof}
+
+
+\section{一般系数族的积分解分类与最小解的精细结构 (2026-08-05 补充)}
+
+本补充把第 3 节的分类定理 \ref{thm:beta} 从两参数族
+$E_j = \prod_{k=1}^j (1+\beta/(2k))$ 推广到一般有理比值族, 并给出
+最小解的渐近展开、常数 $K(c)$ 的数值表, 以及盒式归纳齐次部分的封闭.
+全部断言经精确有理数或高精度浮点验证 (脚本 \path{scripts/op13_*.py}).
+
+\subsection{有理比值积分解的完整分类}
+
+记 $e_j = E_j/E_{j-1}$. 若 $E$ 解 (2) 且 $e_j \to 1$ (根-1 支), 称
+$E$ 为根-1 解. 显式解 $E^\pm$ (定理 \ref{thm:closed}) 生成二维解子空间.
+
+\begin{theorem}[渐近分类]\label{thm:asym}
+	设 $e_j \to 1$ 满足比值固定点恒等式 (引理 \ref{lem:fp}), 且
+	$u := \lim_j j(e_j - 1)$ 存在. 则偶次 $u \in \{-\tfrac12, \tfrac12\}$,
+	奇次 $u \in \{\tfrac12, \tfrac32\}$.
+\end{theorem}
+
+\begin{proof}
+	对 $e_j = 1 + u/j + v/j^2 + w/j^3 + \cdots$ 作 $t$-尺度
+	($j = 1/t$) 代入恒等式展开: 首非零约束为 $t^2$ 项
+	(偶次 $-(2u-1)(2u+1)/4$, 奇次 $-(2u-3)(2u-1)/4$), 解得上述 $u$;
+	符号推导见 \path{scripts/op13_asymptotic_classify.py}. \qed
+\end{proof}
+
+\begin{theorem}[刚性支]\label{thm:rigid}
+	偶次 $u = -1/2$ 或奇次 $u = 1/2$ 时, 恒等式逐阶强制
+	$v = w = \cdots = 0$: $t^{k+2}$ 项系数恰为 $(k+1)x_{k+1}$
+	($x_{k+1}$ 为 $j^{-(k+1)}$ 的系数), 对 $k = 1, \dots, 5$ 符号验证
+	(\path{scripts/op13_rigidity_check.py}). 因此若 $e_j$ 是有理函数,
+	则 $e_j - e^-_j$ ($e^-_j = 1 - 1/(2j)$ 偶, $1 + 1/(2j)$ 奇)
+	是有理函数且其 $\infty$ 处渐近展开全零, 故恒等为零:
+	刚性支只有 $E^-$.
+\end{theorem}
+
+\begin{theorem}[自由支: 4-参数归约]\label{thm:free}
+	在 4-参数有理族 $e_j = (j^2 + aj + b)/(j^2 + cc\,j + d)$
+	(规范化 $a = u + cc$) 中, 固定点恒等式的解恰为:
+	\begin{itemize}
+		\item 偶次 $u = 1/2$: $d = 0$, 两支 —— $b = -(\tau+1)/2$,
+			$cc = \tau$ (即 $E^{(\tau)}$, 比值 $(1-\frac{1}{2j})
+			\frac{j+\tau+1}{j+\tau}$) 与 $b = (|2\tau+1|-1)/4$,
+			$cc = \tau$ (表示 $E^+$ 的可约形式, 与 $\tau$ 无关);
+		\item 奇次 $u = 3/2$: $d = 0$, $b = (\tau+1)/2$, $cc = \tau$
+			(即 $E^{(\tau)}$, 比值 $(1+\frac{1}{2j})
+			\frac{j+\tau+1}{j+\tau}$); $E^+$ 同理可约;
+		\item 刚性支 ($u = -1/2$ 偶, $u = 1/2$ 奇): 仅 $E^-$
+			($b = -cc/2$, $d = 0$, 比值与 $cc$ 无关).
+	\end{itemize}
+	符号求解 \path{scripts/op13_4param_reduced.py}; 精确逐项验证
+	\path{scripts/op13_families_exact.py} 与
+	\path{scripts/op13_classification_verify2.py} (偶/奇 $\times$
+	$c \in \{1,3,10\}$ $\times$ $\tau \in \{0, 2, \tfrac52, -\tfrac12, -\tfrac32\}$
+	全部通过). 注意: \path{op13_4param_reduced.py} 对奇次 $u = 1/2$ 返回的
+	``负支''是 sympy 增根, 精确复算 (39/40 项失败) 排除;
+	奇次 $u = 3/2$ 的符号求解返回空集是 sympy 局限, 直接代入精确验证通过.
+\end{theorem}
+
+\begin{theorem}[完整分类]\label{thm:full}
+	偶次根-1 支的一切\emph{有理比值}积分解恰为
+	$E^{(\tau)}_j = \frac{\tau+1+j}{\tau+1}\,E^-_j$
+	($\tau \neq -1$), 即 $E^{(\tau)} = c_1 E^+ + c_2 E^-$ 且
+	$c_1 = \frac{1}{2(\tau+1)}$, $c_2 = \frac{2\tau+1}{2(\tau+1)}$
+	(偶次), $c_1 = \frac{3}{2(\tau+1)}$, $c_2 = \frac{2\tau-1}{2(\tau+1)}$
+	(奇次); 加上刚性支 $E^-$. 比值显式
+	$e^{(\tau)}_j = (1 - \tfrac{1}{2j})\frac{j+\tau+1}{j+\tau}$ (偶),
+	$(1 + \tfrac{1}{2j})\frac{j+\tau+1}{j+\tau}$ (奇);
+	偏差 $d^{(\tau)}_j := e^{(\tau)}_j - e^+_j = -\frac{\tau+1/2}{j(j+\tau)}$
+	(偶), $\frac{1-2\tau}{2j(j+\tau)}$ (奇).
+\end{theorem}
+
+\begin{proof}[证明结构]
+	三支柱: (i) 定理 \ref{thm:asym} 限定 $u$; (ii) 定理 \ref{thm:rigid}
+	闭合刚性支; (iii) 自由支的 4-参数归约 (定理 \ref{thm:free})
+	给出 $E^{(\tau)}$ 族. 高次有理函数 ($\deg > 2$) 的排除: 对自由支,
+	任何 $e_j = 1 + \frac12/j + v/j^2 + \cdots$ 的有理解必须满足同一组
+	无限阶约束; 4-参数族是次数 $\leq 2$ 的完全列举. 次数 $> 2$ 的
+	穷尽排除未完成 (见第 6.4 节审计). \qed
+\end{proof}
+
+\subsection{最小解排除与第 6.4 节审计}
+
+根-0 (最小) 支的比值 $\rho^*_j = z^*_j/z^*_{j-1} \to 0$ 不属于
+$e_j \to 1$ 类, 不可能是有理比值: 对 $c = 1$, 高精度向后迭代计算
+$\rho^*_j$ ($j \leq 300$, 120 位), 对次数 $d = 1, \dots, 4$ 拟合
+$P(j)/Q(j)$ ($\deg Q - \deg P = 2$) 残差均为 $O(10^5)$
+(真有理序列残差应为机器精度), 见 \path{scripts/op13_min_rational_test.py}.
+更强结构: 根-0 支的渐近展开逐阶唯一 (下一小节), 无自由参数可与
+有理函数匹配. 此排除是数值级 + 唯一性论证, 未上升为完整定理,
+如实标注.
+
+\subsection{最小解的渐近展开与常数 $K(c)$}\label{sec:K}
+
+定理 \ref{thm:minimal} 的 $h^*_j \sim K(c/4)^j j^{-3}/(j!)^2$ 中,
+比值 $\rho^*_j = h^*_j/h^*_{j-1}$ 的逐阶匹配展开 (符号, 严格到任意阶
+的形式推导, \path{scripts/op13_matched_asymp3.py}):
+
+\begin{equation}\label{eq:rhos}
+	\rho^*_j = \frac{c}{4j^2}\Bigl(1 - \frac{3}{j} + \frac{C}{j^2}
+	+ \frac{D}{j^3} + \frac{E}{j^4} + \frac{F}{j^5}
+	+ \frac{G}{j^6} + O(j^{-7})\Bigr),
+\end{equation}
+偶次: $C = 6$, $D = -(c + \frac{21}{2})$, $E = \frac{33c}{4} + \frac{69}{4}$,
+$F = -(\frac{c^2}{4} + \frac{163c}{4} + \frac{219}{8})$,
+$G = \frac{85c^2}{16} + \frac{2529c}{16} + \frac{681}{16}$;
+奇次: $C = 8$, $D = -(c + \frac{41}{2})$, $E = \frac{39c}{4} + \frac{207}{4}$,
+$F = -(\frac{c^2}{4} + \frac{241c}{4} + \frac{1039}{8})$,
+$G = \frac{95c^2}{16} + \frac{4843c}{16} + \frac{5203}{16}$.
+注意 $B = -3$ 是首阶强制值 (与根-1 支无关), 各系数为 $c$ 的递增次多项式.
+
+常数 $K(c)$ ($c > 0$) 由
+$K(c) = \lim_j h^*_j (j!)^2 (4/c)^j j^3$ 数值提取 (\path{scripts/op13_K1_definitive.py},
+\path{scripts/op13_K_grid.py}); 结果:
+
+\begin{center}\begin{tabular}{l|rrrrrrrr}
+	$c$ & 0.01 & 0.1 & 0.5 & 1 & 2 & 5 & 10 & 100 \\\hline
+	$K(c)$ & 0.74925 & 0.74255 & 0.71367 & 0.67957 & 0.61737 & 0.46932
+		& 0.30846 & 0.00252
+\end{tabular}\end{center}
+
+锚点: $K(0) = \tfrac34$ (拟合至 11 位, \path{op13_K_smallc.py}),
+$K(1) = e/4 = 0.6795704571147613088400719$ (\emph{25 位数值确认},
+$K(1) - e/4 = -7.1 \times 10^{-25}$, \path{op13_K1_definitive.py}).
+小 $c$ 展开: $\ln K(c) = \ln\tfrac34 - \tfrac{c}{10}
++ 0.0014286\,c^2 - 0.0000422\,c^3 + O(c^4)$
+(数值拟合, \path{op13_K_cubic.py}). 一般 $c$ 的闭式\emph{未识别};
+生成函数满足五阶线性 ODE (\path{op13_gf_ode5.py}), 未进一步求解.
+严格性: (eq:rhos) 为形式级数 (逐阶匹配), $K(1) = e/4$ 为强数值证据,
+\emph{均非完整证明}.
+
+\subsection{盒式归纳齐次部分的封闭}\label{sec:box}
+
+会话 10 路线 A 的缺口: 比值偏差 $d_j = \rho_j - e^+_j$ 的归纳需要排除
+退化配置 ``$d_{j-1} = 0$ 且 $d_{j-2} > 0$''. 由定理 \ref{thm:full},
+一切齐次根-1 轨迹的偏差精确等于 $d^{(\tau)}_j$ (偶)
+$= -\frac{\tau+1/2}{j(j+\tau)}$, 且对固定 $j$ 是 $\tau$ 的严格减函数
+($\partial_\tau d^{(\tau)}_j = -\frac{j-1/2}{j(j+\tau)^2} < 0$),
+$E^{(\infty)} = E^+$ 对应 $d \equiv 0$ ($\tau = -\tfrac12$ 偶,
+$\tfrac12$ 奇). 故 $d_{j-1} = 0$ 唯一决定 $\tau$, 迫使
+$d_{j-2} = 0$: 退化配置被\emph{精确排除}. 双侧盒
+$d_j \in [\tfrac12 j^{-2},\; \alpha j^{-1}]$,
+$\alpha = 2 + \tfrac{5c}{12}$ (偶), $4 + \tfrac{7c}{20}$ (奇),
+对 3000 个随机盒内配置在 $j = 30..300$ 完全前向不变 (零违例,
+\path{op13_box2side2.py}, $c \in \{1,3,10\}$).
+\emph{残余缺口}: 非齐次源项 (最小解分量的 $T_j D$ 项) 的 $D$-控制
+未在本补充中闭合; 齐次部分已封闭.
+
+\section{数值验证}
+
+脚本 \path{scripts/d4_third_order_theory.py}, \path{scripts/d4_verify2.py},
+\path{scripts/d4_verify3.py}, \path{scripts/d4_verify4.py}:
+\begin{enumerate}
+	\item \textbf{闭式 (精确)}: 四个 $\mu$-闭式 (定理 \ref{thm:closed}) 对
+		$j = 3..30$, $c \in \{1,3,5,10\}$ 逐项精确满足 (1).
+	\item \textbf{$\beta$-分类 (符号)}: sympy 求解 $j = 3,4,5$ 分子方程得
+		偶 $\beta \in \{-1,1\}$, 奇 $\beta \in \{1,3\}$; 恒等式对
+		$\beta \in \{\pm 1\}/\{1,3\}$, $j = 3..60$, $c \in \{1,3,10,100\}$
+		逐项为零. 基始 $j=2$ 余量 $\pm 0.1875$ (非解, 符合预期).
+	\item \textbf{降阶公式 (精确)}: 定理 \ref{thm:reduction} 的 (4) 对
+		任意初值解与 $E^\pm$ 特解, 奇偶, $j = 3..119$ 精确成立.
+		旧公式在同范围失败 ($j=3$ 起), 更正属实.
+	\item \textbf{第三解 (高精度)}: 和式 (5) 给出的 $s^{\mathrm{ind}}$ 满足 (4)
+		(残差 $\leq 10^{-110}$); $z^{\mathrm{ind}}$ 满足 (2) (残差
+		$\leq 10^{-105}$); Casoratian 非零.
+	\item \textbf{最小解}: 向后迭代 $N \leq 1500$ (mpmath 200 位) 收敛;
+		$h^*_{20} = 3.26429659402\times10^{-44}$ (偶), $1.6086896898\times10^{-43}$
+		(奇) 对 $N = 100,200,400$ 稳定; $h^* = aE^+ + bE^- + c z^{\mathrm{ind}}$
+		残差 $\leq 10^{-118}$.
+\end{enumerate}
+
+\section{未闭合问题 (如实登记)}
+
+\begin{description}
+	\item[源项控制 (残余缺口)] 盒式归纳的齐次部分已封闭 (第 \ref{sec:box} 节),
+		但非齐次源项 $T_j D$ (最小解分量的贡献) 的 $D$-控制未闭合:
+		一般解 $E = c_1E^+ + c_2E^- + c_3 z^{\mathrm{ind}}$ 的比值偏差
+		由齐次部分 (定理 \ref{thm:full}) 与 $c_3$-源的叠加决定, 源项的
+		前向不变性缺证明.
+	\item[最小解的闭式] $K(c)$ 无闭式; 锚点 $K(0) = \tfrac34$,
+		$K(1) = e/4$ 为数值级 ($K(1)$ 至 25 位). (eq:rhos) 是形式展开,
+		Birkhoff--Trjitzinsky 型严格化未完成.
+	\item[高次有理函数排除] 自由支次数 $> 2$ 的有理比值未穷尽排除
+		(4-参数归约只列举次数 $\leq 2$); 最小解非有理为数值排除 +
+		逐阶唯一性, 非完整证明.
+	\item[两参数族分类] 定理 \ref{thm:beta} 的 $(1+\beta/(2k))$ 族与
+		一般 $(1+\alpha/(k+\gamma))$ 族 (\path{op13_general_product_classify.py}:
+		偶次恰给 $(\alpha,\gamma) \in \{(-\tfrac12,0),(\tfrac12,-1),(\tfrac12,0)\}$,
+		奇次 $\{(\tfrac12,0),(\tfrac32,-1),(\tfrac32,0)\}$) 均已分类;
+		$\gamma = -1$ 对应 $E^+ \pm E^-$ 组合的尾部表示
+		(\path{op13_tail_check.py}: $T/E^- = 2j$ 型).
+	\item[与完备性证明的关系] 路线 A 的完整化仍不必要: $H^1$-矩路线 (会话 10)
+		已闭合证明. 本文的价值在于 (i) 结构定理本身, (ii) 对旧脚本公式的更正,
+		(iii) 分类工具 (定理 \ref{thm:full}) 对一般三阶递推的可迁移性.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[三阶线性递推与 Poincar\'e 理论] 系数趋于常数时解的行为由特征根决定;
+		根 $0, 1, 1$ 给出一个快速衰减解与两个主导解.
+	\item[乘积型解与比值映射] $E_j = \prod e_k$ 解递推等价于 $e_j$ 为比值映射
+		的不变轨迹 (引理 \ref{lem:fp}); 分类化为有理恒等式.
+	\item[降阶法与变差常数] 已知一个解时三阶降为二阶 (定理 \ref{thm:reduction}),
+		再降为一阶 (定理 \ref{thm:minimal} 的 $w$-递推); 离散 Wronskian/Casoratian.
+	\item[向后迭代与最小解] 终值 $\delta$-型数据向后的极限选出最小解;
+		Poincar\'e 型递推的标准构造.
+	\item[Gamma 函数与超几何求和] 积分解 $\prod(1+\beta/(2k))$ 与
+		$(2j+1)!!$ 等阶乘闭式; $h^*$ 的和式能否化简为超几何函数是开放问题.
+\end{description}
+
+\begin{thebibliography}{6}
+\bibitem{h3proof} 项目文档, \emph{$H^3$ 多项式基解析完备性: 证明文档} (会话 10).
+\bibitem{h3sum} 项目文档, \emph{第三左定空间完备性研究: 路线总结与经验教训} (会话 10).
+	路径 \path{docs/SL_h3_research_summary.pdf}.
+\bibitem{crit} 项目文档, \emph{边界约束 Hilbert 空间中多项式稠密的一般准则} (会话 11).
+\bibitem{stability} 项目文档, \emph{矩跳跃机制的稳定性} (会话 11, 方向 3).
+	路径 \path{docs/SL_stability_moment_jump.pdf}.
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{pp} H. Poincar\'e, \emph{Sur les \'equations lin\'eaires aux
+	diff\'erentielles ordinaires et aux diff\'erences finies}, Amer. J. Math.
+	7 (1885), 203--258; O. Perron, \emph{\"Uber einen Satz des Herrn Poincar\'e},
+	J. Reine Angew. Math. 136 (1909), 17--37.
+\end{thebibliography}
+
+\end{document}

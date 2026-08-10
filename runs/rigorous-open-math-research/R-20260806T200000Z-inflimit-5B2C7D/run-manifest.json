@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260806T200000Z-inflimit-5B2C7D",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260806-inflimit-5B2C7D",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-06T20:00:00Z",
+  "completed_at": "2026-08-07T16:00:00Z",
+  "run_root": "runs/rigorous-open-math-research/R-20260806T200000Z-inflimit-5B2C7D",
+  "task_packet_path": "agenda/task-packets/Q-20260806-inflimit-5B2C7D.md",
+  "task_packet_sha256": "70034E11E95C63696EBCC33EAA79F5E885D987BFA72CA62EEE0B5B1D60EEA639",
+  "upstream_status_verbatim": "CANDIDATE_COMPLETE_PROOF",
+  "artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "0C0B705BAE55798D9F2D578F4FE27D6347D26AC7D1E623B0AC17785BDAC45D7F",
+      "role": "normalized theorem contract"
+    },
+    {
+      "path": "obligation_graph.md",
+      "sha256": "7A9EE7721B6299B81F8C0400BC689BFCCCB2450EF8CFA036A4FD3058B23A8179",
+      "role": "T1/T2/T3 obligations"
+    },
+    {
+      "path": "approach_registry.md",
+      "sha256": "CA166DFCD5B6E9FF223258EE074CD133C466DF82F975F4E4B00EF2598B161B97",
+      "role": "routes and failures"
+    },
+    {
+      "path": "candidate_proof.md",
+      "sha256": "F8CF72FD10D5E9052A174A4C9CD472BB24BE61F268867860497158A7266C4F9A",
+      "role": "Theorem A proof summary (deliverable)"
+    },
+    {
+      "path": "audit_report.md",
+      "sha256": "62D318DEC84C69127C9AAC14D12EB32544255083BEEAE756C23136AC09BB7990",
+      "role": "self-audit T1/T2/T3 (deliverable)"
+    },
+    {
+      "path": "status_and_literature.md",
+      "sha256": "218FF2DC83DEAF9D068CC2BF9B5858BCC505ED71A8D950FC81D61C5D2151B503",
+      "role": "premise recheck + novelty"
+    },
+    {
+      "path": "research_ledger.md",
+      "sha256": "D71296925B497A0144A0CD9D3FAC63E1A5BF1AB6A8984474CC4D555DD2D2132F",
+      "role": "R-001..R-021"
+    },
+    {
+      "path": "repro_manifest.md",
+      "sha256": "1D1138561B8C01DE49680E15FDEC0AF7B16A1444AEF59093B29EF7BCF91594A0",
+      "role": "reproducibility manifest incl. 16-19 outputs and script 19 v2"
+    },
+    {
+      "path": "docs/SL_gap_n1_inf_limit_proof.tex",
+      "sha256": "82BEC420CCFACB145BF9431DC6CF3FC9123FD2C073929477C5112A806487EF31",
+      "role": "formal proof source (10 pages, zero warnings)"
+    },
+    {
+      "path": "docs/build/SL_gap_n1_inf_limit_proof.pdf",
+      "sha256": "7DBF796A446D598F492C58A14551A254C704EA625C3B4697E010B84B18EFFA28",
+      "role": "formal proof deliverable"
+    },
+    {
+      "path": "docs/SL_gap_n1_proof.tex",
+      "sha256": "374166C438651D8B799FDB5DC9DB40B4E1807FB0A62AB4E3256D8F76BF3F0666",
+      "role": "n=1 proof doc with new INF-limit section"
+    },
+    {
+      "path": "docs/build/SL_gap_n1_proof.pdf",
+      "sha256": "C3D8E39789D3AAE1FC62AA683F143829632D5A3885F0FA4A70A800F73BDFA6F5",
+      "role": "n=1 proof doc PDF (14 pages)"
+    },
+    {
+      "path": "docs/SL_spectral_topics_summary.tex",
+      "sha256": "C5C5509F3524C99C8027AA6D8D5FD0AA9EB77434746DD7DE8C4EBC887D581655",
+      "role": "overview doc with session-30 update"
+    },
+    {
+      "path": "docs/build/SL_spectral_topics_summary.pdf",
+      "sha256": "52F3B9FFE46974959166884FAEBE401ECE33D9C3309C7FAEE7B1EE13D58039DF",
+      "role": "overview doc PDF (16 pages)"
+    },
+    {
+      "path": "reproducibility/",
+      "sha256": null,
+      "role": "26 evidence scripts 01-19 + probes; per-file hashes in repro_manifest.md; 16-19 re-run PASS 2026-08-07"
+    }
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10.11 (numpy 2.2.6, scipy 1.15.3, sympy 1.13.1, mpmath 1.3.0)",
+      "xelatex D:\\texlive\\2024\\bin\\windows\\xelatex.exe (docs, zero warnings)",
+      "PowerShell 7; network for novelty/premise checks"
+    ],
+    "formal_systems": [],
+    "unknown_fields": [
+      "model"
+    ]
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "manager-created run root; INF R->infinity limit proof (Theorem A)",
+    "completed in continuation session 2026-08-07: formal proof docs delivered (SL_gap_n1_inf_limit_proof.tex/pdf 10p; SL_gap_n1_proof.tex/pdf 14p with INF-limit section; SL_spectral_topics_summary 16p with session-30 paragraph); candidate_proof/status/obligation/approach/audit written; scripts 16-19 re-run PASS with outputs recorded in repro_manifest.md",
+    "audit findings this session: F-001 v = u/ell = -t cot t (not -cot t; bound validity unaffected), F-002 a_G vs a* zero labeling, F-003 draft encoding corruption (full rewrite), F-004 script 19 v1 -> v2",
+    "status CANDIDATE_COMPLETE_PROOF (self-audited); independent verifier pass on Lemma A'' chain, T2 zero labeling, T1 step (iv) remains the closing step before the manager closes the portfolio item",
+    "O3a/C1 (symmetric-family inf = full box-class inf) and the SUP-side limit are OUT OF SCOPE of this run (recorded in problem_contract.md)"
+  ]
+}

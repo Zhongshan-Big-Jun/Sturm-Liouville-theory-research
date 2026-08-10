@@ -1,0 +1,985 @@
+﻿% 编译: xelatex SL_gap_n1_proof.tex (两遍, -output-directory=build)
+% 状态: O1/O2/O3b 已独立审计 (INDEPENDENTLY_AUDITED_PROOF / PROVED); O3a/C1 (垒族 good root 唯一性) 已解决 (会话 34, 相位比刚性, 见 SL_gap_n1_O3a_phase_rigidity_proof.pdf).
+% INF 侧阱族刚性: 1<R<=3/2 已闭合 (2026-08-10, 小 R 刚性定理 + 缺口 (a) 对称线 1D 证明); 一般 R>3/2 开放.
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{相邻特征值间距 ($n=1$) 极端值定理: 严格证明}
+\author{研究项目 (来源: BVE research, run 系列 2026-08-05 -- 2026-08-06)}
+\date{2026-08-06}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文给出 Dirichlet 弦问题 $-y''=\lambda\rho y$ ($1\le\rho\le R$ a.e.) 相邻特征值间距
+$D:=\lambda_2-\lambda_1$ 的上下确界研究. \textbf{SUP 侧已严格证明}: $S(R)$ 由
+对称三块垒 $[1,R,1]$ 达到, 证明链为 (i) 归约定理 (O1, 已独立审计): 上确界在``单垒''
+两块族 $\rho=R\cdot\mathbf 1_{(a,b)}+\mathbf 1_{\text{其余}}$ 上达到, 下确界在
+``单阱''两块族上达到; (ii) 两块界 (O3b): $3\pi^2/R<D<3\pi^2$; (iii) 对称垒族
+单次穿零 (O2, KEY LEMMA, \texttt{INDEPENDENTLY\_AUDITED\_PROOF}); (iv) 垒族
+对称临界点唯一性 (O3a, 相位比刚性, 见 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf}).
+\textbf{INF 侧状态 (2026-08-10 核实)}: O1 归约 (下确界在阱族 $D^{well}(a,b)$ 上达到)
+已独立审计; 对称阱族 $[R,1,R]$ 的下确界序列的 $R\to\infty$ 极限由定理 A 严格证明
+(\texttt{SL\_gap\_n1\_inf\_limit\_proof.pdf}); ``全阱族下确界在对称阱达到'' (阱族刚性) 对 $1<R\le3/2$ 已证 (2026-08-10, 小 R 刚性 + 缺口 (a) 闭合), 一般 $R>3/2$ 仍属开放问题. 特别更正: 垒$\leftrightarrow$阱恒等式
+$D^{well}(a,b)=D^{bar}(1-b,1-a)$ 不成立 (数值反例见注 \ref{rem:inf-gap}).
+本文如实标注每一条义务的状态, 数值证据与精确剩余缺口; 数值部分一律标注精度且不构成证明.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题设置与主定理}
+
+\subsection{设定}
+Dirichlet 弦
+\begin{equation}
+	-y''(x) = \lambda\,\rho(x)\,y(x),\qquad y(0)=y(1)=0,\qquad
+	1\le\rho(x)\le R\ \text{a.e.}
+\end{equation}
+$0<\lambda_1(\rho)<\lambda_2(\rho)$ 为前两个特征值, $D(\rho):=\lambda_2(\rho)-\lambda_1(\rho)$.
+
+\begin{equation}
+	S(R):=\sup\{D(\rho):1\le\rho\le R\ \text{a.e.}\},\qquad
+	I(R):=\inf\{D(\rho):1\le\rho\le R\ \text{a.e.}\}.
+\end{equation}
+
+\subsection{主定理 (目标陈述)}
+\begin{theorem}[SUP 侧 (已证)]
+设 $R>1$, 则 $S(R)$ 由对称三块垒 $[1,R,1]$ 达到:
+$\rho^{sup}_u = 1$ on $[0,u]\cup[1-u,1]$, $\rho^{sup}_u=R$ on $(u,1-u)$,
+其中 $u=u^*(R)$ 是方程 $f_{sym}(u)=0$ 在 $(0,1/2)$ 内的唯一解, 即
+\begin{equation}
+	S(R)=D\bigl(\rho^{sup}_{u^*(R)}\bigr),
+\end{equation}
+且 $u^*(R)$ 是垒族上 $D$ 的唯一内点临界点 (O2+O3a).
+\end{theorem}
+
+\begin{conjecture}[INF 侧 (开放)]
+设 $R>1$. 猜想 $I(R)$ 由对称三块阱 $[R,1,R]$ 达到:
+$\rho^{inf}_v=R$ on $[0,v]\cup[1-v,1]$, $\rho^{inf}_v=1$ on $(v,1-v)$,
+即存在唯一 $v^*(R)\in(0,1/2)$ 使得
+\begin{equation}
+	I(R)=D\bigl(\rho^{inf}_{v^*(R)}\bigr),
+\end{equation}
+且 $v^*(R)$ 是阱族上 $D$ 的唯一内点临界点.
+\textbf{状态: 对 $1<R\le3/2$ 已证, 一般 $R>3/2$ 开放 (2026-08-10).} 已证部分: (a) O1 归约定理给出
+$I(R)=\min_{0\le a\le b\le1}D^{well}(a,b)$ (已独立审计); (b) 定理 A 给出对称阱族
+$[R,1,R]$ 下确界的 $R\to\infty$ 极限 $\lim_R R\,m_R=24.943866138432\ldots<3\pi^2$
+(\texttt{CANDIDATE\_COMPLETE\_PROOF}, 独立复核待做). 未证部分: 仅剩 $R>3/2$ 的阱族刚性 (全阱族下确界在对称阱达到), 见注 \ref{rem:inf-gap}.
+2026-08-10 闭合: (c) 小 $R$ 阱族刚性定理 ($1<R\le3/2$, good root 必对称,
+\texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf}); (d) 缺口 (a) 对称线 1D 分析
+(\texttt{SL\_gap\_n1\_symline\_proof.pdf}: $f(v)$ 唯一零点, $D(v)$ 单峰整体极小,
+$D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$, $D(v^*)<3\pi^2/R$). 故 $1<R\le3/2$ 时
+猜想成立: $I(R)=D(\rho^{inf}_{v^*(R)})<3\pi^2/R$. 数值证据 (R=4, 精度 1e-9):
+对称阱临界点 $v^*(4)\approx0.38258$, $D\approx6.7845$; 全阱族网格下确界
+$\approx6.7856$ 于 $(a,b)\approx(0.3867,0.6133)$, 均不构成证明.
+\end{conjecture}
+
+\begin{remark}[义务状态表]
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}lll@{}}
+\toprule
+义务 & 内容 & 状态 \\
+\midrule
+O1 & 归约到两块族 & \textbf{CLOSED} (修订后经两轮独立审计, \texttt{INDEPENDENTLY\_AUDITED\_PROOF}) \\
+O3b(1) & 两块界 $3\pi^2/R<D<3\pi^2$ & \textbf{PROVED} \\
+O2 & 对称垒族单次穿零 (KEY LEMMA) & \textbf{CLOSED} (\texttt{INDEPENDENTLY\_AUDITED\_PROOF}) \\
+O3a & 对称临界点唯一性 (垒族) & \textbf{CLOSED} (相位比刚性, 见 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf}) \\
+O3b(2) & 对称临界值超越两块界 & PROVED (SUP 侧, O3b(1)+内点驻定) \\
+O1-INF & 归约到阱族 & \textbf{CLOSED} (\texttt{INDEPENDENTLY\_AUDITED\_PROOF}) \\
+O3a-INF & 阱族刚性 & \textbf{CLOSED for $1<R\le3/2$} (2026-08-10: 小 R 刚性 + 缺口 (a) 闭合); \textbf{OPEN} for $R>3/2$ \\
+TA & 对称阱族 $R\to\infty$ 极限 & CANDIDATE \\
+\bottomrule
+\end{tabular}
+\end{center}
+本文第 2--4 节为已闭合部分, 第 5 节为剩余缺口与结构归约.
+\end{remark}
+
+\section{归约定理 (O1)}
+
+\begin{theorem}[O1, 归约]
+设 $\mathcal K=\{\rho \text{ 可测}:1\le\rho\le R\ \text{a.e.}\}$, 则
+\begin{equation}
+	S(R)=\max_{0\le a\le b\le 1}D\bigl(\rho=R\cdot\mathbf 1_{(a,b)}+1\cdot\mathbf 1_{\text{其余}}\bigr)
+	=\max_{0\le a\le b\le 1}D^{bar}(a,b),
+\end{equation}
+\begin{equation}
+	I(R)=\min_{0\le a\le b\le 1}D\bigl(\rho=1\cdot\mathbf 1_{(a,b)}+R\cdot\mathbf 1_{\text{其余}}\bigr)
+	=\min_{0\le a\le b\le 1}D^{well}(a,b),
+\end{equation}
+且两块族上的极值均达到.
+\end{theorem}
+
+\begin{proof}[证明 (修订版, 七步)]
+设 $G(x,t)=\min(x,t)(1-\max(x,t))$ 为 $[0,1]$ 上 Dirichlet Green 函数,
+$T_0 f=\int_0^1 G(x,t)f(t)\,dt$, $T_\rho=T_0\circ M_\rho$ ($M_\rho$ 为乘法算子).
+
+\emph{第 1 步 (L$^1$ 连续性, O1a).} 对 $\rho,\sigma\in\mathcal K$ 记
+$\Delta\rho=\rho-\sigma$, $A=T_\rho-T_\sigma=T_0M_{\Delta\rho}$. $T_0$ 是 $L^2$ 上
+Hilbert--Schmidt 算子 (核 $G\in L^2$), 故 $A$ 是 Hilbert--Schmidt 的且
+$\|A\|_{HS}^2=\int\!\!\int G(x,t)^2(\Delta\rho(t))^2\,dxdt\le
+\|G\|_{L^2}^2\|\Delta\rho\|_\infty^2$. 然而 $T_\rho$ 在 $L^2$ 上不一定自伴, 自伴化
+采用对称算子 $S_\rho:=M_{\sqrt\rho}\,T_0\,M_{\sqrt\rho}$ (Hilbert--Schmidt 自伴).
+由 Weyl 不等式 ($|\mu_k(S_\rho)-\mu_k(S_\sigma)|\le\|S_\rho-S_\sigma\|$, $\mu_k$ 为第
+$k$ 个特征值), 及
+\begin{equation}
+	\|S_\rho-S_\sigma\|_{HS}^2\le
+	\frac{R}{32}\Bigl(\|A\|_2^2+\|A\|_1^2\Bigr)\le\frac{R^2}{16}\|\Delta\rho\|_1,
+\end{equation}
+(常数链为 F-001 修复后的形式, 独立复审 \texttt{VERIFIED}; 推导: 把
+$\sqrt\rho-\sqrt\sigma=(\rho-\sigma)/(\sqrt\rho+\sqrt\sigma)$ 代入并估计
+$\|\sqrt\rho-\sqrt\sigma\|_2^2\le\|\Delta\rho\|_1$, 结合 $\|A\|_2\le R\|G\|_2\|\Delta\rho\|_2$
+等) 得到 $\|S_\rho-S_\sigma\|\to 0$ 当 $\|\Delta\rho\|_1\to0$. 又 $\lambda_k(\rho)^{-1}$
+是 $S_\rho$ 的第 $k$ 个特征值 (相似性: $S_\rho$ 与 $T_\rho$ 等谱, 见注 \ref{rem:srho}),
+故 $\lambda_k$ 关于 $L^1$ 连续. \qed
+
+\emph{第 2 步 (紧性).} 两块族 $\{D^{bar}(a,b):0\le a\le b\le1\}$ 是紧参数集的连续像
+(第 1 步), 故最大值存在; 同理两块阱族.
+
+\emph{第 3 步 ($N$ 跳参数化).} $\mathcal K_N:=$ 至多 $N$ 跳的分片常数密度是
+$\{0\le x_1\le\cdots\le x_N\le1\}\times[1,R]^{N+1}$ 的连续像, 故 $D$ 在 $\mathcal K_N$
+上取到最大/最小值.
+
+\emph{第 4 步 (移动跳点 FH, O1b).} 设 $\rho$ 在 $x_j$ 处由 $c_-$ 跳到 $c_+$
+($c_+\neq c_-$), $\rho_\varepsilon$ 为跳点移到 $x_j+\varepsilon$ 的密度. 分布恒等式
+\begin{equation}
+	\frac{d}{d\varepsilon}\rho_\varepsilon\Big|_{\varepsilon=0}
+	=-(c_+-c_-)\,\delta_{x_j},
+\end{equation}
+由 Feynman--Hellmann 公式 (AEH 引理 2.1, 经平滑化 Dirac 族 + H$^2$ 一致界 + 控制收敛
+严格化, 即 R4 修复) 得
+\begin{equation}
+	\frac{d\lambda_k}{d\varepsilon}\Big|_0
+	=+\lambda_k(c_+-c_-)\,u_k(x_j)^2,
+\end{equation}
+相减即
+\begin{equation}
+	\frac{dD}{d\varepsilon}\Big|_0=-(c_+-c_-)\,f(x_j),\qquad
+	f:=\lambda_1u_1^2-\lambda_2u_2^2.
+\end{equation}
+(左移时符号相反; 驻定性后果 $f_N(x_j)=0$ 不变.)
+
+\emph{第 5 步 (结构引理, O1c).} 对任意 $\rho\in\mathcal K$, $W:=u_1u_2'-u_1'u_2$ 满足
+$W'=(\lambda_1-\lambda_2)\rho u_1u_2$, $W(0)=W(1)=0$, 且 $u_1>0$, $u_2$ 在唯一零点
+$z_0$ 两侧变号, 得 $W<0$ on $(0,1)$, 故 $v:=u_2/u_1$ 严格递减. 于是
+$f=\lambda_1u_1^2(1-(\lambda_2/\lambda_1)v^2)$ 至多两个零点, $\{f>0\}$ 为包含 $z_0$
+的单区间.
+
+\emph{第 6 步 ($N$ 跳极值至多两跳, O1d).} 内点跳 $x_j$ 是自由参数, 由第 4 步与极值性
+$(c_j-c_{j-1})f_N(x_j)=0$, 即 $f_N(x_j)=0$; 由第 5 步 $f_N$ 至多两个零点, 故至多两跳.
+
+\emph{第 7 步 (阶梯稠密 + bang-bang, O1e/O1f).} 任意 $\rho\in\mathcal K$ 是分块平均
+阶梯的 $L^1$ 极限, 故 $\sup_{\mathcal K}D=\lim_N M_N\le\sup_{\mathcal K_2}D$, 反向
+平凡, 得 $S(R)=\sup_{\mathcal K_2}D$ 且达到. 在全局极大点上, 若 $f>0$ 于某正测集而
+$\rho<R$, 局部提高 $\rho$ 会严格增大 $D$ (第 4 步单侧导数), 矛盾, 故
+$\rho=R$ a.e.\ on $\{f>0\}$, $\rho=1$ a.e.\ on $\{f<0\}$ (bang-bang). 由第 5 步
+$\{f>0\}$ 为单区间, $\rho$ 落在垒族中. INF 侧同理 (阱族). \qed
+\end{proof}
+
+\begin{remark}[自伴化 \label{rem:srho}]
+$S_\rho=M_{\sqrt\rho}T_0M_{\sqrt\rho}$ 与 $T_\rho=T_0M_\rho$ 等谱: 若
+$T_\rho f=\mu f$, 令 $g=\sqrt\rho f$, 则 $S_\rho g=\mu g$ (直接代入, 利用 $T_0$ 与乘法
+可换性). 故 $\lambda_k(\rho)^{-1}=\mu_k(S_\rho)$, Weyl 不等式适用.
+\end{remark}
+
+\begin{remark}[文献关系]
+AEH 引理 2.1/2.2 已逐字核对原文 (arXiv:2407.02459v2; 正式版 Arch.\ Math.\ (Basel)
+\textbf{126}(2):187--197 (2026), DOI \href{https://doi.org/10.1007/s00013-025-02213-y}{10.1007/s00013-025-02213-y});
+移动跳点公式的符号与方向约定以本文第 4 步为准. Sun (J.\ Math.\ Anal.\ Appl.\ 2022,
+DOI \href{https://doi.org/10.1016/j.jmaa.2022.126513}{10.1016/j.jmaa.2022.126513}) 处理
+有界跳数类的 INF 侧, 与本文全可测盒类不同.
+\end{remark}
+
+\section{两块界 (O3b(1))}
+
+\begin{theorem}[两块界]
+设 $\rho$ 为两块密度 ($\rho=1$ on $[0,t]$, $\rho=R$ on $(t,1]$ 或镜像), 则
+\begin{equation}
+	\frac{3\pi^2}{R}<D(\rho)<3\pi^2.
+\end{equation}
+两个端点只在极限达到: $t\to1$ 时 $D\to3\pi^2$ ($\rho\equiv1$), $t\to0$ 时
+$D\to3\pi^2/R$ ($\rho\equiv R$).
+\end{theorem}
+
+\begin{proof}
+(相位坐标归约见 run R-20260805T000000Z-gapn1-a1b2c3, agentC\_O3b\_boundary.md; 本版把该工件中上界的三区域论证完整移植, 并修正旧版``上界同理''摘要的方向错误; 本证明全部为严格论证 (STRICT/E1), 无数值成分.)
+记 $\mu=\sqrt R>1$, $c:=\mu(1-t)/t\in(0,\infty)$, 令
+$\theta(x):=\arctan(\mu\tan x)$ 为连续分支 ($\theta(0)=0$, $\theta(x+\pi)=\theta(x)+\pi$),
+$x_1<x_2$ 为 $\theta(x)+cx=k\pi$ ($k=1,2$) 的前两个根. 由匹配条件 (agentC 命题 0.1) 得
+\begin{equation}
+	\lambda_k=x_k^2\frac{(\mu+c)^2}{\mu^2},\qquad
+	D(t)=\frac{(\mu+c)^2}{\mu^2}\bigl(x_2^2-x_1^2\bigr)=:\frac{W(\mu,c)}{\mu^2}.
+\end{equation}
+$\theta$ 严格递增, 且
+\begin{equation}
+	\theta'(x)=\frac{\mu(1+\tan^2x)}{1+\mu^2\tan^2x}\in[1/\mu,\mu],
+	\qquad
+	\theta''(x)=-\frac{2\mu(\mu^2-1)\tan x\,\cos^2x}{(1+\mu^2\tan^2x)^2},
+\end{equation}
+故 $\theta$ 在 $(0,\pi/2)\cup(\pi,3\pi/2)$ 上凹 (图象位于弦上方, $\theta(x)\ge x$),
+在 $(\pi/2,\pi)\cup(3\pi/2,2\pi)$ 上凸 ($\theta(x)\le x$). 又
+$x_k'(c)=-x_k/(\theta'(x_k)+c)<0$, 且 $\theta(\pi/2)=\pi/2$, $\theta(3\pi/2)=3\pi/2$
+代入 secular 方程得: $x_1=\pi/2$ 当且仅当 $c=1$, $x_2=3\pi/2$ 当且仅当 $c=1/3$.
+
+\emph{下界 (对所有 $c>0$).} 由 $\theta'<\mu$ 于 $(0,x_1]$ 严格成立 (等号仅在
+$\tan x=0$ 处), $\pi=\theta(x_1)+cx_1<\mu x_1+cx_1$, 得 $x_1>\pi/(\mu+c)$;
+两式相减得 $\pi-c(x_2-x_1)=\theta(x_2)-\theta(x_1)$, 且 $\theta'<\mu$ 在
+$(x_1,x_2)$ 上除至多孤立点外成立, 故 $x_2-x_1>\pi/(\mu+c)$. 于是
+$x_1+x_2>3\pi/(\mu+c)$, 因此
+\begin{equation}
+	W=(\mu+c)^2(x_2-x_1)(x_2+x_1)>3\pi^2,\qquad
+	D=W/\mu^2>3\pi^2/R.
+\end{equation}
+
+\emph{上界, 区域 I ($c\ge1$).} 此时 $x_1\in(0,\pi/2]$, $\theta$ 凹, $\theta(x_1)\ge x_1$,
+故 $\pi=\theta(x_1)+cx_1\ge(1+c)x_1$, 即 $x_1\le\pi/(1+c)$.
+由 $\theta'\ge1/\mu$ (MVT: $\theta(x_2)\ge x_2/\mu$, $\theta(x_2)-\theta(x_1)\ge(x_2-x_1)/\mu$):
+\begin{equation}
+	x_2\le\frac{2\pi}{c+1/\mu}=\frac{2\pi\mu}{1+\mu c},\qquad
+	x_2-x_1\le\frac{\pi}{c+1/\mu}=\frac{\pi\mu}{1+\mu c}.
+\end{equation}
+因此
+\begin{equation}
+	W\le(\mu+c)^2\frac{\pi\mu}{1+\mu c}
+	\Bigl(\frac{2\pi\mu}{1+\mu c}+\frac{\pi}{1+c}\Bigr)
+	=3\pi^2\mu^2\,G(\mu,c),
+\end{equation}
+其中
+\begin{equation}
+	G(\mu,c):=\frac{(\mu+c)^2}{3\mu^2}
+	\Bigl(\frac{2\mu^2}{(1+\mu c)^2}+\frac{\mu}{(1+\mu c)(1+c)}\Bigr).
+\end{equation}
+直接求导得
+\begin{equation}
+	\frac{\partial G}{\partial\mu}
+	=-\frac{(c+\mu)\bigl(6c^3\mu^2+4c^2\mu^2+3c^2\mu-5c\mu^2+c-4\mu^2-\mu\bigr)}
+	{3\mu^2(c+1)(1+\mu c)^3}.
+\end{equation}
+令 $s:=\mu-1\ge0$, $t:=c-1\ge0$, 展开整理得中括号
+\begin{equation}
+	6c^3\mu^2+4c^2\mu^2+3c^2\mu-5c\mu^2+c-4\mu^2-\mu=P(s,t),
+\end{equation}
+\begin{equation}
+	P(s,t):=6s^2t^3+22s^2t^2+21s^2t+s^2+12st^3+47st^2+48st+4s
+	+6t^3+25t^2+28t+4>0
+\end{equation}
+(所有系数非负且常数项 $4>0$). 故 $\partial G/\partial\mu<0$ 于 $\mu>1$;
+又 $G(1,c)=1$ 直接代入, 得 $G(\mu,c)<1$, 即 $W<3\pi^2\mu^2$.
+
+\emph{上界, 区域 II ($1/3\le c\le1$).} 此时 $x_1\in[\pi/2,\pi]$ ($\theta$ 凸,
+$\theta(x_1)\le x_1$), $\pi=\theta(x_1)+cx_1\le(1+c)x_1$, 即 $x_1\ge\pi/(1+c)$;
+$x_2\in[\pi,3\pi/2]$ ($\theta$ 凹, $\theta(x_2)\ge x_2$),
+$2\pi=\theta(x_2)+cx_2\ge(1+c)x_2$, 即 $x_2\le2\pi/(1+c)$. 于是
+\begin{equation}
+	x_2^2-x_1^2\le\frac{(2\pi)^2-\pi^2}{(1+c)^2}=\frac{3\pi^2}{(1+c)^2},
+	\qquad
+	W\le 3\pi^2\frac{(\mu+c)^2}{(1+c)^2}<3\pi^2\mu^2,
+\end{equation}
+末步因 $(\mu+c)^2<\mu^2(1+c)^2\iff c<\mu c\iff \mu>1$.
+
+\emph{上界, 区域 III ($0<c\le1/3$).} 此时 $x_1\in(\pi/2,\pi)$, $x_2\in(3\pi/2,2\pi)$.
+令 $\varepsilon_k:=k\pi-x_k\in(0,\pi/2)$, $\delta_k:=cx_k$, 由
+$\theta(k\pi-\varepsilon)=k\pi-\arctan(\mu\tan\varepsilon)$, secular 方程化为
+$\tan\delta_k=\mu\tan\varepsilon_k>0$ ($k=1,2$). 因 $\delta_2=cx_2\in(0,2\pi/3)$
+且 $\tan\delta_2>0$, 故 $\delta_2\in(0,\pi/2)$; 于是 $s_k:=\tan\delta_k$ 满足
+$0<s_1<s_2$ (因 $\delta_k$ 与 $x_k$ 同序, $\tan$ 于 $(0,\pi/2)$ 严格递增). 记
+\begin{equation}
+	p_k:=\theta'(x_k)=\frac{\mu^2+s_k^2}{\mu(1+s_k^2)},\qquad
+	x_k'(c)=-\frac{x_k}{p_k+c}.
+\end{equation}
+设 $U:=x_2^2-x_1^2$, 则 $W'=2(\mu+c)U+(\mu+c)^2U'$,
+$U'=-2x_2^2/(p_2+c)+2x_1^2/(p_1+c)$. 断言 $W'<0$ 于 $(0,1/3]$: $W'<0$ 等价于
+\begin{equation}
+	U<\frac{(\mu+c)x_2^2}{p_2+c}-\frac{(\mu+c)x_1^2}{p_1+c}.
+\end{equation}
+而 $(\mu+c)/(p_k+c)=f(s_k)$, 其中
+\begin{equation}
+	f(s):=\frac{\mu(\mu+c)(1+s^2)}{\mu(\mu+c)+s^2(1+\mu c)},
+	\qquad
+	f(s)-1=\frac{s^2(\mu^2-1)}{\mu(\mu+c)+s^2(1+\mu c)}>0,
+\end{equation}
+故上式右端减左端等于
+\begin{equation}
+	(\mu^2-1)\bigl[h(s_2,x_2)-h(s_1,x_1)\bigr],
+	\qquad
+	h(s,x):=\frac{s^2x^2}{\mu(\mu+c)+s^2(1+\mu c)}.
+\end{equation}
+$h$ 对 $s,x>0$ 均严格递增 ($\partial h/\partial s=2\mu s x^2(\mu+c)/[\cdot]^2>0$,
+$\partial h/\partial x=2s^2x/[\cdot]>0$), 且 $s_2>s_1$, $x_2>x_1$, 故差为正,
+$W'<0$. 由 $c\to0$ 时 $x_k\to k\pi$ 的连续性, $W(\mu,c)<W(\mu,0)=3\pi^2\mu^2$.
+
+三区域覆盖所有 $c>0$, 上界 $D<3\pi^2$ 得证; 镜像对称 ($t\mapsto1-t$) 覆盖另一
+方向的两块配置. 端点极限: $c\to0$ ($t\to1$) 时 $x_k\to k\pi$, $D\to3\pi^2$
+($\rho\equiv1$); $c\to\infty$ ($t\to0$) 时 $x_k\sim k\pi/(\mu+c)$, $D\to3\pi^2/R$
+($\rho\equiv R$). \qed
+\end{proof}
+
+\begin{corollary}[对称临界值超越两块界, O3b(2)]
+若对称垒族在 $u^*(R)\in(0,1/2)$ 达到临界值, 则
+$S(R)>3\pi^2$ 且 $S(R)<3\pi^2\cdot R$ (后者平凡). INF 侧
+$I(R)<3\pi^2/R$ 仅为数值证据 (R=4 时对称阱临界值 $D\approx6.7845<3\pi^2/4\approx7.4022$);
+该不等式对所有 $R>1$ 的严格证明属于阱族分析, 当前开放.
+\end{corollary}
+
+\section{对称垒族的单次穿零 (O2)}
+
+本节证明对称垒族 $\rho_u=1$ on $[0,u]\cup[1-u,1]$, $\rho_u=R$ on $(u,1-u)$ 的
+$D_{sym}(u):=\lambda_2(\rho_u)-\lambda_1(\rho_u)$ 在 $(0,1/2)$ 内有唯一极大点.
+记 $q:=\sqrt R>1$, $v:=1/2-u$, $\alpha_k:=s_k u$, $s_k:=\sqrt{\lambda_k}$.
+
+\subsection{半问题归约与 secular 方程}
+由关于 $1/2$ 的偶/奇对称性, $\lambda_1$ 是半问题 (Neumann 于 $1/2$) 的第一特征值,
+$\lambda_2$ 是半问题 (Dirichlet 于 $1/2$) 的第一特征值. 匹配 $x=u$ 处 $y,y'$ 连续得
+\begin{equation}
+	\text{偶模:}\quad \tan(s_1u)\tan(s_1qv)=\frac1q,\qquad
+	\text{奇模:}\quad q\tan(s_2u)+\tan(s_2qv)=0.
+\end{equation}
+(任务交接中的``正切乘积''形式 $\tan(s_2u)\tan(s_2qv)=-q$ 是\emph{错误}的; 本式与
+转移矩阵求解器一致到 $10^{-12}$.)
+
+令 $\beta_k:=s_k qv$, 则 $c:=\beta_k/\alpha_k=qv/u$, 即 $u=q/(2(c+q))$, $c\in(0,\infty)$.
+偶模条件写为 $\mathcal E(\alpha_1)=c\alpha_1$, 奇模为 $\mathcal O(\alpha_2)=c\alpha_2$, 其中
+\begin{equation}
+	\mathcal E(\alpha):=\arctan\frac1{q\tan\alpha}\ (0,\pi/2),\qquad
+	\mathcal O(\alpha):=\pi-\arctan(q\tan\alpha)\ (0,\pi),\qquad
+	\mathcal E'=\mathcal O'=-\frac{q}{\Phi(\alpha)},
+\end{equation}
+$\Phi(\alpha):=\cos^2\alpha+q^2\sin^2\alpha>0$. $\mathcal E,\mathcal O$ 严格递减, 与直线
+$\beta=c\alpha$ 各交一次, 定义 $\alpha_1(c)\in(0,\pi/2)$, $\alpha_2(c)\in(0,\pi)$, 均随
+$c$ 严格递减, 且
+\begin{equation}
+	\alpha_k'(c)=-\frac{\alpha_k\Phi(\alpha_k)}{c\Phi(\alpha_k)+q}.
+	\label{eq:alphaprime}
+\end{equation}
+
+\subsection{\texorpdfstring{$D(c)$, $F(c)$}{D(c), F(c)} 与端点}
+\begin{equation}
+	D(c):=D_{sym}(u(c))=\frac{4(c+q)^2}{q^2}\bigl(\alpha_2^2-\alpha_1^2\bigr),
+\end{equation}
+\begin{equation}
+	M(\alpha;c):=\frac{q(q^2-1)\alpha^2\sin^2\alpha}{q+c\Phi(\alpha)},\qquad
+	M_k(c):=M(\alpha_k(c);c),\qquad F(c):=M_1(c)-M_2(c).
+\end{equation}
+由隐式微分 (即 \eqref{eq:alphaprime}) 直接计算得
+\begin{equation}
+	D'(c)=\frac{8}{q^2}(c+q)F(c),
+\end{equation}
+再由 Feynman--Hellmann ($dD/du=-2(R-1)f_{sym}(u)$) 与 $dc/du=-q/(2u^2)$:
+\begin{equation}
+	f_{sym}(u)=\frac{2(c+q)F(c)}{q\,u^2\,(q^2-1)},
+\end{equation}
+故 $f_{sym}$ 与 $F$ 在 $(0,1/2)$ 上同号, 且 $D_{sym}$ 的单调性完全由 $F$ 的符号决定.
+
+\begin{lemma}[$\varphi_c$ 单调, Lemma 1]
+对一切 $q>1$, $c>0$,
+$\varphi_c(\alpha):=\alpha^2\sin^2\alpha/(q+c\Phi(\alpha))$ 在 $(0,\pi/2)$ 上严格递增.
+\end{lemma}
+\begin{proof}
+$t:=\tan\alpha$ 下
+$\partial_\alpha\log\varphi_c=2/\alpha+2\cot\alpha-c(q^2-1)\sin2\alpha/(q+c\Phi)$,
+且 $c/(q+c\Phi)<1/\Phi$, 而
+$(q^2-1)\sin2\alpha/\Phi=2(q^2-1)t/(1+q^2t^2)\le 2/t=2\cot\alpha$
+(因 $(q^2-1)t^2\le1+q^2t^2$), 故 $\partial_\alpha\log\varphi_c>2/\alpha>0$. \qed
+\end{proof}
+
+\begin{theorem}[T1, T2, T3]
+\label{thm:T123}
+\begin{enumerate}[label=(\alph*)]
+	\item $F(c)<0$ 对所有 $c\ge1/2$ 成立.
+	\item $F(0+)=(q^2-1)\pi^2/4>0$; $F(1/2)<0$; $f_{sym}(1/2)=2\pi^2>0$;
+	$f_{sym}(u)\sim-30\pi^4u^2/R^2$ as $u\to0+$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) 对 $c\ge1$: 两相位均在 $(0,\pi/2)$, Lemma 1 给出 $M_1<M_2$, $F<0$.
+对 $c\in[1/2,1]$: 写 $\alpha_2=\pi-\gamma$, $\gamma\in(0,\pi/2)$; $c\ge1/2$ 等价于
+$\gamma\ge\alpha_1$ (等号仅 $c=1/2$), 且 $\Phi(\pi-\gamma)=\Phi(\gamma)$,
+\begin{equation}
+	M_2=q(q^2-1)\Bigl(\frac{\pi-\gamma}{\gamma}\Bigr)^2\varphi_c(\gamma)
+	>q(q^2-1)\varphi_c(\alpha_1)=M_1,
+\end{equation}
+因 $(\pi-\gamma)^2/\gamma^2>1$ 且 $\varphi_c(\gamma)>\varphi_c(\alpha_1)$.
+(b) 直接计算: $c\to0+$ 时 $\alpha_1\to\pi/2$, $\alpha_2\to\pi$, $M_1\to(q^2-1)\pi^2/4$,
+$M_2\to0$. $c=1/2$ 时 $\alpha_1=\alpha_0=2\arcsin(1/\sqrt{2(q+1)})$,
+$\alpha_2=\pi-\alpha_0$, 代入 $F$ 得 $F(1/2)<0$ (由 Lemma 1 与 $(\pi-\alpha_0)^2>\alpha_0^2$).
+$u=1/2$ 时 $\rho\equiv1$: $\lambda_1=\pi^2$, $\lambda_2=4\pi^2$, $u_1(1/2)=\sqrt2$,
+$u_2(1/2)=0$, 故 $f_{sym}(1/2)=2\pi^2$. $u\to0+$ 时 $\rho\equiv R$:
+$\lambda_k\sim(k\pi)^2/R$, $u_k(x)=\sqrt{2/R}\sin(k\pi x)$, 代入 $f_{sym}$ 得渐近式. \qed
+\end{proof}
+
+\subsection{KEY LEMMA 的陈述}
+
+\begin{lemma}[KEY LEMMA]
+\label{lem:keylemma}
+对一切 $q>1$, $c\in(0,1/2)$:
+\begin{equation}
+	\text{(LOG)}\qquad \frac{d}{dc}\log\frac{M_1}{M_2}=G_1-G_2<0,
+\end{equation}
+\begin{equation}
+	\text{(FP)}\qquad F'(c)=M_1G_1-M_2G_2<0,
+\end{equation}
+其中 $G_k:=G(\alpha_k(c);c)$,
+\begin{equation}
+	G(\alpha;c):=\frac{d}{dc}\log M(\alpha(c);c)
+	=-\frac{\Phi(\alpha)W(\alpha)}{q+c\Phi(\alpha)}
+	+\frac{2c\alpha\Phi(\alpha)(q^2-1)\sin\alpha\cos\alpha}{(q+c\Phi(\alpha))^2},
+	\qquad W(\alpha):=3+2\alpha\cot\alpha.
+\end{equation}
+\end{lemma}
+
+\begin{remark}[两形式非等价]
+审计发现 (Finding C1): (LOG) 与 (FP) 并不逻辑等价; 源报告 T4 只消费 (FP)
+($F$ 在 $(0,1/2)$ 严格递减). 两者分别证明.
+\end{remark}
+
+\begin{theorem}[T4, 由 KEY LEMMA 归约]
+\label{thm:T4}
+若 KEY LEMMA 成立, 则 $F$ 在 $(0,1/2)$ 严格递减; 由 $F(0+)>0$ (T3) 与
+$F(1/2)<0$ (T2) 得 $F$ 在 $(0,1/2)$ 恰有一个零点 $c^*$, 从 $+$ 穿到 $-$; 因而
+$f_{sym}$ 在 $(0,1/2)$ 恰有一个零点 $u^*=q/(2(c^*+q))$, $f_{sym}<0$ on $(0,u^*)$,
+$f_{sym}>0$ on $(u^*,1/2)$; 由 $dD_{sym}/du=-2(R-1)f_{sym}$,
+$D_{sym}$ 在 $(0,u^*)$ 严格递增、在 $(u^*,1/2)$ 严格递减, $u^*$ 为唯一极大点. \qed
+\end{theorem}
+
+\subsection{KEY LEMMA 的证明}
+
+\subsubsection{归约到四引理}
+\begin{lemma}[L1]
+$G_1<0$ 对一切 $q>1$, $c\in(0,1/2)$ 成立.
+\end{lemma}
+\begin{proof}
+(父 run, 已复核.) $W_1=3+2\alpha_1\cot\alpha_1>0$ (因 $\alpha_1\in(0,\pi/2)$),
+交叉项估计 $(q^2-1)\sin\alpha_1\cos\alpha_1\le\Phi(\alpha_1)\cot\alpha_1$ 与
+$2c\alpha_1\Phi_1^2\cot\alpha_1/(q+c\Phi_1)^2<2\alpha_1\cot\alpha_1$, 而
+$W_1(q+c\Phi_1)>2c\alpha_1(q^2-1)\sin\alpha_1\cos\alpha_1$, 故 $G_1<0$. \qed
+\end{proof}
+
+\begin{lemma}[L2]
+若 $G_2\ge0$, 则 (LOG) 与 (FP) 均成立.
+\end{lemma}
+\begin{proof}
+$H=G_2-G_1>0$ (L1); $F'=M_1G_1-M_2G_2<0$ 因 $M_1G_1<0$, $-M_2G_2\le0$. \qed
+\end{proof}
+
+\begin{lemma}[区域分裂]
+设
+\begin{equation}
+	\text{R1:}\quad G_2\ge0\ \forall q\ge2,\ c\in(0,1/2),
+	\qquad
+	\text{R2:}\quad G_2\ge0\ \forall q>1,\ c\in(0,0.4].
+\end{equation}
+则区域 $\mathbf B:=\{G_2<0\}\subset(1,2)\times(0.4,1/2)\subset
+\mathsf{Box}:=(1,2]\times[0.4,0.5]$.
+\end{lemma}
+\begin{proof}
+$(q,c)\notin(1,2)\times(0.4,1/2)$ 蕴含 $q\ge2$ 或 $c\le0.4$, 由 R1 或 R2 得 $G_2\ge0$. \qed
+\end{proof}
+
+\begin{lemma}[L4box 与 L5box]
+\label{lem:box}
+在闭盒 $\mathsf{Box}=[1,2]\times[0.4,0.5]$ 上,
+\begin{equation}
+	H'=\frac{dG_2}{dc}-\frac{dG_1}{dc}<0,\qquad
+	F''=M_1J_1-M_2J_2>0,\qquad J_k:=G_k^2+\frac{dG_k}{dc}
+\end{equation}
+(后者即 $F''>0$; 恒等式 $F''=\frac{dF'}{dc}$ 精确成立, 因 $M'=MG$ 且两 $G^2$ 项相消).
+\end{lemma}
+\begin{proof}[证明 (区间算术证书)]
+L4box: 128 叶向外舍入区间算术证书, 最坏上界 $-4.8416$ (两独立引擎一致);
+L5box: 128 叶, 最坏下界 $+8.3794$. 铺片精确 (90 位 Decimal 下总面积恰为 $0.1$),
+符号条件零失败, 闭盒是开盒的超集. 引擎与证书见
+runs/\allowbreak rigorous-open-math-research/\allowbreak R-20260806T070000Z-keylemma2b-0A6D8F/
+与独立审计 run R-20260806T140000Z-keylemmaaudit-2F83B1/. \qed
+\end{proof}
+
+\begin{lemma}[B4 与 B5]
+\label{lem:b45}
+对一切 $q>1$:
+\begin{equation}
+	\text{B4:}\quad F'(q,1/2)=\frac{2\pi(\cos x-1)^3P(x)}{\sin^3x}<0,\qquad
+	x=\arccos\frac q{q+1},
+\end{equation}
+($P$ 为显式多项式, 父 run 第 3.1 节; $P(x)>(\pi-3x)^2$ 保证负号),
+\begin{equation}
+	\text{B5:}\quad H(q,1/2)=\frac{2\pi q(q+1)}{(2q+1)^{3/2}}>0,\qquad
+	\min_{q>1}=\frac{4\pi}{3\sqrt3}>0.
+\end{equation}
+\end{lemma}
+
+\begin{lemma}[KEY LEMMA 归约完成]
+若 R1, R2, L4box, L5box, B4, B5 (及 L1, L2) 成立, 则 KEY LEMMA 成立.
+\end{lemma}
+\begin{proof}
+对 $G_2\ge0$ 由 L2. 否则 $(q,c)\in\mathbf B\subset\mathsf{Box}$; 对固定 $q$,
+线段 $[c,1/2]\times\{q\}\subset\mathsf{Box}$ (因 $c>0.4$). L4box 给出
+$H(c)>H(1/2)$, B5 给出 $H(1/2)>0$, 得 (LOG). L5box 给出 $F'$ 在 $c$ 上严格递增,
+故 $F'(c)<F'(q,1/2)$, B4 给出 $F'(q,1/2)<0$, 得 (FP). \qed
+\end{proof}
+
+\subsubsection{(q,u) 换元与符号恒等式}
+对奇模曲线参数化: $\gamma:=\pi-\alpha_2\in(0,\pi/2)$,
+\begin{equation}
+	u:=q\tan\gamma=\tan(c\alpha_2),\qquad A:=\alpha_2=\pi-\arctan\frac uq,\qquad
+	c=\frac{\arctan u}{A}.
+\end{equation}
+$c\mapsto u$ 严格递增 (因 $d(c\alpha_2)/dc=\alpha_2q/(q+c\Phi_2)>0$), $u(0+)=0$,
+$u(1/2)=\sqrt{2q+1}$ (精确). 于是 R1 区域 = $\{q\ge2,\ 0<u<\sqrt{2q+1}\}$;
+R2 区域 = $\{q>1,\ 0<u\le u_c(q)\}$, $u_c(q):=\tan(0.4\alpha_2(0.4;q))$.
+
+\begin{lemma}[符号恒等式]
+\label{lem:sign}
+设
+\begin{equation}
+	\mathrm{IN}(q,u):=(q^2+u^2)A\bigl(2Aq-3u+2\arctan u\bigr)-3uq(1+u^2)\arctan u,
+\end{equation}
+则恒等式 $\mathrm{IN}=G_2\cdot\mathrm{POS}$ 成立, 其中
+\begin{equation}
+	\mathrm{POS}=\frac{D^2A(q^2+u^2)u}{\Phi(\alpha_2)q}>0,\qquad D:=q+c\Phi(\alpha_2).
+\end{equation}
+故 $\operatorname{sign}G_2=\operatorname{sign}\mathrm{IN}$ 在整个定义域上成立.
+\end{lemma}
+\begin{proof}
+(推导, 已符号验证 diff=0 且 500 随机点零失配.) 令 $t:=\arctan u$, $c=t/A$,
+$\Phi(\alpha_2)=q^2(1+u^2)/(q^2+u^2)$, $W(\alpha_2)=3-2Aq/u$,
+$\sin\alpha_2\cos\alpha_2=-uq/(q^2+u^2)$, 消去正分母 $u,A,q^2+u^2,D^2/\Phi$ 得
+\begin{equation}
+	\frac{A(q^2+u^2)uD^2}{\Phi}G_2
+	=q\Bigl[A(q^2+u^2)(2Aq-3u+2t)-3tuq(1+u^2)\Bigr]=q\cdot\mathrm{IN}.\qed
+\end{equation}
+\end{proof}
+
+\subsubsection{M2: \texorpdfstring{$\partial\mathrm{IN}/\partial u<0$}{dIN/du < 0}}
+\begin{lemma}[M2]
+\label{lem:m2}
+在 $D:=\{(q,u):q>1,\ 0<u<\sqrt{2q+1}\}$ 上,
+\begin{equation}
+	\mathrm{M2}(q,u):=\frac{\partial\mathrm{IN}}{\partial u}
+	=4A^2uq-7Aq^2-9Au^2+\frac{2A(q^2+u^2)}{1+u^2}+t(4Au-5q-9qu^2)<0,
+	\qquad t:=\arctan u.
+\end{equation}
+\end{lemma}
+\begin{proof}[证明]
+\emph{Step 1: $h(u)<0$ 全 $u>0$.}
+\begin{equation}
+	h(u):=4u(\pi-\arctan u)-5-9u^2,\qquad
+	\mathrm{M2}(1,u)=\pi h(u).
+\end{equation}
+$h''=-8/(1+u^2)^2-18<0$, $h'$ 严格递减; $h'(1/2)>0$ (交错级数界
+$\arctan(1/2)<1/2-1/24+1/160$), $h'(0.53)<0$ ($\arctan0.53>0.53-0.53^3/3$,
+$\pi<3.142$), 故唯一极大在 $u^*\in(0.5,0.53)$, 且
+\begin{equation}
+	h(u)\le h(u^*)=\frac{4u^{*2}}{1+u^{*2}}+9u^{*2}-5<13(0.53)^2-5=-1.3483<0.
+\end{equation}
+\emph{Step 2: $\partial\mathrm{M2}/\partial q<0$ on $D$.} 精确导数 (符号验证 diff=0):
+\begin{equation}
+	\frac{\partial\mathrm{M2}}{\partial q}
+	=4A^2u+\frac{8Au^2q}{q^2+u^2}-\frac{7q^2u}{q^2+u^2}-14Aq-\frac{9u^3}{q^2+u^2}
+	+\frac{2u}{1+u^2}+\frac{4Aq}{1+u^2}+t\Bigl(\frac{4u^2}{q^2+u^2}-5-9u^2\Bigr).
+\end{equation}
+紧部分: 证书 \texttt{cert\_dM2dq\_boxes.json} (84 叶, 最坏上界 $-0.19024$) 覆盖
+$[1,20]\times[0,y_1]$, $y_1$ 为 $\sqrt{41}$ 的 40 位截断; 条带证书
+\texttt{cert\_dM2dq\_strip\_boxes.json} (10 叶, 最坏 $-448.745$) 覆盖
+$[1,20]\times[y_1,\sqrt{41}]$ (由精确平方 $(y_1+10^{-30})^2>41$). 两证书均由独立
+第二引擎 (mpmath.iv 50 dps + 自有严谨 atan + 自有二分) 复验零失败.
+尾部 $q\ge20$: 初等界
+\begin{equation}
+	\frac{\partial\mathrm{M2}}{\partial q}\le
+	B(q):=(4\pi^2+14)\sqrt{2q+1}+8\pi\frac{2q+1}{q}+1+2\pi\frac{2q+1}{q^2}-10\pi q,
+\end{equation}
+$B(20)<0$ 且 $B'<0$ on $[20,\infty)$ ($(4\pi^2+14)/\sqrt{41}<8.39<10\pi$).
+\emph{Step 3: 积分路径.} 固定 $u$:
+\begin{itemize}
+	\item 若 $u\le\sqrt{41}$: 沿 $q'\in[1,q]$ 积分 $\partial\mathrm{M2}/\partial q<0$
+	(路径保持在 $D$ 内), 得 $\mathrm{M2}(q,u)<\mathrm{M2}(1,u)=\pi h(u)<0$.
+	\item 若 $u>\sqrt{41}$: 则 $q>20$; 令 $t_0:=\arctan u$, $t:=u/q$,
+	$t\le t_{\max}:=\sqrt{2q+1}/q\le\sqrt{41}/20<0.33$ (递减函数), 则
+	\begin{equation}
+		\frac{\mathrm{M2}}{q^2}\le
+		4\pi^2t_{\max}-7(\pi-\arctan t_{\max})+\frac{2\pi(1+t_{\max}^2)}{42}<0
+	\end{equation}
+	($\pi\in(3.14,3.15)$, $t_{\max}<0.33$; 数值锐值 $-7.018$). \qed
+	\end{itemize}
+\end{proof}
+
+\subsubsection{CORNER 与 C4}
+\begin{lemma}[CORNER]
+对 $c=1/2$, $\alpha_1=x$, $\alpha_2=\pi-x$, $x=\arccos\frac q{q+1}$,
+\begin{equation}
+	G_2(1/2;q)=\frac{2q(q+1)}{(2q+1)^{3/2}}\bigl(\pi-x-3\sin x\bigr)
+	\ge\frac{12\bigl(\pi-\arccos(2/3)-\sqrt5\bigr)}{5\sqrt5}>0\qquad(q\ge2).
+\end{equation}
+\end{lemma}
+\begin{proof}
+$q\ge2\iff x\le\arccos(2/3)$; $x\mapsto\pi-x-3\sin x$ 在 $(0,\pi/2)$ 严格递减
+(导数为 $-1-3\cos x<0$), 故最小值在 $q=2$ ($x=\arccos(2/3)$, $\sin x=\sqrt5/3$).
+初等证书 $\pi>\arccos(2/3)+\sqrt5$: 令 $y:=\pi-\sqrt5\in(0.9,1)$ ($\pi>3.14$,
+$\sqrt5<2.24$), 则 $\arccos(2/3)<y\iff\cos y<2/3$; 交错 Taylor 上界
+$\cos y\le1-y^2/2+y^4/24<1-0.9^2/2+0.9^4/24=0.6223<2/3$. \qed
+\end{proof}
+
+\begin{lemma}[C4]
+对一切 $q>1$, $G_2(0.4;q)\ge0$.
+\end{lemma}
+\begin{proof}
+在 $c=0.4$ 曲线上令 $v:=\arctan u\in[2\pi/7,2\pi/5)$
+($q=\tan v/\tan(\pi-2.5v)$, $A=2.5v$), 则
+\begin{equation}
+	\mathrm{IN}=A\cdot K(v),\qquad
+	K(v):=(q^2+u^2)(5vq-3u+2v)-1.2\,uq(1+u^2).
+\end{equation}
+区间段 $[2\pi/7,\ 2\pi/5-10^{-3}]$: 200 叶证书 \texttt{cert\_c4\_boxes.json}
+(最坏下界 $+2.49716$, 独立引擎复验), 端点由 Machin $\pi$ 90 位向外舍入覆盖,
+打印端点缝隙 (总测度 $6.25\times10^{-58}$) 由 $\varepsilon$-膨胀重估桥接.
+尾部 $[2\pi/5-10^{-3},2\pi/5)$: 令 $w:=\pi-2.5v\in(0,2.5\times10^{-3}]$, $T:=\tan w$,
+则精确恒等式
+\begin{equation}
+	T^3K=5vu^3(1+T^2)-3u^3T(1+T^2)+2vu^2T(1+T^2)-1.2u^2(1+u^2)T^2,
+\end{equation}
+用 $v\ge5/4$, $u\in(153/50,77/25)$, $T\le125001/50000000$ (四常数均经向外舍入区间
+认证), 丢掉非负项 $2vu^2T(1+T^2)$ 得精确有理数下界
+\begin{equation}
+	T^3K\ge\frac{349333915896399959797475605401}{1953125000000000000000000000}
+	=178.85896\ldots>0.\qed
+\end{equation}
+\end{proof}
+
+\subsubsection{R1 与 R2}
+\begin{proposition}[R1]
+$G_2\ge0$ 对一切 $q\ge2$, $c\in(0,1/2)$ 成立.
+\end{proposition}
+\begin{proof}
+对固定 $q\ge2$, $u$ 扫过 $(0,\sqrt{2q+1})$; 由 M2, $\mathrm{IN}$ 关于 $u$ 严格递减,
+故 $\mathrm{IN}(q,u)>\mathrm{IN}(q,\sqrt{2q+1})\ge0$ (CORNER, $c=1/2$); 符号恒等式给出
+$G_2\ge0$. \qed
+\end{proof}
+
+\begin{proposition}[R2]
+$G_2\ge0$ 对一切 $q>1$, $c\in(0,0.4]$ 成立.
+\end{proposition}
+\begin{proof}
+$u$ 扫过 $(0,u_c(q)]$, $u_c(q)<\sqrt{2q+1}$; 由 M2, $\mathrm{IN}(q,u)\ge
+\mathrm{IN}(q,u_c(q))\ge0$ (C4, $c=0.4$); 符号恒等式给出 $G_2\ge0$.
+($c\to0+$ 端点为正值极限 $\mathrm{IN}(q,0+)=2\pi^2q^3$.) \qed
+\end{proof}
+
+\subsubsection{KEY LEMMA 证明完成}
+\begin{proof}[KEY LEMMA 证明]
+对 $q>1$, $c\in(0,1/2)$: 若 $G_2\ge0$, L1+L2 给出两形式. 否则
+$(q,c)\in\mathbf B\subset\mathsf{Box}$; L4box + B5 给出 (LOG), L5box + B4 给出 (FP).
+两形式对一切 $q>1$, $c\in(0,1/2)$ 成立. \qed
+\end{proof}
+
+\begin{remark}[证书与审计]
+KEY LEMMA 证明由 run R-20260806T070000Z-keylemma2b-0A6D8F 组装 (状态
+\texttt{CANDIDATE\_COMPLETE\_PROOF}), 经 run R-20260806T140000Z-keylemmaaudit-2F83B1
+第二独立实体从零审计 (状态 \texttt{INDEPENDENTLY\_AUDITED\_PROOF}): 全部符号恒等式
+符号级 diff=0 (含 $\mathrm{IN}=A\cdot K(v)$ 经 $\arctan(\tan v)=v$ 化简归零, 解除产出
+run 的 caveat), 五份区间证书用独立 80 位定向 Decimal 引擎全部复验, 20 万随机点零违例,
+Region B 800 万点 $H$ 最小 $2.4185$, $F'$ 最大 $-0.456$. 已知 caveat:
+riarith.\texttt{iv\_sqrt} 非严格向外舍入 (审计引擎独立, 不承重); 区间引擎未在证明助手
+中形式化 (可复现性注记, 非开放证明义务).
+\end{remark}
+
+\subsection{O2 结论}
+\begin{theorem}[O2, 对称垒族单次穿零]
+对一切 $R>1$, $D_{sym}(u)$ 在 $(0,1/2)$ 内有唯一极大点 $u^*(R)$:
+$f_{sym}<0$ on $(0,u^*)$, $f_{sym}>0$ on $(u^*,1/2)$.
+\end{theorem}
+\begin{proof}
+T4 前置条件由 KEY LEMMA (Lemma \ref{lem:keylemma}) 提供, 其证明见上一小节; T1--T3
+由定理 \ref{thm:T123}. \qed
+\end{proof}
+
+\section{对称临界点唯一性 (O3a) 与主定理合成}
+
+\subsection{记号}
+对垒族 $\rho^{bar}_{(a,b)}$ 记 $s_k:=\sqrt{\lambda_k}$, $y_k$ 为
+$-y_k''=\lambda_k\rho y_k$, $y_k(0)=0$, $y_k'(0)=1$ 的解, $u_k:=y_k/\|y_k\|_{L^2(\rho)}$,
+$f=\lambda_1u_1^2-\lambda_2u_2^2$, $R_1:=f(a)$, $R_2:=f(b)$,
+$D^{bar}(a,b):=\lambda_2-\lambda_1$. ``好根''指 $R_1=R_2=0$ 且 $a<x_-<b$ 为 $f$ 的两零点
+位置 $a=x_-$, $b=x_+$.
+
+\subsection{已证结构引理 P1--P4}
+\begin{proposition}[P1, FH 带特征值因子]
+对垒族, $k=1,2$:
+\begin{equation}
+	\frac{d\lambda_k}{da}=(R-1)\lambda_ku_k(a)^2,\qquad
+	\frac{d\lambda_k}{db}=-(R-1)\lambda_ku_k(b)^2,
+\end{equation}
+故 $dD^{bar}/da=-(R-1)R_1$, $dD^{bar}/db=(R-1)R_2$.
+\end{proposition}
+\begin{proof}
+$\rho=1+\varepsilon\mathbf 1_{(a,b)}$, $\varepsilon=R-1$, Rayleigh 商
+$\lambda=\int(u')^2/\int\rho u^2$ 在归一化 $\int\rho u^2=1$ 下微分, 两次分部积分消去
+$u_\varepsilon$ 项, 得 $d\lambda/d\varepsilon=-\lambda\int\dot\rho u^2\,dx$;
+$\dot\rho=- (R-1)\delta_a+(R-1)\delta_b$. \qed
+\end{proof}
+
+\begin{proposition}[P2, 残差精确恒等式]
+在 $0<a<b<1$ 上 $dR_1/db=-dR_2/da$.
+\end{proposition}
+\begin{proof}
+secular 函数实解析, 特征值单 (正有界权标准 SL 理论), 由隐函数定理 $D^{bar}$ 实解析;
+Schwarz 定理于 $D^{bar}_{ab}=D^{bar}_{ba}$ 结合 P1. \qed
+\end{proof}
+
+\begin{proposition}[P3, 好根处分支斜率与 Hessian 归约]
+在好根处 ($R_1=R_2=0$), 设 $A=\partial R_1/\partial a$, $B=\partial R_2/\partial a$,
+$C=\partial R_2/\partial b$, 则
+\begin{equation}
+	g_1'=\frac AB,\qquad g_2'=-\frac BC,\qquad
+	A=-\frac{D^{bar}_{aa}}{R-1},\quad
+	B=\frac{D^{bar}_{ab}}{R-1},\quad
+	C=\frac{D^{bar}_{bb}}{R-1},
+\end{equation}
+$h':=g_1'-g_2'=-D^{bar}_{aa}/D^{bar}_{ab}+D^{bar}_{ab}/D^{bar}_{bb}$;
+若 $D^{bar}_{aa},D^{bar}_{bb}<0<D^{bar}_{ab}$ 且 $D^{bar}_{aa}D^{bar}_{bb}>D^{bar}_{ab}{}^2$,
+则 $h'>0$. 在对称不动点 $(a,1-a)$: $A=-C$, $g_1'g_2'=1$, $h'=g_1'-1/g_1'$.
+\end{proposition}
+
+\begin{proposition}[P4, R=1 基态]
+对 $\rho\equiv1$: $v(x)=y_2/y_1=\cos(\pi x)$, $f_0(x)=2\pi^2\sin^2(\pi x)(1-16\cos^2(\pi x))$,
+其零点 $a_0=\arccos(1/4)/\pi$, $b_0=\arccos(-1/4)/\pi=1-a_0$.
+\end{proposition}
+
+
+\subsection{反射结构 R1--R6 (run R-20260806T140000Z-o3ac1-42F931)}
+
+本 run 证明了新的初等反射结构, 把 C1 严格归约到两个结构事实.
+记 $\sigma(a,b)=(1-b,1-a)$, $u_k$ 为 $L^2(\rho)$ 归一化特征函数,
+$f=\lambda_1u_1^2-\lambda_2u_2^2$, $R_1=f(a)$, $R_2=f(b)$,
+$g_1,g_2$ 为两条残差分支 ($R_1=0$ 与 $R_2=0$ 主叶), $h=g_1-g_2$ on
+$I=[a_0,\beta]$.
+
+\begin{proposition}[R1, 残差反射]
+对 $0<a<b<1$: $R_1(\sigma(a,b))=R_2(a,b)$, $R_2(\sigma(a,b))=R_1(a,b)$.
+\end{proposition}
+\begin{proof}
+$y(x)\mapsto y(1-x)$ 是镜像问题特征对的等距双射 ($L^2(\rho)$ 范数经代换
+$t=1-x$ 相等), 故 $f'(x)=f(1-x)$, 代入端点即得. \qed
+\end{proof}
+
+\begin{proposition}[R2, 分支反射]
+$\sigma(\Gamma_1)=\Gamma_2$ (主叶); 因而在公共区间 $I$ 上
+\begin{equation}
+	g_2(a)=1-g_1^{-1}(1-a).
+\end{equation}
+\end{proposition}
+\begin{proof}
+符号跟踪: 镜像问题的斜率归一化比值 $v'(x)=c_vv(1-x)$, $c_v=y_2'(1)/y_1'(1)<0$
+($y_1'(1)<0<y_2'(1)$), 保符号一致性 ($a=x_-$, $b=x_+$); $\sigma$ 是对合且固定对称
+不动点. ``主叶''一步依赖 H2 (单分支结构, 假设). \qed
+\end{proof}
+
+\begin{proposition}[R3, R4, h 的反射公式与积分恒等式]
+在 $I$ 上, 令 $u(a):=g_1^{-1}(1-a)$:
+\begin{equation}
+	h(a)=g_1(a)-1+u(a),\qquad h'(a)=g_1'(a)-\frac1{g_1'(u(a))},
+\end{equation}
+\begin{equation}
+	h(a)=\int_{u(a)}^{a}\bigl(g_1'(t)-1\bigr)\,dt.
+\end{equation}
+\end{proposition}
+\begin{proof}
+R3 由 R2 + 反函数定理; R4 由 R3.1 与微积分基本定理 ($g_1(u(a))=1-a$). \qed
+\end{proof}
+
+\begin{remark}[MVT 充分条件被否证]
+均值形式 $h(a)=(a-u(a))(g_1'(\xi)-1)$ 提示``$g_1'>1$ on $I$''是充分条件;
+该条件对 $R\ge\sim1000$ 为假 ($g_1'$ 在 $a\sim0.42$--$0.44$ 处降到 $\sim0.98$,
+counterexample CE-3), 积分形式 (R4.1) 是正确的攻击对象.
+\end{remark}
+
+\begin{proposition}[R5, 好根 = h 的零点]
+(i) $R_1=R_2=0$ ($0<a<b<1$) 的每个解都是符号一致好根;
+(ii) 在 $I$ 上 $h(a)=0$ 当且仅当 $(a,g_1(a))$ 是好根;
+(iii) 在 $I$ 上 $h(a)=0$ 当且仅当 $a=J(a):=1-g_1(1-g_1(a))$.
+等价地, C1 成立当且仅当系统 $\{R_1=0,R_2=0\}$ 在 $\{0<a<b<1\}$ 内对每个 $R>1$
+恰有一个解 (对称不动点).
+\end{proposition}
+\begin{proof}
+(i) $f$ 至多两个零点 $x_-<x_+$ (O1c, $v$ 严格递减), 故 $\{a,b\}=\{x_-,x_+\}$,
+排序迫使 $a=x_-$, $b=x_+$, $v(a)=q>0$, $v(b)=-q<0$.
+(ii) $h=0\iff g_1=g_2\iff$ 两分支交点 $\iff$ 好根.
+(iii) 由 R2 与 $g_1(1-g_1(a))=1-a$ 直接推出. \qed
+\end{proof}
+
+\begin{proposition}[R6, C1 归约到端点符号 + M-形]
+固定 $R>1$, 若下列成立则 C1 成立:
+\begin{equation}
+	\text{(E1)}\quad h(a_0)<0<h(\beta),\qquad
+	\text{(Z)}\quad h(a_{fp})=0,
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\text{(M)}\quad & h' \text{ 在 } (a_0,\beta) \text{ 至多两个零点 } x_1\le x_2;\\
+		& \text{若两个则 } x_1<a_{fp}<x_2,\ h(x_1)<0<h(x_2),\ h'<0 \text{ 近两端}\\
+		& (\text{符号模式 } -+-);\ \text{若无零点则 } h'>0 \text{ on } I.
+	\end{split}
+\end{equation}
+\end{proposition}
+\begin{proof}
+无零点情形 $h$ 严格递增, E1 给唯一零点. 两零点情形 $h$ 在
+$[a_0,x_1]$ 严格递减 (起点 $h(a_0)<0$), 在 $[x_1,x_2]$ 严格递增
+(从 $h(x_1)<0$ 到 $h(x_2)>0$, 恰一零点), 在 $[x_2,\beta]$ 严格递减
+(终点 $h(\beta)>0$, 无零点). Z 给出零点 = $a_{fp}$. \qed
+\end{proof}
+
+\subsection{C1 的解决状态 (O3a 已闭合)}
+
+\begin{remark}[O3a 最终状态 \label{rem:o3a-final}]
+C1 已\emph{解决} (2026-08-09). 状态: \texttt{CLOSED} (证书支持的严格证明, 独立审计通过).
+完整证明见 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf} (15 页, 忠实转录用户提供的
+``O3a\_complete\_proof\_zh.pdf''; 证明包 SHA-256 \texttt{7e49f975...}). 结论: 对每个 $R>1$,
+参数三角形中恰有一个 sign-consistent good root, 且必为对称根 $a+b=1$. 机制为\emph{相位比
+刚性}: 高密度区间传输能量守恒把 $R_1=R_2=0$ 转化为严格单调函数
+$r_\tau(x)=J_m(\tau x)/J_m(x)$ 在两个外侧相位上的等值, 强制 $a+b=1$ (定理 3.4); 对称线上
+降为单变量 $\widetilde F_e(c)$, KEY LEMMA ($\widetilde F_e'(c)<0$) 由解析估计 + 五类区间
+证书 (84+10+200+128+128 叶盒) 闭合, 得到 single crossing (定理 5.6). 本仓库审计脚本
+scripts/audit\_o3a\_pdf\_part1..4.py 全部通过. 旧归约 (P1--P4, R1--R6) 的失败路线仍保留:
+Lemma A 严格证伪 (CE-1), ``$g_1'>1$'' 充分条件被否证 (CE-3).
+\end{remark}
+\section{主定理的合成证明}
+
+\begin{theorem}[主定理]
+设 $R>1$. 则
+\begin{equation}
+	S(R)=\max_{0\le a\le b\le1}D^{bar}(a,b)=D^{bar}\bigl(a^*,1-a^*\bigr),
+	\qquad
+	I(R)=\min_{0\le a\le b\le1}D^{well}(a,b)=D^{well}\bigl(b^{**},1-b^{**}\bigr),
+\end{equation}
+其中 $a^*(R)\in(0,1/2)$ 由 $f_{sym}(a^*)=0$ 唯一确定 (O2), 且垒族的全局极大点就是
+对称点 $(a^*,1-a^*)$ (O3a). INF 侧的阱族刚性对 $1<R\le3/2$ 已证 (2026-08-10, 小 R 刚性 + 缺口 (a) 闭合), 一般 $R>3/2$ 未证, 为开放问题 (注 \ref{rem:inf-gap}).
+\end{theorem}
+
+\begin{proof}[证明框架]
+\begin{enumerate}
+	\item O1: $S(R)=\max_{\text{垒族}}D^{bar}$, $I(R)=\min_{\text{阱族}}D^{well}$.
+	\item O3b(1): 两块界 $3\pi^2/R<D<3\pi^2$, 故两块端点不可能是 SUP 的最大值
+	(对称内点临界值 $D^{bar}(u^*)>3\pi^2$, 由 $f_{sym}(1/2)=2\pi^2>0$ 与 O2 的单调性;
+	O3b(2)).
+	\item 垒族内部: 好根 (即 $f$ 的两零点位置) 与 $D^{bar}$ 的临界点一一对应
+	(P1: 临界点 $\iff$ $R_1=R_2=0$). O3a (经 C1) 断言好根唯一且为对称点,
+	故 $D^{bar}$ 在垒族上至多一个内点临界点, 它是全局最大.
+	\item INF 侧缺口: 阱族内部反射对称 $D^{well}(a,b)=D^{well}(1-b,1-a)$ 成立 (镜像同构), 但垒$\leftrightarrow$阱桥 $D^{well}(a,b)=D^{bar}(1-b,1-a)$ \emph{不成立} (数值反例 R=4, a=0.2, b=0.8: 11.0482 vs 9.6580). 阱族刚性未证 (注 \ref{rem:inf-gap}). \qed
+\end{enumerate}
+\end{proof}
+
+\section{INF 极限: \texorpdfstring{$R\to\infty$}{R to infinity} 时 \texorpdfstring{$m_R$}{m-R} 的渐近 (会话 30)}
+
+本节记录相邻间距在 INF 侧的 $R\to\infty$ 极限定理, 完整严格证明见独立文档\\
+\texttt{SL\_gap\_n1\_inf\_limit\_proof}
+
+(10 页, 零警告; 严格证明在 §2, 数值证据单独标注在 §4 且不构成证明).
+
+\begin{theorem}[INF 极限 (定理 A)]
+设 $m_R=\inf_{u\in(0,1/2)}D_R(u)$ (对称阱族 [R,1,R]). 则
+\begin{equation}
+	\lim_{R\to\infty}R\,m_R=\bar D(u^*)=24.9438661384324769\ldots<3\pi^2,
+\end{equation}
+其中 $u^*=0.3299225081196866\ldots$ 是 $S(u)=0$ 在 $(0,1/2)$ 的唯一根
+(等价地 $\bar D'(u^*)=0$); 且任何近极小化子序列 $u_R$ (即 $D_R(u_R)\le m_R+R^{-2}$)
+收敛到 $u^*$.
+\end{theorem}
+
+证明分三部分:
+\begin{itemize}
+	\item \textbf{T2 (唯一性与全局极小)}: 符号链 $\widetilde K\to J\to G\to S$
+		逐层确定符号; 关键点是 $G$ 的唯一零点 $a_G\in(a^*,\pi)$ (其中 $a^*$ 为 $J$
+		的零点), $u^*=u(a_G)$. 纯初等.
+	\item \textbf{T3 (验证值)}: mpmath.iv 区间二分给出\\
+		$u^*\in[0.32992250812006654958,\;0.32992250812006654960]$,\\
+		$\bar D(u^*)\in[24.9438661384324768968,\;24.9438661384324769084]$,\\
+		且 margin $3\pi^2-\bar D(u^*)\ge4.664947$.
+	\item \textbf{T1 (收敛)}: 上界由 $m_R\le D_R(u^*)$ 与 $\delta_1,\psi_2\to0$ 得到;
+		下界分两块 - 深 sliver ($w=u\sqrt R\le2$) 由分段初等下界给出
+		$R\,D_R(u)\ge25>\bar D(u^*)$; 中带 ($w\ge2$) 由引理 A$''$
+		($R\,D_R(u)\ge\bar D(u)\ge\bar D(u^*)$, 证明用相位括号 + $\mathsf{def}_1,
+		\mathsf{def}_2$ 差量控制, 比值 $\le0.8256<1$) 覆盖. 近极小化子收敛由
+		$\bar D$ 的严格单调性与聚点论证给出.
+\end{itemize}
+
+\begin{remark}[与 O3a/C1 的关系 \label{rem:inf-gap}]
+本定理处理对称阱族 [R,1,R] 内的下确界 $m_R$, \emph{不}断言其为盒类全局下确界.
+O1 归约 (已独立审计) 说明盒类 $1\le\rho\le R$ 的全局 $\inf$ 在阱族 $D^{well}(a,b)$
+上达到, 但该族含非对称成员. O3a/C1 只处理\emph{垒族} (高密度单区间 $\rho=R$ on
+$(a,b)$) 的 sign-consistent good root 唯一性, \emph{不}覆盖阱族; 相位比刚性的
+单调性核心 (引理 3.3, $r_\tau$ 在 $m\ge1$ 时严格递减) 在阱族中失效
+(中间区间相对频率 $1/\sqrt R<1$, $J_t$ 非单调, 数值上 $t\le0.8$ 时 $dr$ 恰有一个
+变号, 见 \texttt{misc/\_well\_explore\_log.md}). 因此``全阱族下确界在对称阱
+$[R,1,R]$ 达到''仍未证明, 属开放问题. 数值证据 (R=4): 对称阱临界值 $6.7845$,
+全阱族网格下确界 $6.7856$ 于 $(0.3867,0.6133)$ (精度 1e-9, 不构成证明).
+\end{remark}
+
+\section{数值验证汇总}
+\begin{itemize}
+	\item 唯一零 $u^*(R)$ 与 $D^*(R)$: R=4 时 $u^*=0.45148546584$,
+	$D^*=32.6139836177$ (10 位与契约一致); R=1.05..1e4 全表见 O2 报告第 4.1 节.
+	\item KEY LEMMA: 200k 随机点零违例 ($\log$ 型余量 $\le-2.50$, $F'$ 型余量
+	$\le-2.2\times10^{-5}$); Region B 800 万点 $\min H=2.4185$, $\max F'=-0.456$.
+	\item 五份区间证书: 全部双引擎复验 (见第 4.5 节末注).
+	\item FH 公式: $dD/du=-2(R-1)f_{sym}(u)$ 到 $10^{-6}$; 独立复审 16/16 导数检验.
+	\item 对称性: $g_1'g_2'=1$ 到 $10^{-12}$ 于所有大 R 不动点.
+\end{itemize}
+
+\section{涉及到的数学知识}
+\begin{itemize}
+	\item \textbf{Sturm--Liouville 谱理论}: Dirichlet 弦, 正有界权, 特征值单, 振荡定理,
+	Weyl 渐近, 极小极大原理.
+	\item \textbf{Feynman--Hellmann 定理}: 特征值对参数的导数公式; 移动跳点情形的分布
+	导数 + 平滑化 (Dirac 族) 严格化.
+	\item \textbf{紧算子与 Weyl 不等式}: Green 算子 $T_\rho$, 对称化
+	$S_\rho=M_{\sqrt\rho}T_0M_{\sqrt\rho}$, Hilbert--Schmidt 范数与 $L^1$ 连续性.
+	\item \textbf{Wronskian 论证}: $v=u_2/u_1$ 严格递减 (与密度无关), 给出 $f$ 至多两
+	零点与单区间结构.
+	\item \textbf{相位坐标 (secular) 方法}: 半问题 + 偶/奇对称, 隐式微分, 单调曲线
+	$\mathcal E,\mathcal O$ 与直线交点.
+	\item \textbf{区间算术 (向外舍入) 证书}: 有限盒上的严格符号验证, 精确有理数铺片,
+	缝隙桥接, 独立第二引擎原则.
+	\item \textbf{初等实数界}: 交错级数余项, Taylor 上界 ($\cos$, $\arctan$, $\pi$),
+	单调函数极值.
+\end{itemize}
+
+\section{文献}
+\sloppy
+\begin{enumerate}
+\raggedright
+	\item Ahrami, El Allali, Harrell: 两块族与 FH 引理 (arXiv:2407.02459; 正式版
+	Arch.\ Math.\ (Basel) \textbf{126}(2):187--197 (2026),
+	\href{https://doi.org/10.1007/s00013-025-02213-y}{DOI 10.1007/s00013-025-02213-y}).
+	\item Keller: The minimum ratio of two eigenvalues, SIAM J.\ Appl.\ Math.\
+	\textbf{29}(2) (1975) 279--283,
+	\href{https://doi.org/10.1137/0129024}{DOI 10.1137/0129024}.
+	\item Mahar, Willner: An extremal eigenvalue problem, Comm.\ Pure Appl.\ Math.\
+	\textbf{29}(5) (1976) 517--529,
+	\href{https://doi.org/10.1002/cpa.3160290505}{DOI 10.1002/cpa.3160290505}.
+	\item Willner, Mahar: An extremal eigenvalue problem II, SIAM J.\ Math.\ Anal.\
+	\textbf{13}(4) (1982) 633--643,
+	\href{https://doi.org/10.1137/0513040}{DOI 10.1137/0513040}.
+	\item Sun: 有界跳数类最小间距 (INF 侧), J.\ Math.\ Anal.\ Appl.\ (2022),
+	\href{https://doi.org/10.1016/j.jmaa.2022.126513}{DOI 10.1016/j.jmaa.2022.126513}.
+	\item 本项目 run 系列 (详见 \texttt{runs/rigorous-open-math-research/}):
+		R-20260805T000000Z-gapn1-a1b2c3 (O1/O2/O3b 源报告),
+		R-20260806T011500Z-o1audit-422A69 (O1 初审), R-20260806T011500Z-keylemma-E58FB1 (KEY LEMMA 归约),
+		R-20260806T011500Z-o3abranch-E8E56F (O3a 分支), R-20260806T070000Z-keylemma2b-0A6D8F (KEY LEMMA 证明),
+		R-20260806T140000Z-keylemmaaudit-2F83B1 (KEY LEMMA 独立审计), R-20260806T140000Z-o1revise-2ED02A (O1 修订),
+		R-20260806T151000Z-o1reaudit-5A1C3D (O1 独立复审), R-20260806T140000Z-o3ac1-42F931 (O3a C1),
+		R-20260808T143337Z-o3a-c1 (O3a 完整证明, Blueprint v2.2, 相位比刚性).
+\end{enumerate}
+
+
+\end{document}

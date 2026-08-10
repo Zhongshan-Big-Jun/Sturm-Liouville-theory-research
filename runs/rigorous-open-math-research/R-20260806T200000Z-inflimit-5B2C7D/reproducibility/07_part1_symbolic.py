@@ -1,0 +1,43 @@
+import sympy as sp
+a = sp.symbols("a", positive=True)
+pi = sp.pi
+
+K = 3*sp.sin(a)**2 + 3*a*sp.sin(a)*sp.cos(a) - a**2
+print("K~  =", sp.simplify(K))
+print("K~' =", sp.simplify(sp.diff(K, a)))
+print("K~''=", sp.simplify(sp.diff(K, a, 2)))
+print()
+J = 6*a**2 + 4*a**3*sp.cot(a) - pi**2
+print("J   =", sp.simplify(J))
+print("J'  =", sp.simplify(sp.diff(J, a)))
+print("J' - 4a K~/sin^2 a =", sp.simplify(sp.diff(J,a) - 4*a*K/sp.sin(a)**2))
+print()
+G = 8*a**3*sp.sin(a)**2 - pi**2*(2*a - sp.sin(2*a))
+print("G   =", sp.simplify(G))
+print("G'  =", sp.simplify(sp.diff(G, a)))
+print("G' - 4 sin^2 a J =", sp.simplify(sp.diff(G,a) - 4*sp.sin(a)**2*J))
+print()
+# S = Dbar' identity with u = a/(2(a - tan a))
+u = sp.symbols("u", positive=True)
+F = sp.tan(a) - a*(1 - sp.Rational(1,2)/u)
+Fu = sp.diff(F, u); Fa = sp.diff(F, a)
+ad = sp.simplify(-Fu/Fa)
+mu2 = a**2/u**2; mu1 = pi**2/(4*u**2)
+Dbar = mu2 - mu1
+Dbar_u = sp.simplify(sp.diff(Dbar, u) + sp.diff(Dbar, a)*ad)
+I2 = u/2 - u*sp.sin(2*a)/(4*a)
+S = sp.simplify(mu1*2/u - mu2*sp.sin(a)**2/I2)
+usub = a/(2*(a - sp.tan(a)))
+print("Dbar'(u(a)) =", sp.simplify(Dbar_u.subs(u, usub)))
+print("S(u(a))     =", sp.simplify(S.subs(u, usub)))
+print("ratio =", sp.simplify(Dbar_u.subs(u,usub)/S.subs(u,usub)))
+print("S = -4(a-tan a)^3 G/(a^3(2a-sin2a)) ?", sp.simplify(S.subs(u,usub) + 4*(a-sp.tan(a))**3*G/(a**3*(2*a-sp.sin(2*a)))) == 0)
+# u'(a)
+ua = sp.diff(usub, a)
+print("u'(a) =", sp.simplify(ua))
+print("u'(a) numerator positive on (pi/2,pi):", sp.simplify(sp.expand(ua*(a-sp.tan(a))**2*2*sp.cos(a)**2)))
+# endpoint values
+print("J(pi/2) =", sp.simplify(J.subs(a, pi/2)))
+print("G(pi/2) =", sp.simplify(G.subs(a, pi/2)))
+print("G(pi)   =", sp.simplify(G.subs(a, pi)))
+print("DONE")

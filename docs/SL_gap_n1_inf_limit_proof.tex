@@ -1,0 +1,636 @@
+% 用法: xelatex SL_gap_n1_inf_limit_proof.tex (两次, -output-directory=build)
+% 主题: 定理 A (相邻间距 INF R->inf 极限) 的 T1/T2/T3 严格证明;
+%       证明见 §2 (数值仅作证据, 见 §3 计算机辅助认证, §4 数值证据 (非证明)).
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{SL 相邻特征间距的 $R\to\infty$ 极限: 严格证明 (定理 A)}
+\author{研究组 (BVE research, run R-20260806T200000Z-inflimit-5B2C7D, 会话 30)}
+\date{2026-08-07}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+考虑 Dirichlet 问题 $-y''=\lambda\rho y$ ($\rho\in[1,R]$ a.e.) 中对称三块
+$\rho=R$ on $[0,u]\cup[1-u,1]$, $\rho=1$ on $(u,1-u)$ 的相邻特征间距
+$D_R(u)=\lambda_2-\lambda_1$ 的下确界:
+\begin{equation}
+	\lim_{R\to\infty} R\cdot m_R \;=\; \bar D(u^*)\;=\; 24.943866138432\ldots
+	\;<\; 3\pi^2,
+	\qquad m_R:=\inf_{u\in(0,1/2)} D_R(u),
+\end{equation}
+其中 $u^*=0.3299225081196866\ldots$ 是 $S(u)=0$ 在 $(0,1/2)$ 的唯一解
+(等价地 $\bar D'(u^*)=0$), 即 $\bar D$ 的全局极小点 $u^*$.
+证明分三步: (T1) 极限存在, (T2) $\bar D$ 的严格单调结构, (T3) 区间包含.
+(T2) 通过符号链 (K~$\to J\to G\to S$) 初等地建立;
+(T1) 的核心是引理 A$''$: 当 $w:=u\sqrt R\ge 2$ 时 $R\cdot D_R(u)\ge\bar D(u)$,
+其证明是初等的 (相位括号 + 差量下界 + 差量上界), 无需区间算术;
+深 sliver ($w\le 2$) 由分段下界保证 $R\cdot D_R(u)\ge 25>\bar D(u^*)$.
+正文结构: §2 严格证明, §3 计算机辅助认证, §4 数值证据 (非证明).
+\end{abstract}
+
+\tableofcontents
+
+\section{问题与记号}
+
+\subsection{设定}
+考虑 Dirichlet 问题
+\begin{equation}
+	-y''(x)=\lambda\,\rho(x)\,y(x),\qquad y(0)=y(1)=0,
+\end{equation}
+对称三块权: 对 $u\in(0,1/2)$,
+\begin{equation}
+	\rho_{R,u}(x)=R\ \text{on }(0,u)\cup(1-u,1),\qquad
+	\rho_{R,u}(x)=1\ \text{on }(u,1-u).
+\end{equation}
+$0<\lambda_1(R,u)<\lambda_2(R,u)$ 为前两个特征值,
+\begin{equation}
+	D_R(u):=\lambda_2(R,u)-\lambda_1(R,u),\qquad
+	m_R:=\inf_{u\in(0,1/2)}D_R(u),\qquad
+	G(R,u):=R\cdot D_R(u).
+\end{equation}
+记 $\varepsilon:=R^{-1/2}$, $\ell:=1/2-u$, $w:=u\sqrt R=u/\varepsilon$.
+用缩放特征值 $\mu_k(R,u):=R\lambda_k(R,u)$, 则 $G(R,u)=\mu_2-\mu_1$.
+
+\subsection{极限系统}
+对 $u\in(0,1/2)$ 令 $\bar\theta_2=\bar\theta_2(u)=a(u)\in(\pi/2,\pi)$ 为
+\begin{equation}
+	\tan a=a\Bigl(1-\frac1{2u}\Bigr)
+\end{equation}
+的唯一根 (等价地 $\tan a=-a\ell/u$), 并令
+\begin{equation}
+	\bar\mu_1(u):=\frac{\pi^2}{4u^2},\qquad
+	\bar\mu_2(u):=\frac{a(u)^2}{u^2},\qquad
+	\bar D(u):=\bar\mu_2(u)-\bar\mu_1(u).
+\end{equation}
+以及
+\begin{equation}
+	S(u):=\bar\mu_1(u)\frac2u-\bar\mu_2(u)\frac{\sin^2 a(u)}{I_2(u)},
+	\qquad I_2(u):=\int_0^u\sin^2\bigl(\sqrt{\bar\mu_2(u)}\,x\bigr)\,dx
+	=\frac u2-\frac{u\sin 2a(u)}{4a(u)}.
+\end{equation}
+
+\subsection{主定理}
+\begin{theorem}[定理 A (相邻间距的 INF 极限)]
+设 $u^*\in(0,1/2)$ 为 $S(u)=0$ 的唯一根 (等价地 $\bar D'(u^*)=0$). 则
+\begin{equation}
+	\lim_{R\to\infty} R\,m_R=\bar D(u^*),\qquad
+	\bar D(u^*)=24.943866138432\ldots<3\pi^2=29.608813203268\ldots,
+\end{equation}
+并且任何近极小化子序列 $u_R$ (即 $D_R(u_R)\le m_R+R^{-2}$) 满足 $u_R\to u^*$.
+\end{theorem}
+
+\begin{remark}[证明结构]
+定理 A 的证明分解为三个定理:
+\begin{itemize}
+	\item \textbf{T1} (收敛): $\lim_R R\,m_R=\bar D(u^*)$ 及近极小化子收敛到 $u^*$ (见 §2.7);
+	\item \textbf{T2} (单调结构): $S$ 在 $(0,1/2)$ 有唯一零点 $u^*$, 且 $\bar D$ 在 $u^*$ 处全局严格极小 (见 §2.5);
+	\item \textbf{T3} (区间包含): $\bar D(u^*)$ 的高精度区间包含且 $\bar D(u^*)<3\pi^2$ (见 §2.6).
+\end{itemize}
+其余为初等引理; 这里的 $\inf$ 是固定 $R$ 下的 $\inf$, 全局对称性问题属 O3a/C1, 另行处理.
+\end{remark}
+
+\section{严格证明}
+
+先列证明大纲. 引理 A$''$ 用到的显式常数 (在 §3 中认证):
+$C_z<0.337$, $\sup_{t\in(\pi/2,\pi)}2t^4/(t^2+v^2+v)\le 9$ ($v=-t\cot t$), 且比值
+$0.8256<1$. 深 sliver 下界 (见引理 \ref{lem:sliver}) 用分段初等下界, 见 §3.1.
+
+\subsection{相位与 secular 方程}
+在重小区 (密度 $R$) 内 $(0,u)$ 定义相位
+\begin{equation}
+	\theta_k:=\sqrt{\mu_k}\,u,\qquad k=1,2,
+\end{equation}
+在轻小区 $(u,1/2)$ 内定义
+\begin{equation}
+	z_k:=\sqrt{\mu_k/R}\,\ell=\sqrt{\lambda_k}\,\ell,\qquad k=1,2.
+\end{equation}
+在 $x=u$ 处匹配 (偶模 $y'(1/2)=0$, 奇模 $y(1/2)=0$) 得到
+\begin{equation}
+	\text{偶:}\quad \cot\theta_1=\varepsilon\tan z_1,
+	\qquad
+	\text{奇:}\quad \tan\theta_2=-\sqrt R\,\tan z_2=-\frac1\varepsilon\tan z_2.
+	\label{eq:secular}
+\end{equation}
+令 $\theta_1=\pi/2-\delta_1$, $\theta_2=\pi/2+\delta_2$, 由 \eqref{eq:secular} 得
+\begin{equation}
+	\tan\delta_1=\varepsilon\tan z_1,\quad
+	z_1=\Bigl(\frac\pi2-\delta_1\Bigr)\frac{\varepsilon\ell}{u};
+	\qquad
+	\tan\delta_2=\varepsilon\cot z_2,\quad
+	z_2=\Bigl(\frac\pi2+\delta_2\Bigr)\frac{\varepsilon\ell}{u}.
+	\label{eq:delta}
+\end{equation}
+从而
+\begin{equation}
+	\mu_1=\frac{(\pi/2-\delta_1)^2}{u^2},\qquad
+	\mu_2=\frac{(\pi/2+\delta_2)^2}{u^2},\qquad
+	G(R,u)=\frac{(\pi/2+\delta_2)^2-(\pi/2-\delta_1)^2}{u^2}.
+	\label{eq:mu}
+\end{equation}
+这里取定 $\theta_1\in(0,\pi/2)$, $\theta_2\in(\pi/2,\pi)$ (对应 $x=1/2$ 处的对称条件,
+第二特征值对应的根在 $(\pi/2,\pi)$ 分支).
+
+\subsection{相位括号 (引理 2.1)}
+\begin{lemma}\label{lem:phases}
+设 $R\ge 1500$, $u\ge 2\varepsilon$ (即 $w\ge 2$). 则
+\begin{enumerate}
+	\item[(a)] $0\le\delta_1\le\delta_1^+$, 其中
+		$\delta_1^+:=\arctan\bigl(\varepsilon\tan\bigl(\frac\pi2\frac{\varepsilon\ell}{u}\bigr)\bigr)
+		\le\varepsilon\tan\frac\pi8<0.011<\frac\pi4$;
+	\item[(b)] $0\le\delta_2\le\delta_2^+$, 其中 $\delta_2^+:=\arctan\frac{2u}{\pi\ell}$;
+	\item[(c)] $z_2\le\pi/8$;
+	\item[(d)] $\psi_2:=\bar\theta_2-\theta_2\ge 0$, 即 $\theta_2\le\bar\theta_2=a(u)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+由 $u\ge2\varepsilon$ 得 $\ell/u\le1/(4\varepsilon)$, 从而
+$\varepsilon\ell/u\le1/4$ 且 $\alpha:=(\ell/u)\varepsilon^2\le\varepsilon/4$.
+
+(a) $z_1=(\pi/2-\delta_1)\varepsilon\ell/u\le(\pi/2)\varepsilon\ell/u\le\pi/8$,
+$\tan z_1$ 递增, 故 $\delta_1=\arctan(\varepsilon\tan z_1)\le\delta_1^+$;
+再用 $\arctan x\le x$ 与 $\tan(\pi/8)<0.415$, 得
+$\delta_1^+\le\varepsilon\tan(\pi/8)\le\varepsilon_0\tan(\pi/8)<0.011<\pi/4$.
+
+(b) 对 $0<z<\pi$ 有 $\cot z\le1/z$; 因 $z_2=\theta_2\varepsilon\ell/u<\pi\cdot(1/4)<\pi$, 故
+$\tan\delta_2=\varepsilon\cot z_2\le\varepsilon/z_2=u/(\theta_2\ell)\le u/((\pi/2)\ell)$,
+故 $\delta_2\le\arctan(2u/(\pi\ell))=\delta_2^+$.
+
+(c) $z_2=(\pi/2+\delta_2)\varepsilon\ell/u\le(\pi/2+\delta_2^+)\cdot x$, $x:=\varepsilon\ell/u$.
+考察 $h(x):=x\bigl(\pi/2+\arctan(2\varepsilon/(\pi x))\bigr)$ 在 $(0,1/4-\varepsilon]$ 上单调:
+\begin{equation}
+	h'(x)=\frac\pi2+\arctan\frac{2\varepsilon}{\pi x}-\frac{2\varepsilon\pi x}{\pi^2x^2+4\varepsilon^2}
+	\ge\frac\pi2-\frac12>0,
+\end{equation}
+其中 $\sup_{x>0}2\varepsilon\pi x/(\pi^2x^2+4\varepsilon^2)=1/2$ (在 $x=2\varepsilon/\pi$ 处取得).
+故 $h(x)\le h(1/4-\varepsilon)$, 而
+\begin{align}
+	h\Bigl(\frac14-\varepsilon\Bigr)
+	&=\Bigl(\frac14-\varepsilon\Bigr)
+	\Bigl(\frac\pi2+\arctan\frac{8\varepsilon}{\pi(1-4\varepsilon)}\Bigr)
+	\le\Bigl(\frac14-\varepsilon\Bigr)
+	\Bigl(\frac\pi2+\frac{2\pi\varepsilon}{1-4\varepsilon}\Bigr)\notag\\
+	&=\frac\pi8-\frac{\pi\varepsilon}{2}
+	+\frac{2\pi\varepsilon(1/4-\varepsilon)}{1-4\varepsilon}
+	=\frac\pi8-\frac{\pi\varepsilon}{2}+\frac{\pi\varepsilon}{2}
+	=\frac\pi8,
+\end{align}
+其中用到 $\arctan t\le t$ 与 $8/\pi\le2\pi$ (因 $4\le\pi^2$).
+
+(d) 令 $g(\theta):=\theta-\pi/2-\arctan(\varepsilon\cot(\theta\varepsilon\ell/u))$.
+$g$ 在 $(\pi/2,\pi)$ 上严格递增 ($g'>0$), 且 $\theta_2$ 是 $g$ 的零点 (见 \eqref{eq:delta}).
+又 $\bar z_2:=\bar\theta_2\varepsilon\ell/u\le\pi/4<\pi$. 由 $\cot z\le1/z$:
+\begin{equation}
+	\varepsilon\cot\bar z_2\le\frac{\varepsilon}{\bar z_2}
+	=\frac{u}{\bar\theta_2\ell}=\tan\bar d_2,\qquad \bar d_2:=\bar\theta_2-\frac\pi2,
+\end{equation}
+故 $g(\bar\theta_2)=\bar d_2-\arctan(\varepsilon\cot\bar z_2)\ge0$, 且 $g(\bar\theta_2)\ge0=g(\theta_2)$.
+由 $g$ 递增得 $\theta_2\le\bar\theta_2$. \qed
+\end{proof}
+
+\subsection{引理 A\texorpdfstring{$''$}{} (下界)}\label{sec:lemAdp}
+\begin{theorem}[引理 A$''$]\label{thm:lemAdp}
+设 $R\ge1500$, $w=u\sqrt R\ge2$. 则
+\begin{equation}
+	G(R,u)=\mu_2-\mu_1\;\ge\;\bar D(u),
+\end{equation}
+成立.
+\end{theorem}
+
+证明思路: 定义
+\begin{equation}
+	\mathsf{def}_1:=\frac{\pi^2}{4}-\theta_1^2=\pi\delta_1-\delta_1^2,\qquad
+	\mathsf{def}_2:=\bar\theta_2^2-\theta_2^2=(\bar d_2-\delta_2)(\bar\theta_2+\theta_2),
+\end{equation}
+则由 \eqref{eq:mu} 与 $\bar D$ 的定义直接得到
+\begin{equation}
+	G(R,u)-\bar D(u)=\frac{\mathsf{def}_1-\mathsf{def}_2}{u^2}.
+	\label{eq:ident}
+\end{equation}
+(验证 \eqref{eq:ident} 如下: 因 $G-\bar D=(\theta_2^2-\theta_1^2-\bar\theta_2^2+\pi^2/4)/u^2$
+$=(\mathsf{def}_1-\mathsf{def}_2)/u^2$.) 故引理 A$''$ 等价于 $\mathsf{def}_1\ge\mathsf{def}_2$.
+
+\begin{lemma}[$\mathsf{def}_1$ 的下界]\label{lem:def1}
+设 $R\ge1500$, $u\ge2\varepsilon$, $\alpha:=(\ell/u)\varepsilon^2$. 则
+\begin{equation}
+	\mathsf{def}_1\ge\frac{3\pi^2}{8}\cdot\frac{\ell}{u}\cdot\varepsilon^2\cdot c_1c_2,
+	\qquad
+	c_1:=\frac{\pi/2-\delta_1^+}{\pi/2}\ge c_{10}:=0.99319\ldots,\quad
+	c_2:=1-\frac{\pi^2\alpha^2}{12}\ge c_{20}:=0.99996\ldots .
+\end{equation}
+\end{lemma}
+\begin{proof}
+由 $\tan z_1\ge z_1$ 与 $\delta_1\le\delta_1^+$:
+\begin{equation}
+	\delta_1=\arctan(\varepsilon\tan z_1)\ge\arctan(\varepsilon z_1)
+	=\arctan\bigl((\pi/2-\delta_1)\alpha\bigr)
+	\ge\arctan\bigl((\pi/2-\delta_1^+)\alpha\bigr).
+\end{equation}
+由 $\arctan x\ge x-x^3/3\ge x(1-x^2/3)$ ($x\ge0$), 及 $x\le(\pi/2)\alpha$:
+\begin{equation}
+	\delta_1\ge\Bigl(\frac\pi2-\delta_1^+\Bigr)\alpha\Bigl(1-\frac{\pi^2\alpha^2}{12}\Bigr).
+\end{equation}
+又由 \ref{lem:phases}(a) 知 $\delta_1\le\pi/4$, 故 $\pi-\delta_1\ge3\pi/4$, 于是
+\begin{equation}
+	\mathsf{def}_1=\delta_1(\pi-\delta_1)\ge\frac{3\pi}{4}\delta_1
+	\ge\frac{3\pi^2}{8}\cdot\frac{\ell}{u}\cdot\varepsilon^2\cdot c_1c_2,
+\end{equation}
+其中 $c_1=(\pi/2-\delta_1^+)/(\pi/2)$, $c_2=1-\pi^2\alpha^2/12$.
+由 $\delta_1^+\le\varepsilon_0\tan(\pi/8)$ ($\varepsilon_0=1/\sqrt{1500}$) 与 $\alpha\le\varepsilon_0/4$
+得 $c_{10}=(1-\varepsilon_0\tan(\pi/8)/(\pi/2))=0.99319\ldots$,
+$c_{20}=1-\pi^2\varepsilon_0^2/192=0.99996\ldots$. \qed
+\end{proof}
+
+\begin{lemma}[$\mathsf{def}_2$ 的上界]\label{lem:def2}
+设 $R\ge1500$, $u\ge2\varepsilon$. 记 $t:=\bar\theta_2$, $\theta:=\theta_2$,
+$v:=u/\ell=-t\cot t$. 则
+\begin{equation}
+	\mathsf{def}_2\le C_z\cdot\theta\cdot\varepsilon^2\cdot\frac{\ell}{u}\cdot\frac{t+\theta}{1+\frac{v(v+1)}{t\theta}-\delta},
+	\qquad \delta\le4.5\cdot10^{-4},
+	\label{eq:def2ub}
+\end{equation}
+其中 $C_z:=R(\pi/8)/(\pi/8)<0.337$, $R(z):=1/z-\cot z$.
+\end{lemma}
+\begin{proof}
+记 $A:=\tan\bar d_2=u/(\bar\theta_2\ell)$, $B:=\tan\delta_2=\varepsilon\cot z_2$,
+$\psi_2:=\bar d_2-\delta_2\ge0$ (见 \ref{lem:phases}(d)). 由
+$\tan\psi_2=(A-B)/(1+AB)$ 得
+\begin{equation}
+	A-B=\frac{u}{\bar\theta_2\ell}-\frac{\varepsilon}{z_2}+\varepsilon R(z_2)
+	=-\frac{u\psi_2}{\bar\theta_2\theta_2\ell}+\varepsilon R(z_2),
+\end{equation}
+整理得
+\begin{equation}
+	\psi_2\Bigl[\frac{\tan\psi_2}{\psi_2}(1+AB)+\frac{u}{\bar\theta_2\theta_2\ell}\Bigr]
+	=\varepsilon R(z_2).
+	\label{eq:psi2}
+\end{equation}
+由 $\tan\psi_2/\psi_2\ge1$ 与 $1+AB\ge1$:
+\begin{equation}
+	\psi_2\le\frac{\varepsilon R(z_2)}{1+AB+\frac{u}{\bar\theta_2\theta_2\ell}}.
+\end{equation}
+由余切展开 $\cot z=1/z-\sum_{k\ge1}c_kz^{2k+1}$ ($c_k>0$) 知 $R(z)/z=\sum c_kz^{2k}$
+在 $(0,\pi)$ 上递增, 故对 $z\in[0,\pi/8]$:
+\begin{equation}
+	R(z)\le z\cdot\frac{R(\pi/8)}{\pi/8}=:z\,C_z,
+	\qquad C_z=\frac{8/\pi-(1+\sqrt2)}{(8/\pi)^{-1}}<0.337.
+	\label{eq:Cz}
+\end{equation}
+(注: $C_z=0.336811\ldots$; 计算用到 $\cot(\pi/8)=1+\sqrt2$ 与 $\pi$ 的界.)
+由 \ref{lem:phases}(c), $z_2\le\pi/8$, 得 $\varepsilon R(z_2)\le\varepsilon C_z z_2=C_z\theta_2\varepsilon^2\ell/u$.
+又 $\varepsilon\cot z_2=\varepsilon(1/z_2-R(z_2))\ge\varepsilon(1/z_2-C_zz_2)=u/(\theta_2\ell)-C_z\theta_2\varepsilon^2\ell/u$, 故
+\begin{equation}
+	AB=\frac{u}{\bar\theta_2\ell}\,\varepsilon\cot z_2
+	\ge\frac{u^2}{\bar\theta_2\theta_2\ell^2}-\frac{C_z\theta_2\varepsilon^2}{\bar\theta_2}
+	=\frac{v^2}{t\theta}-\frac{C_z\theta\varepsilon^2}{t},
+\end{equation}
+于是 $1+AB+u/(\bar\theta_2\theta_2\ell)\ge1+v(v+1)/(t\theta)-\delta$,
+$\delta:=C_z\theta\varepsilon^2/t\le0.337\cdot\pi\cdot(1/1500)/(\pi/2)=4.5\cdot10^{-4}$.
+结合 $\mathsf{def}_2=\psi_2(\bar\theta_2+\theta_2)$ 得 \eqref{eq:def2ub}. \qed
+\end{proof}
+
+\begin{lemma}[比值控制]\label{lem:ratio}
+在引理 A$''$ 的假设下,
+\begin{equation}
+	\frac{\mathsf{def}_2}{\mathsf{def}_1}\le0.8256<1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+结合 \ref{lem:def1} 与 \ref{lem:def2}:
+\begin{equation}
+	\frac{\mathsf{def}_2}{\mathsf{def}_1}
+	\le\frac{4C_z}{3\pi(\pi/2-\delta_1^+)c_2}\cdot
+	\frac{\theta(t+\theta)}{1+\frac{v(v+1)}{t\theta}-\delta}.
+\end{equation}
+对 $\theta\in[\pi/2,t]$ 记 $B(\theta):=\theta(t+\theta)/(1+v(v+1)/(t\theta))$.
+直接求导得 $B'(\theta)>0$, 故
+\begin{equation}
+	B(\theta)\le B(t)=\frac{2t^4}{t^2+v^2+v}.
+	\label{eq:Bt}
+\end{equation}
+对 $t\le3/\sqrt2$: $B(t)\le2t^4/t^2=2t^2\le9$. 对 $t\in[3/\sqrt2,\pi)$,
+用 $f(t):=2t^4/(t^2+v^2+v)$ ($v=-t\cot t$) 证 $f(t)\le9$ 由区间单元 (见§3.4),
+最坏情形 $5.4225$. 故 $B(\theta)\le9$ 得证.
+又 $1/(1-\delta/(1+v(v+1)/(t\theta)))\le1+4.6\cdot10^{-4}$.
+代入 $C_z<0.337$, $\pi/2-\delta_1^+\ge\pi/2-\varepsilon_0\tan(\pi/8)=1.5601\ldots$,
+$c_2\ge0.99996$:
+\begin{equation}
+	\frac{\mathsf{def}_2}{\mathsf{def}_1}
+	\le\frac{4\cdot0.337\cdot9}{3\pi\cdot1.5601\cdot0.99996}\cdot1.00046
+	\le0.8256<1.
+	\qedhere
+\end{equation}
+\end{proof}
+
+\begin{proof}[引理 A$''$ 的证明]
+由 \ref{lem:ratio}, $\mathsf{def}_2<0.8256\,\mathsf{def}_1<\mathsf{def}_1$,
+代入恒等式 \eqref{eq:ident}:
+\begin{equation}
+	G(R,u)-\bar D(u)=\frac{\mathsf{def}_1-\mathsf{def}_2}{u^2}>0.
+	\qedhere
+\end{equation}
+\end{proof}
+
+\begin{remark}[引理 A$''$ 中的常数]
+引理 A$''$ 仅依赖三个显式常数: $C_z<0.337$ (见 \eqref{eq:Cz}), $f(t)\le9$ (见 \eqref{eq:Bt}),
+及其比值 $0.8256$. 这三个常数由
+脚本 19 以区间方向舍入认证 (见 §3.4). 证明本身是解析的.
+\end{remark}
+
+\subsection{深 sliver 下界}\label{sec:sliver}
+\begin{lemma}[深 sliver]\label{lem:sliver}
+对一切 $R\ge1500$, $u\in(0,2/\sqrt R]$ (即 $w\le2$):
+\begin{equation}
+	G(R,u)\ge25.
+\end{equation}
+\end{lemma}
+\begin{proof}[证明 (分段下界, 见 §3.1)]
+在 $w\le2$ 区域内把 $w$ 轴分成四个子区域并用下界 $B_1,B_2,B_3,\mathsf{THB},\mathsf{D2B}$ 覆盖,
+在 $R\in[1500,10^8]$ 上用等比网格认证 $G\ge\max(\text{下界})\ge25$,
+再补解析尾段 ($R\ge57050$ 与 $R\ge10^8$).
+区域 C ($w_c<w\le w_{\rm cap}$) 用 $B_3=\pi^2R(1/(4w^2)-1)$ 解析下界,
+在 $w=w_{\rm cap}(R)$ 处恰为 $25$. 完整说明见 §3.1.
+\end{proof}
+
+\subsection{T2: \texorpdfstring{$\bar D$}{D} 的单调结构与唯一临界点}\label{sec:T2}
+\begin{theorem}[T2]\label{thm:T2}
+$S(u)=0$ 在 $(0,1/2)$ 有唯一根 $u^*$, 且 $\bar D$ 在 $u^*$ 处全局严格极小.
+\end{theorem}
+\begin{proof}
+\emph{第 1 步 (参数化).} 令
+\begin{equation}
+	a\in(\pi/2,\pi)\;\longmapsto\;u(a):=\frac{a}{2(a-\tan a)}\in(0,1/2)
+\end{equation}
+良定义: 对 $a\in(\pi/2,\pi)$, $\tan a<0$, 故 $a-\tan a>0$, $u(a)>0$,
+且 $u(a)\to0^+$ (当 $a\to\pi/2^+$), $u(a)\to1/2^-$ (当 $a\to\pi^-$);
+另外
+\begin{equation}
+	u'(a)=\frac{a-\sin(2a)/2}{2\cos^2a\,(a-\tan a)^2}>0,
+\end{equation}
+其中 $a-\sin(2a)/2\ge a-1/2>0$ (因 $a\ge\pi/2$).
+
+\emph{第 2 步 (符号链).} 定义
+\begin{align}
+	\widetilde K(a)&:=-a^2+3\sin^2a+\frac32a\sin2a, &
+	J(a)&:=4a^3\cot a+6a^2-\pi^2, &\hspace{-0.6em}
+	G(a)&:=8a^3\sin^2a-\pi^2(2a-\sin2a).
+\end{align}
+符号验证 (初等求导, 也见脚本 07):
+\begin{equation}
+	J'(a)=\frac{4a\,\widetilde K(a)}{\sin^2a},\qquad
+	G'(a)=4\sin^2a\,J(a),
+	\label{eq:chain}
+\end{equation}
+以及
+\begin{equation}
+	\bar D'(u(a))=S(u(a)),
+	\qquad
+	S(u(a))=-\frac{4(a-\tan a)^3}{a^3(2a-\sin2a)}\,G(a).
+	\label{eq:SG}
+\end{equation}
+
+\emph{第 3 步 ($\widetilde K$ 的符号).} 对 $a\in(\pi/2,\pi)$ 有
+$\widetilde K(a)=\sin^2a\,h(a)$, $h(a):=3+3a\cot a-a^2/\sin^2a$, 且
+\begin{equation}
+	h'(a)\sin^3a=3\cos a\,\sin^2a-5a\sin a+2a^2\cos a<0,
+\end{equation}
+其中 $\cos a<0$, $\sin a>0$, $a>0$ 使三项均为负. 故 $h$ 严格递减; 又
+$h(\pi/2)=3-\pi^2/4>0$, $h(a)\to-\infty$ (当 $a\to\pi^-$), 故 $h$ (即 $\widetilde K$)
+在 $(\pi/2,\pi)$ 有唯一零点 $a_1$, 且 $\widetilde K>0$ on $(\pi/2,a_1)$,
+$\widetilde K<0$ on $(a_1,\pi)$.
+
+\emph{第 4 步 ($J$ 的符号).} 由 \eqref{eq:chain}, $J'=4a\widetilde K/\sin^2a$:
+$J$ 在 $(\pi/2,a_1)$ 上递增, 在 $(a_1,\pi)$ 上递减. $J(\pi/2)=\pi^2/2>0$,
+$J(a)\to-\infty$ (当 $a\to\pi^-$, 因 $\cot a\to-\infty$). 故 $J$ 有唯一零点
+$a^*\in(a_1,\pi)$, $J>0$ on $(\pi/2,a^*)$, $J<0$ on $(a^*,\pi)$.
+
+\emph{第 5 步 ($G$ 的符号).} 由 $G'=4\sin^2a\,J$: $G$ 在 $(\pi/2,a^*)$ 上递增,
+在 $(a^*,\pi)$ 上递减. $G(\pi/2)=0$ 且 $G'(\pi/2)=2\pi^2>0$, 故 $G>0$ on $(\pi/2,a^*]$;
+$G(\pi)=-2\pi^3<0$. 故 $G$ 在 $(a^*,\pi)$ 内有唯一零点 $a_G$, 即 $G$ 在 $(\pi/2,\pi)$ 上
+有唯一零点 $a_G$, 且 $G>0$ on $(\pi/2,a_G)$, $G<0$ on $(a_G,\pi)$.
+
+\emph{第 6 步 ($S$ 的符号).} 由 \eqref{eq:SG}, 因子 $-(4(a-\tan a)^3)/(a^3(2a-\sin2a))<0$
+(各因子均为正), 故 $\operatorname{sgn}S(u(a))=-\operatorname{sgn}G(a)$. 于是
+$S<0$ on $(0,u^*)$, $S=0$ at $u^*:=u(a_G)$, $S>0$ on $(u^*,1/2)$,
+即 $S$ 由负变正. 因 $\bar D'=S$, $\bar D$ 在 $(0,u^*)$ 上递减, 在 $(u^*,1/2)$ 上递增,
+故 $u^*$ 为全局严格极小. 又 $\bar D(u)\to+\infty$ (当 $u\to0^+$),
+$\bar D(u)\to3\pi^2$ (当 $u\to1/2^-$). \qed
+\end{proof}
+
+\begin{remark}[数值定位]
+$a_1\approx1.6351$, $a^*\approx1.9856$, $G$ 的零点 $a_G\approx2.2766=a(u^*)$;
+$J(1.6)>0$, $J'(1.8)<0$ 等仅作定位参考 (非证明, 仅供验证).
+\end{remark}
+
+\subsection{T3: 区间包含}\label{sec:T3}
+\begin{theorem}[T3]\label{thm:T3}
+设 $u^*$ 如 T2. 则
+\begin{equation}
+	u^*\in[0.32992250812006654958,\;0.32992250812006654960],
+\end{equation}
+\begin{equation}
+	\bar D(u^*)\in[24.9438661384324768968,\;24.9438661384324769084],
+	\qquad
+	3\pi^2-\bar D(u^*)\ge4.664947,
+\end{equation}
+故 $25-\bar D(u^*)>0.0561$.
+\end{theorem}
+\begin{proof}[证明 (区间算术)]
+用脚本 05 (\texttt{05\_interval\_value.py}) 以 mpmath.iv (区间算术) 对 $S$ 的零点
+$u^*$ 做二分包含 (宽度 $2\cdot10^{-20}$), 再以区间运算传播
+$a(u^*)$, $\bar\mu_1$, $\bar\mu_2$, 得 $\bar D(u^*)$ 的包含; 与 $3\pi^2$ 的区间比较得到
+margin $\ge4.664947$. 特别地 $24.94386614<25$ 得证. \qed
+\end{proof}
+
+\subsection{T1: 极限与近极小化子收敛}\label{sec:T1}
+\begin{theorem}[T1]\label{thm:T1}
+$\lim_{R\to\infty}R\,m_R=\bar D(u^*)$, 且任何近极小化子序列 $u_R$ (即
+$D_R(u_R)\le m_R+R^{-2}$) 收敛到 $u^*$.
+\end{theorem}
+\begin{proof}
+\emph{(i) $\limsup\le\bar D(u^*)$.}
+固定在 $u^*$, 由 \ref{lem:phases} 与 \ref{lem:def2} 的界:
+\begin{equation}
+	\delta_1(R,u^*)\le\varepsilon\tan\Bigl(\frac\pi2\frac{\varepsilon\ell^*}{u^*}\Bigr)\to0,
+	\qquad
+	\psi_2(R,u^*)\le
+	\frac{C_z\theta_2\varepsilon^2(\ell^*/u^*)(\bar\theta_2+\theta_2)}
+	{1+v(v+1)/(\bar\theta_2\theta_2)}\to0,
+\end{equation}
+其中 $\ell^*=1/2-u^*$. 故 $\theta_1\to\pi/2$, $\theta_2\to\bar\theta_2$,
+$G(R,u^*)\to(\bar\theta_2^2-\pi^2/4)/u^{*2}=\bar D(u^*)$.
+由 $m_R\le D_R(u^*)$:
+\begin{equation}
+	\limsup_{R\to\infty}R\,m_R\le\lim_{R\to\infty}G(R,u^*)=\bar D(u^*).
+\end{equation}
+
+\emph{(ii) $\liminf\ge\bar D(u^*)$.}
+设 $R\ge1500$. 对任意 $u\in(0,1/2)$:
+\begin{itemize}
+	\item 若 $w=u\sqrt R\le2$: 由 \ref{lem:sliver}, $G(R,u)\ge25>\bar D(u^*)$ (见 \ref{thm:T3});
+	\item 若 $w\ge2$: 由引理 A$''$ (见 \ref{thm:lemAdp}) 与 T2 (见 \ref{thm:T2}):
+		$G(R,u)\ge\bar D(u)\ge\bar D(u^*)$.
+\end{itemize}
+故 $R\,m_R=\inf_u G(R,u)\ge\min\{25,\bar D(u^*)\}=\bar D(u^*)$ 对一切 $R\ge1500$,
+从而 $\liminf R\,m_R\ge\bar D(u^*)$.
+
+\emph{(iii)} 由 (i)(ii): $\lim_R R\,m_R=\bar D(u^*)$.
+
+\emph{(iv) 近极小化子收敛.} 设 $u_R$ 为近极小化子. 则
+$R\,D_R(u_R)\le R\,m_R+R^{-1}\to\bar D(u^*)$, 且 $R\,D_R(u_R)\ge R\,m_R\to\bar D(u^*)$.
+若 $w_R:=u_R\sqrt R\le2$ 无穷多次, 则 $G\ge25>\bar D(u^*)$, 与极限矛盾.
+故最终 $R$, $w_R\ge2$, 从而 $\bar D(u_R)\le G(R,u_R)\to\bar D(u^*)$;
+又由 T2, $\bar D(u_R)\ge\bar D(u^*)$. 故 $\bar D(u_R)\to\bar D(u^*)$.
+$\bar D$ 在 $(0,u^*)$ 上严格递减, 在 $(u^*,1/2)$ 上严格递增 (T2),
+且 $\bar D(u)\to+\infty$ ($u\to0^+$), $\bar D(u)\to3\pi^2>\bar D(u^*)$ ($u\to1/2^-$).
+若 $u_R\not\to u^*$, 取收敛子列 $u_{R_k}\to u_\infty\in[0,1/2]$; $u_\infty=0$ 与 $u_\infty=1/2$ 被尾部极限 $\bar D(u_{R_k})\to\bar D(u^*)<+\infty<3\pi^2$ 排除, 而 $u_\infty\in(0,1/2)$ 时由连续性 $\bar D(u_\infty)=\bar D(u^*)$, T2 的严格单调性迫使 $u_\infty=u^*$, 矛盾. 故 $u_R\to u^*$. \qed
+\end{proof}
+
+\begin{corollary}[定理 A]
+由 \ref{thm:T1}, \ref{thm:T2}, \ref{thm:T3} 即得定理 A.
+\end{corollary}
+
+\section{计算机辅助认证 (常数)}\label{sec:cac}
+
+本节列出证明中出现的显式常数及其区间认证: 全部用方向舍入/区间算术,
+\emph{不}构成解析证明. 这些常数支撑 §2 中 \ref{lem:sliver} 等引理
+($C_z<0.337$, $f(t)\le9$, $0.8256$) 的数值部分.
+脚本位于 \texttt{runs/rigorous-open-math-research/R-20260806T200000Z-inflimit-5B2C7D/reproducibility/}.
+
+\subsection{深 sliver 认证 (脚本 16)}\label{sec:ca-sliver}
+脚本 \texttt{16\_certify\_all\_regions.py} 对 $w=u\sqrt R\in(0,2]$, $R\ge1500$ 认证
+$G\ge25$. 下表 (下界 $\le G$):
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+区域 & $w$ 范围 & 下界 & 最坏值 \\
+\midrule
+A & $(0,0.19]$ & $B_1=3\pi^2R-32\pi^4R\varepsilon w^2/c$, $c=1/(2w)-\varepsilon$ & 42724 \\
+B & $[0.19,w_c]$ & $B_2=\pi^2R((1-2\varepsilon w)^{-2}-1)$ & 293.36 \\
+C & $(w_c,w_{\rm cap}]$ & $B_3=\pi^2R(1/(4w^2)-1)$ (解析, 恰在 25 取等) & 25 \\
+D & $(w_{\rm cap},2]$ & $\max(\mathsf{THB},\mathsf{D2B})$ & 77.67 \\
+\bottomrule
+\end{tabular}
+\end{center}
+其中 $w_c=1/(2(1+\varepsilon))$, $w_{\rm cap}=(1/2)(1+25/(\pi^2R))^{-1/2}$,
+\begin{equation}
+	\mathsf{THB}=\frac{(\pi/2-\theta_1^+)(\pi/2+\theta_1^-)}{w^2\varepsilon^2},
+	\qquad
+	\mathsf{D2B}=\frac{\delta_2^-(\pi-\varepsilon\tan(\pi/(4w)))}{w^2\varepsilon^2},
+\end{equation}
+$\theta_1^-=\arctan(\cot(c\pi/2)/\varepsilon)$, $\theta_1^+=\pi/2-\arctan(\varepsilon\tan(c\theta_1^-))$,
+$\delta_2^-=\arctan(\varepsilon\cot(\pi/(4w)-\varepsilon\pi/2+c\,\delta_2^+))$,
+$\delta_2^+=\arctan(\varepsilon\cot(\pi/(4w)-\varepsilon\pi/2))$.
+$R$ 网格: $[1500,10^8]$ 等比步长 $1.01$/$1.02$; 尾段: 当 $R\ge57050$,
+区域 A 的 $B_1\ge1.68\cdot10^6$, 区域 B 的 $B_2\ge1792$ (随 $R$ 单调);
+当 $R\ge10^8$, 区域 D 的 $\mathsf{THB}\ge0.1529\sqrt R\ge1529$.
+区域 C 完全解析且 $B_3\ge25$ 恒成立. 全部 PASS, 用时约 18 秒.
+
+\subsection{中等区域认证 (脚本 17)}
+脚本 \texttt{17\_certify\_medium\_region.py} 对 $w\ge2$, $u\in[0.02,0.2]$,
+$R\in[1500,10^8]$ 用 $\delta$ 括号 + 单调性网格认证 $G\ge25$:
+$\delta_1\in[\delta_1^-,\delta_1^+]$, $\delta_2\in[0,\delta_2^+]$,
+$\mu_1$ 随 $\delta_1$ 减 / $\mu_2$ 随 $\delta_2$ 增, 且 $d\mu_k/du<0$,
+$d\mu_k/dR>0$ (Feynman--Hellmann, 见 §5). 115185 个单元全部 PASS,
+用时约 27.99 (上限 60 秒). 该认证不依赖引理 A$''$, 与 §2 证明独立.
+
+\subsection{引理 A\texorpdfstring{$''$}{} 的独立点验证 (脚本 18)}
+脚本 \texttt{18\_verify\_lemma\_A\_doubleprime.py} 对引理 A$''$ 的常数链做独立验证
+($\tan$ 级数余项 $r(x)/x^4\le0.06$ on $[0,\pi/8]$ 单调递增, $F(t)=2t^3(-\tan t)/(\pi^2(1+t(-\tan t)))$
+的最大值 $F_{\max}\le0.84$, 对应比值 $0.772379<1$), 并在 400 个网格点上
+$\mathsf{def}_1$ 的下界与 $\mathsf{def}_2$ 的上界逐点比较 (证据). 全部 PASS.
+注意 §2 主链使用的 $C_z<0.337$ 等常数另由脚本 19 认证.
+
+\subsection{主链常数认证 (脚本 19)}
+脚本 \texttt{19\_verify\_lemma\_A\_doubleprime\_chain.py} 认证 §2 主链的常数:
+\begin{itemize}
+	\item[(a)] $h'(a)\sin^3a<0$ on $(\pi/2,\pi)$: 1000 个区间单元, 全部 PASS
+		(解析符号亦直接可判, 见 §2.5);
+	\item[(b)] $C_z=R(\pi/8)/(\pi/8)\in[0.336811398993,0.336811399011]<0.337$
+		(区间); $R(z)/z$ 在 $(0,\pi/8]$ 上递增 (证据, 由正系数展开保证);
+	\item[(c)] 相位括号 (见引理 \ref{lem:phases}) 在 $4\times61$ 个采样点验证;
+	\item[(d)] $f(t)=2t^4/(t^2+v^2+v)\le9$: 对 $t\le3/\sqrt2$ 解析 ($f\le2t^2\le9$),
+		对 $t\in[3/\sqrt2,\pi)$ 用 500 个区间单元, 最坏上界 5.4225;
+		最终比值 $\le0.82552<1$;
+	\item[(e)] 恒等式 \eqref{eq:ident} 在 480 个点上验证到 $10^{-42}$;
+		并逐点验证 $\mathsf{def}_1$ 下界 $\ge\mathsf{def}_2$ 上界 (证据).
+\end{itemize}
+全部 PASS.
+
+\section{数值证据 (非证明)}\label{sec:numeric}
+
+本节为数值证据, \emph{不构成证明}. 它们仅用于说明定理的定量内容,
+不支撑引理 \ref{lem:sliver}, \ref{lem:def1}, \ref{lem:def2}, \ref{lem:ratio} 与
+定理 \ref{thm:T2}, \ref{thm:T3} 的严格结论.
+
+\begin{itemize}
+	\item \textbf{Lemma A$''$ 的点验证}: 对 $R\in\{1500,10^4,10^6,10^8\}$,
+		$u\in[2/\sqrt R,0.499]$ 的 480 个点, $G-\bar D\ge0$ 的最小余量
+		$3.97\cdot10^{-10}$ (在 $R=10^8$, $u=0.499$ 处). 实际
+		$\mathsf{def}_2/\mathsf{def}_1$ (直接计算) $=0.7431$, 在 $(R,u)=(1500,0.4095)$.
+	\item \textbf{$R\cdot m_R$ 的收敛}: $\min_u G(R,\cdot)$ 在 $R=1500$ 时约
+		$24.9542$ ($u\approx0.33023$), $R=10^4$ 时 $24.9454$, $R=10^6$ 时 $24.9439$,
+		$R=10^8$ 时 $24.943866$; 与 $\bar D(u^*)$ 的误差分别为 $1.04\cdot10^{-2}$,
+		$1.56\cdot10^{-3}$, $1.57\cdot10^{-5}$, $2.05\cdot10^{-7}$
+		(近似 $\sim1/\sqrt R$ 衰减). 深 sliver 处 $G(1500,2/\sqrt{1500})=91.7263$.
+	\item \textbf{T2 的定位}: $\widetilde K$, $J$, $G$ 的零点分别约 $1.6351$, $1.9856$, $2.2766$,
+		与理论一致; $h'(a)<0$ on $(\pi/2,\pi)$.
+	\item \textbf{T3 的值}: $u^*=0.3299225081196866$, $\bar D(u^*)=24.9438661384324769$,
+		$\bar D(0.2)=29.2398$, $\bar D(0.1)=47.556$, $\bar D(10^{-4})\approx40006$
+		($\bar D\to+\infty$ 当 $u\to0^+$).
+	\item \textbf{收敛速率}: 对固定 $u\in(0,1/2)$, $G(R,u)-\bar D(u)\sim c(u)/\sqrt R$
+		(观察), 与 $\delta_1=O(\varepsilon)$, $\psi_2=O(\varepsilon^2)$ 的阶一致.
+\end{itemize}
+
+\section{涉及到的数学知识}
+\begin{itemize}
+	\item \textbf{Sturm--Liouville 谱理论}: Dirichlet 问题, 对称/反对称模态,
+		转移矩阵, 相位 (secular) 方程.
+	\item \textbf{Feynman--Hellmann 定理}: 特征值的参数单调性 (经典);
+		脚本 17 中验证 $d\mu_k/du<0$, $d\mu_k/dR>0$.
+	\item \textbf{相位括号方法}: 用单调函数夹逼特征相位 (见 \ref{lem:phases}(d)).
+	\item \textbf{三角级数余项}: $\tan$, $\cot$ 的级数余项符号与单调性,
+		给出显式常数 (见 §2.3).
+	\item \textbf{符号链}: $\widetilde K\to J\to G\to S$ 的逐层符号分析
+		(见 \ref{thm:T2}).
+	\item \textbf{区间算术}: mpmath.iv, 方向舍入, 计算机辅助认证.
+	\item \textbf{Weyl 渐近}: $u\to1/2$ 时 $\rho\to R$ 退化, $\bar D\to3\pi^2$;
+		$u\to0$ 时 $\bar D\to+\infty$.
+\end{itemize}
+
+\section{文献}
+\sloppy
+\begin{enumerate}
+\raggedright
+	\item Keller: The minimum ratio of two eigenvalues, SIAM J.\ Appl.\ Math.\
+		\textbf{29}(2) (1975) 279--283,
+		\href{https://doi.org/10.1137/0129024}{DOI 10.1137/0129024}.
+	\item Mahar, Willner: An extremal eigenvalue problem, Comm.\ Pure Appl.\ Math.\
+		\textbf{29}(5) (1976) 517--529,
+		\href{https://doi.org/10.1002/cpa.3160290505}{DOI 10.1002/cpa.3160290505}.
+	\item Willner, Mahar: An extremal eigenvalue problem II, SIAM J.\ Math.\ Anal.\
+		\textbf{13}(4) (1982) 633--643,
+		\href{https://doi.org/10.1137/0513040}{DOI 10.1137/0513040}.
+	\item 本项目内部 run (见 \texttt{runs/rigorous-open-math-research/}):
+		R-20260806T200000Z-inflimit-5B2C7D (INF 极限, 本文),
+		R-20260805T000000Z-gapn1-a1b2c3 (O1/O2/O3b 前期工作),
+		R-20260806T151000Z-o1reaudit-5A1C3D (O1 独立复审),
+		R-20260806T140000Z-o3ac1-42F931 (O3a C1).
+\end{enumerate}
+
+\end{document}

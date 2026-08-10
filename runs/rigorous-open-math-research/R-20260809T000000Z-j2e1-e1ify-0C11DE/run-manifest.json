@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260809T000000Z-j2e1-e1ify-0C11DE",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260809-j2e1-e1ify-0C11DE",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-09T00:00:00Z",
+  "completed_at": "2026-08-10T00:00:00+08:00",
+  "run_root": "runs/rigorous-open-math-research/R-20260809T000000Z-j2e1-e1ify-0C11DE",
+  "upstream_status_verbatim": "CANDIDATE_COMPLETE_PROOF",
+  "artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "806a001f497657743ceb266545af10d9a045762606bbc0be8cc05ff854c3771e",
+      "role": "normalized theorem contract"
+    },
+    {
+      "path": "run_summary.md",
+      "sha256": "32ddaf6f89f4a0a95628d69eb096127e2546cca4d880dff467df60c447dea948",
+      "role": "session 44 deliverable (E1-ification completion)"
+    },
+    {
+      "path": "repro_manifest.md",
+      "sha256": "0c5845fec92a6442107c5e50d862b7b4d2779a10c5f72c5aa59d1b1a695ae77e",
+      "role": "reproducibility manifest (incl. Audit E replay hashes)"
+    },
+    {
+      "path": "research_ledger.md",
+      "sha256": "b832632831587914db3903d1afc93de51cf0a4519b4b7dc1afff0c4a337da325",
+      "role": "R-100..R-110"
+    },
+    {
+      "path": "audit_report.md",
+      "sha256": "34d0d49d2819114e214f181b2905ba2a6df00a06c24057eed569a4bc8bfbc072",
+      "role": "sessions 45/47-48 audit report (A/B/C/D + Audit E replay + dual-subagent + F-210/F-211)"
+    }
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10 (fractions/Decimal exact arithmetic)",
+      "xelatex (TeX Live 2024, ctexart)",
+      "PowerShell"
+    ],
+    "formal_systems": []
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "continuation session 44 (2026-08-09): completed E1-ification of the last E2 dependency (55 single-variable facts)",
+    "certificate chain hashes L10/L11/L12 in repro_manifest.md; document compiles 38 pages zero warnings",
+    "evidence layering now E1 (strict) + E3 (cross-check only); E2 validator and leaf boxes retired as historical",
+    "session 45 (2026-08-09): full independent symbolic audit, 21+67 checks PASS; fixed tex line 344 / line 1437 typos and _verify_identity.py; e1_certgen replay 57/57 with L10/L11/L12 unchanged",
+    "session 45 audit C (2026-08-09): 70/70 checks PASS (groups I-V); F-206 d_q F1 formula, F-207 Leibniz partial-sum labels; xelatex 38 pages zero warnings; tex sha256 5a47e555..., pdf 09c8c6d4...",
+    "session 45 audit D (2026-08-09): appendix certificate-method prose audited; F-208 sin sandwich direction and F-209 arctan/width claims fixed in lem:envseries, rem:env(a), tab:envprims caption; certificate data unchanged (e1_certgen/ledger hashes identical); xelatex 39 pages zero warnings; tex sha256 51d18676..., pdf 7497ee4d...",
+    "session 47 (2026-08-10): Audit E independent replay - misc/audit_o3a_cert_replay.py (Decimal 80-digit directed rounding vs exact Fraction) 71/71 PASS; replay.py 3a8672f4..., replay.json c239092d...",
+    "session 48 (2026-08-10): dual-subagent adversarial audit - Curie lines 1-559 REPAIRABLE_GAP (F-210 phase-branch selection), Linnaeus lines 559-2396 PASS; F-210 fixed via new lemma lem:phasebranch (Prufer phase E1), F-211 fixed (j1e1 step iv tail [5pi/14, 1122/1000] with exact rational envelopes); xelatex 40 pages zero warnings; tex d8e83f44..., pdf 72836e20..., log c824c611...; certificate data unchanged",
+    "status: CANDIDATE_COMPLETE_PROOF maintained (71/71 replay + dual audit PASS + phase-branch gap closed)",
+    "session 49 (2026-08-10): re-ran all 8 completeness-audit scripts (E3 cross-checks) - ALL PASS; fixed scripts/audit_o3a_pdf_part2b.py (eigvals grid top 3*pi, R list without 1e6) and scripts/audit_o3a_pdf_part2c.py (xi scan to 0.4999995, mpmath xi* kept as mpf throughout); script hashes in repro_manifest.md; no E1 text, certificate data, or document hashes changed",
+    "session 49 follow-up: document recompiled (40 pages, zero warnings) after completing the sec:certs audit-script list with part2b plus a one-line note on the 2026-08-10 re-run; new tex 2c3312579218f204cfd381146c1eeb57a0af62c376dd1f4c1150c63d96a7ebb0, pdf ecc7ef62393dc3ef5f014613a25d63fd75fdf05adfc3ec1e26f33f9a4ca65f8d, log c9be856046c73dca6f493e62e338895321c490baa0e7ff2c1f3a39ec8c614b1b; no E1 proof text or certificate data changed; tools/rational-envelope-certificates.md F-209 residual wording fixed"
+  ]
+}

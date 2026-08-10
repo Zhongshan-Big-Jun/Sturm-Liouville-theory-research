@@ -1,0 +1,780 @@
+1
+
+Strong Continuity of Eigenvalues of
+Sturm-Liouville Problems in
+Potentials and Optimal Estimates of
+Eigenvalues
+Meirong Zhang
+Department of Mathematical Sciences &
+Zhou Pei-Yuan Center for Applied Mathematics,
+Tsinghua University, Beijing 100084, China
+
+2
+
+Abstract
+In this talk, we will present some deep understanding for
+eigenvalues of Sturm-Liouville problems. One is the strong
+continuity of eigenvalues in potentials, i.e., the continuity
+of eigenvalues in potentials when the weak topologies are
+considered for potentials. Another is to use the variational
+method and the limiting approach to obtain optimal lower
+and upper bounds for eigenvalues by using the norms of
+potentials. Some interesting systems of
+degree-two-of-freedom which are resulted from the
+optimal eigenvalue gaps will be introduced as an open
+problem.
+
+3
+
+Contents
+I. Strong Continuity of Eigenvalues of
+Sturm-Liouville Problems in Potentials
+II. Optimal Estimates of Eigenvalues of
+Sturm-Liouville Problems
+III. Eigenvalues for Measure Differential Equations
+IV. Some Unsloved Problems
+
+4
+
+I. Eigenvalues of Sturm-Liouville Problems
+We are mainly concerned with the most classical
+eigenvalue problem. Given a potential q ∈ Lp := Lp[0, 1],
+1 ≤ p ≤ ∞, consider
+y 00 + (λ + q(x))y = 0,
+
+x ∈ [0, 1].
+
+(1)
+
+With the Dirichlet boundary condition
+y(0) = y(1) = 0,
+eigenvalues of (1) are denoted by
+D
+D
+λD
+(q)
+<
+λ
+(q)
+<
+·
+·
+·
+<
+λ
+1
+2
+n (q) < · · ·
+
+(D)
+
+5
+
+Similarly, with the Neumann boundary condition
+y 0(0) = y 0(1) = 0,
+
+(N )
+
+eigenvalues of (1) are
+N
+N
+λN
+(q)
+<
+λ
+(q)
+<
+·
+·
+·
+<
+λ
+0
+1
+n (q) < · · ·
+
+• General Sturm-Liouville problems with integrable
+potentials/weights and with general separated boundary
+conditions or periodic/anti-periodic boundary conditions
+can also be considered in a similar way.
+
+6
+
+As for the dependence of eigenvalues on potentials, a
+classical known result is as follows.
+Theorem 1. Let 1 ≤ p ≤ ∞ and n be fixed. As nonlinear
+functionals,
+(q) ∈ R
+q ∈ (Lp, k · kp) → λD/N
+n
+are continuously Frechét differentiable. Here k · kp =
+k · kLp[0,1] is the usual Lp norm. Moreover, the Frechét
+derivatives are
+D/N
+2
+p
+∗
+∂q λD/N
+(q)
+=
+−|E
+(·;
+q)|
+∈
+(L
+,
+k
+·
+k
+)
+p .
+n
+n
+
+(2)
+
+(As the kernels of bounded linear functionals of (Lp, k·kp).)
+
+7
+
+D/N
+Here En (x; q) are the corresponding eigenfunctions sat-
+
+isfying the normalization condition
+kEnD/N (·; q)k2 = 1.
+Remarks • When the periodic/anti-periodic boundary
+value problems are considered, eigenvalues are only
+continuous nonlinear functionals of potentials. Usually
+speaking, these eigenvalue functionals are not
+differentiable at parabolic potentials.
+• Formula (2) is very useful in the Inverse Scattering
+Method.
+
+8
+
+Note that Lp are ∞-dim Banach spaces. An alternative
+choice for the topologies is the so-called weak topologies.
+Definition 2. Let p ∈ [1, ∞]. The weak topology wp in
+the Lebesgue space Lp is that qk → q iff
+Z 1
+
+Z 1
+qk u →
+
+0
+
+p∗
+
+qu ∀u ∈ L .
+
+(p∗ := p/p − 1)
+
+0
+
+Example 3. (High frequencies) The Riemann-Lebesgue
+lemma shows that
+as k → ∞,
+
+ϕk (x) := sin kπx → 0
+
+in (Lp, wp).
+
+9
+
+Example 4. (Strong bumps) For
+
+k/ log(k + 1) for x ∈ [0, 1/k)
+ψk (x) :=
+0
+for x ∈ [1/k, 1],
+one has ψk → 0 in (L1, k · k1) as k → ∞.
+Example 5. (High frequencies + Strong bumps) Let c1
+and c2 be non-zero constants. Then
+c1ϕk + c2ψk → 0
+in and only in the space (L1, w1).
+
+10
+
+Since 2008, we have revealed that eigenvalues have a very
+strong continuous dependence on potentials/weights. See
+Zhang, Sci. China Ser. A, 2008
+Meng & Zhang, Acta Math. Sinica Engl. Ser., 2010
+Yan & Zhang, Trans. Amer. Math. Soc., 2011.
+Theorem 6. Given p and n, as nonlinear functionals,
+q ∈ (Lp, wp) → λD/N
+(q) ∈ R
+n
+are continuous.
+Eigenvalues are strong continuous in potentials!
+
+11
+
+Very few results on strong continuity. A few remarks are
+as follows.
+• In Pöschel & Trubowitz (Inverse Spectral Theory,
+Academic Press, NY, 1987), it has been proved that
+Dirichlet eigenvalues λD
+n (q) are strong continuous in
+q ∈ (Lp, wp), where 2 ≤ p ≤ ∞.
+• Theorem 6 shows that perturbations of High frequencies
+and Strong bumps are not important to compute the
+specified eigenvalues.
+
+12
+
+• Theoretical explanation of Theorem 6:
+F
+
+Micro-quantities q 7→ (nonlinear) Fourier transformations q̂
+M
+
+7→ Macro-quantities λn(q)
+F is strong continuous and M is continuous
+=⇒ M ◦ F is strong continuous
+
+13
+
+Proofs: 1. Solutions of initial value problems of linear
+systems of ODE are strong continuous in coefficients.
+2. Arguments of planar linear ODE are strong continuous.
+3. Eigenvalues are obtained by solving equations for
+arguments. It is important to use the lefting of families of
+circle homeomorphisms.
+
+14
+
+The proofs are non-trivial. One way is based on the
+characterization of relatively compact subsets in weak
+topologies.
+Lemma 7. A subset W ⊂ L1 is relatively compact in
+(L1, w1) iff
+• (uniform boundedness) supu∈W kuk1 < ∞,
+• (equi-absolute continuity) for any  > 0, there exists
+δ > 0 such that
+Z
+u <  ∀u ∈ W, ∀B ⊂ [0, 1] with meas(B) < δ.
+B
+
+15
+
+For 1D linear ODE
+y 0 = q(x)y,
+
+x ∈ [0, 1],
+
+the solutions of initial value problems are
+Z x 
+y(x; q) = y0 exp
+q .
+0
+
+When y0 and x are fixed, it follows from the definition of
+weak topologies that
+qk → q in (L1, w1) =⇒ y(x; qk ) → y(x; q).
+
+16
+
+By using Lemma 7, one can obtain the following strong
+continuity:
+qk → q in (L1, w1) =⇒ y(·; qk ) → y(·; q) in (C 0[0, 1], k·kC 0 ).
+• Such a strong continuity can be obtained for solutions
+of initial value problems of linear systems of ODE.
+• Dynamics quantities like rotation numbers and
+Lyapunov exponents (of Hill’s equations) are also strong
+continuous in potentials.
+• Further strong continuity results will be mentioned later.
+
+17
+
+II. Optimal Estimates of Eigenvalues of
+Sturm-Liouville Problems
+Let q ∈ Lp, 1 ≤ p ≤ ∞. The problem is how to estimate
+D/N
+λn(q) = λn (q) using the Lp norm kqkp of the potential
+q.
+• Trivial result: p = ∞. If kqk∞ = r, one has
+(nπ)2 − r ≤ λn(q) ≤ (nπ)2 + r,
+which are optimal for potentials q ∈ L∞.
+
+18
+
+• Case p ∈ [1, ∞): Suppose that we have known only
+kqkp = r. In order to obtain the optimal lower and upper
+bounds of λn(q), we are lead to the following basic
+extremal problems
+Ln,p(r):= inf λn(q) ≡ inf λn(q),
+
+(3)
+
+Mn,p(r):= sup λn(q) ≡ sup λn(q).
+
+(4)
+
+q∈Bp[r]
+
+q∈Bp[r]
+
+q∈Sp[r]
+
+q∈Sp[r]
+
+Here
+Bp[r] = {q ∈ Lp : kqkp ≤ r} ,
+
+Sp[r] = ∂Bp[r].
+
+Of particular interest is the case p = 1.
+
+19
+
+Roughly speaking, by considering q(x) as densities,
+problems (3) and (4) are predicting the ranges of
+oscillation frequencies when the Lp norms of q(x) are
+known.
+Problems (3) and (4) are well imposed. Once these have
+been solved, we will have the following optimal bounds for
+eigenvalues
+Ln,p(kqkp) ≤ λN/D
+(q) ≤ Mn,p(kqkp)
+n
+
+∀q ∈ Lp.
+
+20
+
+However, several difficulties for problems (3) and (4)
+include
+• ∞-dim optimization problems, with the eigenvalue
+functionals λn(q) being defined in an implicit way.
+• For case p = 1, topologically, balls B1[r] have no
+compactness, even in (L1, w1), and, geometrically, spheres
+S1[r] = ∂B1[r] are not smooth in (L1, k · k1).
+
+21
+
+Our approaches: Case p ∈ (1, ∞) and case p = 1.
+• Case p ∈ (1, ∞): Solved by the variational method.
+Topologically, Bp[r] is compact and sequentially compact
+in the weak topology (Lp, wp). Geometrically,
+Sp[r] = ∂Bp[r] is a continuously differentiable manifold in
+(Lp, k · kp).
+The strong continuity of eigenvalues in potentials =⇒
+Ln,p(r) := minq∈Bp[r] λn(q) = λn(qn,r,p),
+Mn,p(r) := maxq∈Bp[r] λn(q) = λn(q̂n,r,p),
+are attained by some potentials qn,r,p, q̂n,r,p ∈ Sp[r].
+
+(5)
+
+22
+
+Using the Lagrange multiplier method, the minimizing/
+maximizing potentials (on Sp[r]) of λn(·), or more
+general, the critical potentials, denoted by qp = qp,n,r , are
+determined by
+Ep2 = cp|qp|p−2qp,
+00
+Ep + (µp + qp)Ep = 0.
+
+Here cp 6= 0 is the Lagrange multiplier, Ep is the
+corresponding normalized eigen-function (and therefore
+satisfies the boundary condition), and µp = λn(qp) ∈ R is
+the value we want to characterize.
+
+23
+
+Tricky reduction: Choose the ‘coordinates’ for critical
+potentials qp as
+yp := |cp|−1/2Ep,
+a special eigen-function. Then y = yp satisfies the
+following critical equation
+2p∗−2
+
+00
+
+y + µpy ± |y|
+
+y = 0,
+
+(6)
+
+with the choice + for min, − for max. Moreover, the
+potential qp is given by
+p∗−2
+
+qp = +|yp|
+
+yp
+
+(min),
+
+p∗−2
+
+qp = −|yp|
+
+yp
+
+(max).
+(7)
+
+24
+
+Remark The PDE counterpart of Eq. (6) is the
+Stationary nonlinear Schrödinger equation
+−∆u + µu ± u3 = 0
+
+(p = 2),
+
+or, more generally,
+−∆u + (µ + q0(x))u ± u3 = 0
+
+(p = 2),
+
+with the ball centered at q0.
+By analyzing the phase portraits of critical equations (6),
+the minimizing/ maximizing potentials qp(x) and the
+extremal values µp can be constructed using singular
+integrals.
+
+25
+
+• Case p = 1: The limiting approach p ↓ 1.
+Hölder inequality =⇒ The smaller the exponent p is, the
+bigger the ball Bp[r] is.
+As p ↓ 1, Bp[r] can approximate B1[r] from the interior in
+the L1 topology k · kLp . Therefore
+Ln,1(r) = lim Ln,p(r),
+p↓1
+
+Mn,1(r) = lim Mn,p(r).
+p↓1
+
+(8)
+
+26
+
+The extremal values are as follows. Denote
+Ln(r) := Ln,1(r) and Mn(r) := Mn,1(r).
+Theorem 8. (Zhang, JDE, 2009) Let Ẑ0 : (−∞, 0] →
+[0, ∞) be
+√
+√
+Ẑ0(x) = −x tanh −x for x ∈ (−∞, 0].
+Then
+−1
+LN
+(r)
+=
+Ẑ
+0
+0 (r),
+
+MN
+0 (r) = r.
+
+27
+
+Theorem 9. (Wei-Meng-Zhang, JDE, 2009) Let Z1 :
+(−∞, π 2] → [0, ∞) be
+ √
+√
+
+ 2 −x coth( −x/2) for x ∈ (−∞, 0),
+Z1(x) =
+4
+for x = 0,
+
+ 2√x cot(√x/2)
+for x ∈ (0, π 2],
+and Y1 : [0, ∞) → [π 2, ∞) be
+
+
+p
+2
+1
+Y1(x) =
+π + π 2 + 4x .
+4
+Then, for n ∈ N,
+2 −1
+2
+LN/D
+(r)
+=
+n
+Z
+(r/n
+),
+n
+1
+
+2
+2
+MN/D
+(r)
+=
+n
+Y
+(r/n
+).
+1
+n
+
+28
+
+Remark The approach is different from that in the works
+of Krein, Karaa, Lou-Yanagida, ......
+
+29
+
+III. Eigenvalues for Measure Differential Equations
+By considering the first Dirichlet eigenvalues λD
+1 (q), for
+p ∈ (1, ∞), let qp = qp,r ∈ Sp[r] and q̂p = q̂p,r ∈ Sp[r] be
+the minimizing and maximizing potentials
+L1,p(r) = λD
+1 (qp),
+
+M1,p(r) = λD
+1 (q̂p).
+
+Lemma 10. As p ↓ 1, one has
+q̂p,r → Qr
+
+in (L1, k · k1),
+
+30
+
+where Qr ∈ L1 is a bang-bang potential
+
+−M1(r) x ∈ [0, τr ] ∪ [1 − τr , 1],
+Qr (x) =
+0
+x ∈ [τr , 1 − τr ].
+On the other hand, as measures,
+Z
+Qp,r (x) :=
+qp,r (s)ds → rδ1/2(x)
+
+in (M0[0, 1], w∗),
+
+[0,x]
+
+where δ1/2 is the Dirac measure located at 1/2 and w∗ is
+the weak∗ topology in the space M0[0, 1] of measures.
+
+31
+
+Proposition 11. By the continuity of eigenvalues λ1(q)
+in q ∈ (L1, k · k1), one has
+D
+M1(r) = λ1 (Qr ),
+
+and Qr is the maximizing potential for λD
+1 (q) on S1[r].
+On the other hand, the minimum L1(r) cannot be
+attained by any potential on S1[r]. To explain the
+minimizers, we need to expand the eigenvalue theory of
+Sturm-Liouville problems to Measure Differential
+Equations (MDE). See, e.g., Meng & Zhang, J. Diff. Eq.,
+2013.
+
+32
+
+Given a real measure µ ∈ M0[0, 1], consider the
+second-order linear MDE
+dy • + λydx + ydµ(x) = 0,
+
+x ∈ [0, 1].
+
+(9)
+
+With the Dirichlet boundary condition
+y(0) = y(1) = 0,
+
+(D)
+
+or the Neumann boundary condition
+y •(0) = y •(1) = 0,
+
+(N )
+
+33
+
+problem (9) defines eigenvalues
+D
+D
+λD
+(µ)
+<
+λ
+(µ)
+<
+·
+·
+·
+<
+λ
+1
+2
+n (µ) < · · ·
+N
+N
+λN
+(µ)
+<
+λ
+(µ)
+<
+·
+·
+·
+<
+λ
+0
+1
+n (µ) < · · ·
+
+Theorem 12. (Meng & Zhang) As nonlinear functionals,
+µ ∈ (M0[0, 1], w∗) → λD/N
+(q) ∈ R
+n
+are continuous.
+Very strong continuous dependence!
+
+34
+
+Proposition 13. One has
+L1(r) = λD
+1 (rδ1/2),
+which is attained by a completely singular measure.
+
+35
+
+IV. Some Solved and Unsolved Problems
+• Solved Problem For example, as eigenvalues satisfy
+λn(q + c) = λn(q) − c
+for constants c ∈ R, it is reasonable to study the following
+problems
+Z 1
+Min/Max λn(q) s.t. q̄ :=
+q = 0, kqkL1 = r.
+0
+
+36
+
+For these problems, the critical equations contain some
+additional parameter mp (due to the constraint q̄ = 0)
+00
+
+2
+
+p∗−2
+
+y + µpy ± |y − mp|
+
+(y 2 − mp)y = 0.
+
+The limiting analysis is much complicated.
+Meng-Yan-Zhang have recently solved these problems.
+
+37
+
+• Partially Solved Problem — Periodic/anti-periodic
+eigenvalues: We have only obtained partial results. The
+main reason is that λn(q) and λn(q) are not continuously
+differentiable at those potentials such that λn(q) = λn(q)
+(coexistent potentials). These are related with dynamics.
+
+38
+
+• An Unsolved Problem — Optimal Gaps between
+Eigenvalues: For example, find
+inf (sup) {λ2(q) − λ1(q) : q ∈ Sp[r]} ,
+where 1 < p < ∞.
+The critical system of these problems is
+00
+2
+2 p∗
+xi + λixi ± |x1 − x2| xi = 0,
+
+i = 1, 2.
+
+Here λi and xi are the critical eigenvalues and
+eigenfunctions.
+
+(10)
+
+39
+
+• Nonlinear perturbation of the linear oscillators
+• Non-Hamiltonian system
+• Degree-2-of-freedom
+• A first integral
+1 02
+1 02
+1 2
+2 p∗
+2
+2
+(x1 + λ1x1) − (x2 + λ2x2) ± ∗ |x1 − x2| = c.
+2
+2
+2p
+Problem Is system (10) completely integrable?
+Yes, if λ1 = λ2 = 0.
+
+40
+
+Literatur
+[1] M. Zhang, Continuity in weak topology: higher order
+linear systems of ODE, Sci. China Ser. A 51 (2008),
+1036–1058.
+[2] G. Meng and M. Zhang, Continuity in weak topology:
+first order linear systems of ODE, Acta Math. Sinica
+Engl. Ser. 26 (2010), 1287–1298.
+[3] G. Meng, P. Yan and M. Zhang, Spectrum of onedimensional p-Laplacian with an indefinite intergrable
+weight, Mediterr. J. Math. 7 (2010), 225–248.
+
+41
+
+[4] P. Yan and M. Zhang, Continuity in weak topology and
+extremal problems of eigenvalues of the p-Laplacian.
+Trans. Amer. Math. Soc. 363 (2011), 2003–2028.
+[5] W. Li and P. Yan, Continuity and continuous differentiability of half-eigenvalues in potentials, Commun.
+Contemp. Math. 12 (2010), 977–996.
+[6] G. Meng and M. Zhang, Dependence of solutions
+and eigenvalues of measure differential equations on
+measures, J. Differential equations, 2013.
+[7] M. Zhang, Extremal values of smallest eigenvalues of
+
+42
+
+Hill’s operators with potential in L1 balls, J. Differential Equations 246 (2009), 4188–4220.
+[8] Q. Wei, G. Meng and M. Zhang, Extremal values of
+eigenvalues of Surm-Liouville operators with potential
+in L1 balls, J. Differential Equations 247 (2009),
+364–400.
+[9] P. Yan, Extremal values of half-eigenvalues for pLaplacian with weights in L1 balls, Bound. Value
+Probl., Vol. 2010 (2010), Art. ID 690342, 21 pp.
+[10] M. Zhang, Extremal values of measure differential
+
+43
+
+equations with fixed variation, Sci. China Math. 53
+(2010), 2573–2588.
+[11] M. Zhang, Minimization of the zeroth Neumann
+eigenvalues with integrable potentials, Ann. Inst. H.
+Poincaré Anal. Non Linearie, 2012.
+[12] G. Meng, P. Yan and M. Zhang, Extremal eigenvalues
+of Sturm-Liouville operators with integrable potentials,
+Preprint, 2014.
+[13] M. Zhang, The rotation number approach to eigenvalues of the one-dimensional p-Laplacian with periodic
+
+44
+
+potentials, J. London Math. Soc. (2) 64 (2001), 125–
+143.
+
+Thank you!
+
+

@@ -1,0 +1,419 @@
+===MATCH===
+Lemma 2.2. Consider the problem (2) with the same assumptions on V and w as in
+Lemma 2.1. Without loss of generality we standardize the ﬁrst two normalized eigenfunc-
+tions so that u1,2(x) > 0 for 0 < x < ǫ for some ǫ. Then:
+(1) u2
+u1
+is decreasing on (0, π).
+(2) The equation |u1(x)| = |u2(x)| has either one or two solutions on (0, π).
+(3) There exist two points x−and x+ 0 ≤x−< x+ ≤π, at least one of which is
+interior to (0, π), such that u2
+1(x) > u2
+2(x) on (x−, x+) and u2
+1(x) ≤u2
+2(x) on
+(x−, x+)c.
+(4) The equation λ1|u2
+1(x)| = λ2|u2
+2(x)| has either one or two solutions on (0, π).
+(5) There exist two points bx−and bx+ 0 ≤bx−< bx+ ≤π, at least one of which is
+interior to (0, π), such that λ1u2
+1(x) > λ2u2
+2(x) on (bx−, bx+) and λ1u2
+1(x) ≤λ2u2
+2(x)
+on (bx−, bx+)c.
+Proof. We ﬁrst show that
+u2
+u1
+′
+< 0 for 0 < x < x0, where u2(x0) = 0 and hence that
+there can be at most one value x−∈(0, x0) for which u1(x−) = u2(x−).
+The Wronskian is by deﬁnition
+W(x) = u1(x)u′
+2(x) −u2(x)u′
+1(x).
+Thus with the weight in (2),
+W ′(x) = (λ1 −λ2)w(x)u1(x)u2(x),
+
+4
+MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EVANS M. HARRELL II
+and for the the quotient v(x) := u2(x)
+u1(x),
+v′(x) = u1(x)u′
+2(x) −u2(x)u′
+1(x)
+u2
+1(x)
+= W(x)
+u2
+1(x) .
+Hence
+(3)
+v′(x) =
+1
+u2
+1(x)
+Z x
+0
+(λ1 −λ2)w(t)u1(t)u2(t)dt < 0,
+since λ1 < λ2 and u1, u2 > 0 on (0, x0).
+Suppose that there exist distinct α1,2 ∈(0, x0) such that
+u2(αi) = u1(αi),
+i = 1, 2 .
+Then v(α1) = v(α2). By Rolle’s theorem there exists ξ ∈(α1, α2) ⊂(0, x0) such that:
+v′(ξ) = 0, but this contradicts (3).
+Since u2 vanishes at a unique point x0 and the same argument can be carried out after
+the change of variables x →π −x and an adjustment of the sign of u2, it follows that
+u2
+u1
+
+is strictly monotonic on (x0, π) and that there is at most one value x+ ∈(x0, π)
+for which u1(x+) = u2(x+).
+At least one of the points x± ∈(0, π), because if x−= 0 and x+ = π then u1(x) > |u2(x)|
+for all x ∈(0, π), which would contradict ∥u1∥2 = ∥u2∥2.
+□
+3. Characterization of optimizers
+In this section, we determine the explicit form of the gap-minimizing potential and
+density function of problem (2), closely following the strategy of [9].
+3.1. The class of single-well potentials and single-barrier densities.
+Deﬁnition 3.1. Let 1 < M ≤∞. The function V is called a single-well function if V is
+non-increasing on [0, a] and non-decreasing on [a, π], for some a ∈[0, π]. The point a is
+called a transition point (with no assumption of uniqueness). The notation below will be
+used through this article:
+SW[0,π],M = {V (x) : 0 ≤V (x) ≤M, where V is a single-well function on [0, π]}.
+Deﬁnition 3.2. Let 0 < N< ≤N> < ∞.
+The function w is called a single-barrier
+density if w is non-decreasing on [0, b] and non-increasing on [b, π] for some b ∈[0, π].
+The following notation will be used through this article:
+SB[0,π],N<,N> = {w(x) : N< ≤w(x) ≤N>, where w is a single-barrier density on [0, π]} .
+Deﬁnition 3.3. Consider the Sturm Liouville problem
+−u′′ + (V0(x) + V (x))u =
+===MATCH===
+Lemma 2.2
+allows for the possibility of variable weight. We repeat it here to make the proof self-
+contained, and to point out a key diﬀerence. By Lemma 2.2 there exist x±: 0 ⩽x−<
+x+ ⩽π, for which
+u2
+2(x) > u2
+1(x) on (0, x−) ∪(x+, π)
+(one of these intervals may be vacuous)
+u2
+1(x) > u2
+2(x) on (x−, x+).
+We deﬁne a family of single-well potentials by perturbing V∗so that
+V (x, κ) = κV1(x) + (1 −κ)V∗(x)
+t ∈[0, 1].
+Next, we work out the explicit form of V∗in two cases, beginning with
+(i) x−≤a < x+. For deﬁniteness we arrange by reﬂecting if necessary that 0 < x−≤a ≤
+x+, V⋆(x+) ≥V∗(x−), and V∗is nondecreasing for x ≥x+. In this case we proceed in two
+stages. First, let
+V1(x) =
+
+V∗(x−) on (0, a)
+V∗(x+) on (a, π).
+
+6
+MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EVANS M. HARRELL II
+We observe that V1 ∈SW[0,π],M has been chosen so that V (x, κ) ∈SW[0,π],M and V1(x)
+has the opposite sign to u2
+2(x, 0) −u2
+1(x, 0) a.e.
+By the Feynman-Hellmann formula, at κ = 0,
+(5)
+d(λ2(0) −λ1(0))
+dκ
+=
+Z π
+0
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx.
+Since V∗is a minimizer and
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx ⩽0,
+0 ⩽d(λ2(0) −λ1(0))
+dt
+⩽0,
+which implies that the integrand in (5) equals 0 a.e. Thus V1(x) = V∗(x) a.e. on [0, π].
+I.e., V∗(x) = V∗(x+)χ(a,π) a.e. But if a > x−the alternative choice
+V1(x) =
+
+0 on (0, x−)
+V∗(x+) on (x−, π)
+is also valid, ensuring that V (x, κ) ∈SW[0,π],M and that V1(x) has the opposite sign to
+u2
+2(x, 0) −u2
+1(x, 0) a.e. We are thus led to the conclusion that V∗(x) = V∗(x+)χ(x,π) a.e.
+In particular, for M > 0 the unique transition point is a = x−.
+(ii) Secondly, suppose that a < x−; the case when x+ < a, is similar. Let
+V1(x) =
+
+V∗(a) on (0, x−)
+V∗(x+) on (x−, π).
+Then V1 ∈SW[0,π],M with
+V1(x) −V∗(x) ≥0 on (0, x−) ∪(x+, π)
+≤0 on (x−, x+).
+We note that V (x, t) ∈SW[0,π],M, and by the optimality of V∗,
+0 ⩽d(λ2(0) −λ1(0))
+dt
+⩽0.
+Hence, as before we conclude that V1(x) = V∗(x) on [0, π]. Indeed, since we have concluded
+that V∗(a) = V∗(x−), we may as well redeﬁne a as x−, which reduces case (ii) to case (i).
+In conclusion all optimal V∗must be step functions with a unique jump coinciding with
+either x−or x+.
+In [9], where the weight was constant, it was possible to conclude that V∗was of the form
+MχI(x) for an interval I by relying on the fact that adding a constant to the potential
+function does not change the gap Γ. With a variable weight we are only able to conclude
+that in general V∗= CχI(x) for an undetermined constant C ≤M.
+It remains to characterize the optimal weight w∗by a similar argument applied to w
+for ﬁxed V .
+Just as before, we can use Lemma 2.2 to conclude that there exist bx±:
+0 ⩽bx−< bx+ ⩽π, satisfying
+λ2u2
+2(x) > λ1u2
+1(x) on (0, bx−) ∪(bx+, π)
+λ1u2
+1(x) > λ2u2
+2(x) on (bx−, bx+).
+Given an optimal w∗, we extend it to a family of weights by
+w(x, κ) = tw1(x) + (1 −κ)w∗(x)
+t ∈[0, 1].
+There are again two cases, beginning with
+
+ON THE FUNDAMENTAL EIGENVALUE GAP OF STURM-LIOUVILLE OPERATORS
+7
+(i) bx−≤b < bx+.
+As before we can arrange
+===MATCH===
+Lemma 2.2 there exist x±: 0 ⩽x−<
+x+ ⩽π, for which
+u2
+2(x) > u2
+1(x) on (0, x−) ∪(x+, π)
+(one of these intervals may be vacuous)
+u2
+1(x) > u2
+2(x) on (x−, x+).
+We deﬁne a family of single-well potentials by perturbing V∗so that
+V (x, κ) = κV1(x) + (1 −κ)V∗(x)
+t ∈[0, 1].
+Next, we work out the explicit form of V∗in two cases, beginning with
+(i) x−≤a < x+. For deﬁniteness we arrange by reﬂecting if necessary that 0 < x−≤a ≤
+x+, V⋆(x+) ≥V∗(x−), and V∗is nondecreasing for x ≥x+. In this case we proceed in two
+stages. First, let
+V1(x) =
+
+V∗(x−) on (0, a)
+V∗(x+) on (a, π).
+
+6
+MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EVANS M. HARRELL II
+We observe that V1 ∈SW[0,π],M has been chosen so that V (x, κ) ∈SW[0,π],M and V1(x)
+has the opposite sign to u2
+2(x, 0) −u2
+1(x, 0) a.e.
+By the Feynman-Hellmann formula, at κ = 0,
+(5)
+d(λ2(0) −λ1(0))
+dκ
+=
+Z π
+0
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx.
+Since V∗is a minimizer and
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx ⩽0,
+0 ⩽d(λ2(0) −λ1(0))
+dt
+⩽0,
+which implies that the integrand in (5) equals 0 a.e. Thus V1(x) = V∗(x) a.e. on [0, π].
+I.e., V∗(x) = V∗(x+)χ(a,π) a.e. But if a > x−the alternative choice
+V1(x) =
+
+0 on (0, x−)
+V∗(x+) on (x−, π)
+is also valid, ensuring that V (x, κ) ∈SW[0,π],M and that V1(x) has the opposite sign to
+u2
+2(x, 0) −u2
+1(x, 0) a.e. We are thus led to the conclusion that V∗(x) = V∗(x+)χ(x,π) a.e.
+In particular, for M > 0 the unique transition point is a = x−.
+(ii) Secondly, suppose that a < x−; the case when x+ < a, is similar. Let
+V1(x) =
+
+V∗(a) on (0, x−)
+V∗(x+) on (x−, π).
+Then V1 ∈SW[0,π],M with
+V1(x) −V∗(x) ≥0 on (0, x−) ∪(x+, π)
+≤0 on (x−, x+).
+We note that V (x, t) ∈SW[0,π],M, and by the optimality of V∗,
+0 ⩽d(λ2(0) −λ1(0))
+dt
+⩽0.
+Hence, as before we conclude that V1(x) = V∗(x) on [0, π]. Indeed, since we have concluded
+that V∗(a) = V∗(x−), we may as well redeﬁne a as x−, which reduces case (ii) to case (i).
+In conclusion all optimal V∗must be step functions with a unique jump coinciding with
+either x−or x+.
+In [9], where the weight was constant, it was possible to conclude that V∗was of the form
+MχI(x) for an interval I by relying on the fact that adding a constant to the potential
+function does not change the gap Γ. With a variable weight we are only able to conclude
+that in general V∗= CχI(x) for an undetermined constant C ≤M.
+It remains to characterize the optimal weight w∗by a similar argument applied to w
+for ﬁxed V .
+Just as before, we can use Lemma 2.2 to conclude that there exist bx±:
+0 ⩽bx−< bx+ ⩽π, satisfying
+λ2u2
+2(x) > λ1u2
+1(x) on (0, bx−) ∪(bx+, π)
+λ1u2
+1(x) > λ2u2
+2(x) on (bx−, bx+).
+Given an optimal w∗, we extend it to a family of weights by
+w(x, κ) = tw1(x) + (1 −κ)w∗(x)
+t ∈[0, 1].
+There are again two cases, beginning with
+
+ON THE FUNDAMENTAL EIGENVALUE GAP OF STURM-LIOUVILLE OPERATORS
+7
+(i) bx−≤b < bx+.
+As before we can arrange a convenient orientation by reﬂecting if
+necessary. We thus posit that 0 < bx−≤b ≤bx+, w⋆(bx+) ≤w∗(bx−), and w∗is nonincreasing
+for x ≥bx+. If we 
+===MATCH===
+Lemma 2.2 to conclude that there exist bx±:
+0 ⩽bx−< bx+ ⩽π, satisfying
+λ2u2
+2(x) > λ1u2
+1(x) on (0, bx−) ∪(bx+, π)
+λ1u2
+1(x) > λ2u2
+2(x) on (bx−, bx+).
+Given an optimal w∗, we extend it to a family of weights by
+w(x, κ) = tw1(x) + (1 −κ)w∗(x)
+t ∈[0, 1].
+There are again two cases, beginning with
+
+ON THE FUNDAMENTAL EIGENVALUE GAP OF STURM-LIOUVILLE OPERATORS
+7
+(i) bx−≤b < bx+.
+As before we can arrange a convenient orientation by reﬂecting if
+necessary. We thus posit that 0 < bx−≤b ≤bx+, w⋆(bx+) ≤w∗(bx−), and w∗is nonincreasing
+for x ≥bx+. If we let
+w1(x) =
+
+w∗(bx−) on (0, b)
+w∗(bx+) on (b, π),
+then w(x, κ) ∈SB[0,π],N<,N> and w1(x) has the opposite sign to λ1u2
+1(x, 0) −λ2u2
+2(x, 0)
+a.e.
+Fixing V and diﬀerentiating the eigenvalues at κ = 0 by the Feynman-Hellman formula,
+d(λ2 −λ1)
+dκ
+=
+Z π
+0
+[w1(x) −w∗(x)][λ1u2
+1(x, 0) −λ2u2
+2(x, 0)]dx.
+By the optimality of w∗and since
+[w1(x) −w∗(x)][λ1u2
+1(x, 0) −λ2u2
+2(x, 0)]dx ⩽0,
+0 ⩽d(λ2(0) −λ1(0))
+dκ
+⩽0
+implies that w1(x) = w∗(x) a.e. on [0, π].
+In conclusion the optimal w∗must be a step function with at most one jump, located at
+b. If b > bx−, then the alternative choice
+w1(x) =
+
+N> on (0, bx−)
+w∗(bx+) on (bx−, π)
+still ensures that w(x, κ) ∈SW[0,π],M and w1(x) and has the opposite sign to λ1u2
+1(x, 0) −
+λ2u2
+2(x, 0) a.e. We are thus led to the conclusion that w∗(x) = N> a.e. for x < bx−and
+w∗(x) = w∗(x+) a.e. for x > bx−. In particular, for N> > N< the unique transition point
+is b = bx−.
+(ii) Secondly, suppose that b < bx−; the case when bx+ < b is similar. Let
+w1(x) =
+
+N> on (0, bx−)
+w∗(bx+) on (bx−, π).
+We have w1 ∈SB[0,π],N<,N> with
+w1(x) −w∗(x) ≤0 on (0, bx−) ∪(bx+, π)
+≥0 on (bx−, bx+).
+Noting that w(x, t) ∈SB[0,π],N<,N> and using the optimality of w∗,
+0 ⩽d(λ2(0) −λ1(0))
+dκ
+⩽0.
+We conclude that w1(x) = w∗(x) a.e. on [0, π]. As with the characterization of V , this
+means that we can now suppose that b = bx−is a transition point, reducing this case to
+case (i).
+□
+Theorem 3.2. The eigenvalues of the Sturm-Liouville problem (2) correspond to the real
+roots of the transcendental equation
+η tan(z(π −bx−)) = −z tan
+h
+η(bx−−x−) + arctan
+η
+t tan(tx−)
+i
+if
+λ > max(V⋆)
+min(w⋆),
+where η :=
+p
+λN> −max(V∗), z :=
+p
+λ min(w∗) −max(V∗), and t := √λN>.
+
+8
+MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EVANS M. HARRELL II
+Proof. By Theorem 3.1, the optimal potential V∗must be of the form
+V∗(x) =
+
+0 on (0, x−)
+max(V∗) on (x−, π),
+and the optimal density w∗must be of the form
+w∗(x) =
+
+N> on (0, bx−)
+min(w∗) on (bx−, π).
+The eigenfunctions are given by
+u(x) =
+
+
+
+α1 sin(tx) on (0, x−)
+β1 sin(η(x −x−)) + β2 cos(η(x −x−)) on (x−, bx−)
+α2 sin(z(π −x)) on (bx−, π).
+Where η =
+p
+λN> −max(V∗) , z =
+p
+λ min(w∗) −max(V∗) , t = √λN> and α1, α2, β1, β2
+are real constants, with β1̸ = 0.
+Continuity of u at x−gives
+β2 = α1 sin(tx−)
+and continuity of u′ at x−gives
+β1 = tα1
+η cos(tx−).
+Then
+β2
+β1
+= η
+t tan(tx−).
+Continuity of u at bx−gives
+α1
+ t
+η cos(tx−) sin(η(bx−−x−)) + sin(tx−) cos(η(bx−−x−))
+
+= α2 sin(z(π −bx−)).
+It follows that
+tα1

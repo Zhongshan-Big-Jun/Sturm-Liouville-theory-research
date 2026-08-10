@@ -1,0 +1,947 @@
+IOP PUBLISHING                                                                             INVERSE PROBLEMS
+
+Inverse Problems 25 (2009) 015011 (14pp)                              doi:10.1088/0266-5611/25/1/015011
+
+
+
+
+The stability of inverse scattering with fixed energy*
+                 Miklós Horváth and Márton Kiss
+                 Department of Analysis Institute of Mathematics Budapest University of Technology and
+                               
+                 Economics, M uegyetem   rkp. 3-9., H 1111 Budapest, Hungary
+
+                 E-mail: horvath@math.bme.hu and mkiss@math.bme.hu
+
+                 Received 21 July 2008, in final form 23 October 2008
+                 Published 20 November 2008
+                 Online at stacks.iop.org/IP/25/015011
+
+                 Abstract
+                 We consider a three-dimensional inverse scattering problem with fixed energy
+                 and with a spherically symmetrical, compactly supported potential. The
+                 resulting one-dimensional radial Schrödinger operator defines the sequence
+                 of phase shifts. We give some estimates of the potential perturbation by the
+                 perturbation of the phase shifts. More precisely, an exact estimate is given for
+                 an integral norm of the potential perturbation by the forward differences of the
+                 normalized perturbation of phase shifts. Another upper bound is provided if
+                 only the first few phase shifts are available with some error.
+
+
+
+
+1. Introduction
+
+The inverse scattering problem investigated in this paper is defined in the following way.
+Consider the equation
+                          n(n + 1)
+               ϕn (r) −          ϕn (r) − q(r)ϕn (r) + k 2 ϕn (r) = 0   r⩾0             (1.1)
+                             r2
+with fixed energy k 2 = 1. This comes from three-dimensional quantum inverse scattering
+with a spherically symmetrical potential V (x) = q(r), r = |x|. Let 0 < a < ∞, δ > 0 and
+suppose that the real-valued potential q(r) vanishes for r > a and r 1−δ q(r) ∈ L1 (0, a). It is
+known (see [3]) that there exists a unique solution of (1.1) with
+                               r n+1
+                 ϕn (r) =              (1 + o(1))          r →0+                                         (1.2)
+                            (2n + 1)!!
+and
+                 ϕn (r) = |Fn | sin(r − nπ/2 + δn ) + o(1)             r → +∞.                           (1.3)
+The quantities δn are called phase shifts.
+     The inverse scattering problem investigated here consists of the recovery of the potential
+q from the phase shifts δn .
+* Research supported by the Hungarian NSF grant OTKA T 61311.
+
+0266-5611/09/015011+14$30.00 © 2009 IOP Publishing Ltd Printed in the UK                                    1
+Inverse Problems 25 (2009) 015011                                                  M Horvath and M Kiss
+
+       Recall the notion of forward differences
+                                                            k  
+                                                                k
+                 μn = μn+1 − μn ,            k μn =             (−1)k−j μn+j .                 (1.4)
+                                                           j =0
+                                                                j
+
+Introduce the quantities
+                 μn = a −2n−1−δ [(2n + 1)!!]2 |Fn Fn∗ | sin(δn∗ − δn ).                          (1.5)
+The value μn can be considered as a kind of relative error of the nth phase shift; it is used
+in order to eliminate the extremely rapid decay of the δn as n → ∞. This is justified in
+remark 1.
+     The following stability result gives the exact order of the potential perturbation in terms
+of the perturbation of phase shifts. The potential perturbation is measured in an integral norm,
+while the perturbation of δn appears in the quantity μn .
+
+Theorem 1.1. Let δ > 0, q(r) = 0 for r > a, r 1−δ q(r) ∈ L1 (0, a) and analogously for q ∗ . Let
+δn , δn∗ be the corresponding phase shifts. Suppose that r 1−δ q(r)1 ⩽ D, r 1−δ q ∗ (r)1 ⩽ D.
+Then there are positive constants c1 (D, δ), c2 (D, δ) such that
+             a                               n  ∞                    
+                  ∗                                      j + (δ − 1)/2 n  n−k+j 
+c1 (D, δ)       |q (r) − q(r)|r 1−δ
+                                    dr ⩽ sup                                      μk
+             0                            n
+                                              k=0 j =0
+                                                                 j          k
+                                                     a
+                                       ⩽ c2 (D, δ)      |q ∗ (r) − q(r)|r 1−δ dr.            (1.6)
+                                                       0
+
+Remark 1. We know from Ramm [17] that if q has a constant nonzero sign in a small segment
+(a − ε, a), then
+                     2n + 1
+                  lim       |δn |1/(2n) = a,                                                     (1.7)
+                 n→∞   e
+            ae 2n
+i.e., δn = 2n       · αn with a factor αn of less than exponential growth or decay at infinity.
+This formula helps us to estimate the growth order of μn from (1.5) as follows. We easily get
+                                                          n+1
+from the Stirling formula that (2n + 1)!! has the order 2n e
+                                                                . Next consider |Fn |. From [3],
+(1.5.17) and (1.1.24) we know that
+                                                 a
+                 |Fn | = Fn e ,
+                             iδn
+                                       Fn = 1 +      wn (r)q(r)ϕn (r) dr                   (1.8)
+                                                     0
+
+with
+                                  π r 1/2
+                 wn (r) = i(−1)n           Hn+1/2 (r).                                           (1.9)
+                                   2
+From (2.5), (2.6) given below it follows that
+                              c
+               |ϕn (r)| ⩽            r n+1    r⩽a                                               (1.10)
+                          (2n + 1)!!
+with a constant c = c(a) uniform in n. We can check that
+                 |Hn+1/2 (r)| ⩽ cr −n−1/2 (2n + 1)!!          r ⩽ a.                            (1.11)
+Indeed, the Taylor series expansion of z−ν Jν (z) implies that
+                                  c(a)        (|z|/2)ν
+                 |Jν (z)| ⩽                                      |z| ⩽ a                        (1.12)
+                              minn⩾1 |ν + n| | (ν + 1)|
+2
+Inverse Problems 25 (2009) 015011                                                M Horvath and M Kiss
+
+and then
+                                                           (r/2)−n−1/2
+|Hn+1/2 (r)| = |Jn+1/2 (r) + i(−1)n+1 J−n−1/2 (r)| ⩽ c
+                                                         | (−n − 1/2)|
+                            (2n + 1)!!
+              ⩽ c(r/2)−n−1/2           ⩽ cr −n−1/2 (2n + 1)!!.
+                                2n
+Thus |wn (r)| ⩽ cr −n (2n + 1)!! and then by (1.13) and (1.15), |Fn | ⩽ 1 + c 0 r|q(r)| dr is
+                                                                               a
+
+bounded. This means that the quantity
+                 a −2n [(2n + 1)!!]2 |Fn Fn∗ | sin δn
+can grow only subexponentially; it can be considered as a ‘normalized’ value of δn . Thus we
+have an interpretation of μn from (1.5) as a quantity close to the relative error of δn∗ (with
+respect to δn ); theorem 1.1 gives an exact estimate of an integral norm of q ∗ − q in terms of
+the relative errors of the shifts δn .
+
+Remark 2. If the shifts δn are taken from measurements, it may cause some uncontrolled
+small errors in the quantities μn . For example, if |μn | < ε ∀n, then |n μk | < 2n ε, hence
+substituting measured data into (1.6) can be highly unstable. On the other hand, all phase shifts
+δn with large index n are measured to be zero, i.e., to be the phase shifts of the zero potential.
+If n0 is the largest index with μn0 = 0 then the inner sum in (1.6) is infinite. Indeed, for
+large j and for k ⩽ k0 , n−k+j μk is of order j k0 −k and j +(δ−1)/2
+                                                                j
+                                                                      is of order j (δ−1)/2 ⩾ j −1/2 .
+So both sides of (1.6) are infinite showing that the situation is impossible: if all but a finite
+number of phase shifts are identical, i.e. δn∗ = δn for all n > N, then in fact all shifts are the
+same (and q ∗ = q). This statement (and more) has been previously proven by Ramm [18].
+     To overcome the above-mentioned stability problems we apply further conditions on the
+potentials.
+
+Definition. Let D > 0. The set MD consists of all real-valued functions q(r) with support in
+[0, a] and such that
+                 a
+                    |d(r 2 q(r))| ⩽ D                                                 (1.13)
+                   0
+and
+                 r|q(r)| ⩽ D.                                                                  (1.14)
+
+In other words, r 2 q(r) has a total variation bounded by D and r|q(r)| is bounded by D. This
+is a rather wide class for large D; it includes, for example, the functions, having a bounded
+continuous derivative except for finitely many points where jumps are allowed.
+
+Theorem 1.2. Let q, q ∗ ∈ MD and suppose that
+                 |μn | < ε(< 1)      ∀n.                                                       (1.15)
+Then
+                                                         
+                                                        1 −1/2
+                 r 2 (q ∗ (r) − q(r))L2 (0,a) ⩽ c log                                        (1.16)
+                                                        ε
+with a constant c = c(a, D) independent of q, q ∗ and ε.
+
+    A similar former result is due to Ramm [19].
+    Since in real experiments only the first few phase shifts can be measured as nonzero
+quantities, we formulate the following variant of the above theorem:
+
+                                                                                                    3
+Inverse Problems 25 (2009) 015011                                               M Horvath and M Kiss
+
+Theorem 1.3. If q, q ∗ ∈ MD and
+                 |μn | < ε          ∀ n ⩽ N,                                                 (1.17)
+then
+                                                             
+                                                     1      1 −1/2
+                 r 2 (q ∗ (r) − q(r))L2 (0,a) ⩽ c √ + log        .                         (1.18)
+                                                     N      ε
+
+Remark 3. The considerations in remark 1 imply that
+                          2n+2
+                          2n
+            |μn | ⩽ c(a)           |sin(δn∗ − δn )|.                                         (1.19)
+                          ae
+Thus in (1.15) and (1.17), |μn | < ε can be substituted by
+                2n+2
+                 2n
+                           |sin(δn∗ − δn )| < ε.                                             (1.20)
+                 ae
+This is a bit stronger but explicit condition, not containing |Fn Fn∗ |. To check it we only need
+an error estimate for δn , taken, e.g., from some measurements.
+
+1.1. Historical remarks and perspectives
+Although the reconstruction of a quantummechanical system from fixed-energy scattering data
+is an important and widely investigated area in mathematical physics, not very much is known
+concerning stability issues. The first difficulty is the lack of uniqueness: if we have no a priori
+information on the potential, the inverse problem has infinitely many solutions. For example,
+there are nontrivial potentials, oscillating and of order r −3/2 at infinity for which all the phase
+shifts vanish; see, e.g., [12, chapter 20.4].
+      Several methods are known for the solution at fixed energy, such as the WKB method [9],
+direct inversion methods as the Bargmann inversion method [5], the finite-difference method
+[7], the Newton–Sabatier [3] and the Cox–Thompson method [4]. If we seek for a solution of
+the inverse scattering problem only by a fixed method using some ansatz (such as Newton–
+Sabatier or Cox–Thompson) or in a very restricted function class, then several uniqueness
+theorems can be proved; see, e.g., [3]. However, these considerations allow the existence
+of another potential, not accessible, e.g., by the Newton–Sabatier construction, producing
+the same phase shifts. Note that the N–S method itself can be used to construct a set of
+these ‘equivalent potentials’ if we allow an r −3/2 tail [3, pp 202–8]: why this nonuniqueness
+appears was recently revisited in a paper by Sabatier [20]. A general uniqueness result is
+obtained by Ramm [15]: if q ∈ L2 (R3 ) is of compact support (and not necessarily spherically
+symmetrical), then it can be uniquely identified by the scattering amplitude. As a matter of
+fact, in the spherically symmetric case, global theorems giving sets of potentials which are
+uniquely identified by the scattering amplitude were produced very early by Loeffel [10] (see
+also [3, section 8.3]); one of these sets is that of compactly supported potentials. A uniqueness
+result for bounded potentials having an arbitrarily small exponential decay at infinity is due to
+Novikov in 1988; see [13]. The proofs are based upon the Dirichlet-to-Neumann map, a key
+notion in many kinds of inverse problems. Later on, it turned out that in the symmetrical case
+a relatively small part of all phase shifts is still enough to ensure uniqueness; see [18]. As we
+have already mentioned, the vanishing or the strong decay of the potential at large distances
+is not a real restriction from a practical point of view since the measurement errors will
+necessarily destroy any information about the tail of the potential (unless we allow potentials
+4
+Inverse Problems 25 (2009) 015011                                                     M Horvath and M Kiss
+
+that are singular, e.g. with strong repulsive singularities, and/or decrease more slowly than
+r −2 at infinity).
+     Many reconstruction procedures are based on a Gelfand–Levitan–Marchenko-type
+integral equation, whose input kernel is obtained by solving a linear or nonlinear system
+of equations; see, e.g., [3]. Since the stability of all these steps are well known, most of such
+procedures show quite good stability properties in the class of potentials, reachable by that
+method. On the other hand, we find that the inverse problem itself has very weak stability
+properties. For examples of very different (step function) potentials producing almost the
+same phase shifts, see [14]. The logarithmic bounds given above in theorems 1.2 and 1.3 also
+show very poor stability since log r tends to infinity extremely slowly. There is no evidence
+that these bounds are best possible; however, many independent investigations conclude in
+similar logarithmic estimates. Maybe, the common root is the reconstruction of the potential
+from the Dirichlet-to-Neumann map which requires logarithmic stability bounds. This idea
+appears in Alessandrini [1] in studying the stability of the inverse conductivity problem.
+Similar results are obtained by Stefanov [21] for the inverse scattering with fixed energy;
+roughly speaking, he proved that building up the Dirichlet-to-Neumann operator from the
+spectral amplitude is strongly stable, while reconstructing the potential from the D-to-N map
+has a weak (logarithmic) stability. All these results are local, i.e., are true only for small
+perturbations of a fixed potential. A global stability result is given in [16]: if we consider
+potentials in L2 (R3 ) ∩ L∞ (R3 ) with compact support and if the perturbation of the scattering
+amplitude is bounded by δ, then the 3D Fourier transform of the potential perturbation is
+bounded by log |log δ|/|log δ|. In theorem 1.3 a direct estimate of the potential perturbation is
+given, based on the first few phase shifts.
+     It would be interesting to obtain better ‘method-independent’ stability, e.g., by some
+smoothness of the potential and systematic study of the stability of the most popular methods.
+
+
+2. Proof of theorem 1.1
+
+We start with some results on moment problems.
+
+                                                           1 n+α                1 n
+Lemma 2.1. Let α > 0, g ∈ BV [0, 1], μn =                 0 t    dg(t), νn =   0 t dg(t). Then
+
+                      ∞                                         ∞     
+                           α                                            −α
+                 μn =        j νn                  and       νn =          j μn ,                 (2.1)
+                      j =0
+                           j                                       j =0
+                                                                         j
+                  1            n  ∞            
+                                         j + α − 1 n  n−k+j 
+                     |dg| = sup                             μk .                                   (2.2)
+                   0         n
+                                k=0 j =0
+                                             j      k
+
+
+
+Proof. Recall first that
+                            1
+                  νk =
+                   n
+                                    t k (t − 1)n dg(t).
+                                0
+                         ∞ α
+Since the series t α =      j =0 j      (t − 1)j is uniformly convergent in [0, 1], we obtain
+                         ∞   1
+                                                           ∞  
+                            α                                    α
+                 μn =                     t (t − 1) dg(t) =
+                                            n         j
+                                                                   j νn .
+                         j =0
+                                    j   0                   j =0
+                                                                 j
+
+                                                                                                        5
+Inverse Problems 25 (2009) 015011                                                        M Horvath and M Kiss
+                                                                −α n+α
+Conversely, from the monotone and bounded convergence of t n = ∞ j =0 j t    (t − 1)j it
+follows that
+       1               ∞      1                       ∞     
+           n+α −α            −α                                −α
+νn =      t t dg(t) =                 t (t − 1) dg(t) =
+                                       n+α      j
+                                                                     j μn .
+       0                j =0
+                              j     0                     j =0
+                                                                j
+
+Finally, recall a classical result of Hausdorff [6]:
+                  1              n  
+                                        n
+                     |dg| = sup            |n−k νk |
+                  0           n
+                                  k=0
+                                        k
+                                  n  ∞              
+                                            j + α − 1 n  n−k+j 
+                          ⩽ sup                                μk
+                              n
+                                  k=0 j =0
+                                                j       k
+                     
+since −α
+       j
+         = (−1)j α+jj −1 . On the other hand, from
+                            1
+            n−k+j μk =        t k+α (t − 1)n−k+j dg(t)
+                                     0
+it follows that
+ n  ∞                          1n                 ∞       
+          j + α − 1 n  n−k+j           n k+α                  −α
+                             μk ⩽           t (1 − t)n−k               (t − 1)j |dg(t)|
+k=0 j =0
+               j     k               0 k=0 k                j =0
+                                                                   j
+                                     1n                                 1
+                                           n k+α
+                                  =           t (1 − t)n−k t −α |dg(t)| =      |dg(t)|
+                                     0 k=0 k                                0
+
+which proves (2.2).
+                                                                                                          
+
+Lemma 2.2. Denote ϕn∗ be the solution of (1.1), (1.2) corresponding to q ∗ . Then
+                            
+                                πr
+                 ϕn (r) =          |Fn | · [cos δn · Jn+1/2 (r) − sin δn · Yn+1/2 (r)]        r ⩾ a, (2.3)
+                                2
+                 ϕn (a)ϕn∗ (a) − ϕn (a)ϕ ∗  (a) = |Fn Fn∗ | sin(δn∗ − δn ).                          (2.4)
+
+Here Js and Ys are the Bessel and Neumann functions; see [2].
+
+Proof. For r > a, we have the free operator (1.1), i.e., q = 0. Consequently, it can be
+expressed linearly by the functions r 1/2 Jn+1/2 (r) and r 1/2 Yn+1/2 (r), so
+                 ϕn (r) = cn r 1/2 [cos αn · Jn+1/2 (r) + sin αn · Yn+1/2 (r)].
+Taking into account that
+                                 
+                                2
+                 Jn+1/2 (r) =       sin(r − nπ/2) + o(1),
+                                πr
+                               
+                                   2
+                 Yn+1/2 (r) = −       cos(r − nπ/2) + o(1),
+                                 πr
+we obtain
+                                
+                                    2
+                 ϕn (r) = cn          sin(r − nπ/2 − αn ) + o(1)           r → +∞.
+                                    π
+6
+Inverse Problems 25 (2009) 015011                                                    M Horvath and M Kiss
+
+Comparing it with (1.3) gives (2.3). Now
+                                  π                   √                      √
+ϕn (a)ϕn∗ (a) − ϕn (a)ϕn∗  (a) = |Fn Fn∗ | · (cos δn rJn+1/2 (r) − sin δn rYn+1/2 (r))
+                           √      2              √
+                 · (cos δn∗ rJn+1/2 (r) − sin δn∗ rYn+1/2 (r))
+                              √                   √
+                 − (cos δn rJn+1/2 (r) − sin δn rYn+1/2 (r))
+                           √                     √             
+                 · (cos δn∗ rJn+1/2 (r) − sin δn∗ rYn+1/2 (r)) r=a
+                  π
+               = |Fn Fn∗ |(cos δn sin δn∗ − cos δn∗ sin δn )
+                  2√             √                   √             √            
+                 · rJn+1/2 (r)( rYn+1/2 (r)) − ( rJn+1/2 (r)) rYn+1/2 (r) r=a
+                  π                                 
+               = |Fn Fn∗ | sin(δn∗ − δn )a[Jn+1/2 Yn+1/2     
+                                                          − Jn+1/2 Yn+1/2 ]r=a .
+                  2
+The Wronskian here is known to be πa     2
+                                            (see [2]) and this proves (2.4).                          
+     In the next step, we investigate the behaviour of ϕn for r < a. Formula (2.5) given below
+is essentially a transformed form of the Povzner–Levitan representation. Some smoothness
+properties of the kernel are shown in [19].
+Lemma 2.3. Suppose that rq(r) ln ar ∈ L1 (0, a). Then
+                                        r
+            (2n + 1)!!ϕn (r) = r n+1 +     H (r, t)r 1/2 t n−1/2 dt                0⩽r⩽a           (2.5)
+                                                 0
+where the continuous kernel H satisfies
+                               √rt
+                            1                             a
+                                    τ |q(τ ) − 1| dτ · e 0 τ |q(τ )−1| ln τ dτ .
+                                                                          a
+               |H (r, t)| ⩽                                                                        (2.6)
+                            2 0
+
+Proof. Introduce the function yn (x) by
+                                                          a
+                 (2n + 1)!!ϕn (r) = a n+1/2 r 1/2 yn ln     .                                      (2.7)
+                                                          r
+As shown in Horváth [8],
+                 −yn + Q(x)yn = λ2n yn             0 ⩽ x < ∞,      λn = i(n + 1/2)               (2.8)
+where Q(x) is defined by
+                      1       a
+              q(r) = 2 Q ln      +1         0 < r ⩽ a.                                             (2.9)
+                      r       r
+Now we have
+               ∞                a
+                                       a       a  dr
+                   x|Q(x)| dx =     ln Q ln                                                     (2.10)
+               0                 0     r         r     r
+                                 a
+                                                   a
+                              =     r|q(r) − 1| ln dr < ∞.                                        (2.11)
+                                 0                 r
+Thus from (2.7) and (1.2) it follows that yn (x) = e−(n+1/2)x (1 + o(1))x → +∞. Consequently
+[8],
+                                      ∞
+                         −(n+1/2)x
+              yn (x) = e           +      H1 (x, t) e−(n+1/2)t dt      0<x
+                                             x
+with a continuous kernel H1 with
+                                  ∞
+                                            ∞
+               |H1 (x, t)| ⩽ 1/2     |Q| e 0 s|Q(s)| ds .
+                                       x+t
+                                        2
+
+                                                                                                       7
+Inverse Problems 25 (2009) 015011                                                                                                    M Horvath and M Kiss
+
+Substituting here x = ln ar , t = ln a , we easily obtain the statement of lemma 2.3 if
+                                   a      a
+               H (r, t) = H1 ln , ln         .
+                                   r      t                                                                                                                  
+                                                                         a
+Lemma 2.4. Denote Cδ = {h : hδ = 0 r 1−δ |h(r)| dr < ∞}. If h ∈ Cδ then
+                            a           a
+                                    ∗
+            [(2n + 1)!!] 2
+                               hϕn ϕn =     r 2n+2 (Bq ∗ h)(r) dr                                                                                        (2.12)
+                                                 0                           0
+where
+                                a                                                                                                             
+                   1                                                             ∗             r2                                ∗         r2
+Bq ∗ h(r) = h(r) + 2                    2 h( ) · (H + H )                                  ,            +            H ( , t)H           ,          dt d .
+                  r                r                                                                            r2                          t
+                                                                                                                                                         (2.13)
+There exist positive constants C1 (D, δ), C2 (D, δ) such that
+C1 (D, δ)hδ ⩽ Bq ∗ hδ ⩽ C2 (D, δ)hδ                                                  ∀ h ∈ Cδ ,                qδ , q ∗ δ ⩽ D.                 (2.14)
+
+Proof.
+                    a                    a                                          a                          r
+[(2n + 1)!!]   2
+                         hϕn ϕn∗ =                   h(r)r        2n+2
+                                                                         dr +              h(r)r    n+3/2
+                                                                                                                       (H + H ∗ )(r, t)t n−1/2 dt dr
+                    0
+                                              a
+                                             0
+                                                                     r               0
+                                                                                                             r0
+                                         +             h(r)r               H (r, t)t n−1/2 dt                        H ∗ (r, τ )τ n−1/2 dτ dr
+                                                 0                   0                                          0
+                                       = I1 + I2 + I3 .
+Here
+                               a                     r
+                    I2 =               h(r)r 2                (H + H ∗ )(r, t)(rt)n−1/2 dt dr
+                               0                          0
+                               a      r
+                                                                   τ 2n
+                          =  h(r)r 2      (H + H ∗ )(r, τ 2 /r)2        dτ dr
+                                                                    r
+                          a
+                          0
+                                   a   0
+
+                       =     τ 2n      rh(r)2(H + H ∗ )(r, τ 2 /r) dr dτ,
+                          a
+                          0        τ
+                                      r            r
+                    I3 =     rh(r)        H (r, t)     H ∗ (r, τ )(tτ )n−1/2 dτ dt dr
+                               0                      0                      0
+                               a                     r                   √rt
+                          =            rh(r)
+                                          H (r, t)         H ∗ (r, 2 /t)2 2n d dt dr
+                             a0
+                                       r       r    0
+                                                      0
+
+                          =     rh(r)     2 2n          H (r, t)H ∗ (r, 2 /t) dt d dr
+                             0          0          2 /r
+                             a      a          r
+                          =      2n
+                                        rh(r)2          H (r, t)H ∗ (r, 2 /t) dt dr d .
+                               0                                          2 /r
+
+
+This verifies (2.13). The estimates (2.14) can be proved analogously as in Horváth [8]; we do
+not give the details.                                                                       
+Proof of theorem 1.1. First observe that
+                                                                                       a
+                    ϕn (a)ϕn∗ (a) − ϕn (a)ϕn∗  (a) = −                                       (q ∗ (r) − q(r))ϕn (r)ϕn∗ (r) dr.                         (2.15)
+                                                                                          0
+Indeed,
+                        d  ∗
+                          (ϕ ϕ − ϕn ϕn∗  ) = ϕn ϕn∗ − ϕn ϕn∗  = (q − q ∗ )ϕn ϕn∗ .
+                        dr n n
+8
+Inverse Problems 25 (2009) 015011                                                         M Horvath and M Kiss
+
+Since ϕn is of order r n at 0 (see [3]), ϕn ϕn∗ and ϕn ϕn∗  tend to zero as r → 0+ and this proves
+(2.15). Now putting together lemmas 2.2 and 2.4 gives that
+                                                             a
+                   ∗        ∗
+[(2n + 1)!!] |Fn Fn | sin(δn − δn ) = −[(2n + 1)!!]
+             2                                           2
+                                                                (q ∗ (r) − q(r))ϕn (r)ϕn∗ (r) dr
+                                           a                 0
+
+                                     =−         r 2n+1+δ·r 1−δ
+                                                               Bq ∗ (q ∗ − q)(r) dr.             (2.16)
+                                                   0
+Denote
+                 f (r) = r 1−δ Bq ∗ (q ∗ − q)(r) ∈ L1 (0, a).
+Then
+                  a                                     1
+                                                               δ+1    √ a
+                       r 2n+1+δ f (r) dr = a 2n+1+δ        t n+ 2 f (a t) √ dt,
+                  0                                      0               2 t
+hence by lemma 2.1
+                                            a                    1
+                          ∗
+                                                                √ a
+                 Bq ∗ (q − q)δ =               |f (r)| dr =
+                                                            f (a t) √ dt
+                                         0               0         2 t
+                                            n  ∞                
+                                                     j + (δ − 1)/2 n  n−k+j 
+                                      = sup                                 μk
+                                         n
+                                            k=0 j =0
+                                                           j        k
+where
+                 μn = −a −2n−1−δ [(2n + 1)!!]2 |Fn Fn∗ | sin(δn∗ − δn ).
+Taking (2.14) into account this finishes the proof of theorem 1.1                                          
+
+3. The proof of theorems 1.2 and 1.3
+
+Denote
+                                                          t                                 
+                              2
+                 b(r, t) =        (H + H ∗ )(t, r 2 /t) +         H (t, τ )H ∗ (t, r 2 /τ ) dτ .        (3.1)
+                              t                            r 2 /t
+Using (2.13), formula (2.16) can be rewritten in the form
+                                 a
+               μn = −a −2n−1−δ      r 2n A[r 2 (q ∗ (r) − q(r))] dr                                     (3.2)
+                                           0
+where
+                                       a
+                 Ah(r) = h(r) +                b(r, t)h(t) dt.                                          (3.3)
+                                       r
+In what follows c always denotes positive constants, depending only on a and D, possibly
+different in each occurrences.
+Lemma 3.1. Let q ∗ , q ∈ MD , then A : L2 (0, a) → L2 (0, a) is isomorphism and A−1  ⩽ c.
+                                                a                                      ∗
+Proof. Let A = I + K, Kh(r) =                  r b(r, t)h(t) dt. Since r|q(r)| ⩽ D, r|q (r)| ⩽ D, we get
+in (2.6) that
+                            √
+              |H (r, t)| ⩽ c rt
+and then
+                                 t                
+                             c          √            c
+                 |b(r, t)| ⩽    r+       tτ tr /τ dτ ⩽ [r + t 2 r] ⩽ c.
+                                              2                                                         (3.4)
+                             t      2
+                                   r /t               t
+                                                                                                            9
+Inverse Problems 25 (2009) 015011                                                         M Horvath and M Kiss
+
+We see by induction that
+                                 a
+                 K n h(r) =              bn (r, t)h(t) dt                                               (3.5)
+                                 r
+where b1 (r, t) = b(r, t) and
+                               t
+                bn+1 (r, t) =     b(r, τ )bn (τ, t) dτ.                                                 (3.6)
+                                     r
+Indeed,
+                                                        a          a
+                 K n+1 h(r) = K[K n h](r) =               b(r, τ )     bn (τ, t)h(t) dt dτ
+                                                       r            τ
+                                                       a       t
+                                                    =     h(t)      b(r, τ )bn (τ, t) dτ dt.
+                                                            r     r
+Another induction on n gives
+                                      (t − r)n
+                 |bn+1 (r, t)| ⩽ cn+1                     n⩾0                             (3.7)
+                                          n!
+with a constant c = c(a, D) independent also of n. Indeed, (3.4) being the case n = 0, we get
+from (3.6) that
+                                 t
+                                            (t − τ )n−1                  (t − r)n
+                |bn+1 (r, t)| ⩽     c · cn                  dτ = cn+1              .
+                                  r          (n − 1)!                        n!
+Consequently,
+                                 a  a                         2
+                                                                
+                K h =
+                   n+1     2              bn+1 (r, t)h(t) dt  dr
+                                    
+                                 0      r
+                                 a a                           a
+                             ⩽            |bn+1 (r, t)|2 dt ·        |h|2 dr
+                                0 a r  a  a                   r
+
+                             ⩽      |h| ·
+                                        2
+                                                        |bn+1 (r, t)|2 dt dr
+                                 0            0     r
+                                        a a
+                                                         (t − r)2n
+                             ⩽ h2               c2n+2               dt dr
+                                        0    r             (n!)2
+                                        a
+                                                      (a − r)2n+1
+                             = h2         c2n+2                     dr
+                                        0          (2n + 1)(n!)2
+                                                (ca)2n+2                        (ca)2n+2
+                             = h2                               2
+                                                                     ⩽ h2
+                                      (2n + 2)(2n + 1)(n!)                    [(n + 1)!]2
+i.e.
+                ∞                  ∞
+                                          (ca)n+1
+                    K n  ⩽ 1 +                       = eca .
+                 0                    0
+                                          (n +   1)!
+
+This means that the Neumann series A−1 = I − K + K 2 − K 3 + · · · is convergent in operator
+norm and A−1  ⩽ eca .                                                                   
+     Define the function
+                         a
+               G(z) =       cos rz · A[r 2 (q ∗ (r) − q(r))] dr.                                        (3.8)
+                            0
+It is an even entire function. In terms of G(z) formula (3.2) means that
+                 −a 2n+1+δ μn = (−1)n G(2n) (0).                                                        (3.9)
+
+10
+Inverse Problems 25 (2009) 015011                                                    M Horvath and M Kiss
+
+Lemma 3.2. Let q ∗ , q ∈ MD . Then
+                            c
+            |G(z)| ⩽               z∈R                                                            (3.10)
+                         1 + |z|
+with c = c(a, D) independent of q, q ∗ and z.
+
+Proof. We know that r 2 (q ∗ (r) − q(r)) is bounded and the kernel b(r, t) of K is also bounded
+by (3.4). Hence A[r 2 (q ∗ (r) − q(r))] and then G(z) are bounded as well for bounded z. Thus
+it is enough to prove (3.10) for large values of |z|. This will be done by integrating by parts.
+Introduce the notation
+                  h(r) = r 2 (q ∗ (r) − q(r)),
+then
+                         a        a                    a
+             sin rz                    sin rz                sin rz
+G(z) =              Ah(r)       −              d(h(r)) +            b(r, r)h(r) dr
+               z                     0    z                0   z
+                      a    r=0
+                                 
+                          sin rz a ∂
+                  −                      b(r, t)h(t) dt dr
+                      0      z     r ∂r
+                = I1 + I2 + I3 + I4 .                                                             (3.11)
+From the boundedness of Ah(r) we get at once that
+                      c
+             |I1 | ⩽     .
+                     |z|
+From (1.13) it follows that
+                           a
+                        1               c
+               |I2 | ⩽        |d(h)| ⩽     .
+                       |z| 0           |z|
+Since b(r, t) and h(t) are bounded,
+                         c
+                |I3 | ⩽     .
+                        |z|
+To estimate I4 we return to the proof of lemma 2.3. Denote
+                        ∞                        ∞
+               σ (x) =       |Q|,       σ1 (x) =     σ.
+                            x                          x
+It is proven in [11, chapter 3] that
+                                                      
+                 ∂                       
+                  H1 (x, t) + 1 Q x + t  ⩽ 1 σ (x)σ x + t eσ1 (0)                               (3.12)
+                  ∂t           4      2   2           2
+                     ∂
+and analogously for ∂x H1 . Using the identity
+                              ∞             τ
+              σ (ln(a/τ )) =         |Q| =      r|q(r) − 1| dr
+                                    ln(a/τ )      0
+
+we get from (3.12) that
+         
+∂        
+ H (r, t) = |∂2 H1 (ln(a/r), ln(a/τ ))t −1 |
+ ∂t      
+                                                        √rt
+               1         a      c r
+                                 
+            ⩽ Q ln √              +         |q( ) − 1| d ·       |q( ) − 1| d
+               4t           rt  t 0                         0
+               1       √             c √         
+            ⩽ rt|q( rt) − 1| + r rt ⩽ c r/t.
+               4t                    t
+                                                                                                      11
+Inverse Problems 25 (2009) 015011                                                   M Horvath and M Kiss
+
+Computing ∂r∂ b(r, t) from (3.1) gives
+                                                            
+               2                ∗                2r  c        t      r   c
+                   ∂ 2 (H  + H     )(t, r 2
+                                             /t) ·       ⩽      2
+                                                                        · ⩽ ,
+               t                                    t        t r /t t        t
+                                                                      2
+               2 2r                                        r        r
+                        |H (t, r 2 /t)H ∗ (t, t)| ⩽ c 2 rt = c
+               t t                                        t          t
+and
+                                                                                       √
+               2 t                               ∗             2r          c t √           tτ r
+                          |H (t, τ )| · |∂2 H (t, r /τ )| ·
+                                                        2
+                                                                    dτ ⩽            tτ ·     · dτ ⩽ ct.
+               t r 2 /t                                         τ          t r 2 /t       r   τ
+Summing up, we have shown that
+                     
+            ∂        
+             b(r, t) ⩽ c
+             ∂r         t
+and then
+                          a a                         a
+                       c           1                 c            c
+                 |I4 | ⩽             |h(t)| dt dr =        |h| ⩽     .
+                      |z| 0 r t                     |z| 0        |z|
+Taking (3.11) into account, this finishes the proof.                                                  
+Proof of theorem 1.2. Suppose |μn | < ε, then by (3.9), |G(2n) (0)| ⩽ ca 2n ε. On the other
+hand, G(2n+1) (0) = 0 since G(z) is even. Now we have
+                          ∞ (2n)               ∞
+                           G (0) 2n            (a|z|)2n
+                         
+                |G(z)| =              z  ⩽ cε            < cε ea|z| .
+                               (2n)!
+                              n=0
+                                                    (2n)! n=0
+As we have seen, |G(z)| ⩽ c/|z| for large real z. Denote z0 the unique positive solution of the
+equation
+                 ε eaz0 = 1/z0 .
+If ε > 0 is small then for z = 1/a ln(1/ε) √         we have z eaz = 1/a ln(1/ε)/ε > 1/ε and for
+z = 1/(2a) ln(1/ε), z e = 1/(2a) ln(1/ε)/ ε < 1/ε. Thus z0 is between 1/(2a) ln(1/ε)
+                         az
+
+and 1/a ln(1/ε). Now
+ ∞                 z0          
+     |G(z)|2 dz =        |G|2 +                 |G|2
+  −∞                 −z0           R\[−z0 ,z0 ]
+                      z0                 
+            ⩽ c2 ε 2      e2a|z| dz + c2              z−2 dz
+                        −z0                R\[−z0 ,z0 ]
+                                                         c      c
+            ⩽ c(ε e  2 2az0
+                            + 1/z0 ) ⩽ c 1 z02 + 1/z0 ⩽       ⩽         .
+                                                           z0   ln(1/ε)
+Since the cosine Fourier transform is isomorphic, we get from (3.8) that
+                                                        c
+               A[r 2 (q ∗ (r) − q(r))]L2 (0,a) ⩽ √
+                                                      ln(1/ε)
+and by lemma 3.1 that
+                                                    c
+               r 2 (q ∗ (r) − q(r))L2 (0,a) ⩽ √         ,
+                                                  ln(1/ε)
+which completes the proof.                                                                            
+     We know that the first few quantities μn are small, but we need an estimate for the other
+μn -s, too.
+
+12
+Inverse Problems 25 (2009) 015011                                         M Horvath and M Kiss
+
+Lemma 3.3. If q, q ∗ ∈ MD and δ < 1 then
+                       c
+              |μn | ⩽                                                                  (3.13)
+                      n+1
+with c = c(a, D) independent of δ, n, q, q ∗ .
+
+Proof. We have seen that for q ∈ MD
+                           √
+             |H (r, t)| ⩽ c rt.
+Putting this into (2.13) gives
+                                                                        
+                                        c a                  √
+                 |Bq ∗ h(r)| ⩽ |h(r)| +      |h( )|  r +       t · r     dt   d
+                                       r2 r              r2/           t
+                                         
+                                       c a
+                            ⩽ |h(r)| +      |h( )| d .
+                                       r r
+Hence
+                 r|Bq ∗ (q ∗ − q)(r)| ⩽ c.
+By (2.16) this finally yields
+                              a
+                          −δ      r 2n+1
+                |μn | ⩽ a                r|Bq ∗ (q ∗ − q)(r)| dr                       (3.14)
+                              0   a
+                               a
+                                    r 2n+1                1        c
+                      ⩽ ca −δ              dr ⩽ ca 1−δ         ⩽                       (3.15)
+                                0  a                    n + 1    n + 1
+if δ < 1.                                                                                  
+
+Proof of theorem 1.3. As in theorem 1.2, we have to verify that
+               ∞                              
+                                       1      1
+                   |G(z)|2 dz ⩽ c          +      .                                    (3.16)
+               −∞                   log 1/ε N
+Take the value z0 from the proof of theorem 1.2 and let
+                                 
+                ∗             γN
+               z0 = min z0 ,
+                               a
+where 0 < γ < 2/e is an arbitrary constant. Applying (3.9) and lemma 3.3 we get that for
+|z| ⩽ z0∗
+                               
+                               N                   ∞
+                                 (a|z|)2n               (a|z|)2n 1
+                 |G(z)| ⩽ cε                 +c
+                               n=0
+                                     (2n)!        n=N+1
+                                                         (2n)! n + 1
+                                    (a|z|)2N+2 1               c  (a|z|)2N+2
+                         ⩽ cε ea|z| +             ⩽ cε ea|z| +           √
+                                    (2N + 2)! N                N 2N+2 2N+2 N
+                                                                   e
+                                                    2N+2
+                                      c         |z|
+                         = cε e + 3/2 ae
+                               a|z|
+                                                             .
+                                    N         2N + 2
+Consequently,
+                             ⎧
+                            ⎪    c
+                             ⎨               if   z0 ⩽ γaN
+                       |G|2 ⩽ log(1/ε)
+                               c
+                     R       ⎪
+                             ⎩               if   z0 > γaN .
+                               N
+                                                                                           13
+Inverse Problems 25 (2009) 015011                                                            M Horvath and M Kiss
+
+Indeed, z0 ⩽ γ N/a implies z0∗ = z0 and then
+                                                                     
+                                          c          c             1
+                         |G| ⩽
+                            2
+                                            2
+                                              dz =       =O                ,
+                 |z|>z0∗          |z|>z0∗ z          z0        log(1/ε)
+                                                                      
+                                                  z0        z0     4N+4
+                         |G|2 ⩽ c ε2 e2az0 + 3 ae
+                 |z|⩽z0∗                         N        2N + 2
+                                                                       
+                                     1        1        c            1
+                              ⩽c 2 + 2 ⩽ 2 =O                                .
+                                     z0 N             z0        log(1/ε)
+Finally, if z0 > γ N/a then z0∗ = γ N/a, so
+                                         
+                                 c           1
+                          |G|2 ⩽ ∗ = O           ,
+                       ∗
+                  |z|>z0        z 0          N
+                                                           4N+4 
+                                     2 2az0∗    z0∗      z0∗
+                          |G| ⩽ c ε e
+                             2
+                                             + 3 ae
+                  |z|⩽z0∗                      N       2N + 2
+                                                     
+                                    1     1            1
+                               ⩽c 2 + 2 =O                 .
+                                    z0 N               N
+Thus (3.16) is proved. Using (3.8) and the isometric property of A this yields theorem 1.3.
+                                                                                                                  
+
+References
+
+ [1] Alessandrini S 1988 Stable determination of conductivity by boundary measurements Appl. Anal. 27 153–72
+ [2] Bateman H and Erdélyi A 1953 Higher Transcendental Functions vol 2 (New York: McGraw-Hill)
+ [3] Chadan K and Sabatier P C 1989 Inverse Problems in Quantum Scattering Theory (Berlin: Springer)
+ [4] Cox J R and Thompson K W 1970 On the inverse scattering problem at fixed energy for potentials having
+        nonvanishing first moments J. Math. Phys. 11 805–14
+ [5] Naidoo K, Fiedeldey H, Lipperheide R and Sofianos S 1984 Semiclassical and quantal inversion of nuclear
+        scattering at fixed energy Phys. Rev. C 30 434–40
+ [6] Hausdorff F 1923 Momentprobleme für ein endliches Intervall Math. Z. 16 220–48
+ [7] Hooshyar M A and Razavy M 1981 A discrete method of constructing central and angular momentum dependent
+        potentials Can. J. Phys. 59 1627–34
+ [8] Horváth M 2006 Inverse scattering with fixed energy and an inverse eigenvalue problem on the half-line Trans.
+        Am. Math. Soc. 358 5161–77
+ [9] Steward C, Allen L J, Amos K and Fiedeldey H 1990 12–12C potential by inversion Phys. Rev. C 41 2021–31
+[10] Loeffel J J 1968 On an inverse problem in quantum scattering theory Ann. Inst. H. Poincare 8 339–447
+[11] Marchenko V A 1977 Sturm-Liouville Operators and Their Applications (Kiev: Naoukova Dumka) (in Russian)
+[12] Newton R G 2002 Scattering Theory of Waves and Particles (New York: Dover)
+[13] Novikov R G 1994 The inverse scattering problem at fixed energy for the three-dimensional Schrödinger
+        equation with an exponentially decreasing potential Commun. Math. Phys. 161 569–95
+[14] Ramm A, Airapetyan R and Smirnova A 1999 Example of two different potentials which have practically the
+        same fixed-energy phase shifts Phys. Lett. A 254 141–8
+[15] Ramm A 1988 Recovery of the potential from fixed energy scattering data Inverse Problems 4 877–86
+[16] Ramm A 1992 Stability estimates in inverse scattering Acta Appl. Math. 28 1–42
+[17] Ramm A 1998 Formula for the radius of the support of the potential in terms of scattering data J. Phys. A: Math.
+        Gen. 31 39–44
+[18] Ramm A 1999 An inverse scattering problem with part of the fixed-energy phase shifts Commun. Math. Phys.
+        207 231–47
+[19] Ramm A 2004 One-dimensional inverse scattering and spectral problems Cubo Math. J. 6 313–426
+        (arXiv:math-ph/0309028)
+[20] Sabatier P C 2004 On the inverse problem at fixed energy in the iterative range Appl. Anal. 83 1077–99
+[21] Stefanov P 1990 Stability of the inverse problem in potential scattering at fixed energy Ann. Inst. Fourier
+        Grenoble 40 867–84
+
+14
+

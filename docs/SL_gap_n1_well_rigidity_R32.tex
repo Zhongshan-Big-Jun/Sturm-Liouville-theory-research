@@ -1,0 +1,643 @@
+﻿% 用法: xelatex SL_gap_n1_well_rigidity_R32.tex (两遍, -output-directory=build)
+% 主题: 阱族小 R 相位刚性 - 1<R<=3/2 时任意 sign-consistent good root 必为对称根 a+b=1
+% 会话: 2026-08-10 续作 (承接会话 13 的 INF 侧阱族刚性目标)
+% 证据分层: E1 = 严格解析证明 (STRICT); E3 = 数值扫描 (EVIDENCE, 仅交叉检验)
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+
+\title{阱族小 $R$ 相位刚性: $1<R\le 3/2$ 时任意 sign-consistent good root 必为对称根\\
+\large 附: 剩余缺口与 $R>3/2$ 候选路线}
+\author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
+\date{2026-08-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+对 Dirichlet 加权弦 $-y''=\lambda\rho y$, $1\le\rho\le R$ a.e., 阱族
+$\rho_{a,b}=R\cdot\mathbf 1_{[0,a]\cup[b,1]}+\mathbf 1_{(a,b)}$ 是 INF 侧 $D=\lambda_2-\lambda_1$
+极值问题的归约族 (O1-INF, 已独立审计). 本文证明\emph{阱族小 $R$ 相位刚性定理}:
+对 $1<R\le 3/2$, 阱族的任意 sign-consistent good root $(a,b)$ 必为对称根 $a+b=1$.
+证明机制与垒族 (O3a) 相同: 传输能量守恒 + 残差消元把两个边界残差的公共零点化为同一严格
+单调函数 $r_{\tau}(x)=\widetilde J(\tau x)/\widetilde J(x)$ 在外侧相位 $A,B$ 上的等值;
+新的分析内容在于证明阱族相位比函数 $r_{\tau}$ 在 $0\le q=R-1\le 1/2$ 时严格递减,
+其核心是 $\widetilde\Psi'(x)<0$ 于 $(0,\pi)$ 的完全初等证明 (因式分解
+$\widetilde W^2\sin^2x\,\widetilde\Psi'=-\frac{q+1}{8}(2N_0+qN_1)$,
+经 $H=4N_0+N_1>0$ 引理与 $\tan(u/2)$ 有理化 $N(t)>0$ 引理闭合). 阈值 $R=3/2$ 对该机制是
+精确的: $R>3/2$ 时 $r_{\tau}$ 非单调 (数值), 离轴 $E=0$ 分支出现. 剩余缺口诚实登记:
+(a) 对称线上 $D(v)$ 单峰与 $f$ 零点唯一性的 1D 严格证明 (已证, 2026-08-10, 见 \texttt{SL\_gap\_n1\_symline\_proof.pdf}); (b) $R>3/2$ 的阱族刚性
+(开放, 给出离轴 $N_1$ 符号候选路线); (c) 定理 A 的独立复核 (CANDIDATE). 缺口 (a) 于 2026-08-10 闭合后, INF 侧 $1<R\le3/2$ 完全闭合: 下确界在对称阱 $[R,1,R]$ 达到, $I(R)=D(v^*(R))<3\pi^2/R$.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题、定义与主结论}
+
+\subsection{阱族与相位变量}
+
+固定 $R>1$ 与 $0<a<b<1$, 定义阱族密度
+\begin{equation}
+	\rho_{a,b}(x):=
+	\begin{cases}
+		R, & x\in[0,a)\cup(b,1],\\
+		1, & x\in[a,b].
+	\end{cases}
+	\label{eq:well}
+\end{equation}
+考虑 Dirichlet 边值问题
+\begin{equation}
+	-y''=\lambda\rho_{a,b}\,y,\qquad y(0)=y(1)=0,
+\end{equation}
+其简单特征值 $0<\lambda_1<\lambda_2<\cdots$. 记
+\begin{equation}
+	m:=\sqrt R>1,\qquad s_k:=\sqrt{\lambda_k},\qquad
+	\tau:=\frac{s_2}{s_1}>1,\qquad q:=m^2-1=R-1.
+	\label{eq:params}
+\end{equation}
+对任意波数 $s>0$ 与阱族配置 $(a,b)$, 定义三个相位
+\begin{equation}
+	A(s):=msa,\qquad \psi(s):=s(b-a),\qquad B(s):=ms(1-b),
+	\label{eq:phases}
+\end{equation}
+并记第一、二模态的相位为
+\begin{equation}
+	A:=A(s_1),\quad \psi:=\psi(s_1),\quad B:=B(s_1);
+	\qquad \tau A,\ \tau\psi,\ \tau B \quad\text{(第二模态)}.
+\end{equation}
+几何恒等式 $A+m\psi+B=ms_1$ 恒成立 (总相位).
+
+\subsection{残差与 sign-consistent good root}
+
+设 $y_k$ 为斜率归一化 ($y_k(0)=0$, $y_k'(0)=1$) 的第 $k$ 个特征函数,
+$n_k:=\int_0^1\rho_{a,b}\,y_k^2\,dx$, $\hat y_k:=y_k/\sqrt{n_k}$. 定义
+\begin{equation}
+	f_{a,b}(x):=\lambda_2\hat y_2(x)^2-\lambda_1\hat y_1(x)^2,
+	\qquad R_1(a,b):=f_{a,b}(a),\quad R_2(a,b):=f_{a,b}(b).
+	\label{eq:resid}
+\end{equation}
+\begin{definition}[sign-consistent good root (阱族)]
+	若 $(a,b)$ 满足
+	\begin{equation}
+		R_1(a,b)=R_2(a,b)=0,\qquad
+		\frac{y_2(a)}{y_1(a)}>0,\qquad \frac{y_2(b)}{y_1(b)}<0,
+		\label{eq:goodroot}
+	\end{equation}
+	则称其为阱族的一个 sign-consistent good root.
+\end{definition}
+
+\begin{remark}[残差的变分来源] \label{rem:fh}
+	对阱族, $D(a,b)=\lambda_2-\lambda_1$ 沿边界参数的变分为
+	$\partial_a D=-(R-1)f_{a,b}(a)$, $\partial_b D=+(R-1)f_{a,b}(b)$
+	(Feynman--Hellmann; 单特征值恒等式 $d\lambda_k/da=-\lambda_k(R-1)\hat y_k(a)^2$
+	已由 \url{_well_fh2.py} 数值验证到 $10^{-8}$), 故 $R_1=R_2=0$ 恰为阱族内部
+	临界点条件; $\{f_{a,b}>0\}$ 等于阱 $\{x:\rho_{a,b}=R\}$ (带状自洽;
+	R=4 对称 good root 处数值 $f(0.2)=+4.12$, $f(0.5)=-2.28$, $f(a)=f(b)=0$).
+	但"极值点必为 sign-consistent good root"的全局论证仍属开放缺口 (d),
+	见第 \ref{sec:gaps} 节.
+\end{remark}
+
+\subsection{主定理}
+
+\begin{theorem}[阱族小 $R$ 相位刚性]\label{thm:main}
+	设 $1<R\le 3/2$ (即 $0<q\le 1/2$). 阱族 $\rho_{a,b}$ 的任意
+	sign-consistent good root $(a,b)$ 必满足
+	\begin{equation}
+		a+b=1.
+	\end{equation}
+	换言之, 该参数区间内所有 good root 都落在反射固定线 $a+b=1$ 上.
+	\STRICT{} (证明见第 \ref{sec:proof}--\ref{sec:mono} 节).
+\end{theorem}
+
+\begin{remark}[阈值 $R=3/2$ 对该机制是精确的] \label{rem:threshold}
+	定理的证明依赖 $\widetilde\Psi'<0$ 于 $(0,\pi)$ (引理 \ref{lem:psiprime});
+	数值上该不等式在 $q\le 1/2$ 成立、$q>1/2$ 失败, 且 $R=1.52$ 起出现离轴 $E=0$
+	分支 ($R=1.50$ 无). 见 \EVID{} 与第 \ref{sec:route} 节.
+\end{remark}
+
+\section{证据标注约定}
+
+\begin{remark}[E1/E3]\label{rem:evidence}
+	按项目纪律, 全文证据分两层:
+	\begin{enumerate}
+		\item[(E1)] \emph{严格解析证明} (STRICT): 闭式恒等式、初等不等式、单调性,
+			构成定理成立的依据. 本文定理 \ref{thm:main} 的全部断言只依赖 (E1).
+		\item[(E3)] \emph{普通数值扫描} (EVIDENCE): 高精度浮点采样, 仅用于交叉检验
+			与探索, 不构成任何定理的结论依据. 所有 (E3) 断言均显式标注并登记于
+			\texttt{misc/\_well\_explore\_log.md}.
+	\end{enumerate}
+	未完成严格证明的断言一律不称为"已解决", 一律标为开放.
+\end{remark}
+
+\section{前两模态的符号与零点}\label{sec:modes}
+
+\begin{lemma}[前两模态的符号与零点]\label{lem:modes}
+	在斜率归一化下, 阱族 $\rho_{a,b}$ 的前两模态满足:
+	\begin{enumerate}
+		\item[(i)] $y_1(x)>0$ 于 $0<x<1$, 且 $y_1'(1)<0$;
+		\item[(ii)] $y_2$ 在 $(0,1)$ 中恰有一个简单零点 $z$, 并且
+			$y_2>0$ 于 $(0,z)$, $y_2<0$ 于 $(z,1)$.
+	\end{enumerate}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	这是正则分段系数 Sturm--Liouville 问题的标准振荡理论:
+	特征值简单且严格递增; 第一特征函数可取严格正 (以绝对值替换 Rayleigh 商极值元
+	不增能量, 一维强极值原理与常微分方程唯一性排除内部零点); 第二特征函数与正的
+	第一特征函数关于权 $\rho_{a,b}$ 正交, 故必变号. 若 $y_2$ 至少有两个内部零点,
+	则至少有三个相邻结区间, 把 $y_2$ 限制在每一结区间并外延为零得到三个互不相交
+	的支集, 其 Rayleigh 商均等于 $\lambda_2$; 这三个函数张成的三维子空间经 min--max
+	原理给出 $\lambda_3\le\lambda_2$, 与特征值简单性矛盾. 因此内部零点恰有一个.
+	零点简单性由初值问题唯一性 ($y(x_0)=y'(x_0)=0\Rightarrow y\equiv0$) 得到.
+	端点导数符号由各模态在 $x=1$ 附近的固定符号立即得到.
+	(与垒族文档 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.tex} 引理
+	\ref*{lem:modes} 同款论证.)
+\end{proof}
+
+\section{外侧相位范围}\label{sec:phases}
+
+\begin{lemma}[外侧相位范围]\label{lem:phases}
+	在任意 good root 处,
+	\begin{equation}
+		0<\tau A=s_2a<\pi,\qquad 0<\tau B=s_2(1-b)<\pi.
+		\label{eq:phasesrange}
+	\end{equation}
+	等价地 $A,B\in(0,\pi/\tau)$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由 good-root 符号条件 (\ref{eq:goodroot}) 与 $y_1>0$ (引理 \ref{lem:modes}(i)),
+	\begin{equation}
+		y_2(a)>0,\qquad y_2(b)<0.
+	\end{equation}
+	引理 \ref{lem:modes}(ii) 的唯一零点 $z$ 因而满足 $a<z<b$.
+
+	左侧阱区密度为 $R$, 斜率归一化解为
+	\begin{equation}
+		y_2(x)=\frac{\sin(ms_2x)}{ms_2},\qquad 0\le x\le a.
+	\end{equation}
+	若 $s_2a\cdot m\ge\pi$, 即 $ms_2a\ge\pi$, 则 $x_0=\pi/(ms_2)\le a$ 是
+	$y_2$ 在 $(0,z)$ 内的一个零点, 矛盾于 $y_2>0$ 于 $(0,z)$. 因此
+	$0<\tau A=ms_2a<\pi$.
+
+	右侧阱区有某非零常数 $C_2$ 使
+	\begin{equation}
+		y_2(x)=C_2\frac{\sin(ms_2(1-x))}{ms_2},\qquad b\le x\le1.
+	\end{equation}
+	若 $ms_2(1-b)\ge\pi$, 则 $x_1=1-\pi/(ms_2)\in[b,1)$ 是 $y_2$ 在 $(z,1)$
+	内的零点, 矛盾于 $y_2<0$ 于 $(z,1)$ 与零点唯一性. 故
+	$0<\tau B=ms_2(1-b)<\pi$. \qed
+\end{proof}
+
+\section{低密度区间的传输能量守恒}\label{sec:energy}
+
+\begin{lemma}[传输能量守恒 (阱族)]\label{lem:energy}
+	对任意波数 $s>0$ 与阱族配置 $(a,b)$, 记 $A=msa$, $B=ms(1-b)$,
+	\begin{equation}
+		\widetilde W(x):=\sin^2x+m^2\cos^2x,\qquad
+		\widetilde J(x):=\frac{\sin^2x}{\widetilde W(x)}.
+	\end{equation}
+	则每个模态 (即方程在波数 $s$ 下的解) 满足
+	\begin{equation}
+		\frac{y(b)^2}{y(a)^2}=\frac{\widetilde J(B)}{\widetilde J(A)}.
+		\label{eq:ratio}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	在中间低密度区间 $(a,b)$ 上, 方程是 $-y''=s^2y$. 置
+	\begin{equation}
+		U(x):=\binom{sy(x)}{y'(x)}.
+	\end{equation}
+	常系数解 $y=\alpha\cos(s(x-a))+\beta\sin(s(x-a))/s$ 给出精确传输矩阵
+	\begin{equation}
+		U(b)=P(\psi)U(a),\qquad
+		P(\psi)=
+		\begin{pmatrix}
+			\cos\psi & \sin\psi\\
+			-\sin\psi & \cos\psi
+		\end{pmatrix},\qquad
+		\psi=s(b-a).
+	\end{equation}
+	$P(\psi)$ 是旋转, 保持二次型 $Q(X,Y):=X^2+Y^2$.
+
+	左阱面上, $y=\sin(msx)/(ms)$, 故
+	\begin{equation}
+		U(a)=\binom{\sin A/m}{\cos A}.
+	\end{equation}
+	右侧 Dirichlet 解写为 $y=C\sin(ms(1-x))/(ms)$, 故
+	\begin{equation}
+		U(b)=C\binom{\sin B/m}{-\cos B}.
+	\end{equation}
+	守恒律 $Q(U(a))=Q(U(b))$ 给出
+	\begin{equation}
+		\frac{\sin^2A}{m^2}+\cos^2A
+		=C^2\left(\frac{\sin^2B}{m^2}+\cos^2B\right),
+	\end{equation}
+	即 $\widetilde W(A)=C^2\widetilde W(B)$. 再用
+	\begin{equation}
+		y(a)=\frac{\sin A}{ms},\qquad y(b)=C\frac{\sin B}{ms}
+	\end{equation}
+	即得 \eqref{eq:ratio}. 注意 $\widetilde W>0$ 于 $(0,\pi)$, 且本证明未使用任何
+	特征函数积分归一化或 secular 方程的导数. \qed
+\end{proof}
+
+\begin{remark}[与垒族 (O3a) 的区别]\label{rem:vsbarrier}
+	垒族 (高密度在中间) 的守恒二次型是 $Q_m(X,Y)=m^2X^2+Y^2$, 对应的相位比函数为
+	$J_m(x)=\sin^2x/(\cos^2x+m^2\sin^2x)$; 其对数导数分母 $W_m(x)=1+q\sin^2x$
+	中 $q$ 与 $\sin^2$ 相乘, 得到对一切 $q\ge0$ 都成立的 $\Psi'<0$. 阱族中 $q$ 与
+	$\cos^2$ 相乘 (本引理的 $\widetilde W=1+q\cos^2x$), 使 $\widetilde\Psi'<0$ 只在
+	$0\le q\le 1/2$ 成立, 这正是定理 \ref{thm:main} 需要 $R\le 3/2$ 的原因.
+\end{remark}
+
+\section{残差消元: good root 给出相位比等值}\label{sec:elim}
+
+\begin{lemma}[残差消元]\label{lem:elim}
+	在任意 good root 处, 对
+	\begin{equation}
+		r_{\tau}(x):=\frac{\widetilde J(\tau x)}{\widetilde J(x)},\qquad
+		0<x<\frac{\pi}{\tau},
+	\end{equation}
+	有
+	\begin{equation}
+		r_{\tau}(A)=r_{\tau}(B).
+		\label{eq:rtaueq}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由 $R_1=R_2=0$ (\ref{eq:goodroot}) 与定义 (\ref{eq:resid}),
+	\begin{equation}
+		\frac{\lambda_1y_1(a)^2}{n_1}=\frac{\lambda_2y_2(a)^2}{n_2}>0,\qquad
+		\frac{\lambda_1y_1(b)^2}{n_1}=\frac{\lambda_2y_2(b)^2}{n_2}>0.
+	\end{equation}
+	相位范围 (引理 \ref{lem:phases}) 保证所除边界值非零. 把第二式除以第一式,
+	全部 $\lambda_k,n_k$ 因子在模态内精确消去:
+	\begin{equation}
+		\frac{y_1(b)^2}{y_1(a)^2}=\frac{y_2(b)^2}{y_2(a)^2}.
+		\label{eq:elim}
+	\end{equation}
+	对 \eqref{eq:elim} 两侧分别对模态 1 (相位 $A,B$) 与模态 2 (相位 $\tau A,\tau B$)
+	应用传输恒等式 (\ref{eq:ratio}), 得到
+	\begin{equation}
+		\frac{\widetilde J(B)}{\widetilde J(A)}
+		=\frac{\widetilde J(\tau B)}{\widetilde J(\tau A)},
+	\end{equation}
+	即 $\widetilde J(\tau A)/\widetilde J(A)=\widetilde J(\tau B)/\widetilde J(B)$,
+	也就是 \eqref{eq:rtaueq}. \qed
+\end{proof}
+
+\section{相位比函数的严格单调性 (q 不超过 1/2)}\label{sec:mono}
+
+本节是新的分析核心. 记
+\begin{equation}
+	\widetilde W(x):=\sin^2x+m^2\cos^2x=1+q\cos^2x,
+\end{equation}
+并定义
+\begin{equation}
+	\widetilde\Psi(x):=x\cot x+\frac{q\,x\sin x\cos x}{\widetilde W(x)},
+	\qquad 0<x<\pi.
+	\label{eq:psitilde}
+\end{equation}
+
+\begin{lemma}[$\widetilde\Psi'<0$ 于 $(0,\pi)$, $0\le q\le1/2$]\label{lem:psiprime}
+	对 $0\le q\le 1/2$, 函数 $\widetilde\Psi$ 在 $(0,\pi)$ 上严格递减.
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	\emph{第一步 (因式分解).} 直接化简 (可符号验证, 附录 \ref{app:verify} 恒等式 A1):
+	\begin{equation}
+		\widetilde W(x)^2\sin^2x\,\widetilde\Psi'(x)
+		=-\frac{q+1}{8}\bigl(2N_0(x)+qN_1(x)\bigr),
+		\label{eq:factor}
+	\end{equation}
+	其中
+	\begin{equation}
+		N_0(x):=4x-2\sin2x,\qquad
+		N_1(x):=4x\cos^22x+4x\cos2x-2\sin2x-\sin4x.
+	\end{equation}
+	由于 $\widetilde W>0$ 且 $\sin x>0$ 于 $(0,\pi)$, $q+1>0$,
+	$\widetilde\Psi'(x)<0$ 等价于
+	\begin{equation}
+		2N_0(x)+qN_1(x)>0,\qquad 0<x<\pi.
+		\label{eq:need}
+	\end{equation}
+
+	\emph{第二步 ($N_0>0$).} $N_0(0)=0$, 且
+	\begin{equation}
+		N_0'(x)=4-4\cos2x=8\sin^2x>0,\qquad 0<x<\pi,
+	\end{equation}
+	故 $N_0(x)>0$ 于 $(0,\pi)$.
+
+	\emph{第三步 (分情形控制 \eqref{eq:need}).}
+	\begin{itemize}
+		\item 若 $N_1(x)\ge0$: $2N_0(x)+qN_1(x)\ge 2N_0(x)>0$. \checkmark
+		\item 若 $N_1(x)<0$: 由 $q\le 1/2$,
+			\begin{equation}
+				2N_0(x)+qN_1(x)\ge 2N_0(x)+\frac12N_1(x)
+				=\frac{H(x)}2,
+				\label{eq:reduction}
+			\end{equation}
+			其中
+			\begin{equation}
+				H(x):=4N_0(x)+N_1(x)
+				=18x-10\sin2x+2x\cos4x+4x\cos2x-\sin4x.
+				\label{eq:H}
+			\end{equation}
+	\end{itemize}
+	由引理 \ref{lem:H} ($H>0$ 于 $(0,\pi)$) 与 \eqref{eq:reduction},
+	\eqref{eq:need} 在 $N_1<0$ 时也成立. 故 $\widetilde\Psi'<0$ 于 $(0,\pi)$. \qed
+\end{proof}
+
+\begin{lemma}[$H>0$ 于 $(0,\pi)$]\label{lem:H}
+	函数 $H$ (\ref{eq:H}) 满足 $H(x)>0$ 对一切 $0<x<\pi$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	置 $u:=2x\in(0,2\pi)$. 直接恒等变换 (附录恒等式 A3):
+	\begin{equation}
+		H(x)=2\Bigl[u\bigl(4+\cos^2u+\cos u\bigr)-\sin u(5+\cos u)\Bigr]
+		=:2h(u).
+		\label{eq:H-u}
+	\end{equation}
+
+	\emph{情形 1: $u\in(\pi,2\pi)$ (即 $x>\pi/2$).} 此时 $\sin u<0$, 故
+	\begin{equation}
+		h(u)=u\bigl(4+\cos^2u+\cos u\bigr)+|\sin u|(5+\cos u).
+	\end{equation}
+	这里 $u>0$, $|\sin u|>0$, $5+\cos u\ge4$, 且
+	\begin{equation}
+		4+\cos^2u+\cos u=\Bigl(\cos u+\frac12\Bigr)^2+\frac{15}{4}>0.
+	\end{equation}
+	故 $h(u)>0$. \checkmark
+
+	\emph{情形 2: $u\in(0,\pi)$ (即 $x<\pi/2$).}
+	\begin{equation}
+		h'(u)=\frac{d}{du}\Bigl[u(4+\cos^2u+\cos u)-\sin u(5+\cos u)\Bigr]
+		=(1-\cos u)(5+\cos u)-u\sin u(1+2\cos u).
+		\label{eq:hp}
+	\end{equation}
+	(附录恒等式 A4.)
+	\begin{itemize}
+		\item 若 $u\in(2\pi/3,\pi)$: $1+2\cos u\le0$, 故
+			\begin{equation}
+				h'(u)=(1-\cos u)(5+\cos u)+u\sin u\,|1+2\cos u|>0,
+			\end{equation}
+			其中末项在 $u\in(2\pi/3,\pi)$ 严格为正 (在 $u=2\pi/3$ 处
+			$|1+2\cos u|=0$, 但 $h'(2\pi/3)=(3/2)(9/2)=27/4>0$).
+		\item 若 $u\in(0,2\pi/3)$: 由 \eqref{eq:hp},
+			\begin{equation}
+				h'(u)=2\sin\frac u2\Bigl[
+					\sin\frac u2(5+\cos u)-u\cos\frac u2(1+2\cos u)\Bigr]
+				=\sin u\cdot G(u),
+			\end{equation}
+			\begin{equation}
+				G(u):=\tan\frac u2\,(5+\cos u)-u(1+2\cos u),
+			\end{equation}
+			这里 $\sin u>0$ 且 $\cos(u/2)>0$ 于 $(0,2\pi/3)$.
+			作半角代换 $t:=\tan(u/2)\in(0,\sqrt3)$ (附录恒等式 A5):
+			\begin{equation}
+				G(u)=\frac{N(t)}{1+t^2},\qquad
+				N(t):=t(6+4t^2)-2(3-t^2)\arctan t.
+			\end{equation}
+			显然 $N(0)=0$. 又 (附录恒等式 A6)
+			\begin{equation}
+				N''(t)=24t+4\arctan t+\frac{4t}{1+t^2}+\frac{16t}{(1+t^2)^2}>0,
+				\qquad 0<t\le\sqrt3,
+			\end{equation}
+			且 $N'(0)=0$; 故 $N'>0$ 于 $(0,\sqrt3]$, 进而 $N(t)>0$ 于 $(0,\sqrt3]$.
+			所以 $G(u)>0$, $h'(u)>0$ 于 $(0,2\pi/3)$.
+	\end{itemize}
+	综合得 $h'(u)>0$ 于 $(0,\pi)$. 由于 $h(0)=0$, $h$ 在 $(0,\pi)$ 严格递增,
+	故 $h(u)>0$, 即 $H(x)>0$. \qed
+\end{proof}
+
+\begin{lemma}[$r_{\tau}$ 严格递减]\label{lem:rtau}
+	设 $0\le q\le1/2$. 对任意 $\tau>1$, 函数 $r_{\tau}$ 在 $(0,\pi/\tau)$ 上严格递减.
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由定义 $\widetilde J(x)=\sin^2x/\widetilde W(x)$,
+	\begin{equation}
+		\frac{d}{dx}\log\widetilde J(x)
+		=2\cot x+\frac{2q\sin x\cos x}{\widetilde W(x)}
+		=\frac{2}{x}\widetilde\Psi(x).
+		\label{eq:dlogJ}
+	\end{equation}
+	(附录恒等式 A7.) 于是
+	\begin{equation}
+		\frac{d}{dx}\log r_{\tau}(x)
+		=2\tau\Bigl[\cot(\tau x)+\frac{q\sin(\tau x)\cos(\tau x)}
+			{\widetilde W(\tau x)}\Bigr]
+		-2\Bigl[\cot x+\frac{q\sin x\cos x}{\widetilde W(x)}\Bigr]
+		=\frac{2}{x}\bigl(\widetilde\Psi(\tau x)-\widetilde\Psi(x)\bigr).
+		\label{eq:dlogr}
+	\end{equation}
+	(附录恒等式 A8.) 对 $0<x<\pi/\tau$, 有 $x<\tau x$ 且 $x,\tau x\in(0,\pi)$;
+	引理 \ref{lem:psiprime} 给出 $\widetilde\Psi(\tau x)<\widetilde\Psi(x)$,
+	故 \eqref{eq:dlogr} $<0$. $r_{\tau}>0$, 故 $r_{\tau}$ 本身严格递减. \qed
+\end{proof}
+
+\section{主定理的证明}\label{sec:proof}
+
+\begin{proof}[定理 \ref{thm:main} 的证明]
+	设 $(a,b)$ 为任意 sign-consistent good root. 引理 \ref{lem:phases} 给出
+	$A,B\in(0,\pi/\tau)$; 引理 \ref{lem:elim} 给出 $r_{\tau}(A)=r_{\tau}(B)$;
+	由 $q=R-1\in(0,1/2]$, 引理 \ref{lem:rtau} 给出 $r_{\tau}$ 在 $(0,\pi/\tau)$
+	上严格递减, 故 $A=B$. 于是
+	\begin{equation}
+		ms_1a=ms_1(1-b)\quad\Longrightarrow\quad a=1-b,
+	\end{equation}
+	即 $a+b=1$. 起点是任意 good root, 因此证明覆盖参数三角形
+	$\{(a,b):0<a<b<1\}$ 内的每一条 residual sheet, 无需图结构、连通性或
+	Jacobian 非退化性假设. \qed
+\end{proof}
+
+\begin{remark}[对垒族 O3a 的对照]
+	垒族对应定理 (对一切 $R>1$ 成立) 见文档
+	\url{SL_gap_n1_O3a_phase_rigidity_proof.pdf}.
+	阱族需要 $R\le3/2$ 的原因见注 \ref{rem:vsbarrier}; 阈值精确性见注 \ref{rem:threshold}.
+\end{remark}
+
+\section{对 INF 问题的推论与剩余缺口}\label{sec:gaps}
+
+\subsection{已确立的推论 (STRICT 链)}
+\begin{enumerate}
+	\item O1-INF 归约 (已独立审计): 盒类 $1\le\rho\le R$ 上
+		$\inf D=\inf_{0\le a\le b\le1}D^{\text{well}}(a,b)$.
+	\item 定理 \ref{thm:main}: 对 $1<R\le3/2$, 阱族任意 sign-consistent good root
+		在对称线上.
+	\item 缺口 (a) 闭合 (2026-08-10, \texttt{SL\_gap\_n1\_symline\_proof.pdf}, STRICT): 对称线上
+		$f(v)$ 恰一零点, $D(v)$ 唯一临界点且整体极小, $D(0^+)=3\pi^2$,
+		$D(1/2^-)=3\pi^2/R$, $D(v^*)<3\pi^2/R$.
+\end{enumerate}
+
+\subsection{剩余缺口 (开放, 诚实登记)}\label{sec:gaps-open}
+\begin{enumerate}
+	\item[(a)] \textbf{对称线 1D 分析 (已解决, 2026-08-10, STRICT).} 已由
+		\texttt{SL\_gap\_n1\_symline\_proof.pdf} (10 页, 零警告) 完全闭合: 对称线
+		$a=1-b$, $v:=a\in(0,1/2)$ 上 $f(v)$ 恰有一个零点 $v^*(R)$; $D(v)$ 有唯一
+		临界点且为整体极小 (严格递减后严格递增), 且 $D(0^+)=3\pi^2$,
+		$D(1/2^-)=3\pi^2/R$, $D(v^*)<3\pi^2/R$. 证明核心为 KEY LEMMA: 相位参数
+		$c=(1-2v)/(2mv)$ 下 $\widetilde F_e(c)$ 在 $(0,\infty)$ 恰有一个零点
+		(精确降维恒等式 $S_R=-8\tilde q^2(c+\tilde q)^3\widetilde F_e$ 与
+		$D_c=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e$ 归结 $f$ 零点与
+		$D$ 临界点; 分解 $\widetilde F_e'=(M_1-M_2)G_1+M_2(G_1-G_2)$ 与初等界
+		$G_1<-4/3$, $G_2>-4/3$ (W0 引理 + 精确有理证书) 给出唯一零点).
+		由定理 \ref{thm:main} 与 O1-INF 归约, $1<R\le3/2$ 时 INF 下确界在对称阱
+		$[R,1,R]$ 达到, $I(R)=D(v^*(R))<3\pi^2/R$ (推论, 见
+		\texttt{SL\_gap\_n1\_symline\_proof.pdf}).
+		\EVID{} (历史, 已被严格证明取代): 会话 13 的 R=4 主表与脚本
+		\texttt{\_well\_symline.py} (R=1.05..400: 每 R 恰一个局部极小,
+		$D^*<3\pi^2/R$ 恒成立)、\texttt{\_well\_fzeros.py} (R$\le$4 恰一零点;
+		R=10,100 的密集三零点为数值伪影, \texttt{\_well\_fine.py} 细网格确认
+		仅一个局部极小).
+	\item[(b)] \textbf{$R>3/2$ 的阱族刚性 (开放).} 候选路线见第 \ref{sec:route} 节.
+	\item[(c)] \textbf{定理 A (对称阱族 $R\to\infty$ 极限) 的独立复核 (CANDIDATE).}
+		该定理 (对称阱族 $R\to\infty$ 极限, INF 极限值 $I(R)\sim 24.943866/R$, 数值) 的
+		证明链 (Lemma A$''$) 尚需独立验证器复核, 见 \url{SL_gap_n1_inf_limit_proof.tex}.
+	\item[(d)] \textbf{极值点存在性与 good-root 条件 (部分开放).} 注 \ref{rem:fh}
+		已说明 FH 公式严格; "极值点必满足 sign-consistent 条件 \eqref{eq:goodroot}"
+		的全局论证 (含边界情形 $a=0$ 或 $b=1$ 的排除) 未完全闭合.
+		\EVID{}: \texttt{\_well\_explore3.py} 在 R=4 找到 7 个 $R_1=R_2=0$ 临界点,
+		其中 sign-consistent 的仅有对称内点 $(0.3826,0.6174)$ 与两个边界点
+		$(0.2498,1.0)$、$(0.0,0.7502)$; 后两者的 $D=15.6128>6.7845$.
+\end{enumerate}
+
+\section{R>3/2: 离轴分支与候选路线}\label{sec:route}
+
+本节全部内容为 \EVID{} 与开放推测, 不构成证明.
+
+\subsection{数值事实}
+\begin{itemize}
+	\item $r_{\tau}$ 在 $R\le1.5$ 时沿 $(0,\pi/\tau)$ 递减 (对数步 $\le4.4\times10^{-16}$,
+		浮点噪声); $R=1.6$ 起非单调 (最大正步 $1.8\times10^{-6}$).
+		(\texttt{\_well\_verify\_thm.py}, \texttt{\_well\_verify\_rc.py})
+	\item 离轴 $E=0$ 分支 ($r_{\tau}(A)=r_{\tau}(B)$ 且 $A\ne B$)
+		在 $R=1.52$ 首次出现, $R=1.50$ 无. (\texttt{\_well\_verify\_thm.py},
+		\texttt{\_well\_branch\_threshold.py})
+	\item R=4 离轴 $E=0$ 分支上, 范数方程
+		\begin{equation}
+			N_1(a,b):=\frac{n_2}{n_1}-\frac{\sin^2(\tau A)}{\sin^2 A}
+		\end{equation}
+		严格为负 ($N_1\in[-2.76,-2.61]$, 采样 6 点);
+		而对称线 $N_1(v,1-v)$ 在 good root 附近穿越零点 (R=1.5 时
+		$N_1(0.3)=-0.794$, $N_1(0.45)=+0.180$, 零点 $\approx v^*$).
+		(\texttt{\_well\_n1curve.py}, \texttt{\_well\_n1refine.py})
+	\item 能量比探针: R=4 离轴分支上 $E_2/E_1=\int(y_2')^2/\int(y_1')^2\le1.25$,
+		而 $\tau^2\sin^2(\tau A)/\sin^2A\ge7.14$. (\texttt{\_well\_energy\_ratio.py})
+\end{itemize}
+
+\subsection{候选路线 (若成立则把刚性推到一般 R)}
+\begin{enumerate}
+	\item 证明好根处的范数恒等式 $n_2/n_1=\sin^2(\tau A)/\sin^2A$
+		(即 $N_1=0$ 于一切 good root). \emph{开放} (推导需用 $w(1)y'(1)/(2s)$
+		型范数公式与 secular 函数导数; 尚未闭合).
+	\item 证明离轴 $E=0$ 分支上 $N_1<0$ 对一切 $R>3/2$ 成立.
+		等价范数不等式 $n_2/n_1\le\tau^2\sin^2(\tau A)/\sin^2A$ 是充分条件.
+		\emph{开放}.
+	\item 若 (1)(2) 成立, 则离轴分支不可能含 good root, 刚性 (对称性) 对所有
+		$R>1$ 成立, 结合缺口 (a) (已在 $1<R\le3/2$ 闭合, 2026-08-10) 即完全解决 INF 侧.
+\end{enumerate}
+\EVID{} 支持: 对称线上 $N_1=0$ 恰在 good root (R=1.5 时
+$v^*=0.408798$, 数值 $N_1(v^*)\approx-10^{-4}$, 与积分精度同阶).
+
+\section{数值证据登记}
+
+所有 \EVID{} 断言的脚本、参数与精度登记于
+\url{misc/_well_explore_log.md}; 本会话验证矩阵
+(\url{scripts/_well_rigid_verify.py}) 的 8 条符号恒等式与 5 组数值探针
+见附录 \ref{app:verify}. 关键既有脚本 (均在 \url{scripts/}, 除注明外):
+\begin{itemize}\setlength{\itemsep}{0pt}\raggedright
+	\item 阱道求解与临界点: \url{_well_landscape2.py}, \url{_well_crit.py}, \url{_well_explore1..3.py} (\url{misc/});
+	\item 对称线与单峰: \url{_well_symline.py}, \url{_well_fzeros.py}, \url{_well_fine.py};
+	\item 相位比与阈值: \url{_well_verify_thm.py}, \url{_well_verify_rc.py}, \url{_well_branch_threshold.py}, \url{_well_psitilde.py}, \url{_well_psi_factor.py};
+	\item $N_1$ 与能量比: \url{_well_n1curve.py}, \url{_well_n1refine.py}, \url{_well_energy_ratio.py};
+	\item 恒等式与验证: \url{_well_H.py}, \url{_well_system_derive.py}, \url{_well_rigid_verify.py}, \url{_well_signcheck.py}.
+\end{itemize}
+
+\section{涉及到的数学知识}
+
+\begin{enumerate}
+	\item Sturm--Liouville 振荡理论: 特征值简单性与 min--max 原理, 第二特征函数
+		恰一个简单零点 (引理 \ref{lem:modes}).
+	\item 传输矩阵与守恒二次型: 常系数区间上 $U=(sy,y')^\top$ 的精确演化;
+		低密度区间对应旋转 $P(\psi)$ 保持 $X^2+Y^2$ (引理 \ref{lem:energy}).
+	\item Feynman--Hellmann 型变分: $\delta D=-\int f\,\delta\rho$,
+		$f=\lambda_2\hat y_2^2-\lambda_1\hat y_1^2$, 给出临界点条件
+		$f(a)=f(b)=0$ 与带状自洽 $\{f>0\}=\text{阱}$ (注 \ref{rem:fh}).
+	\item 相位比单调性的初等分析: 因式分解
+		$\widetilde W^2\sin^2x\,\widetilde\Psi'=-\frac{q+1}{8}(2N_0+qN_1)$;
+		分情形 ($N_1$ 符号) 归约到 $H>0$; $u=2x$ 代换把 $H$ 化为 $h(u)$;
+		$\tan(u/2)$ 半角代换把 $G(u)\ge0$ 有理化为 $N(t)\ge0$,
+		用 $N''>0$、$N'(0)=0$、$N(0)=0$ 闭合 (引理 \ref{lem:H}).
+	\item 反射对称约化: 对称性 $a+b=1$ 使第二特征函数为奇函数 (零点在 $x=1/2$),
+		与离轴分支的排除 (开放) 相关.
+	\item 数值工具 (仅 EVIDENCE): 转移矩阵 secular 方程求根, 梯形积分,
+		least\_squares 求临界点, 有理化/半角数值核验.
+\end{enumerate}
+
+\appendix
+\section{符号恒等式与数值探针清单}\label{app:verify}
+
+\subsection{符号恒等式 (E1 辅助核验)}
+以下 8 条恒等式由 \texttt{scripts/\_well\_rigid\_verify.py} 用 sympy 精确验证
+(全部 True); 在正文中它们均已给出独立的代数推导或直接化简, 附录仅作可复现记录.
+\begin{enumerate}
+	\item[A1] $\widetilde W^2\sin^2x\,\widetilde\Psi'=-\frac{q+1}{8}(2N_0+qN_1)$.
+	\item[A2] $H=4N_0+N_1$, 其中 $H=18x-10\sin2x+2x\cos4x+4x\cos2x-\sin4x$.
+	\item[A3] $H=2[u(4+\cos^2u+\cos u)-\sin u(5+\cos u)]$, $u=2x$.
+	\item[A4] $h'(u)=(1-\cos u)(5+\cos u)-u\sin u(1+2\cos u)$.
+	\item[A5] $G(2\arctan t)(1+t^2)=N(t)$, $G(u)=\tan\frac u2(5+\cos u)-u(1+2\cos u)$,
+		$N(t)=t(6+4t^2)-2(3-t^2)\arctan t$.
+	\item[A6] $N''(t)=24t+4\arctan t+\frac{4t}{1+t^2}+\frac{16t}{(1+t^2)^2}$.
+	\item[A7] $\frac{d}{dx}\log\widetilde J(x)=2\cot x+\frac{2q\sin x\cos x}{\widetilde W(x)}$.
+	\item[A8] $\frac{d}{dx}\log r_{\tau}(x)=\frac2x(\widetilde\Psi(\tau x)-\widetilde\Psi(x))$.
+\end{enumerate}
+
+\subsection{数值探针 (E3, 仅交叉检验)}
+\begin{enumerate}
+	\item[B1] $q\in\{0,0.25,0.5\}$: $\max\widetilde\Psi'<0$ 于 $(0,\pi)$ 内部网格
+		($q=0.5$ 时 $\approx-6.9\times10^{-13}$); $q=0.5001,0.55$: 出现正值
+		($+4.4\times10^{-7}$, $+4.7\times10^{-3}$). 阈值 $q=1/2$ 精确.
+	\item[B2] $H,H'$ 于 $(0,\pi)$ 内部网格最小值分别为 $\approx0$ (边界) 与
+		$+1.8\times10^{-16}$; $G$ 于 $(0,2\pi/3)$ 与 $N$ 于 $(0,\sqrt3)$
+		最小值 $\approx+10^{-15}$.
+	\item[B3] $R=1.5$: $\log r_{\tau}$ 最大步长 $\le4.4\times10^{-16}$
+		(递减至机器精度); $R=1.6$: 最大步长 $+6.5\times10^{-7}$ (非单调).
+	\item[B4] $R=1.5$ good root $(a,b)=(0.40879841,0.59120159)$,
+		$a+b=1$ 至 $10^{-10}$, $|A-B|\le4\times10^{-13}$,
+		$r_{\tau}(A)=r_{\tau}(B)=0.2189882504$, $\tau A=2.584240<\pi$;
+		$y_2(a)=+0.0837$, $y_2(b)=-0.0837$, $y_2$ 零点在 $x=0.5000\in(a,b)$.
+	\item[B5] R=4 离轴 $E=0$ 分支: $N_1\in[-2.76,-2.61]<0$; 对称线
+		$N_1(v,1-v)$ 在 $v\approx v^*$ 穿越零点.
+\end{enumerate}
+
+\begin{remark}[诚实性声明]
+	定理 \ref{thm:main} 的陈述与证明完全基于 (E1). (E3) 条目 (B1)--(B5) 只用于
+	交叉检验与探索, 不构成任何结论依据; 缺口 (a) 已于 2026-08-10 闭合 (见 \texttt{SL\_gap\_n1\_symline\_proof.pdf}, STRICT); 缺口 (b)(c)(d) 仍保持开放/CANDIDATE,
+	未声称"已解决". 定理 A 与 O1-INF 归约的状态以 \texttt{state/current.json}
+	与运行台账为准.
+\end{remark}
+
+\end{document}

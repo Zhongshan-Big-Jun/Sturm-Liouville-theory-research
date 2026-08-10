@@ -1,0 +1,311 @@
+﻿---
+title: 数学工具库索引
+tags: [mathtool, index]
+created: 2026-08-04
+---
+
+# 数学工具库索引
+
+本目录存放项目研究过程中从论文学到的与自研发现的数学工具/方法.
+每个工具一个 Markdown 文件, 含**解析** (数学表述) 与**适用范围** (适用条件, 边界情形, 不适用情形), 以及验证状态.
+
+## 更新规则 (实时更新)
+1. 从论文学到新方法, 或在研究中发现新工具时, 新建一个 `tools/<slug>.md` 文件.
+2. 同步更新本索引 (分类与表格).
+3. 在 `AGENTS.md` 的会话记录中登记本次更新.
+4. 数值验证过的结论必须写明验证方式与精度; 未验证的必须标注 `未验证` 或 `文献引用`.
+5. 只允许使用英文标点.
+
+## 验证状态标注约定 (数值 vs 严格)
+速查表 `状态` 列与每个工具文件的 `status` 字段必须区分两类断言, 不得混淆:
+- **严格证明/定理已证**: 有完整数学证明的结论 (如 `定理已证`, `已证`,
+  `CANDIDATE_COMPLETE_PROOF` 仅当完成独立审计).
+- **数值证据/数值验证**: 由计算支持的结论, **不构成证明**; 必须写明精度
+  (如 `数值验证 (1e-8)`), 且不得表述为定理.
+- **文献引用/评述级**: 依赖外部文献或仅转述, 须注明出处与核验程度.
+- **猜想/开放**: 未证明的陈述, 必须明确标注 `猜想` 或 `开放`.
+凡一个工具同时含严格部分与数值部分 (如 `gap-band-extremals`), 必须在文件中
+分节说明各自状态. 数值检验永远不作为结果呈现.
+
+## 分类索引
+
+### 谱理论 (从论文学到)
+- [[transfer-matrix-secular]] - 转移矩阵与 secular 方程
+- [[prufer-phase]] - Prüfer 相位
+- [[sturm-oscillation]] - Sturm 振荡理论
+- [[feynman-hellmann]] - Feynman-Hellmann 公式
+- [[liouville-transform]] - Liouville 变换与 normal form
+- [[bloch-band]] - Bloch 能带与带边比值
+
+### 极值方法 (从论文学到)
+- [[keller-variational]] - Keller 变分条件
+- [[mw-periodic-extension]] - MW 周期延拓与倍指标恒等式
+- [[mw-zero-truncation]] - 零点截断归纳
+- [[bang-bang]] - bang-bang 原理
+- [[helly-compactness]] - Helly 紧性与极值存在性
+- [[mde-extremal]] - 测度微分方程 (MDE) 极值方法
+- [[morales-ramis-kovacic]] - Morales-Ramis 理论与 Kovacic 算法
+- [[single-well-intersection]] - 单阱/单垒交点计数法
+
+### 左定理论与正交多项式 (从论文学到)
+- [[left-definite-theory]] - 左定理论与 Hilbert 空间尺度
+- [[krein-sobolev-polynomials]] - Krein-Sobolev 正交多项式
+
+### 自研方法与技巧
+- [[balanced-phase]] - 平衡相位方法 (会话 5)
+- [[spectral-monotonicity-reduction]] - 谱单调性归约 (会话 5)
+- [[cell-merging]] - 胞界合并构造 (会话 5)
+- [[moment-jump-completeness]] - 矩跳跃完备性判据 (会话 9)
+- [[left-definite-moment-recurrence]] - 左定矩跳跃: H^s 完备性判据 (会话 10)
+- [[left-definite-orthogonal-systems]] - 左定传输正交系: H^s 显式完备正交多项式系 (会话 11)
+- [[denseness-criteria]] - 稠密性准则: 矩刻画/一阶/跳变判据与对角临界 3/2 (会话 11)
+- [[jump-stability]] - 跳变稳定性: 增长引理定量形式与 omega(log) 门槛 (会话 11)
+- [[third-order-recurrence]] - 三阶递推积分解理论: 积分解分类/精确降阶/最小解 (会话 11)
+- [[gap-band-extremals]] - 带状自洽极值判据: 相邻间距驻点条件与 FH 对称加倍 (会话 13)
+- [[gap-n1-reduction]] - 两块族归约定理 (O1, 2026-08-05)
+- [[two-block-gap-bounds]] - 两块相位间距界 3pi^2/R < D < 3pi^2 (O3b, 2026-08-05)
+- [[key-lemma-decomposition]] - KEY LEMMA 分解 + 逐项 q-单调性否证 + (LOG)/(FP) 全解析证明 (O2, 2026-08-05/09)
+- [[fh-hessian-branch-reduction]] - FH 带特征值因子 + Hessian/分支斜率归约 (O3a, 2026-08-06)
+- [[interval-ad-certificate]] - 区间自动微分证书: 隐式斜率符号的严格判定 (O3a, 2026-08-06)
+- [[reflection-branch-reduction]] - 反射分支归约: R1-R6 把 C1 归约到 E1+M (O3a, 2026-08-06)
+- [[lemma-A-doubleprime]] - 引理 A'' 下界: 相位坐标差量法 (INF 极限, 会话 30, 2026-08-07)
+- [[delta-bracketing]] - 相位括号: 隐式 secular 根的初等夹逼 (会话 30, 2026-08-07)
+- [[cot-series-certificate]] - 余切级数余项证书: C_z < 0.337 类显式常数 (会话 30, 2026-08-07)
+- [[inf-limit-comparison]] - 极限系统比较法: 大参数极限 T1/T2/T3 框架 (会话 30, 2026-08-07)
+- [[r1plus-perturbation-sheet]] - 一阶摄动片层法: R->1+ 片层 a = a0 + eps*phi(b) (会话 33 续, 2026-08-08)
+- [[fp-arm-max-root]] - fp 臂最大根列追踪: S3 近竖直分支列根 (会话 33 续, 2026-08-08)
+- [[phase-ratio-rigidity]] - 相位比刚性: good root 唯一性/对称性 (O3a, 2026-08-09)
+- [[well-family-rigidity]] - 阱族相位比刚性: 一切 R>1 good root 对称性 (INF 侧, 2026-08-10 会话 56, 全 R 已证)
+- [[symline-n1-monotonicity]] - 对称线 1D 单调性: KEY LEMMA (F~_e 唯一零点) + 精确降维恒等式 (缺口 (a) 闭合, 会话 52, 2026-08-10)
+- [[phase-param-2d-certificate]] - 二维相位参数化证书: 相位方程显式反解 + 2D 叶盒 (O3a I3, 2026-08-09)
+- [[true-curve-region-decomposition]] - 真曲线区域分解: T1/T2 双侧全解析化 (定理 5.8 + 5.14, O3a I3, 会话 40/41)
+- [[interval-dec-directed-rounding]] - 十进制定向舍入区间引擎: 单变量符号事实的严格认证 (O3a I3, 会话 40 续, 2026-08-09)
+- [[rational-envelope-certificates]] - 有理包络证书: 交错级数包络 + 精确有理区间链 (会话 44, 2026-08-09)
+- [[switch-saturation-k-invariant]] - 开关饱和与块能量不变量: FH 完全盒饱和 + 零点=开关 + K=-2D (会话 50, 2026-08-10)
+
+## 速查表
+
+| 工具 | 来源 | 状态 | 类别 |
+|---|---|---|---|
+| [[transfer-matrix-secular]] | 经典数值法 | 已验证 (本项目全部数值) | 谱理论 |
+| [[prufer-phase]] | 经典 | 文献引用 | 谱理论 |
+| [[sturm-oscillation]] | 经典 | 文献引用 | 谱理论 |
+| [[feynman-hellmann]] | 量子力学标准 | 文献引用 | 谱理论 |
+| [[liouville-transform]] | 经典 | 文献引用 | 谱理论 |
+| [[bloch-band]] | 周期介质理论 | 数值验证 (能带极限) | 谱理论 |
+| [[keller-variational]] | Keller 1976 | 文献 + 数值 (1e-11) | 极值方法 |
+| [[mw-periodic-extension]] | Mahar-Willner 1976 | 数值复现 (1e-8) | 极值方法 |
+| [[mw-zero-truncation]] | Mahar-Willner 1976 | 文献引用 (未独立重证) | 极值方法 |
+| [[bang-bang]] | 最优控制 | 文献引用 | 极值方法 |
+| [[helly-compactness]] | 经典分析 | 文献引用 | 极值方法 |
+| [[mde-extremal]] | Meng-Zhang 等 | 评述级 | 极值方法 |
+| [[morales-ramis-kovacic]] | 微分 Galois 理论 | 文献引用 | 极值方法 |
+| [[single-well-intersection]] | Hedhly 2021, Huang 1999 | 全文核验 | 极值方法 |
+| [[left-definite-theory]] | Littlejohn-Wellman | 文献引用 | 左定理论 |
+| [[krein-sobolev-polynomials]] | Littlejohn-Quintero-Roba 2025 | 姊妹论文还原 | 左定理论 |
+| [[balanced-phase]] | 自研 (会话 5) | 数值验证 (1e-15) | 自研 |
+| [[spectral-monotonicity-reduction]] | 自研 (会话 5) | 定理已证 | 自研 |
+| [[cell-merging]] | 自研 (会话 5) | 数值验证 (1e-8) | 自研 |
+| [[moment-jump-completeness]] | 自研 (会话 9) | 定理已证 + 精确有理数 | 自研 |
+| [[left-definite-moment-recurrence]] | 自研 (会话 10) | 定理已证 + 精确有理数 | 自研 |
+| [[left-definite-orthogonal-systems]] | 自研 (会话 11) | 定理已证 + 855 项精确有理数 | 自研 |
+| [[denseness-criteria]] | 自研 (会话 11) | 定理已证 + 精确有理数 | 自研 |
+| [[jump-stability]] | 自研 (会话 11) | 定理已证 + 精确有理数 | 自研 |
+| [[third-order-recurrence]] | 自研 (会话 11) | 定理已证 + 符号/高精度 | 自研 |
+| [[gap-band-extremals]] | 自研 (会话 13) | 机制严格 + 数值验证 (1e-9..1e-12) | 自研 |
+| [[residual-exactness]] | 自研 (O3a, 2026-08-05) | 定理已证 + 数值验证 (~1e-7) | 自研 |
+| [[gap-n1-reduction]] | 自研 (O1, 2026-08-05) | CANDIDATE_COMPLETE_PROOF (2026-08-06 修复: S_rho 自伴 + 跳点符号 + 平滑论证; 自审 O1a-O1f 全过, 独立复审待办) | 自研 |
+| [[two-block-gap-bounds]] | 自研 (O3b, 2026-08-05) | 定理已证 + 4000 点零违例 | 自研 |
+| [[key-lemma-decomposition]] | 自研 (O2, 2026-08-05) | KEY LEMMA 已证 (2026-08-06 独立审计); (LOG) 2026-08-09 全解析化 (thm:LOG) | 自研 |
+| [[fh-hessian-branch-reduction]] | 自研 (O3a, 2026-08-06) | 定理已证 (P1-P3) + 数值/区间验证 | 自研 |
+| [[interval-ad-certificate]] | 自研 (O3a, 2026-08-06) | 已实现并通过 (CE-1 严格化) | 自研 |
+| [[lemma-A-doubleprime]] | 自研 (会话 30, 2026-08-07) | 已证 (解析 + 三常数区间认证; v 参数已更正) | 自研 |
+| [[delta-bracketing]] | 自研 (会话 30, 2026-08-07) | 已证 (初等单调夹逼) | 自研 |
+| [[cot-series-certificate]] | 自研 (会话 30, 2026-08-07) | 已证 (正系数级数 + 区间值) | 自研 |
+| [[inf-limit-comparison]] | 自研 (会话 30, 2026-08-07) | 已证 (定理 A, T1/T2/T3 闭合) | 自研 |
+| [[r1plus-perturbation-sheet]] | 自研 (会话 33 续 + 会话 34, 2026-08-08/09) | 闭式已得 (DERIVATION); phi' > 0 CERTIFIED+STRICT; b_top* > b0 STRICT; 余留 Gap 1 | 自研 |
+| [[phase-ratio-rigidity]] | 自研 (O3a, 2026-08-09) | 解析 + 两类证书 (2026-08-09: $\partial_qM_2<0$ 与 C4 均全解析) | 自研方法 |
+| [[well-family-rigidity]] | 自研 (INF 侧, 2026-08-10 会话 56) | 定理已证 (STRICT, 一切 R>1; all-R 文档 14 页零警告 + 总结 8 页零警告; sympy 约束下精确; 数值为 EVIDENCE) | 自研方法 |
+| [[symline-n1-monotonicity]] | 自研 (会话 52, 2026-08-10) | 定理已证 (STRICT, 10 页零警告; W0 证书 sympy 全过; 数值为 EVIDENCE) | 自研方法 |
+| [[phase-param-2d-certificate]] | 自研 (O3a I3, 2026-08-09) | E1 端点闭式 + 2D 叶盒 (J1/J2 证书均已移除, 分别由定理 5.8/5.14 取代) | 自研方法 |
+| [[true-curve-region-decomposition]] | 自研 (O3a I3 去证书化, 2026-08-09) | E1 双侧完成: 定理 5.8 (J1, 6499/7500) + 定理 5.14 (J2, W-分解链, mu >= 27921/20000); 67 叶盒移除 | 自研方法 |
+| [[interval-dec-directed-rounding]] | 自研 (O3a I3, 2026-08-09) | 已退役历史 (L7/L8/L9); 被有理包络证书 L10/L11/L12 取代 | 自研方法 |
+| [[rational-envelope-certificates]] | 自研 (会话 44, 2026-08-09) | E1 证书链 57/57 PASS (L10/L11/L12); 55 项事实全部 E1, 不依赖验证器内核 | 自研方法 |
+| [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10) | 定理已证 (独立审计 PASS; 数值 40/40 + 16/16 + mpmath + 光滑 4/4) | 自研方法 |
+| [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
+
+## 维护日志
+- 2026-08-04: 建库, 收录 19 个工具 (会话 1-6 积累).
+- 2026-08-04: 新增 [[moment-jump-completeness]] (会话 9, H^2 解析完备性判据).
+- 2026-08-04: 新增 [[left-definite-moment-recurrence]] (会话 10, H^3 与一切 H^s
+  完备性判据; 左定矩跳跃机制: 与正交条件同源内积取矩, 边界项吸收, 递推降阶).
+- 2026-08-05: 新增 [[left-definite-orthogonal-systems]] (会话 11, 方向 1: H^s 显式完备正交多项式系; 传输算子 K_c^{-r} 闭式; s>=2 根不实现象).
+- 2026-08-05: 新增 [[denseness-criteria]] (会话 11, 方向 2: 矩刻画充要条件, 一阶/跳变矩准则, 对角临界指数 3/2, 左定 H^s 一切整数阶完备的正确证明); 修订 [[left-definite-moment-recurrence]] (更正 K_c^{s/2}p_{2m} 三单项式结构对 s>=4 失效, 改为等距传输取矩).
+- 2026-08-05: 新增 [[jump-stability]] (会话 11, 方向 3: 增长引理定量形式, 稳定性定理与 omega(log) 门槛, 对角反例尖锐性, Krein 余量) 与 [[third-order-recurrence]] (会话 11, 方向 4: 积分解 beta-分类, mu-闭式, 精确降阶公式 [更正 h3_v56 旧公式], 最小解渐近).
+- 2026-08-05: 新增 [[gap-band-extremals]] (会话 13: 带状自洽极值判据, Feynman-Hellmann 对称加倍, R 续延法; 相邻间距极端值数值刻画 R=4 n=1..12, 极限 4pi^2 与 24.9439).
+- 2026-08-05: 新增 [[residual-exactness]] (O3a: 残差闭合恒等式 dR1/db = -dR2/da, 由 FH 公式 + Schwarz 定理证明; 残差 Jacobian 结构与临界点斜率分裂; 分支交点唯一性归约).
+- 2026-08-05: 新增 [[gap-n1-reduction]] (O1: 两块族归约, Green 算子 L1 连续 + Wronskian 单区间 + bang-bang 七步), [[two-block-gap-bounds]] (O3b: 两块相位间距界, 三区上界 + mpmath 60 位), [[key-lemma-decomposition]] (O2: G2-G1 分解 + 精确角点极限 4pi/(3 sqrt3) + 否证 B-D 的 q-单调性; 交接稿逐项 q-单调闭环作废, 以本条目为准).
+
+| [[gap-n1-reduction]] | 自研 (O1, 2026-08-05) | CANDIDATE_COMPLETE_PROOF (2026-08-06 修复: S_rho 自伴 + 跳点符号 + 平滑论证; 自审 O1a-O1f 全过, 独立复审待办) | 自研 |
+
+- 2026-08-06: key-lemma-decomposition 追加 KEY LEMMA 归约到四引理 (R1/R2/L4box/L5box),
+  基座 B1-B5/B7 已证, 审计发现 C1 (LOG 与 FP 形式非等价; 见 run R-20260806T011500Z-keylemma-E58FB1).
+- 2026-08-06: 新增 [[fh-hessian-branch-reduction]] 与 [[interval-ad-certificate]] (O3a run R-20260806T011500Z-o3abranch-E8E56F): FH 公式必须带特征值因子; 好根处分支斜率 Hessian 归约; 全局负定性被否证; 区间 AD 证书把 Lemma A 反例 CE-1 严格化 (h'(a*) < 0 at R = 1500/1e4). 同步修订 [[residual-exactness]] 的局限注记 (Lemma A 已证伪).
+- 2026-08-06: key-lemma-decomposition 更新为已关闭 (run R-20260806T070000Z-keylemma2b-0A6D8F):
+  KEY LEMMA ((LOG)+(FP)) 完成证明, 状态 CANDIDATE_COMPLETE_PROOF. 路线: (q,u) 换元 +
+  M2 (dIN/du<0, 证书 + 初等尾部) + CORNER (c=1/2 闭式) + C4 (c=0.4 曲线, 区间证书 +
+  T^3 K 精确有理数下界) + L4box/L5box 区间证书 (双引擎独立复验). 审计发现并修复:
+  shipped verifier 的 C4 过期区域常数; dM2/dq 证书未覆盖 strip [1,20]x[y1,sqrt(41)]
+  (新增 strip 证书); riarith.iv_sqrt 非严格向外舍入 (不承重, 独立引擎全覆盖).
+- 2026-08-06: key-lemma-decomposition 状态升级为 INDEPENDENTLY_AUDITED_PROOF (run R-20260806T140000Z-keylemmaaudit-2F83B1, Hypatia): 第二独立实体从零重导全部符号/解析/证书层, 五份证书用独立 80 位定向 Decimal 区间引擎全部复验, IN = A*K(v) 的 caveat 解除 (atan(tan v) = v 后 diff = 0), riarith.iv_sqrt 非严格性确认不承重. 程序级 O2 义务 CLOSED. 经验: 独立审计的价值在于 (i) 不信任自审而逐项重导; (ii) 自建第二引擎避免同源错误; (iii) 符号恒等式必须显式消元验证 (atan(tan v) 简化).
+
+- 2026-08-06: [[gap-n1-reduction]] 修复并自审 (run R-20260806T140000Z-o1revise-2ED02A): 状态 REPAIRABLE_GAP -> CANDIDATE_COMPLETE_PROOF. 修复 R1 (S_rho = M_sqrt(rho) T_0 M_sqrt(rho) 对称核, 自伴 HS, Weyl 可用), R2/R4 (跳点 FH 经平滑逼近, 符号 dD/de = -(c_+ - c_-) f(x_j), 双侧导数处处存在), R3 (u_2 符号约定). 自审发现并修复 F-001 (HS 常数推导一行算术错, 最终界不变); 数值组全部通过且两脚本复跑逐位一致; 独立复审 Lemma 1/3 为关闭义务 O1 的前置步骤.
+- 2026-08-06: 新增 [[reflection-branch-reduction]] (run R-20260806T140000Z-o3ac1-42F931, Beauvoir): 残差反射 R1/R2, h 反射公式 R3, 积分恒等式 R4, 好根=零点 R5, C1 归约 R6; C1 归约到 (E1) 端点符号 + (M) M-形; 关键陷阱: secular 根扫描上限 2pi+1e-3 漏重垒高特征值 (R-103), MVT 充分条件 g1'>1 被否证 (CE-3).
+- 2026-08-07: 新增 [[lemma-A-doubleprime]] (INF 极限 run R-20260806T200000Z-inflimit-5B2C7D):
+  G(R,u) >= Dbar(u) 对 w=u*sqrt(R)>=2, 相位坐标 + def1 下界 + def2 上界 + 比值 0.8256;
+  注意 v = u/ell = -t cot t (不是 -cot t; f 关于 v 递减故旧证书仍有效, 但公式已更正),
+  三常数 C_z<0.337, f<=9, 比值 0.8256 由脚本 18-19 区间认证.
+- 2026-08-07: 新增 [[delta-bracketing]] (会话 30): 对称阱族相位 delta_1, delta_2, z_2, psi_2 的
+  初等双端括号 (g'>0, h'>0 符号证明), 引理 A'' 与 T1 上界的必备工具.
+- 2026-08-07: 新增 [[cot-series-certificate]] (会话 30): R(z)=1/z-cot z 余项在 (0,pi/8] 的
+  线性上界, C_z = 0.33681139899.. < 0.337 (区间认证), 亦用于 tan 余项.
+- 2026-08-07: 新增 [[inf-limit-comparison]] (会话 30): INF R->inf 极限的 T1/T2/T3 框架,
+  证明 lim_R R*m_R = Dbar(u*) = 24.9438661384324769 < 3*pi^2 (定理 A, 完整证明见
+  docs/SL_gap_n1_inf_limit_proof.pdf); 严格证明/计算机认证/数值证据分节标注的规范写入文档.
+- 2026-08-09: 更新 [[r1plus-perturbation-sheet]] (会话 34, run R-20260807T163000Z-c1center-9C4E2A):
+  手算原函数得 phi(b) 闭式与 phi'(b) 因式分解 (DERIVATION); phi' > 0 于 [a0,1)
+  CERTIFIED (mpmath.iv 200 位, 4000 胞, 最坏下界 8.896e-6) + STRICT (初等尾部
+  C_tail >= 9.651926); b_top* >= 7/10 > b0 STRICT (隐函数定理结构引理);
+  E1/U'/P0 归约到 Gap 1 (显式 O(eps) 界 + b_top(eps) <= 1 - delta_0);
+  记录 F-019 (w_k^1 除号误用乘号, 已修). 数值与严格标注分离: 数值交叉检验
+  仅作 EVIDENCE, 不构成证明.
+
+- 2026-08-09: 新增 [[phase-ratio-rigidity]] (O3a 完整证明, 会话 34): 传输能量守恒把
+  $R_1=R_2=0$ 化为严格单调相位比 $r_\tau$ 的等值, 强制 $a+b=1$; 对称线单变量化 +
+  KEY LEMMA ($\widetilde F_e^\prime(c)<0$ 于紧盒) 完成 single crossing. 审计脚本
+  scripts/audit_o3a_pdf_part1..4.py 全部通过; 主定理见 docs/SL_gap_n1_O3a_phase_rigidity_proof.pdf.
+- 2026-08-09 (会话 36): KEY LEMMA 去证书化第一步 -- $\partial_qM_2<0$ 于 $D$ 的
+  84+10 叶盒证书被完全解析证明取代 (引理 5.2--5.4): $q=1$ 基线 $M_2(1,w)=\pi h(w)<0$;
+  $\partial_q^2M_2<0$ 两段初等界; $g(w)=\partial_qM_2(1,w)<0$ 凹性+切线链
+  (界 $-1054523/114800$); 边界曲线 $w=\sqrt{2q+1}$ 的 $\theta$-参数化闭式
+  ($M_2<0$ 由 $2-(\pi/2-\theta)\sin2\theta\ge2-\pi/2$; $\partial_qM_2<0$ 由 $N(z)$
+  对 $\beta$ 凸性端点极大 + 有理上界 $R(z)\le-4.4344$, $T(z)\le-27.3646$);
+  尾部 $q\ge20$ 解析. 证书仅剩三处紧不等式 (C4 区间段 200 叶盒, $(G_2-G_1)'<0$
+  与 $\widetilde F_e''>0$ 各 128 叶盒), 文档五类改三类. 验证脚本
+  scripts/verify_o3a_M2_analytic.py (全部有理界复核). 诚实标注: 剩余证书重放内核
+  位于 Blueprint 项目 runs/R-20260808T143337Z-o3a-c1/, 非 kernel-checked.
+- 2026-08-09 (会话 37): KEY LEMMA 去证书化第二步 -- C4 区间段 $K>0$ 的 200 叶盒
+  证书与尾段处理被纯初等解析证明取代: $K=q^2L$, $q\ge1$; $L'=N/(10T^2)$,
+  分子 $N$ 在 $[2\pi/7,3\pi/10]$ 有精确有理下界
+  $88146367488708279/400000000000000>0$, 在 $[3\pi/10,2\pi/5)$ 为非负项之和
+  ($20T^4>0$), 故 $L$ 严格递增, $K\ge L\ge L(2\pi/7)>0$. 常数由 Machin 级数、
+  $\sqrt5$ 有理界与 $P(t)=t^6-21t^4+35t^2-7$ 精确核验. 证书仅剩两处紧盒
+  ($(G_2-G_1)'<0$, $\widetilde F_e''>0$, 各 128 叶盒). 验证脚本
+  scripts/verify_o3a_c4_analytic.py (PART A 精确 15 项全 PASS; PART B 数值
+  交叉检验仅作 E3 证据). 文档按 E1 严格解析 / E2 有限证书 / E3 数值扫描三类
+  证据显式标注 (O3a tex remark 1.2 与摘要).
+
+- 2026-08-09 (会话 38): O3a KEY LEMMA 去证书化第三步 -- I3 (F̃e''>0 于 Q=[1,2]x[0.4,0.5])
+  的三维盒证书 (128 叶盒, 隐式相位根夹取) 被二维相位参数化证书取代:
+  沿真实曲线显式反解 c=c1(x,q)=atan(1/(q tan x))/x 与 c=c2(γ,q)=atan(q tan γ)/(π−γ),
+  把 F̃e'' = M1J1 − M2J2 化为两个二维显式函数 J1_2d>0 (16 叶盒, 下界 +0.420803280435)
+  与 J2_2d<0 (67 叶盒, 上界 −0.062083223779). 盒端点 E1 证明:
+  α1(2,1/2)=arccos(2/3), α1(1,2/5)=5π/14, γ(1,1/2)=π/3 (闭式), γ(2,2/5)>0.655
+  (有理三角级数界链). 重要更正: 交接摘要盒下界 0.8411/0.6557 均大于真实端点
+  (arccos(2/3)=0.8410687, γ(2,2/5)=0.6556493), 原盒漏条, 修正为 0.841/0.655 后重算.
+  验证: scripts/verify_o3a_i3_2d.py 独立重放 (叶盒 JSON + 80 位点交叉 415 点 0 失败 +
+  叶面积覆盖审计). 文档 docs/SL_gap_n1_O3a_phase_rigidity_proof.pdf 升级为 20 页零警告,
+  概述文档同步 17 页零警告. 数值部分与严格证明按 E1/E2/E3 显式标注.
+
+- 2026-08-09 (会话 39): O3a I3 去证书化路线 (真曲线区域分解). 新工具
+  [[true-curve-region-decomposition]]: 把证书目标从完整二维盒收缩到真曲线区域
+  T1/T2 (c1,c2 in [0.4,0.5]), 裕量大幅放大 (J1 约 [9.0,18.6], J2 约 [-17.7,-6.0]).
+  E1 恒等式: G=u(H-A); dG/dx|_q = c1'(x,q)*J1_2d (故 G 的 x 单调性等价于
+  J1_2d>0, 解析化只需 q 方向); J1_2d = G^2 + Gc - (x*Phi/D)*Gx.
+  E1 单变量闭式 (q=1): J1_2d(x,1) = (2x/pi)^2*N(x) > 0 于 [pi/3,5pi/14];
+  J2_2d(gamma,1) = x^2*N(x)/pi^2 < 0 于 [2pi/3,5pi/7], N = 12+16x cot x+2x^2 cot^2 x - 2x^2
+  (x = pi - gamma). 角点值: G(pi/3,1) = -2-4pi sqrt3/27 < -2.8; Gc(pi/3,1) > 1.87;
+  Gx(x,1) <= 100pi/147 < 2.14; x*Phi/D <= 561/450.
+  剩余开放: 单调性引理 (M1) dG/dq<0, (M2) dGc/dq>0, (M3) dGx/dq<0 于 T1;
+  (M1')--(M3') 于 T2 + 一维边界估计. 符号已 E3 交叉 (dG/dq in [-1.66,-1.12] 等),
+  E1 证明未完成; 当前仍由 E2 叶盒证书覆盖. 导数分子结构: (x,theta) 曲线坐标下为
+  六正变量整系数多项式/恒正分母, 无超越区间运算. 文档新增子节
+  "证据分层与真曲线区域上的解析化路线" (24 页零警告, E1/E2/E3 逐条标注;
+  修复 end-document 位置使结论/符号速查重新入编).
+
+- 2026-08-09 (会话 40): O3a I3 去证书化第四步 -- J1_2d 侧完全解析化 (定理 5.8,
+  docs/SL_gap_n1_O3a_phase_rigidity_proof.tex, 25 页零警告): 七步初等链给出
+  J1_2d >= G^2 + Gc - uGx >= 4 + 187/100 - ((89/100)^2*8 - 4/3) = 6499/7500
+  > 1733/2000 > 0 于 T1 闭包. 步骤: (i) Phi/D >= 2/3; (ii) u >= 2x/3, u_x >= 2/3;
+  (iii) G < -2 故 G^2 >= 4; (iv) Gc = t1 + t2 >= 187/100 (t2 >= 0, t1 两段下界:
+  x <= pi/3 用 4/3 + 8pi/(27 sqrt3) > 187/100, x >= pi/3 沿曲线 t1(x,q) >= t1(x,1)
+  = (2x/pi)^2*W = f(x) 递增); (v) C = 3/x^2 + 2 csc^2 x <= 8; (vi) u <= 89/100
+  (sin 2theta >= sin(4x/5) 给出 u <= u_c, u_c <= 89/100 由 F'' >= 3/2 交错级数
+  有理包络; 更正: 旧 F'' >= 1.7 有理界方向有误); (vii) 组合
+  uGx <= u^2*C - 3uu_x/x. 关键更正: (a) 旧链 J1 >= 4 + 187/100 - 89/12 算术错误
+  (结果为负), 正确为 4 + 187/100 - ((89/100)^2*8 - 4/3) = 6499/7500;
+  (b) 删除错误恒等式 dG/dx|_q = c1'(x,q)*J1_2d (eq:gcurv), 正确分解为 eq:jdec
+  (Gc/Gx 为固定 (q,c) 偏导数). 证书表仅剩 J2_2d<0 (67 叶盒, 上界 -0.062083223779)
+  与 (G2-G1)'<0 (128 叶盒). 验证: scripts/verify_o3a_i3_t1_e1.py
+  (SHA-256 64e24ace3117772b6cd2ea2ac53986a75cad6c3fd797b61369472ac87ec6ab04,
+  5 部分全 PASS). [[true-curve-region-decomposition]] 与
+  [[phase-param-2d-certificate]] 状态更新; J1 16 叶盒证书保留为历史产物.
+- 2026-08-09 (会话 42): O3a I3 去证书化第五步 -- J2_2d 侧完全解析化
+  (定理 5.14, docs/SL_gap_n1_O3a_phase_rigidity_proof.tex, 30 页零警告):
+  废弃 (M1')--(M3') 单调性路线, 改用 W-分解链: 沿真实曲线
+  J2_2d = N/(16 Delta^4), N = 32 A^2 cg W, W = W1+...+W8 (整系数括号因子
+  B1..G5, 符号计算精确验证); 轨迹几何 + 括号符号/单调性 + 26 端点有理界 +
+  分段组合 mu = T_A+T_B+T_C-T_D >= 139/100 (角点精确 27921/20000).
+  单变量事实由新自研十进制定向舍入区间引擎认证 (misc/rigid_dec.py,
+  55 项全过, misc/e1_facts_ledger.json; 哈希 L7/L8/L9), 67 叶盒证书
+  与 L4 哈希已从清单移除, J2 侧不再依赖任何证书. 新增
+  [[interval-dec-directed-rounding]]; [[true-curve-region-decomposition]]
+  与 [[phase-param-2d-certificate]] 状态更新.
+
+- 2026-08-09 (会话 43): key-lemma-decomposition 更新 -- 伴随命题 (LOG)
+  (d/dc log(M~f1/M~f2) = G1 - G2 < 0) 完全解析化 (定理 thm:LOG + 引理 lem:G2m2,
+  docs/SL_gap_n1_O3a_phase_rigidity_proof.tex 32 页零警告): 恒等式
+  G2 = -Phi W0/D - 2P + 三估计 (Phi/D <= 65/66; W0 < 0.582; P < 0.576)
+  => G2 > -1.725 > -2; 配合 thm:j1e1(iii) 的 G1 < -2 与 lem:G1 覆盖全部参数.
+  旧 128 叶盒证书 (H' < 0 路线) 退役. O3a 文档四族证书全部解析化移除, 全文
+  零证书: 证据分层更新为 E1 (严格解析) + E2 (单变量事实验证器) + E3 (数值
+  扫描, 仅交叉检验). 验证: scripts/verify_o3a_LOG_analytic.py 全 PASS
+  (盒上四界 + 全域 min H = G2 - G1 ≈ 2.472).
+
+- 2026-08-09 (会话 44): O3a I3 去证书化收尾 -- J2_2d < 0 的 55 项单变量事实完全 E1 解析化
+  (docs/SL_gap_n1_O3a_phase_rigidity_proof.tex, 38 页零警告): 新证书链把最后一处 E2 依赖
+  (lem:brackets / lem:track(iv) / eq:endpoints 的 55 项事实, 原由 rigid_dec.py 认证) 全部
+  换成纯解析 E1 证明. 新工具 [[rational-envelope-certificates]]: 交错级数包络 (sin/cos/
+  arctan 部分和交替夹逼 + Machin pi) + 精确 Fraction 区间算术 + 二阶泰勒模型, 输出
+  misc/e1_certgen.py (L10) -> misc/e1_cert_ledger.json (L11, 57/57 PASS) ->
+  misc/e1_cert_tables.py (L12) -> 附录 A 五张证书表. 修复 misc/rigid1d.py 的 I.sqrt
+  宽度恒 1.0 bug. 文档证据分层只剩 E1 (严格解析) + E3 (数值扫描, 仅交叉检验); 旧十进制
+  区间引擎 (L7-L9) 与二维叶盒全部退役为历史记录. [[interval-dec-directed-rounding]]
+  状态改为已退役历史. 编译产物 docs/build/SL_gap_n1_O3a_phase_rigidity_proof.pdf.
+
+- 2026-08-10 (会话 47-48): rational-envelope-certificates 追加独立第三方重放引擎
+  (misc/audit_o3a_cert_replay.py, Decimal 80 位定向舍入 vs exact Fraction, 71/71
+  PASS); O3a 文档修复 F-210 (相位支选择, 新引理 lem:phasebranch, 纯 E1) 与 F-211
+  (thm:j1e1 step (iv) 尾部区间, 精确有理包络), 40 页零警告; 双代理对抗审计通过.
+  证书数据未动 (e1_certgen/ledger 哈希不变).
+
+- 2026-08-10 (会话 49): rational-envelope-certificates 内文 F-209 残留表述修正
+  ("arctan 22 项在 x <= 3/2 时余项 < 1e-12" 为修复前残留, 已按修正后的 lem:envseries
+  更新: 直接级数仅用于 v <= 1, 余项 <= v^45/45; 最差宽度 tau(131/200) ~ 1.8e-10);
+  O3a 完成度审计 8 脚本复跑全 PASS (part2b/part2c 网格与 mpmath 精度修正, 纯 E3).
+
+
+- 2026-08-10 (会话 50): 新增 [[switch-saturation-k-invariant]] -- 开关饱和与块能量
+  不变量. 来源: 用户提供两份 n>=2 相邻间距极值证明包 (SL_gap_nge2_finite_reduction_
+  proof_zh.pdf, SL_gap_nge2_exact_2n_switches_proof_zh.pdf), 项目忠实转录为
+  docs/SL_gap_nge2_finite_reduction_proof.pdf (15 页) 与
+  docs/SL_gap_nge2_exact_2n_switches_proof.pdf (16 页), 均零警告. 工具内容:
+  FH 完全盒饱和 (最大化/最小化两种指派), Wronskian 严格符号 -> 商严格递减 ->
+  精确零点公式 -> 零点=开关双向相等, 块能量接口跳量 = (r+ - r-)F, K = -2D 因子 2,
+  端点斜率比 q0>1, q1<-1 收紧为恰 2n 开关. 审计: 解析逐条 PASS; 数值
+  scripts/audit_nge2_pdfs.py Part A 40/40 + Part B 16/16, scripts/_hp_nge2.py
+  (mpmath 50 位), scripts/_smooth_nge2.py (光滑权 4/4). 文献: 未检索到直接等价
+  已发表定理; Willner-Mahar 1979 为明确既有工作风险; 不声称首创.
+- 2026-08-10: 新增 [[well-family-rigidity]] (阱族小 R 相位刚性, 会话续作): 定理已证 1<R<=3/2 时阱族任意 sign-consistent good root 必为对称根 a+b=1; 证明链 = 相位范围 + 传输能量守恒 (P(psi) 旋转) + 残差消元 + r~_tau 严格单调 (Psi~'<0 于 (0,pi) 的完全初等证明: 因式分解 W^2 sin^2 x Psi~' = -(q+1)(2N0+qN1)/8, H=4N0+N1>0 引理, tan(u/2) 有理化 N(t)>0 引理); 文档 docs/SL_gap_n1_well_rigidity_R32.pdf (11 页零警告); 缺口 (a) 对称线 1D 分析, (b) R>3/2 阱族刚性, (c) 定理 A 独立复核 均开放/CANDIDATE, 全部 EVIDENCE 登记于 misc/_well_explore_log.md.
+- 2026-08-10: 新增 [[symline-n1-monotonicity]] (会话 52, 缺口 (a) 闭合): 阱族对称线上 f(v) 唯一零点与 D(v) 单峰; KEY LEMMA (F~_e 在 (0,inf) 唯一零点 c* in (0,1/2)) 由 G1/G2 分解 + P1/P2 大余量初等界 + W0 引理 (精确有理证书) 闭合; 精确降维恒等式 S_R = -8q~^2(c+q~)^3 F~_e 与 D_c = -8(c+q~)q~(1-q~^2) F~_e (FH + 链式法则); 端点 D(0+)=3pi^2, D(1/2-)=3pi^2/R; 推论: INF 侧 1<R<=3/2 闭合, I(R)=D(v*(R))<3pi^2/R; 文档 docs/SL_gap_n1_symline_proof.pdf (10 页零警告) + summary (4 页); 失败路线 (F~_e' 符号误判, G2 自由区域为负, W0 可负需分情形) 与缺陷脚本 (sym_endpoint.py 因子 t, master_verify.py mode-2 范数) 如实登记.
+- 2026-08-10 (会话 56): 更新 [[well-family-rigidity]] 为全 R 版本 (缺口 (b) 闭合, 一切 R>1): 主定理改为 "一切 R>1 时阱族任意 sign-consistent good root 满足 a+b=1", 新五步链 (tau<2 经 alpha-凸性 D=alpha(2x)-2alpha(x)>0; 残差消元 r_tau(A)=r_tau(B) + Sigma2/Sigma1=tau^2 r_tau; r_tau 精确结构: 因子分解/L0/中间区递减/危险区引理/B' 反射分离 x+y>pi; L3 凸包/跨区/P-和通道排除; A=B => a+b=1), 全部 STRICT 初等; 文档 docs/SL_gap_n1_well_rigidity_allR_proof.pdf (14 页零警告) + 总结 docs/SL_gap_n1_well_rigidity_allR_summary.pdf (8 页零警告); 小 R 机制 (Psi~'<0 单调) 保留为特例备查; 交接错误更正与 EVIDENCE 登记于总结第 3/5 节与 misc/_well_explore_log.md 第 16 节; 剩余缺口 (a') R>3/2 对称线 1D, (c) 定理 A, (d) 全局 good-root, 不宣称 INF R>3/2 闭合.

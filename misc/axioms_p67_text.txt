@@ -1,0 +1,185 @@
+===== PAGE 7 =====
+Axioms 2025, 14, 115
+7 of 10
+Kn(x) :=
+[n/2]
+∑
+r=0
+an−2rSn−2r(x),
+(17)
+where K−2(x) = K−1(x) = 0, a0 = a1 = 1, and
+an := −(Kn−2, Sn−2)1,c
+(Sn, Sn−2)1,c
+(n ≥2).
+(18)
+Note that, by (16), each an is well defined when c > 0. Moreover, calculations show
+that K0(x) = S0(x) = 1, and K1(x) = S1(x) = x. We recall from Section 2 that both K0
+and K1 are eigenfunctions of the shifted Krein Laplacian operator Kc (corresponding to the
+eigenvalue λ = c). However, Kc has no other polynomial eigenfunctions.
+In [1], the authors proved the following results.
+Theorem 2. The Krein–Sobolev polynomials {Kn}∞
+n=0 and the sequence {an}∞
+n=0 have the follow-
+ing properties:
+(i)
+Kn(−x) = (−1)nKn(x);
+(ii)
+Kn = anSn + Kn−2;
+(iii)
+The sequence {an}∞
+n=0 satisfies a0 = a1 = a2 = a3 = 1 and, for n ≥2,
+an+2 = an
+
+1 + 4n2 −1
+c
+
++ 2n + 1
+2n −3(an −an−2);
+(19)
+(iv)
+an+2 ≥an; moreover, an ≥1 for each n ∈N0;
+(v)
+For n ≥2,
+(anSn + Kn−2, Sn−2)1,c = 0;
+(vi)
+Kn is a polynomial of degree exactly n, and Kn(1) = 1.
+Theorem 3. The Krein–Sobolev polynomials {Kn}∞
+n=0, defined in (17), form a complete orthog-
+onal set of polynomials in the first left-definite space (H1[−1, 1], (·, ·)1,c), defined in (1) and (2),
+associated with the shifted Krein Laplacian operator Kc in L2(−1, 1). Moreover,
+(Km, Kn)1,c =
+2c
+2n + 1anan+2δn,m
+(n, m ∈N0)
+where δn,m is the Kronecker delta function.
+Theorem 4. The roots of the Krein–Sobolev orthogonal polynomials {Kn}∞
+n=1 are real, simple, and
+lie in the interval (−1, 1).
+5. An Explicit Representation of the Krein–Sobolev Polynomials
+As shown by Schäfke [3], the Althammer polynomials {An}∞
+n=0 satisfy the following
+properties:
+(i)
+A0(x) = 1, A1(x) = x and, for n ≥2,
+An(x) =
+[n/2]
+∑
+k=0
+a′
+n−2kSn−2k,
+where Sn is defined in (15), and the sequence {a′
+n}∞
+n=0 satisfies the recurrence relation
+a′
+0 = a′
+1 = 1 and
+a′
+n+2 = a′
+n(1 + (4n2 −1)λ) +
+2n + 1
+2n −3
+
+(a′
+n −a′
+n−2)
+(n ≥2).
+(20)
+===== PAGE 8 =====
+Axioms 2025, 14, 115
+8 of 10
+Furthermore, each a′
+n > 0 and is explicitly given by
+a′
+n =
+[(n−1)/2]
+∑
+k=0
+λ
+4
+k
+1
+(2k)!
+(n + 2k −1)!
+(n −2k −1)!
+(n ∈N);
+(21)
+(ii)
+For each n ∈N0,
+An(−x) = (−1)nAn(x);
+(iii)
+For each n, m ∈N0, {An}∞
+n=0 satisfy the orthogonality relationship
+⟨An, Am⟩λ =
+2
+2n + 1a′
+na′
+n+2δn,m,
+where ⟨·, ·⟩λ is defined in (5).
+From (20), when λ = 1/c (see (6)), we see that the Althammer coefficients {a′
+n}∞
+n=2
+satisfy the exact same recurrence relation as the Krein–Sobolev coefficients {an}∞
+n=2 in (19).
+Moreover, since
+a′
+0 = a′
+2 = a0 = a2,
+it follows that
+a′
+2n = a2n
+(n ∈N0),
+and, consequently, when λ = 1/c, we see that
+K2n(x) = A2n(x).
+However, since a′
+3 = 1 + 1/c̸ = a3 = 1, the odd connection coefficients {a2n−1}∞
+n=1 for
+the Krein–Sobolev polynomials are different from the Althammer coefficients {a′
+2n−1}∞
+n=1
+given explicitly in (21). In fact, the unique solution to (19) when n is odd, that is to say,
+a2n+1 =
+8n −6
+4n −5 + 16n2 −16n + 3
+c
+
+a2n−1 −
+4n −1
+4n −5
+
+a2n−3.
+with the initial conditions a1 = a3 = 1, is given explicitly by
+a2n+1 =
+n−1
+∑
+k=0
+λ
+4
+k (n −k)
+(n + k)
+(2n + 2k + 1)!
+(2n −2k + 1)!(2k)!
+(n ∈N0).
+(22)
+An algebraic proof (22) that satisfies this initial value difference problem is tedious to
+calculate. Remarkably, we note that Wolfram’s Mathematica instantly verifies the solution
+(22) with the command FullSimplify.
+We summarize our main result in the following theorem.
+Theorem 5. With the polynomials {Sn}∞
+n=0 defined in (15) we have the following formula for each
+Krein-Sobolev polynomial of degree n ∈N :
+K2n(x) =
+n
+∑
+k=0
+a2n−2kS2n−2k(x),
+(23)
+where
+a0 = a2 = 1 and a2m =
+m−1
+∑
+k=0
+λ
+4
+k
+(2m + 2k −1)!
+(2m −2k −1)!(2k)!

@@ -1,0 +1,90 @@
+471 \end{lemma}
+472 
+473 \begin{proof}
+474 将 \eqref{eq:alphap} 代入 \eqref{eq:D}。对任一相位 $x=\alpha_k$,
+475 \begin{equation}
+476 	\begin{aligned}
+477 		\frac{d}{dc}\bigl((c+q)^2x^2\bigr)
+478 		&=2(c+q)x^2+2(c+q)^2xx'\\
+479 		&=-\frac{2q(c+q)(q^2-1)x^2\sin^2x}{q+c\Phi_q(x)}.
+480 	\end{aligned}
+481 \end{equation}
+482 两模相减后得到
+483 \begin{equation}
+484 	D_c=\frac{8(c+q)(q^2-1)}{q}\widetilde F_e(c).
+485 	\label{eq:Dc}
+486 \end{equation}
+487 
+488 另一方面, 令 $\hat y_k$ 按加权 $L^2$ 范数归一化。移动两个对称界面的
+489 Feynman--Hellmann 公式为
+490 \begin{equation}
+491 	\frac{d\lambda_k}{d\xi}=(R-1)\lambda_k\bigl(\hat y_k(\xi)^2+\hat y_k(1-\xi)^2\bigr).
+492 \end{equation}
+493 奇偶性使平方值相等, 故
+494 \begin{equation}
+495 	D_\xi=2(q^2-1)\bigl(\lambda_2\hat y_2(\xi)^2-\lambda_1\hat y_1(\xi)^2\bigr)
+496 	=-2(q^2-1)S_R(\xi).
+497 \end{equation}
+498 再由 $D_\xi=D_c\,c_\xi$、\eqref{eq:xi} 与 \eqref{eq:Dc} 即得 \eqref{eq:dimred}。
+499 其前因子严格为正。
+500 \end{proof}
+501 
+502 \section{对称标量残差的唯一零点}
+503 
+504 \subsection{\texorpdfstring{容易处理的区域 $c\ge1/2$}{容易处理的区域 c ge 1/2}}
+505 
+506 固定 $c>0$, 记
+507 \begin{equation}
+508 	\varphi_c(x):=\frac{x^2\sin^2x}{q+c\Phi_q(x)}.
+509 \end{equation}
+510 在 $0<x<\pi/2$ 上,
+511 \begin{equation}
+512 	\frac{d}{dx}\log\varphi_c(x)
+513 	=\frac2x+2\cot x-\frac{2c(q^2-1)\sin x\cos x}{q+c\Phi_q(x)}.
+514 \end{equation}
+515 由于
+516 \begin{equation}
+517 	\frac{c}{q+c\Phi_q(x)}<\frac{1}{\Phi_q(x)}
+518 \end{equation}
+519 以及
+520 \begin{equation}
+521 	\frac{(q^2-1)\sin x\cos x}{\Phi_q(x)}
+522 	=\frac{(q^2-1)\tan x}{1+q^2\tan^2x}<\cot x,
+523 \end{equation}
+524 故 $\varphi_c$ 严格递增。
+525 
+526 若 $c\ge1$, 则 $\alpha_1<\alpha_2\le\pi/2$, 从而
+527 \begin{equation}
+528 	\widetilde F_e(c)<0.
+529 \end{equation}
+530 若 $1/2\le c<1$, 写
+531 \begin{equation}
+532 	\alpha_2=\pi-\gamma,\qquad 0<\gamma<\pi/2.
+533 \end{equation}
+534 奇相位方程等价于
+535 \begin{equation}
+536 	E(\gamma)-c\gamma=\pi(1/2-c)\le0.
+537 \end{equation}
+538 函数 $E(x)-cx$ 严格递减, 并在 $x=\alpha_1$ 为零, 因此 $\gamma\ge\alpha_1$。于是
+539 \begin{equation}
+540 	\widetilde M_f(\alpha_2;c)=\left(\frac{\pi-\gamma}{\gamma}\right)^2\varphi_c(\gamma)
+541 	>\varphi_c(\alpha_1)=\widetilde M_f(\alpha_1;c),
+542 \end{equation}
+543 而端点 $c=1$ 也由连续性和 $\alpha_1<\alpha_2=\pi/2$ 得到严格不等式。所以
+544 \begin{equation}
+545 	\widetilde F_e(c)<0,\qquad c\ge\frac12.
+546 	\label{eq:Feneg}
+547 \end{equation}
+548 另一方面, 由相位曲线直接看出
+549 \begin{equation}
+550 	\alpha_1(c)\to\frac{\pi}{2},\qquad \alpha_2(c)\to\pi\qquad(c\to0^+),
+551 \end{equation}
+552 因而
+553 \begin{equation}
+554 	\widetilde F_e(c)\to\frac{\pi^2}{4q}>0.
+555 	\label{eq:Fepos}
+556 \end{equation}
+557 
+558 \subsection{关键引理}
+559 
+560 \begin{theorem}[KEY LEMMA, 证书支持的全参数不等式]\label{thm:keylemma}

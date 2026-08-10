@@ -1,0 +1,33 @@
+会话 26 (KEYLEMMA2b run 完成, subagent Plato, 本文件维护)
+- 任务: 承接中断 run R-20260806T050000Z-keylemma2-5A35E5, 独立验证四份区间证书,
+  完成 M2/CORNER/C4/L4box/L5box 解析证明, 组装 candidate_proof.md + audit_report.md
+  及全套标准工件. 已按要求未调用 manage-math-research-program.
+- 结果状态 (verbatim): CANDIDATE_COMPLETE_PROOF.  KEY LEMMA ((LOG) 与 (FP) 两形式)
+  对所有 q>1, c in (0,1/2) 证明完成; 继承义务 R1, R2, L4box, L5box 全部关闭.
+- 证书验证 (关键第一步, 已如实报告):
+  - shipped verifier: dM2dq PASS (-0.19024), C4 仅 tiling 失败 (verifier 内 C4 区域常数
+    过期: x0/x1 均非证书实际区域; 叶重算 0 符号失败), L4box PASS (-4.65692), L5box PASS
+    (+6.24286).
+  - 修正常数 verifier: 四份证书全部 PASS.
+  - 独立第二引擎 (mpmath.iv 50 dps + 自有严谨 atan + 自有二分): 四份证书全部 PASS
+    (worst -0.19024 / 2.49716 / -4.84160 / 8.37938, 0 符号/重叠/点失败).
+- 审计发现与修复:
+  - dM2/dq 证书区域上界 y1 是 sqrt(41) 的 40 位截断 (低 4.2e-40), 未覆盖
+    [1,20]x[y1,sqrt(41)]. 新增 cert_dM2dq_strip_boxes.json (10 叶, 精确平方
+    (y1+1e-30)^2 > 41), 独立复验 PASS (worst -448.745).
+  - riarith.iv_sqrt 非严格向外舍入 (Decimal.sqrt 用最近舍入, 下界可高出真值 ~1e-60);
+    不承重 (所有符号结论由 sound 的 mpmath.iv 引擎独立重导, 0 失败), 已在
+    audit_report.md 第 4 节与 repro_manifest.md 登记.
+  - C4 曲线恒等式 IN=A*K(v) 数值验证 + 证书重算覆盖, sympy 未完全符号归零
+    (atan(tan) 残项), 如实标注不宣称符号相等.
+- 工件 (run root): runs/rigorous-open-math-research/R-20260806T070000Z-keylemma2b-0A6D8F/
+  - candidate_proof.md (22 KB), audit_report.md (verdict PASS), problem_contract.md,
+    repro_manifest.md, status_and_literature.md, obligation_graph.md,
+    approach_registry.md, research_ledger.md, counterexample_log.md, run-manifest.json.
+  - reproducibility/: 15 个脚本 + cert_dM2dq_strip_boxes.json + cert_reeval_output/
+    (全部 fresh 捕获: shipped/fixed/independent/strip/tail/formulas/analytic/
+    parent-bases/symbolic/fresh-audit).
+- 工具库: tools/key-lemma-decomposition.md 追加 2026-08-06 关闭更新; tools/README.md
+  维护日志登记.
+- 后续: 交由 manager 合流 SL_gap_n1_proof.tex (本 run 不编译); 若需升级为
+  INDEPENDENTLY_AUDITED_PROOF 需第二独立实体审计或形式化.

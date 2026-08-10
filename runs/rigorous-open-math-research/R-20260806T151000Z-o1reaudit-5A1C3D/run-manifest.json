@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260806T151000Z-o1reaudit-5A1C3D",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260806-o1-reaudit-5A1C3D",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-06T15:10:00Z",
+  "completed_at": "2026-08-06T15:57:00Z",
+  "run_root": "runs/rigorous-open-math-research/R-20260806T151000Z-o1reaudit-5A1C3D",
+  "task_packet_path": "agenda/task-packets/Q-20260806-o1-reaudit-5A1C3D.md",
+  "task_packet_sha256": "323097EEFDD4F06D886C1D146CBA941CF5AAB20F2D38D4E303C74DBA429C4FD7",
+  "upstream_status_verbatim": "INDEPENDENTLY_AUDITED_PROOF",
+  "artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "740C302EA2FC57A890B16024EB3DD90B45F7B0A78D45D6A941F4094CA11FB446",
+      "role": "normalized audit contract"
+    },
+    {
+      "path": "obligation_graph.md",
+      "sha256": "23F6B77A2C48779107662AE19A0DB882818DE03284A6418A0563F1401826A008",
+      "role": "O1a/O1b audit obligations + dependencies"
+    },
+    {
+      "path": "approach_registry.md",
+      "sha256": "CF18A74B07791A867C1469534FB81145291A58FE9959951F93D8D6A7C2E3E1F8",
+      "role": "audit routes (analytic, numeric, adversarial, consistency)"
+    },
+    {
+      "path": "candidate_proof.md",
+      "sha256": "67F7339C5EBE5BF782709BE4183D32B92BF524591F6F167411B90FB733642305",
+      "role": "audited-artifact reference + normalized statement"
+    },
+    {
+      "path": "audit_report.md",
+      "sha256": "9E249962B9F6D4C6A1EFE88B84702EC89D9150D5C794F078D999743C10B4DCAC",
+      "role": "independent re-audit report (deliverable)"
+    },
+    {
+      "path": "research_ledger.md",
+      "sha256": "150B56D8C4E9BB9BB6FF94ADEA407BF99AFF4B7D7F9A0860DF9B9E29C7E5599F",
+      "role": "R-001..R-013"
+    },
+    {
+      "path": "counterexample_log.md",
+      "sha256": "120C48DF4DA11F764C29B2DA794124291D81035A2E0674C0A5E27AABDB4C2959",
+      "role": "C-001..C-008"
+    },
+    {
+      "path": "status_and_literature.md",
+      "sha256": "54B38FBC531BC79C38B660A3A90E7AE281EC65E068BF28FA1DE4798D40896F27",
+      "role": "premise status + novelty context"
+    },
+    {
+      "path": "repro_manifest.md",
+      "sha256": "EB2CE1A3D9FA413226BF4A0FBD7560AD465701A58B6FE64E04FF0341CA1D9E54",
+      "role": "reproducibility manifest"
+    },
+    {
+      "path": "reproducibility/",
+      "sha256": null,
+      "role": "4 independent verify scripts + recorded out.json + fd_lib.py + tm_lib.py"
+    }
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10.11 (numpy 2.2.6, scipy 1.15.3)",
+      "PowerShell 7 (UTF-8 no BOM file I/O)"
+    ],
+    "formal_systems": [],
+    "unknown_fields": [
+      "model"
+    ]
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "independent re-audit of O1 Lemma 1 (O1a) and Lemma 3 (O1b); verdicts PASS/PASS; F-001 chain verified",
+    "status upgraded from CANDIDATE_COMPLETE_PROOF (producer) to INDEPENDENTLY_AUDITED_PROOF (O1 scope) after the independent verifier pass",
+    "audited candidate proof NOT modified; O2/O3 out of scope",
+    "manage-math-research-program was not called from inside the solver run; timestamps follow the packet run-ID local-time convention (Asia/Shanghai)"
+  ]
+}

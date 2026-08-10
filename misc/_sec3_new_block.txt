@@ -1,0 +1,110 @@
+﻿(相位坐标归约见 run R-20260805T000000Z-gapn1-a1b2c3, agentC\_O3b\_boundary.md; 本版把该工件中上界的三区域论证完整移植, 并修正旧版``上界同理''摘要的方向错误; 本证明全部为严格论证 (STRICT/E1), 无数值成分.)
+记 $\mu=\sqrt R>1$, $c:=\mu(1-t)/t\in(0,\infty)$, 令
+$\theta(x):=\arctan(\mu\tan x)$ 为连续分支 ($\theta(0)=0$, $\theta(x+\pi)=\theta(x)+\pi$),
+$x_1<x_2$ 为 $\theta(x)+cx=k\pi$ ($k=1,2$) 的前两个根. 由匹配条件 (agentC 命题 0.1) 得
+\begin{equation}
+	\lambda_k=x_k^2\frac{(\mu+c)^2}{\mu^2},\qquad
+	D(t)=\frac{(\mu+c)^2}{\mu^2}\bigl(x_2^2-x_1^2\bigr)=:\frac{W(\mu,c)}{\mu^2}.
+\end{equation}
+$\theta$ 严格递增, 且
+\begin{equation}
+	\theta'(x)=\frac{\mu(1+\tan^2x)}{1+\mu^2\tan^2x}\in[1/\mu,\mu],
+	\qquad
+	\theta''(x)=-\frac{2\mu(\mu^2-1)\tan x\,\cos^2x}{(1+\mu^2\tan^2x)^2},
+\end{equation}
+故 $\theta$ 在 $(0,\pi/2)\cup(\pi,3\pi/2)$ 上凹 (图象位于弦上方, $\theta(x)\ge x$),
+在 $(\pi/2,\pi)\cup(3\pi/2,2\pi)$ 上凸 ($\theta(x)\le x$). 又
+$x_k'(c)=-x_k/(\theta'(x_k)+c)<0$, 且 $\theta(\pi/2)=\pi/2$, $\theta(3\pi/2)=3\pi/2$
+代入 secular 方程得: $x_1=\pi/2$ 当且仅当 $c=1$, $x_2=3\pi/2$ 当且仅当 $c=1/3$.
+
+\emph{下界 (对所有 $c>0$).} 由 $\theta'<\mu$ 于 $(0,x_1]$ 严格成立 (等号仅在
+$\tan x=0$ 处), $\pi=\theta(x_1)+cx_1<\mu x_1+cx_1$, 得 $x_1>\pi/(\mu+c)$;
+两式相减得 $\pi-c(x_2-x_1)=\theta(x_2)-\theta(x_1)$, 且 $\theta'<\mu$ 在
+$(x_1,x_2)$ 上除至多孤立点外成立, 故 $x_2-x_1>\pi/(\mu+c)$. 于是
+$x_1+x_2>3\pi/(\mu+c)$, 因此
+\begin{equation}
+	W=(\mu+c)^2(x_2-x_1)(x_2+x_1)>3\pi^2,\qquad
+	D=W/\mu^2>3\pi^2/R.
+\end{equation}
+
+\emph{上界, 区域 I ($c\ge1$).} 此时 $x_1\in(0,\pi/2]$, $\theta$ 凹, $\theta(x_1)\ge x_1$,
+故 $\pi=\theta(x_1)+cx_1\ge(1+c)x_1$, 即 $x_1\le\pi/(1+c)$.
+由 $\theta'\ge1/\mu$ (MVT: $\theta(x_2)\ge x_2/\mu$, $\theta(x_2)-\theta(x_1)\ge(x_2-x_1)/\mu$):
+\begin{equation}
+	x_2\le\frac{2\pi}{c+1/\mu}=\frac{2\pi\mu}{1+\mu c},\qquad
+	x_2-x_1\le\frac{\pi}{c+1/\mu}=\frac{\pi\mu}{1+\mu c}.
+\end{equation}
+因此
+\begin{equation}
+	W\le(\mu+c)^2\frac{\pi\mu}{1+\mu c}
+	\Bigl(\frac{2\pi\mu}{1+\mu c}+\frac{\pi}{1+c}\Bigr)
+	=3\pi^2\mu^2\,G(\mu,c),
+\end{equation}
+其中
+\begin{equation}
+	G(\mu,c):=\frac{(\mu+c)^2}{3\mu^2}
+	\Bigl(\frac{2\mu^2}{(1+\mu c)^2}+\frac{\mu}{(1+\mu c)(1+c)}\Bigr).
+\end{equation}
+直接求导得
+\begin{equation}
+	\frac{\partial G}{\partial\mu}
+	=-\frac{(c+\mu)\bigl(6c^3\mu^2+4c^2\mu^2+3c^2\mu-5c\mu^2+c-4\mu^2-\mu\bigr)}
+	{3\mu^2(c+1)(1+\mu c)^3}.
+\end{equation}
+令 $s:=\mu-1\ge0$, $t:=c-1\ge0$, 展开整理得中括号
+\begin{equation}
+	6c^3\mu^2+4c^2\mu^2+3c^2\mu-5c\mu^2+c-4\mu^2-\mu=P(s,t),
+\end{equation}
+\begin{equation}
+	P(s,t):=6s^2t^3+22s^2t^2+21s^2t+s^2+12st^3+47st^2+48st+4s
+	+6t^3+25t^2+28t+4>0
+\end{equation}
+(所有系数非负且常数项 $4>0$). 故 $\partial G/\partial\mu<0$ 于 $\mu>1$;
+又 $G(1,c)=1$ 直接代入, 得 $G(\mu,c)<1$, 即 $W<3\pi^2\mu^2$.
+
+\emph{上界, 区域 II ($1/3\le c\le1$).} 此时 $x_1\in[\pi/2,\pi]$ ($\theta$ 凸,
+$\theta(x_1)\le x_1$), $\pi=\theta(x_1)+cx_1\le(1+c)x_1$, 即 $x_1\ge\pi/(1+c)$;
+$x_2\in[\pi,3\pi/2]$ ($\theta$ 凹, $\theta(x_2)\ge x_2$),
+$2\pi=\theta(x_2)+cx_2\ge(1+c)x_2$, 即 $x_2\le2\pi/(1+c)$. 于是
+\begin{equation}
+	x_2^2-x_1^2\le\frac{(2\pi)^2-\pi^2}{(1+c)^2}=\frac{3\pi^2}{(1+c)^2},
+	\qquad
+	W\le 3\pi^2\frac{(\mu+c)^2}{(1+c)^2}<3\pi^2\mu^2,
+\end{equation}
+末步因 $(\mu+c)^2<\mu^2(1+c)^2\iff c<\mu c\iff \mu>1$.
+
+\emph{上界, 区域 III ($0<c\le1/3$).} 此时 $x_1\in(\pi/2,\pi)$, $x_2\in(3\pi/2,2\pi)$.
+令 $\varepsilon_k:=k\pi-x_k\in(0,\pi/2)$, $\delta_k:=cx_k$, 由
+$\theta(k\pi-\varepsilon)=k\pi-\arctan(\mu\tan\varepsilon)$, secular 方程化为
+$\tan\delta_k=\mu\tan\varepsilon_k>0$ ($k=1,2$). 因 $\delta_2=cx_2\in(0,2\pi/3)$
+且 $\tan\delta_2>0$, 故 $\delta_2\in(0,\pi/2)$; 于是 $s_k:=\tan\delta_k$ 满足
+$0<s_1<s_2$ (因 $\delta_k$ 与 $x_k$ 同序, $\tan$ 于 $(0,\pi/2)$ 严格递增). 记
+\begin{equation}
+	p_k:=\theta'(x_k)=\frac{\mu^2+s_k^2}{\mu(1+s_k^2)},\qquad
+	x_k'(c)=-\frac{x_k}{p_k+c}.
+\end{equation}
+设 $U:=x_2^2-x_1^2$, 则 $W'=2(\mu+c)U+(\mu+c)^2U'$,
+$U'=-2x_2^2/(p_2+c)+2x_1^2/(p_1+c)$. 断言 $W'<0$ 于 $(0,1/3]$: $W'<0$ 等价于
+\begin{equation}
+	U<\frac{(\mu+c)x_2^2}{p_2+c}-\frac{(\mu+c)x_1^2}{p_1+c}.
+\end{equation}
+而 $(\mu+c)/(p_k+c)=f(s_k)$, 其中
+\begin{equation}
+	f(s):=\frac{\mu(\mu+c)(1+s^2)}{\mu(\mu+c)+s^2(1+\mu c)},
+	\qquad
+	f(s)-1=\frac{s^2(\mu^2-1)}{\mu(\mu+c)+s^2(1+\mu c)}>0,
+\end{equation}
+故上式右端减左端等于
+\begin{equation}
+	(\mu^2-1)\bigl[h(s_2,x_2)-h(s_1,x_1)\bigr],
+	\qquad
+	h(s,x):=\frac{s^2x^2}{\mu(\mu+c)+s^2(1+\mu c)}.
+\end{equation}
+$h$ 对 $s,x>0$ 均严格递增 ($\partial h/\partial s=2\mu s x^2(\mu+c)/[\cdot]^2>0$,
+$\partial h/\partial x=2s^2x/[\cdot]>0$), 且 $s_2>s_1$, $x_2>x_1$, 故差为正,
+$W'<0$. 由 $c\to0$ 时 $x_k\to k\pi$ 的连续性, $W(\mu,c)<W(\mu,0)=3\pi^2\mu^2$.
+
+三区域覆盖所有 $c>0$, 上界 $D<3\pi^2$ 得证; 镜像对称 ($t\mapsto1-t$) 覆盖另一
+方向的两块配置. 端点极限: $c\to0$ ($t\to1$) 时 $x_k\to k\pi$, $D\to3\pi^2$
+($\rho\equiv1$); $c\to\infty$ ($t\to0$) 时 $x_k\sim k\pi/(\mu+c)$, $D\to3\pi^2/R$
+($\rho\equiv R$). \qed

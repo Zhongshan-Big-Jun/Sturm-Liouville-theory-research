@@ -1,0 +1,665 @@
+﻿% 用法: xelatex SL_gap_n1_symline_proof.tex (两遍, -output-directory=build)
+% 主题: 缺口 (a) 闭合 - 阱族对称线上 f(v) 唯一零点与 D(v) 单峰结构的完全初等证明
+% 会话: 2026-08-10 续作 (会话 52); 证据分层: E1 = 严格解析证明 (STRICT), E3 = 数值交叉检验 (EVIDENCE, 不构成证明)
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+
+\title{缺口 (a) 闭合: 阱族对称线上 $f$ 的唯一零点与 $D$ 的单峰结构\\
+\large 完全初等证明 (附 INF 侧 $1<R\le 3/2$ 闭合推论)}
+\author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
+\date{2026-08-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文闭合 \texttt{SL\_gap\_n1\_well\_rigidity\_R32} 中登记的剩余缺口 (a):
+对阱族对称线 $\rho_v=R\cdot\mathbf 1_{[0,v)\cup(1-v,1]}+\mathbf 1_{[v,1-v]}$
+($1<R\le3/2$), 严格证明 $v\in(0,1/2)$ 上 (i) $f(v):=f_{v,1-v}(v)$ 恰有一个零点;
+(ii) $D(v):=\lambda_2-\lambda_1$ 有唯一临界点且为整体极小 (严格递减后严格递增);
+(iii) 端点极限 $D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$, 且 $D(v^*)<3\pi^2/R$.
+证明完全初等: 相位分支把对称线参数化为 $c\in(0,\infty)$; 精确降维恒等式
+$S_R(\xi)=-8\tilde q^2(c+\tilde q)^3\widetilde F_e(c)$ 与
+$D_c=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e(c)$ 把 $f$ 的零点与 $D$ 的
+临界点归结为标量函数 $\widetilde F_e$ 的唯一零点 (Feynman--Hellmann + 链式法则, 纯
+E1). KEY LEMMA ($c\in(0,1/2)$, $\tilde q\in[\sqrt{2/3},1)$) 用分解
+$\widetilde F_e'=(M_1-M_2)G_1+M_2(G_1-G_2)$ 加两个大余量初等界闭合: $G_1<-\frac43$
+(P1, 用 $\Phi_1\ge\tilde q^2$ 与 $W_1\ge3$) 与 $G_2>-\frac43$ (P2, 用 $W_0$ 引理:
+$W_0(\gamma)=3-2(\pi-\gamma)\cot\gamma$ 在 $(0,\Gamma]$ 严格递增且
+$W_0(\Gamma)<\frac43\sqrt{2/3}$, 证书为精确有理不等式). 易区 $c\ge1/2$ 用单调
+$\varphi_c$ 与相位比较. 全部结论依据 E1; 数值交叉检验单列于附录并标注 \EVID{}.
+推论: 结合 O1-INF 归约 (\texttt{INDEPENDENTLY\_AUDITED\_PROOF}) 与小 $R$ 阱族刚性
+定理 (\texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf}, STRICT), $1<R\le3/2$ 时
+INF 下确界 $I(R)$ 在对称阱 $[R,1,R]$ 达到, $I(R)=D(v^*(R))<3\pi^2/R$.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题与主定理}
+
+\subsection{阱族与对称线}
+
+固定 $R>1$, $m:=\sqrt R$, $\tilde q:=1/m=R^{-1/2}\in(0,1)$. 对 $0<a<b<1$ 定义
+阱族密度
+\begin{equation}
+	\rho_{a,b}(x):=
+	\begin{cases}
+		R, & x\in[0,a)\cup(b,1],\\
+		1, & x\in[a,b].
+	\end{cases}
+\end{equation}
+考虑 Dirichlet 边值问题 $-y''=\lambda\rho_{a,b}\,y$, $y(0)=y(1)=0$, 记
+$0<\lambda_1<\lambda_2$ 与 $D(a,b):=\lambda_2-\lambda_1$. 设 $y_k$ 为斜率归一化
+($y_k(0)=0$, $y_k'(0)=1$) 特征函数, $n_k:=\int_0^1\rho_{a,b}\,y_k^2\,dx$,
+$\hat y_k:=y_k/\sqrt{n_k}$,
+\begin{equation}
+	f_{a,b}(x):=\lambda_2\hat y_2(x)^2-\lambda_1\hat y_1(x)^2,
+	\qquad R_1(a,b):=f_{a,b}(a),\quad R_2(a,b):=f_{a,b}(b).
+	\label{eq:resid}
+\end{equation}
+对称线指 $a=v$, $b=1-v$, $v\in(0,1/2)$; 记 $\rho_v:=\rho_{v,1-v}$,
+$D(v):=D(v,1-v)$, $f(v):=f_{v,1-v}(v)$.
+
+\subsection{主定理}
+
+\begin{theorem}[缺口 (a) 闭合]\label{thm:main}
+设 $1<R\le3/2$, 即 $\tilde q\in[\sqrt{2/3},1)$. 则:
+\begin{enumerate}
+	\item[(i)] $f(v)$ 在 $(0,1/2)$ 内恰有一个零点 $v^*(R)$, 且
+		$v^*(R)\in\bigl(1/(m+2),\,1/2\bigr)$;
+	\item[(ii)] $D(v)$ 在 $(0,1/2)$ 内有唯一临界点, 即 $v^*(R)$; 且 $D$ 在
+		$(0,v^*)$ 严格递减、在 $(v^*,1/2)$ 严格递增, 故 $v^*$ 是 $D$ 在
+		$(0,1/2)$ 上的整体极小点;
+	\item[(iii)] $D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$, 且
+		$D(v^*)<3\pi^2/R<3\pi^2$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[INF 侧闭合, $1<R\le3/2$]\label{cor:inf}
+设 $I(R):=\inf\{D(\rho):1\le\rho\le R\ \text{a.e.}\}$. 在 O1-INF 归约定理
+($I(R)=\min_{0\le a\le b\le1}D^{well}(a,b)$, 已独立审计) 与小 $R$ 阱族刚性定理
+(任意 sign-consistent good root 满足 $a+b=1$, STRICT) 之下, 定理 \ref{thm:main}
+给出: 对 $1<R\le3/2$,
+\begin{equation}
+	I(R)=D\bigl(\rho_{v^*(R)}\bigr)<\frac{3\pi^2}{R},
+\end{equation}
+其中 $v^*(R)$ 为定理 \ref{thm:main} 的唯一零点/临界点; 即 INF 下确界在对称阱
+$[R,1,R]$ 达到. 证明见 \S\ref{sec:cor} (边界情形由 O3b 两块界排除).
+\end{corollary}
+
+\begin{remark}[证据纪律]\label{rem:disc}
+定理 \ref{thm:main} 与推论 \ref{cor:inf} 的陈述和证明完全基于 (E1) 解析推导.
+本文中出现的所有数值数据 (附录 \ref{app:evid}) 均为 \EVID{} 交叉检验, 只用于
+发现与核实错误, 不构成任何结论依据. 精确有理不等式 (附录 \ref{app:cert}) 属于
+(E1).
+\end{remark}
+
+\section{相位分支与精确降维}\label{sec:phases}
+
+\subsection{对称线上的参数化}
+
+对 $\rho_v$ 用反射对称性 ($\rho_v(x)=\rho_v(1-x)$): $\lambda_1$ 的特征函数偶对称
+($y_1'(1/2)=0$), $\lambda_2$ 的特征函数奇对称 ($y_2(1/2)=0$, 单零点
+$z_0=1/2$). 记 $s_k:=\sqrt{\lambda_k}$, 定义相位
+\begin{equation}
+	c:=\frac{1-2v}{2mv}\in(0,\infty),\qquad
+	\alpha_k:=ms_k v\qquad(k=1,2).
+	\label{eq:defalpha}
+\end{equation}
+则 $v\mapsto c$ 是 $(0,1/2)\to(0,\infty)$ 的严格递减双射, 逆为
+\begin{equation}
+	v(c)=\frac{1}{2(mc+1)},\qquad v'(c)=-\frac{\tilde q}{2(c+\tilde q)^2}<0.
+	\label{eq:vofc}
+\end{equation}
+在左阱区 $[0,v]$ 上 $y_k=\sin(ms_k x)/(ms_k)$; 在中间区 $[v,1/2]$ 上
+$y_1=A_1\cos(s_1(x-1/2))$, $y_2=A_2\sin(s_2(x-1/2))$. 界面 $x=v$ 处 $y,y'$
+连续给出
+\begin{equation}
+	\text{偶模:}\quad \tan\alpha_1\tan(c\alpha_1)=\frac1{\tilde q},\qquad
+	\text{奇模:}\quad \tilde q\tan\alpha_2+\tan(c\alpha_2)=0.
+	\label{eq:secular}
+\end{equation}
+相位范围: $c\alpha_1\in(0,\pi/2)$, $c\alpha_2\in(0,\pi)$, 且
+\begin{equation}
+	\alpha_1\in(0,\pi/2),\qquad \alpha_2\in(0,\pi).
+	\label{eq:alpharange}
+\end{equation}
+(证明: $y_1,y_2>0$ 于 $(0,1/2)$ 且 $y_1'(1/2)=0$, $y_2(1/2)=0$; 在中间区
+$y_1=A_1\cos(s_1(x-1/2))$ 恒正与 $y_2=A_2\sin(s_2(x-1/2))$, $A_2<0$ 恒正
+分别迫使 $c\alpha_1<\pi/2$, $c\alpha_2<\pi$; 界面匹配 $y_1'(v)=\cos\alpha_1>0$
+给出 $\alpha_1<\pi/2$, $y_2(v)>0$ 给出 $\sin\alpha_2>0$ 即 $\alpha_2\in(0,\pi)$.)
+
+\eqref{eq:secular} 等价于相位分支方程: 定义
+\begin{equation}
+	E(x):=\arctan\frac{1}{\tilde q\tan x}\ (0,\pi/2),\qquad
+	O(x):=
+	\begin{cases}
+		\pi-\arctan(\tilde q\tan x), & 0<x<\pi/2,\\
+		\pi/2, & x=\pi/2,\\
+		\arctan(-\tilde q\tan x), & \pi/2<x<\pi,
+	\end{cases}
+\end{equation}
+则
+\begin{equation}
+	E(\alpha_1)=c\alpha_1,\qquad O(\alpha_2)=c\alpha_2,
+	\label{eq:branch}
+\end{equation}
+且 $E'(x)=O'(x)=-\tilde q/\Phi_{\tilde q}(x)<0$, 其中
+\begin{equation}
+	\Phi_{\tilde q}(x):=\cos^2x+\tilde q^2\sin^2x.
+\end{equation}
+故 $E-c\cdot\mathrm{id}$ 与 $O-c\cdot\mathrm{id}$ 在各自区间严格递减, \eqref{eq:branch}
+的解唯一. 隐式求导得
+\begin{equation}
+	\alpha_k'(c)=-\frac{\alpha_k\,\Phi_{\tilde q}(\alpha_k)}
+	{\tilde q+c\,\Phi_{\tilde q}(\alpha_k)}<0.
+	\label{eq:alphap}
+\end{equation}
+几何恒等式 $s_k=2\alpha_k/m+2c\alpha_k$ 给出
+\begin{equation}
+	s_k=2(c+\tilde q)\alpha_k,\qquad
+	D(c):=D(v(c),1-v(c))=4(c+\tilde q)^2\bigl(\alpha_2(c)^2-\alpha_1(c)^2\bigr).
+	\label{eq:D}
+\end{equation}
+
+\subsection{Fe 与降维恒等式}
+
+定义
+\begin{equation}
+	M_f(x;c):=\frac{x^2\sin^2x}{\tilde q+c\,\Phi_{\tilde q}(x)},\qquad
+	\widetilde F_e(c):=M_f(\alpha_1(c);c)-M_f(\alpha_2(c);c).
+	\label{eq:Fe}
+\end{equation}
+
+\begin{lemma}[精确降维]\label{lem:dimred}
+对 $\xi\in(0,1/2)$, 记 $S_R(\xi):=R_1(\xi,1-\xi)=R_2(\xi,1-\xi)$. 则
+\begin{equation}
+	S_R(\xi)=-8\tilde q^2\,(c+\tilde q)^3\,\widetilde F_e(c),
+	\qquad
+	D_c(c)=-8(c+\tilde q)\,\tilde q\,(1-\tilde q^2)\,\widetilde F_e(c),
+	\label{eq:dimred}
+\end{equation}
+其中 $c=c(\xi)$ 由 \eqref{eq:defalpha} 给出. 特别地,
+\begin{equation}
+	f(v)=S_R(v),\qquad
+	\operatorname{sign}f(v)=-\operatorname{sign}\widetilde F_e(c(v)),
+\end{equation}
+且 $f(v)$ 的零点与 $\widetilde F_e$ 的零点一一对应.
+\end{lemma}
+
+\begin{proof}
+\emph{$D_c$ 公式.} 由 \eqref{eq:alphap},
+\begin{equation}
+	\frac{d}{dc}\bigl((c+\tilde q)^2\alpha_k^2\bigr)
+	=2(c+\tilde q)\alpha_k^2\Bigl(1+\frac{c+\tilde q}{\alpha_k}\alpha_k'\Bigr)
+	=2(c+\tilde q)\alpha_k^2\Bigl(1-\frac{(c+\tilde q)\Phi_k}{\tilde q+c\Phi_k}\Bigr)
+	=2(c+\tilde q)\alpha_k^2\frac{\tilde q(1-\Phi_k)}{\tilde q+c\Phi_k},
+\end{equation}
+其中 $\Phi_k:=\Phi_{\tilde q}(\alpha_k)$. 因 $1-\Phi_k=(1-\tilde q^2)\sin^2\alpha_k$,
+\begin{equation}
+	\frac{d}{dc}\bigl((c+\tilde q)^2\alpha_k^2\bigr)
+	=2(c+\tilde q)\,\tilde q\,(1-\tilde q^2)\,M_f(\alpha_k;c).
+\end{equation}
+代入 \eqref{eq:D} 得 $D_c=8(c+\tilde q)\tilde q(1-\tilde q^2)(M_2-M_1)
+=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e(c)$. \qed
+
+\emph{$S_R$ 公式 (Feynman--Hellmann + 链式法则).} 移动界面 $a=\xi$ 向右 $\delta$:
+该条带从中间区 ($\rho=1$) 变为阱区 ($\rho=R$), $\partial_a\lambda_k=-\lambda_k(R-1)\hat y_k(a)^2$ (密度点态增大, 特征值减小)
+(单特征值 FH); 由 $f$ 的定义 $\partial_a D=-(R-1)f(a)=-(R-1)S_R$.
+同理 $\partial_b D=+(R-1)f(b)=+(R-1)S_R$. 因 $b=1-\xi$,
+\begin{equation}
+	\frac{dD}{d\xi}=\partial_aD+\partial_bD\,\frac{db}{d\xi}
+	=-(R-1)S_R-(R-1)S_R=-2(R-1)S_R(\xi).
+\end{equation}
+链式法则与 \eqref{eq:vofc}:
+\begin{equation}
+	D_c=\frac{dD}{d\xi}\cdot\frac{d\xi}{dc}
+	=-2(R-1)S_R\cdot\Bigl(-\frac{\tilde q}{2(c+\tilde q)^2}\Bigr)
+	=\frac{(R-1)\tilde q\,S_R}{(c+\tilde q)^2}.
+\end{equation}
+与 $D_c$ 公式比较, 并利用 $R-1=m^2-1=(1-\tilde q^2)/\tilde q^2$:
+\begin{equation}
+	-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e
+	=\frac{(1-\tilde q^2)S_R}{\tilde q(c+\tilde q)^2}
+	\;\Longrightarrow\;
+	S_R=-8\tilde q^2(c+\tilde q)^3\widetilde F_e.
+\end{equation}
+最后 $f(v)=R_1(v,1-v)=S_R(v)$, 且 $-8\tilde q^2(c+\tilde q)^3<0$. \qed
+\end{proof}
+
+\section{易区 c>=1/2}\label{sec:easy}
+
+\begin{lemma}\label{lem:easy}
+对 $\tilde q\in(0,1)$, $c\ge1/2$, 有 $\widetilde F_e(c)<0$.
+\end{lemma}
+
+\begin{proof}
+先证 $\varphi_c(x):=M_f(x;c)$ 在 $(0,\pi/2)$ 严格递增:
+\begin{equation}
+	\frac{d}{dx}\log\varphi_c(x)
+	=\frac2x+2\cot x+\frac{2c(1-\tilde q^2)\sin x\cos x}{\tilde q+c\Phi_{\tilde q}(x)}>0.
+\end{equation}
+
+\emph{情形 $c\in[1/2,1]$.} 记 $\gamma:=\pi-\alpha_2\in[\gamma_0(\tilde q),\pi/2]$,
+其中 $\gamma_0(\tilde q):=\arccos(\tilde q/(1+\tilde q))$. 对 $\gamma\in(0,\pi/2)$,
+由 $O(\pi-\gamma)=\arctan(\tilde q\tan\gamma)=c(\pi-\gamma)$ 得
+\begin{equation}
+	E(\gamma)-c\gamma=\frac{\pi}{2}-c\pi=\pi\Bigl(\frac12-c\Bigr)\le0
+	=E(\alpha_1)-c\alpha_1,
+\end{equation}
+而 $E-c\cdot\mathrm{id}$ 严格递减, 故 $\gamma\ge\alpha_1$. 于是
+\begin{equation}
+	M_2=\Bigl(\frac{\pi-\gamma}{\gamma}\Bigr)^2\varphi_c(\gamma)
+	\ge\varphi_c(\gamma)\ge\varphi_c(\alpha_1)=M_1,
+\end{equation}
+且首末不等号至少一处严格, 故 $\widetilde F_e(c)=M_1-M_2<0$. \qed
+
+\emph{情形 $c\ge1$.} 此时 $\alpha_2\le\alpha_2(1)=\pi/2$ (因 $\alpha_2$ 递减).
+在 $(0,\pi/2)$ 上 $O(x)=E(x)+\pi/2$, 故
+\begin{equation}
+	E(\alpha_2)-c\alpha_2=O(\alpha_2)-\frac{\pi}{2}-c\alpha_2=-\frac{\pi}{2}
+	<0=E(\alpha_1)-c\alpha_1,
+\end{equation}
+由 $E-c\cdot\mathrm{id}$ 严格递减得 $\alpha_2>\alpha_1$. 又
+$\alpha_1,\alpha_2\in(0,\pi/2)$ 且 $\varphi_c$ 严格递增, 故
+$M_1=\varphi_c(\alpha_1)<\varphi_c(\alpha_2)=M_2$, 即 $\widetilde F_e(c)<0$. \qed
+\end{proof}
+
+\section{KEY LEMMA: 唯一零点}\label{sec:keylemma}
+
+本节固定
+\begin{equation}
+	q_0:=\sqrt{\frac23},\qquad \tilde q\in[q_0,1),\qquad c\in(0,1/2).
+\end{equation}
+(对应 $1<R\le3/2$.)
+
+\subsection{对数导数分解}
+
+对 $x=\alpha_k(c)$, 由 \eqref{eq:alphap} 直接计算
+\begin{equation}
+	\frac{d}{dc}\log M_f(\alpha_k(c);c)=G(\alpha_k(c);c),
+\end{equation}
+其中
+\begin{equation}
+	G(x;c):=
+	-\frac{\Phi_{\tilde q}(x)\bigl[3+2x\cot x\bigr]}{\tilde q+c\Phi_{\tilde q}(x)}
+	+\frac{2cx\,\Phi_{\tilde q}(x)(\tilde q^2-1)\sin x\cos x}
+	{\bigl[\tilde q+c\Phi_{\tilde q}(x)\bigr]^2}.
+	\label{eq:G}
+\end{equation}
+记 $G_k:=G(\alpha_k(c);c)$, $M_k:=M_f(\alpha_k(c);c)$. 则
+\begin{equation}
+	\widetilde F_e'=M_1G_1-M_2G_2=(M_1-M_2)G_1+M_2(G_1-G_2).
+	\label{eq:Fep}
+\end{equation}
+
+\begin{lemma}[KEY LEMMA 的单调性成分]\label{lem:P}
+设 $\tilde q\in[q_0,1)$, $c\in(0,1/2)$. 则
+\begin{enumerate}
+	\item[(P1)] $G_1\le-\dfrac{6\sqrt6-6}{5}<-4/3$;
+	\item[(P2)] $G_2>-4/3$.
+\end{enumerate}
+特别地 $G_1<0$ 且 $G_1-G_2<0$.
+\end{lemma}
+
+\subsubsection{P1 的证明}
+
+由 $\alpha_1\in(0,\pi/2)$: $\sin\alpha_1\cos\alpha_1>0$, $\cot\alpha_1>0$, 且
+$\tilde q^2-1<0$, 故 \eqref{eq:G} 第二项为负:
+\begin{equation}
+	G_1\le-\frac{\Phi_1\,W_1}{D_1},\qquad
+	W_1:=3+2\alpha_1\cot\alpha_1\ge3,\qquad
+	D_1:=\tilde q+c\Phi_1.
+\end{equation}
+因 $\tilde q\le1$, $\Phi_1=\cos^2\alpha_1+\tilde q^2\sin^2\alpha_1\ge\tilde q^2$;
+故 $\tilde q/\Phi_1\le1/\tilde q\le1/q_0$, 且 $c<1/2$, 得
+\begin{equation}
+	\frac{\Phi_1}{D_1}=\frac{1}{\tilde q/\Phi_1+c}
+	\ge\frac{1}{1/q_0+1/2}.
+\end{equation}
+因此
+\begin{equation}
+	G_1\le-\frac{W_1\,\Phi_1}{D_1}\le-\frac{3}{1/q_0+1/2}
+	=-\frac{6}{\sqrt6+1}=-\frac{6\sqrt6-6}{5}.
+\end{equation}
+最后
+\begin{equation}
+	\frac{6\sqrt6-6}{5}>\frac43
+	\iff 6\sqrt6>\frac{38}{3}\iff 6>\frac{361}{81}\iff 486>361,
+\end{equation}
+故 $G_1<-(6\sqrt6-6)/5<-4/3$. \qed
+
+\subsubsection{P2 的证明}
+
+记 $\gamma:=\pi-\alpha_2\in(0,\gamma_0(\tilde q)]$, 其中
+$\gamma_0(\tilde q):=\pi-\alpha_2(1/2)=\arccos(\tilde q/(1+\tilde q))$
+(见引理 \ref{lem:easy} 的记法; $\gamma_0$ 在 $[\tilde q_0,1]$ 上递减, 故
+$\gamma\le\Gamma:=\gamma_0(q_0)=\arccos(q_0/(1+q_0))$). 代入 \eqref{eq:G}:
+$\Phi(\pi-\gamma)=\Phi(\gamma)$, $3+2(\pi-\gamma)\cot(\pi-\gamma)=W_0(\gamma)$,
+$\sin(\pi-\gamma)\cos(\pi-\gamma)=-\sin\gamma\cos\gamma$, 得
+\begin{equation}
+	G_2=-\frac{\Phi(\gamma)\,W_0(\gamma)}{\tilde q+c\Phi(\gamma)}
+	+\frac{2c(\pi-\gamma)\Phi(\gamma)(1-\tilde q^2)\sin\gamma\cos\gamma}
+	{\bigl[\tilde q+c\Phi(\gamma)\bigr]^2}
+	=:-\frac{\Phi W_0}{D}+P,
+	\label{eq:G2}
+\end{equation}
+其中 $W_0(\gamma):=3-2(\pi-\gamma)\cot\gamma$, 且 $P\ge0$ (因
+$\gamma\in(0,\Gamma]\subset(0,\pi/2)$, $1-\tilde q^2\ge0$).
+
+\begin{lemma}[$W_0$ 引理]\label{lem:W0}
+在 $(0,\Gamma]$ 上 $W_0$ 严格递增, 且
+\begin{equation}
+	W_0(\gamma)\le W_0(\Gamma)<\frac43\,q_0.
+	\label{eq:W0bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}[引理 \ref{lem:W0} 的证明]
+\begin{equation}
+	W_0'(\gamma)=2\cot\gamma+2(\pi-\gamma)\csc^2\gamma>0,\qquad
+	\gamma\in(0,\Gamma]\subset(0,\pi/2),
+\end{equation}
+故 $W_0$ 严格递增, $W_0(\gamma)\le W_0(\Gamma)$.
+
+\emph{证书 (全部为精确有理不等式):} 首先 $\Gamma<10/9$: 因
+$\cos(10/9)<1-\frac12(\frac{10}{9})^2+\frac1{24}(\frac{10}{9})^4=\frac{8783}{19683}$
+(交错级数上界), 而由 $q_0^2=2/3>(2247/2753)^2$ 得 $q_0>2247/2753$, 从而
+\begin{equation}
+	\frac{q_0}{1+q_0}>\frac{2247}{5000}>\frac{8783}{19683},
+\end{equation}
+即 $\cos(10/9)<\cos\Gamma$, 由 $\arccos$ 递减得 $\Gamma<10/9<\pi/2$.
+其次 $\cot$ 在 $(0,\pi/2)$ 递减, 故 $\cot\Gamma>\cot(10/9)$. 又
+$\cos x>1-\frac{x^2}2+\frac{x^4}{24}-\frac{x^6}{720}$ 与
+$\sin x<x-\frac{x^3}6+\frac{x^5}{120}$ (交错级数, $x=10/9$ 时项单调递减), 给出
+\begin{equation}
+	\cot\frac{10}{9}>\frac{1-x^2/2+x^4/24-x^6/720}{x-x^3/6+x^5/120}
+	\Big|_{x=10/9}=\frac{2121769}{4288410}.
+\end{equation}
+再由 $\pi>22/7$:
+\begin{equation}
+	2(\pi-\Gamma)\cot\Gamma>2\Bigl(\frac{22}{7}-\frac{10}{9}\Bigr)
+	\frac{2121769}{4288410}=\frac{271586432}{135084915}.
+\end{equation}
+最后精确比较
+\begin{equation}
+	\frac{271586432}{135084915}>\frac{15789}{8259}
+	=3-\frac43\cdot\frac{2247}{2753},
+\end{equation}
+故
+\begin{equation}
+	W_0(\Gamma)=3-2(\pi-\Gamma)\cot\Gamma
+	<3-\frac{271586432}{135084915}
+	<\frac43\cdot\frac{2247}{2753}<\frac43\,q_0.
+	\qedhere
+\end{equation}
+\end{proof}
+
+\emph{P2 结论.} 若 $W_0(\gamma)\le0$, 由 \eqref{eq:G2} 得
+$G_2\ge-\Phi W_0/D\ge0>-4/3$. 若 $0<W_0(\gamma)$, 则 (用 $\Phi\le1$,
+$D=\tilde q+c\Phi\ge\tilde q$)
+\begin{equation}
+	G_2\ge-\frac{\Phi W_0}{D}\ge-\frac{W_0}{\tilde q}
+	\ge-\frac{W_0}{q_0}>-\frac43,
+\end{equation}
+末步由 \eqref{eq:W0bound}. 两种情形均得 $G_2>-4/3$. \qed
+
+\subsection{端点}
+
+\begin{lemma}[端点符号]\label{lem:endpoints}
+\begin{enumerate}
+	\item[(i)] $\displaystyle\lim_{c\to0^+}\widetilde F_e(c)=\frac{\pi^2}{4\tilde q}>0$;
+	\item[(ii)] $\widetilde F_e(1/2)<0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) 由 \eqref{eq:branch} 与 $E,O$ 的端点行为, $c\to0^+$ 时
+$\alpha_1\to\pi/2$, $\alpha_2\to\pi$; 故 $M_1\to\pi^2/(4\tilde q)$,
+$M_2\to0$.
+
+(ii) 在 $c=1/2$ 处, 偶方程 $\tan\alpha_1\tan(\alpha_1/2)=1/\tilde q$ 令
+$t:=\tan(\alpha_1/2)\in(0,1)$, 得 $2\tilde q t^2=1-t^2$, 即
+$t^2=1/(2\tilde q+1)$. 令 $\alpha_2^*:=\pi-\alpha_1\in(\pi/2,\pi)$; 则
+\begin{equation}
+	\tilde q\tan\alpha_2^*+\tan\frac{\alpha_2^*}2
+	=-\tilde q\tan\alpha_1+\cot\frac{\alpha_1}2
+	=\frac{-(2\tilde q+1)t^2+1}{t(1-t^2)}=0,
+\end{equation}
+故 $\alpha_2^*$ 满足奇方程; 由解的唯一性 $\alpha_2(1/2)=\pi-\alpha_1(1/2)$.
+于是 $\Phi(\alpha_2)=\Phi(\alpha_1)$, $\sin\alpha_2=\sin\alpha_1$,
+\begin{equation}
+	\widetilde F_e\Bigl(\frac12\Bigr)
+	=\frac{\sin^2\alpha_1}{\tilde q+\Phi(\alpha_1)/2}
+	\Bigl(\alpha_1^2-(\pi-\alpha_1)^2\Bigr)
+	=\frac{\pi\sin^2\alpha_1\,(2\alpha_1-\pi)}{\tilde q+\Phi(\alpha_1)/2}<0,
+	\label{eq:Fehalf}
+\end{equation}
+因 $\alpha_1\in(0,\pi/2)$. \qed
+\end{proof}
+
+\subsection{KEY LEMMA}
+
+\begin{theorem}[KEY LEMMA (阱族, 小 $R$)]\label{thm:keylemma}
+设 $\tilde q\in[q_0,1)$. 则 $\widetilde F_e$ 在 $(0,1/2)$ 内恰有一个零点
+$c^*=c^*(\tilde q)$, 且
+\begin{equation}
+	\widetilde F_e(c)>0\ \ (0<c<c^*),\qquad
+	\widetilde F_e(c)<0\ \ (c^*<c<\infty),
+	\label{eq:FeSign}
+\end{equation}
+其中 $c>1/2$ 部分由引理 \ref{lem:easy} 提供.
+\end{theorem}
+
+\begin{proof}
+\emph{单调性引理:} 对 $0<c<1/2$, 由引理 \ref{lem:P}, $G_1<0$ 且 $G_1<G_2$. 若
+$\widetilde F_e(c)\ge0$, 即 $M_1\ge M_2$, 则 \eqref{eq:Fep} 中
+$(M_1-M_2)G_1\le0$, $M_2(G_1-G_2)<0$, 故
+\begin{equation}
+	\widetilde F_e(c)\ge0\ \Longrightarrow\ \widetilde F_e'(c)<0.
+	\label{eq:mono}
+\end{equation}
+即 $\widetilde F_e$ 在其非负集上严格递减.
+
+\emph{存在性:} 引理 \ref{lem:endpoints} 给出 $\widetilde F_e(0^+)>0$ 与
+$\widetilde F_e(1/2)<0$; 由中值定理存在 $c^*\in(0,1/2)$ 使 $\widetilde F_e(c^*)=0$.
+
+\emph{唯一性:} 反设 $0<c_1<c_2<1/2$ 是两个零点, $c_1$ 取最小零点. 则
+$\widetilde F_e>0$ 于 $(0,c_1)$ (连续性), 由 \eqref{eq:mono}
+$\widetilde F_e'<0$ 于 $(0,c_1)$, $\widetilde F_e$ 在 $(0,c_1]$ 严格递减,
+$\widetilde F_e(c_1)=0$. 在 $(c_1,c_2)$ 内 $\widetilde F_e$ 无零点, 符号恒定;
+若恒正, 则 \eqref{eq:mono} 给出严格递减, 与 $\widetilde F_e(x)>\widetilde F_e(c_1)=0$
+($x>c_1$) 矛盾; 故 $\widetilde F_e<0$ 于 $(c_1,c_2)$. 于是
+$\widetilde F_e(c_2)=0$ 且 $\widetilde F_e(x)<0=\widetilde F_e(c_2)$ 于
+$x<c_2$ 邻近, 左导数 $\widetilde F_e'(c_2)\ge0$; 但 $c_2$ 处
+$\widetilde F_e(c_2)=0\ge0$, 由 \eqref{eq:mono} 应得 $\widetilde F_e'(c_2)<0$,
+矛盾. 故零点唯一.
+
+由唯一性与端点符号, $\widetilde F_e>0$ 于 $(0,c^*)$, 且于 $(c^*,1/2)$ 与
+$[1/2,\infty)$ 均为负 (引理 \ref{lem:easy}). \qed
+\end{proof}
+
+\section{端点极限 D}\label{sec:endpoints}
+
+\begin{lemma}\label{lem:Dlimits}
+\begin{equation}
+	\lim_{v\to0^+}D(v)=3\pi^2,\qquad
+	\lim_{v\to(1/2)^-}D(v)=\frac{3\pi^2}{R}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+由 \eqref{eq:D}, $D(c)=4(c+\tilde q)^2(\alpha_2^2-\alpha_1^2)$.
+
+\emph{$c\to\infty$ (即 $v\to0^+$):} 由 \eqref{eq:branch}, $\alpha_k\to0$, 且
+\begin{equation}
+	(c+\tilde q)\alpha_1=\frac{\pi}{2}-\arctan(\tilde q\tan\alpha_1)+\tilde q\alpha_1
+	\longrightarrow\frac{\pi}{2},
+\end{equation}
+\begin{equation}
+	(c+\tilde q)\alpha_2=\pi-\arctan(\tilde q\tan\alpha_2)+\tilde q\alpha_2
+	\longrightarrow\pi,
+\end{equation}
+故 $D(c)\to4(\pi^2-\pi^2/4)=3\pi^2$.
+
+\emph{$c\to0^+$ (即 $v\to1/2^-$):} $\alpha_1\to\pi/2$, $\alpha_2\to\pi$, 故
+\begin{equation}
+	D(c)\to4\tilde q^2\Bigl(\pi^2-\frac{\pi^2}{4}\Bigr)
+	=3\pi^2\tilde q^2=\frac{3\pi^2}{R}.
+	\qedhere
+\end{equation}
+\end{proof}
+
+\section{主定理与推论的证明}\label{sec:cor}
+
+\begin{proof}[定理 \ref{thm:main} 的证明]
+由引理 \ref{lem:dimred}, $f(v)=-8\tilde q^2(c+\tilde q)^3\widetilde F_e(c(v))$,
+前因子恒负. 定理 \ref{thm:keylemma} 给出 $\widetilde F_e$ 的唯一零点
+$c^*\in(0,1/2)$, 故 $f$ 的唯一零点为
+\begin{equation}
+	v^*:=v(c^*)\in\bigl(v(1/2),\,v(0^+)\bigr)=\Bigl(\frac1{m+2},\,\frac12\Bigr).
+	\label{eq:vstar}
+\end{equation}
+这证明 (i).
+
+由 \eqref{eq:dimred}, $D_c=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e(c)$,
+前因子恒正, 故 $\operatorname{sign}D_c=-\operatorname{sign}\widetilde F_e$.
+由 \eqref{eq:vofc}, $v'(c)<0$, 故
+\begin{equation}
+	\frac{dD}{dv}=D_c\,\frac{dc}{dv},\qquad
+	\operatorname{sign}\frac{dD}{dv}
+	=-\operatorname{sign}D_c=\operatorname{sign}\widetilde F_e(c(v)).
+\end{equation}
+由 \eqref{eq:FeSign}: $dD/dv>0$ 当且仅当 $c(v)<c^*$, 即 $v>v^*$; $dD/dv<0$
+当且仅当 $v<v^*$. 故 $D$ 在 $(0,v^*)$ 严格递减、在 $(v^*,1/2)$ 严格递增,
+$v^*$ 是唯一临界点且为整体极小. 这证明 (ii).
+
+(iii) 由引理 \ref{lem:Dlimits}: $D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$. 因 $D$
+在 $(v^*,1/2)$ 严格递增且 $D(1/2^-)=3\pi^2/R$, 对 $v'\in(v^*,1/2)$ 有
+$D(v^*)<D(v')<3\pi^2/R$; 特别 $D(v^*)<3\pi^2/R<3\pi^2$ (因 $R>1$). \qed
+\end{proof}
+
+\begin{proof}[推论 \ref{cor:inf} 的证明]
+由 O1-INF (已独立审计), $I(R)=\min_{0\le a\le b\le1}D^{well}(a,b)$ 且极小值
+在闭方块上达到, 取极小点 $(a_*,b_*)$.
+
+\emph{内点情形:} 若 $0<a_*<b_*<1$, 则由 FH 公式 $\partial_aD=-(R-1)f(a_*)=0$,
+$\partial_bD=+(R-1)f(b_*)=0$, 得 $R_1(a_*,b_*)=R_2(a_*,b_*)=0$. 由 O1 结构引理
+($\hat y_2/\hat y_1$ 严格递减, $f$ 至多两零点, $\{f>0\}$ 为包含 $z_0$ 的单区间)
+与 bang-bang, 极小点满足符号条件 $y_2(a_*)/y_1(a_*)>0$,
+$y_2(b_*)/y_1(b_*)<0$, 即 $(a_*,b_*)$ 是 sign-consistent good root. 小 $R$
+阱族刚性定理 (STRICT, \texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf}) 给出
+$a_*+b_*=1$, 即 $(a_*,b_*)=(v,1-v)$ 在对称线上; 由定理 \ref{thm:main} (ii),
+对称线上 $D$ 的唯一临界点即整体极小点 $v^*(R)$, 故 $(a_*,b_*)=(v^*,1-v^*)$,
+$I(R)=D(v^*)$.
+
+\emph{边界情形:} 若 $(a_*,b_*)\in\partial[0,1]^2$: 当 $a_*=b_*$ 时
+$\rho\equiv R$ (或 $\equiv1$) a.e., $D=3\pi^2/R$ (或 $3\pi^2$); 其余边界点对应
+非退化两块阱, 由 O3b 两块界 (PROVED) 有 $D>3\pi^2/R$. 两种情形均
+$D\ge3\pi^2/R>D(v^*)$ (定理 \ref{thm:main} (iii)), 与极小性矛盾. 故极小点必为
+内点, 结论成立. \qed
+\end{proof}
+
+\begin{remark}
+推论 \ref{cor:inf} 中 ``极小点为 sign-consistent good root'' 的论证沿 O1 的
+第 5--7 步 (已独立审计); 边界排除用 O3b(1) (PROVED). 故对 $1<R\le3/2$,
+INF 侧小 $R$ 的闭合链条为: O1-INF $\Rightarrow$ 阱族极小存在;
+O1 结构 $\Rightarrow$ 极小点为 good root; 小 $R$ 刚性 $\Rightarrow$ 对称;
+定理 \ref{thm:main} $\Rightarrow$ 对称线上唯一临界点即整体极小.
+\end{remark}
+
+\section{涉及到的数学知识}
+
+\begin{enumerate}
+	\item Sturm--Liouville 振荡理论: 特征值简单性与反射对称性 ($y_1$ 偶, $y_2$ 奇),
+		第二特征函数唯一零点 $z_0=1/2$, 端点导数符号.
+	\item 常系数区间上的显式解与界面匹配: 偶模/奇模 secular 方程
+		\eqref{eq:secular} 与相位分支 \eqref{eq:branch}.
+	\item 隐函数定理与隐式求导: $\alpha_k'(c)$ 公式 \eqref{eq:alphap}.
+	\item Feynman--Hellmann 公式: 界面移动的单特征值导数
+		$\partial_a\lambda_k=-\lambda_k(R-1)\hat y_k(a)^2$ (密度点态增大, 特征值减小), 组合出 $D$ 的导数,
+		配合链式法则得到精确降维恒等式 \eqref{eq:dimred}.
+	\item 初等单变量分析: 单调 $\varphi_c$, 严格递减函数 $E-c\cdot\mathrm{id}$
+		的相位比较, ``非负集上严格递减'' 推出唯一零点, $W_0$ 的单调性与
+		端点有理证书 (交错级数界, $\pi>22/7$, 精确有理比较).
+	\item 数值工具 (仅 \EVID{}): mpmath 50 位求根/求导, 转移矩阵 secular 对照,
+		符号计算 (sympy) 核验恒等式.
+\end{enumerate}
+
+\appendix
+\section{精确有理证书}\label{app:cert}
+
+以下不等式均为 (E1) 精确有理事实, 由 \texttt{scripts/\_symline/key\_lemma\_certificate.py}
+用 sympy 精确验证 (全部 True).
+\begin{enumerate}
+	\item $q_0^2=2/3>(2247/2753)^2$, 故 $q_0>2247/2753$.
+	\item $q_0/(1+q_0)>2247/5000$.
+	\item $\cos(10/9)<8783/19683<2247/5000$, 故 $\Gamma=\arccos(q_0/(1+q_0))<10/9$.
+	\item $\cot(10/9)>2121769/4288410$ (由 $\cos x>1-x^2/2+x^4/24-x^6/720$ 与
+		$\sin x<x-x^3/6+x^5/120$ 在 $x=10/9$).
+	\item $2(22/7-10/9)\cdot2121769/4288410=271586432/135084915>15789/8259
+		=3-\frac43\cdot\frac{2247}{2753}$.
+	\item 结论: $W_0(\Gamma)<\frac43 q_0$.
+	\item $486>361$, 故 $(6\sqrt6-6)/5>4/3$.
+\end{enumerate}
+
+\section{数值交叉检验 (EVIDENCE, 不构成证明)}\label{app:evid}
+
+全部数据由 mpmath (40--50 位) 生成, 脚本:
+\texttt{scripts/\_symline/master\_verify.py},
+\texttt{scripts/\_symline/sym\_endpoint\_fixed.py},
+\texttt{scripts/\_symline/key\_lemma\_verify.py},
+\texttt{scripts/\_symline/key\_lemma\_verify2.py}.
+\begin{enumerate}
+	\item 相位分支特征值 $s_k=2(c+\tilde q)\alpha_k$ 与直接 secular 求根相对误差
+		$\le10^{-51}$ (R=1.2,1.5,4.0; v=0.1..0.49).
+	\item P1/P2 网格: $\max G_1\approx-2.4621<-1.7394$,
+		$\min G_2\approx-0.4000>-1.2247>-4/3$,
+		$\max(G_1-G_2)\approx-2.2304<0$ (网格 $(0,1/2)\times[q_0,1]$, 21$\times$49 点).
+	\item $W_0(\Gamma)\approx0.9500<1.0887=\frac43 q_0$; $W_0$ 于 $(0,\Gamma]$ 递增;
+		$W_0(0.001)\approx-6278$ (负), 印证 $W_0$ 可负, 需分情形.
+	\item 端点: $\widetilde F_e(10^{-6})\approx3.0219\approx\pi^2/(4q_0)$;
+		$\widetilde F_e(1/2)<0$; $\alpha_1(1/2)+\alpha_2(1/2)=\pi$ 至 $10^{-31}$;
+		$\tan(\alpha_1(1/2)/2)=1/\sqrt{2\tilde q+1}$ 至 $10^{-31}$;
+		\eqref{eq:Fehalf} 与直接值比值 $=1$ 至 $10^{-31}$.
+	\item 导数闭式 (备查): $\widetilde F_e'(q,1/2)=
+		-2\pi(1-\cos x)^3T(x)/\sin^3x$, $x=\arccos(q/(1+q))$,
+		$T(x)=\pi^2-3x(\pi-x)-3(\pi-2x)\sin x$, 数值验证至 $10^{-29}$;
+		$T>0$ 于 $[\pi/3,\pi/2]$ 由 $T(\pi/3)>0$, $T'(\pi/3)>0$, $T''>0$
+		(E1, 正文未使用).
+	\item 唯一零点与单调性: $c^*\approx0.1821$ ($\tilde q=q_0$), $0.1917$
+		($\tilde q=1$); $\max\widetilde F_e'$ 于 $\{\widetilde F_e\ge0\}$ 网格
+		$\le-7.58$; 易区 $c\in[1/2,50]$ 上 $\max\widetilde F_e\le-2.6\times10^{-7}$.
+	\item 降维恒等式: $S_R(\xi)=-8\tilde q^2(c+\tilde q)^3\widetilde F_e(c)$ 相对误差
+		$\le1.3\times10^{-11}$ (R=1.2,1.5; v=0.2..0.45); $D_c$ 与 $-\widetilde F_e$
+		同号检验 0 违规.
+	\item $D(v)$ 结构: R=1.2: $v^*\approx0.415$, $D^*\approx24.3622$;
+		R=1.5: $v^*\approx0.409$, $D^*\approx19.1954$; $D(0.001)\approx29.6088
+		=3\pi^2$; $D(0.499)\to3\pi^2/R$; 递减/递增区间检验通过.
+\end{enumerate}
+
+\begin{remark}[诚实性声明]
+定理 \ref{thm:main}, 推论 \ref{cor:inf} 及其全部引理 (含引理 \ref{lem:W0} 的证书)
+的陈述与证明完全基于 (E1). 附录 \ref{app:evid} 的所有数值仅用于交叉检验, 不构成
+结论依据; 缺口 (b) ($R>3/2$ 阱族刚性), (c) (定理 A 独立复核) 与 (d) 的全局
+good-root 论证中未涵盖部分仍保持开放, 见 \texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf}
+与 \texttt{state/RESUME.md}.
+\end{remark}
+
+\end{document}

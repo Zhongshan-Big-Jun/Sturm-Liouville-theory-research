@@ -1,0 +1,851 @@
+﻿% 用法: xelatex SL_gap_nge2_finite_reduction_proof.tex (两遍, -output-directory=build)
+% 主题: 一维加权 Dirichlet 相邻谱隙极值的有限块约化 (所有 n >= 2)
+% 来源: 用户提供 SL_gap_nge2_finite_reduction_proof_zh.pdf (2026-08-09), 本文为忠实转录,
+%       不超出 PDF 内容, 保留原文"不声称首创/不证明恰 2n 开关"等边界声明.
+%       冻结英文证明: runs/R-20260809T080134Z-nge2-gap/artifacts/full_proof.md,
+%       SHA-256 35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd.
+%       Blueprint 绑定哈希: proposal 64ffb36b..., validation b680de43...,
+%       候选/合并 blueprint e372390a..., 候选/合并 evidence 02529f93...,
+%       review 13f5d6af..., integration f7eb6253... (详见第 11 节).
+% 审计 (2026-08-10, 项目侧): 解析逐条复核 PASS; 数值复跑全部通过 -
+%       scripts/audit_nge2_pdfs.py Part A 40/40 + Part B 16/16 (R=4, n=1..8 SUP/INF,
+%       恰 2n 零点, q0>1, q1<-1, K+2D~0, 接口跳量~0);
+%       scripts/_hp_nge2.py (mpmath 50 位, 零点计数精确匹配, K=-2D 残差 8e-12..2.5e-7);
+%       scripts/_smooth_nge2.py (光滑振荡权, 零点公式与 W<0, 4/4).
+% 文献: 未检索到直接等价已发表定理; Willner-Mahar 1979 (JMAA 72(2):730-739) 为明确
+%       既有工作风险, 本文不声称首创 (见第 9.2 节).
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{seqsplit}
+\usepackage{longtable}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{一维加权 Dirichlet 相邻谱隙极值的有限块约化\\ 对所有 $n\ge2$ 的完整、自洽证明}
+\author{BVE research 项目 (Blueprint v2.2 数学研究证明包的中文展开版)}
+\date{2026 年 8 月 9 日 (项目集成转录 2026-08-10)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+固定 $R>1$ 和整数 $n\ge2$, 令
+\begin{equation*}
+	K_R=\{\rho\in L^\infty(0,1): 1\le\rho\le R\ \text{a.e.}\}.
+\end{equation*}
+对权重 $\rho\in K_R$, 记一维加权 Dirichlet 问题
+\begin{equation*}
+	-u''=\lambda\rho u,\qquad u(0)=u(1)=0
+\end{equation*}
+的特征值为 $0<\lambda_1(\rho)<\lambda_2(\rho)<\cdots$, 并定义相邻谱隙
+$D_n(\rho)=\lambda_{n+1}(\rho)-\lambda_n(\rho)$. 本文从可测权重的谱理论开始,
+完整证明 $D_n$ 在 $K_R$ 上同时达到最大值和最小值; 随后证明任一全局极值权重都是
+bang--bang 的, 而且存在一个代表元在至多 $2n+1$ 个连续开区间上分别为常数, 等价地
+至多有 $2n$ 个开关. 证明的关键是: 弱星谱连续性, 适用于 $L^\infty$ 正权的 Pr\"ufer
+结点与严格交错定理, 相邻特征函数 Wronskian 的全区间严格符号, 切换函数至多 $2n$ 个
+简单内点零点, 以及对任意 $L^\infty$ 方向成立的 Feynman--Hellmann 公式. 数值扫描和
+文献检索只用作反例搜索与范围核查, 不进入普适定理的逻辑链. 本文不声称首创, 也不声称
+极值权重唯一、对称或恰有 $2n$ 个开关.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题、定义与主定理}
+\subsection{允许的权重与相邻谱隙}
+
+本文始终固定一个实数 $R>1$. 允许的密度 (或权重) 是完整的可测盒
+\begin{equation}
+	K_R=\left\{\rho\in L^\infty(0,1): 1\le\rho(x)\le R\ \text{对几乎处处的}\ x\right\}.
+\end{equation}
+不预设分段连续、有限跳跃、对称或单调. 对每个 $\rho\in K_R$, 考虑
+\begin{equation}
+	-u''=\lambda\rho u,\qquad u(0)=u(1)=0.
+	\label{eq:sl}
+\end{equation}
+第 $k$ 个特征值记为 $\lambda_k(\rho)$, 目标泛函为
+\begin{equation}
+	D_n(\rho)=\lambda_{n+1}(\rho)-\lambda_n(\rho).
+	\label{eq:dn}
+\end{equation}
+
+\begin{definition}[bang--bang 与开关数]\label{def:bangbang}
+若某个 $L^\infty$ 等价类存在代表元 $\tilde\rho$, 使 $\tilde\rho(x)\in\{1,R\}$ 几乎处处
+成立, 就称它是 bang--bang 权重. 若还可将 $(0,1)$ 分成有限个连续开区间, 使
+$\tilde\rho$ 在每个区间上为常数, 则合并相邻且取值相同的区间后, 内部公共端点的数目
+称为该代表元的开关数. 有限个点上的赋值不会改变 $L^\infty$ 等价类, 也不会改变特征值.
+\end{definition}
+
+\begin{theorem}[相邻谱隙的有限块约化]\label{thm:main}
+对每个 $R>1$ 和每个整数 $n\ge2$, 泛函 $D_n$ 在 $K_R$ 上同时达到最大值和最小值.
+更进一步:
+\begin{enumerate}
+	\item 每个全局最大化子和每个全局最小化子都是 bang--bang 的;
+	\item 每个这样的极值权重都存在一个代表元, 在至多 $2n+1$ 个连续开区间上为常数;
+	\item 因而每个全局极值权重至多有 $2n$ 个开关.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[结论的精确边界]\label{rem:boundary}
+证明事实上也适用于 $n=1$, 但本研究冻结的推广目标是 $n\ge2$. 定理只给出有限维结构
+约化, 并不确定最大化或最小化图样, 不证明每个可能开关都出现, 不证明反射对称性,
+也不证明唯一性或最优值的闭式表达.
+\end{remark}
+
+\subsection{证明链概览}
+
+完整证明分为六个逻辑环节:
+\begin{enumerate}
+	\item 在 $H^1_0(0,1)$ 上构造紧正自伴算子, 得到离散简单谱和极小极大公式;
+	\item 证明 $\rho_j\overset{*}{\rightharpoonup}\rho$ 时每个固定
+		$\lambda_k(\rho_j)\to\lambda_k(\rho)$, 由此得到两端极值的存在性;
+	\item 对可测正权建立 Pr\"ufer 结点计数和相邻特征函数严格交错;
+	\item 证明相邻 Wronskian 在整个 $(0,1)$ 内严格为负, 从而将切换函数的零点数压到 $2n$;
+	\item 用紧算子扰动直接推出任意有界方向的 Feynman--Hellmann 公式;
+	\item 将一侧针刺变分局部化到盒约束的非活动区域, 推出 bang--bang 饱和律, 再由切换
+		函数的有限零点数得到开关上界.
+\end{enumerate}
+
+\section{可测正权下的谱论基础}
+\subsection{紧正算子模型}
+
+令 $H=H^1_0(0,1)$, 赋予内积
+\begin{equation}
+	a(f,g)=\int_0^1 f'(x)g'(x)\,dx,
+\end{equation}
+并定义
+\begin{equation}
+	b_\rho(f,g)=\int_0^1 \rho(x)f(x)g(x)\,dx.
+\end{equation}
+Poincar\'e 不等式说明 $a$ 给出的范数与通常的 $H^1_0$ 范数等价. 对每个 $f\in H$,
+由 Riesz 表示定理唯一地定义 $T_\rho f\in H$:
+\begin{equation}
+	a(T_\rho f,g)=b_\rho(f,g)\qquad(g\in H).
+	\label{eq:tdef}
+\end{equation}
+
+\begin{lemma}\label{lem:compact}
+$T_\rho$ 是 $H$ 上关于内积 $a$ 的紧、正、自伴、单射算子, 其值域稠密.
+\end{lemma}
+
+\begin{proof}
+有界性来自
+\begin{equation*}
+	|b_\rho(f,g)|\le R\|f\|_{L^2}\|g\|_{L^2}\le CR\|f\|_a\|g\|_a .
+\end{equation*}
+若 $(f_j)$ 在 $H$ 中有界, 则一维紧嵌入允许取子列使 $f_j\to f$ 于 $L^2$. 事实上,
+$a$-单位球满足
+\begin{equation*}
+	|f(x)-f(y)|\le |x-y|^{1/2}\|f'\|_{L^2},\qquad |f(x)|\le\|f'\|_{L^2},
+\end{equation*}
+故也可直接由 Arzel\`a--Ascoli 定理得到紧性. 再由
+\begin{equation*}
+	\|T_\rho(f_j-f)\|_a=\sup_{\|g\|_a=1}\left|\int_0^1\rho(f_j-f)g\,dx\right|
+		\le CR\|f_j-f\|_{L^2}
+\end{equation*}
+知 $T_\rho f_j\to T_\rho f$ 于 $H$, 故 $T_\rho$ 紧. 式 \eqref{eq:tdef} 立即给出自伴性,
+而且
+\begin{equation*}
+	a(T_\rho f,f)=\int_0^1\rho f^2\,dx>0
+\end{equation*}
+对 $f\ne0$ 成立, 因此它正且单射. 自伴算子满足 $(\operatorname{Ran}T_\rho)^\perp=\ker T_\rho=\{0\}$,
+故值域稠密.
+\end{proof}
+
+\subsection{离散谱、完备性与极小极大公式}
+
+为避免把关键结构隐藏在外部黑箱中, 下面简述本问题所需的紧谱构造. 设 $T$ 是非零的紧
+正自伴算子, 并令
+\begin{equation*}
+	\mu=\sup_{\|f\|_a=1}a(Tf,f).
+\end{equation*}
+正半定双线性型 $a(T\,\cdot\,,\cdot)$ 的 Cauchy--Schwarz 不等式表明 $\mu=\|T\|$.
+取最大化单位序列; 弱紧性给出弱收敛子列, 而 $T$ 的紧性使其像强收敛. 由此极限仍达到
+$\mu$, 对一切正交方向作一阶变分可知它是特征向量. 将 $T$ 依次限制到已得特征向量张成
+空间的正交补, 得到一列 $a$-正交归一特征向量 $e_j$ 和正特征值
+\begin{equation*}
+	\mu_1\ge\mu_2\ge\cdots>0.
+\end{equation*}
+紧性迫使 $\mu_j\to0$, 否则 $Te_j=\mu_je_j$ 没有收敛子列. 若 $\operatorname{span}\{e_j\}$
+的正交补非零, 则同样的最大值构造会在该不变子空间中产生某个正特征值 $\alpha$, 与所有
+后续 $\mu_j\ge\alpha$ 及 $\mu_j\to0$ 矛盾. 因此这些特征向量构成 $H$ 的 $a$-正交归一基.
+
+应用于 $T_\rho$ 后, 广义特征方程
+\begin{equation*}
+	a(u,g)=\lambda b_\rho(u,g)\qquad(g\in H)
+\end{equation*}
+与 $T_\rho u=\mu u$ 等价, 且 $\lambda=1/\mu$. 于是得到
+\begin{equation*}
+	0<\lambda_1(\rho)\le\lambda_2(\rho)\le\cdots,\qquad
+	\lambda_k(\rho)\to+\infty .
+\end{equation*}
+稍后由常微分方程唯一性证明所有不等号严格.
+
+在上述特征基中直接展开即可得到极小极大公式
+\begin{equation}
+	\lambda_k(\rho)=\min_{\substack{V\subset H\\\dim V=k}}
+		\max_{0\ne u\in V}\frac{\int_0^1|u'|^2\,dx}{\int_0^1\rho u^2\,dx}.
+	\label{eq:minimax}
+\end{equation}
+具体地, 取前 $k$ 个特征向量张成的空间可给出右端不超过 $\lambda_k$; 反过来, 任意 $k$ 维
+子空间都含有非零向量与前 $k-1$ 个特征向量 $a$-正交, 对该向量的商不小于 $\lambda_k$.
+
+\subsection{正则性与单性}
+
+弱特征函数满足 $-u''=\lambda\rho u$ 的分布方程. 因为 $u\in H^1_0(0,1)\subset C[0,1]$、
+$\rho\in L^\infty$, 右端有界, 所以
+\begin{equation}
+	u\in W^{2,\infty}(0,1)\subset C^1[0,1].
+\end{equation}
+下文中的二阶导数等式均按几乎处处理解, Wronskian 等式则通过积分使用.
+
+\begin{lemma}[特征值单性]\label{lem:simple}
+问题 \eqref{eq:sl} 的每个特征值都是简单的.
+\end{lemma}
+
+\begin{proof}
+若两个解都满足左端 Dirichlet 条件, 则它们的初值分别为 $(0,c_1)$、$(0,c_2)$. 系数
+$\lambda\rho\in L^\infty$ 时, 积分方程
+\begin{equation*}
+	u(x)=u(0)+xu'(0)-\lambda\int_0^x(x-t)\rho(t)u(t)\,dt
+\end{equation*}
+有唯一解. 因此非零解由 $u'(0)$ 唯一确定, 两个左端为零的非零解必成比例. 特别地,
+不存在同时满足 $u(x_0)=u'(x_0)=0$ 的非零解.
+\end{proof}
+
+\section{\texorpdfstring{$L^\infty$}{L-infinity} 权下的 Pr\"ufer 理论与严格交错}
+\subsection{Pr\"ufer 角的两个严格单调性}
+
+令 $s(x,\lambda)$ 是初值问题
+\begin{equation}
+	s''+\lambda\rho s=0,\qquad s(0,\lambda)=0,\qquad s'(0,\lambda)=1
+\end{equation}
+的解. Volterra 积分方程
+\begin{equation*}
+	s(x,\lambda)=x-\lambda\int_0^x(x-t)\rho(t)s(t,\lambda)\,dt
+\end{equation*}
+给出解对 $\lambda$ 的连续可微依赖. 向量 $(s,s')$ 从不为零, 故可唯一连续展开 Pr\"ufer 角
+\begin{equation*}
+	s=r\sin\theta,\qquad s'=r\cos\theta,\qquad r>0,\qquad \theta(0,\lambda)=0.
+\end{equation*}
+直接计算得到几乎处处成立的公式
+\begin{equation}
+	\theta_x=\frac{s'^2+\lambda\rho s^2}{s^2+s'^2}>0.
+	\label{eq:theta_x}
+\end{equation}
+因此对固定 $\lambda>0$, 角度随 $x$ 严格增加.
+
+再令 $z=\partial_\lambda s$. 对 \eqref{eq:sl} 的初值问题求参数导数得
+\begin{equation*}
+	z''+\lambda\rho z=-\rho s,\qquad z(0)=z'(0)=0.
+\end{equation*}
+于是
+\begin{equation*}
+	(s'z-sz')'=\rho s^2
+\end{equation*}
+以及
+\begin{equation}
+	\partial_\lambda\theta(x,\lambda)=\frac{\int_0^x\rho(t)s(t,\lambda)^2\,dt}
+		{s(x,\lambda)^2+s'(x,\lambda)^2}>0\qquad(x>0).
+	\label{eq:theta_lambda}
+\end{equation}
+所以端点角 $\theta(1,\lambda)$ 也随 $\lambda$ 连续严格增加.
+
+\subsection{精确结点计数}
+
+\begin{lemma}[结点定理]\label{lem:nodal}
+属于 $\lambda_k$ 的特征函数在 $(0,1)$ 中恰有 $k-1$ 个不同零点, 而且每个零点都是简单的.
+\end{lemma}
+
+\begin{proof}
+Dirichlet 特征值恰是满足 $s(1,\lambda)=0$ 的参数, 即 $\theta(1,\lambda)\in\pi\mathbb Z$ 的参数.
+第一特征函数在 $(0,1)$ 中同号: 取 Rayleigh 商的第一极小化子, 将其替换为绝对值仍是极小化子,
+故仍满足弱 Euler--Lagrange 方程. 若这个非负的 $C^1$ 解在内点为零, 则该点导数也为零, 违反
+引理 \ref{lem:simple} 中的初值唯一性. 因此 $\theta(1,\lambda_1)=\pi$.
+
+由 \eqref{eq:theta_lambda}, $\theta(1,\lambda_k)/\pi$ 随 $k$ 严格增加且为正整数. 相邻整数不可能
+被跳过: 若从某个整数跳到至少大两级的整数, 连续性和介值定理会在两个连续编号的特征值之间
+产生另一个 $s(1,\lambda)=0$ 的参数, 这本身就是一个 Dirichlet 特征值, 矛盾. 因此
+\begin{equation*}
+	\theta(1,\lambda_k)=k\pi .
+\end{equation*}
+再由 \eqref{eq:theta_x} 的严格正性, 角度经过 $\pi,2\pi,\dots,(k-1)\pi$ 各一次, 故恰有
+$k-1$ 个内点零点. 在零点处 $s'\ne0$, 否则解及其导数同时为零, 所以零点简单.
+\end{proof}
+
+\subsection{相邻特征函数严格交错}
+
+\begin{lemma}[严格比较]\label{lem:compare}
+设
+\begin{equation*}
+	u''+\lambda\rho u=0,\qquad v''+\mu\rho v=0,\qquad \mu>\lambda,
+\end{equation*}
+且 $a<b$ 是 $u$ 的两个相邻零点 (允许 $a=0$ 或 $b=1$). 则 $v$ 在 $(a,b)$ 内至少有一个零点.
+\end{lemma}
+
+\begin{proof}
+反设 $v$ 在 $(a,b)$ 无零点. 改变符号后可令 $u,v>0$ 于该开区间, 并令
+\begin{equation*}
+	W=v'u-vu'.
+\end{equation*}
+几乎处处有
+\begin{equation}
+	W'=-(\mu-\lambda)\rho uv<0 .
+	\label{eq:wronskian_mu}
+\end{equation}
+由于 $u'(a)>0$、$u'(b)<0$, 而连续延拓后的 $v(a),v(b)\ge0$,
+\begin{equation*}
+	W(a)=-v(a)u'(a)\le0,\qquad W(b)=-v(b)u'(b)\ge0 .
+\end{equation*}
+这与对 \eqref{eq:wronskian_mu} 积分所得 $W(b)<W(a)$ 矛盾.
+\end{proof}
+
+\begin{corollary}[相邻严格交错]\label{cor:interlace}
+$u_k$ 的每个结点区间 (包括首尾区间) 恰含 $u_{k+1}$ 的一个内点零点. 两者没有共同内点零点.
+\end{corollary}
+
+\begin{proof}
+引理 \ref{lem:compare} 说明 $u_k$ 的 $k$ 个结点区间各含至少一个 $u_{k+1}$ 零点; 引理
+\ref{lem:nodal} 又说明后者总共恰有 $k$ 个内点零点. 因此每个区间恰有一个, 且没有多余零点
+可位于 $u_k$ 的内点零点上.
+\end{proof}
+
+\section{弱星谱连续性与两个极值的存在性}
+\subsection{允许集合的弱星序列紧性}
+
+\begin{lemma}\label{lem:wscompact}
+$K_R$ 中每个序列都含有弱星收敛到 $K_R$ 内某点的子列.
+\end{lemma}
+
+\begin{proof}
+由于 $L^1(0,1)$ 可分, 取其中一个可数稠密集 $\{\phi_m\}_{m\ge1}$. 对任意
+$(\rho_j)\subset K_R$, 逐次抽取并作对角化, 使每个数列 $\int\rho_j\phi_m$ 都收敛. 由
+$\|\rho_j\|_\infty\le R$, 稠密线性包上的极限泛函一致有界, 因而唯一延拓为 $L^1$ 上的有界
+线性泛函; 利用 $(L^1)^*=L^\infty$, 它由某个 $\rho\in L^\infty$ 表示. 对稠密集的收敛和一致
+范数界一起推出对每个 $L^1$ 测试函数都收敛, 即 $\rho_j\overset{*}{\rightharpoonup}\rho$.
+
+若 $\phi\ge0$, 则
+\begin{equation*}
+	\int(\rho-1)\phi=\lim_j\int(\rho_j-1)\phi\ge0,\qquad
+	\int(R-\rho)\phi\ge0 .
+\end{equation*}
+故 $1\le\rho\le R$ 几乎处处, 即 $\rho\in K_R$.
+\end{proof}
+
+\subsection{固定编号特征值的弱星连续性}
+
+首先由极小极大公式和常权 Dirichlet 谱得到一致界
+\begin{equation}
+	\frac{\ell^2\pi^2}{R}\le\lambda_\ell(\rho)\le\ell^2\pi^2
+		\qquad(\rho\in K_R).
+	\label{eq:uniform}
+\end{equation}
+
+\begin{lemma}[弱星谱连续性]\label{lem:wscont}
+若 $\rho_j\overset{*}{\rightharpoonup}\rho$ 且 $\rho_j,\rho\in K_R$, 则对每个固定
+$k\ge1$,
+\begin{equation*}
+	\lambda_k(\rho_j)\to\lambda_k(\rho) .
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+第一步: 上极限. 令 $V$ 为 $\rho$ 的前 $k$ 个特征函数张成的固定空间. 对 $V$ 的 $a$-单位球上
+任意 $u$, 有
+\begin{equation*}
+	b_{\rho_j}(u,u)-b_\rho(u,u)=\int_0^1(\rho_j-\rho)u^2\,dx .
+\end{equation*}
+该单位球是有限维紧集, 映射 $u\mapsto u^2$ 将它映为 $L^1$ 中的紧集. 泛函
+$f\mapsto\int(\rho_j-\rho)f$ 一致有界并在每个固定 $f$ 上趋于零; 对上述紧集取有限
+$\varepsilon$-网, 便知收敛在球上一致. 同时, $b_\rho(u,u)$ 在该球上的最小值为正. 故
+Rayleigh 商在该球上一致收敛, 式 \eqref{eq:minimax} 给出
+\begin{equation}
+	\limsup_{j\to\infty}\lambda_k(\rho_j)\le\lambda_k(\rho) .
+	\label{eq:limsup}
+\end{equation}
+
+第二步: 下极限. 取一个实现原序列下极限的子列, 仍记为 $j$. 对每个 $j$, 选取前 $k$ 个特征
+函数 $u_{j,1},\dots,u_{j,k}$, 使它们关于 $b_{\rho_j}$ 正交归一:
+\begin{equation*}
+	b_{\rho_j}(u_{j,\ell},u_{j,m})=\delta_{\ell m} .
+\end{equation*}
+由 \eqref{eq:uniform},
+\begin{equation*}
+	\|u_{j,\ell}\|_a^2=a(u_{j,\ell},u_{j,\ell})=\lambda_\ell(\rho_j)
+\end{equation*}
+一致有界. 对有限个编号作对角抽取, 可设
+\begin{equation}
+	u_{j,\ell}\to u_\ell\ \text{于}\ H,\qquad u_{j,\ell}\rightharpoonup u_\ell\ \text{于}\ L^2 .
+	\label{eq:conv}
+\end{equation}
+乘积于是收敛于 $L^1$. 将
+\begin{equation*}
+	\int\rho_j u_{j,\ell}u_{j,m}-\int\rho u_\ell u_m
+\end{equation*}
+拆成移动乘积误差与固定乘积弱星误差, 得到
+\begin{equation}
+	b_\rho(u_\ell,u_m)=\delta_{\ell m} .
+	\label{eq:orthlimit}
+\end{equation}
+因此 $V_0=\operatorname{span}\{u_1,\dots,u_k\}$ 确为 $k$ 维.
+
+对固定 $c=(c_1,\dots,c_k)$, 令
+\begin{equation*}
+	w_j=\sum_{\ell=1}^k c_\ell u_{j,\ell},\qquad
+	w=\sum_{\ell=1}^k c_\ell u_\ell .
+\end{equation*}
+不同特征函数在 $a$ 和 $b_{\rho_j}$ 下均正交, 故
+\begin{equation*}
+	a(w_j,w_j)=\sum_{\ell=1}^k\lambda_\ell(\rho_j)c_\ell^2
+		\le\lambda_k(\rho_j)|c|^2 .
+\end{equation*}
+弱下半连续性和 \eqref{eq:orthlimit} 给出
+\begin{equation*}
+	a(w,w)\le\left(\liminf_j\lambda_k(\rho_j)\right)|c|^2,\qquad
+	b_\rho(w,w)=|c|^2 .
+\end{equation*}
+在 $V_0\setminus\{0\}$ 上取最大值, 再用 \eqref{eq:minimax}, 得到
+\begin{equation}
+	\lambda_k(\rho)\le\liminf_{j\to\infty}\lambda_k(\rho_j) .
+	\label{eq:liminf}
+\end{equation}
+结合 \eqref{eq:limsup} 与 \eqref{eq:liminf} 即得结论.
+\end{proof}
+
+\begin{corollary}[最大值和最小值都达到]\label{cor:attain}
+$D_n$ 在 $K_R$ 上同时有全局最大化子和全局最小化子.
+\end{corollary}
+
+\begin{proof}
+分别取最大化序列和最小化序列. 引理 \ref{lem:wscompact} 给出各自弱星收敛的子列, 且极限仍在
+$K_R$ 中. 引理 \ref{lem:wscont} 对 $k=n,n+1$ 成立, 所以
+\begin{equation*}
+	D_n(\rho_j)\to D_n(\rho) .
+\end{equation*}
+两个序列的极限分别达到上确界和下确界.
+\end{proof}
+
+\section{严格 Wronskian 符号与切换函数零点上界}
+\subsection{Wronskian 在整个开区间内严格为负}
+
+以下固定任意 $\rho\in K_R$. 将 $u_n,u_{n+1}$ 归一化为
+\begin{equation*}
+	\int_0^1\rho u_k^2\,dx=1
+\end{equation*}
+并定向为 $u_k'(0)>0$. 记 $u_n$ 的零点为
+\begin{equation*}
+	0=x_0<x_1<\cdots<x_{n-1}<x_n=1 .
+\end{equation*}
+由推论 \ref{cor:interlace}, $u_{n+1}$ 在每个 $(x_{j-1},x_j)$ 中恰有一个零点, 记作 $z_j$.
+
+\begin{lemma}[全局严格符号]\label{lem:wronskian}
+令
+\begin{equation*}
+	W=u'_{n+1}u_n-u_{n+1}u'_n .
+\end{equation*}
+则
+\begin{equation}
+	W(x)<0\qquad(0<x<1) .
+	\label{eq:wneg}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+几乎处处有
+\begin{equation}
+	W'=-(\lambda_{n+1}-\lambda_n)\rho u_n u_{n+1} .
+	\label{eq:wprime}
+\end{equation}
+在第 $j$ 个 $u_n$ 结点区间中, $u_n$ 的符号为 $(-1)^{j-1}$. 由于两个函数在左端都以正导数
+起步, 并且 $u_{n+1}$ 在此前每个区间中恰过零一次, 它在 $(x_{j-1},z_j)$ 与 $u_n$ 同号, 在
+$(z_j,x_j)$ 与 $u_n$ 异号. 因此 $W$ 在前半格严格下降, 在后半格严格上升.
+
+对每个内点 $x_j$, $u'_n(x_j)$ 和 $u_{n+1}(x_j)$ 的符号都为 $(-1)^j$, 所以
+\begin{equation}
+	W(x_j)=-u_{n+1}(x_j)u'_n(x_j)<0 .
+	\label{eq:wxj}
+\end{equation}
+另一方面, Dirichlet 边界条件给出 $W(0)=W(1)=0$. 在首个结点区间, $W$ 从 $0$ 严格下降, 之后
+虽上升但只上升到负的 $W(x_1)$; 每个中间区间从负值下降再上升到另一个负值; 最后一个区间从负值
+下降再上升到端点值 $0$. 故所有内点上 $W<0$. 严格性可直接从 \eqref{eq:wprime} 在每个不含零点的
+半格上积分得到, 因为 $\rho\ge1$ 且 $u_nu_{n+1}$ 在那里严格同号或异号.
+\end{proof}
+
+因此在 $u_n$ 的每个开结点区间上, 商
+\begin{equation}
+	q=\frac{u_{n+1}}{u_n}
+\end{equation}
+满足
+\begin{equation}
+	q'=\frac{W}{u_n^2}<0 .
+	\label{eq:qprime}
+\end{equation}
+这里商只在单个开结点区间内使用; 其端点可能是极点, 不影响论证.
+
+\subsection{至多 \texorpdfstring{$2n$}{2n} 个简单零点}
+
+\begin{definition}[切换函数]\label{def:switch}
+在上述归一化下定义
+\begin{equation}
+	F_n(x)=\lambda_n u_n(x)^2-\lambda_{n+1}u_{n+1}(x)^2 .
+	\label{eq:fn}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[零点上界与单性]\label{lem:zeros}
+$F_n$ 在 $(0,1)$ 中至多有 $2n$ 个不同零点, 而且每个这样的零点都是简单零点.
+\end{lemma}
+
+\begin{proof}
+在 $u_n$ 的任一内点零点 $x_j$, 严格交错给出
+\begin{equation*}
+	F_n(x_j)=-\lambda_{n+1}u_{n+1}(x_j)^2<0,
+\end{equation*}
+所以切换零点不会落在商 $q$ 的极点处. 令
+\begin{equation*}
+	c=\sqrt{\frac{\lambda_n}{\lambda_{n+1}}}\in(0,1) .
+\end{equation*}
+在每个开结点区间中,
+\begin{equation}
+	F_n=0\iff q=c\ \text{或}\ q=-c .
+	\label{eq:cross}
+\end{equation}
+由 \eqref{eq:qprime}, $q$ 严格下降, 因而至多各穿过两个不同水平 $c$ 和 $-c$ 一次. 共有 $n$ 个
+结点区间, 所以总零点数至多 $2n$.
+
+还需排除相切. 写成
+\begin{equation*}
+	F_n=u_n^2\left(\lambda_n-\lambda_{n+1}q^2\right) .
+\end{equation*}
+在 $F_n=0$ 处 $u_n\ne0$、$q=\pm c\ne0$、$q'<0$, 从而
+\begin{equation*}
+	F_n'=u_n^2(-2\lambda_{n+1}qq')\ne0 .
+\end{equation*}
+所以每个零点都简单. 特别地, 零集有限, Lebesgue 测度为零.
+\end{proof}
+
+\section{任意有界方向的 Feynman--Hellmann 公式}
+
+对实函数 $q\in L^\infty(0,1)$, 定义 $T_q:H\to H$:
+\begin{equation}
+	a(T_qf,g)=\int_0^1 qfg\,dx .
+	\label{eq:tq}
+\end{equation}
+与引理 \ref{lem:compact} 相同的估计给出 $\|T_q\|\le C\|q\|_\infty$, 且 $T_q$ 紧、自伴.
+
+\begin{lemma}[Feynman--Hellmann 公式]\label{lem:fh}
+设 $h\in L^\infty(0,1)$, 并令 $\varepsilon$ 足够小, 使 $\rho+\varepsilon h$ 仍为正权. 若
+$u_k$ 按
+\begin{equation*}
+	b_\rho(u_k,u_k)=\int_0^1\rho u_k^2\,dx=1
+\end{equation*}
+归一化, 则
+\begin{equation}
+	\left.\frac{d}{d\varepsilon}\lambda_k(\rho+\varepsilon h)\right|_{\varepsilon=0}
+		=-\lambda_k\int_0^1 hu_k^2\,dx .
+	\label{eq:fh}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+算子依赖是范数意义下的精确仿射关系
+\begin{equation*}
+	T_{\rho+\varepsilon h}=T_\rho+\varepsilon T_h .
+\end{equation*}
+令 $\mu_k(\varepsilon)=1/\lambda_k(\rho+\varepsilon h)$. 由于 $\mu_k(0)$ 简单, 且附近谱与它
+有正间隔, 范数连续性保证小 $\varepsilon$ 时存在唯一对应的简单特征值. 取其 $a$-单位特征向量
+$z_\varepsilon$, 并用 $a(z_\varepsilon,z_0)>0$ 固定符号.
+
+先说明 $z_\varepsilon\to z_0$ 于 $H$. 若 $\varepsilon_j\to0$, 则
+\begin{equation*}
+	z_{\varepsilon_j}=\mu_k(\varepsilon_j)^{-1}T_{\rho+\varepsilon_j h}z_{\varepsilon_j} .
+\end{equation*}
+右侧由紧性预紧. 任一极限都是 $T_\rho$ 对应于 $\mu_k(0)$ 的 $a$-单位特征向量; 单性和定向只允许
+极限为 $z_0$. 故整个族收敛.
+
+将扰动后的特征方程与 $z_0$ 作 $a$-内积, 并用自伴性, 得到精确恒等式
+\begin{equation*}
+	\frac{\mu_k(\varepsilon)-\mu_k(0)}{\varepsilon}
+		=\frac{a(T_hz_\varepsilon,z_0)}{a(z_\varepsilon,z_0)} .
+\end{equation*}
+令 $\varepsilon\to0$, 便有
+\begin{equation*}
+	\mu'_k(0)=a(T_hz_0,z_0)=\int_0^1 hz_0^2\,dx .
+\end{equation*}
+因 $b_\rho(u_k,u_k)=1$, 弱特征方程给出 $a(u_k,u_k)=\lambda_k$, 故 $z_0=u_k/\sqrt{\lambda_k}$.
+对 $\lambda_k=1/\mu_k$ 求导即得 \eqref{eq:fh}. 注意这个论证没有假设特征向量本身预先可微.
+\end{proof}
+
+对 $k=n,n+1$ 的公式相减, 得到目标泛函的方向导数
+\begin{equation}
+	D_n'(\rho)[h]=\int_0^1 h(x)F_n(x)\,dx,
+	\label{eq:fhgap}
+\end{equation}
+其中 $F_n$ 正是 \eqref{eq:fn} 的切换函数.
+
+\section{一侧针刺变分、bang--bang 饱和与开关计数}
+\subsection{全局最大化子的饱和律}
+
+\begin{lemma}\label{lem:satmax}
+若 $\rho^*$ 是 $D_n$ 在 $K_R$ 上的全局最大化子, 则以 $\rho^*$ 的归一化特征函数定义 $F_n$ 后,
+\begin{equation}
+	\rho^*=R\ \text{a.e. 于}\ \{F_n>0\},\qquad
+	\rho^*=1\ \text{a.e. 于}\ \{F_n<0\} .
+	\label{eq:satmax}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+任取有界方向 $h$, 若对所有足够小的 $\varepsilon>0$ 都有 $\rho^*+\varepsilon h\in K_R$, 则最大性
+和 \eqref{eq:fhgap} 给出
+\begin{equation}
+	\int_0^1 hF_n\,dx\le0 .
+	\label{eq:onedir}
+\end{equation}
+固定 $\delta>0$, 令
+\begin{equation*}
+	A_\delta=\{x:\rho^*(x)\le R-\delta\}.
+\end{equation*}
+任意支撑在 $A_\delta$ 上的非负有界函数 $\phi$ 都可作为正方向 $h=\phi$ (缩小 $\varepsilon$ 即可).
+由 \eqref{eq:onedir}, $\int\phi F_n\le0$, 故 $F_n\le0$ 几乎处处于 $A_\delta$. 对正有理数
+$\delta$ 取并, 得到
+\begin{equation}
+	F_n\le0\ \text{a.e. 于}\ \{\rho^*<R\} .
+	\label{eq:sat1}
+\end{equation}
+类似地, 在
+\begin{equation*}
+	B_\delta=\{x:\rho^*(x)\ge1+\delta\}
+\end{equation*}
+上取 $h=-\phi$, 其中 $\phi\ge0$ 有界. 式 \eqref{eq:onedir} 给出 $\int\phi F_n\ge0$, 从而
+\begin{equation}
+	F_n\ge0\ \text{a.e. 于}\ \{\rho^*>1\} .
+	\label{eq:sat2}
+\end{equation}
+若 $F_n>0$, 式 \eqref{eq:sat1} 排除 $\rho^*<R$, 故 $\rho^*=R$; 若 $F_n<0$, 式 \eqref{eq:sat2}
+排除 $\rho^*>1$, 故 $\rho^*=1$. 这就是 \eqref{eq:satmax}.
+\end{proof}
+
+\subsection{全局最小化子的饱和律}
+
+\begin{lemma}\label{lem:satmin}
+若 $\rho^*$ 是 $D_n$ 在 $K_R$ 上的全局最小化子, 则
+\begin{equation}
+	\rho^*=1\ \text{a.e. 于}\ \{F_n>0\},\qquad
+	\rho^*=R\ \text{a.e. 于}\ \{F_n<0\} .
+	\label{eq:satmin}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+最小性将 \eqref{eq:onedir} 的不等号反向, 即每个可行的一侧方向满足 $\int hF_n\ge0$. 在
+$A_\delta$ 上取 $h=\phi\ge0$, 得到 $F_n\ge0$ 于 $\{\rho^*<R\}$; 在 $B_\delta$ 上取 $h=-\phi$,
+得到 $F_n\le0$ 于 $\{\rho^*>1\}$. 于是 $F_n>0$ 时只能取下端点 $1$, $F_n<0$ 时只能取上端点
+$R$.
+\end{proof}
+
+\subsection{排除奇异弧并完成主定理}
+
+由引理 \ref{lem:zeros}, $\{F_n=0\}\cap(0,1)$ 是至多含 $2n$ 个点的有限集. 引理
+\ref{lem:satmax} 或 \ref{lem:satmin} 表明, 任何严格位于 $1$ 与 $R$ 之间的权重值只能出现于
+该零集 (忽略零测集). 因此每个全局极值权重都 bang--bang, 且不存在正测度的奇异弧.
+
+又因为 $F_n\in C^1[0,1]$, 从有限零集中删去后, $(0,1)\setminus\{F_n=0\}$ 至多有 $2n+1$ 个
+连通开区间; 在每个区间上 $F_n$ 有固定严格符号. 根据相应的饱和律, $\rho^*$ 在每个这样的区间上
+几乎处处等于同一个盒端点. 给有限个零点任意指定 $1$ 或 $R$, 再合并相邻同值区间, 便得到一个
+至多有 $2n+1$ 个常值块、至多 $2n$ 个开关的代表元.
+
+结合推论 \ref{cor:attain}, 定理 \ref{thm:main} 的存在性、bang--bang 性和开关上界全部得证.
+\section{边界情形与反例风险审计}
+
+下面列出证明中容易被忽略的边界, 并说明它们在何处被处理.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+边界或退化情形 & 处理方式\\
+\midrule
+仅可测、快速振荡的权重 &
+全文只用 $L^\infty$ 界和弱方程; 引理 \ref{lem:wscompact}--\ref{lem:wscont} 专门处理弱星振荡.\\
+$R\downarrow1$ &
+对每个固定 $R>1$ 证明成立, 论证不使用 $R-1$ 的正下界;\\
+& $R=1$ 时允许集退化为单点, 但主定理没有调用该情形.\\
+任意大的有限 $R$ &
+常数可以依赖 $R$, 但只要 $R<\infty$, 紧性和严格符号论证不变.\\
+目标最低编号 $n=2$ &
+结点区间计数从 $n=1$ 已成立, 因此 $n=2$ 无额外例外.\\
+公共 Dirichlet 端点 &
+两个特征函数在 $0,1$ 都为零, 故 $W(0)=W(1)=0$; 引理 \ref{lem:wronskian}\\
+& 分别处理首尾结点格.\\
+共同内点零点 &
+严格比较给每个 $u_n$ 结点格一个 $u_{n+1}$ 内点零点; 精确结点数\\
+& 不留下共同零点的名额.\\
+商 $u_{n+1}/u_n$ 的极点 &
+商只在单个开结点区间使用; 在每个 $u_n$ 内点零点上 $F_n<0$,\\
+& 没有漏掉切换零点.\\
+切换函数的重零或相切 &
+引理 \ref{lem:zeros} 用 $q'<0$ 直接证明每个内点零点简单.\\
+正测度零集或奇异弧 &
+$F_n$ 至多有 $2n$ 个内点零点, 故不可能有正测度零集.\\
+特征值碰撞 &
+一维 Dirichlet 初值唯一性保证每个特征值简单.\\
+盒约束的活动面 &
+只在 $\{\rho\le R-\delta\}$ 或 $\{\rho\ge1+\delta\}$ 上使用一侧可行方向, 再对\\
+& 有理 $\delta>0$ 取并.\\
+几乎处处代表元 &
+证明结束后才给有限个零点赋值; 这不改变等价类或谱.\\
+所有极值点而非仅驻点 &
+先由弱星紧性证明全局极值确实存在, 再对任意全局极值应\\
+& 用必要条件.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{计算核查、文献范围与证据等级}
+\subsection{数值工作只承担证伪压力测试}
+
+独立数值路线扫描了 35 个权重实例、$n=2,\dots,12$ 以及从 $R=1.00000001$ 到 $R=10^4$
+的参数, 共检查 385 对相邻谱数据. 扫描中没有发现 Wronskian 正号违例, 也没有发现切换函数
+零点数超过 $2n$ 的样本; 21 个有限差分方向导数核查在非精度受限情形下也没有失败. 这些结果
+只是对符号、边界和实现错误的压力测试, 不是定理 \ref{thm:main} 的证明.
+
+同一计算还否定了一个更强但本文没有采用的猜想: 一般正权下切换函数不必恰有 $2n$ 个零点,
+在 385 个样本中有 101 个样本不满足该更强断言. 粗网格二元代理问题还出现过非对称的反射成对
+极值图样, 因此不能从有限网格计算推断连续问题的所有极值子都对称或唯一.
+
+\subsection{文献定位与不首创声明}
+
+现有检索没有核实到一篇来源以完全相同的可测盒、全部相邻编号、最大值与最小值并列、以及
+$2n$ 开关上界的形式陈述本文组合定理; 但这\emph{不构成首创性证明}. 尤其 Willner--Mahar 1979
+年的工作研究一般特征值函数的极值刻画, 其完整定理范围尚需逐页核验, 因而是明确的既有工作风险.
+Sun 2022 处理第一谱隙最小化的近邻问题; Kong--Zettl 1996 给出正则 Sturm--Liouville 特征值的
+连续性和权重方向导数等标准事实. 本文的逻辑链已自行展开这些所需事实, 不把文献当作未经核对的
+关键前提.
+
+因此, 本报告只声称在当前证明包中完整推出该定理, 不使用"首次"、"全新"或"文献中不存在"等
+措辞. 正式发表前至少还应全文核查 Willner--Mahar 1979、Mahar--Willner 1976 和 Gentry--Banks
+1975, 并由该领域专家追踪其引用链.
+
+\section{已解决结论与仍开放的问题}
+\subsection{本证明已经闭合的内容}
+
+对每个 $R>1$、每个 $n\ge2$ 和完整可测盒 $K_R$, 以下内容均已由本文证明:
+\begin{itemize}
+	\item 每个固定编号特征值对弱星收敛连续;
+	\item 相邻谱隙的最大值和最小值均达到;
+	\item 任一全局最大化子和最小化子都 bang--bang;
+	\item 任一全局极值子的切换数不超过 $2n$;
+	\item 上述陈述不依赖预设的分段连续性、有限跳跃性、对称性或单调性.
+\end{itemize}
+
+\subsection{本证明没有解决的后续问题}
+
+\begin{enumerate}
+	\item 对给定 $(n,R)$, 最大化和最小化图样的精确块排列是什么?
+	\item 哪些切换必然有效? 极值子实际开关数能否精确分类?
+	\item 是否至少存在一个反射对称极值子? 是否每个极值子都对称?
+	\item 除去反射以后, 极值子是否唯一; 若不唯一, 全部极值子如何分类?
+	\item 随 $R$ 变化时, 最优图样在哪些参数处发生分岔或拓扑转变?
+	\item 最优谱隙是否有闭式公式、尖锐上下界或可认证有限维算法?
+	\item $n\to\infty$、$R\downarrow1$ 与 $R\to\infty$ 时的最优值和最优结构有何渐近规律?
+	\item 上述组合定理与 1970 年代一般特征值泛函极值理论之间的精确先后与包含关系是什么?
+\end{enumerate}
+
+\section{证明包绑定与 Blueprint 接收状态}
+
+本中文文档展开的冻结英文证明工件为
+\texttt{\seqsplit{runs/R-20260809T080134Z-nge2-gap/artifacts/full\_proof.md}}, 其 SHA--256 为
+\begin{center}
+	\texttt{\seqsplit{sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd}}.
+\end{center}
+该冻结工件未因本文排版而修改.
+
+最终不可变提案的已验证绑定为:
+\begin{itemize}
+	\item proposal SHA--256: \texttt{\seqsplit{sha256:64ffb36b0e37cf657b6956fb5c6904f8413c45367d55068edf9cd3295f476877}};
+	\item validation SHA--256: \texttt{\seqsplit{sha256:b680de432454fe013877482d48f2dd7fd2b855e8cf804602222e2f4debc07813}};
+	\item 候选 blueprint SHA--256: \texttt{\seqsplit{sha256:e372390ac585ac1faea4614bfd0cfd79711748e4c26084354db578a42cfbb4ec}};
+	\item 候选 evidence inventory SHA--256: \texttt{\seqsplit{sha256:02529f9374d833dab60c7f0650cc0b07431f2d172195100b069de0e7759107be}}.
+\end{itemize}
+
+最终独立评审、确定性接收与合并后闭包核验:
+\begin{itemize}
+	\item 评审结论: approve (无 findings、无 required actions);
+	\item 评审文件哈希: \texttt{\seqsplit{sha256:13f5d6af0a367fc73c3152075157f6d068ccde93e43943d66461e2c13e5acb51}};
+	\item 接收回执哈希: \texttt{\seqsplit{sha256:f7eb625317eead1844c99419b7e605af537ced1fc52e4c5c8f1a87455f23dd86}};
+	\item 合并后 blueprint 哈希: \texttt{\seqsplit{sha256:e372390ac585ac1faea4614bfd0cfd79711748e4c26084354db578a42cfbb4ec}};
+	\item 合并后 evidence inventory 哈希: \texttt{\seqsplit{sha256:02529f9374d833dab60c7f0650cc0b07431f2d172195100b069de0e7759107be}};
+	\item 确定性接收状态: merged; 合并后可信闭包包含主结论 CLM-NGE2-FINITE-REDUCTION;
+		研究前沿查询为空、无矛盾.
+\end{itemize}
+数学定理的证明不依赖这些流程性哈希. 本项目已经完成独立评审、确定性接收和合并后快照闭包
+查询, 因此"数学证明已完成"与"规范 Blueprint 已接收"这两个不同层次的状态现均已完成.
+
+\appendix
+\section{义务与证明位置对照表}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+证明义务 & 本文中的解除位置\\
+\midrule
+可测盒的弱星序列紧性 & 引理 \ref{lem:wscompact}\\
+固定编号特征值的双向半连续性 & 引理 \ref{lem:wscont} 的上极限与下极限两步\\
+最大值与最小值的达到 & 推论 \ref{cor:attain}\\
+$L^\infty$ 权下精确结点数 & 引理 \ref{lem:nodal}\\
+相邻特征函数严格交错及无共同内点零点 & 引理 \ref{lem:compare}、推论 \ref{cor:interlace}\\
+Wronskian 的全局严格符号 & 引理 \ref{lem:wronskian}\\
+切换函数至多 $2n$ 个简单零点 & 引理 \ref{lem:zeros}\\
+任意 $L^\infty$ 方向的一阶公式 & 引理 \ref{lem:fh} 与式 \eqref{eq:fhgap}\\
+盒约束两活动面的正确符号 & 引理 \ref{lem:satmax}、\ref{lem:satmin}\\
+排除正测度奇异弧 & 引理 \ref{lem:zeros} 的有限零集与第 7.3 节\\
+所有全局极值子 bang--bang & 推论 \ref{cor:attain} 后对任一全局极值子应用第 7 节\\
+至多 $2n$ 个开关 & 第 7.3 节的连通分支计数与相邻同值块合并\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{最大化与最小化饱和律速查}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & $F_n>0$ & $F_n<0$\\
+\midrule
+全局最大化子 & $\rho^*=R$ & $\rho^*=1$\\
+全局最小化子 & $\rho^*=1$ & $\rho^*=R$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+在 $F_n=0$ 的有限点集上如何赋值不影响 $L^\infty$ 等价类. "针刺"一词在本文仅指支撑在任意
+可测非活动区域上的有界局部方向, 并不要求支撑是单个小区间; 这种写法足以检测几乎处处的符号.
+
+\begin{thebibliography}{5}
+\bibitem{teschl} G. Teschl, \emph{Ordinary Differential Equations and Dynamical Systems},
+	Graduate Studies in Mathematics 140, American Mathematical Society, 2012.
+	\url{https://www.mat.univie.ac.at/~gerald/ftp/book-ode/ode.pdf}
+\bibitem{wm79} B. E. Willner and T. J. Mahar, \emph{Extrema of functions of eigenvalues},
+	Journal of Mathematical Analysis and Applications 72(2), 730--739, 1979.
+	\url{https://doi.org/10.1016/0022-247X(79)90260-9}
+\bibitem{kz96} Q. Kong and A. Zettl, \emph{Eigenvalues of Regular Sturm--Liouville Problems},
+	Journal of Differential Equations 131(1), 1--19, 1996.
+	\url{https://doi.org/10.1006/jdeq.1996.0154}
+\bibitem{sun22} H. Sun, \emph{On the minimum eigenvalue gap for vibrating string},
+	Journal of Mathematical Analysis and Applications 516(1), 126513, 2022.
+	\url{https://doi.org/10.1016/j.jmaa.2022.126513}
+\bibitem{aeh24} M. Ahrami, Z. El Allali, and E. M. Harrell II, \emph{On the Fundamental
+	Eigenvalue Gap of Sturm--Liouville Operators}, arXiv:2407.02459, 2024.
+	\url{https://arxiv.org/abs/2407.02459}
+\end{thebibliography}
+
+\end{document}

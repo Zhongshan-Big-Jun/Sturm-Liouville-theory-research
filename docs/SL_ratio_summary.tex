@@ -1,0 +1,461 @@
+﻿% 编译方式: xelatex SL_ratio_summary.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{example}[theorem]{例}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{相邻特征值比值 \texorpdfstring{$\lambda_{n+1}/\lambda_n$}{lambda_{n+1}/lambda_n} 的优化: 研究总结}
+\author{研究总结文档 (项目: BVE research)}
+\date{2026-08-01}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本总结文档记录对弦振动 Sturm-Liouville 问题
+$-y'' = \lambda\rho(x)y$ (Dirichlet 边界, $0 < a \leq \rho \leq A$)
+相邻特征值比值 $\lambda_{n+1}/\lambda_n$ 优化问题的研究过程与结论.
+我们证明上确界定理: 对一切 $n \geq 1$ 与一切容许密度 $\rho$,
+$\lambda_{n+1}/\lambda_n \leq \nu(R)$, $R = A/a$,
+且 $\nu(R) = \bigl(\arccos(-\sqrt{R}/(\sqrt{R}+1)) / \arccos(\sqrt{R}/(\sqrt{R}+1))\bigr)^2$
+为最优常数, 在 $n = 1$ 与对称两跳配置 $[a,A,a]$ 处达到.
+同时我们如实记录一个关键更正: 下确界 $\inf_{n\geq 1} \lambda_{n+1}/\lambda_n$
+不等于 Keller 常数 $\mu(R) = \inf \lambda_2/\lambda_1$,
+且对 $n \geq 2$ 存在远小于 $\mu(R)$ 的相邻比值 (如 $R=4$ 时
+$\lambda_5/\lambda_4 \approx 1.0838 < \mu(4) \approx 2.4092$);
+$\inf_{n\geq 1}\lambda_{n+1}/\lambda_n$ 仍为开放问题.
+文档包含文献综述, 证明技术总结, 数值证据表, 失败方法登记与经验教训.
+\end{abstract}
+
+\tableofcontents
+
+\section{引言与问题界定}
+
+考虑区间 $[0,1]$ 上的 Dirichlet 弦振动问题
+\begin{equation}
+	-y''(x) = \lambda\rho(x)y(x), \qquad y(0) = y(1) = 0,
+\end{equation}
+其中密度函数 $\rho$ 在容许类
+\begin{equation}
+	\mathcal{P}_{a,A} = \bigl\{ \rho \in PC[0,1] : 0 < a \leq \rho(x) \leq A \bigr\}
+\end{equation}
+中取值 ($PC$ 为有界跳点的分段连续函数). 记 $\lambda_1(\rho) < \lambda_2(\rho) < \cdots$
+为特征值. 由于把 $\rho$ 换成 $\rho/a$, $\lambda$ 换成 $a\lambda$ 后方程不变,
+特征值比值与缩放无关, 故不妨设 $a = 1$, $A = R \geq 1$.\footnote{缩放 $\rho \mapsto \rho/a$ 后方程 $-\ddot y = \lambda \rho y$ 变为 $-\ddot y = (a\lambda)(\rho/a) y$, 特征值乘 $a$, 比值不变.}
+
+我们研究相邻特征值比值的最优化:
+\begin{equation}
+	\Lambda_n^{\sup}(R) := \sup_{\rho \in \mathcal{P}_{1,R}} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)},
+	\qquad
+	\Lambda_n^{\inf}(R) := \inf_{\rho \in \mathcal{P}_{1,R}} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}.
+\end{equation}
+主要关心的问题为: (a) 全序列上确界 $\sup_{n\geq 1} \Lambda_n^{\sup}(R)$;\\
+(b) 全序列下确界 $\inf_{n\geq 1} \Lambda_n^{\inf}(R)$; (c) 固定 $n$ 的极值 $\Lambda_n^{\sup}, \Lambda_n^{\inf}$.
+
+经典的对应物是前两个特征值之比 $\lambda_2/\lambda_1$ 的极值问题.
+记
+\begin{equation}
+	\nu(R) := \sup_{\rho \in \mathcal{P}_{1,R}} \frac{\lambda_2}{\lambda_1},
+	\qquad
+	\mu(R) := \inf_{\rho \in \mathcal{P}_{1,R}} \frac{\lambda_2}{\lambda_1}.
+\end{equation}
+Keller [1] 证明了 $\mu(R)$ 的刻画, Mahar 与 Willner [2] 证明了 $\nu(R)$ 的刻画.
+本节会话的主要结果是把 $\nu(R)$ 提升为全序列相邻比值的上确界.
+
+\section{文献综述}
+
+以下按时间顺序综述特征值比值问题的前沿结果. 标注``全文核验''表示我们获取并逐条核对了全文; 标注``摘要级''表示仅获得摘要或评述.
+
+\subsection{Keller: 两个特征值之比的最小值 (1976)}
+
+Keller [1] 证明: 对问题 (1) 与类 $\mathcal{P}_{a,A}$,
+$\lambda_2/\lambda_1$ 的最小值 $\mu(a/A)$ 是 $a/A$ 的增函数, 从 $1$ ($a/A \to 0$) 到 $4$ ($a/A = 1$);
+极小化函数逐段常值, 取值为 $a$ 于 $(-x_0, x_0)$, 取值 $A$ 于其余部分,
+跳点 $x_0$ 由超越方程决定.\footnote{Keller 在区间 $[-1/2, 1/2]$ 上写作 $y'' + \lambda\phi(x)y = 0$, $y(\pm 1/2) = 0$, 类 $C_a: a \leq \phi \leq 1$; 与我们的设定差一个仿射坐标变换.}
+Keller 的变分分析 (他的 (3.8), (3.9)) 对任意特征值比 $\lambda_j/\lambda_k$ 均适用,
+是本项目尝试推广到相邻比值时最重要的技术起点.\footnote{Keller 变分条件: 极小化配置在跳点处满足 $|y_j| = |y_k|$ 型匹配条件 (经权重归一化 $\int \rho y^2 = 1$).}
+
+\subsection{Mahar-Willner: 极值特征值问题 (1976)}
+
+Mahar 与 Willner [2] 研究 $\lambda_2/\lambda_1$ 的极大与极小, 证明极值函数必为对称两跳阶梯函数, 并给出超越方程组确定跳点与特征值. 关键结构定理如下.\footnote{以下引理与定理的表述依据本地全文 OCR 文本 (papers/mw1976.txt), 含少量 OCR 噪声, 我们已用数值验证 Lemma 1-2 的结论.}
+
+\begin{lemma}[Mahar-Willner, Lemma 1]
+对 $n = 1, 2, \dots$, $\mu_{2n,n}(a) \leq \mu(a)$ 且 $\nu_{2n,n}(a) \geq \nu(a)$,
+其中 $\mu_{2n,n}, \nu_{2n,n}$ 为 $\lambda_{2n}/\lambda_n$ 在类 $\mathcal{P}_a$ 中的下确界与上确界.
+\end{lemma}
+
+Lemma 1 的证明使用周期延拓: 若 $\phi_0$ 极值化 $\lambda_2/\lambda_1$, 定义
+$\phi_n(x) = \phi_0\bigl(n(x+1/2)-1/2\bigr)$ 并以周期 $1/n$ 延拓到 $[-1/2, 1/2]$,
+则 (经仿射坐标变换) $\lambda_{2n}(\phi_n)/\lambda_n(\phi_n) = \lambda_2(\phi_0)/\lambda_1(\phi_0)$.
+
+\begin{lemma}[Mahar-Willner, Lemma 2]
+$\mu_{2n,n}(a) = \mu(a)$ 且 $\nu_{2n,n}(a) = \nu(a)$, $n = 1, 2, \dots$.
+\end{lemma}
+
+Lemma 2 的证明是归纳法: 取 $\phi$ 极值化 $\lambda_{2(k+1)}/\lambda_{k+1}$, 用
+$\lambda_{2(k+1)}$ 与 $\lambda_{k+1}$ 的特征函数零点做截断, 构造新的边值问题
+(仿射变换 $L(x) = \frac{2}{1+2z_0}(x+1/2)-1/2$), 把 $\lambda_{2(k+1)}/\lambda_{k+1}$
+化归为 $\lambda_{2k}/\lambda_k$ 型的比值.\footnote{零点截断是经典技巧: 用较高特征函数的零点切出子区间, 保持特征函数结构而压低特征值, 从而得到极值常数的不等式.}
+
+\begin{theorem}[Mahar-Willner, Theorem 3]
+若 $\phi_0(x)$ 极值化 $\lambda_2/\lambda_1$ (极大或极小), 则周期延拓
+$\phi_n(x) = \phi_0(n(x+1/2)-1/2)$ 在相同意义下极值化 $\lambda_{2n}/\lambda_n$.
+\end{theorem}
+
+注意: Theorem 3 与 Lemma 2 只覆盖指标比 $2:1$ (即 $\lambda_{2n}/\lambda_n$), 从不涉及相邻指标
+$\lambda_{n+1}/\lambda_n$. 这一点是本项目全部讨论的边界条件: 任何声称 ``MW 定理给出
+$\inf \lambda_{n+1}/\lambda_n$'' 的说法都是错误的.
+
+\subsection{Willner-Mahar: 二维特征值区域 (1982)}
+
+Willner 与 Mahar [3] 研究 $(\lambda_1, \lambda_2)$ 在密度类中的可达区域, 证明其边界由两跳对称配置构成 (摘要级).
+
+\subsection{Ashbaugh-Benguria: SL 算子特征值比值 (1993)}
+
+Ashbaugh 与 Benguria [4] (摘要级, 全文为无文本层扫描) 证明对
+$q \geq 0$ 的 SL 问题 $-(pu')' + qu = \lambda w u$, $k \leq pw \leq K$:
+\begin{equation}
+	\frac{\lambda_m}{\lambda_l} \leq \frac{K}{k} \left\lceil \frac{m}{l} \right\rceil^2;
+\end{equation}
+当 $q \equiv 0$ 时还有双边估计
+\begin{equation}
+	\frac{k m^2}{K l^2} \leq \frac{\lambda_m}{\lambda_l} \leq \frac{K m^2}{k l^2}.
+\end{equation}
+后一不等式对 $\lambda_{n+1}/\lambda_n$ 给出的是 $O(1)$ 量级的非最优界, 与我们的 $\nu(R)$ 相比是粗糙的.
+
+\subsection{Huang: 弦的凹密度与单峰密度 (1999)}
+
+Huang [5] (全文核验) 证明: 当密度 $\rho$ 对称且单峰 (凹) 时 $\lambda_2/\lambda_1 \geq 4$, 等号仅当 $\rho$ 几乎处处常数; 当 $\rho$ 对称且单谷时 $\lambda_2/\lambda_1 \leq 4$, 常数密度最大化.
+
+\subsection{Kiss: 单阱势 Schr\"odinger 算子的比值界 (2006)}
+
+Kiss [6] (zbMATH 评述级) 证明对对称单阱势, $\lambda_n/\lambda_1 \leq n^2$; 对对称单垒势, $\lambda_n/\lambda_1 \geq n^2$. 相应于 $\lambda_{n+1}/\lambda_n$, 单阱给出 $\lambda_{n+1}/\lambda_n \leq ((n+1)/n)^2$, 远弱于我们的一般类结果.
+
+\subsection{Hedhly: 单阱密度的特征值比值 (2021)}
+
+Hedhly [7] (全文核验) 证明单阱密度下 $\lambda_n/\lambda_m \leq (n/m)^2$ 对所有 $n > m$ 成立, 方法基于两个特征函数交点计数与 Sturm 比较.\footnote{单阱假设 $\rho$ 在 $[0,1/2]$ 递减, $[1/2,1]$ 递增, 或类似形状约束; 与我们的逐点夹逼类 $\mathcal{P}_{a,A}$ 不同.}
+
+\subsection{2026 年的新结果 (摘要级)}
+
+- Gan, Zheng, Li 与 Shao [8] (MMAS 49(10), DOI 10.1002/mma.70611) 研究带非负势 $q$ 的 SL 问题 $-u'' = q(x)u + \lambda m(x)u$ 的 Dirichlet 特征值比值, 通过解测度微分方程 (MDE) 的极小化问题处理无穷维极大化, 最优值由初等函数给出. 该方法针对 $L^p$ 球/全变差类, 不覆盖逐点夹逼类 $\mathcal{P}_{a,A}$.
+- Li 与 Ao [9] (JDE 476, DOI 10.1016/j.jde.2026.114478) 研究 Neumann SL 的最大特征值间隙与比值, 以测度微分方程为桥梁, 参考文献含 Mahar-Willner 1976 而未引 Keller 1976.
+- 三篇 2026 年论文 (含上述两篇与 JDE 465 的逆问题文) 均未处理 $n \geq 2$ 的相邻比值在 $\mathcal{P}_{a,A}$ 类中的最优界 (依据摘要/参考文献/MSC 判断; 全文付费墙下无法绝对排除).
+
+\subsection{其他背景}
+
+Horv\'ath [10] 研究 SL 算子前两个特征值的和与比, 提供基础工具. Chu 与 Meng 关于 Camassa-Holm 方程 Dirichlet 特征值比值的 Sharp bounds (Math. Ann. 2024) 属测度微分方程路线, 与本问题的类不同.
+
+\section{主要定理: 全序列上确界}
+
+\begin{theorem}[相邻比值上确界定理]
+设 $R \geq 1$. 则
+\begin{equation}
+	\sup_{n \geq 1} \sup_{\rho \in \mathcal{P}_{1,R}} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}
+	= \nu(R) = \left( \frac{\arccos\!\bigl(-\sqrt{R}/(\sqrt{R}+1)\bigr)}
+	{\arccos\!\bigl(\sqrt{R}/(\sqrt{R}+1)\bigr)} \right)^2 .
+\end{equation}
+上确界在 $n = 1$ 处由对称两跳配置 $\rho = [1, R, 1]$ (权重 $1$ 于两个端点块, $R$ 于中间块,
+块宽 $s t, t, s t$, $s = \sqrt{R}$, $t = 1/(2\sqrt{R}+1)$) 达到.
+\end{theorem}
+
+证明分三步, 详见证明文档 \texttt{SL\_ratio\_proof.tex}.
+
+\begin{enumerate}
+	\item 平凡不等式: 对固定 $\rho$, 特征值序列递增, $n+1 \leq 2n$, 故
+		$\lambda_{n+1} \leq \lambda_{2n}$, 从而
+		$\lambda_{n+1}/\lambda_n \leq \lambda_{2n}/\lambda_n$.
+	\item 由 Mahar-Willner Lemma 2 (或 Theorem 3):
+		$\sup_{\rho} \lambda_{2n}/\lambda_n = \nu(R)$ 对每个 $n$ 成立.
+	\item 闭式公式: 对配置 $[1, R, 1]$, 平衡相位条件给出
+		$\lambda_1 = ((2\sqrt{R}+1)\theta/\sqrt{R})^2$, $\lambda_2 = ((2\sqrt{R}+1)(\pi-\theta)/\sqrt{R})^2$,
+		其中 $\theta = \arccos(\sqrt{R}/(\sqrt{R}+1))$, 故 $\lambda_2/\lambda_1 = ((\pi-\theta)/\theta)^2 = \nu(R)$.
+\end{enumerate}
+
+该定理的证明是完全的: 其依赖的 MW Lemma 1--2 已在本项目内独立重证
+(会话 12, 见 \path{SL_mw_lemma_reproof.pdf}), 定理完全自足.
+数值验证见第 8 节.
+
+\section{Keller 定理: \texorpdfstring{$\lambda_2/\lambda_1$}{lambda2/lambda1} 的下确界}
+
+\begin{theorem}[Keller]
+对问题 (1), $\inf_{\rho \in \mathcal{P}_{1,R}} \lambda_2/\lambda_1 = \mu(R)$, 其中
+\begin{equation}
+	\mu(R) = \left( \frac{\arccos\!\bigl(-1/(\sqrt{R}+1)\bigr)}
+	{\arccos\!\bigl(1/(\sqrt{R}+1)\bigr)} \right)^2 .
+\end{equation}
+极小化配置为对称两跳 $[R, 1, R]$: 权重 $R$ 于两个端点块, $1$ 于中间块,
+块宽 $c, s c, c$, $s = \sqrt{R}$, $c = 1/(\sqrt{R}+2)$.
+\end{theorem}
+
+Keller 原文给出极小值与极小化函数的数值刻画; 这里的闭式 $\mu(R)$ 由平衡相位方法给出
+(见证明文档), 数值验证 $R = 1.5, 2, 3, 4, 10, 100$ 与转移矩阵计算一致到 8 位小数.
+注意 $\mu(R)$ 从 $4$ ($R=1$) 递减到 $1$ ($R \to \infty$), 与 Keller 的增函数描述 ($a/A$ 从 $0$ 到 $1$)
+一致.
+
+\section{关键更正: 相邻比值下确界是开放问题}
+
+前次会话曾假设 $\inf_{n\geq 1} \lambda_{n+1}/\lambda_n = \mu(R)$.
+本次研究证明该假设错误: MW 定理只覆盖 $\lambda_{2n}/\lambda_n$, 而相邻比值 $\lambda_{n+1}/\lambda_n$
+在 $n \geq 2$ 时可以远小于 $\mu(R)$.
+
+\subsection{反例族}
+
+取 $R = 4$ (此时 $\mu(4) = 2.4091685548$), 交替配置 $[A,a,A,a,\dots,A]$ (两端为 $A$),
+宽度 $w_A = 1/(3n+1)$, $w_a = 2w_A$ (即 $w_a/w_A = 2 = \sqrt{R}$). 数值结果:
+
+\begin{center}
+\begin{tabular}{ccc}
+	\toprule
+	$n$ & 配置 (块数) & $\lambda_{n+1}/\lambda_n$ \\
+	\midrule
+	2 & $[A,a,A,a,A]$ & 1.4242433972 \\
+	3 & $[A,a,A,a,A,a,A]$ & 1.1791885971 \\
+	4 & $[A,a,A,a,A,a,A,a,A]$ & 1.0838098314 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
+其中 $n = 3$ 时 $\lambda_3 = 56.70885901$, $\lambda_4 = 66.87043990$; $n = 4$ 时
+$\lambda_4 = 100.09539937$, $\lambda_5 = 108.48437791$.\footnote{反例用转移矩阵乘积的零点定位 (secular 方程) 以 1e-8 精度复算确认; 配置块宽总和为 1, 跳点坐标由块宽累加给出.}
+
+\begin{remark}[下确界的当前状态]
+$\inf_{n\geq 1} \inf_{\rho} \lambda_{n+1}/\lambda_n$ 是开放问题.
+已证的事实只有: (i) $n = 1$ 时下确界为 $\mu(R)$ (Keller);
+(ii) 对一切 $n$, $\lambda_{n+1}/\lambda_n > 1$ (简单谱);
+(iii) 上表族给出 $\lambda_{n+1}/\lambda_n \to 1^+$ 的数值证据 ($n=4$ 时已达 1.0838).
+能否在 $\mathcal{P}_{1,R}$ 中让 $\lambda_{n+1}/\lambda_n$ 趋于 $1$, 以及精确的
+$\inf_{n,\rho}$ 是否等于 $1$, 均未解决.
+\end{remark}
+
+\subsection{点态单调性为假}
+
+我们曾猜测更强的点态单调性 $\lambda_3/\lambda_2 \leq \lambda_2/\lambda_1$ (对每个固定 $\rho$).
+该猜测为假: 取 $R = 4$, 跳点 $[0.1072, 0.1364, 0.2122, 0.3473, 0.6721, 0.8453]$,
+从 $a = 1$ 开始交替取值得 $\lambda_2/\lambda_1 = 2.90102008$, $\lambda_3/\lambda_2 = 3.80139360$
+(违反 $\leq$); 从 $A = 4$ 开始得 $5.23063204$ 与 $1.80439751$ (满足但方向相反).
+
+\section{固定 \texorpdfstring{$n$}{n} 的猜想与能带极限 (开放)}
+
+对固定 $n$, 数值证据强烈支持以下猜想.
+
+\begin{conjecture}[固定 $n$ 上确界猜想]
+对每个 $n \geq 1$, $\Lambda_n^{\sup}(R)$ 由交替 bang-bang 配置
+$\rho = [1, R, 1, R, \dots, 1]$ (共 $2n+1$ 块, 两端为 $1$) 达到, 其中
+$w_1/w_R = \sqrt{R}$, 块宽 $w_R = t = 1/((n+1)\sqrt{R}+n)$,
+$w_1 = \sqrt{R}\,t$.
+\end{conjecture}
+
+数值 (R=4, 候选配置) 给出 $c_n = \lambda_{n+1}/\lambda_n$:
+
+\begin{center}
+\begin{tabular}{ccccccc}
+	\toprule
+	$n$ & 1 & 2 & 3 & 4 & 5 & 6 \\
+	\midrule
+	$c_n$ & 7.48153 & 4.28466 & 3.45388 & 3.09118 & 2.89443 & 2.77394 \\
+	\midrule
+	$n$ & 8 & 10 & 12 & 16 & 20 & 24 \\
+	$c_n$ & 2.63833 & 2.56698 & 2.52461 & 2.47873 & 2.45566 & 2.44243 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
+以及 $c_{24} = 2.44243$, $c_{\infty} = 2.40916855$. Keller 变分条件 (跳点处 $|y_n| = |y_{n+1}|$ 等)
+对 $n = 1, \dots, 8$ 已符号级验证吻合 (1e-11).
+
+能带极限: 当 $n \to \infty$ 时, 交替周期结构逼近周期介质, 特征值比趋于能带边比值
+\begin{equation}
+	c_{\infty}(R) = \left( \frac{\pi - \varphi_1}{\varphi_1} \right)^2,
+	\qquad \varphi_1 = \arccos\left( \frac{\sqrt{R}-1}{\sqrt{R}+1} \right).
+\end{equation}
+数值验证 $R = 4$ 时 $c_{\infty}(4) = 2.40916855 = \mu(4)$, $R = 2$ 时
+$c_{\infty}(2) = 1.55403629 \neq \mu(2) = 3.05139810$.\footnote{$c_{\infty}(R) = \mu(R)$ 当且仅当 $(\sqrt{R}-1)/(\sqrt{R}+1) = 1/(\sqrt{R}+1)$, 即 $\sqrt{R} = 2$, $R = 4$; 因此 $R=4$ 的相等是巧合.}
+
+\begin{remark}
+猜想若成立, 则 $\Lambda_n^{\sup}(R) = c_n(R)$ 单调递减到 $c_{\infty}(R)$,
+且 $\sup_n \Lambda_n^{\sup}(R) = c_1(R) = \nu(R)$, 与第 3 节定理相容.
+但该猜想的证明未完成, 不得视为定理.
+\end{remark}
+
+\section{数值验证表}
+
+平衡相位闭式与转移矩阵数值对 $\nu, \mu$ 的对比 ($s = \sqrt{R}$):
+
+\begin{center}
+\begin{tabular}{cccccc}
+	\toprule
+	$R$ & $\nu(R)$ 闭式 & $\nu(R)$ 数值 & $\mu(R)$ 闭式 & $\mu(R)$ 数值 \\
+	\midrule
+	1.5 & 4.75382078 & 4.75382078 & 3.40068243 & 3.40068243 \\
+	2.0 & 5.40388487 & 5.40388487 & 3.05139810 & 3.05139810 \\
+	3.0 & 6.51973823 & 6.51973823 & 2.64587239 & 2.64587239 \\
+	4.0 & 7.48153339 & 7.48153339 & 2.40916855 & 2.40916855 \\
+	10.0 & 11.82037283 & 11.82037283 & 1.86419353 & 1.86419353 \\
+	100.0 & 39.83043629 & 39.83043629 & 1.26121838 & 1.26121838 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
+角度恒等式 (转移矩阵直接验证, 机器精度):
+
+\begin{center}
+\begin{tabular}{ll}
+	\toprule
+	配置 & 恒等式 \\
+	\midrule
+	$[1,R,1]$ 极大化, $\theta = \arccos(s/(s+1))$ & $\sqrt{\lambda_1}\,s t = \theta$, \ $\sqrt{\lambda_1} = (2s+1)\theta/s$, \ $\sqrt{\lambda_2}\,s t = \pi-\theta$ \\
+	$[R,1,R]$ 极小化, $\varphi = \arccos(1/(s+1))$ & $\sqrt{\lambda_1}\,s c = \varphi$, \ $\sqrt{\lambda_1} = (s+2)\varphi/s$, \ $\sqrt{\lambda_2}\,s c = \pi-\varphi$ \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
+其中 $t = 1/(2s+1)$, $c = 1/(s+2)$. 注意交接摘要中曾出现
+$\sqrt{\lambda_1} = 2(s+1)\varphi/s$ 的笔误, 正确恒等式为 $\sqrt{\lambda_1} = (s+2)\varphi/s$ (对 $R=4$ 两者巧合).
+
+周期延拓验证 (合并胞界构造, 见证明文档): 对 $R=4$, 交替配置 $[1,4,1,4,\dots,1]$
+($2n+1$ 块, $w_4 = t = 1/(3n+2)$, $w_1 = 2t$) 满足
+$\lambda_{2n} = n^2 \lambda_2^{(\text{cell})}$, $\lambda_n = n^2 \lambda_1^{(\text{cell})}$,
+故 $\lambda_{2n}/\lambda_n = \lambda_2/\lambda_1 = \nu(4) = 7.48153339$,
+对 $n = 1, \dots, 6$ 验证一致 (1e-8).
+
+\section{失败方法登记与经验教训}
+
+按 skill 要求, 如实登记本次研究尝试过但失败的方法.
+
+\begin{enumerate}
+	\item \textbf{点态单调性 $\lambda_3/\lambda_2 \leq \lambda_2/\lambda_1$ 为假.}
+		见第 6.2 节反例. 该假设曾用于试图归纳出全序列下确界, 必须放弃.
+	\item \textbf{非对称全格点扫描超时.} 对一般跳点配置的穷举扫描计算量过大,
+		后续改用对称族参数化扫描.
+	\item \textbf{周期延拓胞界未合并 bug.} 早期脚本把每个胞元的尾块与下一胞元的首块
+		当作两个独立块 (胞界 $1|1$ 处伪跳点), 导致 $\lambda_{2n}/\lambda_n$ 数值偏离 $\nu(R)$.
+		合并相邻等值块后恢复精确等式. 该 bug 曾造成 ``周期延拓字面不成立'' 的错误结论.
+	\item \textbf{粗网格扫描伪值.} 能带极限 $c_{\infty}(4)$ 粗扫出现伪值,
+		加密后收敛到 2.40916855.
+	\item \textbf{归一化必须用权重.} 特征函数需满足 $\int \rho y^2 = 1$,
+		忽略权重会得到错误的变分条件.
+	\item \textbf{平方律不可外推.} $\lambda_{kn} = k^2\lambda_n$ 仅对 $k = 1, 2$ 成立,
+		周期延拓的平方律只对倍指标 $2n/n$ 精确, 对一般倍数不成立.
+	\item \textbf{$c_{\infty}(R) = \mu(R)$ 仅 $R = 4$ 巧合.} 见第 7 节脚注.
+	\item \textbf{文献错配警告.} 本地文件 \texttt{horvath\_HorvathKissIP.pdf} 实为
+		Inverse Problems 25 (2009) 015011 (逆散射稳定性), 不是 Kiss 2006, 综述中不可引用.
+\end{enumerate}
+
+经验教训总结: (a) 数值结论必须与文献定理的精确表述对齐 (MW 只覆盖 $\lambda_{2n}/\lambda_n$);
+(b) 周期构造的胞界合并是数值复现的常见陷阱; (c) 闭式公式须对多个 $R$ 与高精度核验;
+(d) 严格区分``已证定理''与``数值强支持的猜想'', 前者写入证明文档, 后者如实标注开放.
+
+\section{开放问题与后续方向}
+
+\begin{enumerate}
+	\item $\inf_{n\geq 1}\inf_{\rho} \lambda_{n+1}/\lambda_n$ 的精确值 (是否等于 $1$?).
+		建议路线: Keller 变分条件 + 对称 bang-bang 族扫描 + 周期介质能带分析.
+	\item 固定 $n$ 上确界猜想 (第 7 节) 的证明; 能否用零点截断归纳 (MW Lemma 2 的路线) 推广到相邻指标?
+	\item 能否证明 $\Lambda_n^{\sup}(R) \downarrow c_{\infty}(R)$? 这需要分析
+		周期结构特征值的能带分布.
+	\item 一般权函数/势函数类 (Neumann, 混合边界, 非负势 $q$) 的相邻比值最优界.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\hbadness=10000
+
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491.
+	DOI: \url{https://doi.org/10.1137/0131042}
+
+\bibitem{mw} T. J. Mahar, B. E. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	DOI: \url{https://doi.org/10.1002/cpa.3160290505}
+
+\bibitem{wm} B. E. Willner, T. J. Mahar, \emph{The two-dimensional eigenvalue range
+	and extremal eigenvalue problems for strings}, SIAM J. Math. Anal. 13 (1982), 621--631.
+	DOI: \url{https://doi.org/10.1137/0513040}
+
+\bibitem{ab93} M. S. Ashbaugh, R. D. Benguria, \emph{Eigenvalue ratios for Sturm-Liouville
+	operators}, J. Differential Equations 103 (1993), 205--219.
+	DOI: \url{https://doi.org/10.1006/jdeq.1993.1047}
+
+\bibitem{huang} Y. Huang, \emph{On the eigenvalue ratio for vibrating strings},
+	Proc. Amer. Math. Soc. 127 (1999), 1805--1813.
+	\url{https://www.ams.org/journals/proc/1999-127-06/S0002-9939-99-04741-3/}
+
+\bibitem{kiss} M. Kiss, \emph{A bound for ratios of eigenvalues of Schr\"odinger operators
+	with single-well potentials}, Proc. Amer. Math. Soc. 134 (2006), 1425--1434.
+	zbMATH: \url{https://zbmath.org/1098.34067}
+
+\bibitem{hedhly} S. Hedhly, \emph{Eigenvalue ratios for vibrating string equations with single-well densities} (\href{https://arxiv.org/abs/2111.01728}{arXiv:2111.01728}, 2021).
+
+
+
+\bibitem{gan} S. Gan, J. Zheng, H. Li, L. Shao, \emph{2026 年特征值比值结果 (摘要级, 原文标题未获取)}, Math. Methods Appl. Sci. 49 (2026), 10552--10565. DOI: \url{https://doi.org/10.1002/mma.70611}
+
+
+
+\bibitem{liao} S. Li, J. Ao, \emph{(2026) Neumann SL 最大间隙与比值, 摘要级},
+	J. Differential Equations 476 (2026), art. 114478.
+	DOI: \url{https://doi.org/10.1016/j.jde.2026.114478}
+
+\bibitem{horvath} M. Horv\'ath, \emph{On the first two eigenvalues of Sturm-Liouville
+	operators}, Proc. Amer. Math. Soc. 131 (2003), 1215--1224.
+	DOI: \url{https://doi.org/10.1090/S0002-9939-02-06637-6}
+
+\end{thebibliography}
+
+\section{涉及到的数学知识}
+
+本节汇总文档使用的数学知识; 正文脚注给出对应概念的简注.
+
+\subsection{SL 谱理论}
+
+\begin{description}
+	\item[简单谱与特征函数零点] 正则 SL 问题 (1) 的特征值严格递增且简单;
+		第 $m$ 个特征函数在 $(0,1)$ 内恰有 $m-1$ 个内零点 (Sturm 振荡理论).
+	\item[谱单调性] 密度增大 (逐点) 使特征值不增; 同一问题的特征值序列本身单调,
+		故 $n+1 \leq 2n$ 推出 $\lambda_{n+1} \leq \lambda_{2n}$.
+	\item[Pr\"ufer 相位] 极坐标变换 $y = r\sin\vartheta$, $y' = r\cos\vartheta$ 把
+		特征值问题化为相位的单调微分方程, 是节点计数与能带分析的基础.
+	\item[Liouville 变换] 把一般 SL 方程化为 $-\eta'' + \psi\eta = \lambda\eta$
+		(Liouville normal form), 用于比较不同密度的问题.
+	\item[Feynman-Hellmann 公式] 特征值对参数的导数 $\partial_\tau \lambda = \langle \partial_\tau H \, y, y\rangle$,
+		优化一阶条件的来源.
+\end{description}
+
+\subsection{极值方法}
+
+\begin{description}
+	\item[Keller 变分条件] 极值配置在跳点处满足匹配条件 (含权重归一化
+		$\int \rho y^2 = 1$), 对任意 $\lambda_j/\lambda_k$ 形式相同.
+	\item[bang-bang 原理] 线性约束下的极值函数逐点取到约束端点 ($a$ 或 $A$),
+		本项目全部极值候选均为两值阶梯函数.
+	\item[转移矩阵与 secular 方程] 每块上的解由 $2\times 2$ 矩阵传播,
+		Dirichlet 条件化为矩阵元的零点方程; 本项目所有数值都基于此.
+	\item[平衡相位条件] 对称两跳配置中, 特征值可表示为每块承载相同相位
+		($\sqrt{\lambda\rho}\cdot\text{块宽}$), 给出闭式特征值与比值.
+	\item[Helly 紧性] 单调有界函数族存在逐点收敛子列, 用于极值存在性.
+	\item[零点截断归纳] MW Lemma 2: 用较高特征函数零点切出子区间构造新问题,
+		归纳传递极值常数.
+\end{description}
+
+\subsection{周期结构与能带}
+
+\begin{description}
+	\item[周期延拓] $\phi_n(x) = \phi_0(n(x+1/2)-1/2)$ 把两跳配置周期化;
+		特征值满足 $\lambda_n = n^2\lambda_1^{(\text{cell})}$, $\lambda_{2n} = n^2\lambda_2^{(\text{cell})}$.
+	\item[胞界合并] 周期结构相邻胞元的同值尾块/首块必须合并, 否则出现伪跳点.
+	\item[Bloch 能带] 周期介质的谱为能带结构, 带内 $\lambda_{n+1}/\lambda_n \to 1$,
+		带隙处比值较大; $c_{\infty}(R)$ 来自带边相位 $\varphi_1$.
+	\item[单调性与对称重排] 极值配置的对称性 (Keller/MW 结构定理) 把无穷维优化
+		化归为有限参数族.
+\end{description}
+
+\end{document}

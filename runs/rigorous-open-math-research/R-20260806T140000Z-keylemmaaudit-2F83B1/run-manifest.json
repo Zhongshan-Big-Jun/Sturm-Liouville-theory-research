@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260806T140000Z-keylemmaaudit-2F83B1",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260806-keylemma-audit-2F83B1",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-06T14:00:00Z",
+  "completed_at": "2026-08-06T14:03:27Z",
+  "run_root": "runs/rigorous-open-math-research/R-20260806T140000Z-keylemmaaudit-2F83B1",
+  "task_packet_path": "agenda/task-packets/Q-20260806-keylemma-audit-2F83B1.md",
+  "task_packet_sha256": "5B2AC421FA4E5AF61743E3EF2C19E14AA28751141B08C0CA378486B0A3AF13C2",
+  "upstream_status_verbatim": "CANDIDATE_COMPLETE_PROOF",
+  "audit_verdict": "INDEPENDENTLY_AUDITED_PROOF",
+  "artifacts": [
+    "problem_contract.md",
+    "status_and_literature.md",
+    "obligation_graph.md",
+    "approach_registry.md",
+    "research_ledger.md",
+    "counterexample_log.md",
+    "candidate_proof.md",
+    "audit_report.md",
+    "repro_manifest.md",
+    "reproducibility/audit_iv.py",
+    "reproducibility/audit_functions.py",
+    "reproducibility/audit_symbolic.py",
+    "reproducibility/audit_symbolic2.py",
+    "reproducibility/audit_certificates.py",
+    "reproducibility/dbg_iv.py",
+    "reproducibility/dbg_iv2.py",
+    "reproducibility/output/audit_certificates_v3.txt",
+    "reproducibility/output/audit_iv_sanity_v3c.txt",
+    "reproducibility/output/audit_functions_sanity_v3.txt",
+    "reproducibility/output/audit_symbolic.txt",
+    "reproducibility/output/audit_symbolic2.txt"
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10 (mpmath 1.3.0, numpy 2.2.6, sympy 1.13.1)"
+    ],
+    "formal_systems": [],
+    "unknown_fields": [
+      "model",
+      "exact wall-clock history of the earlier solver session"
+    ]
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "independent audit of R-20260806T070000Z-keylemma2b-0A6D8F (KEY LEMMA candidate proof)",
+    "verdict INDEPENDENTLY_AUDITED_PROOF: all obligations (L1, L2, B4, B5, M2, CORNER, C4, R1, R2, L4box, L5box) re-derived and verified; all five certificates re-verified with an independent sound Decimal interval engine (exact tiling, sign conditions, coverage, sliver bridge)",
+    "confirmed caveats: riarith.iv_sqrt non-strict (audit engine independent); C4 identity IN = A*K(v) is symbolically zero after atan(tan v) = v (producer caveat resolved); shipped C4 verifier used stale region constants (audit uses the certificate own endpoints)",
+    "no manage-math-research-program calls from inside this run",
+    "completed_at records the environment clock at completion (2026-08-06T14:03:27Z); nominal run timestamps are close to the environment clock - recorded honestly"
+  ]
+}

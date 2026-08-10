@@ -1,0 +1,423 @@
+﻿% 编译方式: xelatex SL_stability_moment_jump.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{proposition}[theorem]{命题}
+
+\title{矩跳跃机制的稳定性: 系数扰动下增长引理与完备性的保持}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文研究后续方向 3: 矩跳跃完备性判据在系数扰动下的稳定性. 会话 9--11 的
+完备性证明依赖二阶跳变递推 $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ 的解的
+\emph{超多项式增长} (Krein 情形 $A_m - B_m = 4m + cm/(m-1)$, 增长引理给出
+$u_m \geq (4/c)^{m-1} m!$). 本文回答: 在何种系数扰动下该机制仍然封闭?
+主要结果:
+\begin{enumerate}
+	\item \emph{增长引理 (定量形式, 定理 \ref{thm:growth})}: 只要 $B_m \geq 0$
+		且 $A_m - B_m \geq c_0$, 解单调且 $u_m \geq \prod_{k=2}^m (A_k-B_k)/c_0$.
+		上界论证只需要 $u_m/m^\beta \to \infty$ (超多项式), 具体幂次不重要.
+	\item \emph{稳定性定理 (定理 \ref{thm:stability})}: 设
+		$A_m - B_m \geq c_0(1+\varepsilon_m)$, $\varepsilon_m \geq 0$ 且
+		$\sum_{k \leq m} \min(\varepsilon_k, 1) = \omega(\log m)$, 则
+		$u_m$ 超多项式增长, 进而任意满足 (H1)(H2) 与单幂范数界
+		$\|x^k\|_H \leq C k^\beta$ 的空间 $H$ 中, 跳变族 $\{q_n\}$ 完备.
+	\item \emph{尖锐性 (定理 \ref{thm:sharp})}: 若 $\varepsilon_k = C/k$, 则
+		$u_m = m^C/\Gamma(2+C)(1+o(1))$ 仅为多项式增长, 对角空间
+		$H_\beta$ ($\beta > C+1/2$) 中 $\{q_n\}$ 不完备 (显式
+		$w \neq 0$ 正交于 $\{q_n\}$). 故 ``累计超出量发散快于对数''
+		是精确门槛.
+	\item \emph{Krein 族的稳健性 (定理 \ref{thm:margin})}: Krein 族
+		$\varepsilon_m \sim (4/c)m$, 余量极大; 常数 $c$ 的扰动
+		($c \to c+\delta$, $\delta > -c$) 与基系数有界扰动均保持完备性.
+	\item \emph{精确二分与门槛线分类 (定理 \ref{thm:Sthr}--\ref{thm:model})}:
+		门槛量是 $S(m) = \sum \log(1+\varepsilon_k)$: $S = \omega(\log m)$
+		充分; 对角空间 $H_\beta$ 中完备性判据是精确的
+		(级数 (7) 发散); 门槛线 $\varepsilon_k \sim 1/(k\log k)$ 被完全分类
+		(完备 $\iff \beta \leq 1/2$); 稀疏指数大跳显示 $S$ 优于
+		$\sum\min(\varepsilon,1)$.
+\end{enumerate}
+全部断言经精确有理数或高精度浮点验证, 见第 3 节 (脚本在 \path{scripts/} 目录).
+\end{abstract}
+
+\tableofcontents
+
+\section{背景: 矩跳跃机制的输入与门槛}
+
+会话 9--11 证明移位 Krein Laplacian $K_c$ 的稀疏基 $\{p_n\}$ (缺 2, 3 次)
+在一切整数左定空间 $H^s$ 中解析完备. 论证的核心是\emph{矩跳跃}: 对
+$w \perp \{K_c p_n\}$, 取与正交条件同源内积的矩 $M_k$, 正交条件化为二阶跳变递推
+\begin{equation}
+	c M_{2m} = A_m M_{2m-2} - B_m M_{2m-4},
+	\quad A_m = 2m(2m-1)+\frac{cm}{m-1},\; B_m = 2m(2m-3),
+\end{equation}
+其基础解 $u_m$ 满足增长引理 $u_m \geq (4/c)^{m-1} m!$ (超阶乘), 与矩的多项式
+上界 $|M_k| \leq C k^\beta$ 矛盾, 迫使 $M_2 = M_3 = 0$, 从而 $w = 0$.
+
+本方向的问题是\emph{稳定性}: 若算子或基受到扰动, 递推系数变为
+$A_m', B_m'$, 何时完备性结论保持? 关键观察: 论证实际需要的不是精确的
+$u_m \geq (4/c)^{m-1}m!$, 而仅仅是\emph{超多项式}增长 $u_m/m^\beta \to \infty$
+(会话 10 经验 3: ``上界与增长必须同尺度, 关键是上界是多项式的, 具体幂次不重要'').
+因此稳定性的门槛由 $A_m' - B_m'$ 的相对大小决定.
+
+\section{主要定理}
+
+\subsection{增长引理 (定量形式)}
+
+\begin{theorem}[增长引理, 定量形式]\label{thm:growth}
+	设 $c_0 > 0$, 序列 $A_m, B_m$ 满足 $B_m \geq 0$, $A_m \geq B_m$ ($m \geq 2$).
+	令 $u_0 = 0$, $u_1 = 1$, $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ ($m \geq 2$).
+	则 $u_m$ 单调不减, 且
+	\begin{equation}
+		u_m \geq \prod_{k=2}^{m} \frac{A_k - B_k}{c_0} = \prod_{k=2}^m (1+\varepsilon_k),
+		\qquad \varepsilon_k := \frac{A_k - B_k - c_0}{c_0} \geq 0.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	归纳证明 $u_m \geq u_{m-1} \geq 0$. 基始 $u_1 = 1 > u_0 = 0$. 若
+	$u_{m-1} \geq u_{m-2} \geq 0$, 则
+	\[
+		u_m = \frac{A_m u_{m-1} - B_m u_{m-2}}{c_0}
+		\geq \frac{(A_m - B_m)u_{m-1}}{c_0} \geq u_{m-1},
+	\]
+	其中最后一步用 $A_m - B_m \geq c_0$. 于是
+	$u_m = (A_m u_{m-1} - B_m u_{m-2})/c_0 \geq (A_m-B_m)u_{m-1}/c_0$, 连乘得 (2).
+	\qed
+\end{proof}
+
+\begin{remark}
+	不等式 $u_m \geq (A_m/c_0)u_{m-1}$ 一般不成立 (会话 9 更正: $c=3$, $j=4$ 时
+	$u_4 = 3700 < 3780$), 必须先用单调性再取比值. 定理 \ref{thm:growth} 的证明
+	正是这一思路的封装.
+\end{remark}
+
+\subsection{稳定性定理}
+
+\begin{theorem}[稳定性]\label{thm:stability}
+	设 $H$ 为 $[-1,1]$ 上函数的 Hilbert 空间, 满足 (H1) 多项式 $\Pi \subset H$
+	且 $\Pi$ 在 $H$ 中稠密; (H2) 矩泛函良定; 以及单幂范数界
+	$\|x^k\|_H \leq C_H k^\beta$ ($C_H, \beta \geq 0$). 设三角族
+	$\{q_n\}$ 满足跳变结构
+	\begin{equation}
+	\begin{aligned}
+		q_0 &= c_0,\; q_1 = c_0 x, \\
+		q_{2m} &= c_0 x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}, \\
+		q_{2m+1} &= c_0 x^{2m+1} - A_m' x^{2m-1} + B_m' x^{2m-3} \quad (m \geq 2).
+	\end{aligned}
+	\end{equation}
+	其中 $c_0 > 0$, $B_m, B_m' \geq 0$, $A_m \geq B_m$, $A_m' \geq B_m'$,
+	且
+	\begin{equation}
+		\sum_{k=2}^{m} \min(\varepsilon_k, 1) = \omega(\log m),
+		\qquad \sum_{k=2}^{m} \min(\varepsilon_k', 1) = \omega(\log m),
+	\end{equation}
+	这里 $\varepsilon_k = (A_k - B_k - c_0)/c_0$, $\varepsilon_k'$ 同理. 则
+	$\{q_n\}$ 在 $H$ 中完备.
+\end{theorem}
+
+\begin{proof}
+	设 $w \perp \operatorname{span}\{q_n\}$, 记 $M_k = (w, x^k)_H$. 由 $q_0, q_1$
+	得 $M_0 = M_1 = 0$. 对 $m \geq 2$, 由 (3):
+	\[
+		0 = (w, q_{2m})_H = c_0 M_{2m} - A_m M_{2m-2} + B_m M_{2m-4},
+	\]
+	故 $M_{2m} = M_2 u_m$, 其中 $u$ 满足定理 \ref{thm:growth} 的递推
+	($u_0 = 0$, $u_1 = 1$). 由 (4) 与
+	$\log(1+\varepsilon) \geq (\log 2)\min(\varepsilon, 1)$ ($\varepsilon \geq 0$),
+	\[
+		\log u_m \geq \sum_{k=2}^m \log(1+\varepsilon_k)
+		\geq (\log 2)\sum_{k=2}^m \min(\varepsilon_k, 1) = \omega(\log m),
+	\]
+	即 $u_m/m^\beta \to \infty$ 对一切 $\beta \geq 0$. 若 $M_2 \neq 0$, 则
+	\[
+		|M_2|\, u_m = |M_{2m}| \leq \|w\|_H \|x^{2m}\|_H \leq \|w\|_H C_H (2m)^\beta,
+	\]
+	取 $m \to \infty$ 矛盾. 故 $M_2 = 0$, 递推给出全部偶矩为零; 奇次同理
+	($M_3 = 0$, 全部奇矩为零). 于是 $M_k = 0$ 对一切 $k$, 由 (H1) 多项式稠密,
+	$w = 0$. 故正交补为 $\{0\}$, $\{q_n\}$ 完备. \qed
+\end{proof}
+
+\begin{remark}[条件与门槛]
+	条件 (4) 是充分条件. 直观: $\sum \min(\varepsilon_k,1)$ 是``有效超出量'',
+	其发散快于对数 (即 $\omega(\log m)$) 保证乘积 $\prod(1+\varepsilon_k)$
+	超多项式. Krein 族 $\varepsilon_k \sim (4/c)k$ 的累计量 $\sim m^2$,
+	远超门槛. 定理 \ref{thm:sharp} 表明门槛不能放宽到 $O(\log m)$.
+\end{remark}
+
+\subsection{尖锐性: 对角反例}
+
+\begin{theorem}[尖锐性]\label{thm:sharp}
+	设 $\varepsilon_k = C/k$ ($C > 0$), 即 $A_k - B_k = c_0(1 + C/k)$,
+	$B_k \geq 0$. 则递推解满足
+	\begin{equation}
+		u_m = \prod_{k=2}^m \Bigl(1 + \frac{C}{k}\Bigr)
+		= \frac{\Gamma(m+1+C)}{\Gamma(2+C)\,\Gamma(m+1)} = \frac{m^C}{\Gamma(2+C)}(1+o(1)),
+	\end{equation}
+	仅为多项式增长. 在对角空间 $H_\beta$ (内积 $(x^j, x^k) = \delta_{jk}(k+1)^{2\beta}$,
+	范数界 $\|x^k\| = (k+1)^\beta$ 自动成立) 中, 若 $\beta > C + 1/2$,
+	则满足 (3) (取 $q_{2m+1} = c_0 x^{2m+1}$ 等) 的族 $\{q_n\}$ \emph{不完备}:
+	$w = \sum_{m \geq 1} \frac{u_m}{(2m+1)^{2\beta}} x^{2m}$ 非零且
+	$w \perp \operatorname{span}\{q_n\}$.
+\end{theorem}
+
+\begin{proof}
+	$u_m$ 的闭式是标准恒等式 $\prod_{k=2}^m (1+C/k) = \Gamma(m+1+C)/(\Gamma(2+C)\Gamma(m+1))$
+	($k=2$ 起与 $k=1$ 起相差常数因子 $\Gamma(2+C)/\Gamma(1+C) = 1+C$, 不影响 $m^C$ 阶).
+	在 $H_\beta$ 中, $w$ 的矩为 $M_{2m} = (w, x^{2m}) = w_{2m}(2m+1)^{2\beta} = u_m$,
+	$M_0 = M_1 = 0$, 奇矩为零. 范数有限:
+	\[
+		\|w\|^2 = \sum_{m \geq 1} \frac{u_m^2}{(2m+1)^{2\beta}} \asymp
+		\sum_{m \geq 1} \frac{m^{2C}}{m^{2\beta}} < \infty \iff \beta > C + \tfrac12.
+	\]
+	且 $c_0 M_{2m} - A_m M_{2m-2} + B_m M_{2m-4} = M_2(c_0 u_m - A_m u_{m-1} + B_m u_{m-2}) = 0$
+	(递推), 故 $w \perp q_{2m}$; $w \perp q_0, q_1$ 由 $M_0 = M_1 = 0$. 故不完备.
+	\qed
+\end{proof}
+
+\begin{corollary}[门槛的精确性]
+	定理 \ref{thm:stability} 的充分条件 $\sum \min(\varepsilon_k,1) = \omega(\log m)$
+	在以下意义下尖锐: 若 $\varepsilon_k = O(1/k)$, 则存在满足跳变结构与多项式
+	范数界的空间 $H_\beta$ 使 $\{q_n\}$ 不完备. 换言之, ``累计超出量 $\omega(\log m)$''
+	是保证完备性的最小发散阶.
+\end{corollary}
+
+
+\subsection{精确二分: 对数总和门槛与门槛线分类}
+
+本小节把门槛分类推进到完备: 定义\emph{对数总和}
+\begin{equation}
+	S(m) := \sum_{k=2}^{m} \log(1+\varepsilon_k)
+	\;\; \Bigl(= \log \prod_{k=2}^m (1+\varepsilon_k)\Bigr).
+\end{equation}
+因为 $\log(1+\varepsilon) \geq (\log 2)\min(\varepsilon,1)$, 条件
+$S(m) = \omega(\log m)$ 弱于定理 \ref{thm:stability} 中的
+$\sum\min(\varepsilon_k,1) = \omega(\log m)$; 它才是真正控制
+$u_m$ 增长的量 ($\log u_m \geq S(m)$).
+
+\begin{theorem}[$S$-门槛: 充分性]\label{thm:Sthr}
+	若 $S(m) = \omega(\log m)$, 则 $u_m/m^\beta \to \infty$ 对一切
+	$\beta \geq 0$, 且 $\{q_n\}$ 在任何满足 (H1)(H2) 与多项式范数界
+	$\|x^k\|_H \leq C_H k^\beta$ 的空间 $H$ 中完备.
+\end{theorem}
+
+\begin{proof}
+	定理 \ref{thm:growth} 给出 $\log u_m \geq S(m) = \omega(\log m)$,
+	故 $u_m$ 超多项式; 余下与定理 \ref{thm:stability} 的证明完全相同
+	(矩 $M_{2m} = M_2 u_m$ 与多项式上界 $|M_{2m}| \leq \|w\|\,C_H(2m)^\beta$
+	矛盾). \qed
+\end{proof}
+
+\begin{theorem}[对角空间的精确判据]\label{thm:exact}
+	在对角空间 $H_\beta$ (内积 $(x^j,x^k) = \delta_{jk}(k+1)^{2\beta}$) 中,
+	设 $u'_m$ 为奇次递推 ($c_0 u'_m = A'_m u'_{m-1} - B'_m u'_{m-2}$,
+	$u'_0=0$, $u'_1=1$) 的解. 则 $\{q_n\}$ 在 $H_\beta$ 中完备当且仅当
+	\begin{equation}
+		\sum_{m \geq 1} \frac{u_m^2}{(2m+1)^{2\beta}} = \infty
+		\quad\text{且}\quad
+		\sum_{m \geq 1} \frac{(u'_m)^2}{(2m+2)^{2\beta}} = \infty.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	设 $w \perp \operatorname{span}\{q_n\}$, 记 $M_k = (w, x^k)_H$.
+	由 $q_0, q_1$ 得 $M_0 = M_1 = 0$; 由 (3) 得
+	$c_0 M_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$, 故 $M_{2m} = M_2 u_m$
+	($M_4 = A_2 M_2/c_0$ 起归纳). 反之, 给定标量 $M_2$, 向量
+	$w = M_2 \sum_{m \geq 1} u_m (2m+1)^{-2\beta} x^{2m}$ 满足
+	$(w, x^{2m}) = M_2 u_m$ 且 $\|w\|^2 = M_2^2 \sum_m u_m^2 (2m+1)^{-2\beta}$
+	($H_\beta$ 的对角性). 故存在非零 $w \perp \operatorname{span}\{q_n\}$
+	当且仅当偶次级数与奇次级数 (同理) 之一收敛. \qed
+\end{proof}
+
+\begin{corollary}[二分]\label{cor:di}
+	设 $S(m) = O(\log m)$ (等价地存在 $D$ 使 $u_m \leq C m^D$),
+	则 $\{q_n\}$ 在 $H_\beta$ 中对 $\beta > D + 1/2$ 不完备.
+	特别地, 定理 \ref{thm:Sthr} 的充分条件是\emph{精确门槛}:
+	$S = \omega(\log m)$ 对一切 $\beta$ 完备, 而 $S = O(\log m)$
+	在某个对角空间中不完备. 在模型族中判据 (7) 可显式求和.
+\end{corollary}
+
+\begin{theorem}[门槛线: $\varepsilon_k = C/(k\log k)$]\label{thm:line}
+	设 $\varepsilon_k = \varepsilon'_k = C/(k\log k)$ ($C > 0$, $k \geq 2$).
+	则 $S(m) \sim C\log\log m$, $u_m \asymp (\log m)^C$ 仅为多项式增长
+	($u_m/m^\delta \to 0$ 对一切 $\delta > 0$), 且 $\{q_n\}$ 在 $H_\beta$
+	中完备当且仅当 $\beta \leq 1/2$. 门槛线 $\varepsilon_k \sim 1/(k\log k)$
+	由此得到\emph{完全分类}.
+\end{theorem}
+
+\begin{proof}
+	$\log u_m = \sum_{k=2}^m \log(1 + C/(k\log k)) \sim C \sum_{k=2}^m
+	\frac{1}{k\log k} \sim C\log\log m$ (积分判别), 故
+	$u_m \asymp (\log m)^C$. 判据 (7) 化为 $\sum_m (\log m)^{2C}(2m)^{-2\beta}$,
+	由积分判别收敛当且仅当 $2\beta > 1$. \qed
+\end{proof}
+
+\begin{theorem}[模型族的显式门槛]\label{thm:model}
+	设 $\varepsilon_k = \varepsilon'_k = C/k$. 则 $u_m = m^C/\Gamma(2+C)(1+o(1))$
+	(定理 \ref{thm:sharp} 的闭式, 常数为 $\Gamma(2+C)$), 且
+	$\{q_n\}$ 在 $H_\beta$ 中完备当且仅当 $\beta \leq C + 1/2$
+	($\beta = C+1/2$ 处级数按 $\sum_m m^{-1}$ 发散, 对数型). 特别地,
+	临界幂次 $\beta = C+1/2$ 处\emph{恰好}完备.
+\end{theorem}
+
+\begin{proof}
+	判据 (7) 与 $\sum_m m^{2C} m^{-2\beta}$ 的积分判别:
+	收敛当且仅当 $2C - 2\beta < -1$, 即 $\beta > C+1/2$; 在
+	$\beta = C+1/2$ 处为 $\sum_m m^{-1} = \infty$. \qed
+\end{proof}
+
+\begin{proposition}[增益例: 稀疏大跳]\label{prop:sparse}
+	取 $\varepsilon_k = e^{k}$ 当 $k = 2^{2^j}$ ($j \geq 1$), 其余
+	$\varepsilon_k = 0$. 则 $\sum_{k \leq m} \min(\varepsilon_k,1)
+	= \#\{j: 2^{2^j} \leq m\} = o(\log m)$ (旧条件不适用), 但
+	最大跳满足 $k_j \geq \sqrt m$, 故
+	$S(m) \geq \log(1+e^{k_j}) \geq \sqrt m = \omega(\log m)$. 于是
+	$\{q_n\}$ 完备 (定理 \ref{thm:Sthr}); 这是用 $S$ 取代
+	$(\log 2)\sum\min(\varepsilon,1)$ 的实际增益: 稀疏的指数大跳
+	即可令 $u_m$ 超多项式.
+\end{proposition}
+
+\begin{proof}
+	跳点 $k_j = 2^{2^j}$ 满足: 对 $2^{2^J} \leq m < 2^{2^{J+1}}$,
+	$k_J \geq m^{1/2}$ ($2^{2^{J+1}} = k_J^2 > m$), 且
+	$\log(1+e^{k_J}) \geq k_J$. \qed
+\end{proof}
+
+\begin{remark}[判据 (7) 的边界与奇偶]
+	判据 (7) 是两个级数同时发散 (偶矩与奇矩各给一个自由度
+	$M_2, M_3$); 只发散其一仍可构造偶/奇反例. 门槛线上
+	$\varepsilon_k \sim 1/(k\log k)$ 的对数幂因子 $(\log m)^C$
+	不影响收敛临界 $\beta = 1/2$, 故门槛线分类与 $C$ 无关.
+	一般 $H$ (非对角) 的必要方向需范数\emph{下界}
+	$\|x^k\| \geq c k^\gamma$, 未纳入本节.
+\end{remark}
+
+\subsection{Krein 族的稳健性}
+
+\begin{theorem}[Krein 余量]\label{thm:margin}
+	设 $c > 0$. Krein 系数 $A_m = 2m(2m-1) + cm/(m-1)$, $B_m = 2m(2m-3)$
+	满足
+	\begin{equation}
+		A_m - B_m = 4m + \frac{cm}{m-1} \geq 4m + c,
+		\qquad \varepsilon_m \geq \frac{4m}{c}.
+	\end{equation}
+	因此 (i) 常数扰动 $c \to c + \delta$ ($\delta > -c$) 保持
+	$A_m - B_m \geq c + \delta$ 与超阶乘增长, 完备性不受影响;
+	(ii) 基系数扰动 $p_{2m} = x^{2m} - (\frac{m}{m-1} + \delta_m)x^{2m-2}$
+	($\delta_m \geq -K$ 有界下界) 给出
+	$A_m - B_m \geq 4m + \frac{cm}{m-1} + c\delta_m \geq (4-\varepsilon)m$
+	($m$ 充分大), 仍在稳定区.
+\end{theorem}
+
+\begin{proof}
+	直接计算 $A_m - B_m = 2m(2m-1) - 2m(2m-3) + cm/(m-1) = 4m + cm/(m-1)$,
+	且 $m/(m-1) \geq 1$. (i)(ii) 由定理 \ref{thm:stability} 与
+	$\sum_k (4k/c) = \infty$ 快于对数立即得到. \qed
+\end{proof}
+
+\section{数值验证}
+
+脚本 \path{scripts/d3_stability_verify.py} 与 \path{scripts/d3_stability_verify2.py}:
+\begin{enumerate}
+	\item \textbf{增长引理下界 (精确)}: 对 $\varepsilon_k \in
+		\{k^{-1/2}, k^{-1}, k^{-3/2}\}$, $u_m \geq \prod(1+\varepsilon_k)$
+		逐项精确 ($m \leq 200$), 下界与计算值完全相等 (取 $B_k = 0$ 时恰为等式).
+	\item \textbf{增长速率分类}: $\varepsilon_k = k^{-\alpha}$:
+		$\alpha = 0.5$ 时 $\log u_{399} = 35.12$ (超多项式),
+		$\alpha = 1$ 时指数 $\log u_m/\log m \to 0.88$ (多项式),
+		$\alpha = 1.5$ 时 $\to 0.25$ (有界); 与门槛一致.
+	\item \textbf{尖锐性 (对角反例)}: $\varepsilon_k = 2/k$ 时
+		$u_m/m^2 \in [0.175, 0.193]$ ($m \leq 60$, 多项式);
+		部分和 $\sum_m m^4(2m+1)^{-2\beta}$ 在 $\beta = 2.4, 2.6, 3.0$
+		收敛 (可表示), 与阈值 $\beta > C + 1/2 = 2.5$ 一致.
+	\item \textbf{Krein 超阶乘增长 (对数空间)}: $c \in \{0.5, 1, 3, 5\}$,
+		$u_{299}$ 的对数比下界 $\log((4/c)^{298} \cdot 298!)$ 大 $1200$--$1900$
+		(余量巨大); 常数扰动 $c = 3 \to 5, 1.5$ 保持
+		$\min_m(A_m - B_m - c') = 13.0, 9.5 > 0$; 基扰动
+		$\delta_m = D/\sqrt m$, $D \leq 20$, 保持超阶乘余量.
+	\item \textbf{临界窗口}: $\varepsilon_k = 1/\log k$ 时
+		$\log u_m - 8\log m$ 在 $m = 200, 800, 1999$ 处为
+		$1.5, 81.2, 229.7$ (超多项式, 条件 $\omega(\log m)$ 恰好成立).
+	\item \textbf{精确二分 (本版)}: (i) $\varepsilon_k = k^{-1/2}$:
+		$\log u_{4000}/\log 4000 = 14.53$ (超多项式, $S \sim 2\sqrt m$);
+		(ii) $\varepsilon_k = 1/(k\log k)$: $u_{200000} = 15.88 \approx \log m$,
+		部分和 (7) 在 $\beta = 0.5$ 缓慢发散 ($\sim (\log m)^3$),
+		在 $\beta = 0.6$ 收敛 ($N=10^5$ 时 75.06) —— 临界 $\beta = 1/2$
+		精确; (iii) 稀疏指数大跳 $\varepsilon_{2^{2^j}} = e^{2^{2^j}}$:
+		$\sum\min = 5 = o(\log 4000)$ 但 $\log u_{4000} = 1364$ (超多项式);
+		(iv) $\varepsilon_k = 2/k$: $u_m/m^2 \to 1/6 = 1/\Gamma(4)$, 部分和 (7)
+		在 $\beta = 2.4$ 发散 ($\sim m^{0.2}$), 在 $\beta = 2.6$ 收敛,
+		临界 $\beta = 2.5$ 处对数发散 —— 与 $C+1/2 = 2.5$ 一致.
+		脚本 \path{scripts/op12_dichotomy_verify.py},
+		\path{scripts/op12_threshold_verify.py}, \path{scripts/op12_sparse_check.py}.
+\end{enumerate}
+
+\section{对抗性审计与开放问题}
+
+\begin{description}
+	\item[逻辑闭环] 定理 \ref{thm:growth} 的证明只用单调性归纳与比值连乘, 不依赖
+		具体系数; 定理 \ref{thm:stability} 的矩论证与会话 9--11 完全同构,
+		仅把 ``阶乘增长'' 换成 ``超多项式增长''. 定理 \ref{thm:sharp} 的反例
+		构造独立验证 (矩满足递推 + 范数有限).
+	\item[条件的最优性] 充分条件 (4) 用 $\log(1+\varepsilon) \geq
+		(\log 2)\min(\varepsilon,1)$ 换取; 更精细的对数因子
+		($\varepsilon_k \sim 1/(k\log k)$ 等) 处于门槛线上, 未完全分类.
+	\item[边界情形] $B_m = 0$ 时增长引理为等式, 条件退化为纯乘积; $B_m > 0$
+		时单调性要求 $u_{m-1} \geq u_{m-2}$, 由归纳保证. 奇偶族独立处理.
+	\item[已解决 (本版)] (S1) 门槛线分类已闭合: 精确判据 (7) 给出
+		对角空间中 $u_m$ 增长与 $\beta$ 的精确比较 (定理 \ref{thm:exact}),
+		门槛线 $\varepsilon_k \sim 1/(k\log k)$ 完全分类
+		(定理 \ref{thm:line}); (S2) 的一般方向在对角空间完全解决,
+		一般 $H$ 的必要方向需要范数下界.
+	\item[开放问题] (S2) 一般 $H$ 中``可表示性''门槛的必要方向
+		(需 $\|x^k\| \geq c k^\gamma$ 型下界, 无闭式);
+		(S3) 变系数算子 $K = -D^2 + c(x)$ 的跳变结构破坏后, 是否有高阶
+		矩跳跃替代机制.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[二阶线性递推的增长理论] 基础解由系数差 $A_m - B_m$ 控制; 单调性 + 比值
+		连乘 (定理 \ref{thm:growth}).
+	\item[超多项式与阶乘增长] $\prod(1+\varepsilon_k)$ 的发散阶; 与多项式矩界
+		的矛盾论证.
+	\item[Gamma 函数恒等式] $\prod_{k=2}^m (1+C/k) = \Gamma(m+1+C)/(\Gamma(2+C)\Gamma(m+1))$,
+		用于尖锐性定理的多项式增长估计.
+	\item[矩量问题与可表示性] 对角空间中序列 $(M_k)$ 为某 $w$ 之矩当且仅当
+		$\sum M_k^2(k+1)^{-2\beta} < \infty$; 这是反例构造的判据.
+	\item[Hilbert 空间完备性] $\overline{\operatorname{span}} = H$ 等价于正交补
+		为 $\{0\}$ (Hahn-Banach 推论).
+\end{description}
+
+\begin{thebibliography}{6}
+\bibitem{h2proof} 项目文档, \emph{$H^2$ 多项式基解析完备性: 证明文档} (会话 9).
+\bibitem{h3proof} 项目文档, \emph{$H^3$ 多项式基解析完备性: 证明文档} (会话 10).
+\bibitem{crit} 项目文档, \emph{边界约束 Hilbert 空间中多项式稠密的一般准则} (会话 11, 方向 2).
+	路径 \path{docs/SL_denseness_criteria.pdf}.
+\bibitem{mom} 工具库, \emph{moment-jump-completeness} 与 \emph{left-definite-moment-recurrence}.
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\end{thebibliography}
+
+\end{document}

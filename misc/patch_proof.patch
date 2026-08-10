@@ -1,0 +1,53 @@
+*** Begin Patch
+*** Update File: F:\LaTeX\BVE research\docs\SL_h2_completeness_proof.tex
+@@
+-\begin{equation}
+-	K_c f := -f'' + c f,
+-	\qquad
+-	D(K_c) := \left\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+-		f'(-1) = f'(1) = \frac{f(1) - f(-1)}{2} \right\}.
+-\end{equation}
++\begin{equation}
++	K_c f := -f'' + c f, \qquad
++	D(K_c) := \Bigl\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
++		f'(\pm 1) = \tfrac{1}{2}\bigl( f(1) - f(-1) \bigr) \Bigr\}.
++\end{equation}
+@@
+-\begin{equation}
+-	p_0(x) = 1, \quad p_1(x) = x, \qquad
+-	p_{2n}(x) = x^{2n} - \frac{n}{n-1} x^{2n-2}, \quad
+-	p_{2n+1}(x) = x^{2n+1} - \frac{n}{n-1} x^{2n-1}
+-	\quad (n \in \mathbb{N}_0,\ n \neq 1).
+-\end{equation}
++\begin{equation}
++	\begin{aligned}
++		&p_0(x) = 1, \quad p_1(x) = x, \qquad
++			p_{2n}(x) = x^{2n} - \tfrac{n}{n-1} x^{2n-2}, \\
++		&p_{2n+1}(x) = x^{2n+1} - \tfrac{n}{n-1} x^{2n-1}
++			\quad (n \in \mathbb{N}_0,\ n \neq 1).
++	\end{aligned}
++\end{equation}
+@@
+-\[
+-	p_{2n+1}'(1) = p_{2n+1}'(-1) = (2n+1) - \frac{n(2n-1)}{n-1} = -\frac{1}{n-1},
+-	\qquad
+-	\frac{p_{2n+1}(1)-p_{2n+1}(-1)}{2} = 1 - \frac{n}{n-1} = -\frac{1}{n-1}.
+-\]
++\[
++	p_{2n+1}'(1) = p_{2n+1}'(-1) = (2n+1) - \frac{n(2n-1)}{n-1} = -\frac{1}{n-1},
++\]
++以及
++\[
++	\frac{p_{2n+1}(1)-p_{2n+1}(-1)}{2} = 1 - \frac{n}{n-1} = -\frac{1}{n-1}.
++\]
+@@
+-使用 Python 的 \texttt{fractions.Fraction} 对 $c \in \{1, 3, 5\}$ 做精确
+-(非浮点) 验证, 脚本: \texttt{scripts/num\_h2\_proof\_check.py}.
++使用 Python 的 \texttt{fractions.Fraction} 对 $c \in \{1, 3, 5\}$ 做精确
++(非浮点) 验证, 脚本为 \path{scripts/num_h2_proof_check.py}.
+@@
+-	\item[Krein Laplacian] 带非局部边界条件 $f'(\pm1) = \tfrac12(f(1)-f(-1))$
+-		的自伴算子; 移位 $+c$ 使谱进入正半轴, 是左定理论可行的前提.
++	\item[Krein Laplacian] 带非局部 (Krein) 边界条件的自伴算子; 移位 $+c$
++		使谱进入正半轴, 是左定理论可行的前提.
+*** End Patch

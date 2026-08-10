@@ -1,0 +1,356 @@
+DISCRETE AND CONTINUOUS                                             Website: http://AIMsciences.org
+DYNAMICAL SYSTEMS
+Supplement Volume 2005                                                                 pp. 403–409
+
+
+
+
+A BOUND FOR RATIOS OF EIGENVALUES OF SCHRÖDINGER
+           OPERATORS ON THE REAL LINE
+
+
+                         Miklós Horváth and Márton Kiss
+                            Department of Mathematical Analysis
+                       Budapest University of Technology and Economics
+                           H 1111 Budapest, Műegyetem rkp. 3-9.
+
+      Abstract. We give upper estimates of ratios of eigenvalues of Schrödinger operators
+      with nonnegative single-well potentials tending to infinity for large |x|, corresponding
+      to previous estimates on a finite interval.
+
+
+1. Introduction. Consider the Schrödinger operator
+                                      − y 00 + q(x)y = λy                                        (1.1)
+on the real line. A solution y 6= 0 is called an eigenfunction of (1.1) if it tends to
+zero as |x| tends to infinity. If q tends to infinity for large |x|, then the spectrum
+consists of a growing sequence of real eigenvalues λ1 , λ2 , . . ., see for example in [4].
+Moreover, if q(x) is nonnegative then λ1 > 0 (see Remark after Theorem 1.1).
+   On a finite interval exact estimates have already been known concerning eigen-
+value ratios of Schrödinger operators. We only mention here the fundamental result
+of Ashbaugh and Benguria [1] who proved the bound
+                                λn    l n m2
+                                    ≤         for m < n                              (1.2)
+                                λm      m
+for nonnegative potentials (with Dirichlet boundary conditions), where dxe denotes
+the smallest integer greater than or equal to x. Horváth and Kiss showed [2] that
+for nonnegative single-well potentials
+                                    λn    ³ n ´2
+                                        ≤                                    (1.3)
+                                    λm      m
+is also true. Single-well means that there is a point a ∈ [0, π] such that q is decreasing
+in [0, a] and increasing in [a, π] (see in [1]). In this paper we prove a corresponding
+statement for Schrödinger operators on the real line, namely, if lim|x|→∞ q(x) = +∞
+and q is nonnegative and single-well, then
+                                       λn     ³ n ´2
+                                           <         .                               (1.4)
+                                      λm        m
+   The following theorem summarizes the properties of the solutions y that we are
+going to use:
+
+   2000 Mathematics Subject Classification. Primary 34L15, 34B24.
+   Key words and phrases. Schrödinger operator, eigenvalues.
+   Research supported by the Hungarian NSF Grants OTKA T 32374, T 37491 and T 47035.
+
+
+
+                                                403
+404                        MIKLÓS HORVÁTH AND MÁRTON KISS
+
+
+Theorem 1.1. Consider the Schrödinger equation
+                                    − y 00 + q(x)y = λy                           (1.5)
+on the half-line (−∞, 0] (and suppose that q > 0 is decreasing and q(x) → +∞ if
+x → −∞). Then for each λ ∈ R there exists exactly one solution y tending to zero
+                                      R0
+at −∞ such that y > 0 near −∞ and −∞ y 2 = 1. This solution has the following
+properties:
+      • y(x) and y 0 (x) are positive if q(x) ≥ λ,
+      • if x → −∞, yy0 tends to zero.
+
+      The proof will be given in Section 3.
+Remark. Let y be an eigenfunction of (1.1). If it is positive near −∞ and λ ≤ 0,
+then through the sign of y 00 it must be convex. So y is increasing and positive in R
+which is impossible for an eigenfunction, thus λ1 > 0.
+
+2. The Main Statement. Let 0 < λ = z 2 and denote by y(x, z) the solution of
+(1.1) mentioned in Theorem 1.1. Let us introduce Prüfer-type variables:
+                                           r(x, z)
+                               y(x, z) =           sin ϕ(x, z),                   (2.1)
+                                             z
+                               y 0 (x, z) = r(x, z) cos ϕ(x, z),                  (2.2)
+where r(x, z) > 0, and we denote by prime the derivative with respect to x (and by
+dot the derivative with respect to z). According to the last statement of Theorem
+1.1 we can assume
+                                      lim ϕ(x, z) = 0.                            (2.3)
+                                     x→−∞
+
+Define further
+                                             ϕ
+                                           ψ=  .                                 (2.4)
+                                             z
+      An easy computation shows that for these variables the following equations hold:
+                                            q
+                                  ϕ0 = z − sin2 ϕ,                               (2.5)
+                                            z
+                                  r0    q
+                                     = sin ϕ cos ϕ.                               (2.6)
+                                  r     z
+Remark. These formulae hold in the usual sense at the continuity points of q and
+in both half-sided senses at the jumps of q: ϕ0± (x, z) = z − q(x±0)
+                                                                 z   sin2 ϕ(x, z), and
+analogously for r.
+   One important idea of [2] was to show that the monotonicity of ψ(x, z) in z
+implies (1.4). It proves to be useful again:
+Theorem 2.1. Let limx→−∞ q(x) = +∞ and q(x) ≥ 0 be monotone decreasing in
+(−∞, x0 ]. Then ψ̇(x0 , z) > 0, so ψ(x0 , z) is a strictly monotone increasing function
+in z > 0.
+      The proof will be given in Section 4.
+
+      The main statement of this paper reads as follows:
+                       A BOUND FOR RATIOS OF EIGENVALUES                              405
+
+
+Theorem 2.2. Consider equation (1.1) with the boundary conditions
+                                      lim y(x) = 0.                                (2.7)
+                                    |x|→∞
+
+If the potential q is nonnegative, single-well and limx→±∞ q(x) = +∞ then for the
+m-th and n-th eigenvalues with m < n
+                                       λn  n2
+                                          < 2.                                     (2.8)
+                                       λm  m
+  The proof will be given in Section 5.
+Remark. A well-known example of a Schrödinger operator with discrete spectrum
+arises when q(x) = x2 ; then
+                                                     2
+                −y 00 + x2 y = (2n + 1)y,   y = e−x /2 Hn (x) (n ≥ 0)
+where the Hn are the Hermite polynomials. In this case λn = 2n − 1, n ≥ 1 and
+(2.8) is obvious.
+Remark. A weaker form of estimate (2.8), with ≤ instead of <, has a simpler proof
+based on the previous result [2] concerning finite intervals. As it is discussed in the
+proof of Theorem 4.1. in Ashbaugh and Benguria [1], the eigenvalues of the problem
+with Dirichlet boundary condition imposed at (−b, b) tend to the eigenvalues of
+the problem in R as b → ∞, thus (1.3) must hold. This and the above example
+shows that it would be an interesting problem to find the exact upper estimate
+for the eigenvalue ratios. The authors express their thanks to the referees for this
+observation.
+
+3. The proof of Theorem 1.1. It is known that there exists a solution y of (1.1),
+unique up to a constant multiple, satisfying y(−∞) = 0 and y ∈ L2 (−∞, 0], see
+e.g. [3]. Suppose that y(x0 ) = 0 for some x0 with q(x0 ) ≥ λ. Then y 0 (x0 ) 6= 0; for
+example let y 0 (x0 ) < 0. Since q ≥ λ for x ≤ x0 , we see from (1.1) that y is positive,
+convex and decreasing in (−∞, x0 ], hence y(−∞) = +∞; a contradiction. So in
+the half-line q ≥ λ y has no zeros. We can suppose that y > 0 here and then it is
+convex; from y(−∞) = 0 we get that y is strictly increasing i.e. y 0 is positive.
+                                                                                  0
+   To prove the second property in Theorem 1.1 introduce the function h = yy . An
+easy calculation shows that the following equation holds:
+                            h0 (x, z) = q(x) − z 2 − h2 (x, z)                     (3.1)
+   Let N > 0 be arbitrary. If x0 < −K with K large enough, then q(x) − z 2 >
+(N + 1)2 + 1 and y(x) > 0, y 0 (x) > 0 for x < x0 , so h(x) > 0. If h(x) < N + 1 for
+some x < x0 then h0 (x) > 1. Consequently h(x0 ) < N + 1 and h0 (x0 ) > 1 for all
+x0 < x; this is clearly incompatible with h(x0 ) > 0. In other words, h(x) ≥ N + 1
+for all x < x0 and then h(−∞) = +∞ as asserted.
+
+4. The proof of Theorem 2.1.
+Lemma 4.1. If q(x) is monotone decreasing in (−∞, x0 ], then (for z > 0) ϕ(x0 , z)
+is a strictly monotone increasing function of x in (−∞, x0 ]. Moreover, ϕ0± (x, z) > 0
+for z > 0.
+Proof.
+   In [2], Lemma 3.1 we proved that there exists no interval (x1 , x2 ) such that
+0 < ϕ < π2 , ϕ0− > 0 on (x1 , x2 ) and ϕ0− (x2 ) = 0. By the monotonicity of q we see
+that ϕ0+ ≥ ϕ0− . Suppose that ϕ− (x∗ , z) ≤ 0 for some x∗ < x0 . Now (2.5) implies
+406                              MIKLÓS HORVÁTH AND MÁRTON KISS
+
+
+z 2 ≤ q(x∗ − 0). Thus q ≥ z 2 and then 0 < ϕ < π/2 on (−∞, x∗ ). There must be
+an x1 < x∗ with ϕ0− (x1 , z) > 0; otherwise ϕ would be decreasing on (−∞, x1 ). If
+x increases, ϕ0− is either continuous or has upward jumps (at the discontinuities of
+q). Now if
+                       x2 = sup{t ∈ [x1 , x∗ ] : ϕ0− > 0 on [x1 , t)}
+then ϕ0− > 0 on (x1 , x2 ) and ϕ0− (x2 , z) = 0. Since this contradicts the result of [2]
+quoted at the beginning of this proof, Lemma 4.1 is proved.
+
+      In the following formulae we sometimes write ϕ(x) instead of ϕ(x, z).
+Lemma 4.2. For every x1 < x2
+                                Rx                    Z x2                           R x2 q
+                            −    2 q sin 2ϕ                         q(t)
+       ϕ̇(x2 ) − ϕ̇(x1 )e       x1 z
+                                                  =          (1 +      2
+                                                                         sin2 ϕ(t))e− t z sin 2ϕ dt,   (4.1)
+                                                       x1            z
+and the integrand on the right-hand side is in L1 (−∞, x2 ].
+Proof.
+  Differentiate equation (2.5) with respect to z:
+                                q(x)             q(x)
+                  ϕ̇0 (x, z) = 1 +   sin2 ϕ(x) −      sin 2ϕ(x, z)ϕ̇(x, z).    (4.2)
+                                 z2               z
+  R x isq a linear differential equation in x → ϕ̇(x, z). Multiplying both sides by
+This
+e− x z sin 2ϕ , we have:
+     2
+
+
+                                Rx        q(x)                  R
+                                     2 q sin 2ϕ    2           − xx2 zq sin 2ϕ
+               (ϕ̇(x, z)e− x           z       sin)0 = (1 +
+                                                     ϕ(x, z))e                 .                       (4.3)
+                                           z2
+The right-hand side of this equation is in L1 (−∞, x2 ], since
+                         q(x)                  R                    q(x)
+                                  2           − xx2 zq sin 2ϕ
+          r2 (x2 )(1 +        sin   ϕ(x, z))e                 = (1 + 2 sin2 ϕ(x))r2 (x)
+                          z2                                         z
+
+         = r2 + qy 2 = z 2 y 2 (x) + y 02 (x) + q(x)y 2 (x) = (y 0 (x)y(x))0 + 2z 2 y 2 (x).
+By convexity at infinity both y(x) and y 0 (x) tend to zero, so y 0 (x)y(x) is bounded
+and positive for x → −∞, finally (y 0 y)0 = y 00 y + y 02 > 0, hence (y 0 y)0 ∈ L1 follows.
+From Theorem 1.1 y 2 ∈ L1 also holds. Integrating (4.3) from x1 to x2 , we get
+(4.1).
+Lemma 4.3. Let z1 < z2 . If x < −K where K is sufficiently large, then ϕ(x, z1 ) <
+ϕ(x, z2 ).
+Proof. We can suppose that q(x) > z12 , q(x) > z22 for x < −K and then 0 <
+ϕ(x, z1 ) < π2 and 0 < ϕ(x, z2 ) < π2 . If ϕ(x, z1 ) − ϕ(x, z2 ) ≥ 0 then (ϕ(x, z1 ) −
+ϕ(x, z2 ))0 = z1 − z2 − q(x)(sin2 ϕ(x, z1 )/z1 − sin2 ϕ(x, z2 )/z2 ) ≤ z1 − z2 < 0, thus
+limx→−∞ (ϕ(x, z1 ) − ϕ(x, z2 )) cannot be zero. This contradiction proves Lemma
+4.3.
+Lemma 4.4. ϕ(x, z) is strictly monotone increasing in z.
+Proof.
+  Let z1 < z2 , F (x, ϕ) = z1 − q(x)   2                     q(x)  2
+                                 z1 sin ϕ and G(x, ϕ) = z2 − z2 sin ϕ. If x <
+−K, K large enough, then ϕ(x, z1 ) < ϕ(x, z2 ). Using
+                                           ϕ0 (x, z1 ) = F (x, ϕ(x, z1 )),                             (4.4)
+                        A BOUND FOR RATIOS OF EIGENVALUES                                 407
+
+
+                                 ϕ0 (x, z2 ) = G(x, ϕ(x, z2 ))                          (4.5)
+and
+                                        F (x, ϕ) < G(x, ϕ),                             (4.6)
+by comparison theorems we get ϕ(x, z1 ) < ϕ(x, z2 ) for all x.
+  Comparing this with Lemma 4.2, we get:
+Corollary 4.5.
+                              Z x                              Rx q
+                                              q(t)
+                   ϕ̇(x) ≥           (1 +        2
+                                                   sin2 ϕ(t))e− t z sin 2ϕ dt.          (4.7)
+                                −∞             z
+
+Remark. From (2.6) we can rewrite (4.7):
+                         Z x
+                                   q(t)       r2 (t)
+                 ϕ̇(x) ≥     (1 + 2 sin2 ϕ(t)) 2     dt.                                (4.8)
+                          −∞        z         r (x)
+Corollary 4.6.
+                                        Z x
+                                2               q        q
+                 ψ̇(x) ≥                    r2 ( sin2 ϕ − ϕ sin ϕ cos ϕ).               (4.9)
+                              2
+                             r (x)z 2    −∞     z        z
+Proof.
+
+                       ϕ̇(x) ϕ(x)
+             ψ̇(x) =        − 2 ≥
+                         z    z
+                       ½Z x                                                   ¾
+               1
+           ≥ 2                  r2 (t)[2(z − ϕ0 (t)) + ϕ0 (t)] dt − r2 (x)ϕ(x) =
+            r (x)z 2       −∞
+
+                       Z x
+               2
+           = 2               [r2 (t)(z − ϕ0 (t)) − r(t)r0 (t)ϕ(t)] dt =
+            r (x)z 2    −∞
+
+                       Z x
+               2               q        q
+           = 2             r2 ( sin2 ϕ − ϕ sin ϕ cos ϕ).
+            r (x)z 2    −∞     z        z
+
+Proof of Theorem 2.1.
+Let                   µ                                                   ¶
+                              q(t)             q(t)
+              h(t) = r2 (t)        sin2 ϕ(t) −      ϕ(t) sin ϕ(t) cos ϕ(t)
+                               z                z
+                                                     R x0
+be the integrand in (4.9); we have to show that −∞          h > 0 if q ≥ 0 is decreasing
+in (−∞, x0 ]. If ϕ(x0 ) ≤ π then h ≥ 0 on (−∞, x0 ) and h > 0 for x → −∞ since
+sin2 ϕ > ϕ sin ϕ cos ϕ for 0 < ϕ < π. Thus ψ̇ > 0 follows in this case. Now suppose
+that
+                 ϕ(x0 ) = kπ + π/2 + D, k ≥ 0 integer, 0 ≤ D < π
+and consider the decomposition
+       Z x0      Z ϕ−1 (π/2)    k Z ϕ−1 (jπ+π/2)
+                                X                   Z x0
+             h=              h+                  h+                               h.   (4.10)
+         −∞        −∞                   j=1    ϕ−1 (jπ−π/2)        ϕ−1 (kπ+π/2)
+408                      MIKLÓS HORVÁTH AND MÁRTON KISS
+
+
+It is shown in [2] that if q ≥ 0 is decreasing on [0, x0 ] and ϕ(0) = 0 then all
+                                                    R ϕ−1 (π/2)           R ϕ−1 (π/2)
+the summands in (4.10) are nonnegative (with 0                  instead of −∞         ) and
+any of them can be zero only if the potential is zero on the (open) interval of
+integration. In our setting, where q ≥ 0 is decreasing in (−∞, x0 ] and ϕ(−∞) = 0,
+the same arguments show that the first summand of (4.10) is positive and the
+others are nonnegative. (The reason of this decomposition is that each term can
+be estimated from below with the help of the alteration of r. This function, as it
+is proved in Lemma 3.7. of [2], has the following properties: r(ϕ−1 (kπ + 3 π2 )) ≤
+r(ϕ−1 (kπ + π2 )), if k = 0, 1, 2, .... Moreover, the function r is monotone increasing
+between ϕ−1 (kπ) and ϕ−1 (kπ+ π2 ) and is monotone decreasing between ϕ−1 (kπ+ π2 )
+and ϕ−1 ((k + 1)π). This leads to the desired nonnegativity. For details see [2] from
+Lemma 3.4. to the end of the section.) Thus ψ̇ > 0 holds also in this case.
+
+5. The proof of Theorem 2.2. Let the potential q(x) be monotone decreasing
+in (−∞, a] and monotone increasing in [a, ∞). Denote by q̃(x) the reverse of the
+                              − x). Denote y(x, z) the solution described in Theorem
+potential, i.e., q̃(x) = q(2a √
+1.1. Moreover, (with zn = λn ) define
+                           ỹ(x, zn ) = (−1)n+1 y(2a − x, zn ),                        (5.1)
+                                r̃(x, zn ) = r(2a − x, zn )                            (5.2)
+and
+                             ϕ̃(x, zn ) = nπ − ϕ(2a − x, zn ).                  (5.3)
+Then ỹ(x, zn ) solves (1.1) with q̃ instead of q and ỹ(±∞) = 0 . It is also simple
+that
+                                            r̃(x, zn )
+                            ỹ(x, zn ) =               sin ϕ̃(x, zn ),          (5.4)
+                                               zn
+                            ỹ 0 (x, zn ) = r̃(x, zn ) cos ϕ̃(x, zn ).          (5.5)
+Lemma 5.1.
+                      ỹ > 0 near − ∞        and    ϕ̃(−∞, zn ) = 0.                   (5.6)
+Proof. We know ([3]) that y(x, zn ) has exactly n − 1 (simple) zeros in R so it has
+the sign (−1)n−1 near +∞ i.e. ỹ is positive near −∞. The second statement in
+(5.6) can be reformulated as
+                                    ϕ(+∞, zn ) = nπ.
+And indeed, since y has n − 1 zeros and since ϕ(x, z) = dπ, , d ∈ N implies by (2.5)
+that ϕ0 (x, z) > 0, we get (n − 1)π < ϕ < nπ for large x. Since y(+∞) = 0, this
+means that ϕ → (n − 1)π + 0 or ϕ → nπ − 0 at infinity. The first case cannot be
+true because then y and y 0 would have the same sign for large x and then y → 0 is
+impossible.
+  We proved that ϕ̃ and const·r̃ are the Prüfer-variables for ỹ; the constant depends
+on the L2 (0, ∞)-norm of y. According to (2.4), let ψ̃ = ϕ̃z .
+Proof of Theorem 2.2.
+   Consider the function Ψ(z) = ψ(a, z) + ψ̃(a, z). This is, by Theorem 2.1, the sum
+of two strictly increasing functions. By (5.3),
+                                       zn Ψ(zn ) = nπ.                                 (5.7)
+                                  mπ                              nπ        zn       n
+Let m be less than n. Then        zm    = Ψ(zm ) < Ψ(zn ) =       zn , thus zm   <   m , and
+λn    n2
+λ m < m2 .
+                         A BOUND FOR RATIOS OF EIGENVALUES                                    409
+
+
+Acknowledgements. The first author is indebted to Mark Ashbaugh for fruitful
+discussions during the conference.
+                                       REFERENCES
+  [1] M. Ashbaugh and R. Benguria, Optimal lower bound for the gap between the first two
+      eigenvalues of one-dimensional Schrödinger operators with symmetric single-well potentials,
+      Proc. Amer. Math. Soc., 105 (1989), 419–424.
+  [2] M. Horváth and M. Kiss, A bound for ratios of eigenvalues of Schrödinger operators with
+      single-well potentials, Proc. Amer. Math. Soc., (to appear).
+  [3] F. A. Berezin, M. A. Shubin, “The Schrödinger equation”, Kluwer, Dordrecht, 1991.
+  [4] B. M. Levitan and I. S. Sargsjan, “Sturm-Liouville and Dirac operators” (in Russian),
+      Nauka, Moscow, 1988.
+
+  Received September, 2004; revised May, 2005.
+  E-mail address: horvath@math.bme.hu
+  E-mail address: mkiss@math.bme.hu
+

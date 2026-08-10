@@ -1,0 +1,22 @@
+﻿import sympy as sp
+from sympy import symbols, pi, cos, sin, cot, atan, simplify, diff, expand, tan, sqrt
+qq, w_ = symbols('qq w_', positive=True)
+Aq = pi - atan(w_/qq)
+M2 = 4*Aq**2*w_*qq - 7*Aq*qq**2 - 9*Aq*w_**2 + 2*Aq*(qq**2+w_**2)/(1+w_**2) + atan(w_)*(4*Aq*w_ - 5*qq - 9*qq*w_**2)
+th_ = symbols('th_', positive=True)
+qth = cos(2*th_)/(2*sin(th_)**2)
+wth = cot(th_)
+M2b = M2.subs({qq: qth, w_: wth, atan(w_/qq): 2*th_, atan(w_): pi/2 - th_})
+M2b = simplify(M2b)
+dM2dth = diff(M2b, th_)
+dqdt = diff(qth, th_)
+dqM2 = simplify(dM2dth / dqdt)
+print('dqM2 (theta):', dqM2)
+# express in z = tan(th)
+z = symbols('z', positive=True)
+dqM2_z = dqM2.subs({tan(th_): z, sin(th_): z/sqrt(1+z**2), cos(th_): 1/sqrt(1+z**2), cot(th_): 1/z})
+dqM2_z = sp.factor(sp.together(dqM2_z))
+print('dqM2 (z):', dqM2_z)
+# numerator after clearing denominator 2 z^2 (z^2+1)^2
+num = sp.factor(sp.together(dqM2_z * 2*z**2*(z**2+1)**2))
+print('N_true(z) = dqM2 * 2z^2(z^2+1)^2 =', sp.expand(num))

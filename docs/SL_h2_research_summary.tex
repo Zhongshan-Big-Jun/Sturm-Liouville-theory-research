@@ -1,0 +1,265 @@
+﻿% 编译方式: xelatex SL_h2_research_summary.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+
+\title{问题 1 推进: 第二左定空间中多项式解析完备性 --- 研究总结文档}
+\author{研究总结文档 (项目: BVE research)}
+\date{2026-08-04}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文总结对问题 1 的推进: 移位 Krein Laplacian 的第二左定空间
+$H^2[-1,1]$ 中, 缺 2, 3 次多项式的基 $\{p_n\}$ 是否解析完备
+(开放问题, [4, Section 6]). 研究结论为\emph{是}: 已给出完整初等证明
+(见姊妹文档 \texttt{SL\_h2\_completeness\_proof.pdf}). 本总结文档记录研究
+全过程: 问题精确化、五条研究路线的取舍、数值证据、失败尝试与经验教训、
+文献获取的诚实状态, 以及由此引出的更大开放问题.
+\end{abstract}
+
+\tableofcontents
+
+\section{任务与结论}
+
+\subsection{问题}
+
+固定 $c > 0$. 移位 Krein Laplacian
+\begin{equation}
+	K_c f = -f'' + c f, \qquad
+	D(K_c) = \left\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(\pm1) = \tfrac12\bigl(f(1)-f(-1)\bigr) \right\}
+\end{equation}
+的第二左定空间 $H^2 = D(K_c)$ 带内积
+\begin{equation}
+	(f,g)_{2,c} = -c\, \Delta f\, \overline{\Delta g}
+		+ \int_{-1}^1 \left( f''\overline{g}'' + 2c\, f'\overline{g}' + c^2 f\overline{g} \right) dx .
+\end{equation}
+$H^2$ 中多项式的一个基为
+\begin{equation}
+	p_0 = 1, \quad p_1 = x, \quad
+	p_{2n} = x^{2n} - \tfrac{n}{n-1}x^{2n-2}, \quad
+	p_{2n+1} = x^{2n+1} - \tfrac{n}{n-1}x^{2n-1}
+	\quad (n \in \mathbb{N}_0, n \neq 1).
+\end{equation}
+无 2, 3 次多项式属于 $H^2$, 故基代数不完备. [4, Section 6] 的原文:
+
+\begin{quote}
+``Consequently, there is no polynomial of degree 2 or 3 belonging to
+$H^2[-1,1]$. Even though this basis is not algebraically complete, it is not
+clear if they are analytically complete in $H^2[-1,1]$. \dots{} This problem
+suggests a larger open problem with regard to finding conditions for the
+density of polynomials in Hilbert spaces constrained by boundary conditions
+(as is the case in (25)).''
+\end{quote}
+
+\subsection{结论}
+
+\begin{theorem}[已证, 见 \texttt{SL\_h2\_completeness\_proof.pdf}]
+对每个 $c > 0$, $\{p_n\}$ 在 $(H^2, (\cdot,\cdot)_{2,c})$ 中解析完备:
+$\overline{\operatorname{span}\{p_n\}} = H^2$.
+\end{theorem}
+
+证明三步: (i) 恒等式 $(f,g)_{2,c} = (K_c f, K_c g)_{L^2}$ 与 $0 \notin \sigma(K_c)$
+给出等距同构 $K_c: H^2 \to L^2$; (ii) 矩跳跃递推: 正交性迫使矩满足
+$c\mu_{2j} = A_j\mu_{2j-2} - B_j\mu_{2j-4}$, 仅 $\mu_2, \mu_3$ 自由;
+(iii) 增长引理 $u_j \geq (4/c)^{j-1}j!$ 与 $L^2$ 矩有界性矛盾,
+迫使自由矩为零, 全部矩为零, Weierstrass 稠密性给出 $g = 0$.
+
+\section{研究路线总览}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+路线 & 机制 & 状态 \\
+\midrule
+A. 特征函数 Fourier 展开 & 谱分解 & 受阻 (繁琐, 被 C 取代) \\
+B. 例外正交多项式类比 & XOP 理论 & 不直接适用 (测度权 vs Sobolev 内积) \\
+C. 矩跳跃论证 & 矩递推 + 增长矛盾 & \textbf{成功 (核心)} \\
+D. 矩问题唯一性 & Hausdorff 矩问题 & 辅助 (与 C 等价视角) \\
+E. 数值投影探索 & Gram 投影残差 & 辅助 (发现模式, 非证明) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{路线 A: 特征函数 Fourier 展开 (受阻)}
+
+$K_c$ 的特征函数系为 $\{1, x\} \cup \{\cos(n\pi x)\} \cup \{\sin(\mu_n x)\}$
+($\mu_n$ 为 $\tan\mu = \mu$ 的正根), 在 $L^2$ 中完备. 自然想法: 把 $p_n$ 与
+$g$ 都按特征函数展开, 将 $\langle g, K_c p_n\rangle = 0$ 化为系数方程.
+
+受阻原因:
+\begin{itemize}
+	\item 特征函数系与多项式基之间没有干净的转换公式
+		($\sin(\mu_n x)$ 的矩没有简单闭式);
+	\item 缺 2, 3 次造成的``缺陷''在特征函数坐标中无法局部化,
+		分析退化为对无穷三角系统的逐项估计, 与矩方法相比缺少
+		结构;
+	\item 该路线没有提供关于``自由参数如何被消灭''的机制性解释.
+\end{itemize}
+结论: 不是不可行, 而是工具错配. 矩方法把同样的信息组织成
+单变量递推, 使核心机制 (阶乘增长 vs 有界性) 完全显式化.
+
+\section{路线 B: 例外正交多项式类比 (不适用)}
+
+论文 [4] 提示与例外正交多项式 (XOP) 的类比: XOP 提供大量``代数不完备
+但解析完备''的序列. 沿此方向核对 XOP 的完备性判据 (如 Bochner 型
+可容许测度条件):
+
+\begin{itemize}
+	\item XOP 的解析完备性建立在测度权 $L^2(w)$ 上 (多项式在
+		$L^2(w)$ 中稠密 + 正交系补全); 这里的 $H^2$ 是 Sobolev 型
+		内积, 不落入 XOP 框架;
+	\item XOP 文献中的判据 (权函数的可积性、测度支撑条件) 无法翻译成
+		边界条件约束;
+	\item 该类比提供了正确的问题直觉 (``代数缺陷不必然破坏解析完备''),
+		但无现成定理可引用.
+\end{itemize}
+结论: 作为启发有用, 作为工具不适用. 最终证明完全自足, 不依赖 XOP 文献.
+
+\section{路线 C: 矩跳跃论证 (成功)}
+
+核心思想: 把 $\langle g, K_c p_n\rangle = 0$ 写成矩 $\mu_k = \langle g, x^k\rangle$
+的递推, 然后证明递推的支配解按阶乘增长.
+
+\subsection{关键计算}
+
+\begin{align}
+	K_c p_{2n} &= c x^{2n} - A_n x^{2n-2} + B_n x^{2n-4},
+	& A_n &= 2n(2n-1) + \tfrac{cn}{n-1}, \ B_n = 2n(2n-3); \\
+	K_c p_{2n+1} &= c x^{2n+1} - A'_n x^{2n-1} + B'_n x^{2n-3},
+	& A'_n &= 2n(2n+1) + \tfrac{cn}{n-1}, \ B'_n = 2n(2n-1).
+\end{align}
+$K_c p_0 = c$, $K_c p_1 = cx$ 给出 $\mu_0 = \mu_1 = 0$; 对 $n \geq 2$,
+\[
+	c\mu_{2n} = A_n \mu_{2n-2} - B_n \mu_{2n-4}, \qquad
+	c\mu_{2n+1} = A'_n \mu_{2n-1} - B'_n \mu_{2n-3}.
+\]
+自由参数仅 $\mu_2$ 与 $\mu_3$ (恰对应缺失的次数 2, 3).
+
+\subsection{增长引理 (本研究的核心新引理)}
+
+设 $u_0 = 0$, $u_1 = 1$, $cu_j = A_j u_{j-1} - B_j u_{j-2}$, 则
+$u_j > 0$, 单调不减, 且 $u_j \geq (4/c)^{j-1} j!$.
+证明要点: 先由 $A_j - B_j = 4j + \tfrac{cj}{j-1} \geq c$ 归纳得
+$0 < u_{j-1} \leq u_j$; 再由比值 $r_j = u_j/u_{j-1} \geq (A_j - B_j)/c
+\geq 4j/c$ 连乘. 这是把``矩的阶乘增长''严格化所需要的精确机制.
+
+\subsection{结论}
+
+$|\mu_{2j}| \leq \|g\|_2 \sqrt{2/(4j+1)}$ 与 $|\mu_{2j}| = |\mu_2| u_j$
+的阶乘增长矛盾, 故 $\mu_2 = \mu_3 = 0$, 递推给出全部矩为零,
+$g = 0$, Hahn-Banach 推论完成证明.
+
+\section{路线 D: 矩问题唯一性 (辅助视角)}
+
+矩 $\mu_k$ 是 $L^2[-1,1]$ 函数的 Hausdorff 矩, 由 $|\mu_k| \leq
+C(2k+1)^{-1/2}$ 自动满足唯一性前提 (多项式稠密). 路线 D 与 C 是同一
+机制的两种表述: C 用递推直接消灭自由参数, D 用``矩序列若满足某递推
+则必为零''的抽象表述. 最终选择 C 因为更构造性、更易验证.
+
+\section{路线 E: 数值探索 (辅助)}
+
+\begin{itemize}
+	\item 精确有理数验证 (Python \texttt{fractions.Fraction}, $c \in \{1,3,5\}$):
+		等距恒等式逐对精确成立; 增长下界 $u_j \geq (4/c)^{j-1}j!$
+		对 $j \leq 24$ 成立; $x^2, x^3$ 到 $\operatorname{span}\{K_c p_n\}$
+		的 $L^2$ 投影残差超指数衰减 ($N = 10$ 时约 $10^{-14}$ 与
+		$10^{-11}$, $N \geq 16$ 时低于机器精度).
+	\item 数值先于证明发现了``缺次数被补全''的模式, 指导了路线 C 的
+		形式; 但证明不依赖数值.
+\end{itemize}
+
+\section{失败尝试与经验教训}
+
+\begin{description}
+	\item[教训 1: 逐项乘积下界的错误证明] 初版增长引理声称
+		$u_j \geq \prod_{i=2}^j A_i/c$ 可逐项归纳: 错. 反例
+		($c = 3$, $j = 4$): $u_4 = 3700 < (A_4/c)u_3 = 3780$,
+		单步比较失败. 正确的做法是先证单调性 (用 $A_j - B_j \geq c$),
+		再对比值 $r_j$ 用下界. 这提醒: 带减号的递推不能直接
+		与一阶递推比较.
+	\item[教训 2: 初版代码丢系数] 精确脚本第一版 \texttt{kc\_apply}
+		丢掉最高次项, 导致等距恒等式误报 False; 修复为输出长度
+		$n+1$ 后全部通过. 数值验证的``否''结果必须先排除实现错误.
+	\item[教训 3: 特征函数展开是工具错配] 路线 A 在概念上自然, 但
+		无穷三角系统的逐项估计缺乏结构; 矩方法把同样的信息组织成
+		单变量递推. 对``多项式 + 边界条件''类问题, 矩语言优先.
+	\item[教训 4: XOP 类比止于启发] 例外正交多项式理论不能直接移植
+		到 Sobolev 内积; 引用前必须核对框架兼容性.
+	\item[教训 5: 文献获取的渠道记录] MDPI 直连 403; 有效 OA 路径为
+		\texttt{mdpi-res.com} 的 \texttt{article\_deploy} 附件直链
+		(需 \texttt{-v3} 与版本参数; 完整 URL 见
+		\texttt{research\_cache/unpaywall\_axioms115.json}); Semantic Scholar
+		与 Unpaywall 给出元数据与 OA 判定; 本环境 in-app 浏览器不可导航,
+		archive.org 不可达.
+	\item[教训 6: 开放问题的原文核对] 先取得全文核对 Section 6 原句
+		再断言``解决了文献问题''; 原文与我们总结文档的重构完全一致.
+\end{description}
+
+\section{文献获取状态}
+
+\begin{itemize}
+	\item [4] (Axioms 14 (2025) 115, DOI \url{https://doi.org/10.3390/axioms14020115}):
+		\emph{全文已获取} (OA, CC BY), 存于 \texttt{papers/axioms14\_115.pdf},
+		文本 \texttt{papers/axioms14\_115.txt}; Section 6 原文已逐字核对.
+	\item [1] (Littlejohn--Quintero, Springer 章): 仍受版权保护, 未获取全文;
+		其结论经 [4] 与前期总结文档还原. DOI:
+		\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+	\item 左定理论背景: Littlejohn--Wellman 2002, 2013; Fischbacher 等
+		arXiv:2408.01514 (评述级, 未精读全文).
+\end{itemize}
+
+\section{后续工作}
+
+\begin{enumerate}
+	\item \textbf{更大开放问题 (论文 [4] 提出)}: 在受边界条件约束的 Hilbert
+		空间中, 多项式稠密的充分/必要条件是什么? 本文给出一个充分条件
+		(基满足等距 + 矩递推阶乘增长) 的实例; 一般性刻画仍开放.
+	\item \textbf{更高左定空间}: $H^s$ ($s > 2$)? 矩递推的系数随 $s$ 改变;
+		同法是否给出 $H^3, H^4, \dots$ 中的多项式基及其解析完备性?
+	\item \textbf{正交性}: 能否对 $\{p_n\}$ 显式正交化, 得到 $H^2$ 中完备
+		正交多项式系 (对应问题 1 的``等价于所有正交函数系''表述)?
+	\item \textbf{稳定性}: 基 $\{p_n\}$ 的系数 $\tfrac{n}{n-1}$ 在多大扰动
+		下解析完备性保持? (增长引理需要 $A_j - B_j \geq c$ 型下界.)
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定理论] 正自伴算子的左定空间族 $H_r = D(A^{r/2})$ 与
+		内积 $(f,g)_r = (A^{r/2}f, A^{r/2}g)$.
+	\item[Krein Laplacian] 带非局部边界条件的一维自伴算子; 移位使谱正化.
+	\item[正则 SL 谱理论] 分离自伴边界条件下的离散谱与特征函数完备性.
+	\item[等距同构] 稠密性在两个等距同构空间之间等价传递.
+	\item[Hausdorff 矩问题] $[-1,1]$ 上测度的矩唯一性; $L^2$ 函数的矩有界性.
+	\item[线性递推的支配解] 二阶齐次递推解的阶乘级增长由系数比控制.
+	\item[Weierstrass 逼近] 多项式在 $C[-1,1]$ 稠密, 故在 $L^2$ 稠密.
+	\item[例外正交多项式] 代数不完备但解析完备的多项式序列的理论背景.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{lq} L. L. Littlejohn, A. Quintero, \emph{Krein-Sobolev orthogonal
+	polynomials}, Springer CRM Series (OPSFA-16), 2025, 107--123.
+	\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: A model operator approach}, arXiv:2408.01514.
+	\url{https://arxiv.org/abs/2408.01514}
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,464 @@
+% 编译方式: xelatex SL_gap_extremals.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{相邻特征值间距 \texorpdfstring{$\lambda_{n+1}-\lambda_n$}{lambda_{n+1}-lambda_n} 的极端值: 带状自洽配置, 数值刻画与极限}
+\author{研究数值报告 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文研究概述文档第 3 号开放问题: 固定指标 $n \geq 1$ 时, 对 $0 < a \leq \rho \leq A$
+($R = A/a$), 弦方程 $-y'' = \lambda\rho(x)y$ (Dirichlet) 的相邻间距
+$D_n(\rho) = \lambda_{n+1}(\rho) - \lambda_n(\rho)$ 的上确界与下确界.
+本文取得以下进展:
+\begin{enumerate}
+	\item \emph{变分机制 (严格推导)}: 由 Feynman--Hellmann 公式,
+		间距的一阶变分为 $\delta D = \int \delta\rho\, f\, dx$,
+		其中 $f = \lambda_n u_n^2 - \lambda_{n+1}u_{n+1}^2$ ($u_k$ 为
+		$L^2(\rho)$-归一化特征函数). 因此极值配置必为 bang-bang, 且
+		``$f$ 在全部节点为零且 $\{f>0\}$ 恰等于指定密度带'' 恰为
+		间距的驻点条件 (带状自洽).
+	\item \emph{数值刻画 (表 \ref{tab:r4})}: $R=4$ 时对 $n = 1..12$,
+		上确界由 $2n+1$ 块对称配置 $[1, R, 1, \dots, 1]$ 达到
+		($D$ 从 $32.61398362$ 增长到 $910.18877375$), 下确界由
+		$[R, 1, R, \dots, R]$ 达到 ($D$ 从 $6.78448234$ 快速衰减到
+		$0.25593826$); 残差 $10^{-9}..10^{-12}$, 带匹配 $= 1$.
+	\item \emph{R 依赖 (表 \ref{tab:rscan} 与 \ref{tab:r2})}: $n=1$ 的
+		$R$ 扫描 ($R=1.5..100$) 与 $R=2$ 的全表 ($n=1..6$).
+	\item \emph{极限 (第 \ref{sec:limit} 节)}: SUP 配置当 $R\to\infty$
+		时 $D \to 4\pi^2$ (中心质量钉扎: $\lambda_1 \to 0$,
+		$\lambda_2 \to 4\pi^2$); INF 配置当 $R\to\infty$ 时
+		$D\cdot R \to 24.943866 < 3\pi^2 = 29.6088$ (比值 $0.8425$),
+		伴随近简并的 ``键合-反键合'' 特征值对.
+	\item \emph{验证 (第 \ref{sec:verify} 节)}: Feynman--Hellmann 数值
+		导数 ($10^{-6}$ 精度), 黑塞定号 (SUP 负定, INF 正定), 全局
+		搜索 (更多块的配置不超越), 转移矩阵与有限差分 ($N=8000$) 一致.
+\end{enumerate}
+诚实标注: $n = 1$ 情形存在严格化路线 (单参数扫描 + 变分条件);
+$n \geq 2$ 为数值强猜想 (黑塞 + 全局搜索 + 带匹配支持, 非严格证明).
+\end{abstract}
+
+\medskip
+\noindent\textbf{标注约定.} 本文档是\emph{数值研究报告}: 除第 1 节的
+命题 \ref{prop:fh} 与推论 \ref{cor:bang} (变分机制) 为严格证明外,
+其余全部断言 (数值刻画, $R$ 依赖, 极限, 验证) 均为\emph{数值证据},
+不构成数学证明. 已由后续严格证明覆盖的内容 (INF 极限定理 A, 会话 30;
+$n=1$ SUP/INF 严格化, 会话 30/34) 在文中单独标注, 未标注者一律视为
+数值证据.
+
+\tableofcontents
+
+\section{问题与变分机制}\label{sec:mech}
+
+设 $0 < a \leq A$, $R = A/a$. 经尺度变换 $\rho \mapsto a^{-1}\rho$,
+$\lambda \mapsto a\lambda$ 后不妨设 $a = 1$. 考虑
+\begin{equation}
+	-y'' = \lambda\,\rho(x)\,y, \qquad y(0) = y(1) = 0,
+	\qquad 1 \leq \rho(x) \leq R,
+\end{equation}
+特征值 $0 < \lambda_1(\rho) < \lambda_2(\rho) < \cdots$. 固定 $n \geq 1$,
+记 $u_k = u_k(\cdot; \rho)$ 为 $L^2(\rho)$-归一化特征函数
+($\int_0^1 \rho\, u_k^2\, dx = 1$), 并记
+\[
+	D_n(\rho) := \lambda_{n+1}(\rho) - \lambda_n(\rho),
+	\qquad
+	f(x) := \lambda_n\, u_n(x)^2 - \lambda_{n+1}\, u_{n+1}(x)^2.
+\]
+
+\begin{proposition}[Feynman--Hellmann 变分公式]\label{prop:fh}
+	对单参数族 $\rho_\varepsilon = \rho + \varepsilon\,\delta\rho$ ($\varepsilon$
+	小, 满足 $1 \leq \rho_\varepsilon \leq R$),
+	\begin{equation}\label{eq:var}
+		\frac{d}{d\varepsilon}\Big|_{\varepsilon=0} D_n(\rho_\varepsilon)
+		= \int_0^1 \delta\rho(x)\, f(x)\, dx
+		= \lambda_n\!\int\!\delta\rho\, u_n^2
+		  - \lambda_{n+1}\!\int\!\delta\rho\, u_{n+1}^2.
+	\end{equation}
+\end{proposition}
+
+\begin{proof}
+	标准 Feynman--Hellmann 公式 (见 \texttt{tools/feynman-hellmann.md}):
+	对 $L^2(\rho_\varepsilon)$-归一化特征函数,
+	$\frac{d}{d\varepsilon}\lambda_k(\rho_\varepsilon) =
+	-\lambda_k(\rho)\int \delta\rho\, u_k^2\, dx$. 相减即得
+	\eqref{eq:var}. \qed
+\end{proof}
+
+\begin{corollary}[bang-bang 结构与带状自洽]\label{cor:bang}
+	设 $\rho^*$ 为 $D_n$ 在 $1 \leq \rho \leq R$ 中的局部极值点, 则
+	\begin{itemize}
+		\item 若 $\rho^*$ 极大化 $D_n$ (SUP), 则
+			$\rho^* = R$ 于 $\{f > 0\}$, $\rho^* = 1$ 于 $\{f < 0\}$;
+		\item 若 $\rho^*$ 极小化 $D_n$ (INF), 则
+			$\rho^* = 1$ 于 $\{f > 0\}$, $\rho^* = R$ 于 $\{f < 0\}$.
+	\end{itemize}
+	特别地 $\rho^*$ 是取值 $\{1, R\}$ 的 bang-bang 函数, 且每个密度跳变点
+	$x_j$ 满足 $f(x_j) = 0$. 反之, 若一个 bang-bang 配置满足
+	(i) $f$ 在其全部跳变点为零, (ii) $\operatorname{sgn} f$ 与密度带一致,
+	则该配置是 $D_n$ 的驻点 (带状自洽).
+\end{corollary}
+
+\begin{proof}
+	由 \eqref{eq:var}: 若极大且 $f(x) > 0$, 而 $\rho^*(x) < R$,
+	则取 $\delta\rho = \mathbf{1}_{B_\varepsilon(x)}$ ($B_\varepsilon(x)$ 为
+	$x$ 的邻域) 给出 $\delta D > 0$, 矛盾; 同理 $f(x) < 0 \Rightarrow
+	\rho^*(x) = 1$. 极小情形相反. 在跳变点, $\rho^*$ 既不能取 $1$ 也不能取
+	$R$ 的一侧, 故 $f(x_j) = 0$. 反向论断是 \eqref{eq:var} 的直接推论.
+	\qed
+\end{proof}
+
+\emph{说明.} 观测到的全部极值配置关于 $x = 1/2$ 对称: SUP 为
+$2n+1$ 块 $[1, R, 1, \dots, 1]$ (首尾为 $1$), INF 为 $2n+1$ 块
+$[R, 1, R, \dots, R]$ (首尾为 $R$). 对称性是数值观测, 其证明留作开放
+问题 (第 \ref{sec:open} 节). 自洽方程 \eqref{eq:var} 只固定跳变点处的
+$f = 0$, 并不先验固定块数; 块数最小性是数值事实.
+
+\section{自洽方程与数值方法}\label{sec:method}
+
+对对称 bang-bang 配置, 记前半段 $[0, 1/2]$ 内的跳变点为
+$0 < x_1 < \dots < x_n < 1/2$, 全配置跳变点为
+$x_{2n+1-j} = 1 - x_j$. 配置由 $n$ 个自由参数 $(x_1, \dots, x_n)$ 决定.
+带状自洽条件 (推论 \ref{cor:bang}) 化为 $n$ 个方程
+\begin{equation}\label{eq:sc}
+	f(x_j) = 0, \qquad j = 1, \dots, n,
+	\qquad \text{且}\quad \operatorname{sgn} f
+	\text{ 与密度带一致}.
+\end{equation}
+
+数值方法 (脚本 \path{scripts/op03_gap_fixed.py} 与
+\path{scripts/_tmp_fast_solver.py}):
+\begin{enumerate}
+	\item \emph{转移矩阵}: 块常数密度的特征值由
+		$2\times2$ 转移矩阵乘积的 $01$ 分量求根 ($\sin$ 型世俗函数).
+		向量化实现 (一次对 $10^4$ 个 $s = \sqrt\lambda$ 网格求全部根)
+		比逐点精确例程快约 $65$ 倍, 精度 $10^{-11}$.
+	\item \emph{R 续延}: 从 $R = 1.01$ (近常数密度) 出发, 沿
+		$R_1 < R_2 < \dots$ 逐步以 $R_{k-1}$ 的解为初值解 $R_k$ 的自洽
+		方程, 消除分支歧义.
+	\item \emph{最小二乘}: 对 \eqref{eq:sc} 的前 $n$ 个方程用
+		\texttt{scipy.optimize.least\_squares} (边界
+		$[10^{-4}, 1/2 - 10^{-4}]$, 高容差), 再用精确例程复核.
+	\item \emph{后验判据}: 残差 $\max_j |f(x_j)|$ 与带匹配率
+		\texttt{band-match} = $\#\{x: \rho_{\mathrm{pred}}(x) =
+		\rho_{\mathrm{true}}(x)\}/\#\{x\}$ (在细网格上由
+		$\operatorname{sgn} f$ 重构密度并与配置比对). 自洽解必有
+		\texttt{band-match} $= 1.0000$ 且残差 $10^{-9}$ 量级.
+		不动点迭代 (直接用特征值反馈 $\rho$) 对非真解发散, 该带状
+		自洽性为真极值判据.
+\end{enumerate}
+
+\section{R=4 主表}\label{sec:r4}
+
+表 \ref{tab:r4} 给出 $R = 4$ 时 $n = 1..12$ 的数值结果. 所有解满足
+带匹配 $= 1.0000$; 残差见末列 (除 $n=12$ INF 为 $1.6\times10^{-3}$,
+其余为 $10^{-9}..10^{-12}$).
+
+\begin{table}[ht]
+\centering
+\caption{$R=4$: 相邻间距的数值极值. SUP = 上确界配置 $[1,4,1,\dots,1]$,
+INF = 下确界配置 $[4,1,4,\dots,4]$ (均 $2n+1$ 块). $D = \lambda_{n+1}-\lambda_n$.}
+\label{tab:r4}
+\small
+\begin{tabular}{c|rrr|rrr|r}
+	$n$ & $\lambda_n^{\mathrm{SUP}}$ & $\lambda_{n+1}^{\mathrm{SUP}}$ & $D^{\mathrm{SUP}}$ &
+	$\lambda_n^{\mathrm{INF}}$ & $\lambda_{n+1}^{\mathrm{INF}}$ & $D^{\mathrm{INF}}$ &
+	$\max$ 残差 \\\hline
+	1 & 6.109280 & 38.723263 & 32.61398362 & 3.628360 & 10.412842 & 6.78448234 & $3\times10^{-11}$\\
+	2 & 22.500442 & 85.593641 & 63.09319883 & 17.516122 & 26.539160 & 9.02303787 & $3\times10^{-11}$\\
+	3 & 48.016455 & 150.642001 & 102.62554631 & 44.197243 & 53.226580 & 9.02933654 & $1\times10^{-10}$\\
+	4 & 82.243296 & 233.995746 & 151.75245000 & 83.476936 & 91.162120 & 7.68518416 & $1\times10^{-10}$\\
+	5 & 124.945131 & 335.723698 & 210.77856613 & 134.569179 & 140.458189 & 5.88901039 & $1\times10^{-10}$\\
+	6 & 175.968016 & 455.854188 & 279.88617248 & 196.944177 & 201.139878 & 4.19570116 & $7\times10^{-10}$\\
+	7 & 235.205802 & 594.391963 & 359.18616073 & 270.359197 & 273.195077 & 2.83588080 & $3\times10^{-9}$\\
+	8 & 302.583215 & 751.329382 & 448.74616686 & 354.741641 & 356.584296 & 1.84265471 & $4\times10^{-8}$\\
+	9 & 378.045996 & 926.653102 & 548.60710630 & 450.095346 & 451.256746 & 1.16140040 & $4\times10^{-9}$\\
+	10 & 461.554695 & 1120.347875 & 658.79318056 & 556.449031 & 557.163596 & 0.71456457 & $3\times10^{-7}$\\
+	11 & 553.080601 & 1332.398661 & 779.31806023 & 673.833524 & 674.264646 & 0.43112215 & $3\times10^{-7}$\\
+	12 & 652.602972 & 1562.791746 & 910.18877375 & 802.122656 & 802.378594 & 0.25593826 & $2\times10^{-3}$\\
+\end{tabular}
+\end{table}
+
+\begin{remark}[结构与趋势]
+	(i) SUP 的 $D$ 随 $n$ 近似二次增长 ($D/n^2$ 从 $32.6$ 缓降至 $6.3$),
+	与周期介质 $[1,4]$ 的能带图像一致; INF 的 $D$ 随 $n$ 快速衰减,
+	$n = 12$ 时 $\lambda_{12} \approx \lambda_{13} \approx 802$ (近简并,
+	见第 \ref{sec:limit} 节). (ii) 配置的跳变点均成镜像对
+	$x_{2n+1-j} = 1 - x_j$, 且在 $[0, 1/2]$ 内均匀铺开 (SUP) 或向端点
+	聚拢 (INF). (iii) $n=1$ 时 SUP 跳变点 $x_1 = 0.451485$ (即
+	$[1,4,1]$ 的边), INF 跳变点 $x_1 = 0.382598$.
+\end{remark}
+
+\section{R 依赖与极限}\label{sec:rscan}
+
+\subsection{\texorpdfstring{$n=1$}{n=1} 的 R 扫描}
+
+对 $n=1$, 配置为 $[1, R, 1]$ (SUP) 与 $[R, 1, R]$ (INF), 单参数为
+跳变点 $u \in (0, 1/2)$. 表 \ref{tab:rscan} 给出 R 续延解.
+
+\begin{table}[ht]
+\centering
+\caption{$n=1$: SUP 与 INF 间距随 $R$ 的变化, 与常数密度 $\rho\equiv1$
+($3\pi^2$) 和 $\rho\equiv R$ ($3\pi^2/R$) 对照.}
+\label{tab:rscan}
+\begin{tabular}{c|rrr|rrr}
+	$R$ & $D^{\mathrm{SUP}}$ & $u^{\mathrm{SUP}}$ & $3\pi^2$ &
+	$D^{\mathrm{INF}}$ & $u^{\mathrm{INF}}$ & $3\pi^2/R$ \\\hline
+1.5 & 30.473030 & 0.429832 & 29.609 & 19.195388 & 0.408814 & 19.739\\
+2 & 31.102264 & 0.436696 & 29.609 & 14.127769 & 0.401037 & 14.804\\
+3 & 31.992221 & 0.445665 & 29.609 & 9.189673 & 0.390127 & 9.870\\
+4 & 32.613984 & 0.451485 & 29.609 & 6.784482 & 0.382598 & 7.402\\
+10 & 34.451278 & 0.466931 & 29.609 & 2.608915 & 0.361313 & 2.961\\
+100 & 37.547003 & 0.488529 & 29.609 & 0.250933 & 0.334804 & 0.296\\
+1000 & 38.825382 & 0.496261 & 29.609 & 0.024959 & 0.330446 & 0.030\\
+\end{tabular}
+\end{table}
+
+\begin{remark}
+	$R \leq 10$ 时 SUP 与 INF 的跳变点随 $R$ 单调变化 (SUP 的 $u$ 从 $0.430$ 增到 $0.467$, INF 的 $u$ 从 $0.409$ 减到 $0.361$), 且 SUP 恒
+	超过常数密度值 $3\pi^2$ (如 $R=4$ 时 $32.61/29.61 \approx 1.102$),
+	INF 恒低于常数 $R$ 值 $3\pi^2/R$ ($R=4$ 时 $6.78/7.40 \approx 0.917$).
+	$R$ 增大时 SUP 的 $u$ 单调递增趋于 $1/2$ ($R=100$ 时 $u = 0.4885$,
+	$R=1000$ 时 $u = 0.4963$, 见下极限分析); INF 的 $u$ 单调递减趋于
+	$0.330$ 附近 ($R=100$ 时 $u = 0.3348$).
+\end{remark}
+
+\subsection{\texorpdfstring{$R=2$}{R=2} 的全表}
+
+表 \ref{tab:r2} 给出 $R=2$ 时 $n=1..6$ 的结果 (由 $R=4$ 解沿 $R$ 续延
+到 $R=2$, 消除分支歧义).
+
+\begin{table}[ht]
+\centering
+\caption{$R=2$: $D^{\mathrm{SUP}}$, $D^{\mathrm{INF}}$, 以及与常数密度
+$3\pi^2$ 和 $3\pi^2/R$ 的对照.}
+\label{tab:r2}
+\begin{tabular}{c|rrr|rrr}
+	$n$ & $D^{\mathrm{SUP}}$ & $D^{\mathrm{SUP}}/(3\pi^2)$ &
+	$D^{\mathrm{INF}}$ & $D^{\mathrm{INF}}/(3\pi^2/R)$ &
+	$\lambda_{2n+1}$ 参考 & 残差 \\\hline
+	1 & 31.102 & 1.050 & 14.128 & 0.954 & 49.35 & $10^{-14}$\\
+	2 & 56.405 & 1.905 & 21.217 & 1.433 & 123.37 & $10^{-13}$\\
+	3 & 86.615 & 2.925 & 25.826 & 1.745 & 221.33 & $10^{-13}$\\
+	4 & 122.100 & 4.124 & 28.183 & 1.904 & 343.27 & $10^{-12}$\\
+	5 & 163.108 & 5.509 & 28.690 & 1.938 & 489.18 & $10^{-12}$\\
+	6 & 209.829 & 7.087 & 27.794 & 1.878 & 659.06 & $10^{-12}$\\
+\end{tabular}
+\end{table}
+
+\begin{remark}
+	$R=2$ 时 INF 的 $D$ 先升后降 ($n=1..4$ 递增至 $28.183$, 之后递减),
+	与 $R=4$ 时自 $n=2$ 即单调递减的行为不同; SUP 的 $D$ 单调增长.
+	INF 的``转折点''在 $R$ 较小 (带宽效应弱) 时延后.
+\end{remark}
+
+\subsection{极限}\label{sec:limit}
+
+\subsubsection{SUP 配置: \texorpdfstring{$R \to \infty$}{R-inf} 时 \texorpdfstring{$D \to 4\pi^2$}{D-4pi2} (数值证据, 非证明)}
+
+对 $[1, R, 1]$, 令跳变点 $u = u(R)$, 中心块宽 $v = 1 - 2u$. 数值:
+\begin{center}
+\begin{tabular}{c|cccc}
+	$R$ & $u$ & $v$ & $\lambda_1$ & $\lambda_2$ \\\hline
+	$10^2$ & 0.488529 & $2.29\times10^{-2}$ & 1.548 & 39.095\\
+	$10^3$ & 0.496261 & $7.48\times10^{-3}$ & 0.515 & 39.340\\
+	$10^4$ & 0.498806 & $2.39\times10^{-3}$ & 0.165 & 39.433\\
+\end{tabular}
+\end{center}
+$u \to 1/2$ (中心块 $v \sim 0.24/\sqrt{R}$ 收缩), $\lambda_1 \to 0$
+(总质量 $\int\rho \to \infty$ 使基频下移), $\lambda_2 \to 4\pi^2$
+(第二特征函数 $\approx \sin 2\pi x$ 在中心块有节点, 不受重块影响),
+故 $D = \lambda_2 - \lambda_1 \to 4\pi^2 = 39.4784$. 这是``中心质量钉扎''
+的图像: 重块只压低基频, 不扰动有节点的第二模态.
+
+\noindent\emph{状态: 数值证据.} 上式的推导基于数值表与渐近直观, 未构成
+严格证明 (``$\lambda_1\to0$, $\lambda_2\to4\pi^2$'' 需对自洽方程
+$f_{sym}(u)=0$ 的解 $u=u(R)$ 作严格渐近分析, 见开放缺口一节).
+
+\subsubsection{INF 配置: \texorpdfstring{$R \to \infty$}{R-inf} 时 \texorpdfstring{$D\cdot R \to 24.9439$}{DR-24.9439} (已由定理 A 严格证明)}
+
+对 $[R, 1, R]$, 令 $\lambda_k = \mu_k/R$. 在 $R \to \infty$ 极限, 中心
+块 ($\rho = 1$, 宽 $v = 1 - 2u$) 内的解线性, 外块 ($\rho = R$, 宽 $u$)
+内解为 $\sin\sqrt{\mu}\,x$ 型. 偶模 (关于 $1/2$ 偶) 满足
+$\sqrt{\mu_1}\,u = \pi/2$, 即 $\mu_1 = \pi^2/(4u^2)$; 奇模满足
+$\tan(\sqrt{\mu_2}\,u) = \sqrt{\mu_2}\,(u - 1/2)$. 归一化自洽条件
+($\mu_1 u_1^2 = \mu_2 u_2^2$ 于 $x = u$ 处) 化为
+\[
+	\mu_1 \cdot \frac{2}{u} = \mu_2 \cdot \frac{\sin^2(a u)}{I_2},
+	\qquad a = \sqrt{\mu_2}, \quad
+	I_2 = \int_0^u \sin^2(a x)\, dx.
+\]
+数值求解 (脚本 \path{scripts/op03_gap_inflimit.py}):
+\[
+	u = 0.32992251, \quad \mu_1 = 22.668139, \quad
+	\mu_2 = 47.612005, \quad D\cdot R = 24.943866.
+\]
+与常数密度 $R$ 的极限 $3\pi^2 = 29.6088$ 相比, 比值
+$24.9439/29.6088 = 0.8425 < 1$: 即便在 $R \to \infty$ 极限, 非平凡配置
+仍比常数密度给出更小的间距. 直接大 $R$ 数值 (表 \ref{tab:rscan}:
+$R=100$ 时 $D \cdot R = 25.09$) 与之相符.
+
+\noindent\emph{状态: 已严格证明.} 会话 30 的定理 A
+(\texttt{SL\_gap\_n1\_inf\_limit\_proof.pdf}) 对对称阱族 $[R,1,R]$
+证明了 $\lim_{R\to\infty} R\,m_R = \bar D(u^*) = 24.9438661384\ldots <
+3\pi^2$, 其中 $u^* = 0.3299225081\ldots$ 为 $S(u)=0$ 的唯一根; 上文数值
+值与其一致. 该极限对全盒类下确界的推广依赖 $n=1$ 严格化 (会话 34,
+\texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf}), 见概述文档.
+
+\subsubsection{INF 的近简并对 (bonding--antibonding)}
+
+$R=4$, $n=12$ 时 $\lambda_{12} = 802.1227$, $\lambda_{13} = 802.3786$,
+$D = 0.2559$. 两个特征函数各有 12 个内零点但几乎简并, 分别局部化于
+$[0,1/2]$ 与 $[1/2,1]$ 两侧, 形如分子物理中的键合-反键合对. 这正是
+INF 间距随 $n$ 快速衰减的机制: 高指标时相邻特征值在带边成对逼近.
+
+\section{验证}\label{sec:verify}
+
+\subsection{Feynman--Hellmann 数值检验}
+
+对 $R=4$, $n=2$ SUP 配置, 将第 $j$ 个跳变点连同其镜像移动 $\varepsilon$,
+数值导数与公式 $\frac{d\lambda_k}{d\varepsilon} =
+-\lambda_k(\rho_L - \rho_R)\,u_k(x_j)^2\cdot 2$ ($\rho_L$, $\rho_R$ 为该
+跳变点两侧密度; 因子 $2$ 来自镜像) 对照 ($\varepsilon = 10^{-6}$):
+\begin{center}
+\begin{tabular}{c|rr}
+	跳变点 & 数值 $d\lambda_2/d\varepsilon$, $d\lambda_3/d\varepsilon$ & FH 公式 \\\hline
+	$j = 1$ ($\rho_L = 1$, $\rho_R = 4$) & 157.665, 157.661 & 157.664\\
+	$j = 2$ ($\rho_L = 4$, $\rho_R = 1$) & $-109.289$, $-109.292$ & $-109.290$\\
+\end{tabular}
+\end{center}
+比值 $1.0000$ ($10^{-6}$ 量级). 对 $n=4$ SUP, 对称参数化 (同时移动一对
+镜像节点) 给出 $d\lambda_{12}/d\varepsilon = d\lambda_{13}/d\varepsilon =
+375.1$, 单侧 FH 为 $-187.55$, 因子 2 精确吻合. 由 \eqref{eq:var},
+$dD/d\varepsilon = (\rho_L - \rho_R)f(x_j)$, 而自洽条件 $f(x_j) = 0$
+正是 $D$ 的驻点条件; 数值 $dD/d\varepsilon \approx 10^{-3}$ 量级
+(有限差分二阶项).
+
+\subsection{黑塞定号}
+
+在自洽配置处数值黑塞: INF 全正定 (局部极小), SUP 全负定 (局部极大),
+与极值方向一致. (脚本 \path{scripts/op03_gap_hp.py}.)
+
+\subsection{全局搜索}
+
+$R=4$, $n=1..3$: 用 $2n+3$ 块的更自由配置 (7 块) 做 10 次随机
+Nelder--Mead 优化, INF 最佳值不低于自洽 $2n+1$ 块值, SUP 最佳值不高于
+自洽值. $n=4$: 11 块/13 块配置不超越 9 块自洽解 (INF 11 块
+$7.727 > 7.685$; SUP 11 块 $151.750 < 151.752$). 结合随机扫描,
+``多余块不提升极值'' 是数值事实.
+
+\subsection{转移矩阵与有限差分}
+
+$n=8$ INF 配置用 $N = 8000$ 点有限差分直接离散 $-y'' = \lambda\rho y$
+核对两个特征值, 与转移矩阵结果一致 (差异 $\sim 0.09$ 为离散化误差量级).
+
+\section{严格化状态与开放缺口}\label{sec:open}
+
+\begin{description}
+	\item[$n = 1$ 严格化路线 (可行)] 推论 \ref{cor:bang} 已严格给出
+		bang-bang 结构与驻点条件; 剩余工作是 (a) 把块数归约到 3 块
+		(需控制 $f$ 的符号改变次数, 属 Sturm 型论证), (b) 在单参数族
+		$[1,R,1]$ (或 $[R,1,R]$) 上验证 $D(u)$ 在自洽点取最大 (最小),
+		可用二分 + 精确界机械化完成, (c) 排除非对称 3 块配置
+		(两参数扫描已数值排除). 因此 $n=1$ 的严格证明在原理上可完成.
+	\item[$n \geq 2$ 数值强猜想] 上确界 $D_n^{\mathrm{sup}}(R)$ 由
+		$[1,R,1,\dots,1]$ 达到, 下确界由 $[R,1,R,\dots,R]$ 达到,
+		均为 $2n+1$ 块对称配置. 支持: 黑塞定号, 全局搜索, 带匹配,
+		残差 $10^{-9}$ 量级, $R$ 续延的连续性. 非严格证明.
+	\item[对称性证明] 全部极值配置关于 $1/2$ 对称: 观测到, 未证.
+	\item[块数最小性] ``$2n+1$ 块即足够'' 的证明未完成 (Keller 型归约
+		的类比).
+	\item[$n=12$ INF 精度] 残差 $1.6\times10^{-3}$: 近简并对使最小二乘
+		病态, 数值解为近似解; 不影响趋势结论.
+\end{description}
+
+\section{失败尝试与经验}\label{sec:fail}
+
+\begin{enumerate}
+	\item \emph{旧转移矩阵传播顺序 bug}: 初版脚本
+		(\path{scripts/op03_gap_n1.py}) 用 $M_{\mathrm{new}} =
+		M_{\mathrm{old}} P$ (块矩阵右乘), 正确的应为 $M_{\mathrm{new}} =
+		P M_{\mathrm{old}}$ (左乘). bug 使早期 ``极值配置'' 全是伪影,
+		特征值本身即错. 经验: 转移矩阵的传播顺序必须与微分方程初值
+		传播方向一致, 并以 IVP 数值解交叉验证
+		(\path{scripts/op03_gap_fixed.py} 的 \texttt{\_\_main\_\_}).
+	\item \emph{伪临界点}: $n=4$ INF 曾给出 $D = 11.697$ 的 ``解'',
+		后证实为不动点迭代的非真解 (残差不为零, 带匹配失败), 被
+		9 块自洽解 $D = 7.685$ 取代. 经验: 必须同时检查残差与带匹配,
+		二者缺一不可.
+	\item \emph{不动点迭代发散}: 直接用 $\rho_{\mathrm{new}} = R
+		\mathbf{1}_{\{f>0\}} + \mathbf{1}_{\{f<0\}}$ 迭代只在真解附近
+		收敛, 远离时发散; 改用 R 续延 + 最小二乘后稳定.
+	\item \emph{精确例程过慢}: 逐点精确例程 (30 000 点 + 90 层二分)
+		单次特征值计算 $\sim 1$ 秒, 无法支持大规模搜索; 向量化
+		lams\_fast 快 $65\times$, 精度 $10^{-11}$, 是全部后续计算的
+		主力. 经验: 谱问题的数值研究应先建立快速可靠的求根例程.
+	\item \emph{R=100 SUP 分支敏感}: 大 $R$ 时 SUP 解退化为 $v \to 0$
+		分支, 随机种子易落入错误分支; 需种子 $\sim 0.4885$ 或 R 续延.
+	\item \emph{早期脚本把全 $2n$ 条边当 $n$ 个参数}: 续延种子需取
+		前 $n$ 条边, 否则形状不匹配.
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[Feynman--Hellmann 公式] 特征值对参数的一阶导数
+		$\frac{d\lambda_k}{d\varepsilon} = -\lambda_k\int\delta\rho\,u_k^2$;
+		是间距变分 \eqref{eq:var} 的基石.
+	\item[bang-bang 变分原理] 无质量约束的逐点界 $a \leq \rho \leq A$
+		下, 极值配置由 $\operatorname{sgn} f$ 决定, 跳到边界值;
+		与 Keller 比值问题的变分条件同源.
+	\item[转移矩阵与世俗方程] 块常数密度的 SL 问题化为 $2\times2$
+		转移矩阵乘积的 $01$ 分量求根.
+	\item[带状自洽 (本项目自研工具)] ``$f$ 在全部节点为零且
+		$\{f>0\}$ 等于指定密度带'' 作为极值配置的真伪判据; 见
+		\texttt{tools/gap-band-extremals.md}.
+	\item[R 续延法] 以参数小步长追踪解分支, 消除多解分支歧义.
+	\item[键合-反键合分裂] 对称双阱中近简并特征值对的局域化图像,
+		解释 INF 间距的快速衰减.
+	\item[中心质量钉扎] 重块压低基频 ($\lambda_1 \to 0$) 而不扰动
+		有节点模态 ($\lambda_2 \to 4\pi^2$) 的极限图像.
+	\item[Sturm 振荡理论] 特征函数零点计数; 是块数归约论证 (开放)
+		的潜在工具.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{summary} 项目文档, \emph{SL 谱主题总结与前沿开放问题} (会话 8),
+	\path{docs/SL_spectral_topics_summary.pdf}.
+\bibitem{ratio} 项目文档, \emph{相邻特征值比值: 全序列上确界与平衡相位方法}
+	(会话 5), \path{docs/SL_ratio_proof.pdf}.
+\bibitem{fixn} 项目文档, \emph{固定指标 $n$ 的相邻特征值比值上确界}
+	(会话 12), \path{docs/SL_fixed_n_supremum.pdf}.
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491.
+	\url{https://doi.org/10.1137/0131042}
+\bibitem{mw} T. J. Mahar, B. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	\url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{ashbaugh} M. S. Ashbaugh, R. Benguria, \emph{Optimal lower bound for
+	the gap between the first two eigenvalues of one-dimensional
+	Schr\"odinger operators with symmetric single-well potentials},
+	Proc. Amer. Math. Soc. 105 (1989), 419--424.
+\bibitem{liou} 项目文档, \emph{Liouville 变换}, \path{tools/liouville-transform.md}.
+\bibitem{cmg} J. Chu, G. Meng, Z. Zhang, \emph{Explicit sharp bounds for all
+	nodes of Sturm--Liouville operators with potentials in $L^1$ balls},
+	J. Differential Equations 470 (2026). arXiv:2512.18404.
+	\url{https://arxiv.org/abs/2512.18404}
+\end{thebibliography}
+
+\end{document}

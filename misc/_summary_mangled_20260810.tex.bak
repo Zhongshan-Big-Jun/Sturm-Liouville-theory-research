@@ -1,0 +1,1511 @@
+﻿% 编译方式: xelatex SL_spectral_topics_summary.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\emergencystretch 3em
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{example}[theorem]{例}
+\newtheorem{definition}[theorem]{定义}
+
+\title{SL 边值问题的谱分析: 正交函数系完备性与特征值间距的最优界}
+\author{研究总结文档 (项目: BVE research)}
+\date{2026-08-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本总结文档整理两个研究主题的当前进展. 主题一研究 Sturm-Liouville (SL) 边值问题的解
+在多大的空间中能等价于该空间内的所有正交函数系, 基准论文为 Littlejohn 与
+Quintero-Roba 的 Krein-Sobolev 正交多项式一文 (OPSFA-16 会议论文集, Springer 2025).
+主题二研究 SL 边值问题相邻特征值间距与比值的最优界, 检索时间截至 2026 年 7 月.
+文档同时总结各结果背后的证明技术, 并列出开放问题与后续研究方向.
+本版 (2026-08-04, 会话 10) 进一步把主题一的完备性结论推广到第三左定空间
+$H^3[-1,1]$ 与一切整数 $s \geq 1$ 的左定空间 $H^s$, 见
+\texttt{SL\_h3\_completeness\_proof.pdf} 与 \texttt{SL\_h3\_research\_summary.pdf}.
+
+本版 (2026-08-09, 会话 34/35/40) 更新: 相邻间距极端值严格化的最后一块硬义务 O3a/C1
+(势垒族 sign-consistent good root 的唯一性) 已完整解决, 机制为相位比刚性
+(传输能量守恒 + 相位比严格单调性 + KEY LEMMA). KEY LEMMA 的关键子命题
+$\partial_w\mathrm{IN}=M_2<0$ 于 $D$ 已升级为完全解析证明 ($\theta$-参数化闭式 +
+凸性端点极大 + 精确有理界, 引理 5.2--5.4), C4 区间段 $K>0$ 亦已升级为纯初等
+解析证明 ($K=q^2L$ 与 $L$ 单调递增 + 两区域有理常数界), I3 中 $J_1^{(2)}$ 的
+正性已在真曲线区域 $T_1$ 上完全解析化 (定理 5.8: $J_1^{(2)}\ge6499/7500$
+于 $T_1$ 的闭包, 七步初等链), 证书仅剩 I3 的 $J_2^{(2)}<0$ 二维参数化符号
+证书 (67 叶盒) 与一个伴随 $(LOG)$ 证书, 见 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf}
+(38 页, 零警告); 开放问题清单相应更新.
+
+本版 (2026-08-10, 会话 56) 更新: 缺口 (b) 阱族全 $R$ 相位刚性已严格证明 --- 对一切 $R>1$, 阱族 $\rho_{a,b}$ 的任意 sign-consistent good root 满足 $a+b=1$ (五步初等链: $\tau<2$ 经 $\alpha$-凸性, 残差消元, $r_\tau$ 精确结构含危险区引理与 $x+y>\pi$, $L_3$/跨区/$P$-和排除), 见 \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf} (14 页零警告) 与总结 \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_summary.pdf} (8 页零警告); 由此 INF 极值问题的一切内部临界点落在对称阱线上. INF 侧 $R>3/2$ 的完全闭合仍依赖对称线 1D 分析 ($R>3/2$ 段, 缺口 a$'$)、定理 A 独立复核 (c) 与全局 good-root 论证 (d), 暂不宣称闭合; 全部数值为 EVIDENCE 不构成证明.
+本版 (2026-08-10, 会话 50) 更新: $n\ge2$ 相邻间距极端值的两项证明已集成 ---
+(i) 有限块约化: 对每个 $R>1$、整数 $n\ge2$, $D_n=\lambda_{n+1}-\lambda_n$ 在完整
+可测盒 $1\le\rho\le R$ 上同时达到最大/最小值, 每个全局极值子都 bang--bang 且至多
+有 $2n$ 个开关 (至多 $2n+1$ 块); (ii) 精确 $2n$ 开关定理: 每个全局极值子合并相邻
+同值块后恰有 $2n$ 个有效内部开关, 最大化子首尾块取 $1$、最小化子首尾块取 $R$
+(对应会话 13 数值配置 $[1,R,\dots,1]$/$[R,1,\dots,R]$), 不假设对称或唯一. 证明见
+\texttt{SL\_gap\_nge2\_finite\_reduction\_proof.pdf} 与
+\texttt{SL\_gap\_nge2\_exact\_2n\_switches\_proof.pdf}; 数值审计全过;
+未检索到直接等价已发表定理, 不声称首创.
+\end{abstract}
+
+\tableofcontents
+
+\section{引言与问题界定}
+
+设 $I = [-1, 1]$ 或 $[0, \pi]$, 考虑形如
+\begin{equation}
+	-(p(x)u')' + q(x)u = \lambda w(x)u, \quad x \in I
+\end{equation}
+的 Sturm-Liouville 问题, 配以分离型自伴边界条件. 记 $\lambda_1 < \lambda_2 < \cdots$
+为其特征值, $u_n$ 为对应 (归一化) 特征函数. 本项目关注两类问题.\footnote{正则 SL 问题在带权 $L^2$ 空间中有离散谱与完备特征函数系 (Hilbert-Schmidt 理论, 见 Zettl 2005); 分离型边界条件保证自伴性.}
+
+第一类问题: SL 边值问题的解 (特征函数系) 在多大的 Hilbert 空间中仍构成完备正交系,
+或者说, 在多大空间中存在与问题结构相容的完备正交多项式系. 左定理论 (left-definite
+theory) 给出精确的分级刻画: 特征函数系在尺度空间族 $H_s = D(A^{s/2})$ 中始终完备,
+其中 $A$ 是右定问题的自伴算子. 基准论文则在该尺度中的第一左定空间 $H^1[-1,1]$ 内
+构造了一组与左定内积正交且完备的多项式系 (Krein-Sobolev 多项式), 并留下第二左定
+空间 $H^2[-1,1]$ 中多项式解析完备性的开放问题.\footnote{左定理论 (Littlejohn-Wellman 2002) 是``解在多大空间中保持完备''的精确框架.}
+
+第二类问题: 在给定的势函数类别 (单阱, 凸, $L^1$ 球, $L^p$ 球等) 中, 优化特征值间距
+$\lambda_{n+k} - \lambda_n$ 或比值 $\lambda_{n+k}/\lambda_n$. 已检索到 2026 年的多篇
+最新结果, 涵盖基本间距 ($\lambda_2 - \lambda_1$), 最大间距 ($\lambda_{2n} - \lambda_1$),
+特征值比值, 节点位置的最优界, 以及特征值和优化临界系统的可积性.
+
+\section{主题一: 解与正交函数系的等价性}
+
+\subsection{左定理论: 完备性保持的分级刻画}
+
+左定理论的基本对象是右定问题对应的自伴算子 $A$, 满足 $A \geq kI$ ($k > 0$).\footnote{$A \geq kI$ 是算子序 (Loewner 序), 等价于谱下界 $\inf\sigma(A) \geq k$, 不是矩阵逐元素比较.}
+对 $r > 0$, Littlejohn 与 Wellman 定义
+\begin{equation}
+	V_r := D(A^{r/2}), \qquad (x, y)_r := (A^{r/2}x, A^{r/2}y),
+\end{equation}
+并以 $H_r = (V_r, (\cdot, \cdot)_r)$ 记第 $r$ 个左定空间 (第一左定空间对应 $r = 1$).\footnote{$A^{r/2}$ 由自伴算子的谱定理 (函数演算) 定义; $\{H_r\}_{r>0}$ 构成 Hilbert 空间尺度 (scale of Hilbert spaces).}
+Fischbacher, Gesztesy, Hagelstein 与 Littlejohn 的综述 [1] 中的定理 1.1 总结了
+该空间族的基本性质.\footnote{定理 1.1 的证明基于 Hilbert 空间谱定理, 见 [1] 与 Littlejohn-Wellman [2, 3].}
+
+\begin{theorem}[Fischbacher-Gesztesy-Hagelstein-Littlejohn, [1, Theorem 1.1]]
+设 $A$ 是可分 Hilbert 空间 $H = (V, (\cdot, \cdot))$ 中的自伴算子, $A \geq kI$, $k > 0$.
+令 $H_0 = H$, $(\cdot, \cdot)_0 = (\cdot, \cdot)_H$. 对 $s \in (0, \infty)$ 有:
+\begin{enumerate}
+	\item $H_s = (V_s, (\cdot, \cdot)_s)$, 其中 $V_s = D(A^{s/2})$,
+		且 $(f, g)_s = (A^{s/2}f, A^{s/2}g)_H$;
+	\item 若 $A$ 有界, 则 $V_s = V$, 且 $(\cdot, \cdot)_H$ 与 $(\cdot, \cdot)_s$ 等价;
+	\item 若 $A$ 无界, 则 $V_s \subsetneq V$; 且 $0 < s < t$ 时 $V_t \subsetneq V_s$,
+		且 $(\cdot, \cdot)_H$, $(\cdot, \cdot)_s$, $(\cdot, \cdot)_t$ 两两不等价;
+	\item 对 $s \in (0, \infty)$, $H_s = A^{-s/2}H$;
+	\item 对 $s, t \in [0, \infty)$, $A^{(s-t)/2}: H_s \to H_t$ 是 $H_s$ 到 $H_t$
+		的等距同构.
+\end{enumerate}
+\end{theorem}
+
+左定算子 $A_s$ 的刻画由 Littlejohn 与 Wellman 给出 ([1, Theorem 1.3], 原文见 [2, 3]).
+
+\begin{theorem}[Littlejohn-Wellman, [1, Theorem 1.3]]
+设 $s \in (0, \infty)$.
+\begin{enumerate}
+	\item 存在唯一的左定算子 $A_s$, 满足 $A_s f = Af$, $f \in D(A_s) = V_{s+2}$;
+	\item 算子 $A$ (于 $H$ 中) 与 $A_s$ (于 $H_s$ 中) 酉等价;
+	\item 若 $\{\phi_\alpha\}_{\alpha \in J}$ 是 $A$ 在 $H$ 中的 (完备) 特征函数系,
+		则它同样是 $A_s$ 在 $H_s$ 中的 (完备) 特征函数系;
+	\item 对 $s, t \in [0, \infty)$, 在 $D(A_t)$ 上有算子恒等式
+		$A^{(s-t)/2} A_s A^{(t-s)/2} = A_t$;
+	\item $D(A_s) = A^{-s/2} D(A)$.
+\end{enumerate}
+\end{theorem}
+
+定理 1.3 第 (iii) 条是主题一的理论骨架: 右定问题的 (完备) 特征函数系在任意左定空间
+$H_s$ 中仍然 (完备), 因此 ``解与正交函数系等价'' 的问题应沿尺度 $H_s = D(A^{s/2})$
+逐级考察.\footnote{定理 1.3 (iii): 完备性沿左定空间族自动保持, 故问题化为在给定 $H_s$ 中构造与边界相容的多项式基.} 对二阶 SL 问题, 第一左定内积由
+\begin{equation}
+	(f, g)_1 = \int (p f' \overline{g}' + q f \overline{g}) \, dx
+\end{equation}
+给出; 更高阶空间 $H_s$ 通过 $A^{s/2}$ 的定义域描述.
+
+\subsection{基准论文: Krein-Sobolev 正交多项式}
+
+基准论文为 L. L. Littlejohn 与 A. Quintero-Roba, \emph{Krein-Sobolev Orthogonal
+Polynomials}, OPSFA-16 会议论文集 (CRM Series), Springer, 2025, pp. 107--123,
+DOI: \url{https://doi.org/10.1007/978-3-031-90135-5_7}. 该文受版权保护, 全文未能获取; 下列内容依据
+Springer 页面摘要以及开放获取姊妹论文 [4] (Jones, Littlejohn, Quintero Roba,
+\emph{Krein-Sobolev Orthogonal Polynomials II}, Axioms 14 (2025) 115, \url{https://doi.org/10.3390/axioms14020115}) 完整还原.\footnote{版权提示: 基准论文全文未获取, 本节内容以 Springer 摘要与姊妹论文 [4] 为准.}
+
+考虑移位 Krein Laplacian 算子 $K_c$ ($c > 0$ 固定):
+\begin{equation}
+	K_c f = -f'' + c f, \qquad
+	D(K_c) = \left\{ f \in \Delta : f'(1) = f'(-1) = \frac{f(1) - f(-1)}{2} \right\},
+\end{equation}
+其中 $\Delta = \{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1) \}$ 为极大定义域.\footnote{$K_0$ 为 Krein Laplacian: $-y''$ 在非局部边界条件 $f'(\pm 1) = (f(1)-f(-1))/2$ 下的自伴实现 (见 [4] 引文).}
+当 $c = 0$ 时 $K_0$ 即经典的 Krein Laplacian; 它的谱包含两维零空间
+$\mathrm{span}\{1, x\}$, 对应左定内积退化为伪内积. 移位 $c > 0$ 使得 $K_c \geq cI$,
+从而左定分析可在真正的 Hilbert 函数空间中进行.
+
+$K_c$ 的谱与特征函数为
+\begin{equation}
+	\sigma(K_c) = \{c\} \cup \{(n\pi)^2 + c\}_{n \geq 1} \cup \{\mu_n^2 + c\}_{n \geq 1},
+\end{equation}
+\begin{equation}
+	\{1, x\} \cup \{\cos n\pi x\}_{n \geq 1} \cup \{\sin \mu_n x\}_{n \geq 1},
+\end{equation}
+其中 $\mu_n > 0$ 是超越方程 $\tan \mu = \mu$ 的第 $n$ 个正根.\footnote{$\tan\mu = \mu$ 的根给出混合边界下正弦型特征函数, 是非经典边界的典型谱结构.}
+特征值 $c$ 对应的特征子空间由 $\{1, x\}$ 张成.
+
+$K_c$ 的第一左定空间恰好是 Sobolev 空间 $H^1[-1,1]$ 配上如下正定内积
+\begin{equation}
+	(f, g)_{1,c} = -\frac{(f(1) - f(-1))(\overline{g}(1) - \overline{g}(-1))}{2}
+		+ \int_{-1}^{1} \left( f'(x)\overline{g}'(x) + c f(x)\overline{g}(x) \right) dx.
+\end{equation}
+注意该内积的离散项带负号, 其正定性需要证明; 它由左定理论保证, 也可直接验证.\footnote{正定性可由 Cauchy-Schwarz 不等式直接验证, 不依赖左定理论.}
+
+基准论文研究的是关于 $(\cdot, \cdot)_{1,c}$ 正交的多项式系 $\{K_n\}_{n=0}^{\infty}$,
+称为 Krein-Sobolev 多项式, 其定义 (见 [4, Definition 2]) 为
+\begin{equation}
+	K_n(x) = \sum_{r=0}^{\lfloor n/2 \rfloor} a_{n-2r} S_{n-2r}(x), \qquad
+	a_0 = a_1 = 1,
+\end{equation}
+其中 $S_n = P_n - P_{n-2}$ 是相邻 Legendre 多项式之差 ($P_{-1} = P_{-2} = 0$),
+系数 $a_n$ 由 Gram-Schmidt 型递推确定:
+\begin{equation}
+	a_n = -\frac{(K_{n-2}, S_{n-2})_{1,c}}{(S_n, S_{n-2})_{1,c}} \quad (n \geq 2).
+\end{equation}
+$K_n$ 是次数恰为 $n$ 的多项式, $K_n(1) = 1$, 且 $K_n(-x) = (-1)^n K_n(x)$.
+初始项 $K_0 = 1$, $K_1 = x$ 与 $x$ 一起张成 $K_c$ 的 $c$-特征子空间; 对 $n \geq 2$,
+$K_n$ 不是 $K_c$ 的特征函数.\footnote{系数 $a_n$ 由 Gram-Schmidt 型递推确定, 保证 $\deg K_n = n$ 且与低次多项式正交.}
+
+\begin{theorem}[完备正交性, [4, Theorem 3]]
+Krein-Sobolev 多项式 $\{K_n\}_{n=0}^{\infty}$ 构成第一左定空间 $H^1[-1,1]$
+(配 $(\cdot, \cdot)_{1,c}$) 中的完备正交多项式系, 且
+\begin{equation}
+	(K_m, K_n)_{1,c} = \frac{2c}{2n+1} a_n a_{n+2} \delta_{n,m} \quad (n, m \in \mathbb{N}_0).
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[根的位置, [4, Theorem 4]]
+对 $n \geq 1$, $K_n$ 的 $n$ 个根均为实数, 单根, 且全部落在开区间 $(-1, 1)$ 内.
+对 $n \geq 1$, $K_n$ 的 $n$ 个根均为实数, 单根, 且全部落在开区间 $(-1, 1)$ 内.\footnote{经典正交多项式根实单且位于权支撑内; Sobolev 型内积无标准三项递推, 实根性需专门证明.}
+\end{theorem}
+
+因此, 在 $H^1[-1,1]$ 中, Krein-Sobolev 多项式系构成与左定内积正交的 Hilbert 基,
+即该空间内所有正交函数系在该内积下的一个等价表述. 这回答了主题一在第一左定空间
+层面的问题: 空间为 $H^1[-1,1]$ (配 $(\cdot, \cdot)_{1,c}$), 等价的正交多项式系为
+$\{K_n\}$.\footnote{完备正交多项式系 = 该内积下的 Hilbert 基, 即``等价于空间内所有正交函数系''的严格含义.}
+
+\subsection{显式公式与 Althammer 多项式的关系}
+
+Krein-Sobolev 多项式与经典的 Althammer (Sobolev-Legendre) 多项式 $\{A_n\}$ 关系密切.\footnote{Althammer (Sobolev-Legendre) 多项式是 Sobolev 正交多项式研究的起点 (Althammer 1962, Sch\"afke 1972).}
+后者关于内积
+\begin{equation}
+	\langle f, g \rangle_\lambda = \int_{-1}^{1} \left( f(x)\overline{g}(x)
+		+ \lambda f'(x)\overline{g}'(x) \right) dx \quad (\lambda > 0)
+\end{equation}
+正交. 由 $\lambda = 1/c$ 时对偶函数成立的恒等式 $(f, g)_{1,c} = c \langle f, g \rangle_{1/c}$\footnote{该恒等式仅对偶函数成立, 故奇偶次 Krein-Sobolev 多项式的系数行为不同.}
+可得
+\begin{equation}
+	K_{2n}(x) = A_{2n}(x) \quad (n \in \mathbb{N}_0),
+\end{equation}
+即偶次 Krein-Sobolev 多项式与 Althammer 多项式完全重合; 奇次情形系数不同
+(例如 $a_3' = 1 + 1/c \neq a_3 = 1$).
+
+系数 $\{a_n\}$ 满足显式递推 ([4, Theorem 2 (iii)], $a_0 = a_1 = a_2 = a_3 = 1$):
+\begin{equation}
+	a_{n+2} = a_n \left( 1 + \frac{4n^2 - 1}{c} \right)
+		+ \frac{2n+1}{2n-3} (a_n - a_{n-2}) \quad (n \geq 2).
+\end{equation}
+对奇指标, 递推化简为\footnote{(19) 是系数序列 $a_n$ 的线性递推; 奇偶子列可分别化简求解.}
+\begin{equation}
+	a_{2n+1} = \left( \frac{8n-6}{4n-5} + \frac{16n^2 - 16n + 3}{c} \right) a_{2n-1}
+		- \frac{4n-1}{4n-5} a_{2n-3}.
+\end{equation}
+
+\begin{theorem}[显式闭式公式, [4, Theorem 5]]
+记 $\lambda := 1/c$. 对 $n \in \mathbb{N}$,
+\begin{align}
+	K_{2n}(x) &= \sum_{k=0}^{n} a_{2n-2k} S_{2n-2k}(x), \\
+	K_{2n+1}(x) &= \sum_{k=0}^{n} a_{2n-2k+1} S_{2n-2k+1}(x),
+\end{align}
+其中 $a_0 = a_2 = 1$,
+\begin{equation}
+	a_{2m} = \sum_{k=0}^{m-1} \left( \frac{\lambda}{4} \right)^{k}
+		\frac{(2m + 2k - 1)!}{(2m - 2k - 1)! \, (2k)!},
+\end{equation}
+以及 $a_1 = a_3 = 1$,
+\begin{equation}
+	a_{2m+1} = \sum_{k=0}^{m-1} \left( \frac{\lambda}{4} \right)^{k}
+		\frac{m - k}{m + k}
+		\frac{(2m + 2k + 1)!}{(2m - 2k + 1)! \, (2k)!}.
+\end{equation}
+\end{theorem}
+
+\begin{example}
+前几个 Krein-Sobolev 多项式为\footnote{闭式公式 (23)(24) 由超几何级数求和验证 (见 [4] 的 Mathematica 计算).}
+\begin{align*}
+	K_0(x) &= 1, \quad K_1(x) = x, \quad K_2(x) = \frac{3}{2} x^2 - \frac{1}{2}, \\
+	K_3(x) &= \frac{5}{2} x^3 - \frac{3}{2} x, \\
+	K_4(x) &= \frac{35c + 525}{8c} x^4 - \frac{30c + 630}{8c} x^2
+		+ \frac{3c + 105}{8c}, \\
+	K_5(x) &= \frac{126c + 3969}{16c} x^5 - \frac{140c + 5670}{16c} x^3
+		+ \frac{30c + 1701}{16c} x.
+\end{align*}
+\end{example}
+
+\subsection{开放问题: 第二左定空间中的多项式解析完备性}
+
+第二左定空间 $H^2[-1,1]$ 由
+\begin{equation}
+	H^2[-1,1] = \left\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(-1) = f'(1) = \frac{f(1) - f(-1)}{2} \right\}
+\end{equation}
+及内积\footnote{$H^2 = D(K_c)$ 即第二左定空间; 左定理论中 $H_s = D(A^{s/2})$, 故 $H^2$ 对应 $s = 2$.}
+\begin{equation}
+	(f, g)_{2,c} = -c (f(1) - f(-1))(\overline{g}(1) - \overline{g}(-1))
+		+ \int_{-1}^{1} \left( f''\overline{g}'' + 2c f'\overline{g}' + c^2 f\overline{g} \right) dx
+\end{equation}
+给出. 直接计算可知, $H^2$ 中多项式的一个基为
+\begin{equation}
+	p_{2n}(x) = x^{2n} - \frac{n}{n-1} x^{2n-2}, \qquad
+	p_{2n+1}(x) = x^{2n+1} - \frac{n}{n-1} x^{2n-1} \quad (n \in \mathbb{N}_0,\ n \neq 1).
+\end{equation}
+由于不存在次数为 2 或 3 的多项式属于 $H^2[-1,1]$, 该基是代数不完备的.\footnote{代数完备 = 多项式张成整个多项式空间; 解析完备 = 有限线性组合在 $H^2$ 中稠密.}
+
+\begin{remark}[已解决, 会话 7; 原开放问题 [4, Section 6]]
+上述多项式基 $\{p_n\}$ 在 $H^2[-1,1]$ 中\emph{解析完备}: 其有限线性组合在
+$(\cdot, \cdot)_{2,c}$ 下稠密. 证明 (2026-08-04, 完整细节见
+\texttt{SL\_h2\_completeness\_proof.pdf}) 由三步组成: (i) 恒等式
+$(f,g)_{2,c} = (K_c f, K_c g)_{L^2}$ 与 $0 \notin \sigma(K_c)$ 给出等距同构
+$K_c: H^2 \to L^2$; (ii) 矩跳跃论证把正交条件化为偶/奇矩的递推
+$c\mu_{2j} = A_j\mu_{2j-2} - B_j\mu_{2j-4}$, 自由参数仅 $\mu_2, \mu_3$
+(对应缺失次数); (iii) 增长引理 $u_j \geq (4/c)^{j-1}j!$ 与 $L^2$ 矩有界性
+矛盾, 迫使 $\mu_2 = \mu_3 = 0$, 全部矩为零, Weierstrass 稠密性给出零
+annihilator. 例外正交多项式 (exceptional orthogonal polynomials) 理论提供
+代数不完备但解析完备的类比; 本文给出左定 Sobolev 空间中的严格实例.
+2026-08-04 (会话 10) 把上述结论推广到第三左定空间 $H^3[-1,1]$ 与一切整数
+$s \geq 1$ 的左定空间 $H^s$: 关键观察是取 $H^1$-矩 $M_k = (w, x^k)_1$ 而非
+$L^2$-矩, 则正交条件 $(w, K_c p_n)_1 = 0$ 给出与 $H^2$ 情形\emph{完全相同}的
+二阶递推 $cM_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$ (边界项 $w(1)\pm w(-1)$
+被 $H^1$-矩定义中的边界项吸收), 配合增长引理 $u_m \geq (4/c)^{m-1}m!$ 与
+多项式上界 $|M_{2m}| \leq C\sqrt m$ (Cauchy-Schwarz, $w \in H^1$) 矛盾,
+迫使全部 $H^1$-矩为零, 从而 $w = 0$. 证明见
+\texttt{SL\_h3\_completeness\_proof.pdf}, 研究过程与失败路线见
+\texttt{SL\_h3\_research\_summary.pdf}.
+条件) 仍开放.\footnote{失败路线与经验见 \texttt{SL\_h2\_research\_summary.pdf}; 文献全文 (Axioms 14 (2025) 115) 已获取, 存于 \texttt{papers/axioms14\_115.pdf}.}
+\end{remark}
+
+该问题与主题一直接相关: 它问的是在 $H^2 = D(K_c)$ 这一更大空间层面, 是否能构造
+与边界条件相容的完备正交多项式系; 左定理论 (定理 1.3) 只保证 $K_c$ 的 (非多项式)
+特征函数系在此空间中完备.
+
+\section{主题二: 特征值间距与比值的最优界}
+
+\subsection{历史脉络与问题分类}
+
+固定区间 $[0, \pi]$ 与 Dirichlet 边界条件, 记基本间距 $\Gamma = \lambda_2 - \lambda_1$.
+$\Gamma$ 在量子力学中对应电离能, 其锐界自 1980 年代以来被广泛研究. 主要脉络:\footnote{单阱/单峰假设源自物理势能形状; 凸势类更便于用经典不等式 (Lavine 型) 处理.}
+
+\begin{itemize}
+	\item Ashbaugh 与 Benguria (1989, [15]): 对对称单阱势, $\Gamma$ 的最优下界
+		由常数势唯一达到;
+	\item Lavine (1994, [16]): 对凸势, 常数势极小化 $\Gamma$ (Dirichlet 与
+		Neumann 两种边界);
+	\item Horv\'ath (2003, [18]): 无对称假设的单阱势, 在转移点满足一定限制时
+		常数势仍最优; Yu 与 Yang (2015) 将其推广到其他转移点及两种边界条件;
+	\item El Allali 与 Harrell (2022, [17]): 对转移点无限制的一般单阱势, 用直接
+		优化方法证明极小化势为阶梯函数 (一般不常数), 并得到锐界
+		$\Gamma > 2.04575\cdots$; 凸势情形恢复 Lavine 的结果;
+	\item Ashbaugh, Harrell 与 Svirsky (1991, [19]): 最小与最大特征值间距及其
+		成因的分析.
+\end{itemize}
+
+经典结果中 $\Gamma \geq 3\pi^2 / L^2$ ($L$ 为区间长度) 的等号在常数势时达到
+(对称单阱或凸势假设下). 下面的结果将其推广到变权函数情形.
+
+\subsection{\texorpdfstring{基本间距 $\lambda_2 - \lambda_1$: 单阱势与单峰权}{基本间距 lambda2 - lambda1: 单阱势与单峰权}}
+
+Ahrami, El Allali 与 Harrell (\url{https://arxiv.org/abs/2407.02459}, 2024) [5] 研究问题
+\begin{equation}
+	-u'' + V(x)u = \lambda w(x)u, \quad x \in [0, \pi], \qquad u(0) = u(\pi) = 0,
+\end{equation}
+其中 $V$ 属于单阱势类 $SW$, $w$ 属于单峰密度类 $SB$ (或凸性约束). 方法为直接
+优化: 利用 Feynman-Hellmann 公式计算 $\Gamma$ 对 $V$, $w$ 的变分导数, 配合
+Helly 紧性与逐点收敛得到极值存在性.\footnote{Feynman-Hellmann 公式给出特征值对参数的一阶导数, 是直接优化法的核心工具; Helly 紧性保证单调函数族的逐点收敛子列.}
+
+\begin{theorem}[阶梯函数极值, [5, Theorem 3.1]]
+对任意分段连续, 严格正的权函数 $w$, 最优势 $V_*$ 是阶梯函数; 对任意分段连续的势
+$V$, 最优权 $w_*$ 是阶梯函数; 联合最优情形亦然. 具体地:
+\begin{enumerate}
+	\item 在 $\{x : u_2^2(x) > u_1^2(x)\}$ 的每个连通分量上 $V_*(x) = 0$ a.e.,
+		在其补集上 $V_*(x) = \max V_*$ a.e.;
+	\item 在 $\{x : \lambda_2 u_2^2(x) > \lambda_1 u_1^2(x)\}$ 的每个连通分量上
+		$w_*(x) = N_>$ a.e., 在其补集上 $w_*(x) = \min w_*$ a.e.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[特征值的超越方程, [5, Theorem 3.2]]
+当 $\lambda > \max V_* / \min w_*$ 时, 最优问题的特征值是对应于如下超越方程的
+实根:
+\begin{equation}
+	\eta \tan\bigl(z(\pi - \hat{x}_-)\bigr)
+		= -z \tan\left[ \eta(\hat{x}_- - x_-) + \arctan\left( \frac{\eta}{t} \tan(t x_-) \right) \right],
+\end{equation}
+其中 $\eta := \sqrt{\lambda N_> - \max V_*}$, $z := \sqrt{\lambda \min w_* - \max V_*}$,
+$t := \sqrt{\lambda N_>}$.
+\end{theorem}
+
+\begin{proposition}[Liouville 变换下的基本间距, [5, Proposition 4.1]]
+设 Liouville 势为
+\begin{equation}
+	\psi(\xi) = \frac{w''}{4w^2} - \frac{5(w')^2}{16w^3} + \frac{V}{w},
+\end{equation}
+且 $L = \int_0^{\pi} \sqrt{w(t)} \, dt$.\footnote{Liouville 变换把一般 SL 方程化为 $-\eta'' + \psi\eta = \lambda\eta$ (Liouville normal form).} 若 $\psi$ 凸, 则
+\begin{equation}
+	\Gamma[V, w] \geq \frac{3\pi^2}{\left( \int_0^{\pi} \sqrt{w(t)} \, dt \right)^2},
+\end{equation}
+等号成立当且仅当 $\psi$ 为常数.
+\end{proposition}
+
+\begin{remark}[凸性并非必要, [5, Remark 4.1]]
+命题的适用条件只要求 Liouville 势 $\psi$ 凸, 不要求 $V$ 本身凸. 例如
+$V(x) = -x^2$, $w(x) = x^2$ 时, $\psi''(\xi) \geq 0$ 于 $[5, 6]$ 上成立, 从而命题
+适用, 得到 $\Gamma \geq 3\pi^2 / (\int_5^6 x \, dx)^2 \approx 0.978803\cdots$.
+\end{remark}
+
+\subsection{\texorpdfstring{最大间距 $\lambda_{2n} - \lambda_1$: 从 $L^1$ 球到奇异测度}{最大间距 lambda2n - lambda1: 从 L1 球到奇异测度}}
+
+Guo, Meng, Yan 与 Zhang (J. Math. Phys. 63 (2022) 072701) [6] 研究 Dirichlet 特征值
+在 $\|q\|_1 \leq r$ 约束下的最大间距: 对 $L^1$ 势 $q$, 最大化
+$\lambda_{2n}(q) - \lambda_1(q)$, 并给出该最大化问题的显式解. 该文全文未能获取,
+此处按摘要陈述其结论级别.
+
+Wen 与 Zhou (Mediterr. J. Math. 23 (2026), DOI: \url{https://doi.org/10.1007/s00009-025-03043-6}) [7]
+将其推广到一维 $p$-Laplacian 的 Dirichlet 特征值问题: 对可积势 $q \in L^1(I)$,
+在 $\|q\|_{L^1} \leq r$ 下最大化偶数阶特征值与第一特征值之间的间距. 该文的两个
+关键贡献:
+
+\begin{itemize}
+	\item 把特征值视为 $q \in L^1$ 的非线性泛函, 并将定义域从可积势延拓到
+		奇异测度势 (singular potential measures);
+	\item 借助此前若干优化问题的解, 完全求解该最大化问题.
+\end{itemize}
+
+这一技巧的背景是: $L^1$ 球的弱紧性缺失, 极值往往不能由 $L^1$ 函数达到, 而只能由
+Radon 测度 (如 Dirac 测度) 达到; 测度微分方程 (measure differential equations)
+成为描述极值问题的自然框架.\footnote{奇异测度延拓技巧亦用于 2026 年节点与 Neumann 间距结果, 是近年 SL 优化的核心方法.}
+
+\subsection{特征值比值}
+
+\begin{itemize}
+	\item Gan, Zheng, Li 与 Shao (Math. Methods Appl. Sci. 49 (2026), no. 10,
+		DOI: \url{https://doi.org/10.1002/mma.70611}) [8] 研究一般 SL 问题
+		$u'' = q(x)u + \lambda m(x)u$ 在 Dirichlet 边界条件下特征值比值的最大化,
+		权重 $m$ 允许变号;
+\item Li 与 Ao (J. Differential Equations, 2026, DOI: \url{https://doi.org/10.1016/j.jde.2026.114478})
+		[9] 研究 Neumann 边界条件下最大特征值间距与比值的优化, 以相应的测度
+		微分方程为关键桥梁, 给出最优的最大间距与比值.
+\end{itemize}
+
+历史上 Ashbaugh 与 Benguria (1993) [10] 研究特征值比值, 后续有 Huang 与 Law
+(1996), Horv\'ath 与 Kiss (2006), Hedhly (2015), 以及 Chu 与 Meng 对 Camassa-Holm
+方程 Dirichlet 特征值比值锐界的工作等. 2026 年的工作把比值优化推进到一般 SL 问题
+(变号权重) 与 Neumann 边界情形.
+
+\subsection{节点位置的最优界}
+
+节点 (特征函数的零点) 亦可作为势 $q$ 的非线性泛函进行优化. 相关结果:\footnote{第 $m$ 个特征函数恰有 $m-1$ 个内零点 (Sturm 振荡理论); 节点作为势的泛函光滑性需专门证明.}
+
+\begin{itemize}
+	\item Chu, Jiang 与 Meng (Mediterr. J. Math. 22 (2025), Paper 127): 负权 SL
+		问题所有节点的锐界;
+	\item Chu, Meng, Wang 与 Zhang (Math. Ann. 390 (2024), 1401--1417): 具有
+		$L^p$ 势的 SL 算子的节点优化问题;
+	\item Chu, Guo, Meng 与 Zhang (J. Differential Equations 470 (2026);
+		\url{https://arxiv.org/abs/2512.18404}) [11]: 对势 $q \in L^1[0,1]$ 的经典 SL 算子, 证明所有
+		节点 $T_{i,m}$ 的显式锐界.
+\end{itemize}
+
+后一篇的关键技术细节:
+
+\begin{enumerate}
+	\item 节点 $T_{i,m}$ 作为 $q$ 的泛函是连续 Fr\'echet 可微的, 其导数
+		([11, Lemma 2.3]) 为
+		\begin{equation}
+			\partial_q T_{i,m}(q)(x) = H_{i,m}(x; q) E_m^2(x; q) \in \mathcal{L}^{\infty},
+		\end{equation}
+		其中 $H_{i,m}$ 是两步函数: 在 $[0, T_{i,m}(q))$ 上取 $+a_{i,m}$, 在
+		$[T_{i,m}(q), 1]$ 上取 $-b_{i,m}$, 且
+		\begin{equation*}
+			a_{i,m} = \int_{[T_{i,m}(q),1]} \left( \frac{E_m(v;q)}{E_m'(T_{i,m}(q);q)} \right)^2 dv, \qquad
+			b_{i,m} = \int_{[0,T_{i,m}(q)]} \left( \frac{E_m(v;q)}{E_m'(T_{i,m}(q);q)} \right)^2 dv;
+		\end{equation*}
+	\item 由于 $L^1$ 势的弱闭性缺失, 极值在测度微分方程意义下达到: 零势时节点为
+		$i/(m+1)$, 最小化序列经 Radon 测度的弱星极限实现;
+	\item 将无限维优化化为有限维优化, 得到显式界
+		\begin{equation}
+			\mathbf{m}_{i,m}(r) \leq T_{i,m}(q) \leq 1 - \mathbf{m}_{m-i+1,m}(r),
+			\quad \mathbf{m}_{i,m}(r) < \frac{i}{m+1},
+		\end{equation}
+		其中反射 $x \mapsto 1 - x$ 给出上下界的对称关系
+		$\mathbf{n}_{i,m}(r) = 1 - \mathbf{m}_{m-i+1,m}(r)$.
+\end{enumerate}
+
+\subsection{特征值和优化与临界系统的可积性}
+
+对特征值和 $\sum_i \lambda_i$ 的优化问题, Tian 与 Zhang 的一般方法 (J. Math. Phys.
+66 (2025) 092703) [12] 表明最优势可由 $m$ 自由度多项式 Hamiltonian 系统的可解性
+刻画:\footnote{临界系统来自特征值和优化问题的一阶必要条件 (变分导数 = 0).}
+\begin{equation}
+	u_i' = v_i, \qquad
+	v_i' = -\mu_i u_i + \varepsilon \left( \sum_{j=1}^{m} u_j^2 \right)^{k-1} u_i,
+	\quad p = \frac{k}{k-1}.
+\end{equation}
+
+Tian 与 Zhang (\url{https://arxiv.org/abs/2509.09250}, 2025) [13] 证明该系统除两个已知完全可积情形外
+是非亚纯可积的.
+
+\begin{theorem}[临界系统的可积性分类, [13, Theorem 2.5]]
+上述 Hamiltonian 系统是亚纯可积的, 当且仅当下列二者之一成立:
+\begin{enumerate}
+	\item $k = 2$ 且 $(\mu_1, \ldots, \mu_m) \in \mathbb{R}^m$ 任意;
+	\item $k \geq 3$ 且 $\mu_1 = \mu_2 = \cdots = \mu_m$.
+\end{enumerate}
+其余情形下系统非亚纯可积.
+\end{theorem}
+
+证明工具为 Morales-Ramis 微分 Galois 理论: 沿特定解线性化系统, 结合超几何微分
+方程的可积性分类与 Kovacic 算法, 判定对应的微分 Galois 群;\footnote{Morales-Ramis 理论: 亚纯可积蕴含线性化系统的微分 Galois 群可解; Kovacic 算法判定 2 阶线性微分方程的可解性.} 该结果正面回答了
+Tian, Wei 与 Zhang (J. Math. Phys. 64 (2023) 092701) 的猜想, 并揭示特征值优化
+问题的内在复杂度.
+
+更近期, Meng, Tian, Xie 与 Zhang (\url{https://arxiv.org/abs/2603.06019}, 2026) [14] 研究非紧空间 $L^1$
+中前两个 Dirichlet 特征值之和的最大化, 证明存在唯一的最大化势, 该势非负, 分段
+光滑且对称.
+
+\section{证明技术总结}
+
+\begin{enumerate}
+	\item Feynman-Hellmann 变分导数: 对 $\lambda_n$ 关于势 $V$ 与权 $w$ 的扰动
+		求导, 得到 $\Gamma$ 的一阶变分表达式, 从而确定极值结构 (阶梯函数);
+	\item Liouville normal form: 把一般 SL 问题通过 Liouville 变换化为
+		$-\eta'' + \psi \eta = \lambda \eta$, 使基本间距问题归约为势 $\psi$ 凸性
+		下的 Lavine 型估计;
+	\item Helly 紧性与 a.e. 收敛: 单阱/单峰函数族在逐点收敛意义下的紧性,
+		保证优化问题极值的存在性;
+	\item 测度微分方程: $L^1$ 势的弱紧性缺失促使把优化问题的定义域延拓到
+		Radon 测度, 极值常为 Dirac 测度; 这是 2025--2026 年节点界与 Neumann
+		间距结果的核心桥梁;
+	\item 泛函分析中的 Fr\'echet 可微性: 节点作为势的泛函的导数公式,
+		将无限维优化化为有限维优化;
+	\item Morales-Ramis 理论加 Kovacic 算法: 证明特征值优化临界系统的亚纯
+		非可积性, 从解析可解性角度刻画问题的复杂度;
+	\item 左定理论: 用算子分数幂 $A^{s/2}$ 构造 Hilbert 空间尺度族 $H_s$,
+	\item 相位比刚性 (phase-ratio rigidity): 高密度区间传输矩阵保持的二次型把
+		两个界面残差的公共零点化为同一严格单调函数在两个外侧相位上的等值,
+		直接推出对称性 $a+b=1$, 完全绕开残差分支单图性/额外 sheet/导数恒正等
+		困难 (O3a, 2026-08-09); 与 [[transfer-matrix-secular]] 配合使用.
+		并保持特征函数系的完备性, 是主题一的理论骨架.
+\end{enumerate}
+
+\section{开放问题与后续研究方向}
+
+\textbf{标注约定 (全文档适用).} 本文档区分三类断言, 每类都以显式标签标注:
+\begin{description}
+	\item[\textbf{严格证明}] 具有完整数学证明的结论, 由项目内证明文档或文献定理支撑;
+		如会话 5 的上确界定理, 会话 9--11 的 $H^s$ 完备性定理.
+	\item[\textbf{数值证据}] 由数值计算支持的断言, \emph{不构成证明};
+		标签形如 ``(数值)'' 或 ``数值证据'', 并注明精度与脚本.
+	\item[\textbf{猜想/开放}] 数值支持但尚未证明的陈述, 标签形如 ``猜想'' 或 ``开放'';
+		不得与定理混淆.
+\end{description}
+正文中凡出现 ``已解决'' 字样, 均指对应断言的 \emph{严格证明} 已完成; 仅数值
+支持的结论一律标注为数值证据或猜想, 不称为已解决.
+
+\subsection{已解决: 相邻特征值比值的上确界}
+
+会话 5 已证明相邻比值上确界定理 (见项目文档 \texttt{SL\_ratio\_proof.tex}):
+对 $-y''=\lambda\rho y$ (Dirichlet, $0<a\le\rho\le A$, $R=A/a$),
+\begin{equation}
+	\sup_{n\ge 1}\,\sup_{1\le\rho\le R}\frac{\lambda_{n+1}}{\lambda_n}
+	=\nu(R)=\Bigl(\frac{\arccos(-\sqrt{R}/(\sqrt{R}+1))}
+	{\arccos(\sqrt{R}/(\sqrt{R}+1))}\Bigr)^2,
+\end{equation}
+在 $n=1$ 与对称两跳配置 $[a,A,a]$ 处达到. 证明由三步组成: 平凡不等式
+$\lambda_{n+1}\le\lambda_{2n}$; Mahar-Willner 倍指标恒等式
+$\sup_\rho\lambda_{2n}/\lambda_n=\nu(R)$ [22]; 平衡相位闭式推导.
+平衡相位方法同时给出 Keller 极小值 $\mu(R)=\inf_\rho\lambda_2/\lambda_1$ 的闭式
+(arccos 形式) [21]. 全序列下确界已严格证明 (会话 11/12, 见下); 固定 $n$ 上确界仅反射对称结构严格, 全局极值性为数值支持的猜想 (会话 12, 见下).
+
+\subsection{进展: 全序列下确界已严格证明; 固定 \texorpdfstring{$n$}{n} 上确界为数值支持的猜想 (会话 11/12)}
+
+\emph{全序列下确界} (会话 11, \texttt{SL\_inf\_ratio\_proof.pdf}): 对任意
+固定 $\rho$, Weyl 渐近
+\begin{equation}
+	\lambda_n \sim \frac{\pi^2 n^2}{(\int_0^1\sqrt{\rho}\,dx)^2}
+	\qquad (n \to \infty)
+\end{equation}
+给出 $\lambda_{n+1}/\lambda_n \to 1$, 而一切 $n$ 下比值
+$>1$, 故
+\begin{equation}
+	\inf_{n\ge1}\,\inf_{1\le\rho\le R}\lambda_{n+1}/\lambda_n = 1,
+\end{equation}
+下确界不达到 (任何固定配置下比值恒 $>1$); 由固定密度 (如 $\rho\equiv1$)
+沿 $n\to\infty$ 序列化达到. 关键更正 (会话 5): 下确界不等于 $\mu(R)$
+($R=4$ 时交替族给出 $\lambda_5/\lambda_4\approx1.0838<\mu(4)=2.4092$).
+
+\emph{固定 $n$ 上确界猜想} (会话 12, \texttt{SL\_fixed\_n\_supremum.pdf}):
+交替配置 $[1,R,1,\dots,1]$ ($2n+1$ 块, 宽度比 $\sqrt R$) 的世俗函数
+$F_n(y)$ 满足反射对称 $F_n(\pi-y)=F_n(y)$ ($J$-共轭, 严格证明), 根按
+$y_j+y_{2n+1-j}=\pi$ 配对, 故 $\lambda_{n+1}/\lambda_n =
+((\pi-y_n)/y_n)^2$ (平衡相位, 数值验证); $n=1,2$ 给出闭式, $n=3,4$ 由
+$F_n$ 的多项式给出; 极值性数值证据充分 (块数优化塌缩到 5 块, 随机搜索
+不超越, 梯度为零). 未闭合: 全局极值性 (Keller 型归约到交替 bang-bang)
+与 $2n$-根计数.
+
+\subsection{\texorpdfstring{进展: 相邻间距 $\lambda_{n+1}-\lambda_n$ 的极端值 (会话 13/30/34/50)}{进展: 相邻间距 lambda(n+1)-lambda(n) 的极端值 (会话 13/30/34/50)}}
+
+本会话研究 $1\le\rho\le R$ 的相邻间距
+$D_n=\lambda_{n+1}-\lambda_n$ 的极端值\footnote{详见
+\texttt{SL\_gap\_extremals.pdf}.}, 主要结果如下:
+\begin{itemize}
+	\item \emph{严格变分机制} (严格证明): Feynman--Hellmann 给出
+		$\delta D = \int\delta\rho\,f\,dx$, $f = \lambda_n u_n^2 -
+		\lambda_{n+1}u_{n+1}^2$, 故极值配置必为 bang-bang, 且``$f$ 在
+		全部节点为零 + $\{f>0\}$ 等于指定密度带'' 恰为驻点条件
+		(带状自洽);
+	\item \emph{数值刻画} (数值证据, 非证明): $R=4$, $n=1..12$, 上确界由 $[1,4,1,\dots,1]$
+		达到 ($D$: 32.61398362 至 910.18877375), 下确界由
+		$[4,1,4,\dots,4]$ 达到 ($D$: 6.78448234 快速衰减至 0.25593826);
+		残差 $10^{-9}..10^{-12}$, 带匹配 $= 1$;
+	\item \emph{R 依赖} (数值证据, 非证明): $n=1$ 扫描 ($R=1.5..100$) 与 $R=2$ 全表
+		($n=1..6$);
+	\item \emph{极限}: INF 侧 $R\to\infty$ 时 $D\cdot R \to 24.9439 < 3\pi^2$
+		已由会话 30 的定理 A 严格证明 (对称阱族); SUP 配置 $R\to\infty$ 时
+		$D \to 4\pi^2$ (中心质量
+		钉扎: $\lambda_1\to0$, $\lambda_2\to4\pi^2$); INF 配置
+		的极限伴随近简并的键合-反键合特征值对; SUP 极限为数值证据, 非证明.
+	\item \emph{验证} (数值证据, 非证明): FH 数值导数 ($10^{-6}$), 黑塞定号 (SUP 负定,
+		INF 正定), 全局搜索, 有限差分 ($N=8000$) 对照.
+\end{itemize}
+严格化状态: $n=1$ 的 SUP 侧严格证明已完成 (O1/O2/O3a/O3b 全部义务闭合, 见
+\path{SL_gap_n1_proof.pdf} 与 \path{SL_gap_n1_O3a_phase_rigidity_proof.pdf});
+INF 侧: O1 归约 (下确界在阱族 $D^{well}(a,b)$ 上达到) 与对称阱族 $[R,1,R]$ 的
+$R\to\infty$ 极限 (定理 A) 已严格证明; ``全阱族下确界在对称阱达到'' 的阱族刚性已对一切 $R>1$ 证明 (2026-08-10 会话 56:
+全 $R$ 相位刚性定理 \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf} + 总结
+\path{SL\_gap\_n1\_well\_rigidity\_allR\_summary.pdf}, 任意 sign-consistent good root 满足 $a+b=1$);
+
+本版 (2026-08-05, 会话 13) 更新: 主题二新增相邻特征值间距 $\lambda_{n+1}-\lambda_n$ 的极端值数值刻画 (变分机制 + $R=4$ 全表 + 极限, 见 \texttt{SL\_gap\_extremals.pdf}); 全序列比值下确界 (=1, Weyl) 已严格证明 (Weyl 渐近), 固定 $n$ 上确界仅反射对称结构严格, 其全局极值性仍为数值支持的猜想; 主题一开放问题已解决至一切整数左定空间 $H^s$ (会话 7/10/11, 显式正交系与稠密性一般准则).
+
+本版 (2026-08-09, 会话 34/35/40) 更新: 相邻间距极端值严格化的最后一块硬义务 O3a/C1
+(势垒族 sign-consistent good root 的唯一性) 已完整解决, 机制为相位比刚性
+(传输能量守恒 + 相位比严格单调性 + KEY LEMMA). KEY LEMMA 的关键子命题
+$\partial_w\mathrm{IN}=M_2<0$ 于 $D$ 已升级为完全解析证明 ($\theta$-参数化闭式 +
+凸性端点极大 + 精确有理界, 引理 5.2--5.4), C4 区间段 $K>0$ 亦已升级为纯初等
+解析证明 ($K=q^2L$ 与 $L$ 单调递增 + 两区域有理常数界), I3 中 $J_1^{(2)}$ 的
+正性已在真曲线区域 $T_1$ 上完全解析化 (定理 5.8: $J_1^{(2)}\ge6499/7500$
+于 $T_1$ 的闭包, 七步初等链), 证书仅剩 I3 的 $J_2^{(2)}<0$ 二维参数化符号
+证书 (67 叶盒) 与一个伴随 $(LOG)$ 证书, 见 \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf}
+(38 页, 零警告); 开放问题清单相应更新.
+
+本版 (2026-08-10, 会话 50) 更新: $n\ge2$ 相邻间距极端值的两项证明已集成 ---
+(i) 有限块约化: 对每个 $R>1$、整数 $n\ge2$, $D_n=\lambda_{n+1}-\lambda_n$ 在完整
+可测盒 $1\le\rho\le R$ 上同时达到最大/最小值, 每个全局极值子都 bang--bang 且至多
+有 $2n$ 个开关 (至多 $2n+1$ 块); (ii) 精确 $2n$ 开关定理: 每个全局极值子合并相邻
+同值块后恰有 $2n$ 个有效内部开关, 最大化子首尾块取 $1$、最小化子首尾块取 $R$
+(对应会话 13 数值配置 $[1,R,\dots,1]$/$[R,1,\dots,R]$), 不假设对称或唯一. 证明见
+\texttt{SL\_gap\_nge2\_finite\_reduction\_proof.pdf} 与
+\texttt{SL\_gap\_nge2\_exact\_2n\_switches\_proof.pdf}; 数值审计全过;
+未检索到直接等价已发表定理, 不声称首创.
+
+本版 (2026-08-10, 会话 56) 更新: 缺口 (b) 阱族全 $R$ 相位刚性已严格证明 --- 对一切 $R>1$, 阱族 $\rho_{a,b}$ 的任意 sign-consistent good root 满足 $a+b=1$ (五步初等链: $\tau<2$ 经 $\alpha$-凸性, 残差消元, $r_\tau$ 精确结构含危险区引理与 $x+y>\pi$, $L_3$/跨区/$P$-和排除), 见 \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf} (14 页零警告) 与总结 \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_summary.pdf} (8 页零警告); 由此 INF 极值问题的一切内部临界点落在对称阱线上. INF 侧 $R>3/2$ 的完全闭合仍依赖对称线 1D 分析 ($R>3/2$ 段, 缺口 a$'$)、定理 A 独立复核 (c) 与全局 good-root 论证 (d), 暂不宣称闭合; 全部数值为 EVIDENCE 不构成证明.
+\end{abstract}
+
+\tableofcontents
+
+\section{引言与问题界定}
+
+设 $I = [-1, 1]$ 或 $[0, \pi]$, 考虑形如
+\begin{equation}
+	-(p(x)u')' + q(x)u = \lambda w(x)u, \quad x \in I
+\end{equation}
+的 Sturm-Liouville 问题, 配以分离型自伴边界条件. 记 $\lambda_1 < \lambda_2 < \cdots$
+为其特征值, $u_n$ 为对应 (归一化) 特征函数. 本项目关注两类问题.\footnote{正则 SL 问题在带权 $L^2$ 空间中有离散谱与完备特征函数系 (Hilbert-Schmidt 理论, 见 Zettl 2005); 分离型边界条件保证自伴性.}
+
+第一类问题: SL 边值问题的解 (特征函数系) 在多大的 Hilbert 空间中仍构成完备正交系,
+或者说, 在多大空间中存在与问题结构相容的完备正交多项式系. 左定理论 (left-definite
+theory) 给出精确的分级刻画: 特征函数系在尺度空间族 $H_s = D(A^{s/2})$ 中始终完备,
+其中 $A$ 是右定问题的自伴算子. 基准论文则在该尺度中的第一左定空间 $H^1[-1,1]$ 内
+构造了一组与左定内积正交且完备的多项式系 (Krein-Sobolev 多项式), 并留下第二左定
+空间 $H^2[-1,1]$ 中多项式解析完备性的开放问题.\footnote{左定理论 (Littlejohn-Wellman 2002) 是``解在多大空间中保持完备''的精确框架.}
+
+第二类问题: 在给定的势函数类别 (单阱, 凸, $L^1$ 球, $L^p$ 球等) 中, 优化特征值间距
+$\lambda_{n+k} - \lambda_n$ 或比值 $\lambda_{n+k}/\lambda_n$. 已检索到 2026 年的多篇
+最新结果, 涵盖基本间距 ($\lambda_2 - \lambda_1$), 最大间距 ($\lambda_{2n} - \lambda_1$),
+特征值比值, 节点位置的最优界, 以及特征值和优化临界系统的可积性.
+
+\section{主题一: 解与正交函数系的等价性}
+
+\subsection{左定理论: 完备性保持的分级刻画}
+
+左定理论的基本对象是右定问题对应的自伴算子 $A$, 满足 $A \geq kI$ ($k > 0$).\footnote{$A \geq kI$ 是算子序 (Loewner 序), 等价于谱下界 $\inf\sigma(A) \geq k$, 不是矩阵逐元素比较.}
+对 $r > 0$, Littlejohn 与 Wellman 定义
+\begin{equation}
+	V_r := D(A^{r/2}), \qquad (x, y)_r := (A^{r/2}x, A^{r/2}y),
+\end{equation}
+并以 $H_r = (V_r, (\cdot, \cdot)_r)$ 记第 $r$ 个左定空间 (第一左定空间对应 $r = 1$).\footnote{$A^{r/2}$ 由自伴算子的谱定理 (函数演算) 定义; $\{H_r\}_{r>0}$ 构成 Hilbert 空间尺度 (scale of Hilbert spaces).}
+Fischbacher, Gesztesy, Hagelstein 与 Littlejohn 的综述 [1] 中的定理 1.1 总结了
+该空间族的基本性质.\footnote{定理 1.1 的证明基于 Hilbert 空间谱定理, 见 [1] 与 Littlejohn-Wellman [2, 3].}
+
+\begin{theorem}[Fischbacher-Gesztesy-Hagelstein-Littlejohn, [1, Theorem 1.1]]
+设 $A$ 是可分 Hilbert 空间 $H = (V, (\cdot, \cdot))$ 中的自伴算子, $A \geq kI$, $k > 0$.
+令 $H_0 = H$, $(\cdot, \cdot)_0 = (\cdot, \cdot)_H$. 对 $s \in (0, \infty)$ 有:
+\begin{enumerate}
+	\item $H_s = (V_s, (\cdot, \cdot)_s)$, 其中 $V_s = D(A^{s/2})$,
+		且 $(f, g)_s = (A^{s/2}f, A^{s/2}g)_H$;
+	\item 若 $A$ 有界, 则 $V_s = V$, 且 $(\cdot, \cdot)_H$ 与 $(\cdot, \cdot)_s$ 等价;
+	\item 若 $A$ 无界, 则 $V_s \subsetneq V$; 且 $0 < s < t$ 时 $V_t \subsetneq V_s$,
+		且 $(\cdot, \cdot)_H$, $(\cdot, \cdot)_s$, $(\cdot, \cdot)_t$ 两两不等价;
+	\item 对 $s \in (0, \infty)$, $H_s = A^{-s/2}H$;
+	\item 对 $s, t \in [0, \infty)$, $A^{(s-t)/2}: H_s \to H_t$ 是 $H_s$ 到 $H_t$
+		的等距同构.
+\end{enumerate}
+\end{theorem}
+
+左定算子 $A_s$ 的刻画由 Littlejohn 与 Wellman 给出 ([1, Theorem 1.3], 原文见 [2, 3]).
+
+\begin{theorem}[Littlejohn-Wellman, [1, Theorem 1.3]]
+设 $s \in (0, \infty)$.
+\begin{enumerate}
+	\item 存在唯一的左定算子 $A_s$, 满足 $A_s f = Af$, $f \in D(A_s) = V_{s+2}$;
+	\item 算子 $A$ (于 $H$ 中) 与 $A_s$ (于 $H_s$ 中) 酉等价;
+	\item 若 $\{\phi_\alpha\}_{\alpha \in J}$ 是 $A$ 在 $H$ 中的 (完备) 特征函数系,
+		则它同样是 $A_s$ 在 $H_s$ 中的 (完备) 特征函数系;
+	\item 对 $s, t \in [0, \infty)$, 在 $D(A_t)$ 上有算子恒等式
+		$A^{(s-t)/2} A_s A^{(t-s)/2} = A_t$;
+	\item $D(A_s) = A^{-s/2} D(A)$.
+\end{enumerate}
+\end{theorem}
+
+定理 1.3 第 (iii) 条是主题一的理论骨架: 右定问题的 (完备) 特征函数系在任意左定空间
+$H_s$ 中仍然 (完备), 因此 ``解与正交函数系等价'' 的问题应沿尺度 $H_s = D(A^{s/2})$
+逐级考察.\footnote{定理 1.3 (iii): 完备性沿左定空间族自动保持, 故问题化为在给定 $H_s$ 中构造与边界相容的多项式基.} 对二阶 SL 问题, 第一左定内积由
+\begin{equation}
+	(f, g)_1 = \int (p f' \overline{g}' + q f \overline{g}) \, dx
+\end{equation}
+给出; 更高阶空间 $H_s$ 通过 $A^{s/2}$ 的定义域描述.
+
+\subsection{基准论文: Krein-Sobolev 正交多项式}
+
+基准论文为 L. L. Littlejohn 与 A. Quintero-Roba, \emph{Krein-Sobolev Orthogonal
+Polynomials}, OPSFA-16 会议论文集 (CRM Series), Springer, 2025, pp. 107--123,
+DOI: \url{https://doi.org/10.1007/978-3-031-90135-5_7}. 该文受版权保护, 全文未能获取; 下列内容依据
+Springer 页面摘要以及开放获取姊妹论文 [4] (Jones, Littlejohn, Quintero Roba,
+\emph{Krein-Sobolev Orthogonal Polynomials II}, Axioms 14 (2025) 115, \url{https://doi.org/10.3390/axioms14020115}) 完整还原.\footnote{版权提示: 基准论文全文未获取, 本节内容以 Springer 摘要与姊妹论文 [4] 为准.}
+
+考虑移位 Krein Laplacian 算子 $K_c$ ($c > 0$ 固定):
+\begin{equation}
+	K_c f = -f'' + c f, \qquad
+	D(K_c) = \left\{ f \in \Delta : f'(1) = f'(-1) = \frac{f(1) - f(-1)}{2} \right\},
+\end{equation}
+其中 $\Delta = \{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1) \}$ 为极大定义域.\footnote{$K_0$ 为 Krein Laplacian: $-y''$ 在非局部边界条件 $f'(\pm 1) = (f(1)-f(-1))/2$ 下的自伴实现 (见 [4] 引文).}
+当 $c = 0$ 时 $K_0$ 即经典的 Krein Laplacian; 它的谱包含两维零空间
+$\mathrm{span}\{1, x\}$, 对应左定内积退化为伪内积. 移位 $c > 0$ 使得 $K_c \geq cI$,
+从而左定分析可在真正的 Hilbert 函数空间中进行.
+
+$K_c$ 的谱与特征函数为
+\begin{equation}
+	\sigma(K_c) = \{c\} \cup \{(n\pi)^2 + c\}_{n \geq 1} \cup \{\mu_n^2 + c\}_{n \geq 1},
+\end{equation}
+\begin{equation}
+	\{1, x\} \cup \{\cos n\pi x\}_{n \geq 1} \cup \{\sin \mu_n x\}_{n \geq 1},
+\end{equation}
+其中 $\mu_n > 0$ 是超越方程 $\tan \mu = \mu$ 的第 $n$ 个正根.\footnote{$\tan\mu = \mu$ 的根给出混合边界下正弦型特征函数, 是非经典边界的典型谱结构.}
+特征值 $c$ 对应的特征子空间由 $\{1, x\}$ 张成.
+
+$K_c$ 的第一左定空间恰好是 Sobolev 空间 $H^1[-1,1]$ 配上如下正定内积
+\begin{equation}
+	(f, g)_{1,c} = -\frac{(f(1) - f(-1))(\overline{g}(1) - \overline{g}(-1))}{2}
+		+ \int_{-1}^{1} \left( f'(x)\overline{g}'(x) + c f(x)\overline{g}(x) \right) dx.
+\end{equation}
+注意该内积的离散项带负号, 其正定性需要证明; 它由左定理论保证, 也可直接验证.\footnote{正定性可由 Cauchy-Schwarz 不等式直接验证, 不依赖左定理论.}
+
+基准论文研究的是关于 $(\cdot, \cdot)_{1,c}$ 正交的多项式系 $\{K_n\}_{n=0}^{\infty}$,
+称为 Krein-Sobolev 多项式, 其定义 (见 [4, Definition 2]) 为
+\begin{equation}
+	K_n(x) = \sum_{r=0}^{\lfloor n/2 \rfloor} a_{n-2r} S_{n-2r}(x), \qquad
+	a_0 = a_1 = 1,
+\end{equation}
+其中 $S_n = P_n - P_{n-2}$ 是相邻 Legendre 多项式之差 ($P_{-1} = P_{-2} = 0$),
+系数 $a_n$ 由 Gram-Schmidt 型递推确定:
+\begin{equation}
+	a_n = -\frac{(K_{n-2}, S_{n-2})_{1,c}}{(S_n, S_{n-2})_{1,c}} \quad (n \geq 2).
+\end{equation}
+$K_n$ 是次数恰为 $n$ 的多项式, $K_n(1) = 1$, 且 $K_n(-x) = (-1)^n K_n(x)$.
+初始项 $K_0 = 1$, $K_1 = x$ 与 $x$ 一起张成 $K_c$ 的 $c$-特征子空间; 对 $n \geq 2$,
+$K_n$ 不是 $K_c$ 的特征函数.\footnote{系数 $a_n$ 由 Gram-Schmidt 型递推确定, 保证 $\deg K_n = n$ 且与低次多项式正交.}
+
+\begin{theorem}[完备正交性, [4, Theorem 3]]
+Krein-Sobolev 多项式 $\{K_n\}_{n=0}^{\infty}$ 构成第一左定空间 $H^1[-1,1]$
+(配 $(\cdot, \cdot)_{1,c}$) 中的完备正交多项式系, 且
+\begin{equation}
+	(K_m, K_n)_{1,c} = \frac{2c}{2n+1} a_n a_{n+2} \delta_{n,m} \quad (n, m \in \mathbb{N}_0).
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[根的位置, [4, Theorem 4]]
+对 $n \geq 1$, $K_n$ 的 $n$ 个根均为实数, 单根, 且全部落在开区间 $(-1, 1)$ 内.
+对 $n \geq 1$, $K_n$ 的 $n$ 个根均为实数, 单根, 且全部落在开区间 $(-1, 1)$ 内.\footnote{经典正交多项式根实单且位于权支撑内; Sobolev 型内积无标准三项递推, 实根性需专门证明.}
+\end{theorem}
+
+因此, 在 $H^1[-1,1]$ 中, Krein-Sobolev 多项式系构成与左定内积正交的 Hilbert 基,
+即该空间内所有正交函数系在该内积下的一个等价表述. 这回答了主题一在第一左定空间
+层面的问题: 空间为 $H^1[-1,1]$ (配 $(\cdot, \cdot)_{1,c}$), 等价的正交多项式系为
+$\{K_n\}$.\footnote{完备正交多项式系 = 该内积下的 Hilbert 基, 即``等价于空间内所有正交函数系''的严格含义.}
+
+\subsection{显式公式与 Althammer 多项式的关系}
+
+Krein-Sobolev 多项式与经典的 Althammer (Sobolev-Legendre) 多项式 $\{A_n\}$ 关系密切.\footnote{Althammer (Sobolev-Legendre) 多项式是 Sobolev 正交多项式研究的起点 (Althammer 1962, Sch\"afke 1972).}
+后者关于内积
+\begin{equation}
+	\langle f, g \rangle_\lambda = \int_{-1}^{1} \left( f(x)\overline{g}(x)
+		+ \lambda f'(x)\overline{g}'(x) \right) dx \quad (\lambda > 0)
+\end{equation}
+正交. 由 $\lambda = 1/c$ 时对偶函数成立的恒等式 $(f, g)_{1,c} = c \langle f, g \rangle_{1/c}$\footnote{该恒等式仅对偶函数成立, 故奇偶次 Krein-Sobolev 多项式的系数行为不同.}
+可得
+\begin{equation}
+	K_{2n}(x) = A_{2n}(x) \quad (n \in \mathbb{N}_0),
+\end{equation}
+即偶次 Krein-Sobolev 多项式与 Althammer 多项式完全重合; 奇次情形系数不同
+(例如 $a_3' = 1 + 1/c \neq a_3 = 1$).
+
+系数 $\{a_n\}$ 满足显式递推 ([4, Theorem 2 (iii)], $a_0 = a_1 = a_2 = a_3 = 1$):
+\begin{equation}
+	a_{n+2} = a_n \left( 1 + \frac{4n^2 - 1}{c} \right)
+		+ \frac{2n+1}{2n-3} (a_n - a_{n-2}) \quad (n \geq 2).
+\end{equation}
+对奇指标, 递推化简为\footnote{(19) 是系数序列 $a_n$ 的线性递推; 奇偶子列可分别化简求解.}
+\begin{equation}
+	a_{2n+1} = \left( \frac{8n-6}{4n-5} + \frac{16n^2 - 16n + 3}{c} \right) a_{2n-1}
+		- \frac{4n-1}{4n-5} a_{2n-3}.
+\end{equation}
+
+\begin{theorem}[显式闭式公式, [4, Theorem 5]]
+记 $\lambda := 1/c$. 对 $n \in \mathbb{N}$,
+\begin{align}
+	K_{2n}(x) &= \sum_{k=0}^{n} a_{2n-2k} S_{2n-2k}(x), \\
+	K_{2n+1}(x) &= \sum_{k=0}^{n} a_{2n-2k+1} S_{2n-2k+1}(x),
+\end{align}
+其中 $a_0 = a_2 = 1$,
+\begin{equation}
+	a_{2m} = \sum_{k=0}^{m-1} \left( \frac{\lambda}{4} \right)^{k}
+		\frac{(2m + 2k - 1)!}{(2m - 2k - 1)! \, (2k)!},
+\end{equation}
+以及 $a_1 = a_3 = 1$,
+\begin{equation}
+	a_{2m+1} = \sum_{k=0}^{m-1} \left( \frac{\lambda}{4} \right)^{k}
+		\frac{m - k}{m + k}
+		\frac{(2m + 2k + 1)!}{(2m - 2k + 1)! \, (2k)!}.
+\end{equation}
+\end{theorem}
+
+\begin{example}
+前几个 Krein-Sobolev 多项式为\footnote{闭式公式 (23)(24) 由超几何级数求和验证 (见 [4] 的 Mathematica 计算).}
+\begin{align*}
+	K_0(x) &= 1, \quad K_1(x) = x, \quad K_2(x) = \frac{3}{2} x^2 - \frac{1}{2}, \\
+	K_3(x) &= \frac{5}{2} x^3 - \frac{3}{2} x, \\
+	K_4(x) &= \frac{35c + 525}{8c} x^4 - \frac{30c + 630}{8c} x^2
+		+ \frac{3c + 105}{8c}, \\
+	K_5(x) &= \frac{126c + 3969}{16c} x^5 - \frac{140c + 5670}{16c} x^3
+		+ \frac{30c + 1701}{16c} x.
+\end{align*}
+\end{example}
+
+\subsection{开放问题: 第二左定空间中的多项式解析完备性}
+
+第二左定空间 $H^2[-1,1]$ 由
+\begin{equation}
+	H^2[-1,1] = \left\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(-1) = f'(1) = \frac{f(1) - f(-1)}{2} \right\}
+\end{equation}
+及内积\footnote{$H^2 = D(K_c)$ 即第二左定空间; 左定理论中 $H_s = D(A^{s/2})$, 故 $H^2$ 对应 $s = 2$.}
+\begin{equation}
+	(f, g)_{2,c} = -c (f(1) - f(-1))(\overline{g}(1) - \overline{g}(-1))
+		+ \int_{-1}^{1} \left( f''\overline{g}'' + 2c f'\overline{g}' + c^2 f\overline{g} \right) dx
+\end{equation}
+给出. 直接计算可知, $H^2$ 中多项式的一个基为
+\begin{equation}
+	p_{2n}(x) = x^{2n} - \frac{n}{n-1} x^{2n-2}, \qquad
+	p_{2n+1}(x) = x^{2n+1} - \frac{n}{n-1} x^{2n-1} \quad (n \in \mathbb{N}_0,\ n \neq 1).
+\end{equation}
+由于不存在次数为 2 或 3 的多项式属于 $H^2[-1,1]$, 该基是代数不完备的.\footnote{代数完备 = 多项式张成整个多项式空间; 解析完备 = 有限线性组合在 $H^2$ 中稠密.}
+
+\begin{remark}[已解决, 会话 7; 原开放问题 [4, Section 6]]
+上述多项式基 $\{p_n\}$ 在 $H^2[-1,1]$ 中\emph{解析完备}: 其有限线性组合在
+$(\cdot, \cdot)_{2,c}$ 下稠密. 证明 (2026-08-04, 完整细节见
+\texttt{SL\_h2\_completeness\_proof.pdf}) 由三步组成: (i) 恒等式
+$(f,g)_{2,c} = (K_c f, K_c g)_{L^2}$ 与 $0 \notin \sigma(K_c)$ 给出等距同构
+$K_c: H^2 \to L^2$; (ii) 矩跳跃论证把正交条件化为偶/奇矩的递推
+$c\mu_{2j} = A_j\mu_{2j-2} - B_j\mu_{2j-4}$, 自由参数仅 $\mu_2, \mu_3$
+(对应缺失次数); (iii) 增长引理 $u_j \geq (4/c)^{j-1}j!$ 与 $L^2$ 矩有界性
+矛盾, 迫使 $\mu_2 = \mu_3 = 0$, 全部矩为零, Weierstrass 稠密性给出零
+annihilator. 例外正交多项式 (exceptional orthogonal polynomials) 理论提供
+代数不完备但解析完备的类比; 本文给出左定 Sobolev 空间中的严格实例.
+2026-08-04 (会话 10) 把上述结论推广到第三左定空间 $H^3[-1,1]$ 与一切整数
+$s \geq 1$ 的左定空间 $H^s$: 关键观察是取 $H^1$-矩 $M_k = (w, x^k)_1$ 而非
+$L^2$-矩, 则正交条件 $(w, K_c p_n)_1 = 0$ 给出与 $H^2$ 情形\emph{完全相同}的
+二阶递推 $cM_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$ (边界项 $w(1)\pm w(-1)$
+被 $H^1$-矩定义中的边界项吸收), 配合增长引理 $u_m \geq (4/c)^{m-1}m!$ 与
+多项式上界 $|M_{2m}| \leq C\sqrt m$ (Cauchy-Schwarz, $w \in H^1$) 矛盾,
+迫使全部 $H^1$-矩为零, 从而 $w = 0$. 证明见
+\texttt{SL\_h3\_completeness\_proof.pdf}, 研究过程与失败路线见
+\texttt{SL\_h3\_research\_summary.pdf}.
+条件) 仍开放.\footnote{失败路线与经验见 \texttt{SL\_h2\_research\_summary.pdf}; 文献全文 (Axioms 14 (2025) 115) 已获取, 存于 \texttt{papers/axioms14\_115.pdf}.}
+\end{remark}
+
+该问题与主题一直接相关: 它问的是在 $H^2 = D(K_c)$ 这一更大空间层面, 是否能构造
+与边界条件相容的完备正交多项式系; 左定理论 (定理 1.3) 只保证 $K_c$ 的 (非多项式)
+特征函数系在此空间中完备.
+
+\section{主题二: 特征值间距与比值的最优界}
+
+\subsection{历史脉络与问题分类}
+
+固定区间 $[0, \pi]$ 与 Dirichlet 边界条件, 记基本间距 $\Gamma = \lambda_2 - \lambda_1$.
+$\Gamma$ 在量子力学中对应电离能, 其锐界自 1980 年代以来被广泛研究. 主要脉络:\footnote{单阱/单峰假设源自物理势能形状; 凸势类更便于用经典不等式 (Lavine 型) 处理.}
+
+\begin{itemize}
+	\item Ashbaugh 与 Benguria (1989, [15]): 对对称单阱势, $\Gamma$ 的最优下界
+		由常数势唯一达到;
+	\item Lavine (1994, [16]): 对凸势, 常数势极小化 $\Gamma$ (Dirichlet 与
+		Neumann 两种边界);
+	\item Horv\'ath (2003, [18]): 无对称假设的单阱势, 在转移点满足一定限制时
+		常数势仍最优; Yu 与 Yang (2015) 将其推广到其他转移点及两种边界条件;
+	\item El Allali 与 Harrell (2022, [17]): 对转移点无限制的一般单阱势, 用直接
+		优化方法证明极小化势为阶梯函数 (一般不常数), 并得到锐界
+		$\Gamma > 2.04575\cdots$; 凸势情形恢复 Lavine 的结果;
+	\item Ashbaugh, Harrell 与 Svirsky (1991, [19]): 最小与最大特征值间距及其
+		成因的分析.
+\end{itemize}
+
+经典结果中 $\Gamma \geq 3\pi^2 / L^2$ ($L$ 为区间长度) 的等号在常数势时达到
+(对称单阱或凸势假设下). 下面的结果将其推广到变权函数情形.
+
+\subsection{\texorpdfstring{基本间距 $\lambda_2 - \lambda_1$: 单阱势与单峰权}{基本间距 lambda2 - lambda1: 单阱势与单峰权}}
+
+Ahrami, El Allali 与 Harrell (\url{https://arxiv.org/abs/2407.02459}, 2024) [5] 研究问题
+\begin{equation}
+	-u'' + V(x)u = \lambda w(x)u, \quad x \in [0, \pi], \qquad u(0) = u(\pi) = 0,
+\end{equation}
+其中 $V$ 属于单阱势类 $SW$, $w$ 属于单峰密度类 $SB$ (或凸性约束). 方法为直接
+优化: 利用 Feynman-Hellmann 公式计算 $\Gamma$ 对 $V$, $w$ 的变分导数, 配合
+Helly 紧性与逐点收敛得到极值存在性.\footnote{Feynman-Hellmann 公式给出特征值对参数的一阶导数, 是直接优化法的核心工具; Helly 紧性保证单调函数族的逐点收敛子列.}
+
+\begin{theorem}[阶梯函数极值, [5, Theorem 3.1]]
+对任意分段连续, 严格正的权函数 $w$, 最优势 $V_*$ 是阶梯函数; 对任意分段连续的势
+$V$, 最优权 $w_*$ 是阶梯函数; 联合最优情形亦然. 具体地:
+\begin{enumerate}
+	\item 在 $\{x : u_2^2(x) > u_1^2(x)\}$ 的每个连通分量上 $V_*(x) = 0$ a.e.,
+		在其补集上 $V_*(x) = \max V_*$ a.e.;
+	\item 在 $\{x : \lambda_2 u_2^2(x) > \lambda_1 u_1^2(x)\}$ 的每个连通分量上
+		$w_*(x) = N_>$ a.e., 在其补集上 $w_*(x) = \min w_*$ a.e.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[特征值的超越方程, [5, Theorem 3.2]]
+当 $\lambda > \max V_* / \min w_*$ 时, 最优问题的特征值是对应于如下超越方程的
+实根:
+\begin{equation}
+	\eta \tan\bigl(z(\pi - \hat{x}_-)\bigr)
+		= -z \tan\left[ \eta(\hat{x}_- - x_-) + \arctan\left( \frac{\eta}{t} \tan(t x_-) \right) \right],
+\end{equation}
+其中 $\eta := \sqrt{\lambda N_> - \max V_*}$, $z := \sqrt{\lambda \min w_* - \max V_*}$,
+$t := \sqrt{\lambda N_>}$.
+\end{theorem}
+
+\begin{proposition}[Liouville 变换下的基本间距, [5, Proposition 4.1]]
+设 Liouville 势为
+\begin{equation}
+	\psi(\xi) = \frac{w''}{4w^2} - \frac{5(w')^2}{16w^3} + \frac{V}{w},
+\end{equation}
+且 $L = \int_0^{\pi} \sqrt{w(t)} \, dt$.\footnote{Liouville 变换把一般 SL 方程化为 $-\eta'' + \psi\eta = \lambda\eta$ (Liouville normal form).} 若 $\psi$ 凸, 则
+\begin{equation}
+	\Gamma[V, w] \geq \frac{3\pi^2}{\left( \int_0^{\pi} \sqrt{w(t)} \, dt \right)^2},
+\end{equation}
+等号成立当且仅当 $\psi$ 为常数.
+\end{proposition}
+
+\begin{remark}[凸性并非必要, [5, Remark 4.1]]
+命题的适用条件只要求 Liouville 势 $\psi$ 凸, 不要求 $V$ 本身凸. 例如
+$V(x) = -x^2$, $w(x) = x^2$ 时, $\psi''(\xi) \geq 0$ 于 $[5, 6]$ 上成立, 从而命题
+适用, 得到 $\Gamma \geq 3\pi^2 / (\int_5^6 x \, dx)^2 \approx 0.978803\cdots$.
+\end{remark}
+
+\subsection{\texorpdfstring{最大间距 $\lambda_{2n} - \lambda_1$: 从 $L^1$ 球到奇异测度}{最大间距 lambda2n - lambda1: 从 L1 球到奇异测度}}
+
+Guo, Meng, Yan 与 Zhang (J. Math. Phys. 63 (2022) 072701) [6] 研究 Dirichlet 特征值
+在 $\|q\|_1 \leq r$ 约束下的最大间距: 对 $L^1$ 势 $q$, 最大化
+$\lambda_{2n}(q) - \lambda_1(q)$, 并给出该最大化问题的显式解. 该文全文未能获取,
+此处按摘要陈述其结论级别.
+
+Wen 与 Zhou (Mediterr. J. Math. 23 (2026), DOI: \url{https://doi.org/10.1007/s00009-025-03043-6}) [7]
+将其推广到一维 $p$-Laplacian 的 Dirichlet 特征值问题: 对可积势 $q \in L^1(I)$,
+在 $\|q\|_{L^1} \leq r$ 下最大化偶数阶特征值与第一特征值之间的间距. 该文的两个
+关键贡献:
+
+\begin{itemize}
+	\item 把特征值视为 $q \in L^1$ 的非线性泛函, 并将定义域从可积势延拓到
+		奇异测度势 (singular potential measures);
+	\item 借助此前若干优化问题的解, 完全求解该最大化问题.
+\end{itemize}
+
+这一技巧的背景是: $L^1$ 球的弱紧性缺失, 极值往往不能由 $L^1$ 函数达到, 而只能由
+Radon 测度 (如 Dirac 测度) 达到; 测度微分方程 (measure differential equations)
+成为描述极值问题的自然框架.\footnote{奇异测度延拓技巧亦用于 2026 年节点与 Neumann 间距结果, 是近年 SL 优化的核心方法.}
+
+\subsection{特征值比值}
+
+\begin{itemize}
+	\item Gan, Zheng, Li 与 Shao (Math. Methods Appl. Sci. 49 (2026), no. 10,
+		DOI: \url{https://doi.org/10.1002/mma.70611}) [8] 研究一般 SL 问题
+		$u'' = q(x)u + \lambda m(x)u$ 在 Dirichlet 边界条件下特征值比值的最大化,
+		权重 $m$ 允许变号;
+\item Li 与 Ao (J. Differential Equations, 2026, DOI: \url{https://doi.org/10.1016/j.jde.2026.114478})
+		[9] 研究 Neumann 边界条件下最大特征值间距与比值的优化, 以相应的测度
+		微分方程为关键桥梁, 给出最优的最大间距与比值.
+\end{itemize}
+
+历史上 Ashbaugh 与 Benguria (1993) [10] 研究特征值比值, 后续有 Huang 与 Law
+(1996), Horv\'ath 与 Kiss (2006), Hedhly (2015), 以及 Chu 与 Meng 对 Camassa-Holm
+方程 Dirichlet 特征值比值锐界的工作等. 2026 年的工作把比值优化推进到一般 SL 问题
+(变号权重) 与 Neumann 边界情形.
+
+\subsection{节点位置的最优界}
+
+节点 (特征函数的零点) 亦可作为势 $q$ 的非线性泛函进行优化. 相关结果:\footnote{第 $m$ 个特征函数恰有 $m-1$ 个内零点 (Sturm 振荡理论); 节点作为势的泛函光滑性需专门证明.}
+
+\begin{itemize}
+	\item Chu, Jiang 与 Meng (Mediterr. J. Math. 22 (2025), Paper 127): 负权 SL
+		问题所有节点的锐界;
+	\item Chu, Meng, Wang 与 Zhang (Math. Ann. 390 (2024), 1401--1417): 具有
+		$L^p$ 势的 SL 算子的节点优化问题;
+	\item Chu, Guo, Meng 与 Zhang (J. Differential Equations 470 (2026);
+		\url{https://arxiv.org/abs/2512.18404}) [11]: 对势 $q \in L^1[0,1]$ 的经典 SL 算子, 证明所有
+		节点 $T_{i,m}$ 的显式锐界.
+\end{itemize}
+
+后一篇的关键技术细节:
+
+\begin{enumerate}
+	\item 节点 $T_{i,m}$ 作为 $q$ 的泛函是连续 Fr\'echet 可微的, 其导数
+		([11, Lemma 2.3]) 为
+		\begin{equation}
+			\partial_q T_{i,m}(q)(x) = H_{i,m}(x; q) E_m^2(x; q) \in \mathcal{L}^{\infty},
+		\end{equation}
+		其中 $H_{i,m}$ 是两步函数: 在 $[0, T_{i,m}(q))$ 上取 $+a_{i,m}$, 在
+		$[T_{i,m}(q), 1]$ 上取 $-b_{i,m}$, 且
+		\begin{equation*}
+			a_{i,m} = \int_{[T_{i,m}(q),1]} \left( \frac{E_m(v;q)}{E_m'(T_{i,m}(q);q)} \right)^2 dv, \qquad
+			b_{i,m} = \int_{[0,T_{i,m}(q)]} \left( \frac{E_m(v;q)}{E_m'(T_{i,m}(q);q)} \right)^2 dv;
+		\end{equation*}
+	\item 由于 $L^1$ 势的弱闭性缺失, 极值在测度微分方程意义下达到: 零势时节点为
+		$i/(m+1)$, 最小化序列经 Radon 测度的弱星极限实现;
+	\item 将无限维优化化为有限维优化, 得到显式界
+		\begin{equation}
+			\mathbf{m}_{i,m}(r) \leq T_{i,m}(q) \leq 1 - \mathbf{m}_{m-i+1,m}(r),
+			\quad \mathbf{m}_{i,m}(r) < \frac{i}{m+1},
+		\end{equation}
+		其中反射 $x \mapsto 1 - x$ 给出上下界的对称关系
+		$\mathbf{n}_{i,m}(r) = 1 - \mathbf{m}_{m-i+1,m}(r)$.
+\end{enumerate}
+
+\subsection{特征值和优化与临界系统的可积性}
+
+对特征值和 $\sum_i \lambda_i$ 的优化问题, Tian 与 Zhang 的一般方法 (J. Math. Phys.
+66 (2025) 092703) [12] 表明最优势可由 $m$ 自由度多项式 Hamiltonian 系统的可解性
+刻画:\footnote{临界系统来自特征值和优化问题的一阶必要条件 (变分导数 = 0).}
+\begin{equation}
+	u_i' = v_i, \qquad
+	v_i' = -\mu_i u_i + \varepsilon \left( \sum_{j=1}^{m} u_j^2 \right)^{k-1} u_i,
+	\quad p = \frac{k}{k-1}.
+\end{equation}
+
+Tian 与 Zhang (\url{https://arxiv.org/abs/2509.09250}, 2025) [13] 证明该系统除两个已知完全可积情形外
+是非亚纯可积的.
+
+\begin{theorem}[临界系统的可积性分类, [13, Theorem 2.5]]
+上述 Hamiltonian 系统是亚纯可积的, 当且仅当下列二者之一成立:
+\begin{enumerate}
+	\item $k = 2$ 且 $(\mu_1, \ldots, \mu_m) \in \mathbb{R}^m$ 任意;
+	\item $k \geq 3$ 且 $\mu_1 = \mu_2 = \cdots = \mu_m$.
+\end{enumerate}
+其余情形下系统非亚纯可积.
+\end{theorem}
+
+证明工具为 Morales-Ramis 微分 Galois 理论: 沿特定解线性化系统, 结合超几何微分
+方程的可积性分类与 Kovacic 算法, 判定对应的微分 Galois 群;\footnote{Morales-Ramis 理论: 亚纯可积蕴含线性化系统的微分 Galois 群可解; Kovacic 算法判定 2 阶线性微分方程的可解性.} 该结果正面回答了
+Tian, Wei 与 Zhang (J. Math. Phys. 64 (2023) 092701) 的猜想, 并揭示特征值优化
+问题的内在复杂度.
+
+更近期, Meng, Tian, Xie 与 Zhang (\url{https://arxiv.org/abs/2603.06019}, 2026) [14] 研究非紧空间 $L^1$
+中前两个 Dirichlet 特征值之和的最大化, 证明存在唯一的最大化势, 该势非负, 分段
+光滑且对称.
+
+\section{证明技术总结}
+
+\begin{enumerate}
+	\item Feynman-Hellmann 变分导数: 对 $\lambda_n$ 关于势 $V$ 与权 $w$ 的扰动
+		求导, 得到 $\Gamma$ 的一阶变分表达式, 从而确定极值结构 (阶梯函数);
+	\item Liouville normal form: 把一般 SL 问题通过 Liouville 变换化为
+		$-\eta'' + \psi \eta = \lambda \eta$, 使基本间距问题归约为势 $\psi$ 凸性
+		下的 Lavine 型估计;
+	\item Helly 紧性与 a.e. 收敛: 单阱/单峰函数族在逐点收敛意义下的紧性,
+		保证优化问题极值的存在性;
+	\item 测度微分方程: $L^1$ 势的弱紧性缺失促使把优化问题的定义域延拓到
+		Radon 测度, 极值常为 Dirac 测度; 这是 2025--2026 年节点界与 Neumann
+		间距结果的核心桥梁;
+	\item 泛函分析中的 Fr\'echet 可微性: 节点作为势的泛函的导数公式,
+		将无限维优化化为有限维优化;
+	\item Morales-Ramis 理论加 Kovacic 算法: 证明特征值优化临界系统的亚纯
+		非可积性, 从解析可解性角度刻画问题的复杂度;
+	\item 左定理论: 用算子分数幂 $A^{s/2}$ 构造 Hilbert 空间尺度族 $H_s$,
+		并保持特征函数系的完备性, 是主题一的理论骨架.
+	\item 相位比刚性 (phase-ratio rigidity): 高密度区间传输矩阵保持的二次型把
+		两个界面残差的公共零点化为同一严格单调函数在两个外侧相位上的等值,
+		直接推出对称性 $a+b=1$, 完全绕开残差分支单图性/额外 sheet/导数恒正等
+		困难 (O3a, 2026-08-09); 与 [[transfer-matrix-secular]] 配合使用.
+\end{enumerate}
+
+\section{开放问题与后续研究方向}
+
+\textbf{标注约定 (全文档适用).} 本文档区分三类断言, 每类都以显式标签标注:
+\begin{description}
+	\item[\textbf{严格证明}] 具有完整数学证明的结论, 由项目内证明文档或文献定理支撑;
+		如会话 5 的上确界定理, 会话 9--11 的 $H^s$ 完备性定理.
+	\item[\textbf{数值证据}] 由数值计算支持的断言, \emph{不构成证明};
+		标签形如 ``(数值)'' 或 ``数值证据'', 并注明精度与脚本.
+	\item[\textbf{猜想/开放}] 数值支持但尚未证明的陈述, 标签形如 ``猜想'' 或 ``开放'';
+		不得与定理混淆.
+\end{description}
+正文中凡出现 ``已解决'' 字样, 均指对应断言的 \emph{严格证明} 已完成; 仅数值
+支持的结论一律标注为数值证据或猜想, 不称为已解决.
+
+\subsection{已解决: 相邻特征值比值的上确界}
+
+会话 5 已证明相邻比值上确界定理 (见项目文档 \texttt{SL\_ratio\_proof.tex}):
+对 $-y''=\lambda\rho y$ (Dirichlet, $0<a\le\rho\le A$, $R=A/a$),
+\begin{equation}
+	\sup_{n\ge 1}\,\sup_{1\le\rho\le R}\frac{\lambda_{n+1}}{\lambda_n}
+	=\nu(R)=\Bigl(\frac{\arccos(-\sqrt{R}/(\sqrt{R}+1))}
+	{\arccos(\sqrt{R}/(\sqrt{R}+1))}\Bigr)^2,
+\end{equation}
+在 $n=1$ 与对称两跳配置 $[a,A,a]$ 处达到. 证明由三步组成: 平凡不等式
+$\lambda_{n+1}\le\lambda_{2n}$; Mahar-Willner 倍指标恒等式
+$\sup_\rho\lambda_{2n}/\lambda_n=\nu(R)$ [22]; 平衡相位闭式推导.
+平衡相位方法同时给出 Keller 极小值 $\mu(R)=\inf_\rho\lambda_2/\lambda_1$ 的闭式
+(arccos 形式) [21]. 全序列下确界已严格证明 (会话 11/12, 见下); 固定 $n$ 上确界仅反射对称结构严格, 全局极值性为数值支持的猜想 (会话 12, 见下).
+
+\subsection{进展: 全序列下确界已严格证明; 固定 \texorpdfstring{$n$}{n} 上确界为数值支持的猜想 (会话 11/12)}
+
+\emph{全序列下确界} (会话 11, \texttt{SL\_inf\_ratio\_proof.pdf}): 对任意
+固定 $\rho$, Weyl 渐近
+\begin{equation}
+	\lambda_n \sim \frac{\pi^2 n^2}{(\int_0^1\sqrt{\rho}\,dx)^2}
+	\qquad (n \to \infty)
+\end{equation}
+给出 $\lambda_{n+1}/\lambda_n \to 1$, 而一切 $n$ 下比值
+$>1$, 故
+\begin{equation}
+	\inf_{n\ge1}\,\inf_{1\le\rho\le R}\lambda_{n+1}/\lambda_n = 1,
+\end{equation}
+下确界不达到 (任何固定配置下比值恒 $>1$); 由固定密度 (如 $\rho\equiv1$)
+沿 $n\to\infty$ 序列化达到. 关键更正 (会话 5): 下确界不等于 $\mu(R)$
+($R=4$ 时交替族给出 $\lambda_5/\lambda_4\approx1.0838<\mu(4)=2.4092$).
+
+\emph{固定 $n$ 上确界猜想} (会话 12, \texttt{SL\_fixed\_n\_supremum.pdf}):
+交替配置 $[1,R,1,\dots,1]$ ($2n+1$ 块, 宽度比 $\sqrt R$) 的世俗函数
+$F_n(y)$ 满足反射对称 $F_n(\pi-y)=F_n(y)$ ($J$-共轭, 严格证明), 根按
+$y_j+y_{2n+1-j}=\pi$ 配对, 故 $\lambda_{n+1}/\lambda_n =
+((\pi-y_n)/y_n)^2$ (平衡相位, 数值验证); $n=1,2$ 给出闭式, $n=3,4$ 由
+$F_n$ 的多项式给出; 极值性数值证据充分 (块数优化塌缩到 5 块, 随机搜索
+不超越, 梯度为零). 未闭合: 全局极值性 (Keller 型归约到交替 bang-bang)
+与 $2n$-根计数.
+
+\subsection{\texorpdfstring{进展: 相邻间距 $\lambda_{n+1}-\lambda_n$ 的极端值 (会话 13/30/34/50)}{进展: 相邻间距 lambda(n+1)-lambda(n) 的极端值 (会话 13/30/34/50)}}
+
+本会话研究 $1\le\rho\le R$ 的相邻间距
+$D_n=\lambda_{n+1}-\lambda_n$ 的极端值\footnote{详见
+\texttt{SL\_gap\_extremals.pdf}.}, 主要结果如下:
+\begin{itemize}
+	\item \emph{严格变分机制} (严格证明): Feynman--Hellmann 给出
+		$\delta D = \int\delta\rho\,f\,dx$, $f = \lambda_n u_n^2 -
+		\lambda_{n+1}u_{n+1}^2$, 故极值配置必为 bang-bang, 且``$f$ 在
+		全部节点为零 + $\{f>0\}$ 等于指定密度带'' 恰为驻点条件
+		(带状自洽);
+	\item \emph{数值刻画} (数值证据, 非证明): $R=4$, $n=1..12$, 上确界由 $[1,4,1,\dots,1]$
+		达到 ($D$: 32.61398362 至 910.18877375), 下确界由
+		$[4,1,4,\dots,4]$ 达到 ($D$: 6.78448234 快速衰减至 0.25593826);
+		残差 $10^{-9}..10^{-12}$, 带匹配 $= 1$;
+	\item \emph{R 依赖} (数值证据, 非证明): $n=1$ 扫描 ($R=1.5..100$) 与 $R=2$ 全表
+		($n=1..6$);
+	\item \emph{极限}: INF 侧 $R\to\infty$ 时 $D\cdot R \to 24.9439 < 3\pi^2$
+		已由会话 30 的定理 A 严格证明 (对称阱族); SUP 配置 $R\to\infty$ 时
+		$D \to 4\pi^2$ (中心质量
+		钉扎: $\lambda_1\to0$, $\lambda_2\to4\pi^2$); INF 配置
+		的极限伴随近简并的键合-反键合特征值对; SUP 极限为数值证据, 非证明.
+	\item \emph{验证} (数值证据, 非证明): FH 数值导数 ($10^{-6}$), 黑塞定号 (SUP 负定,
+		INF 正定), 全局搜索, 有限差分 ($N=8000$) 对照.
+\end{itemize}
+严格化状态: $n=1$ 的 SUP 侧严格证明已完成 (O1/O2/O3a/O3b 全部义务闭合, 见
+\path{SL_gap_n1_proof.pdf} 与 \path{SL_gap_n1_O3a_phase_rigidity_proof.pdf});
+INF 侧: O1 归约 (下确界在阱族 $D^{well}(a,b)$ 上达到) 与对称阱族 $[R,1,R]$ 的
+$R\to\infty$ 极限 (定理 A) 已严格证明; ``全阱族下确界在对称阱达到'' 的阱族刚性已对一切 $R>1$ 证明 (2026-08-10 会话 56:
+全 $R$ 相位刚性定理 \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf} + 总结
+\path{SL\_gap\_n1\_well\_rigidity\_allR\_summary.pdf}, 任意 sign-consistent good root 满足 $a+b=1$);
+INF 侧 $1<R\le3/2$ 完全闭合 (小 $R$ 段 2026-08-10: \path{SL\_gap\_n1\_well\_rigidity\_R32.pdf} +
+缺口 (a) 对称线 1D 分析 \path{SL\_gap\_n1\_symline\_proof.pdf}, INF 下确界 $I(R)=D(v^*(R))<3\pi^2/R$ 在对称阱
+$[R,1,R]$ 达到); 一般 $R>3/2$ 的完全闭合仍依赖 (a$'$) 对称线 1D 分析 ($R>3/2$ 段)、
+(c) 定理 A 独立复核与 (d) 全局 good-root 论证, 暂不宣称闭合 (O3a/C1 的相位比刚性只覆盖垒族; 阱族侧已由会话 56 对一切 $R>1$ 补齐). 曾误用的垒$\leftrightarrow$阱恒等式
+$D^{well}(a,b)=D^{bar}(1-b,1-a)$ \emph{不成立} (数值反例 R=4, a=0.2, b=0.8:
+11.0482 vs 9.6580), 相关文档已更正;
+$n\ge2$ 已解决 (2026-08-10, 会话 50): 有限块约化 (每个全局极值子 bang--bang,
+至多 $2n+1$ 块、至多 $2n$ 开关) 与精确 $2n$ 开关定理 (每个极值子恰有 $2n$ 个有效
+内部开关, 最大化子首尾块取 $1$, 最小化子首尾块取 $R$) 均已有完整严格证明, 见
+\path{SL_gap_nge2_finite_reduction_proof.pdf} 与
+\path{SL_gap_nge2_exact_2n_switches_proof.pdf}; 开关位置/块长、对称性、唯一性与
+最优值闭式仍开放 (见下).
+
+\emph{会话 30 进展}: 对称阱族 $[R,1,R]$ 的 INF 侧 $R\to\infty$ 极限已严格
+证明 (定理 A): $\lim_R R\,m_R=\bar D(u^*)=24.9438661384324769\ldots<3\pi^2$,
+其中 $u^*=0.3299225081196866\ldots$ 为 $S(u)=0$ 在 $(0,1/2)$ 的唯一根. 证明
+分三块: T1 (收敛; 引理 A$''$ 的初等下界 $R D_R(u)\ge\bar D(u)$ ($w\ge2$) +
+深 sliver 分段下界 $R D_R(u)\ge25$ ($w\le2$) + 近极小化子收敛的聚点论证),
+T2 (符号链 $\widetilde K\to J\to G\to S$ 的严格单调结构与唯一临界点),
+T3 (mpmath.iv 区间包含, margin $3\pi^2-\bar D(u^*)\ge4.664947$). 详见
+\texttt{SL\_gap\_n1\_inf\_limit\_proof.pdf} (10 页, 零警告) 与
+\texttt{SL\_gap\_n1\_proof.pdf} 的 INF 极限一节. 严格证明 (§2) 与数值证据
+(§4) 在文档中分节标注, 数值部分明确不构成证明.
+
+\subsection{已解决: \texorpdfstring{$n\ge2$}{n>=2} 的有限块约化与精确 \texorpdfstring{$2n$}{2n} 开关定理 (2026-08-10)}
+
+对 $-u''=\lambda\rho u$ (Dirichlet, $1\le\rho\le R$ a.e., 完整可测盒, 无连续性/对称/
+单调假设), 相邻间距 $D_n=\lambda_{n+1}-\lambda_n$ ($n\ge2$) 的极端值结构已由两个
+证明包完整解决 (忠实转录, 均不超出原文):
+
+\begin{itemize}
+\item \emph{有限块约化} (\path{SL_gap_nge2_finite_reduction_proof.pdf}):
+最大值与最小值都达到 (弱星谱连续性 + Banach--Alaoglu); 每个全局最大化/最小化子都
+bang--bang; 存在代表元在至多 $2n+1$ 个连续开区间上为常数, 即至多 $2n$ 个开关.
+证明要点: 紧正自伴算子模型 + 极小极大, Pr\"ufer 结点计数与严格交错, 相邻 Wronskian
+全区间严格为负, 切换函数 $F_n=\lambda_n u_n^2-\lambda_{n+1}u_{n+1}^2$ 至多 $2n$ 个
+简单内点零点, 任意 $L^\infty$ 方向的 Feynman--Hellmann 公式, 一侧针刺变分推出
+bang--bang 饱和律, 再由有限零集完成连通分支计数.
+\item \emph{精确 $2n$ 开关定理} (\path{SL_gap_nge2_exact_2n_switches_proof.pdf}):
+每个全局极值子 (合并相邻同值块后) 恰有 $2n$ 个有效内部开关, 因而恰有 $2n+1$ 个
+交替材料块; 最大化子以 $1$ 开始并以 $1$ 结束, 最小化子以 $R$ 开始并以 $R$ 结束.
+证明要点: Wronskian 严格符号给出商 $Q$ 严格递减, 精确零点公式
+$\#Z=2n-2+\mathbf 1_{\{q_0>c\}}+\mathbf 1_{\{q_1<-c\}}$; 完全盒饱和使开关集合
+恰等于零点集合; 块能量不变量 $K=-2D$ 的接口跳量为零, 端点能量刚性给出 $q_0>1>c$,
+$q_1<-1<-c$, 两个指标都为 $1$, 故恰 $2n$. 不假设极值子唯一或反射对称.
+\end{itemize}
+
+两者均区分严格证明/数值压力测试, 均明确不声称文献首创. 文献边界 (2026-08-10 核实):
+Willner--Mahar 1979 [JMAA 72(2):730-739] 研究一般特征值函数的极值刻画, 是明确的既有
+工作风险, 其完整定理范围尚需逐页核验; Sun 2022 (JMAA 516:126513) 仅覆盖第一谱隙最小化
+(INF 侧 $n=1$) 且权重分段连续有界跳; 未检索到"所有 $n\ge2$ + 完整可测盒 + 最大与最小
+两端 + 每个极值子 + 精确 $2n$ 开关"同时出现的直接等价已发表定理. 数值审计 (2026-08-10)
+全部通过: 随机 bang--bang 40/40, 会话 13 表 $R=4$, $n=1..8$ SUP/INF 16/16
+(恰 $2n$ 零点, $q_0>1$, $q_1<-1$, $K+2D\approx0$, 接口跳量 $\approx0$), mpmath 50 位
+高精度, 光滑振荡权 4/4.
+
+\subsection{\texorpdfstring{已解决: O3a/C1 势垒族 good root 的唯一性 (会话 34; 2026-08-09 升级为解析+两类证书)}{已解决: O3a/C1 势垒族 good root 的唯一性 (会话 34; 2026-08-09 升级为解析+两类证书)}}
+
+对 Dirichlet 加权弦 $-y''=\lambda\rho y$ ($1\le\rho\le R$, 势垒族
+$\rho=R$ on $(a,b)$, $1$ 其余), 相邻间距 $D^{bar}(a,b)=\lambda_2-\lambda_1$
+的临界点与 sign-consistent good root ($R_1=R_2=0$, $v(a)>0>v(b)$) 一一对应.
+O3a/C1 断言: 对每个 $R>1$, 参数三角形 $\{(a,b):0<a<b<1\}$ 中恰有一个
+sign-consistent good root, 且必为对称根 $a+b=1$. 该断言是 $n=1$ 相邻间距
+极端值严格化 ($\max D^{bar}$ 由对称 $[1,R,1]$ 达到) 的最后一块硬义务, 现已
+完整解决 (2026-08-09), 完整证明见
+\texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf} (38 页, 零警告).
+
+\emph{证明机制 (相位比刚性)}:
+\begin{enumerate}
+	\item \emph{传输能量守恒} (引理 3.2): 高密度区间上的传输矩阵保持二次型
+		$Q_m(X,Y)=m^2X^2+Y^2$, 给出精确振幅比
+		$y_s(b)^2/y_s(a)^2=J_m(s(1-b))/J_m(sa)$;
+	\item \emph{残差消元}: $R_1=R_2=0$ 使 $\lambda_k,n_k$ 因子在同一模态内
+		精确消去, 得到相位比等值 $r_\tau(\alpha)=r_\tau(\beta)$,
+		$r_\tau(x)=J_m(\tau x)/J_m(x)$;
+	\item \emph{严格单调性} (引理 3.3): $\Psi'<0$ 于 $(0,\pi)$ (初等代数
+		恒等式 (7) + $G(x)=x-\sin x\cos x$), 故 $r_\tau$ 在 $(0,\pi/\tau)$
+		严格递减, 推出 $\alpha=\beta$, 即 $a+b=1$ (定理 3.4, 覆盖全部
+		residual sheets);
+	\item \emph{对称线单变量化} (引理 4.1): $S_R(\xi)=2(c+q)\widetilde F_e(c)/\xi^2$,
+		符号与零点完全一致;
+	\item \emph{KEY LEMMA} (定理 5.1): 对每个 $q>1$ 与 $0<c<1/2$ 有
+		$\widetilde F_e'(c)<0$. 关键子命题 $M_2=\partial_w\mathrm{IN}<0$ 于 $D$
+		已有完全解析证明 (引理 5.2--5.4): $q=1$ 基线 $M_2(1,w)=\pi h(w)<0$,
+		$\partial^2_qM_2<0$ 的两段初等界, $\partial_qM_2(1,w)<0$ 的凹性+切线链,
+		以及边界曲线 $w=\sqrt{2q+1}$ 上的 $\theta$-参数化闭式 ($M_2<0$ 由
+		$2-(\pi/2-\theta)\sin2\theta\ge2-\pi/2$; $\partial_qM_2<0$ 由 $N(z)$
+		对 $\beta=\arctan z$ 凸性的端点极大 + 精确有理上界 $R(z)\le-4.4344$,
+		$T(z)\le-27.3646$), 尾部 $q\ge20$ 由 $B(q)<0$ 解析处理;
+	\item \emph{C4 的解析证明}: 在 $c=0.4$ 曲线上 $v=\arctan w$,
+		$K=q^2L$ 且 $q\ge1$; $L'=N/(10T^2)$ 的分子 $N$ 在
+		$[2\pi/7,3\pi/10]$ 有精确有理下界 $220.37>0$, 在
+		$[3\pi/10,2\pi/5)$ 为非负项之和且 $20T^4>0$, 故 $L$ 严格递增,
+		$K\ge L\ge L(2\pi/7)>0$. 全部常数由 Machin 级数、$\sqrt5$ 的
+		有理界与 $\tan(2\pi/7)$ 的多项式 $t^6-21t^4+35t^2-7$ 精确核验;
+	\item \emph{I3 的 $J_1^{(2)}$ 侧完全解析化} (定理 5.8, 会话 40): 沿真实曲线
+		反解 $c=c_1(x,q)=\frac1x\arctan\frac1{q\tan x}$ 后, 在真曲线区域
+		$T_1=\{(x,q):0.841<x<1.1220,\ 1<q<2,\ 0.4<c_1<0.5\}$ 的闭包上用
+		七步初等链证明 $J_1^{(2)}=G^2+G_c-\frac{x\Phi_q}{q+c\Phi_q}G_x
+		\ge6499/7500>0$: $\Phi/D\ge2/3$ ($\Phi\ge q$), $G<-2$, $G_c\ge187/100$
+		(term1 两段下界 + term2$\ge0$), $C=3/x^2+2\csc^2x\le8$,
+		$u\le89/100$ ($u\le u_{\rm c}$ 由 $\sin2\theta\ge\sin(4x/5)$, $u_{\rm c}\le89/100$
+		由 $F''\ge3/2$ 与有理包络), $u_x\ge2/3$, 组合
+		$uG_x\le u^2C-3uu_x/x$; 不再需要 16 叶盒 $J_1^{(2)}$ 证书;
+	\item \emph{I3 的 $J_2^{(2)}$ 二维参数化证书}: 相位方程沿真实曲线显式反解为
+		$c=c_2(\gamma,q)=\frac{\arctan(q\tan\gamma)}{\pi-\gamma}$, 把
+		$\widetilde F_e''=\widetilde M_{f1}J_1-\widetilde M_{f2}J_2$ 的
+		$J_2^{(2)}$ 侧化为二维显式函数的叶盒证书: $J_2^{(2)}<0$ 于
+		$[0.655,1.0472]\times[1,2]$ (67 叶盒, 上界 $-0.0621$); 盒端点由
+		单调性与精确有理界 (含 $\alpha_1(2,1/2)=\arccos(2/3)$,
+		$\alpha_1(1,2/5)=5\pi/14$, $\gamma(1,1/2)=\pi/3$ 与
+		$\gamma(2,2/5)>0.655$) 解析确定; $T_2$ 侧的单调性引理
+		(M1$'$)--(M3$'$) 仍是开放目标 (当前由证书覆盖);
+	\item \emph{伴随 $(LOG)$ 证书}: $(G_2-G_1)'<0$ (128 叶盒, 上界
+		$-4.8416$), 仅用于注 5.8, 主证明不使用; 与对称 good root 双向等价,
+		合成定理 1.2.
+\end{enumerate}
+\begin{sloppypar}
+审计状态: 本仓库符号/数值审计全部通过 (脚本 \texttt{scripts/audit\_o3a\_pdf\_part1.py} 至
+\texttt{part4.py}, 含 $R\in\{1.1,\dots,10^6\}$ 的根计数, 核心恒等式 59 位精度复算, 证书
+不等式稠密采样); $J_1^{(2)}$ 的 E1 链由本仓库脚本
+\texttt{scripts/verify\_\allowbreak o3a\_\allowbreak i3\_\allowbreak t1\_\allowbreak e1.py} 逐项交叉检验 (9 恒等式 + 全部初等界 + F 分析有理包络 + 组合链,
+全部 PASS, 内容哈希 L6); I3 的 $J_2^{(2)}$ 二维参数化证书由本仓库脚本
+\texttt{scripts/verify\_\allowbreak o3a\_\allowbreak i3\_\allowbreak 2d.py} 独立重放 (叶盒文件 \texttt{misc/i3\_\allowbreak 2d\_\allowbreak leaves\_*.json},
+80 位点交叉检验与叶面积覆盖审计全部通过), 旧三类证书的重放内核位于 Blueprint 项目
+\texttt{runs/R-\allowbreak 20260808T143337Z-\allowbreak o3a-c1/}, 不在本仓库, 属``独立审计、证书支持的
+严格证明''而非 kernel-checked proof (PDF 说明 8.1 如实标注). 独立子代理审计 (2026-08-10, Nash/Curie/Linnaeus): 后半与证书链全部 PASS; 前半逐行检查 83/83 通过, 唯一定性缺口在 lines 412--439 --- 文本证明了 $E(\alpha_1)=c\alpha_1$, $O(\alpha_2)=c\alpha_2$ 解的唯一性, 但未证明实际相位落在 $k=0$ 分支 ($\alpha_1\in(0,\pi/2)$, $\alpha_2\in(0,\pi)$); 断言本身为真 (短证思路: $y_1$ 偶正 $\Rightarrow$ Prüfer 相位 $\theta_1(1/2)=\pi/2\Rightarrow\alpha_1\in(0,\pi/2)$; $y_2>0$ 于 $(0,1/2)\Rightarrow\alpha_2\in(0,\pi)$), 数行内可修复, 尚未修复. 旧归约的失败路线
+(Lemma A 严格证伪 CE-1 等) 见 \texttt{SL\_gap\_n1\_proof.pdf} 第 5 节.
+\end{sloppypar}
+
+\begin{enumerate}
+	\item \textbf{相邻间距极端值的结构收尾} (承接会话 13/30/34/50):
+INF 侧 $R\to\infty$ 极限定理 A (对称阱族) 已证 (会话 30); O3a/C1
+(势垒族 good root 的唯一性) 已解决 (会话 34, 相位比刚性);
+$n\ge2$ 的有限块约化与精确 $2n$ 开关已解决 (会话 50, 见
+\path{SL_gap_nge2_finite_reduction_proof.pdf} 与
+\path{SL_gap_nge2_exact_2n_switches_proof.pdf}).
+剩余: (i) $n=1$ INF 侧 $R>3/2$ 的完全闭合: 阱族刚性已对一切 $R>1$ 证明 (2026-08-10
+会话 56, 见 \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf}), 但对称线 1D 分析
+($f(v)$ 唯一零点与 $D(v)$ 单峰) 仅完成 $1<R\le3/2$ 段 (见
+\path{SL\_gap\_n1\_symline\_proof.pdf}), 尚需 $R>3/2$ 段 (缺口 a$'$), 并加
+(c) 定理 A 独立复核与 (d) 全局 good-root 论证; 数值支持 (不构成证明): R=4 对称阱
+临界值 $6.7845$, 全阱族网格下确界 $6.7856$, 精度 1e-9);
+(ii) 开关位置/块长的显式方程与闭式构造;
+(iii) 反射对称性 (至少存在一个关于 $1/2$ 对称的极值子? 每个极值子都对称?);
+(iv) 唯一性与完整分类; (v) 最优值 $\max D_n$/$\min D_n$ 的闭式或锐界;
+(vi) $n=1$ 证书重放内核的形式化收尾.
+	\item \textbf{一般边界/势类中相邻比值的推广.}
+		Hedhly 定理 (\url{https://arxiv.org/abs/2111.01728}) 已闭合单阱
+		Dirichlet 情形: $\lambda_{n+1}/\lambda_n \le ((n+1)/n)^2$, 等号在
+		$\rho\equiv a$ 时达到; Neumann 情形 (Li-Ao 线 [9]), 非负势
+		$q\ge0$ (Gan-Zheng-Li-Shao 线 [8]) 与变号权重的最优常数与极值
+		结构仍待确定.
+	\item \textbf{MDE 极值测度的统一理论.}
+		节点界 (Chu-Guo-Meng-Zhang [11], JDE 470 (2026),
+		\url{https://arxiv.org/abs/2512.18404}) 定理 3.16 已给出全部
+		节点 $T_{i,m}$ 的显式锐界
+		与极值测度 $\gamma_{i,m,\hat r,\check r,T}$ 的完整刻画
+		(情形 (i)--(iv), 取决于 $i$ 与 $r$ 相对 $\overline r_{i,m}$,
+		$\underline r_{i,m}$ 的位置); Neumann 间距与最大间距的极值测度
+		结构及其与节点界的统一仍待整合.
+	\item \textbf{受边界条件约束空间中多项式稠密的充要条件}
+		([4] 更大开放问题的框架). $\{p_n\}$ 在一切整数 $H^s[-1,1]$ 中
+		解析完备已证 (会话 7/10/11), 但一般边界条件 Hilbert 空间中的
+		稠密性判据仍开放.
+	\item \textbf{p-Laplacian 等非线性问题的推广}: Wen-Zhou [7] 的奇异
+		测度技巧在非线性情形的适用范围未定.
+	\item \textbf{矩量问题可表示性的一般刻画} (会话 11, 方向 2, O2).
+		对角空间已解决 (可表示性 = 级数收敛), 一般 Hilbert 空间的闭式
+		判据开放.
+	\item \textbf{跳变稳定性的门槛线分类} (会话 11, 方向 3).
+		已证 $\sum\min(\varepsilon_k,1) = \omega(\log m)$ 充分且 $O(1/k)$
+		阶反例尖锐; 门槛线上系数族 ($\sum\sim\log m$, 如
+		$\varepsilon_k\sim1/(k\log k)$) 未完全分类; 变系数算子
+		$K = -D^2 + c(x)$ 的跳变结构破坏后是否有高阶矩跳跃替代机制
+		(S3) 开放 (见 \texttt{SL\_stability\_moment\_jump.pdf}).
+	\item \textbf{三阶递推理论的三处未闭合} (会话 11, 方向 4).
+		(i) 最小解 $h^*$ 的闭式与渐近常数 $K$
+		($h^*_j \sim K(c/4)^j j^{-3}/(j!)^2$); (ii) 盒式归纳退化配置
+		排除 ($d_{j-1}=0$ 且 $d_{j-2}>0$); (iii) 一般系数族
+		($\prod(1+\beta/(k+\gamma))$ 型) 的积分解分类
+		(见 \texttt{SL\_third\_order\_recurrence\_theory.pdf}).
+	\item \textbf{固定 $n$ 上确界猜想的收尾} (会话 12): 全局极值性
+		(Keller 型归约到交替 bang-bang), $2n$-根计数, 以及
+		$\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$ 的单调收敛.
+\end{enumerate}
+
+
+\section{资料来源状态说明}
+
+为保证可核查性, 列出各文献的获取状态:
+
+\begin{itemize}
+	\item 基准论文 (Springer 章节) 全文受版权保护, 未能获取; 内容依据 Springer
+		摘要与开放获取姊妹论文 [4] 还原;
+	\item 姊妹论文 [4] (Axioms 14 (2025) 115) 全文已获取并解析;
+\item 左定理论综述 [1] (\url{https://arxiv.org/abs/2408.01514}) 全文已获取并解析;
+\item 基本间距 [5] (\url{https://arxiv.org/abs/2407.02459}) 全文已获取并解析;
+\item 临界系统 [13] (\url{https://arxiv.org/abs/2509.09250}) 全文已获取并解析;
+	\item Wen-Zhou [7], Gan-Zheng-Li-Shao [8], Li-Ao [9], Meng-Tian-Xie-Zhang [14] 仅获取摘要或页面信息, 细节以摘要为准;
+	\item Hedhly (arXiv:2111.01728) 全文已获取并解析 (\texttt{papers/hedhly\_2111.01728.txt});
+	\item Chu-Guo-Meng-Zhang [11] 全文经 ar5iv 镜像获取 (\texttt{research\_cache/ar5iv\_2512.18404.html}), 定理 3.16 的极值测度刻画已逐字核对;
+	\item Guo-Meng-Yan-Zhang [6] 仅获取摘要, 显式解的具体数值未核实.
+\end{itemize}
+
+\begin{thebibliography}{23}
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: A model operator approach, examples,
+fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024). \url{https://arxiv.org/abs/2408.01514}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+\bibitem{lw2} L. L. Littlejohn, R. Wellman, \emph{On the spectra of left-definite
+	operators}, Complex Anal. Oper. Theory 7 (2013), 437--455.
+\bibitem{axioms} A. Jones, L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115. \url{https://doi.org/10.3390/axioms14020115}
+\bibitem{gap} M. Ahrami, Z. El Allali, E. M. Harrell II, \emph{On the fundamental
+eigenvalue gap of Sturm-Liouville operators}, arXiv:2407.02459 (2024). \url{https://arxiv.org/abs/2407.02459}
+\bibitem{gmyz} S. Guo, G. Meng, P. Yan, M. Zhang, \emph{Optimal maximal gaps of
+	Dirichlet eigenvalues of Sturm-Liouville operators}, J. Math. Phys. 63 (2022),
+	072701.
+\bibitem{wz} Z. Wen, L. Zhou, \emph{Maximal gaps of eigenvalues of one-dimensional
+	p-Laplacian}, Mediterr. J. Math. 23 (2026). \url{https://doi.org/10.1007/s00009-025-03043-6}
+\bibitem{gan} Y. Gan, Z. Zheng, K. Li, J. Shao, \emph{Sharp bounds of eigenvalue
+	ratios for Sturm-Liouville equations with Dirichlet boundary conditions},
+	Math. Methods Appl. Sci. 49 (2026), no. 10, 10552ff.
+	\url{https://doi.org/10.1002/mma.70611}
+\bibitem{liao} F. Li, J. Ao, \emph{Sharp bounds of Neumann eigenvalue gaps and
+	ratios for Sturm-Liouville equations}, J. Differential Equations (2026).
+	\url{https://doi.org/10.1016/j.jde.2026.114478}
+\bibitem{ab93} M. S. Ashbaugh, R. D. Benguria, \emph{Eigenvalue ratios for
+	Sturm-Liouville operators}, J. Differential Equations 103 (1993), 205--219.
+\bibitem{chu26} J. Chu, S. Guo, G. Meng, M. Zhang, \emph{Explicit sharp bounds for
+	all nodes of Sturm-Liouville operators with potentials in $L^1$ balls},
+	J. Differential Equations 470 (2026). arXiv:2512.18404. \url{https://arxiv.org/abs/2512.18404}
+\bibitem{tz2} Y. Tian, M. Zhang, \emph{Optimization problems on sums of eigenvalues
+	for Sturm-Liouville operators with $L^p$ potentials}, J. Math. Phys. 66 (2025),
+	092703.
+\bibitem{tz1} Y. Tian, M. Zhang, \emph{Non-integrability of the critical systems
+	for optimal sums of eigenvalues}, arXiv:2509.09250 (2025). \url{https://arxiv.org/abs/2509.09250}
+\bibitem{mtxz} G. Meng, Y. Tian, B. Xie, M. Zhang, \emph{Characterization of
+	maximizers for sums of the first two eigenvalues of Sturm-Liouville operators},
+	arXiv:2603.06019 (2026). \url{https://arxiv.org/abs/2603.06019}
+\bibitem{ab89} M. Ashbaugh, R. Benguria, \emph{Optimal lower bound for the gap
+	between the first two eigenvalues of one-dimensional Schr\"odinger operators
+	with symmetric single-well potentials}, Proc. Amer. Math. Soc. 105 (1989),
+	419--424.
+\bibitem{lavine} R. Lavine, \emph{The eigenvalue gap for one-dimensional convex
+	potentials}, Proc. Amer. Math. Soc. 121 (1994), 815--821.
+\bibitem{ea} Z. El Allali, E. M. Harrell II, \emph{Optimal bounds on the
+	fundamental spectral gap with single-well potentials}, Proc. Amer. Math. Soc.
+	150 (2022), 557--587.
+\bibitem{horvath} M. Horv\'ath, \emph{On the first two eigenvalues of
+	Sturm-Liouville operators}, Proc. Amer. Math. Soc. 131 (2003), 1215--1224.
+\bibitem{ahs} M. S. Ashbaugh, E. M. Harrell II, R. Svirsky, \emph{On minimal and
+	maximal eigenvalue gaps and their causes}, Pacific J. Math. 147 (1991), 1--24.
+\bibitem{hedhly} S. Hedhly, \emph{Eigenvalue ratios of Sturm-Liouville
+	operators with single-well density}, arXiv:2111.01728 (2021).
+	\url{https://arxiv.org/abs/2111.01728}
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491.
+	DOI: \url{https://doi.org/10.1137/0131042}
+\bibitem{mw} T. J. Mahar, B. E. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	DOI: \url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{wm79} B. E. Willner, T. J. Mahar, \emph{Extrema of functions of eigenvalues},
+	J. Math. Anal. Appl. 72 (1979), 730--739.
+	DOI: \url{https://doi.org/10.1016/0022-247X(79)90260-9}
+\end{thebibliography}
+
+\section{涉及到的数学知识}
+
+本节汇总文档使用的数学知识, 按主题分组; 正文中的脚注给出对应概念的简注.
+
+\subsection{谱理论与算子方法}
+
+\begin{description}
+	\item[离散谱与特征函数完备性] 正则 SL 问题在带权 $L^2$ 空间中的谱为离散谱,
+		特征函数构成完备正交系 (Hilbert-Schmidt 理论).
+	\item[分离型自伴边界条件] 形如 $u(0)\cos\alpha - (pu')(0)\sin\alpha = 0$ 的
+		边界条件保证算子自伴, 特征值实且按重数排列.
+	\item[算子序 (Loewner 序)] 对自伴算子, $A \geq kI$ 等价于谱下界
+		$\inf\sigma(A) \geq k$.
+	\item[谱定理与函数演算] 自伴算子 $A$ 的 Borel 函数演算定义分数幂 $A^{s/2}$.
+	\item[Hilbert 空间尺度] 嵌套空间族 $\{H_s\}_{s>0}$,
+		$H_s = D(A^{s/2})$, 且 $H_t \subsetneq H_s$ ($0 < s < t$).
+	\item[酉等价] 保内积的一一线性映射; 左定算子与原算子酉等价, 故谱相同.
+\end{description}
+
+\subsection{左定理论}
+
+\begin{description}
+	\item[左定空间] 由 $V_r = D(A^{r/2})$ 与 $(x, y)_r = (A^{r/2}x, A^{r/2}y)$
+		定义的 Hilbert 空间.
+	\item[左定算子] 唯一自伴算子 $A_s$, 满足 $A_s f = Af$ 且 $D(A_s) = V_{s+2}$;
+		$A_s$ 与 $A$ 酉等价, 完备特征函数系保持.
+	\item[第一左定空间] 移位 Krein Laplacian $K_c$ 的第一左定空间为
+		$(H^1[-1,1], (\cdot, \cdot)_{1,c})$.
+\end{description}
+
+\subsection{正交多项式与特殊函数}
+
+\begin{description}
+	\item[Sobolev 内积] 含导数的内积, 如 $\langle f, g \rangle_\lambda$ 与
+		$(f, g)_{1,c}$; 非标准权, 一般无三项递推.
+	\item[Althammer 多项式] Sobolev-Legendre 多项式, 1962 年由 Althammer 引入,
+		Sobolev 正交多项式研究的起点.
+	\item[Krein-Sobolev 多项式] 关于 $(f, g)_{1,c}$ 正交的多项式系 $\{K_n\}$,
+		在 $H^1[-1,1]$ 中完备.
+	\item[Gram-Schmidt 正交化] 由内积递推构造正交系; 系数 $a_n$ 即来自该过程.
+	\item[Hilbert 基] 完备正交系; 空间每个元素有唯一正交展开, 即与空间内所有
+		正交函数系等价的含义.
+	\item[根实单性] 经典正交多项式根为实单根且位于权支撑内; Sobolev 内积下
+		需专门证明 (定理 4).
+	\item[代数完备与解析完备] 代数完备指多项式张成多项式空间; 解析完备指
+		多项式在 Hilbert 空间中稠密.
+	\item[例外正交多项式] 缺失若干低次项但仍解析完备的多项式系, 是开放问题的
+		类比对象.
+	\item[Legendre 多项式与差分] $S_n = P_n - P_{n-2}$; 系数公式可用超几何级数
+		求和验证.
+\end{description}
+
+\subsection{SL 谱优化}
+
+\begin{description}
+	\item[基本间距] $\Gamma = \lambda_2 - \lambda_1$, 量子力学中对应电离能.
+	\item[单阱势与单峰密度] 势能与权函数的形状约束, 源自物理势能形状.
+	\item[Feynman-Hellmann 公式] 特征值对参数的一阶变分导数, 优化极值刻画的
+		核心工具.
+	\item[Helly 紧性] 单调有界函数族存在逐点收敛子列, 用于极值存在性.
+	\item[Liouville normal form] Liouville 变换把一般 SL 方程化为
+		$-\eta'' + \psi\eta = \lambda\eta$.
+	\item[测度微分方程] $L^1$ 势弱紧性缺失, 极值延拓到 Radon 测度 (如
+		Dirac 测度).
+	\item[Sturm 振荡理论] 第 $m$ 个特征函数恰有 $m-1$ 个内零点; 节点泛函的
+		Fr\'echet 可微性给出其一阶导数.
+	\item[临界系统] 特征值和优化的一阶必要条件导出的 Hamiltonian 系统.
+	\item[Weyl 渐近] $\lambda_n \sim \pi^2 n^2/(\int_0^1\sqrt{\rho}\,dx)^2$; 用于全序列下确界 $= 1$ 的证明.
+	\item[带状自洽 (自研)] ``$f = \lambda_n u_n^2 - \lambda_{n+1}u_{n+1}^2$ 在全部节点为零且 $\{f>0\}$ 等于指定密度带'' 恰为间距驻点条件; 见 \texttt{tools/gap-band-extremals.md}.
+	\item[转移矩阵与世俗方程] 块常数密度的 SL 特征值化为 $2\times2$ 转移矩阵乘积的 $01$ 分量求根.
+	\item[键合-反键合分裂] 对称双阱中近简并特征值对的局域化, 解释 INF 间距快速衰减.
+	\item[中心质量钉扎] 重块压低基频 ($\lambda_1\to0$) 而不扰动有节点模态 ($\lambda_2\to4\pi^2$).
+	\item[Morales-Ramis 理论] 亚纯可积性蕴含线性化系统微分 Galois 群可解;
+		Kovacic 算法判定二阶线性方程的可解性.
+\end{description}
+
+\end{document}

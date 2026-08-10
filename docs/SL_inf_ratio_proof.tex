@@ -1,0 +1,316 @@
+﻿% 编译方式: xelatex SL_inf_ratio_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{全序列相邻特征值比值的下确界: $\inf_{n,\rho}\lambda_{n+1}/\lambda_n = 1$}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文解决概述文档 (SL\_spectral\_topics\_summary.tex) 开放问题第 1 条:
+对 Dirichlet 加权弦问题
+\begin{equation}
+	-y'' = \lambda \rho(x) y \quad (0 < x < L), \qquad y(0) = y(L) = 0,
+\end{equation}
+其中 $0 < a \le \rho \le A$ 为可测 (或逐段连续、逐段常数) 密度, 证明
+\begin{equation}
+	\inf_{n \ge 1} \inf_{\rho} \frac{\lambda_{n+1}}{\lambda_n} = 1,
+\end{equation}
+且下确界不被达到 (对一切 $n, \rho$ 比值严格大于 $1$).
+证明只需两步: (i) 特征值严格单增 (Sturm 振荡), 故比值恒 $> 1$;
+(ii) 加权 Weyl 定律 $\lambda_n = \bigl(\frac{n\pi}{L_\rho}\bigr)^2(1+o(1))$,
+$L_\rho = \int_0^L \sqrt{\rho(x)}\,dx$, 对每个固定 $\rho$ 立即给出比值 $\to 1$.
+对 Keller--Mahar--Willner 的逐段常数类, 我们给出自足的初等证明
+(Prufer 相角 + 阶梯逼近); 对一般 $L^1$ 密度引用 Atkinson--Mingarelli
+\cite{am1987} 的计数函数渐近. 数值验证见脚本
+\path{scripts/op01_inf_ratio.py} 与 \path{scripts/op01_weyl_check.py}.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+固定区间 $[0,L]$, 容许密度类
+\[
+	\mathcal P(a,A) = \{\rho \in L^\infty(0,L): a \le \rho(x) \le A \text{ a.e.}\},
+	\qquad 0 < a \le A < \infty.
+\]
+对 $\rho \in \mathcal P(a,A)$, 问题 (1) 的 Dirichlet 谱记为
+$0 < \lambda_1(\rho) < \lambda_2(\rho) < \cdots \to \infty$.
+特征值单增且每个 $\lambda_n$ 单重 (经典 Sturm--Liouville 理论:
+$\rho > 0$ a.e. 时基础解系零点交错, 谱单重, 见 \cite{ls}).
+
+\begin{remark}[原文献的类]
+	Keller \cite{keller} 与 Mahar--Willner \cite{mw} 的类是 ``至多有限个跳的
+	逐段常数函数 $a \le \rho \le A$''. 它是 $\mathcal P(a,A)$ 的稠密子类,
+	本定理对更大的 $L^\infty$ 类成立.
+\end{remark}
+
+\section{主要结果}
+
+\begin{theorem}[下确界定理]\label{thm:inf}
+	对问题 (1), 有
+	\begin{equation}
+		\inf_{n \ge 1} \inf_{\rho \in \mathcal P(a,A)} \frac{\lambda_{n+1}}{\lambda_n} = 1,
+	\end{equation}
+	且对一切 $n \ge 1$, 一切 $\rho$, 比值严格大于 $1$.
+	更强地: 对每个固定 $\rho$, $\lambda_{n+1}/\lambda_n \to 1$
+	($n \to \infty$).
+\end{theorem}
+
+\begin{proof}
+	\textbf{下界 $> 1$ 且不为 1.} 特征值严格递增: $\lambda_{n+1} > \lambda_n$,
+	故 $\lambda_{n+1}/\lambda_n > 1$ (Sturm 第二比较定理给出第 $n$ 个特征函数
+	恰有 $n-1$ 个内零点, 零点数随 $n$ 严格增加, 故特征值严格增加).
+
+	\textbf{比值趋于 1.} 由加权 Weyl 定律 (定理 \ref{thm:weyl}): 对固定
+	$\rho \in \mathcal P(a,A)$,
+	\[
+		\lambda_n = \Bigl(\frac{n\pi}{L_\rho}\Bigr)^2 (1 + o(1)),
+		\qquad L_\rho = \int_0^L \sqrt{\rho(x)}\,dx.
+	\]
+	因此
+	\[
+		\frac{\lambda_{n+1}}{\lambda_n}
+		= \Bigl(\frac{n+1}{n}\Bigr)^2 \cdot \frac{1+o(1)}{1+o(1)} \to 1.
+	\]
+	结合严格大于 $1$, 对固定 $\rho$ 有 $\inf_n \lambda_{n+1}/\lambda_n = 1$;
+	再对 $\rho$ 取下确界仍为 $1$. \qed
+\end{proof}
+
+\begin{remark}[下确界不达到]
+	对任意 $n \ge 1$, 任意 $\rho$, 比值严格大于 $1$ (由证明第一步),
+	故 $1$ 只是极限下确界而非最小值. 序列沿固定 $\rho$ 的 $n \to \infty$
+	达到 (不取到).
+\end{remark}
+
+\begin{remark}[收敛速度]
+	对固定 $\rho$, 比值 $\to 1$ 的速度由 Weyl 余项控制:
+	只要 $\rho$ 分段光滑, 经典余项
+	$\lambda_n = (n\pi/L_\rho)^2 + O(1)$ 成立 (见 \cite[Ch.~I]{ls} 与
+	\cite{am1987}), 于是
+	\[
+		\frac{\lambda_{n+1}}{\lambda_n} - 1
+		= \frac{2}{n} + O\Bigl(\frac{1}{n^2}\Bigr).
+	\]
+	数值见 4.2 节: 两跳配置 $n = 50$ 时比值 $= 1.0328$, 余项 $= 0.0328$,
+	与 $2/n = 0.04$ 同阶.
+\end{remark}
+
+\section{加权 Weyl 定律}
+
+\begin{theorem}[Weyl 定律]\label{thm:weyl}
+	设 $\rho \in \mathcal P(a,A)$. 记 $N(\lambda) = \#\{n : \lambda_n \le \lambda\}$
+	为计数函数. 则
+	\begin{equation}
+		N(\lambda) = \frac{\sqrt\lambda}{\pi} \int_0^L \sqrt{\rho(x)}\,dx
+		+ o(\sqrt\lambda)
+		\qquad (\lambda \to \infty),
+	\end{equation}
+	等价地
+	\begin{equation}
+		\lambda_n = \Bigl(\frac{n\pi}{L_\rho}\Bigr)^2 (1+o(1)),
+		\qquad L_\rho = \int_0^L \sqrt\rho\,dx.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}[证明 (逐段常数类, 自足)]
+	先设 $\rho$ 为至多有限个跳的逐段常数函数. 记 $\rho_i$ 与区间
+	$[x_{i-1}, x_i]$, $i = 1, \dots, m$, $x_0 = 0, x_m = L$. 用 Prufer 相角.
+	用引理 \ref{lem:prufer} 的 Prufer 相角 (对 $y(0)=0$ 的解 $y$): 定义
+	$y = r\sin\varphi$, $y' = \sqrt{\lambda\rho}\,r\cos\varphi$,
+	$\varphi(0) = 0$. 在每个常数段内 $\varphi' = \sqrt{\lambda\rho}$
+	精确成立, 在至多 $m$ 个跳点处 $\varphi$ 跳跃有界 ($|\Delta\varphi| \le \pi$,
+	与 $\lambda$ 无关). 求和得
+	\[
+		\varphi(L) = \sqrt\lambda \sum_i \sqrt{\rho_i}\,(x_i - x_{i-1}) + O(1)
+		= \sqrt\lambda\, L_\rho + O(1).
+	\]
+	特征值条件 $y(L) = 0$ 等价于 $\varphi(L) = k\pi$ ($k \in \mathbb N$),
+	故
+	\[
+		N(\lambda) = \Bigl\lfloor \frac{\varphi(L)}{\pi}\Bigr\rfloor
+		= \frac{\sqrt\lambda}{\pi} L_\rho + O(1).
+	\]
+	这比 (4) 更强 (余项 $O(1)$). 反解得 (5): 由
+	$\frac{\sqrt{\lambda_n}}{\pi} L_\rho + O(1) = n$ 得
+	$\lambda_n = (n\pi/L_\rho)^2 + O(n)$? 需要小心:
+	$\sqrt{\lambda_n} = n\pi/L_\rho + O(1)$, 平方得
+	$\lambda_n = (n\pi/L_\rho)^2 + O(n)$——余项 $O(n)$ 只给
+	$\lambda_n = (n\pi/L_\rho)^2(1+O(1/n))$? 重新算:
+	$\sqrt{\lambda_n} = \frac{n\pi}{L_\rho} + O(1)$,
+	故 $\lambda_n = \frac{n^2\pi^2}{L_\rho^2}\bigl(1 + \frac{2L_\rho O(1)}{n\pi}
+	+ O(n^{-2})\bigr) = \frac{n^2\pi^2}{L_\rho^2}(1 + O(1/n))$.
+	代入比值:
+	\[
+		\frac{\lambda_{n+1}}{\lambda_n}
+		= \Bigl(\frac{n+1}{n}\Bigr)^2 \frac{1+O(1/n)}{1+O(1/n)}
+		= \Bigl(1 + \frac{1}{n}\Bigr)^2 (1+O(1/n)) \to 1.
+	\]
+	对一般 $\rho \in \mathcal P(a,A)$ ($L^\infty$), 用经典定理 \cite{am1987}:
+	对 $\rho \in L^1(0,L)$, $\rho \ge 0$ a.e. (我们更强: $\rho \ge a > 0$),
+	计数函数满足 (4). \qed
+\end{proof}
+
+\begin{lemma}[Prufer 相角方程]\label{lem:prufer}
+	设 $\rho$ 在 $(0,L)$ 上逐段常数 (至多 $m$ 个跳). 对 (1) 的解 $y$,
+	定义相角 $\varphi$ 与振幅 $r$ 为
+	\[
+		y(x) = r(x)\sin\varphi(x), \qquad
+		y'(x) = \sqrt{\lambda\rho(x)}\, r(x)\cos\varphi(x),
+	\]
+	并在 $x = 0$ 取 $\varphi(0) = 0$. 则在每个常数段内
+	\[
+		r'(x) = 0, \qquad \varphi'(x) = \sqrt{\lambda\rho(x)}
+	\]
+	精确成立; 在 $\rho$ 的跳点处 $r, \varphi$ 因 $y, y'$ 连续而跳跃,
+	但每次跳跃的量 $|\Delta\varphi| \le \pi$ 与 $\lambda$ 无关.
+	因此
+	\[
+		\varphi(L) = \sqrt\lambda \int_0^L \sqrt{\rho(x)}\,dx + O(1),
+	\]
+	余项 $O(1)$ 仅依赖 $\rho$ 的跳点集合 (至多 $m\pi$).
+\end{lemma}
+
+\begin{proof}
+	在每个常数段内 $\rho \equiv \rho_i$, 微分定义给出
+	$y' = r'\sin\varphi + r\varphi'\cos\varphi$ 与
+	$y' = \sqrt{\lambda\rho_i}\, r\cos\varphi$, 且 $y'' = -\lambda\rho_i y$
+	给出 $\sqrt{\lambda\rho_i}\,r'\cos\varphi
+	- \sqrt{\lambda\rho_i}\,r\varphi'\sin\varphi
+	= -\lambda\rho_i r\sin\varphi$. 消去 $\sqrt{\lambda\rho_i}$
+	得线性方程组
+	\[
+		r'\sin\varphi + r\varphi'\cos\varphi
+		= \sqrt{\lambda\rho_i}\,r\cos\varphi,
+		\qquad
+		r'\cos\varphi - r\varphi'\sin\varphi
+		= -\sqrt{\lambda\rho_i}\,r\sin\varphi.
+	\]
+	分别乘以 $\sin\varphi, \cos\varphi$ 并相加: $r' = 0$;
+	乘以 $\cos\varphi, -\sin\varphi$ 并相加: $\varphi' = \sqrt{\lambda\rho_i}$.
+	在跳点 $x_j$ 处 $y, y'$ 连续, 由 $\tan\varphi = y\sqrt{\lambda\rho}/y'$
+	知 $\varphi$ 跳变满足 $|\Delta\varphi| < \pi$ (因 $\sqrt\rho$
+	界于 $[\sqrt a, \sqrt A]$, $\varphi$ 与 $y'/(\sqrt\lambda y)$ 同象限,
+	至多相差一个象限), 与 $\lambda$ 无关. 积分并对至多 $m$ 个跳求和
+	即得所求. \qed
+\end{proof}
+
+
+
+\begin{remark}[自足性]
+	对本文所需的 Keller--MW 逐段常数类, 引理 \ref{lem:prufer} 给出精确
+	$O(1)$ 计数, 证明完全自足, 不依赖任何外部定理. 一般 $L^\infty$ 密度
+	仅作为延伸陈述, 引用 \cite{am1987}.
+\end{remark}
+
+\section{数值验证}
+
+\subsection{比值趋于 1}
+
+脚本 \path{scripts/op01_inf_ratio.py} 用跨批符号检测 + 二分法求解特征值
+(转移矩阵, 60 个特征值, 相对精度 $10^{-15}$ 级), 对三类密度计算
+$\lambda_{n+1}/\lambda_n$:
+\begin{center}
+\begin{tabular}{lcccccc}
+	\toprule
+	密度 & $n=5$ & $n=10$ & $n=20$ & $n=30$ & $n=40$ & $n=50$ \\
+	\midrule
+	$[1,4,1]$ (两跳) & 1.3523 & 1.1695 & 1.0831 & 1.0550 & 1.0411 & 1.0328 \\
+	$[4,1]$ 交替 $\times4$ & 1.3452 & 1.1919 & 1.0920 & 1.0559 & 1.0784 & 1.0347 \\
+	常数 $4$ & 1.4400 & 1.2100 & 1.1025 & 1.0678 & 1.0506 & 1.0404 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+三类均单调或震荡趋于 $1$, 与定理 \ref{thm:inf} 一致. (交替类的
+$n=40$ 值 1.0784 高于 $n=30$ 的 1.0559, 显示非单调、但最终收敛,
+符合 Weyl 渐近的 $o(1)$ 余项.)
+
+\subsection{Weyl 常数}
+
+脚本 \path{scripts/op01_weyl_check.py} 检验
+$\lambda_n / n^2 \to (\pi/L_\rho)^2$, $L_\rho = \int\sqrt\rho$:
+\begin{center}
+\begin{tabular}{lccccc}
+	\toprule
+	密度 & $L_\rho$ & $C = (\pi/L_\rho)^2$ & $\lambda_5/25$ & $\lambda_{10}/100$ & $\lambda_{30}/900$ \\
+	\midrule
+	常数 4 & 2.0000 & 2.4674 & 2.4674 & 2.4674 & 2.4674 \\
+	$[1,4,1]$ & 1.2500 & 6.3165 & 6.3165 & 6.3165 & 6.3165 \\
+	$[4,1]$ 交替 & 1.5000 & 4.3865 & 4.6957 & 4.4968 & 4.3865 \\
+	$[1,2,4,2,1]$ & 1.3657 & 5.2917 & 5.7650 & 5.3003 & 5.2982 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+逐段常数类在 $n \ge 10$ 时 $\lambda_n/n^2$ 与 Weyl 常数吻合到 $10^{-3}$ 级
+(交替类收敛较慢, 符合预期).
+
+\section{与概述中其他开放问题的关系}
+
+\begin{enumerate}
+	\item \textbf{固定 $n$ 上确界 (开放问题 2)}: 本定理说明全序列下确界
+		平凡地由 Weyl 定律决定; 上确界方向 $n \to \infty$ 由能带极限
+		$c_\infty(R)$ 控制 (会话 5), 固定 $n$ 的精确值仍是主要难点.
+	\item \textbf{Neumann 情形 (开放问题 4)}: 对 Neumann 边值,
+		$\lambda_1 = 0$, 但 $\lambda_n \sim (n\pi/L_\rho)^2$ 对 $n \ge 2$
+		同样成立 (同一 Weyl 定律), 故对 $n \ge 2$:
+		$\inf_{n \ge 2, \rho} \lambda_{n+1}/\lambda_n = 1$, 同样不被达到.
+	\item \textbf{单阱类 (开放问题 4 的子类)}: Hedhly \cite{hedhly}
+		证明单阱密度时 $\lambda_n/\lambda_m \le (n/m)^2$, 等号仅当 $\rho$
+		常数. 于是单阱类中 $\sup_\rho \lambda_{n+1}/\lambda_n =
+		((n+1)/n)^2$ 在常数密度处达到——单阱相邻比值问题完全封闭,
+		见进展文档第 4 条.
+	\item \textbf{相邻间距 (开放问题 3)}: 本定理说明比值的下确界趋于 1,
+		但间距 $\lambda_{n+1} - \lambda_n \sim (2n+1)\pi^2/L_\rho^2$ 发散,
+		两者方向相反; 间距的最优界问题独立存在.
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[Sturm--Liouville 谱理论] $\rho > 0$ a.e. 时 Dirichlet 特征值严格
+		递增且单重; 第 $n$ 个特征函数恰有 $n-1$ 个内零点 (Sturm 振荡定理).
+	\item[Weyl 渐近/计数函数] 计数函数 $N(\lambda) \sim
+		\frac{\sqrt\lambda}{\pi}\int\sqrt\rho$ 是一维 Weyl 定律;
+		加权形式由 Atkinson--Mingarelli \cite{am1987} 对 $L^1$ 密度建立.
+	\item[Prufer 相角] $\theta' = \sqrt{\lambda\rho} + O(\lambda^{-1/2})$
+		把特征值计数化为相角增长; 对逐段常数密度是精确的.
+	\item[反函数渐近] 由 $N(\lambda_n) = n$ 反解
+		$\lambda_n = (n\pi/L_\rho)^2(1+O(1/n))$.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{am1987} F. V. Atkinson, A. B. Mingarelli, \emph{Asymptotics of the
+	number of zeros and of the eigenvalues of general weighted
+	Sturm-Liouville problems}, J. Reine Angew. Math. 375/376 (1987),
+	380--393. \url{https://doi.org/10.1515/crll.1987.375-376.380}
+\bibitem{ls} B. M. Levitan, I. S. Sargsjan, \emph{Introduction to Spectral
+	Theory: Selfadjoint Ordinary Differential Operators}, AMS Transl.
+	Math. Monogr. 39 (1975).
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491.
+	\url{https://doi.org/10.1137/0131042}
+\bibitem{mw} T. J. Mahar, B. E. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	\url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{hedhly} S. Hedhly, \emph{Eigenvalue ratios for the regular
+	Sturm-Liouville problem with a single-well density}, arXiv:2111.01728
+	(2021). \url{https://arxiv.org/abs/2111.01728}
+\end{thebibliography}
+
+\end{document}

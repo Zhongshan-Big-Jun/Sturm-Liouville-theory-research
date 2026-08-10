@@ -1,0 +1,776 @@
+arXiv:2407.02459v2  [math.SP]  3 Jul 2024
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF
+STURM-LIOUVILLE OPERATORS
+MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL II
+Abstract. We use methods of direct optimization as in [9] to ﬁnd the mini mizers of
+the fundamental gap of Sturm-Liouville operators on an inte rval, under the constraint
+that the potential is of single-well form and that the weight function is of single-barrier
+form, and under similar constraints expressed in terms of co nvexity.
+1. Introduction
+The goal of this article is to ﬁnd optimal estimates, under co nstraints on the form of
+the coeﬃcient functions in (1), for the fundamental eigenvalue gap Γ := λ2 −λ1 of the
+Sturm-Liouville equation
+(1) H(p,q )u := − d
+dx
+(
+p(x)du
+dx
+)
++V (x)u =λw(x)u
+on a ﬁnite interval, with self-adjoint boundary conditions , According to [21], §8.4, one
+may impose any separated homogeneous boundary conditions o f the form
+u(0) cosα − (pu′)(0) sinα = 0
+u(π) cosβ − (pu′)(π) sinβ = 0,
+where 0 ≤α,β < π, to make H self-adjoint; the interval has been standardized as [0,π ]
+without loss of generality. To keep the exposition simple we restrict to Dirichlet boundary
+conditions, i.e.,u(0) = u(π) = 0 , although our techniques also work with other self-adjoint
+boundary conditions, with suitable changes. Some further s impliﬁcations will be imposed
+below.
+The quantity Γ is of interest as the ionization energy in quantum theory, an d sharp
+bounds for natural categories of potential energies V (x) that prevent its collapse, espe-
+cially single-well and convex V (x), have been studied since the 1980s; cf. [1, 2, 3, 4, 5, 6,
+10, 13, 14, 18] and references therein. The problem of maximi zing Γ not only casts light
+on the physical problem of ionization, but is interesting as a mathematical problem in its
+own right.
+Most prior work has assumed or emphasized the case where both p(x) and the weight
+w(x) are held constant. Liouville transformations allow one to c onvert (1) into equivalent
+equations with diﬀerent p(x), V (x), and w(x), but in general only one of these three
+functions can be eliminated. In the ﬁrst three sections of th is article we standardize with
+p(x) ≡ 1, and recall how the Liouville transformation works in an app endix. In summary,
+these remarks allow us to concentrate on the problem
+(2)
+{
+−u′′ +V (x)u =λw(x)u, x ∈ [0,π ]
+u(0) = u(π) = 0
+2010 Mathematics Subject Classiﬁcation. 34L15, 34B27, 35J60, 35B05.
+Key words and phrases. Fundamental spectral gap, eigenvalue estimates, Sturm-Li ouville operators,
+single-well potential, Dirichlet boundary conditions .
+1
+2 MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL II
+in the following two sections.
+In [2], for the problem (2) with Dirichlet conditions, Ashba ugh and Benguria proved that
+the optimal lower bound for Γ for symmetric single-well potentials is achieved if and onl y
+ifV is constant on (0,π ). In [18] Lavine considered the class of convex potentials on [0,π ]
+and proved, with either Dirichlet or Neumann boundary condi tions, that the constant
+potential function minimizes Γ . Later Horváth [13] returned with Lavine’s methods to the
+problem of single-well potentials, but without symmetry as sumptions, and again showed
+that the constant potential was optimal with some restricti ons on the transition point,
+and in 2015 Yu and Yang [20] extended Horváth’s result by allo wing other transition
+points and both Dirichlet and Neumann conditions. More rece ntly El Allali and Harrell
+[9] used direct optimization methods to prove sharp lower bo unds for Γ with general
+single-well potential V (x), without any restriction on the transition point a ∈ [0,π ],
+and obtained similar results in the case where the potential is convex. El Allali and
+Harrell were furthermore able to analyze the case where V = V0 +V1, where V0 is a
+ﬁxed background potential energy and V1 is assumed either single-well or convex. In
+contrast to the earlier studies of single-well potentials, which restrict the transition point
+in one way or other, the minimizing single-well potentials t hey found are in general step
+functions and not necessarily constant, unless extra conditions are imposed . In the classic
+case where p = 1 they recovered with diﬀerent arguments the result of Lavine that Γ
+is uniquely minimized among convex V by the constant, and in the case of single-well
+potentials, with no restrictions on the position of the mini mum, they obtained a new,
+sharp bound, that Γ > 2.04575... . Some further related articles are Huang’s discussion
+of the eigenvalue gap [15] and eigenvalue ratio [16] for the v ibrating string with symmetric
+densities, i.e., allowing variable p(x), and the works of Ashbaugh and Benguria [4], Huang
+and Law [17], and Horvàth and Kiss [14], which include other e xpressions related to the
+low-lying eigenvalues such as eigenvalue ratios like λn
+λ1
+.
+2. Simple properties of the fundamental gap Γ
+We shall use expressions such as λk(V,w ) and Γ(V,w ) = λ2(V,w ) −λ1(V,w ) to indicate
+the dependence on the fundamental gap on coeﬃcients in (2) wi th respect to which we
+wish to optimize. In this section we review and slightly exte nd some useful observations
+about Γ that are familiar from previous sources such as [2, 18, 9]. Mo st importantly, there
+is an explicit formula for the ﬁrst derivative with respect t o perturbations of V and w:
+Lemma 2.1. Suppose that V (.,t ) and w(.,t ) are one-parameter families of real-valued,
+locally L1 functions, with infV (x,κ ) > −∞, C ≥ w(x,κ ) ≥ 1
+C for some C > 0, and
+∂V
+∂κ (x,κ ) and ∂w
+∂κ (x,κ ) ∈L1(0,π ). Then
+dλn(κ)
+dκ = −λn
+∫ π
+0
+∂w
+∂κ (x,κ )u2
+n(x,κ )dx +
+∫ π
+0
+∂V
+∂κ (x,κ )u2
+n(x,κ )dx.
+Proof. Because ∂V
+∂κ and ∂w
+∂κ are relatively bounded perturbations, Kato’s theory of ana lytic
+perturbations applies, and since the eigenvalues with sepa rated homogeneous boundary
+conditions are simple, this justiﬁes the use of a formal expa nsion to calculate the eﬀect of
+the perturbation, à la Feynman-Hellmann: Denoting ˙u = ∂u
+∂κ , diﬀerentiation of (2) with
+respect to κ gives
+˙u′′
+n + ( ˙λnw +λn ˙w − ˙V )un + (λnw −V ) ˙un = 0.
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF STURM-LIOUVILLE OPERA TORS 3
+We multiply the equation above by un(x,κ ) and integrate with respect to x from 0 to π.
+This yields
+∫ π
+0
+˙u′′
+nundx +
+∫ π
+0
+(λnw −V ) ˙unundx = −
+∫ π
+0
+( ˙λnw +λn ˙w − ˙V )u2
+ndx.
+Observing that un(λnw −V ) = −u′′
+n,
+∫ π
+0
+˙u′′
+nundx −
+∫ π
+0
+˙unu′′
+ndx = −
+∫ π
+0
+( ˙λnw +λn ˙w − ˙V )u2
+ndx.
+Integrating by parts twice yields
+[ ˙u′
+nun]π
+0 −
+∫ π
+0
+˙u′
+nu′
+ndx − [ ˙u′
+nu′
+n]π
+0 +
+∫ π
+0
+˙u′
+nu′
+ndx = −
+∫ π
+0
+( ˙λnw +λn ˙w − ˙V )u2
+ndx,
+with boundary conditions un(0,t ) = un(π,t ) = 0 . This gives
+−
+∫ π
+0
+( ˙λnw +λn ˙w − ˙V )u2
+ndx = 0,
+so that
+˙λn
+∫ π
+0
+u2
+nwdx = −λn
+∫ π
+0
+˙wu2
+ndx +
+∫ π
+0
+˙Vu 2
+ndx.
+Noting that
+∫ π
+0
+wu2
+ndx = 1,
+˙λn = −λn
+∫ π
+0
+˙wu2
+ndx +
+∫ π
+0
+˙Vu 2
+ndx.
+□
+We next adapt the monotonicity argument of [2, 9] to incorpor ate the weight:
+Lemma 2.2. Consider the problem (2) with the same assumptions on V and w as in
+Lemma 2.1. Without loss of generality we standardize the ﬁrs t two normalized eigenfunc-
+tions so that u1,2(x)> 0 for 0<x<ǫ for some ǫ. Then:
+(1) u2
+u1
+is decreasing on (0,π ).
+(2) The equation |u1(x)| = |u2(x)| has either one or two solutions on (0,π ).
+(3) There exist two points x− and x+ 0 ≤ x− < x+ ≤ π, at least one of which is
+interior to (0,π ), such that u2
+1(x) > u2
+2(x) on (x−,x +) and u2
+1(x) ≤ u2
+2(x) on
+(x−,x +)c.
+(4) The equation λ1|u2
+1(x)| =λ2|u2
+2(x)| has either one or two solutions on (0,π ).
+(5) There exist two points ˆx− and ˆx+ 0 ≤ ˆx− < ˆx+ ≤ π, at least one of which is
+interior to (0,π ), such that λ1u2
+1(x)>λ 2u2
+2(x) on (ˆx−, ˆx+) andλ1u2
+1(x) ≤λ2u2
+2(x)
+on (ˆx−, ˆx+)c.
+Proof. We ﬁrst show that
+( u2
+u1
+) ′
+< 0 for 0 < x < x0, where u2(x0) = 0 and hence that
+there can be at most one value x− ∈ (0,x 0) for which u1(x−) = u2(x−).
+The Wronskian is by deﬁnition
+W (x) = u1(x)u′
+2(x) −u2(x)u′
+1(x).
+Thus with the weight in (2),
+W ′(x) = (λ1 −λ2)w(x)u1(x)u2(x),
+4 MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL II
+and for the the quotient v(x) := u2(x)
+u1(x) ,
+v′(x) = u1(x)u′
+2(x) −u2(x)u′
+1(x)
+u2
+1(x) = W (x)
+u2
+1(x).
+Hence
+(3) v′(x) = 1
+u2
+1(x)
+∫ x
+0
+(λ1 −λ2)w(t)u1(t)u2(t)dt< 0,
+sinceλ1 <λ 2 and u1,u 2 > 0 on (0,x 0).
+Suppose that there exist distinct α1,2 ∈ (0,x 0) such that
+u2(αi) = u1(αi), i = 1, 2.
+Then v(α1) = v(α2). By Rolle’s theorem there exists ξ ∈ (α1,α 2) ⊂ (0,x 0) such that :
+v′(ξ) = 0 , but this contradicts (3).
+Sinceu2 vanishes at a unique point x0 and the same argument can be carried out after
+the change of variables x → π −x and an adjustment of the sign of u2, it follows that( u2
+u1
+)
+is strictly monotonic on (x0,π ) and that there is at most one value x+ ∈ (x0,π )
+for which u1(x+) = u2(x+).
+At least one of the points x± ∈ (0,π ), because ifx− = 0 andx+ =π thenu1(x)> |u2(x)|
+for all x ∈ (0,π ), which would contradict ∥u1∥2 = ∥u2∥2. □
+3. Characterization of optimizers
+In this section, we determine the explicit form of the gap-mi nimizing potential and
+density function of problem (2), closely following the stra tegy of [9].
+3.1. The class of single-well potentials and single-barrier den sities.
+Deﬁnition 3.1. Let 1<M ≤ ∞. The function V is called a single-well function if V is
+non-increasing on [0,a ] and non-decreasing on [a,π ], for some a ∈ [0,π ]. The point a is
+called a transition point (with no assumption of uniqueness). The notation below will be
+used through this article:
+SW[0,π],M = {V (x) : 0 ≤V (x) ≤M, whereV is a single-well function on [0,π ]}.
+Deﬁnition 3.2. Let 0 < N< ≤ N> < ∞. The function w is called a single-barrier
+density if w is non-decreasing on [0,b ] and non-increasing on [b,π ] for some b ∈ [0,π ].
+The following notation will be used through this article:
+SB[0,π],N <,N> = {w(x) : N< ≤w(x) ≤N>, wherew is a single-barrier density on [0,π ]}.
+Deﬁnition 3.3. Consider the Sturm Liouville problem
+−u′′ + (V0(x) +V (x))u =λw(x)u(4)
+u(0) = u(π) = 0,
+where V is a single-well function and w is a single-barrier density. The background
+potential V0 is assumed bounded and measurable. If there exist V∗ ∈ W[0,π],M and w∗ ∈
+SB[0,π],N<,N> such that
+Γ(V∗,w ∗) = inf (Γ(V,w ),V ∈SW[0,π],M, w ∈SB[0,π],N <,N>),
+then we call the function V∗ an optimal potential and the function w∗ an optimal density
+for problem (4).
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF STURM-LIOUVILLE OPERA TORS 5
+As in [9], we will use compactness of the sets SW and SB , following from a theorem
+of Helly:
+Proposition 3.1. For any sequence fn ∈ Λ , ( Λ = SW or SB with any ﬁxed positive
+M,N <,>), there exist a subsequence fnk and a function f⋆ such that fnk (x) − →f⋆(x) ∈ Λ
+for a.e. x.
+For the proof, see [9], Proposition 2.1.
+Corollary 3.1. There exist a potential V∗ ∈SW[0,π],M and a density w∗ ∈ SB[0,π],N <,N>
+that minimize Γ[V,w ].
+Proof. According to Proposition 3.1, since the gap Γ[V,w ] is positive, there exist mini-
+mizing sequences (Vn)n∈N ⊂ Λ and (wn)n∈N ⊂ Λ such that
+lim
+n→+∞
+(λ2(Vn,w n) −λ1(Vn,w n)) = inf {λ2(V,w ) −λ1(V,w ); V,w ∈ Λ }.
+By Proposition 3.1 we may pass to subsequences in Λ that converge pointwise a.e. to
+limits V∗ ∈ Λ and w∗ ∈ Λ :
+lim
+n→+∞
+Vn =V∗ and lim
+n→+∞
+wn =w∗
+By the dominated convergence theorem these sequences also c onverge in L1(0,π ). Hence
+by continuity of Γ with respect to relatively bounded perturbations,
+lim
+n→+∞
+(λ2(Vn,w n)−λ1(Vn,w n)) = inf {λ2(V,w )−λ1(V,w ); V,w ∈ Λ } =λ2(V∗,w ∗)−λ1(V∗,w ∗).
+□
+Theorem 3.1. For any piecewise continuous, strictly positive weight fun ction w, the
+optimal potential V∗ is a step function. For any piecewise continuous potential f unction
+V , the optimal weight w∗ is a step function. The same is true for jointly optimal V∗ and
+w∗. In each case the optimizers have the following characteriz ation:
+(1) V∗(x) = 0 a.e. on a connected component of {x : u2
+2(x) > u2
+1(x)} and on the
+complement of that interval, V∗(x) = max(V∗) a.e.
+(2) w∗(x) = N> a.e. on a connected component of {x : λ2u2
+2(x) > λ1u2
+1(x)} and on
+the complement of that interval, w∗(x) = min(w∗) a.e.
+Proof. LetV∗ ∈SW[0,π],M andw∗ ∈SB[0,π],N <,N> be the minimizing potential and density
+guaranteed by the lemma.
+We can characterize V∗ with the same argument as was used in [9], since Lemma 2.2
+allows for the possibility of variable weight. We repeat it h ere to make the proof self-
+contained, and to point out a key diﬀerence. By Lemma 2.2 ther e exist x±: 0 ⩽ x− <
+x+ ⩽ π, for which
+u2
+2(x)>u 2
+1(x) on (0,x −) ∪ (x+,π ) (one of these intervals may be vacuous)
+u2
+1(x)>u 2
+2(x) on (x−,x +).
+We deﬁne a family of single-well potentials by perturbing V∗ so that
+V (x,κ ) = κV1(x) + (1 −κ)V∗(x) t ∈ [0, 1].
+Next, we work out the explicit form of V∗ in two cases, beginning with
+(i)x− ≤a<x +. For deﬁniteness we arrange by reﬂecting if necessary that 0<x − ≤a ≤
+x+, V⋆(x+) ≥V∗(x−), and V∗ is nondecreasing for x ≥x+. In this case we proceed in two
+stages. First, let
+V1(x) =
+{
+V∗(x−) on (0,a )
+V∗(x+) on (a,π ).
+6 MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL II
+We observe that V1 ∈SW[0,π],M has been chosen so that V (x,κ ) ∈SW[0,π],M andV1(x)
+has the opposite sign to u2
+2(x, 0) −u2
+1(x, 0) a.e.
+By the Feynman-Hellmann formula, at κ = 0,
+(5) d(λ2(0) −λ1(0))
+dκ =
+∫ π
+0
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx.
+Since V∗ is a minimizer and
+[V1(x) −V∗(x)][u2
+2(x, 0) −u2
+1(x, 0)]dx ⩽ 0,
+0 ⩽ d(λ2(0) −λ1(0))
+dt ⩽ 0,
+which implies that the integrand in (5) equals 0 a.e. Thus V1(x) = V∗(x) a.e. on [0,π ].
+I.e., V∗(x) = V∗(x+)χ(a,π) a.e. But if a>x − the alternative choice
+V1(x) =
+{
+0 on (0,x −)
+V∗(x+) on (x−,π )
+is also valid, ensuring that V (x,κ ) ∈ SW[0,π],M and that V1(x) has the opposite sign to
+u2
+2(x, 0) −u2
+1(x, 0) a.e. We are thus led to the conclusion that V∗(x) = V∗(x+)χ(x,π) a.e.
+In particular, for M >0 the unique transition point is a =x−.
+(ii) Secondly, suppose that a<x −; the case when x+ <a , is similar. Let
+V1(x) =
+{
+V∗(a) on (0,x −)
+V∗(x+) on (x−,π ).
+Then V1 ∈SW[0,π],M with
+V1(x) −V∗(x) ≥ 0 on (0,x −) ∪ (x+,π )
+≤ 0 on (x−,x +).
+We note that V (x,t ) ∈SW[0,π],M, and by the optimality of V∗,
+0 ⩽ d(λ2(0) −λ1(0))
+dt ⩽ 0.
+Hence, as before we conclude that V1(x) = V∗(x) on [0,π ]. Indeed, since we have concluded
+that V∗(a) = V∗(x−), we may as well redeﬁne a as x−, which reduces case (ii) to case (i).
+In conclusion all optimal V∗ must be step functions with a unique jump coinciding with
+either x− or x+.
+In [9], where the weight was constant, it was possible to conc lude thatV∗ was of the form
+Mχ I(x) for an interval I by relying on the fact that adding a constant to the potential
+function does not change the gap Γ . With a variable weight we are only able to conclude
+that in general V∗ =Cχ I(x) for an undetermined constant C ≤M.
+It remains to characterize the optimal weight w∗ by a similar argument applied to w
+for ﬁxed V . Just as before, we can use Lemma 2.2 to conclude that there ex ist ˆx±:
+0 ⩽ ˆx− < ˆx+ ⩽ π, satisfying
+λ2u2
+2(x)>λ 1u2
+1(x) on (0, ˆx−) ∪ (ˆx+,π )
+λ1u2
+1(x)>λ 2u2
+2(x) on (ˆx−, ˆx+).
+Given an optimal w∗, we extend it to a family of weights by
+w(x,κ ) = tw1(x) + (1 −κ)w∗(x) t ∈ [0, 1].
+There are again two cases, beginning with
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF STURM-LIOUVILLE OPERA TORS 7
+(i) ˆx− ≤ b < ˆx+. As before we can arrange a convenient orientation by reﬂect ing if
+necessary. We thus posit that 0< ˆx− ≤b ≤ ˆx+,w⋆(ˆx+) ≤w∗(ˆx−), andw∗ is nonincreasing
+for x ≥ ˆx+. If we let
+w1(x) =
+{
+w∗(ˆx−) on (0,b )
+w∗(ˆx+) on (b,π ),
+then w(x,κ ) ∈ SB[0,π],N <,N> and w1(x) has the opposite sign to λ1u2
+1(x, 0) −λ2u2
+2(x, 0)
+a.e.
+FixingV and diﬀerentiating the eigenvalues at κ = 0 by the Feynman-Hellman formula,
+d(λ2 −λ1)
+dκ =
+∫ π
+0
+[w1(x) −w∗(x)][λ1u2
+1(x, 0) −λ2u2
+2(x, 0)]dx.
+By the optimality of w∗ and since
+[w1(x) −w∗(x)][λ1u2
+1(x, 0) −λ2u2
+2(x, 0)]dx ⩽ 0,
+0 ⩽ d(λ2(0) −λ1(0))
+dκ ⩽ 0
+implies that w1(x) = w∗(x) a.e. on [0,π ].
+In conclusion the optimal w∗ must be a step function with at most one jump, located at
+b. If b> ˆx−, then the alternative choice
+w1(x) =
+{
+N> on (0, ˆx−)
+w∗(ˆx+) on (ˆx−,π )
+still ensures that w(x,κ ) ∈SW[0,π],M andw1(x) and has the opposite sign to λ1u2
+1(x, 0) −
+λ2u2
+2(x, 0) a.e. We are thus led to the conclusion that w∗(x) = N> a.e. for x <ˆx− and
+w∗(x) = w∗(x+) a.e. for x> ˆx−. In particular, for N> >N < the unique transition point
+is b = ˆx−.
+(ii) Secondly, suppose that b< ˆx−; the case when ˆx+ <b is similar. Let
+w1(x) =
+{
+N> on (0, ˆx−)
+w∗(ˆx+) on (ˆx−,π ).
+We havew1 ∈SB[0,π],N <,N> with
+w1(x) −w∗(x) ≤ 0 on (0, ˆx−) ∪ (ˆx+,π )
+≥ 0 on (ˆx−, ˆx+).
+Noting that w(x,t ) ∈SB[0,π],N <,N> and using the optimality of w∗,
+0 ⩽ d(λ2(0) −λ1(0))
+dκ ⩽ 0.
+We conclude that w1(x) = w∗(x) a.e. on [0,π ]. As with the characterization of V , this
+means that we can now suppose that b = ˆx− is a transition point, reducing this case to
+case (i).
+□
+Theorem 3.2. The eigenvalues of the Sturm-Liouville problem (2) corresp ond to the real
+roots of the transcendental equation
+η tan(z(π − ˆx−)) = −z tan
+[
+η(ˆx− −x−) + arctan
+( η
+t tan(tx−)
+)]
+if λ> max(V⋆)
+min(w⋆),
+whereη :=
+√
+λN> − max(V∗), z :=
+√
+λ min(w∗) − max(V∗), and t := √λN>.
+8 MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL II
+Proof. By Theorem 3.1, the optimal potential V∗ must be of the form
+V∗(x) =
+{
+0 on (0,x −)
+max(V∗) on (x−,π ),
+and the optimal density w∗ must be of the form
+w∗(x) =
+{
+N> on (0, ˆx−)
+min(w∗) on (ˆx−,π ).
+The eigenfunctions are given by
+u(x) =
+
+
+
+α1 sin(tx) on (0,x −)
+β1 sin(η(x −x−)) +β2 cos(η(x −x−)) on (x−, ˆx−)
+α2 sin(z(π −x)) on (ˆx−,π ).
+Whereη =
+√
+λN> − max(V∗) ,z =
+√
+λ min(w∗) − max(V∗) ,t = √λN> andα1,α 2,β 1,β 2
+are real constants, with β1 ̸= 0.
+Continuity of u at x− gives
+β2 =α1 sin(tx−)
+and continuity of u′ at x− gives
+β1 = tα1
+η cos(tx−).
+Then
+β2
+β1
+= η
+t tan(tx−).
+Continuity of u at ˆx− gives
+α1
+( t
+η cos(tx−) sin(η(ˆx− −x−)) + sin(tx−) cos(η(ˆx− −x−))
+)
+=α2 sin(z(π − ˆx−)).
+It follows that
+tα1
+η cos(tx−)
+√
+1 +
+( η
+t tan(tx−)
+) 2
+sin
+(
+η(ˆx− −x−) + arctan
+( η
+t tan(tx−)
+))
+=α2 sin(z(π−ˆx−)),
+and by the continuity of u′ at ˆx− ,
+α1η
+( t
+η cos(tx−) cos(η(ˆx− −x−)) − sin(tx−) sin(η(ˆx− −x−))
+)
+= −α2z cos(z(π − ˆx−)).
+Therefore,
+α1t cos(tx−)
+√
+1 +
+( η
+t tan(tx−)
+) 2
+cos
+(
+η(ˆx− −x−) + arctan
+( η
+t tan(tx−)
+))
+= −α2z cos(z(π−ˆx−)).
+Then
+η tan(z(π − ˆx−)) = −z tan
+[
+η(ˆx− −x−) + arctan
+( η
+t tan(tx−)
+)]
+.
+This ends the proof. □
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF STURM-LIOUVILLE OPERA TORS 9
+4. Liouville transform of Sturm-Liouville operators
+In this section we apply Lavine’s estimate on the fundamenta l gap to the Sturm-
+Liouville equation (2),
+−u′′ +V (x)u =λw(x)u, x ∈ [0,π ].
+The eigenvalues of (2) coincide with these of the correspond ing eigenvalue problem in
+Liouville normal form,
+d2η
+dξ2 + (λ −ψ(ξ))η = 0 on [0,L ],(6)
+where ψ(ξ) is the Liouville potential deﬁned by
+ψ(ξ) = w′′
+4w2 − 5(w′)2
+16w3 + V
+w,(7)
+with L =
+∫ π
+0
+√
+w(t)dt. (For background on the Liouville transform we refer to [22] ). In
+particular we have :
+Γ[V,w ] = Γ[ψ].
+Proposition 4.1. If the Liouville potential ψ given by (7) of the Sturm-Liouville problem
+(6) is convex, then
+Γ[V,w ] ⩾ 3π2
+(
+∫ π
+0
+√
+w(t)dt)2
+,
+and equality is obtained if and only if ψ is constant.
+Proof. If the Liouville potential ψ of the Sturm-Liouville problem (6) is convex, then by
+[18], we have
+Γ[V,w ] ⩾ 3π2
+L2 .
+Because the interval [0,π ] is tranformed to [0,L ] with L =
+∫ π
+0
+√
+w(t)dt. Thus
+Γ[V,w ] ⩾ 3π2
+(
+∫ π
+0
+√
+w(t)dt)2.
+□
+Remark 4.1. To see that convexity of V is not required for Proposition 4.1, consider the
+example V (x) = −x2. Let w(x) = x2 ̸= const, then ψ
+′′
+(ξ) = 3x2−25
+x6 ≥ 0 on [5, 6]. On this
+interval the Liouville potential ψ is convex and hence Proposition 4.1 is applicable, so
+Γ[V,w ] ⩾ 3π2
+(
+∫ 6
+5
+√
+w(t)dt)2
+,
+i.e.
+Γ[V,w ] ⩾ 0.978803....
+Proposition 4.2. Consider the Sturm-Liouville problem (2) with positive density function
+w ∈C 2(0,π ) and continuous convex potential V on [0,π ]. If the fundamental gap satisﬁes
+Γ[V,w ] = 3π2
+( ∫ π
+0
+√
+w(t)dt
+) −2
+Then
+w(3)
+4w2 −w′′w′
+2w3 − 10w(3)
+16w3 + 15w′3
+16w4 + V ′
+w −Vw ′
+w2 = 0.
+10 MOHAMMED AHRAMI, ZAKARIA EL ALLALI, AND EV ANS M. HARRELL I I
+for all x ∈ [0,π ].
+Proof. If the fundamental gap satisﬁes
+Γ[V,w ] = 3π2
+( ∫ π
+0
+√
+w(t)dt
+) −2
+then the Liouville potential ψ is constant, in which case ψ′ = 0. Therefore
+w(3)
+4w2 −w′′w′
+2w3 − 10w(3)
+16w3 + 15w′3
+16w4 + V ′
+w −Vw ′
+w2 = 0.
+□
+Proposition 4.3. The Liouville potential ψ corresponding to (2) is convex if
+w(4)
+4w2 −w(3)w′
+w3 − w′′2
+2w3 + 3w′′w′2
+2w4 − 10
+16
+[ w(4)
+w3 − 3w(3)w′
+w4
+]
++ 15
+16
+[ 3w′2w′′
+w4 − 4w′4
+w5
+]
++ V ′′
+w − V ′w′
+w2 − V ′w′ +Vw ′′
+w2 + 2w′2V
+w3 ≥ 0
+on [0,π ].
+Proof. To analyze the convexity of ψ, we will apply the nonnegativity criterion for the
+second derivative. To diﬀerentiate the Liouville potentia l we make use of the chain rule.
+In particular,
+dψ
+dξ = √gdψ
+dx.
+If g = 1 then ψ is convex, so d2ψ
+dx2 ⩾ 0.
+As a consequence
+dψ
+dξ = w(3)
+4w2 − w′′w′
+2w3 − 10w(3)
+16w3 + 15w′3
+16w4 + V ′
+w − Vw ′
+w2 .
+This yields that
+d2ψ
+dξ2 = w(4)
+4w2 − w(3)w′
+w3 − w′′2
+2w3 + 3w′′w′2
+2w4 − 10
+16
+[ w(4)
+w3 − 3w(3)w′
+w4
+]
++ 15
+16
+[ 3w′2w′′
+w4 − 4w′4
+w5
+]
++ V ′′
+w − V ′w′
+w2 − V ′w′ +Vw ′′
+w2 + 2w′2V
+w3 .
+References
+[1] M. Ahrami and Z. El Allali, Lower bounds on the fundamental spectral gap with Robin boundary
+conditions, 2021 UNC Greensboro PDE Conference. Electron. J. Diﬀ. Eqns. Conf. 26 (2022), pp
+1-11.
+[2] M. Ashbaugh and R. Benguria, Optimal lower bound for the gap between the ﬁrst two eigenvalues
+of one-dimensional Schrödinger operators with symmetric single-well potentials, Proc. Amer. Math.
+Soc. 105 (1989), 419–424.
+[3] M. S. Ashbaugh and R. Svirsky, Periodic potentials with minimal energy bands, Proc. Amer. Math.
+Soc., 114 (1992) 69–77.
+[4] M. Ashbaugh and R. Benguria, Optimal bounds for ratios of eigenvalues of one-dimensional
+Schrödinger operators with Dirichlet boundary conditions and positive potentials, Comm. Math.
+Phys., 124 (1989), 403–415.
+[5] M. S. Ashbaugh, E. M. Harrell II, and R. Svirsky, On minimal and maximal eigenvalues gaps and
+their causes, Pac. J. Math. 147 (1991) 1–24.
+[6] Y. H. Cheng, S. Y. Kung, C. K. Law and W. C. Lian, The dual eigenvalue problems for the
+Sturm-Liouville system, Computers and Mathematics with Applications, 60 (2010) 255 6–2563.
+ON THE FUNDAMENTAL EIGENV ALUE GAP OF STURM-LIOUVILLE OPERA TORS 11
+[7] M. S. Ashbaugh and E. M. Harrell II, Perturbation theory for shape resonances and large barrier
+potentials, Commun. Math. Phys. 83 (1982) 151–170.
+[8] J. L. Doob, Measure theory, Graduate Texts in Mathematics (143), 1994 Springer .
+[9] Z. El Allali and E. M. Harrell II , Optimal bounds on the fundamental spectral gap with single-well
+potentials, Proc. Amer. Math. Soc., 150,(2022), 57–587.
+[10] G. Bognàr and O. Dosly, The ratio of eigenvalues of the Dirichlet eigenvalue problem for equations
+with one-dimensional p-Laplacian, Abstract and Applied Analyis, 2010 (2010).
+[11] T. Kato, Perturbation theory for linear operator, 1980 Springer-Verlag.
+[12] M. J. Huang, On the eigenvalue ratio for vibrating strings, Proc. Amer. Math. Soc., 127 (1999)
+1805–1813.
+[13] M. Horváth, On the ﬁrst two eigenvalues of Sturm-Liouville operators, Proc. Amer. Math. Soc. 131
+4 (2002) 1215–1224.
+[14] M. Horváth and M. Kiss, A bound for ratios of eigenvalues of Schrödinger operators with single-well
+potentials, Proc. Amer. Math. Soc., 134 (2006) 1425–1434.
+[15] M. J. Huang, The eigenvalue gap for vibrating strings with symmetric densities, Acta Math. Hungar.,
+117 (2007) 341–348.
+[16] M. J. Huang, A note on the eigenvalues ratio of vibrating strings, Acta Math. Hungar., 123 (2009)
+265–271.
+[17] M. J. Huang and C. K. Law, Eigenvalue ratios for the regular Sturm-Liouville system, Proc. Amer.
+Math. Soc., 124 (1996) 1427–1436.
+[18] R. Lavine, The eigenvalue gap for one-dimensional convex potentials, Proceedings of the American
+Mathematical Society 1994; 121, 815–821.
+[19] R. Svirsky, Maximally resonant potentials subject to p-Norm constraints, Pac. J. Math. 129, 357–374
+(1987).
+[20] X. J. Yu and C. F. Yang, The gap between the ﬁrst two eigenvalues of Schrödinger operators with
+single-well potential, Appl. Math. Comp. 268 (2015) 275–283.
+[21] J. Weidmann, Linear operators in Hilbert spaces, volume 68 of Graduate Texts in Mathematics.
+Springer-Verlag, New York-Berlin, 1980. Translated from t he German by Joseph Szücs.
+[22] Garrett Birkhoﬀ and Gian-Carlo Rota, Ordinary Diﬀerential Equations, 4th Edition. New York:
+Wiley, 1989. See Chapter 10, section 9.
+[23] A. Zettl Strum-Liouville theory, American Mathematical Society, 2005.
+Team of Modeling and Scientific Computing, Department of Ma thematics, Multidisci-
+plinary F aculty of Nador, University of Mohammed First, Moroc co
+Email address : m.ahrami@ump.ac.ma
+Team of Modeling and Scientific Computing, Department of Ma thematics, Multidisci-
+plinary F aculty of Nador, University of Mohammed First, Moroc co
+Email address : z.elallali@ump.ma
+School of Mathematics, Georgia Institute of Technology, Atla nta GA 30332-0160,
+USA
+Email address : harrell@math.gatech.edu

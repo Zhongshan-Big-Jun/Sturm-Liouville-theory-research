@@ -1,0 +1,189 @@
+﻿% 用法: xelatex SL_gap_n1_symline_summary.tex (两遍, -output-directory=build)
+% 主题: 缺口 (a) 闭合研究总结 - 成功路线, 失败尝试, 经验教训
+% 会话: 2026-08-10 续作 (会话 52); 证据分层同 SL_gap_n1_symline_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+
+\title{缺口 (a) 闭合研究总结: 阱族对称线 1D 分析\\
+\large 成功路线, 失败尝试与经验教训}
+\author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
+\date{2026-08-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本总结记录缺口 (a) (阱族对称线上 $f(v)$ 唯一零点与 $D(v)$ 单峰) 的完整研究过程:
+成功的解析路线 (KEY LEMMA 经 $G_1/G_2$ 分解 + $W_0$ 引理, 见
+\texttt{SL\_gap\_n1\_symline\_proof.pdf}), 以及所有失败/受阻路线与交接手稿中的
+错误 (均已独立复算发现并更正). 按项目纪律, 数值交叉检验一律标注 \EVID{} 且不构成
+证明; 结论依据仅为 E1 解析链.
+\end{abstract}
+
+\tableofcontents
+
+\section{任务回顾}
+
+承接 \texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf} 登记的缺口 (a): 对阱族对称线
+$a=v$, $b=1-v$ ($1<R\le3/2$), 需严格证明 $f(v)$ 恰有一个零点、$D(v)$ 唯一临界点
+且整体极小、端点极限 $D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$. 闭合此缺口后, 结合
+O1-INF 归约 (已独立审计) 与小 $R$ 阱族刚性定理 (\STRICT), INF 侧
+$1<R\le3/2$ 完全闭合.
+
+\section{成功路线 (STRICT, 详见证明文档)}
+
+\subsection{整体策略}
+
+对称线用相位参数化为 $c=(1-2v)/(2mv)\in(0,\infty)$; 引入
+$\widetilde F_e(c)=M_f(\alpha_1;c)-M_f(\alpha_2;c)$; 两个精确恒等式
+(Feynman--Hellmann + 链式法则, E1)
+\begin{equation}
+	S_R(\xi)=-8\tilde q^2(c+\tilde q)^3\widetilde F_e(c),\qquad
+	D_c=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e(c),
+\end{equation}
+把 $f$ 的零点与 $D$ 的临界点归结为 $\widetilde F_e$ 在 $(0,\infty)$ 的唯一零点.
+
+\subsection{KEY LEMMA 的三个成分}
+
+\begin{enumerate}
+	\item 分解 $\widetilde F_e'=(M_1-M_2)G_1+M_2(G_1-G_2)$: 若 $G_1<0$ 且
+		$G_1<G_2$, 则 $\widetilde F_e\ge0\Rightarrow\widetilde F_e'<0$
+		(``非负集上严格递减''), 加端点符号 ($\widetilde F_e(0^+)=\pi^2/4\tilde q>0$,
+		$\widetilde F_e(1/2)<0$) 得唯一零点.
+	\item P1: $G_1\le-(6\sqrt6-6)/5<-4/3$. 只用
+		$\alpha_1\in(0,\pi/2)$, $\Phi_1\ge\tilde q^2$, $W_1\ge3$, $c<1/2$.
+	\item P2: $G_2>-4/3$. 用 $\gamma=\pi-\alpha_2\in(0,\Gamma]$ 与 $W_0$ 引理:
+		$W_0(\gamma)=3-2(\pi-\gamma)\cot\gamma$ 严格递增且
+		$W_0(\Gamma)<\frac43q_0$; 分情形 $W_0\le0$ (则 $G_2\ge0$) 与
+		$0<W_0$ (则 $G_2\ge-W_0/\tilde q>-4/3$).
+\end{enumerate}
+
+\subsection{易区 c>=1/2}
+
+$\varphi_c(x)=x^2\sin^2x/(\tilde q+c\Phi_{\tilde q}(x))$ 在 $(0,\pi/2)$ 严格递增
+(对阱族 $\tilde q<1$ 的第三项为正); 分 $c\in[1/2,1]$ (相位比较 $\gamma\ge\alpha_1$
++ $((\pi-\gamma)/\gamma)^2\ge1$) 与 $c\ge1$ ($\alpha_1<\alpha_2$) 两段, 得
+$\widetilde F_e(c)<0$.
+
+\section{失败与受阻路线 (如实登记)}\label{sec:failed}
+
+\subsection{路线 1: F-e 二阶导整符号路线 (放弃)}
+
+交接摘要声称 ``$\widetilde F_e''$ 在 $[0.42,0.5]$ 为负''。独立复算 (mpmath 50 位,
+\texttt{sym\_endpoint\_fixed.py} 的数值导数) 表明该断言\emph{错误}: 实际
+$\widetilde F_e''$ 在该区域为\emph{正} ($+18\sim+27$), $\widetilde F_e'$ 递增。
+基于二阶导符号证明 $\widetilde F_e'<0$ 的路线整体放弃, 改为 $G_1/G_2$ 分解。
+
+\subsection{路线 2: G2>=0 只对曲线成立 (修正)}
+
+交接摘要声称 $G_2\ge0$ 于 $c\le0.40$ (余量 0.163)。该结论只对\emph{相位曲线}
+$\gamma=\gamma(c)$ 成立; 在自由区域 $(c,\gamma)$ 上 $G_2(2.174,\gamma\to0)=-9$
+为负。因此不能把 $G_2$ 当作自由区域函数处理, 必须回到曲线 $\gamma(c,\tilde q)$ 并用
+$W_0$ 论证 (见下)。
+
+\subsection{路线 3: W0 全域正性的初版误判 (关键更正)}
+
+交接摘要两处相互矛盾的断言: 一方面 ``$W_0\in[0,0.95]$''、``$W_0(0.1)\approx0.45$'',
+另一方面 ``$W_0(0^+)=3-2\pi<0$''。独立复算: $W_0(\gamma)=3-2(\pi-\gamma)\cot\gamma$
+在 $\gamma=0.1$ 处 $\approx-57.6$ (非 0.45), $W_0(0^+)=3-2\pi\approx-3.28<0$。
+正确结论: $W_0$ 在 $(0,\Gamma]$ ($\Gamma\approx1.1046<\pi/2$) 上\emph{严格递增但可负}。
+P2 必须分情形: $W_0\le0$ 时 $G_2\ge0$; $0<W_0$ 时 $G_2\ge-W_0/\tilde q>-4/3$
+(用 $W_0(\Gamma)<\frac43q_0$ 的精确证书)。
+
+\subsection{路线 4: 交接手稿的两处数学错误 (已更正)}
+
+\begin{enumerate}
+	\item \texttt{sym\_endpoint.py} 的 $G_2$ 第二项多乘因子 $t$ (应为 $\pi-t$),
+		导致 $c=1/2$ 闭式对 $q<1$ 错误; 修正版见
+		\texttt{sym\_endpoint\_fixed.py}。
+	\item 交接摘要把 ``$F$-tilde 在 $c=1/2$ 的闭式'' 记为带撇号 (导数)。独立复算
+		(\texttt{sym\_endpoint\_fixed.py}, 1e-29): 闭式
+		$-2\pi(1-\cos x)^3T(x)/\sin^3x$ ($x=\arccos(q/(1+q))$,
+		$T(x)=\pi^2-3x(\pi-x)-3(\pi-2x)\sin x$) 对应的是\emph{导数}
+		$\widetilde F_e'(q,1/2)$, 而非值; 值 $\widetilde F_e(q,1/2)<0$ 由更简单的
+		恒等式 $\alpha_1(1/2)+\alpha_2(1/2)=\pi$ 与
+		$\widetilde F_e(1/2)=\pi\sin^2\alpha_1(2\alpha_1-\pi)/(\tilde q+\Phi/2)$
+		给出。两者均为负, 证明文档只使用后者 (E1)。
+\end{enumerate}
+
+\subsection{路线 5: 叶盒/2D 盒证书被初等界取代 (简化)}
+
+早期按 O3a 风格尝试的精细证书 (J1 16 叶盒, J2 67 叶盒, C4 200 叶盒, LOG 128
+叶盒) 在本问题上被两个\emph{大余量初等界}取代: P1 的
+$3/(1/q_0+1/2)\approx1.7394$ 与 P2 的 $1/q_0=\sqrt{3/2}\approx1.2247<4/3$。
+余量巨大 (数值: $G_1\le-2.46$, $G_2\ge-0.40$), 无需任何盒式证书。
+
+\subsection{缺陷脚本登记 (E3 工具)}
+
+\begin{itemize}
+	\item \texttt{master\_verify.py} 的 mode-2 范数闭式与直接积分不一致 (相对误差
+		$\sim0.5$); KEY LEMMA 不依赖范数闭式, 该缺陷不影响任何结论, 登记备用。
+	\item \texttt{sym\_endpoint.py} (未修正版): 见路线 4 之 (1)。
+	\item \texttt{key\_lemma\_verify.py} 初版: $3\pi^2/R$ 的对照值误打印为
+		$3\pi^2\cdot m^2$ (应为 $3\pi^2\cdot\tilde q^2$), 数值本身正确; 已修正。
+\end{itemize}
+
+\section{经验教训}
+
+\begin{enumerate}
+	\item 交接摘要中的数值与闭式\emph{一律以独立脚本复算为准}: 本会话两处手稿错误
+		(因子 $t$, 带撇号) 均由复算发现; 摘要内互相矛盾的断言 ($W_0$ 符号) 也由
+		复算裁决。
+	\item 符号引理的\emph{假设域}必须分清: ``曲线上的 $G_2$'' 与 ``自由区域的
+		$G_2$'' 行为截然不同; 证明只能沿曲线结构。
+	\item 大余量初等界优于费解的精装证书: 先找粗糙但均匀的常数 ($\Phi\le1$,
+		$D\ge\tilde q$, $\Phi_1\ge\tilde q^2$, $W_1\ge3$), 再验余量, 往往直接闭合。
+	\item ``非负集上严格递减'' (由 $\widetilde F_e'=(M_1-M_2)G_1+M_2(G_1-G_2)$
+		与 $G_1<0<G_1-G_2$ 的符号反转推理) 是比逐点 $F'<0$ 更弱但足够的条件,
+		避免了证明 $G_2$ 在整个区域的正下界。
+	\item 端点闭式优先找\emph{结构恒等式} (如 $c=1/2$ 处 $\alpha_1+\alpha_2=\pi$),
+		再求显式值; 闭式的解析形式 (带 $T(x)$) 仅作备查与数值核验。
+\end{enumerate}
+
+\section{脚本与数据索引}
+
+\begin{itemize}
+	\item \texttt{scripts/\_symline/master\_verify.py}: 相位分支 vs 直接 secular
+		(1e-51), 范数闭式 (mode-2 缺陷, 见 \S\ref{sec:failed}).
+	\item \texttt{scripts/\_symline/sym\_endpoint\_fixed.py}: 端点导数闭式核验
+		(1e-29) 与 $T(x)>0$ 分析 (E1).
+	\item \texttt{scripts/\_symline/key\_lemma\_verify.py}: P1/P2/G1-G2 网格,
+		端点, 唯一零点, $D$ 结构, $D_c$ 符号 (EVIDENCE).
+	\item \texttt{scripts/\_symline/key\_lemma\_verify2.py}: $\gamma$ 范围, $W_0$
+		分情形, $\alpha_1+\alpha_2=\pi$, 易区宽域, $S_R$ 恒等式 (1e-11), $D(v)$
+		单调结构 (EVIDENCE).
+	\item \texttt{scripts/\_symline/key\_lemma\_certificate.py}: P1/P2 全部精确
+		有理证书 (sympy, E1).
+\end{itemize}
+
+\section{待办与后续}
+
+\begin{enumerate}
+	\item 缺口 (b): $R>3/2$ 阱族刚性 (候选路线: good root 处 $N_1=0$ 恒等式 +
+		离轴 $E=0$ 分支 $N_1<0$); 开放.
+	\item 缺口 (c): 定理 A (INF $R\to\infty$ 极限) 独立复核; CANDIDATE.
+	\item 缺口 (d): 极值点 good-root 全局论证 (边界排除已由 O3b + 本会话
+		$D(v^*)<3\pi^2/R$ 完成, 内点由 O1 结构给出); 残余部分状态不变.
+	\item 若 $R>3/2$ 刚性闭合, 与定理 A 一起给出一般 $R$ 的 INF 结论.
+\end{enumerate}
+
+\begin{remark}[诚实性声明]
+本总结中标注 \STRICT{} 的结论均可在 \texttt{SL\_gap\_n1\_symline\_proof.pdf}
+中找到完整 E1 证明; 所有 \EVID{} 数据不构成证明. 失败路线的登记以实际探索记录
+(\texttt{misc/\_well\_explore\_log.md}, \texttt{scripts/\_symline/}) 为准.
+\end{remark}
+
+\end{document}

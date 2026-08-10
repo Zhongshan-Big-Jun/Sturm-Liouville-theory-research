@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260806T140000Z-o1revise-2ED02A",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260806-o1-revise-2ED02A",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-06T14:00:00Z",
+  "completed_at": "2026-08-06T06:58:25Z",
+  "run_root": "runs/rigorous-open-math-research/R-20260806T140000Z-o1revise-2ED02A",
+  "task_packet_path": "agenda/task-packets/Q-20260806-o1-revise-2ED02A.md",
+  "task_packet_sha256": "4A2452D9DC53F4FCE77A541EBA0B85054A354B07893F642271ABF00638479225",
+  "upstream_status_verbatim": "CANDIDATE_COMPLETE_PROOF",
+  "artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "F37D3D692C736FDB1B5D848F938227E4E1BE65B1A73439D8370842E393DB7FBC",
+      "role": "normalized theorem contract"
+    },
+    {
+      "path": "obligation_graph.md",
+      "sha256": "14F33F80EF9DA8EB3B641E9E45AFC061279C57E1B8CD51A2A315419903E153A8",
+      "role": "O1a-O1f obligations"
+    },
+    {
+      "path": "approach_registry.md",
+      "sha256": "34E26E68D95DE385B188AA34D0B87121D56483738E2B7E519EFC2B02F201188B",
+      "role": "routes and failures"
+    },
+    {
+      "path": "candidate_proof.md",
+      "sha256": "728BD2B8D9F3AA9249B2E2A701006461AABC8154B18F47586A35677417254404",
+      "role": "revised O1 proof (deliverable)"
+    },
+    {
+      "path": "audit_report.md",
+      "sha256": "F7AB2963AFACFAD332F77E9D43F6021DD9ACC1F534C22D1E60A2A820BE9B5F6B",
+      "role": "self-audit O1a-O1f (deliverable)"
+    },
+    {
+      "path": "research_ledger.md",
+      "sha256": "033CCD938847DD657C880FA02FA142EBB8C06395C3658A10BDBC9C4C9BE7712D",
+      "role": "R-001..R-014"
+    },
+    {
+      "path": "counterexample_log.md",
+      "sha256": "FF29A92D45558EE309C0E02F923A8A35A5713B759BBAE5B7DB748292EDD53366",
+      "role": "C-001..C-008"
+    },
+    {
+      "path": "status_and_literature.md",
+      "sha256": "6A196C64F81489506728B0D535F106B1986FB038F3A6D017672326001F6BEC6C",
+      "role": "premise recheck + novelty"
+    },
+    {
+      "path": "repro_manifest.md",
+      "sha256": "16443EB934C7735EA00D31BEBE7A7B1D0E355F420BF4757BEE003EC600DB2A14",
+      "role": "reproducibility manifest"
+    },
+    {
+      "path": "reproducibility/",
+      "sha256": null,
+      "role": "8 verify scripts + recorded out.json + diagnostics; per-file hashes in repro_manifest.md"
+    },
+    {
+      "path": "research_cache/",
+      "sha256": null,
+      "role": "Sun 2022 / Qi 2020 / Sun-Yang 2023 records; per-file hashes in repro_manifest.md"
+    }
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10 (numpy 2.2.6, scipy 1.15.3)",
+      "xelatex (not required by this run)",
+      "PowerShell 7; network for Phase 11"
+    ],
+    "formal_systems": [],
+    "unknown_fields": [
+      "model"
+    ]
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "manager-created run root",
+    "independent re-audit of Lemma 1 and Lemma 3 required before the manager closes obligation O1 (see audit_report.md Section 5)",
+    "completed in continuation session 2026-08-06: audit_report.md delivered (lost in the original session, see ledger R-010/R-012); candidate_proof.md corrected per audit finding F-001 and BOM-stripped; Sun 2022 novelty classification finalized in status_and_literature.md N1-N5; reproducibility spot re-runs bit-identical (R-013); all text artifacts BOM-stripped 2026-08-06"
+  ]
+}

@@ -1,0 +1,46 @@
+﻿# -*- coding: utf-8 -*-
+"""#3: asymmetric scan fixed (SUP tracks max), verify with precise routine."""
+import numpy as np
+from op03_gap_fixed import lams_precise
+
+R = 4.0
+def lams_vec(blocks, k, npts=8000, smax=60.0):
+    s = np.linspace(1e-9, smax, npts)
+    M00 = np.ones(npts); M01 = np.zeros(npts); M10 = np.zeros(npts); M11 = np.ones(npts)
+    for L, c in blocks:
+        w = s*np.sqrt(c); wL = w*L
+        cw = np.cos(wL); sw = np.sin(wL)/w; sw2 = -w*np.sin(wL)
+        M00, M01, M10, M11 = cw*M00+sw*M10, cw*M01+sw*M11, sw2*M00+cw*M10, sw2*M01+cw*M11
+    d = M01
+    signs = np.signbit(d[1:]) != np.signbit(d[:-1])
+    idx = np.nonzero(signs)[0]
+    return s[idx[:k]]**2
+
+# precise check of the suspicious point
+def D_prec(uL, uR, sup):
+    a = R if not sup else 1.0
+    b = 1.0 if not sup else R
+    blocks = [(uL, a), (1-uL-uR, b), (uR, a)]
+    lam = lams_precise(blocks, 3)**2
+    return lam[1]-lam[0]
+
+print("precise D(0.3876,0.3876) INF:", D_prec(0.3876, 0.3876, False))
+print("precise D(0.3826,0.3826) INF:", D_prec(0.3826, 0.3826, False))
+print("precise D(0.4515,0.4515) SUP:", D_prec(0.4515, 0.4515, True))
+
+for sup, ref, tag in [(True, 32.61398362, "[1,R,1] SUP (track max)"), (False, 6.78448234, "[R,1,R] INF (track min)")]:
+    a = R if not sup else 1.0
+    b = 1.0 if not sup else R
+    best = ((-1e9, None) if sup else (1e9, None))
+    grid = np.linspace(0.18, 0.49, 32)
+    for uL in grid:
+        for uR in grid:
+            if uL + uR > 0.97: continue
+            blocks = [(uL, a), (1-uL-uR, b), (uR, a)]
+            lam = lams_vec(blocks, 3)
+            D = lam[1]-lam[0]
+            if (D > best[0]) if sup else (D < best[0]):
+                best = (D, (uL, uR))
+    print(f"{tag}: grid best D={best[0]:.4f} at uL,uR={best[1]} (ref={ref:.6f})")
+    # precise verify of best point
+    print(f"   precise D at best: {D_prec(best[1][0], best[1][1], sup):.6f}")

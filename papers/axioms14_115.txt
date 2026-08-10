@@ -1,0 +1,669 @@
+Article
+
+Krein–Sobolev Orthogonal Polynomials II
+Alexander Jones, Lance Littlejohn * and Alejandro Quintero Roba
+
+
+                                         Department of Mathematics, Baylor University, Sid Richardson Science Building, 1410 S. 4th Street,
+                                         Waco, TX 76706, USA; alexander_jones1@baylor.edu (A.J.); alejandro_quintero1@baylor.edu (A.Q.R.)
+                                         * Correspondence: lance_littlejohn@baylor.edu
+
+
+                                         Abstract: In a recent paper, Littlejohn and Quintero studied the orthogonal polynomi-
+                                         als {Kn }∞   n=0 —which they named Krein–Sobolev polynomials—that are orthogonal in the
+                                         classical Sobolev space H 1 [−1, 1] with respect to the (positive-definite) inner product
+                                                                                          R1
+                                         ( f , g)1,c := − ( f (1)− f (−1))(
+                                                                         2
+                                                                            g(1)− g(−1))
+                                                                                         + −1 ( f ′ ( x ) g′ ( x ) + c f ( x ) g( x ))dx, where c is a fixed,
+                                         positive constant. These polynomials generalize the Althammer (or Legendre–Sobolev)
+                                         polynomials first studied by Althammer and Schäfke. The Krein–Sobolev polynomials were
+                                         found as a result of a left-definite spectral study of the self-adjoint Krein Laplacian operator
+                                         Kc (c > 0) in L2 (−1, 1). Other than K0 and K1 , these polynomials are not eigenfunctions of
+                                         Kc . As shown by Littlejohn and Quintero, the sequence {Kn }∞                      n=0 forms a complete orthog-
+                                         onal set in the first left-definite space ( H 1 [−1, 1], (·, ·)1,c ) associated with (Kc , L2 (−1, 1)).
+                                         Furthermore, they show that, for n ≥ 1, Kn ( x ) has n distinct zeros in (−1, 1). In this note,
+                                         we find an explicit formula for Krein–Sobolev polynomials {Kn }∞                         n =0 .
+
+
+                                         Keywords: one-dimensional Krein Laplacian self-adjoint operator; left-definite spectral
+                                         theory; Althammer polynomials; Krein–Sobolev polynomials
+
+                                         MSC: 05C38, 15A15; 05A15; 15A18
+
+
+
+
+                                         1. Introduction
+                                               In a recent paper, Littlejohn and Quintero [1] studied the Krein–Sobolev polynomials
+                                         { Kn }∞
+                                               n=0 , which are orthogonal in the classical Sobolev space:
+Academic Editor: Gradimir V.
+Milovanović                                              H 1 [−1, 1] = { f : [−1, 1] → C | f ∈ AC [−1, 1]; f ′ ∈ L2 (−1, 1)},                                 (1)
+Received: 31 December 2024
+Revised: 24 January 2025                 which is endowed with the inner product
+Accepted: 25 January 2025
+                                                                                                            Z 1
+Published: 1 February 2025                                        ( f (1) − f (−1))( g(1) − g(−1))
+                                                                                                                   f ′ ( x ) g′ ( x ) + c f ( x ) g( x ) dx.
+                                                                                                                                                        
+                                                ( f , g)1,c = −                                    +                                                           (2)
+Citation:   Jones, A.; Littlejohn, L.;                                            2                          −1
+Quintero Roba, A. Krein–Sobolev
+Orthogonal Polynomials II. Axioms
+                                         Throughout this paper, unless otherwise specified, we assume c is a fixed, positive constant.
+2025, 14, 115. https://doi.org/          This is not immediately obvious, especially since the discrete term in (2) has a minus sign,
+10.3390/axioms14020115                   that (·, ·)1,c defines a (positive-definite) inner product. These Krein–Sobolev polynomials
+Copyright: © 2025 by the authors.
+                                         naturally arise in the spectral analysis of the shifted one-dimensional Krein Laplacian
+Licensee MDPI, Basel, Switzerland.       self-adjoint operator Kc : D(Kc ) ⊂ L2 (−1, 1) → L2 (−1, 1) defined by
+This article is an open access article
+distributed under the terms and                                     Kc f = − f ′′ + c f                                                                        (3)
+conditions of the Creative Commons                                                                   f (1) − f (−1)
+                                                                                                                   
+                                                                                        ′    ′
+Attribution (CC BY) license                                  f ∈ D(Kc ) : = f ∈ ∆ | f (1) = f (−1) =                  ;                                        (4)
+                                                                                                            2
+(https://creativecommons.org/
+licenses/by/4.0/).
+
+
+
+
+Axioms 2025, 14, 115                                                                                              https://doi.org/10.3390/axioms14020115
+Axioms 2025, 14, 115                                                                                                     2 of 10
+
+
+
+                       here, ∆ is the maximal domain associated with the expression m[y] = −y′′ + cy in L2 (−1, 1),
+                       given by
+                                       ∆ := { f : (−1, 1) → C | f , f ′ ∈ AC [−1, 1]; f ′′ ∈ L2 (−1, 1)}.
+
+                       We note that, when c = 0, the bilinear form (·, ·)1,0 is only a pseudo inner product so, unless
+                       otherwise indicated, we assume c > 0. We note that the subscript 1 in (·, ·)1,c refers to
+                       the fact that ( H 1 [−1, 1], (·, ·)1 ) is called the first left-definite space (see Sections 2 and 3)
+                       associated with (Kc , L2 (−1, 1)).
+                            The Krein–Sobolev polynomials {Kn }∞             n=0 are, in a sense, a generalization of Altham-
+                                                 ∞
+                       mer’s polynomials { An }n=0 , first studied by Althammer [2] in 1962, and later by Schäfke [3]
+                       in 1972. Althammer showed the sequence{ An }∞              n=0 is orthogonal with respect to the Sobolev
+                       inner product
+                                                                 Z 1
+                                                                      f ( x ) g( x ) + λ f ′ ( x ) g′ ( x ) dx
+                                                                                                           
+                                                   ⟨ f , g⟩λ =                                                               (5)
+                                                                 −1
+
+                       (where λ is a fixed, positive parameter) in H 1 [−1, 1]. Notice that when λ = 1/c and
+                        f ∈ H 1 [−1, 1] is an even function, then
+
+                                                     ( f , g)1,c = c⟨ f , g⟩1/c   ( g ∈ H 1 [−1, 1])                        (6)
+
+                       (later, we see that both A2n ( x ) and K2n ( x ) are even; in fact, we show that A2n ( x ) = K2n ( x )
+                       for all n ∈ N0 ).
+                             In the literature, the sequence { An }∞  n=0 is known as Althammer’s polynomials or Sobolev–
+                       Legendre polynomials, which has the latter name because the initial construction of { An }∞          n =0
+                       involves the difference of two Legendre polynomials. In [2] and in a later 1972 contribution
+                       by Schäfke [3], several explicit properties of these polynomials were established, including
+                       an exact formula for An ( x ).
+                             Althammer’s work is considered to be one of the first publications on the subject
+                       of Sobolev orthogonal polynomials, which is an area that has seen massive growth since
+                       the 1990s. For informative and detailed accounts of the history of the study of Sobolev
+                       orthogonal polynomials, we recommend the sources [4,5]. Sobolev orthogonal polyno-
+                       mials have applications in various areas, particularly in numerical analysis and solving
+                       boundary value problems for differential equations, where their ability to provide smooth
+                       approximations with good convergence properties is valuable.
+                             Littlejohn and Quintero [1] found several properties of the Krein–Sobolev polynomials
+                       { Kn }∞n=0 . However, they were not able to find an explicit formula for Kn for all n ∈ N0 . It is
+                       the purpose of this note to give an explicit representation of these polynomials.
+                             The contents of this paper are as follows. In Section 2, we recall properties of the
+                       classical self-adjoint Krein Laplacian operator K0 and the shifted Krein Laplacian operator
+                       Kc when c > 0. The operator Kc (c > 0) is a positive, self-adjoint operator in L2 [−1, 1].
+                       Consequently, by applying a general left-definite theory of positive self-adjoint operators
+                       developed by Littlejohn and Wellman in [6,7], there is a continuum of Hilbert spaces
+                       { Hr }r>0 , the so-called left-definite spaces, generated by positive powers Kcr of Kc (r > 0). In
+                       general, we call H1 the first left-definite space. In the case of the shifted Krein Laplacian
+                       Kc , it is the case that the first left-definite space is ( H 1 [−1, 1], (·, ·)1,c ). Section 3 motivates
+                       left-definite theory and discusses the main results of abstract left-definite theory needed
+                       for this paper. In Section 4, we review properties of the Krein–Sobolev polynomials in the
+                       first left-definite space ( H 1 [−1, 1], (·, ·)1,c ) for the shifted Krein Laplacian operator Kc in
+                       L2 (−1, 1). The construction of {Kn }∞     n=0 is intricate and similar to the construction of the
+                       Althammer polynomials developed in [2,3]. In Section 5, we discuss these Althammer
+                       polynomials and present our new result, namely, an explicit formula of each Krein–Sobolev
+Axioms 2025, 14, 115                                                                                             3 of 10
+
+
+
+                       polynomial Kn ( x ). Lastly, in Section 6, we summarize our main result and suggest an open
+                       problem on density of polynomials in certain constrained Hilbert spaces.
+
+                       2. The Krein Laplacian Self-Adjoint Operator
+                            In L2 [−1, 1], with standard inner product
+                                                                                Z 1
+                                                         ( f , g) L2 [−1,1] =         f ( x ) g( x )dx,
+                                                                                 −1
+
+                       there are uncountably many unbounded, self-adjoint operators T generated by the second-
+                       order differential expression
+                                                          m[y] := −y′′ .
+
+                       In this continuum, one such self-adjoint operator is the Krein Laplacian operator K0 defined
+                       in (3) and (4) when c = 0. Complete details on an analytic study of this operator in L2 [−1, 1]
+                       can be found in [8] in Section 10. In L2 [−1, 1], the Krein Laplacian operator K0 has a
+                       discrete spectrum given by
+
+                                                   σ (K0 ) = {0} ∪ {(nπ )2 }∞          2 ∞
+                                                                            n =1 ∪ { µ n } n =1 ,                   (7)
+
+                       and (complete) eigenfunctions
+
+                                                    {1, x } ∪ {cos nπx }∞                ∞
+                                                                        n=1 ∪ {sin µn x }n=1 ,                      (8)
+
+                       where µn > 0 is a solution of the transcendental equation
+
+                                                                tan µ = µ         (n ∈ N).
+
+                       More specifically, the eigenspace of λ = 0, equivalently the null space of K0 , is
+                       two-dimensional and spanned by {1, x }. The eigenspace for the eigenvalue λ = (nπ )2
+                       (n ∈ N) is one-dimensional and spanned by the eigenfunction cos nπx, while the
+                       eigenspace for each λ = µ2n is one-dimensional and spanned by sin µn x.
+                             An application of the general left-definite theory developed by Littlejohn and Wellman
+                       (see [6,7]) to the Krein Laplacian K0 produces a first left-definite space that is only a pseudo
+                       inner product space, since the two-dimensional eigenspace W = span{1, x } acts like the
+                       zero element for this inner product. To avoid the awkwardness of considering equivalence
+                       classes of functions, we shift the spectrum (7) by c > 0. This allows for a left-definite
+                       analysis in a Hilbert function space with a positive-definite inner product. Consequently,
+                       from hereon, we study the shifted Krein Laplacian Kc in L2 [−1, 1] when c > 0 is fixed. In
+                       this case, Kc is self-adjoint and bounded below by cI in L2 (−1, 1); that is,
+
+                                              (Kc f , f ) L2 [−1,1] ≥ c( f , f ) L2 [−1,1]    ( f ∈ D(Kc ));        (9)
+
+                       moreover, the spectrum of Kc is given by
+
+                                                σ (Kc ) = {λ + c | λ ∈ σ (K0 )} = σ (K0 ) + c,
+
+                       where σ (K0 ) is given in (7). The eigenfunctions of Kc are, of course, the same as for K0 . The
+                       first left-definite space was computed in [1] to be the Sobolev space ( H 1 [−1, 1], (·, ·)1,c ).
+                             As mentioned in the introduction, it is not immediately clear that (·, ·)1,c is a positive-
+                       definite inner product on H 1 [−1, 1] × H 1 [−1, 1]. Even though it necessarily is an inner
+                       product from left-definite theory, we give an elementary proof. For f ∈ H 1 [−1, 1], we see
+                       from the Cauchy–Schwarz inequality that
+Axioms 2025, 14, 115                                                                                                                                4 of 10
+
+
+
+                                                    Z 1                      Z 1                      Z 1                     1/2 Z 1          1/2
+                                                            ′                         ′                            ′      2
+                          | f (1) − f (−1)| =              f ( x )dx ≤               f ( x ) dx ≤                f ( x ) dx                  dx
+                                                      −1                       −1                          −1                           −1
+                                                √ Z 1 ′          1/2
+                                                              2
+                                               = 2     f ( x ) dx      .
+                                                            −1
+
+                       It follows that
+
+                                       | f (1) − f (−1)|2
+                                                                   Z 1                         Z 1                                  
+                                                                                      2                            2
+                                                          ≤                  f ′ ( x ) dx ≤              f ′ (x)       + c| f ( x )|2 dx,             (10)
+                                                2                      −1                        −1
+
+                       and, consequently,
+
+                                                           | f (1) − f (−1)|2
+                                                                                          Z 1                               
+                                                                                                           2
+                                       ( f , f )1,c = −                       +                  f ′ (x)       + c| f ( x )|2 dx ≥ 0.
+                                                                    2                     −1
+
+                       Furthermore, if ( f , f )1,c = 0, we see from (10) that
+                                                                            Z 1
+                                                                                  | f ( x )|2 dx = 0,
+                                                                             −1
+
+                       implying that f = 0 almost everywhere for x ∈ (−1, 1). However, since f ∈ AC [−1, 1], we
+                       must have f ≡ 0 on [−1, 1]. It now follows that (·, ·)1,c is a positive-definite inner product
+                       on H 1 [−1, 1] × H 1 [−1, 1].
+
+                       3. A Glimpse of Left-Definite Operator Theory
+                            Left-definite spectral theory has its origins in the seminal work of H. Weyl [9] in his
+                       analytical study of second-order Sturm–Liouville differential equations. Indeed, consider
+                       the differential expression
+
+                                             m[y]( x ) = −( p( x )y′ ( x ))′ + q( x )y( x )                ( x ∈ I = ( a, b)),
+
+                       where, for simplicity sake, we assume p, q ∈ C ( I ) are both positive functions; here, −∞ ≤
+                       a < b ≤ ∞. There are two ‘natural’ Hilbert space settings to study symmetric and self-
+                       adjoint operators generated by m[·]. Indeed, consider the spectral equation
+
+                                                                m[y]( x ) = λw( x )y( x )             ( x ∈ I ),                                      (11)
+
+                       where w ∈ L1 ( a, b) is positive almost everywhere on ( a, b). The first setting is the Hilbert
+                       space L2 (( a, b); w); since the weight function w appears on the right-hand side of (11), we
+                       call L2 (( a, b); w) the right-definite setting. The left-definite setting is a certain Sobolev space S
+                       with inner product
+                                                                  Z b
+                                                                         p( x ) f ′ ( x ) g′ ( x ) + q( x ) f ( x ) g( x ) dx.
+                                                                                                                          
+                                                ( f , g)Sob =                                                                                         (12)
+                                                                   a
+
+                       The inner product in (12) is formally obtained from the classic Dirichlet identity
+                                Z b                                                          Z b
+                                      p( x ) f ′ ( x ) g′ ( x ) + q( x ) f ( x ) g( x ) dx =     m[ f ]( x ) g( x )dx − { f , g}( x ) |ba ,
+                                                                                       
+                                                                                                                                                      (13)
+                                 a                                                               a
+
+                       where { f , g}( x ) = − p( x ) f ′ ( x ) g( x ) is the Dirichlet form associated with m[·]. The term
+                       ‘ left-definite’ arises from the fact that the left-hand side of (11) generates the inner product
+                        in (12). The mathematical literature, especially during the period 1970–2005, contains
+                        numerous articles on the left-definite study of second-order Sturm–Liouville equations; for
+                        example, see [10–13]. A further discussion of left-definite theory applied to second-order
+Axioms 2025, 14, 115                                                                                                      5 of 10
+
+
+
+                       Sturm–Liouville equations can be found in the texts [14] , Chapter 5, and [15], Chapters 5
+                       and 12.
+                             In [6,7] (see also [16]), the authors generalize the notion of left-definite theory to
+                       arbitrary self-adjoint operators A in a Hilbert space ( H, (·, ·) H ), which are bounded below
+                       by a positive constant k in H; that is, A satisfies the inequality
+
+                                                       ( A f , f ) H ≥ k( f , f ) H   ( f ∈ D( A)),                         (14)
+
+                       for some k > 0. Indeed, as shown in [6,7], Littlejohn and Wellman show that such an
+                       operator A produces a continuum of left-definite Hilbert spaces { Hr , (·, ·)r }r>0 . The space
+                       Hr is called the r th left-definite space associated with ( H, A). Left-definite spaces are special
+                       cases of Hilbert scales, as described in [17,18].
+                             We briefly describe the salient results of this left-definite operator theory for the pur-
+                       poses of this paper. Definition 1 below, taken from Definitions 2.1 and 3.1 in [6], is motivated
+                       by five common features observed in examples listed in the above-mentioned papers.
+                             Suppose V is a real or complex vector space and (·, ·) is an inner product on V × V such
+                       that H = (V, (·, ·)) is a separable Hilbert space. In addition, suppose A : D( A) ⊂ H → H
+                       is self-adjoint and bounded below by kI for some positive constant k; that is, the inequality
+                       in (14) is satisfied. From the Hilbert space spectral theorem, for each r > 0, Ar is self-adjoint
+                       and bounded below by kr I.
+
+                       Definition 1. Let r > 0; suppose Vr is a subspace of V, and (·, ·)r is an inner product on Vr × Vr .
+                       Let Hr = (Vr , (·, ·)r ). We say that Hr is an r th left-definite space associated with ( H, A) if each of
+                       the following properties are satisfied:
+                       (1)   Hr is a Hilbert space;
+                       (2)   D( Ar ) is a subspace of Vr ;
+                       (3)   D( Ar ) is dense in Hr ;
+                       (4)   ( x, x )r ≥ kr ( x, x ) for x ∈ Vr ;
+                       (5)   ( x, y)r = ( Ar x, y) for x ∈ D( Ar ) and y ∈ Vr .
+
+                            The following theorem clarifies the existence, and uniqueness, of each Hr . The proof
+                       of this theorem can be found in [6] in Theorems 3.1, 3.4, and Theorem 3.7.
+
+                       Theorem 1. Suppose A is a self-adjoint operator in the separable Hilbert space H = (V, (·, ·)),
+                       which is bounded below by kI for some k > 0. Let r > 0, and define
+
+                                                          Vr := D( Ar/2 )
+                                                     ( x, y)r := ( Ar/2 x, Ar/2 y) ( x, y ∈ Vr )
+                                                          Hr := (Vr , (·, ·)r ).
+
+                       Then, Hr is the unique r th left-definite space associated with ( H, A). Moreover, we have the
+                       following:
+                       (i)   If A is bounded, then V = Vr and the inner products (·, ·) and (·, ·)r are equivalent for all
+                             r > 0;
+                       (ii) If A is unbounded, then Vr is a proper subspace of V, and for 0 < r < s, Vs is a proper
+                             subspace of Vr ; moreover, none of the inner products (·, ·), (·, ·)r , or (·, ·)s are equivalent;
+                       (iii) If {ϕn } is a (complete) set of orthogonal eigenfunctions of A in H, then they are also a
+                             (complete) orthogonal set in each left-definite space Hr .
+
+                             From Theorem 1, we see that H 1 [−1, 1] is the form domain of Kc ; that is to say,
+                       H 1 [−1, 1] = D(Kc1/2 ).
+Axioms 2025, 14, 115                                                                                                    6 of 10
+
+
+
+                       4. The Sobolev Space H 1 [−1, 1] and the Krein–Sobolev
+                       Orthogonal Polynomials
+                             From Theorem 1(iii), the eigenfunctions of the shifted Krein Laplacian operator Kc ,
+                       given in (8), form a complete orthogonal set in ( H 1 [−1, 1], (·, ·)1,c ). The main purpose of
+                       the Littlejohn–Quintero paper [1] was to construct a different complete orthogonal set in
+                       H 1 [−1, 1], namely, the Krein–Sobolev polynomials {Kn }∞  n=0 . We remark, however, that the
+                       polynomial Kn ( x ) is not an eigenfunction of Kc for any c ≥ 0 when n ≥ 2.
+                             The construction of the Krein–Sobolev polynomials {Kn }∞   n=0 is similar to Althammer’s
+                                                                  ∞
+                       construction of the polynomials { An }n=0 , which we discuss in Section 5. Both polynomial
+                       sets { An }∞                 ∞
+                                   n=0 and { Kn }n=0 are even or odd polynomials, and both are normalized so that
+                       An (1) = Kn (1) = 1. Furthermore, as we will see in Section 5, when n is even and λ = 1/c
+                       (see (5)), An ( x ) = Kn ( x ). However, the Althammer and Krein–Sobolev polynomials of odd
+                       degrees > 3 are different.
+                             For n ∈ N0 , define
+
+                                             Sn ( x ) := Pn ( x ) − Pn−2 ( x )   ( P−2 ( x ) = P−1 ( x ) = 0),            (15)
+
+                       where { Pn }∞n=0 is the sequence of classical Legendre polynomials normalized by Pn (1) = 1
+                       for each n ∈ N0 . For various properties of the Legendre polynomials, and orthogonal
+                       polynomials in general, see the classic text [19] , Chapter IV, of Szegö.
+                            Calculations show that S0 ( x ) = 1, S1 ( x ) = x, S2 ( x ) = 32 ( x2 − 1), etc.; moreover,
+                       Sn (1) = 0 for n ≥ 2.
+                            In [1], the following technical result was established for {Sn }∞ n =0 .
+
+
+                       Proposition 1. The following properties for the polynomials {Sn }∞
+                                                                                        n=0 hold:
+
+                       (i)     For n ≥ 2, Sn (1) = 0;
+                       (ii)
+                                                                  Sn (− x ) = (−1)n Sn ( x );
+
+                       (iii)
+                                                                                   (
+                                                                                       2       if n = 1
+                                                           Sn (1) − Sn (−1) =                            ;
+                                                                                       0       if n ̸= 1
+
+                       (iv)
+                                                          
+                                                           2c
+                                                                                                            if n = 0
+                                                            2
+                                                            3 c                                             if n = 1
+                                                          
+                                          (Sn , Sn )1,c =                                  
+                                                                    1      1
+                                                           2c
+                                                                        +                     + 2(2n − 1) if n > 1;
+                                                                   2n + 1 2n − 3
+
+                       (v)
+                                                            (Sn , Sm )1,c = 0 for |n − m| ̸= 0, 2;
+
+                       (vi)
+                                                                                         2c
+                                                                 (Sn , Sn−2 )1,c = −          .                           (16)
+                                                                                       2n − 3
+
+                             We are now in position to define the polynomials {Kn }∞                 ∞
+                                                                                      n=0 from { Sn }n=0 ; as shown
+                       in [1], the sequence {Kn }∞n=0 forms a complete orthogonal set (see Theorem 3) with respect
+                       to the inner product (·, ·)1,c .
+
+                       Definition 2. For n ∈ N0 , define
+Axioms 2025, 14, 115                                                                                                        7 of 10
+
+
+
+                                                                          [n/2]
+                                                           Kn ( x ) := ∑ an−2r Sn−2r ( x ),                                   (17)
+                                                                           r =0
+
+                       where K−2 ( x ) = K−1 ( x ) = 0, a0 = a1 = 1, and
+
+                                                                      (Kn−2 , Sn−2 )1,c
+                                                        an := −                                ( n ≥ 2).                      (18)
+                                                                       (Sn , Sn−2 )1,c
+
+                            Note that, by (16), each an is well defined when c > 0. Moreover, calculations show
+                       that K0 ( x ) = S0 ( x ) = 1, and K1 ( x ) = S1 ( x ) = x. We recall from Section 2 that both K0
+                       and K1 are eigenfunctions of the shifted Krein Laplacian operator Kc (corresponding to the
+                       eigenvalue λ = c). However, Kc has no other polynomial eigenfunctions.
+                            In [1], the authors proved the following results.
+
+                       Theorem 2. The Krein–Sobolev polynomials {Kn }∞                          ∞
+                                                                     n=0 and the sequence { an }n=0 have the follow-
+                       ing properties:
+                       (i) Kn (− x ) = (−1)n Kn ( x );
+                       (ii) Kn = an Sn + Kn−2 ;
+                       (iii) The sequence { an }∞
+                                                n=0 satisfies a0 = a1 = a2 = a3 = 1 and, for n ≥ 2,
+
+                                                                         4n2 − 1
+                                                                                     
+                                                                                              2n + 1
+                                                   a n +2 = a n       1+                  +          ( a n − a n −2 );        (19)
+                                                                            c                 2n − 3
+
+                       (iv) an+2 ≥ an ; moreover, an ≥ 1 for each n ∈ N0 ;
+                       (v) For n ≥ 2,
+                                                           ( an Sn + Kn−2 , Sn−2 )1,c = 0;
+
+                       (vi) Kn is a polynomial of degree exactly n, and Kn (1) = 1.
+
+                       Theorem 3. The Krein–Sobolev polynomials {Kn }∞         n=0 , defined in (17), form a complete orthog-
+                       onal set of polynomials in the first left-definite space ( H 1 [−1, 1], (·, ·)1,c ), defined in (1) and (2),
+                       associated with the shifted Krein Laplacian operator Kc in L2 (−1, 1). Moreover,
+
+                                                                        2c
+                                                 (Km , Kn )1,c =             an an+2 δn,m         (n, m ∈ N0 )
+                                                                      2n + 1
+
+                       where δn,m is the Kronecker delta function.
+
+                       Theorem 4. The roots of the Krein–Sobolev orthogonal polynomials {Kn }∞
+                                                                                             n=1 are real, simple, and
+                       lie in the interval (−1, 1).
+
+                       5. An Explicit Representation of the Krein–Sobolev Polynomials
+                           As shown by Schäfke [3], the Althammer polynomials { An }∞
+                                                                                    n=0 satisfy the following
+                       properties:
+                       (i)   A0 ( x ) = 1, A1 ( x ) = x and, for n ≥ 2,
+
+                                                                                  [n/2]
+                                                                  An ( x ) = ∑ a′n−2k Sn−2k ,
+                                                                                  k =0
+
+                             where Sn is defined in (15), and the sequence { a′n }∞
+                                                                                  n=0 satisfies the recurrence relation
+                             a0′ = a1′ = 1 and
+                                                                                 
+                                                                           2n + 1
+                                          a′n+2 = a′n (1 + (4n2 − 1)λ) +            ( a′n − a′n−2 ) (n ≥ 2).       (20)
+                                                                           2n − 3
+Axioms 2025, 14, 115                                                                                                        8 of 10
+
+
+
+                              Furthermore, each a′n > 0 and is explicitly given by
+
+                                                              [(n−1)/2]        k
+                                                                            λ          1 (n + 2k − 1)!
+                                                   a′n =         ∑          4        (2k)! (n − 2k − 1)!
+                                                                                                              (n ∈ N);        (21)
+                                                                k =0
+
+
+                       (ii)   For each n ∈ N0 ,
+                                                                         An (− x ) = (−1)n An ( x );
+
+                       (iii) For each n, m ∈ N0 , { An }∞
+                                                        n=0 satisfy the orthogonality relationship
+
+                                                                                           2
+                                                                    ⟨ An , Am ⟩λ =             a′ a′ δn,m ,
+                                                                                         2n + 1 n n+2
+
+                              where ⟨·, ·⟩λ is defined in (5).
+                             From (20), when λ = 1/c (see (6)), we see that the Althammer coefficients { a′n }∞   n =2
+                       satisfy the exact same recurrence relation as the Krein–Sobolev coefficients { an }∞
+                                                                                                          n=2 in (19).
+                       Moreover, since
+                                                            a0′ = a2′ = a0 = a2 ,
+
+                       it follows that
+                                                                        ′
+                                                                       a2n = a2n         (n ∈ N0 ),
+
+                       and, consequently, when λ = 1/c, we see that
+
+                                                                          K2n ( x ) = A2n ( x ).
+
+                            However, since a3′ = 1 + 1/c ̸= a3 = 1, the odd connection coefficients { a2n−1 }∞  n=1 for
+                       the Krein–Sobolev polynomials are different from the Althammer coefficients { a2n−1 }∞ ′
+                                                                                                                    n =1
+                       given explicitly in (21). In fact, the unique solution to (19) when n is odd, that is to say,
+
+                                                       8n − 6 16n2 − 16n + 3             4n − 1
+                                                                                             
+                                         a2n+1 =              +                a2n−1 −            a2n−3 .
+                                                       4n − 5       c                    4n − 5
+
+                       with the initial conditions a1 = a3 = 1, is given explicitly by
+
+                                                       n −1        k
+                                                                λ        (n − k) (2n + 2k + 1)!
+                                           a2n+1 = ∑                                                           (n ∈ N0 ).     (22)
+                                                       k =0
+                                                                4        (n + k) (2n − 2k + 1)!(2k)!
+
+                       An algebraic proof (22) that satisfies this initial value difference problem is tedious to
+                       calculate. Remarkably, we note that Wolfram’s Mathematica instantly verifies the solution
+                       (22) with the command FullSimplify.
+                            We summarize our main result in the following theorem.
+
+                       Theorem 5. With the polynomials {Sn }∞ n=0 defined in (15) we have the following formula for each
+                       Krein-Sobolev polynomial of degree n ∈ N :
+
+                                                                                 n
+                                                                K2n ( x ) = ∑ a2n−2k S2n−2k ( x ),                            (23)
+                                                                                k =0
+
+                       where                                                                  k
+                                                                                 m −1 
+                                                                                          λ          (2m + 2k − 1)!
+                                            a0 = a2 = 1 and a2m = ∑
+                                                                                  k =0
+                                                                                          4        (2m − 2k − 1)!(2k)!
+Axioms 2025, 14, 115                                                                                                             9 of 10
+
+
+
+                       and
+                                                                           n
+                                                         K2n+1 ( x ) = ∑ a2n−2k+1 S2n−2k+1 ( x ),                                  (24)
+                                                                         k =0
+
+                       where                                                        k 
+                                                                       m −1 
+                                                                                           m−k
+                                                                                                 
+                                                                                λ                      (2m + 2k + 1)!
+                                     a1 = a3 = 1 and a2m+1 = ∑                                                           .
+                                                                        k =0
+                                                                                4          m+k       (2m − 2k + 1)!(2k)!
+
+                            As discussed in Theorem 3 and Theorem 4, these polynomials {Kn }∞          n=0 form a com-
+                       plete orthogonal set in the Sobolev space ( H 1 [−1, 1], (·, ·)1,c ) and, for n ∈ N, Kn ( x ) has
+                       exactly n distinct real roots in (−1, 1).
+                            We list the first few Krein–Sobolev polynomials Kn ( x ):
+
+                                  K0 ( x ) = 1
+                                  K1 ( x ) = x
+                                             3 2 1
+                                  K2 ( x ) =   x −
+                                             2      2
+                                             5 3 3
+                                  K3 ( x ) = x − x
+                                             2      2
+                                             (35c + 525) 4 (30c + 630) 2 (3c + 105)
+                                  K4 ( x ) =             x −             x +
+                                                  8c              8c             8c
+                                             (126c + 3969) 5 (140c + 5670) 3 (30c + 1701)
+                                  K5 ( x ) =               x −               x +            x
+                                                  16c                16c              16c
+                                             (231c2 + 24255c + 218295) 6 (315c2 + 39375c + 363825) 4
+                                  K6 ( x ) =                           x −                        x
+                                                        16c2                          16c2
+                                             (105c2 + 16065c + 155925) 2 (−5c2 + 945c + 10395)
+                                           +                           x −                     .
+                                                        16c2                        16c2
+
+                       6. Conclusions
+                             The first left-definite space ( H 1 [−1, 1], (·, ·)1,c ), defined in (1) and (2), for the self-
+                       adjoint shifted Krein operator Kc contains polynomials as a dense subspace. Furthermore,
+                       the Krein–Sobolev polynomials {Kn }∞          n=0 form a (complete) orthogonal set in ( H1 , (·, ·)1,c )
+                       and, for n ≥ 1, Kn ( x ) has n simple roots in (−1, 1). These results were established by
+                       Littlejohn and Quintero in the earlier contribution [1]. In this present paper, the main
+                       objective was to present an explicit form of these Krein–Sobolev polynomials; this explicit
+                       form is given in (23) and (24).
+                             A natural question to ask regards the set of polynomials that are dense in the second
+                       left-definite space ( H2 [−1, 1], (·, ·)2,c ) given explicitly by
+
+                                                         f : [−1, 1] → C | f , f ′ ∈ AC [−1, 1]; f ′′ ∈ L2 (−1, 1)o
+                                                     
+                                     H2 [−1, 1] =                                                                 ;
+                                                                                                                 f (1)− f (−1)     (25)
+                                                                                      f ′ (−1) = f ′ (1) =             2
+
+                       and
+
+                                       ( f , g)2,c = −c( f (1) − f (−1))( g(1) − g(−1))
+                                                     Z 1                                                                 
+                                                   +      f ′′ ( x ) g′′ ( x ) + 2c f ′ ( x ) g′ ( x ) + c2 f ( x ) g( x ) dx?
+                                                       −1
+
+                       We do not know the answer to this question. A straightforward calculation shows that a
+                       basis for polynomials in H2 [−1, 1] is given by
+
+                                                          p2n ( x ) = x2n − n/(n − 1) x2n−2
+                                                            p2n+1 = x2n+1 − n/(n − 1) x2n−1
+Axioms 2025, 14, 115                                                                                                                  10 of 10
+
+
+
+                                   for n ∈ N0 , n ̸= 1. Consequently, there is no polynomial of degree 2 or 3 belonging to
+                                   H2 [−1, 1]. Even though this basis is not algebraically complete, it is not clear if they are
+                                   analytically complete in H2 [−1, 1]. Note that the theory of exceptional orthogonal poly-
+                                   nomials provides several examples of algebraically incomplete sequences of polynomials
+                                   that are analytically complete. This problem suggests a larger open problem with regard to
+                                   finding conditions for the density of polynomials in Hilbert spaces constrained by boundary
+                                   conditions (as is the case in (25)).
+
+                                   Author Contributions: Writing—original draft, A.J., L.L. and A.Q.R. All authors have read and
+                                   agreed to the published version of the manuscript.
+
+                                   Funding: This research received no external funding.
+
+                                   Data Availability Statement: Data are contained within the article.
+
+                                   Conflicts of Interest: The authors declare no conflict of interest.
+
+References
+1.    Littlejohn, L.L.; Quintero, A. Krein-Sobolev orthogonal polynomials. In Proceedings of the 16th International Symposium, Montreal,
+      Canada, In honor to Richard Askey, Montreal, QC, Canada, 13–17 July 2023; CRM Series in Mathematical Physics, to appear.
+2.    Althammer, P. Eine Erweiterung des Orthogonalitätsbegriffes bei Polynome und deren Anwendung auf die beste Approximation.
+      J. Reine Angew. Math. 1962, 211, 192–204. [CrossRef]
+3.    Schäfke, F.W. Zu den Orthogonalpolynomen von Althammer. J. Reine Angew. Math. 1972, 252, 195–199.
+4.    Marcellán, F.; Xu, Y. On Sobolev orthogonal polynomials. Expo. Math. 2015, 33, 308–352. [CrossRef]
+5.    Meijer, H.G. A short history of orthogonal polynomials in a Sobolev space. I. The non-discrete case. In Proceedings of the 31st
+      Dutch Mathematical Conference, Groningen, The Netherlands, 2–6 October 1995; Volume 14, pp. 93–112.
+6.    Littlejohn, L.L.; Wellman, R. A general left-definite theory for certain self-adjoint operators with applications to differential
+      equation. J. Differ. Equ. 2002, 181, 280–339. [CrossRef]
+7.    Littlejohn, L.L.; Wellman, R. On the spectra of left-definite operators. Complex Anal. Oper. Theory 2013, 7, 437–455. [CrossRef]
+8.    Ashbaugh, M.S.; Gesztesy, F.; Mitrea, M.; Teschl, G. Spectral theory for perturbed Krein Laplacians in nonsmooth domains. Adv.
+      Math. 2010, 223, 1372–1467. [CrossRef]
+9.    Weyl, H. Über gewöhnliche Differentialgleichungen mit Singularitäten und die zugehörigen Entwicklungen willkürlicher
+      Funktionen. Math. Ann. 1910, 68, 220–269. [CrossRef]
+10.   Pleijel, Å. On Legendre’s Polynomials; Mathematical Studies 21; North Holland Publishing Co.: Amsterdam, The Netherlands, 1975;
+      pp. 175–180.
+11.   Bennewitz, C.; Everitt, W.N. On second order left-definite boundary problems. In Ordinary Differential Equations and Operators
+      (Dundee, 1982); Lecture Notes in Mathematics; Springer: Berlin/Heidelberg, Germany, 1983; Volume 1032, pp. 31–67.
+12.   Kong, Q.; Wu, H.; Zettl, A. Singular left-definite Sturm-Liouville Problems. J. Differ. Equ. 2004, 206, 1–29. [CrossRef]
+13.   Niessen, H.D.; Schneider, A. Spectral theory for left-definite singular systems of differential equations I. In North-Holland
+      Mathematical Studies; North-Holland: Amsterdam, The Netherlands, 1974; Volume 13, pp. 29–56.
+14.   Bennewitz, C.; Brown, B.M.; Weikard, R. Spectral and Scattering Theory for Ordinary Differential Equations I: Sturm-Liouville Equations;
+      Universitext; Springer Nature: Cham, Switzerland, 2020.
+15.   Zettl, A. Sturm-Liouville Theory; Mathematical Surveys and Monographs; American Mathematical Society: Providence, RI, USA,
+      2005; Volume 121.
+16.   Fischbacher, C.; Gesztesy, F.; Hagelstein, P.; Littlejohn, L.L. Abstract Left-Definite Theory: A Model Operator Approach and Some
+      Examples. arXiv 2024, submitted for publication.
+17.   Albeverio, S.; Kurasov, P. Singular Perturbations of Differential Operators; London Mathematical Society: Lecture Notes Series;
+      Cambridge University Press: Cambridge, UK, 2000; Volume 271.
+18.   Berezanskiı̆, J.M. Expansions in Eigenfunctions of Self-Adjoint Operators; Translations of Mathematical Monographs; American
+      Mathematical Society: Providence, RI, USA, 1968; Volume 17.
+19.   Szegö, G. Orthogonal Polynomials; American Mathematical Society Colloquium Publications: Providence, RI, USA, 1978; Volume 23.
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
+

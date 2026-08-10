@@ -1,0 +1,202 @@
+LITERATURE NOTES: Sun 2022 (JMAA) and Qi-Li-Xie 2020 (QTDS) vs the box-constrained gap extremal problem
+===============================================================================================================
+Task: judge whether these two papers solve the extremal problem of the first eigenvalue gap on the box-constrained density class
+  -y'' = lambda*rho(x)*y, y(0) = y(1) = 0,  1 <= rho(x) <= R pointwise (no monotonicity),
+  gap D(rho) = lambda2 - lambda1,  SUP and INF extremal configurations.
+Our own reference values (previous work, numeric): SUP ~ symmetric 3-block [1,R,1] (R=4: side width u = 0.451485, D ~ 32.613984);
+INF ~ symmetric [R,1,R] (R=4: u = 0.382598, D ~ 6.784482). Independently re-checked today by transfer matrix
+(secular equation, Dirichlet condition M[0,1] = 0): INF gap = 6.7844823391 at side width 0.38259825, SUP max gap = 32.61245 at side width ~ 0.4515.
+
+Confidence labels used below:
+  [FULL]  confirmed from the full text (PDF obtained and read)
+  [ABS]   confirmed from the official abstract only
+  [REV]   confirmed from a review (zbMATH) only
+  [INF]   inference, not confirmed by full text
+  [UNK]   not obtainable from accessible sources
+
+===============================================================================================================
+1. Qi Jiangang, Li Jing, Xie Bing: "Extremal Problems of the Density for Vibrating String Equations with Applications to Gap and Ratio of Eigenvalues",
+   Qualitative Theory of Dynamical Systems 19(1), Paper 12, 15 pp (2020). DOI: 10.1007/s12346-020-00351-y. zbMATH an:1456.34022.
+   Status: [FULL]. Local copies: papers/qi2020.pdf, papers/qi2020.txt.
+---------------------------------------------------------------------------------------------------------------
+Problem (1.1)-(1.2): -y'' = lambda*w*y on (0,1), y(0) = y(1) = 0, w in L^1[0,1], w >= 0 a.e., ||w||_1 > 0.
+
+Class (1.6)-(1.7):
+  Omega(lambda1,...,lambdam) = { w in L^1[0,1] : ||w||_1 > 0, lambda_j(w) = lambda_j (1 <= j <= m), w(1-x) = w(x) a.e. },
+  E(lambda1,...,lambdam) := inf{ ||w||_1 : w in Omega }.
+That is: symmetric L^1 densities with prescribed first m eigenvalues; minimize the L^1 norm.
+
+Key results (English original, from full text):
+  Theorem 2.2: "Let E(lambda1,lambda2) be defined as in (1.7) for k = 2. Then E(lambda1,lambda2) >= 4/(lambda2-lambda1)."
+  Translation: 对称类上, 给定前两个特征值 lambda1 < lambda2, 密度 L^1 范数的下确界 >= 4/(lambda2-lambda1).
+
+  Corollary 2.3: "... Suppose that w(x) is symmetric on [0,1] and integral_0^1 w(x)dx = 1. Then lambda2-lambda1 >= 4, and 4 is the best constant."
+  Translation: 对称且总质量等于 1 的密度, gap >= 4, 且 4 为最佳常数 (由一对 Dirac 质量 rho_eps = (1/2)[delta_eps + delta_(1-eps)] 的弱极限序列达到, gap -> 4, 不达到).
+
+  Corollary 2.5: "If lambda2 >= (1+sqrt(5))/2 * lambda1, then integral_0^1 w >= 4/(lambda2-lambda1)." (symmetry not needed)
+  Translation: 非对称情形, 若 lambda2/lambda1 >= (1+sqrt(5))/2 (黄金比约 1.618), 则 int w >= 4/(lambda2-lambda1); 特别若 int w = 1 则 gap >= 4.
+
+  Theorem 3.1: "E(lambda1,lambda2) = 4*lambda2/[lambda1*(lambda2-lambda1)] if one of the following two conditions holds,
+    (i) sum_{j>=1} 1/lambda_(2j-1) <= sum_{j>=1} 1/lambda_(2j),  (ii) lambda2 >= 2*lambda1."
+  Extremal density (3.8): "w0 = r[delta_x0 + delta_(1-x0)],  r = 2*lambda2/[lambda1*(lambda2-lambda1)],  x0 = (lambda2-lambda1)/(2*lambda2)",
+  then lambda1(w0) = lambda1, lambda2(w0) = lambda2, integral w0 = 4*lambda2/[lambda1*(lambda2-lambda1)].
+  Translation: 在条件 (i) 或 (ii) 下, 对称类的 L^1 范数下确界恰为 4*lambda2/[lambda1*(lambda2-lambda1)], 由一对对称 Dirac 分布弱极限达到.
+
+  Corollary 3.4: symmetric w, int w = 1, lambda2 >= 2*lambda1  =>  lambda2-lambda1 >= 4*lambda2/lambda1.
+  Translation: 新 Lyapunov 型不等式 (同时涉及 gap 与比值). 作者在 Remark 1 中猜想该式无需 lambda2 >= 2*lambda1 恒成立.
+
+Method: Mercer theorem for the SL Green kernel (Lemma 2.4) + Cauchy inequality (Lemma 3.3) + weak approximation by distribution densities (Proposition 2.1).
+Context inside the paper: (3.13) cites [1, Ashbaugh-Benguria 1993, Theorem 4.1]: for 0 < c <= w(x) <= C,
+  max{1, 4c/C} <= lambda2/lambda1 <= 1 + 3C/c.
+So the authors are aware of box-type ratio bounds but do NOT study the box-constrained gap extremal configurations.
+
+Coverage judgment: NOT covering our problem.
+  - Density class is symmetric L^1 with fixed eigenvalues and a normalization (int w = 1 in the corollaries), not the pointwise box class 1 <= rho <= R.
+  - Objective is inf of ||w||_1, not SUP/INF of lambda2-lambda1.
+  - No extremal configuration of the gap over a box class; the bound lambda2-lambda1 >= 4 (on int w = 1) is attained only as a weak limit of Dirac masses and is not sharp for the box class.
+
+===============================================================================================================
+2. Sun Hongli: "On the minimum eigenvalue gap for vibrating string",
+   Journal of Mathematical Analysis and Applications 516(1), Article 126513, 19 pp (2022). DOI: 10.1016/j.jmaa.2022.126513.
+   zbMATH an:7574902 = Zbl 1506.34110. Author affiliation: School of Mathematics and Statistics, Central South University, Changsha.
+   Status: [ABS] + [REV] only. Full text NOT obtained (see access log below).
+---------------------------------------------------------------------------------------------------------------
+Official abstract [ABS] (colab.ws and ScienceDirect search snippet agree):
+  "In this paper, we study the gap of the first two eigenvalues of a vibrating string with fixed endpoints as the density function varies over certain class. We exploit the optimality condition and take the direct approach to characterizing the extremal density function. The characterization of the corresponding eigenfunction of the extremizers and the detailed description of the geometric shape are introduced."
+  ScienceDirect search snippet additionally shows: "... Gamma(rho) attains its minimum on each of the classes of S1 and S2 by rho0."
+  Translation: 研究固定端点振动弦前两个特征值的 gap 在某个密度类上的极值; 使用最优性条件并取直接方法刻画极值密度; 给出极值函数对应的特征函数的刻画与几何形状的详细描述; Gamma(rho) 在类 S1 与 S2 上分别由 rho0 达到最小值.
+
+zbMATH review [REV], full review text (reviewer Erdogan Sen):
+  "... the author deals with the minimum eigenvalue gap of the first two eigenvalues for rho(x), where rho(x) is piecewise continuous with a bounded of jumps. Contrary to previous works in the literature, in this paper, the author considers a more general case of this density function."
+  Translation: 作者处理密度 rho 为分段连续且跳跃有界情形下前两个特征值的最小特征值 gap; 与以往文献相比, 该文考虑更一般的密度函数.
+
+Answers to the four sub-questions:
+  (a) Class S1/S2 precise definition: NOT obtainable from any accessible source. [UNK]
+      The review describes the density class only as "piecewise continuous with a bounded of jumps" (a regularity / jump-size or jump-count constraint).
+      There is NO mention of the two-sided pointwise bounds 1 <= rho <= R. Inference: S1/S2 are almost certainly NOT the box class
+      (likely two sub-classes such as symmetric vs general, or fixed number of jumps); this is an inference, NOT a full-text fact. [INF]
+  (b) Extremal density rho0 explicit form: unknown. Abstract only promises a "characterization of the corresponding eigenfunction of the extremizers
+      and the detailed description of the geometric shape". [UNK]
+  (c) Minimum gap formula or constant: unknown. [UNK]
+  (d) Maximum problem: not mentioned anywhere in the abstract; title and abstract concern only the MINIMUM gap. Likely not treated. [INF]
+  (e) Full-text access: FAILED. Log: ScienceDirect (captcha, also abstract-only page); sci-hub.ru returns "paper is not available" (published after 2021,
+      not in the Sci-Hub database) - full-text level negative confirmation; no arXiv version (arXiv API query returns 0); OpenAlex/Unpaywall: is_oa = false,
+      no repository copy; Semantic Scholar: no abstract, no OA PDF; ResearchGate (Cloudflare captcha); X-MOL paper page "does not exist";
+      J-GLOBAL (HTTP 503); scholar.archive.org (JS challenge); zbMATH HTML (403, API only); mardi4nfdi wiki page (403, API only).
+
+Coverage judgment: CANNOT be confirmed to cover the box-constrained problem; very likely it does NOT.
+  - The only class information available (zbMATH review: "piecewise continuous with a bounded of jumps") points to a regularity/jump class,
+    not to the pointwise box class 1 <= rho <= R. If S1/S2 contained the two-sided bounds 1 and R, the reviewer would be expected to mention them. [INF]
+  - No information on rho0 or the minimum value exists at abstract/review level, so a "covered" verdict cannot be substantiated.
+  - A full-text-level verdict requires the article PDF (paywalled, not in Sci-Hub, no OA copy).
+
+===============================================================================================================
+3. Side checks (task 3): Chen-Huang 2014 and the related literature
+---------------------------------------------------------------------------------------------------------------
+Chen, Duo-Yuan; Huang, Min-Jei: "Lower bounds on the eigenvalue gap for vibrating strings",
+  J. Math. Anal. Appl. 417(1), 225-233 (2014). DOI: 10.1016/j.jmaa.2014.03.045. zbMATH 1310.34112. Status: [FULL].
+  Local copies: papers/chenhuang2014.pdf, papers/chenhuang2014.txt (obtained via Sci-Hub).
+  Content: lower bounds on Gamma[rho] = lambda2-lambda1 for u'' + lambda*rho*u = 0 on (0,a), u(0)=u(a)=0,
+  depending only on qualitative properties of the density. Examples (English original):
+    - If rho is symmetric on [0,a]: Gamma[rho] > max{ 1/ integral_0^{a/2}(a/2-t)rho(t)dt, pi^2/(rho_M*a^2) } (abstract; Corollary 3.2 and Theorem 4.1).
+    - Theorem 4.2: symmetric + rho'(x) <= 0 on (0,a/2): Gamma[rho] > pi^2/(integral_0^a rho dx)^2.
+    - Theorem 4.3: monotone increasing rho with rho/rho' monotone: Gamma[rho] > pi^2/[4*(integral rho)^2].
+  Coverage judgment: NOT covering. No box class, no extremal configuration; the bounds are valid lower bounds (not sharp for the box class).
+  Consistency check with our numerics: at our INF configuration [4,1,4] (side width 0.382598), the symmetric bound gives
+  Gamma > 1/integral_0^{1/2}(1/2-t)rho dt ~ 3.337, and the true Gamma = 6.7845 > 3.337. Consistent.
+
+Cheng, Y. H.; Kung, S. Y.; Law, C. K.; Lian, W. C.: "The dual eigenvalue problems for the Sturm-Liouville system",
+  Computers and Mathematics with Applications 60(9), 2556-2563 (2010). DOI: 10.1016/j.camwa.2010.08.058. zbMATH 1205.34115. Status: [FULL].
+  Local copies: papers/cheng2010.pdf, papers/cheng2010.txt (obtained via Sci-Hub).
+  Content: "dual eigenvalue problems" for gap minimization.
+    - Theorem 1.1: Neumann Schrodinger with single-well potential (transition point pi/2): nu1-nu0 >= 1, equality iff q constant.
+    - Theorem 1.4: for the periodic box class E~[h,H,M] = {rho in L^inf : h <= rho <= H a.e., int_0^pi rho dx = M},
+      the minimizing (maximizing) density of the first periodic eigenvalue lambda'_1 is bang-bang h*chi_(a,b) + H*chi or H*chi_(a,b) + h*chi with b-a determined by the mass M.
+    - Theorem 1.5 (vibrating string, NEUMANN BC): min lambda'_1 = min mu_1 = min nu_1 over the box classes,
+      and the minimizing density of nu_1 (the second Neumann eigenvalue; the Neumann gap equals nu_1 since nu_0 = 0) is of the form
+      h*chi_(a,pi-a) + H*chi_([0,pi]\(a,pi-a)), i.e. a symmetric two-level bang-bang density.
+  Coverage judgment: NOT covering our Dirichlet problem. This is the box-constrained gap minimizer for NEUMANN boundary conditions
+  (a direct Neumann analog of our problem); the DIRICHLET box-constrained gap extremal problem is not treated.
+  For Dirichlet, the known box-class results in this paper concern the RATIO (Keller 1976; Ashbaugh-Benguria 1993), not the gap.
+  Related potential-case fact quoted in the introduction: for the Schrodinger operator -y''+q y = lambda y on the box class E[h,H,M]
+  with mass constraint, "the symmetric 1-step function is the potential function ... giving the minimal Dirichlet eigenvalue gap" - this is Chern-Shen,
+  J. Differential Equations 107 (1994) 68-79 [ref 4 of the paper]. That is a potential analog, not the weight analog (Liouville transform does not preserve the box class).
+
+Huang, Min-Jei: "The eigenvalue gap for vibrating strings with symmetric densities", Acta Math. Hungar. 117(4), 341-348 (2007).
+  DOI: 10.1007/s10474-007-6120-8. Status: [ABS]/[REV] via secondary citations (Qi-Li-Xie [10]).
+  Known content (from citations): lower bounds for symmetric densities, e.g. for symmetric single-barrier w, lambda2-lambda1 >= 3*pi^2/w(1/2).
+  Coverage judgment: NOT covering (qualitative lower bounds, not box extremal configurations).
+
+Ahrami, M.; El Allali, Z.; Harrell, E. M. II: "On the fundamental eigenvalue gap of Sturm-Liouville operators", arXiv:2407.02459 (2024).
+  Status: [FULL] (arXiv). Local copy: research_cache/ahrami_gap_2407.02459.pdf.
+  Content: minimizers of the fundamental gap under single-well potential / single-barrier weight / convexity constraints, direct optimization.
+  Coverage judgment: NOT covering (constraint classes are shape classes, not the box class).
+
+Hedhly, Jihed: "Eigenvalue ratios and gaps of Sturm-Liouville problems", Taiwanese J. Math. (2024), DOI: 10.11650/tjm/241007. zbMATH 1573.34118.
+  Status: [ABS]. Content: ratio and gap bounds under convexity of theta = (p*w)^{1/4} (e.g. 4*w*w'' >= 5*(w')^2) with explicit constants using w_m, w_M.
+  Coverage judgment: NOT covering (convexity-type constraints, not box extremal configurations).
+
+Gu, Mengze; Sun, Hongli: "The eigenvalue ratio of the vibrating strings with mixed boundary condition", Math. Meth. Appl. Sci. (2023),
+  DOI: 10.1002/mma.9663. zbMATH 1536.74105. Status: [ABS]. Content: lower bound for lambda2/lambda1, mixed BC, single-barrier density on (-pi/2, pi/2).
+  Coverage judgment: NOT covering.
+
+Other 2022-2026 candidates checked (none treats 1 <= rho <= R Dirichlet gap SUP/INF):
+  - Guo-Meng-Yan-Zhang, "Optimal maximal gaps of Dirichlet eigenvalues of Sturm-Liouville operators", J. Math. Phys. 2022 (10.1063/5.0088097): gaps lambda_{2n}-lambda_1 for L^p potential balls (MDE method), not box class.
+  - Li-Ao, "Sharp bounds of Neumann eigenvalue gaps and ratios for Sturm-Liouville equations", JDE 2026 (10.1016/j.jde.2026.114478): Neumann, MDE method, L^p-type.
+  - Qi-Sun-Xu, Proc. R. Soc. Edinb. A 2026 (10.1017/prm.2026.10151): L^p-constrained gap.
+  - Meng-Tian-Xie-Zhang, arXiv:2603.06019 (2026): maximizers for sums of the first two Dirichlet eigenvalues in L^1; not the gap, not the box class.
+  - Ashbaugh-Benguria 1993 (10.1006/jdeq.1993.1047): ratio bounds for 0 < k <= p*w <= K (box-type) - ratio only, not gap extremal configurations.
+  - Keller 1976 (10.1137/0131042): minimum ratio on the box class - ratio only.
+  - Mahar-Willner 1976 (10.1002/cpa.3160290505) and Willner-Mahar 1982 (10.1137/0513040): lambda_{2n}/lambda_n ratio extremals - ratio, not gap.
+Conclusion of the broad search: no paper found (2020-2026, and in the classical literature) that proves the Dirichlet box-constrained gap
+SUP [1,R,1] or INF [R,1,R] configurations for -y'' = lambda*rho*y with 1 <= rho <= R.
+
+===============================================================================================================
+4. Verdict for the report
+---------------------------------------------------------------------------------------------------------------
+- Qi-Li-Xie 2020: does NOT cover the box-constrained gap extremal problem. Different class (symmetric L^1, fixed eigenvalues, L^1-norm objective).
+  Its gap bound lambda2-lambda1 >= 4 (on int w = 1) is a different type of statement (weak-limit sharp, Dirac masses), not sharp for the box class.
+  [FULL-level judgment]
+- Sun 2022: cannot be verified at full-text level; the only class description (zbMATH review: "piecewise continuous with a bounded of jumps")
+  strongly suggests the class is NOT the box class 1 <= rho <= R, but this is review-level inference. Neither the classes S1/S2, nor rho0,
+  nor the minimum value could be retrieved. [ABS/REV-level, honest UNKNOWN for the decisive details]
+- Chen-Huang 2014 and the 2018-2026 literature: no paper proves the box-constrained Dirichlet gap extremal configurations.
+  The closest analogs are Cheng-Kung-Law-Lian 2010 (Neumann box-constrained gap minimizer = symmetric two-level bang-bang) and
+  Chern-Shen 1994 (Schrodinger potential box-constrained minimal Dirichlet gap = symmetric 1-step). Both are boundary-condition / operator-type analogs,
+  not our weight problem.
+
+===============================================================================================================
+5. URL list
+---------------------------------------------------------------------------------------------------------------
+Sun 2022:
+  - DOI: https://doi.org/10.1016/j.jmaa.2022.126513
+  - ScienceDirect abstract: https://www.sciencedirect.com/science/article/abs/pii/S0022247X22005273
+  - zbMATH API (full review): https://api.zbmath.org/v1/document/_search?search_string=an%3A7574902
+  - mardi4nfdi: https://portal.mardi4nfdi.de/wiki/Publication:2166449 ; API: https://portal.mardi4nfdi.de/wiki/Special:EntityData/Q2166449.json
+  - colab.ws (official abstract): https://colab.ws/articles/10.1016%2Fj.jmaa.2022.126513
+  - Peeref: https://www.peeref.com/works/26609210
+  - Semantic Scholar: https://www.semanticscholar.org/paper/6ff2e2ae05292d12c52bef87c91a8a4724b4ab88
+  - ResearchGate (blocked): https://www.researchgate.net/publication/362047949_On_the_minimum_eigenvalue_gap_for_vibrating_string
+Qi-Li-Xie 2020:
+  - DOI: https://doi.org/10.1007/s12346-020-00351-y
+  - zbMATH API: https://api.zbmath.org/v1/document/_search?search_string=an%3A1456.34022
+  - documat/dialnet (abstract): https://documat.unirioja.es/servlet/articulo?codigo=7680601
+  - Author talk (Fudan, 2020): https://math.fudan.edu.cn/mathen/cf/1f/c29596a315167/page.htm
+  - Local: papers/qi2020.pdf, papers/qi2020.txt
+Chen-Huang 2014: DOI: https://doi.org/10.1016/j.jmaa.2014.03.045 ; Local: papers/chenhuang2014.pdf/.txt
+Cheng-Kung-Law-Lian 2010: DOI: https://doi.org/10.1016/j.camwa.2010.08.058 ; OA page: https://www.sciencedirect.com/science/article/pii/S0898122110006322 ; Local: papers/cheng2010.pdf/.txt
+Others: Ahrami-El Allali-Harrell arXiv: https://arxiv.org/abs/2407.02459 ; Hedhly TJM DOI: https://doi.org/10.11650/tjm/241007 ;
+  Gu-Sun DOI: https://doi.org/10.1002/mma.9663 ; Guo-Meng-Yan-Zhang DOI: https://doi.org/10.1063/5.0088097 ;
+  Li-Ao JDE: https://doi.org/10.1016/j.jde.2026.114478 ; Meng-Tian-Xie-Zhang: https://arxiv.org/abs/2603.06019
+
+===============================================================================================================
+6. Access log (honest record)
+---------------------------------------------------------------------------------------------------------------
+- Qi-Li-Xie 2020: obtained via Sci-Hub (papers/qi2020.pdf), text extracted (papers/qi2020.txt). Full-text level.
+- Chen-Huang 2014 and Cheng-Kung-Law-Lian 2010: obtained via Sci-Hub (papers/chenhuang2014.*, papers/cheng2010.*). Full-text level.
+- Sun 2022: Sci-Hub negative ("paper is not available", published after 2021); no arXiv; no OA copy (OpenAlex/Unpaywall is_oa=false);
+  ScienceDirect and ResearchGate captcha-blocked; X-MOL page missing; J-GLOBAL HTTP 503; scholar.archive.org JS challenge;
+  zbMATH HTML 403 (API usable). Abstract-level info from colab.ws + ScienceDirect search snippets; review-level info from zbMATH API and mardi4nfdi Wikibase.
+- Numerical verification done today: transfer-matrix secular solver (Dirichlet condition M[0,1] = 0) reproduces INF gap 6.7844823391 at side width 0.38259825
+  and SUP max gap 32.61245 at side width 0.4515 for R = 4; consistent with our previous values and with the Chen-Huang symmetric lower bound (3.337 < 6.7845).
+- Date of this note: 2026-08-05.

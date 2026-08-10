@@ -1,0 +1,392 @@
+﻿% 编译方式: xelatex SL_hs_orthogonal_systems_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{左定空间 \texorpdfstring{$H^s[-1,1]$}{Hs} 中显式完备正交多项式系: 证明文档}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文回答后续方向 1: 对移位 Krein Laplacian $K_c f = -f'' + c f$ ($c>0$,
+$f'(\pm1) = (f(1)-f(-1))/2$) 的每个整数阶左定空间 $(H^s, (\cdot,\cdot)_s)$,
+显式构造完备正交多项式系并给出闭式系数. 机制是\emph{传输}:
+$K_c^{-1}$ 是多项式空间上的显式三角算子
+($K_c^{-1}x^k = \sum_{j} k!/(k-2j)!\, c^{-(j+1)} x^{k-2j}$),
+而左定内积满足 $(f,g)_{2r} = (K_c^r f, K_c^r g)_{L^2}$,
+$(f,g)_{2r+1} = (K_c^r f, K_c^r g)_1$. 因此:
+\begin{itemize}
+	\item $s = 2r$ (偶): $Q_n^{(2r)} := K_c^{-r} P_n$ ($P_n$ 为 Legendre 多项式),
+		$\|Q_n\|_s^2 = 2/(2n+1)$;
+	\item $s = 2r+1$ (奇): $Q_n^{(2r+1)} := K_c^{-r} K_n$ ($K_n$ 为 Krein-Sobolev
+		多项式), $\|Q_n\|_s^2 = (2c/(2n+1)) a_n a_{n+2}$.
+\end{itemize}
+两族均为 $H^s$ 中的完备正交多项式系, 系数全为闭式 (Legendre 显式系数 +
+Krein-Sobolev 超几何系数 + $K_c^{-r}$ 单和公式). 特别地 $s=1$ 时还原
+Jones--Littlejohn--Quintero Roba 的 Krein-Sobolev 多项式; $s \geq 2$ 时根一般
+不再是实的: 例如 $Q_4^{(2)}$ 的根当 $0<c<c_1$ 时为纯虚、$c_1<c<c_2$ 时为复根、
+$c>c_2$ 时为 $(-1,1)$ 内四个实根, 其中 $c_1 = (35-7\sqrt{15})/2$,
+$c_2 = (35+7\sqrt{15})/2$ (精确判别式计算). 该结论回答了问题 1 的多项式方向:
+每个左定空间都有一组显式完备正交多项式系, 但系随 $s$ 变化.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+\subsection{移位 Krein Laplacian 与左定空间}
+
+固定 $c > 0$, 在 $L^2(-1,1)$ 中
+\begin{equation}
+	K_c f := -f'' + c f, \qquad
+	D(K_c) := \Bigl\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(\pm1) = \tfrac{1}{2}\bigl( f(1) - f(-1) \bigr) \Bigr\}.
+\end{equation}
+$K_c$ 自伴、正、有紧预解式, $\sigma(K_c) = \{c\} \cup \{(n\pi)^2+c\}
+\cup \{\mu_n^2+c\}$, 故 $0 \notin \sigma(K_c)$. 左定空间族
+\begin{equation}
+	H^s := D\bigl(K_c^{s/2}\bigr), \qquad
+	(f,g)_s := \bigl( K_c^{s/2} f,\ K_c^{s/2} g \bigr)_{L^2} \qquad (s \geq 0).
+\end{equation}
+特别地 $H^0 = L^2$, $H^1$ 为 Sobolev 空间 $H^1[-1,1]$ 带内积
+\begin{equation}
+	(f,g)_1 = \int_{-1}^{1} f'g'\, dx + c \int_{-1}^{1} f g\, dx
+		- \tfrac12 \Delta f\, \Delta g, \qquad \Delta f := f(1) - f(-1),
+\end{equation}
+$H^2 = D(K_c)$, $H^3 = D(K_c^{3/2})$, 且
+\begin{equation}
+	(f,g)_{2r} = (K_c^r f, K_c^r g)_{L^2}, \qquad
+	(f,g)_{2r+1} = (K_c^r f, K_c^r g)_1
+	\qquad (f,g \in H^{2r}, H^{2r+1}).
+\end{equation}
+
+\subsection{问题陈述}
+
+会话 9--10 证明多项式基 $\{p_n\}$ ($p_{2n} = x^{2n} - \frac{n}{n-1}x^{2n-2}$
+等, 缺 2, 3 次) 在一切 $H^s$ ($s \geq 1$ 整数) 中\emph{解析完备}
+(稠密). 但 $\{p_n\}$ 在 $H^s$ 中\emph{不正交}: 例如
+$(p_4, p_6)_1 = \tfrac{128}{105} + \tfrac{181}{693}c \neq 0$. 后续方向 1 要求:
+对每个 $s$, 显式构造 $H^s$ 中的\emph{完备正交多项式系}并给出闭式系数.
+\begin{theorem}[主定理: 显式完备正交多项式系]
+	对每个整数 $s \geq 1$ 与每个 $c > 0$:
+	\begin{enumerate}
+		\item[(偶)] $s = 2r$: 令 $Q_n^{(2r)} := K_c^{-r} P_n$
+			($P_n$ 为 Legendre 多项式, $P_n(1)=1$). 则
+			$\{Q_n^{(2r)}\}_{n \geq 0}$ 是 $(H^{2r}, (\cdot,\cdot)_{2r})$
+			中的完备正交多项式系, $\deg Q_n = n$,
+			\[
+				\bigl(Q_m^{(2r)}, Q_n^{(2r)}\bigr)_{2r}
+					= \frac{2}{2n+1}\, \delta_{mn}.
+			\]
+		\item[(奇)] $s = 2r+1$: 令 $Q_n^{(2r+1)} := K_c^{-r} K_n$
+			($K_n$ 为 Krein-Sobolev 多项式). 则
+			$\{Q_n^{(2r+1)}\}_{n \geq 0}$ 是 $(H^{2r+1}, (\cdot,\cdot)_{2r+1})$
+			中的完备正交多项式系, $\deg Q_n = n$,
+			\[
+				\bigl(Q_m^{(2r+1)}, Q_n^{(2r+1)}\bigr)_{2r+1}
+					= \frac{2c}{2n+1}\, a_n a_{n+2}\, \delta_{mn},
+			\]
+			其中 $a_0 = a_1 = a_2 = a_3 = 1$ 且 (对 $n \geq 2$)
+			\[
+				a_{n+2} = a_n\Bigl(1 + \frac{4n^2-1}{c}\Bigr)
+					+ \frac{2n+1}{2n-3}\, (a_n - a_{n-2}).
+			\]
+	\end{enumerate}
+	系数全部为闭式 (第 4 节). 对 $s=1$ ($r=0$) 奇情形还原 Krein-Sobolev 系.
+\end{theorem}
+
+\section{传输算子 \texorpdfstring{$K_c^{-r}$}{Kc(-r)} 的显式作用}
+
+\begin{lemma}[多项式空间上的可逆性]
+	$K_c$ 在多项式空间 $\Pi$ 上诱导双射 $K_c: \Pi \to \Pi$,
+	$\deg K_c p = \deg p$; 其逆 $K_c^{-1}$ 保持奇偶性且 $\deg K_c^{-1}p = \deg p$.
+	对 $r \in \mathbb{N}$ 与 $0 \leq k$,
+	\begin{equation}
+		K_c^{-r} x^k = \sum_{j=0}^{\lfloor k/2 \rfloor}
+			\binom{r+j-1}{j}\, c^{-(r+j)}\,
+			\frac{k!}{(k-2j)!}\, x^{k-2j}.
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	$K_c p = cp - p''$: 首项系数为 $c \neq 0$, 故 $\Pi_n \to \Pi_n$ 单射
+	($\ker(K_c|_{\Pi_n}) = 0$: 若 $cp = p''$, 取最高次项得 $c = 0$, 矛盾),
+	有限维即双射. 显式公式: 由
+	$K_c^{-r} = (c - D^2)^{-r} = c^{-r} \sum_{j \geq 0}
+	\binom{r+j-1}{j} c^{-j} D^{2j}$ (形式幂级数, 作用于多项式为有限和),
+	且 $D^{2j} x^k = k!/(k-2j)!\, x^{k-2j}$ ($2j > k$ 时为零). \qed
+\end{proof}
+
+\begin{lemma}[等距传输]
+	对整数 $r \geq 0$:
+	$K_c^r: H^{2r} \to L^2$ 与 $K_c^r: H^{2r+1} \to H^1$ 均为等距线性同构.
+\end{lemma}
+
+\begin{proof}
+	$\|K_c^r f\|_{L^2}^2 = (K_c^r f, K_c^r f)_{L^2} = \|f\|_{2r}^2$ 由 (5).
+	满射: 对 $g \in L^2$, $K_c^{-r}g \in D(K_c^r) = H^{2r}$ (泛函演算);
+	对 $g \in H^1$, $K_c^{-r}g \in D(K_c^{r+1/2}) = H^{2r+1}$. \qed
+\end{proof}
+
+\section{主定理的证明}
+
+\subsection{偶阶 \texorpdfstring{$H^{2r}$}{H2r}}
+
+\begin{proof}[偶情形的证明]
+	$Q_n = K_c^{-r}P_n$ 为 $n$ 次多项式 (引理 1). 正交性:
+	\[
+		(Q_m, Q_n)_{2r} = (K_c^r K_c^{-r}P_m,\ K_c^r K_c^{-r}P_n)_{L^2}
+			= (P_m, P_n)_{L^2} = \frac{2}{2n+1}\,\delta_{mn},
+	\]
+	因为 $K_c^r$ 与 $K_c^{-r}$ 交换 (泛函演算) 且 $\{P_n\}$ 为 $L^2$ 正交系.
+	完备性: $\{P_n\}$ 在 $L^2$ 中完备 (经典), 而 $K_c^{-r}: L^2 \to H^{2r}$
+	为等距同构 (引理 2), 等距同构保持完备性, 故 $\{Q_n\}$ 在 $H^{2r}$ 中完备.
+	$\deg Q_n = n$ 给出三角性: 每个多项式是 $\{Q_n\}$ 的有限线性组合,
+	多项式在 $H^{2r}$ 中稠密 (Weierstrass + 稠密嵌入), 与等距论证一致. \qed
+\end{proof}
+
+\subsection{奇阶 \texorpdfstring{$H^{2r+1}$}{H2r+1}}
+
+\begin{proof}[奇情形的证明]
+	$Q_n = K_c^{-r}K_n$ 为 $n$ 次多项式. 正交性: 由 (5) 与 $K_c^r K_c^{-r} = \mathrm{id}$,
+	\[
+		(Q_m, Q_n)_{2r+1} = (K_c^r Q_m, K_c^r Q_n)_1 = (K_m, K_n)_1
+			= \frac{2c}{2n+1}\, a_n a_{n+2}\, \delta_{mn},
+	\]
+	其中最后一步为 Jones--Littlejohn--Quintero Roba [2, Theorem 3]
+	($\{K_n\}$ 在 $H^1$ 中正交, 范数公式). 完备性: $\{K_n\}$ 在 $H^1$ 中完备
+	[2, Theorem 3], $K_c^{-r}: H^1 \to H^{2r+1}$ 等距同构 (引理 2), 故
+	$\{Q_n\}$ 在 $H^{2r+1}$ 中完备. \qed
+\end{proof}
+
+\begin{remark}[唯一性]
+	$H^s$ 中带内积 $(\cdot,\cdot)_s$ 的度分次正交多项式系唯一 (差常数因子):
+	$Q_n$ 由前 $n$ 个矩 $(Q_n, x^k)_s = 0$ ($0 \leq k < n$) 唯一决定.
+	因此上述两族就是 $\{x^n\}$ (或 $\{p_n\}$) 在 $H^s$ 中 Gram-Schmidt
+	正交化的结果. 注意 $\{p_n\}$ 在 $H^s$ 中并不正交 (见第 1 节例),
+	故正交化确实改变基.
+\end{remark}
+
+\section{闭式系数}
+
+\subsection{Legendre 多项式}
+
+\begin{equation}
+	P_n(x) = 2^{-n} \sum_{k=0}^{\lfloor n/2 \rfloor} (-1)^k
+		\frac{(2n-2k)!}{k!\,(n-k)!\,(n-2k)!}\, x^{n-2k},
+	\qquad \|P_n\|_{L^2}^2 = \frac{2}{2n+1}.
+\end{equation}
+
+\subsection{Krein-Sobolev 多项式 (文献闭式)}
+
+设 $S_m := P_m - P_{m-2}$ ($P_{-2}=P_{-1}=0$), 则
+$K_n = \sum_{r=0}^{\lfloor n/2 \rfloor} a_{n-2r} S_{n-2r}$, 其中 ($\lambda = 1/c$)
+\begin{align}
+	a_0 = a_2 = 1, \qquad
+	a_{2m} &= \sum_{k=0}^{m-1} \Bigl(\frac{\lambda}{4}\Bigr)^k
+		\frac{(2m+2k-1)!}{(2m-2k-1)!\,(2k)!}, \\
+	a_1 = a_3 = 1, \qquad
+	a_{2m+1} &= \sum_{k=0}^{m-1} \Bigl(\frac{\lambda}{4}\Bigr)^k
+		\frac{m-k}{m+k}\,
+		\frac{(2m+2k+1)!}{(2m-2k+1)!\,(2k)!}.
+\end{align}
+见 [2, Theorem 5]; 已用递推 (9) 精确数值复核 (脚本 T2, $m \leq 11$,
+$c \in \{1,3,5,10\}$).
+
+\subsection{\texorpdfstring{$Q_n^{(s)}$}{Qns} 的系数}
+
+由引理 1 与 (10)(11):
+\begin{align}
+	Q_n^{(2r)}(x) &= 2^{-n} c^{-r} \sum_{k=0}^{\lfloor n/2 \rfloor} (-1)^k
+		\frac{(2n-2k)!}{k!\,(n-k)!\,(n-2k)!}
+		\sum_{j=0}^{\lfloor (n-2k)/2 \rfloor}
+		\binom{r+j-1}{j} c^{-j}
+		\frac{(n-2k)!}{(n-2k-2j)!}\, x^{n-2k-2j}, \\
+	Q_n^{(2r+1)}(x) &= \sum_{i=0}^{\lfloor n/2 \rfloor} a_{n-2i}\,
+		\bigl( K_c^{-r} S_{n-2i} \bigr)(x),
+\end{align}
+其中 $S_m = P_m - P_{m-2}$, 而 $K_c^{-r}S_m = K_c^{-r}P_m - K_c^{-r}P_{m-2}$
+分别由 Legendre 系数与引理 1 的单和公式展开 (有限双重和, 同为闭式).
+即: 偶阶是 Legendre 系数与 $K_c^{-r}$ 单和公式的双重有限和; 奇阶是
+Krein-Sobolev 超几何系数与 $K_c^{-r}$ 单和公式的组合. 两者均为闭式
+(有限超几何和). 前几项 ($s=2$, 即 $Q_n = K_c^{-1}P_n$):
+\begin{align}
+	Q_0^{(2)} &= \frac{1}{c}, \qquad Q_1^{(2)} = \frac{x}{c}, \\
+	Q_2^{(2)} &= \frac{3x^2 + 6/c - 1}{2c}, \\
+	Q_3^{(2)} &= \frac{5x^3 + (30/c - 3)x}{2c}, \\
+	Q_4^{(2)} &= \frac{35x^4 + (420/c - 30)x^2 + 840/c^2 - 60/c + 3}{8c}.
+\end{align}
+$s=3$ 时 $Q_n^{(3)} = K_c^{-1}K_n$; 因 $K_2 = P_2$, $K_3 = P_3$, 有
+$Q_2^{(3)} = Q_2^{(2)}$, $Q_3^{(3)} = Q_3^{(2)}$, 而 $Q_4^{(3)} \neq Q_4^{(2)}$
+($K_4 = (1 + 15/c)(P_4 - P_2) + P_2 \neq P_4$).
+
+\section{根的行为: 实根性质仅属于 \texorpdfstring{$s=1$}{s=1}}
+
+Krein-Sobolev 多项式 ($s=1$) 的根全实、单、且位于 $(-1,1)$ [2, Theorem 4]
+(数值复核 $n \leq 8$ 通过). 对 $s \geq 2$, 该性质一般不成立.
+
+\begin{proposition}[$Q_4^{(2)}$ 的根]
+	固定 $c > 0$. $Q_4^{(2)}(x) = K_c^{-1}P_4$ 的根为
+	$x = \pm\sqrt{z_\pm}$, 其中 $z_\pm$ 是 $35z^2 + (420/c - 30)z
+	+ (840/c^2 - 60/c + 3) = 0$ 的两根. 令
+	$c_1 = (35 - 7\sqrt{15})/2 \approx 3.944$, $c_2 = (35 + 7\sqrt{15})/2
+	\approx 31.055$. 则
+	\begin{itemize}
+		\item $0 < c < c_1$: 四个纯虚根 (成对 $\pm i\beta$, $\beta > 0$);
+		\item $c_1 < c < c_2$: 四个非实复根 ($\mathrm{Re} \neq 0$);
+		\item $c > c_2$: 四个实根, 均位于 $(-1,1)$.
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	由 (15) 第三式, $Q_4^{(2)}$ 是 $x$ 的偶四次多项式 $= (8c)^{-1} q(x^2)$,
+	$q(z) = 35z^2 + (420/c - 30)z + (840/c^2 - 60/c + 3)$.
+	$q$ 的判别式 (差正因子 $(8c)^{-2}$) 为
+	$\Delta(c) = (420/c - 30)^2 - 140(840/c^2 - 60/c + 3)
+	= 120(490/c^2 - 140/c + 4) = 120 \cdot \frac{4(c-c_1)(c-c_2)}{c^2}$
+	(代入 $c_{1,2}$ 验证: $4c^2 - 140c + 490 = 4(c-c_1)(c-c_2)$).
+	故 $z_\pm$ 实当且仅当 $c \notin (c_1, c_2)$. 再判符号:
+	$z_+ z_- = (840/c^2 - 60/c + 3)/35 = 3/35 - 12/(7c) + 24/c^2 > 0$
+	(二次式 $3c^2 - 60c + 840$ 判别式 $< 0$, 恒正),
+	$z_+ + z_- = (30 - 420/c)/35 = 6/7 - 12/c$.
+	若 $0 < c < c_1$: $z_+ + z_- < 0$ ($c < 14$) 且 $\Delta > 0$, 故 $z_\pm < 0$,
+	$x = \pm\sqrt{z_\pm}$ 纯虚. 若 $c_1 < c < c_2$: $\Delta < 0$, $z_\pm$ 共轭复,
+	$x$ 为四个非实复根. 若 $c > c_2$: $\Delta > 0$, $z_+ + z_- > 0$
+	($c > 14$), $z_+ z_- > 0$, 故 $z_\pm > 0$, 四个实根 $\pm\sqrt{z_\pm}$.
+	实根在 $(-1,1)$: 直接计算 $q(1) = 35 + 420/c - 30 + 840/c^2 - 60/c + 3
+	= 8 + 360/c + 840/c^2 > 0$ 且 $q(0) > 0$, 而 $z_- < 1$ 等价于 $q(1) > 0$
+	(开口向上), 故 $0 < z_- \leq z_+ < 1$: 事实上 $z_+ < 1$ 由
+	$z_+ z_- < 1$ 与 $z_+ > z_-$ 及 $q(1)>0$ 推出 (若 $z_+ \geq 1$ 则
+	$q(1) = 35(1-z_+)(1-z_-) \leq 0$, 矛盾). \qed
+\end{proof}
+
+\begin{remark}[大 $c$ 极限]
+	$c \to \infty$ 时 $K_c^{-1} \to c^{-1}\,\mathrm{id}$, $Q_n^{(2r)}
+	\to c^{-r}P_n$, 故实根性质在大 $c$ 时恢复 (扰动论); 命题 3 给出
+	$n=4$, $s=2$ 时恢复的精确阈值 $c_2$. 数值 ($s \in \{2,3,4\}$,
+	$n \in \{4,6,8\}$, $c \in \{1,3,10\}$): $Q_n^{(s)}$ 均无实根.
+	$s=1$ 时根恒实单且落于 $(-1,1)$ (文献定理). 因此``根全实单于
+	$(-1,1)$'' 是 $s=1$ 的独特性质, 不随 $s$ 保持.
+\end{remark}
+
+\section{与问题 1 的关系}
+
+问题 1 问: 多大空间中 SL 边值问题的解能等价于该空间内的所有正交函数系.
+\begin{itemize}
+	\item \emph{特征函数方向}: $K_c$ 的特征函数 (三角函数 + $\tan\mu=\mu$ 的解)
+		在一切 $H^s$ ($s \geq 0$) 中构成完备正交系 -- 标准左定理论
+		(Littlejohn--Wellman [4,5]); 这是``最大空间'' 的连续标度答案.
+	\item \emph{多项式方向}: 本文给出每个整数 $H^s$ 中显式的完备正交多项式系
+		$Q_n^{(s)}$; 该系随 $s$ 变化, 且 $s \geq 2$ 时根不实. 因此
+		``同一组多项式在一切 $H^s$ 中完备正交'' 不可能: $s=1$ 的
+		Krein-Sobolev 系在 $H^2$ 中不正交 (例如数值验证
+		$(K_2, K_4)_2 \neq 0$), 需换用 $K_c^{-1}P_n$.
+	\item \emph{完备但非正交}: 稀疏基 $\{p_n\}$ 在一切 $H^s$ 中稠密
+		(会话 9--10), 但不在任何 $H^s$ 中正交 (除平凡低次外).
+\end{itemize}
+
+\section{数值验证}
+
+脚本 \path{scripts/orthogonal_systems_verify.py} (精确有理数, 855 项检查全过):
+\begin{enumerate}
+	\item \textbf{$K_c^{-r}$ 公式 (精确)}: 对 $c \in \{1,3,5\}$, $r \in \{1,2,3\}$,
+		$k \leq 8$, $(c-D^2)^r K_c^{-r} x^k = x^k$ 逐系数精确 (T1).
+	\item \textbf{Krein-Sobolev 闭式 (精确)}: $a_{2m}, a_{2m+1}$ 超几何闭式与
+		递推 (9) 一致, $m \leq 11$, $c \in \{1,3,5,10\}$ (T2).
+	\item \textbf{正交性 + 范数 (精确)}: $s \in \{1,2,3,4\}$, $c \in \{1,3,5\}$,
+		$0 \leq m < n \leq 8$: $(Q_m, Q_n)_s = 0$; 范数与 (7)(8) 精确一致;
+		$\deg Q_n = n$ (T3).
+	\item \textbf{还原 s=1 (精确)}: $K_0 = 1$, $K_1 = x$, $K_2 = \frac32 x^2
+		- \frac12$, $K_3 = \frac52 x^3 - \frac32 x$, $K_4 =
+		\frac{35c+525}{8c}x^4 - \frac{30c+630}{8c}x^2 + \frac{3c+105}{8c}$
+		与论文 [2] 逐项一致 (T4); 范数公式 $[2, Theorem 3]$ (T5).
+	\item \textbf{偶阶前几项 (精确)}: (15) 中 $Q_2^{(2)}, Q_4^{(2)}$ 闭式 (T6).
+	\item \textbf{根的行为 (浮点)}: $s=1$ 根全实且 $\subset (-1,1)$
+		(numpy, $n \leq 8$, $c \in \{1,3,10\}$); $s \in \{2,3,4\}$ 时
+		$n \in \{4,6,8\}$ 无实根; 命题 3 的阈值 $c_1 \approx 3.944$,
+		$c_2 \approx 31.055$ 数值一致 ($c=3$ 纯虚, $c=10$ 复, $c=100$ 实).
+\end{enumerate}
+
+\section{对抗性审计}
+
+\begin{description}
+	\item[逻辑闭环] 无循环论证: 偶阶完备性用 Legendre 在 $L^2$ 中完备
+		(经典) + 等距同构; 奇阶完备性用 $[2, Theorem 3]$ (文献, 已独立数值复核);
+		$K_c^{-r}$ 公式由形式幂级数独立证明; 命题 3 为纯代数判别式计算.
+	\item[泛函演算] 用 $K_c^r K_c^{-r} = \mathrm{id}$ 于 $H^{2r}$ /
+		$H^{2r+1}$: $K_c^{-r}$ 是 $K_c^r$ 的逆映射 (泛函演算, $0 \notin \sigma$),
+		合法.
+	\item[多项式与内积] $Q_n^{(s)}$ 确为多项式且 $\deg = n$; 内积
+		$(\cdot,\cdot)_s$ 对多项式良定 (各阶导数可积, 边界项有限).
+	\item[边界情形] $r = 0$ 时 $K_c^0 = \mathrm{id}$, 奇情形还原文献;
+		$c > 0$ 本质 (正定性); $m=0$ 的范数公式: $\|Q_0^{(1)}\|_1^2 = 2c
+		= \frac{2c}{1}a_0a_2$, $\|Q_0^{(2)}\|_2^2 = 2 = 2/(0+1)$, 均精确.
+	\item[结论强度] 完备正交 (强于稠密); 闭式系数为有限超几何和;
+		根性质仅如实报告已验证范围与精确命题 3, 未宣称一般 $n$ 的完整刻画.
+	\item[诚实声明] 根行为部分: $s \geq 2$ 的一般 $n$ 仅数值证据, 未证;
+		命题 3 是精确的单个例 ($n=4, s=2$), 足以否决``实根性质保持''猜想.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定理论与 Hilbert 标度] $H^s = D(K_c^{s/2})$,
+		$(f,g)_s = (K_c^{s/2}f, K_c^{s/2}g)_{L^2}$; $K_c^{s/2}$ 定义由泛函演算,
+		整数阶可写为 $K_c^r$ 或经 $(\cdot,\cdot)_1$ 约化 (式 5).
+	\item[传输 (transfer)] 等距同构 $K_c^r: H^{s+2r} \to H^s$ 把正交系在
+		标度之间搬运; 完备正交多项式系随 $s$ 变化, 传输算子是 $K_c^{-r}$.
+	\item[多项式不变子空间] $K_c: \Pi \to \Pi$ 双射 (首项系数 $c$),
+		$K_c^{-r} = c^{-r}(1 - c^{-1}D^2)^{-r} = c^{-r}\sum_j \binom{r+j-1}{j}
+		c^{-j}D^{2j}$ (二项级数, 作用于多项式为有限和).
+	\item[Legendre 与正交多项式] $P_n$ 在 $L^2$ 中正交, 显式系数 (10),
+		根在 $(-1,1)$.
+	\item[Krein-Sobolev 构造] $S_n = P_n - P_{n-2}$ 使 Gram 矩阵在
+		$(\cdot,\cdot)_1$ 下三对角 (式 16 于 [2]); $K_n$ 由此三对角结构经
+		二阶系数递推构造, 系数闭式 (11)(12), 范数 $2c a_n a_{n+2}/(2n+1)$.
+	\item[判别式与根分布] 偶四次多项式经 $z = x^2$ 约化为二次型;
+		根的实性由判别式符号与 Vieta 符号判定 (命题 3).
+	\item[稠密性与完备性] Weierstrass 稠密性; Hilbert 空间中
+		$\overline{\mathrm{span}} = H$ 等价于正交补为 $\{0\}$ (Hahn-Banach).
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{lq} L. L. Littlejohn, A. Quintero, \emph{Krein-Sobolev orthogonal
+	polynomials}, in: Special Functions and Orthogonal Polynomials (OPSFA-16),
+	Springer, CRM Series in Mathematical Physics (2025), 107--123.
+	\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), no. 2, 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{h2proof} 项目文档, \emph{第二左定空间 $H^2[-1,1]$ 中多项式基的解析完备性:
+	证明文档}, 2026-08-04 (会话 9).
+\bibitem{h3proof} 项目文档, \emph{第三左定空间 $H^3[-1,1]$ 中多项式基的解析完备性:
+	证明文档}, 2026-08-04 (会话 10).
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\bibitem{lw2} L. L. Littlejohn, R. Wellman, \emph{On the spectra of left-definite
+	operators}, Complex Anal. Oper. Theory 7 (2013), 437--455.
+	\url{https://doi.org/10.1007/s11785-011-0214-1}
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: a model operator approach, examples, fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\end{thebibliography}
+
+\end{document}
+
+
