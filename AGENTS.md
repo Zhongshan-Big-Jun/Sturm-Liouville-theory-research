@@ -1638,3 +1638,30 @@
 - 完成: PATCH /repos/xsoc1/rigorous-open-math-research {"private": false}, 返回 private=false, visibility=public;
   描述同步改为中性 (Codex skills for rigorous open mathematics research and research-program management).
 - 备注: org fork (Zhongshan-Big-Jun/rigorous-open-math-research) 可见性独立, 仍为 private; 如需公开可另行设置.
+
+### 2026-08-10 会话 58 (AI4Math 会议手册: 全部演讲者 GitHub 仓库定位)
+- 任务: 解析 AI4Math 研讨会手册 PDF (2026.07.22-24, 浙大 IASM 主办), 找出全部演讲者项目的 GitHub 仓库.
+- 完成:
+  - PDF 为纯图片扫描件, 用 RapidOCR 识别全部 10 页 (OCR 文本存根目录 _ai4math_ocr.txt, 页面渲染图存 _ai4math_pages/).
+  - 共 25 位演讲者, 全部项目的 GitHub 位置已核实 (2026-08-10 逐一验证 URL 可达), 完整清单存 reports/ai4math_2026_github_repos.md.
+  - 关键映射: 董彬/吴彬 -> frenzymath (Archon, Rethlas, reap); 文再文 -> optsuite/M2F+optlib, optpku/ReasBook+CAM-Bench, chenyili0818/OptProver, reaslab/ReasFlow; 杨柳 -> scaling-group/eve; 曹一川/邱瑞晨 -> MechMath org; 李鹏 -> TheoryFoundry/AIM/AIMv2/pverify; 李嘉 -> project-numina (numina-lean-agent, kimina-prover-rl 等); 刘晓洋/董子能/许景宣/刘云天 -> SJTU-AI4Math (LeanExplain, MathWeaver, SNL-Basics); 王浩丞 -> LARK-AI-Lab/formalrx (+hcWang942/FormalRx); 刘方辉 -> YuanheZ/LeanMarathon; 徐启源 -> xqyww123 (Isa-Mini, Isa-REPL, MLML, NTP4VC 等, 主页 qiyuan.me); 关乃粼 -> Thmoas-Guan (mathlib4 PR #29557/#30931); Ajay Kumar Nair -> siddhartha-gadgil/LeanAide (+ajay-k-nair/LeanAideExamples); 王语同 -> frenzymath/reap; 沈颖祺 -> fubinyan/ComplexVariables (Mobius/Cross Ratio Lean 代码, arXiv:2606.20358); 徐霄乾 -> proofQED/QED (其 AI-PDE 论文 arXiv:2605.20623, 与 Chenyang An 合作).
+  - 身份核实: 沈颖祺 = Kenneth W. Shum (港中深 SSE 教师页确认); 王浩丞 = hcWang942 (Wang Haocheng); 徐启源 = xqyww123; 邹扬硕 = KobTheGreat; 梁经纬 = jliang993.
+  - 未发现公开仓库 (如实标注): 梁经纬 Paper2Formalization (个人主页 jliang993 无该项目), 邹扬硕 法言 Fyan (个人主页仅 Formalizing-NP-Reductions-in-Lean 等), 居浩成 无独立项目, 陈小杨 无 GitHub 项目, 赵雨扬 贡献 mathlib4 无独立仓库.
+  - 更正交接摘要: QED 论文 arXiv:2604.24021 作者为 Chenyang An/Qihao Ye/Minghao Pan/Jiayun Zhang, 不含徐霄乾; 徐霄乾本人的 AI-PDE 论文为 arXiv:2605.20623 (An & Xu), 其证明由 QED 系统生成, 仓库 proofQED/QED.
+- 备注: GitHub API 未认证配额紧张 (core 60/hr 已耗尽, search 10/min), 采用网页 HTML 与 arXiv 全文链接核实; 未编造任何仓库地址.
+- 待办/后续: 若演讲者后续开源 (Paper2Formalization, Fyan), 可更新本报告.
+### 2026-08-11 会话 59 (重建 org fork 连接 + 父-子同步规则)
+- 任务: 用户发现 org fork 连接消失, 要求以个人主页仓库 xsoc1/rigorous-open-math-research 为父类重建连接, 并明确以后同步时操作子类.
+- 核实 (2026-08-11, 用本机凭据认证 API):
+  - xsoc1/rigorous-open-math-research: 完好, public, HEAD=92490eb, 无 parent.
+  - Zhongshan-Big-Jun/rigorous-open-math-research: 仓库仍在 (private), 内容与父一致 (HEAD=92490eb), 但 fork=False/parent=False, 不在父仓库 forks 列表; 即 fork 连接丢失而非仓库删除. 匿名 API 404 系私有仓库不可见, 非删除.
+  - Zhongshan-Big-Jun/rigorous-open-math-research-legacy: 仍在 (private).
+  - 原因从 API 不可判定 (父仓库健在, 排除父删除导致脱离), 如实记录不可考.
+- 重建 (方案 A, 与会话 55 同套路):
+  - PATCH 改名 org 仓库 -> rigorous-open-math-research-detached (成功, 内容保留, private).
+  - POST /repos/xsoc1/rigorous-open-math-research/forks {"organization":"Zhongshan-Big-Jun"} -> 新 fork Zhongshan-Big-Jun/rigorous-open-math-research, fork=True, parent/source=xsoc1/rigorous-open-math-research.
+  - 核对: 新 fork HEAD=92490eb 与父一致; 父 forks 列表含新 fork; detached 副本仍在.
+  - 注意: 新 fork 为 public (父仓库 public 后, fork 默认继承可见性); 如需 private 可 PATCH private=true.
+- 同步验证 (暂存区 skills-upload-20260810 双 remote): fetch personal (父) + push origin main (子 fork) 成功, local/parent/origin 三者 HEAD 一致 = 92490eb.
+- 规则落盘: manage-math-research-program/references/git-sync.md 新增 "Parent-fork (parent/child) sync rule" 小节: 同步方向先父后子, 本地双 remote 命令 (fetch personal && push origin main), 以及 fork 连接丢失时的重建流程.
+- 待办/后续: detached 副本 (rigorous-open-math-research-detached) 为迁移残留, 内容与 fork 一致; 可网页端删除或保留; 若日后授予 delete_repo 作用域可由 API 删除.
