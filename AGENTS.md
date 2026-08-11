@@ -1742,3 +1742,13 @@
 - 技术要点: Real.tan 定义为 (Complex.tan x).re, 需用 Real.tan_eq_sin_div_cos 展开; rw [hc, sin_sq] 中后引入的 cos 不会被 hc 重写, 须先 rw sin_sq 再 rw hc; Nat.sub_add_cancel 方向为 n-1+1=n, 反向需 .symm; field_simp 已闭合目标时勿再跟 ring.
 - 提交: lean-proof/ 加入仓库 (本地, 未推送).
 - 待办/后续: 需 org 所有者开启 allow_forking 或公开仓库后才能 fork 到 xsoc1; fork 解析后推送 lean-proof/ 并继续形式化 (矩递推, MW 引理, H^2 完备性全定理等).
+### 2026-08-11 会话 65 续 (整理 lean-proof + 形式化状态盘点)
+- 任务: 整理 lean-proof 目录, 并如实回答"目前做出的结果是否全部形式化".
+- 盘点结论: 未全部形式化. 项目 ~16 个已证定理 (左定/完备性 7, 比值 4, 间距 n=1 族 5, n>=2 开关/约化 2, 部分/数值 2) 中, 仅形式化 3 个片段 (增长引理, 平衡相位三角闭式, K_c 多项式恒等式), 其余全部未开始.
+- 整理内容:
+  - 新增 lean-proof/STATUS.md: 完整状态矩阵 (源文档 -> 主要结果 -> 源状态 -> 形式化状态) + 诚实说明 + 优先级路线图.
+  - lean-proof/README.md 重构: 目录结构/构建验证/命名空间/规则, 指向 STATUS.md.
+  - 机器验证: 用 lean-verify 插件脚本 verify_lean_project.py --build 全量扫描 (5 个 .lean, sorry/admit/axiom 命中 0, lake build exit 0), 记录 run-manifest.json (machine_verification_passed: true).
+  - 提交 e4e8694 (lean-proof 整理).
+- 备注: 会话 31 在 D:\lean4\Projects\MyProject 的独立形式化已被仓库内 lean-proof 取代为规范副本 (README/STATUS 已注明).
+- 待办: 按 STATUS.md 路线图继续 (一般系数增长引理 -> H^2 矩递推 -> 完备性全定理 -> MW 引理 -> 间距线拆义务).
