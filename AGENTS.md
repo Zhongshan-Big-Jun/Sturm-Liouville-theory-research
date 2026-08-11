@@ -1943,3 +1943,22 @@
 - 经验: 经 PowerShell 双引号命令行写入含反引号/反斜杠文本时, \/ 等会被当作
   PowerShell 转义; 长文本写入一律用 Python 临时脚本文件, 不用 -c 内联字符串.
 
+### 2026-08-11 会话 73
+- 任务: 把 xsoc1/rigorous-open-math-research 仓库 (math-research marketplace) 的 4 个插件安装到本地.
+- 完成:
+  - codex plugin marketplace add xsoc1/rigorous-open-math-research (git 源,
+    marketplace 名 math-research, 缓存根 C:\Users\HuangZY\.codex\.tmp\marketplaces\math-research).
+  - 安装 4 插件 (均 0.1.0+codex.20260811, installed/enabled):
+    rigorous-open-math-research, manage-math-research-program, lean-verify,
+    math-research-workflow (来源 math-research marketplace).
+  - 移除 personal marketplace 旧版 lean-verify 与 math-research-workflow
+    (避免同名 skill 重复; personal 条目保留为 not installed).
+  - 核验安装产物: 4 插件目录齐全, rigorous 含 SKILL.md/agents/assets/references,
+    manage 含 SKILL.md + MANIFEST.sha256.
+- 注意: 全局 skill (C:\Users\HuangZY\.codex\skills\rigorous-open-math-research,
+  manage-math-research-program) 仍存在并与插件版共存 (插件 skill 引用带
+  插件名前缀, 如 rigorous-open-math-research:rigorous-open-math-research);
+  math-research-workflow 编排层引用无前缀名, 依赖全局 skill 解析, 故保留全局 skill.
+- 另一 agent 遗留: lean-proof/SL/H3Completeness.lean 未跟踪 (另一 agent 工作中间产物,
+  用户指示先忽略, 未动).
+
