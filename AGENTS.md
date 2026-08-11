@@ -1714,3 +1714,18 @@
 - 同步: 暂存区提交 430dc95, 先推父仓库 xsoc1 再推子 fork org, 三者 HEAD 一致 (430dc95bb57e3bfd3450536012e7a99edddd32af).
 - 备注: apply_patch.bat 经 cmd 会拆散多行参数导致 Invalid patch, 需直接调用 codex.exe --codex-run-as-apply-patch; 补丁内双引号需转义; MANIFEST 自引用行为生成时快照 (校验时跳过自身).
 - 待办/后续: 用真实多问题 run 试跑子 agent 分工 (Codex multi-agent spawn_agent) 验证任务包契约与合并协议; 可把 lean-verify 插件接入子 agent 分工 (形式化验证子代理).
+
+### 2026-08-11 会话 64 (子 agent 分工冒烟测试 + 就地优化)
+- 任务: 按 subagent-delegation 契约对子 agent 分工模式做真实冒烟测试; 发现问题与可优化点就地修复.
+- 测试设计 (契约: 对一切整数 n>=1, sum_{k=1}^{n} k^3 = (n(n+1)/2)^2):
+  - 并行 spawn 3 个子 agent: SUB-O1-induct (归纳证明), SUB-O2-telescope (望远镜求和, 与 O1 去相关), SUB-O3-audit (独立审计含植入错误的候选证明).
+  - 候选证明植入范围错误: 断言"对一切整数 n"成立, 但归纳只覆盖 n>=1, 且空和约定下 n=-2 时 LHS=0 vs RHS=1.
+- 结果: SUB-O1 PROVED, SUB-O2 PROVED, SUB-O3 FATAL_GAP (精确抓到非逻辑推理与反例 n=-2, 逐行审计正确); 协调者按路径+重算 sha256 核验全部工件后合并; 两路证明机制去相关且结论一致; 契约以两条独立路线验证.
+- 测试中发现并就地优化 (rigorous-open-math-research):
+  - 返回 JSON 格式不一致 (2 个带 markdown 代码围栏, 1 个裸 JSON): 模板与 SKILL.md 明确规定返回裸 JSON, 禁止代码围栏.
+  - 返回格式缺 artifact_sha256: 模板 JSON 新增字段, subagent-delegation.md 合并协议新增第 0 步 (按重算 sha256 对账), SKILL.md 输出契约同步.
+  - SKILL.md 残留非 ASCII 弯引号 U+2019 (role's): 改为 ASCII 撇号.
+  - 工程教训: PowerShell 双引号字符串中反引号是转义符, 含反引号的替换须用单引号字符串 + [char]10 构建; `$null -join` 返回空串, 失败脚本曾把模板写成 0 字节 (已从暂存区恢复重做并验证); 本机 PATH 上 python 异常, quick_validate 需用 Python310 全路径 + PYTHONUTF8=1.
+- 验证: quick_validate (Python310) "Skill is valid!"; 三文件无 BOM, LF 行尾.
+- 同步: 暂存区提交 690dbe7, 先推父 xsoc1 再推子 fork org, 三者 HEAD 一致 (690dbe7); 本地安装与暂存区文件哈希全部 MATCH.
+- 待办/后续: 更大规模真实问题试跑 (含多路线探索 + 反例猎手 + 形式化验证子代理 lean-verify 接入); 子 agent 返回 JSON 的解析约定可在管理器侧进一步规范化.
