@@ -163,6 +163,11 @@ created: 2026-08-04
   STRICT, 9 页零警告, 精确有理证书 C1-C5 ALL PASS, 数值为 EVIDENCE);
   更新 [[symline-n1-monotonicity]] (适用范围不再限于 1 < R <= 3/2, 指向全 R 版本).
 
+
+- 2026-08-12 (会话 58 续作 3): 更新 [[inf-limit-comparison]] (定理 A 独立复核通过,
+  缺口 (c) 解除: T2 符号链 sympy 恒等验证 + T3 区间 + 引理 A'' 175 点零失败 +
+  sliver 600 点零失败 + 常数链, 全部 EVIDENCE); 更新 [[phase-ratio-rigidity]]
+  (F-210 相位支缺口已闭合, REPAIRABLE-GAP 解除, 40 页零警告).
 - 2026-08-12 (会话 58 续作 2): 新增 [[good-root-global-lemma]] (内部临界点 =>
   sign-consistent good root: Wronskian 比值单调 + f 零点唯一性 + FH 跳点公式,
   闭合缺口 (d) 全 R>1 的 INF 全局极值论证; STRICT, 6 页零警告,

@@ -267,3 +267,38 @@ CANDIDATE_COMPLETE_PROOF (self-audited).  Per the upstream skill revision
 policy, an independent verifier pass on the changed points (Lemma A'' chain,
 T2 zero labeling, T1 step (iv)) is required before the manager closes the
 portfolio item; this is recorded for the manager in run-manifest.json notes.
+## Independent re-verification addendum (2026-08-12, session 58 continuation 3)
+
+Independent re-verification of Theorem A (INF R->inf limit) for gap (c) closure.
+Scripts (this repo, scripts/): _theoremA_recheck_t2t3.py, _theoremA_recheck_lemAdp.py.
+All numerics are EVIDENCE cross-checks, not proofs; analytical identities checked
+exactly with sympy.
+
+- T2 monotone structure: sympy confirms J' = 4a*K~/sin^2 a and G' = 4 sin^2 a * J
+  EXACTLY (difference 0). u'(a) closed form matches finite differences.
+  h'(a)*sin^3 a < 0 on (pi/2,pi) (2001-pt scan). S(u(a)) = -(4(a-tan a)^3)/(a^3(2a
+  -sin 2a)) G(a) and Dbar'(u) = S(u) verified. Roots a1 = 1.6350426, a* = 1.9855095,
+  aG = 2.2765132 (doc approx 1.6351/1.9856/2.2766). Sign patterns of K~, J, G, S all
+  PASS. Endpoints: Dbar(0+)=+inf, Dbar(1/2-)->3pi^2.
+- T3: u* = 0.3299225081200665495928... in doc interval
+  [0.32992250812006654958, ...60]; Dbar(u*) = 24.9438661384324769026... in doc
+  interval [24.9438661384324768968, ...9084]; margins 3pi^2-Dbar >= 4.664947 and
+  25-Dbar > 0.0561 PASS.
+- Lemma A'': 175-pt grid (R in {1500..1e8}, w>=2): G >= Dbar(u) with 0 failures,
+  min margin 3.9714e-10 at (1e8, 0.499) - matches the doc's stated min exactly.
+  def1 >= def2 at sample points. Lemma 2.1 brackets: delta2 <= delta2+, psi2 >= 0,
+  z2 <= pi/8 all PASS.
+- Sliver: 600-pt scan (R in {1500,1e4,1e8}, w<=2): G >= 25 with 0 failures; min at
+  w=2 boundary G(1500, 2/sqrt(1500)) = 91.7263164 (doc 91.7263).
+- T1: G(R,u*) - Dbar(u*) = 0.010381, 1.558e-3, 1.558e-5, 1.558e-7 at R =
+  1500,1e4,1e6,1e8 (doc 1.04e-2/1.56e-3/1.57e-5/2.05e-7) - consistent.
+- Constants: C_z = 0.3368113990... < 0.337; R(z)/z increasing; max f(t) on
+  [3/sqrt2,pi) = 5.4017 <= 9 (doc certified bound 5.4225); ratio bound 0.82505
+  <= 0.8256; eps0*tan(pi/8) < 0.011; c10 >= 0.99319; c20 >= 0.99996;
+  delta <= 4.49e-4. All PASS.
+- Cross-check: secular equations vs independent finite-difference shooting agree
+  to 1e-5..1e-8 (discretization-limited).
+- Conclusion: no errors found; Theorem A re-verified independently. Gap (c) CLOSED.
+  Note: correct branch for the odd mode in the sliver region is z2 in (0,pi)
+  (delta2 < 0); the naive fixed-point root search has multiple roots from
+  tan/cot periodicity and must be bracketed by the branch condition.

@@ -596,8 +596,11 @@ $R\to\infty$ 极限 (定理 A) 已严格证明; ``全阱族下确界在对称阱
 \path{SL\_gap\_n1\_well\_rigidity\_allR\_summary.pdf}, 任意 sign-consistent good root 满足 $a+b=1$);
 INF 侧 $1<R\le3/2$ 完全闭合 (小 $R$ 段 2026-08-10: \path{SL\_gap\_n1\_well\_rigidity\_R32.pdf} +
 缺口 (a) 对称线 1D 分析 \path{SL\_gap\_n1\_symline\_proof.pdf}, INF 下确界 $I(R)=D(v^*(R))<3\pi^2/R$ 在对称阱
-$[R,1,R]$ 达到); 一般 $R>3/2$ 的完全闭合仍依赖 (a$'$) 对称线 1D 分析 ($R>3/2$ 段)、
-(c) 定理 A 独立复核与 (d) 全局 good-root 论证, 暂不宣称闭合 (O3a/C1 的相位比刚性只覆盖垒族; 阱族侧已由会话 56 对一切 $R>1$ 补齐). 曾误用的垒$\leftrightarrow$阱恒等式
+$[R,1,R]$ 达到); 一般 $R>3/2$ 已完全闭合 (2026-08-12): (a$'$) 对称线 1D 分析全 $R$ 版
+(张力比链, \path{SL\_gap\_n1\_symline\_allR\_proof.pdf}, 9 页零警告) 与 (d) 全局
+good-root 论证 (\path{SL\_gap\_n1\_global\_goodroot\_proof.pdf}, 6 页零警告) 合起来给出:
+对一切 $R>1$, $I(R)=D(v^*(R),1-v^*(R))<3\pi^2/R$ 在对称阱 $[R,1,R]$ 唯一达到;
+仅剩 (c) 定理 A 独立复核 (与闭合正交, 状态 CANDIDATE\_COMPLETE\_PROOF).  (O3a/C1 的相位比刚性只覆盖垒族; 阱族侧已由会话 56 对一切 $R>1$ 补齐). 曾误用的垒$\leftrightarrow$阱恒等式
 $D^{well}(a,b)=D^{bar}(1-b,1-a)$ \emph{不成立} (数值反例 R=4, a=0.2, b=0.8:
 11.0482 vs 9.6580), 相关文档已更正;
 $n\ge2$ 已解决 (2026-08-10, 会话 50): 有限块约化 (每个全局极值子 bang--bang,
@@ -658,9 +661,11 @@ $\rho=R$ on $(a,b)$, $1$ 其余), 相邻间距 $D^{bar}(a,b)=\lambda_2-\lambda_1
 O3a/C1 断言: 对每个 $R>1$, 参数三角形 $\{(a,b):0<a<b<1\}$ 中恰有一个
 sign-consistent good root, 且必为对称根 $a+b=1$. 该断言是 $n=1$ 相邻间距
 极端值严格化 ($\max D^{bar}$ 由对称 $[1,R,1]$ 达到) 的最后一块硬义务, 已给出
-完整证明文档 (2026-08-09); 2026-08-10 独立子代理审计发现一处说明性缺口 (相位
-分支 $k=0$ 论证, 见下审计注记; 断言本身为真, 数行内可修复, 尚未修复, 故暂不
-宣称完全闭合). 证明文档: \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf} (38 页, 零警告).
+完整证明文档 (2026-08-09); 2026-08-10 独立子代理审计发现的唯一说明性缺口
+(相位分支 $k=0$ 论证, 见下审计注记) 已由会话 47--48 的引理 4.1 (真实相位落在
+主支) 完全修复 (纯 E1: Pr\"ufer 相位单调性 + 显式解 + 界面匹配), 重编译 40 页
+零警告; 2026-08-12 已将修复版 PDF 同步至 docs/ 根目录并核验哈希, 缺口关闭.
+证明文档: \texttt{SL\_gap\_n1\_O3a\_phase\_rigidity\_proof.pdf} (40 页, 零警告).
 
 \emph{证明机制 (相位比刚性)}:
 \begin{enumerate}
@@ -721,7 +726,7 @@ sign-consistent good root, 且必为对称根 $a+b=1$. 该断言是 $n=1$ 相邻
 \texttt{scripts/verify\_\allowbreak o3a\_\allowbreak i3\_\allowbreak 2d.py} 独立重放 (叶盒文件 \texttt{misc/i3\_\allowbreak 2d\_\allowbreak leaves\_*.json},
 80 位点交叉检验与叶面积覆盖审计全部通过), 旧三类证书的重放内核位于 Blueprint 项目
 \texttt{runs/R-\allowbreak 20260808T143337Z-\allowbreak o3a-c1/}, 不在本仓库, 属``独立审计、证书支持的
-严格证明''而非 kernel-checked proof (PDF 说明 8.1 如实标注). 独立子代理审计 (2026-08-10, Nash/Curie/Linnaeus): 后半与证书链全部 PASS; 前半逐行检查 83/83 通过, 唯一定性缺口在 lines 412--439 --- 文本证明了 $E(\alpha_1)=c\alpha_1$, $O(\alpha_2)=c\alpha_2$ 解的唯一性, 但未证明实际相位落在 $k=0$ 分支 ($\alpha_1\in(0,\pi/2)$, $\alpha_2\in(0,\pi)$); 断言本身为真 (短证思路: $y_1$ 偶正 $\Rightarrow$ Prüfer 相位 $\theta_1(1/2)=\pi/2\Rightarrow\alpha_1\in(0,\pi/2)$; $y_2>0$ 于 $(0,1/2)\Rightarrow\alpha_2\in(0,\pi)$), 数行内可修复, 尚未修复. 旧归约的失败路线
+严格证明''而非 kernel-checked proof (PDF 说明 8.1 如实标注). 独立子代理审计 (2026-08-10, Nash/Curie/Linnaeus): 后半与证书链全部 PASS; 前半逐行检查 83/83 通过, 唯一定性缺口在 lines 412--439 --- 文本证明了 $E(\alpha_1)=c\alpha_1$, $O(\alpha_2)=c\alpha_2$ 解的唯一性, 但未证明实际相位落在 $k=0$ 分支 ($\alpha_1\in(0,\pi/2)$, $\alpha_2\in(0,\pi)$); 该缺口已由会话 47--48 新增引理 4.1 (真实相位落在主支) 闭合: $y_1$ 偶正且 $y_2>0$ 于 $(0,1/2)$ 给 Prüfer 相位 $\theta_1(1/2)=\pi/2$, $\theta_2(1/2)=\pi$, 故 $\alpha_1\in(0,\pi/2)$, $\alpha_2\in(0,\pi)$; 中间半区间显式解给 $c\alpha_1\in(0,\pi/2)$, $c\alpha_2\in(0,\pi)$; 界面匹配推出 $E(\alpha_1)=c\alpha_1$, $O(\alpha_2)=c\alpha_2$ (含 $\alpha_2=\pi/2$ 角落); 唯一性由 $E'=O'=-q/\Phi_q<0$ 与 $cx$ 严格递增 (本仓库 sympy 独立复核三支导数恒等式通过). 2026-08-12 确认: 会话 57 审计误报源于 docs/ 根目录过时的修复前 PDF (38 页); 修复版 (40 页, 哈希 ecc7ef62\ldots) 已同步至根目录并核验. 旧归约的失败路线
 (Lemma A 严格证伪 CE-1 等) 见 \texttt{SL\_gap\_n1\_proof.pdf} 第 5 节.
 \end{sloppypar}
 
@@ -732,11 +737,12 @@ INF 侧 $R\to\infty$ 极限定理 A (对称阱族) 已证 (会话 30); O3a/C1
 $n\ge2$ 的有限块约化与精确 $2n$ 开关已解决 (会话 50, 见
 \path{SL_gap_nge2_finite_reduction_proof.pdf} 与
 \path{SL_gap_nge2_exact_2n_switches_proof.pdf}).
-剩余: (i) $n=1$ INF 侧 $R>3/2$ 的完全闭合: 阱族刚性已对一切 $R>1$ 证明 (2026-08-10
-会话 56, 见 \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf}), 但对称线 1D 分析
-($f(v)$ 唯一零点与 $D(v)$ 单峰) 仅完成 $1<R\le3/2$ 段 (见
-\path{SL\_gap\_n1\_symline\_proof.pdf}), 尚需 $R>3/2$ 段 (缺口 a$'$), 并加
-(c) 定理 A 独立复核与 (d) 全局 good-root 论证; 数值支持 (不构成证明): R=4 对称阱
+剩余: (i) $n=1$ INF 侧已完全闭合 (2026-08-12): 阱族刚性全 $R$ (2026-08-10
+会话 56, \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf}), 对称线 1D 分析
+全 $R$ 版 (缺口 a$'$, 2026-08-12, 张力比链, \path{SL\_gap\_n1\_symline\_allR\_proof.pdf}),
+全局 good-root 论证 (缺口 d, 2026-08-12, \path{SL\_gap\_n1\_global\_goodroot\_proof.pdf});
+$I(R)=D(v^*(R),1-v^*(R))<3\pi^2/R$ 在对称阱 $[R,1,R]$ 唯一达到; 仅剩 (c) 定理 A
+独立复核 (与闭合正交); 数值支持 (不构成证明): R=4 对称阱
 临界值 $6.7845$, 全阱族网格下确界 $6.7856$, 精度 1e-9);
 (ii) 开关位置/块长的显式方程与闭式构造;
 (iii) 反射对称性 (至少存在一个关于 $1/2$ 对称的极值子? 每个极值子都对称?);

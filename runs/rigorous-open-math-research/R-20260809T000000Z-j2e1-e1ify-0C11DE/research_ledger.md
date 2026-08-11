@@ -345,3 +345,39 @@ Timestamps approximate (UTC+8). Continuation session 44 (2026-08-09).
   synced; AGENTS.md session 58 continuation 2; state/current.json + RESUME.md updated.
 - Status: gap (d) SOLVED (STRICT); INF side all R>1 CLOSED.  NOT claimed: Theorem A (c)
   independently re-verified, O3a/C1 patch written.
+
+## R-116 (2026-08-12): O3a/C1 REPAIRABLE-GAP 解除 + 定理 A (缺口 c) 独立复核通过
+
+- O3a/C1: 会话 57 审计登记的 REPAIRABLE-GAP (PDF lines 412-439, k=0 相位支论证缺失)
+  已查明为**误报**: 会话 47--48 已修复 (新增引理 4.1 lem:phasebranch "真实相位落在
+  主支", 纯 E1: Prüfer 相位单调性 + 显式解 + 界面匹配), 重编译 40 页零警告;
+  会话 57 的子代理审阅的是 docs/ 根目录过时的修复前 PDF (38 页, 2026-08-09 23:37),
+  故重新登记为未修复. 2026-08-12 确认: 当前 tex 哈希 2c331257... 与 build PDF
+  哈希 ecc7ef62... 均与会话 49 记录一致; 修复版已复制至 docs/ 根目录 (40 页);
+  本会话 sympy 独立复核 E'(x)=O'(x)=-q/Phi_q(x) 三支恒等式 (差 = 0) 与映射范围
+  (E: (0,pi/2)->(0,pi/2), O: (0,pi)->(0,pi)) 全部通过. 缺口关闭.
+- 定理 A (缺口 c) 独立复核通过: 脚本 scripts/_theoremA_recheck_t2t3.py 与
+  scripts/_theoremA_recheck_lemAdp.py (mpmath 40-50 位 + sympy 精确恒等):
+  - T2: J'=4aK~/sin^2a 与 G'=4sin^2a*J sympy 恒等; u'(a) 闭式; h'<0; S 恒等式;
+    根 a1=1.63504, a*=1.98551, aG=2.27651; 符号型全过; 端点 0+ 与 1/2- 正确.
+  - T3: u*=0.3299225081200665495928..., Dbar(u*)=24.9438661384324769026... 均在
+    文档区间内; margin 4.664947 与 0.0561 复核通过.
+  - 引理 A'': 175 点 (R in {1500..1e8}, w>=2) G>=Dbar 零失败, 最小余量 3.9714e-10
+    与文档一致; def1>=def2; 括号界 delta2<=delta2+, psi2>=0, z2<=pi/8 全过.
+  - sliver: 600 点 (w<=2) G>=25 零失败; 最小值在 w=2 边界 G=91.7263164 (文档
+    91.7263 一致).
+  - T1: 收敛误差 0.01038/1.56e-3/1.56e-5/1.56e-7 (R=1500/1e4/1e6/1e8) 与文档一致.
+  - 常数链: C_z=0.336811<0.337, max f(t)=5.4017<=9 (文档证书上界 5.4225),
+    比值 0.82505<=0.8256, c10/c20/delta 界全过; R(z)/z 递增.
+  - 交叉检验: secular 与有限差分打靶互检 1e-5..1e-8 (离散化误差量级).
+  - 求解经验: sliver 区奇模正确分支为 z2 in (0,pi) (delta2<0), 必须按分支条件
+    括根 (tan/cot 周期极点产生多根).
+- 结论: 定理 A 未发现错误, 独立复核通过; 缺口 (c) CLOSED. 至此 n=1 相邻间距
+  lambda_2-lambda_1 极端值问题 (1<=rho<=R 盒类) 的全部义务闭合: SUP 侧
+  (O1/O2/O3b/O3a-C1) + INF 侧 (O1-INF/a/b/a'/d) + 定理 A (c).
+- Deliverables: docs/ 根目录 O3a PDF 更新为 40 页修复版; 概述文档 4 处状态修补并
+  重编译 19 页零警告; tools/inf-limit-comparison.md 与 tools/phase-ratio-rigidity.md
+  更新; audit_report.md 增补; AGENTS.md 会话 58 续作 3; state 文件更新.
+- Status: gap (c) CLOSED (independent re-verification, EVIDENCE-supported);
+  O3a/C1 REPAIRABLE-GAP RESOLVED. 全部数值为 EVIDENCE, 不构成证明; 证明结构本身
+  为文档中的 E1 链 + §3 计算机辅助认证 (区间算术/方向舍入).

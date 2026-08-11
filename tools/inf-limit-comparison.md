@@ -2,8 +2,9 @@
 title: 极限系统比较法 (INF R->inf 极限)
 tags: [mathtool, self-developed]
 source: 自研 (会话 30, run R-20260806T200000Z-inflimit-5B2C7D)
-status: 已证 (定理 A, T1/T2/T3 全部闭合)
+status: 已证 (定理 A, T1/T2/T3 全部闭合; 2026-08-12 独立复核通过, 缺口 (c) 解除)
 created: 2026-08-07
+updated: 2026-08-12
 ---
 
 # 极限系统比较法 (inf-limit-comparison)
@@ -25,4 +26,5 @@ created: 2026-08-07
 ## 验证与备注
 - 完整证明: docs/SL_gap_n1_inf_limit_proof.pdf (10 页, 零警告); SL_gap_n1_proof.pdf 新增 INF 极限一节 (14 页, 零警告).
 - 数值收敛 $R\,m_R$: 1500 -> 24.9542, 1e4 -> 24.9454, 1e6 -> 24.9439, 1e8 -> 24.943866 (误差 ~1/sqrt(R); 证据, 非证明).
+- 独立复核 (2026-08-12, 会话 58 续作 3, EVIDENCE): scripts/_theoremA_recheck_t2t3.py (T2 符号链: sympy 验证 J'=4aK~/sin^2a 与 G'=4sin^2a J 恒等; u' 闭式; h'<0 扫描; 根 a1=1.63504, a*=1.98551, aG=2.27651; S 恒等式; T3: u* 与 Dbar(u*) 均落入文档区间, margin 4.664947/0.0561 复核通过) + scripts/_theoremA_recheck_lemAdp.py (引理 A'': 175 点 G>=Dbar 零失败, 最小余量 3.97e-10 与文档一致; sliver 600 点 G>=25 零失败, 最小值 91.7263 在 w=2 边界; T1 收敛 0.01038/1.56e-3/1.56e-5/1.56e-7; 常数链 C_z=0.336811<0.337, max f(t)=5.4017<=9, 比值 0.82505<=0.8256; secular 与有限差分互检 1e-5..1e-8). 全部数值为交叉检验, 不构成证明; 结论: 未发现错误.
 - 相关: [[lemma-A-doubleprime]], [[delta-bracketing]], [[cot-series-certificate]], [[gap-band-extremals]], [[gap-n1-reduction]].

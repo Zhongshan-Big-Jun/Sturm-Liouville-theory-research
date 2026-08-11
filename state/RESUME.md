@@ -2,27 +2,23 @@
 
 ## Current objective
 Prove (n=1): over 1<=rho<=R, SUP(lambda_2-lambda_1) attained by symmetric 3-block [1,R,1] at u*(R);
-INF attained at symmetric [R,1,R].  HONEST STATUS (2026-08-12 session 58 continuation 2):
-SUP side CLOSED (O1 reduction, O2 KEY LEMMA, O3b bounds, O3a/C1 barrier-family uniqueness via
-phase-ratio rigidity; 2026-08-10 three-agent audit: ONE REPAIRABLE-GAP proof-doc lines 412-439,
-assertion true, short patch pending -> SUP side CLOSED pending that patch).  INF side: CLOSED
-FOR ALL R>1.  Chain: O1-INF reduction to well family (INDEPENDENTLY_AUDITED_PROOF); gap (a)
-symline 1D for 1<R<=3/2 (2026-08-10, docs/SL_gap_n1_symline_proof.pdf); gap (b) WELL-FAMILY
-RIGIDITY FOR ALL R>1 (session 56, 2026-08-10, docs/SL_gap_n1_well_rigidity_allR_proof.pdf 14 pp
-zero warnings: every sign-consistent good root satisfies a+b=1; elementary 5-step chain:
-tau<2 via alpha-convexity, residual elimination r_tau(A)=r_tau(B), exact r_tau structure with
-danger-zone lemma + reflection separation x+y>pi, L3/convex-hull + P-sum channel exclusions;
-STRICT, numerics EVIDENCE only); gap (a') SYMMETRIC-LINE 1D ANALYSIS FOR ALL R>1 (session 58
-continuation, 2026-08-12, docs/SL_gap_n1_symline_allR_proof.pdf 9 pp zero warnings STRICT:
-tension-ratio chain rho<=rho0 + 1D inequality rho0<1 + rational certificates C1-C5 + Claim A
-theorem 5.1 => KEY LEMMA all R); gap (d) GLOBAL MINIMIZER IS A SIGN-CONSISTENT GOOD ROOT
-(session 58 continuation 2, 2026-08-12, docs/SL_gap_n1_global_goodroot_proof.pdf 6 pp zero
-warnings STRICT: boundary exclusion D>=3pi^2/R on dOmega vs D(v*)<3pi^2/R => interior;
-interior critical point => f(a)=f(b)=0 (FH) + structure lemma (Wronskian v=y2/y1 strictly
-decreasing, f unique zeros a<z0<b) => sign-consistency automatic; rigidity => a+b=1; unique
-symmetric minimizer).  THEOREM: for every R>1, I(R)=D(v*(R),1-v*(R))<3pi^2/R, attained at the
-symmetric well [R,1,R], unique.  Remaining obligations: (c) Theorem A independent re-
-verification (CANDIDATE_COMPLETE_PROOF, ORTHOGONAL to INF closure), O3a/C1 repairable-gap patch.
+INF attained at symmetric [R,1,R].  HONEST STATUS (2026-08-12 session 58 continuation 3):
+ALL OBLIGATIONS CLOSED.  SUP side: O1 reduction, O2 KEY LEMMA, O3b bounds, O3a/C1
+barrier-family good-root uniqueness (F-210 phase-branch gap fixed sessions 47-48; the
+session-57 REPAIRABLE-GAP was a misregistration caused by the stale 38-page docs/ root PDF;
+fixed 40-page version synced + sympy re-verified 2026-08-12).  INF side: O1-INF reduction
+(INDEPENDENTLY_AUDITED_PROOF); gap (a) symline 1D for 1<R<=3/2 (2026-08-10); gap (b)
+WELL-FAMILY RIGIDITY FOR ALL R>1 (session 56, docs/SL_gap_n1_well_rigidity_allR_proof.pdf
+14 pp zero warnings: every sign-consistent good root satisfies a+b=1); gap (a') SYMMETRIC-
+LINE 1D ANALYSIS FOR ALL R>1 (2026-08-12, tension-ratio chain + rational certificates C1-C5,
+docs/SL_gap_n1_symline_allR_proof.pdf 9 pp zero warnings); gap (d) GLOBAL MINIMIZER IS A
+SIGN-CONSISTENT GOOD ROOT (2026-08-12, docs/SL_gap_n1_global_goodroot_proof.pdf 6 pp zero
+warnings: boundary exclusion + FH + structure lemma + rigidity + uniqueness).  Theorem A
+(INF R->inf limit, gap c): INDEPENDENTLY RE-VERIFIED 2026-08-12 (no errors found; scripts
+_theoremA_recheck_t2t3.py + _theoremA_recheck_lemAdp.py; T2 exact via sympy, T3 intervals,
+Lemma A'' 175 pts 0 failures min margin 3.97e-10, sliver 600 pts 0 failures, constants all
+PASS).  THEOREM: for every R>1, SUP = D(u*(R),1-u*(R)) at [1,R,1] and I(R)=D(v*(R),1-v*(R))
+<3pi^2/R at [R,1,R], unique; lim_{R->inf} R*m_R = Dbar(u*) = 24.9438661384... < 3pi^2.
 Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b=0.8:
 11.0482 vs 9.6580) - removed.
 ## Read these files first
@@ -42,6 +38,24 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 14. `runs/rigorous-open-math-research/R-20260806T200000Z-inflimit-5B2C7D/`
 15. `state/checkpoints/2026-08-07T160000Z--inflimit-close.md`
 16. `misc/_well_explore_log.md` (well-family EVIDENCE log, 2026-08-10; section 16 = all-R work)
+## Last completed action
+2026-08-12 (session 58 continuation 3): (1) O3a/C1 REPAIRABLE-GAP RESOLVED - the session-57
+finding was a stale-doc misregistration (docs/ root PDF was the pre-F-210 38-page version);
+the F-210 fix (lemma 4.1, phase-branch k=0 argument) has been in tex + build PDF since
+sessions 47-48 (40 pp zero warnings, hash ecc7ef62...); fixed PDF copied to docs/ root;
+sympy re-verified E'=O'=-q/Phi_q on all branches and mapping ranges. (2) Theorem A (gap c)
+INDEPENDENTLY RE-VERIFIED - no errors found.  T2: J'=4aK~/sin^2a and G'=4sin^2a J exact
+(sympy), u'(a) closed form, h'<0, S identity, roots/signs/endpoints all PASS.  T3: u* and
+Dbar(u*) inside doc intervals, margins 4.664947/0.0561 PASS.  Lemma A'': 175 pts
+(R in {1500..1e8}, w>=2) G>=Dbar 0 failures, min margin 3.9714e-10 matches doc; brackets
+PASS.  Sliver: 600 pts G>=25 0 failures, min 91.7263164 at w=2 boundary (doc 91.7263).
+T1: errors 0.01038/1.56e-3/1.56e-5/1.56e-7 match doc.  Constants: C_z=0.336811<0.337,
+max f(t)=5.4017<=9 (doc certified 5.4225), ratio 0.82505<=0.8256, c10/c20/delta PASS.
+Cross-check vs finite differences 1e-5..1e-8.  EVIDENCE only; the proof structure is the
+doc's E1 chain + section-3 interval certificates.  Overview doc patched (4 status updates)
+and recompiled 19 pp zero warnings; tools updated (inf-limit-comparison, phase-ratio-
+rigidity, README); audit_report.md addendum; ledger R-116.
+
 ## Last completed action
 2026-08-12 (session 58 continuation 2): CLOSED gap (d) - the INF global minimizer is a
 sign-consistent good root (STRICT).  Deliverable: docs/SL_gap_n1_global_goodroot_proof.pdf
@@ -151,21 +165,16 @@ dD/db=+(R-1)f(b)).
 - Run R-20260808T143337Z-o3a-c1 (Blueprint v2.2, phase-ratio rigidity): ingested as evidence/source
 
 ## Exact next action
-1. Gap (d): CLOSED 2026-08-12 (docs/SL_gap_n1_global_goodroot_proof.pdf, 6 pp zero warnings,
-   STRICT; INF side for all R>1 CLOSED: I(R)=D(v*(R),1-v*(R))<3pi^2/R at symmetric well, unique).
-2. Gap (c): independent verifier pass on INF-limit Theorem A (Lemma A'' chain, pending per skill
-   policy; orthogonal to INF closure).
-3. SUP-side O3a/C1 repairable-gap patch (proof-doc lines 412-439, k=0 phase-branch argument,
-   assertion true).
-4. Open problems remaining (per summary section 5.5): switch positions/block lengths, reflection
-   symmetry, uniqueness/classification, closed-form optimal values max/min D_n, n=1 certificate
-   kernel formalization, MDE unified theory, H^s density criteria, p-Laplacian, etc.
-5. validate_project.py, budget settlement, stage summary on stage close.
+1. Gap (c): CLOSED 2026-08-12 (Theorem A independently re-verified, no errors found).
+2. O3a/C1: REPAIRABLE-GAP RESOLVED 2026-08-12 (stale-doc misregistration; F-210 fixed).
+3. Open problems remaining (per summary section 5.5): switch positions/block lengths,
+   reflection symmetry, uniqueness/classification, closed-form optimal values max/min D_n,
+   n=1 certificate kernel formalization, MDE unified theory, H^s density criteria,
+   p-Laplacian, etc.
+4. validate_project.py, budget settlement, stage summary on stage close.
 ## Blockers or missing inputs
-- None blocking the SUP side or the INF side for any R>1: gaps (a) 2026-08-10, (b) session 56,
-  (a') 2026-08-12 session 58 continuation, (d) 2026-08-12 session 58 continuation 2 all CLOSED
-  (STRICT).  Remaining open obligations: Theorem A independent re-verification (c, orthogonal),
-  O3a/C1 repairable-gap patch (SUP side).
+- None: all obligations of the n=1 adjacent-gap extremal problem (SUP + INF, all R>1)
+  are closed (a/b/a'/d/c + O3a-C1).  Next work: section 5.5 open problems.
 ## Budget remaining
 8.0 h target per direction; INF-limit direction exhausted its budget (closed);
 consumed_hours 7.5 of stage total (approximation; final accounting on stage close).

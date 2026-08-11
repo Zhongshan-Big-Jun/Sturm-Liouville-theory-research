@@ -2,7 +2,7 @@
 title: 相位比刚性 (phase-ratio rigidity)
 tags: [mathtool, self-developed, o3a]
 source: 自研 (O3a 完整证明, 2026-08-09; 来源 Blueprint 项目 runs/R-20260808T143337Z-o3a-c1, 用户提供 O3a_complete_proof_zh.pdf)
-status: CANDIDATE_COMPLETE_PROOF (解析证明 + 两类证书支持的严格证明; 2026-08-09 升级: $\partial_qM_2<0$ 于 $D$ 已完全解析化, C4 区间段 $K>0$ 亦已纯初等解析化, 证书仅剩两个紧盒导数符号; 证书内核不在本仓库, 非 kernel-checked)
+status: CANDIDATE_COMPLETE_PROOF (解析证明 + 两类证书支持的严格证明; 2026-08-09 升级: $\partial_qM_2<0$ 于 $D$ 已完全解析化, C4 区间段 $K>0$ 亦已纯初等解析化, 证书仅剩两个紧盒导数符号; 证书内核不在本仓库, 非 kernel-checked; 2026-08-12: F-210 相位支缺口已闭合 (引理 4.1 真实相位落在主支, 会话 47-48 修复, 40 页零警告; 本仓库 sympy 复核 E'=O'=-q/Phi_q 三支恒等式通过), REPAIRABLE-GAP 解除)
 created: 2026-08-09
 ---
 

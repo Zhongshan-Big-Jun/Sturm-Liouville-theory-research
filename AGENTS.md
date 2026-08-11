@@ -2133,3 +2133,52 @@
   错误清单未涉及本会话文件).
 - 诚实说明: 上一模型 8 小时墙钟思考无法独立核验; 本会话逐条复核文档、编译
   日志与交叉检验脚本; 数值部分与严格证明部分已按约定区分标注.
+
+### 2026-08-12 会话 58 续作 3 (O3a/C1 缺口解除 + 定理 A 独立复核通过)
+- 任务: 承接缺口 (d) 闭环后的两项剩余义务: (1) SUP 侧 O3a/C1 REPAIRABLE-GAP 补丁;
+  (2) 缺口 (c) 定理 A 独立复核.
+- O3a/C1 结论: 会话 57 登记的 REPAIRABLE-GAP (PDF lines 412-439, k=0 相位支论证缺失)
+  查明为**过时文档误报**: 会话 47--48 已新增引理 4.1 (真实相位落在主支) 修复
+  (纯 E1: Prufer 相位 theta' = s(cos^2 + rho sin^2) > 0 + 显式解 + 界面匹配, 含
+  alpha2=pi/2 角落), 重编译 40 页零警告; 会话 57 子代理审阅的是 docs/ 根目录
+  过时的修复前 38 页 PDF (2026-08-09 23:37 编译). 本会话核验: tex 哈希
+  2c331257... 与 build PDF 哈希 ecc7ef62... 均与会话 49 记录一致; 修复版 PDF
+  已复制至 docs/ 根目录; sympy 独立复核 E'(x) = O'(x) = -q/Phi_q(x) 三支恒等
+  (差 = 0), E: (0,pi/2)->(0,pi/2) 与 O: (0,pi)->(0,pi) 映射范围正确. 缺口关闭.
+- 定理 A (缺口 c) 独立复核通过 (全部 EVIDENCE, 不构成证明; 证明结构为文档 E1 链
+  + 第 3 节区间证书):
+  - T2 单调结构: sympy 精确验证 J' = 4a*K~/sin^2 a 与 G' = 4 sin^2 a * J
+    (差 = 0); u'(a) 闭式与有限差分一致; h'(a)*sin^3 a < 0 于 (pi/2,pi) (2001 点);
+    S(u(a)) 恒等式与 Dbar' = S 验证; 根 a1=1.6350426, a*=1.9855095, aG=2.2765132;
+    K~/J/G/S 符号型全过; 端点 Dbar(0+)=+inf, Dbar(1/2-)->3pi^2.
+  - T3: u* = 0.3299225081200665495928... 与 Dbar(u*) = 24.9438661384324769026...
+    均落入文档区间; margin 3pi^2-Dbar >= 4.664947 与 25-Dbar > 0.0561 复核通过.
+  - 引理 A'': 175 点 (R in {1500..1e8}, w>=2) G >= Dbar(u) 零失败, 最小余量
+    3.9714e-10 (1e8, 0.499) 与文档数值完全一致; def1 >= def2; 括号界
+    delta2 <= delta2+, psi2 >= 0, z2 <= pi/8 全过.
+  - sliver: 600 点 (R in {1500,1e4,1e8}, w<=2) G >= 25 零失败; 最小值在 w=2
+    边界: G(1500, 2/sqrt(1500)) = 91.7263164 (文档 91.7263).
+  - T1: G(R,u*) - Dbar(u*) = 0.010381, 1.558e-3, 1.558e-5, 1.558e-7 (R =
+    1500/1e4/1e6/1e8) 与文档一致.
+  - 常数链: C_z = 0.3368113990 < 0.337, R(z)/z 递增; max f(t) = 5.4017 <= 9
+    (文档区间证书上界 5.4225); 比值界 0.82505 <= 0.8256; eps0*tan(pi/8) < 0.011;
+    c10 >= 0.99319; c20 >= 0.99996; delta <= 4.49e-4.
+  - 交叉检验: secular 方程与有限差分打靶互检相对误差 1e-5..1e-8 (离散化量级).
+  - 求解经验: sliver 区奇模正确分支为 z2 in (0,pi) (delta2 < 0); tan/cot 周期
+    极点产生多根, 必须按分支条件括根.
+- 文档与登记:
+  - docs/SL_gap_n1_O3a_phase_rigidity_proof.pdf 更新为 40 页修复版 (哈希
+    ecc7ef62...); 概述文档 4 处状态修补 (O3a 缺口状态、审计注记、INF 全 R 闭合、
+    剩余清单) 并重编译 19 页零警告, PDF 同步根目录.
+  - 工具库: tools/inf-limit-comparison.md 更新 (定理 A 独立复核通过, 缺口 (c)
+    解除); tools/phase-ratio-rigidity.md 更新 (F-210 闭合, REPAIRABLE-GAP 解除);
+    README 维护日志同步.
+  - 台账: research_ledger.md 追加 R-116; inflimit run audit_report.md 追加独立
+    复核增补段; state/current.json + RESUME.md 更新 (全部义务闭合).
+  - 脚本: scripts/_theoremA_recheck_t2t3.py, scripts/_theoremA_recheck_lemAdp.py.
+- 诚实标注: 复核的数值部分全部为 EVIDENCE; 定理 A 的严格结构 (T1/T2/T3 的解析
+  链) 与第 3 节计算机辅助证书 (区间算术) 是证明依据, 本次复核未发现错误;
+  上一模型 8 小时墙钟思考无法独立核验. n=1 相邻间距极端值问题的全部义务至此
+  闭合: SUP (O1/O2/O3b/O3a-C1) + INF (O1-INF/a/b/a'/d) + 定理 A (c).
+- 校验: validate_project.py 复跑仍为已知 INVALID (knowledge/ 缺 Blueprint v2.1
+  结构文件, lean-proof/audit_report.md 受保护工件位置; 均为既有登记问题).
