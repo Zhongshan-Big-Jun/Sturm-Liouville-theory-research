@@ -1700,3 +1700,17 @@
   - 本地安装不受影响 (个人 marketplace 仍指向 ~/plugins/lean-verify).
 - 备注: Copy-Item 通配符复制点开头子目录 (.codex-plugin) 失败, 改用 robocopy /E 成功; Windows 递归删除需 Python shutil.
 - 待办/后续: 可从仓库路径重新分发/安装插件; 若修改插件需同步暂存区并推送.
+### 2026-08-11 会话 63 (子 agent 分工模式优化 skill 效率)
+- 任务: 使用子 agent 分工模式优化 skill 效率, 把并行子 agent 调度纳入 rigorous-open-math-research 与 manage-math-research-program.
+- 完成 (rigorous-open-math-research/SKILL.md):
+  - # Agent orchestration 新增 "### Sub-agent delegation" 小节: 并行子 agent 分工 (路线探索/义务证明/反例猎手/文献审计/证明验证), 子任务包契约, 隔离与去相关, 合并协议 (只合并已审计模块 + Phase 7 接口检查), 资源策略, 单 agent 顺序 fallback.
+  - 新增 references/subagent-delegation.md: 详细调度/隔离/合并/失败规则 + 运行示例.
+  - 新增 assets/subtask-packet.template.md: 子任务包模板 (subtask_id/claim/inputs hash/context/set-deliverable/status labels/constraints/budget/JSON 返回格式).
+  - Changelog 新增 2026-08-11 条目 (仅列功能).
+- 完成 (manage-math-research-program):
+  - references/delegation-and-ingestion.md 新增 "Upstream internal sub-agent delegation" 小节: manager 不观察/不规定上游拆分, 通过 run manifest hash 摄入.
+  - MANIFEST.sha256 重算: 44 个非自身文件全部精确匹配.
+- 验证: quick_validate 两 skill 均 "Skill is valid!".
+- 同步: 暂存区提交 430dc95, 先推父仓库 xsoc1 再推子 fork org, 三者 HEAD 一致 (430dc95bb57e3bfd3450536012e7a99edddd32af).
+- 备注: apply_patch.bat 经 cmd 会拆散多行参数导致 Invalid patch, 需直接调用 codex.exe --codex-run-as-apply-patch; 补丁内双引号需转义; MANIFEST 自引用行为生成时快照 (校验时跳过自身).
+- 待办/后续: 用真实多问题 run 试跑子 agent 分工 (Codex multi-agent spawn_agent) 验证任务包契约与合并协议; 可把 lean-verify 插件接入子 agent 分工 (形式化验证子代理).
