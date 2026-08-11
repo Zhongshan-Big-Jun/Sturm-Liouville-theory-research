@@ -1680,3 +1680,14 @@
 - 验证: quick_validate 两 skill 均 "Skill is valid!".
 - 同步: 暂存区提交 76a58e9, 先推父仓库 xsoc1 再推子 fork org, 三者 HEAD 一致 (76a58e9).
 - 备注: apply_patch.bat 经 cmd 会拆散多行参数, 需直接调用 codex.exe --codex-run-as-apply-patch; 参数内双引号需转义为 \" 防 Windows 参数解析截断.
+### 2026-08-11 会话 61 (设计并创建 lean-verify 插件)
+- 任务: 基于会话 15 (O1 修复审计运行 R-20260806T140000Z-o1revise-2ED02A) 的验证工作流, 设计一个 Lean 验证的 Codex 插件.
+- 设计要点 (会话 15 工作流 -> 插件): 义务分解 (O1a-O1f -> obligation map), 独立重导审计 (不接受草稿/审计权威), 裁决分类 (PASS/REPAIRABLE_GAP/FATAL_GAP/NOT_VERIFIABLE -> 结构化 verdict), 发现日志 (F-001..F-005 -> findings log), hash 绑定 (run-manifest/input hashes), 状态标签 (CANDIDATE_COMPLETE_PROOF -> FORMALLY_VERIFIED 等), 数值证据与证明分离.
+- 插件位置: C:\Users\HuangZY\plugins\lean-verify (个人 marketplace: C:\Users\HuangZY\.agents\plugins\marketplace.json).
+  - skills/lean-verify/SKILL.md (10.3KB): Phase 0 环境与输入清单, Phase 1 契约与义务映射, Phase 2 陈述保真审计 (FAITHFUL/MINOR_PARAPHRASE/UNFAITHFUL), Phase 3 机器验证 (lake build + sorry/admit/axiom 扫描), Phase 4 独立审计, Phase 5 结构化输出与状态标签 (FORMALLY_VERIFIED/MACHINE_ACCEPTED_PENDING_AUDIT/CANDIDATE_VERIFIED/REPAIRABLE_GAP/FATAL_GAP/VERIFICATION_INCOMPLETE); 输出 verification.json + audit_report.md + run-manifest.json.
+  - scripts/verify_lean_project.py (6.4KB, stdlib only): 记录 lean/lake 版本与 lean-toolchain, 逐行扫描 .lean 的 sorry/admit/axiom (注释/字符串/块注释感知, 支持白名单), 可选 lake build, 生成 run-manifest.json (输入 sha256, 环境, 扫描与构建结果).
+  - assets/: verification_output.schema.json (结构化裁决 schema), lean-audit-report.template.md (会话 15 报告结构: 范围/来源 -> 裁决表 -> 逐义务审计 -> 交叉检查 -> 发现日志 -> 剩余缺口 -> 置信度), lean-obligation.template.md.
+- 实测: 扫描脚本对含 sorry/axiom/注释误报用例结果正确 (sorry@行5, axiom@行7, 注释中 sorry 不误报; 白名单生效); 本机检测到 Lean 4.31.0/Lake 5.0.0 (机器验证可用); py_compile 通过.
+- 验证与安装: plugin-creator validate_plugin 通过; `codex plugin add lean-verify@personal` 安装成功 (installed, enabled, 0.1.0; 缓存 C:\Users\HuangZY\.codex\plugins\cache\personal\lean-verify\0.1.0).
+- 备注: codex CLI 无 plugin install 子命令, 安装用 `codex plugin add <name>@<marketplace>`; Windows 递归删除需用 Python shutil 绕过 shell 策略.
+- 待办/后续: 真实 Lean 工程端到端试用 (含 lake build 与义务映射); 若需要可把插件一并纳入 skill 仓库版本管理.
