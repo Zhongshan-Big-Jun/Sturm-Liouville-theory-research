@@ -1665,3 +1665,18 @@
 - 同步验证 (暂存区 skills-upload-20260810 双 remote): fetch personal (父) + push origin main (子 fork) 成功, local/parent/origin 三者 HEAD 一致 = 92490eb.
 - 规则落盘: manage-math-research-program/references/git-sync.md 新增 "Parent-fork (parent/child) sync rule" 小节: 同步方向先父后子, 本地双 remote 命令 (fetch personal && push origin main), 以及 fork 连接丢失时的重建流程.
 - 待办/后续: detached 副本 (rigorous-open-math-research-detached) 为迁移残留, 内容与 fork 一致; 可网页端删除或保留; 若日后授予 delete_repo 作用域可由 API 删除.
+### 2026-08-11 会话 60 (功能增强: 语义定理检索/交替调度/结构化验证输出/引用目录)
+- 任务: 把 Rethlas 的几个机制蒸馏进 skill 体系, 版本更迭说明只写"增加功能", 不提来源以避免纠纷.
+- 改动 (rigorous-open-math-research/SKILL.md):
+  - Phase 0 新增用户引用目录机制: 问题附带引用目录 (如 data/<id>.refs/, md/tex/txt/预提取 PDF 文本) 时先于外部检索读取, 视为用户上下文而非已核验事实.
+  - Phase 2 新增 arXiv 定理语义检索小节: 完整陈述查询语义定理库, 记录完整陈述/arXiv id/theorem id/paper id, 下载原文核验后再引用; 局部结果记录额外假设与真实障碍.
+  - Phase 5 新增检索/深度思考交替调度: 检索轮与禁用检索的独立推理轮交替, 检索失效时记录停滞查询并转入非检索技能.
+  - Phase 8 新增结构化验证输出规范: verdict + critical_errors/gaps/repair_hints, 严格规则 (errors 与 gaps 全空才 PASS), 非 PASS 必填修复提示.
+  - Changelog 新增 2026-08-11 条目 (仅列功能, 未提来源).
+- 改动 (manage-math-research-program):
+  - references/literature-and-paper-analysis.md 的 Source channels 新增语义定理检索渠道 (完整陈述查询, 记录 arXiv/theorem/paper id).
+  - references/git-sync.md 为上一会话新增的父-子同步规则, 本次补算 MANIFEST.
+  - MANIFEST.sha256 重算: 44 个非自身文件全部精确匹配; 自身行为生成时快照 (原始设计即不可自洽, 无消费脚本, 校验时跳过).
+- 验证: quick_validate 两 skill 均 "Skill is valid!".
+- 同步: 暂存区提交 76a58e9, 先推父仓库 xsoc1 再推子 fork org, 三者 HEAD 一致 (76a58e9).
+- 备注: apply_patch.bat 经 cmd 会拆散多行参数, 需直接调用 codex.exe --codex-run-as-apply-patch; 参数内双引号需转义为 \" 防 Windows 参数解析截断.
