@@ -1867,6 +1867,17 @@
   K_c: H^2 -> L^2 与 L2 密度扩展未形式化 (O16/O24 缺口登记); 稳定性门槛定理
   (SL_stability_moment_jump.tex Thm 2.2/2.3) 未形式化. 本会话未发现源文档新错误
   (无 F-001 型缺陷).
-- 待办/后续: git commit 本会话变更; GitHub 同步 (查 fork 阻塞状态, 改 public, push,
-  重新 fork 个人主页); 三个 skill (lean-verify + manage-math-research-program +
-  rigorous-open-math-research) 一体化工作流插件与分工优化; skill 仓库 GitHub 同步更新.
+- 后续补充 (同日完成):
+  - git commit f206ff2 (7 文件, 954+ 行); push 至 org 仓库 (bde54f7..f206ff2);
+    org 仓库确认 public + allow_forking=true; fork 至个人主页 xsoc1 成功
+    (xsoc1/Sturm-Liouville-theory-research, fork: true).
+  - 一体化工作流插件 math-research-workflow v0.1.0+codex.20260811140501: 编排层 skill
+    (管理-研究-验证三阶段流水线 + 子 agent 分工 + 交接契约 + 阶段边界 git 同步);
+    源 C:\Users\HuangZY\plugins\math-research-workflow, 已安装并 quick_validate 通过.
+  - lean-verify 插件补充 agents/openai.yaml (allow_implicit_invocation),
+    更新至 0.1.0+codex.20260811140558; 三个 skill 分工效率优化完成.
+  - skill 仓库同步: 新增 math-research-workflow + lean-verify agents + manage
+    MANIFEST.sha256 重生成 (44 项) + README 更新; 提交 e3d05b8 推送至父类
+    xsoc1/rigorous-open-math-research, org fork 经 merge-upstream fast-forward 同步.
+  - 两个仓库远端一致: SL 仓库 f206ff2 (org 父类 + xsoc1 fork); skill 仓库 e3d05b8
+    (xsoc1 父类 + org fork). 临时文件已清理.
