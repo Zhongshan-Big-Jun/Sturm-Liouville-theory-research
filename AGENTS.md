@@ -1752,3 +1752,35 @@
   - 提交 e4e8694 (lean-proof 整理).
 - 备注: 会话 31 在 D:\lean4\Projects\MyProject 的独立形式化已被仓库内 lean-proof 取代为规范副本 (README/STATUS 已注明).
 - 待办: 按 STATUS.md 路线图继续 (一般系数增长引理 -> H^2 矩递推 -> 完备性全定理 -> MW 引理 -> 间距线拆义务).
+
+### 2026-08-11 会话 66 (lean-proof 形式化: 一般系数增长引理 + 矩递推/缩放引理)
+- 任务: 承接会话 65 续的路线图, 形式化已证结果的下一批核心代数片段: (1) SL_stability_moment_jump.tex
+  定理 2.1 定量增长引理 (一般系数); (2) SL_h2_completeness_proof.tex 第 3.2 节矩递推 + 缩放引理.
+- 新增文件 (均 lake build 全绿, sorry/axiom 0):
+  - SL/StabilityGrowth.lean: 定量增长引理, 泛化到任意 [Field K] [LinearOrder K] [IsStrictOrderedRing K]
+    (mathlib v4.31 已弃用 LinearOrderedField, 改用非捆绑组合): B_m>=0 且 A_m-B_m>=c_0 时递推解
+    u_0=0,u_1=1,c_0 u_m=A_m u_{m-1}-B_m u_{m-2} 满足单调性 (monotone_pos) 与乘积下界
+    product_growth: u_j >= prod_{k=2..j}(A_k-B_k)/c_0, 以及 eps 形式 (eps_k=(A_k-B_k-c_0)/c_0>=0,
+    product_growth_eps). 覆盖偶/奇两组系数 (A'_m,B'_m 同为一般系数情形).
+  - SL/MomentRecurrence.lean: Q 上线性泛函 M 的矩递推 + 缩放引理: M(K_c p_n)=0 (n>=2) 推出偶矩
+    c mu_{2n}=A_n mu_{2n-2}-B_n mu_{2n-4} (奇次用 A'_n,B'_n) (even_recurrence/odd_recurrence);
+    mu_0=mu_1=0 来自 p_0=1,p_1=x 正交 (constant/linear_orth_moment_zero); 一般缩放引理
+    (scaling: v_0=0 时 v_m=v_1 u_m, 强归纳) 与偶/奇缩放 (even_scaling/odd_scaling:
+    mu_{2m}=mu_2 u_m, mu_{2m+1}=mu_3 u'_m), 合成定理 even/odd_moment_scaling 直接对接
+    KcPolynomial 系数. 依赖: KcPolynomial.Kc_pEven/Kc_pOdd (仓库内, 已机器验证).
+- 义务级审计 (lean-verify 插件): audit_report.md + verification.json, 12 项义务 O1-O12
+  全部 FAITHFUL 或 MINOR_PARAPHRASE, 无关键错误; 机器验证 run-manifest.json 刷新
+  (7 个 .lean, sorry/admit/axiom 0, lake build 8564 jobs exit 0).
+- 审计发现 F-001 (源文档非形式化缺陷): SL_stability_moment_jump.tex 定理 2.1 假设列
+  "A_m>=B_m" 弱于其证明实际使用的 "A_m-B_m>=c_0"; 形式化采用证明所需假设, 源文档应更正.
+- 工程要点: (a) mathlib v4.31 无 LinearOrderedField 类, 用 [Field K] [LinearOrder K]
+  [IsStrictOrderedRing K]; (b) big operator 记号须用 ∏ k ∈ s (此版本无 "in" 记号);
+  (c) Finset.prod_Icc_succ_top 因子顺序为 (prod 2..n) * f(n+1); (d) PowerShell
+  Set-Content -Encoding UTF8 写 Lean 文件会加 BOM 导致 "expected token", 改用 Python
+  write_text 或 [System.IO.File]::WriteAllText(UTF8Encoding($false)); (e) lake env lean
+  单独检查文件时, 依赖模块需先 lake build 生成 .olean 否则报 "object file does not exist";
+  (f) apply_patch.bat 在 PowerShell 下无法接收多行参数, 大文件改用 .NET WriteAllText 分块写.
+- 状态更新: lean-proof/STATUS.md (5 个文件, 状态矩阵更新 SL_h2 行与 SL_stability_moment_jump
+  行为"部分", 路线图 1/2 项标记完成), README.md (目录/审计/工程要点).
+- 待办/后续: 按 STATUS.md 路线图 3-6 (H^2 完备性全定理接回 L^2 矩上界与 Weierstrass 稠密;
+  稳定性定理与尖锐性定理; 源文档定理 2.1 假设更正 F-001; MW 引理; 间距线拆义务).
