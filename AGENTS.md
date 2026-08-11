@@ -1925,3 +1925,21 @@
   0.1.0+codex.20260811140558, workflow 0.1.0+codex.20260811140501), 未受影响;
   如需改用仓库版, 执行 codex plugin marketplace add xsoc1/rigorous-open-math-research.
 
+### 2026-08-11 会话 72
+- 任务: 修复并重写 xsoc1/rigorous-open-math-research 仓库 README (上一轮写入时被
+  PowerShell 转义破坏).
+- 发现的问题: 安装代码块围栏损坏 (bash 围栏变退格符 + 'ash', 结束围栏丢失,
+  代码块未渲染); 依赖方向段落丢字母 r (igorous-open-math-research);
+  表格路径与表述可更清晰.
+- 完成: 整体重写 README (5570 字节, 无 BOM, 无控制字符, 围栏 4 处配对):
+  一句话定位; 插件清单表 (4 插件, 每项含定位与具体能力, 含文献引用必须附链接
+  不得编造的规则); 依赖方向 text 代码块; 安装 (marketplace 推荐: 命令 + marketplace
+  名 math-research + 新开会话提示); 备选 skill-installer 路径; 使用场景表
+  (4 skill 触发方式); 仓库结构 (xsoc1 父类 + org fork); 精简版版本历史.
+- 验证: Python 脚本检查无 BOM/无控制字符/围栏配对/无丢字; 误报排查后确认
+  rigorous 全部完整.
+- 同步: 提交 08a6b41 推送父类 xsoc1/rigorous-open-math-research, org fork 经
+  merge-upstream fast-forward; 两仓库 main = 08a6b414ed4ebb2a4cf8892c9230840b5938e117.
+- 经验: 经 PowerShell 双引号命令行写入含反引号/反斜杠文本时, \/ 等会被当作
+  PowerShell 转义; 长文本写入一律用 Python 临时脚本文件, 不用 -c 内联字符串.
+
