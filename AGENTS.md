@@ -2002,3 +2002,134 @@
   陈述守护) + 人工语义复核; 陈述冻结防漂移; 失败分解保留骨架; 新鲜上下文收敛检查; 双 harness 共享 prompts.
 - 待办: 把采纳路线图逐条写进三个 skill 的 SKILL.md (下次迭代 skill 时执行); 未采纳项 (reap 战术, jixia, LeanAide,
   Quokka, MathWeaver 桌面版) 属基础设施依赖, 记录不落地.
+
+### 2026-08-12 会话 58 续作 (缺口 (a') 全 R 复核与文档修复收尾)
+- 任务: 承接上一模型遗留: 复核并收尾缺口 (a') 文档 docs/SL_gap_n1_symline_allR_proof.tex
+  (KEY LEMMA 从 1<R<=3/2 推广到全部 R>1, 张力比链方法), 修复文档与证书, 交付零警告 PDF.
+- 数学结论 (STRICT): 缺口 (a') 已闭合. Claim A (定理 5.1: 对 q~ in (0,1),
+  gamma in [gamma_0*, gamma_0(q~)] 有 rho(q~,gamma) < 1) 由张力比链
+  rho <= rho0 (P1: u <= tan u; P2: 三项非负分解 E0) + 一维不等式 rho0 < 1
+  (G-论证: G''' < 0 证书 C3, G'(0) > 0, G'(w0) < 0, G(w0) = F(gamma_0*) > 0
+  证书 C5) 证明; 结合等价性引理 F~e < 0 <=> rho < 1 与归约引理 (端点 +
+  P1 全 R + W0 引理全 R + [S,(4.13)] G2 分解) 得 KEY LEMMA 全 R; 结合
+  阱族刚性全 R (会话 56) 与 O1-INF 归约, INF 侧全 R 闭合 (模 (c)/(d)).
+- 文档修复 (F-302 系列): 补入 Claim A 定理 (编号 5.1) 消除 undefined 引用;
+  摘要/标题/四个含数学章节标题加 texorpdfstring (hyperref PDF 字符串警告清零);
+  修复 G''(0) = 3pi - pi^3/4 (原误 3pi, 附 pi^2 < 12 证明); 重写证书 C1 链
+  (原分数 19039844677/13301445497 与 3960529433/2714143082 不可复现, 十进制
+  常数方向/界错误; 新链 tan 0.961 <= R1 < 1.4315 < 1.4472 < 2(223/71-0.961)/3,
+  tan 0.97 >= R2 > 1.4591 > 1.4546 > 2(22/7-0.97)/3, 精确分数); C3 精化
+  有理界 (y0max = 15273/7000, w0max = y0max - 223/142; 粗略界只压到 -0.4303
+  不够); C5 常数 3817/200 -> 19 (精确值约 19.081); 巨分数拆行 + 长 ASCII 词
+  断点 (overfull 清零).
+- 验证: scripts/_symline_allR_certificates.py 全部断言 PASS (fractions.Fraction
+  精确有理); scripts/_symline_allR_check.py 全绿 (张力比链 37500 点零违例,
+  角点最小余量 mpmath 50 位复核 +2.9e-18 > 0; rho0 < 1 二十万点;
+  等价性 19901 点零违例; 端点 7 个 q~ 值; 角点渐近 K(t); 引理 ys2 扫描).
+  全部数值为 EVIDENCE, 不构成证明.
+- 交付: docs/SL_gap_n1_symline_allR_proof.pdf (9 页, 零警告 (仅 SimSun 字体
+  字形替换), 已复制至 docs/).
+- 诚实标注: 缺口 (a') 证据为 STRICT; INF 全 R 闭合不作完整宣称 - (c) Theorem A
+  独立复核 (CANDIDATE_COMPLETE_PROOF) 与 (d) good-root 全局论证残差仍开放,
+  与本文正交; 上一模型 8 小时墙钟思考无法独立核验, 本会话验证覆盖证明的
+  全部关键不等式与端点.
+- 工具库: 新增 tools/tension-ratio-chain.md (张力比链, STRICT, 含解析/适用范围/
+  验证); 更新 tools/symline-n1-monotonicity.md (适用范围不再限于 R <= 3/2,
+  指向全 R 版本); tools/README.md 索引/速查表/维护日志同步.
+- 状态: state/current.json + state/RESUME.md 更新 (缺口 (a') 已闭合,
+  next_actions 改为 (c) Theorem A 独立复核与 (d) good-root 全局残差).
+- 校验: validate_project.py 复跑仍为已知 INVALID (knowledge/ 缺 Blueprint v2.1
+  结构文件, lean-proof/audit_report.md 为受保护工件位置问题; 均为既有登记问题,
+  与本会话改动无关, 错误清单未涉及本会话文件).
+
+### 2026-08-12 会话 75 (H^s 线第一步: TransferOperator 形式化)
+- 任务: 继续 lean-proof 路线图第 7 条 (H^s 显式正交系统线), 重写并修复
+  lean-proof/SL/TransferOperator.lean (传输算子 K_c^{-1} 闭式, 源文档
+  docs/SL_hs_orthogonal_systems_proof.tex 第 3 节).
+- 完成 (约 340 行, 命名空间 SL.Transfer):
+  - 定义: transferCoeff (系数闭式 binom(r+j-1,j) k!/(k-2j)!/c^(r+j)), transferPoly,
+    KcR_inv (逆算子). 引理: half_gap_product_zero, transferCoeff_zero/_rec,
+    transferPoly_zero/_eq_split, KcR_transferPoly_step, KcR_transferPoly
+    (K_c T_{r+1,k} = T_{r,k}), coeff_transferPoly, natDegree_transferPoly,
+    KcR_inj (c≠0 单射), KcR_inv_left/right (K_c 双射), KcR_inv_iter_X_pow
+    ((KcR_inv)^[r] X^k = T_{r,k}, 闭式收尾).
+  - 编译迭代 3 轮 (首轮 14 处错误全部清除): 关键经验 - rw 不穿透 lambda 需
+    simp_rw (KcR_C_mul 在 p.sum 内, ← sub_mul 在求和项内); Finset.sum_range_succ'
+    为 (∑ f(k+1)) + f 0, 配 ac_rfl; hLHS 求和代数用 nth_rw 1 定向重写链
+    (sum_sub_distrib 正向 + nth_rw add_comm/add_sub_assoc + ← sum_sub_distrib);
+    Nat.le_div_iff_mul_le 用 .mpr 方向; r=0 反证用 simpa [r, sub_eq_zero];
+    simp/norm_num 会把 a*b≠0 展开成合取, 改用 rw [neg_zero, zero_add] + exact;
+    rw [KcR_inv_left c hc] 需显式参数; hmain 用 rw [hmain] 正向 (let 展开自动闭合).
+- 验证: lake env lean SL/TransferOperator.lean 零警告零错误; lake build
+  SL.TransferOperator 8561 jobs exit 0 (sorry/axiom 0).
+- 台账: STATUS.md 更新 (9 文件, 第 1 节加 TransferOperator 行, 第 2 节
+  SL_hs_orthogonal_systems_proof.tex -> 部分, 路线图第 7 条标记第一步完成).
+- 诚实说明: 本会话为纯机械式证明编写 (用户先前已指示继续), 未改动源文档;
+  临时文件 _check.lean 已删, _err.txt/_err2.txt 为编译输出留存 (无害).
+- 待办: H^s 线下一步 (显式正交系统构造 + H^s 完备性, 承接 Completeness 矩方法/等距);
+  未 commit/push (等用户指示); 仓库仍有上一模型未提交改动 (会话 58 续作产物等).
+
+### 2026-08-12 会话 76 (xsoc1 仓库编排核验与工作流插件仓库收尾)
+
+- 任务: 编排 https://github.com/xsoc1/rigorous-open-math-research 为工作流插件仓库.
+- 现状核实: 仓库已是 Codex marketplace (名 `math-research`), 含 4 插件 (`math-research-workflow` 编排旗舰 / `rigorous-open-math-research` / `manage-math-research-program` / `lean-verify`), `.agents/plugins/marketplace.json`, `scripts/validate_all.py`, CI, LICENSE, AGENTS.md; 拓扑: xsoc1 (User) = 父仓库, Zhongshan-Big-Jun (Org) = fork, 双方 main 同一提交.
+- 复验: `validate_all.py` 68 项全绿; 临时 CODEX_HOME 冒烟通过 (4 插件最新 cachebuster installed/enabled); GitHub Actions validate 对最新提交 success.
+- 收尾: `validate_all.py` 移除死代码行 (模板掩码重复赋值); README 版本历史与仓库 AGENTS.md 会话记录补齐; 提交 323bfd8 推送父仓库并同步 fork (双方 main 同一提交).
+- 本机: `codex plugin marketplace upgrade math-research` + 重装 4 插件至最新版本 (workflow 20260811160209, rigorous/manage 20260811160208, lean-verify 20260812012356), 全部 installed/enabled; 旧 personal 插件缓存已被 CLI 清理.
+- 遗留提示: `.codex/skills` 下两个旧独立副本 (rigorous-open-math-research, manage-math-research-program) 的 SKILL.md 与插件版相同, 但 manage 的 blueprint 工具文件有 2 处差异; 建议移除旧副本避免版本分叉 (未擅动, 等用户确认). 个人市场文件 `C:\Users\HuangZY\.agents\plugins\marketplace.json` 残留无效条目 (lean-verify/math-research-workflow 指向不存在路径), 建议清理.
+- 未 commit 本仓库改动 (按交接约定, 等用户指示).
+
+### 2026-08-12 会话 58 续作 2 (缺口 (d) 闭环: INF 全局极小元必为 sign-consistent good root)
+- 任务: 闭合登记于阱族刚性文档 (SL_gap_n1_well_rigidity_allR_proof.pdf 第 9 节
+  "剩余缺口") 的缺口 (d): 证明 INF 极值问题 I(R) = inf_{1<=rho<=R}(lambda_2-lambda_1)
+  的全局极小元必然落在阱族参数集 Omega = {(a,b): 0<=a<=b<=1} 内部, 且在该处
+  f(a)=f(b)=0 与符号一致性自动成立, 故极小元是 sign-consistent good root.
+- 主定理 (STRICT, 一切 R>1): I(R) = min_Omega D = min_{v in (0,1/2)} D(v,1-v)
+  = D(v*(R),1-v*(R)) < 3pi^2/R, 极小元唯一. 六步证明链:
+  ① O1-INF 达到性 (I(R) = min_Omega D, INDEPENDENTLY_AUDITED_PROOF);
+  ② 边界排除: dOmega = {a=0} u {b=1} u {a=b} 上 D >= 3pi^2/R (两块界 O3b 严格
+  不等式 + rho 恒等 R 的精确值 D = 3pi^2/R), 而对称线邻界值 D(v*) < 3pi^2/R
+  (缺口 (a') KEY LEMMA 全 R 版), 故极小元在内部;
+  ③ 内点临界点经 Feynman-Hellmann 得 f(a)=f(b)=0; 结构引理 (Wronskian 比值
+  v = y2/y1 严格递减 + f/hat y1^2 单调结构) 给出 f 零点唯一性: a < z0 < b,
+  符号一致性 y2(a)/y1(a) > 0, y2(b)/y1(b) < 0 自动成立 => sign-consistent
+  good root;
+  ④ 全 R 阱族刚性 (缺口 (b), 2026-08-10 会话 56) 给出 a+b=1;
+  ⑤ 对称线唯一临界点 v* (缺口 (a') 的 KEY LEMMA: 单峰);
+  ⑥ 结论 + 唯一性 (任何极小元必经第 2-5 步).
+- 文档: docs/SL_gap_n1_global_goodroot_proof.pdf (6 页, 零警告, 仅 SimSun 字体
+  字形替换; xelatex 两遍). 文档含: 结构引理完全自足重述 (与 O1 第 5 步双保险),
+  边界排除, 主定理证明, 诚实声明 (与缺口 (c) 正交: 闭合不依赖 Theorem A; (c)
+  仍是 CANDIDATE_COMPLETE_PROOF 待独立复核; SUP 侧 O3a/C1 REPAIRABLE-GAP 补丁
+  未动), 附录 A 数值交叉检验 (EVIDENCE), 附录 B 数学知识, 文献 (Keller 1976
+  DOI 10.1137/0131042, Mahar-Willner 1976 DOI 10.1002/cpa.3160290505, AEH 2026
+  DOI 10.1007/s00013-025-02213-y, 含链接).
+- 数值交叉检验 (EVIDENCE, 不构成证明): scripts/_gapd_global_check.py 复跑
+  ALL OK (R in {1.2,2,4,10,100}): 内部临界点每 R 恰一个且对称 (a+b=1 至 6 位),
+  z0 = 1/2 in (a,b), D 与对称线最小值一致 (1e-9); 边界 D(0,t), D(t,1) > 3pi^2/R,
+  D(t,t) = 3pi^2/R 精确; 31x31 粗网格最小值 >= 对称线最小值 (1e-6); 结构引理
+  f_{a,b} < 0 于 (a,b) 内部 (25 采样点); R=100 退化点 (t,t),
+  t = arccos(±1/4)/pi ≈ 0.419569, 0.580431 在 dOmega 上被边界引理覆盖.
+  注意: python 不在 PATH, 需用 C:\Users\HuangZY\AppData\Local\Programs\Python\
+  Python310\python.exe.
+- 调试经验 (保留): norm2_well 梯形积分对不连续 rho 仅 O(1/n) 精度, 须用
+  gap_lib.norm2 逐块解析积分 (fval(a) 从 0.0016 -> -3e-12); least_squares
+  cost = 1/2||r||^2 阈值需 1e-18; 内部点判据 b-a > 1e-4 排除 a 约等于 b 退化点;
+  对称线 v* 用 symline_crit (brentq 求 fval(v,1-v,v)=0), 勿用 minimize_scalar
+  (平坦底部不精确).
+- 状态: 缺口 (d) CLOSED (STRICT). INF 侧 lambda_2-lambda_1 极端值问题对一切
+  R>1 完全闭合 (缺口 (a) 2026-08-10, (b) 2026-08-10 会话 56, (a') 2026-08-12
+  会话 58 续作, (d) 本会话). 剩余义务: (c) Theorem A 独立复核 (CANDIDATE);
+  SUP 侧 O3a/C1 REPAIRABLE-GAP 补丁 (断言为真, 待写).
+- 工具库: 新增 tools/good-root-global-lemma.md (内部临界点 => sign-consistent
+  good root 的结构引理链: Wronskian 比值单调 + f 零点唯一性 + FH 跳点公式,
+  适用范围与不适用情形), README 索引/速查表/维护日志同步.
+- 状态文件: state/current.json + state/RESUME.md 更新 ((d) CLOSED,
+  next_actions 改为 (c) Theorem A 独立复核).
+- 台账: runs/rigorous-open-math-research/R-20260809T000000Z-j2e1-e1ify-0C11DE/
+  research_ledger.md 追加 R-115.
+- 校验: validate_project.py 复跑仍为已知 INVALID (knowledge/ 缺 Blueprint v2.1
+  结构文件, lean-proof/audit_report.md 为受保护工件位置问题; 均为既有登记问题,
+  错误清单未涉及本会话文件).
+- 诚实说明: 上一模型 8 小时墙钟思考无法独立核验; 本会话逐条复核文档、编译
+  日志与交叉检验脚本; 数值部分与严格证明部分已按约定区分标注.

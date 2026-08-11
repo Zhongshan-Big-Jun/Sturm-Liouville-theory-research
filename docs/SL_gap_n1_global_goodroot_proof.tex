@@ -1,0 +1,334 @@
+% 用法: xelatex SL_gap_n1_global_goodroot_proof.tex (两遍, -output-directory=build)
+% 主题: 缺口 (d) 闭合 - INF 全局极小元必为 sign-consistent good root
+% 会话: 2026-08-12 (承接会话 58; 证据分层: STRICT = 严格解析证明, EVIDENCE = 数值交叉检验)
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+
+\title{缺口 (d) 闭合: INF 全局极小元必为 sign-consistent good root\\[-2mm]
+\large 相邻间距 $D=\lambda_2-\lambda_1$ 的 INF 侧对全部 $R>1$ 完全闭合}
+\author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
+\date{2026-08-12}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+对 Dirichlet 加权弦 $-y''=\lambda\rho y$, $1\le\rho\le R$ a.e.\ ($R>1$),
+本文闭合登记于阱族刚性文档 (\texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf}, 其第 9 节 ``剩余缺口) 的剩余缺口 (d): 证明 INF 极值问题
+$I(R):=\inf_{1\le\rho\le R}(\lambda_2-\lambda_1)$ 的全局极小元必然落在
+阱族参数集 $\Omega=\{(a,b):0\le a\le b\le1\}$ 的内部, 且在该处
+$f(a)=f(b)=0$ 与符号一致性自动成立, 故极小元是 sign-consistent good root.
+论证完全初等, 由三段既有结果拼装:
+(i) \emph{边界排除}: $\partial\Omega=\{a=0\}\cup\{b=1\}\cup\{a=b\}$ 上
+$D\ge3\pi^2/R$ (两块界 O3b 严格不等式 + $\rho\equiv R$ 的精确值), 而对称线
+临界值 $D(v^*)<3\pi^2/R$ (缺口 (a') 的 KEY LEMMA 全 $R$ 版), 故极小元在内部;
+(ii) \emph{临界点 $\Rightarrow$ good root}: 内部极小元满足 $\partial_aD=\partial_bD=0$,
+由 Feynman--Hellmann 得 $f(a)=f(b)=0$; 结构引理 (Wronskian 单调性) 给出
+$f$ 至多两个零点、$\{f>0\}$ 为包含 $y_2$ 唯一零点 $z_0$ 的单区间, 故
+$a<z_0<b$, 符号一致性 $y_2(a)/y_1(a)>0$, $y_2(b)/y_1(b)<0$ 自动成立;
+(iii) \emph{刚性}: 一切 sign-consistent good root 满足 $a+b=1$ (全 $R$
+阱族刚性, 2026-08-10), 故极小元在对称线上, 由对称线 1D 分析唯一临界点
+$v^*$ 得 $I(R)=D(\rho_{v^*(R)})<3\pi^2/R$, 且极小元唯一.
+\STRICT{} 本定理对全部 $R>1$ 成立; 结合已闭合的缺口 (a), (a$'$), (b),
+INF 侧 $\lambda_2-\lambda_1$ 的极端值问题至此完全闭合 (模缺口 (c):
+定理 A 的独立复核, 与闭合正交). 数值交叉检验单独列于附录 \ref{app:evid}
+(\EVID, 不构成证明).
+\end{abstract}
+
+\tableofcontents
+
+\section{设定、记号与主定理}\label{sec:setup}
+
+\subsection{设定}
+固定 $R>1$, $m:=\sqrt R$. 阱族密度
+\begin{equation}
+	\rho_{a,b}(x):=
+	\begin{cases}
+		R, & x\in[0,a)\cup(b,1],\\
+		1, & x\in[a,b],
+	\end{cases}
+	\qquad \Omega:=\{(a,b):0\le a\le b\le1\}.
+	\label{eq:well}
+\end{equation}
+Dirichlet 问题 $-y''=\lambda\rho_{a,b}y$, $y(0)=y(1)=0$, 简单特征值
+$0<\lambda_1(a,b)<\lambda_2(a,b)$, $D(a,b):=\lambda_2-\lambda_1$.
+盒类 $\mathcal K:=\{\rho\text{ 可测}:1\le\rho\le R\text{ a.e.}\}$,
+$I(R):=\inf_{\mathcal K}(\lambda_2-\lambda_1)$.
+
+对斜率归一化 ($y_k(0)=0$, $y_k'(0)=1$) 特征函数 $y_k$, 记
+$n_k:=\int_0^1\rho_{a,b}\,y_k^2\,dx$, $\hat y_k:=y_k/\sqrt{n_k}$,
+$f_{a,b}(x):=\lambda_2\hat y_2(x)^2-\lambda_1\hat y_1(x)^2$,
+\begin{equation}
+	R_1(a,b):=f_{a,b}(a),\qquad R_2(a,b):=f_{a,b}(b).
+	\label{eq:resid}
+\end{equation}
+
+\subsection{主定理}
+
+\begin{theorem}[INF 侧完全闭合, 全部 $R>1$]\label{thm:main}
+设 $R>1$. 则
+\begin{equation}
+	I(R)=\min_{\Omega}D=\min_{v\in(0,1/2)}D(v,1-v)=D\bigl(v^*(R),1-v^*(R)\bigr)
+	<\frac{3\pi^2}{R},
+	\label{eq:main}
+\end{equation}
+其中 $v^*(R)\in(0,1/2)$ 是对称线上 $f_{v,1-v}(v)=0$ 的唯一解
+(等价地 $D(v,1-v)$ 在 $(0,1/2)$ 的唯一临界点, KEY LEMMA (a$'$)).
+极小元唯一. \STRICT{}
+\end{theorem}
+
+\begin{remark}[义务状态]
+缺口 (d) 的闭合把此前条件式的推论
+(\texttt{SL\_gap\_n1\_symline\_allR\_proof.pdf}, INF 闭合推论)
+升级为无条件定理: 该推论假定 O1-INF、阱族刚性、O3b 与 KEY LEMMA 即可推出
+INF 闭合, 其唯一的未验证前提正是``全局极小元落在刚性定理适用的 good root
+集合内'', 即本文 \S\ref{sec:goodroot}--\ref{sec:boundary} 的内容.
+\end{remark}
+
+\section{引用的既有结果}\label{sec:citations}
+
+以下结果均已严格证明, 本文直接引用:
+
+\begin{enumerate}
+	\item[\textbf{(O1-INF)}] (归约与达到性, \texttt{SL\_gap\_n1\_proof.pdf},
+		\texttt{INDEPENDENTLY\_AUDITED\_PROOF})
+		$I(R)=\min_{\Omega}D$, 且下确界在 $\Omega$ 上达到.
+		证明机制: 特征值关于 $L^1$ 连续 (Hilbert--Schmidt 自伴化 + Weyl 不等式),
+		$\Omega$ 紧; 阶梯稠密 + bang-bang; 内部跳点极值条件 $f(x_j)=0$ 与
+		结构引理给出至多两跳. \STRICT{}
+	\item[\textbf{(O3b)}] (两块界, 同上文档, \texttt{PROVED})
+		对两块密度 ($\rho=1$ on $[0,t]$, $\rho=R$ on $(t,1]$ 或其镜像):
+		\begin{equation}
+			\frac{3\pi^2}{R}<D(\rho)<3\pi^2,
+		\end{equation}
+		两端点仅在极限达到. \STRICT{}
+	\item[\textbf{(b)}] (阱族刚性, \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf},
+		2026-08-10, \STRICT)
+		对一切 $R>1$, 阱族 $\rho_{a,b}$ 的任意 sign-consistent good root
+		($R_1=R_2=0$, $y_2(a)/y_1(a)>0$, $y_2(b)/y_1(b)<0$) 满足 $a+b=1$.
+	\item[\textbf{(a$'$)}] (对称线 1D 分析, \texttt{SL\_gap\_n1\_symline\_allR\_proof.pdf},
+		2026-08-12, \STRICT)
+		KEY LEMMA 全 $R$ 版: $\widetilde F_e$ 在 $(0,1/2)$ 恰有一个零点 $c^*$,
+		先正后负; 结合降维恒等式 ($D$ 的临界点与 $\widetilde F_e$ 零点一一对应):
+		$D(v,1-v)$ 在 $(0,1/2)$ 恰有一个临界点 $v^*=v(c^*)$, 严格递减于
+		$(0,v^*)$、严格递增于 $(v^*,1/2)$ (单峰), 端点
+		$D(0^+)=3\pi^2$, $D(1/2^-)=3\pi^2/R$, 故
+		\begin{equation}
+			D(v^*,1-v^*)<\frac{3\pi^2}{R}.
+			\label{eq:Dvstar}
+		\end{equation}
+\end{enumerate}
+
+\section{结构引理: 临界点自动满足符号一致性}\label{sec:goodroot}
+
+本节完全自足地重述并证明 O1 第 5 步的结构引理 (与 \texttt{SL\_gap\_n1\_proof.pdf}
+一致, 双保险), 再推出缺口 (d) 的核心: 内部临界点必为 sign-consistent good root.
+
+\begin{lemma}[$v=y_2/y_1$ 严格递减]\label{lem:mono}
+对任意 $0<a<b<1$, $y_1>0$ 于 $(0,1)$; $y_2$ 在 $(0,1)$ 恰有一个零点 $z_0$,
+$y_2>0$ 于 $(0,z_0)$, $y_2<0$ 于 $(z_0,1)$ (振荡理论). 记
+$W:=y_1y_2'-y_1'y_2$. 则 $W<0$ 于 $(0,1)$, 且 $v:=y_2/y_1$ 严格递减. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	$W'=y_1y_2''-y_1''y_2=(\lambda_1-\lambda_2)\rho_{a,b}\,y_1y_2$
+	($y_k''=-\lambda_k\rho_{a,b}y_k$). 于 $(0,z_0)$: $y_1y_2>0$,
+	$\lambda_1-\lambda_2<0$, 故 $W'<0$; $W(0)=y_1(0)y_2'(0)-y_1'(0)y_2(0)=0$
+	(斜率归一化), 得 $W<0$. 于 $(z_0,1)$: $y_2<0$ 故 $W'>0$, 且
+	$W(1)=y_1(1)y_2'(1)-y_1'(1)y_2(1)=0$ (Dirichlet), 得 $W<0$. 于是
+	$v'=(y_2'y_1-y_2y_1')/y_1^2=W/y_1^2<0$. \qed
+\end{proof}
+
+\begin{lemma}[$f$ 的零点结构]\label{lem:struct}
+设 $f:=\lambda_1\hat y_1^2-\lambda_2\hat y_2^2$ (归一化), $z_0$ 为 $y_2$ 的唯一零点.
+则 $f/\hat y_1^2$ 于 $(0,z_0)$ 严格递增、于 $(z_0,1)$ 严格递减; $f$ 在
+$(0,z_0)$ 恰有一个零点 $\alpha$, 在 $(z_0,1)$ 至多一个零点 $\beta$ (若存在则
+$\alpha<z_0<\beta$); $\{f>0\}$ 是包含 $z_0$ 的单区间, 即
+$(\alpha,\beta)$ (若 $\beta$ 存在) 或 $(\alpha,1)$ (若否).
+特别地: 若 $0<a<b<1$ 且 $f(a)=f(b)=0$, 则 $a=\alpha$, $b=\beta$,
+从而 $a<z_0<b$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	比值 $v=\hat y_2/\hat y_1=y_2/y_1$ 与归一化无关, 由引理 \ref{lem:mono} 严格
+	递减. 于是 $f/\hat y_1^2=\lambda_1-\lambda_2v^2$: 于 $(0,z_0)$ 上
+	$v>0$ 递减, 故 $v^2$ 递减, $f/\hat y_1^2$ 严格递增; 于 $(z_0,1)$ 上
+	$v<0$ 递减, 故 $v^2$ 递增, $f/\hat y_1^2$ 严格递减.
+	在 $(0,z_0)$ 上: $v(0^+)=1$ (斜率归一化下 $y_1,y_2\sim x$), 故
+	$(f/\hat y_1^2)(0^+)=\lambda_1-\lambda_2<0$; 而
+	$(f/\hat y_1^2)(z_0)=\lambda_1>0$ ($\hat y_2(z_0)=0$). 严格递增函数
+	由负到正穿零恰一次, 得唯一零点 $\alpha\in(0,z_0)$.
+	在 $(z_0,1)$ 上: $(f/\hat y_1^2)(z_0)=\lambda_1>0$, 严格递减, 故至多一个
+	零点 $\beta\in(z_0,1)$ (若 $x\to1^-$ 时极限为负); 若 $\beta$ 不存在则
+	$f>0$ 于整个 $(z_0,1)$.
+	若 $f(a)=f(b)=0$, $a<b$: $a$ 是 $(0,z_0)$ 内唯一的零点故 $a=\alpha$;
+	$b$ 必须是 $(z_0,1)$ 内的零点 (否则与 $a\ne b$ 矛盾), 故 $b=\beta$,
+	$z_0\in(a,b)$. \qed
+\end{proof}
+
+\begin{corollary}[内部临界点 $\Rightarrow$ sign-consistent good root]\label{cor:goodroot}
+设 $(a,b)\in\Omega$ 为内点 ($0<a<b<1$) 且是 $D$ 的临界点
+($\partial_aD=\partial_bD=0$). 则 $R_1(a,b)=R_2(a,b)=0$, 且
+\begin{equation}
+	\frac{y_2(a)}{y_1(a)}>0,\qquad \frac{y_2(b)}{y_1(b)}<0,
+\end{equation}
+即 $(a,b)$ 是 sign-consistent good root. \STRICT{}
+\end{corollary}
+
+\begin{proof}
+	$D=\lambda_2-\lambda_1$ 在 $\Omega$ 内点处 $C^1$ (简单特征值与特征函数对
+	参数 $(a,b)$ 光滑依赖, 标准解析摄动理论). Feynman--Hellmann
+	(O1 第 4 步, 移动跳点公式, 经平滑化严格化) 给出
+	\begin{equation}
+		\partial_aD=(R-1)\bigl(\lambda_1\hat y_1(a)^2-\lambda_2\hat y_2(a)^2\bigr)
+		=-(R-1)f_{a,b}(a)=-(R-1)R_1,
+		\label{eq:FH1}
+	\end{equation}
+	\begin{equation}
+		\partial_bD=(R-1)\bigl(\lambda_2\hat y_2(b)^2-\lambda_1\hat y_1(b)^2\bigr)
+		=+(R-1)f_{a,b}(b)=+(R-1)R_2,
+		\label{eq:FH2}
+	\end{equation}
+	(符号核对: 于 $x=a$ 处密度自 $R$ 跳至 $1$,\allowbreak 于 $x=b$ 处自 $1$ 跳至 $R$;
+	与 \texttt{SL\_gap\_n1\_well\_\allowbreak rigidity\_allR\_proof.pdf} 注 (残差的变分来源)
+	一致.) 故临界点给出 $f_{a,b}(a)=f_{a,b}(b)=0$, 即
+	$f(a)=f(b)=0$ (记号 \ref{lem:struct} 的 $f$, 差一符号无妨).
+	由引理 \ref{lem:struct}: $a<z_0<b$. 由引理 \ref{lem:mono} 的符号结论:
+	$y_2>0$ 于 $(0,z_0)\supset(0,a]$, $y_2<0$ 于 $[b,1)\subset(z_0,1)$,
+	$y_1>0$; 得 $y_2(a)/y_1(a)>0$, $y_2(b)/y_1(b)<0$. \qed
+\end{proof}
+
+\begin{remark}
+	引理 \ref{lem:struct} 对一切 $0<a<b<1$ 成立, 其零点结构 (``$f>0$ 于含
+	$z_0$ 的单区间'') 与 O1 第 5 步完全一致; 该步已随 O1 独立审计. 这里
+	重述是为了使本文自足, 并显式写出 $z_0\in(a,b)$ 这一推论 (它是符号一致性
+	的来源).
+\end{remark}
+
+\section{边界排除}\label{sec:boundary}
+
+\begin{lemma}[$\partial\Omega$ 上的下界]\label{lem:boundary}
+	在 $\partial\Omega=\{a=0\}\cup\{b=1\}\cup\{a=b\}$ 上,
+	\begin{equation}
+		D(a,b)\ge\frac{3\pi^2}{R},
+		\label{eq:bound}
+	\end{equation}
+	且等号仅当 $a=b$ (此时 $\rho_{a,b}\equiv R$ a.e., $D=3\pi^2/R$ 精确).
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	$\{a=0\}$: $\rho=1$ 于 $[0,b]$, $R$ 于 $(b,1]$, 两块密度, O3b 给出
+	$D>3\pi^2/R$ (严格). $\{b=1\}$: 镜像两块, 同理. $\{a=b=t\}$:
+	$\rho=R$ 于 $[0,t)\cup(t,1]$, 即 $\rho\equiv R$ a.e.; 显式解
+	$y_k=\sqrt2\sin(k\pi x)$ 给出 $\lambda_k=k^2\pi^2/R$, 故
+	$D=3\pi^2/R$ 精确. \qed
+\end{proof}
+
+\section{主定理的证明}\label{sec:proof}
+
+\begin{proof}[定理 \ref{thm:main}]
+	\emph{第 1 步 (达到性).} 由 (O1-INF): $I(R)=\min_{\Omega}D$, 取极小元
+	$(a_*,b_*)\in\Omega$.
+
+	\emph{第 2 步 (内部性).} 由 (a$'$) 的 \eqref{eq:Dvstar}:
+	\begin{equation}
+		I(R)\le D(v^*,1-v^*)<\frac{3\pi^2}{R},
+	\end{equation}
+	而引理 \ref{lem:boundary} 给出 $D\ge3\pi^2/R$ 于 $\partial\Omega$.
+	故 $D(a_*,b_*)<\min_{\partial\Omega}D$, 极小元 $(a_*,b_*)\notin\partial\Omega$,
+	即 $0<a_*<b_*<1$.
+
+	\emph{第 3 步 (good root).} 内部极小元是 $D$ 的临界点
+	($\partial_aD=\partial_bD=0$); 推论 \ref{cor:goodroot} 给出 $(a_*,b_*)$
+	是 sign-consistent good root.
+
+	\emph{第 4 步 (对称性).} 刚性定理 (b) 给出 $a_*+b_*=1$.
+
+	\emph{第 5 步 (唯一临界点).} $(a_*,b_*)=(v_{**},1-v_{**})$ 在对称线上,
+	且作为 $\Omega$ 上的临界点特别地是对称线函数 $D(v,1-v)$ 的临界点.
+	由 (a$'$): 对称线上临界点唯一, 为 $v^*$. 故 $v_{**}=v^*$.
+
+	\emph{第 6 步 (结论).} $I(R)=D(a_*,b_*)=D(v^*,1-v^*)<3\pi^2/R$.
+	唯一性: 任何极小元都必经第 2--5 步, 故等于 $(v^*,1-v^*)$; 又对称线函数
+	严格单峰 (a$'$), 唯一临界点即唯一整体极小. \qed
+\end{proof}
+
+\begin{remark}[INF 侧完全闭合的声明范围]
+	定理 \ref{thm:main} 与缺口 (c) (定理 A: 对称阱 $R\to\infty$ 极限
+	$\lim_R R\,m_R=24.9438661\ldots<3\pi^2$) 正交: 闭合本身不依赖 (c).
+	(c) 仍是独立复核的开放义务 (状态 CANDIDATE\_COMPLETE\_PROOF), 但不再是
+	INF 闭合的前置条件. 同理, SUP 侧 O3a/C1 的 REPAIRABLE-GAP 补丁
+	(2026-08-10 审计, 断言为真, 补丁待写) 不影响本定理.
+\end{remark}
+
+\section{附录 A: 数值交叉检验 (EVIDENCE, 不构成证明)}\label{app:evid}
+
+脚本: \texttt{scripts/\_gapd\_global\_check.py} (本会话, 转移矩阵精确求解,
+残差 $R_1,R_2$ 用逐块解析范数). $R\in\{1.2,2,4,10,100\}$:
+
+\begin{enumerate}
+	\item 内部临界点 ($R_1=R_2=0$, 多种子 least\_squares + 对称线种子):
+		每个 $R$ 恰一个, 全部满足 $a+b=1$ 至 6 位, $z_0=1/2\in(a,b)$
+		(符号一致性), $D$ 与对称线最小值一致 (1e-9). 例: $R=4$:
+		$(0.382598,0.617402)$, $D=6.78448234$, $3\pi^2/R=7.402203$.
+	\item 边界: $D(0,t),D(t,1)>3\pi^2/R$ ($t\in\{0.1,\dots,0.9\}$);
+		$D(t,t)=3\pi^2/R$ 精确; 粗网格 ($31\times31$ 于 $a\le b$) 最小值
+		$\ge$ 对称线最小值 (1e-6).
+	\item 结构引理: 对称临界点处 $f_{a,b}<0$ 于 $(a,b)$ 内部 (25 个采样点),
+		$f_{a,b}(a),f_{a,b}(b)\approx0$ (1e-11).
+	\item R=100 备注: least\_squares 还报告两个退化点
+		$(t,t)$, $t=\arccos(\pm1/4)/\pi\approx0.419569,0.580431$,
+		恰为 $\rho\equiv R$ 时 $f_{a,b}(t)=0$ 的对角线解; 它们在
+		$\partial\Omega$ 上, $D=3\pi^2/R$, 被引理 \ref{lem:boundary} 覆盖,
+		不属内部临界点.
+\end{enumerate}
+全部数值仅作交叉检验, 不构成证明依据.
+
+\section{附录 B: 涉及到的数学知识}
+
+\begin{itemize}
+	\item Sturm--Liouville 振荡理论: 第二特征函数唯一零点, Wronskian 符号与
+		比值单调性;
+	\item Feynman--Hellmann 型公式 (移动跳点): 参数导数与跳点处特征函数平方;
+	\item 解析摄动理论: 简单特征值的参数光滑性;
+	\item 紧致性与连续性: $L^1$ 连续 (Hilbert--Schmidt + Weyl) 与极值达到;
+	\item 两块界: 相位坐标归约 (O3b);
+	\item 对称线 1D 分析: 精确降维恒等式 + 张力比链 + 一维单峰不等式 (a$'$);
+	\item 阱族相位刚性: 传输/范数闭式 + 相位比结构 + 反射排除 (b).
+\end{itemize}
+
+\begin{thebibliography}{99}
+	\item 前置文档: \texttt{SL\_gap\_n1\_proof.pdf} (O1/O2/O3b),
+		\texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf} (缺口 (b)),
+		\texttt{SL\_gap\_n1\_symline\_allR\_proof.pdf} (缺口 (a$'$)),
+		\texttt{SL\_gap\_n1\_inf\_limit\_proof.pdf} (定理 A).
+	\item Keller, J.B.: \emph{The minimum ratio of two eigenvalues}.
+		SIAM J. Appl. Math. 31(3) (1976) 485--491.
+		\url{https://doi.org/10.1137/0131042}
+	\item Mahar, T.J., Willner, B.E.: \emph{An extremal eigenvalue problem}.
+		Comm. Pure Appl. Math. 29 (1976) 517--529.
+		\url{https://doi.org/10.1002/cpa.3160290505}
+	\item Ahrami, S., El Allali, Z., Harrell, E.M.: \emph{The fundamental gap
+		of the weighted Sturm--Liouville equation}. Arch.\ Math.\ (Basel)
+		126(2) (2026) 187--197.
+		\url{https://doi.org/10.1007/s00013-025-02213-y}
+\end{thebibliography}
+
+\end{document}

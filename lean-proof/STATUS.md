@@ -1,6 +1,6 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-11, 会话 69) 已形式化 8 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-12, 会话 75) 已形式化 10 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾)
 > 与比值上确界证明线的核心三角闭式. 其余 ~15 个已证定理 (H^3/H^s, 稳定性门槛, MW 重证, 间距线等)
 > 仍未开始.
@@ -16,6 +16,8 @@
 | `SL/MomentRecurrence.lean` | 线性泛函矩递推 + 缩放引理 (Q 上): M(K_c p_n)=0 => mu_0=mu_1=0, 偶/奇矩跳变递推 c mu_{2n}=A_n mu_{2n-2}-B_n mu_{2n-4} (奇次用 A'_n,B'_n), 且 mu_{2m}=mu_2 u_m, mu_{2m+1}=mu_3 u'_m (自由参数仅 mu_2/mu_3) | `docs/SL_h2_completeness_proof.tex` 第 3.2 节, `tools/left-definite-moment-recurrence.md` | lake build 绿; sorry/axiom 0; 审计见 audit_report.md (O6-O12) |
 | `SL/MomentBound.lean` | L2 矩上界: |mu_k| <= ||g||_2 * sqrt(2/(2k+1)) (Cauchy-Schwarz 二次型技巧, C = integral x^(2k) > 0 无退化情形); integral_{-1}^1 x^(2k) = 2/(2k+1) | `docs/SL_h2_completeness_proof.tex` 3.3 节 (矩为零) | lake build 通过, sorry/axiom 0; 审计 audit_report.md (O13-O16) |
 | `SL/Completeness.lean` | H^2 完备性收尾 (R 上): 线性泛函 M(p)=∫g·p, 偶/奇矩递推, mu_0=mu_1=0, 缩放 mu_{2m}=mu_2 u_m, sqrt(2/(4m+1))->0 湮灭 mu_2=mu_3=0, 全矩为零, Weierstrass 稠密 => ∫g^2=0 => g=0 a.e. | `docs/SL_h2_completeness_proof.tex` 3.3-3.4 节 | lake build 通过 (8566 jobs), sorry/axiom 0; 审计 audit_report.md (O17-O24) |
+| `SL/TransferOperator.lean` | H^s 线第一步: 传输算子闭式. transferPoly c r k = K_c^{-r} x^k 的闭式 (系数 transferCoeff = binom(r+j-1,j) k!/(k-2j)!/c^(r+j)); KcR_transferPoly (K_c T_{r+1,k} = T_{r,k} 递推), transferPoly_zero, transferPoly_eq_split, coeff_transferPoly/natDegree_transferPoly, KcR_inj (c≠0 时 K_c 多项式空间单射), KcR_inv_left/right (K_c 双射, 逆 = KcR_inv), KcR_inv_iter_X_pow ((KcR_inv)^[r] X^k = T_{r,k}) | `docs/SL_hs_orthogonal_systems_proof.tex` 第 3 节 | lake build 绿 (8561 jobs), sorry/axiom 0 |
+| `SL/H3Completeness.lean` | H^3 线代数核心 (R 上, 复用 Completeness 系数族): M_0=M_1=0, 偶/奇二阶跳变递推 c M_{2m}=A_m M_{2m-2}-B_m M_{2m-4}, 缩放 M_{2m}=M_2 u_m, 超阶乘增长 u_m >= (4/c)^(m-1) m! (StabilityGrowth.product_growth 统一覆盖两组系数), 湮灭 M_2=M_3=0, all_moments_zero_of_orthogonal (解析 H1 上界 |M_{2m}|<=C√m 为假设 hbdE/hbdO) | `docs/SL_h3_completeness_proof.tex` 第 3-6 节 | lake env lean 绿, sorry/axiom 0; 分析上界与等距同构未形式化 (登记于文件头与下文) |
 
 机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 9 个 .lean 文件扫描,
 sorry/admit/axiom 命中 0, lake build exit 0, 8566 jobs). 义务级审计: `audit_report.md` +
@@ -30,8 +32,8 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | 源文档 | 主要结果 | 源状态 | 形式化状态 |
 | --- | --- | --- | --- |
 | SL_h2_completeness_proof.tex | {p_n} 在 H^2[-1,1] 解析完备 (等距 K_c + 矩跳跃 + 增长引理 + Weierstrass) | 已证 | 完整 (形式化线): 增长引理 (MomentGrowth/StabilityGrowth) + K_c 恒等式 (KcPolynomial) + 矩递推/缩放 (MomentRecurrence) + 矩上界 (MomentBound) + 湮灭/Weierstrass 收尾 (Completeness); 等距同构 K_c: H^2->L^2 与 L2 稠密扩展未形式化 (O16 记录缺口) |
-| SL_h3_completeness_proof.tex | H^3 (及一切整数 s>=1) 完备性 | 已证 | 未开始 |
-| SL_hs_orthogonal_systems_proof.tex | 整数阶 H^s 显式完备正交多项式系 + 闭式系数 (传输算子 K_c^{-1}) | 已证 | 未开始 |
+| SL_h3_completeness_proof.tex | H^3 (及一切整数 s>=1) 完备性 | 已证 | 部分: 矩跳变+缩放+超阶乘增长+湮灭代数核心 (H3Completeness); 解析 H1 矩上界 (Cauchy-Schwarz) 与等距同构 K_c: H^3->H^1 未形式化 (all_moments_zero_of_orthogonal 以 hbdE/hbdO 假设声明) |
+| SL_hs_orthogonal_systems_proof.tex | 整数阶 H^s 显式完备正交多项式系 + 闭式系数 (传输算子 K_c^{-1}) | 已证 | 部分: 传输算子闭式与 K_c^{-1} 迭代 (TransferOperator); 显式正交系统构造与 H^s 完备性未形式化 |
 | SL_fractional_left_definite.tex | 实数阶 H^s (含分数窗 3/2<=s<2) 稀疏基解析完备 | 已证 | 未开始 |
 | SL_denseness_criteria.tex | 一般稠密性准则: 一阶矩准则 + 临界指数 | 已证 | 未开始 |
 | SL_stability_moment_jump.tex | 矩跳跃稳定性: 定量增长引理 (一般系数, B_m>=0 且 A_m-B_m>=c_0) | 已证 | 部分: 定量增长引理 + eps 形式 (StabilityGrowth); 稳定性定理 (超多项式门槛) 与尖锐性定理未形式化 |
@@ -82,3 +84,5 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
    2026-08-11 会话 67 RESOLVED; 形式化 StabilityGrowth.lean 无需改动).
 5. MW 引理 1-2 与比值上确界定理由 BalancePhase 补全 (转移矩阵/谱论).
 6. 间距线 (n=1 定理族, n>=2 开关/约化) 体量大且分析密集, 建议拆义务逐条形式化.
+7. [已完成: 会话 70] H^s 显式正交系统线第一步: TransferOperator (K_c^{-r} x^k 闭式 + K_c 双射 + 迭代闭式, 9 文件机器验证通过). 剩余: 由传输算子构造 H^s 显式完备正交多项式系 (承接 Completeness 的矩方法/等距同构), 并处理 H^3 线 (SL_h3_completeness_proof.tex).
+8. [部分: 会话 75] H^3 线: H3Completeness.lean (矩跳变/缩放/增长/湮灭代数核心, 10 文件绿). 剩余: 解析 H1 矩上界 |M_{2m}|<=C√m 与等距同构 K_c: H^3->H^1 (然后一切整数 s>=1 由归纳传输).

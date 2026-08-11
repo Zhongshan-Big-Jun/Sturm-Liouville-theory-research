@@ -311,3 +311,37 @@ Timestamps approximate (UTC+8). Continuation session 44 (2026-08-09).
 - Status: gap (b) SOLVED for all R>1.  NOT claimed: INF side R>3/2 fully closed
   (depends on (a') symmetric-line 1D analysis for R>3/2, (c) Theorem A re-verification,
   (d) global good-root argument).
+
+## R-115 (2026-08-12): gap (d) closure - INF global minimizer is a sign-consistent good root (STRICT)
+
+- Theorem (STRICT): for every R>1, I(R)=min_Omega D = min_{v in (0,1/2)} D(v,1-v)
+  = D(v*(R),1-v*(R)) < 3pi^2/R, minimizer unique.  Doc: docs/SL_gap_n1_global_goodroot_proof.pdf
+  (6 pp, zero warnings, SimSun font substitution only).
+- Six-step chain (all STRICT): (1) O1-INF attainment I(R)=min_Omega D
+  (INDEPENDENTLY_AUDITED_PROOF); (2) boundary exclusion: dOmega={a=0}u{b=1}u{a=b} has
+  D>=3pi^2/R (O3b two-block strict bound + rho==R exact 3pi^2/R), while D(v*)<3pi^2/R by
+  KEY LEMMA all R (gap a') => minimizer interior; (3) interior critical point: FH jump formulas
+  daD=-(R-1)f(a), dbD=+(R-1)f(b) => f(a)=f(b)=0; structure lemma (Wronskian
+  W=y1y2'-y1'y2<0 => v=y2/y1 strictly decreasing; f/hat y1^2 strictly increasing on (0,z0),
+  strictly decreasing on (z0,1); unique zeros alpha in (0,z0), beta in (z0,1)) =>
+  a<z0<b, sign-consistency y2(a)/y1(a)>0, y2(b)/y1(b)<0 automatic => (a,b) is a
+  sign-consistent good root; (4) well-family rigidity all R (gap b, session 56) => a+b=1;
+  (5) symmetric-line unique critical point v* (KEY LEMMA a'); (6) conclusion + uniqueness.
+- Corollary (STRICT): INF side lambda_2-lambda_1 extreme problem CLOSED FOR ALL R>1:
+  I(R)=D(v*(R),1-v*(R))<3pi^2/R attained at symmetric well [R,1,R], unique.  Gaps (a), (b),
+  (a'), (d) all CLOSED; remaining obligations (c) Theorem A independent re-verification
+  (CANDIDATE_COMPLETE_PROOF, ORTHOGONAL to closure) and SUP-side O3a/C1 repairable-gap patch
+  (lines 412-439) - both not touched in this session.
+- Verification (EVIDENCE only, scripts/_gapd_global_check.py): ALL OK for
+  R in {1.2,2,4,10,100} - exactly one interior critical point per R, symmetric to 6 digits
+  (R=4: (0.382598,0.617402), D=6.78448234, 3pi^2/R=7.402203); z0=1/2 in (a,b); D matches
+  symline min to 1e-9; D(0,t),D(t,1)>3pi^2/R; D(t,t)=3pi^2/R exact; 31x31 grid min >=
+  symline min (1e-6); f_{a,b}<0 inside (a,b) (25 samples); R=100 degenerate diagonal points
+  t=arccos(+-1/4)/pi on dOmega covered by boundary lemma.  Debug notes: norm2_well trapezoid
+  O(1/n) for discontinuous rho (use gap_lib.norm2 blockwise analytic; fval(a) 0.0016 ->
+  -3e-12); least_squares threshold 1e-18; interior criterion b-a>1e-4; symline v* via
+  symline_crit brentq (not minimize_scalar).
+- Deliverables: proof doc (above); tools/good-root-global-lemma.md added + tools/README.md
+  synced; AGENTS.md session 58 continuation 2; state/current.json + RESUME.md updated.
+- Status: gap (d) SOLVED (STRICT); INF side all R>1 CLOSED.  NOT claimed: Theorem A (c)
+  independently re-verified, O3a/C1 patch written.

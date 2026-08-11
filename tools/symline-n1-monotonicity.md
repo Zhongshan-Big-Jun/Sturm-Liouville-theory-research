@@ -3,7 +3,7 @@ canonical_key: symmetric-line 1D monotonicity (INF side, gap (a) closure)
 title: 对称线 1D 单调性: KEY LEMMA 与精确降维恒等式 (symmetric-line n=1 monotonicity)
 tags: [mathtool, self-developed, phase-param, gap-extremals, inf-side]
 source: 自研 (会话续作 2026-08-10; 承接 [[well-family-rigidity]] 缺口 (a))
-status: 定理已证 (STRICT, docs/SL_gap_n1_symline_proof.pdf, 10 页零警告); W0 证书精确有理不等式 sympy 全过; 数值交叉检验为 EVIDENCE
+status: 定理已证 (STRICT, docs/SL_gap_n1_symline_proof.pdf, 10 页零警告); W0 证书精确有理不等式 sympy 全过; 数值交叉检验为 EVIDENCE; 2026-08-12 更新: 全 R>1 版本已闭合 (见 [[tension-ratio-chain]])
 created: 2026-08-10
 ---
 
@@ -58,13 +58,16 @@ v' < 0), 故 D 在 (0,v*) 严格递减、(v*,1/2) 严格递增; v* = v(c*) in
 对称阱 [R,1,R] 达到, I(R) = D(v*(R)) < 3pi^2/R.
 
 ## 适用范围
-- **适用**: 阱族对称线 1D 分析 (1 < R <= 3/2), 即 [[well-family-rigidity]]
-  缺口 (a) 的闭合; 与 [[gap-n1-reduction]] (O1-INF 归约) + 小 R 刚性定理配合
-  得到 INF 侧 1 < R <= 3/2 的完整闭合.
+- **适用**: 阱族对称线 1D 分析 (1 < R <= 3/2, 本文件的小 R 版本), 即
+  [[well-family-rigidity]] 缺口 (a) 的闭合; 与 [[gap-n1-reduction]] (O1-INF 归约)
+  + 小 R 刚性定理配合得到 INF 侧 1 < R <= 3/2 的完整闭合.
+  全部 R>1 的闭合见 [[tension-ratio-chain]] (2026-08-12, 会话续作): 张力比链
+  rho <= rho0 + 一维单峰不等式, STRICT, 9 页零警告.
 - **边界情形**: R = 3/2 (q~ = q0, 含于定理, P2 证书严格); R -> 1+ (q~ -> 1-,
   c* -> 0.1917 极限); c -> 0+ / c -> inf 对应 v -> 1/2- / v -> 0+ 端点极限.
-- **不适用**: R > 3/2 (q~ < q0) 时 P1/P2 常数失效 (q0 = sqrt(2/3) 为阈值,
-  数值显示 R > 1.5 出现离轴 E=0 分支, 机制不同); 垒族 (q > 1) 由
+- **不适用**: R > 3/2 (q~ < q0) 时本文件 P1/P2 常数失效 (q0 = sqrt(2/3)
+  为阈值, 数值显示 R > 1.5 出现离轴 E=0 分支, 机制不同); 该限制已由
+  [[tension-ratio-chain]] 的全 R 链消除 (2026-08-12). 垒族 (q > 1) 由
   [[phase-ratio-rigidity]] 处理, 符号结构不同.
 - **关键技巧**: (i) ``非负集上严格递减'' 比逐点 F' < 0 弱但足够, 避免证明
   G_2 全域正下界; (ii) 端点闭式优先找结构恒等式 (c = 1/2 处 alpha_1+alpha_2 =
