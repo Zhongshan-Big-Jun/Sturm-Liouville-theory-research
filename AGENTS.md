@@ -1894,3 +1894,34 @@
     仓库结构 (org 父类 + xsoc1 fork, 同步方向); 工作方法 (AGENTS.md + 四个 skill).
   - AI4Math OCR 临时文件 (traineddata/_ai4math_*/tmp_ai4math) 已在 .gitignore 中, 未跟踪.
 - 状态: 待 commit + push (org 父类) + Sync fork (xsoc1).
+
+### 2026-08-11 会话 71
+- 任务: 把 xsoc1/rigorous-open-math-research 编排为标准 Codex marketplace 插件仓库.
+- 完成:
+  - 结构迁移: 两个 skill 目录 git mv 为插件形态
+    plugins/rigorous-open-math-research/skills/rigorous-open-math-research/ 与
+    plugins/manage-math-research-program/skills/manage-math-research-program/
+    (历史保留为 rename); agents/openai.yaml 移至插件根 (skill 级 agent manifest
+    不允许 policy.products, 插件级允许; 与 lean-verify 结构一致).
+  - 新增两个 .codex-plugin/plugin.json (rigorous-open-math-research,
+    manage-math-research-program; author xsoc1, repository/license/keywords,
+    version 0.1.0+codex.20260811); 统一 lean-verify 与 math-research-workflow
+    的 author/repository/keywords 与版本.
+  - 新建 .agents/plugins/marketplace.json (marketplace 名 math-research,
+    4 插件条目, source local + ./plugins/<name>, policy AVAILABLE/ON_INSTALL).
+  - manage skill MANIFEST.sha256 重生成 (43 项, 移除已移出的 agents/openai.yaml;
+    顺带修复迁移前已存在的 2 处哈希不一致).
+  - README 重写: 安装方式改为 marketplace 优先
+    (codex plugin marketplace add xsoc1/rigorous-open-math-research ->
+    codex plugin add <name>@math-research), skill-installer 保留为备选.
+  - 验证: validate_plugin.py 4 插件全部通过; quick_validate 2 skill 通过.
+  - 冒烟测试: codex plugin marketplace add (本地路径) 成功, list 显示 4 插件;
+    codex plugin add rigorous-open-math-research@math-research 安装成功
+    (缓存根 0.1.0+codex.20260811); 测试后 remove 插件与 marketplace, 本机恢复原状.
+  - 提交 dd00fe1 推送父类 xsoc1/rigorous-open-math-research, org fork
+    (Zhongshan-Big-Jun/rigorous-open-math-research) 经 merge-upstream
+    fast-forward 同步; 两仓库 main 均 = dd00fe16dbee275a5afd6c52773718cc882b6f84.
+- 注意: 本机 personal marketplace 仍指向 ~/plugins 的旧版插件 (lean-verify
+  0.1.0+codex.20260811140558, workflow 0.1.0+codex.20260811140501), 未受影响;
+  如需改用仓库版, 执行 codex plugin marketplace add xsoc1/rigorous-open-math-research.
+
