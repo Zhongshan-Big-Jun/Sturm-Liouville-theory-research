@@ -4,8 +4,8 @@ Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
 
 **形式化总览与诚实状态**: 见 [STATUS.md](STATUS.md) (完整状态矩阵: 每个已证结果 -> 形式化状态).
-结论: 目前只形式化了已证结果的极小部分, 远未完成.
-义务级审计 (会话 66, StabilityGrowth + MomentRecurrence): [audit_report.md](audit_report.md) + [verification.json](verification.json).
+结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, 其余 ~15 个已证定理未开始).
+义务级审计 (会话 66-69): [audit_report.md](audit_report.md) + [verification.json](verification.json) (O1-O24).
 
 ## 目录结构
 
@@ -13,7 +13,7 @@ Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 lean-proof/
 ├── README.md         本文件 (入口)
 ├── STATUS.md         形式化状态总表 + 路线图
-├── audit_report.md   义务级审计报告 (lean-verify, 会话 66)
+├── audit_report.md   义务级审计报告 (lean-verify, 会话 66-69)
 ├── verification.json 结构化验证裁决 (lean-verify schema)
 ├── lakefile.lean     Lake 工程文件 (globs := #[`SL.+])
 ├── lean-toolchain    Lean 4.31.0 / mathlib v4.31.0
@@ -25,6 +25,7 @@ lean-proof/
     ├── StabilityGrowth.lean  定量增长引理, 一般系数, 任意线性有序域 (稳定性证明线)
     ├── MomentRecurrence.lean 线性泛函矩递推 + 缩放引理, Q 上 (H^2 证明线)
     ├── MomentBound.lean      L2 矩上界 |mu_k| <= ||g||_2 sqrt(2/(2k+1)) (H^2 证明线)
+    ├── Completeness.lean     H^2 完备性收尾: 湮灭 + Weierstrass 结论 (H^2 证明线)
     └── BalancedPhase.lean    平衡相位三角闭式 (比值证明线)
 ```
 ## 构建与验证
@@ -39,8 +40,8 @@ python <lean-verify>/scripts/verify_lean_project.py --project . --build
 ## 命名空间
 
 所有文件位于 `SL` 命名空间, 子命名空间按主题 (MomentGrowth / KcPolynomial /
-StabilityGrowth / MomentRecurrence / BalancedPhase). 新文件保持同名命名空间,
-更新 STATUS.md 状态矩阵.
+StabilityGrowth / MomentRecurrence / MomentBound / Completeness / BalancedPhase).
+新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
 
 ## 规则
 

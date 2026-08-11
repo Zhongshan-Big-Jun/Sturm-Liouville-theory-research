@@ -181,3 +181,58 @@ C3 -> `SL/MomentBound.lean`:
 - External dependencies: `integral_pow`, `sq_le_sq`, `Real.sq_sqrt`,
   interval-integral linearity lemmas (all mathlib); no citation is
   fabricated.
+
+## 9. Addendum (2026-08-11): SL/Completeness.lean (session 69)
+
+Scope: `SL/Completeness.lean` -- the final steps of the H^2 completeness line
+(source `docs/SL_h2_completeness_proof.tex`, Section 3.3 "moments vanish" and
+Section 3.4 "Weierstrass conclusion"): a continuous g orthogonal to {K_c p_n}
+in L2(-1,1) has all moments zero, hence integral g^2 = 0, hence g = 0 a.e.
+
+### 9.1 Obligation map and statement fidelity
+
+| Obligation | Declaration | Fidelity | Notes |
+| --- | --- | --- | --- |
+| O17 real coefficients | `qR/pEvenR/pOddR/AR/A'R/BR/B'R/KcR`, `KcR_pEven/KcR_pOdd` | FAITHFUL | Real mirror of `KcPolynomial` (Q): K_c p_{2n} = c x^{2n} - A_n x^{2n-2} + B_n x^{2n-4} and the odd analogue; A_n - B_n = 4n + c q_n, q_n = n/(n-1). |
+| O18 moment functional | `momentFunctional` | FAITHFUL | M(p) = integral_{-1}^1 g(x) p(x) dx as a Real-linear map; linearity proved with `IntervalIntegrable` hypotheses obtained from `hg.mul (Polynomial.continuousOn p)`. |
+| O19 moment recurrences | `even_recurrence/odd_recurrence` | FAITHFUL | Orthogonality M(K_c p_{2n}) = 0 plus O17 gives c mu_{2n} = A_n mu_{2n-2} - B_n mu_{2n-4} (odd analogue with A', B'). |
+| O20 initial moments | `constant_orth_moment_zero/linear_orth_moment_zero` | FAITHFUL | K_c 1 = c and K_c X = c X force mu_0 = 0, mu_1 = 0 for c != 0. |
+| O21 scaling | `even_moment_scaling/odd_moment_scaling` | FAITHFUL | mu_{2m} = mu_2 u_m and mu_{2m+1} = mu_3 u'_m with u the StabilityGrowth fundamental solution (Real instantiation). |
+| O22 annihilation | `sqrt_bound_small/sqrt_bound_small'`, `bound_tendsto_annihilate`, `even/odd_annihilation` | FAITHFUL | u_m >= 1 (O2 via `monotone_pos` with B_m >= 0, A_m - B_m >= c) and the L2 bound |mu_{2m}| <= ||g||_2 sqrt(2/(4m+1)) (O16) contradict each other via the epsilon argument: sqrt(2/(4m+1)) -> 0 forces mu_2 = 0; odd case with 4m+3. |
+| O23 all moments | `all_moments_zero` | FAITHFUL | Even/odd split by `Nat.even_or_odd`, scaling + mu_2 = mu_3 = 0. |
+| O24 Weierstrass conclusion | `exists_polynomial_sup_approx`, `integral_sq_eq_zero_of_all_moments_zero`, `completeness_contradiction`, `completeness_ae_zero` | FAITHFUL | Polynomial density (mathlib `polynomialFunctions.topologicalClosure`) gives sup-approximations of g; the split integral trick gives integral g^2 <= ||g|| eps1 * 2 for every eps (via `norm_integral_le_of_norm_le_const` on the uIoc), so `le_of_forall_pos_le_add` gives integral g^2 <= 0; `integral_eq_zero_iff_of_nonneg` then gives g^2 = 0 a.e. on Ioc (-1,1), i.e. g = 0 a.e. |
+
+### 9.2 Machine verification (observed)
+
+- Environment: Lean 4.31.0 (x86_64-w64-windows-gnu), Lake 5.0.0, mathlib v4.31.0.
+- Scan: 9 `.lean` files (SL/Completeness.lean included), sorry/admit/axiom hits: 0.
+- Build: `lake build`, exit code 0, "Build completed successfully (8566 jobs)."
+- Recorded in `run-manifest.json` (input hashes include SL/Completeness.lean).
+
+### 9.3 Independent audit (re-derivation)
+
+- O17: over Real the identities are the same algebra as `KcPolynomial` (Q);
+  `KcR_sub` and the monomial derivative identities are proved directly
+  (`derivative_sub`, `derivative_C_mul`, `derivative_X_pow`).  Sound.
+- O18: additivity needs both integrands IntervalIntegrable; they are continuous
+  products on the closed interval, so `hg.mul (Polynomial.continuousOn p)`
+  applies.  The `map_smul` step uses `Polynomial.smul_eq_C_mul`.  Sound.
+- O22: the epsilon argument: if |a| <= B * t_m for all m >= 1 and t_m -> 0 then
+  a = 0; applied with B = ||g||_2, t_m = sqrt(2/(4m+1)) (and 4m+3 for odd);
+  `sqrt_bound_small` is proved from `exists_nat_gt` + `Real.sqrt_lt`; no
+  fabricated limit claims (the convergence is explicit in eps).  Sound.
+- O24: `continuousMap_mem_polynomialFunctions_closure (-1) 1` is mathlib's
+  Weierstrass theorem for Icc (-1) 1; the approximation is transferred to the
+  integral via `norm_integral_le_of_norm_le_const` (the integrand is bounded by
+  ||g|| * eps1 on the uIoc); `integral_eq_zero_iff_of_nonneg` is
+  `MeasureTheory`'s lemma.  The formal statement assumes g ContinuousOn [-1,1]
+  (the L2 density extension is the documented gap O16).  Sound.
+
+### 9.4 Findings
+
+- No new source-document errors were found in this session; the formal line
+  confirms Sections 3.3/3.4 of `docs/SL_h2_completeness_proof.tex`.
+- Remaining (documented, unchanged): the isometric-isomorphism step
+  K_c : H^2 -> L^2 and the L2 density extension of `moment_bound` are not
+  formalized; the formal completeness conclusion starts from L2 orthogonality
+  of a continuous g against {K_c p_n}.
