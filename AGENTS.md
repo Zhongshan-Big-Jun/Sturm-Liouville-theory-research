@@ -1691,3 +1691,12 @@
 - 验证与安装: plugin-creator validate_plugin 通过; `codex plugin add lean-verify@personal` 安装成功 (installed, enabled, 0.1.0; 缓存 C:\Users\HuangZY\.codex\plugins\cache\personal\lean-verify\0.1.0).
 - 备注: codex CLI 无 plugin install 子命令, 安装用 `codex plugin add <name>@<marketplace>`; Windows 递归删除需用 Python shutil 绕过 shell 策略.
 - 待办/后续: 真实 Lean 工程端到端试用 (含 lake build 与义务映射); 若需要可把插件一并纳入 skill 仓库版本管理.
+### 2026-08-11 会话 62 (lean-verify 插件加入 skill 仓库)
+- 任务: 把会话 61 创建的 lean-verify 插件加入 skill 仓库 (xsoc1/rigorous-open-math-research 父 + org fork) 随仓库分发.
+- 完成:
+  - 插件目录 (7 文件: .codex-plugin/plugin.json, README.md, assets x3, scripts/verify_lean_project.py, skills/lean-verify/SKILL.md) 复制到暂存区 plugins/lean-verify/.
+  - README.md 更新: 目录表新增 plugins/lean-verify 行, 安装部分新增插件安装说明 (复制到 ~/plugins/lean-verify + codex plugin add lean-verify@personal), 版本记录新增 2026-08-11 条目.
+  - 提交 69d8b2d, 先推父仓库 xsoc1 再推子 fork org, 三者 HEAD 一致 (69d8b2d); 工作树干净.
+  - 本地安装不受影响 (个人 marketplace 仍指向 ~/plugins/lean-verify).
+- 备注: Copy-Item 通配符复制点开头子目录 (.codex-plugin) 失败, 改用 robocopy /E 成功; Windows 递归删除需 Python shutil.
+- 待办/后续: 可从仓库路径重新分发/安装插件; 若修改插件需同步暂存区并推送.
