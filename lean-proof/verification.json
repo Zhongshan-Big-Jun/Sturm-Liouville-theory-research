@@ -1,30 +1,110 @@
 {
   "verdict": "FORMALLY_VERIFIED",
-  "scope": "SL/StabilityGrowth.lean + SL/MomentRecurrence.lean (session 66)",
+  "scope": "SL/StabilityGrowth.lean + SL/MomentRecurrence.lean (session 66) + SL/MomentBound.lean (session 68)",
   "machine": {
     "lean_version": "Lean 4.31.0 x86_64-w64-windows-gnu",
     "build_passed": true,
     "sorry_axiom_hits": []
   },
   "statement_fidelity": [
-    { "obligation": "O1", "result": "FAITHFUL", "notes": "recurrence u_0=0, u_1=1, c0 u_j = A_j u_{j-1} - B_j u_{j-2}" },
-    { "obligation": "O2", "result": "FAITHFUL", "notes": "monotone_pos: 0 < u_j and u_j <= u_{j+1}" },
-    { "obligation": "O3", "result": "FAITHFUL", "notes": "product_growth: u_j >= prod_{k=2..j} (A_k-B_k)/c0" },
-    { "obligation": "O4", "result": "FAITHFUL", "notes": "eps reformulation: 1+eps_k = (A_k-B_k)/c0, eps_k >= 0" },
-    { "obligation": "O5", "result": "FAITHFUL", "notes": "formal uses proof-required hypothesis c0 <= A_m - B_m; informal source corrected 2026-08-11 to A_m - B_m >= c0 (F-001 RESOLVED)" },
-    { "obligation": "O6", "result": "FAITHFUL", "notes": "moments mu_k = M(X^k) for linear functional M" },
-    { "obligation": "O7", "result": "FAITHFUL", "notes": "even_recurrence from orthogonality + KcPolynomial.Kc_pEven" },
-    { "obligation": "O8", "result": "FAITHFUL", "notes": "odd_recurrence analogue with A', B'" },
-    { "obligation": "O9", "result": "FAITHFUL", "notes": "mu_0 = mu_1 = 0 from p_0, p_1 orthogonality (c != 0)" },
-    { "obligation": "O10", "result": "FAITHFUL", "notes": "scaling: v_0 = 0 implies v_m = v_1 u_m (strong induction)" },
-    { "obligation": "O11", "result": "FAITHFUL", "notes": "even/odd scaling with free parameters mu_2 / mu_3" },
-    { "obligation": "O12", "result": "FAITHFUL", "notes": "composite moment scaling with K_c coefficients" }
+    {
+      "obligation": "O1",
+      "result": "FAITHFUL",
+      "notes": "recurrence u_0=0, u_1=1, c0 u_j = A_j u_{j-1} - B_j u_{j-2}"
+    },
+    {
+      "obligation": "O2",
+      "result": "FAITHFUL",
+      "notes": "monotone_pos: 0 < u_j and u_j <= u_{j+1}"
+    },
+    {
+      "obligation": "O3",
+      "result": "FAITHFUL",
+      "notes": "product_growth: u_j >= prod_{k=2..j} (A_k-B_k)/c0"
+    },
+    {
+      "obligation": "O4",
+      "result": "FAITHFUL",
+      "notes": "eps reformulation: 1+eps_k = (A_k-B_k)/c0, eps_k >= 0"
+    },
+    {
+      "obligation": "O5",
+      "result": "FAITHFUL",
+      "notes": "formal uses proof-required hypothesis c0 <= A_m - B_m; informal source corrected 2026-08-11 to A_m - B_m >= c0 (F-001 RESOLVED)"
+    },
+    {
+      "obligation": "O6",
+      "result": "FAITHFUL",
+      "notes": "moments mu_k = M(X^k) for linear functional M"
+    },
+    {
+      "obligation": "O7",
+      "result": "FAITHFUL",
+      "notes": "even_recurrence from orthogonality + KcPolynomial.Kc_pEven"
+    },
+    {
+      "obligation": "O8",
+      "result": "FAITHFUL",
+      "notes": "odd_recurrence analogue with A', B'"
+    },
+    {
+      "obligation": "O9",
+      "result": "FAITHFUL",
+      "notes": "mu_0 = mu_1 = 0 from p_0, p_1 orthogonality (c != 0)"
+    },
+    {
+      "obligation": "O10",
+      "result": "FAITHFUL",
+      "notes": "scaling: v_0 = 0 implies v_m = v_1 u_m (strong induction)"
+    },
+    {
+      "obligation": "O11",
+      "result": "FAITHFUL",
+      "notes": "even/odd scaling with free parameters mu_2 / mu_3"
+    },
+    {
+      "obligation": "O12",
+      "result": "FAITHFUL",
+      "notes": "composite moment scaling with K_c coefficients"
+    },
+    {
+      "obligation": "O13",
+      "result": "FAITHFUL",
+      "notes": "moments: mu_k = integral_{-1}^1 g(x) x^k dx (L2 inner product <g, x^k>)"
+    },
+    {
+      "obligation": "O14",
+      "result": "FAITHFUL",
+      "notes": "integral_{-1}^1 x^(2k) = 2/(2k+1) from integral_pow; k=2j gives source norm ||x^(2j)||_2^2 = 2/(4j+1)"
+    },
+    {
+      "obligation": "O15",
+      "result": "FAITHFUL",
+      "notes": "cs_moment: B^2 <= A*C via quadratic trick with C > 0 (no degenerate case)"
+    },
+    {
+      "obligation": "O16",
+      "result": "MINOR_PARAPHRASE",
+      "notes": "moment_bound: |mu_k| <= ||g||_2 sqrt(2/(2k+1)); formal assumes g ContinuousOn [-1,1] (L2 case by density, documented gap)"
+    }
   ],
   "critical_errors": [],
   "gaps": [
-    { "location": "informal doc SL_stability_moment_jump.tex Theorem 2.1", "issue": "stated hypothesis A_m >= B_m weaker than proof-required A_m - B_m >= c0; formal uses the stronger (proof-used) hypothesis (F-001)", "status": "RESOLVED 2026-08-11: source corrected to A_m - B_m >= c0" },
-    { "location": "scope", "issue": "full H^2 completeness theorem and stability threshold theorem not formalized (outside this session scope)" }
+    {
+      "location": "informal doc SL_stability_moment_jump.tex Theorem 2.1",
+      "issue": "stated hypothesis A_m >= B_m weaker than proof-required A_m - B_m >= c0; formal uses the stronger (proof-used) hypothesis (F-001)",
+      "status": "RESOLVED 2026-08-11: source corrected to A_m - B_m >= c0"
+    },
+    {
+      "location": "scope",
+      "issue": "full H^2 completeness theorem and stability threshold theorem not formalized (outside this session scope)"
+    },
+    {
+      "location": "SL/MomentBound.lemma moment_bound",
+      "issue": "stated for continuous g; source has g in L2; the density extension is not formalized",
+      "status": "OPEN (documented)"
+    }
   ],
-  "repair_hints": "F-001 resolved 2026-08-11 (source corrected to A_m - B_m >= c0); no further repair needed.  For the remaining completeness steps, formalize the isometric isomorphism and Weierstrass density separately.",
+  "repair_hints": "No repair needed for session 68. Remaining H^2 completeness steps: isometric isomorphism, Weierstrass density, contradiction step.",
   "independence_note": "single-agent self-audit; see audit_report.md"
 }

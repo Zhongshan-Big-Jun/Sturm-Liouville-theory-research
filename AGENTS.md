@@ -1816,3 +1816,25 @@
   未做 git commit (未要求).
 - 待办/后续: 本修正无遗留; 关联开放问题 (稳定性定理/尖锐性定理形式化, H^2 完备性全定理
   接回 L^2 矩上界) 见 lean-proof/STATUS.md 路线图 3-6.
+
+### 2026-08-11 会话 68
+- 任务: 用户指令 "错误已修改，继续", 承接会话 67, 继续 lean-proof 形式化路线图第 3 步 (矩上界).
+- 完成:
+  - 新增 lean-proof/SL/MomentBound.lean: L2 矩上界 |mu_k| <= ||g||_2 * sqrt(2/(2k+1))
+    (源: docs/SL_h2_completeness_proof.tex 3.3 节 "矩为零"); 含
+    integral_{-1}^1 x^(2k) = 2/(2k+1) 恒等式 (integral_pow + (-1)^(2k)=1) 与
+    Cauchy-Schwarz 二次型技巧 (取 c = B/C, C = integral x^(2k) > 0 无退化情形;
+    避免 MemLp/Holder 重型前置, 直接对区间积分展开平方).
+  - 机器验证: verify_lean_project.py 扫描 8 个 .lean, sorry/axiom 0, lake build exit 0
+    (8565 jobs); run-manifest.json 已刷新 (含 SL/MomentBound.lean 输入哈希).
+  - 义务级审计: audit_report.md 追加第 8 节 (O13-O16); verification.json 更新 scope
+    与 statement_fidelity (O13-O16), 新增 gap (L2 密度扩展未形式化).
+  - STATUS.md: 第 1 节新增 MomentBound 行; 第 2 节 SL_h2 行与路线图第 3 条更新
+    (矩上界完成; 等距同构 K_c: H^2 -> L^2 + Weierstrass 稠密 + 矛盾收尾待做);
+    文件计数 5 -> 6.
+  - README.md: 目录树与命名空间列表加入 MomentBound.
+- 诚实说明: 形式化假设 g ContinuousOn [-1,1] (区间可积性所需), 源文档 g in L2 的
+  密度扩展未形式化 (gap 已登记); 本会话未改动源文档 (无 F-001 型缺陷发现).
+- 待办/后续: H^2 完备性全定理收尾 (等距同构 + Weierstrass 稠密 + 矛盾收尾);
+  fork 阻塞状态不变 (org 仓库 private + allow_forking=false, 需用户操作);
+  本地领先 origin/main 待推 (等用户确认).

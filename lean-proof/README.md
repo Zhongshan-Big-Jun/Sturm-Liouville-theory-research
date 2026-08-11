@@ -24,6 +24,7 @@ lean-proof/
     ├── KcPolynomial.lean     K_c 多项式系数恒等式 (H^2 证明线)
     ├── StabilityGrowth.lean  定量增长引理, 一般系数, 任意线性有序域 (稳定性证明线)
     ├── MomentRecurrence.lean 线性泛函矩递推 + 缩放引理, Q 上 (H^2 证明线)
+    ├── MomentBound.lean      L2 矩上界 |mu_k| <= ||g||_2 sqrt(2/(2k+1)) (H^2 证明线)
     └── BalancedPhase.lean    平衡相位三角闭式 (比值证明线)
 ```
 ## 构建与验证

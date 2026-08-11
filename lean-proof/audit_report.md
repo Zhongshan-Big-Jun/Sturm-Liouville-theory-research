@@ -128,3 +128,56 @@ the corrected hypothesis and is unchanged; `lake build` re-run passed (see
 run-manifest.json).  A remark with counterexamples showing the weak hypothesis fails
 (A_m = B_m = 1 oscillates; A_m - B_m = 1/2 < c0 breaks the product bound) was added
 after Theorem 2.1.  Historical findings above are preserved as recorded at audit time.
+
+## 8. Addendum (2026-08-11): SL/MomentBound.lean (session 68)
+
+Scope: `SL/MomentBound.lean` (H^2 completeness line, step 3 of the roadmap).
+
+### 8.1 Contract
+
+C3 (L2 moment bound), Section 3.3 (???) of
+`docs/SL_h2_completeness_proof.tex`: for g in L2[-1,1] the moments
+mu_k = <g, x^k>_{L2} = integral_{-1}^1 g(x) x^k dx satisfy the
+Cauchy-Schwarz bound
+
+    |mu_k| <= ||g||_2 * ||x^k||_2,   ||x^k||_2^2 = 2 / (2k+1).
+
+(The source applies this to the even subsequence: ||x^(2j)||_2^2 = 2/(4j+1).)
+
+### 8.2 Obligation map and statement fidelity
+
+C3 -> `SL/MomentBound.lean`:
+
+| Obligation | Declaration | Fidelity | Notes |
+| --- | --- | --- | --- |
+| O13 moments | `moments` (36) | FAITHFUL | mu_k = integral_{-1}^1 g(x) x^k dx; the inner product <g, x^k>_{L2} of the source is the Lebesgue integral over [-1,1]. |
+| O14 norm identity | `integral_x_pow_even` (40), `norm_sq_x_pow` (54) | FAITHFUL | integral_{-1}^1 x^(2k) = 2/(2k+1), proved from `integral_pow` plus (-1)^(2k) = 1; for k = 2j this is the source's ||x^(2j)||_2^2 = 2/(4j+1). |
+| O15 Cauchy-Schwarz | `cs_moment` (65) | FAITHFUL | B^2 <= A*C for B = integral g*x^k, A = integral g^2, C = integral x^(2k), proved by the quadratic trick 0 <= integral (g - c x^k)^2 with c = B/C (C > 0 is proved first, so no degenerate case). |
+| O16 moment bound | `moment_bound` (143) | MINOR_PARAPHRASE | |mu_k| <= sqrt(A) * sqrt(2/(2k+1)) = ||g||_2 * ||x^k||_2; formal hypothesis is `ContinuousOn g (Icc (-1) 1)` (enough for IntervalIntegrable) instead of g in L2; the L2 case follows by density and is left as a documented gap. |
+
+### 8.3 Machine verification (observed)
+
+- Environment: Lean 4.31.0 (x86_64-w64-windows-gnu), Lake 5.0.0,
+  mathlib v4.31.0 (`lake-manifest.json`).
+- Scan: 8 `.lean` files (SL/MomentBound.lean included), sorry/admit/axiom
+  hits: 0 (whitelist empty).
+- Build: `lake build`, exit code 0, "Build completed successfully (8565 jobs)."
+- Recorded in `run-manifest.json` (input hashes include SL/MomentBound.lean).
+
+### 8.4 Independent audit (re-derivation)
+
+- O14: integral_pow gives (1^(2k+1) - (-1)^(2k+1))/(2k+1); (-1)^(2k) = 1 via
+  pow_mul + neg_one_sq, (-1)^(2k+1) = -1 via pow_succ; result 2/(2k+1).
+  Sound.
+- O15: expand the square, use additivity/linearity of the interval integral
+  (integral_add/integral_sub/integral_const_mul) with IntervalIntegrable
+  hypotheses obtained from ContinuousOn.intervalIntegrable_of_Icc; the
+  integrands are continuous on the closed interval, so no measurability gaps.
+  With C > 0, 0 <= A - 2cB + c^2 C and c = B/C give 0 <= A - B^2/C and then
+  B^2 <= A*C.  Sound.
+- O16: B^2 <= A*C, A, C >= 0, sqrt is monotone on nonnegatives; apply
+  sq_le_sq to get |B| <= sqrt A * sqrt C and substitute C = 2/(2k+1).
+  Sound.
+- External dependencies: `integral_pow`, `sq_le_sq`, `Real.sq_sqrt`,
+  interval-integral linearity lemmas (all mathlib); no citation is
+  fabricated.
