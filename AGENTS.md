@@ -1784,3 +1784,35 @@
   行为"部分", 路线图 1/2 项标记完成), README.md (目录/审计/工程要点).
 - 待办/后续: 按 STATUS.md 路线图 3-6 (H^2 完备性全定理接回 L^2 矩上界与 Weierstrass 稠密;
   稳定性定理与尖锐性定理; 源文档定理 2.1 假设更正 F-001; MW 引理; 间距线拆义务).
+### 2026-08-11 会话 67
+- 任务: 更正 docs/SL_stability_moment_jump.tex 定理 2.1/2.2 的假设 (用户指出: 陈述列
+  "A_m >= B_m" 弱于证明实际使用的 "A_m - B_m >= c_0"), 并同步全部受牵连文件.
+- 审计 (rigorous-open-math-research 纪律; 非新研究, 纯陈述修正):
+  - 根因确认: 摘要与证明均用 A_m - B_m >= c_0; 定理 2.1/2.2 陈述滞后写 A_m >= B_m.
+  - 修正后证明链重推通过: 单调性归纳最后一步需 A_m - B_m >= c_0, 从而 epsilon_k >= 0;
+    下游定理 (S-门槛, 对角判据, 门槛线, 模型族) 只引用定理 2.1 的结论, 不受影响.
+  - 反例 (精确有理数验证): (i) c_0=1, A_m=B_m=1 满足 A_m>=B_m 但解 0,1,1,0,-1,...
+    振荡, 单调性与非负性均失败; (ii) c_0=1, A_m=3/2, B_m=1 (A_m-B_m=1/2>=0 但 <c_0)
+    时 u_5=-11/16 < (1/2)^4 = prod(A_k-B_k)/c_0, 乘积下界失败. 故统一假设 B_m>=0 且
+    A_m-B_m>=c_0 是必要的. 2000 组随机系数 (Fraction) 在修正假设下全部满足单调+乘积.
+- 修改清单:
+  - docs/SL_stability_moment_jump.tex: 定理 2.1 假设改为 B_m>=0 且 A_m-B_m>=c_0;
+    定理 2.2 同样改为 A_m-B_m>=c_0, A_m'-B_m'>=c_0 (epsilon_k, epsilon_k'>=0); 新增
+    「假设的强度」注 (含两个反例); 审计节新增「假设更正 (2026-08-11, F-001)」条目;
+    日期更新为修订版. 重编译 7 页零警告 (xelatex 两遍), build 与 docs/ 下 PDF 同步.
+  - tools/jump-stability.md: 解析段假设更正 + 验证备注登记 F-001 更正; 页数更新为 7 页.
+  - tools/README.md: 维护日志追加 2026-08-11 条目.
+  - lean-proof/STATUS.md: F-001 标注 RESOLVED; 路线图第 4 项更新为已更正.
+  - lean-proof/audit_report.md: 新增第 7 节 Addendum (2026-08-11): F-001 已解决, O5 现为
+    FAITHFUL, 历史发现保留.
+  - lean-proof/verification.json: O5 -> FAITHFUL (附更正注记), gaps 中 F-001 标 RESOLVED,
+    repair_hints 更新; JSON 校验通过.
+  - Lean 形式化 SL/StabilityGrowth.lean 未改动 (一直采用正确假设); lake build 复跑
+    8564 jobs exit 0; run-manifest.json 保持会话 66 记录 (输入哈希未变).
+- 脚本: scripts/_fix_stability_f001.py (tex 补丁, 原子写入), scripts/_fix_stability_tools.py
+  (工具库/lean 记录补丁). 期间一次失败: 首次脚本以 wb 打开目标直接写入在异常时把 tex
+  截断为空, 已 git restore 恢复并改为 tmp+os.replace 原子写入 (教训入此记录).
+- 状态: STRICT 文本修正, 无新数值断言 (数值仅用于反例/随机验证, 标注 EVIDENCE 级).
+  未做 git commit (未要求).
+- 待办/后续: 本修正无遗留; 关联开放问题 (稳定性定理/尖锐性定理形式化, H^2 完备性全定理
+  接回 L^2 矩上界) 见 lean-proof/STATUS.md 路线图 3-6.

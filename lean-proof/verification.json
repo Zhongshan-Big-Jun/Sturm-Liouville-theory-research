@@ -11,7 +11,7 @@
     { "obligation": "O2", "result": "FAITHFUL", "notes": "monotone_pos: 0 < u_j and u_j <= u_{j+1}" },
     { "obligation": "O3", "result": "FAITHFUL", "notes": "product_growth: u_j >= prod_{k=2..j} (A_k-B_k)/c0" },
     { "obligation": "O4", "result": "FAITHFUL", "notes": "eps reformulation: 1+eps_k = (A_k-B_k)/c0, eps_k >= 0" },
-    { "obligation": "O5", "result": "MINOR_PARAPHRASE", "notes": "formal uses proof-required hypothesis c0 <= A_m - B_m; informal lists weaker A_m >= B_m" },
+    { "obligation": "O5", "result": "FAITHFUL", "notes": "formal uses proof-required hypothesis c0 <= A_m - B_m; informal source corrected 2026-08-11 to A_m - B_m >= c0 (F-001 RESOLVED)" },
     { "obligation": "O6", "result": "FAITHFUL", "notes": "moments mu_k = M(X^k) for linear functional M" },
     { "obligation": "O7", "result": "FAITHFUL", "notes": "even_recurrence from orthogonality + KcPolynomial.Kc_pEven" },
     { "obligation": "O8", "result": "FAITHFUL", "notes": "odd_recurrence analogue with A', B'" },
@@ -22,9 +22,9 @@
   ],
   "critical_errors": [],
   "gaps": [
-    { "location": "informal doc SL_stability_moment_jump.tex Theorem 2.1", "issue": "stated hypothesis A_m >= B_m weaker than proof-required A_m - B_m >= c0; formal uses the stronger (proof-used) hypothesis (F-001)" },
+    { "location": "informal doc SL_stability_moment_jump.tex Theorem 2.1", "issue": "stated hypothesis A_m >= B_m weaker than proof-required A_m - B_m >= c0; formal uses the stronger (proof-used) hypothesis (F-001)", "status": "RESOLVED 2026-08-11: source corrected to A_m - B_m >= c0" },
     { "location": "scope", "issue": "full H^2 completeness theorem and stability threshold theorem not formalized (outside this session scope)" }
   ],
-  "repair_hints": "Correct the informal theorem statement to A_m - B_m >= c0.  For the remaining completeness steps, formalize the isometric isomorphism and Weierstrass density separately.",
+  "repair_hints": "F-001 resolved 2026-08-11 (source corrected to A_m - B_m >= c0); no further repair needed.  For the remaining completeness steps, formalize the isometric isomorphism and Weierstrass density separately.",
   "independence_note": "single-agent self-audit; see audit_report.md"
 }

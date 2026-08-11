@@ -11,7 +11,7 @@ created: 2026-08-05
 ## 解析
 
 矩跳跃完备性判据的稳定性理论. 对二阶跳变递推 $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$
-($u_0=0$, $u_1=1$, $B_m \geq 0$, $A_m \geq B_m$), 增长引理 (定量形式):
+($u_0=0$, $u_1=1$, $B_m \geq 0$, $A_m - B_m \geq c_0$), 增长引理 (定量形式):
 $u_m$ 单调且
 $$u_m \geq \prod_{k=2}^m \frac{A_k - B_k}{c_0} = \prod_{k=2}^m (1+\varepsilon_k),
 \quad \varepsilon_k = \frac{A_k-B_k-c_0}{c_0} \geq 0.$$
@@ -48,7 +48,11 @@ $\varepsilon_m \sim (4/c)m$, 超阶乘余量; 常数扰动 $c \to c+\delta$ ($\d
   $\alpha = 1.5$ 有界; 对角反例部分和收敛阈值 $\beta > C+1/2$; Krein 对数空间
   余量 $1200$--$1900$; 临界 $\varepsilon = 1/\log k$ 窗口.
 - 脚本: `scripts/d3_stability_verify.py`, `scripts/d3_stability_verify2.py`.
-- 文档: `docs/SL_stability_moment_jump.pdf` (5 页, 零警告).
+- 2026-08-11 更正 (F-001): 增长引理陈述假设由 `A_m >= B_m` 更正为
+  `A_m - B_m >= c_0` (与证明实际使用及 Lean 形式化 `StabilityGrowth.lean` 一致);
+  弱假设反例 (`A_m=B_m=1` 振荡; `A_m-B_m=1/2<c_0` 时乘积下界失败) 见
+  `docs/SL_stability_moment_jump.pdf` 定理 2.1 后的注.
+- 文档: `docs/SL_stability_moment_jump.pdf` (2026-08-11 修订版, 7 页, 零警告).
 - 相关: [[moment-jump-completeness]], [[left-definite-moment-recurrence]],
   [[denseness-criteria]].
 - 开放: 门槛线上系数族完整分类 (S1); 一般 $H$ 的可表示性门槛 (S2).

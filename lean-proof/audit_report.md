@@ -117,3 +117,14 @@ C2 proofs:
   its algebraic core (growth lemma + moment recurrence + scaling).
 - The stability theorem (superpolynomial growth threshold
   sum min(eps,1) = omega(log m)) and the sharpness theorem are not formalized.
+## 7. Addendum (2026-08-11): F-001 resolved in source
+
+The informal contract C1 in `docs/SL_stability_moment_jump.tex` was corrected on
+2026-08-11 (session 67): Theorem 2.1 and Theorem 2.2 (stability) now state the
+proof-required hypothesis `B_m >= 0 and A_m - B_m >= c0` (equivalently eps_k >= 0)
+instead of the weaker `A_m >= B_m`.  Obligation O5 is therefore FAITHFUL against the
+current source text.  The Lean formalization (`SL/StabilityGrowth.lean`) already used
+the corrected hypothesis and is unchanged; `lake build` re-run passed (see
+run-manifest.json).  A remark with counterexamples showing the weak hypothesis fails
+(A_m = B_m = 1 oscillates; A_m - B_m = 1/2 < c0 breaks the product bound) was added
+after Theorem 2.1.  Historical findings above are preserved as recorded at audit time.

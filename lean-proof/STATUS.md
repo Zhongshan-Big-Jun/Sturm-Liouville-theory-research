@@ -54,7 +54,8 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
   Weyl 渐近) 本身已被形式化; 完整定理形式化需把这些外部依赖一并处理.
 - 会话 66 审计发现 F-001 (源文档非形式化缺陷): SL_stability_moment_jump.tex 定理 2.1
   陈述的假设 A_m>=B_m 弱于其证明实际使用的 A_m-B_m>=c_0; 形式化采用证明所需假设.
-  源文档应更正为 A_m-B_m>=c_0.
+  2026-08-11 (会话 67) 已更正: 源文档定理 2.1/2.2 假设统一改为 B_m>=0 且
+  A_m-B_m>=c_0, 与形式化一致 (F-001 RESOLVED).
 - MomentRecurrence 在 Q 上形式化 (匹配 KcPolynomial 的精确有理系数); R 情形为同一
   代数的换基, 未单独形式化 (见 audit_report.md 独立性说明).
 - 之前会话 31 在 D:\lean4\Projects\MyProject 有独立的增长引理/平衡相位形式化;
@@ -73,6 +74,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
    接回 L^2 内积与矩上界 |mu_k| <= ||g||_2 sqrt(2/(2k+1)), 与 StabilityGrowth 超阶乘
    增长矛盾.
 4. SL_stability_moment_jump.tex 稳定性定理 (sum min(eps_k,1) = omega(log m) => 超多项式)
-   与尖锐性定理的形式化; 源文档定理 2.1 假设更正为 A_m-B_m>=c_0 (F-001).
+   与尖锐性定理的形式化; 源文档定理 2.1/2.2 假设已更正为 A_m-B_m>=c_0 (F-001,
+   2026-08-11 会话 67 RESOLVED; 形式化 StabilityGrowth.lean 无需改动).
 5. MW 引理 1-2 与比值上确界定理由 BalancePhase 补全 (转移矩阵/谱论).
 6. 间距线 (n=1 定理族, n>=2 开关/约化) 体量大且分析密集, 建议拆义务逐条形式化.

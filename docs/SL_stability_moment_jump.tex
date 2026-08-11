@@ -16,7 +16,7 @@
 
 \title{矩跳跃机制的稳定性: 系数扰动下增长引理与完备性的保持}
 \author{研究证明文档 (项目: BVE research)}
-\date{2026-08-05}
+\date{2026-08-11 (修订版; 首版 2026-08-05)}
 
 \begin{document}
 \maketitle
@@ -79,7 +79,7 @@ $u_m \geq (4/c)^{m-1}m!$, 而仅仅是\emph{超多项式}增长 $u_m/m^\beta \to
 \subsection{增长引理 (定量形式)}
 
 \begin{theorem}[增长引理, 定量形式]\label{thm:growth}
-	设 $c_0 > 0$, 序列 $A_m, B_m$ 满足 $B_m \geq 0$, $A_m \geq B_m$ ($m \geq 2$).
+	设 $c_0 > 0$, 序列 $A_m, B_m$ 满足 $B_m \geq 0$, $A_m - B_m \geq c_0$ ($m \geq 2$).
 	令 $u_0 = 0$, $u_1 = 1$, $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ ($m \geq 2$).
 	则 $u_m$ 单调不减, 且
 	\begin{equation}
@@ -105,6 +105,15 @@ $u_m \geq (4/c)^{m-1}m!$, 而仅仅是\emph{超多项式}增长 $u_m/m^\beta \to
 	$u_4 = 3700 < 3780$), 必须先用单调性再取比值. 定理 \ref{thm:growth} 的证明
 	正是这一思路的封装.
 \end{remark}
+\begin{remark}[假设的强度]
+	定理 \ref{thm:growth} 的统一假设是 $B_m \geq 0$ 且 $A_m - B_m \geq c_0$
+	($m \geq 2$), 它保证 $u_m$ 单调不减与 $\varepsilon_m \geq 0$.
+	仅假定 $A_m \geq B_m$ 是不够的: 取 $c_0 = 1$, $A_m = B_m = 1$ 时递推解为
+	$0, 1, 1, 0, -1, \dots$, 单调性与非负性均失败; 即使 $A_m - B_m \geq 0$
+	(但不 $\geq c_0$, 如 $c_0 = 1$, $A_m = 3/2$, $B_m = 1$) 也失败:
+	$u_5 = -11/16 < (1/2)^4 = \prod_{k=2}^{5}(A_k - B_k)/c_0$.
+	故保证比值连乘所需的最小门槛正是 $A_m - B_m \geq c_0$.
+\end{remark}
 
 \subsection{稳定性定理}
 
@@ -120,13 +129,13 @@ $u_m \geq (4/c)^{m-1}m!$, 而仅仅是\emph{超多项式}增长 $u_m/m^\beta \to
 		q_{2m+1} &= c_0 x^{2m+1} - A_m' x^{2m-1} + B_m' x^{2m-3} \quad (m \geq 2).
 	\end{aligned}
 	\end{equation}
-	其中 $c_0 > 0$, $B_m, B_m' \geq 0$, $A_m \geq B_m$, $A_m' \geq B_m'$,
+	其中 $c_0 > 0$, $B_m, B_m' \geq 0$, $A_m - B_m \geq c_0$, $A_m' - B_m' \geq c_0$ (从而 $\varepsilon_k, \varepsilon_k' \geq 0$),
 	且
 	\begin{equation}
 		\sum_{k=2}^{m} \min(\varepsilon_k, 1) = \omega(\log m),
 		\qquad \sum_{k=2}^{m} \min(\varepsilon_k', 1) = \omega(\log m),
 	\end{equation}
-	这里 $\varepsilon_k = (A_k - B_k - c_0)/c_0$, $\varepsilon_k'$ 同理. 则
+	这里 $\varepsilon_k = (A_k - B_k - c_0)/c_0 \geq 0$, $\varepsilon_k'$ 同理. 则
 	$\{q_n\}$ 在 $H$ 中完备.
 \end{theorem}
 
@@ -379,6 +388,12 @@ $u_m$ 增长的量 ($\log u_m \geq S(m)$).
 		($\varepsilon_k \sim 1/(k\log k)$ 等) 处于门槛线上, 未完全分类.
 	\item[边界情形] $B_m = 0$ 时增长引理为等式, 条件退化为纯乘积; $B_m > 0$
 		时单调性要求 $u_{m-1} \geq u_{m-2}$, 由归纳保证. 奇偶族独立处理.
+	\item[假设更正 (2026-08-11, F-001)] 定理 \ref{thm:growth} 与
+		\ref{thm:stability} 的陈述原写 $A_m \geq B_m$, 弱于证明实际使用的
+		$A_m - B_m \geq c_0$ (Lean 形式化审计 F-001). 本版已统一更正为
+		$B_m \geq 0$ 且 $A_m - B_m \geq c_0$; 反例表明弱假设下单调性与乘积
+		下界均失败 (见定理 \ref{thm:growth} 后的注). 形式化文件
+		\texttt{SL/StabilityGrowth.lean} 一直采用正确假设, 无需改动.
 	\item[已解决 (本版)] (S1) 门槛线分类已闭合: 精确判据 (7) 给出
 		对角空间中 $u_m$ 增长与 $\beta$ 的精确比较 (定理 \ref{thm:exact}),
 		门槛线 $\varepsilon_k \sim 1/(k\log k)$ 完全分类
