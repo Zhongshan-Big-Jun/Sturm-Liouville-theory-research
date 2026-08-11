@@ -1729,3 +1729,16 @@
 - 验证: quick_validate (Python310) "Skill is valid!"; 三文件无 BOM, LF 行尾.
 - 同步: 暂存区提交 690dbe7, 先推父 xsoc1 再推子 fork org, 三者 HEAD 一致 (690dbe7); 本地安装与暂存区文件哈希全部 MATCH.
 - 待办/后续: 更大规模真实问题试跑 (含多路线探索 + 反例猎手 + 形式化验证子代理 lean-verify 接入); 子 agent 返回 JSON 的解析约定可在管理器侧进一步规范化.
+
+### 2026-08-11 会话 65 (lean-proof 形式化: fork 阻塞 + 三个形式化文件)
+- 任务: 把 Zhongshan-Big-Jun/Sturm-Liouville-theory-research fork 到个人主页 xsoc1, 加入 lean-proof/ 文件夹并形式化其中证明; 全部完成则转 public.
+- fork 状态 (阻塞, 需 org 所有者操作): 该仓库为私有且 allow_forking=false; POST /forks 返回 403 "forking is disabled"; xsoc1 仅有 push/triage/pull 权限, 无 admin (PATCH allow_forking 404). 2026-08-11 再次确认仍未解除.
+- lean-proof 工程建立 (F:\LaTeX\BVE research\lean-proof): Lean 4.31.0 + mathlib v4.31.0 (lake update 完成, mathlib olean 缓存可用); lakefile.lean 用 globs := #[`SL.+`]; ASCII 无 BOM; import 必须位于文件开头.
+- 已形式化并通过 lake build (8562 jobs, 全绿):
+  - SL/MomentGrowth.lean: 矩跳跃增长引理 (u_j >= (4/c)^(j-1) j!, u_j > 0, u_j <= u_{j+1}), 源 docs/SL_h2_completeness_proof.tex.
+  - SL/BalancedPhase.lean: 平衡相位闭式核心 (theta 满足 secular 方程, arccos(-s/(s+1)) = pi - theta, nu(R) 闭式, (0,pi) 内 secular 根恰为 theta/pi-theta, tan^2 phi = s(s+2), lambda1/lambda2 相位恒等式), 源 docs/SL_ratio_proof.tex + tools/balanced-phase.md.
+  - SL/KcPolynomial.lean: K_c 作用在 H^2 多项式基的系数恒等式 (K_c p_{2n} = c x^{2n} - A_n x^{2n-2} + B_n x^{2n-4}, 奇次同理, A_n - B_n = 4n + cn/(n-1)), 源 docs/SL_h2_completeness_proof.tex Lemma 4.1.
+  - lean-proof/README.md: 形式化清单 + 路线图 + 诚实声明 (数值/猜想不作定理).
+- 技术要点: Real.tan 定义为 (Complex.tan x).re, 需用 Real.tan_eq_sin_div_cos 展开; rw [hc, sin_sq] 中后引入的 cos 不会被 hc 重写, 须先 rw sin_sq 再 rw hc; Nat.sub_add_cancel 方向为 n-1+1=n, 反向需 .symm; field_simp 已闭合目标时勿再跟 ring.
+- 提交: lean-proof/ 加入仓库 (本地, 未推送).
+- 待办/后续: 需 org 所有者开启 allow_forking 或公开仓库后才能 fork 到 xsoc1; fork 解析后推送 lean-proof/ 并继续形式化 (矩递推, MW 引理, H^2 完备性全定理等).
