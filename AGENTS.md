@@ -1962,3 +1962,19 @@
 - 另一 agent 遗留: lean-proof/SL/H3Completeness.lean 未跟踪 (另一 agent 工作中间产物,
   用户指示先忽略, 未动).
 
+
+### 2026-08-12 会话 54 (生成 obsidian 教学计划)
+- 任务: 为刚学完本科 SL 边值问题 (丁同仁) 的学生出一份 12 周教学计划,
+  放在 obsidian 仓库 F:\Obsidian Storage\数学 下; 调用 obsidian-markdown skill.
+- 完成:
+  - 新建 F:\Obsidian Storage\数学\SL边值问题研究入门计划.md (obsidian 风格:
+    frontmatter + tags/aliases, callout, mermaid 路线图, 任务清单, LaTeX).
+  - 计划结构: 阶段 0 基础补漏 (实分析/泛函/SL 衔接, 第 1-2 周); 阶段 1 正则
+    SL 谱理论 (Teschl, Zettl, 三项核心技能, 第 3-4 周); 阶段 2 极值工具箱
+    (FH, Keller 1976, Mahar-Willner 1976, AEH/Hedhly/Sun, 第 5-8 周);
+    阶段 3 读项目证明 (finite_reduction -> exact_2n -> 比值三篇 -> O3a 或 H^s,
+    第 9-12 周). 含手推练习清单 7 项, 书目/文章速查表, 证据分层提醒
+    (STRICT vs EVIDENCE), 进度追踪.
+  - 工具: obsidian CLI 不在 PATH (未安装/未运行), 未做 CLI 校验; 文件按
+    obsidian-markdown skill 规范人工核验.
+- 备注: 本文件位于 obsidian vault, 不在本 git 仓库内; 本会话记录已提交推送.
