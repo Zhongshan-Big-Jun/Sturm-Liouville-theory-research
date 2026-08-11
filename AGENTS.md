@@ -1881,3 +1881,16 @@
     xsoc1/rigorous-open-math-research, org fork 经 merge-upstream fast-forward 同步.
   - 两个仓库远端一致: SL 仓库 f206ff2 (org 父类 + xsoc1 fork); skill 仓库 e3d05b8
     (xsoc1 父类 + org fork). 临时文件已清理.
+
+### 2026-08-11 会话 70
+- 任务: 整理仓库 (根目录杂项归档) 并重写 README.
+- 完成:
+  - 删除根目录 3 字节空文件 SL_gap_n1_well_rigidity_allR_summary.tex (完整版本在 docs/).
+  - s33_r1plus.json (数值数据) 移入 misc/.
+  - 重写 README.md (4017 字符, 去 BOM): 项目简介/两条研究主线; 主要结果表
+    (严格证明 8 项 + 部分证明/数值/开放问题如实标注); Lean 4 形式化验证小节
+    (STATUS.md/run-manifest/audit O1-O24/H^2 线完整形式化/未完成登记);
+    目录结构表 (含 MRP 管理层目录); 构建与复现 (lake build/verify/xelatex/scripts);
+    仓库结构 (org 父类 + xsoc1 fork, 同步方向); 工作方法 (AGENTS.md + 四个 skill).
+  - AI4Math OCR 临时文件 (traineddata/_ai4math_*/tmp_ai4math) 已在 .gitignore 中, 未跟踪.
+- 状态: 待 commit + push (org 父类) + Sync fork (xsoc1).

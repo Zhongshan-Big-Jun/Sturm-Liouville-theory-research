@@ -1,64 +1,98 @@
-﻿# Sturm-Liouville 边值问题研究 (BVE research)
+# Sturm-Liouville 边值问题研究 (BVE research)
 
-本项目研究 Sturm-Liouville (SL) 边值问题的前沿数学问题, 重点关注两个主题:
+Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线:
 
 1. **特征函数系/多项式系的完备性**: SL 边值问题的解在多大的 Hilbert 空间 (左定空间)
    中等价于该空间内的所有正交函数系. 基准论文: Littlejohn-Quintero-Roba,
-   *Krein-Sobolev Orthogonal Polynomials* (Springer 2025).
-2. **特征值间距与比值的最优界**: 对加权 Dirichlet 问题 -y'' = lambda rho y,
-   1 <= rho <= R (可测盒类), 优化相邻谱隙 D_n = lambda_{n+1} - lambda_n 与比值
+   *Krein-Sobolev Orthogonal Polynomials* (Springer 2025, DOI 10.1007/978-3-031-90135-5_7).
+2. **特征值间距与比值的最优界**: 对加权 Dirichlet 问题 -y'' = lambda rho y
+   (0 < a <= rho <= A 可测盒类), 优化相邻谱隙 D_n = lambda_{n+1} - lambda_n 与比值
    lambda_{n+1}/lambda_n.
 
-## 主要结果 (截至 2026-08-10)
+所有研究结论遵循严格性标注: 严格证明与数值证据显式区分, 未完成严格证明的断言不标为"已解决".
 
-- **相邻比值上确界** (严格证明): sup_{n,rho} lambda_{n+1}/lambda_n = nu(R),
-  闭式由 arccos 给出; 全序列下确界 = 1 (Weyl 渐近, 下确界不达到).
-- **n=1 相邻间距极端值** (严格证明): SUP/INF 由对称三块 [1,R,1] / [R,1,R] 达到,
-  全部义务 O1/O2/O3a/O3b 闭合 (相位比刚性, 2026-08-09); INF 侧 R -> infinity
-  极限定理 A 已证.
-- **n >= 2 相邻间距极端值** (严格证明, 2026-08-10):
-  - 有限块约化: 最大/最小值达到; 每个全局极值子 bang-bang, 至多 2n+1 块 / 至多 2n 开关.
-  - 精确 2n 开关定理: 每个全局极值子合并相邻同值块后恰有 2n 个有效内部开关;
-    最大化子首尾块取 1, 最小化子首尾块取 R; 不假设对称或唯一.
-- **H^s 左定空间多项式完备性** (严格证明): 第二左定空间 H^2 与一切整数 s >= 1 的
-  左定空间 H^s 中, 缺 2, 3 次的多项式基解析完备 (矩跳跃判据 + 增长引理).
-- 文献检索结论: 未检索到与上述 n >= 2 定理直接等价的已发表结果; 项目明确不声称首创,
-  Willner-Mahar 1979 等早期文献为既有工作风险 (详见 docs/ 内各证明文档).
+## 主要结果
+
+### 严格证明 (已证, 详见 docs/)
+
+| 结果 | 来源 | 状态 |
+| --- | --- | --- |
+| sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) 闭式 (平衡相位法, 三步证明) | `docs/SL_ratio_proof.tex` | 已证 |
+| inf_{n,rho} lambda_{n+1}/lambda_n = 1 (Weyl 渐近, 下确界不达到) | `docs/SL_inf_ratio_proof.tex` | 已证 |
+| Mahar-Willner 引理 1-2 独立重证 (周期延拓 + 零点截断) | `docs/SL_mw_lemma_reproof.tex` | 已证 |
+| 移位 Krein 算子 c->0 退化极限的结构稳定性 | `docs/SL_krein_c0_limit.tex` | 已证 |
+| {p_n} 在第二左定空间 H^2 解析完备 (矩跳跃判据 + 增长引理) | `docs/SL_h2_completeness_proof.tex` | 已证 |
+| {p_n} 在一切整数左定空间 H^s (s >= 1) 完备 | `docs/SL_h3_completeness_proof.tex` | 已证 |
+| n=1 相邻间距极端值: SUP/INF 由 [1,R,1] / [R,1,R] 达到 (相位比刚性, 义务 O1/O2/O3a/O3b 闭合) | `docs/SL_gap_n1_proof.tex` 等 | 已证 |
+| n>=2 相邻间距: 有限块约化 (极值子 bang-bang, 至多 2n+1 块) + 精确 2n 开关定理 (合并相邻同值块后恰 2n 个有效内部开关) | `docs/SL_gap_nge2_finite_reduction_proof.tex`, `SL_gap_nge2_exact_2n_switches_proof.tex` | 已证 |
+
+### 部分证明 / 数值强猜想 / 开放问题 (如实标注)
+
+- 固定 n 上确界: 交替配置对称相位结构已证, n=1,2 闭式; 全局极值性与 2n-根计数未证
+  (`docs/SL_fixed_n_supremum.tex`, 数值: `docs/SL_ratio_summary.tex`).
+- n>=2 间距极端值的对称性/块数最小性为数值强猜想 (严格部分见上表).
+- 完整开放问题清单 (权威): `docs/SL_spectral_topics_summary.tex` §5.
+- 文献检索结论: 未检索到与 n>=2 定理直接等价的已发表结果; 项目不声称首创,
+  Willner-Mahar 1979 等早期文献为既有工作风险 (各证明文档中有核验记录).
+
+## Lean 4 形式化验证 (lean-proof/)
+
+研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
+
+- **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
+- **机器验证**: `lean-proof/run-manifest.json` (9 个 .lean 文件, sorry/admit/axiom 命中 0,
+  `lake build` exit 0).
+- **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
+  裁决 FORMALLY_VERIFIED).
+- **已完成**: H^2 完备性证明线完整形式化 (StabilityGrowth / MomentRecurrence / MomentBound /
+  Completeness: 增长引理、矩递推/缩放、L2 矩上界、湮灭 + Weierstrass 收尾);
+  比值上确界证明线的核心三角闭式 (BalancedPhase).
+- **未完成 (已登记)**: H^3/H^s 完备性, 稳定性门槛定理, MW 重证, 间距线 (n=1 定理族,
+  n>=2 开关/约化) 等.
 
 ## 目录结构
 
 | 目录 | 内容 |
-|---|---|
-| docs/ | 研究文档与完整证明 (tex/pdf, 含证明包与综述) |
-| scripts/ | 数值审计, 复现与探索脚本 (Python) |
-| tools/ | 数学工具库 (Obsidian 兼容 Markdown, 含解析/适用范围/验证状态) |
-| papers/ | 参考文献全文 (含版权文献, 仅个人研究, 仓库私有) |
-| research_cache/ | 文献检索缓存与元数据 |
-| images/ | 扫描页与测试图 |
-| misc/ | 失败/测试产物与调试工件 |
-| runs/, index/, state/, agenda/, knowledge/ | Blueprint v2.2 研究运行, 索引, 状态与问题记录 |
-| literature/, archive/, reports/ | 文献条目, 归档与报告 |
+| --- | --- |
+| `docs/` | 研究文档与完整证明 (tex/pdf, 含证明包、研究总结与综述) |
+| `lean-proof/` | Lean 4 形式化验证工程 (状态矩阵/审计/机器验证) |
+| `scripts/` | 数值审计、复现与探索脚本 (Python, EVIDENCE 级, 不构成证明) |
+| `tools/` | 数学工具库 (Obsidian 兼容 Markdown: 解析/适用范围/验证状态) |
+| `papers/` | 参考文献全文 (含版权文献, 仅个人研究使用) |
+| `research_cache/` | 文献检索缓存与元数据 |
+| `images/` | 扫描页与测试图 |
+| `misc/` | 失败/测试产物、调试工件与归档数据 |
+| `runs/` | rigorous-open-math-research 运行目录 (契约/台账/审计, 按 RUN_ID) |
+| `state/`, `index/`, `agenda/`, `knowledge/`, `literature/`, `reports/`, `archive/` | 项目管理层 (manage-math-research-program): 状态/索引/议程/知识/文献/报告/归档 |
+| `AGENTS.md` | 项目规则 + 逐会话工作记录 (进入项目先读) |
+| `PROJECT.md` | MRP 项目入口 (所有权与恢复指引) |
 
-## 文档编译
+## 构建与复现
 
-所有 LaTeX 文档使用 xelatex (ctexart), 中间产物输出到 docs/build/:
+```text
+# Lean 形式化 (lean-proof/)
+lake build                                     # 构建整个包 (首跑需编译 mathlib)
+lake env lean SL/<File>.lean                   # 单文件检查
+python <lean-verify>/scripts/verify_lean_project.py --project lean-proof --build
+                                               # sorry/axiom 扫描 + 构建 (刷新 run-manifest.json)
 
-```powershell
-cd docs
-xelatex -output-directory=build <file>.tex   # 运行两遍
+# 文档 (docs/, 需 xelatex)
+xelatex SL_<name>.tex                          # 编译各 tex 文档
+
+# 数值脚本 (scripts/, Python 3.10+, 依赖 numpy/scipy)
+python scripts/<name>.py                       # 各脚本头部注明用途与精度
 ```
 
-零警告编译. 综述见 `docs/SL_spectral_topics_summary.pdf`.
+## 仓库结构
 
-## 复现与审计
+- 父类仓库: `Zhongshan-Big-Jun/Sturm-Liouville-theory-research` (组织, public)
+- 个人 fork: `xsoc1/Sturm-Liouville-theory-research` (个人主页, public)
+- 同步方向: 内容推送到父类后, 用 GitHub 的 Sync fork 将 fork 跟进到同一提交.
 
-- Python 3.10 (需 numpy/scipy/mpmath), Windows 下建议设置 `PYTHONUTF8=1`.
-- 关键审计脚本: `scripts/audit_o3a_pdf_part1..4.py` (O3a 证明),
-  `scripts/audit_nge2_pdfs.py` (n >= 2 证明: Part A 40/40 + Part B 16/16),
-  `scripts/_hp_nge2.py` (mpmath 50 位), `scripts/_smooth_nge2.py` (光滑权 4/4).
-- 证据分层约定: 严格证明 (STRICT) / 数值证据 (EVIDENCE, 不构成证明) / 猜想 (OPEN),
-  全项目统一标注, 见 AGENTS.md 与各文档.
+## 工作方法
 
-## 工作记录
-
-会话与详细工作日志见 [AGENTS.md](AGENTS.md) (含审计记录, 工具库更新与开放问题).
+- 进入项目先读 `AGENTS.md` (代码规则、严格性标注规则、会话记录).
+- 数学研究调用 `$rigorous-open-math-research`; 项目管理调用 `$manage-math-research-program`;
+  Lean 形式化验证调用 `$lean-verify`; 全流程编排 (管理-研究-验证) 调用
+  `$math-research-workflow` 插件.
+- 任何问题如实回答; 数值证据不得作为结果呈现; 未完成严格证明的断言不得称为"已解决".
