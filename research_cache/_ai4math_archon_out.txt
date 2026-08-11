@@ -1,0 +1,86 @@
+﻿===== frenzymath org =====
+  jixia (★127) | A static analysis tool for Lean 4.
+  metalib (★1) | A collection of metaprogramming utilities.
+  lean_test_v4130 (★0) | 
+  LeanCopilot (★0) | LLMs as Copilots for Theorem Proving in Lean
+  lean-v4130-fixed (★0) | Fixed version of mathlib4 used in annotation system
+  interactive (★2) | 
+  herald_translator (★33) | 
+  lean_test_v4110 (★1) | 
+  jixia_py (★1) | Python binding of jixia
+  LeanSearch (★58) | 
+  lean_test_v4160 (★0) | 
+  interactive.py (★0) | 
+  REAL-Prover (★32) | 
+  LeanSearch-PS (★0) | 
+  frenzymath.github.io (★0) | 
+  FATE (★58) | The FATE (Formal Algebra Theorem Evaluation) benchmarks.
+  FATE-M (★2) | The FATE-M (Formal Algebra Theorem Evaluation - Medium) benchmark.
+  FATE-H (★3) | The FATE-H (Formal Algebra Theorem Evaluation-Hard) benchmark.
+  FATE-X (★3) | The FATE-X (Formal Algebra Theorem Evaluation-Extra Hard) benchmark.
+  requests (★3) | A requests lib for Lean 4
+  openai_client (★1) | A clean OpenAI-compatible client for Lean 4
+  reap (★42) | General neural tactic for Lean 4
+  ai4m-tutorial (★1) | Tutorial for MATRIX workshop
+  mathlib4 (★0) | The math library of Lean 4
+  Aria-autoformalizer (★4) | 
+  FATE-Eval (★3) | Repository for evaluation codes for FATE benchmark
+  e5-eaas (★0) | E5-mistral-7b embedding as a service.
+  TreeSearch (★2) | 
+  mozi (★11) | Mozi Lean Copilot VS Code Extension
+  jixia_db (★0) | Parse a Lean repo into structured items, and store them in a PostgreSQL database.
+
+===== Archon-Horizon README =====
+<div align="center">
+
+# Archon Horizon
+
+**Frenzymath · PKU@AI4Math**
+
+*Workspace-first orchestration for long-horizon Lean 4 formalization agents*
+
+[![Live demo](https://img.shields.io/badge/live%20demo-open%20dashboard-brightgreen?logo=githubpages)](https://frenzymath.github.io/Archon-Horizon/)
+![Version](https://img.shields.io/badge/version-0.1.2-blue)
+[![License](https://img.shields.io/badge/Apache-2.0-green)](./LICENSE)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+![Lean](https://img.shields.io/badge/domain-Lean%204-1f6feb)
+
+</div>
+
+---
+
+> [!IMPORTANT]
+> This is the first public release of **Archon Horizon**. This version is stable, and already used in our projects, but be aware that new versions may introduce big changes. We advise you to check this repository regularly for updates. We try to maintain backward compatibility, although some interfaces may change.
+
+Archon Horizon orchestrates autonomous AI agents that formalize mathematics in **Lean 4** across **multiple interdependent projects**. A workspace is the unit of work: the Horizon agent plans over shared blueprints and dependency graphs, runs long proving sessions, builds with `lake`, and repairs failures without constant human supervision. Fresh-context helpers provide independent review and workspace hygiene without creating a second orchestration loop.
+
+The **Horizon Agent** owns the proof loop and decides when to dispatch helpers. The read-only **Ground** helper is a scheduled workspace-wide checkpoint for strategy, graph/task consistency, ledger hygiene, and convergence; `work-reviewer`, `blueprint`, `janitor`, and the other helpers remain available for narrower slices.
+
+> [!NOTE]
+> Archon Horizon is the successor to [**Archon**](https://github.com/frenzymath/Archon), which formalizes research-level mathematics within a *single* project. Horizon generalizes that model to **workspaces of many projects**. The main argument is that LLMs will able to maintain larger and larger formalization projects, **Archon Horizon** will be able to orchestrate them in a scalable workspace.
+
+> 📚 Full guides live in [`docs/`](./docs/README.md). 📝 Release notes in [`docs/CHANGELOG.md`](./docs/CHANGELOG.md).
+
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+  - [1. Install](#1-install)
+  - [2. Scaffold a workspace](#2-scaffold-a-workspace)
+  - [3. Run](#3-run)
+- [CLI Overview](#cli-overview)
+- [Live Demo](#live-demo)
+- [License](#license)
+
+---
+
+## Features
+
+- **Fresh-context convergence checks.** The Horizon agent schedules the read-only Ground helper before terminal task completion and during long runs, with narrower `work-reviewer` and `janitor` helpers available as needed. → [Architecture](./docs/architecture/README.md)
+- **Multi-engine harnesses.** Orchestration is decoupled from the execution engine behind a single `Harness` seam, so agents can run on Claude Code, OpenAI Codex, or any custom command. Kimi/Moonshot, DeepSeek, and OpenRouter routing are built in, and a `null` harness keeps tests offline. → [Architecture](./docs/architecture/README.md#4-harness-seam--provider-routing)
+- **Multi-project workspaces.** A workspace holds many interdependent Lean projects under one root — embedded as subdirectories or tracked as out-of-tree Git checkouts (no fragile submodules). Everything (config, models, freezes) is declared in a single [`config.yaml`](./docs/configuration/README.md). → [Workspaces & Projects](./docs/workspaces-and-projects/README.md)
+- **Async inboxes, per-team ownership & standing protections.** Humans and agents collaborate through a local filesystem inbox and an optional GitHub shadow-sync, observed only at round boundaries so proof searches are never interrupted mid-flight. Items can be shared or **owned by one task** (a private per-team inbox), carry **per-team read-state** (`inbox read`/`unread`, `list --mine/--unread`), and be **direct-messaged** to another running team. Standing protections soft-freeze foundational signatures and files so autonomous runs can't quietly break your API. → [Inboxes](./docs/inboxes-and-communication/README.md)
+- **Parallel teams on a shared board.** Each `horizon run` is a team (a lead agent plus its subagent workers); parallel teams coordinate through shared state — a roadmap that doubles as a **project board** (owner, milestone labels, pinned commits, a live `/board` view), the inbox, and the commit ledger — rather than synchronous meetings. A stderr **synchronizer** keeps each agent aware of unread messages and other live runs, and launching work for *other* teams is gated by an opt-in `workspace.delegation` policy (default deny). → [Architecture](./docs/architecture/README.md)
+- **Blueprints & dependency graphs.** LaTeX-subset blueprints and Lean sources synchronize into a vendored, plain-files semantic graph. `horizon graph` exposes frontier, dependency, review, and comment operations; the dashboard renders a deterministic chapter-collapsed Graphviz view. →

@@ -1978,3 +1978,27 @@
   - 工具: obsidian CLI 不在 PATH (未安装/未运行), 未做 CLI 校验; 文件按
     obsidian-markdown skill 规范人工核验.
 - 备注: 本文件位于 obsidian vault, 不在本 git 仓库内; 本会话记录已提交推送.
+
+### 2026-08-12 会话 74 (AI4Math V2 全网蒸馏调研)
+- 任务: 全网搜索可蒸馏的工作方法, 重点 AI4Math 会议 V2 与会人员的工作, 优化五个功能面:
+  提出问题, 搜索文献, 研究问题, 总结技术, Lean 验证.
+- 数据源 (如实): AI4Math 手册 V2 OCR 全文 (D:/xwechat_files/.../AI4Math会议手册V2.pdf 为无文本层扫描件,
+  用既有 OCR 产物 _ai4math_ocr.txt); GitHub API (token 经 git credential fill, 全部仓库 2026-08-12 核实可达);
+  OpenAlex (FormalRx 摘要 arXiv:2607.04655 获取成功); 受限: arXiv API 多次超时不可用, Semantic Scholar 429,
+  Paper2Formalization (梁经纬) 与 Fyan (邹扬硕) 无公开仓库, 如实标注未开源, 不猜测.
+- 本轮新抓取: Archon-Horizon docs/README + docs/architecture; MechMath-agent-team 三子仓库 prompts 目录清单
+  与关键 prompt 正文 (nl-prover orchestration/sketcher/verifier/searcher; fl-prover orchestration/formalizer;
+  kb-manager researcher/ingester), 存 research_cache/_mechmath_prompts*.txt, _archon_docs_out.txt, _oa_*.json.
+- 交付: 蒸馏报告 reports/ai4math_v2_workflow_distillation.md (按五功能面组织方法卡, 全部来源附链接,
+  含采纳路线图: 立即落地/后续两类, 按 manage-math-research-program / rigorous-open-math-research /
+  lean-verify 三个 skill 映射); 工具库新增 8 个研究工作流方法条目 (见 tools/README 维护日志).
+- 工具库新增 (全部文献引用级, 无数值断言): workflow-divergent-search (发散检索契约 + 来源诚实),
+  workflow-hub-spoke-contract (orchestrator 只路由 + verifier 无记忆独立审稿 + 自动 FAIL 清单 14 条),
+  workflow-sorrifier-decomposition (失败块 sorry 化 + 子问题递归), workflow-statement-freeze (M2F 两阶段),
+  workflow-blueprint-dag-ci (蓝图 + DAG 状态追踪 + 新鲜上下文收敛检查), workflow-first-error-taxonomy
+  (FaithSieve 首错定位 + FormalRx SCI 28 类四能力), workflow-kb-hash-wiki (原始源 hash 寻址 + wiki 编译),
+  workflow-eve-coevolution (EvE 双种群进化, 可评分变异边际收益).
+- 关键方法要点: 角色分离 (searcher 发散不守门, verifier 独立, integrator 唯一合并); 四道闸 (编译/sorry/axiom/
+  陈述守护) + 人工语义复核; 陈述冻结防漂移; 失败分解保留骨架; 新鲜上下文收敛检查; 双 harness 共享 prompts.
+- 待办: 把采纳路线图逐条写进三个 skill 的 SKILL.md (下次迭代 skill 时执行); 未采纳项 (reap 战术, jixia, LeanAide,
+  Quokka, MathWeaver 桌面版) 属基础设施依赖, 记录不落地.

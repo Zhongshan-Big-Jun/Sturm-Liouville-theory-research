@@ -83,6 +83,17 @@ created: 2026-08-04
 - [[rational-envelope-certificates]] - 有理包络证书: 交错级数包络 + 精确有理区间链 (会话 44, 2026-08-09)
 - [[switch-saturation-k-invariant]] - 开关饱和与块能量不变量: FH 完全盒饱和 + 零点=开关 + K=-2D (会话 50, 2026-08-10)
 
+### 研究工作流方法 (AI4Math V2 蒸馏, 2026-08-12)
+来源: AI4Math 会议 V2 (2026.07.22-24, 浙大 IASM) 演讲者公开项目, 蒸馏报告见 [[ai4math_v2_workflow_distillation]].
+- [[workflow-divergent-search]] - 发散式检索契约: 搜索宽不守门 + 来源诚实 + 分层检索 (MMAT searcher)
+- [[workflow-hub-spoke-contract]] - hub-and-spoke 角色契约: orchestrator 只路由 + 草稿/证明/验证分离 (MMAT)
+- [[workflow-sorrifier-decomposition]] - sorrifier 分解: 失败块 sorry 化保留骨架 + 子问题递归 (MechMath)
+- [[workflow-statement-freeze]] - M2F 陈述冻结: 陈述编译 (允许 sorry) -> 冻结签名 -> 证明修复 (M2F/ReasBook)
+- [[workflow-blueprint-dag-ci]] - 蓝图与 DAG 状态追踪: 目标契约 + 引理依赖图 + 新鲜上下文收敛检查 (LeanMarathon/Archon-Horizon)
+- [[workflow-first-error-taxonomy]] - 首错定位与错误分类: first-error step + SCI 28 类四能力 (FaithSieve/FormalRx)
+- [[workflow-kb-hash-wiki]] - hash 寻址知识库与 wiki 编译: 原始源不可变 + 编译层卡片 (KB-Manager)
+- [[workflow-eve-coevolution]] - EvE 双种群进化: 可评分变异的边际收益演化 (EvE)
+
 ## 速查表
 
 | 工具 | 来源 | 状态 | 类别 |
@@ -133,8 +144,23 @@ created: 2026-08-04
 | [[rational-envelope-certificates]] | 自研 (会话 44, 2026-08-09) | E1 证书链 57/57 PASS (L10/L11/L12); 55 项事实全部 E1, 不依赖验证器内核 | 自研方法 |
 | [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10) | 定理已证 (独立审计 PASS; 数值 40/40 + 16/16 + mpmath + 光滑 4/4) | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
+| [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
+| [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
+| [[workflow-sorrifier-decomposition]] | MechMath-v1 | 文献引用 (repo 描述, 2026-08-12) | 研究工作流 |
+| [[workflow-statement-freeze]] | M2F / ReasBook | 文献引用 (README, 2026-08-12) | 研究工作流 |
+| [[workflow-blueprint-dag-ci]] | LeanMarathon / Archon-Horizon | 文献引用 (README+docs, 2026-08-12) | 研究工作流 |
+| [[workflow-first-error-taxonomy]] | FaithSieve / FormalRx | 文献引用 (repo+OpenAlex 摘要, 2026-08-12) | 研究工作流 |
+| [[workflow-kb-hash-wiki]] | MMAT kb-manager | 文献引用 (README+prompts, 2026-08-12) | 研究工作流 |
+| [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-12 (会话 74): 新增研究工作流方法类 (AI4Math V2 蒸馏, 8 个工具):
+  [[workflow-divergent-search]] (发散检索契约: 相关性判断与正确性审计分离, 来源诚实三要素),
+  [[workflow-hub-spoke-contract]] (角色契约: orchestrator 只路由, verifier 无记忆独立审稿, 自动 FAIL 清单),
+  [[workflow-sorrifier-decomposition]] (失败块 sorry 化 + 子问题递归), [[workflow-statement-freeze]] (两阶段: 陈述冻结防漂移),
+  [[workflow-blueprint-dag-ci]] (蓝图 + DAG 状态追踪 + 新鲜上下文收敛检查), [[workflow-first-error-taxonomy]] (首错定位 + SCI 28 类),
+  [[workflow-kb-hash-wiki]] (原始源 hash 寻址 + wiki 编译卡片), [[workflow-eve-coevolution]] (可评分变异边际收益演化).
+  全部为文献引用级 (来源仓库 2026-08-12 核实可达), 无数值断言; 蒸馏报告见 reports/ai4math_v2_workflow_distillation.md.
 - 2026-08-04: 建库, 收录 19 个工具 (会话 1-6 积累).
 - 2026-08-04: 新增 [[moment-jump-completeness]] (会话 9, H^2 解析完备性判据).
 - 2026-08-04: 新增 [[left-definite-moment-recurrence]] (会话 10, H^3 与一切 H^s

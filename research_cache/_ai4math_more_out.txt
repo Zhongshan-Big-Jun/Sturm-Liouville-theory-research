@@ -1,0 +1,329 @@
+﻿===== optsuite/M2F =====
+# M2F: Automated Formalization of Mathematical Literature at Scale
+
+M2F (Math-to-Formal) is a framework for translating textbook- and paper-level mathematics into Lean projects that pass machine verification at scale.
+
+![M2F Overview](figs/M2F_pipeline.png)
+*Figure 1. High-level overview of M2F and its staged formalization process.*
+
+## Overview
+
+M2F addresses a central bottleneck in machine-assisted mathematics: the transition from isolated theorem proving to document-level formalization. The framework decomposes this process into two stages. In Stage 1, informal mathematical statements are translated into Lean declaration skeletons, while structural inconsistencies are detected and repaired. In Stage 2, the statement signatures are fixed, allowing the system to focus on proof completion through iterative, verifier-guided repair. This staged design enhances robustness and interpretability while substantially improving end-to-end compilation and verification rates.
+
+Try [Quokka (https://quokka.reaslab.io/)](https://quokka.reaslab.io), our publicly available automated formalization system. Quokka can automatically transform long-form mathematical literature into compilable Lean 4 projects containing formally verified statements and proofs.
+
+## At a Glance
+
+| Item | Value |
+|---|---|
+| Long-document corpus scale: real analysis, convex analysis | **479 pages** |
+| Generated Lean project size | **153,853 lines of Lean code** |
+| Benchmark | **FATE-H (100 problems)** |
+| Fully automatic setting | **96% PSR** |
+| Light supervision (+31 declaration lemma map) | **97% PSR** |
+| Stage 2 on matched statements (long-document setting) | **100% PSR** |
+
+## Method
+
+### Stage 1: Statement Compilation
+
+- Converts informal mathematical statements into Lean declaration skeletons.
+- Repairs namespace, type, and signature consistency to ensure project-level validity.
+- Allows temporary proof holes to maximize structural coverage before proof repair.
+
+### Stage 2: Proof Repair
+
+- Freezes statement signatures to prevent target drift.
+- Iteratively closes proof holes with verifier feedback.
+- Optimizes proof success under fixed declarations for reliable end-to-end checking.
+
+### End-to-End System Figure
+
+![M2F End-to-End Figure](./M2F.png)
+*Figure 2. End-to-end architecture for document-level formalization with M2F.*
+
+## Experimental Scope
+
+- **Cross-prover benchmark:** FATE-H for direct and reproducible comparison of pass rates.
+- **Long-document setting:** large mathematical sources translated into executable Lean projects.
+- **Core metrics:** Pass Success Rate (PSR), verifier-call efficiency, and verifier-normalized cost.
+
+## Involvement of Human Experts:
+- Checking whether the natural-language theorems extracted from the LaTeX source align with the original text.
+- Verifying that the formalized statements correctly match their natural-language counterparts.
+
+## [Formalized Sources: ReasBook](https://github.com/optpku/ReasBook) 
+
+### Books
+
+- R. Tyrrell Rockafellar, *Convex Analysis*, Princeton University Press, Princeton, 1970, ISBN 0-691-08069-0.
+- Jiri Lebl, *Introduction to Real Analysis, Volume I*, version 6.2, May 23, 2025.
+- ...
+
+### Paper
+
+- Yurii Nesterov, "Smooth minimization of non-smooth functions," *Mathematical Programming*, Series A 103, 127-152, 2005, DOI: 10.1007/s10107-004-0552-5.
+- ...
+
+## Example Demonstration
+
+An end-to-end sample is provided in `example/` based on Section 1 (Affine Sets) of Rockafellar's convex analysis. The workflow 
+
+===== MechMath/MechMath-agent-team/nl-prover =====
+  dir: ['.agents', '.claude', '.codex-plugin', '.codex', '.env.example', '.gitignore', '.python-version', 'AGENTS.md', 'CLAUDE.md', 'README.md', 'cli_tools', 'memory.md', 'prompts', 'pyproject.toml', 'settings.py', 'tests', 'tex']
+  --- README.md ---
+# NL-Prover
+
+**Natural Language Prover (NL-Prover)** — the natural-language proving agent of
+the MechMath Agent Team (MMAT). NL-Prover orchestrates a hub-and-spoke team of
+specialist subagents to decompose an open mathematical problem into a lemma DAG,
+generate informal proofs, and independently verify them, while a deterministic
+command-line tooling layer handles retrieval, extraction, linting, and
+cross-model verification.
+
+This repository ships **two harness instantiations** over the same `prompts/`,
+`cli_tools/`, and skills:
+
+- **Codex harness** — root instructions `AGENTS.md`; agents `.codex/agents/*.toml`;
+  allowlist `.codex/rules/default.rules`; skills under `.agents/skills/`.
+- **Claude Code harness** — root instructions `CLAUDE.md`; agents
+  `.claude/agents/*.md` (dispatched via the Task tool with the matching
+  `subagent_type`); allowlist `.claude/settings.json`; skills under
+  `.claude/skills/` (a symlink to the shared `.agents/skills/`).
+
+In both, a centralized Orchestrator dispatches project-scoped specialist agents,
+each of which reads its matching specialist prompt (`prompts/*.md`) and
+communicates only through files. The normative content of `AGENTS.md` and
+`CLAUDE.md` is identical and kept in sync; only the dispatch mechanics differ.
+Claude Code additionally supports hooks, which makes the ADR 0020 index-freshness
+precondition mechanically enforceable (see `CLAUDE.md ## Hooks`).
+
+## Agent roles (paper Table 1a)
+
+| Layer | Roles (repo agent names) |
+|-------|--------------------------|
+| Core derivation baseline | `sketcher`, `generator`, `verifier` |
+| Grounded infrastructure | `searcher`, `code-executor` |
+| Advanced reasoning | `auditor`, `explorer`, `synthesizer`, `regulator`, `ce-hunter` |
+| Documentation | `refiner`, `writer` |
+
+`kb-manager` is retained as the Knowledge-Base bridge. `refiner` covers both
+plan-simplification (pre-generation) and proof-shortening (post-verification)
+modes. The Orchestrator only routes, records, merges verified artifacts, and
+follows Verifier verdicts — it never authors mathematics.
+
+## Setup
+
+Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
+
+```bash
+git clone <repo-url> && cd NL-Prover
+uv sync   # installs the dependencies used by the cli_tools
+```
+
+### Codex orchestrator startup
+
+Start Codex from the `NL-Prover` directory and grant write access only to the
+runtime data locations that agents are allowed to update:
+
+```bash
+cd /path/to/NL-Prover
+export DATA_DIR="$(cd ../data && pwd)"
+codex -C . \
+  --add-dir "$DATA_DIR/workspace" \
+  --add-dir "$DATA_DIR/inbox"
+```
+
+This lets Codex read the surrounding project data, write proof workspaces under
+`data/workspace`, and write KB-Manager inbox notes under `data/inbox`. Do not add
+the whole `data` directory as writable unless you intentionally want agents to
+modify other data subdirectories.
+
+### Environment variables
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `KB_MANAGER_DIR` | No | Path to the KB-Manager knowledge base directory. Overridable per-command with `--kb-manager-dir`. |
+| `DATA_DIR` | No | Shared data root (defaults to `../data`). |
+| `GEMINI_API_KEY` | For Gemini verification | Google AI API key |
+| `OPENAI_API_KEY` | For GPT verification | OpenAI API key |
+| `OPENROUTER_API_KEY` | Preferred for discussion and verification | OpenRouter API key that can proxy Gemini/GPT-compatible models |
+
+`settings.py` loads `.env` automatically. If you do not ha
+===== MechMath/MechMath-agent-team/kb-manager =====
+  dir: ['.agents', '.codex-plugin', '.codex', '.gitignore', 'AGENTS.md', 'README.md', 'prompts', 'pyproject.toml']
+  --- README.md ---
+# KBManager
+
+A persistent research knowledge base maintained by Codex. Researchers supply raw sources; Codex handles reading, extraction, cross-referencing, and compiles reusable knowledge into `$DATA_DIR/wiki/`.
+
+---
+
+## Directory Structure
+
+```
+mmat/
+├── kb-manager/                    # This component
+│   ├── AGENTS.md                   # Codex project instructions
+│   ├── .agents/skills/             # KBManager workflow skills
+│   ├── .codex/                     # Codex defaults and permission rules
+│   └── .codex-plugin/              # Codex plugin manifest
+└── data/                           # Shared runtime data (`$DATA_DIR`)
+    ├── inbox/                      # Drop zone for files to register
+    ├── raw_sources/<sha256_12>/    # Immutable, hash-addressed raw sources
+    │   ├── paper.pdf               # Primary source; original filename preserved
+    │   └── assets/                 # Per-source images and attachments
+    ├── lean/                       # Organized Lean 4 proof archive
+    ├── wiki/                       # Compiled knowledge base
+    │   ├── index.md                # Global catalog, read first for queries
+    │   └── log.md                  # Append-only operation log
+    ├── sources_manifest.md         # Pending/Ingested source registry
+    └── download_queue.md           # Resources pending manual download
+```
+
+---
+
+## How Researchers Participate
+
+### Option 1 — Fetch a publicly accessible resource
+
+If a paper or article is available via a public URL (arXiv, open-access journal, blog post), let Codex download and process it automatically:
+
+```
+$source-management https://arxiv.org/abs/xxxx.xxxxx
+```
+
+Codex will convert the page to Markdown, download any images locally, save the result to `$DATA_DIR/raw_sources/`, and ask whether to hand off to `ingester`.
+
+---
+
+### Option 2 — Register a locally downloaded file
+
+Place the file in `$DATA_DIR/inbox/`, then run:
+
+```
+$source-management paper.pdf
+```
+
+Or simply invoke `$source-management` if there is only one file in the inbox — Codex will pick it up automatically. Codex computes the SHA-256 hash, creates `$DATA_DIR/raw_sources/<hash12>/`, copies the file there, registers it in `$DATA_DIR/sources_manifest.md`, and offers to hand off to `ingester`. The inbox copy is moved to `trashbin/` after successful registration.
+
+You can also point to any path outside the inbox:
+```
+$source-management /path/to/paper.pdf
+```
+
+---
+
+### Option 3 — Track resources that cannot be fetched automatically
+
+For paywalled papers, content behind institutional login, or anything requiring authenticated access, there are two ways to register them:
+
+**Auto-register** (let Codex try first, then fall back on failure):
+```
+$source-management https://doi.org/10.xxxx/xxxxx
+```
+If the fetch fails, Codex automatically adds the resource to the `## Pending` section of `$DATA_DIR/download_queue.md` and tells you exactly where to place the file.
+
+**Direct registration** (when you already know it cannot be auto-fetched):
+```
+$source-management queue https://doi.org/10.xxxx/xxxxx
+$source-management queue "Author et al. 2023, Journal of X, doi:10.xxx"
+```
+
+Either way, an entry like this will appear in `$DATA_DIR/download_queue.md`:
+
+```markdown
+### [1] Title of the Paper
+- **URL**: https://...
+- **DOI**: 10.xxx/xxx
+- **Authors**: Author1, Author2
+- **Year**: 2023
+- **Target filename**: `$DATA_DIR/raw_sources/<hash_tbd>/Author2023_Title.pdf`
+  *(hash directory will be determined after manual download)*
+- **A
+===== MechMath/MechMath-agent-team/fl-prover =====
+  dir: ['.agents', '.claude', '.codex-plugin', '.codex', '.env.example', '.gitignore', '.python-version', 'AGENTS.md', 'CLAUDE.md', 'README.md', 'cli_tools', 'memory.md', 'prompts', 'pyproject.toml', 'run.sh', 'run_openrouter.sh', 'scripts', 'settings.py', 'tests', 'tex']
+  --- README.md ---
+# FL-Prover
+
+**Formal Language Prover** — a multi-agent Lean 4 theorem-proving harness. It
+formalizes mathematical statements into Lean 4, searches for proofs, and verifies
+them mechanically, so validity is decided *deterministically by the Lean 4
+compiler kernel* rather than by an LLM's opinion.
+
+This repository is a harness, not a monolith: a generic orchestration scaffold
+(control / execution / augmentation planes) instantiated with Lean specialists and
+a Lean toolchain.
+
+## What Enters the Master Development
+
+Nothing reaches the master Lean development until all four gates pass, plus one
+meaning check no compiler can do:
+
+| # | Gate | Command |
+|---|------|---------|
+| 1 | It compiles | `lean.py check` |
+| 2 | No `sorry` / `admit` | `lean.py scan` |
+| 3 | No axiom outside the accepted base | `lean.py axioms` |
+| 4 | The protected statement is unchanged | `lean.py guard check` |
+| 5 | The statement still means what the source says | F-Reviewer, re-checked by Regulator |
+
+Gate 5 is why a compiling proof is not automatically a correct one: the compiler
+checks the Lean statement, not its correspondence to the book, paper, or user
+statement the target came from.
+
+## Specialist Roles
+
+| Role | subagent_type | Responsibility |
+|------|---------------|----------------|
+| Formalizer | `formalizer` | Source statements → Lean declarations with `sorry` bodies. |
+| F-Reviewer | `f-reviewer` | Statement fidelity gate; approves the statement snapshot. |
+| F-Generator | `f-generator` | Proves one assigned declaration in an isolated scratchpad. |
+| Integrator | `integrator` | The sole merge path into the master development. |
+| Golfer | `golfer` | Post-gate cleanup that must not change proof logic. |
+| Regulator | `regulator` | End-of-wave audit; classifies traps; edits nothing. |
+| Blueprinter | `blueprinter` | Decomposition plan for a hard or repeatedly failing target. |
+
+The Orchestrator (root `CLAUDE.md` / `AGENTS.md`) routes; it never proves. There
+is **no fixed pipeline** — it dispatches whichever role owns the current blocker,
+following the cookbook in `.agents/skills/orchestration/`.
+
+## Tools
+
+Seven model-facing facades, each the single entry over an internal
+`cli_tools/_<name>/` package:
+
+| Facade | Purpose |
+|--------|---------|
+| `lean.py` | Lean toolchain: `check`, `scan`, `axioms`, `guard`, `index`, `search <engine>` |
+| `control.py` | Control plane: `task` (ledger), `wave` (wave summary) |
+| `memory.py` | Three-tier memory: local / long-term negative constraints / knowledge base |
+| `search.py` | Literature search: `arxiv`, `matlas`, `index`, `frontier`, `citation-graph` |
+| `external.py` | External-LLM calls: `gemini`, `gpt`, `discuss`, `golf`, `informal` |
+| `gate.py` | Mechanical accept / stop gates |
+| `workspace.py` | Navigation of the current problem's files |
+
+Two different things are called "search": `lean.py search`
+(leandex / loogle / leanfinder / leansearch / state / hammer) finds *Mathlib
+declarations*; `search.py` finds *papers*.
+
+## Dual Harness
+
+The same `prompts/`, `cli_tools/`, `scripts/`, and skills drive two runtimes:
+
+- **Claude Code** — `CLAUDE.md` + `.claude/agents/*.md` (Task-tool dispatch).
+- **Codex** — `AGENTS.md` + `.codex/agents/*.toml` (custom agents; `max_threads = 6`,
+  `max_depth = 1`).
+
+`CLAUDE.md` and `AGENTS.md` carry identical normative content and must stay in
+sync; only dispatch mechanics differ. Skills live once under `.agents/skills/`
+(`.claude/skills` is a symlink to it).
+
+## Layout
+
+```
+FL-Pro

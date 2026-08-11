@@ -1,0 +1,280 @@
+﻿===== frenzymath/reap =====
+# Reap Tactic
+
+Use `reap` tactic to leverage the power of neural prover in your formal proof.
+
+<video controls src="https://github.com/user-attachments/assets/9ca983ea-24bb-4b84-a676-919431787ac1" width="100%"></video>
+
+## Introduction
+
+The `reap` tactic extends our algebra & research level step-prover [Real-Prover](https://arxiv.org/abs/2505.20613) into a unified framework for proof-writing and training rollouts.
+
+## Installation
+
+### Using `reap` as a separate dependency
+
+To use `reap` in your project separately, add a line to `lakefile.lean` or `lakefile.toml`. Please make sure `reap` is added **before `mathlib` dependency** to avoid cache issues.
+
+If you are using `lakefile.lean`, replace
+
+```lean4
+require "leanprover-community" / "mathlib"
+```
+
+with
+
+```lean4
+require "reap" from git "https://github.com/frenzymath/reap.git" @ "main"
+require "leanprover-community" / "mathlib"
+```
+
+Or if you are using `lakefile.toml`
+
+replace
+
+```toml
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+```
+
+with
+
+```toml
+[[require]]
+name = "reap"
+git = "https://github.com/frenzymath/reap.git"
+rev = "main"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+```
+
+Currently, our model is trained with Mathlib at `v4.28.0-rc1`, and `reap` is compatible with up to `v4.30.0`. As we are working on bridging version gap and further improvements, any feedbacks are welcomed.
+
+### Using our mathlib4 fork
+
+If you are working on `mathlib4` master or newer, you may use our fork of `mathlib4` which includes `reap` as a dependency. This is the recommended way to use `reap` as it ensures compatibility with the latest features and improvements.
+
+## Usage
+
+### Proof search TryThis
+
+To do proof search with `reap`:
+
+```lean4
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Data.Int.Star
+
+import Reap
+
+set_option reap.policy_endpoint "<policy_endpoint>"
+set_option reap.value_endpoint "<value_endpoint>"
+set_option reap.ps_endpoint "<premise_selection_endpoint>"
+
+theorem aux {m n : ℕ} (h₀ : m ∣ n) (h₁ : 2 ≤ m) (h₂ : m < n) : n / m ∣ n ∧ n / m < n := by
+  -- This asks Reap to search and suggest a proof.
+  reap!!
+```
+
+Here, `reap!!` runs Reap's MCTS proof search using the policy, value, and premise-selection services, then displays the assembled proof as a TryThis block. It does not replace the tactic automatically; use the `[apply]` link in the InfoView to insert the suggested proof.
+
+### RL interface
+
+For RL rollouts, `reapMCTS` runs the current MCTS search: it expands Lean proof
+states with policy-generated tactics, uses the value
+
+===== frenzymath/FATE =====
+# FATE  
+The **FATE (Formal Algebra Theorem Evaluation)** benchmarks.  
+
+## Overview  
+This collection contains three benchmarks in abstract algebra and commutative algebra:  
+- **FATE-M** (150 exercises)  
+- **FATE-H** (100 exercises)  
+- **FATE-X** (100 exercises)  
+
+All exercises are formalized in Lean.  
+
+## Mathematical Level  
+
+The problems in these benchmarks are sourced from:  
+- Undergraduate and graduate textbooks,  
+- Final exams and PhD qualifying exams,  
+- Research literature.  
+
+Broadly speaking, the three benchmarks have progressively increasing difficulty:  
+- **FATE-M** consists primarily of standard textbook exercises (basic level),  
+- **FATE-H** contains challenging problems from abstract/commutative algebra final exams,  
+- **FATE-X** includes problems at PhD qualifying exam level and beyond.  
+
+## Benchmark Structure  
+
+Each Lean file in every benchmark contains:  
+- One fully formalized statement,  
+- A single `sorry`,  
+- Appropriate open namespaces at the beginning,  
+- Natural language annotations preceding the statement.  
+
+Key differences:  
+- **FATE-M** and **FATE-H**: No extra definitions are included,  
+- **FATE-X**: Minimal dependent definitions formalized before the statement. 
+
+## Usage Recommendation  
+For users' convenience, we provide a PDF file and a JSON file for each benchmark to make reading and usage easier.
+
+We strongly recommend AGAINST combining these benchmarks due to their:  
+- Significantly different difficulty levels,  
+- Distinct formalization characteristics. 
+
+## Problem Distribution
+
+<figure>
+  <img src="https://raw.githubusercontent.com/frenzymath/FATE/main/assets/FATE-H&X-sunburst.svg" width="600" alt="Mathematical Categorical Distribution of FATE-H and FATE-X">
+  <figcaption>
+    Figure 1. Mathematical Categorical Distribution of FATE-H and FATE-X
+  </figcaption>
+</figure>
+
+## Additional Information  
+The FATE-M benchmark is a refactored version of the benchmark referenced in:  
+[**REAL-Prover: Retrieval-Augmented Lean Prover for Mathematical Reasoning**](https://arxiv.org/abs/2505.20613)  
+
+
+
+===== frenzymath/jixia =====
+# jixia
+
+A static analysis tool for Lean 4.
+
+jixia is a new static analysis tool for Lean 4 with two main purposes in mind: building a Lean-aware IDE and extracting useful data for machine learning.
+
+This project is part of BICMR@PKU AI for math program.
+
+*jixia* stands for *稷下*, where [稷下学宫](https://en.wikipedia.org/wiki/Jixia_Academy) was historically located.
+
+### Features
+
+- Non-instrusive:  No change need to be made on the target file.  This improves cache utilization, notably on mathlib4.
+- Single-file analysis
+- Source-level info:  Includes information such as source range for each defined function, their arguments and return
+  types, etc.
+- Easy to extend:  jixia's plugin-based design makes it easy to extend while keeping all the advantages above.
+
+### Information available
+
+jixia comes with several plugins.
+- Import: list of imported modules.
+- Declaration: source-level info about each declaration (`def`, `theorem`, `inductive`, etc.).
+- Symbol: info about symbols (or _constants_ in Lean 4 terminology) after elaboration, including their types and
+  reference graph.
+- Elaboration: info about the elaboration process, including tactic info.
+- Line: proof state at the beginning of each line, as displayed in VSCode infoview.
+- AST: a full dump of parsed commands.
+
+### Running jixia
+
+1. Clone the jixia source code, for example to `~/jixia`.
+2. Build jixia.  `cd` into `~/jixia` then run `lake build`.  This will generate the executable file, usually located at `~/jixia/.lake/build/bin/jixia`.
+3. Run the analyzer.
+
+For a single file with no external dependencies, i.e., without an accompanying `lakefile.toml`/`lakefile.lean`, it must be compiled first:
+```sh
+lake env lean -o Example.olean Example.lean
+```
+then, running jixia with
+```sh
+~/jixia/.lake/build/bin/jixia -d Example.decl.json -s Example.sym.json -e Example.elab.json -l Example.lines.json Example.lean
+```
+will generate the corresponding json files from the declaration, symbol, elaboration, and line plugins.  If a flag is
+omitted, the corresponding plugin will not run.
+
+If you are analyzing a file within a project, you must first build it by running `lake build` (or, if your project is mathlib4 or depends on it, run `lake exe cache get` then `lake build`) in your project root, i.e., where `lakefile.toml`/`lakefile.lean` is located.  Then run
+```sh
+lake env ~/jixia/.lake/build/bin/jixia -d Example.decl.json -s Example.sym.json -e Example.elab.json -l Example.lines.json Example.lean
+```
+in your project root.
+
+### Notes
+
+##### Initializers
+
+If your file contains `initialize` commands, you may need to
+
+===== frenzymath/LeanSearch =====
+# LeanSearch
+
+[A semantic search engine for Lean 4 projects.](https://arxiv.org/abs/2403.13310)
+
+Also see [Herald](https://arxiv.org/abs/2410.10878v2) for the idea used to translate formal statements into natural language.
+
+## Installation
+
+### Install Python deps
+
+```shell
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+### Install Postgres
+
+1. Download PostgreSQL (you can find the installation guide [here](https://www.postgresql.org/download)).
+2. Create database:
+
+   ```
+   createdb my_database_name
+   ```
+
+   Memorize the database name, you will later need to set it in your `.env` file.
+
+### Install jixia
+
+1. Clone the jixia repo: `git clone git@github.com:frenzymath/jixia.git`; `cd jixia`
+2. Make sure `lean-toolchain` in jixia and `lean-toolchain` in the project you will be indexing match.  
+	 If Lean versions don't match, you will get `"... failed to read file ..., invalid header"` error when you try to index the project.
+3. Build jixia: `lake build` (should take around 70s)
+
+### Set up the .env file
+
+1. Copy the `.env.example` file to `.env`:
+
+   ```shell
+   cp .env.example .env
+   ```
+
+2. Edit the `.env` file and set the required variables according to your setup.
+
+> [!NOTE]  
+> We strongly recommend using DeepSeek v3 model for a balance between quality and cost.  
+> In this case, `OPENAI_API_KEY` should be set to your DeepSeek api key, `OPENAI_BASE_URL` should be set to `https://api.deepseek.com`, and `OPENAI_MODEL` should be set to `deepseek-chat`.
+
+## Usage
+
+### Indexing
+
+1. **Index your Lean project** (uses jixia, puts results into PostgreSQL)
+   
+   ```shell
+   python -m database jixia <project root> <prefixes>
+   ```
+
+    **Options**:
+    - `project root`: Path to the project to index. This is where the `lakefile.toml` or `lakefile.lean` is located.
+    - `prefixes`: Comma-separated list of module prefixes. A module is indexed only if its module path starts with one of prefixes listed here.  For example, `Init,Lean,Mathlib` will include only `Init.*`, `Lean.*`, and `Mathlib.*` modules.
+
+    Note: to check what modules are available in your project, and to determine how prefixes work, you can use `python -m prefix --project_root <project_root> --prefixes <prefixes>` helper command.
+
+3. **Create informal descriptions** (uses DeepSeek api, puts results into PostgreSQL)
+
+   ```shell
+   python -m database informal
+   ```
+
+   Natural-language descriptions can be created using any OpenAI-compatible API, above we advise DeepSeek.
+
+5. **Create embeddings** (uses locally-downloaded `e5-mistral-7b-instruct
+
