@@ -91,3 +91,98 @@ $\det J\approx1.43180\times10^5$ (数值复算 $\prod f_1'(x_j^*)/(9\pi^2)^4=143
 - 相关工具: [[gap-band-extremals]] (带自洽驻点判据), [[switch-saturation-k-invariant]]
   (恰 $2n$ 开关), [[feynman-hellmann]] (跳点公式), [[keller-variational]] (变分归约),
   [[well-family-rigidity]] (n=1 对称刚性, 本工具是 n>=2 对应物).
+
+## 2026-08-12 复核增补: 首阶变分恒等式符号修正 + 对称分支余量表 (run R-20260812T090000Z-g1prime-g2)
+
+### 符号审计 (STRICT, 全部经 FD 在 1e-4..1e-6 级验证; 部分旧记录符号有误, 以此为准)
+
+1. 几何约定: 开关 $x_i$ 右移 $dx_i$ 使 $[x_i, x_i+dx_i)$ 由 $\mathrm{pat}[i+1]$ 变为 $\mathrm{pat}[i]$, 故
+   $\delta\rho = (\mathrm{pat}[i]-\mathrm{pat}[i+1])\,\delta(x-x_i)\,dx_i = -s_i\,\delta(x-x_i)\,dx_i$.
+2. 特征值一阶变分: $d\lambda_k/dx_i = +\lambda_k s_i u_k(x_i)^2$ (FD: $d\lambda_2/dx_1 = -48.84090526 = +\lambda_2 s_1 u_2(x_1)^2$).
+3. FH 跳点: $dD/dx_i = -s_i f(x_i)$, $f = \lambda_n u_n^2 - \lambda_{n+1} u_{n+1}^2$
+   (FD: $dD/dx_1 = +21.89540128 = -s_1 f(x_1)$; 会话 51 记录的 $dD/da = -(R-1)f(a)$ 符号相反,
+   零集 $f=0$ 不受影响, 但符号型论证须按新约定复核).
+4. 带自洽点的 Jacobian: $J = (\tilde D + \tilde M)/\lambda_{n+1}$, 其中
+   $\tilde M_{ji} = s_i\big(2w_iw_jD/(\lambda_n\lambda_{n+1}) - 2\lambda_n^2u_n(x_i)u_n(x_j)\tilde G_n + 2\lambda_{n+1}^2u_{n+1}(x_i)u_{n+1}(x_j)\tilde G_{n+1}\big)$, 
+   $\tilde G_k = \sum_{l\ne k}u_lu_l/(\lambda_l-\lambda_k)$ (谱和; 中等 R 下与 jac_fd 相对误差 ~1e-6; 旧解析相减版本符号错误).
+5. Hess 公式 (A3 修正): 临界点处 $\mathrm{Hess}(D_n) = -\lambda_{n+1}\mathrm{diag}(s)\,J$ (FD 黑塞 h=1e-4 逐元素误差 4.6e-3, 量级 1e3).
+6. $K := \mathrm{diag}(1/s)\,J$ 对称 (因 $|s_i|\equiv R-1$; 数值 crossK ~1e-13); 
+   $\det J = (R-1)^{2n}(-1)^n\det K$, $\det K = \det K_+\det K_-$;
+   **(G1') $\iff$ $\det K > 0$ $\iff$ 每个临界点处 Hess 正定**.
+7. 数值警示: regularized_green (δ=1e-9 极点相减) 消去误差 O(1), 不可用于 Jacobian; 近简并大 R 区解析谱和 Jacobian 亦不可靠 (见下).
+
+### 对称分支余量表 (EVIDENCE, FD 复核; evK 为 $K = \mathrm{diag}(1/s)J = -\mathrm{Hess}/(\lambda(R-1)^2)$ 的特征值)
+
+- SUP $n=2..4$, $R\in[1.05,100]$: $\mathrm{sgn}\,\det J = (+1)^n$ 恒成立; evK 全正 (Hess 负定, 局部极大);
+  R=100 处最小 $|\mathrm{ev}K|$: n=2: 0.0156, n=3: 0.0185, n=4: 0.0214 (余量 ~1/R 缓降).
+- INF $n=2$ (R≤100), $n=3$ (R≤75), $n=4$ (R≤40): $\mathrm{sgn}\,\det J = (-1)^n$ 恒成立; evK 全负 (Hess 正定, 局部极小);
+  最小 $|\mathrm{ev}K|$: n=2 R=100: 3.0e-4; n=3 R=75: 2.6e-5; n=4 R=40: ~1e-5 (指数衰减, 无一致下界).
+- 伪影更正: 解析扫描在 INF n=3 R=75 报 detJ=+2.39e-7 (符号翻转) 系谱和截断误差 (|J-J_fd|/|J_fd|=1.0); FD 步长收敛检验给出 detJ = -1.0125e-5 (h=1e-5..1e-7 稳定), 无翻转.
+- 近简并结构: INF 大 R 时 $(\lambda_n, \lambda_{n+1})$ 键合-反键合简并 (s-间隙 R=75 n=3 为 0.0098, 逼近 roots_of 网格 0.0092); (G2) 在 R→∞ 极限失效 (R 块宽度→0), 紧 R 区间上无碍.
+- O-5 现状: det B (反称块) 数值非零且有上述余量; 严格证明仍开放. 候选路线 (符号已按 I3 修正, 见下节): K 对角部分符号每模式内恒定 (SUP: f'(x_j)/s_j = +2c|W(x_j)|/(R-1) > 0; INF: 负), 需控制 Green 核离对角部分.
+
+### 验证与备注 (增补)
+- 脚本: scripts/_gapn2_hp_scan_reduced.py (合并驱动), scripts/_gapn2_hess_verify.py, scripts/_gapn2_hess_sign_and_bigR.py;
+  数据: scripts/_gapn2_hp_scan_inf_reduced.json (fd_* 字段为 FD 权威值).
+- 修复: scripts/_gapn2_jacobian_analytic.py (符号约定, Hess 公式, M~ 符号, regularized_green 警告, 改用 gtilde_spectral).
+- 运行笔记: runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_2026-08-12.md.
+
+## 2026-08-12 晚段增补: M~ 对角闭式 (STRICT) + 符号更正 + 死路登记 + Sylvester 主元 (run R-20260812T090000Z-g1prime-g2 续)
+
+### 新 STRICT 恒等式 (数值验证到 1e-13..1e-15, 见 scripts/_gapn2_mtilde_diag_identity.py)
+
+设 w_j = λ_n u_n(x_j)^2 = λ_{n+1} u_{n+1}(x_j)^2 (带自洽点), D = λ_{n+1}−λ_n,
+G~_k 为正则化预解核 (谱和, 去掉极点).
+
+(I1) 部分分式恒等式 (逐项精确, 截断不变):
+  λ_{n+1} G~_{n+1}(x_j,x_j) − λ_n G~_n(x_j,x_j)
+      = Σ'(x_j) − 2 w_j/D − w_j D/(λ_n λ_{n+1}),
+  Σ'(x_j) = Σ_{l≠n,n+1} λ_l u_l(x_j)^2 D/((λ_l−λ_{n+1})(λ_l−λ_n)) > 0 (严格).
+  证明: λ/(λ_l−λ) = λ_l/(λ_l−λ) − 1; l=n 极点项 −λ_n u_n^2/D = −w_j/D,
+  l=n+1 项 −λ_{n+1} u_{n+1}^2/D = −w_j/D; u_{n+1}^2 − u_n^2 = −w_j D/(λ_n λ_{n+1}).
+
+(I2) M~ 对角闭式 (由 (I1)):
+  M~_{jj}/s_j = 2 w_j Σ'(x_j) − 4 w_j^2/D.
+  因此 K 的对角元:
+  K_{jj} = σ·2c|W(x_j)|/(R−1) + 2w_j Σ'(x_j)/λ_{n+1} − 4 w_j^2/(D λ_{n+1}),
+  σ = +1 (SUP) / −1 (INF), c = √(λ_n/λ_{n+1}).
+  三项符号: 第一项按模式恒定, 第二项恒正, 第三项恒负; 近简并 (D→0) 时
+  第三项主导 (INF 侧 K_{jj} < 0; SUP 侧需 2c|W|/(R−1) + 2w_jΣ'/λ > 4w_j^2/(Dλ)).
+
+(I3) 符号更正 (STRICT): f'(x_j) = −2λ_{n+1} ε_j c W(x_j), W < 0, 且
+  ε_j = s_j/(R−1) (SUP), ε_j = −s_j/(R−1) (INF), 故
+  f'(x_j)/s_j = +2c|W(x_j)|/(R−1) (SUP), −2c|W(x_j)|/(R−1) (INF).
+  本 run 早段笔记与上一节 "O-5 候选路线" 中的统一 "f'(x_j)/s_j < 0" 仅对 INF 成立,
+  已更正; FD 验证 (n=2,3; R∈{1.2,2,4,10}; 两模式) 零违反.
+  对 O-5 候选路线, 重要的是 "每模式内符号恒定" (此性质成立), 不是具体正负.
+
+(I4) STRICT 界: |W(x_j)| ≤ D. 证明: W(x) = −D ∫_0^x ρ u_n u_{n+1} dt (W(0)=0),
+  Cauchy–Schwarz + 归一化 ∫ρu_k^2 = 1. 用于近简并区各项量级排序.
+
+### 死路登记 (EVIDENCE, 以明确数值否证)
+
+- Gershgorin 对角占优: |K_jj| > Σ_{i≠j}|K_ji| 仅在小 R 成立
+  (n=2 SUP 至 ~R=2, INF 至 ~R=2; n=3 SUP 仅 ~R≤1.2); n=3 INF R=10 时
+  余量/min|diag| = −38.1. 故 O-5 候选路线 "对角部分主导" 在全 R 上被否证.
+- H-矩阵缩放 (Perron–Frobenius: ρ(B) < 1, B = diag(|K_jj|)^{-1}|K_off|):
+  n=2 SUP R≤10 成立 (0.15..0.89), n=2 INF R≤2 (0.17..0.70), n=3 SUP R≤2;
+  n=2 INF R=4 失败 (1.31), n=3 SUP R=4 (1.05), n=3 INF R=2 (1.36).
+  K 不是全局 H-矩阵, 该路线对大 R 关闭.
+
+### 新 EVIDENCE: Sylvester 主元符号模式
+
+沿对称分支无换主元 LU 的 K 的主元: SUP 全正, INF 全负
+(n=2,3; R∈{1.2,2,4,10}; 与 detK > 0 一致). 由 Sylvester 惯性律,
+"主元符号恒定" ⟺ (G1'). 符号模式 (n=2 SUP R=4): 对角 +, 非对角 −,
+中央 2×2 块 [[+,+],[+,+]]; K+ 与 K− 均 [[+,−],[−,+]] 型 (INF 全负型).
+主元符号的严格证明仍开放, 是当前最有希望的结构手柄
+(需控制 K 的 Green 离对角部分, (I2) 已把对角部分化为显式三项).
+
+### 脚本与登记
+- scripts/_gapn2_diag_dominance.py (f'/s 符号, K 对角占比, Gershgorin, 块谱, detK vs prod diag).
+- scripts/_gapn2_mtilde_diag_identity.py (I1/I2 验证, 一次预计算谱和 N=800; 曾试错两个错误闭式, 均被同一脚本拒绝).
+- scripts/_gapn2_hmatrix_probe.py (H-矩阵/Perron–Frobenius 探针 + K/K+/K− 符号模式);
+  scripts/_gapn2_pivots_bigR.py (大 R 主元扩展; n=3 SUP R≥30 阶梯续延伪根警告, 该点以
+  hp_scan fd_* 字段为准).
+- 运行笔记: runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-12.md.
+- 诚实登记: 以上不关闭 (G1')/(G2); (I1)-(I4) 为 STRICT; 其余为 EVIDENCE.

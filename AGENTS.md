@@ -2338,3 +2338,18 @@
 - 待办: (G1') 对称点 detA, detB 非零且总符号 (-1)^n 的解析证明; (G2) 退化配置横截排除;
   固定 n 上确界闭式; 若用户需要可制作 PPTX 版交付物.
 - 维护: 本文件追加会话 58 续作 4b 记录; tools/README.md 已同步.
+
+### 2026-08-12 会话 58 续作 5 (n>=2 对称分支 Jacobian/Hessian 审计收尾: M~ 对角闭式 + 符号更正 + 死路登记)
+- 任务: 承接 run R-20260812T090000Z-g1prime-g2 (O-1..O-5) 的交接 (降网格 INF/SUP 扫描 + 符号审计已完成), 收尾 run 元数据并推进 (G1') 的严格证明.
+- 完成:
+  - run 元数据收尾: research_ledger.md (R-200/R-201), run-manifest.json (含哈希), run_notes_addendum_2026-08-12.md; tools/band-selfconsistency-equivariance.md 增补节 + README 维护日志.
+  - **新 STRICT 恒等式 (I1)**: 部分分式恒等式 lambda_{n+1} G~_{n+1}(x_j,x_j) - lambda_n G~_n(x_j,x_j) = Sigma'(x_j) - 2w_j/D - w_jD/(lambda_n lambda_{n+1}), 其中 Sigma'(x_j) = sum_{l≠n,n+1} lambda_l u_l(x_j)^2 D/((lambda_l-lambda_{n+1})(lambda_l-lambda_n)) > 0 严格. 证明: lambda/(lambda_l-lambda) = lambda_l/(lambda_l-lambda) - 1, 极点项 l=n, n+1 各贡献 -w_j/D, u_{n+1}^2-u_n^2 = -w_jD/(lambda_n lambda_{n+1}).
+  - **新 STRICT 恒等式 (I2)**: M~_{jj}/s_j = 2w_j Sigma'(x_j) - 4w_j^2/D; 由此 K 对角元 K_{jj} = sigma*2c|W(x_j)|/(R-1) + 2w_j Sigma'(x_j)/lambda_{n+1} - 4w_j^2/(D lambda_{n+1}), sigma=+1(SUP)/-1(INF). 验证: 一次预计算谱和 N=800, rel err 1e-13..1e-15 (n=2,3; R∈{1.2,2,4,10}; 两模式). 曾试错两个错误闭式 (漏极点消去项; u_{n+1}^2-u_n^2 符号), 被同一脚本拒绝后修正.
+  - **符号更正 (I3)**: f'(x_j)/s_j = +2c|W(x_j)|/(R-1) (SUP) / -2c|W(x_j)|/(R-1) (INF); 早段 run notes 与工具库 O-5 候选路线的统一 "f'(x_j)/s_j < 0" 仅对 INF 成立, 已更正 (工具文件 122 行与 155 行附近). FD 验证零违反.
+  - **STRICT 界 (I4)**: |W(x_j)| <= D (W = -D int_0^x rho u_n u_{n+1} + Cauchy-Schwarz + 归一化).
+  - **死路登记 (EVIDENCE, 明确否证)**: Gershgorin 对角占优仅小 R 成立 (n=3 INF R=10 余量 -38.1); H-矩阵缩放 (Perron-Frobenius rho(B)<1) 在 n=2 INF R=4 (1.31), n=3 SUP R=4 (1.05), n=3 INF R=2 (1.36) 失败. 两候选路线 (O-5 对角占优) 在全 R 上关闭.
+  - **新 EVIDENCE: Sylvester 主元**: 沿对称分支 K 的无换主元符号恒定 (SUP 全正, INF 全负; n=2,3; R∈{1.2,2,4,10}), 与 detK>0 一致; 由 Sylvester 惯性律 "主元符号恒定" ⟺ (G1'). 符号模式已打印 (K/K+/K-); 严格证明仍开放, 是最有希望的结构手柄.
+  - 新脚本: scripts/_gapn2_diag_dominance.py, scripts/_gapn2_mtilde_diag_identity.py, scripts/_gapn2_hmatrix_probe.py.
+- 诚实登记: (I1)-(I4) 为 STRICT; 其余全部 EVIDENCE; (G1')/(G2) 未关闭; 未 commit/push (等待用户指示).
+- 待办: 主文档 SL_gap_nge2_symmetry_local_proof.tex 增补 2026-08-12 审计节 (符号审计 + O-3 余量表 + 新恒等式); 严格证明主元符号 (需控制 Green 离对角部分); INF R=75 n=3 的 mpmath 高精度 FD detJ 复算 (可选).
+- 维护: 本文件追加会话 58 续作 5 记录; tools/README.md 已同步; run 元数据已补全.

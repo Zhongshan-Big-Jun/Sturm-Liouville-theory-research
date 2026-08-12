@@ -1,4 +1,4 @@
-﻿---
+---
 title: 数学工具库索引
 tags: [mathtool, index]
 created: 2026-08-04
@@ -160,6 +160,28 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-12 (会话 58 续作 5, 晚段): 更新 [[band-selfconsistency-equivariance]] -- 新增
+  STRICT 恒等式 (I1) 部分分式: lambda_{n+1} G~_{n+1} - lambda_n G~_n = Sigma' - 2w_j/D
+  - w_j D/(lambda_n lambda_{n+1}), Sigma' > 0; (I2) M~ 对角闭式: M~_{jj}/s_j = 2w_j Sigma'
+  - 4w_j^2/D, 故 K_{jj} = sigma*2c|W|/(R-1) + 2w_jSigma'/lambda - 4w_j^2/(D lambda),
+  sigma=+1(SUP)/-1(INF) (验证 1e-13..1e-15); (I3) 符号更正: f'(x_j)/s_j 对 SUP 恒正、
+  INF 恒负 (早段笔记统一 "< 0" 仅 INF 成立); (I4) |W(x_j)| <= D (Cauchy-Schwarz);
+  死路登记: Gershgorin 对角占优与 H-矩阵缩放 (rho(B)<1) 均在大 R 被数值否证
+  (阈值见工具文件); 新 EVIDENCE: Sylvester 无换主元符号恒定 (SUP 全正/INF 全负),
+  由惯性律等价于 (G1'); 脚本 _gapn2_diag_dominance.py / _gapn2_mtilde_diag_identity.py
+  / _gapn2_hmatrix_probe.py; 运行笔记 run_notes_addendum_2026-08-12.md.
+- 2026-08-12 (会话 80): 更新 [[band-selfconsistency-equivariance]] -- 首阶变分恒等式
+- 2026-08-12 (会话 80): 更新 [[band-selfconsistency-equivariance]] -- 首阶变分恒等式
+  符号审计 (STRICT, FD 1e-4..1e-6 级验证): 几何约定 delta_rho = -s_i delta(x-x_i) dx_i,
+  dlambda_k/dx_i = +lambda_k s_i u_k(x_i)^2, dD/dx_i = -s_i f(x_i) (更正会话 51 记录的
+  FH 跳点符号), Hess(D) = -lambda_{n+1} diag(s) J (更正 A3 记录符号),
+  K = diag(1/s) J 对称, (G1') <=> detK > 0; 对称分支 FD 复核余量表 (SUP n=2..4,
+  R<=100, detJ 符号恒为 (+1)^n, evK 全正, 最小 |evK| 0.0156..0.0214; INF n=2 R<=100,
+  n=3 R<=75, n=4 R<=40, detJ 符号恒为 (-1)^n, evK 全负, 余量指数衰减至 ~1e-5);
+  解析谱和 Jacobian 在近简并大 R 区失效 (n=3 R=75 处 rel 误差 1.0, 伪 detJ 符号翻转
+  已更正为 FD 值 -1.0125e-5, h 收敛稳定); regularized_green 极点相减消去误差 O(1)
+  警示; 修复 scripts/_gapn2_jacobian_analytic.py 符号约定并改用 gtilde_spectral;
+  运行笔记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_2026-08-12.md.
 - 2026-08-12 (会话 58 续作 4b): 新增 [[band-selfconsistency-equivariance]] (带状自洽
   等变性: F(R,x̄)=PF(R,x) 严格恒等式, 对称点反对合 J=-PJP, detJ=(-1)^n detA detB
   交叉块化, 拓扑度同伦唯一性框架 (G1')(G2) 为开放充分条件; R=1 一般 n 的 f_1

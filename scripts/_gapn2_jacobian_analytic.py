@@ -4,27 +4,36 @@
 Claims (all to be verified numerically, EVIDENCE):
   (A1) At a band-consistent point x (F_j = f(x_j)/lambda_{n+1} = 0):
        J = D_xF = (D~ + M~)/lambda_{n+1},  D~ = diag(f'(x_j)),
-       M~_{ji} = s_i * { -2 w_i w_j D/(lambda_n lambda_{n+1})
-                         + 2 lambda_n^2 u_n(x_i) u_n(x_j) G~_n(x_i,x_j)
-                         - 2 lambda_{n+1}^2 u_{n+1}(x_i) u_{n+1}(x_j) G~_{n+1}(x_i,x_j) },
+       M~_{ji} = s_i * { +2 w_i w_j D/(lambda_n lambda_{n+1})
+                         - 2 lambda_n^2 u_n(x_i) u_n(x_j) G~_n(x_i,x_j)
+                         + 2 lambda_{n+1}^2 u_{n+1}(x_i) u_{n+1}(x_j) G~_{n+1}(x_i,x_j) },
        w_j = lambda_n u_n(x_j)^2 = lambda_{n+1} u_{n+1}(x_j)^2,
        s_i = rho_{i+1} - rho_i = +-(R-1) (alternating),
        G~_k(x,y) = regularized resolvent kernel at lambda_k (pole removed),
        derived from first-order perturbation theory of the weighted string.
-  Derivation (signs corrected 2026-08-12): with delta rho = s_i delta(x-x_i) delta x_i,
-  delta A = -(delta rho/rho) A  =>  delta lambda_k = -lambda_k s_i u_k(x_i)^2 delta x_i,
-  delta u_k(x) = -u_k(x)(s_i u_k(x_i)^2/2) delta x_i
-                 + lambda_k s_i u_k(x_i) G~_k(x,x_i) delta x_i,
-  G~_k(x,y) = sum_{l != k} u_l(x) u_l(y)/(lambda_l - lambda_k) (resolvent kernel wrt rho dy,
-  pole removed).  Combining the two modes with w_i = lambda_n u_n(x_i)^2 and
-  u_{n+1}(x_j)^2 - u_n(x_j)^2 = -w_j D/(lambda_n lambda_{n+1}) gives
-  M~_{ji} = s_i * { -2 w_i w_j D/(lambda_n lambda_{n+1})
-                         + 2 lambda_n^2 u_n(x_i) u_n(x_j) G~_n(x_i,x_j)
-                         - 2 lambda_{n+1}^2 u_{n+1}(x_i) u_{n+1}(x_j) G~_{n+1}(x_i,x_j) }.
+  Derivation (signs CORRECTED 2026-08-12, all verified against clean FD at
+  non-critical AND critical points; replaces the earlier flipped-convention draft):
+  moving switch i RIGHT by dx_i converts pat[i+1] -> pat[i] on [x_i, x_i+dx_i), so
+  delta rho = (pat[i] - pat[i+1]) delta(x-x_i) dx_i = -s_i delta(x-x_i) dx_i.
+  First-order perturbation (L^2(rho) normalization, A = -(1/rho) d^2/dx^2,
+  delta A = (delta rho/rho^2) d^2/dx^2, weighted inner product <f,g> = int rho f g):
+    delta lambda_k/dx_i = +lambda_k s_i u_k(x_i)^2,
+    delta u_k(x)/dx_i = +(s_i u_k(x_i)^2/2) u_k(x) - lambda_k s_i u_k(x_i) G~_k(x,x_i),
+  G~_k(x,y) = sum_{l != k} u_l(x) u_l(y)/(lambda_l - lambda_k).
+  Combining the two modes at a band-consistent point (w_i = lambda_n u_n(x_i)^2
+  = lambda_{n+1} u_{n+1}(x_i)^2, u_{n+1}^2 - u_n^2 = w D/(lambda_n lambda_{n+1})*sign,
+  w = lambda_n u_n^2) gives
+  M~_{ji} = s_i * { +2 w_i w_j D/(lambda_n lambda_{n+1})
+                         - 2 lambda_n^2 u_n(x_i) u_n(x_j) G~_n(x_i,x_j)
+                         + 2 lambda_{n+1}^2 u_{n+1}(x_i) u_{n+1}(x_j) G~_{n+1}(x_i,x_j) }.
   (A2) f'(x_j) = -2 lambda_{n+1} eps_j c W(x_j),  eps_j = u_{n+1}(x_j)/u_n(x_j)/c,
        c = sqrt(lambda_n/lambda_{n+1}), W = u_{n+1}' u_n - u_{n+1} u_n' < 0.
-  (A3) Hess(D_n) restricted to the family = diag(s_i) * lambda_{n+1} * J at any
-       critical point; hence (G1') <=> det Hess > 0 at every critical point.
+  (A3) Hess(D_n) restricted to the family = -diag(s_i) * lambda_{n+1} * J at any
+       critical point (verified 2026-08-12 vs FD Hessian, h=1e-4, err 4.6e-3 on
+       entries O(1e3); dD/dx_i = -s_i f(x_i) also verified at non-critical points).
+       Hence with K := diag(1/s) J (symmetric, since all |s_i| = R-1):
+       Hess = -lambda_{n+1} (R-1)^2 K, det J = prod(s_i) det K, prod(s_i) = (R-1)^(2n) (-1)^n,
+       so (G1') [sgn det J = (-1)^n] <=> det K > 0 at every critical point.
 
 Usage: python _gapn2_jacobian_analytic.py [n] [Rs] [mode]
 """
@@ -131,7 +140,14 @@ def regularized_green(blocks, lam, pts, u_k=None, delta=1e-9):
     eigenfunction at lambda_k), so the direct subtraction converges with error
     O(delta); delta relative to lam, e.g. 1e-9 gives ~1e-12 accuracy on the
     smooth part (G_mu ~ 1/delta -> cancellation error ~ 1e-16/delta*lam ~ 1e-6
-    relative to the pole, i.e. ~1e-12 absolute for values O(0.01))."""
+    relative to the pole, i.e. ~1e-12 absolute for values O(0.01)).
+
+    WARNING (2026-08-12 audit): the claimed accuracy is FALSE at delta=1e-9 in
+    practice.  G_mu ~ 4.7e7 near the pole; transfer-matrix relative error
+    ~2.7e-8 leaves an absolute error ~1.27 in G~ (verified against the spectral
+    sum).  Do NOT use this routine for Jacobian work; use gtilde_spectral from
+    _gapn2_jacobian_spectral (Richardson-accelerated).  Kept only for
+    green-kernel cross-checks at low accuracy."""
     mu = lam * (1.0 - delta)
     G = green_kernel(blocks, mu, pts)
     if u_k is None:
@@ -194,16 +210,17 @@ def analytic_jacobian(rc, z):
     fprime_id = -2.0 * lam_np1 * eps * c * W
     # regularized resolvent kernels
     blocks = rc.blocks_from_z(z)
-    Gn = regularized_green(blocks, lam_n, edges, u_k=u_n)
-    Gnp1 = regularized_green(blocks, lam_np1, edges, u_k=u_np1)
+    from _gapn2_jacobian_spectral import gtilde_spectral
+    Gn = gtilde_spectral(rc, z, lam_n, rc.n - 1, edges, N=2000)
+    Gnp1 = gtilde_spectral(rc, z, lam_np1, rc.n, edges, N=2000)
     # sign-corrected formula (see docstring derivation): all three terms flipped
     # relative to the original draft
     M = np.zeros((2 * n, 2 * n))
     for j in range(2 * n):
         for i in range(2 * n):
-            term = (-2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1)
-                    + 2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j]
-                    - 2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
+            term = (+2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1)
+                    - 2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j]
+                    + 2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
             M[j, i] = s[i] * term
     np.fill_diagonal(M, M.diagonal())  # keep diagonal from the uniform formula
     J = (np.diag(fprime) + M) / lam_np1
@@ -223,14 +240,15 @@ def term_breakdown(rc, z):
     wj = lam_n * u_n ** 2
     fprime = 2.0 * lam_n * u_n * ed['up_n'] - 2.0 * lam_np1 * u_np1 * ed['up_np1']
     blocks = rc.blocks_from_z(z)
-    Gn = regularized_green(blocks, lam_n, edges, u_k=u_n)
-    Gnp1 = regularized_green(blocks, lam_np1, edges, u_k=u_np1)
+    from _gapn2_jacobian_spectral import gtilde_spectral
+    Gn = gtilde_spectral(rc, z, lam_n, rc.n - 1, edges, N=2000)
+    Gnp1 = gtilde_spectral(rc, z, lam_np1, rc.n, edges, N=2000)
     M1 = np.zeros((2 * n, 2 * n)); M2 = np.zeros((2 * n, 2 * n)); M3 = np.zeros((2 * n, 2 * n))
     for j in range(2 * n):
         for i in range(2 * n):
-            M1[j, i] = s[i] * (-2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1))
-            M2[j, i] = s[i] * (2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j])
-            M3[j, i] = s[i] * (-2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
+            M1[j, i] = s[i] * (+2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1))
+            M2[j, i] = s[i] * (-2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j])
+            M3[j, i] = s[i] * (+2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
     return dict(fprime=fprime, M1=M1, M2=M2, M3=M3, s=s, wj=wj, D=D)
 
 
@@ -268,7 +286,7 @@ def main():
             pat = rcR.pat
             s = np.array([pat[i + 1] - pat[i] for i in range(2 * n)])
             lam_np1 = eigen_data(rcR, zs)['lam_np1']
-            H = np.diag(s) * lam_np1 * Jfd
+            H = -np.diag(s) * lam_np1 * Jfd
             ev = np.linalg.eigvalsh(H)
             print(f"R={R:8.4g} |Jfd|max={np.max(np.abs(Jfd)):10.3e} "
                   f"err={err:10.3e} rel={rel:10.3e} res={res:10.3e} "

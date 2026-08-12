@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "run_id": "R-20260812T090000Z-g1prime-g2",
+  "project_id": "MRP-20260731-BVE-SL",
+  "task_id": "Q-20260812-g1prime-g2",
+  "upstream_skill": "$rigorous-open-math-research",
+  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+  "started_at": "2026-08-12T09:00:00Z",
+  "completed_at": "2026-08-12T16:30:00+08:00",
+  "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
+  "upstream_status_verbatim": "OPEN: (G1')/(G2) not closed; new STRICT diagonal closed form + sign corrections + dead-end register delivered",
+  "artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "cbc53e86806c055957478d0e7f6a3c359c280d6dd5a7c0404fa917bf7e92cfba",
+      "role": "normalized theorem contract (O-1..O-5)"
+    },
+    {
+      "path": "run_notes_2026-08-12.md",
+      "sha256": "c3497d692a26bc66749ae0a520a4366fbc56a7dc077f63dae8cb323847efdf2e",
+      "role": "reduced-cost scan + sign-convention audit + O-3 margin table"
+    },
+    {
+      "path": "run_notes_addendum_2026-08-12.md",
+      "sha256": "0e3c8c078db0ec6aa5848f9f509026098398b9ceec038278a25438a6456abe84",
+      "role": "new STRICT identities (I1)-(I4), sign correction, dead ends, Sylvester pivot evidence"
+    },
+    {
+      "path": "research_ledger.md",
+      "sha256": "50fca655765e702d0af2784ae36cb6690a262be812572c76cf906e67ab92767c",
+      "role": "R-200..R-201"
+    }
+  ],
+  "environment": {
+    "model": null,
+    "tools": [
+      "Python 3.10 (numpy/scipy)",
+      "xelatex (TeX Live 2024)",
+      "PowerShell"
+    ],
+    "formal_systems": []
+  },
+  "manager_ingestion_state": "COMPLETED",
+  "missing_or_unavailable_artifacts": [],
+  "notes": [
+    "R-200: reduced-cost INF/SUP scan (N=600 Richardson, 9-point grid) + full sign-convention audit (STRICT identities FD-verified; session-51 FH sign corrected; A3 Hess sign corrected; analytic Jacobian fixed to gtilde_spectral)",
+    "O-3 map: SUP evK>0 / INF evK<0 with FD-authoritative margins (exponential decay on INF, ~1/R on SUP); near-degenerate analytic artifacts retracted",
+    "R-201: new STRICT identities - partial-fraction identity (I1), M~ diagonal closed form (I2) K_jj = sigma*2c|W|/(R-1) + 2 w_j Sigma'/lambda - 4 w_j^2/(D lambda), f'/s sign correction (I3), |W| <= D (I4); all verified to 1e-13..1e-15",
+    "dead ends registered: Gershgorin diagonal dominance and H-matrix scaling both fail for moderate-to-large R (exact thresholds in run_notes_addendum)",
+    "new EVIDENCE: Sylvester LU pivots of K have constant sign (SUP +, INF -) on the reachable range; Sylvester inertia law links constant pivot signs to (G1')",
+    "scripts: _gapn2_diag_dominance.py, _gapn2_mtilde_diag_identity.py, _gapn2_hmatrix_probe.py (hashes in tools maintenance log)",
+    "status: (G1') and (G2) remain OPEN; strict proof of the pivot-sign pattern is the most promising next step"
+  ]
+}
