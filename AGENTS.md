@@ -2435,3 +2435,48 @@
 - 待办: 路线图下一块 (推荐顺序: H^s 显式正交系 -> 三阶最小解唯一性 -> Krein c->0); MW 重证与
   间距线体量大, 建议拆义务逐条形式化.
 - 维护: 本文件追加会话 84 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-12 会话 85 (H^s 显式正交系传输约化形式化: HsOrthogonalSystems.lean 全绿 + 推送 GitHub)
+- 任务: 承接会话 84 交接摘要, 继续路线图未形式化部分. 第二块: H^s 显式正交系 (传输约化机制),
+  完成后推送 GitHub (父类 + 个人 fork).
+- 完成:
+  - 新文件 lean-proof/SL/HsOrthogonalSystems.lean (17 文件, 命名空间 SL.HsOrthogonalSystems):
+    - Legendre 闭式: legendreCoeff/legendreClosed (源 (11) 显式系数), legendreCoeff_ne_zero,
+      mem_range_div_two, natDegree_legendreClosed (deg P_n = n, natDegree_le_iff_coeff_eq_zero +
+      coeff n != 0).
+    - Krein-Sobolev 系数序列: aSeq (源 (9) 递推, 基值 a_0..a_3=1) + aSeq_zero/one/two/three/four
+      (a_4 = 1 + 15/c).
+    - 传输机制: KcR_iter_inv_iter (K_c^r K_c^{-r} = id, 经 Function.LeftInverse.iterate),
+      KcR_zero/KcR_iter_zero, KcR_inv_zero/KcR_inv_iter_zero, natDegree_KcR (常数分支
+      eq_C_of_natDegree_eq_zero + C_mul 反向 + natDegree_C; 一般分支 natDegree_C_mul +
+      natDegree_neg + derivative_lt + add_eq_right), natDegree_KcR_inv, natDegree_iter_KcR_inv
+      (iterate_succ_apply' + hne' 非零论证 + rw + ih).
+    - 传输配对与组装: hsPairingEven/hsPairingOdd (H^{2r}/H^{2r+1} 配对), h1PairingPoly (H1 配对
+      边界差形式), qnEven/qnOdd (Q_n^{(2r)}=K_c^{-r} P_n, Q_n^{(2r+1)}=K_c^{-r} K_n),
+      hs_even_pairing/hs_odd_pairing (正交性归约为经典系), hs_even_deg/hs_odd_deg (deg Q_n = n),
+      LegendreFacts/KreinSobolevFacts (经典正交性/规范因子为假设), hs_even_main/hs_odd_main
+      (组装), r = 0 还原 sanity 引理族.
+  - TransferOperator.lean 修复: 原把 public 包装引理 (KcR_inv_left_public/KcR_inv_right_public/
+    KcR_inj_public) 误放在 end Transfer/end SL 之后 (命名空间外); 移入命名空间内 (删除多余 end),
+    供外部文件以 Completeness.KcR 显式表述使用 (private abbrev KcR 无法跨文件 rw).
+  - 关键诊断 (mathlib 4.31 差异): (a) `∑ x in s, f` 语法在 4.31 中不存在 (unexpected token 'in'),
+    必须用 `∑ x ∈ s, f` (最小实验确认, TransferOperator 同款); (b) Polynomial.coeff_sum 作用于
+    p.sum f 而非 Finset.sum, Finset 求和的 coeff 用 `simp_rw [← Polynomial.lcoeff_apply, map_sum,
+    Polynomial.lcoeff_apply]` (显式 (R := ℝ) 版本在 ≠ 0 目标下报 typeclass stuck, 无 R 版本通过);
+    (c) Finset.sum_eq_single 的结论 RHS 是 f a (定义形), 与 legendreCoeff n 0 不定义相等, 须两段
+    (sum_eq_single 结论 + 单项化简 hs2) 后 trans 连接; (d) natDegree_C 显式参数不可被 simp 实例化
+    (unused simp argument), 用 rw; (e) simp 的 map_mul 会把 C (c*a) 重新展开为 C c * C a, 故
+    `rw [← Polynomial.C_mul]` 须在 simp 之后; (f) `simp [← Polynomial.C_mul]` 与 map_mul 互逆成
+    环 (maxRecDepth), 禁用该组合; (g) Function.LeftInverse.iterate 直接给出 K_c^r K_c^{-r} = id.
+  - 机器验证: 全库 lake build 8575 jobs 零警告零 lint; verify_lean_project.py 18 文件扫描
+    sorry/admit/axiom 命中 0, build exit 0; run-manifest.json 已刷新 (8575 jobs).
+  - 文档同步: lean-proof/STATUS.md (17 文件/8575 jobs, 新增 HsOrthogonalSystems 行, 状态矩阵
+    H^s 行更新, 路线图第 7/8/10/11 项), lean-proof/README.md (文件树 + 命名空间 + 结论行),
+    根 README.md (机器验证 17 文件/8575 jobs, 已完成加 HsOrthogonalSystems, 未完成清单更新).
+- 诚实声明 (交付物内保留): Legendre 正交性与 Krein-Sobolev 正交性/规范因子 2c/(2n+1) a_n a_{n+2}
+  为文献事实, 以 LegendreFacts/KreinSobolevFacts 假设接入 (Lean 只验证给定事实的传输约化);
+  算符级等距 K_c^r: H^s -> L^2/H^1 与 H^s 完备性 (谱论) 未形式化; Krein-Sobolev 系数闭式
+  (超几何和) 未形式化, 只形式化了递推 aSeq 与基础值 a_0..a_4.
+- 待办: 路线图下一块 (推荐顺序: 三阶最小解唯一性 -> Krein c->0); MW 重证与间距线体量大,
+  建议拆义务逐条形式化.
+- 维护: 本文件追加会话 85 记录; 随后 commit + push 父类与个人 fork (main:main).

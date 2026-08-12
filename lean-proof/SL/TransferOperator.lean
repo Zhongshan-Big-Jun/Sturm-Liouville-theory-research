@@ -341,5 +341,25 @@ theorem KcR_inv_iter_X_pow (c : ℝ) (hc : c ≠ 0) (r k : ℕ) :
       exact (KcR_transferPoly c hc r k).symm
 
 end
+
+/-! ## Public wrappers (usable from other files) -/
+
+/-- Public version of `KcR_inv_left`: the private alias `KcR` is not
+accessible from other files, so restate the cancellation with
+`Completeness.KcR`. -/
+lemma KcR_inv_left_public (c : ℝ) (hc : c ≠ 0) (p : Polynomial ℝ) :
+    Completeness.KcR c (KcR_inv c p) = p := by
+  exact KcR_inv_left c hc p
+
+/-- Public version of `KcR_inv_right`. -/
+lemma KcR_inv_right_public (c : ℝ) (hc : c ≠ 0) (p : Polynomial ℝ) :
+    KcR_inv c (Completeness.KcR c p) = p := by
+  exact KcR_inv_right c hc p
+
+/-- Public version of `KcR_inj`. -/
+lemma KcR_inj_public (c : ℝ) (hc : c ≠ 0) {p q : Polynomial ℝ}
+    (h : Completeness.KcR c p = Completeness.KcR c q) : p = q := by
+  exact KcR_inj c hc h
+
 end Transfer
 end SL
