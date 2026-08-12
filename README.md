@@ -45,8 +45,8 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
-- **机器验证**: `lean-proof/run-manifest.json` (17 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8575 jobs).
+- **机器验证**: `lean-proof/run-manifest.json` (19 个 SL/ 下 .lean 文件扫描,
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8576 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
@@ -61,9 +61,10 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
   - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
     (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 $1/(2n+7)$, $3/(2n+9)$) +
     ThirdOrderClassification (Theorem 1 反向: 轨迹 => $\beta \in \{1,-1\}/\{3,1\}$).
+    ThirdOrderMinimal (变差常数/第三解: 定理 5 代数核心 + 定理 3 反向).
 - **未完成 (已登记)**: $H^3$ 算符级等距同构 $K_c\colon H^3 \to H^1$ (双射/谱, 需谱论) 与多项式在 $H^1$
   稠密性; $H^s$ 显式正交系的算符级等距与完备性 (谱论/稠密性); MW 引理重证; 间距线 ($n=1$ 定理族, $n \ge 2$ 开关/约化);
-  三阶递推最小解唯一性; Krein $c \to 0$ 极限; 分数阶 $H^s$ 与稠密性准则.
+  三阶递推三解 Casoratian 非零与最小解唯一性/渐近 (源中数值部分); Krein $c \to 0$ 极限; 分数阶 $H^s$ 与稠密性准则.
 
 ## 目录结构
 
