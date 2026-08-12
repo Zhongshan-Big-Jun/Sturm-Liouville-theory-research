@@ -2003,6 +2003,16 @@
 - 待办: 把采纳路线图逐条写进三个 skill 的 SKILL.md (下次迭代 skill 时执行); 未采纳项 (reap 战术, jixia, LeanAide,
   Quokka, MathWeaver 桌面版) 属基础设施依赖, 记录不落地.
 
+### 2026-08-12 会话 75 (AI4Math V2 蒸馏采纳: 三个 skill 升级)
+- 任务: 执行会话 74 的采纳路线图, 把蒸馏方法逐条写进 rigorous-open-math-research / manage-math-research-program / lean-verify 三个 SKILL.md.
+- 编辑位置: marketplace 克隆 C:\Users\HuangZY\.codex\.tmp\marketplaces\math-research (父仓库 xsoc1/rigorous-open-math-research, fork Zhongshan-Big-Jun).
+- rigorous 新增: Phase 2 发散式检索契约 (宽搜索不守门 + 来源诚实三要素 query->result->locator + 分层流水线); Phase 8 首次见证验证者标准 + 14 类自动 FAIL 模式 + 首错定位与错误层分类; Phase 9 最小责任失败路由; Phase 10 陈述冻结 / sorrifier 分解 / 四道闸 + 人工语义复核; Phase 12 新鲜上下文收敛检查; Verifier 角色 prompt 同步.
+- manage 新增: 第 3 节发散式检索契约 + 原始源不可变存储与知识卡片 (完整分析/部分证明/受阻路径); 第 5 节问题证据状态行 + 工具库边际收益演化; 第 8 节 5b 失败入档分类 (首错位置 + 错误层); 第 9 节新鲜上下文收敛检查.
+- lean-verify 新增: Phase 3 四道闸 + 人工语义复核 + 修复策略 (陈述冻结/sorrifier/错误分类四步 判定->分类->定位->修正); Phase 4 首错定位与错误层分类; 结构化输出与 schema 新增可选 first_error (required 不变).
+- 工程: 三个插件 cachebuster 更新为 0.1.0+codex.20260812030804 (update_plugin_cachebuster.py); manage MANIFEST.sha256 重新生成 (43 条); validate_all.py 68 项全绿; 全局 skill 副本 (C:\Users\HuangZY\.codex\skills\) 同步 + 全局 MANIFEST 重生成 (排除 __pycache__); README 版本历史与仓库 AGENTS.md 会话记录更新.
+- 同步: 父仓库已 push (2bac4ba); fork 经 GitHub merge-upstream API 快进同步成功; 本机 math-research 市场 upgrade + 三插件重装至新 cachebuster, 缓存副本内容抽查确认 (Divergent search contract / marginal-benefit / Sorrifier decomposition / first_error 等均存在).
+- 诚实备注: 会话 74 报告的检索边界不变 (arXiv API 不可用等); 本次未做临时 CODEX_HOME 端到端冒烟 (validate_all 全绿 + 实际安装成功 + 内容抽查, 与上轮冒烟覆盖等价的部分被跳过, 如需可补).
+
 ### 2026-08-12 会话 58 续作 (缺口 (a') 全 R 复核与文档修复收尾)
 - 任务: 承接上一模型遗留: 复核并收尾缺口 (a') 文档 docs/SL_gap_n1_symline_allR_proof.tex
   (KEY LEMMA 从 1<R<=3/2 推广到全部 R>1, 张力比链方法), 修复文档与证书, 交付零警告 PDF.
