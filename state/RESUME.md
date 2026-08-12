@@ -38,6 +38,11 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 14. `runs/rigorous-open-math-research/R-20260806T200000Z-inflimit-5B2C7D/`
 15. `state/checkpoints/2026-08-07T160000Z--inflimit-close.md`
 16. `misc/_well_explore_log.md` (well-family EVIDENCE log, 2026-08-10; section 16 = all-R work)
+17. `docs/SL_gap_nge2_symmetry_local_proof.pdf` (n>=2 reflection symmetry LOCAL theorem, 9 pp, STRICT, 2026-08-12 cont 4b; R=1 general-n analysis, R->1 uniqueness, equivariance; global via OPEN (G1')/(G2))
+18. `docs/SL_gap_nge2_symmetry_recon.pdf` (5 pp: recon methods, failed routes, lessons, open conditions)
+## Last completed action
+2026-08-12 (session 58 continuation 4b): n>=2 reflection symmetry -- LOCAL theorem STRICT closed.
+Deliverables: docs/SL_gap_nge2_symmetry_local_proof.pdf (9 pp zero warnings, rewritten: section 2 structure theorem with corrected level-set counting at first/last cells (|Q(0+)|=q0=|q1| finite, still 2n level-set solutions); section 3 R=1 general-n analysis: f_1 has exactly 2n simple symmetric zeros, interval signs (-,+,-,...,-), sgn f_1'(x_j*)=(-1)^{j+1}, sgn det D_xF(1,x*)=(-1)^n via Wronskian W=-2(n+1)pi sin(pi x)<0; n=2 closed form t=(11+-2sqrt10)/36, detJ=143179.8687; section 4 R->1 local theorem: uniqueness boundary-exclusion lemmas 4.2/4.3 airtight (zeros uniformly away from endpoints, C^1 convergence + simple-zero isolation), equivariance F(R,xbar)=PF(R,x) (palindromic pattern sigma_i=sigma_{2n+2-i}) + unique branch => symmetric; section 5 global classification: topological-degree homotopy framework, conditional on OPEN (G1') (detJ nonzero with sign (-1)^n on the solution set) and (G2) (block widths uniformly positive on compact R), framework-level proof hole in the draft fixed; section 6 EVIDENCE incl. symmetrization failure route).  Recon: docs/SL_gap_nge2_symmetry_recon.pdf (5 pp zero warnings; recon methods, 6 failed routes registered incl. the draft boundary-exclusion hole, lessons, open conditions, math-knowledge section).  EVIDENCE: scripts/_gapn2_symmetry_recon.py, _gapn2_jacobian_probe.py, _gapn2_antigrid_search.py; R=1 zeros n=2..8 all pass; equivariance D(xbar)=D(x) to 1e-16; detJ>0 along n=2 R-branch (SUP 1.38e5->330, INF 1.22e5->0.123, R in [1.05,100]); ~2000 solves no asymmetric internal solution and no boundary accumulation; density-averaging symmetrization NON-monotone (SUP 118/200, INF 116/200 violations; old 33/200, 57/200 numbers not reproducible - corrected).  Tools: tools/band-selfconsistency-equivariance.md added (equivariance identity + anticommutation J=-PJP + detJ=(-1)^n detA detB + degree framework, STRICT parts marked), README synced; AGENTS.md session 58 continuation 4b; state/current.json updated.  Honest: (G1')/(G2) OPEN, global closure is sufficiency framework only; section-3 spectral sign conventions are classical self-referential (noted in doc); numerics EVIDENCE only.
 ## Last completed action
 2026-08-12 (session 58 continuation 3): (1) O3a/C1 REPAIRABLE-GAP RESOLVED - the session-57
 finding was a stale-doc misregistration (docs/ root PDF was the pre-F-210 38-page version);
@@ -167,10 +172,11 @@ dD/db=+(R-1)f(b)).
 ## Exact next action
 1. Gap (c): CLOSED 2026-08-12 (Theorem A independently re-verified, no errors found).
 2. O3a/C1: REPAIRABLE-GAP RESOLVED 2026-08-12 (stale-doc misregistration; F-210 fixed).
-3. Open problems remaining (per summary section 5.5): switch positions/block lengths,
-   reflection symmetry, uniqueness/classification, closed-form optimal values max/min D_n,
-   n=1 certificate kernel formalization, MDE unified theory, H^s density criteria,
-   p-Laplacian, etc.
+3. Open problems remaining (per summary section 5.5): n>=2 reflection symmetry GLOBAL
+   (LOCAL theorem STRICT since 2026-08-12 cont 4b; needs (G1') detJ sign (-1)^n and (G2)
+   block-width compactness), switch positions/block lengths, closed-form optimal values
+   max/min D_n, n=1 certificate kernel formalization, MDE unified theory, H^s density
+   criteria, p-Laplacian, etc.
 4. validate_project.py, budget settlement, stage summary on stage close.
 ## Blockers or missing inputs
 - None: all obligations of the n=1 adjacent-gap extremal problem (SUP + INF, all R>1)

@@ -1,5 +1,6 @@
 import Mathlib
 import SL.Completeness
+import SL.H3MomentBound
 
 open scoped BigOperators
 
@@ -26,10 +27,11 @@ together with a polynomial bound |M_{2m}| <= C * sqrt m forces M_2 = M_3 = 0,
 hence all H1-moments vanish (the annihilation step; Section 6 of the source).
 
 The analytic H1 bound (Section 5, Cauchy-Schwarz estimate
-|M_{2m}| <= C sqrt m) is stated as an assumption `hbdE`/`hbdO` in
-`all_moments_zero_of_orthogonal`; its derivation from the H1 inner product is
-the analytic companion that will be formalized together with the isometry
-step.
+|M_{2m}| <= C sqrt m) is derived in SL/H3MomentBound.lean from the concrete
+H1 inner-product functional; h1_moments_zero_of_orthogonal below plugs it
+into all_moments_zero_of_orthogonal.  The remaining analytic glue is the
+identification of h1MomentFunctional with the H1 inner product itself
+(isometry step).
 
 All statements are over Real, reusing the coefficient families
 (AR/BR/A'R/B'R, KcR, pEvenR, pOddR) from SL/Completeness.lean.
@@ -496,6 +498,62 @@ theorem all_moments_zero_of_orthogonal {M : Polynomial ℝ →ₗ[ℝ] ℝ} {c :
     simp
   · rw [hscalO m, hμ3]
     simp
+
+/-- The analytic H1-moment bound (Cauchy-Schwarz, Section 5 of the source)
+supplies the polynomial-growth assumptions of all_moments_zero_of_orthogonal
+for the concrete H1 inner-product functional, so orthogonality against
+{K_c p_n} forces all H1 moments to vanish. -/
+theorem h1_moments_zero_of_orthogonal {w wd : ℝ → ℝ}
+    (hw : ContinuousOn w (Set.Icc (-1) 1)) (hwd : ContinuousOn wd (Set.Icc (-1) 1))
+    {c : ℝ} (hc : 0 < c)
+    (h0 : moments (H3MomentBound.h1MomentFunctional w wd hw hwd c) 0 = 0)
+    (h1 : moments (H3MomentBound.h1MomentFunctional w wd hw hwd c) 1 = 0)
+    (horthE : ∀ n : ℕ, 2 ≤ n →
+      H3MomentBound.h1MomentFunctional w wd hw hwd c (Completeness.KcR c (Completeness.pEvenR n)) = 0)
+    (horthO : ∀ n : ℕ, 2 ≤ n →
+      H3MomentBound.h1MomentFunctional w wd hw hwd c (Completeness.KcR c (Completeness.pOddR n)) = 0) :
+    ∀ k : ℕ, moments (H3MomentBound.h1MomentFunctional w wd hw hwd c) k = 0 := by
+  let nwd : ℝ := Real.sqrt (∫ x in (-1 : ℝ)..1, wd x ^ 2)
+  let nw : ℝ := Real.sqrt (∫ x in (-1 : ℝ)..1, w x ^ 2)
+  let hC : ℝ := (3 + Real.sqrt 2) * nwd + c * Real.sqrt 2 * nw
+  refine all_moments_zero_of_orthogonal hc h0 h1 horthE horthO hC ?_ ?_
+  · intro m hm
+    have hb := H3MomentBound.even_moment_bound_sqrt hw hwd (le_of_lt hc) hm
+    have hme : moments (H3MomentBound.h1MomentFunctional w wd hw hwd c) (2 * m) =
+        H3MomentBound.momentsEven w wd c m := by
+      unfold moments
+      exact H3MomentBound.apply_X_pow_even w wd hw hwd c m
+    rw [hme]
+    have hnwd : 0 ≤ nwd := by dsimp [nwd]; exact Real.sqrt_nonneg _
+    have hc2 : (2 : ℝ) ≤ 3 + Real.sqrt 2 := by
+      have hsq : (0 : ℝ) ≤ Real.sqrt 2 := Real.sqrt_nonneg 2
+      linarith
+    calc
+      |H3MomentBound.momentsEven w wd c m| ≤
+          (2 * nwd + c * Real.sqrt 2 * nw) * Real.sqrt (m : ℝ) := by
+        simpa [nwd, nw] using hb
+      _ ≤ hC * Real.sqrt (m : ℝ) := by
+        have hle : 2 * nwd + c * Real.sqrt 2 * nw ≤ hC := by
+          dsimp [hC]
+          calc
+            2 * nwd + c * Real.sqrt 2 * nw = (2 : ℝ) * nwd + c * Real.sqrt 2 * nw := by ring
+            _ ≤ (3 + Real.sqrt 2) * nwd + c * Real.sqrt 2 * nw := by
+              exact add_le_add (mul_le_mul_of_nonneg_right hc2 hnwd) le_rfl
+        exact mul_le_mul_of_nonneg_right hle (Real.sqrt_nonneg _)
+  · intro m hm
+    have hb := H3MomentBound.odd_moment_bound_sqrt hw hwd (le_of_lt hc) hm
+    have hmo : moments (H3MomentBound.h1MomentFunctional w wd hw hwd c) (2 * m + 1) =
+        H3MomentBound.momentsOdd w wd c m := by
+      unfold moments
+      exact H3MomentBound.apply_X_pow_odd w wd hw hwd c m
+    rw [hmo]
+    calc
+      |H3MomentBound.momentsOdd w wd c m| ≤
+          (3 * nwd + c * Real.sqrt 2 * nw + Real.sqrt 2 * nwd) * Real.sqrt (m : ℝ) := by
+        simpa [nwd, nw] using hb
+      _ = hC * Real.sqrt (m : ℝ) := by
+        dsimp [hC]
+        ring
 
 end H3Completeness
 

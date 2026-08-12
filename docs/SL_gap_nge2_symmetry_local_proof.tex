@@ -1,0 +1,561 @@
+% 用法: xelatex SL_gap_nge2_symmetry_local_proof.tex (两遍, -output-directory=build)
+% 主题: n>=2 相邻谱隙极值子的反射对称性 - 结构引理与 R->1 局部定理 (STRICT)
+%       全局分类为开放问题, 给出精确的闭合条件 (G1')(G2).
+% 日期: 2026-08-12
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\newcommand{\STRICT}{\textbf{严格证明}}
+\newcommand{\EVIDENCE}{\textbf{数值证据}}
+
+\title{相邻谱隙极值子的反射对称性 ($n\ge2$):\\ 结构引理、$R\to1$ 局部定理与全局分类框架}
+\author{BVE research 项目}
+\date{2026 年 8 月 12 日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+对固定 $R>1$ 与整数 $n\ge2$, 考虑 Dirichlet 加权弦 $-u''=\lambda\rho u$,
+$u(0)=u(1)=0$, 权为逐块常数 bang--bang 配置 $\rho\in\{1,R\}$, 恰有 $2n$ 个开关
+$0<x_1<\cdots<x_{2n}<1$, 交替图案记作 SUP (首末块取 $1$) 或 INF (首末块取 $R$).
+设 $\lambda_k$ 为特征值, $D_n=\lambda_{n+1}-\lambda_n$ 为相邻谱隙. 本文研究
+\textbf{带自洽驻点} (定义~\ref{def:bc}) 的反射对称性, 证明: (i) 带自洽配置的
+完整结构定理 (切换函数 $f=\lambda_nu_n^2-\lambda_{n+1}u_{n+1}^2$ 恰有 $2n$ 个
+简单零点即开关, 胞腔结构, 端点斜率比与块能量不变量); (ii) $R=1$ 处系统的一般
+$n$ 显式分析 ($f_1$ 在 $(0,1)$ 内恰有 $2n$ 个简单零点, 全部反射对称, 区间符号
+图案 $(-,+,-,\dots,-)$ 交替, Jacobi 行列式非退化且符号为 $(-1)^n$; $n=2$ 时给出
+闭式 $t=(11\pm2\sqrt{10})/36$); (iii) $R\to1$ 的局部定理: 对 $R-1$ 充分小,
+每个图案在升序区域 $U$ 内恰有一个带自洽驻点, 反射对称且解析依赖于 $R$.
+全局分类 ($R>1$ 全范围唯一性) 保持开放; 本文给出精确的闭合条件
+(G1$'$) (Jacobian 非退化且定号 $(-1)^n$) 与 (G2) (无边界生成), 并证明两者蕴含
+猜想 (拓扑度 + 等变性 + 已有有限块约化). 全文 \STRICT 部分与 \EVIDENCE 部分
+严格区分.
+\end{abstract}
+
+\section{设置与记号}\label{sec:setup}
+
+固定 $R>1$, $n\ge2$. 对开关 $0<x_1<\cdots<x_{2n}<1$ 与图案
+$\sigma\in\{\mathrm{SUP},\mathrm{INF}\}$ 定义逐块常值权
+\begin{equation*}
+	\rho(x)=\sigma_i,\qquad x\in[x_{i-1},x_i),\quad
+	\sigma_i=\begin{cases}1,& i\ \text{奇},\; \sigma=\mathrm{SUP},\\
+	R,& i\ \text{偶},\; \sigma=\mathrm{SUP};\end{cases}
+	\quad
+	(\mathrm{INF}\ \text{将}\ 1,R\ \text{互换})
+\end{equation*}
+其中 $x_0=0$, $x_{2n+1}=1$. 设 $\lambda_1<\lambda_2<\cdots$ 为 Dirichlet 特征值,
+$u_k$ 为 $\int_0^1\rho u_k^2\,dx=1$ 归一化特征函数. 记
+\begin{equation*}
+	f:=\lambda_n u_n^2-\lambda_{n+1}u_{n+1}^2,\qquad
+	c:=\sqrt{\frac{\lambda_n}{\lambda_{n+1}}}\in(0,1),\qquad
+	D:=D_n(\rho)=\lambda_{n+1}-\lambda_n.
+\end{equation*}
+
+\begin{definition}[带自洽驻点]\label{def:bc}
+配置 $x$ 称为 \textbf{带自洽驻点} (band-consistent stationary point), 若
+\begin{enumerate}
+	\item[(i)] $f(x_j)=0$ 对所有 $j=1,\dots,2n$ 成立;
+	\item[(ii)] 开块上的符号与图案一致: 对 SUP, $f>0$ 于 $\rho=R$ 块、$f<0$ 于
+	$\rho=1$ 块; 对 INF 反之.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{rem:fh}
+由 Feynman--Hellmann 公式 (归一化 $\int\rho u_k^2=1$ 下为
+$\delta\lambda_k=-\int\delta\rho\,\lambda_ku_k^2\,dx$), 有 $\delta D=\int\delta\rho\, f\,dx$.
+因此 $D_n$ 在 $(2n+1)$ 块族内部的驻点恰为满足 (i) 的配置; 条件 (ii) 对应极值子
+(极大化子: SUP; 极小化子: INF) 的饱和律 (见文献 [1, Theorem 4.1] 的完全盒饱和).
+本文只研究带自洽驻点, 不重述极值性.
+\end{remark}
+
+\section{结构引理 (STRICT)}\label{sec:structure}
+
+\begin{theorem}[带自洽配置的结构]\label{thm:structure}
+设 $x$ 是带自洽驻点. 则
+\begin{enumerate}
+	\item[(a)] Wronskian $W:=u_{n+1}'u_n-u_{n+1}u_n'$ 在 $(0,1)$ 上严格负;
+	\item[(b)] 端点斜率比 $q_0:=u_{n+1}'(0)/u_n'(0)>1>c$ 与
+	$q_1:=u_{n+1}'(1)/u_n'(1)<-1<-c$;
+	\item[(c)] $f$ 在 $(0,1)$ 内恰有 $2n$ 个零点, 全部简单, 且正好是开关点
+	$x_1,\dots,x_{2n}$;
+	\item[(d)] $f(0+)<0$, $f(1-)<0$;
+	\item[(e)] 块能量 $K:=(u_n'^2+\lambda_n\rho u_n^2)-(u_{n+1}'^2+\lambda_{n+1}\rho u_{n+1}^2)$
+	在 $(0,1)$ 上为常数, 且 $K\equiv-2D<0$;
+	\item[(f)] (胞腔结构) 设 $0=w_0<w_1<\cdots<w_{n-1}<w_n=1$ 为 $u_n$ 的结点
+	($n\ge2$ 时恰 $n-1$ 个内结点), $z_i\in(w_{i-1},w_i)$ 为 $u_{n+1}$ 的结点.
+	则每个胞腔 $(w_{i-1},w_i)$ 内含恰好两个开关 $r_i^-<z_i<r_i^+$, 满足
+	$|u_{n+1}/u_n|=c$, 且对 SUP 图案有 $\rho=R$ 于 $\bigcup_i(r_i^-,r_i^+)$,
+	对 INF 图案有 $\rho=1$ 于 $\bigcup_i(r_i^-,r_i^+)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 对任意权 (不必带自洽), 有
+\begin{equation*}
+	W'=u_{n+1}''u_n-u_{n+1}u_n''=(-\lambda_{n+1}\rho u_{n+1})u_n
+	+u_{n+1}(\lambda_n\rho u_n)=(\lambda_n-\lambda_{n+1})\rho u_nu_{n+1}.
+\end{equation*}
+因 $\lambda_n<\lambda_{n+1}$ 且 $\rho>0$, $W'$ 与 $u_nu_{n+1}$ 反号.
+$W(0)=0$. 在胞腔 $C_i=(w_{i-1},w_i)$ 上 $u_n$ 定号, $u_{n+1}$ 恰有一个结点 $z_i$.
+在 $C_1=(0,w_1)$: $u_n>0$, $u_{n+1}>0$ 于 $(0,z_1)$, 故 $W'<0$ 于 $(0,z_1)$,
+$W<0$; 在 $z_1$: $W(z_1)=u_{n+1}'(z_1)u_n(z_1)<0$ (因 $u_n>0$ 且 $u_{n+1}$ 从正变负);
+于 $(z_1,w_1)$: $W'>0$, 故 $W$ 严格增, 而
+$W(w_1)=-u_{n+1}(w_1)u_n'(w_1)<0$ ($u_{n+1}(w_1)<0$, $u_n'(w_1)<0$), 从而
+$W<0$ 于 $(z_1,w_1)$. 归纳地, 在 $C_i$ 上: $u_nu_{n+1}>0$ 于 $(w_{i-1},z_i)$
+($W'<0$, 从 $W(w_{i-1})<0$ 出发 $W<0$), $W(z_i)=u_{n+1}'(z_i)u_n(z_i)<0$,
+于 $(z_i,w_i)$ 上 $W'>0$ 且 $W(x)<W(w_i)=-u_{n+1}(w_i)u_n'(w_i)<0$
+(符号依 $i$ 的奇偶性检查, 结点导数与函数值符号交替). 故 $W<0$ 于 $(0,1)$.
+证 (a).
+
+(e) 块内 $K'=0$ (直接求导, 用 $-u_k''=\lambda_k\rho u_k$); 在开关 $x_j$ 处,
+$u_n,u_{n+1}$ 连续, 故
+\begin{equation*}
+	K(x_j+)-K(x_j-)=(\rho(x_j+)-\rho(x_j-))(\lambda_nu_n(x_j)^2-\lambda_{n+1}u_{n+1}(x_j)^2)
+	=(\rho_+-\rho_-)f(x_j)=0
+\end{equation*}
+(带自洽条件 (i)). 故 $K$ 全局为常数. 由分部积分
+$\int_0^1 u_k'^2\,dx=\lambda_k\int_0^1\rho u_k^2\,dx=\lambda_k$, 得
+\begin{equation*}
+	\int_0^1 K\,dx=(\lambda_n-\lambda_{n+1})+(\lambda_n-\lambda_{n+1})=-2D,
+\end{equation*}
+故 $K\equiv-2D<0$. 证 (e).
+
+(b) 由 $K(0)=u_n'(0)^2-u_{n+1}'(0)^2=u_n'(0)^2(1-q_0^2)=-2D<0$ 得
+$|q_0|>1$; 近 $0$ 处 $u_k(x)\sim u_k'(0)x$ 且 $u_k'(0)>0$ (正特征函数斜率为正),
+故 $q_0>1$. 类似地 $K(1)=u_n'(1)^2(1-q_1^2)=-2D<0$ 得 $|q_1|>1$; 而
+$u_n'(1)$ 与 $u_{n+1}'(1)$ 反号 (结点数差一, 端点导数符号交替), 故 $q_1<0$,
+于是 $q_1<-1$. 又 $\lambda_n/\lambda_{n+1}=c^2<1$, 故 $1>c$ 且 $-1<-c$,
+完成 (b).
+
+(d) 由 $u_k(x)\sim x\,u_k'(0)$ 与 $u_k(x)\sim(1-x)(-u_k'(1))$,
+\begin{equation*}
+	f(x)\sim x^2\lambda_nu_n'(0)^2\Bigl(1-\frac{q_0^2}{c^2}\Bigr)<0
+	\quad(x\to0+),
+\end{equation*}
+因 $q_0>1>c\Rightarrow q_0^2/c^2>1$; 同理 $f(1-)<0$ (用 $q_1^2>1>c^2$). 证 (d).
+
+(c) 在胞腔 $C_i$ 上, 商 $Q:=u_{n+1}/u_n$ 良定义且
+$Q'=W/u_n^2<0$ (由 (a)), 故 $|Q|$ 在 $(w_{i-1},z_i)$ 上严格递减、在
+$(z_i,w_i)$ 上严格递增. 在中间胞腔 $i=2,\dots,n-1$: $|Q|$ 在胞腔两端趋于
+$+\infty$ ($u_n(w_{i-1})=u_n(w_i)=0$ 而 $u_{n+1}(w_{i-1})u_{n+1}(w_i)\neq0$,
+严格交错), 故 $|Q|=c$ 在每侧恰有一个解, 共两个. 在首胞腔 $C_1=(0,w_1)$:
+$|Q(0+)|=q_0>1>c$ (由 (b)); 于 $(0,z_1)$ 上 $|Q|$ 从 $q_0$ 严格降到 $0$,
+恰有一个解 $|Q|=c$; 于 $(z_1,w_1)$ 上从 $0$ 严格升到 $+\infty$, 恰有一个解.
+末胞腔 $C_n=(w_{n-1},1)$ 同理 ($|Q(1-)|=|q_1|>1>c$). 于是
+$f=\lambda_nu_n^2\bigl(1-(|Q|/c)^2\bigr)$, 故 $f=0\iff|Q|=c$: 在 $(0,1)$ 内
+恰有 $2n$ 个解, 全部简单 ($(|Q|)'=\pm Q'=\pm W/u_n^2\neq0$ 于 $|Q|=c$ 处).
+带自洽条件 (i) 给出开关均为 $f$ 的零点; 开关恰有 $2n$ 个且 $f$ 恰有 $2n$ 个
+零点, 故开关 $=$ 全部零点. 证 (c).
+
+(f) 由 (c), 第 $i$ 个胞腔内的两个开关为 $x_{2i-1}<z_i<x_{2i}$; 对 SUP,
+$\rho=R$ 块恰为 $(x_{2i-1},x_{2i})=\bigcup_i(r_i^-,r_i^+)$; 对 INF,
+$\rho=1$ 块恰为同一并集. 证 (f).
+\end{proof}
+
+\begin{remark}
+定理~\ref{thm:structure} 的 (a) 不依赖带自洽条件 (对任意正密度成立);
+(c) 的计数依赖 (b) 的端点斜率条件 $q_0>c$, $|q_1|>c$; (b)(d)(e) 依赖 (i).
+精确零点计数的一般形式 (任意密度) 见 [1, 命题: 精确零点计数]:
+$\#Z(F;(0,1))=2n-2+\mathbf1_{\{q_0>c\}}+\mathbf1_{\{q_1<-c\}}$.
+带自洽 $\iff$ 开关集恰为自身特征函数的 $|Q|=c$ 水平集且符号图案正确.
+\end{remark}
+
+\section{\texorpdfstring{$R=1$}{R=1} 的显式分析 (STRICT)}\label{sec:r1}
+
+$R=1$ 时 $\rho\equiv1$, $u_k=\sqrt2\sin(k\pi x)$, $\lambda_k=(k\pi)^2$,
+\begin{equation}\label{eq:f1}
+	f_1(x)=2\pi^2\bigl(n^2\sin^2(n\pi x)-(n+1)^2\sin^2((n+1)\pi x)\bigr),
+	\qquad
+	c_0:=\sqrt{\frac{\lambda_n}{\lambda_{n+1}}}=\frac{n}{n+1}.
+\end{equation}
+
+\begin{theorem}[$R=1$ 零点结构, 一般 $n\ge2$]\label{thm:r1}
+设 $w_i=i/n$ ($i=0,\dots,n$), $z_i=i/(n+1)$ ($i=1,\dots,n$). 则
+\begin{enumerate}
+	\item[(i)] $f_1$ 在 $(0,1)$ 内恰有 $2n$ 个零点, 全部简单; 升序记为
+	$x_1^*<\cdots<x_{2n}^*$, 且 $x_{2n+1-j}^*=1-x_j^*$ (反射对称);
+	\item[(ii)] 每个胞腔 $(w_{i-1},w_i)$ 内恰有两个零点
+	$x_{2i-1}^*<z_i<x_{2i}^*$;
+	\item[(iii)] $f_1(0+)=f_1(1-)=0$; 存在 $\delta_0>0$ 使 $f_1<0$ 于
+	$(0,\delta_0)\cup(1-\delta_0,1)$; 在 $2n+1$ 个区间
+	$(0,x_1^*),(x_1^*,x_2^*),\dots,(x_{2n}^*,1)$ 上 $f_1$ 的符号为
+	$(-,+,-,\dots,-)$ 交替;
+	\item[(iv)] $\operatorname{sgn}f_1'(x_j^*)=(-1)^{j+1}$; 方程组
+	$F(1,x)=0$ ($F_j(1,x)=f_1(x_j)/\lambda_{n+1}$, $j=1,\dots,2n$) 在升序区域
+	$U$ 内只有解 $x^*=(x_1^*,\dots,x_{2n}^*)$, 且
+	\begin{equation*}
+		\det D_xF(1,x^*)=\prod_{j=1}^{2n}\frac{f_1'(x_j^*)}{\lambda_{n+1}}
+		\neq0,\qquad
+		\operatorname{sgn}\det D_xF(1,x^*)=(-1)^n.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Wronskian: $W=u_{n+1}'u_n-u_{n+1}u_n'=-2(n+1)\pi\sin(\pi x)<0$ 于 $(0,1)$
+(直接代入 $u_k=\sqrt2\sin(k\pi x)$). 商 $Q=u_{n+1}/u_n$: 在每个胞腔上
+$Q'=W/u_n^2<0$; 在 $(w_{i-1},z_i)$ 上 $Q$ 与 $u_n$ 同号、在 $(z_i,w_i)$ 上异号,
+故 $|Q|$ 在 $(w_{i-1},z_i)$ 上从 $+\infty$ (中间胞腔) 或 $q_0=(n+1)/n>c_0$
+(首胞腔) 严格降到 $0$, 在 $(z_i,w_i)$ 上从 $0$ 严格升到 $+\infty$ (中间胞腔)
+或 $|q_1|=(n+1)/n>c_0$ (末胞腔). 由 $f_1=\lambda_nu_n^2\bigl(1-(|Q|/c_0)^2\bigr)$:
+$f_1=0\iff|Q|=c_0$, 每个胞腔恰有两个解 (首末胞腔因
+$|Q(0+)|=|Q(1-)|=(n+1)/n>c_0$ 亦各有两个), 共 $2n$ 个, 全部简单
+($(|Q|)'=\pm Q'\neq0$ 于 $|Q|=c_0$ 处). 由 $|Q|$ 的单调性, 第 $i$ 个胞腔内的
+两个零点位于 $z_i$ 两侧, 即 $x_{2i-1}^*<z_i<x_{2i}^*$. 这给出 (i)(ii).
+
+对称性: $u_k(1-x)=\sqrt2\sin(k\pi x-k\pi\cdot0)$ 中
+$\sin(k\pi-k\pi x)=\pm\sin(k\pi x)$, 故 $f_1(1-x)=f_1(x)$: 零点集反射不变,
+升序排列即 $x_{2n+1-j}^*=1-x_j^*$.
+
+(iii) 在每个胞腔内: $|Q|>c_0$ 近两端、$|Q|<c_0$ 近 $z_i$ (因 $|Q(z_i)|=0$),
+故 $f_1<0$ 于胞腔两端附近、$f_1>0$ 于 $z_i$ 附近; 跨胞腔连续拼接给出
+$(-,+,-,\dots,-)$. 特别地 $f_1(0+)=f_1(1-)=0$ 且存在 $\delta_0>0$ 使
+$f_1<0$ 于 $(0,\delta_0)\cup(1-\delta_0,1)$ (也可直接展开:
+$f_1(x)=2\pi^2(n^4-(n+1)^4)x^2+O(x^4)<0$).
+
+(iv) 由 $f_1=\lambda_nu_n^2\bigl(1-(|Q|/c_0)^2\bigr)$ 微分: 在 $|Q|=c_0$ 处
+$f_1'=-\lambda_nu_n^2\cdot2c_0(|Q|)'/c_0^2$, 与 $(|Q|)'$ 反号; 在
+$x_{2i-1}^*$ 处 $(|Q|)'<0$, 在 $x_{2i}^*$ 处 $(|Q|)'>0$, 故
+$\operatorname{sgn}f_1'(x_j^*)=(-1)^{j+1}$.
+唯一性: $F_j(1,x)=0\iff x_j\in\{x_1^*,\dots,x_{2n}^*\}$; 升序约束
+$x_1<\cdots<x_{2n}$ 与 $2n$ 个互异零点迫使 $x_j=x_j^*$ 逐项. Jacobi 矩阵:
+$R=1$ 时 $f_1$ 与配置无关, 故 $D_xF(1,x^*)=\operatorname{diag}(f_1'(x_j^*)/\lambda_{n+1})$,
+对角元非零; 符号
+$\prod_{j=1}^{2n}(-1)^{j+1}=(-1)^{\sum_{j=1}^{2n}(j+1)}=(-1)^{n(2n+1)+2n}=(-1)^n$.
+\end{proof}
+
+\begin{corollary}[$n=2$ 闭式]\label{cor:r1n2}
+$n=2$ 时, 令 $t_\pm=(11\pm2\sqrt{10})/36$,
+$\theta_1=\arccos\sqrt{t_+}$, $\theta_2=\arccos\sqrt{t_-}$. 则
+\begin{equation*}
+	x^*=\bigl(\theta_1,\theta_2,\pi-\theta_2,\pi-\theta_1\bigr)/\pi
+	\approx(0.25597364,\,0.38264716,\,0.61735284,\,0.74402636),
+\end{equation*}
+$f_1'(x_j^*)$ 的符号为 $(+,-,+,-)$, 且
+\begin{equation*}
+	\det D_xF(1,x^*)=\frac{\prod_{j=1}^4f_1'(x_j^*)}{(9\pi^2)^4}
+	\approx1.43\times10^5\neq0.
+\end{equation*}
+\end{corollary}
+
+\begin{proof}
+令 $\theta=\pi x$. $f_1=0\iff4\sin^22\theta=9\sin^23\theta$ ($x=1/2$ 不是零点:
+$4\sin^2\pi-9\sin^2(3\pi/2)=-9\neq0$). 用 $\sin3\theta=\sin\theta(3-4\sin^2\theta)$
+与 $\sin2\theta=2\sin\theta\cos\theta$:
+\begin{equation*}
+	\frac{|\sin3\theta|}{|\sin2\theta|}=\frac{|3-4\sin^2\theta|}{|2\cos\theta|}=\frac23
+	\iff |4\cos^2\theta-1|=\frac43|\cos\theta|.
+\end{equation*}
+平方: $(4t-1)^2=16t/9$, $t=\cos^2\theta$, 即 $144t^2-88t+9=0$,
+$t=t_\pm$. 每个 $t_k\in(0,1)$ 给出两个 $\theta\in(0,\pi)$:
+$\arccos\sqrt{t_k}$ 与 $\pi-\arccos\sqrt{t_k}$; 因 $t_+>t_-$, 升序为
+$\theta_1<\theta_2<\pi-\theta_2<\pi-\theta_1$, 即 $x_j^*=\theta_j/\pi$,
+对称 $x_{5-j}^*=1-x_j^*$.
+
+简单性: $f_1'(x)=4\pi^3(8\sin2\theta\cos2\theta-27\sin3\theta\cos3\theta)$. 于零点处
+$\sin3\theta=\pm(2/3)\sin2\theta$ (符号按分支), $\sin2\theta\neq0$ (因
+$t_\pm\notin\{0,1\}$), 故 $f_1'=0$ 等价于 $8\cos2\theta\mp18\cos3\theta=0$
+在对应分支. 代入 $\cos2\theta=2t-1$, $\cos3\theta=\pm\sqrt t(4t-3)$: 需检查
+$8(2t_k-1)\pm18\sqrt{t_k}(4t_k-3)\neq0$ 四个量. 数值:
+$t_+=(11+2\sqrt{10})/36$: $2t_+-1=(2\sqrt{10}-7)/18\approx-0.03752$,
+$\sqrt{t_+}(4t_+-3)\approx-0.74577$; $t_-=(11-2\sqrt{10})/36$:
+$2t_--1=-(7+2\sqrt{10})/18\approx-0.74041$, $\sqrt{t_-}(4t_--3)\approx-0.32002$;
+四个线性组合均非零 (量级约 $13$). 故全部零点简单, 符号 $(+,-,+,-)$, 且
+$\det J(1,x^*)=\prod f_1'(x_j^*)/(9\pi^2)^4\approx1.43\times10^5$
+(乘积约 $8.91\times10^{12}$, 除以 $(9\pi^2)^4\approx6.23\times10^7$).
+\end{proof}
+
+\section{\texorpdfstring{$R\to1$}{R to 1} 局部定理 (STRICT)}\label{sec:local}
+
+固定图案 $\sigma\in\{\mathrm{SUP},\mathrm{INF}\}$, 记
+\begin{equation*}
+	F_j(R,x):=\frac{f(x_j)}{\lambda_{n+1}},\qquad
+	j=1,\dots,2n,\quad x\in U,
+\end{equation*}
+其中 $U=\{0<x_1<\cdots<x_{2n}<1\}$ 为升序区域, $f,\lambda_{n+1}$ 由图案
+$\sigma$ 的配置 $x$ 决定. 本节三个引理与定理对所有 $n\ge2$ 与两种图案成立,
+且 $f_R$ 表示配置 $x$ (位于 $\overline U$ 即可) 对应的切换函数.
+
+\begin{lemma}[Wronskian 符号, 任意正密度]\label{lem:W}
+对任意逐块常值 $\rho>0$, $W:=u_{n+1}'u_n-u_{n+1}u_n'<0$ 于 $(0,1)$.
+\end{lemma}
+\begin{proof}
+与定理~\ref{thm:structure}(a) 的证明相同, 该证明未使用带自洽条件.
+\end{proof}
+
+\begin{lemma}[零点一致远离端点]\label{lem:away}
+存在 $\varepsilon_0>0$, $\delta_1>0$ 使得: 对一切 $R\in(1,1+\varepsilon_0]$、
+一切配置 $x\in\overline U$ 与两种图案, $f_R<0$ 于
+$(0,\delta_1)\cup(1-\delta_1,1)$. 特别地, $f_R$ 在 $(0,1)$ 内的零点都落在
+$[\delta_1,1-\delta_1]$ 内.
+\end{lemma}
+\begin{proof}
+记 $a_k=u_k'(0)>0$, $q_0=a_{n+1}/a_n$, $c=\sqrt{\lambda_n/\lambda_{n+1}}$.
+$(R,x)\mapsto(\lambda_k,a_k)$ 在紧集 $[1,1+\varepsilon_0]\times\overline U$ 上连续
+(简单谱的连续依赖), 而在 $R=1$ 时 $q_0=(n+1)/n$, $c=n/(n+1)$, 故存在
+$\eta>0$ 使 $q_0-c\ge\eta$ 一致 (取 $\varepsilon_0$ 足够小). 商
+$|Q|=|u_{n+1}|/|u_n|$: 在 $(0,z_1)$ 上 $u_nu_{n+1}>0$ 且 $u_n\neq0$,
+故 $(|Q|)'=Q'=W/u_n^2<0$ (引理~\ref{lem:W}); $|Q(0+)|=q_0$. 在首块
+$(0,x_1)$ 上 $\rho\equiv\sigma_1$, 由 $u_k(x)=a_kx+O(x^3)$ 得
+\begin{equation*}
+	|Q(x)|=q_0-\beta x^2+O(x^3),\qquad
+	\beta=\frac{(\lambda_{n+1}-\lambda_n)\sigma_1a_{n+1}}{6a_n}>0,
+\end{equation*}
+其中 $\beta$ 与 $O(x^3)$ 的常数在紧集上一致有界 (特征函数一致 $C^3$).
+取 $\delta_1>0$ (与 $\delta_1<z_1$, $z_1$ 为 $u_{n+1}$ 的首结点, 一致正下界)
+使 $|Q(x)|\ge c+\eta/2$ 于 $x\in(0,\delta_1)$. 设 $x_1$ 为 $f_R$ 在 $(0,1)$ 内的
+首零点; 若 $x_1<\delta_1$, 则上述估计在 $(0,x_1)$ 上成立, 由连续性
+$|Q(x_1)|\ge c+\eta/2$; 但 $f_R(x_1)=0$ 且 $u_n(x_1)\neq0$ 给出
+$|Q(x_1)|=c$, 矛盾. 故 $x_1\ge\delta_1$, 且于 $(0,x_1)$ 上 $|Q|>c$, 即
+$f_R<0$. 末端点对称论证: 于 $(z_{2n},1)$ 上 $(|Q|)'>0$, $|Q(1-)|=|q_1|>c$
+(一致), $|Q(x)|=|q_1|-\beta_1(1-x)^2+O((1-x)^3)$, 同理得末零点
+$x_{2n}\le1-\delta_1$ 且 $f_R<0$ 于 $(1-\delta_1,1)$. 证毕.
+\end{proof}
+
+\begin{lemma}[简单零点处的零点隔离]\label{lem:isol}
+设 $R_k\to1+$, $x^{(k)}\in\overline U$, 并设 $z_k\in[\delta_1,1-\delta_1]$
+满足 $f_{R_k}(z_k)=0$ (对配置 $x^{(k)}$), $z_k\to z$. 则 $z=x_j^*$ 是 $f_1$ 的
+某个 (简单) 零点, 且对充分大的 $k$, $f_{R_k}$ 在 $z$ 的某固定邻域内恰有一个
+零点.
+\end{lemma}
+\begin{proof}
+谱的连续性: $\lambda_k(R_k,x^{(k)})\to(k\pi)^2$; 归一化特征函数在
+$C^1([0,1])$ 中收敛到 $\sqrt2\sin(k\pi x)$: 由 $-u''=\lambda\rho u$ 得
+$\|u''\|_\infty$ 一致有界, Arzel\`a--Ascoli 给出 $C^1$ 预紧, 极限唯一
+(解 $R=1$ 问题). 故 $f_{R_k}\to f_1$ 于 $C^1([0,1])$ (一致).
+由 $f_{R_k}(z_k)=0$ 得 $f_1(z)=0$; $z\in[\delta_1,1-\delta_1]$ 排除端点零点,
+故 $z=x_j^*$ 且 $f_1'(z)\neq0$ (定理~\ref{thm:r1}(i)(iv)). 取 $\rho_0>0$ 使
+$f_1$ 在 $[z-\rho_0,z+\rho_0]$ 上严格单调且 $f_1(z-\rho_0)f_1(z+\rho_0)<0$;
+由 $C^1$ 收敛, 对充分大的 $k$, $f_{R_k}'$ 于该区间保持 $f_1'$ 的符号且
+$f_{R_k}(z\pm\rho_0)$ 保号, 故 $f_{R_k}$ 在 $(z-\rho_0,z+\rho_0)$ 内恰有一个
+零点.
+\end{proof}
+
+\begin{theorem}[局部存在唯一与对称性]\label{thm:local}
+存在 $\varepsilon>0$ (与 $n,\sigma$ 有关) 使得: 对每个 $R\in(1,1+\varepsilon)$,
+方程组 $F(R,x)=0$ 在 $U$ 中恰有一个解 $x_\sigma^*(R)$; 它满足带自洽条件
+(定义~\ref{def:bc}), 反射对称:
+$x_{\sigma,j}^*(R)+x_{\sigma,2n+1-j}^*(R)=1$, 且映射
+$R\mapsto x_\sigma^*(R)$ 解析, $x_\sigma^*(R)\to x^*$ ($R\to1+$),
+其中 $x^*$ 是定理~\ref{thm:r1} 中的 $R=1$ 解.
+\end{theorem}
+
+\begin{proof}
+\textbf{解析性与非退化性.} 转移矩阵 $M(s;R,x)$ (逐块正弦/余弦传播) 对
+$(R,x)$ 解析; 谱简单且 $\lambda_n,\lambda_{n+1}$ 在 $(1,x^*)$ 的紧邻域上分离
+($\lambda_k\to(k\pi)^2$), 故 $(\lambda_k,u_k)$ 与 $F$ 在该邻域上解析
+(简单谱的解析扰动理论). 由定理~\ref{thm:r1}(iv): $F(1,x^*)=0$ 且
+$D_xF(1,x^*)=\operatorname{diag}(f_1'(x_j^*)/\lambda_{n+1})$ 非奇异.
+隐函数定理给出唯一的解析分支 $x(R)$, $x(1)=x^*$, 满足 $F(R,x(R))=0$,
+定义于 $R\in(1-\varepsilon_0,1+\varepsilon_0)$.
+
+\textbf{唯一性 (在 $U$ 中).} 反设存在 $R_k\to1+$ 与 $x^{(k)}\in U$,
+$F(R_k,x^{(k)})=0$, $x^{(k)}\neq x(R_k)$. 由引理~\ref{lem:away}, 每个
+$x_j^{(k)}$ 都是 $f_{R_k}$ 在 $[\delta_1,1-\delta_1]$ 内的零点; 取收敛子列
+$x^{(k)}\to\bar x\in\overline U$. 由 $f_{R_k}\to f_1$ 一致 (引理~\ref{lem:isol}
+的证明), $f_1(\bar x_j)=0$; 因 $\bar x_j\in[\delta_1,1-\delta_1]$,
+$\bar x_j\in\{x_1^*,\dots,x_{2n}^*\}$. 且 $\bar x_j\neq\bar x_{j'}$
+($j\neq j'$): 否则两个零点 $x_j^{(k)},x_{j'}^{(k)}$ 收敛到同一简单零点,
+与引理~\ref{lem:isol} 的隔离性矛盾. 于是 $\bar x_1<\cdots<\bar x_{2n}$ 取遍
+$f_1$ 的 $2n$ 个零点, 即 $\bar x=x^*$. 由 $D_xF(1,x^*)$ 非奇异与隐函数定理的
+局部唯一性, $x^{(k)}=x(R_k)$ 于充分大的 $k$, 矛盾. 唯一性得证.
+
+\textbf{对称性.} 反射 $\bar x_j:=1-x_{2n+1-j}$ 将图案 $\sigma$ 的配置映为同图案
+配置 ($\rho_{\bar x}(y)=\rho_x(1-y)$, 因图案回文 $\sigma_i=\sigma_{2n+2-i}$).
+反射后的特征函数为 $\tilde u_k(y)=\pm u_k(1-y)$, 特征值不变 (简单谱下反射
+共轭), 故
+\begin{equation*}
+	F_j(R,\bar x)=\frac{\lambda_n\tilde u_n(\bar x_j)^2-\lambda_{n+1}\tilde u_{n+1}(\bar x_j)^2}{\lambda_{n+1}}
+	=\frac{f(x_{2n+1-j})}{\lambda_{n+1}}=F_{2n+1-j}(R,x),
+\end{equation*}
+即 $F(R,\bar x)=PF(R,x)$, $P$ 为反对角置换. 因 $x^*=\bar x^*$ (定理~\ref{thm:r1}(i)),
+分支 $x(R)$ 与 $\bar x(R)$ 都是通过 $(1,x^*)$ 的解分支; 由唯一性,
+$x(R)=\bar x(R)$ 于 $R\in(1,1+\varepsilon)$. 故 $x_\sigma^*(R)$ 反射对称.
+
+\textbf{带自洽.} (i) 由构造成立. (ii) 在 $R=1$ 极限处, 由
+定理~\ref{thm:r1}(iii): $f_1$ 在 $2n+1$ 个区间上的符号为 $(-,+,-,\dots,-)$.
+对 SUP 图案, $\rho=1$ 块恰为奇数号区间 ($f_1<0$), $\rho=R$ 块恰为偶数号区间
+($f_1>0$); 对 INF 图案恰好互换. 分支块中点收敛到极限块中点 ($x_j(R)\to x_j^*$),
+且 $f_R\to f_1$ 一致 (在 $[0,1]$ 上), 故对 $R-1$ 充分小, 符号图案保持:
+SUP 下 $f<0$ 于 $\rho=1$ 块、$f>0$ 于 $\rho=R$ 块 (INF 反之). 证毕.
+\end{proof}
+
+\begin{remark}
+定理~\ref{thm:local} 对 $n\ge2$ 与两种图案同时成立; 对 $n=1$ 的对应结论
+(3 块族) 已包含在 [2] 的全 $R$ 证明中. 注意 $R=1$ 处两图案的系统重合
+($\rho\equiv1$), 分支 $x_\mathrm{SUP}^*(R)$ 与 $x_\mathrm{INF}^*(R)$ 都从同一
+$x^*$ 出发但属于不同子族.
+\end{remark}
+
+\section{全局分类框架与开放条件 (STRICT 陈述)}\label{sec:global}
+
+记 $\Sigma_\sigma:=\{(R,x)\in(1,\infty)\times U: F_\sigma(R,x)=0\}$.
+
+\begin{conjecture}[全局分类]\label{conj:global}
+对每个 $R>1$, $n\ge2$, 图案 $\sigma\in\{\mathrm{SUP},\mathrm{INF}\}$:
+方程组 $F_\sigma(R,\cdot)=0$ 在 $U$ 中恰有一个解 $x_\sigma^*(R)$, 且它反射对称.
+由此, $D_n$ 在该图案族内的全局极值子 (极大化子 SUP / 极小化子 INF) 唯一且对称.
+\end{conjecture}
+
+\begin{theorem}[分类框架]\label{thm:framework}
+设以下两个条件成立:
+\begin{enumerate}
+	\item[(G1$'$)] (非退化且定号) 对一切 $(R,x)\in\Sigma_\sigma$:
+	$\det D_xF_\sigma(R,x)\neq0$, 且 $\operatorname{sgn}\det D_xF_\sigma(R,x)=(-1)^n$;
+	\item[(G2)] (无边界生成) 对每个紧区间 $[1,R_0]$, 存在 $\eta(R_0)>0$ 使得
+	一切 $(R,x)\in\Sigma_\sigma$ ($R\le R_0$) 满足所有块宽 $\ge\eta(R_0)$
+	(由紧性, 这等价于 $\Sigma_\sigma$ 在 $[1,R_0]\times\partial U$ 上无聚点).
+\end{enumerate}
+则猜想~\ref{conj:global} 成立: 对每个 $R>1$, $F_\sigma(R,\cdot)=0$ 在 $U$ 中
+恰有一个解 $x_\sigma^*(R)$, 反射对称, 连续依赖 $R$, 且等于
+定理~\ref{thm:local} 的局部分支 (唯一性的整体延拓); 进而 (由 [1] 的有限块
+约化与恰 $2n$ 开关定理) $D_n$ 的全局极值子唯一且对称.
+\end{theorem}
+
+\begin{proof}
+固定 $R_0>1$. 记 $m_*$ 为 $x^*$ 的最小块宽 ($>0$),
+$\tilde\eta=\min(\eta(R_0),m_*)$, $W_{\tilde\eta}=\{x\in U: \text{所有块宽}
+>\tilde\eta/2\}$. 由 (G2), 对每个 $R\in(1,R_0]$, $F_\sigma(R,\cdot)=0$ 的全部
+解都落在 $K_{R_0}=\{x\in U: \text{块宽}\ge\eta(R_0)\}\subset W_{\tilde\eta}$ 内;
+而 $F_\sigma(1,\cdot)=0$ 在 $U$ 中只有解 $x^*$ (定理~\ref{thm:r1}(iv)), 且
+$x^*\in W_{\tilde\eta}$ (块宽 $\ge m_*\ge\tilde\eta>\tilde\eta/2$). 对
+$R\in[1,R_0]$, $F_\sigma(R,\cdot)$ 在 $\partial W_{\tilde\eta}$ 上无零点
+(零点只可能在 $K_{R_0}\cup\{x^*\}$, 均在 $W_{\tilde\eta}$ 内部), 故拓扑度
+$\deg(F_\sigma(R,\cdot),W_{\tilde\eta},0)$ 良定义且不依赖 $R\in[1,R_0]$
+(同伦不变性). 在 $R=1$ 处, 唯一零点 $x^*$ 非退化且
+$\operatorname{sgn}\det D_xF_\sigma(1,x^*)=(-1)^n$
+(定理~\ref{thm:r1}(iv)), 故度 $=(-1)^n$. 对 $R\in(1,R_0]$, (G1$'$) 给出
+\begin{equation*}
+	(-1)^n=\deg
+	=\sum_{F_\sigma(R,x)=0}\operatorname{sgn}\det D_xF_\sigma(R,x)
+	=\#\{x\in U: F_\sigma(R,x)=0\}\cdot(-1)^n,
+\end{equation*}
+故恰有一个解. $R_0$ 任意, 唯一性对一切 $R>1$ 成立; 记该解为
+$x_\sigma^*(R)$. 连续性: 若 $R_k\to R_*$, 由 (G2) (取 $R_0>R_*$) 解在
+$K_{R_0}$ 内, 子列收敛到 $F_\sigma(R_*,\cdot)=0$ 的解, 唯一性给出
+$x_\sigma^*(R_k)\to x_\sigma^*(R_*)$. 对称性: 等变性
+$F_\sigma(R,\bar x)=PF_\sigma(R,x)$ (定理~\ref{thm:local} 证明中的恒等式,
+对一切 $(R,x)$ 成立) 与唯一性给出 $x_\sigma^*(R)=\overline{x_\sigma^*(R)}$.
+局部分支的等同: $R\in(1,1+\varepsilon)$ 时唯一解即定理~\ref{thm:local}
+的分支. 极值性: 全局极值子存在 (弱星紧性), bang--bang 且恰有 $2n$ 个有效
+开关 [1, 定理 1], 故为 $U$ 内带自洽驻点, 从而是 $F_\sigma(R,\cdot)=0$ 的解;
+唯一性给出极值子 $=x_\sigma^*(R)$, 对称. 证毕.
+\end{proof}
+
+\begin{remark}[开放条件的现状 (诚实登记)]
+\begin{itemize}
+	\item[(G1$'$)] 数值上: $n=2$, 对称分支上 $\det J>0$ 对
+	$R\in[1.05,100]$ (SUP: $1.38\times10^5\to330$; INF: $1.22\times10^5\to0.123$),
+	未见零点 (\EVIDENCE, 见总结文档附表). 分析证明缺失: $J$ 在对称点满足
+	反对合 $J=-PJP$ (等变性 $F(R,\bar x)=PF(R,x)$ 的微分, 因反射的微分是
+	$-P$), 故在对称/反对称坐标下 $J=\begin{pmatrix}0&A\\B&0\end{pmatrix}$,
+	$\det J=(-1)^n\det A\det B$ 化为两个 $n\times n$ 块的乘积; 需要证明这两块
+	行列式恒非零且总符号为 $(-1)^n$.
+	\item[(G2)] 数值上: 全部侦察种子 (约 2000 次求解) 未发现任何内部非对称解
+	或边界聚点 (\EVIDENCE). 分析证明缺失: 需证块宽沿 $\Sigma_\sigma$ 在紧
+	$R$ 区间上一致正; 等价地, 证明退化配置 (重合开关) 处残差系统横截可解性
+	失败.
+	\item 对称分支的 $R\to\infty$ 行为: SUP 分支 $R$ 块宽 $\to0$ (中心质量
+	钉扎, $D\to4\pi^2$), INF 分支 $D\to0$; 这与 (G2) 不矛盾 (G2 只要求有限
+	$R$).
+\end{itemize}
+\end{remark}
+
+\section{数值交叉检验 (EVIDENCE, 不构成证明)}\label{sec:evidence}
+
+以下全部为数值证据, 不进入定理~\ref{thm:structure}--\ref{thm:local} 与
+定理~\ref{thm:framework} 的逻辑链.
+
+\begin{itemize}
+	\item $R=1$ 零点结构 (一般 $n$): 对 $n=2,\dots,8$, 数值求根
+	$f_1(x)=2\pi^2(n^2\sin^2(n\pi x)-(n+1)^2\sin^2((n+1)\pi x))=0$:
+	\item $R=1$ 零点结构 (一般 $n$): 对 $n=2,\dots,8$, 数值求 $f_1=0$ 的根
+	(\eqref{eq:f1}):
+	零点数恰为 $2n$, 全部简单 ($|f_1'|>10^3$), 反射对称到机器精度,
+	$\operatorname{sgn}\prod_jf_1'(x_j^*)=(-1)^n$, 区间符号图案
+	$(-,+,-,\dots,-)$: 全部与定理~\ref{thm:r1} 一致. 例 ($n=2$):
+	$x^*\approx(0.25597364,0.38264716,0.61735284,0.74402636)$,
+	$f_1'(x_j^*)\approx(1626.53,-1835.54,1835.54,-1626.53)$,
+	$\prod f_1'(x_j^*)/(9\pi^2)^4\approx1.43180\times10^5$.
+	\item $R=1.05$ 处数值 $\det J=1.3765\times10^5$ 与闭式
+	$1.43180\times10^5$ 相对差 $4\%$ (因 $R=1.05$ 未到极限).
+	\item 对称分支 (n=2) 沿 $R$ 的 $\det J$ 与 $D$: 见附表.
+	\item 侦察 (n=2..5, $R\in\{2,4,10\}$, 两图案): 均匀单纯形随机种子 +
+	反对称扰动种子 + 对称扰动种子; 残差阈值 $10^{-7}$ 接受, 聚类 (容忍度
+	$10^{-6}$), 带匹配检验 (要求块中点 $|f|/\lambda_{n+1}>10^{-6}$ 排除重合
+	开关伪根). 结论: 每个图案恰有一个带自洽驻点, 反射对称到 $10^{-11}$ 量级;
+	其余全部驻点为零宽块退化伪根 (块中点 $|f|/\lambda_{n+1}\lesssim10^{-9}$).
+	\item 反对称平面系统网格 (n=2, $R=4$): SUP 238 起点, INF 221 起点;
+	全部收敛到对称解或零宽块伪根, 无非对称内部带自洽解.
+	\item 对称化不等式检验 (失败路线): 边缘反射 $\bar x_j=1-x_{2n+1-j}$ 给出
+	$D(\bar x)\equiv D(x)$ (反射协变性, \STRICT), 故该比较是恒等式, 不能作为
+	证明工具. 密度平均对称化 $\bar\rho=(\rho_x+\rho_{\bar x})/2$ (取值
+	$\{1,(1+R)/2,R\}$): n=2, $R=4$, 每图案 200 个随机配置:
+	$D(\bar\rho)-D(x)<0$ 于 SUP 118 例、INF 116 例, $>0$ 于其余;
+	$\max|D(\bar\rho)-D(x)|\approx29.6$ (SUP) 与 $30.4$ (INF). 两种方向均大量
+	出现, 无单调不等式成立. (早期记录的反例数字 $33/200$ 与 $57/200$ 出自
+	未保留的变体, 无法复现; 定性结论一致.)
+\end{itemize}
+
+\begin{table}[ht]
+\centering
+\caption{n=2 对称分支沿 $R$ 的数据 (EVIDENCE)}
+\begin{tabular}{rrrrrr}
+\toprule
+$R$ & SUP $D$ & SUP $\det J$ & INF $D$ & INF $\det J$ \\
+\midrule
+1.05 & 49.846 & $1.38\times10^5$ & 46.525 & $1.22\times10^5$ \\
+1.2  & 51.211 & $1.23\times10^5$ & 39.579 & $7.97\times10^4$ \\
+1.5  & 53.492 & $1.02\times10^5$ & 30.170 & $3.86\times10^4$ \\
+2.0  & 56.405 & $7.84\times10^4$ & 21.217 & $1.50\times10^4$ \\
+3.0  & 60.393 & $5.26\times10^4$ & 12.878 & $3.87\times10^3$ \\
+4.0  & 63.093 & $3.87\times10^4$ & 9.023  & $1.45\times10^3$ \\
+6.0  & 66.658 & $2.42\times10^4$ & 5.460  & $3.54\times10^2$ \\
+10.0 & 70.681 & $1.26\times10^4$ & 2.901  & $5.68\times10^1$ \\
+20.0 & 75.244 & $4.75\times10^3$ & 1.238  & $4.29\times10^0$ \\
+50.0 & 79.626 & $9.47\times10^2$ & 0.409  & $1.23\times10^{-1}$ \\
+100.0& 82.224 & $3.30\times10^2$ & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[涉及到的数学知识]
+本工作涉及: (i) Feynman--Hellmann 公式与归一化符号约定
+($\delta\lambda_k=-\int\delta\rho\,\lambda_ku_k^2\,dx$), 一维变分与饱和律;
+(ii) Sturm 振荡与严格交错定理, Wronskian 符号分析 ($W'=(\lambda_n-\lambda_{n+1})\rho u_nu_{n+1}$);
+(iii) 商函数 $Q=u_{n+1}/u_n$ 的胞腔单调性与水平集计数 ($|Q|=c$);
+(iv) 隐函数定理与解析分支, 简单谱的解析扰动理论 (转移矩阵方法);
+(v) 反射等变性与伪反自伴 Jacobi 结构 ($J=-PJP$, 对称方向映到反对称方向);
+(vi) 闭式三角方程求解 ($\sin3\theta/\sin2\theta$ 恒等式, 二次方程
+$144t^2-88t+9=0$, 判别式含 $\sqrt{10}$);
+(vii) 谱的连续性 (紧区间上特征函数与 $f$ 的一致 $C^1$ 收敛) 用于边界排除论证;
+(viii) 拓扑度与同伦不变性 (把 $R=1$ 处的局部唯一性推广为全 $R$ 唯一性的
+标准框架).
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{nge2} 有限块约化与恰 $2n$ 开关定理 (项目文档
+\url{SL_gap_nge2_finite_reduction_proof.pdf}, \url{SL_gap_nge2_exact_2n_switches_proof.pdf}),
+2026-08-10.
+\bibitem{n1} n=1 全部 $R$ 证明 (项目文档
+\url{SL_gap_n1_symline_allR_proof.pdf}, \url{SL_gap_n1_well_rigidity_allR_proof.pdf},
+\url{SL_gap_n1_O3a_phase_rigidity_proof.pdf}), 2026-08-10 至 2026-08-12.
+\bibitem{recon} 本会话侦察总结: \url{SL_gap_nge2_symmetry_recon.pdf}, 2026-08-12.
+\end{thebibliography}
+
+\end{document}

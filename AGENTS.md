@@ -2182,3 +2182,117 @@
   闭合: SUP (O1/O2/O3b/O3a-C1) + INF (O1-INF/a/b/a'/d) + 定理 A (c).
 - 校验: validate_project.py 复跑仍为已知 INVALID (knowledge/ 缺 Blueprint v2.1
   结构文件, lean-proof/audit_report.md 受保护工件位置; 均为既有登记问题).
+
+### 2026-08-12 会话 77 (lean-proof 稳定性线收尾: SL/Stability.lean 编译通过)
+- 任务: 承接稳定性形式化线 (SL_stability_moment_jump.tex Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数), 修复 Stability.lean 最后 4 处编译错误并完成机器验证.
+- 修复 (均就地):
+  - sum_min_half_le_log_prod / sum_log_le_log_prod 的 log_prod 分支缩进错误 (have : 0 <= eps k 与 nlinarith 多缩进 2 空格).
+  - tendsto_half_S_sub_beta_log: hb0 由 linarith 单独失败改为 linarith [hbm, hmax0] (hmax0: (0:ℝ) <= max 1 (X+1) 由 le_trans (by norm_num) (le_max_left 1 (X+1))); mul_le_mul 第三参数改为 (by norm_num : (0:ℝ) <= 1); X <= max 1 (X+1) 用 calc X <= X+1 (linarith) + le_max_right 1 (X+1).
+- 验证: lake env lean SL\Stability.lean 零错误; lake build 全库 8569 jobs 通过; SL/ 下 11 个 .lean 文件 sorry/admit/axiom 扫描 0 命中; run-manifest.json 重新生成 (11 文件, 含 SHA-256 输入哈希).
+- 文档: STATUS.md 更新 (头部 10 -> 11 文件; 第 1 节新增 Stability.lean 行: Thm 2.2 泛函核心 superpolynomial_of_divergent_sum/logsum + annihilate_of_superpolynomial/divergent_sum + stability_moments_zero, Thm 2.3 尖锐性 sharp_product_eq/sharp_recurrence/sharp_poly_bound/sharp_term_bound/sharp_series_summable; 证据段 9 -> 11 文件, 8566 -> 8569 jobs; 矩阵行 SL_stability_moment_jump.tex 形式化状态 -> 部分 (已覆盖 2.2 泛函核心 + 2.3 级数); 路线图第 4 项标记完成核心); README.md 同步 (结论段, 目录树去重并新增 Stability.lean, 命名空间清单).
+- 诚实说明: Stability.lean 覆盖 Thm 2.2 的代数/泛函核心与 Thm 2.3 的级数部分; 完备性收尾 w=0 (多项式稠密性) 与 H 空间分析未形式化 (同 Completeness O16 缺口); §4 后门槛分类 (S-门槛/门槛线/Krein 余量) 未形式化; 未 commit/push (等用户指示).
+- 维护: 本文件追加会话 77 记录.
+
+### 2026-08-12 会话 78 (H^3 线解析 H1 矩上界形式化: SL/H3MomentBound.lean + 接入 H3Completeness)
+- 任务: 按 lean-proof/STATUS.md 路线图第 8 项推进 H^3 线剩余缺口 - 解析 H1 矩多项式上界
+  (docs/SL_h3_completeness_proof.tex 第 5 节引理 6, Cauchy-Schwarz + sqrt 初等估计).
+- 新增 `SL/H3MomentBound.lean` (443 行, R 上积分形式):
+  - 边界差泛函 delta p = p(1)-p(-1) (LinearMap), delta X^{2m}=0 / delta X^{2m+1}=2 (Even/Odd.neg_one_pow).
+  - h1MomentFunctional M(p) = ∫wd·p' + c∫w·p - (1/2)·(p(1)-p(-1))·∫wd; M(X^{2m})=momentsEven,
+    M(X^{2m+1})=momentsOdd 恒等式 (derivative_moment 辅助引理 + simp only smul_eq_mul + omega 索引归约).
+  - sqrt 初等估计 (m>=1): (2m)√(2/(4m-1))<=2√m, (2m+1)√(2/(4m+1))<=3√m,
+    √(2/(4m+1))<=√2·√m, √(2/(4m+3))<=√2·√m, √2<=√2·√m (平方链 + hrew/div_le_iff₀ + nlinarith).
+  - Cauchy-Schwarz 上界: |M_{2m}|<=(2√∫wd²+c√2·√∫w²)√m, |M_{2m+1}|<=((3+√2)√∫wd²+c√2·√∫w²)√m
+    (复用 SL.MomentBound.moment_bound, abs 拆分用独立 h1'/h2' 引理避免 rw 顺序吞匹配).
+- `SL/H3Completeness.lean` 追加 h1_moments_zero_of_orthogonal: 用 H3MomentBound 的具体上界
+  (hC = (3+√2)·√∫wd² + c√2·√∫w²) 实例化 all_moments_zero_of_orthogonal 的 hbdE/hbdO,
+  even 侧经 2<=3+√2 传递, odd 侧系数相等 (ring), 闭合 H^3 矩全零 (M_0=M_1=0 与正交条件仍为假设).
+- 编译修复记录 (均就地): rw 匹配 delta 结构体需先 unfold + simp 展开; smul_eq_mul 只重写首个匹配,
+  odd 项需 simp only 全量转换; field_simp 引入除式假说致 nlinarith 失败, 改 hrew + div_le_iff₀;
+  add_le_add_right 参数顺序与 AddLeftMono 实例卡住, 改 add_le_add hAB le_rfl;
+  |-S| 与 |S| 非 definitional 相等, rw [← abs_neg S] 预处理; PowerShell 管道传中文需设
+  $OutputEncoding/Console UTF-8 (here-string 经 stdin 默认 GBK 会丢中文).
+- 验证: lake build 全库 8570 jobs 通过; SL/ 下 12 个 .lean 文件 sorry/admit/axiom 扫描 0 命中;
+  run-manifest.json 重新生成 (17 个文件扫描含根目录测试文件, 0 命中, build exit 0).
+- 文档: STATUS.md 更新 (头部 11 -> 12 文件, 会话 77 -> 78; 第 1 节新增 H3MomentBound 行并更新
+  H3Completeness 行; 证据段 11 -> 12 个 SL 文件, 8569 -> 8570 jobs; 矩阵行 SL_h3_completeness_proof.tex
+  -> 部分 (代数核心 + 解析上界); 路线图第 8 项更新); README.md 同步 (结论段, 目录树, 命名空间清单).
+- 诚实说明: h1_moments_zero_of_orthogonal 的假设 h0/h1 (M_0=M_1=0) 与正交条件仍为外部假设,
+  等距同构 K_c: H^3->H^1 与 Δw=∫wd (FTC) 胶水未形式化; 源文档第 5 节内积 (7) 与
+  h1MomentFunctional 的等同依赖该 FTC, 登记为剩余缺口; 未 commit/push (等用户指示).
+- 维护: 本文件追加会话 78 记录.
+
+### 2026-08-12 会话 79 (根目录 README.md 更新并同步 GitHub)
+- 任务: 更新 Sturm-Liouville-theory-research 仓库根 README.md, 使其与最新研究/形式化状态一致, 并同步到 GitHub.
+- 更新内容 (README.md):
+  - Lean 部分重写: 机器验证段 9 -> 12 个 SL/ 下 .lean 文件, lake build 8566/8569 -> 8570 jobs;
+    已完成列表补齐 H^3 线 (H3Completeness + H3MomentBound 解析 H1 矩上界), H^s 线第一步
+    (TransferOperator), 稳定性门槛线核心 (Stability), BalancedPhase;
+    未完成列表更新为 STATUS.md 口径 (H^3 等距同构 K_c: H^3->H^1 与 FTC 胶水, H^s 显式正交系,
+    MW 重证, 间距线, 三阶递推, Krein c->0, 分数阶 H^s 与稠密性准则).
+  - 主要结果表新增行: n>=2 相邻间距局部对称性 (R=1 一般 n 反射对称 + R->1 局部唯一性;
+    全局唯一性依赖拓扑度条件 (G1')/(G2), 开放), 引用 docs/SL_gap_nge2_symmetry_local_proof.tex;
+    "部分证明"段 n>=2 条目同步 (局部已证, 全局开放).
+- 入库 (commit 一并携带, 使仓库与 README 口径一致):
+  - 会话 75-78 形式化成果: SL/H3MomentBound.lean, SL/Stability.lean, SL/H3Completeness.lean,
+    lean-proof/README.md, lean-proof/STATUS.md, lean-proof/run-manifest.json;
+  - 会话 58 续作 4b 文档与工具: docs/SL_gap_nge2_symmetry_local_proof.tex/.pdf,
+    docs/SL_gap_nge2_symmetry_recon.tex/.pdf + docs/build 产物, scripts/_gapn2_*.py 与
+    _gapn2_symmetry_recon_n{2..5}_{sup,inf}.json, tools/band-selfconsistency-equivariance.md,
+    runs/R-20260812T090000Z-g1prime-g2/;
+  - state/RESUME.md, state/current.json, tools/README.md.
+  - 排除 (调试残留, 不提交): 根 TestParse.lean, lean-proof/{InTest,Probe,Probe2,TestParse}.lean,
+    lean-proof/_err*.txt, _fix1.py, _write_test.py, scripts/_tmp_update_state.py,
+    scripts/_gapn2_antigrid_log.txt, docs/build/texput.log, _xsoc1_work/ (本地克隆).
+- 同步: push 父类 Zhongshan-Big-Jun/Sturm-Liouville-theory-research main; fork
+  xsoc1/Sturm-Liouville-theory-research 跟进同一提交 (本地 push fork remote).
+- 维护: 本文件追加会话 79 记录.
+### 2026-08-12 会话 58 续作 4b (n>=2 极值子反射对称性收尾: 局部定理闭合 + R=1 一般 n 分析 + 拓扑度框架)
+- 任务: 继续推进概述第 5.5 节开放问题 - n>=2 相邻谱隙极值子的反射对称性与唯一性 (承接
+  有限块约化 + 恰 2n 开关两文档).
+- 主文档重写: docs/SL_gap_nge2_symmetry_local_proof.tex (9 页 PDF 零警告):
+  - 第 2 节结构定理计数修正: 原稿称 |Q| 在首/末胞腔从 +inf 下降, 实际 q0(u_n'(0)>0) 处
+    |Q(0+)|=q0 有限; 现改为中间胞腔从 +inf, 首/末胞腔从有限值 q0=|q1| 出发, 因
+    q0>1>c 每胞腔仍恰 2 个水平集解, 共 2n 个; (f) 明确第 i 胞腔两开关
+    x_{2i-1}<z_i<x_{2i} 及 SUP/INF 并集关系; remark 补一般零点计数公式
+    #Z=2n-2+1{q0>c}+1{|q1|>c} (引用 exact_2n_switches 文档).
+  - 第 3 节 R=1 一般 n>=2 分析 (STRICT 新增): f_1 恰 2n 个简单零点、反射对称、
+    每胞腔恰 2 个、区间符号 (-,+,-,...,-)、f_1(0+)=f_1(1-)=0 且端点附近为负、
+    sgn f_1'(x_j*)=(-1)^{j+1}、sgn det D_xF(1,x*)=(-1)^n; 证明用 Wronskian 直接公式
+    W=-2(n+1)pi sin(pi x)<0 + 商函数胞腔单调性, 无需闭式; n=2 闭式保留为推论:
+    t=(11+-2sqrt10)/36, 零点约 (0.25597364,0.38264716,0.61735284,0.74402636),
+    detJ 约 1.43180e5 (数值复算 prod f1'(xj*)/(9pi^2)^4 = 143179.8687, f1(x*) 残差 8.8e-14).
+    注: 谱符号仍有自证依赖, 摘要与 remark 已如实标注.
+  - 第 4 节 R->1 局部定理 (STRICT): 唯一性边界排除重新论证为引理 (不再有漏洞) -
+    引理 4.2 (零点一致远离端点: q0-c>=eta>0 一致, |Q(x)|=(q0-beta x^2+O(x^3)), 首零点
+    >=delta1, 末端对称, f_R<0 于 (0,delta1)u(1-delta1,1)); 引理 4.3 (简单零点隔离:
+    f_{R_k}->f_1 于 C^1 一致, 极限为简单零点); 唯一性: 极限 xbar=x* + 隐函数局部唯一 +
+    反设矛盾. 对称性: 等变 F(R,xbar)=PF(R,x) (图案回文 sigma_i=sigma_{2n+2-i}) +
+    唯一分支 => 对称; 带自洽 (ii) 由 R=1 极限符号图案 + f_R->f_1 一致.
+  - 第 5 节全局分类框架 (STRICT 陈述): 拓扑度同伦替代旧证; 条件 (G1') det D_xF 非退化
+    且 sgn=(-1)^n 于解簇, (G2) 块宽在紧 R 区间一致正; 度在 R=1 为 (-1)^n, 对
+    R in (1,R0] 有 (-1)^n = #solutions*(-1)^n => 恰一解; 等变 => 对称 => 极值子唯一对称.
+    已修正初稿框架式证明漏洞 (原证声称在 R=1 或分支点终止得矛盾, 前提不闭合);
+    诚实登记 (G1'),(G2) 为开放条件, R->inf 行为与 (G2) 不冲突.
+  - 第 6 节数值 EVIDENCE: n=2..8 的 R=1 零点核验 (全 2n 个、简单、对称、detJ 符号
+    (-1)^n、符号图案匹配); n=2 沿 R 连表的 detJ/D 表; 侦察结果 (n=2..5, R in {2,4,10},
+    两图案, 每图案恰一带自洽驻点, 对称到 1e-11); 反对称平面系统网格; 对称化不等式
+    失败路线 (新数据: SUP 118/200, INF 116/200 个随机例 D(rhobar)<D(rho), 无单调性;
+    旧数字 33/200、57/200 无脚本不可复现, 已按诚实登记处理); 补涉及数学知识板块 8 项
+    (含拓扑度).
+- 侦察文档: docs/SL_gap_nge2_symmetry_recon.tex (5 页 PDF 零警告): 随机侦察/反对称扰动/
+  反对称平面网格/Jacobian 探针方法, 失败路线登记 6 条 (含第 4 节初稿边界排除论证漏洞),
+  严格结果摘要, 开放条件现状, 经验教训 6 条, 数学知识板块, 文献链接.
+- 数值脚本 (全部 EVIDENCE): scripts/_gapn2_symmetry_recon.py, scripts/_gapn2_jacobian_probe.py,
+  scripts/_gapn2_antigrid_search.py; JSON 汇总 scripts/_gapn2_symmetry_recon_n{2..5}_{sup,inf}.json;
+  本会话新复算: R=1 零点结构 n=2..8 全过; R=1 闭式 detJ=143179.8687; 反射协变恒等式
+  D(xbar) 恒等于 D(x) (数值 1e-16); 密度平均对称化无单调性 (可复现数据).
+- 工具库: 新增 tools/band-selfconsistency-equivariance.md (等变恒等式 + 反对合 J=-PJP +
+  detJ=(-1)^n detA detB 交叉块化 + 拓扑度唯一性框架 + R=1 一般 n 分析; 等变 STRICT,
+  (G1')(G2) 开放, 数值 EVIDENCE) + README 索引/速查表/维护日志同步.
+- 诚实标注: 第 5 节 (G1')/(G2) 全局闭合仅给充分性框架, 非全局证明 (文档 5.3 已登记);
+  第 3 节谱符号 (u_k'(0)>0 等) 为 1 维经典结果、自证依赖 (摘要/remark 已标注);
+  全部数值均为 EVIDENCE 不构成证明; 未 commit/push (等待用户指示).
+- 待办: (G1') 对称点 detA, detB 非零且总符号 (-1)^n 的解析证明; (G2) 退化配置横截排除;
+  固定 n 上确界闭式; 若用户需要可制作 PPTX 版交付物.
+- 维护: 本文件追加会话 58 续作 4b 记录; tools/README.md 已同步.

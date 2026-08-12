@@ -25,12 +25,13 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 | {p_n} 在一切整数左定空间 H^s (s >= 1) 完备 | `docs/SL_h3_completeness_proof.tex` | 已证 |
 | n=1 相邻间距极端值: SUP/INF 由 [1,R,1] / [R,1,R] 达到 (相位比刚性, 义务 O1/O2/O3a/O3b 闭合) | `docs/SL_gap_n1_proof.tex` 等 | 已证 |
 | n>=2 相邻间距: 有限块约化 (极值子 bang-bang, 至多 2n+1 块) + 精确 2n 开关定理 (合并相邻同值块后恰 2n 个有效内部开关) | `docs/SL_gap_nge2_finite_reduction_proof.tex`, `SL_gap_nge2_exact_2n_switches_proof.tex` | 已证 |
+| n>=2 相邻间距 (局部): R=1 一般 n 极值子反射对称 (Wronskian 直接公式, 2n 个简单零点) + R->1 局部唯一性与对称性; 全局唯一性依赖拓扑度条件 (G1')/(G2) (开放) | `docs/SL_gap_nge2_symmetry_local_proof.tex` | 已证 (局部) |
 
 ### 部分证明 / 数值强猜想 / 开放问题 (如实标注)
 
 - 固定 n 上确界: 交替配置对称相位结构已证, n=1,2 闭式; 全局极值性与 2n-根计数未证
   (`docs/SL_fixed_n_supremum.tex`, 数值: `docs/SL_ratio_summary.tex`).
-- n>=2 间距极端值的对称性/块数最小性为数值强猜想 (严格部分见上表).
+- n>=2 间距极端值的全局对称性与块数最小性: R=1 与 R->1 局部定理已严格证明 (见上表); 全局唯一性依赖开放条件 (G1')/(G2) (`docs/SL_gap_nge2_symmetry_local_proof.tex` 第 5 节), 其余为数值强猜想.
 - 完整开放问题清单 (权威): `docs/SL_spectral_topics_summary.tex` §5.
 - 文献检索结论: 未检索到与 n>=2 定理直接等价的已发表结果; 项目不声称首创,
   Willner-Mahar 1979 等早期文献为既有工作风险 (各证明文档中有核验记录).
@@ -40,15 +41,21 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
-- **机器验证**: `lean-proof/run-manifest.json` (9 个 .lean 文件, sorry/admit/axiom 命中 0,
-  `lake build` exit 0).
+- **机器验证**: `lean-proof/run-manifest.json` (12 个 SL/ 下 .lean 文件扫描,
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8570 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
-- **已完成**: H^2 完备性证明线完整形式化 (StabilityGrowth / MomentRecurrence / MomentBound /
-  Completeness: 增长引理、矩递推/缩放、L2 矩上界、湮灭 + Weierstrass 收尾);
-  比值上确界证明线的核心三角闭式 (BalancedPhase).
-- **未完成 (已登记)**: H^3/H^s 完备性, 稳定性门槛定理, MW 重证, 间距线 (n=1 定理族,
-  n>=2 开关/约化) 等.
+- **已完成**:
+  - H^2 完备性证明线完整: StabilityGrowth / MomentRecurrence / MomentBound / Completeness
+    (增长引理, 矩递推/缩放, L2 矩上界, 湮灭 + Weierstrass 收尾).
+  - H^3 线: H3Completeness (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound (解析 H1 矩上界,
+    Cauchy-Schwarz, 已接入 hbdE/hbdO 闭合矩全零).
+  - H^s 线第一步: TransferOperator (K_c^{-r} x^k 传输算子闭式 + K_c 双射).
+  - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
+  - 比值上确界证明线核心三角闭式: BalancedPhase.
+- **未完成 (已登记)**: H^3 等距同构 K_c: H^3 -> H^1 与 Δw = ∫wd (FTC) 胶水; H^s 显式完备
+  正交多项式系构造; MW 引理重证; 间距线 (n=1 定理族, n>=2 开关/约化); 三阶递推理论;
+  Krein c->0 极限; 分数阶 H^s 与稠密性准则.
 
 ## 目录结构
 

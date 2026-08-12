@@ -52,6 +52,7 @@ created: 2026-08-04
 - [[krein-sobolev-polynomials]] - Krein-Sobolev 正交多项式
 
 ### 自研方法与技巧
+- [[band-selfconsistency-equivariance]] - 带状自洽等变性: F(R,x̄)=PF(R,x) + 反对合 J=-PJP + 拓扑度唯一性框架 (会话 58 续作 4b, 2026-08-12)
 - [[balanced-phase]] - 平衡相位方法 (会话 5)
 - [[spectral-monotonicity-reduction]] - 谱单调性归约 (会话 5)
 - [[cell-merging]] - 胞界合并构造 (会话 5)
@@ -147,6 +148,7 @@ created: 2026-08-04
 | [[interval-dec-directed-rounding]] | 自研 (O3a I3, 2026-08-09) | 已退役历史 (L7/L8/L9); 被有理包络证书 L10/L11/L12 取代 | 自研方法 |
 | [[rational-envelope-certificates]] | 自研 (会话 44, 2026-08-09) | E1 证书链 57/57 PASS (L10/L11/L12); 55 项事实全部 E1, 不依赖验证器内核 | 自研方法 |
 | [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10) | 定理已证 (独立审计 PASS; 数值 40/40 + 16/16 + mpmath + 光滑 4/4) | 自研方法 |
+| [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12) | 等变恒等式与反对合结构 STRICT; 框架定理已证, (G1')(G2) 开放 (数值 EVIDENCE 支持) | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -158,6 +160,12 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-12 (会话 58 续作 4b): 新增 [[band-selfconsistency-equivariance]] (带状自洽
+  等变性: F(R,x̄)=PF(R,x) 严格恒等式, 对称点反对合 J=-PJP, detJ=(-1)^n detA detB
+  交叉块化, 拓扑度同伦唯一性框架 (G1')(G2) 为开放充分条件; R=1 一般 n 的 f_1
+  显式分析: 恰 2n 个简单零点 + 符号 (-1)^n, Wronskian W=-2(n+1)pi sin(pi x)<0;
+  n=2 闭式 t=(11±2√10)/36; 对称化不等式失败路线登记 118/116 反例, 旧数字
+  33/200、57/200 不可复现已更正; 等变 STRICT, 数值为 EVIDENCE).
 - 2026-08-12 (会话 58 续作): 新增 [[tension-ratio-chain]] (张力比链: 比值
   上界化到退化极限 rho0 + 一维单峰 G-论证, 闭合缺口 (a') 全 R>1 的 KEY LEMMA;
   STRICT, 9 页零警告, 精确有理证书 C1-C5 ALL PASS, 数值为 EVIDENCE);
