@@ -46,7 +46,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
 - **机器验证**: `lean-proof/run-manifest.json` (19 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8576 jobs).
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8577 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
@@ -58,13 +58,14 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
   - $H^s$ 线: TransferOperator ($K_c^{-r} x^k$ 传输算子闭式 + $K_c$ 双射) + HsOrthogonalSystems (传输约化: $Q_n^{(2r)}=K_c^{-r} P_n$ / $Q_n^{(2r+1)}=K_c^{-r} K_n$ 的正交与次数约化, Legendre 闭式 $\deg P_n = n$, aSeq 递推; Legendre/Krein-Sobolev 经典正交性以假设接入).
   - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
   - 比值上确界证明线核心三角闭式: BalancedPhase.
+  - Krein $c \to 0$ 退化极限 (多项式级): KreinDegenerateLimit (c=0 配对 radical = span{1,x}, 低模范数 $K_0$..$K_4$ 闭式, $\|K_4\|^2 \to \infty$, span 分解).
   - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
     (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 $1/(2n+7)$, $3/(2n+9)$) +
     ThirdOrderClassification (Theorem 1 反向: 轨迹 => $\beta \in \{1,-1\}/\{3,1\}$).
     ThirdOrderMinimal (变差常数/第三解: 定理 5 代数核心 + 定理 3 反向).
 - **未完成 (已登记)**: $H^3$ 算符级等距同构 $K_c\colon H^3 \to H^1$ (双射/谱, 需谱论) 与多项式在 $H^1$
   稠密性; $H^s$ 显式正交系的算符级等距与完备性 (谱论/稠密性); MW 引理重证; 间距线 ($n=1$ 定理族, $n \ge 2$ 开关/约化);
-  三阶递推三解 Casoratian 非零与最小解唯一性/渐近 (源中数值部分); Krein $c \to 0$ 极限; 分数阶 $H^s$ 与稠密性准则.
+  三阶递推三解 Casoratian 非零与最小解唯一性/渐近 (源中数值部分); Krein $c \to 0$ 商空间级 (H^1/W \cong L^2_0, quotient/unit, 需泛函分析) 与 n>=4 一般发散增长; 分数阶 $H^s$ 与稠密性准则.
 
 ## 目录结构
 

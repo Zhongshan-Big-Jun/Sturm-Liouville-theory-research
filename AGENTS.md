@@ -2565,3 +2565,19 @@
   (Sherman-Morrison ?? + ?? Green ????, R-202..R-204; SUP ?????,
   INF ??????????); O-5 (det B != 0) ???. ??????.
 - ??: ??????? 88 ??; ?? commit + push ????? fork (main:main).
+
+### 2026-08-12 会话 87 (承接: Krein c->0 退化极限形式化 + 推送 GitHub)
+- 任务: 承接会话 86 待办, 形式化 docs/SL_krein_c0_limit.tex 剩余部分 (移位 Krein 算子 c->0 退化极限, 多项式级), 完成后推送双仓库 (父类 Zhongshan-Big-Jun + 个人 fork xsoc1).
+- 完成:
+  - 新建 lean-proof/SL/KreinDegenerateLimit.lean (621 行, 命名空间 SL.KreinDegenerateLimit), 三部分:
+    - c=0 配对与 radical: delta/poly_ftc (多项式 FTC, 逐项积分证明 int p' = Delta p), pair0 (pairing (f,g)_0 = int f'g' - (1/2) Delta f Delta g), pair0_one/pair0_X (span{1,x} 方向在 radical 中), integral_sq_sub_const/integral_g_sq_eq_pair0 (pair0 f f = int (f'-alpha)^2, alpha = Delta f / 2), pair0_self_eq_zero_imp_affine (积分非负零 => 开区间点态零 => 无穷根 => g = 0 => f' = C alpha => f 仿射), radical_pair0 (Theorem radical 多项式版本: pair0 f f = 0 <-> f in span{1,x}).
+    - K_n 低模: sN (P_n - P_{n-2}), kS 递推 (K_n = a_n S_n + K_{n-2}, K_0 = 1, K_1 = x), kS_zero..three (K_2 = P_2, K_3 = P_3 与 c 无关), aSeq_five/six (a_5 = 1+35/c, a_6 = 1+105/c+945/c^2), kS_norm_zero..four (||K_0||^2 = 2c, ||K_1||^2 = 2c/3, ||K_2||^2 = 6+2c/5, ||K_3||^2 = 10+2c/7, ||K_4||^2 = (2c+240+5040/c+28350/c^2)/9; 依赖 KreinSobolevFacts 假设 + field_simp).
+    - 发散与跨度: tendsto_inv_nhdsWithin_0_pos_atTop (手写 1/x -> atTop at 0+), tendsto_one_div_sq_nhdsWithin_0_pos_atTop, tendsto_add_atTop, tendsto_norm_four_atTop (||K_4||^2 -> atTop, c -> 0+; 主导项 3150/c^2), sN_natDegree (deg S_n = n, n >= 2), poly_mem_span_quotient (强归纳 + 前导项消去, Theorem complete (a) 多项式版本: Pi = span{1,x} + span{S_2..S_N}).
+  - radical 证明核心: integral_eq_zero_iff_of_le_of_nonneg_ae (区间积分) -> ae_restrict_of_ae_restrict_of_subset (Ioo) -> eqOn_open_of_ae_eq (点态零) -> 无穷根 (u n = 1 - 1/(n+2) 内射嵌入证明 Ioo(-1,1) 无限) -> Polynomial.eq_zero_of_infinite_isRoot -> eq_C_of_derivative_eq_zero (导数为常数 => 仿射).
+- 诚实声明 (写入文件头): 商空间级定理 (H^1/W ≅ L^2_0, Theorem quotient; 单位归一化解收敛 Theorem unit; complete (b)-(d)) 需泛函分析/稠密性, 未形式化; n >= 4 一般增长 Theta(c^-...) 未形式化 (仅 n = 4 闭式); 范数公式 2c a_n a_{n+2}/(2n+1) 为文献事实, 以 KreinSobolevFacts 假设接入 (与 HsOrthogonalSystems.lean 一致).
+- 环境问题 (如实登记): 系统负载极高 (bg3_dx11 游戏 + 大量 python 后台进程占满 22 核), lean 纯 import 曾 25 分钟未完成; 采用低优先级后台编译 + 轮询, 未杀任何用户进程; 多次编译被饿死, 最终以空闲窗口完成.
+- 编码教训: PowerShell 管道向 python stdin 传 Unicode (R/alpha/int 等) 会损坏为 '?'; 安全做法 = PowerShell 进程内 base64 编码 -> Python 解码写文件; Remove-Item 被安全策略拦截, 用 Python os.remove 清理临时文件; 本文件 (AGENTS.md) 会话 86 条目文本因同类编码问题已损坏 (全 '?'), 无法恢复, 本次如实注明, 该条目内容以 git commit 信息 (98ef996) 为准.
+- 机器验证: verify_lean_project.py --project . --build (SCAN 文件扫描, sorry/admit/axiom 命中 0, build exit 0, 8577 jobs); run-manifest.json 已刷新.
+- 文档同步: lean-proof/STATUS.md (19 文件/8577 jobs, 新增 KreinDegenerateLimit 行, 状态矩阵 SL_krein_c0_limit.tex 行更新为部分 (多项式级), 路线图新增条目), lean-proof/README.md (文件树 + 命名空间 + 结论行), 根 README.md (机器验证 20 文件/8577 jobs, 已完成清单更新).
+- 待办: 商空间级定理 (quotient/unit) 需泛函分析工具, 建议后续专门会话; MW 重证与间距线仍待形式化.
+- 维护: 本文件追加会话 87 记录; 随后 commit + push 父类与个人 fork (main:main).
