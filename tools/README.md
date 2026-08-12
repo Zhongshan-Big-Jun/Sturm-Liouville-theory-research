@@ -80,6 +80,7 @@ created: 2026-08-04
 - [[symline-n1-monotonicity]] - 对称线 1D 单调性: KEY LEMMA (F~_e 唯一零点) + 精确降维恒等式 (缺口 (a) 闭合, 会话 52, 2026-08-10)
 - [[tension-ratio-chain]] - 张力比链: 比值上界化到退化极限 + 一维单峰不等式 (缺口 (a') 全 R 闭合, 会话 58 续作, 2026-08-12)
 - [[good-root-global-lemma]] - good-root 全局引理: Wronskian 比值单调 + f 零点唯一性, 内部临界点自动 sign-consistent (缺口 (d) 闭合, 会话 58 续作 2, 2026-08-12)
+- [[endpoint-collapse-reduction]] - 端点塌缩归约: w1->0 必得带匹配约化根且 q0=c ((G2) 端点部分, 会话 58 续作 7, 2026-08-13)
 - [[phase-param-2d-certificate]] - 二维相位参数化证书: 相位方程显式反解 + 2D 叶盒 (O3a I3, 2026-08-09)
 - [[true-curve-region-decomposition]] - 真曲线区域分解: T1/T2 双侧全解析化 (定理 5.8 + 5.14, O3a I3, 会话 40/41)
 - [[interval-dec-directed-rounding]] - 十进制定向舍入区间引擎: 单变量符号事实的严格认证 (O3a I3, 会话 40 续, 2026-08-09)
@@ -143,6 +144,7 @@ created: 2026-08-04
 | [[symline-n1-monotonicity]] | 自研 (会话 52, 2026-08-10) | 定理已证 (STRICT, 10 页零警告; W0 证书 sympy 全过; 数值为 EVIDENCE) | 自研方法 |
 | [[tension-ratio-chain]] | 自研 (会话 58 续作, 2026-08-12) | 定理已证 (STRICT, 9 页零警告; 精确有理证书 C1-C5 ALL PASS; 数值为 EVIDENCE) | 自研方法 |
 | [[good-root-global-lemma]] | 自研 (会话 58 续作 2, 2026-08-12) | 定理已证 (STRICT, 6 页零警告; 数值交叉检验为 EVIDENCE) | 自研方法 |
+| [[endpoint-collapse-reduction]] | 自研 (会话 58 续作 7, 2026-08-13) | 归约 STRICT (已证); 约化根不存在为 EVIDENCE | 自研方法 |
 | [[phase-param-2d-certificate]] | 自研 (O3a I3, 2026-08-09) | E1 端点闭式 + 2D 叶盒 (J1/J2 证书均已移除, 分别由定理 5.8/5.14 取代) | 自研方法 |
 | [[true-curve-region-decomposition]] | 自研 (O3a I3 去证书化, 2026-08-09) | E1 双侧完成: 定理 5.8 (J1, 6499/7500) + 定理 5.14 (J2, W-分解链, mu >= 27921/20000); 67 叶盒移除 | 自研方法 |
 | [[interval-dec-directed-rounding]] | 自研 (O3a I3, 2026-08-09) | 已退役历史 (L7/L8/L9); 被有理包络证书 L10/L11/L12 取代 | 自研方法 |
@@ -160,6 +162,18 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-13 (会话 58 续作 7): 新增 [[endpoint-collapse-reduction]] -- 端点塌缩归约
+  (STRICT, 已证): 交替 bang-bang 族带自洽解列若 w1 -> 0 (紧 R 区间), 则极限为带匹配
+  的 2n 块约化系统根且满足端点条件 q0 = c, q0 = sqrt(lambda_{n+1})|u_{n+1}'(0)|
+  /(sqrt(lambda_n)|u_n'(0)|), c = sqrt(lambda_n/lambda_{n+1}); 证明经特征值/特征函数
+  连续依赖 + 带匹配保持 + 端点展开 f(x)=a x^2+O(x^4) 除 x1^2 取极限; 带匹配约化根处
+  q0 < 1, 端点条件 q0 = c 需定量分离 (开放). 数值 (EVIDENCE): 完整分支上 q0/c > 1
+  (n=2 R<=100, n=3 R<=30, n=4 R<=10, SUP/INF; 二次展开检验 f/(a x^2) -> 1 于 1e-4/1e-3;
+  R->1 极限复现常数密度值 ((n+1)/n)^3); 随机与分支定向种子的约化根搜索未发现带匹配根,
+  且所有约化根 q0-c > 0. 脚本 _gapn2_slope_ratio.py / _gapn2_reduced_endpoint_hunt.py
+  / _gapn2_endpoint_targeted.py; 两处斜率计算 bug 已修 (块起始 M01 系数 + part_a 逐 R
+  图案), 交接旧斜率数字全部撤回; 运行笔记
+  runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-13.md.
 - 2026-08-12 (会话 58 续作 5, 深夜段): 更新 [[band-selfconsistency-equivariance]] -- 新增
   非对角闭式 (C1)/(C2): T_ji = M~_ji/s_i = 2 lam_n u_i u_j Sigma'(x_i,x_j) - 4w_iw_j/D
   (同奇偶), 跨奇偶为 4w_iw_j(lam_{n+1}^2-lam_n lam_{n+1}+lam_n^2)/(lam_n lam_{n+1} D)

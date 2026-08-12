@@ -117,3 +117,32 @@ flagged STRICT.
   _gapn2_sector_scan_{2,3}_{sup,inf}.json, _gapn2_sector_scan_4_sup.json;
   tools/band-selfconsistency-equivariance.md (deep-night section);
   tools/README.md (maintenance log).
+
+## R-203 (2026-08-13): (G2) endpoint obstruction reduction + slope-ratio evidence
+- STRICT: endpoint-collapse reduction (O-4 endpoint part).  If a
+  band-consistent family has first block width w1 -> 0 on a compact R-range,
+  the limit is a band-matched root of the reduced 2n-block system satisfying
+  the endpoint condition q0 = c, q0 = sqrt(lambda_{n+1})|u_{n+1}'(0)|
+  /(sqrt(lambda_n)|u_n'(0)|), c = sqrt(lambda_n/lambda_{n+1}).  Proof via
+  continuous dependence of eigenvalues/eigenfunctions, persistence of band
+  matching, and the quadratic endpoint expansion f(x) = a x^2 + O(x^4) with
+  a = lambda_n u_n'(0)^2 - lambda_{n+1} u_{n+1}'(0)^2 (dividing f(x1) = 0 by
+  x1^2 and passing to the limit).  Band matching on a reduced root gives
+  q0 < 1; the endpoint condition q0 = c needs a quantitative separation.
+- EVIDENCE (branch): q0/c > 1 along both branches for n=2 (R<=100), n=3
+  (R<=30), n=4 (R<=10); quadratic expansion test f(x)/(a x^2) -> 1 at
+  x = 1e-4, 1e-3; R -> 1 limit reproduces the constant-density value
+  q0/c -> ((n+1)/n)^3 (3.375, 2.37037, 1.953125).
+- EVIDENCE (reduced roots): random and targeted seeds give no band-matched
+  reduced root and every reduced root has q0 - c > 0 (min +0.322 at n=3 SUP
+  R=4; degenerate roots reproduce the ((n+1)/n)^3 signature).  Consistent
+  with, but not a proof of, the finite-dimensional non-existence statement.
+- Bug-fix register: eigfun_slope0 block-start coefficient (final M01 vs
+  starts[bi] M01) and part_a per-R pattern were wrong; all previous slope
+  numbers in the handoff are RETRACTED.  After fixes, slope ratio and
+  quadratic-expansion test agree with independent checks to machine precision.
+- Deliverables: run_notes_addendum_2026-08-13.md;
+  scripts/_gapn2_slope_ratio.py, _gapn2_reduced_endpoint_hunt.py,
+  _gapn2_endpoint_targeted.py.
+- Status: (G1') OPEN; (G2) endpoint part reduced to "no band-matched reduced
+  root has q0 = c" (EVIDENCE supports); (G2) interior coalescence OPEN.

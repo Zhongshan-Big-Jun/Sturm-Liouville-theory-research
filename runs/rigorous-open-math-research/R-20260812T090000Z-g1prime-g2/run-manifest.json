@@ -6,9 +6,9 @@
   "upstream_skill": "$rigorous-open-math-research",
   "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
   "started_at": "2026-08-12T09:00:00Z",
-  "completed_at": "2026-08-12T23:30:00+08:00",
+  "completed_at": "2026-08-13T12:00:00+08:00",
   "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
-  "upstream_status_verbatim": "OPEN: (G1')/(G2) not closed; STRICT off-diagonal closed forms (C1)/(C2) + mirror-sector decomposition + dominance scans + Sherman-Morrison reduction delivered",
+  "upstream_status_verbatim": "OPEN: (G1') not closed; O-4 endpoint part of (G2) reduced to a finite-dimensional non-existence statement (STRICT reduction) with supporting EVIDENCE; interior coalescence still open",
   "artifacts": [
     {
       "path": "problem_contract.md",
@@ -69,6 +69,26 @@
       "path": "scripts/_gapn2_sector_scan_4_sup.json",
       "sha256": "2cff21ded406283e82b6b0ad764c55ea3d019f987ac7ba42ebe2850f88214fdf",
       "role": "n=4 SUP scan data"
+    },
+    {
+      "path": "run_notes_addendum_2026-08-13.md",
+      "sha256": "20c75dd1dae687a64ae429b404a5787e176bbd822ce1e090b5e1486cabfcfb2d",
+      "role": "STRICT endpoint-collapse reduction (O-4) + branch slope-ratio and reduced-root EVIDENCE + slope bug-fix register"
+    },
+    {
+      "path": "scripts/_gapn2_slope_ratio.py",
+      "sha256": "101c7f86b0f44f36bc5e783274a8e68b8582953fa6a8378bd1100de2fa075e3d",
+      "role": "branch endpoint slope-ratio scan (q0/c along SUP/INF branches)"
+    },
+    {
+      "path": "scripts/_gapn2_reduced_endpoint_hunt.py",
+      "sha256": "4e7717d7ca6c517a799c7a40e2a67802057ef80c5c79ad535c1afa5638211d9d",
+      "role": "random-seed reduced-root hunt with band-matching filter, end in {first,last,both}"
+    },
+    {
+      "path": "scripts/_gapn2_endpoint_targeted.py",
+      "sha256": "7ee3e32d995a84fe80edfed55890917950df32f645dc593bc9070c48083746fd",
+      "role": "targeted reduced-root hunt seeded from the full branch widths"
     }
   ],
   "environment": {
@@ -89,6 +109,7 @@
     "dominance scans (EVIDENCE): SUP sufficient inequalities lammin(H_o-E_o)+mind > 0, lammin(H_e+E_e)+mind > 0 hold on all scan points (n=2 R<=100, n=3/4 R<=10); INF naive bounds fail at large R (n=3 R>=4), detK -> 0+ as R->inf (qualitative argument needed)",
     "Sherman-Morrison reduction (exact): K_o PD iff A_o = diag(d)+H_o PD and |c_o| (eps w)^T A_o^{-1} (eps w) < 1; same for K_e and -K (INF)",
     "sector Sylvester pivots (closed-form K): SUP all +, INF all - on every scan point",
-    "status: (G1')/(G2) remain OPEN; next step = sector resolvent Green estimates (R_k^||/R_k^bot) at band-consistent points"
+    "R-203 (2026-08-13): STRICT endpoint-collapse reduction: w1 -> 0 along a band-consistent family forces a band-matched reduced (2n-block) root with q0 = c; EVIDENCE that no such root exists (n=2,3,4, SUP/INF) and that q0/c > 1 on the full branch; slope-computation bugs fixed (previous slope numbers retracted)",
+    "status: (G1') OPEN; (G2) endpoint part reduced to 'no band-matched reduced root has q0=c' (EVIDENCE supports, not proven); (G2) interior coalescence OPEN"
   ]
 }
