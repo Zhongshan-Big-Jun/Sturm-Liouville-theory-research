@@ -119,6 +119,9 @@ flagged STRICT.
   tools/README.md (maintenance log).
 
 ## R-203 (2026-08-13): (G2) endpoint obstruction reduction + slope-ratio evidence
+(SUPERSEDED by R-204: the sqrt(lambda)-weighted q0 convention in the
+evidence lines below was mixed with the framework q0 convention; see the
+R-204 bug-fix register.)
 - STRICT: endpoint-collapse reduction (O-4 endpoint part).  If a
   band-consistent family has first block width w1 -> 0 on a compact R-range,
   the limit is a band-matched root of the reduced 2n-block system satisfying
@@ -146,3 +149,36 @@ flagged STRICT.
   _gapn2_endpoint_targeted.py.
 - Status: (G1') OPEN; (G2) endpoint part reduced to "no band-matched reduced
   root has q0 = c" (EVIDENCE supports); (G2) interior coalescence OPEN.
+
+## R-204 (2026-08-13, continued): convention fix + (G2) fully CLOSED STRICT
+- Convention correction: the previous addendum mixed two q0 conventions
+  (sqrt(lambda)-weighted q0 with the conclusion q0 = c).  Correct framework
+  convention q0 := u_{n+1}'(0)/u_n'(0): a = 0 iff q0 = c.  Scripts
+  _gapn2_slope_ratio.py and _gapn2_reduced_endpoint_hunt.py switched to this
+  convention; all earlier sqrt-weighted q0-c evidence lines RETRACTED.
+- STRICT Theorem A (block-energy identity): for any piecewise-constant rho
+  with f = 0 at every jump, K = (u_n'^2 + lam_n rho u_n^2) -
+  (u_{n+1}'^2 + lam_{n+1} rho u_{n+1}^2) == -2D < 0; hence q0 > 1 and
+  q1 < -1 at every root of any (full or reduced) system.  FD/spectral
+  verification to 1e-11 (scripts/_gapn2_kidentity_audit.py).
+- STRICT Theorem C (interior simplicity): f has no point in (0,1) with
+  f = f' = 0 (Cauchy-data uniqueness + Sturm interlacing).  Closes the
+  interior-coalescence part of (G2) (Rolle).
+- STRICT Theorem D (exact zero count, arbitrary weight): #Z(f;(0,1)) =
+  2n-2 + 1_{q0>c} + 1_{q1<-c} (cell analysis of |Q| = |u_{n+1}/u_n| via
+  W < 0).
+- STRICT Theorem E ((G2) closed): any width -> 0 along band-consistent
+  solutions on a compact R-range yields a limit string whose eigenpair has
+  q0* > 1, q1* < -1 (Theorem A), hence 2n interior zeros of f* (Theorem D),
+  while only 2n-m-m' < 2n switch zeros survive and band matching persists
+  strictly on block interiors (Theorem C): contradiction.  Parity of the
+  collapsed leading/trailing count is irrelevant.
+- EVIDENCE (re-run, corrected convention): full branch n=2 R=4 SUP q0 =
+  2.376980, INF q0 = 1.142677 (both > 1, q0 = -q1); all reduced roots
+  found have q0 > 1 and q1 < -1 with band = False; ladder scan n=2
+  (R in [1.05, 100]) has 0 violations of (r > 1, a < 0), quadratic
+  expansion f/(a x^2) = 1 at both probe points (see
+  scripts/_out_slope_a{2,3,4}.txt).
+- Status: (G2) CLOSED STRICT (endpoint + interior + cascades).  (G1')
+  remains OPEN; O-5 (det B != 0) remains OPEN.  The global classification
+  conjecture now depends only on (G1').

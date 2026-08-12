@@ -687,6 +687,69 @@ $144t^2-88t+9=0$, 判别式含 $\sqrt{10}$);
 标准框架).
 \end{remark}
 
+
+\section{2026-08-13 STRICT 增补: (G2) 闭合}\label{sec:g2closed}
+
+本节登记 (G2) 的严格闭合, 并取代第~\ref{sec:global} 节 remark 中 "(G2) 开放"
+的登记 (该 remark 反映 2026-08-12 的状态). 所有断言均为 STRICT; 完整论证见
+run addendum (\url{runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-13.md}, 定理 B/C/E).
+
+\begin{lemma}[内部零点简单性, STRICT]\label{lem:simplez}
+对任意正权 $\rho$ 与 $\lambda_n<\lambda_{n+1}$,
+$f=\lambda_nu_n^2-\lambda_{n+1}u_{n+1}^2$ 在 $(0,1)$ 内无
+$f=f'=0$ 点; 故带自洽解列不能发生内部开关并合.
+\end{lemma}
+
+\begin{proof}[证明要点]
+若 $f(\bar x)=0$ 且 $u_n(\bar x)=0$, 则 $u_{n+1}(\bar x)=0$, 与 Sturm 严格交错矛盾;
+故 $u_{n+1}(\bar x)=\pm c\,u_n(\bar x)$. 若又有 $f'(\bar x)=0$, 则
+$\lambda_nu_nu_n'=\lambda_{n+1}u_{n+1}u_{n+1}'$ 给出
+$u_{n+1}'(\bar x)=\pm c\,u_n'(\bar x)$ (因 $\lambda_n=\lambda_{n+1}c^2$).
+由 Cauchy 数据唯一性 $u_{n+1}\equiv\pm c\,u_n$, 代回方程得
+$\lambda_{n+1}=\lambda_n$, 矛盾. 内部并合情形由连续性加 Rolle 定理给出
+$f=f'=0$ 的极限点, 与上矛盾.
+\end{proof}
+
+\begin{proposition}[块能量与零点计数 (STRICT 前提, 定理 6(e) 与文献 [1])]
+(i) 若 $f$ 在全部开关处为零, 则 $K\equiv-2D<0$, 从而端点斜率比满足
+$q_0>1$, $q_1<-1$ (定理~\ref{thm:structure}(e) 及其证明, 不需带匹配).
+(ii) 对任意正权, $\#Z(f;(0,1))=2n-2+\mathbf1_{\{q_0>c\}}
++\mathbf1_{\{q_1<-c\}}$, 全部零点简单 (定理~\ref{thm:structure} 证明 (c) 的
+胞腔计数, 见其后 remark).
+\end{proposition}
+
+\begin{theorem}[(G2) 闭合, STRICT]\label{thm:g2}
+对每个 $n\ge2$, $\sigma\in\{\mathrm{SUP},\mathrm{INF}\}$ 与紧区间
+$[R_0,R_1]$ ($R_0>1$), 存在 $\eta=\eta(n,R_0,R_1)>0$ 使一切带自洽解
+$(R,x)$ ($R\in[R_0,R_1]$) 满足全部块宽 $\ge\eta$; 等价地 $\Sigma_\sigma$
+在 $[R_0,R_1]\times\partial U$ 上无聚点.
+\end{theorem}
+
+\begin{proof}
+反设存在带自洽解列 $(R^{(k)},x^{(k)})$ 使某块宽趋于 $0$; 取子列使
+$w_j^{(k)}\to w_j^*\in[0,1]$. 若 $j\in\{2,\dots,2n\}$ 且
+$x_{j-1}^*=x_j^*\in(0,1)$, 则 $f^*=f^{*}{}'=0$ 于该内点, 与引理~\ref{lem:simplez}
+矛盾; 故零宽块全部位于端点: 存在 $m,m'\ge0$, $m+m'\ge1$ 使首块级联
+$w_1^*=\cdots=w_m^*=0$ 与尾块级联 $w_{2n+2-m'}^*=\cdots=w_{2n+1}^*=0$,
+其余块宽为正. 极限串为幸存块 $h_{m+1},\dots,h_{2n+1-m'}$ 组成的
+$[0,1]$ 上加权弦, 特征对 $(\lambda_n^*,\lambda_{n+1}^*)$ 收敛且
+$\lambda_{n+1}^*-\lambda_n^*\ge(2n+1)\pi^2/R_1>0$, 归一化特征函数 $C^1$ 收敛,
+$f^{(k)}\to f^*$ 于 $C^1$. 存活开关 $x_j^*$ ($j=m+1,\dots,2n-m'$) 共
+$2n-m-m'$ 个, 均满足 $f^*(x_j^*)=0$. 由命题 (i): $q_0^*>1$, $q_1^*<-1$;
+由命题 (ii): $\#Z(f^*;(0,1))=2n$. 另一方面带匹配保持: $f^*$ 在每个幸存块内部
+有严格定号 (逐块极限定号 + 引理~\ref{lem:simplez} 排除内部零点), 故
+$f^*$ 在块内部无零点; 但 $2n>2n-m-m'$, 至少有一个零点不在开关上, 矛盾.
+\end{proof}
+
+\begin{remark}
+(i) 上述论证与塌缩级联数 $m,m'$ 的奇偶性无关, 且不需要端点条件
+$q_0=c$ (端点塌缩归约的 $q_0=c$ 结论与 $q_0^*>1$ 直接矛盾, 见 addendum
+定理 B).  (ii) 由定理~\ref{thm:framework}, 全局分类猜想现仅依赖 (G1$'$):
+若 (G1$'$) 成立, 则对一切 $R>1$ 解唯一且反射对称.  (iii) 数值交叉
+(EVIDENCE, 不构成证明): $K(0)+2D$ 达 $10^{-11}$ 量级; 完整分支上
+$q_0=-q_1>1$; 全部发现的约化根满足 $q_0>1$, $q_1<-1$ 且带不匹配
+(scripts/\texttt{\_gapn2\_kidentity\_audit.py}).
+\end{remark}
 \begin{thebibliography}{9}
 \bibitem{nge2} 有限块约化与恰 $2n$ 开关定理 (项目文档
 \url{SL_gap_nge2_finite_reduction_proof.pdf}, \url{SL_gap_nge2_exact_2n_switches_proof.pdf}),

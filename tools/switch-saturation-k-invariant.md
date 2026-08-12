@@ -58,3 +58,24 @@ $1\le\rho\le R$ a.e. 中, 相邻谱隙 $D_n=\lambda_{n+1}-\lambda_n$ ($n\ge2$) �
   (INF 侧 n=1, 分段连续有界跳). 本工具不声称首创.
 - 未解决 (见 docs/SL_spectral_topics_summary.tex 开放问题 1): 开关位置/块长,
   反射对称性, 唯一性与完整分类, 最优值闭式, 渐近, 稳定性, 模型推广.
+
+## 更新 2026-08-13 (会话 58 续作 8): (G2) 闭合应用
+块能量不变量与精确零点公式联手闭合全局分类框架 (docs/SL_gap_nge2_
+symmetry_local_proof.tex) 的边界排除条件 (G2):
+- 新引理 (STRICT, 本会话): 对任意正权与相邻特征对, f 在 (0,1) 内无 f=f'=0
+  点 (Cauchy 数据唯一性 + Sturm 交错); 故带自洽解列不能发生内部开关并合
+  (Rolle).
+- 新定理 (STRICT, 本会话): 若带自洽解列某块宽 -> 0 (紧 R 区间), 子列极限
+  字符串上 K==-2D 给出 q0*>1, q1*<-1, 精确零点公式给出 #Z(f*)=2n, 而
+  存活开关零点数 <= 2n-1, 与带匹配保持 (f* 在块内定号, 内部零点简单) 矛盾.
+  塌缩奇偶性无关, 两端同时塌缩同理. 故 (G2) 成立 STRICT: 紧 R 区间上块宽
+  一致有正下界, Sigma 无边界聚点.
+- 端点斜率约定修正: 本工具 q0 := u'_{n+1}(0)/u'_n(0) (框架约定); 端点
+  塌缩强制 q0 = c (a = lambda_n u_n'(0)^2 (1-q0^2/c^2) 的零), 与 K 恒等式
+  q0 > 1 > c 直接矛盾. 早期 sqrt(lambda) 加权比率的证据行已撤回.
+- 完整论证: runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/
+  run_notes_addendum_2026-08-13.md (定理 B/C/E). 数值交叉 (EVIDENCE):
+  K(0)+2D ~ 1e-11, 完整分支 q0 > 1 (n=2 R=4: SUP 2.376980, INF 1.142677),
+  所有发现的约化根 q0 > 1 且 q1 < -1 (band=False).
+- 相关: [[endpoint-collapse-reduction]] (归约, 现已被直接闭合超越),
+  [[band-selfconsistency-equivariance]] ((G1')/(G2) 框架).

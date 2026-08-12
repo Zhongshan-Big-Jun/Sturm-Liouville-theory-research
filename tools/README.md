@@ -80,7 +80,7 @@ created: 2026-08-04
 - [[symline-n1-monotonicity]] - 对称线 1D 单调性: KEY LEMMA (F~_e 唯一零点) + 精确降维恒等式 (缺口 (a) 闭合, 会话 52, 2026-08-10)
 - [[tension-ratio-chain]] - 张力比链: 比值上界化到退化极限 + 一维单峰不等式 (缺口 (a') 全 R 闭合, 会话 58 续作, 2026-08-12)
 - [[good-root-global-lemma]] - good-root 全局引理: Wronskian 比值单调 + f 零点唯一性, 内部临界点自动 sign-consistent (缺口 (d) 闭合, 会话 58 续作 2, 2026-08-12)
-- [[endpoint-collapse-reduction]] - 端点塌缩归约: w1->0 必得带匹配约化根且 q0=c ((G2) 端点部分, 会话 58 续作 7, 2026-08-13)
+- [[endpoint-collapse-reduction]] - 端点塌缩归约: w1->0 必得带匹配约化根且 q0=c (框架约定; 会话 58 续作 7/8, 2026-08-13; 已被 (G2) 直接闭合超越)
 - [[phase-param-2d-certificate]] - 二维相位参数化证书: 相位方程显式反解 + 2D 叶盒 (O3a I3, 2026-08-09)
 - [[true-curve-region-decomposition]] - 真曲线区域分解: T1/T2 双侧全解析化 (定理 5.8 + 5.14, O3a I3, 会话 40/41)
 - [[interval-dec-directed-rounding]] - 十进制定向舍入区间引擎: 单变量符号事实的严格认证 (O3a I3, 会话 40 续, 2026-08-09)
@@ -144,13 +144,13 @@ created: 2026-08-04
 | [[symline-n1-monotonicity]] | 自研 (会话 52, 2026-08-10) | 定理已证 (STRICT, 10 页零警告; W0 证书 sympy 全过; 数值为 EVIDENCE) | 自研方法 |
 | [[tension-ratio-chain]] | 自研 (会话 58 续作, 2026-08-12) | 定理已证 (STRICT, 9 页零警告; 精确有理证书 C1-C5 ALL PASS; 数值为 EVIDENCE) | 自研方法 |
 | [[good-root-global-lemma]] | 自研 (会话 58 续作 2, 2026-08-12) | 定理已证 (STRICT, 6 页零警告; 数值交叉检验为 EVIDENCE) | 自研方法 |
-| [[endpoint-collapse-reduction]] | 自研 (会话 58 续作 7, 2026-08-13) | 归约 STRICT (已证); 约化根不存在为 EVIDENCE | 自研方法 |
+| [[endpoint-collapse-reduction]] | 自研 (会话 58 续作 7/8, 2026-08-13) | 归约 STRICT (已证, q0=c 框架约定修正); (G2) 已由 [[switch-saturation-k-invariant]] 闭合 STRICT, 约化根不存在为 STRICT | 自研方法 |
 | [[phase-param-2d-certificate]] | 自研 (O3a I3, 2026-08-09) | E1 端点闭式 + 2D 叶盒 (J1/J2 证书均已移除, 分别由定理 5.8/5.14 取代) | 自研方法 |
 | [[true-curve-region-decomposition]] | 自研 (O3a I3 去证书化, 2026-08-09) | E1 双侧完成: 定理 5.8 (J1, 6499/7500) + 定理 5.14 (J2, W-分解链, mu >= 27921/20000); 67 叶盒移除 | 自研方法 |
 | [[interval-dec-directed-rounding]] | 自研 (O3a I3, 2026-08-09) | 已退役历史 (L7/L8/L9); 被有理包络证书 L10/L11/L12 取代 | 自研方法 |
 | [[rational-envelope-certificates]] | 自研 (会话 44, 2026-08-09) | E1 证书链 57/57 PASS (L10/L11/L12); 55 项事实全部 E1, 不依赖验证器内核 | 自研方法 |
-| [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10) | 定理已证 (独立审计 PASS; 数值 40/40 + 16/16 + mpmath + 光滑 4/4) | 自研方法 |
-| [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12) | 等变恒等式与反对合结构 STRICT; 框架定理已证, (G1')(G2) 开放 (数值 EVIDENCE 支持) | 自研方法 |
+| [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10; 更新 会话 58 续作 8, 2026-08-13) | 定理已证 (独立审计 PASS); 2026-08-13 应用: K 恒等式 + 精确零点公式 + 内部零点简单性 闭合 (G2) STRICT | 自研方法 |
+| [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12; 更新 2026-08-13) | 等变恒等式与反对合结构 STRICT; 框架定理已证; (G2) 已闭合 STRICT (2026-08-13); (G1') 开放 | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -162,6 +162,14 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-13 (会话 58 续作 8): (G2) 闭合 STRICT + 端点斜率约定修正. 修正
+  [[endpoint-collapse-reduction]] 的 q0 约定 (框架约定 q0 := u'_{n+1}(0)/u'_n(0),
+  塌缩条件 a=0 等价 q0=c; 早期 sqrt(lambda) 加权证据行撤回); 新增内部零点简单性
+  引理 (f 无 f=f'=0 内点, Cauchy 数据唯一性 + Sturm); 应用 [[switch-saturation-k-invariant]]
+  (K==-2D 给 q0*>1, q1*<-1; 精确零点 #Z(f*)=2n) 与带匹配保持矛盾, 闭合 (G2):
+  紧 R 区间上带自洽解块宽一致有正下界, 任意塌缩级联均不可能; 脚本
+  scripts/_gapn2_kidentity_audit.py 交叉 1e-11; 同步更新 [[switch-saturation-k-invariant]]
+  与 [[band-selfconsistency-equivariance]] 状态.
 - 2026-08-13 (会话 58 续作 7): 新增 [[endpoint-collapse-reduction]] -- 端点塌缩归约
   (STRICT, 已证): 交替 bang-bang 族带自洽解列若 w1 -> 0 (紧 R 区间), 则极限为带匹配
   的 2n 块约化系统根且满足端点条件 q0 = c, q0 = sqrt(lambda_{n+1})|u_{n+1}'(0)|

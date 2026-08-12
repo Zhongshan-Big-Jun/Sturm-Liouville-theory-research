@@ -8,7 +8,7 @@
   "started_at": "2026-08-12T09:00:00Z",
   "completed_at": "2026-08-13T12:00:00+08:00",
   "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
-  "upstream_status_verbatim": "OPEN: (G1') not closed; O-4 endpoint part of (G2) reduced to a finite-dimensional non-existence statement (STRICT reduction) with supporting EVIDENCE; interior coalescence still open",
+  "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) fully CLOSED STRICT (block-energy identity + exact zero count + interior simplicity => no boundary generation, endpoint and interior, any cascade); (G1') remains OPEN; O-5 (det B != 0) OPEN",
   "artifacts": [
     {
       "path": "problem_contract.md",
@@ -27,8 +27,8 @@
     },
     {
       "path": "research_ledger.md",
-      "sha256": "9b7c81bec60ca4cc4851534860af9c730722aadd5456b3fb9ef9029fd198ff2e",
-      "role": "R-200..R-202"
+      "sha256": "4BD4F6E26FD48BB9415CFC7548453AEC62CE7D1C258C213FFC5AFF3596FD403E",
+      "role": "R-200..R-204"
     },
     {
       "path": "scripts/_gapn2_mtilde_offdiag_identity.py",
@@ -72,23 +72,28 @@
     },
     {
       "path": "run_notes_addendum_2026-08-13.md",
-      "sha256": "20c75dd1dae687a64ae429b404a5787e176bbd822ce1e090b5e1486cabfcfb2d",
-      "role": "STRICT endpoint-collapse reduction (O-4) + branch slope-ratio and reduced-root EVIDENCE + slope bug-fix register"
+      "sha256": "EFB331B9D1E7885B62E0CA7A7200DE6C887391083650C42DA27F5AE0FAFC6F81",
+      "role": "STRICT (G2) full closure: block-energy identity, interior simplicity, exact zero count, boundary exclusion; corrected q0 convention"
     },
     {
       "path": "scripts/_gapn2_slope_ratio.py",
-      "sha256": "101c7f86b0f44f36bc5e783274a8e68b8582953fa6a8378bd1100de2fa075e3d",
-      "role": "branch endpoint slope-ratio scan (q0/c along SUP/INF branches)"
+      "sha256": "42639EC292CA86C9F5244B97D352C3C06E2527915DDA4247BA177611FEA4E5D9",
+      "role": "branch ladder scan, framework q0 convention"
     },
     {
       "path": "scripts/_gapn2_reduced_endpoint_hunt.py",
-      "sha256": "4e7717d7ca6c517a799c7a40e2a67802057ef80c5c79ad535c1afa5638211d9d",
-      "role": "random-seed reduced-root hunt with band-matching filter, end in {first,last,both}"
+      "sha256": "12E42473CA7087F6BC625147340F97A2304F855595E411F8056C6FBEDA5388A3",
+      "role": "reduced-root hunt, framework q0/q1 convention"
     },
     {
       "path": "scripts/_gapn2_endpoint_targeted.py",
       "sha256": "7ee3e32d995a84fe80edfed55890917950df32f645dc593bc9070c48083746fd",
       "role": "targeted reduced-root hunt seeded from the full branch widths"
+    },
+    {
+      "path": "scripts/_gapn2_kidentity_audit.py",
+      "sha256": "EF2D09171611DD66AA38666CD71C3241AFC4866FD389B02F6219FD5D4BCC86EC",
+      "role": "block-energy identity audit (branch + reduced roots)"
     }
   ],
   "environment": {
@@ -104,12 +109,10 @@
   "missing_or_unavailable_artifacts": [],
   "notes": [
     "R-200: reduced-cost INF/SUP scan + sign-convention audit (STRICT identities FD-verified; FH sign corrected; A3 Hess sign corrected)",
-    "R-201: STRICT (I1) partial-fraction identity, (I2) M~ diagonal closed form, (I3) f'/s sign correction, (I4) |W| <= D; dead ends (Gershgorin, H-matrix); Sylvester pivot EVIDENCE",
-    "R-202: STRICT (C1)/(C2) off-diagonal closed forms + mirror-sector decomposition (E_e/E_o rank-1 closed forms, H_e/H_o parity-masked kernel forms, eps_j = (-1)^{j+1}) verified 1e-13..1e-16; Hankel (P1') falsified",
-    "dominance scans (EVIDENCE): SUP sufficient inequalities lammin(H_o-E_o)+mind > 0, lammin(H_e+E_e)+mind > 0 hold on all scan points (n=2 R<=100, n=3/4 R<=10); INF naive bounds fail at large R (n=3 R>=4), detK -> 0+ as R->inf (qualitative argument needed)",
-    "Sherman-Morrison reduction (exact): K_o PD iff A_o = diag(d)+H_o PD and |c_o| (eps w)^T A_o^{-1} (eps w) < 1; same for K_e and -K (INF)",
-    "sector Sylvester pivots (closed-form K): SUP all +, INF all - on every scan point",
-    "R-203 (2026-08-13): STRICT endpoint-collapse reduction: w1 -> 0 along a band-consistent family forces a band-matched reduced (2n-block) root with q0 = c; EVIDENCE that no such root exists (n=2,3,4, SUP/INF) and that q0/c > 1 on the full branch; slope-computation bugs fixed (previous slope numbers retracted)",
-    "status: (G1') OPEN; (G2) endpoint part reduced to 'no band-matched reduced root has q0=c' (EVIDENCE supports, not proven); (G2) interior coalescence OPEN"
+    "R-201: STRICT (I1)-(I4) diagonal closed forms + f'/s sign correction; dead ends (Gershgorin, H-matrix); Sylvester pivot EVIDENCE",
+    "R-202: STRICT (C1)/(C2) off-diagonal closed forms + mirror-sector decomposition; Hankel (P1') falsified; Sherman-Morrison reduction; dominance EVIDENCE",
+    "R-203 (SUPERSEDED): endpoint-collapse reduction + slope evidence (sqrt-weighted q0 convention RETRACTED in R-204)",
+    "R-204 (2026-08-13): q0 convention corrected to framework convention (a = 0 iff q0 = c); STRICT Theorem A (block-energy identity K == -2D => q0 > 1, q1 < -1 at every root); STRICT Theorem C (interior zeros of f simple); STRICT Theorem D (exact zero count 2n-2 + 1_{q0>c} + 1_{q1<-c}); STRICT Theorem E: (G2) CLOSED (no boundary generation, any cascade parity)",
+    "EVIDENCE re-run (corrected convention): K(0) + 2D at 1e-11; full branch q0 > 1 (n=2 R=4: SUP 2.376980, INF 1.142677); every reduced root has q0 > 1 and q1 < -1, band=False; ladder n=2 R in [1.05,100]: 0 violations of (q0 > 1, a < 0)"
   ]
 }

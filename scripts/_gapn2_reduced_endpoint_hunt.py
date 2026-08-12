@@ -90,7 +90,7 @@ class Reduced:
         fg = lam_n * gn ** 2 - lam_np1 * gp ** 2
         nz = int(np.sum(np.signbit(fg[1:]) != np.signbit(fg[:-1])))
         s0n, s0p = eigfun_slope0(blocks, ss[self.n - 1]), eigfun_slope0(blocks, ss[self.n])
-        q0 = np.sqrt(lam_np1) * abs(s0p) / (np.sqrt(lam_n) * abs(s0n))
+        q0 = s0p / s0n
         c = np.sqrt(lam_n / lam_np1)
         # slope at x=1 via 3-point backward difference on the exact eigenfunction
         h = min(1e-6, w[-1] * 0.05)
@@ -99,7 +99,7 @@ class Reduced:
             a = eigfun(blocks, s, np.array([1.0 - h]))[0]
             b = eigfun(blocks, s, np.array([1.0 - 2.0 * h]))[0]
             out[k] = (b - 4.0 * a) / (2.0 * h)
-        q1 = np.sqrt(lam_np1) * abs(out[self.n]) / (np.sqrt(lam_n) * abs(out[self.n - 1]))
+        q1 = out[self.n] / out[self.n - 1]
         edges = np.cumsum(w)[:-1]
         d = dict(D=float(lam_np1 - lam_n), q0mc=float(q0 - c), q0c=float(q0 / c),
                  q1mc=float(q1 - c), q1c=float(q1 / c),
@@ -109,9 +109,9 @@ class Reduced:
         if self.end == 'first':
             d['mc'] = d['q0mc']
         elif self.end == 'last':
-            d['mc'] = d['q1mc']
+            d['mc'] = float(q1 + c)
         else:
-            d['mc'] = min(d['q0mc'], d['q1mc'])
+            d['mc'] = min(d['q0mc'], float(q1 + c))
         return d
 
 

@@ -4,9 +4,10 @@
 Part A: at band-consistent points (alternating bang-bang family, exactly 2n
 switches, SUP/INF branches) check the endpoint expansion
     f(x) = (lam_n u_n'(0)^2 - lam_{n+1} u_{n+1}'(0)^2) x^2 + O(x^4),
-i.e. whether sqrt(lam_{n+1}) |u_{n+1}'(0)| > sqrt(lam_n) |u_n'(0)| holds with
-positive margin.  Validated against f(x) at small x (finite difference of the
-exact transfer-matrix eigenfunctions).
+i.e. whether the framework slope ratio q0 = u'_{n+1}(0)/u'_n(0) > 1 holds with
+positive margin (block-energy identity K == -2D), equivalently a < 0.
+Validated against f(x) at small x (finite difference of the exact
+transfer-matrix eigenfunctions).
 
 Part B: random bang-bang widths (heights in {1, R}, 2n+1 blocks): violation
 rate of the same inequality, classified by pattern type (alternating vs not,
@@ -48,14 +49,15 @@ def eigfun_slope0(blocks, s):
 
 
 def slope_ratio_report(blocks, n):
-    """Returns dict: lam_n, lam_np1, r = sqrt(lam_np1)|u'|/sqrt(lam_n)|u'| at 0,
+    """Returns dict: lam_n, lam_np1, r = q0 = u'_{n+1}(0)/u'_n(0) (framework
+    convention, no sqrt(lam) weights),
     a = lam_n u_n'(0)^2 - lam_{n+1} u_{n+1}'(0)^2 (should be < 0 for band match),
     and validation of the quadratic expansion f(x) ~= a x^2 near 0."""
     ss = roots_of(blocks, n + 1)
     sn, sp = ss[n - 1], ss[n]
     lam_n, lam_np1 = sn * sn, sp * sp
     un0, up0 = eigfun_slope0(blocks, sn), eigfun_slope0(blocks, sp)
-    r = np.sqrt(lam_np1) * abs(up0) / (np.sqrt(lam_n) * abs(un0))
+    r = up0 / un0
     a = lam_n * un0 ** 2 - lam_np1 * up0 ** 2
     # validation: f(x) at x = 1e-4, 1e-3 vs a x^2
     fv = []
