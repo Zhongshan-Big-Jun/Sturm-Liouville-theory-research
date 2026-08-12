@@ -1,11 +1,11 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-12, 会话 81) 已形式化 15 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-12, 会话 84) 已形式化 16 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
-> H^3 线代数核心与解析 H1 矩上界, 比值上确界证明线的核心三角闭式,
+> H^3 线代数核心、解析 H1 矩上界与 FTC 胶水 (H1 内积识别/正定核心), 比值上确界证明线的核心三角闭式,
 > 稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数),
 > 以及三阶递推线 (一般框架/比值映射等价/精确降阶 + 偶奇族闭式/固定点轨迹/比值恒等式 + 积分解分类方向).
-> 其余已证定理 (H^3 线等距同构 K_c: H^3->H^1, H^s 显式正交系, MW 重证, 间距线等) 仍有待形式化.
+> 其余已证定理 (H^3 算符级等距同构 K_c: H^3->H^1, H^s 显式正交系, MW 重证, 间距线等) 仍有待形式化.
 
 ## 1. 已形式化并通过机器验证
 
@@ -21,13 +21,14 @@
 | `SL/TransferOperator.lean` | H^s 线第一步: 传输算子闭式. transferPoly c r k = K_c^{-r} x^k 的闭式 (系数 transferCoeff = binom(r+j-1,j) k!/(k-2j)!/c^(r+j)); KcR_transferPoly (K_c T_{r+1,k} = T_{r,k} 递推), transferPoly_zero, transferPoly_eq_split, coeff_transferPoly/natDegree_transferPoly, KcR_inj (c≠0 时 K_c 多项式空间单射), KcR_inv_left/right (K_c 双射, 逆 = KcR_inv), KcR_inv_iter_X_pow ((KcR_inv)^[r] X^k = T_{r,k}) | `docs/SL_hs_orthogonal_systems_proof.tex` 第 3 节 | lake build 绿 (8561 jobs), sorry/axiom 0 |
 | `SL/H3Completeness.lean` | H^3 线代数核心 (R 上, 复用 Completeness 系数族): M_0=M_1=0, 偶/奇二阶跳变递推 c M_{2m}=A_m M_{2m-2}-B_m M_{2m-4}, 缩放 M_{2m}=M_2 u_m, 超阶乘增长 u_m >= (4/c)^(m-1) m! (StabilityGrowth.product_growth 统一覆盖两组系数), 湮灭 M_2=M_3=0, all_moments_zero_of_orthogonal (解析 H1 上界为假设 hbdE/hbdO), h1_moments_zero_of_orthogonal (用 H3MomentBound 的具体上界实例化, 闭合 H^3 矩全零) | `docs/SL_h3_completeness_proof.tex` 第 3-6 节 | lake build 绿, sorry/axiom 0; 等距同构 K_c: H^3->H^1 未形式化 |
 | `SL/H3MomentBound.lean` | H^3 线解析 H1 矩上界 (R 上, 积分形式, 源文档第 5 节引理 6): 边界差泛函 delta p=p(1)-p(-1) (delta X^{2m}=0, delta X^{2m+1}=2), h1MomentFunctional M(p)=∫wd·p'+c∫w·p-(1/2)·delta p·∫wd, M(X^{2m})=momentsEven / M(X^{2m+1})=momentsOdd 恒等式, sqrt 初等估计 ((2m)√(2/(4m-1))≤2√m, (2m+1)√(2/(4m+1))≤3√m, √(2/(4m+1))≤√2·√m, √(2/(4m+3))≤√2·√m, √2≤√2·√m), Cauchy-Schwarz 矩上界 |M_{2m}|≤(2‖wd‖₂+c√2‖w‖₂)√m 与 |M_{2m+1}|≤((3+√2)‖wd‖₂+c√2‖w‖₂)√m | `docs/SL_h3_completeness_proof.tex` 第 5 节 (引理 6) | lake build 绿, sorry/axiom 0 |
+| `SL/H1Isometry.lean` | H^3 线胶水 (R 上, 具体泛函): FTC 恒等式 ftc_delta (MomentBound.moments wd 0 = w 1 - w (-1), integral_deriv_eq_sub' 接入), H1 内积 h1Inner 与 h1MomentFunctional 的识别 (h1Inner_eq_h1MomentFunctional), 正交传输 h1Inner_moments_zero_of_orthogonal / h1Inner_eq_zero_of_orthogonal (isometry-transport 步骤), 正定核心 moments_zero_sq_le / delta_sq_le_two_int_sq ((Δw)^2<=2∫wd^2) / h1NormSq_nonneg / h1NormSq_eq_zero_imp_sq_int_zero / h1NormSq_eq_zero_imp_ae_zero (w=0 a.e.) | `docs/SL_h3_completeness_proof.tex` 第 2/4/6 节 | lake build 绿, sorry/axiom 0; 算符级等距 (双射/谱) 与 H^1 稠密性未形式化 (文件头诚实标注) |
 | `SL/Stability.lean` | 稳定性定理 Thm 2.2 (R 上泛函核心): 发散对数和 (1/2)Σmin(eps_k,1) → 超多项式增长 (superpolynomial_of_divergent_sum/logsum), 多项式界湮灭 (annihilate_of_superpolynomial/divergent_sum), 偶/奇矩递推 + 湮灭 + 多项式上界 → stability_moments_zero (矩全零); 尖锐性 Thm 2.3 (C/k 族): sharp_product_eq (乘积闭式) + sharp_recurrence (递推) + sharp_poly_bound (多项式增长) + sharp_term_bound/sharp_series_summable (β>C+1/2 级数收敛) | `docs/SL_stability_moment_jump.tex` 定理 2.2-2.3 | lake build 绿 (8569 jobs), sorry/axiom 0 |
 | `SL/ThirdOrderClassification.lean` | Theorem 1 反向 (分类方向): 若比值轨迹 e_j=1+beta/(2j) 对一切 j>=3 精确, 则偶族 beta in {1,-1}, 奇族 beta in {3,1}; 证明 = 在 j=3,4,5 三指标上通分消分母 + 提取因子 (beta-1)(beta+1) / (beta-3)(beta-1) + 相邻三点消去 | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (反向) | lake build 绿; sorry/axiom 0; TEven/TOdd 分子由符号计算导出并如实声明 (文件头注释) |
 | `SL/ThirdOrder.lean` | 三阶递推一般理论 (任意域): IsSolution/ratioMap 框架, Lemma 1 (fixed_point_iff: 序列 E 满足递推 <=> 连续比值 e_j=E_j/E_{j-1} 满足固定点方程 e_j=F_j(e_{j-1},e_{j-2})), Theorem 3 前向 (reduction: 差序列 s_j=r_j-r_{j-1} 满足二阶递推) | `docs/SL_third_order_recurrence_theory.tex` 第 2-4 节 (Lemma 1 + Theorem 3 前向) | lake build 绿; sorry/axiom 0 |
 | `SL/ThirdOrderClosedForms.lean` | Theorem 2 闭式验证 (偶族 mu+=(2j+1)!/c^j, mu-=(2j)!/c^j; 奇族 mu+=(2j+3)!/(6(j+1)c^j), mu-=(2j+1)!/c^j 逐项满足三阶递推) + 固定点轨迹充分方向 (e_j=1+beta/(2j), beta in {1,-1}/{3,1}, 乘法与 ratioMap 形式) + 比值恒等式 (偶 mu-/mu+=1/(2n+7), 奇 =3/(2n+9)) | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (充分方向) + 定理 2 | lake build 绿; sorry/axiom 0; 分类方向 (Theorem 1 反向) 由 ThirdOrderClassification.lean 形式化 |
 
-机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 15 个 SL/ 下 .lean 文件
-共 16 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8573 jobs). 义务级审计: `audit_report.md` +
+机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 16 个 SL/ 下 .lean 文件
+共 17 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8574 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
 MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报告独立性说明).
 
@@ -39,7 +40,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | 源文档 | 主要结果 | 源状态 | 形式化状态 |
 | --- | --- | --- | --- |
 | SL_h2_completeness_proof.tex | {p_n} 在 H^2[-1,1] 解析完备 (等距 K_c + 矩跳跃 + 增长引理 + Weierstrass) | 已证 | 完整 (形式化线): 增长引理 (MomentGrowth/StabilityGrowth) + K_c 恒等式 (KcPolynomial) + 矩递推/缩放 (MomentRecurrence) + 矩上界 (MomentBound) + 湮灭/Weierstrass 收尾 (Completeness); 等距同构 K_c: H^2->L^2 与 L2 稠密扩展未形式化 (O16 记录缺口) |
-| SL_h3_completeness_proof.tex | H^3 (及一切整数 s>=1) 完备性 | 已证 | 部分: 矩跳变+缩放+超阶乘增长+湮灭代数核心 (H3Completeness) + 解析 H1 矩上界 (H3MomentBound, Cauchy-Schwarz, 已接入 all_moments_zero_of_orthogonal 的 hbdE/hbdO); 剩余: 等距同构 K_c: H^3->H^1 与 Δw=∫wd (FTC) 胶水未形式化 |
+| SL_h3_completeness_proof.tex | H^3 (及一切整数 s>=1) 完备性 | 已证 | 部分: 矩跳变+缩放+超阶乘增长+湮灭代数核心 (H3Completeness) + 解析 H1 矩上界 (H3MomentBound, Cauchy-Schwarz, 已接入 all_moments_zero_of_orthogonal 的 hbdE/hbdO) + FTC 胶水与 H1 内积识别 (H1Isometry: ftc_delta, h1Inner_eq_h1MomentFunctional, 正交传输, 正定核心); 剩余: 算符级等距同构 K_c: H^3->H^1 (双射/谱) 与多项式在 H^1 稠密性未形式化 |
 | SL_hs_orthogonal_systems_proof.tex | 整数阶 H^s 显式完备正交多项式系 + 闭式系数 (传输算子 K_c^{-1}) | 已证 | 部分: 传输算子闭式与 K_c^{-1} 迭代 (TransferOperator); 显式正交系统构造与 H^s 完备性未形式化 |
 | SL_fractional_left_definite.tex | 实数阶 H^s (含分数窗 3/2<=s<2) 稀疏基解析完备 | 已证 | 未开始 |
 | SL_denseness_criteria.tex | 一般稠密性准则: 一阶矩准则 + 临界指数 | 已证 | 未开始 |
@@ -96,5 +97,5 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 5. MW 引理 1-2 与比值上确界定理由 BalancePhase 补全 (转移矩阵/谱论).
 6. 间距线 (n=1 定理族, n>=2 开关/约化) 体量大且分析密集, 建议拆义务逐条形式化.
 7. [已完成: 会话 70] H^s 显式正交系统线第一步: TransferOperator (K_c^{-r} x^k 闭式 + K_c 双射 + 迭代闭式, 9 文件机器验证通过). 剩余: 由传输算子构造 H^s 显式完备正交多项式系 (承接 Completeness 的矩方法/等距同构), 并处理 H^3 线 (SL_h3_completeness_proof.tex).
-8. [部分: 会话 78] H^3 线: H3Completeness.lean (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound.lean (解析 H1 矩上界, Cauchy-Schwarz + sqrt 初等估计, 已接入 hbdE/hbdO 闭合 h1_moments_zero_of_orthogonal), 12 文件 lake build 绿, sorry/axiom 0. 剩余: 等距同构 K_c: H^3->H^1 (然后一切整数 s>=1 由归纳传输), 及把 h1MomentFunctional 与 H1 内积对上的 FTC 胶水.
+8. [部分: 会话 78+84] H^3 线: H3Completeness.lean (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound.lean (解析 H1 矩上界, Cauchy-Schwarz + sqrt 初等估计, 已接入 hbdE/hbdO 闭合 h1_moments_zero_of_orthogonal) + H1Isometry.lean (FTC 胶水 ftc_delta, H1 内积识别 h1Inner_eq_h1MomentFunctional, 正交传输 h1Inner_moments_zero_of_orthogonal / h1Inner_eq_zero_of_orthogonal, 正定核心 h1NormSq_nonneg / h1NormSq_eq_zero_imp_ae_zero), 16 文件 lake build 绿 (8574 jobs), sorry/axiom 0. 剩余: 算符级等距同构 K_c: H^3->H^1 (双射/谱, 需谱论) 与多项式稠密性 (p->w 步骤).
 9. [已完成: 会话 79-81] 三阶递推线: ThirdOrder.lean (一般框架 IsSolution/ratioMap, Lemma 1 fixed_point_iff, Theorem 3 前向 reduction) + ThirdOrderClosedForms.lean (Theorem 2 偶/奇闭式逐项验证, 固定点轨迹乘法与 ratioMap 形式, 比值恒等式 1/(2n+7) 与 3/(2n+9)) + ThirdOrderClassification.lean (Theorem 1 反向分类: j=3,4,5 通分消分母 + 因子提取, 偶族 beta in {1,-1} / 奇族 beta in {3,1}), 15 文件 lake build 绿 (8573 jobs), sorry/axiom 0. 剩余: 最小解唯一性理论 (依赖源文档符号计算, 诚实标注未形式化).

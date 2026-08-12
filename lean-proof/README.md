@@ -4,7 +4,7 @@ Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
 
 **形式化总览与诚实状态**: 见 [STATUS.md](STATUS.md) (完整状态矩阵: 每个已证结果 -> 形式化状态).
-结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界已绿, H^s 传输算子闭式已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值已绿, 其余已证定理未开始).
+结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类已绿, 其余已证定理未开始).
 义务级审计 (会话 66-69): [audit_report.md](audit_report.md) + [verification.json](verification.json) (O1-O24).
 
 ## 目录结构
@@ -29,6 +29,7 @@ lean-proof/
     ├── Completeness.lean     H^2 完备性收尾: 湮灭 + Weierstrass 结论 (H^2 证明线)
     ├── H3Completeness.lean   H^3 矩跳变/缩放/增长/湮灭代数核心 + 上界实例化 (H^3 证明线)
     ├── H3MomentBound.lean    H^3 解析 H1 矩上界 (Cauchy-Schwarz, 积分形式) (H^3 证明线)
+    ├── H1Isometry.lean       FTC 胶水 + H1 内积识别 + 正定核心 (H^3 证明线)
     ├── TransferOperator.lean K_c^{-r} x^k 传输算子闭式 + K_c 双射 (H^s 证明线)
     ├── BalancedPhase.lean    平衡相位三角闭式 (比值证明线)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
@@ -48,8 +49,8 @@ python <lean-verify>/scripts/verify_lean_project.py --project . --build
 
 所有文件位于 `SL` 命名空间, 子命名空间按主题 (MomentGrowth / KcPolynomial /
 StabilityGrowth / Stability / MomentRecurrence / MomentBound / Completeness /
-H3Completeness / H3MomentBound / Transfer / BalancedPhase / ThirdOrder / ThirdOrderClosedForms /
-ThirdOrderClassification).
+H3Completeness / H3MomentBound / H1Isometry / Transfer / BalancedPhase / ThirdOrder /
+ThirdOrderClosedForms / ThirdOrderClassification).
 新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
 
 ## 规则

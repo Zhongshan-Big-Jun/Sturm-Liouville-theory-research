@@ -45,24 +45,25 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
-- **机器验证**: `lean-proof/run-manifest.json` (15 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8573 jobs).
+- **机器验证**: `lean-proof/run-manifest.json` (16 个 SL/ 下 .lean 文件扫描,
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8574 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
   - $H^2$ 完备性证明线完整: StabilityGrowth / MomentRecurrence / MomentBound / Completeness
     (增长引理, 矩递推/缩放, $L^2$ 矩上界, 湮灭 + Weierstrass 收尾).
   - $H^3$ 线: H3Completeness (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound (解析 $H^1$ 矩上界,
-    Cauchy-Schwarz, 已接入 hbdE/hbdO 闭合矩全零).
+    Cauchy-Schwarz, 已接入 hbdE/hbdO 闭合矩全零) + H1Isometry (FTC 胶水 $\Delta w = \int w\,dx$,
+    $H^1$ 内积与 h1MomentFunctional 的识别, 正交传输, 正定核心 $N_1(w) = 0 \Rightarrow w = 0$ a.e.).
   - $H^s$ 线第一步: TransferOperator ($K_c^{-r} x^k$ 传输算子闭式 + $K_c$ 双射).
   - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
   - 比值上确界证明线核心三角闭式: BalancedPhase.
   - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
     (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 $1/(2n+7)$, $3/(2n+9)$) +
     ThirdOrderClassification (Theorem 1 反向: 轨迹 => $\beta \in \{1,-1\}/\{3,1\}$).
-- **未完成 (已登记)**: $H^3$ 等距同构 $K_c\colon H^3 \to H^1$ 与 $\Delta w = \int w\,dx$ (FTC) 胶水; $H^s$ 显式完备
-  正交多项式系构造; MW 引理重证; 间距线 ($n=1$ 定理族, $n \ge 2$ 开关/约化); 三阶递推最小解唯一性;
-  Krein $c \to 0$ 极限; 分数阶 $H^s$ 与稠密性准则.
+- **未完成 (已登记)**: $H^3$ 算符级等距同构 $K_c\colon H^3 \to H^1$ (双射/谱, 需谱论) 与多项式在 $H^1$
+  稠密性; $H^s$ 显式完备正交多项式系构造; MW 引理重证; 间距线 ($n=1$ 定理族, $n \ge 2$ 开关/约化);
+  三阶递推最小解唯一性; Krein $c \to 0$ 极限; 分数阶 $H^s$ 与稠密性准则.
 
 ## 目录结构
 

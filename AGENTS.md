@@ -2399,3 +2399,39 @@
 - (G1') 现状: 仍开放. 本会话把 (G1') 化归为两个扇区二次型引理 (SUP: lammin(H_o - E_o) > -min d; INF: 非均匀对角下 K_e 负定), 两者等价于带自洽点处扇区 (约化) 预解核 R_k^||/R_k^bot 的 Green 估计; 未能在本会话内证明.
 - 文档: run_notes_addendum_2026-08-12.md 追加深夜段 (C1/C2, 扇区分解, 扫描, 证伪, 诚实登记); tools/band-selfconsistency-equivariance.md 追加深夜段 (同内容 + 模式展开 + Sherman-Morrison); tools/README.md 维护日志追加条目.
 - 维护: 本文件追加会话 83 记录; 随后 commit (Stage C).
+
+
+### 2026-08-12 会话 84 (H^3 线 FTC 胶水形式化: H1Isometry.lean 全绿 + 推送 GitHub)
+- 任务: 承接交接摘要, 继续路线图未形式化部分. 第一块: H^3 等距同构胶水 (FTC 恒等式 + H1 内积识别 +
+  正定核心), 完成后推送 GitHub (父类 + 个人 fork).
+- 完成:
+  - 新文件 lean-proof/SL/H1Isometry.lean (16 文件, 命名空间 SL.H1Isometry):
+    - ftc_delta: MomentBound.moments wd 0 = w 1 - w (-1), 用 intervalIntegral.integral_deriv_eq_sub'
+      接入 (deriv w = wd 方向 rw [← hderiv]); uIcc->Icc 转换用 min/max norm_num + simpa.
+    - h1Inner (H1 内积泛函, 边界项显式 w 1 - w (-1)) 与 H3MomentBound.h1MomentFunctional 的识别
+      (h1Inner_eq_h1MomentFunctional, 系数 rw [hftc] 后定义相等闭合).
+    - 正交传输: h1Inner_moments_zero_of_orthogonal (rw [hid] 后复用
+      H3Completeness.h1_moments_zero_of_orthogonal), h1Inner_eq_zero_of_orthogonal (矩全零 =>
+      多项式上为 0, eq_zero_of_moments_zero).
+    - 正定核心: moments_zero_sq_le (C-S: (∫wd)^2 <= 2∫wd^2), delta_sq_le_two_int_sq,
+      h1NormSq (N_1(w) = ∫wd^2 + c∫w^2 - (1/2)(Δw)^2), h1NormSq_nonneg,
+      h1NormSq_eq_zero_imp_sq_int_zero (c>0 消元), h1NormSq_eq_zero_imp_ae_zero (w=0 a.e. 于
+      Ioc (-1,1), integral_eq_zero_iff_of_nonneg).
+  - 文件头诚实标注: 算符级等距 (K_c: H^3->H^1 双射/谱) 与 H^1 稠密性未形式化.
+  - 诊断与修复: (a) 首次编译暴露 rw [show ... by ...] 内层括号解析错误 (unexpected token ']]'),
+    改为 hmin/hmax 显式 norm_num + simpa [Set.uIcc, hmin, hmax]; (b) 清理上一会话遗留的 lake
+    serve 进程 (16:47 起占用资源, 疑似致单文件编译 >20 分钟); (c) 长构建经 Start-Process 后台
+    运行避免命令行超时杀进程树; (d) 修两个 lint (unnecessarySimpa -> simp, 未使用 hw -> _hw).
+  - 机器验证: 全库 lake build 8574 jobs 零警告零 lint; verify_lean_project.py (py310 显式路径;
+    WindowsApps python stub 报 9009 不可用) 17 文件扫描 sorry/admit/axiom 命中 0, build exit 0;
+    run-manifest.json 已刷新 (8574 jobs).
+  - 文档同步: lean-proof/STATUS.md (16 文件/8574 jobs, 新增 H1Isometry 行, H^3 矩阵行 + 路线图
+    第 8 项更新, 未形式化清单改为算符级等距与稠密性), lean-proof/README.md (文件树 + 命名空间),
+    根 README.md (机器验证 16 文件/8574 jobs, 已完成加 H1Isometry, 未完成移除 FTC 胶水).
+- 教训: lake serve (Lean 语言服务器) 残留进程会拖慢命令行构建, 构建前先清理; PowerShell 命令
+  超时会杀掉 lake/lean 进程树, 长构建用 Start-Process 后台 + 轮询; PowerShell 5.1 下 `python`
+  指向 WindowsApps stub (exit 9009), 用 py310 显式路径; apply_patch 的 context 头不能写自定义
+  串, 小 hunk 逐个打更稳.
+- 待办: 路线图下一块 (推荐顺序: H^s 显式正交系 -> 三阶最小解唯一性 -> Krein c->0); MW 重证与
+  间距线体量大, 建议拆义务逐条形式化.
+- 维护: 本文件追加会话 84 记录; 随后 commit + push 父类与个人 fork (main:main).
