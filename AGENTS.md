@@ -2372,3 +2372,15 @@
 - 诚实标注: 本地无法预览 GitHub 渲染效果; 公式语法符合 GitHub Math 约定, 如需可浏览器复核;
   未改动任何研究内容.
 - 维护: 本文件追加会话 81 记录.
+
+### 2026-08-12 会话 82 (三阶递推分类方向形式化收尾: ThirdOrderClassification.lean 全绿 + 推送 GitHub)
+- 任务: 继续形式化三阶递推 Theorem 1 反向 (分类方向): 若比值轨迹 e_j=1+beta/(2j) 对一切 j>=3 精确, 则偶族 beta in {1,-1}, 奇族 beta in {3,1}; 完成后推送 GitHub (父类 + 个人 fork).
+- 完成:
+  - ThirdOrderClassification.lean 收尾: 修复 6 个分支 (j=3,4,5 x 偶/奇) 的 `exact h` 类型不匹配; 全库 lake build 8573 jobs 零警告零 lint; verify_lean_project.py 16 文件扫描 sorry/admit/axiom 命中 0 (run-manifest.json 已刷新, generated_at 2026-08-12T08:38Z).
+  - 诊断与方案: (a) `field_simp` 只能清掉已 ring 规范化形态的分母, 对 eSeq 的 `(1+beta/(2j))^-1` 形态 (h2e 假设) 无效; (b) `ring_nf` 不会化简 `x * x^-1`; (c) 最终序列: 第一次 field_simp (带 hc/h2b/h1b/h2e/h1e/h2c/h1c/h12c) -> `ring_nf at h` -> 第二次 field_simp (带 h2c/h1c/h12c) -> `ring_nf at h`; 此时 h 为 D*T=0 (D = 16 对 j=3; 48*(6+beta) 对 j=4; 96*(8+beta) 对 j=5, 偶奇相同; 由 sympy 逐项核对), 再用 sub_eq_zero + ring_nf 因子恒等式 + mul_eq_zero 消去非零因子 D (j=4/5 用 h2c 非零性) 得 TEven/TOdd = 0.
+  - 清理: 删除上一会话遗留的 6 个含 `?` 元变量占位死块 (位于每个分支 `exact h` 之后, 属未编译死代码); 删除调试临时文件 (_t_inv.lean, _test_fs.lean, build_*.log).
+  - 诚实声明: TEven/TOdd 通分分子由 sympy 符号计算导出 (文件头 docstring 已声明), 形式化验证的是通分/清分母等价性与分类推论 (even_beta_classification / odd_beta_classification 主定理已编译通过); 非手工推导.
+  - 文档同步: lean-proof/STATUS.md (15 文件/8573 jobs, 新增 ThirdOrderClassification 行, 三阶递推矩阵行分类方向改为已形式化), lean-proof/README.md (文件树 + 命名空间), 根 README.md (机器验证 15 文件/8573 jobs, 三阶递推线 + 分类方向, 未完成清单移除分类方向改为最小解唯一性).
+- 教训: field_simp 的分母匹配依赖 ring 规范化形态; 处理 (a+b)^-1 型分母时先 ring_nf 再 field_simp [a+b != 0] 才能清干净; ring_nf 不做 x*x^-1 消元; 清理死代码时勿用跨 "have hsub" 边界的正则, 易误删有效块 (本会话误删后已恢复).
+- 待办: 三阶递推最小解唯一性理论 (依赖源文档符号计算, 诚实标注未形式化); 其余见 STATUS.md 路线图.
+- 维护: 本文件追加会话 82 记录; 随后 commit + push 父类与个人 fork (main:main).

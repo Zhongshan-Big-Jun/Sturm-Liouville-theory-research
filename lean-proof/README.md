@@ -32,7 +32,8 @@ lean-proof/
     ├── TransferOperator.lean K_c^{-r} x^k 传输算子闭式 + K_c 双射 (H^s 证明线)
     ├── BalancedPhase.lean    平衡相位三角闭式 (比值证明线)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
-    └── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
+    ├── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
+    └── ThirdOrderClassification.lean  Theorem 1 反向分类: 轨迹 => beta in {1,-1}/{3,1} (三阶递推线)
 ```
 ## 构建与验证
 
@@ -47,7 +48,8 @@ python <lean-verify>/scripts/verify_lean_project.py --project . --build
 
 所有文件位于 `SL` 命名空间, 子命名空间按主题 (MomentGrowth / KcPolynomial /
 StabilityGrowth / Stability / MomentRecurrence / MomentBound / Completeness /
-H3Completeness / H3MomentBound / Transfer / BalancedPhase / ThirdOrder / ThirdOrderClosedForms).
+H3Completeness / H3MomentBound / Transfer / BalancedPhase / ThirdOrder / ThirdOrderClosedForms /
+ThirdOrderClassification).
 新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
 
 ## 规则
