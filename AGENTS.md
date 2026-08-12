@@ -2384,3 +2384,18 @@
 - 教训: field_simp 的分母匹配依赖 ring 规范化形态; 处理 (a+b)^-1 型分母时先 ring_nf 再 field_simp [a+b != 0] 才能清干净; ring_nf 不做 x*x^-1 消元; 清理死代码时勿用跨 "have hsub" 边界的正则, 易误删有效块 (本会话误删后已恢复).
 - 待办: 三阶递推最小解唯一性理论 (依赖源文档符号计算, 诚实标注未形式化); 其余见 STATUS.md 路线图.
 - 维护: 本文件追加会话 82 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-12 会话 83 (run R-20260812T090000Z-g1prime-g2 续作: M~ 非对角闭式 + 镜像扇区分解 + (G1') 化归)
+- 任务: 承接会话 58 续作 5 / run R-20260812T090000Z-g1prime-g2 (O-1..O-5), 推进 (G1') (n>=2 带自洽系统 K = diag(1/s)J 的 det K > 0, SUP 正定 / INF 负定) 与 (G2); 先复现交接的 (C1)/(C2) 非对角恒等式, 再用扇区结构尝试闭合 (G1').
+- 完成 (全部数值为 EVIDENCE 除非标注 STRICT):
+  - 复现: (C1)/(C2) 逐项精确恒等式 (T_ji = M~_ji/s_i: 同奇偶 2 lam_n p Sigma'(x_i,x_j) - 4w_iw_j/D; 跨奇偶 4w_iw_j(lam_{n+1}^2-lam_n lam_{n+1}+lam_n^2)/(lam_n lam_{n+1}D) - 2 lam_n p Sigma_+(x_i,x_j)), n=2,3, R in {1.2,2,4,10}, N=100, rel 1e-13..1e-15; 预解恒等式 G~_{n+1}-G~_n = D(G~_{n+1}oG~_n) - (u_nu_n+u_{n+1}u_{n+1})/D (精确 Gram 积分; 梯形求积 O(1) 失败).
+  - 扇区闭式 (STRICT, 机器验证 1e-15..1e-16): 左半坐标下 K_e = diag(d_h)+E_e+H_e, K_o = diag(d_h)+E_o+H_o; E_e = c_e w_h w_h^T (c_e = 4D/(lam_n lam_{n+1}^2) > 0), E_o = c_o (eps_h.w_h)(eps_h.w_h)^T (c_o = -4(lam_n^2+lam_{n+1}^2)/(lam_n lam_{n+1}D lam_{n+1}) < 0); H_e/H_o 奇偶掩码 + 镜像核闭式 (Sigma'(x_i,x_j) +/- p_n Sigma_+(x_i,xbar_j), p_n = (-1)^{n-1}). 首次验证失败的原因: 坐标混淆 (扇区基是镜像半侧, 掩码是奇偶类); 修正后全过.
+  - eps 结构 (STRICT): eps_j = (-1)^{j+1} 严格交错 (n=2..5 两模式); w 镜像偶, eps 镜像奇, (eps w) 镜像奇; eps_j = sigma*s_j/(R-1).
+  - 证伪登记: (P1') K~ Hankel 对称 (仅依赖 i+j) 否 (rel 0.6..1.2, n=2..4); (P1) K~ 逐元全正否 (早段已有).
+  - 支配不等式扫描 (EVIDENCE, 闭式 K, R 阶梯续延): SUP (n=2 R<=100, n=3/4 R<=10) K_e/K_o 每点正定, 充分不等式 lammin(H_o-E_o)+mind > 0, lammin(H_e+E_e)+mind > 0 每点成立; INF (n=2 R<=100, n=3 R<=30) K_e/K_o 每点负定, 但朴素界 lammax(H+E)-min|d| < 0 大 R 失败 (n=3 R>=4), detK -> 0+ (R->inf, n=2 R=100 ~8e-11): INF 无一致定量余量, 只能定性论证.
+  - Sherman-Morrison 化归 (精确): K_o = A_o - |c_o|(eps w)(eps w)^T 正定 iff A_o = diag(d)+H_o 正定且 |c_o|(eps w)^T A_o^{-1}(eps w) < 1; K_e 与 -K (INF) 同构.
+  - 扇区 Sylvester 主元 (EVIDENCE): SUP 全 +, INF 全 - (闭式 K, 全部扫描点); FD 直接续延 R>=30 伪根陷阱复现 (n=3 sup R=10 FD detK~1e-35, 已按闭式真支撤销).
+  - 新脚本: scripts/_gapn2_mtilde_offdiag_identity.py (C1/C2), scripts/_gapn2_sector_decomposition.py + scripts/_gapn2_sector_scan_{n}_{mode}.json (扫描, n=2 sup/inf, n=3 sup/inf, n=4 sup).
+- (G1') 现状: 仍开放. 本会话把 (G1') 化归为两个扇区二次型引理 (SUP: lammin(H_o - E_o) > -min d; INF: 非均匀对角下 K_e 负定), 两者等价于带自洽点处扇区 (约化) 预解核 R_k^||/R_k^bot 的 Green 估计; 未能在本会话内证明.
+- 文档: run_notes_addendum_2026-08-12.md 追加深夜段 (C1/C2, 扇区分解, 扫描, 证伪, 诚实登记); tools/band-selfconsistency-equivariance.md 追加深夜段 (同内容 + 模式展开 + Sherman-Morrison); tools/README.md 维护日志追加条目.
+- 维护: 本文件追加会话 83 记录; 随后 commit (Stage C).

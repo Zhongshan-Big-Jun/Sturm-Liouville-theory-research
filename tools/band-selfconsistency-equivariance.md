@@ -186,3 +186,75 @@ G~_k 为正则化预解核 (谱和, 去掉极点).
   hp_scan fd_* 字段为准).
 - 运行笔记: runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-12.md.
 - 诚实登记: 以上不关闭 (G1')/(G2); (I1)-(I4) 为 STRICT; 其余为 EVIDENCE.
+
+## 2026-08-12 深夜段增补: 非对角闭式 (C1)/(C2) + 镜像扇区分解 (STRICT) + 支配不等式扫描 (EVIDENCE)
+
+### (C1)/(C2): M~ 非对角闭式 (STRICT, 机器精度验证 1e-13..1e-15)
+
+T_ji := M~_ji/s_i (带自洽点), D = λ_{n+1}−λ_n, w_j = λ_n u_n(x_j)^2,
+ε_j = u_{n+1}(x_j)/(c u_n(x_j)), c = √(λ_n/λ_{n+1}):
+- (C1) ε_i = ε_j (同奇偶): T_ji = 2λ_n u_n(x_i)u_n(x_j) Σ'(x_i,x_j) − 4w_iw_j/D
+- (C2) ε_i = −ε_j (跨奇偶):
+  T_ji = 4w_iw_j(λ_{n+1}^2−λ_nλ_{n+1}+λ_n^2)/(λ_nλ_{n+1}D) − 2λ_n u_n(x_i)u_n(x_j) Σ_+(x_i,x_j)
+- Σ'(x_i,x_j) = Σ_{l≠n,n+1} a_l u_l(x_i)u_l(x_j), a_l = λ_l D/((λ_l−λ_{n+1})(λ_l−λ_n)) > 0
+  (正权 Gram 核, 任意点集上半正定);
+  Σ_+(x_i,x_j) = Σ_{l≠n,n+1} b_l u_l(x_i)u_l(x_j), b_l = λ_n/(λ_l−λ_n) + λ_{n+1}/(λ_l−λ_{n+1}).
+- 推导: 逐模部分分式 λ_{n+1}/(λ_l−λ_{n+1}) − λ_n/(λ_l−λ_n) = λ_l D/prod,
+  带自洽关系 u_{n+1}(x_j)=ε_j c u_n(x_j), 同奇偶 u_{n+1}u_{n+1} = c^2u_nu_n,
+  跨奇偶 u_{n+1}(x_i)u_{n+1}(x_j) = −(λ_n/λ_{n+1})u_n(x_i)u_n(x_j).
+- 推论: Σ'(x,y) = λ_{n+1}G~_{n+1}(x,y) − λ_nG~_n(x,y);
+  预解恒等式 G~_{n+1} − G~_n = D(G~_{n+1}∘G~_n) − (u_nu_n + u_{n+1}u_{n+1})/D
+  (算子复合用每块解析 Gram 精确计算; 梯形求积对高模振荡 O(1) 失败).
+
+### ε-结构 (STRICT): ε_j = (−1)^{j+1} 严格交错
+
+n=2..5 两模式 R=4 及全部扫描根验证: w = λ_n u_n^2 镜像偶, ε 镜像奇,
+(εw) 镜像奇; ε_j = σ·s_j/(R−1) (σ=+1 SUP/−1 INF) 编码开关方向.
+
+### 镜像扇区分解 (STRICT, 机器精度验证 1e-15..1e-16)
+
+左半坐标 j=1..n (镜像配对 j↔2n+1−j), 扇区基 Be/Bo 下
+K_e = Be^T K Be = diag(d_h) + E_e + H_e,  K_o = Bo^T K Bo = diag(d_h) + E_o + H_o,
+d_h,j = σ·2c|W(x_j)|/(R−1):
+- E_e = c_e w_h w_h^T, c_e = 4D/(λ_nλ_{n+1}^2) > 0 (PSD 秩1)
+- E_o = c_o (ε_h∘w_h)(ε_h∘w_h)^T, c_o = −4(λ_n^2+λ_{n+1}^2)/(λ_nλ_{n+1}Dλ_{n+1}) < 0 (NSD 秩1)
+- (H_e)_ij = (2λ_n/λ_{n+1}) u_i u_j [Σ'(x_i,x_j) − p_n Σ_+(x_i,x̄_j)] (i≡j 奇偶),
+  否则 [−Σ_+(x_i,x_j) + p_n Σ'(x_i,x̄_j)]
+- (H_o)_ij = (2λ_n/λ_{n+1}) u_i u_j [Σ'(x_i,x_j) + p_n Σ_+(x_i,x̄_j)] (i≡j),
+  否则 [−Σ_+(x_i,x_j) − p_n Σ'(x_i,x̄_j)]
+  p_n = (−1)^{n−1} (u_n 奇偶), x̄_j = 1−x_j.
+- 扇区核的模式展开: Σ' ± p_nΣ_+(·,x̄) = Σ_l (a_l ± p_np_l b_l)u_l u_l; 按奇偶类
+  拆分后化为同扇区/异扇区 (约化) 预解核 R_k^∥, R_k^⊥ 的组合 (Green 估计路线入口).
+- (G1') SUP ⟺ K_e, K_o 正定; INF ⟺ K_e, K_o 负定 (K = K_e ⊕ K_o 为镜像块对角化).
+
+### 证伪 (EVIDENCE)
+
+- (P1) K~ 逐元全正: 否 (n=3 有负元).
+- (P1') K~ Hankel 对称 (仅依赖 i+j): 否 (n=2..4 R=4 相对误差 0.6..1.2; 早期探针误导, 撤销).
+
+### 支配不等式扫描 (EVIDENCE, scripts/_gapn2_sector_decomposition.py + _gapn2_sector_scan_*.json)
+
+R 阶梯续延 (根残差 <1e-8), 闭式 K, N=121 模:
+- SUP (n=2: R 1.05..100; n=3: 1.2..10; n=4: 1.2..10): K_e, K_o 每点正定,
+  充分不等式 λmin(H_o − E_o) + min d > 0 与 λmin(H_e + E_e) + min d > 0 每点成立
+  (例: n=2 R=100: +0.091/+0.017; n=3 R=10: +0.568/+0.645).
+- INF (n=2: R 1.05..100; n=3: 1.2..30): K_e, K_o 每点负定, 但朴素界
+  λmax(H+E) − min|d| < 0 在大 R 失败 (n=2 R=100 边界 0.0000; n=3 R=4: +0.08;
+  R=30: +0.0009): 负定性依赖非均匀对角; detK → 0⁺ (n=2 R=100 ~8e-11):
+  INF 无一致定量余量, 只能定性 (符号) 论证.
+- D-缩放收缩范数 ||D^{-1/2}H_{e/o}D^{-1/2}|| 大 R 超 1 (至 3.4): H 单独非 D-收缩.
+- Sherman–Morrison 化归 (精确): K_o = A_o − |c_o|(εw)(εw)^T 正定 ⟺ A_o = diag(d)+H_o
+  正定且 |c_o|(εw)^T A_o^{-1}(εw) < 1; K_e 与 −K (INF) 同构. (G1') 化为预解二次型引理.
+- 扇区 Sylvester 主元: SUP 全 +, INF 全 − (闭式 K, 全部扫描点; 等价于扇区定性);
+  FD 直接续延在 R≥30 仍会落入伪根 (n=3 sup R=10 FD 探针 detK~1e-35 混合主元,
+  已按闭式续延真支撤销).
+
+### 诚实登记
+
+- (G1') 仍开放. 本段新增 STRICT: (C1)/(C2), 扇区闭式, E 秩1结构, ε-奇偶代数,
+  预解恒等式. 待证引理 (SUP): λmin(H_o − E_o) > −min d (奇扇区二次型界);
+  (INF): 非均匀对角下的 K_e 负定性. 两者化归为带自洽点处扇区核 R_k^∥, R_k^⊥
+  的 Green 函数估计, 尚未证明.
+- 脚本: scripts/_gapn2_mtilde_offdiag_identity.py (C1/C2+预解), 
+  scripts/_gapn2_sector_decomposition.py + _gapn2_sector_scan_*.json (扫描),
+  scripts/_gapn2_ktilde_positivity.py (早段探针, 保留).

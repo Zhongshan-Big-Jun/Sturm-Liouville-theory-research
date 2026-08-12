@@ -1,4 +1,4 @@
----
+﻿---
 title: 数学工具库索引
 tags: [mathtool, index]
 created: 2026-08-04
@@ -160,6 +160,19 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-12 (会话 58 续作 5, 深夜段): 更新 [[band-selfconsistency-equivariance]] -- 新增
+  非对角闭式 (C1)/(C2): T_ji = M~_ji/s_i = 2 lam_n u_i u_j Sigma'(x_i,x_j) - 4w_iw_j/D
+  (同奇偶), 跨奇偶为 4w_iw_j(lam_{n+1}^2-lam_n lam_{n+1}+lam_n^2)/(lam_n lam_{n+1} D)
+  - 2 lam_n u_i u_j Sigma_+(x_i,x_j) (STRICT, 1e-13..1e-15); 镜像扇区分解 (STRICT,
+  1e-15..1e-16): K_e = diag(d)+E_e+H_e, K_o = diag(d)+E_o+H_o, E_e = c_e w_h w_h^T > 0,
+  E_o = c_o (eps_h.w_h)(eps_h.w_h)^T < 0 (秩1闭式), H_e/H_o 奇偶掩码 + 镜像核闭式;
+  eps_j = (-1)^{j+1} 严格交错 (STRICT); Hankel 对称 (P1') 证伪 (rel 0.6..1.2);
+  支配不等式扫描 (EVIDENCE): SUP 侧 lammin(H_o-E_o)+mind > 0 与 lammin(H_e+E_e)+mind > 0
+  全范围成立 (n=2 R<=100, n=3/4 R<=10); INF 侧朴素界大 R 失败 (n=3 R>=4),
+  detK -> 0+ (R->inf) 无一致余量, 需定性论证; Sherman-Morrison 化归; 扇区主元
+  SUP 全+/INF 全- (闭式, 全部扫描点); 脚本 _gapn2_mtilde_offdiag_identity.py,
+  _gapn2_sector_decomposition.py + _gapn2_sector_scan_*.json; (G1') 仍开放,
+  待证引理: 扇区核 R_k^||/R_k^bot 的 Green 估计.
 - 2026-08-12 (会话 58 续作 5, 晚段): 更新 [[band-selfconsistency-equivariance]] -- 新增
   STRICT 恒等式 (I1) 部分分式: lambda_{n+1} G~_{n+1} - lambda_n G~_n = Sigma' - 2w_j/D
   - w_j D/(lambda_n lambda_{n+1}), Sigma' > 0; (I2) M~ 对角闭式: M~_{jj}/s_j = 2w_j Sigma'

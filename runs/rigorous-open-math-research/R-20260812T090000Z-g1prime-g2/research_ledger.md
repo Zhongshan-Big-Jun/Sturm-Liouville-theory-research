@@ -72,3 +72,48 @@ flagged STRICT.
 - (G2) boundary exclusion: unchanged (obstructions recorded in run_notes).
 - O-5 det B != 0: no strict proof; diagonal-dominance and H-matrix routes
   closed by the dead-end register above.
+
+## R-201 (2026-08-12 evening): diagonal closed forms, sign audit, dead ends
+- (I1) STRICT partial-fraction identity: lambda_{n+1} G~_{n+1}(x_j,x_j)
+  - lambda_n G~_n(x_j,x_j) = Sigma'(x_j) - 2 w_j/D - w_j D/(lambda_n lambda_{n+1}),
+  Sigma'(x_j) > 0; (I2) M~_{jj}/s_j = 2 w_j Sigma'(x_j) - 4 w_j^2/D; (I3)
+  CORRECTION f'(x_j)/s_j = +2c|W(x_j)|/(R-1) (SUP), -2c|W(x_j)|/(R-1) (INF);
+  (I4) |W(x_j)| <= D.  All FD/spectral verified (1e-13..1e-15).
+- Dead ends: Gershgorin diagonal dominance (fails R >= 2..4), H-matrix
+  scaling (fails n=2 INF R=4, n=3 SUP R=4, n=3 INF R=2).
+- Sylvester pivots of K constant sign along the branch (SUP all > 0, INF
+  all < 0) on the reachable range incl. large R (detK down to 6e-17);
+  spurious-root trap at n=3 SUP R>=30 (retracted, hp_scan fd_* authoritative).
+
+## R-202 (2026-08-12 late evening): off-diagonal closed forms + mirror sectors
+- (C1)/(C2) STRICT: T_ji = M~_ji/s_i closed forms (same/cross eps-parity) via
+  per-mode partial fractions + band relations; verified 1e-13..1e-15
+  (n=2,3; R in {1.2,2,4,10}); resolvent identity (R) verified with exact
+  per-block Gram quadrature (trapezoid O(1) fails).
+- eps-structure STRICT: eps_j = (-1)^{j+1} alternating; w mirror-even,
+  eps odd, (eps w) odd; eps_j = sigma s_j/(R-1).
+- Mirror-sector decomposition STRICT (machine 1e-15..1e-16):
+  K_e = diag(d_h) + E_e + H_e, K_o = diag(d_h) + E_o + H_o with
+  E_e = c_e w_h w_h^T (c_e > 0), E_o = c_o (eps_h.w_h)(eps_h.w_h)^T (c_o < 0),
+  H_e/H_o parity-masked closed forms with mirrored kernels
+  Sigma'(x_i,x_j) +/- p_n Sigma_+(x_i,xbar_j).  First verification attempt
+  failed due to coordinate mixup (sector basis = mirror halves, mask =
+  parity classes); corrected forms all pass.
+- Falsified: (P1') Hankel symmetry of K~ (rel 0.6..1.2).
+- Dominance scans (EVIDENCE): SUP sufficient inequalities
+  lammin(H_o-E_o)+mind > 0 and lammin(H_e+E_e)+mind > 0 hold on every scan
+  point (n=2 R<=100, n=3/4 R<=10); INF naive bounds FAIL at large R
+  (n=3 R>=4; n=2 R=100 borderline), detK -> 0+ as R->inf: INF needs a
+  qualitative argument, no uniform margin exists.
+- Sherman-Morrison reduction (exact): K_o PD iff A_o = diag(d)+H_o PD and
+  |c_o| (eps w)^T A_o^{-1} (eps w) < 1; same for K_e and -K (INF).
+- Sector Sylvester pivots (closed-form K): SUP all +, INF all - on every
+  scan point; FD direct continuation spurious-root trap reproduced (n=3 sup
+  R=10, retracted).
+- (G1') still OPEN: reduced to sector quadratic-form lemmas (resolvent
+  Green estimates of R_k^||/R_k^bot at band-consistent points).
+- Deliverables: run_notes_addendum (deep-night extension);
+  scripts/_gapn2_mtilde_offdiag_identity.py, _gapn2_sector_decomposition.py,
+  _gapn2_sector_scan_{2,3}_{sup,inf}.json, _gapn2_sector_scan_4_sup.json;
+  tools/band-selfconsistency-equivariance.md (deep-night section);
+  tools/README.md (maintenance log).
