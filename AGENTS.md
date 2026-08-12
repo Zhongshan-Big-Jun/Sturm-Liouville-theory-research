@@ -2353,3 +2353,22 @@
 - 诚实登记: (I1)-(I4) 为 STRICT; 其余全部 EVIDENCE; (G1')/(G2) 未关闭; 未 commit/push (等待用户指示).
 - 待办: 主文档 SL_gap_nge2_symmetry_local_proof.tex 增补 2026-08-12 审计节 (符号审计 + O-3 余量表 + 新恒等式); 严格证明主元符号 (需控制 Green 离对角部分); INF R=75 n=3 的 mpmath 高精度 FD detJ 复算 (可选).
 - 维护: 本文件追加会话 58 续作 5 记录; tools/README.md 已同步; run 元数据已补全.
+
+### 2026-08-12 会话 81 (README 公式可读性优化 + 新增英文版 README_EN.md 并同步双仓库)
+- 任务: (1) 优化根 README.md 公式显示可读性 (改为 GitHub 原生 LaTeX 渲染); (2) 新增英文版
+  README_EN.md; (3) 父类 (Zhongshan-Big-Jun/Sturm-Liouville-theory-research) 与个人 fork
+  (xsoc1/Sturm-Liouville-theory-research) 两个仓库均附英文版 README.
+- 完成:
+  - README.md: 全部数学符号改用 GitHub 支持的 LaTeX 语法 (行内 $...$ / 块级 $$...$$). 定义式
+    -y'' = lambda rho y 与可测盒类条件 0 < a <= rho <= A 改为块级公式; 结果表中 sup/inf 闭式,
+    H^2/H^s 完备性、[1,R,1]/[R,1,R] 极值配置、n>=2 开关定理、(G1')/(G2) 拓扑度条件等改为行内公式;
+    Lean 节中 K_c 传输算子、H^3->H^1 等距同构、Δw=∫w dx (FTC) 胶水 (依据 lean-proof 注释中
+    Δw = w(1)-w(-1) = ∫ wd 的 FTC 含义)、比值恒等式 1/(2n+7) 与 3/(2n+9) 一并渲染; 全角引号规范为
+    半角; 研究内容与严格性标注口径未变.
+  - README_EN.md: 英文全译本, 与中文版同结构同口径 (公式渲染、目录结构、构建复现、仓库结构、
+    工作方法); 两文件顶部互相链接 (README.md <-> README_EN.md).
+  - 同步: commit + push 至父类, 再 push 至 fork (xsoc1), 双仓库 main 均含 README_EN.md; 顺带推送
+    此前本地未推送的 d5c1b01 (会话 58 续作 5 维护记录).
+- 诚实标注: 本地无法预览 GitHub 渲染效果; 公式语法符合 GitHub Math 约定, 如需可浏览器复核;
+  未改动任何研究内容.
+- 维护: 本文件追加会话 81 记录.
