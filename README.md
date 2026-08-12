@@ -42,7 +42,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
 - **机器验证**: `lean-proof/run-manifest.json` (12 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8570 jobs).
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8572 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
@@ -53,8 +53,10 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
   - H^s 线第一步: TransferOperator (K_c^{-r} x^k 传输算子闭式 + K_c 双射).
   - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
   - 比值上确界证明线核心三角闭式: BalancedPhase.
+  - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
+    (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 1/(2n+7), 3/(2n+9)).
 - **未完成 (已登记)**: H^3 等距同构 K_c: H^3 -> H^1 与 Δw = ∫wd (FTC) 胶水; H^s 显式完备
-  正交多项式系构造; MW 引理重证; 间距线 (n=1 定理族, n>=2 开关/约化); 三阶递推理论;
+  正交多项式系构造; MW 引理重证; 间距线 (n=1 定理族, n>=2 开关/约化); 三阶递推分类方向;
   Krein c->0 极限; 分数阶 H^s 与稠密性准则.
 
 ## 目录结构

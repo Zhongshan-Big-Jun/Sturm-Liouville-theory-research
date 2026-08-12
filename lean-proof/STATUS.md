@@ -1,9 +1,10 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-12, 会话 78) 已形式化 12 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-12, 会话 79) 已形式化 14 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
 > H^3 线代数核心与解析 H1 矩上界, 比值上确界证明线的核心三角闭式,
-> 以及稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
+> 稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数),
+> 以及三阶递推线 (一般框架/比值映射等价/精确降阶 + 偶奇族闭式/固定点轨迹/比值恒等式).
 > 其余已证定理 (H^3 线等距同构 K_c: H^3->H^1, H^s 显式正交系, MW 重证, 间距线等) 仍有待形式化.
 
 ## 1. 已形式化并通过机器验证
@@ -21,9 +22,11 @@
 | `SL/H3Completeness.lean` | H^3 线代数核心 (R 上, 复用 Completeness 系数族): M_0=M_1=0, 偶/奇二阶跳变递推 c M_{2m}=A_m M_{2m-2}-B_m M_{2m-4}, 缩放 M_{2m}=M_2 u_m, 超阶乘增长 u_m >= (4/c)^(m-1) m! (StabilityGrowth.product_growth 统一覆盖两组系数), 湮灭 M_2=M_3=0, all_moments_zero_of_orthogonal (解析 H1 上界为假设 hbdE/hbdO), h1_moments_zero_of_orthogonal (用 H3MomentBound 的具体上界实例化, 闭合 H^3 矩全零) | `docs/SL_h3_completeness_proof.tex` 第 3-6 节 | lake build 绿, sorry/axiom 0; 等距同构 K_c: H^3->H^1 未形式化 |
 | `SL/H3MomentBound.lean` | H^3 线解析 H1 矩上界 (R 上, 积分形式, 源文档第 5 节引理 6): 边界差泛函 delta p=p(1)-p(-1) (delta X^{2m}=0, delta X^{2m+1}=2), h1MomentFunctional M(p)=∫wd·p'+c∫w·p-(1/2)·delta p·∫wd, M(X^{2m})=momentsEven / M(X^{2m+1})=momentsOdd 恒等式, sqrt 初等估计 ((2m)√(2/(4m-1))≤2√m, (2m+1)√(2/(4m+1))≤3√m, √(2/(4m+1))≤√2·√m, √(2/(4m+3))≤√2·√m, √2≤√2·√m), Cauchy-Schwarz 矩上界 |M_{2m}|≤(2‖wd‖₂+c√2‖w‖₂)√m 与 |M_{2m+1}|≤((3+√2)‖wd‖₂+c√2‖w‖₂)√m | `docs/SL_h3_completeness_proof.tex` 第 5 节 (引理 6) | lake build 绿, sorry/axiom 0 |
 | `SL/Stability.lean` | 稳定性定理 Thm 2.2 (R 上泛函核心): 发散对数和 (1/2)Σmin(eps_k,1) → 超多项式增长 (superpolynomial_of_divergent_sum/logsum), 多项式界湮灭 (annihilate_of_superpolynomial/divergent_sum), 偶/奇矩递推 + 湮灭 + 多项式上界 → stability_moments_zero (矩全零); 尖锐性 Thm 2.3 (C/k 族): sharp_product_eq (乘积闭式) + sharp_recurrence (递推) + sharp_poly_bound (多项式增长) + sharp_term_bound/sharp_series_summable (β>C+1/2 级数收敛) | `docs/SL_stability_moment_jump.tex` 定理 2.2-2.3 | lake build 绿 (8569 jobs), sorry/axiom 0 |
+| `SL/ThirdOrder.lean` | 三阶递推一般理论 (任意域): IsSolution/ratioMap 框架, Lemma 1 (fixed_point_iff: 序列 E 满足递推 <=> 连续比值 e_j=E_j/E_{j-1} 满足固定点方程 e_j=F_j(e_{j-1},e_{j-2})), Theorem 3 前向 (reduction: 差序列 s_j=r_j-r_{j-1} 满足二阶递推) | `docs/SL_third_order_recurrence_theory.tex` 第 2-4 节 (Lemma 1 + Theorem 3 前向) | lake build 绿; sorry/axiom 0 |
+| `SL/ThirdOrderClosedForms.lean` | Theorem 2 闭式验证 (偶族 mu+=(2j+1)!/c^j, mu-=(2j)!/c^j; 奇族 mu+=(2j+3)!/(6(j+1)c^j), mu-=(2j+1)!/c^j 逐项满足三阶递推) + 固定点轨迹充分方向 (e_j=1+beta/(2j), beta in {1,-1}/{3,1}, 乘法与 ratioMap 形式) + 比值恒等式 (偶 mu-/mu+=1/(2n+7), 奇 =3/(2n+9)) | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (充分方向) + 定理 2 | lake build 绿; sorry/axiom 0; 分类方向 (Theorem 1 当且仅当) 依赖源文档符号计算, 未形式化 (文件头注释声明) |
 
-机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 12 个 SL/ 下 .lean 文件
-加根目录测试文件共 17 个扫描, sorry/admit/axiom 命中 0, lake build exit 0, 8570 jobs). 义务级审计: `audit_report.md` +
+机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 14 个 SL/ 下 .lean 文件
+共 15 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8572 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
 MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报告独立性说明).
 
@@ -40,7 +43,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_fractional_left_definite.tex | 实数阶 H^s (含分数窗 3/2<=s<2) 稀疏基解析完备 | 已证 | 未开始 |
 | SL_denseness_criteria.tex | 一般稠密性准则: 一阶矩准则 + 临界指数 | 已证 | 未开始 |
 | SL_stability_moment_jump.tex | 矩跳跃稳定性: 定量增长引理 (一般系数, B_m>=0 且 A_m-B_m>=c_0), 稳定性定理 (发散对数和 ω(log m) => 完备), 尖锐性 (C/k 族) | 已证 | 部分: 定量增长引理 + eps 形式 (StabilityGrowth); Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数 (Stability); 未形式化: 完备性收尾 w=0 (稠密性, 同 O16 缺口) 与 §4 后门槛分类 (S-门槛/门槛线/Krein 余量) |
-| SL_third_order_recurrence_theory.tex | 三阶递推一般理论: 积分解分类/精确降阶/最小解 | 已证 | 未开始 |
+| SL_third_order_recurrence_theory.tex | 三阶递推一般理论: 积分解分类/精确降阶/最小解 | 已证 | 部分: 一般框架 + Lemma 1 固定点等价 + Theorem 3 前向降阶 (ThirdOrder); Theorem 2 闭式 + 固定点轨迹充分方向 + 比值恒等式 (ThirdOrderClosedForms); 分类方向 (Theorem 1 当且仅当) 与最小解唯一性未形式化 (依赖源符号计算) |
 | SL_krein_c0_limit.tex | 移位 Krein 算子 c->0 退化极限的结构稳定性 | 已证 | 未开始 |
 | SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心); 转移矩阵/secar 推导/平凡不等式/MW 引理未形式化 |
 | SL_inf_ratio_proof.tex | inf_{n,rho} lambda_{n+1}/lambda_n = 1 (Weyl 渐近) | 已证 | 未开始 (需 Weyl 渐近, 解析重) |
@@ -93,3 +96,4 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 6. 间距线 (n=1 定理族, n>=2 开关/约化) 体量大且分析密集, 建议拆义务逐条形式化.
 7. [已完成: 会话 70] H^s 显式正交系统线第一步: TransferOperator (K_c^{-r} x^k 闭式 + K_c 双射 + 迭代闭式, 9 文件机器验证通过). 剩余: 由传输算子构造 H^s 显式完备正交多项式系 (承接 Completeness 的矩方法/等距同构), 并处理 H^3 线 (SL_h3_completeness_proof.tex).
 8. [部分: 会话 78] H^3 线: H3Completeness.lean (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound.lean (解析 H1 矩上界, Cauchy-Schwarz + sqrt 初等估计, 已接入 hbdE/hbdO 闭合 h1_moments_zero_of_orthogonal), 12 文件 lake build 绿, sorry/axiom 0. 剩余: 等距同构 K_c: H^3->H^1 (然后一切整数 s>=1 由归纳传输), 及把 h1MomentFunctional 与 H1 内积对上的 FTC 胶水.
+9. [已完成: 会话 79] 三阶递推线: ThirdOrder.lean (一般框架 IsSolution/ratioMap, Lemma 1 fixed_point_iff, Theorem 3 前向 reduction) + ThirdOrderClosedForms.lean (Theorem 2 偶/奇闭式逐项验证, 固定点轨迹乘法与 ratioMap 形式, 比值恒等式 1/(2n+7) 与 3/(2n+9)), 14 文件 lake build 绿 (8572 jobs), sorry/axiom 0. 剩余: Theorem 1 分类方向 (beta 仅 {1,-1}/{3,1}) 与最小解理论 (依赖源文档符号计算, 诚实标注未形式化).

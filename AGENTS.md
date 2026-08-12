@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## 项目目标
 - 寻找, 阅读论文, 研究前沿数学问题 (当前主题: Sturm-Liouville 边值问题).
@@ -2257,6 +2257,38 @@
 - 同步: push 父类 Zhongshan-Big-Jun/Sturm-Liouville-theory-research main; fork
   xsoc1/Sturm-Liouville-theory-research 跟进同一提交 (本地 push fork remote).
 - 维护: 本文件追加会话 79 记录.
+### 2026-08-12 会话 80 (三阶递推线形式化收尾: ThirdOrderClosedForms.lean 全绿)
+- 任务: 继续形式化未完成部分 - docs/SL_third_order_recurrence_theory.tex 的闭式/固定点/比值
+  部分 (承接 ThirdOrder.lean 一般框架), 完成后推送 GitHub (父类 + fork).
+- 完成 (SL/ThirdOrderClosedForms.lean, 单文件编译 exit 0):
+  - Theorem 2 闭式逐项验证: even_plus/even_minus/odd_plus/odd_minus (偶族
+    mu+=(2j+1)!/c^j, mu-=(2j)!/c^j; 奇族 mu+=(2j+3)!/(6(j+1)c^j), mu-=(2j+1)!/c^j).
+  - 比值恒等式: ratio_even (mu-/mu+=1/(2n+7)), ratio_odd (=3/(2n+9)).
+  - Theorem 1 充分方向: fixed_point_even_mul/odd_mul (乘法形式, beta in {1,-1}/{3,1})
+    与 fixed_point_even/odd (ratioMap 形式), 含 eSeq_ne_zero 与 factorial_shift_7/9.
+  - 文件头诚实标注: 分类方向 (Theorem 1 当且仅当) 依赖源文档符号计算, 未形式化.
+- 修复要点 (如实登记, 供后续复用): (a) 比值定理旧版 field_simp 无法消除复合分母,
+    改用乘法形式 hmul + calc 推导; (b) rw [Nat.factorial_succ] 只改写首个匹配项且可经归约
+    匹配 2n+6=(2n+5)+1, 导致 RHS factorial 未拆而 LHS 过度拆分; 预证 factorial_shift_7/9
+    后单点替换; (c) norm_cast 会把 2*(n:Q)+7 反向拉成 ↑(2n+7) 破坏 ring 归一, 改用
+    push_cast (只推不拉); (d) 复合分母非零假设需显式提供 (hDx/hDx3/hden);
+    (e) fixed_point 的 hjm1 用 sub_pos 模式, 分支内 field_simp 后需 norm_num 推 cast 再 ring_nf.
+- 验证: lake build 全库 exit 0 (8572 jobs); verify_lean_project.py 扫描 15 文件
+  (14 SL/*.lean + lakefile.lean), sorry/admit/axiom 命中 0, run-manifest.json 已刷新.
+- 文档: lean-proof/STATUS.md (14 文件; SL_third_order_recurrence_theory.tex 状态矩阵
+  未开始 -> 部分; 路线图第 9 项), lean-proof/README.md (目录/命名空间/总览), 根 README.md
+  (机器验证 14 文件/8572 jobs, 已完成列表 + 三阶递推线, 未完成列表同步).
+- 清理: 删除调试残留 28 个 (根 TestParse.lean, lean-proof/{InTest,Probe,Probe2,TestParse}.lean,
+  _probe*.lean/_probe*.log, _tocf*.log, _err*.txt, _fix1.py, _write_test.py, _check_diff.py,
+  _build*.log, _thirdorder_compile.log, _to*.log, _bto.log 等).
+- 同步: push 父类 Zhongshan-Big-Jun/Sturm-Liouville-theory-research main; fork
+  xsoc1/Sturm-Liouville-theory-research 跟进同一提交 (本地 push fork remote).
+- 维护: 本文件追加会话 80 记录.
+- 补记 (提交前复核): 清理 ThirdOrderClosedForms.lean 的 lint 警告 - 7 处 field_simp 已完全
+  求解致 <;> ring 空转 (删除), 1 处 <;> 改 ; (unnecessarySeqFocus), REven/ROdd 未用参数 c 改
+  _c (unusedVariables). 现在 lake build 8572 jobs 零警告零错误; verify_lean_project.py --build
+  复跑 (15 文件扫描, sorry/admit/axiom 0, exit 0) 刷新 run-manifest.json; STATUS.md 机器验证段
+  文件数 12 -> 14 修正.
 ### 2026-08-12 会话 58 续作 4b (n>=2 极值子反射对称性收尾: 局部定理闭合 + R=1 一般 n 分析 + 拓扑度框架)
 - 任务: 继续推进概述第 5.5 节开放问题 - n>=2 相邻谱隙极值子的反射对称性与唯一性 (承接
   有限块约化 + 恰 2n 开关两文档).
