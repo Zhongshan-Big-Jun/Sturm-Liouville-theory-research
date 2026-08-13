@@ -2849,3 +2849,22 @@
   autostash 已恢复); fork 因 rebase 变基非快进被拒, 确认 fork 上无意外提交后
   `git push --force fork main` 同步; 最终 HEAD = origin/main = fork/main =
   05cdd96.
+### 2026-08-13 会话 97 (README 精简 + leanproof 未完成栏整理)
+- 任务: 修改 README - 整体更精简但保留所有重要信息, 并把 lean-proof 未完成
+  那一栏整理得有条理.
+- 完成:
+  - README.md 116 行 9495 bytes -> 92 行 6615 bytes; README_EN.md 同步重写
+    (口径一致, 92 行 7590 bytes), 修正英文版过时数据 (原写 12 文件 8572 jobs,
+    现为 24 文件 8582 jobs).
+  - 主要结果表保留全部 9 项严格证明, 压缩长描述; 部分证明/开放问题保留 4 条.
+  - Lean 部分重构: "已完成" 由 10 个冗长 bullet 压缩为按证明线 3 条
+    (完备性线/比值线/其他线, 保留全部文件名); "未完成" 由一大段文字整理为
+    4 类: 谱论/泛函分析依赖 (等距同构 O16/H3/Hs, 稠密性收尾, Krein 商空间级,
+    Weyl 渐近, MW 重证, 转移矩阵谱论连接), 已证但未开始 (n=1 间距线,
+    n>=2 开关/约化, 分数阶 H^s), 源中为数值/未严格 (不形式化: n>=2 全局极值,
+    2n 根计数, 三解 Casoratian), 假设接入 (gamma_0* 定位, Lemma ys2).
+  - 目录结构/构建复现/仓库结构/工作方法保留; 仓库结构同步一节更新为
+    project.json git_sync.push_order + sync_remotes.py (与 manage skill 新机制
+    一致). 公式 $...$ 配对完整, GitHub 渲染正常.
+- 维护: 本文件追加会话 97 记录; 提交后按 project.json 的 push_order 推送
+  双仓库 (origin 父 -> fork 子).
