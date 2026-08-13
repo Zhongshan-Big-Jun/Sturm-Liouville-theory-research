@@ -32,6 +32,19 @@ Strictness convention: rigorous proofs and numerical evidence are explicitly dis
 - Authoritative open-problem list: `docs/SL_spectral_topics_summary.tex`, Section 5.
 - Literature: no published result directly equivalent to the $n \ge 2$ theorems was found; the project does not claim priority, and early literature such as Willner-Mahar 1979 remains an overlap risk.
 
+## Current open problems
+
+Authoritative list: `docs/SL_spectral_topics_summary.tex` §5 (per-problem progress and failed routes).
+
+1. **Structure closure for gap extremals** ($n\ge2$): closed forms for switch positions/block lengths, reflection symmetry and uniqueness (reduced to proving (G1$'$) $\det K>0$), closed form or sharp bounds for $\max/\min D_n$, formalization of the $n=1$ certificate replay kernel.
+2. **General boundary/potential classes**: Neumann case (Li-Ao line), nonnegative potential $q\ge0$ (Gan-Zheng-Li-Shao line), and sign-changing weights - optimal constants and extremal structure for eigenvalue ratios.
+3. **Unified MDE extremal-measure theory**: extremal measures for Neumann gaps and maximal gaps, unified with nodal bounds (Chu-Guo-Meng-Zhang).
+4. **General denseness criterion in left-definite spaces**: necessary and sufficient conditions for polynomial density in Hilbert spaces with general boundary constraints.
+5. **Nonlinear generalizations (p-Laplacian etc.)**: scope of the Wen-Zhou singular-measure technique.
+6. **General moment-representability criterion**: closed-form criterion in general Hilbert spaces.
+7. **Threshold-line classification for jump stability**: coefficient families on the threshold line ($\sum\sim\log m$) not fully classified; higher-order moment-jump replacement mechanism (S3) for variable-coefficient operators.
+8. **Third-order recurrence theory**: closed form for the minimal solution $h^*$ and its asymptotic constant $K$, exclusion of degenerate configurations in box induction, classification of product solutions for general coefficient families.
+9. **Fixed-$n$ supremum closure**: global extremality (Keller reduction), $2n$-root count, monotone convergence $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 formal verification (lean-proof/)
 
 A machine-checkable proof project (Lean 4.31.0 + mathlib v4.31.0). Authoritative status: `lean-proof/STATUS.md` (status matrix) + `lean-proof/audit_report.md`/`verification.json` (obligation-level audit, O1-O24). Current machine check: 24 `SL/*.lean` files, 0 `sorry/admit/axiom` hits, `lake build` exit 0, 8582 jobs.

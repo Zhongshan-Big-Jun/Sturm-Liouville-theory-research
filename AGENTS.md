@@ -2868,3 +2868,20 @@
     一致). 公式 $...$ 配对完整, GitHub 渲染正常.
 - 维护: 本文件追加会话 97 记录; 提交后按 project.json 的 push_order 推送
   双仓库 (origin 父 -> fork 子).
+
+### 2026-08-13 会话 99 (README 新增开放问题栏 + 插件文献检索能力评估)
+- 任务: 在 README 中加入"目前关注的未解决问题"栏; 评估工作流插件寻找论文以判断问题是否 open、结果是否先进/原创的能力.
+- 完成:
+  - README.md 与 README_EN.md 在 Lean 部分前新增 "目前关注的未解决问题" / "Current open problems" 栏, 共 9 条,
+    与 docs/SL_spectral_topics_summary.tex §5 口径一致: (1) n>=2 间距结构收尾 (开关位置闭式, 对称性与唯一性依赖
+    (G1') det K>0, max/min D_n 闭式或锐界, n=1 证书重放内核形式化); (2) 一般边界/势类 (Neumann, q>=0, 变号权);
+    (3) MDE 极值测度统一; (4) 左定空间稠密性一般判据; (5) p-Laplacian 推广; (6) 矩量可表示性; (7) 跳变门槛线
+    分类 (S3); (8) 三阶递推理论三处未闭合; (9) 固定 n 上确界收尾. 两文件均 105 行, $ 配对完整.
+  - 能力评估 (基于 workflow v0.1.0+codex.20260813054312 / rigorous v0.1.0+codex.20260812030804 /
+    manage v0.1.0+codex.20260813093832 实读): workflow 是编排层不直接检索; "是否 open" 的强制检查在 rigorous
+    Phase 0/1 (求解前核对 genuine open), novelty 由 status_and_literature.md + 发散式检索契约 (query -> result
+    -> locator, 语义检索优先, arXiv/OpenAlex/zbMATH 分层) + post-discovery novelty audit 执行; manage 负责
+    literature frontier 策展 (paper-analysis 模板, novelty risk 字段, 禁止编造引用). 局限如实登记: 付费墙/
+    非 arXiv 期刊全文覆盖盲区 (本项目 JDE/MMAS 多篇仅摘要级), novelty 结论为 "未检索到等价结果" (POTENTIALLY_NEW)
+    而非绝对保证.
+- 维护: 本文件追加会话 99 记录; 提交后按 project.json 的 push_order 推送双仓库 (origin 父 -> fork 子).

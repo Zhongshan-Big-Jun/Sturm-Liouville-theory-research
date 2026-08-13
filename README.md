@@ -32,6 +32,19 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 - 权威开放问题清单: `docs/SL_spectral_topics_summary.tex` §5.
 - 文献检索: 未检索到与 $n \ge 2$ 定理直接等价的已发表结果; 项目不声称首创, Willner-Mahar 1979 等早期文献为既有工作风险.
 
+## 目前关注的未解决问题
+
+权威清单: `docs/SL_spectral_topics_summary.tex` §5 (含各问题的进展与失败路线).
+
+1. **相邻间距极端值结构收尾** ($n\ge2$): 开关位置/块长闭式, 反射对称性与唯一性 (依赖 (G1$'$) $\det K>0$ 的严格证明), 最优值 $\max/\min D_n$ 闭式或锐界, $n=1$ 证书重放内核的形式化.
+2. **一般边界/势类推广**: Neumann 情形 (Li-Ao 线), 非负势 $q\ge0$ (Gan-Zheng-Li-Shao 线), 变号权重的比值最优常数与极值结构.
+3. **MDE 极值测度统一理论**: Neumann 间距与最大间距的极值测度结构, 及其与节点界 (Chu-Guo-Meng-Zhang) 的统一.
+4. **左定空间稠密性一般判据**: 受一般边界条件约束的 Hilbert 空间中多项式稠密的充要条件.
+5. **p-Laplacian 等非线性推广**: Wen-Zhou 奇异测度技巧的适用范围.
+6. **矩量可表示性的一般刻画**: 一般 Hilbert 空间的闭式判据.
+7. **跳变稳定性门槛线分类**: 门槛线上系数族 ($\sum\sim\log m$) 未完全分类; 变系数算子高阶矩跳跃替代机制 (S3).
+8. **三阶递推理论**: 最小解 $h^*$ 闭式与渐近常数 $K$, 盒式归纳退化配置排除, 一般系数族积分解分类.
+9. **固定 $n$ 上确界收尾**: 全局极值性 (Keller 型归约), $2n$-根计数, $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 形式化验证 (lean-proof/)
 
 机器可核验的证明工程 (Lean 4.31.0 + mathlib v4.31.0). 权威状态: `lean-proof/STATUS.md` (状态矩阵) + `lean-proof/audit_report.md`/`verification.json` (义务级审计, O1-O24). 当前机器验证: 24 个 `SL/*.lean` 文件, `sorry/admit/axiom` 命中 0, `lake build` exit 0, 8582 jobs.
