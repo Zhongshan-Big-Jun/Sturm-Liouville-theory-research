@@ -2914,3 +2914,42 @@
   README.md/README_EN.md/lean-proof/README.md 同步 (超越假设项改为已形式化; 剩余文献假设为
   HsOrthogonalSystems 的 Legendre/Krein-Sobolev 正交性).
 - 维护: 本文件追加会话 100 记录; 提交后按 project.json push_order 推送双仓库 (origin 父 -> fork 子).
+
+### 2026-08-13 会话 101 (Lean: SymlineKeyLemma 形式化 P1/P2 对数导数界与 W0 引理, 证书自由路线)
+- 任务: 形式化 docs/SL_gap_n1_symline_proof.tex 4.2-4.3 节的 KEY LEMMA 代数核心 - Lemma P1/P2
+  的对数导数界与 W0 引理 (驱动 Fe 在 (0,1/2) 唯一零点), 承接会话 100 的证书自由路线.
+- 完成: 新文件 lean-proof/SL/SymlineKeyLemma.lean (命名空间 SL.SymlineKeyLemma):
+  - q0=sqrt(2/3) 与 Gamma0=arccos(q0/(1+q0)) 证书自由定位: 4/5<q0<5/6 (sq_lt_sq0 双非负),
+    Gamma0<pi/2-4/9 (由 sin(4/9)<4/9<q0/(1+q0)=cos Gamma0 + cos 在 [0,pi] 反单调),
+    cot Gamma0>1/2 (由 sin^2+cos^2=1 与 q0<5/6), cot_ge_cot_Gamma0 (cot 在 (0,pi/2) 反单调).
+  - W0 引理 W0_lt_four_thirds_q0: 0<gamma<=Gamma0 时 W0 gamma=3-2(pi-gamma)cot gamma<4q0/3
+    (经 pi/2+4/9<2(pi-gamma)cot gamma, 3-(pi/2+4/9)<=19/18 由 pi>3, 19/18<16/15<4q0/3).
+  - Phi=cos^2 x+q^2 sin^2 x 与 Phi_nonneg/Phi_le_one/Phi_ge_sq.
+  - P1_bound: q in [q0,1], c in (0,1/2), x in (0,pi/2) 时 G<=-(6*sqrt6-6)/5<-4/3 (经
+    Phi/(q+c*Phi)=1/(q/Phi+c), q/Phi<=1/q<=1/q0 与常数恒等式 3/(1/q0+1/2)=(6*sqrt6-6)/5,
+    由 q0=sqrt6/3).
+  - P2_bound: 同参数范围且 gamma<=Gamma0 时 -4/3<G(pi-gamma) (按 W0 gamma 符号分情形;
+    W0<=0 时两项均非负, 否则 Phi*W0/D<4/3 经 Phi/D<=1/q<=1/q0 与 W0 引理).
+  - P1_neg/P1_lt_P2 (经 six_sqrt_six_sub_six_div_five_gt_four_thirds)/
+    Fep_lt_zero_of_nonneg (KEY LEMMA 单调步 (M1-M2)G1+M2(G1-G2)<0, 由 M2<=M1, G1<0, G1<G2)/
+    gamma0_mono (gamma_0(q)=arccos(q/(1+q))<=Gamma0 对 q0<=q, arccos 反单调).
+  - 诚实标注 (文件头): 相位分支约化 gamma=pi-alpha2(c)<=gamma_0(q) 为文档钩子, P2_bound 以
+    gamma<=Gamma0 为假设, 仅形式化第二半 gamma0_mono; 源的有理位置证书 (交替级数, pi>22/7)
+    未复刻, 以 sin(4/9)<4/9、q0 in (4/5,5/6)、pi>3 与反单调 cos/cot 替代 (证书自由偏差,
+    非常数削弱); 数值证据从不使用.
+- 调试记录 (mathlib v4.31): 不存在 div_gt_iff0/div_nonpos/sq_pos.mpr/neg_le_neg.mpr/
+  neg_lt_neg.mpr (负号比较引理为直接蕴含式 neg_le_neg/neg_lt_neg, iff 版名 neg_le_neg_iff);
+  one_lt_div0 不存在, 用 one_lt_div; 未注解数字字面量在无约束目标中默认 Nat (19/18<16/15
+  被 norm_num 按 Nat 除法处理, 需显式 (19:Real)/18); field_simp [hsq6] 残留 6=sqrt6^2 类
+  目标需 nlinarith [hsq6]; hG 恒等式中 field_simp 展开 let D 产生巨目标, 直接 ring 即可
+  (let 定义性展开); rw 方向要点: <-mul_div_assoc, neg_mul, neg_div, div_pow 先于
+  Real.sq_sqrt; div_le_div_iff0 的 .2 需归一化 q*q<=1*Phi (simpa [pow_two]).
+- 验证: verify_lean_project.py --project lean-proof --build: 26 文件扫描 (25 SL/*.lean +
+  lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0 (8583 jobs);
+  run-manifest.json 已刷新 (SymlineKeyLemma sha256 2433428D6847110A...).
+- 文档: STATUS.md (新文件行 + 矩阵行 SL_gap_n1_symline_proof.tex 未开始->部分 + 路线图 17 +
+  证据段 25 文件/26 扫描/8583 jobs), audit_report.md 新增 §17 (MACHINE_ACCEPTED_PENDING_AUDIT,
+  义务 S15-S21, 记录证书自由偏差与相位分支钩子), README.md/README_EN.md/lean-proof/README.md
+  同步 (未完成栏 symline 由未开始改为部分, 文件树与命名空间加 SymlineKeyLemma).
+- 维护: 本文件追加会话 101 记录; 提交后按 project.json push_order 推送双仓库
+  (origin 父 -> fork 子).

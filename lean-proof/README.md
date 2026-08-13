@@ -4,7 +4,7 @@ Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
 
 **形式化总览与诚实状态**: 见 [STATUS.md](STATUS.md) (完整状态矩阵: 每个已证结果 -> 形式化状态).
-结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式与传输约化已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类/变差常数(第三解)已绿, Krein c->0 退化极限多项式级与 n>=4 一般 Θ 增长已绿, 比值证明线平衡相位三角闭式 + 三段转移矩阵/secular 方程已绿, 固定 n 交替配置反射对称 (J-共轭) 已绿, 稠密性准则矩刻画代数核心 (DensenessCriteria) 已绿, 间距线 n=1 对称线代数核心 (SymlineTensionRatio: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 rho<=rho0, 含 gamma_0* 存在性/位置与 Lemma ys2 证书自由形式化) 已绿, 其余已证定理未开始).
+结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式与传输约化已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类/变差常数(第三解)已绿, Krein c->0 退化极限多项式级与 n>=4 一般 Θ 增长已绿, 比值证明线平衡相位三角闭式 + 三段转移矩阵/secular 方程已绿, 固定 n 交替配置反射对称 (J-共轭) 已绿, 稠密性准则矩刻画代数核心 (DensenessCriteria) 已绿, 间距线 n=1 对称线代数核心 (SymlineTensionRatio: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 rho<=rho0, 含 gamma_0* 存在性/位置与 Lemma ys2 证书自由形式化, SymlineKeyLemma (P1/P2 对数导数界与 W0 引理证书自由代数核心) 已绿, 其余已证定理未开始).
 义务级审计 (会话 66-69): [audit_report.md](audit_report.md) + [verification.json](verification.json) (O1-O24).
 
 ## 目录结构
@@ -37,6 +37,7 @@ lean-proof/
     ├── ReflectionSymmetry.lean 固定 n 交替配置 J-共轭反射对称 F_n(pi-y)=F_n(y) (固定 n 比值线)
     ├── DensenessCriteria.lean   稠密性准则矩刻画: 稀疏基正交性 <-> 矩条件 (稠密性准则线)
     ├── SymlineTensionRatio.lean  对称线张力比代数核心: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 + gamma_0*/Lemma ys2 (间距线 n=1)
+    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
     ├── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
     ├── ThirdOrderClassification.lean  Theorem 1 反向分类: 轨迹 => beta in {1,-1}/{3,1} (三阶递推线)
@@ -59,7 +60,7 @@ python <lean-verify>/scripts/verify_lean_project.py --project . --build
 StabilityGrowth / Stability / MomentRecurrence / MomentBound / Completeness /
 H3Completeness / H3MomentBound / H1Isometry / Transfer / HsOrthogonalSystems / BalancedPhase / ThirdOrder /
 ThirdOrderClosedForms / ThirdOrderClassification / ThirdOrderMinimal / TransferMatrix /
-ReflectionSymmetry / DensenessCriteria / SymlineTensionRatio / KreinDegenerateLimit / KreinHighGrowth).
+ReflectionSymmetry / DensenessCriteria / SymlineTensionRatio / SymlineKeyLemma / KreinDegenerateLimit / KreinHighGrowth).
 新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
 
 ## 规则

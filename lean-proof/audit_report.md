@@ -558,3 +558,92 @@ is a different proof of ys2 than the source's monotonicity argument; this
 is a documented deviation, not a weakening.  The rewiring S14 keeps the
 statements of `Delta_pos`/`Q0_nonneg`/`P2`/`tension_ratio_chain` from
 section 15 unchanged apart from the hypothesis packaging.
+
+
+## 17. SL/SymlineKeyLemma.lean P1/P2 + W0 lemma (session 101)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine check green; independent
+re-derivation of S15-S21 against the source not yet executed).
+
+`SL/SymlineKeyLemma.lean` (namespace `SL.SymlineKeyLemma`) formalizes the
+algebraic core of `docs/SL_gap_n1_symline_proof.tex` sections 4.2-4.3
+(Lemma P1, Lemma P2, the W0 lemma) that drives the KEY LEMMA (unique zero
+of `Fe` on `(0,1/2)`).
+
+Content:
+- `q0 = sqrt(2/3)` (`q0_sq`) with location `4/5 < q0 < 5/6`
+  (`q0_gt_four_fifths`, `q0_lt_five_sixths`), `0 < q0 <= 1`.
+- `Gamma0 = arccos(q0/(1+q0))`: `0 < Gamma0 < pi/2`,
+  `Gamma0 < pi/2 - 4/9` (`Gamma0_lt_pi_div_two_sub_four_ninths`, from
+  `sin(4/9) < 4/9 < q0/(1+q0) = cos Gamma0` and cos antitone on
+  `[0, pi]`), `cos_Gamma0`, `cot_Gamma0_gt_half` (from `sin^2 + cos^2 = 1`
+  and `q0 < 5/6`), `cot_ge_cot_Gamma0` (cot antitone on `(0, pi/2)`).
+- W0 lemma (`W0_lt_four_thirds_q0`): for `0 < gamma <= Gamma0`,
+  `3 - 2*(pi-gamma)*cot gamma < 4*q0/3`, via
+  `pi/2 + 4/9 < 2*(pi-gamma)*cot gamma` (from `Gamma0 < pi/2 - 4/9` and
+  `cot gamma > 1/2`), `3 - (pi/2 + 4/9) <= 19/18` (from `pi > 3`) and
+  `19/18 < 16/15 < 4*q0/3`.
+- `Phi q x = cos^2 x + q^2 sin^2 x` with `Phi_nonneg`, `Phi_le_one`
+  (`q in [0,1]`), `Phi_ge_sq` (`q^2 <= Phi`).
+- Lemma P1 (`P1_bound`): for `q in [q0,1]`, `c in (0,1/2)`,
+  `x in (0,pi/2)`: `G q c x <= -(6*sqrt 6 - 6)/5 < -4/3`.  Proof:
+  bound `-Phi*(3 + 2*x*cot x)/(q + c*Phi) <= -3/(1/q0 + 1/2)` via
+  `Phi/(q + c*Phi) = 1/(q/Phi + c)`, `q/Phi <= 1/q <= 1/q0`, and the
+  constant identity `3/(1/q0 + 1/2) = (6*sqrt 6 - 6)/5` (`hconst`, from
+  `q0 = sqrt 6 / 3`).
+- Lemma P2 (`P2_bound`): for the same parameter range and
+  `0 < gamma <= Gamma0`: `-4/3 < G q c (pi-gamma)`.  Split on the sign of
+  `W0 gamma`: if `W0 gamma <= 0` both terms of `G(pi-gamma)` are
+  nonnegative; else `Phi*W0/D < 4/3` via `Phi/D <= 1/q <= 1/q0` and the
+  W0 lemma, then `-4/3 < -Phi*W0/D`.
+- `P1_neg`, `P1_lt_P2` (via
+  `six_sqrt_six_sub_six_div_five_gt_four_thirds`),
+  `Fep_lt_zero_of_nonneg` (the KEY-LEMMA monotonicity step
+  `(M1-M2)*G1 + M2*(G1-G2) < 0` from `M2 <= M1`, `G1 < 0`, `G1 < G2`),
+  `gamma0_mono` (`gamma_0(q) = arccos(q/(1+q)) <= Gamma0` for `q0 <= q`).
+
+Honesty notes (also in the file header):
+- Certificate-free deviation: the source locates `Gamma0` with exact
+  rational certificates (alternating-series bounds for cos/cot at 10/9,
+  `pi > 22/7`).  The formal proof instead uses `sin(4/9) < 4/9`,
+  `q0 in (4/5, 5/6)`, `pi > 3`, and antitone cos/cot; the constants are
+  rational.  Numerical evidence is never used.
+- Phase-branch hook: the source's P2 requires
+  `gamma = pi - alpha2(c) <= gamma_0(q) <= Gamma0` from the phase-branch
+  analysis (alpha2 decreasing in c).  Only the second half
+  (`gamma0_mono`) is formalized; `P2_bound` takes `gamma <= Gamma0` as a
+  hypothesis.  The branch reduction `pi - alpha2(c) <= gamma_0(q)` and
+  the endpoint signs of `Fe` are not formalized.
+- No `sorry`/`admit`/`axiom`.
+
+### 17.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| S15 | `q0_sq`, `q0_pos`, `q0_gt_four_fifths`, `q0_lt_five_sixths`, `q0_le_one` | `q0 = sqrt(2/3)`; `4/5 < q0 < 5/6` |
+| S16 | `Gamma0_pos`, `Gamma0_lt_pi_div_two`, `Gamma0_lt_pi_div_two_sub_four_ninths`, `cos_Gamma0`, `cot_Gamma0_gt_half`, `cot_ge_cot_Gamma0` | location of `Gamma0`; `cot Gamma0 > 1/2`; cot antitone |
+| S17 | `W0_lt_four_thirds_q0` | `0 < gamma <= Gamma0` => `W0 gamma < 4*q0/3` |
+| S18 | `P1_bound`, `P1_neg` | `G q c x <= -(6*sqrt 6 - 6)/5 < -4/3` (Lemma P1) |
+| S19 | `P2_bound` | `-4/3 < G q c (pi-gamma)` for `gamma <= Gamma0` (Lemma P2; branch hook documented) |
+| S20 | `P1_lt_P2`, `Fep_lt_zero_of_nonneg` | sign consequences used by the KEY LEMMA |
+| S21 | `gamma0_mono` | `gamma_0(q) <= Gamma0` for `q0 <= q` |
+
+### 17.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8583 jobs)";
+  `SL.SymlineKeyLemma` built in this run.
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated: 26 scanned files (25 `SL/` files +
+  `lakefile.lean`); the temporary `ScratchCheck.lean` was removed before
+  this run and is not scanned.
+
+### 17.3 Independent audit status
+
+Not yet closed.  S15-S21 must be re-derived against
+`docs/SL_gap_n1_symline_proof.tex` sections 4.2-4.3 in an independent
+pass: check that `P1_bound`/`P2_bound` match the source's Lemma P1/P2
+(log-derivative bounds of `Mf` at `alpha1`, `alpha2`), that the W0 lemma
+matches the source's bound on `3 - 2*(pi-gamma)*cot gamma`, and that the
+certificate-free location of `Gamma0` is a documented deviation, not a
+weakening.  The phase-branch reduction `gamma = pi - alpha2(c) <=
+gamma_0(q)` remains an unformalized hook.

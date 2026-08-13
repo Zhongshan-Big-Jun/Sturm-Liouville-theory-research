@@ -1,11 +1,11 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 100) 已形式化 24 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 101) 已形式化 25 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
 > H^3 线代数核心、解析 H1 矩上界与 FTC 胶水 (H1 内积识别/正定核心), 比值上确界证明线的核心三角闭式,
 > 稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数),
 > 以及三阶递推线 (一般框架/比值映射等价/精确降阶 + 偶奇族闭式/固定点轨迹/比值恒等式 + 积分解分类方向 + 变差常数/第三解),
-> H^s 显式正交系的传输约化 (Q_n=K_c^{-r} P_n/K_n 的正交/次数约化 + Legendre 闭式 + aSeq 递推), Krein c->0 退化极限的多项式级与 n>=4 一般 Θ 增长, 比值证明线的平衡相位三角闭式与三段转移矩阵/secular 方程, 固定 n 交替配置的 J-共轭反射对称 F_n(pi-y)=F_n(y), 以及稠密性准则的稀疏基矩刻画 (正交性 <=> M_0=M_1=0, M_{2m}=mM_2, M_{2m+1}=mM_3), 间距线 n=1 对称线的代数核心 (SymlineTensionRatio: P1/P2 比较引理, FeEquiv<0 <=> rho<1 等价与张力比链 rho<=rho0; 会话 100 补 gamma_0* 存在性/位置与 Lemma ys2 证书自由形式化).
+> H^s 显式正交系的传输约化 (Q_n=K_c^{-r} P_n/K_n 的正交/次数约化 + Legendre 闭式 + aSeq 递推), Krein c->0 退化极限的多项式级与 n>=4 一般 Θ 增长, 比值证明线的平衡相位三角闭式与三段转移矩阵/secular 方程, 固定 n 交替配置的 J-共轭反射对称 F_n(pi-y)=F_n(y), 以及稠密性准则的稀疏基矩刻画 (正交性 <=> M_0=M_1=0, M_{2m}=mM_2, M_{2m+1}=mM_3), 间距线 n=1 对称线的代数核心 (SymlineTensionRatio: P1/P2 比较引理, FeEquiv<0 <=> rho<1 等价与张力比链 rho<=rho0; 会话 100 补 gamma_0* 存在性/位置与 Lemma ys2 证书自由形式化; 会话 101 补源 4.2-4.3 节 P1/P2 对数导数界与 W0 引理的证书自由代数核心 (SymlineKeyLemma).
 > 其余已证定理 (H^3 算符级等距同构 K_c: H^3->H^1, H^s 显式正交系的算符级等距与完备性, MW 重证, 间距线等) 仍有待形式化.
 
 ## 1. 已形式化并通过机器验证
@@ -18,6 +18,7 @@
 | `SL/ReflectionSymmetry.lean` | 固定 n 交替配置反射对称 (J-共轭): J=diag(1,-1), Tcell/Tend/M/F; J_Tcell/J_Tend (单块 J-共轭), J_conj_pow (矩阵幂共轭), M_reflection (M_n(pi-y)=-J M_n(y) J), J_conj_entry, F_reflection (F_n(pi-y)=F_n(y)) | `docs/SL_fixed_n_supremum.tex` 定理 "反射对称" | lake build 绿; sorry/axiom 0; 形式化固定 ω 参数的矩阵版本, 源中 y=ω√R·t 相位归一化与谱论连接未形式化 |
 | `SL/DensenessCriteria.lean` | 稠密性准则的稀疏基矩刻画 (R 上): moments M_k=M(X^k); sparse_even_apply/sparse_odd_apply (pEvenR/pOddR 的矩展开), even/odd_moments_of_orthogonal (正交性 => M_{2m}=m M_2, M_{2m+1}=m M_3) 与 even/odd_orthogonal_of_moments (反向), sparse_moment_characterization (定理 2 的 iff) | `docs/SL_denseness_criteria.tex` 定理 2 (矩刻画) | lake build 绿; sorry/axiom 0; Hilbert 空间与稠密性收尾未形式化 |
 | `SL/SymlineTensionRatio.lean` | 间距线 n=1 对称线代数核心 (R 上): Phi/Mf/FeEquiv/Delta/T/rho 定义, Phi_nonneg/Phi_eq (Phi 闭式), P1 (u<=tan u => c/(q+c)<=t/(y+t), c=arctan(q*t)/y) 与 P1_tan, FeEquiv_eq (对称线公分母形式), FeEquiv_iff_rho_lt_one (FeEquiv<0 <=> rho<1, Delta>0), p/Q0/rho0 定义, P2 (s1^2*s2^2*T/Delta*(1-q^2)<=Q0, 三正项分解 E0/y^2=cos^2γ(p-A^2)+cos^2A(y^2s2^2-p)+cos^2A*A^2*cos^2γ, 对一切实数 q 成立) 与 tension_ratio_chain (rho<=rho0, 由 P1+P2), exists_gamma_star/GammaStar (tan γ=2(π-γ)/3 在 (π/4, 9π/20) 的 IVT 根) 与 ys2_of_ge_gamma_star (Lemma ys2 严格形式 p<(π-γ)^2*sinγ^2, strictConcaveOn_f/f_pi_div_four_gt: 严格凹 + 弦界, 只用 γ_0*>π/4) | `docs/SL_gap_n1_symline_allR_proof.tex` (引理 P1/P2 + 张力比链) | lake build 绿; sorry/axiom 0; 源 γ_0* 有理位置证书 (交替级数) 未复刻, 以 IVT + 严格凹弦界替代 (audit_report §16); 义务级独立复核未执行 |
+| `SL/SymlineKeyLemma.lean` | 对称线 KEY LEMMA 代数核心 (源 4.2-4.3 节): q0=sqrt(2/3)/Gamma0/gamma0/W0/Phi/G 定义, q0 定位 (4/5<q0<5/6), Gamma0 定位 (0<Gamma0<π/2-4/9) 与 cos Gamma0/cot Gamma0>1/2/cot 反单调, W0 引理 (0<γ<=Gamma0 时 W0 γ<4q0/3, 证书自由), P1_bound (G<=-(6√6-6)/5<-4/3), P2_bound (-4/3<G(π-γ), 以 γ<=Gamma0 为假设), P1_neg/P1_lt_P2/Fep_lt_zero_of_nonneg (KEY LEMMA 单调步), gamma0_mono (γ_0(q)<=Gamma0) | `docs/SL_gap_n1_symline_proof.tex` 4.2-4.3 节 (P1/P2/W0) | lake build 绿 (8583 jobs); sorry/axiom 0; 相位分支约化 γ=π-α2(c)<=γ_0(q) 为文档钩子未形式化 (文件头诚实标注); 义务级独立复核未执行 |
 | `SL/KcPolynomial.lean` | K_c 作用在 H^2 多项式基的系数恒等式: K_c p_{2n}=c x^{2n}-A_n x^{2n-2}+B_n x^{2n-4}, 奇次同理; A_n-B_n=4n+cn/(n-1) | `docs/SL_h2_completeness_proof.tex` 引理 4.1 | lake build 绿; sorry/axiom 0 |
 | `SL/StabilityGrowth.lean` | 定量增长引理 (一般系数): 对任意 `[Field K] [LinearOrder K] [IsStrictOrderedRing K]` (含 R, Q), B_m>=0 且 A_m-B_m>=c_0 时递推解 u_m 单调且 u_m >= prod_{k=2..m}(A_k-B_k)/c_0 = prod (1+eps_k), eps_k=(A_k-B_k-c_0)/c_0>=0 | `docs/SL_stability_moment_jump.tex` 定理 2.1 (定量增长引理) | lake build 绿; sorry/axiom 0; 审计见 audit_report.md (O1-O5) |
 | `SL/MomentRecurrence.lean` | 线性泛函矩递推 + 缩放引理 (Q 上): M(K_c p_n)=0 => mu_0=mu_1=0, 偶/奇矩跳变递推 c mu_{2n}=A_n mu_{2n-2}-B_n mu_{2n-4} (奇次用 A'_n,B'_n), 且 mu_{2m}=mu_2 u_m, mu_{2m+1}=mu_3 u'_m (自由参数仅 mu_2/mu_3) | `docs/SL_h2_completeness_proof.tex` 第 3.2 节, `tools/left-definite-moment-recurrence.md` | lake build 绿; sorry/axiom 0; 审计见 audit_report.md (O6-O12) |
@@ -36,8 +37,8 @@
 | `SL/KreinDegenerateLimit.lean` | Krein c->0 退化极限 (多项式级): c=0 配对 pair0 与 radical_pair0 (pair0 f f = 0 <-> f in span{1,x}: 积分非负零 + 开区间点态零 + 无穷根 + 导数为常数 => 仿射), K_0..K_4 低模范数闭式 (kS_norm_zero..four, ||K_4||^2=(2c+240+5040/c+28350/c^2)/9), ||K_4||^2 -> atTop (c->0+, tendsto_norm_four_atTop, 主导 3150/c^2), span 分解 poly_mem_span_quotient (Theorem complete (a): Pi = span{1,x} + span{S_2..S_N}, 强归纳 + 前导项消去) | `docs/SL_krein_c0_limit.tex` (Theorem radical/low/high/complete (a), 多项式版本) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 未形式化 (文件头诚实标注) |
 | `SL/KreinHighGrowth.lean` | Krein c->0 一般高阶增长 (Theorem "high" 一般部分): aSeq_rec (递推 (19)), aSeq_nonneg_step_ge (逐奇偶类非负/单调), aSeq_lower_step / aSeq_upper_step (一步上下界), lower/upper Even/OddProd (显式乘积常数), aSeq_lower_even/odd 与 aSeq_upper_even/odd (a_n = Theta(c^{-(n-2)/2}) 偶 / Theta(c^{-(n-3)/2}) 奇), norm_even_ge/norm_odd_ge (范数下界), tendsto_norm_even/odd_atTop 与 tendsto_norm_atTop (每个 n>=4 的 ||K_n||^2 -> +infinity) | `docs/SL_krein_c0_limit.tex` (Theorem "high" 一般部分) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 仍未形式化 (文件头诚实标注) |
 
-机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 24 个 SL/ 下 .lean 文件
-共 25 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8582 jobs). 义务级审计: `audit_report.md` +
+机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 25 个 SL/ 下 .lean 文件
+共 26 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8583 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
 MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报告独立性说明).
 
@@ -62,7 +63,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_fixed_n_supremum.tex | 固定 n 上确界: 交替配置平衡相位结构, n=1,2 闭式 | 部分 (全局极值未证) | 部分: ReflectionSymmetry (J-共轭反射对称 F_n(pi-y)=F_n(y), 固定 ω 参数); 平衡定理的 2n-根计数/闭式仍依赖数值证据, 未形式化 |
 | SL_gap_extremals.tex | 相邻间距极端值 (SUP/INF 配置表) | 数值强猜想 (n>=2 未严格) | 未开始 (源未严格证明, 不宣称形式化) |
 | SL_gap_n1_proof.tex | n=1 间距极端值定理 | 已证 | 未开始 |
-| SL_gap_n1_symline_proof.tex | 缺口 (a): 阱族对称线唯一零点 + D 单峰 | 已证 | 未开始 |
+| SL_gap_n1_symline_proof.tex | 缺口 (a): 阱族对称线唯一零点 + D 单峰 | 已证 | 部分: P1/P2 对数导数界与 W0 引理的证书自由代数核心 (SymlineKeyLemma: q0/Gamma0 定位, W0 γ<4q0/3, P1_bound, P2_bound, P1_lt_P2, Fep_lt_zero_of_nonneg, gamma0_mono); 剩余: Fe 端点评值与相位分支约化、唯一零点收尾 |
 | SL_gap_n1_symline_allR_proof.tex | 对称线张力比: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 (代数核心) | 已证 | 完整 (代数核心 + 超越事实): SymlineTensionRatio (P1/P1_tan/FeEquiv_eq/FeEquiv_iff_rho_lt_one/P2/tension_ratio_chain 与辅助 T_pos/Delta_pos/Q0/rho0, 含 gamma_0* IVT 存在性/位置与 Lemma ys2 严格界证书自由形式化); 剩余: n=1 定理族其余文档与 n>=2 开关/约化 |
 | SL_gap_n1_well_rigidity_allR_proof.tex / _R32.tex | 缺口 (b): 阱族全 R (及 1<R<=3/2) 相位刚性 | 已证 | 未开始 |
 | SL_gap_n1_O3a_phase_rigidity_proof.tex | O3a: 势垒族 sign-consistent good root 唯一性 | 已证 | 未开始 |
@@ -116,3 +117,10 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 14. [完成稠密性准则矩刻画核心: 会话 93] SL_denseness_criteria.tex 定理 2 的稀疏基矩刻画 iff: DensenessCriteria.lean (sparse_even/odd_apply, even/odd_moments_of_orthogonal, even/odd_orthogonal_of_moments, sparse_moment_characterization), 23 文件 (24 扫描) lake build 绿, sorry/axiom 0. 剩余: 一阶矩准则/临界指数定理的 Hilbert 空间嵌入、稠密性与 Weierstrass 收尾未形式化.
 15. [完成代数核心: 会话 95] 间距线 n=1 对称线代数核心: SymlineTensionRatio.lean (P1/P1_tan 比较引理, FeEquiv_eq 公分母形式, FeEquiv_iff_rho_lt_one 等价), 24 文件 (25 扫描) lake build 绿 (8582 jobs), sorry/axiom 0. 剩余: 超越事实 (γ_0* 位置, (y sin γ)^2>=π^2/4, P2 三正项分解) 与完整张力比链条; n=1 定理族其余文档与 n>=2 开关/约化.
 16. [完成 P2 + 张力比链: 会话 96; 超越事实: 会话 100] 同一文件补全 P2 (三正项非负分解, 对一切实数 q 成立, 比源更强) 与 tension_ratio_chain (rho<=rho0, P1+P2 乘积), 25 文件扫描 lake build 绿 (8582 jobs), sorry/axiom 0. 会话 100 形式化 gamma_0* 存在性/位置 (IVT: tan γ=2(π-γ)/3 在 (π/4, 9π/20) 有根; 端点证书 φ(π/4)=1-π/2<0 由 π>3, φ(9π/20)>0 由 tan x>x + 线性比较) 与 Lemma ys2 严格形式 (f(γ)=(π-γ)sinγ 在 [π/4,π/2] 严格凹 + 弦界 f(π/4)=3π√2/8>π/2, f(π/2)=π/2; 只用 γ_0*>π/4, 不依赖源的有理位置证书), Delta_pos/Q0_nonneg/P2/tension_ratio_chain 假设改为 GammaStar<=γ. 剩余: n=1 定理族其余文档与 n>=2 开关/约化.
+17. [完成 P1/P2/W0 代数核心: 会话 101] 间距线 n=1 对称线 KEY LEMMA 核心: SymlineKeyLemma.lean
+    (q0/Gamma0 证书自由定位: 4/5<q0<5/6, Gamma0<π/2-4/9, cot Gamma0>1/2; W0 引理
+    0<γ<=Gamma0 时 W0 γ<4q0/3; P1_bound G<=-(6√6-6)/5; P2_bound -4/3<G(π-γ) 以
+    γ<=Gamma0 为假设; P1_neg/P1_lt_P2/Fep_lt_zero_of_nonneg/gamma0_mono),
+    26 文件扫描 lake build 绿 (8583 jobs), sorry/axiom 0. 相位分支约化
+    (γ=π-α2(c)<=γ_0(q)) 为文档钩子未形式化; 剩余: Fe 端点评值与唯一零点收尾,
+    n=1 定理族其余文档与 n>=2 开关/约化.
