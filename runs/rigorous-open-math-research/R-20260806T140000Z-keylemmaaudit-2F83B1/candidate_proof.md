@@ -6,6 +6,9 @@ Status of THIS file: the KEY LEMMA proof as independently reconstructed and
 verified by this audit.  Every step below was re-derived in this run (symbolic,
 numeric at high precision, and by the certificate re-verification with the audit
 interval engine).  Definitions are in problem_contract.md.
+STRICT: the proof chain below is analytic; the numerical evidence grids
+(200k random points + 8M Region B points) are corroboration only and do
+not constitute proof.
 
 # Statement
 

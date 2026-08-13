@@ -2767,3 +2767,51 @@
   - 未形式化 (如实登记): gamma_0* 存在性与位置, Lemma ys2 的 (y sin gamma)^2>=pi^2/4
     严格界 (P2/链条以假设接入); n=1 定理族其余文档与 n>=2 开关/约化.
 - 维护: 追加本记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 97 (R-206 收尾: 二阶变分审计, 修正全局 Kp 恒等式, 交接路线闭合 + 簿记)
+- 任务: 承接 R-206 数学审计结果 (run_notes_addendum_2026-08-13c.md), 完成运行管线收尾:
+  research_ledger.md 追加 R-206; run-manifest.json 工件/哈希/notes 更新; 新工具入库;
+  临时脚本清理; AGENTS.md 登记.
+- 数学结论 (本会话主体已在交接摘要中完成, 这里只登记): STRICT 加权特征值二阶变分
+  公式 (固定空间广义特征问题 A=-d^2/dx^2, B=×ρ, 约束 <u_e,B_e u_e>=1; 不加权配对;
+  两个求和分母均为 λ_l-λ); 移动空间框架为错误框架 (伪项 4λ<dr^2/ρ,u^2>); STRICT
+  修正的全局 Kp 恒等式 (ε-mask 内禀, 无奇偶输入无定号 rank-2 分裂); 交接二阶系数
+  路线 P3 否证 (宽度路径 d^2ρ=Σ s_i dw_i^2 δ'(x-x_i) 边界层机制); SUP 切空间负定
+  EVIDENCE, INF n=2 R=4 不定 (与 det K -> 0+ 一致). (G1') 仍开放: Kp = diag(d) +
+  rank-1 vv^T + 两个 ε-masked 约化预解项; (G2) 不变 (R-204 已闭合).
+- 簿记完成: research_ledger.md R-206 条目; run-manifest.json 新增 3 工件
+  (13c 加补页 + 两个脚本, sha256 已录), upstream_status_verbatim 与 notes 更新, JSON
+  校验通过 (25 工件, 9 notes); 新工具 tools/second-variation-weighted-eigenvalues.md
+  (公式 + 两陷阱 + 验证数据), tools/README.md 索引/速查表/维护日志同步; 删除临时脚本
+  scripts/_tmp_lam_sign_check.py, _tmp_fd_single_k.py, _tmp_p1_debug.py.
+- 维护: 本文件追加会话 97 记录. (本会话未 commit, 按约束不推送.)
+
+### 2026-08-13 会话 95 (workflow 插件加固: doctor 环境自检 + 数值证据纪律门禁)
+- 任务: 按用户确认的范围改进 workflow 插件 - 解决审计中反复出现的数值证据冒充
+  严谨证明问题; fork 同步与发布工具化不进插件 (属仓库管理), 项目级 fork 同步归
+  manage skill 且必须通用 (个人自 fork 只是配置实例).
+- 完成:
+  - 门禁扩展 (validate_pipeline.py): gate 状态必须携带 candidate_proof.md 或
+    audit_report.md; 数值标签与强声明 (已解决/定理已证/CANDIDATE_COMPLETE_PROOF/
+    FORMALLY_VERIFIED) 同块须带严格标签或显式降级声明, 否则 FAIL; verification.json
+    FORMALLY_VERIFIED 须 build_passed=true 且 sorry/axiom 为空; STATUS.md 声称
+    FORMALLY_VERIFIED 须有 verification.json. 修复旧 bug: lean run-manifest
+    input_hashes 以 lean-proof/ 为基准且兼容反斜杠路径.
+  - 新增 doctor.py 环境自检 (插件/依赖 skill/市场/config.toml 启用条目, 打印
+    修复命令, 支持 --list-file/--json), 针对桌面应用重写 config.toml 抹掉插件
+    启用条目的复发问题.
+  - SKILL.md/设计文档/插件 README 更新 (Stage A preflight, Stage B 数值纪律硬
+    规则, fork 表述删除改引用 manage 通用远程拓扑, 排障章节); plugin.json bump
+    0.1.0+codex.20260813054312.
+  - 测试: 新 fixture pipeline-numerical-abuse/pipeline-gate-noevidence,
+    smoke_pipeline_gate 扩展, 新 smoke_doctor, CI smoke job 接入; 本地全绿.
+  - 真实项目回归: 门禁 31 FAIL -> 0 FAIL; 就地补标签
+    runs/.../R-20260806T140000Z-keylemmaaudit-2F83B1/candidate_proof.md (文件头
+    补 STRICT + do not constitute proof, 不改数学内容); 其余历史 FAIL 均为
+    evidence only/cross-check only/no evidence used as a result 降级声明, 词表
+    已覆盖转 warn (建议补严格标签).
+  - 已推送 skill 仓库双 remote: xsoc1 (父) + Zhongshan-Big-Jun (fork) 均到
+    d4cc8b0; 本地 marketplace upgrade + plugin add 新版本, doctor 实测全绿.
+- 备注: manage skill 的通用远程拓扑 (project.json remotes 可选配置) 本次未改,
+  属下一轮; 历史 run 工件中 o1revise 两个文件被 warn 建议补严格标签, 未自动改.
+- 维护: 本文件追加会话 95 记录.
