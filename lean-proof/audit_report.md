@@ -447,3 +447,52 @@ Lemma P2, and the full tension-ratio chain of Theorem 1) are NOT formalized
 and remain pending.  Numerical evidence in the source is not used.  A strict
 independent pass must re-derive S1-S5 against the source before
 `FORMALLY_VERIFIED` may be used.
+## 15. SL/SymlineTensionRatio.lean P2 + tension-ratio chain (session 96)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: continuation of `SL/SymlineTensionRatio.lean`, formalizing Lemma P2
+and the tension-ratio chain of `docs/SL_gap_n1_symline_allR_proof.tex`
+(section 张力比链): with the strict Lemma ys2 bound
+`p < y^2 * sin gamma^2` as a documented hypothesis,
+
+* `P2`: `s1^2 * s2^2 * T / Delta * (1-q^2) <= Q0(gamma)` for every real `q`
+  (the source states `0 < q < 1`; the formal statement is stronger and the
+  proof uses only `1 - q^2 <= 1`);
+* `tension_ratio_chain`: with `c = arctan(q*tan gamma)/(pi-gamma)`,
+  `rho A gamma c q <= rho0 gamma = t/(y+t) * Q0(gamma)`, the product of P1
+  and P2.
+
+P2's proof follows the source: cross-multiply to `E >= 0`, bound
+`W <= W0` (from `1 - q^2 <= 1`), and use the three-term nonnegative
+decomposition `E0/y^2 = cos^2(gamma)*(p-A^2) + cos^2(A)*(y^2*s2^2-p)
++ cos^2(A)*A^2*cos^2(gamma)`.
+
+### 15.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| S6 | `p`, `Q0`, `rho0` | `p = pi^2/4`; `Q0(gamma) = s2^2*(y^2-p)/(y^2*s2^2-p)`; `rho0(gamma) = t/(y+t)*Q0(gamma)` |
+| S7 | `one_sub_sq_nonneg`, `p_eq_sq_half`, `p_sub_sq_nonneg`, `T_pos`, `Delta_pos` | positivity facts used by P2 (`1-q^2 >= 0` for `0<q<1`; `p-A^2 >= 0` for `0<A<pi/2`; `T A gamma > 0`; `Delta A gamma > 0` under ys2) |
+| S8 | `t_div_add_le_one`, `Q0_nonneg` | `t/(y+t) <= 1` for `t,y>0`; `Q0(gamma) >= 0` under ys2 |
+| S9 | `P2` | `s1^2*s2^2*T/Delta*(1-q^2) <= Q0(gamma)` for all real `q`, given `gamma < pi/2`, `0<A<pi/2`, ys2 |
+| S10 | `tension_ratio_chain` | `rho A gamma (arctan(q*tan gamma)/(pi-gamma)) q <= rho0 gamma` given `0<q<1`, `0<gamma<pi/2`, `0<A<pi/2`, ys2 |
+
+### 15.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8582 jobs)";
+  `SL.SymlineTensionRatio` rebuilt in this run.
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 25 scanned files (24 `SL/` files +
+  `lakefile.lean`).
+
+### 15.3 Independent audit status
+
+Not yet closed.  The transcendental facts of the source (existence and
+location of `gamma_0*`, and Lemma ys2, i.e. `(y * sin gamma)^2 >= pi^2/4`
+on `[gamma_0*, pi/2]`) are NOT formalized; P2 and the chain take the
+strict form of ys2 as a hypothesis, documented in the file header.  The
+source's `0 < q < 1` in P2 is relaxed to all real `q` (stronger
+statement).  A strict independent pass must re-derive S6-S10 against the
+source before `FORMALLY_VERIFIED` may be used.

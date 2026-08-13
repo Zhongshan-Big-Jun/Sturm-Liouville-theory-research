@@ -2744,3 +2744,26 @@
   - 未形式化 (如实登记): gamma_0* 存在性与位置, (y sin gamma)^2 >= pi^2/4,
     三正项分解 P2, 完整张力比链条 (源中超越/几何部分); 数值证据未作为定理.
 - 维护: 追加本记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 96 (P2 三正项分解与张力比链: SymlineTensionRatio.lean 补全)
+- 任务: 承接会话 95, 继续形式化 SL_gap_n1_symline_allR_proof.tex 的 STRICT 代数核心
+  (引理 P2 与定理 张力比链).
+- 完成:
+  - SymlineTensionRatio.lean 新增: p/Q0/rho0 定义 (p=pi^2/4, Q0=s2^2(y^2-p)/(y^2*s2^2-p),
+    rho0=t/(y+t)*Q0); 辅助引理 one_sub_sq_nonneg/p_eq_sq_half/p_sub_sq_nonneg/T_pos/
+    Delta_pos/t_div_add_le_one/Q0_nonneg; P2 (s1^2*s2^2*T/Delta*(1-q^2)<=Q0, 证明走源
+    路线: 交叉相乘到 E>=0, W<=W0 (1-q^2<=1), E0/y^2 三正项非负分解
+    cos^2γ(p-A^2)+cos^2A(y^2*s2^2-p)+cos^2A*A^2*cos^2γ, 显式 mul_nonneg 组装非负性);
+    tension_ratio_chain (rho<=rho0, P1 与 P2 乘积, mul_le_mul).
+  - 关键决策: P2 对一切实数 q 成立 (源陈述 0<q<1 是冗余的), 形式化采用更强形式并在
+    注释/审计中如实说明; Delta_pos 不需要 gamma<pi/2; Lemma ys2 的严格界
+    (p<y^2*sin^2γ) 作为文档化假设接入, 未形式化 (超越事实, 留待下轮).
+  - 技术要点: nlinarith 不生成三项乘积非负, 改为显式 mul_nonneg; hfac 中 field_simp
+    已能闭合等式, 用 try ring; P2 的 q 改为显式参数 (否则无法从结论外推断).
+  - 全量验证: verify_lean_project.py --project lean-proof --build 通过 - 25 文件扫描,
+    sorry/admit/axiom 命中 0, lake build exit 0 (8582 jobs, SymlineTensionRatio 重建).
+  - 文档: 根 README.md / lean-proof/README.md / STATUS.md / audit_report.md (第 15 节,
+    MACHINE_ACCEPTED_PENDING_AUDIT) 同步更新.
+  - 未形式化 (如实登记): gamma_0* 存在性与位置, Lemma ys2 的 (y sin gamma)^2>=pi^2/4
+    严格界 (P2/链条以假设接入); n=1 定理族其余文档与 n>=2 开关/约化.
+- 维护: 追加本记录; 随后 commit + push 父类与个人 fork (main:main).
