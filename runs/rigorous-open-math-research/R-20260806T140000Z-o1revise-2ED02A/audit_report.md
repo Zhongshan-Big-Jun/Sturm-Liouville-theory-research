@@ -3,6 +3,8 @@
 Status label of the audited artifact: CANDIDATE_COMPLETE_PROOF (self-audited;
 independent re-audit of the changed points remains the closing step, per the
 upstream skill's revision policy).  All files ASCII punctuation, UTF-8.
+STRICT: proof-level claims below are argued analytically; numeric checks are
+corroboration only and do not constitute proof.
 
 ## 0. Scope, provenance, and method
 

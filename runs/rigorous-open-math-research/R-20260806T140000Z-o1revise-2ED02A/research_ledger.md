@@ -2,6 +2,8 @@
 
 Timestamps approximate (UTC, local +8).  Chronological entries with concrete
 evidence.  All numerics are evidence only; proofs are in candidate_proof.md.
+STRICT: proofs live in candidate_proof.md; this ledger records process and
+evidence only.
 
 ## R-001 (2026-08-06): contract + provenance
 - Read the task packet, the O1 draft, the audit report, the repair list, the

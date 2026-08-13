@@ -2815,3 +2815,31 @@
 - 备注: manage skill 的通用远程拓扑 (project.json remotes 可选配置) 本次未改,
   属下一轮; 历史 run 工件中 o1revise 两个文件被 warn 建议补严格标签, 未自动改.
 - 维护: 本文件追加会话 95 记录.
+
+### 2026-08-13 会话 98 (R-207 第 2 段收尾: 修正约化 Green, 两个 2x2 扇区闭式, 开放核 (I1)/(I2))
+- 任务: 承接 R-207 交接, 完成簿记 (run-manifest JSON 校验 + validate_pipeline 回归 + AGENTS.md 登记 + 工具入库), 然后继续 (G1') n=2 对称点的 (I1)/(I2) 证明尝试.
+- 数学结论 (本会话主体已在交接摘要中完成, 这里只登记, 详见 run_notes_addendum_2026-08-13d.md):
+  - STRICT 修正的约化预解核闭式: Gt_k(x,y) = B(x,y) - u(x)P(y), B = (u(x)v(y) - v(x)u(y))1_{x>y} - u(x)u(y)I1(x) + v(x)u(y)I2(x), I1 = ∫ρuv, I2 = ∫ρu², P(y) = v(y)(1-I2(y)) - u(y)[A1-A2+I1(L)-I1(y)]; 关键更正: 交接稿在 B 与 P 中多乘了 rho(y) (跳量错误且在密度跳点不连续, 常数密度自检漏过); 交接稿对 A1/A2 求积精度的诊断撤回 (精确 vs 20 万点 trapz 仅差 2e-8); A1/A2 用九个初等三角原函数精确计算.
+  - STRICT eps-共轭扇区恒等式与约定更正: diag(eps)Bo = Be diag(beta), beta_j = -(-1)^j, 故 Bo^T Kp Bo = diag(beta) Be^T K Be diag(beta); sector_data['Ko'] 是原 K 的奇扇区 (不是 Kp 的), 旧恒等式 diag(1,-1)Ke diag(1,-1) = Ko 撤回 (正确为 = Kp_odd).
+  - STRICT 两个 2x2 镜扇区精确半问题闭式 (n 偶): Kp_odd = diag(d[:n]) + 2λ_n diag(u)[G_D∘ee^T - c²G_N] diag(u) (偶扇区), Ko = diag(d[:n]) + 2r(eps v)(eps v)^T + 2λ_n diag(u)[Gt_N - c²(Gt_D∘ee^T)] diag(u) (奇扇区), det K = det(Kp_odd)det(Ko); 四个半问题 Green 核的谱分裂 (Gantmacher-Krein 交错) 给出 PD 尾核 Ph/Qh/Rh/Gt_D/T_D 与负秩一/二项.
+  - (G1') 归约后的开放核 (剩余证明义务): 对一切 R>1, 对称带自洽根处 (I1) Kp_odd 负定 (INF) / 正定 (SUP), (I2) Ko 同定号; 等价 Cauchy/Binet 展开为显式带符号双重和. EVIDENCE: R 扫描 R∈[1.05,100] (INF) / [1.05,10] (SUP) 全部定号, det J > 0.
+- 簿记完成: run-manifest.json JSON 解析通过; 插件 validate_pipeline.py --project . 回归 0 FAIL 8 warn (全为历史已知 warn); 新工具 tools/half-problem-regularized-green.md (无 rho(y) 因子的约化预解核闭式 + 精确 A1/A2 原函数 + 两扇区闭式, 含适用范围/边界/验证) + tools/README.md 索引/速查表/维护日志同步.
+- R-208 锚点 (STRICT, 已完成): 引理 A - 常数弦处 W₀ 在 f₀ 的每个零点非零 (初等反证 q=cos²(nt)=-(n+1)²/n²), f₀ 恰有 2n 个单零点且 f₀'(x_j)=-2λ₃⁰ε_jc₀W₀(x_j)≠0; 定理 B - 近 R=1 解集为唯一对称分支 (坐标均为同一标量 f(·;R) 的单零点; 对称子流形 IFT), (R−1)K → (σ/λ₃⁰)diag(|f₀'(x_j)|) 严格定号, 故 (G1') 对一切 n 于 (1,1+δ) 闭合, n=2 的 (I1)/(I2) 于 (1,1+δ) 闭合; STRICT 半隙恒等式 ∇²g = -2(R−1)²K = +(2/λ₃)Hess(D_n) ((I1)+(I2) ⟺ 对称带自洽点为半隙 g=μ₂^N−μ₁^D 的严格局部极小/极大).
+- R-208 否证与 EVIDENCE: g 在开关三角形上全局凸/凹为假 (R=4 网格 Hessian 在临界点外不定, 违例 11/15 与 12/15); det Kp_odd 与 det Ko 在 [1.05,100] 对 R 严格递减 (双模式), 迹符号正确但非单调; 链式法则 d/dR M = ∂M/∂R|_x + Σ(∂M/∂x_j)(dx_j/dR) 于 R=1.5..10 验证 4-5 位 (探针 bug 已记: Recon 在 init 缓存 pat, 改 rc.R 无效). 剩余开放核: (M1) d/dR det < 0, (M2) 迹符号, (M3) R→∞ 键合-反键合渐近. 交付: run_notes_addendum_2026-08-13e.md + 4 个新脚本 (_gapn2_r1_anchor_probe / _gapn2_r1_monotonicity_probe / _gapn2_gap_convexity_probe / _gapn2_r1_det_derivative_probe); research_ledger R-208 条目; run-manifest 更新 (39 工件, 12 notes, JSON 校验通过); 工具与 README 同步.
+- 维护: 本文件追加会话 98 记录.
+### 2026-08-13 会话 96 (历史工件严格标签收尾 + 项目 git_sync 配置)
+- 任务: 承接会话 95, 完成遗留两项 - (1) o1revise-2ED02A 两个历史工件补严格
+  标签 (门禁 warn 建议); (2) manage skill 通用远程拓扑落地 (项目仓库接入).
+- 完成:
+  - o1revise-2ED02A/audit_report.md 补 STRICT 声明行 (proof-level claims argued
+    analytically; numeric checks are corroboration only and do not constitute
+    proof); research_ledger.md 补 STRICT 声明行 (proofs live in
+    candidate_proof.md; ledger records process and evidence only). 未改任何数学
+    内容. 项目门禁重跑: 0 FAIL, 6 warn (均为 gate 外状态提醒, 正常).
+  - project.json 增加 git_sync.push_order = ["origin", "fork"] (origin =
+    Zhongshan-Big-Jun 父仓库, fork = xsoc1 子仓库); 以后用
+    manage skill 的 scripts/sync_remotes.py --project . 按先父后子推送.
+  - manage skill 已更新 (通用多远程同步, cachebuster 0.1.0+codex.20260813093832),
+    本地已重装生效.
+- 维护: 本文件追加会话 96 记录; 提交后用 sync_remotes.py 按 push_order 推送
+  双仓库.
