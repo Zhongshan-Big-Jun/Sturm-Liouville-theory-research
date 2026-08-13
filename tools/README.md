@@ -86,6 +86,7 @@ created: 2026-08-04
 - [[interval-dec-directed-rounding]] - 十进制定向舍入区间引擎: 单变量符号事实的严格认证 (O3a I3, 会话 40 续, 2026-08-09)
 - [[rational-envelope-certificates]] - 有理包络证书: 交错级数包络 + 精确有理区间链 (会话 44, 2026-08-09)
 - [[switch-saturation-k-invariant]] - 开关饱和与块能量不变量: FH 完全盒饱和 + 零点=开关 + K=-2D (会话 50, 2026-08-10)
+- [[green-half-inertia]] - 半问题 Green 惯性: 奇偶性更正 + 全局 ε 交错 + (G1') 的 Green 函数化归 (R-205, 2026-08-13)
 
 ### 研究工作流方法 (AI4Math V2 蒸馏, 2026-08-12)
 来源: AI4Math 会议 V2 (2026.07.22-24, 浙大 IASM) 演讲者公开项目, 蒸馏报告见 [[ai4math_v2_workflow_distillation]].
@@ -151,6 +152,7 @@ created: 2026-08-04
 | [[rational-envelope-certificates]] | 自研 (会话 44, 2026-08-09) | E1 证书链 57/57 PASS (L10/L11/L12); 55 项事实全部 E1, 不依赖验证器内核 | 自研方法 |
 | [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10; 更新 会话 58 续作 8, 2026-08-13) | 定理已证 (独立审计 PASS); 2026-08-13 应用: K 恒等式 + 精确零点公式 + 内部零点简单性 闭合 (G2) STRICT | 自研方法 |
 | [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12; 更新 2026-08-13) | 等变恒等式与反对合结构 STRICT; 框架定理已证; (G2) 已闭合 STRICT (2026-08-13); (G1') 开放 | 自研方法 |
+| [[green-half-inertia]] | 自研 (R-205, 2026-08-13) | 全局 ε 交错与 Green 惯性 STRICT; 奇偶性否证 (EVIDENCE); (G1') 仍开放 | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -162,6 +164,23 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-13 (会话 89, R-205): 新增 [[green-half-inertia]] -- 半问题 Green 惯性:
+  否证交接摘要的 "回文高度 => 全局特征函数奇偶性" 线索 (奇偶性需要 ρ(1-x)=ρ(x),
+  即宽度对称; 随机非对称宽度奇偶性/ f 偶性误差 O(1), 对称支 1e-16), 故镜像扇区/
+  括号恒等式只在对称点成立, 不能反证对称性 (循环); 新增全局 ε 交错推论
+  ε_j=(-1)^{j+1} (STRICT, 不依赖对称性, W<0 => Q 严格递减的胞腔证明), 是
+  K 非对角闭式 (C1)/(C2) 在一切带自洽点成立的正确输入; 半问题谱交错
+  (n 偶: λ_n=μ^D_{n/2}, λ_{n+1}=μ^N_{n/2+1}; n 奇: λ_n=μ^N_{(n+1)/2},
+   λ_{n+1}=μ^D_{(n+1)/2}) 与 Green 惯性引理 (奇扇区约化预解核 R_n^⊥,
+   R_{n+1}^⊥ 在 n 个左半开关上的负指数: n 偶各 n/2, n 奇 (n-1)/2 与 (n+1)/2,
+   经典 Gantmacher-Krein), 给出 K_o = diag(d) + (4λ_n/λ_{n+1})diag(u)M diag(u),
+   M = λ_{n+1}diag(ε)R_{n+1}^⊥diag(ε) - λ_n R_n^⊥ 的精确化归 (M 惯性混合,
+   d 补足定号, 这是
+  (G1') 的剩余障碍); 登记 D_n 非整体凹/凸的否证 (EVIDENCE); 脚本
+  scripts/_gapn2_parity_global_probe.py, scripts/_gapn2_green_inertia_probe.py,
+  _gapn2_bracket_identity_audit.py docstring 修正为对称点限定; 运行笔记
+  run_notes_addendum_2026-08-13b.md. 同步更新 [[switch-saturation-k-invariant]]
+  (全局 ε 交错推论).
 - 2026-08-13 (会话 58 续作 8): (G2) 闭合 STRICT + 端点斜率约定修正. 修正
   [[endpoint-collapse-reduction]] 的 q0 约定 (框架约定 q0 := u'_{n+1}(0)/u'_n(0),
   塌缩条件 a=0 等价 q0=c; 早期 sqrt(lambda) 加权证据行撤回); 新增内部零点简单性

@@ -6,9 +6,9 @@
   "upstream_skill": "$rigorous-open-math-research",
   "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
   "started_at": "2026-08-12T09:00:00Z",
-  "completed_at": "2026-08-13T12:00:00+08:00",
+  "completed_at": "2026-08-13T18:30:00+08:00",
   "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
-  "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) fully CLOSED STRICT (block-energy identity + exact zero count + interior simplicity => no boundary generation, endpoint and interior, any cascade); (G1') remains OPEN; O-5 (det B != 0) OPEN",
+  "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) fully CLOSED STRICT (block-energy identity + exact zero count + interior simplicity => no boundary generation, endpoint and interior, any cascade); (G1') remains OPEN; O-5 (det B != 0) OPEN; R-205 correction: global eigenfunction parity from palindromic heights is REFUTED (needs symmetric widths), global eps-alternation lemma is STRICT, (G1') reduced to a half-problem Green-kernel definiteness comparison",
   "artifacts": [
     {
       "path": "problem_contract.md",
@@ -27,8 +27,8 @@
     },
     {
       "path": "research_ledger.md",
-      "sha256": "4BD4F6E26FD48BB9415CFC7548453AEC62CE7D1C258C213FFC5AFF3596FD403E",
-      "role": "R-200..R-204"
+      "sha256": "b3a7209367a5129490eb6868a647843222890b7927e2d769c14be33c1d91d5c2",
+      "role": "R-200..R-205"
     },
     {
       "path": "scripts/_gapn2_mtilde_offdiag_identity.py",
@@ -94,6 +94,31 @@
       "path": "scripts/_gapn2_kidentity_audit.py",
       "sha256": "EF2D09171611DD66AA38666CD71C3241AFC4866FD389B02F6219FD5D4BCC86EC",
       "role": "block-energy identity audit (branch + reduced roots)"
+    },
+    {
+      "path": "run_notes_addendum_2026-08-13b.md",
+      "sha256": "f82d64c3914d0b91b9e1b97ddf27634e05b89554d59c5d7c446974ee80bb9d6d",
+      "role": "R-205: parity-claim refutation + global eps-alternation lemma + Green inertia + (G1') Green reduction"
+    },
+    {
+      "path": "scripts/_gapn2_parity_global_probe.py",
+      "sha256": "5e72bd4bcc1967e5d2c8fcd3a652e02b2bd0bdd32d6f421de83f08953758a61f",
+      "role": "random asymmetric-width parity / f-evenness refutation"
+    },
+    {
+      "path": "scripts/_gapn2_green_inertia_probe.py",
+      "sha256": "326422a35a2428703abe949edbf14c25d9a06a73b949c25a41695a5c2417ad6a",
+      "role": "half-problem Green inertia + K_o Green-combination reduction"
+    },
+    {
+      "path": "scripts/_gapn2_symmetry_chain_audit.py",
+      "sha256": "d83d61735fe36cc8fbed5e03e27945cfe26197efc2a3a4032d86f8b21048250d",
+      "role": "symmetry-chain audit (P1/P2/P3/P4) with uv_at/rho_at dependencies fixed"
+    },
+    {
+      "path": "scripts/_gapn2_bracket_identity_audit.py",
+      "sha256": "52f6a2dc820df8e927a63b9382be004182ad20529d3d5175f4c26dbc4a9429b6",
+      "role": "bracket identities + E_o cancellation (docstring scoped to symmetric points)"
     }
   ],
   "environment": {
@@ -113,6 +138,7 @@
     "R-202: STRICT (C1)/(C2) off-diagonal closed forms + mirror-sector decomposition; Hankel (P1') falsified; Sherman-Morrison reduction; dominance EVIDENCE",
     "R-203 (SUPERSEDED): endpoint-collapse reduction + slope evidence (sqrt-weighted q0 convention RETRACTED in R-204)",
     "R-204 (2026-08-13): q0 convention corrected to framework convention (a = 0 iff q0 = c); STRICT Theorem A (block-energy identity K == -2D => q0 > 1, q1 < -1 at every root); STRICT Theorem C (interior zeros of f simple); STRICT Theorem D (exact zero count 2n-2 + 1_{q0>c} + 1_{q1<-c}); STRICT Theorem E: (G2) CLOSED (no boundary generation, any cascade parity)",
+    "R-205 (2026-08-13): REFUTED the handoff global-parity claim (parity needs symmetric widths, not palindromic heights); STRICT global eps-alternation lemma eps_j=(-1)^{j+1}; STRICT classical Green inertia (floor(n/2) negative eigenvalues of the half-problem Green matrices); (G1') reduced to definiteness of diag(d) + a two-Green-kernel combination; D_n not globally concave/convex (EVIDENCE)",
     "EVIDENCE re-run (corrected convention): K(0) + 2D at 1e-11; full branch q0 > 1 (n=2 R=4: SUP 2.376980, INF 1.142677); every reduced root has q0 > 1 and q1 < -1, band=False; ladder n=2 R in [1.05,100]: 0 violations of (q0 > 1, a < 0)"
   ]
 }

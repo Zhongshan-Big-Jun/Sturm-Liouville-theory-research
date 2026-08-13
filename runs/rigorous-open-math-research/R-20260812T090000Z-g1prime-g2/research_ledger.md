@@ -182,3 +182,36 @@ R-204 bug-fix register.)
 - Status: (G2) CLOSED STRICT (endpoint + interior + cascades).  (G1')
   remains OPEN; O-5 (det B != 0) remains OPEN.  The global classification
   conjecture now depends only on (G1').
+
+## R-205 (2026-08-13): parity claim refuted; global eps-alternation; Green inertia
+- REFUTED (EVIDENCE): the handoff's "palindromic pattern => global eigenfunction
+  parity u_k(1-x)=(-1)^{k-1}u_k(x), independent of symmetry" is FALSE.  Parity
+  requires rho(1-x)=rho(x), i.e. symmetric WIDTHS, not just palindromic
+  heights.  Random asymmetric widths give parity and f-evenness errors O(1)
+  (worst 1.072 / 1.290), vs 1e-16 on the symmetric branch.  The proposed
+  direct symmetry chain is invalid; the mirror-sector / bracket / Green closed
+  forms are scoped to symmetric points (docstring corrected).
+- STRICT global eps-alternation lemma (no symmetry): eps_j := sign(u_{n+1}/u_n)
+  at the ordered simple zeros of f equals (-1)^{j+1}.  Proof via W < 0 => Q
+  strictly decreasing on each cell, Q: +inf -> 0 -> -inf, so the left zero has
+  Q=+c, the right Q=-c.  This is the correct global input for (C1)/(C2).
+  Numerically confirmed on random asymmetric widths (#zeros = 2n, pattern
+  [1,-1,...] in all draws).
+- STRICT (classical Gantmacher-Krein): on the symmetric branch the half spectra
+  interleave as lambda_n = mu_{n/2}^D, lambda_{n+1} = mu_{n/2+1}^N (n even),
+  lambda_n = mu_{(n+1)/2}^N, lambda_{n+1} = mu_{(n+1)/2}^D (n odd); the
+  odd-sector reduced resolvents R_n^bot and R_{n+1}^bot on the n left-half
+  switches have negative index n/2 each (n even), or (n-1)/2 and (n+1)/2
+  (n odd).
+- (G1') reduction (STRICT, machine 1e-13..1e-16): K_o = diag(d) + (4 lam_n/lam_{n+1})
+  diag(u) M diag(u) with M = lam_{n+1} diag(eps) R_{n+1}^bot diag(eps)
+  - lam_n R_n^bot; M has mixed inertia (n=2: 1+/1-, n=3: 1+/2-), while K_o is
+  PD (SUP) / ND (INF) via the non-uniform diagonal d; this comparison is the
+  remaining obstacle for (G1').
+- NEGATIVE (EVIDENCE): D_n as a function of the bang-bang widths has
+  mixed-sign Hessian at random points; no global concavity/convexity shortcut.
+- Deliverables: run_notes_addendum_2026-08-13b.md;
+  scripts/_gapn2_parity_global_probe.py, _gapn2_green_inertia_probe.py;
+  _gapn2_bracket_identity_audit.py (docstring scoping fix).
+- Status: (G1') OPEN; (G2) CLOSED (R-204); symmetry of all band-consistent
+  solutions NOT established independent of the degree argument.

@@ -2581,3 +2581,38 @@
 - 文档同步: lean-proof/STATUS.md (19 文件/8577 jobs, 新增 KreinDegenerateLimit 行, 状态矩阵 SL_krein_c0_limit.tex 行更新为部分 (多项式级), 路线图新增条目), lean-proof/README.md (文件树 + 命名空间 + 结论行), 根 README.md (机器验证 20 文件/8577 jobs, 已完成清单更新).
 - 待办: 商空间级定理 (quotient/unit) 需泛函分析工具, 建议后续专门会话; MW 重证与间距线仍待形式化.
 - 维护: 本文件追加会话 87 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 89 (承接会话 88: 更正错误奇偶性线索 + 全局 ε 交错 + Green 惯性化归, R-205)
+- 任务: 承接会话 88 交接, 推进 (G1') det K > 0 (相邻间距 λ_{n+1}-λ_n 极值 n>=2 的全局
+  分类框架最后条件). 调用 math-research-workflow skill.
+- 关键更正 (否证, EVIDENCE): 交接摘要的 "对称性直接证明链" 第 1 步 "回文图案 => 特征函数
+  全局奇偶性 u_k(1-x)=(-1)^{k-1}u_k(x), 不依赖对称性" 是**错误**的. 奇偶性由 ODE 反射
+  不变性推出, 需要 ρ(1-x)=ρ(x) 作为函数成立, 即**宽度**回文; 交替 bang-bang 图案只保证
+  **高度**回文. 随机 Dirichlet 非对称宽度下奇偶性/f 偶性误差 O(1) (最坏 1.072/1.290),
+  对称支上 1e-16. 因此镜像扇区分解/括号恒等式/Green 闭式只在对称点成立, 不能反证对称性
+  (循环); 全局对称性结论仍走 (G1')+(G2) 的唯一性路线. 已修正
+  scripts/_gapn2_bracket_identity_audit.py 的 docstring (限定为对称点).
+- 新 STRICT 引理 (全局 ε 交错, 不依赖对称性): 在 f=λ_n u_n²-λ_{n+1}u_{n+1}² 的 2n 个
+  有序简单零点处 ε_j := sign(u_{n+1}(x_j)/u_n(x_j)) = (-1)^{j+1}. 证明: W<0 => Q=u_{n+1}/u_n
+  每胞腔严格递减, Q 从 +∞ 经 0 到 -∞, 左零点 Q=+c (ε=+1), 右零点 Q=-c (ε=-1), 逐胞腔
+  排列即交错. 这是 K 非对角闭式 (C1)/(C2) 在一切带自洽点成立的正确全局输入 (随机非对称
+  宽度数值全过).
+- 新 STRICT 引理 (半问题 Green 惯性, 经典 Gantmacher-Krein 应用): 对称支上把 [0,1] 于
+  x=1/2 对半, 谱交错 n 偶: λ_n=μ^D_{n/2}, λ_{n+1}=μ^N_{n/2+1}; n 奇: λ_n=μ^N_{(n+1)/2},
+  λ_{n+1}=μ^D_{(n+1)/2}; 奇扇区约化预解核 R_n^⊥ 与 R_{n+1}^⊥ 在 n 个左半开关上的负指数
+  n 偶各 n/2, n 奇 (n-1)/2 与 (n+1)/2 (数值 n=2: 各 1 负, n=3: 1 负/2 负 吻合).
+- (G1') 精确化归 (STRICT, 机器 1e-13..1e-16): K_o = diag(d) + (4λ_n/λ_{n+1})diag(u)M diag(u),
+  M = λ_{n+1}diag(ε)R_{n+1}^⊥diag(ε) - λ_n R_n^⊥, d_j = σ·2c|W(x_j)|/(R-1);
+  因 diag(u) 是合同, (G1') 奇扇区部分 = diag(d/u²)+(4λ_n/λ_{n+1})M 的定号性. 数值:
+  M 惯性混合 (n=2: 1+/1-, n=3: 1+/2-), K_o 却 SUP 正定/INF 负定 (由非均匀对角 d 补齐);
+  这是 (G1') 剩余精确障碍 (diag(d) 与 Green 组合 M 的惯性比较).
+- 否证 (EVIDENCE): D_n 作为 bang-bang 宽度函数非整体凹/凸 (随机点 Hess 惯性混合,
+  n=2,3, R=4 两模式), 无整体凸性捷径.
+- 文档/工具/登记: run_notes_addendum_2026-08-13b.md (R-205); research_ledger.md R-205;
+  新增 tools/green-half-inertia.md + README 索引/速查表/维护日志; 更新
+  tools/switch-saturation-k-invariant.md (全局 ε 交错推论); 脚本
+  scripts/_gapn2_parity_global_probe.py, scripts/_gapn2_green_inertia_probe.py,
+  scripts/_gapn2_symmetry_chain_audit.py (修复 uv_at/rho_at 依赖).
+- 状态: (G1') 仍开放 (det K > 0); (G2) 已闭合 STRICT (会话 88); 带自洽解对称性未独立于
+  度论证建立 (会话 88 交接的 "直接对称性" 路线前提不成立).
+- 维护: 本文件追加会话 89 记录; 随后 commit + push 父类与个人 fork (main:main).

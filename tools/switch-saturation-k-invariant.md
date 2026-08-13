@@ -79,3 +79,21 @@ symmetry_local_proof.tex) 的边界排除条件 (G2):
   所有发现的约化根 q0 > 1 且 q1 < -1 (band=False).
 - 相关: [[endpoint-collapse-reduction]] (归约, 现已被直接闭合超越),
   [[band-selfconsistency-equivariance]] ((G1')/(G2) 框架).
+
+## 更新 2026-08-13 (R-205): 全局 ε 交错推论 (STRICT, 不依赖对称性)
+精确零点公式的胞腔分析直接给出一个**全局**推论: 设 $x_1<\cdots<x_{2n}$ 为
+$f$ 的 $2n$ 个简单零点 (带自洽点), $\varepsilon_j:=\operatorname{sign}
+(u_{n+1}(x_j)/u_n(x_j))\in\{\pm1\}$ (在零点处 $u_{n+1}=\varepsilon_j c u_n$),
+则
+\begin{equation*}
+  \varepsilon_j=(-1)^{j+1}\quad(j=1,\dots,2n).
+\end{equation*}
+证明: $W<0\Rightarrow Q=u_{n+1}/u_n$ 在每个胞腔严格递减, 且 $Q$ 从
+$+\infty$ 经 $0$ 到 $-\infty$; 故每胞腔左零点 $Q=+c$ ($\varepsilon=+1$),
+右零点 $Q=-c$ ($\varepsilon=-1$), 逐胞腔从左到右排列即得交错. 该推论
+**不需要宽度对称** (回文高度不足以给出特征函数奇偶性; 奇偶性需要
+$\rho(1-x)=\rho(x)$, 见 [[green-half-inertia]] 的更正), 是 $K$ 的非对角
+闭式 (C1)/(C2) 在**一切**带自洽点成立的正确全局输入. 数值 (随机非对称
+宽度, n=2,3, R in {2,4}, 两模式): 全部抽样 $f$ 恰 $2n$ 个零点且
+$\varepsilon$ 图案为 $[1,-1,1,-1,\dots]$. 来源:
+run_notes_addendum_2026-08-13b.md (R-205).
