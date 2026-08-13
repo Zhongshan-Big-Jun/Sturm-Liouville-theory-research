@@ -3004,3 +3004,4 @@
 - 工具库: 新增 half-problem-regularized-green, second-variation-weighted-eigenvalues 并更新 README 索引.
 - 状态: M3 未完成; 下一步按级联结构 (level j: E1_j, E2_j, E5_{j+2}, E6_{j+3}) 逐级线性消去, 避免 32 变量同时展开.
 - 诚实声明: 数值均为 EVIDENCE; 严格部分仅为上述代数结构判定; 未宣称大 R 渐近定理已证.
+- 交接: 已按 math-research-workflow 中断交接协议登记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/handoff-interrupted-2026-08-13T151546Z.md (sha256 4631CEDDB56D679CE45277ACBC58F8E8D3C1BABD324FBACEDE8D80E264F3A11D).
