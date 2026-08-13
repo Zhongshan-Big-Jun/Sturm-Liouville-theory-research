@@ -2843,3 +2843,9 @@
     本地已重装生效.
 - 维护: 本文件追加会话 96 记录; 提交后用 sync_remotes.py 按 push_order 推送
   双仓库.
+- 补记: 首次 sync_remotes 推送时 origin (父仓库) 被拒 - 远程新增 3 个 README
+  网页编辑提交 (90a68d7/7192ffa/736ce4e); 用 `git rebase --autostash
+  origin/main` 将本地提交重放其上 (05cdd96, 与本地未提交中间产物无冲突,
+  autostash 已恢复); fork 因 rebase 变基非快进被拒, 确认 fork 上无意外提交后
+  `git push --force fork main` 同步; 最终 HEAD = origin/main = fork/main =
+  05cdd96.
