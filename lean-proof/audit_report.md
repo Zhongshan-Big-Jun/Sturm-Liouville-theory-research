@@ -647,3 +647,80 @@ matches the source's bound on `3 - 2*(pi-gamma)*cot gamma`, and that the
 certificate-free location of `Gamma0` is a documented deviation, not a
 weakening.  The phase-branch reduction `gamma = pi - alpha2(c) <=
 gamma_0(q)` remains an unformalized hook.
+
+### 18. SymlineUniqueZero (session 102): KEY LEMMA assembly core
+
+Obligations from `docs/SL_gap_n1_symline_proof.tex` section 4.4
+(thm:keylemma): the unique zero `c* = c*(q̃)` of `F̃_e` in `(0, 1/2)` with
+the sign conclusions (eq:FeSign), assembled from the endpoint signs
+(lem:endpoints (i)-(ii)), the monotonicity implication (eq:mono), the
+branch reduction `γ = π - α₂(c) <= γ₀(q̃) <= Gamma0`, and the derivative
+identity (eq:Fep).
+
+Formalized (machine level):
+- `Fe`/`Mf` aliases, `Mf_pos` (`0 < Mf(x;c)` for `x in (0,π)`, `c,q > 0`),
+  `FeHalf_neg` (algebraic sign core of lem:endpoints (ii):
+  `π sin²α (2α-π)/(q̃+Φ(α)/2) < 0` for `0 < α < π/2`), `FeZero_limit_pos`
+  (the value `π²/(4q̃) > 0` of lem:endpoints (i)).
+- `positive_of_no_zero_and_pos` / `negative_of_no_zero_and_neg`: sign
+  constancy on a zero-free interval via IVT (a continuous function with a
+  positive point and no zeros on `(x,y)` is positive on all of `(x,y)`).
+- `existsUnique_zero_signs_of_nonneg_mono` (generic analytic core of the
+  KEY LEMMA): if `f` is continuous on `(a,b]`, differentiable on `(a,b)`,
+  has right limit `L > 0` at `a`, satisfies `f b < 0`, and the
+  monotonicity implication `0 <= f x -> deriv f x < 0` on `(a,b)`, then `f`
+  has a unique zero `c in (a,b)`, is positive on `(a,c)` and negative on
+  `(c,b)`.  Proof: right-limit eventual-positivity gives a positive point;
+  IVT on `[x0, b]` gives existence; two zeros contradict via the maximum
+  on `[u, v]` (`isCompact_Icc.exists_isMaxOn`), the slope-limit form of
+  the derivative (`hasDerivAt_iff_tendsto_slope` restricted with
+  `nhdsGT_le_nhdsNE` / `nhdsLT_le_nhdsNE`), and `ge_of_tendsto`
+  (`0 <= deriv f m` vs `deriv f m < 0`).
+- `Fe_deriv_neg_of_nonneg`: the concrete monotonicity implication at a
+  fixed `c` under the derivative identity (eq:Fep) and the branch
+  hypotheses; the algebraic step is
+  `SymlineKeyLemma.Fep_lt_zero_of_nonneg`.
+- `keylemma_concrete`: the KEY LEMMA statement for the concrete
+  `Fe(c) = Mf(α₁(c);c) - Mf(α₂(c);c)` on `(0, 1/2)`, with the analytic
+  hooks isolated as hypotheses: regularity (`hcont`, `hdiff`), the right
+  limit `π²/(4q̃)` (`hlim`), the value at `1/2` (`hFe12`), the derivative
+  identity (`hderiv`), and the branch reduction (`hbranch`).
+
+Honesty notes (also in the file header):
+- The analytic hooks are NOT formalized: the endpoint signs
+  (lem:endpoints (i)-(ii), including the phase identity
+  `α₂(1/2) = π - α₁(1/2)`), the derivative identity (eq:Fep, involving
+  the branch functions), and the branch reduction
+  `γ = π - α₂(c) <= γ₀(q̃) <= Gamma0` (only `gamma0_mono` from session 101
+  is formalized).  `keylemma_concrete` states these as hypotheses.
+- `existsUnique_zero_signs_of_nonneg_mono` is a generic analytic theorem;
+  its hypotheses match the source's (eq:mono)/(lem:endpoints)/(eq:Fep)
+  at the level of the document.
+- No `sorry`/`admit`/`axiom`; numerical evidence is never used.
+
+### 18.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| S22 | `existsUnique_zero_signs_of_nonneg_mono`, `positive_of_no_zero_and_pos`, `negative_of_no_zero_and_neg` | unique zero in `(a,b)` + sign constancy (generic core of thm:keylemma) |
+| S23 | `Mf_pos`, `FeHalf_neg`, `FeZero_limit_pos` | algebraic sign cores of lem:endpoints (ii)/(i) |
+| S24 | `Fe_deriv_neg_of_nonneg`, `keylemma_concrete` | concrete monotonicity implication + KEY LEMMA assembly with hooks as hypotheses |
+
+### 18.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8584 jobs)";
+  `SL.SymlineUniqueZero` built in this run.
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated: 27 scanned files (26 `SL/` files +
+  `lakefile.lean`); the scratch `SL/_t.lean` was removed before this run
+  and is not scanned.
+
+### 18.3 Independent audit status
+
+Not yet closed.  S22-S24 must be re-derived against
+`docs/SL_gap_n1_symline_proof.tex` section 4.4 in an independent pass:
+check that the generic theorem's hypotheses match (eq:mono)/
+(lem:endpoints)/(eq:Fep) as used in the source, that `keylemma_concrete`
+does not smuggle any analytic content into its hypotheses, and that the
+endpoint-sign and branch-reduction hooks are exactly the remaining
+unformalized obligations.

@@ -2953,3 +2953,42 @@
   同步 (未完成栏 symline 由未开始改为部分, 文件树与命名空间加 SymlineKeyLemma).
 - 维护: 本文件追加会话 101 记录; 提交后按 project.json push_order 推送双仓库
   (origin 父 -> fork 子).
+
+### 2026-08-13 会话 102 (Lean: SymlineUniqueZero 形式化 4.4 节 KEY LEMMA 装配核心 - 唯一零点与符号结论)
+- 任务: 形式化 docs/SL_gap_n1_symline_proof.tex 4.4 节 KEY LEMMA (thm:keylemma) 的装配核心:
+  F̃_e 在 (0,1/2) 唯一零点 c* 与符号结论 (eq:FeSign), 承接会话 101 的代数核心 (P1/P2/W0).
+- 完成: 新文件 lean-proof/SL/SymlineUniqueZero.lean (命名空间 SL.SymlineUniqueZero):
+  - Fe/Mf 定义 (Mf 为 SymlineTensionRatio.Mf 别名) 与 Mf_pos (0<x<pi, c,q>0 时 Mf>0),
+    FeHalf_neg (端点 (ii) 代数核心: pi*sin^2(alpha)*(2alpha-pi)/(q+Phi(alpha)/2)<0,
+    0<alpha<pi/2), FeZero_limit_pos (端点 (i) 极限值 pi^2/(4q)>0).
+  - positive_of_no_zero_and_pos / negative_of_no_zero_and_neg: 零免费上符号恒定 (IVT;
+    需 w!=z0 使零点不在正端点, 第二支路 Ioc 包含用 le_of_lt).
+  - existsUnique_zero_signs_of_nonneg_mono (通用分析装配核心): 连续 (a,b] + 可导 (a,b) +
+    右极限 L>0 + f(b)<0 + 单调蕴含 (eq:mono) => 唯一零点与符号结论. 证明: 右极限事件正性
+    给正点, IVT 于 [x0,b] 给存在; 两零点反设经 isCompact_Icc.exists_isMaxOn 取极大点 m,
+    hasDerivAt_iff_tendsto_slope + nhdsGT/LT_le_nhdsNE 给左右斜率极限, ge_of_tendsto 得
+    0<=deriv f m 与 hmono 的 deriv f m<0 矛盾.
+  - Fe_deriv_neg_of_nonneg: 具体 Fe 的 eq:mono 蕴含 (hFe>=0 + 导数恒等式 (eq:Fep) 假设 =>
+    deriv Fe<0, 代数步为 SymlineKeyLemma.Fep_lt_zero_of_nonneg).
+  - keylemma_concrete: 具体 KEY LEMMA 陈述, 分析钩子全部隔离为假设 (hcont/hdiff 正则性,
+    hlim 右极限 pi^2/(4q), hFe12 端点值, hderiv 导数恒等式, hbranch 相位分支约化).
+  - 诚实标注 (文件头): 端点符号 (lem:endpoints (i)-(ii), 含 alpha2(1/2)=pi-alpha1(1/2)
+    相位恒等式), 导数恒等式 (eq:Fep) 与相位分支约化 gamma=pi-alpha2(c)<=gamma_0(q) 均为
+    分析钩子未形式化; 数值证据从不使用; 无 sorry/admit/axiom.
+- 调试记录 (mathlib v4.31): 𝓝[>] 记法需 open scoped Topology (一并 open Filter);
+  NeBot (𝓝[>] a)/(𝓝[<] m) 直接用 nhdsGT_neBot_of_exists_gt/nhdsLT_neBot_of_exists_lt
+  (mem_closure_iff_nhdsWithin_neBot 路线需先 change, 不可直接 rw [closure_Ioi]);
+  Metric.eventually_nhds_iff 的 ∀ 为严格隐式 ⦃y⦄, hεp y hdist 应写 hεp hdist;
+  IsMaxOn (经 Subset 定义) 的 ∀ 亦为严格隐式, hmle y hymem 应写 hmle hymem;
+  max_lt 是定理 (max a b < c) 非 iff, 用 exact max_lt (by linarith) (by linarith);
+  div_lt_iff_of_neg 方向 b/c<a ↔ a*c<b; div_lt_iff₀ hden 用于 0<c; Ioc 包含需
+  le_of_lt (lt_of_le_of_lt ...); rw [hfz] 后 exact le_rfl 报 "No goals", 用 simp [hfz];
+  名称遮蔽: huniq 内 intro c' hc' 遮蔽外层 hc' (c 的成员证), 改名 hci.
+- 验证: verify_lean_project.py --project lean-proof --build: 27 文件扫描 (26 SL/*.lean +
+  lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0 (8584 jobs);
+  run-manifest.json 已刷新 (SymlineUniqueZero sha256 C979758B95D401B052767163CBAD8799B6C5723D557B213FF777EBE9A5347316).
+- 文档: STATUS.md (新文件行 + 矩阵行 SL_gap_n1_symline_proof.tex 更新 + 路线图 18 +
+  证据段 26 文件/27 扫描/8584 jobs), audit_report.md 新增 §18 (义务 S22-S24 + 钩子声明),
+  README.md/README_EN.md/lean-proof/README.md 同步 (覆盖句/文件树/命名空间).
+- 维护: 本文件追加会话 102 记录; 提交后按 project.json push_order 推送双仓库
+  (origin 父 -> fork 子).

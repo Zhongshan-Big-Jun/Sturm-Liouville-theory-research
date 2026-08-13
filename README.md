@@ -47,18 +47,18 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 9. **固定 $n$ 上确界收尾**: 全局极值性 (Keller 型归约), $2n$-根计数, $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 形式化验证 (lean-proof/)
 
-机器可核验的证明工程 (Lean 4.31.0 + mathlib v4.31.0). 权威状态: `lean-proof/STATUS.md` (状态矩阵) + `lean-proof/audit_report.md`/`verification.json` (义务级审计, O1-O24). 当前机器验证: 25 个 `SL/*.lean` 文件, `sorry/admit/axiom` 命中 0, `lake build` exit 0, 8583 jobs.
+机器可核验的证明工程 (Lean 4.31.0 + mathlib v4.31.0). 权威状态: `lean-proof/STATUS.md` (状态矩阵) + `lean-proof/audit_report.md`/`verification.json` (义务级审计, O1-O24). 当前机器验证: 26 个 `SL/*.lean` 文件, `sorry/admit/axiom` 命中 0, `lake build` exit 0, 8584 jobs.
 
 **已完成 (按证明线)**
 
 - 完备性线: $H^2$ 全链 (StabilityGrowth/MomentRecurrence/MomentBound/Completeness), $H^3$ 代数核心 (H3Completeness/H3MomentBound/H1Isometry), $H^s$ 传输约化 (TransferOperator/HsOrthogonalSystems), 稠密性矩刻画 (DensenessCriteria).
 - 比值线: 平衡相位闭式 (BalancedPhase), 三段转移矩阵/secular 方程 (TransferMatrix), 固定 $n$ 交替配置反射对称 (ReflectionSymmetry).
-- 其他线: 稳定性门槛核心 (Stability), 三阶递推线 (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ 多项式级 (KreinDegenerateLimit/KreinHighGrowth), 间距 $n=1$ 对称线代数核心 (SymlineTensionRatio, 含 $\gamma_0^*$/Lemma ys2 证书自由形式化; SymlineKeyLemma 补 P1/P2 对数导数界与 W0 引理).
+- 其他线: 稳定性门槛核心 (Stability), 三阶递推线 (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ 多项式级 (KreinDegenerateLimit/KreinHighGrowth), 间距 $n=1$ 对称线代数核心 (SymlineTensionRatio, 含 $\gamma_0^*$/Lemma ys2 证书自由形式化; SymlineKeyLemma 补 P1/P2 对数导数界与 W0 引理; SymlineUniqueZero 补 4.4 节 KEY LEMMA 装配核心 (唯一零点/符号结论, 端点符号/相位分支/导数恒等式为分析钩子)).
 
 **未完成 (按缺口类型, 与 STATUS.md 一致)**
 
 - 谱论/泛函分析依赖: 等距同构 $K_c\colon H^2\to L^2$ (O16) 与 $H^3\to H^1$, $H^s$ 算符级等距与完备性, 稠密性收尾 ($w=0$), Krein 商空间级 ($H^1/W \cong L^2_0$), Weyl 渐近 (inf 比值线), MW 引理重证, 转移矩阵到特征值的谱论连接.
-- 已证但未开始: $n=1$ 间距线 (gap_n1_proof/well_rigidity/O3a/inf_limit; symline 代数核心已部分形式化, 见 SymlineKeyLemma) 与 $n\ge2$ 开关/约化文档, 分数阶 $H^s$ 稀疏基完备.
+- 已证但未开始: $n=1$ 间距线 (gap_n1_proof/well_rigidity/O3a/inf_limit; symline 代数核心已部分形式化, 见 SymlineKeyLemma/SymlineUniqueZero) 与 $n\ge2$ 开关/约化文档, 分数阶 $H^s$ 稀疏基完备.
 - 源中为数值/未严格 (不形式化): $n\ge2$ 间距全局极值性, 固定 $n$ 上确界 $2n$ 根计数, 三阶递推三解 Casoratian 非零.
 - 假设接入: HsOrthogonalSystems 的 Legendre/Krein-Sobolev 经典正交性 (文献事实, 未形式化).
 

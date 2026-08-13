@@ -47,18 +47,18 @@ Authoritative list: `docs/SL_spectral_topics_summary.tex` §5 (per-problem progr
 9. **Fixed-$n$ supremum closure**: global extremality (Keller reduction), $2n$-root count, monotone convergence $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 formal verification (lean-proof/)
 
-A machine-checkable proof project (Lean 4.31.0 + mathlib v4.31.0). Authoritative status: `lean-proof/STATUS.md` (status matrix) + `lean-proof/audit_report.md`/`verification.json` (obligation-level audit, O1-O24). Current machine check: 25 `SL/*.lean` files, 0 `sorry/admit/axiom` hits, `lake build` exit 0, 8583 jobs.
+A machine-checkable proof project (Lean 4.31.0 + mathlib v4.31.0). Authoritative status: `lean-proof/STATUS.md` (status matrix) + `lean-proof/audit_report.md`/`verification.json` (obligation-level audit, O1-O24). Current machine check: 26 `SL/*.lean` files, 0 `sorry/admit/axiom` hits, `lake build` exit 0, 8584 jobs.
 
 **Done (by proof line)**
 
 - Completeness lines: $H^2$ full chain (StabilityGrowth/MomentRecurrence/MomentBound/Completeness), $H^3$ algebraic core (H3Completeness/H3MomentBound/H1Isometry), $H^s$ transfer reduction (TransferOperator/HsOrthogonalSystems), density moment characterization (DensenessCriteria).
 - Ratio line: balanced-phase closed form (BalancedPhase), three-block transfer matrices/secular equations (TransferMatrix), reflection symmetry of the fixed-$n$ alternating configuration (ReflectionSymmetry).
-- Other lines: stability-threshold core (Stability), third-order recurrence line (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ polynomial level (KreinDegenerateLimit/KreinHighGrowth), $n=1$ gap symmetry-line algebraic core (SymlineTensionRatio, including the $\gamma_0^*$ threshold and Lemma ys2, certificate-free; SymlineKeyLemma adds the P1/P2 log-derivative bounds and the W0 lemma).
+- Other lines: stability-threshold core (Stability), third-order recurrence line (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ polynomial level (KreinDegenerateLimit/KreinHighGrowth), $n=1$ gap symmetry-line algebraic core (SymlineTensionRatio, including the $\gamma_0^*$ threshold and Lemma ys2, certificate-free; SymlineKeyLemma adds the P1/P2 log-derivative bounds and the W0 lemma; SymlineUniqueZero adds the KEY-LEMMA assembly core of section 4.4 (unique zero + sign conclusions, with endpoint signs/phase-branch/derivative-identity kept as analytic hooks)).
 
 **Not yet formalized (by gap type, consistent with STATUS.md)**
 
 - Spectral/functional-analysis dependencies: isometries $K_c\colon H^2\to L^2$ (O16) and $H^3\to H^1$, $H^s$ operator-level isometry and completeness, density finish ($w=0$), Krein quotient level ($H^1/W \cong L^2_0$), Weyl asymptotics (inf-ratio line), MW lemma reproof, transfer-matrix-to-eigenvalue spectral connection.
-- Proved but not started: $n=1$ gap line (gap_n1_proof/well_rigidity/O3a/inf_limit; the symline algebraic core is partly formalized, see SymlineKeyLemma) and $n\ge2$ switch/reduction documents, fractional $H^s$ sparse-basis completeness.
+- Proved but not started: $n=1$ gap line (gap_n1_proof/well_rigidity/O3a/inf_limit; the symline algebraic core is partly formalized, see SymlineKeyLemma/SymlineUniqueZero) and $n\ge2$ switch/reduction documents, fractional $H^s$ sparse-basis completeness.
 - Numerical/non-rigorous in source (not formalized): global extremality for $n\ge2$ gaps, $2n$-root count for the fixed-$n$ supremum, nonzero Casoratian of the three third-order solutions.
 - Hypothesized inputs: the classical Legendre/Krein-Sobolev orthogonality facts in HsOrthogonalSystems (literature facts, not formalized).
 
