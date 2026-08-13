@@ -2616,3 +2616,26 @@
 - 状态: (G1') 仍开放 (det K > 0); (G2) 已闭合 STRICT (会话 88); 带自洽解对称性未独立于
   度论证建立 (会话 88 交接的 "直接对称性" 路线前提不成立).
 - 维护: 本文件追加会话 89 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 90 (Krein c->0 一般高阶增长形式化: KreinHighGrowth.lean 全绿 + 推送 GitHub)
+- 任务: 承接会话 89 交接, 收尾已完成的 Krein n>=4 一般 Theta 增长形式化, 清理 linter
+  警告, 同步文档, 推送 GitHub (父类 + 个人 fork), 然后继续路线图未形式化部分.
+- 完成:
+  - 修复 lean-proof/SL/KreinHighGrowth.lean 中 4 处 linter 警告 (1 处 unnecessarySeqFocus,
+    3 处 unreachableTactic/unusedTactic; 将 `congr 1 <;> omega` 改为 `congr 1; omega`
+    或 `congr 1`).
+  - KreinHighGrowth.lean 正式覆盖 docs/SL_krein_c0_limit.tex Theorem "high" 的一般部分:
+    aSeq_rec (递推 (19)), aSeq_nonneg_step_ge / aSeq_lower_step / aSeq_upper_step
+    (奇偶类非负/单调 + 一步上下界), lower/upper Even/OddProd (显式乘积常数),
+    aSeq_lower_even/odd 与 aSeq_upper_even/odd (a_n = Theta(c^{-(n-2)/2}) 偶 /
+    Theta(c^{-(n-3)/2}) 奇), norm_even_ge/norm_odd_ge (范数下界),
+    tendsto_norm_even/odd_atTop / tendsto_norm_atTop (每个 n>=4 的 ||K_n||^2 -> +infinity).
+  - 机器验证: lake build 8578 jobs exit 0; sorry/admit/axiom 扫描 0; run-manifest.json
+    已刷新 (21 扫描文件, 含 KreinHighGrowth 哈希).
+  - 文档同步: README.md 机器验证数字更正为 20 个 SL/ 下 .lean 文件/8578 jobs, 已完成清单
+    加入 KreinHighGrowth, 未完成清单移除 n>=4 一般发散增长.
+- 诚实声明 (交付物内保留): 该文件状态为 MACHINE_ACCEPTED_PENDING_AUDIT; K1-K8 义务级
+  独立审计尚未闭合, 不能标为 FORMALLY_VERIFIED. 范数公式 ||K_n||^2 = 2c a_n a_{n+2}/(2n+1)
+  仍为文献事实 (KreinSobolevFacts 假设接入); 商空间级定理 (quotient/unit/complete (b)-(d))
+  仍未形式化.
+- 维护: 本文件追加会话 90 记录; 随后 commit + push 父类与个人 fork (main:main).

@@ -236,3 +236,49 @@ in L2(-1,1) has all moments zero, hence integral g^2 = 0, hence g = 0 a.e.
   K_c : H^2 -> L^2 and the L2 density extension of `moment_bound` are not
   formalized; the formal completeness conclusion starts from L2 orthogonality
   of a continuous g against {K_c p_n}.
+
+## 10. KreinHighGrowth.lean (session 88 continuation)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed and remains the documented next step)
+
+Scope: `SL/KreinHighGrowth.lean`, formalizing the general part of Theorem
+"high" from `docs/SL_krein_c0_limit.tex`: the two-sided Theta bounds
+`a_n(c) = Theta(c^{-(n-2)/2})` (even) / `Theta(c^{-(n-3)/2})` (odd) for
+`0 < c <= 1`, and the divergence `||K_n^{(c)}||^2 -> +infinity` as `c -> 0+`
+for every `n >= 4`.
+
+### 10.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| K1 | `aSeq_rec` | coefficient recurrence (source (19)) in index form for n >= 2 |
+| K2 | `aSeq_nonneg_step_ge`, `aSeq_nonneg`, `aSeq_step_ge` | nonnegativity and parity-wise monotonicity for c > 0 |
+| K3 | `aSeq_lower_step`, `aSeq_upper_step` | one-step lower/upper recurrence bounds |
+| K4 | `lowerEvenProd`, `lowerOddProd`, `upperEvenProd`, `upperOddProd` | explicit product constants for the Theta bounds |
+| K5 | `aSeq_lower_even`, `aSeq_lower_odd` | lower Theta bounds, all c > 0 |
+| K6 | `aSeq_upper_even`, `aSeq_upper_odd` | upper Theta bounds, 0 < c <= 1 |
+| K7 | `norm_even_ge`, `norm_odd_ge` | norm lower bounds from the norm formula + lower bounds |
+| K8 | `tendsto_norm_even_atTop`, `tendsto_norm_odd_atTop`, `tendsto_norm_atTop` | ||K_n||^2 -> +infinity for every n >= 4 |
+
+The norm formula `||K_n||^2 = 2c a_n a_{n+2}/(2n+1)` is a literature fact
+admitted as the hypothesis `KreinSobolevFacts` (imported from
+`SL/HsOrthogonalSystems.lean`), exactly as in `SL/KreinDegenerateLimit.lean`;
+the quotient-space theorems (Theorem "quotient", Theorem "complete" (b)-(d),
+Theorem "unit") are not formalized anywhere in this project and remain
+documented open.
+
+### 10.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8578 jobs)".
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 21 scanned files (20 SL `.lean` files +
+  `lakefile.lean`) and the new hash for `SL/KreinHighGrowth.lean`.
+
+### 10.3 Independent audit status
+
+Not yet closed. A strict independent pass must re-derive K1-K8 from the
+source document without relying on this repair session, and verify the
+statement fidelity of the Theta constants and the `c -> 0+` filter statements
+against `docs/SL_krein_c0_limit.tex`. Until that pass is recorded, this file
+is `MACHINE_ACCEPTED_PENDING_AUDIT`, not `FORMALLY_VERIFIED`.

@@ -4,7 +4,7 @@ Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
 
 **形式化总览与诚实状态**: 见 [STATUS.md](STATUS.md) (完整状态矩阵: 每个已证结果 -> 形式化状态).
-结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式与传输约化已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类/变差常数(第三解)已绿, Krein c->0 退化极限多项式级已绿, 其余已证定理未开始).
+结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式与传输约化已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类/变差常数(第三解)已绿, Krein c->0 退化极限多项式级与 n>=4 一般 Θ 增长已绿, 其余已证定理未开始).
 义务级审计 (会话 66-69): [audit_report.md](audit_report.md) + [verification.json](verification.json) (O1-O24).
 
 ## 目录结构
@@ -37,7 +37,8 @@ lean-proof/
     ├── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
     ├── ThirdOrderClassification.lean  Theorem 1 反向分类: 轨迹 => beta in {1,-1}/{3,1} (三阶递推线)
     ├── ThirdOrderMinimal.lean   变差常数/第三解: W/sumW/sInd + 定理 5 代数核心 + 定理 3 反向 (三阶递推线)
-    └── KreinDegenerateLimit.lean  Krein c->0 退化极限 (多项式级): radical/低模范数/发散/span 分解 (Krein 极限线)
+    ├── KreinDegenerateLimit.lean  Krein c->0 退化极限 (多项式级): radical/低模范数/发散/span 分解 (Krein 极限线)
+    └── KreinHighGrowth.lean       Krein n>=4 一般 Θ 增长: aSeq 上下界 + ||K_n||^2 -> +infinity (Krein 极限线)
 ```
 ## 构建与验证
 
