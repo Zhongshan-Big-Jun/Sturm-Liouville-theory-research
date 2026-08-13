@@ -323,3 +323,44 @@ spectral theorem that identifies the matrix Dirichlet condition with the
 eigenvalues of the Sturm-Liouville problem, nor the MW period-extension and
 zero-truncation arguments. A strict independent pass must re-derive T1-T8
 against the source before this file can be labelled `FORMALLY_VERIFIED`.
+
+## 12. SL/ReflectionSymmetry.lean (session 92)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: `SL/ReflectionSymmetry.lean`, formalizing the strictly proved
+J-conjugacy argument from `docs/SL_fixed_n_supremum.tex` Theorem "reflection
+symmetry".  For the cell/end transfer matrices of the alternating
+configuration and `M_n(y) = T_end(y) * T_cell(y)^n`, the file proves
+`M_n(pi - y) = -J * M_n(y) * J` and hence
+`F_n(pi - y) = F_n(y)` for the secular entry.
+
+### 12.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| R1 | `J`, `J_mul_J` | reflection matrix `diag(1,-1)` and `J*J = 1` |
+| R2 | `J_Tcell` | `J * T_cell(y) * J = T_cell(pi-y)` |
+| R3 | `J_Tend` | `J * T_end(y) * J = -T_end(pi-y)` |
+| R4 | `J_conj_pow` | conjugation commutes with matrix powers |
+| R5 | `Tcell_pow_pi_sub` | `T_cell(pi-y)^n = J * T_cell(y)^n * J` |
+| R6 | `M_reflection` | `M_n(pi-y) = -J * M_n(y) * J` |
+| R7 | `J_conj_entry` | `(J * A * J)_{0,1} = -A_{0,1}` |
+| R8 | `F_reflection` | `F_n(pi-y) = F_n(y)` |
+
+### 12.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8580 jobs)".
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 23 scanned files (22 `SL/` files +
+  `lakefile.lean`) and the hash of `SL/ReflectionSymmetry.lean`.
+
+### 12.3 Independent audit status
+
+Not yet closed.  The formal statement treats the frequency `ω` as a fixed
+parameter, matching the source's conjugation proof but not the source's
+phase normalization `y = ω * sqrt(R) * t`; the spectral identification of the
+matrix condition with Dirichlet eigenvalues is also not formalized.  A strict
+independent pass must verify R1-R8 against the source before
+`FORMALLY_VERIFIED` may be used.

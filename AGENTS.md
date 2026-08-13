@@ -2666,3 +2666,23 @@
 - 诚实声明: 该文件只形式化矩阵/secular 代数与平凡不等式; 转移矩阵 Dirichlet 条件与
   Sturm-Liouville 特征值的谱论等价、MW 周期延拓/零点截断重证仍未形式化.
 - 维护: 本文件追加会话 91 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 92 (固定 n 交替配置反射对称形式化: ReflectionSymmetry.lean 全绿 + 推送 GitHub)
+- 任务: 承接会话 91, 继续形式化未完成部分. 本块: docs/SL_fixed_n_supremum.tex
+  定理 "反射对称" 的 J-共轭矩阵证明; 完成后推送双仓库.
+- 完成:
+  - 新建 lean-proof/SL/ReflectionSymmetry.lean (命名空间 SL.ReflectionSymmetry):
+    - J=diag(1,-1), Tcell ([1,R] 单元转移矩阵), Tend (末块 [1] 转移矩阵), M (Tend*Tcell^n), F (M 的 (0,1) 元).
+    - J_mul_J, J_Tcell, J_Tend (单块 J-共轭; Tcell 需 s≠0/ω≠0 field_simp, Tend 用 cos/sin_pi_sub).
+    - J_conj_pow (J*A^n*J=(J*A*J)^n, 归纳 + J*J=1), Tcell_pow_pi_sub.
+    - M_reflection (M_n(pi-y)=-J M_n(y) J), J_conj_entry ((J A J)_{01}=-A_{01}), F_reflection (F_n(pi-y)=F_n(y)).
+  - 机器验证: lake build 8580 jobs exit 0; sorry/admit/axiom 扫描 0; run-manifest.json
+    已刷新 (23 扫描文件, 含 ReflectionSymmetry 哈希). 探针文件已清理.
+  - 文档同步: README.md 机器验证 22 文件/8580 jobs + 已完成清单; lean-proof/README.md
+    文件树/命名空间/结论行; lean-proof/STATUS.md 新增 ReflectionSymmetry 行, SL_fixed_n_supremum
+    状态矩阵更新为部分, 路线图新增第 13 项; lean-proof/audit_report.md 新增第 12 节
+    (R1-R8, MACHINE_ACCEPTED_PENDING_AUDIT).
+- 诚实声明: 本文件形式化固定 ω 参数的矩阵对称版本 (与源证明一致), 不包含
+  y=ω√R·t 的相位归一化、矩阵条件到 Dirichlet 特征值的谱论等价, 也不包含平衡定理的
+  2n-根计数 (源中数值证据).
+- 维护: 本文件追加会话 92 记录; 随后 commit + push 父类与个人 fork (main:main).

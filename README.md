@@ -45,8 +45,8 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
-- **机器验证**: `lean-proof/run-manifest.json` (21 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8579 jobs).
+- **机器验证**: `lean-proof/run-manifest.json` (22 个 SL/ 下 .lean 文件扫描,
+  sorry/admit/axiom 命中 0, `lake build` exit 0, 8580 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
@@ -58,6 +58,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
   - $H^s$ 线: TransferOperator ($K_c^{-r} x^k$ 传输算子闭式 + $K_c$ 双射) + HsOrthogonalSystems (传输约化: $Q_n^{(2r)}=K_c^{-r} P_n$ / $Q_n^{(2r+1)}=K_c^{-r} K_n$ 的正交与次数约化, Legendre 闭式 $\deg P_n = n$, aSeq 递推; Legendre/Krein-Sobolev 经典正交性以假设接入).
   - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
   - 比值上确界证明线核心: BalancedPhase (平衡相位三角闭式) + TransferMatrix (三段转移矩阵乘积、sup/inf secular 方程、Dirichlet 条件与平衡相位根, 及平凡不等式 $\lambda_{n+1}\le\lambda_{2n}$).
+  - 固定 $n$ 交替配置的反射对称 (J-共轭): ReflectionSymmetry ($M_n(\pi-y)=-J M_n(y) J$, $F_n(\pi-y)=F_n(y)$, 固定 $\omega$ 参数).
   - Krein $c \to 0$ 退化极限 (多项式级): KreinDegenerateLimit (c=0 配对 radical = span{1,x}, 低模范数 $K_0$..$K_4$ 闭式, $\|K_4\|^2 \to \infty$, span 分解) + KreinHighGrowth (n>=4 一般 $\Theta$ 增长 $a_n = \Theta(c^{-(n-2)/2})$ 偶 / $\Theta(c^{-(n-3)/2})$ 奇, $\|K_n\|^2 \to +\infty$).
   - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
     (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 $1/(2n+7)$, $3/(2n+9)$) +
