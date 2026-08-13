@@ -282,3 +282,44 @@ source document without relying on this repair session, and verify the
 statement fidelity of the Theta constants and the `c -> 0+` filter statements
 against `docs/SL_krein_c0_limit.tex`. Until that pass is recorded, this file
 is `MACHINE_ACCEPTED_PENDING_AUDIT`, not `FORMALLY_VERIFIED`.
+
+## 11. SL/TransferMatrix.lean (session 91)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: `SL/TransferMatrix.lean`, formalizing the elementary matrix algebra in
+`docs/SL_ratio_proof.tex` Sections 1-3: the balanced three-block transfer
+matrices for `[1,R,1]` and `[R,1,R]`, their `(0,1)` product entries, the
+equivalent Dirichlet secular equations, the fact that the balanced phases
+`theta`, `pi - theta`, and `phi` satisfy the matrix condition, and the generic
+monotonicity step `lambda_{n+1} <= lambda_{2n}`.
+
+### 11.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| T1 | `supM1`, `supM2`, `supM3` | transfer matrices and product for `[1,R,1]` |
+| T2 | `supM3_top_right`, `supM3_top_right_eq_zero_iff` | sup `(0,1)` entry and secular equivalence |
+| T3 | `sup_bracket_pi_sub`, `supM3_top_right_theta`, `supM3_top_right_pi_sub_theta` | the two balanced phases satisfy the sup matrix condition |
+| T4 | `infM1`, `infM2`, `infM3` | transfer matrices and product for `[R,1,R]` |
+| T5 | `infM3_top_right`, `infM3_top_right_eq_zero_iff` | inf `(0,1)` entry and Keller secular equivalence |
+| T6 | `inf_bracket_phi`, `infM3_top_right_phi` | the first Keller phase satisfies the inf matrix condition |
+| T7 | `le_of_strictMono_double` | `lambda_{n+1} <= lambda_{2n}` for a strictly increasing sequence |
+| T8 | `ratio_le_of_strictMono_double` | positive-denominator ratio form of T7 |
+
+### 11.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8579 jobs)".
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 22 scanned files (21 `SL/` files +
+  `lakefile.lean`) and the hash of `SL/TransferMatrix.lean`.
+
+### 11.3 Independent audit status
+
+Not yet closed. The remaining non-formalized bridge is explicitly documented:
+this file proves the matrix/secular algebra, but does not formalize the
+spectral theorem that identifies the matrix Dirichlet condition with the
+eigenvalues of the Sturm-Liouville problem, nor the MW period-extension and
+zero-truncation arguments. A strict independent pass must re-derive T1-T8
+against the source before this file can be labelled `FORMALLY_VERIFIED`.

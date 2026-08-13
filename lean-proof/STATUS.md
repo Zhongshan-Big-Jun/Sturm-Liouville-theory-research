@@ -1,11 +1,11 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 88 续作) 已形式化 20 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 91 续作) 已形式化 21 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
 > H^3 线代数核心、解析 H1 矩上界与 FTC 胶水 (H1 内积识别/正定核心), 比值上确界证明线的核心三角闭式,
 > 稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数),
 > 以及三阶递推线 (一般框架/比值映射等价/精确降阶 + 偶奇族闭式/固定点轨迹/比值恒等式 + 积分解分类方向 + 变差常数/第三解),
-> H^s 显式正交系的传输约化 (Q_n=K_c^{-r} P_n/K_n 的正交/次数约化 + Legendre 闭式 + aSeq 递推), 以及 Krein c->0 退化极限的多项式级 (c=0 配对 radical = span{1,x}, 低模范数闭式, ||K_4||^2 发散, span 分解) 与 n>=4 一般 Θ 增长 (aSeq 上下界 + ||K_n||^2 -> +infinity).
+> H^s 显式正交系的传输约化 (Q_n=K_c^{-r} P_n/K_n 的正交/次数约化 + Legendre 闭式 + aSeq 递推), Krein c->0 退化极限的多项式级与 n>=4 一般 Θ 增长, 以及比值证明线的平衡相位三角闭式与三段转移矩阵/secular 方程 (sup/inf Dirichlet 条件, 平凡不等式 λ_{n+1}<=λ_{2n}).
 > 其余已证定理 (H^3 算符级等距同构 K_c: H^3->H^1, H^s 显式正交系的算符级等距与完备性, MW 重证, 间距线等) 仍有待形式化.
 
 ## 1. 已形式化并通过机器验证
@@ -14,6 +14,7 @@
 | --- | --- | --- | --- |
 | `SL/MomentGrowth.lean` | 矩跳跃增长引理: 对 c>0, 递推 c u_j = A_j u_{j-1} - B_j u_{j-2} (A_j=2j(2j-1)+cj/(j-1), B_j=2j(2j-3)) 的解满足 u_j>0, u_j<=u_{j+1}, u_j >= (4/c)^(j-1) j! | `docs/SL_h2_completeness_proof.tex` (增长引理) | lake build 绿; sorry/axiom 0 |
 | `SL/BalancedPhase.lean` | 平衡相位闭式核心: theta=arccos(s/(s+1)) 满足 sup 配置 secular 方程; arccos(-s/(s+1))=pi-theta; nu(R) 闭式; (0,pi) 内 secular 根恰为 theta/pi-theta; tan^2 phi=s(s+2) (Keller inf); lambda1/lambda2 相位恒等式 | `docs/SL_ratio_proof.tex` 第 3 节, `tools/balanced-phase.md` | lake build 绿; sorry/axiom 0 |
+| `SL/TransferMatrix.lean` | 比值证明线转移矩阵/secular 核心: supM1/supM2/supM3 ([1,R,1] 三段矩阵), infM1/infM2/infM3 ([R,1,R] 三段矩阵), sup/inf top-right 乘积闭式与 Dirichlet 条件等价, theta/pi-theta/phi 满足矩阵 Dirichlet 条件, 平凡不等式 λ_{n+1}<=λ_{2n} 的严格单调序列版本 | `docs/SL_ratio_proof.tex` 第 1-3 节 | lake build 绿; sorry/axiom 0; 转移矩阵到特征值的谱论连接未形式化 |
 | `SL/KcPolynomial.lean` | K_c 作用在 H^2 多项式基的系数恒等式: K_c p_{2n}=c x^{2n}-A_n x^{2n-2}+B_n x^{2n-4}, 奇次同理; A_n-B_n=4n+cn/(n-1) | `docs/SL_h2_completeness_proof.tex` 引理 4.1 | lake build 绿; sorry/axiom 0 |
 | `SL/StabilityGrowth.lean` | 定量增长引理 (一般系数): 对任意 `[Field K] [LinearOrder K] [IsStrictOrderedRing K]` (含 R, Q), B_m>=0 且 A_m-B_m>=c_0 时递推解 u_m 单调且 u_m >= prod_{k=2..m}(A_k-B_k)/c_0 = prod (1+eps_k), eps_k=(A_k-B_k-c_0)/c_0>=0 | `docs/SL_stability_moment_jump.tex` 定理 2.1 (定量增长引理) | lake build 绿; sorry/axiom 0; 审计见 audit_report.md (O1-O5) |
 | `SL/MomentRecurrence.lean` | 线性泛函矩递推 + 缩放引理 (Q 上): M(K_c p_n)=0 => mu_0=mu_1=0, 偶/奇矩跳变递推 c mu_{2n}=A_n mu_{2n-2}-B_n mu_{2n-4} (奇次用 A'_n,B'_n), 且 mu_{2m}=mu_2 u_m, mu_{2m+1}=mu_3 u'_m (自由参数仅 mu_2/mu_3) | `docs/SL_h2_completeness_proof.tex` 第 3.2 节, `tools/left-definite-moment-recurrence.md` | lake build 绿; sorry/axiom 0; 审计见 audit_report.md (O6-O12) |
@@ -29,11 +30,11 @@
 | `SL/ThirdOrder.lean` | 三阶递推一般理论 (任意域): IsSolution/ratioMap 框架, Lemma 1 (fixed_point_iff: 序列 E 满足递推 <=> 连续比值 e_j=E_j/E_{j-1} 满足固定点方程 e_j=F_j(e_{j-1},e_{j-2})), Theorem 3 前向 (reduction: 差序列 s_j=r_j-r_{j-1} 满足二阶递推) | `docs/SL_third_order_recurrence_theory.tex` 第 2-4 节 (Lemma 1 + Theorem 3 前向) | lake build 绿; sorry/axiom 0 |
 | `SL/ThirdOrderClosedForms.lean` | Theorem 2 闭式验证 (偶族 mu+=(2j+1)!/c^j, mu-=(2j)!/c^j; 奇族 mu+=(2j+3)!/(6(j+1)c^j), mu-=(2j+1)!/c^j 逐项满足三阶递推) + 固定点轨迹充分方向 (e_j=1+beta/(2j), beta in {1,-1}/{3,1}, 乘法与 ratioMap 形式) + 比值恒等式 (偶 mu-/mu+=1/(2n+7), 奇 =3/(2n+9)) | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (充分方向) + 定理 2 | lake build 绿; sorry/axiom 0; 分类方向 (Theorem 1 反向) 由 ThirdOrderClassification.lean 形式化 |
 | `SL/ThirdOrderMinimal.lean` | 定理 5 变差常数和式 + 定理 3 反向 (任意域): IsSolution2/Acoef/Bcoef 命名系数, 变差权重 W (w_2=1, w_j=-B_j*s_{j-2}/s_j*w_{j-1}, n+3 下标), sumW/sInd, variation_constant_solution (sInd 满足 (4)), casoratian_sInd/casoratian_prop (离散 Wronskian 闭式 C_j=-s_j*s_{j-1}*w_j 与传播 C_j=-B_j*C_{j-1}), lin_indep_sInd (s_2*s_3*w_3!=0 => s 与 sInd 线性无关), withInitial/reduction_converse (z_j=E_j*(r_1+Σ_{k=2..j} s_k) 满足 (2)), zInd_solution (z^ind 构造); 三解 {E+,E-,z^ind} 的 3x3 Casoratian 非零为源中数值证据, 未形式化 | `docs/SL_third_order_recurrence_theory.tex` 定理 5 + 定理 3 反向 | lake build 绿 (8576 jobs), sorry/axiom 0 |
-| `SL/KreinDegenerateLimit.lean` | Krein c->0 退化极限 (多项式级): c=0 配对 pair0 与 radical_pair0 (pair0 f f = 0 <-> f in span{1,x}: 积分非负零 + 开区间点态零 + 无穷根 + 导数为常数 => 仿射), K_0..K_4 低模范数闭式 (kS_norm_zero..four, ||K_4||^2=(2c+240+5040/c+28350/c^2)/9), ||K_4||^2 -> atTop (c->0+, tendsto_norm_four_atTop, 主导 3150/c^2), span 分解 poly_mem_span_quotient (Theorem complete (a): Pi = span{1,x} + span{S_2..S_N}, 强归纳 + 前导项消去) | `docs/SL_krein_c0_limit.tex` (Theorem radical/low/high/complete (a), 多项式版本) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 与 n>=4 一般增长未形式化 (文件头诚实标注) |
+| `SL/KreinDegenerateLimit.lean` | Krein c->0 退化极限 (多项式级): c=0 配对 pair0 与 radical_pair0 (pair0 f f = 0 <-> f in span{1,x}: 积分非负零 + 开区间点态零 + 无穷根 + 导数为常数 => 仿射), K_0..K_4 低模范数闭式 (kS_norm_zero..four, ||K_4||^2=(2c+240+5040/c+28350/c^2)/9), ||K_4||^2 -> atTop (c->0+, tendsto_norm_four_atTop, 主导 3150/c^2), span 分解 poly_mem_span_quotient (Theorem complete (a): Pi = span{1,x} + span{S_2..S_N}, 强归纳 + 前导项消去) | `docs/SL_krein_c0_limit.tex` (Theorem radical/low/high/complete (a), 多项式版本) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 未形式化 (文件头诚实标注) |
 | `SL/KreinHighGrowth.lean` | Krein c->0 一般高阶增长 (Theorem "high" 一般部分): aSeq_rec (递推 (19)), aSeq_nonneg_step_ge (逐奇偶类非负/单调), aSeq_lower_step / aSeq_upper_step (一步上下界), lower/upper Even/OddProd (显式乘积常数), aSeq_lower_even/odd 与 aSeq_upper_even/odd (a_n = Theta(c^{-(n-2)/2}) 偶 / Theta(c^{-(n-3)/2}) 奇), norm_even_ge/norm_odd_ge (范数下界), tendsto_norm_even/odd_atTop 与 tendsto_norm_atTop (每个 n>=4 的 ||K_n||^2 -> +infinity) | `docs/SL_krein_c0_limit.tex` (Theorem "high" 一般部分) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 仍未形式化 (文件头诚实标注) |
 
-机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 20 个 SL/ 下 .lean 文件
-共 21 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8578 jobs). 义务级审计: `audit_report.md` +
+机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 21 个 SL/ 下 .lean 文件
+共 22 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8579 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
 MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报告独立性说明).
 
@@ -52,7 +53,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_stability_moment_jump.tex | 矩跳跃稳定性: 定量增长引理 (一般系数, B_m>=0 且 A_m-B_m>=c_0), 稳定性定理 (发散对数和 ω(log m) => 完备), 尖锐性 (C/k 族) | 已证 | 部分: 定量增长引理 + eps 形式 (StabilityGrowth); Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数 (Stability); 未形式化: 完备性收尾 w=0 (稠密性, 同 O16 缺口) 与 §4 后门槛分类 (S-门槛/门槛线/Krein 余量) |
 | SL_third_order_recurrence_theory.tex | 三阶递推一般理论: 积分解分类/精确降阶/最小解 | 已证 | 部分: 一般框架 + Lemma 1 固定点等价 + Theorem 3 前向降阶 (ThirdOrder); Theorem 2 闭式 + 固定点轨迹充分方向 + 比值恒等式 (ThirdOrderClosedForms); 分类方向 (Theorem 1 反向, ThirdOrderClassification); 变差常数/第三解代数核心 + 定理 3 反向 (ThirdOrderMinimal); 剩余: 三解 Casoratian 非零 (源数值) 与最小解唯一性/渐近 (源数值/符号计算) 未形式化 |
 | SL_krein_c0_limit.tex | 移位 Krein 算子 c->0 退化极限的结构稳定性 | 已证 | 部分: 多项式级 radical (c=0 配对 radical = span{1,x}) + 低模范数闭式 (K_0..K_4) + ||K_4||^2 -> atTop + span 分解 (KreinDegenerateLimit) + n>=4 一般 Θ 增长与 ||K_n||^2 -> +infinity (KreinHighGrowth); 商空间级 (H^1/W ≅ L^2_0, quotient/unit, complete (b)-(d)) 未形式化 |
-| SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心); 转移矩阵/secar 推导/平凡不等式/MW 引理未形式化 |
+| SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心) + TransferMatrix (三段转移矩阵乘积/secular 方程/平凡不等式); 转移矩阵到特征值的谱论连接与 MW 引理重证仍未形式化 |
 | SL_inf_ratio_proof.tex | inf_{n,rho} lambda_{n+1}/lambda_n = 1 (Weyl 渐近) | 已证 | 未开始 (需 Weyl 渐近, 解析重) |
 | SL_mw_lemma_reproof.tex | Mahar-Willner 引理 1-2 独立重证 (周期延拓 + 零点截断) | 已证 | 未开始 |
 | SL_fixed_n_supremum.tex | 固定 n 上确界: 交替配置平衡相位结构, n=1,2 闭式 | 部分 (全局极值未证) | 未开始 |
@@ -99,7 +100,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
    sharp_poly_bound/sharp_term_bound/sharp_series_summable); 11 文件 lake build 绿,
    sorry/axiom 0. 剩余: 完备性收尾 w=0 (稠密性, O16 类缺口) 与 §4 后门槛分类未形式化.
    源文档假设更正见 F-001 (2026-08-11 会话 67 RESOLVED).
-5. MW 引理 1-2 与比值上确界定理由 BalancePhase 补全 (转移矩阵/谱论).
+5. [部分完成: 会话 91] MW 引理 1-2 与比值上确界定理的代数核心已补全: BalancedPhase (平衡相位三角闭式) + TransferMatrix (三段转移矩阵乘积、sup/inf secular 方程、Dirichlet 条件与平衡相位根、平凡不等式); 剩余: 转移矩阵条件到特征值的谱论等价、MW 周期延拓/零点截断的谱论重证.
 6. 间距线 (n=1 定理族, n>=2 开关/约化) 体量大且分析密集, 建议拆义务逐条形式化.
 7. [已完成: 会话 70] H^s 显式正交系统线第一步: TransferOperator (K_c^{-r} x^k 闭式 + K_c 双射 + 迭代闭式, 9 文件机器验证通过). 第二步 (会话 85): HsOrthogonalSystems 传输约化 (见第 10 条). 剩余: 算符级等距 K_c^r: H^s -> L^2/H^1 与 H^s 完备性 (谱论/稠密性).
 8. [部分: 会话 78+84] H^3 线: H3Completeness.lean (矩跳变/缩放/增长/湮灭代数核心) + H3MomentBound.lean (解析 H1 矩上界, Cauchy-Schwarz + sqrt 初等估计, 已接入 hbdE/hbdO 闭合 h1_moments_zero_of_orthogonal) + H1Isometry.lean (FTC 胶水 ftc_delta, H1 内积识别 h1Inner_eq_h1MomentFunctional, 正交传输 h1Inner_moments_zero_of_orthogonal / h1Inner_eq_zero_of_orthogonal, 正定核心 h1NormSq_nonneg / h1NormSq_eq_zero_imp_ae_zero), 17 文件 lake build 绿 (8575 jobs), sorry/axiom 0. 剩余: 算符级等距同构 K_c: H^3->H^1 (双射/谱, 需谱论) 与多项式稠密性 (p->w 步骤).

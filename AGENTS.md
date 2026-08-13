@@ -2639,3 +2639,30 @@
   仍为文献事实 (KreinSobolevFacts 假设接入); 商空间级定理 (quotient/unit/complete (b)-(d))
   仍未形式化.
 - 维护: 本文件追加会话 90 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 91 (比值证明线转移矩阵/secular 核心形式化: TransferMatrix.lean 全绿 + 推送 GitHub)
+- 任务: 承接会话 90, 继续形式化路线图未完成部分. 本块: docs/SL_ratio_proof.tex 第 1-3 节
+  的转移矩阵/secular 代数核心与平凡不等式 λ_{n+1}<=λ_{2n}; 完成后推送双仓库.
+- 完成:
+  - 新建 lean-proof/SL/TransferMatrix.lean (命名空间 SL.TransferMatrix), 内容:
+    - supM1/supM2/supM3 ([1,R,1] 三段转移矩阵), infM1/infM2/infM3 ([R,1,R] 三段矩阵).
+    - supM3_top_right / infM3_top_right: 乘积 (0,1) 元闭式.
+    - supM3_top_right_eq_zero_iff / infM3_top_right_eq_zero_iff: Dirichlet 条件与
+      sup/Keller secular 方程等价 (因子非零消去).
+    - supM3_top_right_theta / supM3_top_right_pi_sub_theta / infM3_top_right_phi:
+      平衡相位 theta, pi-theta, phi 满足矩阵 Dirichlet 条件.
+    - le_of_strictMono_double / ratio_le_of_strictMono_double: 严格递增特征值序列的
+      平凡不等式及其比值形式.
+  - 关键技术: Matrix (Fin 2) (Fin 2) ℝ + `!![a,b;c,d]`; 乘法项用
+    `simp [Matrix.mul_apply, Fin.sum_univ_two]` 展开; 除法消去用 `field_simp`; supM2
+    不依赖 s, infM1 不依赖 s (避免 unused variable linter); 相位 pi-theta 的 bracket
+    用 cos_pi_sub/sin_pi_sub + nlinarith 归约到 theta bracket.
+  - 机器验证: lake build 8579 jobs exit 0; sorry/admit/axiom 扫描 0; run-manifest.json
+    已刷新 (22 扫描文件, 含 TransferMatrix 哈希). 探针文件已清理.
+  - 文档同步: README.md 机器验证 21 文件/8579 jobs + 已完成清单; lean-proof/README.md
+    文件树/命名空间/结论行; lean-proof/STATUS.md 新增 TransferMatrix 行, SL_ratio_proof
+    状态矩阵更新, 路线图第 5 项标记部分完成; lean-proof/audit_report.md 新增第 11 节
+    (T1-T8, MACHINE_ACCEPTED_PENDING_AUDIT).
+- 诚实声明: 该文件只形式化矩阵/secular 代数与平凡不等式; 转移矩阵 Dirichlet 条件与
+  Sturm-Liouville 特征值的谱论等价、MW 周期延拓/零点截断重证仍未形式化.
+- 维护: 本文件追加会话 91 记录; 随后 commit + push 父类与个人 fork (main:main).
