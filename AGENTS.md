@@ -2709,3 +2709,38 @@
   临界指数定理, 以及 Hilbert 空间嵌入与 Weierstrass 稠密性收尾均未形式化; 文件状态为
   MACHINE_ACCEPTED_PENDING_AUDIT, 不能标为 FORMALLY_VERIFIED.
 - 维护: 本文件追加会话 93 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 94 (工作流插件再次"消失"的诊断与恢复)
+- 任务: 用户反馈本地又找不到 math-research-workflow 插件, 调查原因并恢复.
+- 诊断: 插件与市场检出均完好 - 市场检出 .codex\.tmp\marketplaces\math-research 在
+  revision 7272df4 (最新), 插件缓存 .codex\plugins\cache\math-research\
+  math-research-workflow\0.1.0+codex.20260812164950 存在且 SKILL 内容完整.
+  丢失的是 config.toml 中的启用条目 [plugins."math-research-workflow@math-research"];
+  config.toml 最后写入时间 2026-08-13 12:42:34, 疑似桌面应用启动/设置同步重写配置时
+  抹掉了该条目 (lean-verify@personal 等其余条目保留), 因此 codex plugin list 显示
+  math-research-workflow@math-research not installed. 注意 .codex-global-state.json
+  编码损坏 (ConvertFrom-Json 报错), 不可用作解析依据.
+- 恢复: 执行 codex plugin add math-research-workflow@math-research 成功; plugin list
+  确认 installed, enabled (0.1.0+codex.20260812164950), config.toml 已重新写入启用条目.
+- 经验: 桌面应用可能再次重写 config.toml 抹掉该条目; 若再发生, 在应用插件面板重新
+  启用或重跑 plugin add 即可, 无需重装仓库或市场. 本任务不涉及仓库文件变更, 无需 push.
+
+### 2026-08-13 会话 95 (间距线 n=1 对称线代数核心形式化: SymlineTensionRatio)
+- 任务: 承接会话 93, 形式化 SL_gap_n1_symline_allR_proof.tex 中严格证明 (STRICT) 的
+  代数核心 (P1 比较引理 + FeEquiv<0 <=> rho<1 等价).
+- 完成:
+  - 新增 lean-proof/SL/SymlineTensionRatio.lean (命名空间 SL.SymlineTensionRatio):
+    Phi/Mf/FeEquiv/Delta/T/rho 定义; Phi_nonneg/Phi_eq (Phi 闭式); P1 (u<=tan u =>
+    c/(q+c)<=t/(y+t), c=arctan(q*t)/y) 与 P1_tan; FeEquiv_eq (对称线公分母形式:
+    先证无分母分子恒等式 hmain (rw [Phi_eq]+ring), 再 calc 分步域运算);
+    FeEquiv_iff_rho_lt_one (FeEquiv<0 <=> rho<1, Delta>0; div_lt_iff0 消去正分母).
+  - 技术要点: rw [Phi_eq] 展开分母后 field_simp 无法清除分母 (残留 inv), 改为分子
+    恒等式 + calc; 代数结论不依赖 gamma 的域假设, 从语句移除无用假设消除 linter 警告;
+    编译经后台 wrapper (直接 lake env lean 超时被杀, 改用 Start-Process + 轮询).
+  - 全量验证: verify_lean_project.py --project lean-proof --build 通过 - 25 文件扫描,
+    sorry/admit/axiom 命中 0, lake build exit 0 (8582 jobs).
+  - 文档: 根 README.md / lean-proof/README.md / STATUS.md / audit_report.md 同步更新
+    (24 个 SL 文件, 25 扫描, 8582 jobs; 状态 MACHINE_ACCEPTED_PENDING_AUDIT).
+  - 未形式化 (如实登记): gamma_0* 存在性与位置, (y sin gamma)^2 >= pi^2/4,
+    三正项分解 P2, 完整张力比链条 (源中超越/几何部分); 数值证据未作为定理.
+- 维护: 追加本记录; 随后 commit + push 父类与个人 fork (main:main).

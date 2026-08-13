@@ -408,3 +408,42 @@ moment characterization; it does not formalize the Hilbert-space embedding of
 or the final density/Weierstrass conclusion in
 `docs/SL_denseness_criteria.tex`.  A strict independent pass must re-derive
 D1-D6 against the source before `FORMALLY_VERIFIED` may be used.
+## 14. SL/SymlineTensionRatio.lean (session 95)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: `SL/SymlineTensionRatio.lean`, formalizing the STRICT (proved)
+algebraic core of `docs/SL_gap_n1_symline_allR_proof.tex` (symmetry line of
+the n=1 gap theorem): the comparison lemma P1
+(`c/(q+c) <= t/(y+t)` from `u <= tan u` with `c = arctan(q*t)/y`), the
+common-denominator form of the left-hand functional `FeEquiv` on the
+symmetry line, and the equivalence `FeEquiv < 0 <-> rho < 1` for
+`Delta > 0`.
+
+### 14.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| S1 | `Phi`, `Mf`, `FeEquiv`, `Delta`, `T`, `rho` | named quantities of the source |
+| S2 | `Phi_nonneg`, `Phi_eq` | `0 <= Phi q x`; `Phi q x = 1 - (1 - q^2) * sin x^2` |
+| S3 | `P1`, `P1_tan` | `0<q, 0<t, 0<y, c = arctan(q*t)/y => c/(q+c) <= t/(y+t)`; `t = tan gamma` version |
+| S4 | `FeEquiv_eq` | common-denominator form: `FeEquiv A gamma c q = (c*(1-q^2)*sinA^2*sinG^2*T - (q+c)*Delta) / ((q+c*Phi q A)*(q+c*Phi q (pi-gamma)))` |
+| S5 | `FeEquiv_iff_rho_lt_one` | `0<q, 0<c, 0<Delta A gamma => FeEquiv A gamma c q < 0 <-> rho A gamma c q < 1` |
+
+### 14.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8582 jobs)".
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 25 scanned files (24 `SL/` files +
+  `lakefile.lean`) and the hash of `SL/SymlineTensionRatio.lean`.
+
+### 14.3 Independent audit status
+
+Not yet closed.  This file proves only the algebraic core: the source's
+transcendental facts (existence and location of `gamma_0*`, the inequality
+`(y * sin gamma)^2 >= pi^2/4`, the three-term nonnegative decomposition of
+Lemma P2, and the full tension-ratio chain of Theorem 1) are NOT formalized
+and remain pending.  Numerical evidence in the source is not used.  A strict
+independent pass must re-derive S1-S5 against the source before
+`FORMALLY_VERIFIED` may be used.
