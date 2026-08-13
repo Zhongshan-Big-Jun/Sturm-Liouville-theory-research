@@ -2686,3 +2686,26 @@
   y=ω√R·t 的相位归一化、矩阵条件到 Dirichlet 特征值的谱论等价, 也不包含平衡定理的
   2n-根计数 (源中数值证据).
 - 维护: 本文件追加会话 92 记录; 随后 commit + push 父类与个人 fork (main:main).
+
+### 2026-08-13 会话 93 (稠密性准则矩刻画形式化: DensenessCriteria.lean 全绿 + 推送 GitHub)
+- 任务: 承接会话 92, 继续形式化路线图未完成部分. 本块: docs/SL_denseness_criteria.tex
+  定理 2 (矩刻画) 的代数核心; 完成后推送双仓库.
+- 完成:
+  - 新建 lean-proof/SL/DensenessCriteria.lean (命名空间 SL.DensenessCriteria):
+    - moments M k = M (X^k), apply_C_mul_X_pow (M(C a * X^m) = a * M_m).
+    - sparse_even_apply / sparse_odd_apply: pEvenR n / pOddR n 的矩展开 (n >= 2).
+    - even/odd_moments_of_orthogonal: 稀疏基正交性 => M_{2m}=m M_2, M_{2m+1}=m M_3.
+    - even/odd_orthogonal_of_moments: 矩条件 => 稀疏基正交性 (反向).
+    - sparse_moment_characterization: 定理 2 的 iff 版本.
+  - 修复初稿中 sparse_even_apply/sparse_odd_apply 隐式参数 n 无法推断的问题 (补
+    (_hn : 2 <= n)), 并把未使用 hn 改为 _hn 消除 linter; 单文件 lake env lean 零警告.
+  - 机器验证: lake build 8581 jobs exit 0; sorry/admit/axiom 扫描 0; run-manifest.json
+    已刷新 (24 扫描文件, 含 DensenessCriteria 哈希). 探针文件已清理.
+  - 文档同步: README.md 机器验证 23 文件/8581 jobs + 已完成清单; lean-proof/README.md
+    文件树/命名空间/结论行; lean-proof/STATUS.md 新增 DensenessCriteria 行, SL_denseness_criteria
+    状态矩阵更新为部分, 路线图新增第 14 项; lean-proof/audit_report.md 新增第 13 节
+    (D1-D6, MACHINE_ACCEPTED_PENDING_AUDIT).
+- 诚实声明: 本文件只形式化有限维/代数层的稀疏基矩刻画 iff. 一阶矩准则 (beta<1),
+  临界指数定理, 以及 Hilbert 空间嵌入与 Weierstrass 稠密性收尾均未形式化; 文件状态为
+  MACHINE_ACCEPTED_PENDING_AUDIT, 不能标为 FORMALLY_VERIFIED.
+- 维护: 本文件追加会话 93 记录; 随后 commit + push 父类与个人 fork (main:main).

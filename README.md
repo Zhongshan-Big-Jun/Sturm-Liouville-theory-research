@@ -45,8 +45,8 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 研究结果的形式化验证工程 (Lean 4.31.0 + mathlib v4.31.0), 作为正确性的机器可核验证明材料:
 
 - **状态矩阵**: `lean-proof/STATUS.md` (每个已证结果 -> 形式化状态, 诚实标注未完成部分).
-- **机器验证**: `lean-proof/run-manifest.json` (22 个 SL/ 下 .lean 文件扫描,
-  sorry/admit/axiom 命中 0, `lake build` exit 0, 8580 jobs).
+- **机器验证**: `lean-proof/run-manifest.json` (23 个 SL/ 下 .lean 文件,
+  共 24 个扫描含 `lakefile.lean`; `sorry/admit/axiom` 命中 0, `lake build` exit 0, 8581 jobs).
 - **义务级审计**: `lean-proof/audit_report.md` + `verification.json` (24 项义务 O1-O24,
   裁决 FORMALLY_VERIFIED).
 - **已完成**:
@@ -59,6 +59,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
   - 稳定性门槛线核心: Stability (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数).
   - 比值上确界证明线核心: BalancedPhase (平衡相位三角闭式) + TransferMatrix (三段转移矩阵乘积、sup/inf secular 方程、Dirichlet 条件与平衡相位根, 及平凡不等式 $\lambda_{n+1}\le\lambda_{2n}$).
   - 固定 $n$ 交替配置的反射对称 (J-共轭): ReflectionSymmetry ($M_n(\pi-y)=-J M_n(y) J$, $F_n(\pi-y)=F_n(y)$, 固定 $\omega$ 参数).
+  - 稠密性准则矩刻画核心: DensenessCriteria (稀疏基正交性 $\iff$ 矩条件 $M_0=M_1=0$, $M_{2m}=m M_2$, $M_{2m+1}=m M_3$; 一阶矩/临界指数约化的代数核心).
   - Krein $c \to 0$ 退化极限 (多项式级): KreinDegenerateLimit (c=0 配对 radical = span{1,x}, 低模范数 $K_0$..$K_4$ 闭式, $\|K_4\|^2 \to \infty$, span 分解) + KreinHighGrowth (n>=4 一般 $\Theta$ 增长 $a_n = \Theta(c^{-(n-2)/2})$ 偶 / $\Theta(c^{-(n-3)/2})$ 奇, $\|K_n\|^2 \to +\infty$).
   - 三阶递推线: ThirdOrder (固定点等价 + 精确降阶) + ThirdOrderClosedForms
     (偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 $1/(2n+7)$, $3/(2n+9)$) +
@@ -66,7 +67,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
     ThirdOrderMinimal (变差常数/第三解: 定理 5 代数核心 + 定理 3 反向).
 - **未完成 (已登记)**: $H^3$ 算符级等距同构 $K_c\colon H^3 \to H^1$ (双射/谱, 需谱论) 与多项式在 $H^1$
   稠密性; $H^s$ 显式正交系的算符级等距与完备性 (谱论/稠密性); MW 引理重证 (周期延拓/零点截断的谱论部分); 比值证明线中转移矩阵到特征值的谱论连接; 间距线 ($n=1$ 定理族, $n \ge 2$ 开关/约化);
-  三阶递推三解 Casoratian 非零与最小解唯一性/渐近 (源中数值部分); Krein $c \to 0$ 商空间级 (H^1/W \cong L^2_0, quotient/unit, 需泛函分析); 分数阶 $H^s$ 与稠密性准则.
+  三阶递推三解 Casoratian 非零与最小解唯一性/渐近 (源中数值部分); Krein $c \to 0$ 商空间级 (H^1/W \cong L^2_0, quotient/unit, 需泛函分析); 分数阶 $H^s$ 与稠密性准则的 Hilbert 空间/稠密性收尾.
 
 ## 目录结构
 

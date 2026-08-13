@@ -364,3 +364,47 @@ phase normalization `y = ω * sqrt(R) * t`; the spectral identification of the
 matrix condition with Dirichlet eigenvalues is also not formalized.  A strict
 independent pass must verify R1-R8 against the source before
 `FORMALLY_VERIFIED` may be used.
+
+## 13. SL/DensenessCriteria.lean (session 93)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: `SL/DensenessCriteria.lean`, formalizing the algebraic core of
+`docs/SL_denseness_criteria.tex` Theorem 2 ("矩刻画").  For a real-linear
+functional `M` on polynomials, orthogonality to the sparse basis
+`p_0 = 1`, `p_1 = X`,
+`p_{2m} = X^{2m} - (m/(m-1)) X^{2m-2}`,
+`p_{2m+1} = X^{2m+1} - (m/(m-1)) X^{2m-1}` is equivalent to the moment
+conditions `M_0 = M_1 = 0`, `M_{2m} = m * M_2`,
+`M_{2m+1} = m * M_3`.
+
+### 13.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| D1 | `moments` | `moments M k = M (X ^ k)` |
+| D2 | `apply_C_mul_X_pow` | `M (C a * X^m) = a * moments M m` |
+| D3 | `sparse_even_apply`, `sparse_odd_apply` | moment expansions of `pEvenR n` and `pOddR n` for `2 <= n` |
+| D4 | `even_moments_of_orthogonal`, `odd_moments_of_orthogonal` | orthogonality to the sparse even/odd polynomials forces the even/odd moment recurrences |
+| D5 | `even_orthogonal_of_moments`, `odd_orthogonal_of_moments` | the even/odd moment recurrences force orthogonality to the sparse polynomials |
+| D6 | `sparse_moment_characterization` | Theorem 2 iff: `M 1 = 0 ∧ M X = 0 ∧ (∀n, 2 ≤ n → M pEvenR n = 0) ∧ (∀n, 2 ≤ n → M pOddR n = 0) ↔ (M_0 = 0 ∧ M_1 = 0 ∧ (∀m, 1 ≤ m → M_{2m} = m M_2) ∧ (∀m, 1 ≤ m → M_{2m+1} = m M_3))` |
+
+The `Completeness.pEvenR`/`Completeness.pOddR` definitions are imported from
+`SL/Completeness.lean` and were already machine-verified in this repository.
+
+### 13.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8581 jobs)".
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated with 24 scanned files (23 `SL/` files +
+  `lakefile.lean`) and the hash of `SL/DensenessCriteria.lean`.
+
+### 13.3 Independent audit status
+
+Not yet closed.  This file proves only the finite-dimensional/algebraic
+moment characterization; it does not formalize the Hilbert-space embedding of
+`M`, the first-moment criterion (`beta < 1`), the critical-exponent theorem,
+or the final density/Weierstrass conclusion in
+`docs/SL_denseness_criteria.tex`.  A strict independent pass must re-derive
+D1-D6 against the source before `FORMALLY_VERIFIED` may be used.
