@@ -496,3 +496,65 @@ strict form of ys2 as a hypothesis, documented in the file header.  The
 source's `0 < q < 1` in P2 is relaxed to all real `q` (stronger
 statement).  A strict independent pass must re-derive S6-S10 against the
 source before `FORMALLY_VERIFIED` may be used.
+
+## 16. SL/SymlineTensionRatio.lean GammaStar + Lemma ys2 (session 100)
+
+Status: MACHINE_ACCEPTED_PENDING_AUDIT (machine checks pass; independent
+obligation-level audit is not yet closed)
+
+Scope: continuation of `SL/SymlineTensionRatio.lean`, formalizing the two
+transcendental facts that sessions 95/96 left as hypotheses: the source
+threshold `gamma_0*` and Lemma ys2 of
+`docs/SL_gap_n1_symline_allR_proof.tex` (lemmas `lem:gstar`, `lem:ys2`).
+
+Source contract: `gamma_0*` is the root of `tan gamma = 2 * (pi - gamma) / 3`
+(equivalently `tan gamma = 2 * y / 3`, `y = pi - gamma`) located in
+`(0.961, 0.97)`; Lemma ys2 states `(y * sin gamma)^2 >= pi^2/4` for
+`gamma in [gamma_0*, pi/2]`.  Only `gamma_0* > pi/4` is used by the chain.
+
+Formal route (certificate-free deviation, documented in the file header):
+`exists_gamma_star` proves by IVT that the root exists in
+`(pi/4, 9*pi/20)` with endpoint checks `phi(pi/4) = 1 - pi/2 < 0`
+(from `pi > 3`) and `phi(9*pi/20) > 0` (from `tan x > x` plus a linear
+comparison); `GammaStar` is `Classical.choose exists_gamma_star`.
+`ys2_of_ge_gamma_star` proves the strict form
+`p < (pi - gamma)^2 * sin gamma^2` on `[GammaStar, pi/2)` using strict
+concavity of `f(gamma) = (pi - gamma) * sin gamma` on `[pi/4, pi/2]`
+(`f'' < 0`) and the chord bound `f(pi/4) = 3*pi*sqrt2/8 > pi/2`,
+`f(pi/2) = pi/2`.  The source's rational location certificates
+(`gamma_0* in (0.961, 0.97)` via alternating series for tan) are not
+reproduced; only `gamma_0* > pi/4` is needed, and the formal root's
+defining equation matches the source exactly.  Numerical evidence is
+never used.
+
+### 16.1 Obligation map (machine level)
+
+| Obligation | Lean declaration | Statement |
+| --- | --- | --- |
+| S11 | `exists_gamma_star`, `GammaStar` | `exists gamma, pi/4 < gamma ∧ gamma < 9*pi/20 ∧ tan gamma = 2*(pi-gamma)/3`; `GammaStar` = chosen root |
+| S12 | `gamma_star_gt_pi_div_four`, `gamma_star_lt_nine_pi_div_twenty`, `gamma_star_tan`, `gamma_star_pos`, `gamma_star_lt_pi_div_two` | location and defining equation of `GammaStar` |
+| S13 | `strictConcaveOn_f`, `f_pi_div_four_gt`, `ys2_of_ge_gamma_star` | strict concavity of `f` on `[pi/4, pi/2]`; `f(pi/4) > pi/2`; Lemma ys2 in strict form `p < (pi-gamma)^2 * sin gamma^2` for `gamma in [GammaStar, pi/2)` |
+| S14 | `Delta_pos`, `Q0_nonneg`, `P2`, `tension_ratio_chain` | rewired: hypothesis `hγs : GammaStar <= gamma` replaces the raw ys2 hypothesis; `hys2` is derived inside from `ys2_of_ge_gamma_star` |
+
+### 16.2 Machine evidence
+
+- `lake build`: exit 0, "Build completed successfully (8582 jobs)";
+  `SL.SymlineTensionRatio` rebuilt in this run.
+- `sorry`/`admit`/`axiom` scan: 0 hits across `SL/`.
+- `run-manifest.json` regenerated: 25 scanned files (24 `SL/` files +
+  `lakefile.lean`); the temporary `ScratchCheck.lean` was removed before
+  this run and is not scanned.
+
+### 16.3 Independent audit status
+
+Not yet closed.  S11-S14 must be re-derived against
+`docs/SL_gap_n1_symline_allR_proof.tex` (lem:gstar, lem:ys2) in an
+independent pass: check that `gamma_0*`'s defining equation matches, that
+the formal interval `(pi/4, 9*pi/20)` is compatible with the source's
+`(0.961, 0.97)` (pi/4 ~ 0.7854 and 9*pi/20 = 1.4137..., so the source
+interval is a subset), and that the strict form of ys2 implies the
+source's `(y*sin gamma)^2 >= pi^2/4`.  The strict-concavity chord argument
+is a different proof of ys2 than the source's monotonicity argument; this
+is a documented deviation, not a weakening.  The rewiring S14 keeps the
+statements of `Delta_pos`/`Q0_nonneg`/`P2`/`tension_ratio_chain` from
+section 15 unchanged apart from the hypothesis packaging.

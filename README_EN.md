@@ -53,14 +53,14 @@ A machine-checkable proof project (Lean 4.31.0 + mathlib v4.31.0). Authoritative
 
 - Completeness lines: $H^2$ full chain (StabilityGrowth/MomentRecurrence/MomentBound/Completeness), $H^3$ algebraic core (H3Completeness/H3MomentBound/H1Isometry), $H^s$ transfer reduction (TransferOperator/HsOrthogonalSystems), density moment characterization (DensenessCriteria).
 - Ratio line: balanced-phase closed form (BalancedPhase), three-block transfer matrices/secular equations (TransferMatrix), reflection symmetry of the fixed-$n$ alternating configuration (ReflectionSymmetry).
-- Other lines: stability-threshold core (Stability), third-order recurrence line (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ polynomial level (KreinDegenerateLimit/KreinHighGrowth), $n=1$ gap symmetry-line algebraic core (SymlineTensionRatio).
+- Other lines: stability-threshold core (Stability), third-order recurrence line (ThirdOrder/ThirdOrderClosedForms/ThirdOrderClassification/ThirdOrderMinimal), Krein $c\to0$ polynomial level (KreinDegenerateLimit/KreinHighGrowth), $n=1$ gap symmetry-line algebraic core (SymlineTensionRatio, including the $\gamma_0^*$ threshold and Lemma ys2, certificate-free).
 
 **Not yet formalized (by gap type, consistent with STATUS.md)**
 
 - Spectral/functional-analysis dependencies: isometries $K_c\colon H^2\to L^2$ (O16) and $H^3\to H^1$, $H^s$ operator-level isometry and completeness, density finish ($w=0$), Krein quotient level ($H^1/W \cong L^2_0$), Weyl asymptotics (inf-ratio line), MW lemma reproof, transfer-matrix-to-eigenvalue spectral connection.
 - Proved but not started: $n=1$ gap line (gap_n1_proof/symline/well_rigidity/O3a/inf_limit) and $n\ge2$ switch/reduction documents, fractional $H^s$ sparse-basis completeness.
 - Numerical/non-rigorous in source (not formalized): global extremality for $n\ge2$ gaps, $2n$-root count for the fixed-$n$ supremum, nonzero Casoratian of the three third-order solutions.
-- Hypothesized inputs: the transcendental facts in SymlineTensionRatio ($\gamma_0^*$ location, Lemma ys2).
+- Hypothesized inputs: the classical Legendre/Krein-Sobolev orthogonality facts in HsOrthogonalSystems (literature facts, not formalized).
 
 ## Directory layout
 

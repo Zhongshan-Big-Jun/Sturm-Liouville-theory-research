@@ -2885,3 +2885,32 @@
     非 arXiv 期刊全文覆盖盲区 (本项目 JDE/MMAS 多篇仅摘要级), novelty 结论为 "未检索到等价结果" (POTENTIALLY_NEW)
     而非绝对保证.
 - 维护: 本文件追加会话 99 记录; 提交后按 project.json 的 push_order 推送双仓库 (origin 父 -> fork 子).
+
+### 2026-08-13 会话 100 (Lean: SymlineTensionRatio 的 gamma_0*/Lemma ys2 形式化, 证书自由路线)
+- 任务: 形式化会话 96 遗留的 SymlineTensionRatio 超越假设 - 源阈值 gamma_0* 的存在性/位置
+  与 Lemma ys2 (docs/SL_gap_n1_symline_allR_proof.tex lem:gstar/lem:ys2).
+- 技术决定:
+  - 源定义 gamma_0* 为 tan(γ)=2(π-γ)/3 在 (0.961, 0.97) 的根; 形式化以 IVT 证根存在于
+    (π/4, 9π/20): φ(π/4)=1-π/2<0 (由 π>3), φ(9π/20)>0 (tan x>x + 线性比较), 端点非根由
+    φ 符号排除; 唯一性不需要. 初稿曾考虑 (π-γ)sinγ=π/2 在 (π/3, π/2) 的根作证书, 数学上
+    为假 (H(π/3)≈1.814>π/2), 放弃, 改用源实际定义.
+  - Lemma ys2 用严格凹路线: f(γ)=(π-γ)sinγ 在 [π/4, π/2] 严格凹 (f''=-2cosγ-(π-γ)sinγ<0,
+    strictConcaveOn_of_deriv2_neg), 弦界 f(π/4)=3π√2/8>π/2 (平方反证) 与 f(π/2)=π/2 强制
+    f(γ)>π/2, sq_lt_sq₀ (双非负) 得严格形式 p<(π-γ)²sin²γ, 对 γ∈[GammaStar, π/2); 只用到
+    gamma_0*>π/4, 不依赖源的有理位置证书 (交替级数 tan 界), 为文件头声明的证书自由偏差.
+  - Delta_pos/Q0_nonneg/P2/tension_ratio_chain 的假设由 hys2 改为 hγs : GammaStar≤γ,
+    hys2 在内部由 ys2_of_ge_gamma_star 派生, 定理陈述不变.
+  - Lean 细节 (mathlib v4.31): ConcaveOn 为结构 (hconc.2 需 x∈s, y∈s, 0≤a, 0≤b, a+b=1,
+    凸组合在 s); HasDerivAt.sub 类型错配, 用 (hasDerivAt_id γ).const_sub Real.pi; 失败
+    名字 (Real.one_add_tan_sq, Real.sqrt_three_gt_one, div_lt_iff₀ 的 0 变体不存在,
+    Real.strictConcaveOn_sin, ConcaveOn.right) 均不用.
+- 验证: verify_lean_project.py --project lean-proof --build: 25 文件扫描 (24 SL/*.lean +
+  lakefile.lean; 临时 ScratchCheck.lean 已删除不入库), sorry/admit/axiom 命中 0, lake build
+  exit 0 (8582 jobs); run-manifest.json 已刷新 (SymlineTensionRatio sha256
+  E2F879AE374767E813CDAEC1AAD37509ADE0909DEA3F6424A94DD6A6FF87970C).
+- 文档: STATUS.md (SymlineTensionRatio 行/矩阵行/路线图 16 更新为会话 100),
+  audit_report.md 新增 §16 (MACHINE_ACCEPTED_PENDING_AUDIT, 义务 S11-S14, 记录证书自由偏差
+  与源保真: 根定义方程一致, 区间 (π/4, 9π/20) 包含源 (0.961, 0.97), 严格形式蕴含源形式),
+  README.md/README_EN.md/lean-proof/README.md 同步 (超越假设项改为已形式化; 剩余文献假设为
+  HsOrthogonalSystems 的 Legendre/Krein-Sobolev 正交性).
+- 维护: 本文件追加会话 100 记录; 提交后按 project.json push_order 推送双仓库 (origin 父 -> fork 子).
