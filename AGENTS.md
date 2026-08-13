@@ -2992,3 +2992,15 @@
   README.md/README_EN.md/lean-proof/README.md 同步 (覆盖句/文件树/命名空间).
 - 维护: 本文件追加会话 102 记录; 提交后按 project.json push_order 推送双仓库
   (origin 父 -> fork 子).
+
+### 2026-08-13 会话 103 (R-209 M3: 大 R 渐近 leading balance)
+- 任务: 确定 n=2 对称 INF 分支 (k2,k3,p1,p3) 在 R->inf 的尺度与 leading balance (承交接摘要 R-209 M3).
+- STRICT 结构性判定:
+  - 纯偶次幂 ansatz 不可能: E5 的 u^5 系数为硬常数 1/(2K^2), 恒不为零; 分支必须含奇次幂分量.
+  - 奇偶性分析 (E1/E2 仅偶次幂, E6 仅奇次幂 3,5,7,9): aK-2 无 u^1 项 (A1=0), 分支为偶次加受约束奇次结构.
+  - 因此早前 u^4 截断求解残差 2.6e11 的结构根源是缺奇次项, 而非数值问题.
+- EVIDENCE (scripts/_gapn2_largeR_big.json, 270 行, R 至 8.99e4): 数据拟合 K0≈3.4553, a0≈0.5788, b0≈0.2898, c0≈1.4741; 修正交接摘要中 K->2.789 的错误预测.
+- 脚本: _gapn2_largeR_Pbuild.py (P 字典缓存 .pkl), _gapn2_largeR_full.py (32 未知量全幂次框架, 符号展开成本待降), _gapn2_largeR_fit.py / _sigma_fit.py (自由指数拟合), _gapn2_largeR_stage.py (极限级试验, 发现伪根), 旧混合求解器保留为对照.
+- 工具库: 新增 half-problem-regularized-green, second-variation-weighted-eigenvalues 并更新 README 索引.
+- 状态: M3 未完成; 下一步按级联结构 (level j: E1_j, E2_j, E5_{j+2}, E6_{j+3}) 逐级线性消去, 避免 32 变量同时展开.
+- 诚实声明: 数值均为 EVIDENCE; 严格部分仅为上述代数结构判定; 未宣称大 R 渐近定理已证.

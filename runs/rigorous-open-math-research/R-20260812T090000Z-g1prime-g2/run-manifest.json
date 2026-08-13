@@ -1,144 +1,234 @@
 {
-  "schema_version": 1,
-  "run_id": "R-20260812T090000Z-g1prime-g2",
-  "project_id": "MRP-20260731-BVE-SL",
-  "task_id": "Q-20260812-g1prime-g2",
-  "upstream_skill": "$rigorous-open-math-research",
-  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
-  "started_at": "2026-08-12T09:00:00Z",
-  "completed_at": "2026-08-13T18:30:00+08:00",
-  "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
-  "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) fully CLOSED STRICT (block-energy identity + exact zero count + interior simplicity => no boundary generation, endpoint and interior, any cascade); (G1') remains OPEN; O-5 (det B != 0) OPEN; R-205 correction: global eigenfunction parity from palindromic heights is REFUTED (needs symmetric widths), global eps-alternation lemma is STRICT, (G1') reduced to a half-problem Green-kernel definiteness comparison",
-  "artifacts": [
-    {
-      "path": "problem_contract.md",
-      "sha256": "cbc53e86806c055957478d0e7f6a3c359c280d6dd5a7c0404fa917bf7e92cfba",
-      "role": "normalized theorem contract (O-1..O-5)"
-    },
-    {
-      "path": "run_notes_2026-08-12.md",
-      "sha256": "c3497d692a26bc66749ae0a520a4366fbc56a7dc077f63dae8cb323847efdf2e",
-      "role": "reduced-cost scan + sign-convention audit + O-3 margin table"
-    },
-    {
-      "path": "run_notes_addendum_2026-08-12.md",
-      "sha256": "57bf826e0a2c7220a2d882921152b7282c9d93c4a2506ea73ebe33b2c8a3a02a",
-      "role": "STRICT (I1)-(I4) + (C1)/(C2) + sector decomposition + falsifications + dominance scans + Sherman-Morrison"
-    },
-    {
-      "path": "research_ledger.md",
-      "sha256": "b3a7209367a5129490eb6868a647843222890b7927e2d769c14be33c1d91d5c2",
-      "role": "R-200..R-205"
-    },
-    {
-      "path": "scripts/_gapn2_mtilde_offdiag_identity.py",
-      "sha256": "4f0ce2a89d35406fcae911aba3f5b4e302d6146011bef64fab441efde864e659",
-      "role": "C1/C2 + resolvent identity verification"
-    },
-    {
-      "path": "scripts/_gapn2_sector_decomposition.py",
-      "sha256": "b57eea8541a5c677b43c4943f6269a5fc5eea7449f45b83de8d7c7cb843fea20",
-      "role": "sector decomposition scan driver"
-    },
-    {
-      "path": "scripts/_gapn2_ktilde_positivity.py",
-      "sha256": "6a5b6994aaf726a94cc53b33e94f8346486afb78134e44797c78fcc385e01fd5",
-      "role": "K~ sign/spectra probes"
-    },
-    {
-      "path": "scripts/_gapn2_sector_scan_2_sup.json",
-      "sha256": "e69646f4dc0945bbe490de9688d3e933151803bd8183ccb636bc720cc32a01b3",
-      "role": "n=2 SUP scan data"
-    },
-    {
-      "path": "scripts/_gapn2_sector_scan_2_inf.json",
-      "sha256": "51a7a73a0154be07c47a4a5e0ac1e1f8eb08381ab7fe37fdda704e8cf7512d57",
-      "role": "n=2 INF scan data"
-    },
-    {
-      "path": "scripts/_gapn2_sector_scan_3_sup.json",
-      "sha256": "9b11cc5395b7bd71003c53a78f81dabfc1187a7ce3e251e551adc7fd84d2ee3d",
-      "role": "n=3 SUP scan data"
-    },
-    {
-      "path": "scripts/_gapn2_sector_scan_3_inf.json",
-      "sha256": "7c71ffe9a0b86e9118e4b318c8d9627eb2ed72ad5959b11b36642349d58b712d",
-      "role": "n=3 INF scan data"
-    },
-    {
-      "path": "scripts/_gapn2_sector_scan_4_sup.json",
-      "sha256": "2cff21ded406283e82b6b0ad764c55ea3d019f987ac7ba42ebe2850f88214fdf",
-      "role": "n=4 SUP scan data"
-    },
-    {
-      "path": "run_notes_addendum_2026-08-13.md",
-      "sha256": "EFB331B9D1E7885B62E0CA7A7200DE6C887391083650C42DA27F5AE0FAFC6F81",
-      "role": "STRICT (G2) full closure: block-energy identity, interior simplicity, exact zero count, boundary exclusion; corrected q0 convention"
-    },
-    {
-      "path": "scripts/_gapn2_slope_ratio.py",
-      "sha256": "42639EC292CA86C9F5244B97D352C3C06E2527915DDA4247BA177611FEA4E5D9",
-      "role": "branch ladder scan, framework q0 convention"
-    },
-    {
-      "path": "scripts/_gapn2_reduced_endpoint_hunt.py",
-      "sha256": "12E42473CA7087F6BC625147340F97A2304F855595E411F8056C6FBEDA5388A3",
-      "role": "reduced-root hunt, framework q0/q1 convention"
-    },
-    {
-      "path": "scripts/_gapn2_endpoint_targeted.py",
-      "sha256": "7ee3e32d995a84fe80edfed55890917950df32f645dc593bc9070c48083746fd",
-      "role": "targeted reduced-root hunt seeded from the full branch widths"
-    },
-    {
-      "path": "scripts/_gapn2_kidentity_audit.py",
-      "sha256": "EF2D09171611DD66AA38666CD71C3241AFC4866FD389B02F6219FD5D4BCC86EC",
-      "role": "block-energy identity audit (branch + reduced roots)"
-    },
-    {
-      "path": "run_notes_addendum_2026-08-13b.md",
-      "sha256": "f82d64c3914d0b91b9e1b97ddf27634e05b89554d59c5d7c446974ee80bb9d6d",
-      "role": "R-205: parity-claim refutation + global eps-alternation lemma + Green inertia + (G1') Green reduction"
-    },
-    {
-      "path": "scripts/_gapn2_parity_global_probe.py",
-      "sha256": "5e72bd4bcc1967e5d2c8fcd3a652e02b2bd0bdd32d6f421de83f08953758a61f",
-      "role": "random asymmetric-width parity / f-evenness refutation"
-    },
-    {
-      "path": "scripts/_gapn2_green_inertia_probe.py",
-      "sha256": "326422a35a2428703abe949edbf14c25d9a06a73b949c25a41695a5c2417ad6a",
-      "role": "half-problem Green inertia + K_o Green-combination reduction"
-    },
-    {
-      "path": "scripts/_gapn2_symmetry_chain_audit.py",
-      "sha256": "d83d61735fe36cc8fbed5e03e27945cfe26197efc2a3a4032d86f8b21048250d",
-      "role": "symmetry-chain audit (P1/P2/P3/P4) with uv_at/rho_at dependencies fixed"
-    },
-    {
-      "path": "scripts/_gapn2_bracket_identity_audit.py",
-      "sha256": "52f6a2dc820df8e927a63b9382be004182ad20529d3d5175f4c26dbc4a9429b6",
-      "role": "bracket identities + E_o cancellation (docstring scoped to symmetric points)"
-    }
-  ],
-  "environment": {
-    "model": null,
-    "tools": [
-      "Python 3.10 (numpy/scipy)",
-      "xelatex (TeX Live 2024)",
-      "PowerShell"
-    ],
-    "formal_systems": []
+ "schema_version": 1,
+ "run_id": "R-20260812T090000Z-g1prime-g2",
+ "project_id": "MRP-20260731-BVE-SL",
+ "task_id": "Q-20260812-g1prime-g2",
+ "upstream_skill": "$rigorous-open-math-research",
+ "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
+ "started_at": "2026-08-12T09:00:00Z",
+ "completed_at": "2026-08-13T20:40:00+08:00",
+ "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
+ "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) CLOSED STRICT (R-204); (G1') STRICT on (1,1+delta) for every n (R-208 anchor, Lemma A + Theorem B, solution set near R=1 = symmetric branch, rescaled second variation strictly definite); open core now [1+delta,infinity); n=2 (I1)/(I2) STRICT on (1,1+delta) and reduced on [1+delta,infinity) to (M1) d/dR det Kp_odd, det Ko < 0 + (M2) trace signs + (M3) R->inf asymptotics; EVIDENCE: det strictly decreasing on [1.05,100] both modes, derivative chain-rule verified 4-5 digits, global half-gap convexity FALSIFIED",
+ "artifacts": [
+  {
+   "path": "problem_contract.md",
+   "sha256": "cbc53e86806c055957478d0e7f6a3c359c280d6dd5a7c0404fa917bf7e92cfba",
+   "role": "normalized theorem contract (O-1..O-5)"
   },
-  "manager_ingestion_state": "COMPLETED",
-  "missing_or_unavailable_artifacts": [],
-  "notes": [
-    "R-200: reduced-cost INF/SUP scan + sign-convention audit (STRICT identities FD-verified; FH sign corrected; A3 Hess sign corrected)",
-    "R-201: STRICT (I1)-(I4) diagonal closed forms + f'/s sign correction; dead ends (Gershgorin, H-matrix); Sylvester pivot EVIDENCE",
-    "R-202: STRICT (C1)/(C2) off-diagonal closed forms + mirror-sector decomposition; Hankel (P1') falsified; Sherman-Morrison reduction; dominance EVIDENCE",
-    "R-203 (SUPERSEDED): endpoint-collapse reduction + slope evidence (sqrt-weighted q0 convention RETRACTED in R-204)",
-    "R-204 (2026-08-13): q0 convention corrected to framework convention (a = 0 iff q0 = c); STRICT Theorem A (block-energy identity K == -2D => q0 > 1, q1 < -1 at every root); STRICT Theorem C (interior zeros of f simple); STRICT Theorem D (exact zero count 2n-2 + 1_{q0>c} + 1_{q1<-c}); STRICT Theorem E: (G2) CLOSED (no boundary generation, any cascade parity)",
-    "R-205 (2026-08-13): REFUTED the handoff global-parity claim (parity needs symmetric widths, not palindromic heights); STRICT global eps-alternation lemma eps_j=(-1)^{j+1}; STRICT classical Green inertia (floor(n/2) negative eigenvalues of the half-problem Green matrices); (G1') reduced to definiteness of diag(d) + a two-Green-kernel combination; D_n not globally concave/convex (EVIDENCE)",
-    "EVIDENCE re-run (corrected convention): K(0) + 2D at 1e-11; full branch q0 > 1 (n=2 R=4: SUP 2.376980, INF 1.142677); every reduced root has q0 > 1 and q1 < -1, band=False; ladder n=2 R in [1.05,100]: 0 violations of (q0 > 1, a < 0)"
-  ]
+  {
+   "path": "run_notes_2026-08-12.md",
+   "sha256": "c3497d692a26bc66749ae0a520a4366fbc56a7dc077f63dae8cb323847efdf2e",
+   "role": "reduced-cost scan + sign-convention audit + O-3 margin table"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-12.md",
+   "sha256": "57bf826e0a2c7220a2d882921152b7282c9d93c4a2506ea73ebe33b2c8a3a02a",
+   "role": "STRICT (I1)-(I4) + (C1)/(C2) + sector decomposition + falsifications + dominance scans + Sherman-Morrison"
+  },
+  {
+   "path": "research_ledger.md",
+   "sha256": "5795c9faf9505ac62b006ba442f220fd749a612db4227b76fa73e1f90f8cf19e",
+   "role": "R-200..R-206"
+  },
+  {
+   "path": "scripts/_gapn2_mtilde_offdiag_identity.py",
+   "sha256": "4f0ce2a89d35406fcae911aba3f5b4e302d6146011bef64fab441efde864e659",
+   "role": "C1/C2 + resolvent identity verification"
+  },
+  {
+   "path": "scripts/_gapn2_sector_decomposition.py",
+   "sha256": "b57eea8541a5c677b43c4943f6269a5fc5eea7449f45b83de8d7c7cb843fea20",
+   "role": "sector decomposition scan driver"
+  },
+  {
+   "path": "scripts/_gapn2_ktilde_positivity.py",
+   "sha256": "6a5b6994aaf726a94cc53b33e94f8346486afb78134e44797c78fcc385e01fd5",
+   "role": "K~ sign/spectra probes"
+  },
+  {
+   "path": "scripts/_gapn2_sector_scan_2_sup.json",
+   "sha256": "de19aba6df224a472f5c5f7ffd94e2571b6d8cba4a474208803707d1ca36d4db",
+   "role": "n=2 SUP scan data"
+  },
+  {
+   "path": "scripts/_gapn2_sector_scan_2_inf.json",
+   "sha256": "51a7a73a0154be07c47a4a5e0ac1e1f8eb08381ab7fe37fdda704e8cf7512d57",
+   "role": "n=2 INF scan data"
+  },
+  {
+   "path": "scripts/_gapn2_sector_scan_3_sup.json",
+   "sha256": "9b11cc5395b7bd71003c53a78f81dabfc1187a7ce3e251e551adc7fd84d2ee3d",
+   "role": "n=3 SUP scan data"
+  },
+  {
+   "path": "scripts/_gapn2_sector_scan_3_inf.json",
+   "sha256": "7c71ffe9a0b86e9118e4b318c8d9627eb2ed72ad5959b11b36642349d58b712d",
+   "role": "n=3 INF scan data"
+  },
+  {
+   "path": "scripts/_gapn2_sector_scan_4_sup.json",
+   "sha256": "2cff21ded406283e82b6b0ad764c55ea3d019f987ac7ba42ebe2850f88214fdf",
+   "role": "n=4 SUP scan data"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-13.md",
+   "sha256": "EFB331B9D1E7885B62E0CA7A7200DE6C887391083650C42DA27F5AE0FAFC6F81",
+   "role": "STRICT (G2) full closure: block-energy identity, interior simplicity, exact zero count, boundary exclusion; corrected q0 convention"
+  },
+  {
+   "path": "scripts/_gapn2_slope_ratio.py",
+   "sha256": "42639EC292CA86C9F5244B97D352C3C06E2527915DDA4247BA177611FEA4E5D9",
+   "role": "branch ladder scan, framework q0 convention"
+  },
+  {
+   "path": "scripts/_gapn2_reduced_endpoint_hunt.py",
+   "sha256": "12E42473CA7087F6BC625147340F97A2304F855595E411F8056C6FBEDA5388A3",
+   "role": "reduced-root hunt, framework q0/q1 convention"
+  },
+  {
+   "path": "scripts/_gapn2_endpoint_targeted.py",
+   "sha256": "7ee3e32d995a84fe80edfed55890917950df32f645dc593bc9070c48083746fd",
+   "role": "targeted reduced-root hunt seeded from the full branch widths"
+  },
+  {
+   "path": "scripts/_gapn2_kidentity_audit.py",
+   "sha256": "EF2D09171611DD66AA38666CD71C3241AFC4866FD389B02F6219FD5D4BCC86EC",
+   "role": "block-energy identity audit (branch + reduced roots)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-13b.md",
+   "sha256": "f82d64c3914d0b91b9e1b97ddf27634e05b89554d59c5d7c446974ee80bb9d6d",
+   "role": "R-205: parity-claim refutation + global eps-alternation lemma + Green inertia + (G1') Green reduction"
+  },
+  {
+   "path": "scripts/_gapn2_parity_global_probe.py",
+   "sha256": "5e72bd4bcc1967e5d2c8fcd3a652e02b2bd0bdd32d6f421de83f08953758a61f",
+   "role": "random asymmetric-width parity / f-evenness refutation"
+  },
+  {
+   "path": "scripts/_gapn2_green_inertia_probe.py",
+   "sha256": "326422a35a2428703abe949edbf14c25d9a06a73b949c25a41695a5c2417ad6a",
+   "role": "half-problem Green inertia + K_o Green-combination reduction"
+  },
+  {
+   "path": "scripts/_gapn2_symmetry_chain_audit.py",
+   "sha256": "d83d61735fe36cc8fbed5e03e27945cfe26197efc2a3a4032d86f8b21048250d",
+   "role": "symmetry-chain audit (P1/P2/P3/P4) with uv_at/rho_at dependencies fixed"
+  },
+  {
+   "path": "scripts/_gapn2_bracket_identity_audit.py",
+   "sha256": "52f6a2dc820df8e927a63b9382be004182ad20529d3d5175f4c26dbc4a9429b6",
+   "role": "bracket identities + E_o cancellation (docstring scoped to symmetric points)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-13c.md",
+   "sha256": "7856dc0b4ea82d935dc29f43254e8f03a793c66347ff78c8f943897877dd8f56",
+   "role": "R-206: STRICT second variation + STRICT corrected global Kp resolvent identity + P3 refutation + SUP tangent EVIDENCE + literature"
+  },
+  {
+   "path": "scripts/_gapn2_second_variation_probe.py",
+   "sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+   "role": "second-variation probe P1/P2/P3 (formula vs FD, tangent signs, Hessian mismatch)"
+  },
+  {
+   "path": "scripts/_gapn2_k_global_rank2.py",
+   "sha256": "1441c68b89f3948859052d17831f114f6f135374e92e91f8c8bcd2ae8219b061",
+   "role": "corrected global Kp resolvent identity verification (eps-masked rank terms)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-13d.md",
+   "sha256": "ADEE3958B6B1979F6687C03F11F23BC525960BA57AE2E6A9506117095B76E50D",
+   "role": "R-207: STRICT corrected half-Green + both 2x2 sector closed forms + reduced open core (I1)(I2)"
+  },
+  {
+   "path": "research_ledger.md",
+   "sha256": "2268465437648AEEAE2162192407762856C79826CD8A010821F7FD64670F112D",
+   "role": "R-200..R-207"
+  },
+  {
+   "path": "scripts/_gapn2_half_problem_probe.py",
+   "sha256": "61212BCAD58563A336BB023619BF39450EFB74F4821BE2D4C43A3B21C3F7EB5B",
+   "role": "C0-C3 corrected: no-rho(y)-factor regularized half Green, exact A1/A2, Kp_odd assemblies"
+  },
+  {
+   "path": "scripts/_gapn2_half_debug2.py",
+   "sha256": "B66CA5C90987E2C3CBE5F5264761EFF224B69032701361ADD400257DD95E407E",
+   "role": "H1/H2 diagnosis: A1/A2 quadrature convergence + spectral continuity across density jumps"
+  },
+  {
+   "path": "scripts/_gapn2_half_debug3.py",
+   "sha256": "F83B3D9BB22AAA2379B91E94D6390E8222D96B0970E971BD7D502F7EEC91B90A",
+   "role": "FD residual of L_x B and corrected no-rho(y) closed form vs spectral"
+  },
+  {
+   "path": "scripts/_gapn2_half_debug4.py",
+   "sha256": "E50EED65687323FA320CC6DB5875140EE5942CDD39D12A50BC3355633DE3964E",
+   "role": "exact per-block A1/A2 primitives + Richardson spectral reference"
+  },
+  {
+   "path": "scripts/_gapn2_odd2x2_decompose.py",
+   "sha256": "60CB6D2FC6834AADF6F352C69E4D92FCD887400F2DF5EE57801F0018881E6547",
+   "role": "exact A-form / B1 / B2 decomposition of Kp_odd with spectral-split cross-checks"
+  },
+  {
+   "path": "scripts/_gapn2_rawko_closed.py",
+   "sha256": "E7501D0EA86DC95E2871A74C8129165892ABF2B4839282B87363418F74889B65",
+   "role": "closed form of the raw-K odd sector Ko (new STRICT reduction)"
+  },
+  {
+   "path": "scripts/_gapn2_odd2x2_scan.py",
+   "sha256": "F5CBC64EE741AD9C731FF536FF5EAA3252D249AB65B45D4D32E5A84E05FE11A8",
+   "role": "R-scan of the two 2x2 sector spectra and determinants (EVIDENCE)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-13e.md",
+   "sha256": "399B6F66DB94FD6EEFF873BADC08B8E1BDD8AFEE14A97B0B6734D42D9E28D437",
+   "role": "R-208: STRICT Lemma A (W0 nonzero at f0 zeros, all n) + Theorem B (R->1+ anchor closes (G1') near R=1 for all n; (I1)/(I2) anchor for n=2); STRICT half-gap Hessian identity; global-convexity route FALSIFIED; EVIDENCE det monotonicity and derivative chain-rule structure; Section 5b: large-R decay exponents (EVIDENCE)"
+  },
+  {
+   "path": "scripts/_gapn2_r1_anchor_probe.py",
+   "sha256": "CD974245C5910FF142EAD7CF2E12794579934EF05FB438BEC60E19D336649146",
+   "role": "R->1+ continuation and rescaled (R-1)K sector limits vs analytic constant-string diagonal (EVIDENCE)"
+  },
+  {
+   "path": "scripts/_gapn2_r1_monotonicity_probe.py",
+   "sha256": "AC8EB87502B985E843D236A2EDA62FD68DEDFDFBF9AA911FD011DE0DDE9AA6EE",
+   "role": "det/trace/eig R-ladder, monotonicity flags (EVIDENCE)"
+  },
+  {
+   "path": "scripts/_gapn2_gap_convexity_probe.py",
+   "sha256": "0930881A3D738FA154F2010F55CFCA8A39AFCF1DFB6761A67AD69CE482794841",
+   "role": "half-gap Hessian grid scan; global convexity FALSIFIED (EVIDENCE)"
+  },
+  {
+   "path": "scripts/_gapn2_r1_det_derivative_probe.py",
+   "sha256": "810DC71AADB5D31A38FBA2DEA44CE470C2CCFFB1FF88B37CE9FE2AC89D553BC2",
+   "role": "chain-rule d/dR det/trace vs direct branch FD; fixed-x partials; Recon-cache probe bug documented (EVIDENCE)"
+  }
+ ],
+ "environment": {
+  "model": null,
+  "tools": [
+   "Python 3.10 (numpy/scipy)",
+   "xelatex (TeX Live 2024)",
+   "PowerShell"
+  ],
+  "formal_systems": []
+ },
+ "manager_ingestion_state": "COMPLETED",
+ "missing_or_unavailable_artifacts": [],
+ "notes": [
+  "R-200: reduced-cost INF/SUP scan + sign-convention audit (STRICT identities FD-verified; FH sign corrected; A3 Hess sign corrected)",
+  "R-201: STRICT (I1)-(I4) diagonal closed forms + f'/s sign correction; dead ends (Gershgorin, H-matrix); Sylvester pivot EVIDENCE",
+  "R-202: STRICT (C1)/(C2) off-diagonal closed forms + mirror-sector decomposition; Hankel (P1') falsified; Sherman-Morrison reduction; dominance EVIDENCE",
+  "R-203 (SUPERSEDED): endpoint-collapse reduction + slope evidence (sqrt-weighted q0 convention RETRACTED in R-204)",
+  "R-204 (2026-08-13): q0 convention corrected to framework convention (a = 0 iff q0 = c); STRICT Theorem A (block-energy identity K == -2D => q0 > 1, q1 < -1 at every root); STRICT Theorem C (interior zeros of f simple); STRICT Theorem D (exact zero count 2n-2 + 1_{q0>c} + 1_{q1<-c}); STRICT Theorem E: (G2) CLOSED (no boundary generation, any cascade parity)",
+  "R-205 (2026-08-13): REFUTED the handoff global-parity claim (parity needs symmetric widths, not palindromic heights); STRICT global eps-alternation lemma eps_j=(-1)^{j+1}; STRICT classical Green inertia (floor(n/2) negative eigenvalues of the half-problem Green matrices); (G1') reduced to definiteness of diag(d) + a two-Green-kernel combination; D_n not globally concave/convex (EVIDENCE)",
+  "EVIDENCE re-run (corrected convention): K(0) + 2D at 1e-11; full branch q0 > 1 (n=2 R=4: SUP 2.376980, INF 1.142677); every reduced root has q0 > 1 and q1 < -1, band=False; ladder n=2 R in [1.05,100]: 0 violations of (q0 > 1, a < 0)",
+  "R-206 (2026-08-13): STRICT weighted-eigenvalue second variation (fixed-space generalized eigenproblem; unweighted pairings; both sums over l != k); moving-space frame refuted (spurious 4lam<dr^2/rho,u^2> term); STRICT corrected global Kp resolvent identity with intrinsic eps-masks (no sign-definite rank-2 split without parity); P3 REFUTED the handoff second-order coefficient route (width path has d^2 rho = sum s_i dw_i^2 delta'(x-x_i) boundary-layer terms); SUP tangent-space negative definiteness EVIDENCE only; INF n=2 R=4 indefinite (consistent with det K -> 0+, no uniform margin)",
+  "R-206 literature: Cox-McLaughlin I/II (Zbl 0709.73044/45) cover lam_1 only, not applicable; Osmolovskii-Maurer (Zbl 1293.49043, Zbl 1534.49015) general bang-bang second-order theory reduces to the same sign condition, no shortcut; fulltexts not obtained",
+  "R-206 reconciliation: scripts/_gapn2_sector_scan_2_sup.json was overwritten during R-206 probing (lastwrite 2026-08-13 12:27) without a manifest update; hash reconciled to the current file (de19aba6...), content verified as valid n=2 SUP sector-scan data",
+  "R-207 (2026-08-13): STRICT corrected regularized half-Green (no rho(y) factor, exact A1/A2; handoff rho(y) draft RETRACTED, handoff A1/A2-quadrature diagnosis WRONG); STRICT eps-conjugation sector identity (sector_data Ko = odd sector of RAW K; handoff convention claim RETRACTED); STRICT both 2x2 mirror sectors in exact half-problem closed form (Kp_odd = diag(beta)Ke diag(beta), Ko new); STRICT spectral splits with PD tails; EVIDENCE C2/C3 green (1e-6..1e-15), Ko vs FD 4.6e-10, R-scan definiteness n=2 INF R in [1.05,100] / SUP [1.05,10], det J > 0; reduced open core: explicit 2x2 inequalities (I1)(I2) with the Cauchy/Binet double-sum expansion; proposed route: rescaled R->1 anchor + R-monotonicity + R->inf asymptotics",
+  "R-208 (2026-08-13): STRICT Lemma A: W0(x)!=0 at every zero of f0 (elementary contradiction q=cos^2(nt)=-(n+1)^2/n^2), all n>=1; f0 has exactly 2n simple zeros with f0'(x_j)=-2 lam3^0 eps_j c0 W0(x_j); STRICT Theorem B: near R=1 the solution set is the unique symmetric branch (coordinates are the 2n simple zeros of the same scalar f; IFT on the symmetric submanifold), (R-1)K -> (sigma/lam3^0) diag(|f0'(x_j)|) strictly definite, hence (G1') holds on (1,1+delta) for every n (reproducing sgn det J(1,x*)=(-1)^n); n=2 (I1)/(I2) hold on (1,1+delta); STRICT half-gap identity grad^2 g = -2(R-1)^2 K = +(2/lam3) Hess(D_n) (sign-corrected), (I1)+(I2) <=> strict local min (INF)/max (SUP) of g=mu_2^N-mu_1^D; FALSIFIED global convexity of g (EVIDENCE, Hessian indefinite off the critical point, 11/15 and 12/15 violations at R=4); EVIDENCE det Kp_odd and det Ko strictly decreasing in R on [1.05,100] both modes, traces sign-correct but not monotone; chain rule d/dR M = dM/dR|x + sum (dM/dx_j)(dx_j/dR), dx/dR = -J^{-1}dF/dR verified to 4-5 digits at R=1.5,2,4,10 (probe bug: Recon caches pat, mutating rc.R does nothing; fixed); reduced open core (M1)-(M3); probe scripts _gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py, _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py"
+ ]
 }

@@ -87,6 +87,8 @@ created: 2026-08-04
 - [[rational-envelope-certificates]] - 有理包络证书: 交错级数包络 + 精确有理区间链 (会话 44, 2026-08-09)
 - [[switch-saturation-k-invariant]] - 开关饱和与块能量不变量: FH 完全盒饱和 + 零点=开关 + K=-2D (会话 50, 2026-08-10)
 - [[green-half-inertia]] - 半问题 Green 惯性: 奇偶性更正 + 全局 ε 交错 + (G1') 的 Green 函数化归 (R-205, 2026-08-13)
+- [[second-variation-weighted-eigenvalues]] - 加权特征值二阶变分 lambda'' 公式 + 移动框架与 delta' 边界层两陷阱 (R-206, 2026-08-13)
+- [[half-problem-regularized-green]] - 半问题约化 Green 闭式: 无 rho(y) 因子约化预解核 + 精确 A1/A2 原函数 + K 两镜扇区闭式 (R-207, 2026-08-13)
 
 ### 研究工作流方法 (AI4Math V2 蒸馏, 2026-08-12)
 来源: AI4Math 会议 V2 (2026.07.22-24, 浙大 IASM) 演讲者公开项目, 蒸馏报告见 [[ai4math_v2_workflow_distillation]].
@@ -153,6 +155,8 @@ created: 2026-08-04
 | [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10; 更新 会话 58 续作 8, 2026-08-13) | 定理已证 (独立审计 PASS); 2026-08-13 应用: K 恒等式 + 精确零点公式 + 内部零点简单性 闭合 (G2) STRICT | 自研方法 |
 | [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12; 更新 2026-08-13) | 等变恒等式与反对合结构 STRICT; 框架定理已证; (G2) 已闭合 STRICT (2026-08-13); (G1') 开放 | 自研方法 |
 | [[green-half-inertia]] | 自研 (R-205, 2026-08-13) | 全局 ε 交错与 Green 惯性 STRICT; 奇偶性否证 (EVIDENCE); (G1') 仍开放 | 自研方法 |
+| [[second-variation-weighted-eigenvalues]] | 自研 (R-206, 2026-08-13) | lambda'' 公式 STRICT; P1/P2/P3 EVIDENCE; 交接二阶系数路线否证 (delta' 机制 STRICT) | 自研方法 |
+| [[half-problem-regularized-green]] | 自研 (R-207/208, 2026-08-13) | 闭式/扇区/锚点 STRICT: (G1') 于 (1,1+δ) 一切 n, (I1)/(I2) 于 (1,1+δ) n=2; 剩余 (M1)-(M3) 开放 | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -164,6 +168,7 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-13 (会话 97, R-206): 新增 [[second-variation-weighted-eigenvalues]] -- 加权特征值二阶变分. STRICT 公式 (固定空间广义特征问题 A=-d^2/dx^2, B=×ρ 于 H_0^1, 约束 <u_e,B_e u_e>=1, 四步推导): λ'' = 2λ<dr,u^2>^2 - 2λ^2 Σ_{l≠k} <dr u,u_l>^2/(λ_l-λ), 不加权配对, 两个求和分母同为 λ_l-λ; 移动空间框架 L^2(ρdx) 伪项 4λ<dr^2/ρ,u^2> 已登记为错误陷阱; 宽度路径二阶密度变分 d^2ρ = Σ s_i dw_i^2 δ'(x-x_i) 为 delta' 边界层 (STRICT 机制), 否证交接提议的 "naive 二阶变分 = 宽度 Hessian + 可控余项" (P3 符号级); SUP 切空间负定 (EVIDENCE), INF n=2 R=4 不定 (与 det K -> 0+ 一致); 全局 Kp 恒等式修正版 (ε-mask 内禀, 早前假正核草稿 RETRACTED, 见 scripts/_gapn2_k_global_rank2.py); 文献: Cox-McLaughlin I/II 仅 λ_1, Osmolovskii-Maurer 一般 bang-bang 二阶理论化归同一符号条件; 运行笔记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-13c.md; 脚本 scripts/_gapn2_second_variation_probe.py (P1/P2/P3).
 - 2026-08-13 (会话 89, R-205): 新增 [[green-half-inertia]] -- 半问题 Green 惯性:
   否证交接摘要的 "回文高度 => 全局特征函数奇偶性" 线索 (奇偶性需要 ρ(1-x)=ρ(x),
   即宽度对称; 随机非对称宽度奇偶性/ f 偶性误差 O(1), 对称支 1e-16), 故镜像扇区/
@@ -264,6 +269,8 @@ created: 2026-08-04
   [[workflow-kb-hash-wiki]] (原始源 hash 寻址 + wiki 编译卡片), [[workflow-eve-coevolution]] (可评分变异边际收益演化).
   全部为文献引用级 (来源仓库 2026-08-12 核实可达), 无数值断言; 蒸馏报告见 reports/ai4math_v2_workflow_distillation.md.
 - 2026-08-04: 建库, 收录 19 个工具 (会话 1-6 积累).
+- 2026-08-13 (会话 98, R-207 第 2 段): 新增 [[half-problem-regularized-green]] -- 半问题约化 Green 闭式. 核心: 无 rho(y) 因子的约化预解核 Gt_k = B - u(x)P(y) (参数变分法 + 三性质唯一性), B/P 闭式与精确 A1/A2 九原函数; 旧稿 rho(y) 因子 bug 与 A1/A2 求积诊断撤回; eps 共轭扇区恒等式与 sector_data Ko 约定更正; n 偶时 K 的两个镜扇区精确半问题闭式 (Kp_odd 与 Ko) 与谱分裂 (Gantmacher-Krein + PD 尾核); 开放核 (I1)/(I2) 及路线 (R→1+ 锚点 / 单调性 / R→∞ 键合-反键合). 运行笔记 run_notes_addendum_2026-08-13d.md; 脚本 scripts/_gapn2_half_problem_probe.py (C0-C3) 与 _gapn2_odd2x2_*.py; EVIDENCE 数值 (C2 闭式 vs Richardson 1e-6 量级, 扇区装配 1e-15/1e-9, R 扫描定号).
+- 2026-08-13 (会话 98 续, R-208): [[half-problem-regularized-green]] 追加锚点定理与半隙 Hessian. STRICT 引理 A (W0 在 f0 零点非零, 初等反证 q=-(n+1)^2/n^2) + 定理 B ((R-1)K -> (σ/λ₃⁰)diag(|f₀'(x_j)|), (G1') 对一切 n 于 (1,1+δ) 闭合, n=2 (I1)/(I2) 于 (1,1+δ) 闭合); STRICT 半隙恒等式 ∇²g = -2(R-1)²K = +(2/λ₃)Hess(D_n); 全局凸性路线否证 (EVIDENCE); det 单调递减与链式法则结构 EVIDENCE; 剩余开放核 (M1)-(M3). 运行笔记 run_notes_addendum_2026-08-13e.md; 新脚本 _gapn2_r1_anchor_probe.py / _gapn2_r1_monotonicity_probe.py / _gapn2_gap_convexity_probe.py / _gapn2_r1_det_derivative_probe.py.
 - 2026-08-04: 新增 [[moment-jump-completeness]] (会话 9, H^2 解析完备性判据).
 - 2026-08-04: 新增 [[left-definite-moment-recurrence]] (会话 10, H^3 与一切 H^s
   完备性判据; 左定矩跳跃机制: 与正交条件同源内积取矩, 边界项吸收, 递推降阶).

@@ -215,3 +215,132 @@ R-204 bug-fix register.)
   _gapn2_bracket_identity_audit.py (docstring scoping fix).
 - Status: (G1') OPEN; (G2) CLOSED (R-204); symmetry of all band-consistent
   solutions NOT established independent of the degree argument.
+
+## R-206 (2026-08-13): second-variation audit, corrected Kp identity, handoff route closed
+- STRICT: weighted-eigenvalue second variation (fixed-space generalized
+  eigenproblem A = -d^2/dx^2, B = mult rho on H_0^1, constraint
+  <u_e, B_e u_e> = 1): lam' = -lam <dr, u^2>, lam'' = 2 lam <dr, u^2>^2
+  - 2 lam^2 sum_{l != k} <dr u, u_l>^2/(lam_l - lam), UNWEIGHTED L^2(dx)
+  pairings, denominators lam_l - lam for both sums.  FD-verified (constant
+  string antisymmetric step 1.7e-5; n=2 SUP R=4 per-eigenvalue 4e-3/5e-2 at
+  N=60 truncation, Q rel 1e-3).  The operator frame A(rho) = -(1/rho)d^2/dx^2
+  in the moving space L^2(rho dx) is the WRONG frame (spurious
+  4 lam <dr^2/rho, u^2> term).
+- STRICT: corrected global resolvent identity for K at ANY band-consistent
+  point: Kp := diag(eps) K diag(eps) = diag(d) + (2 lam_n D/lam_{n+1}^2) v v^T
+  - (2 lam_n^2/lam_{n+1}) [u_n u_n^T o Gt_n] + 2 lam_n [(eps o u_n)(eps o u_n)^T
+  o Gt_{n+1}], d_j = sigma 2 c |W(x_j)|/(R-1), v_j = u_n(x_j)^2.  Identity
+  machine-verified 1e-15 with the same Gt objects; reconstructed Kp vs FD
+  rel 2.6e-4 (n=2 SUP R=4, N=2000) / 4e-5 (n=3 INF R=4).  The eps-masks are
+  intrinsic (two resolvent kernels enter under different entrywise masks):
+  no sign-definite rank-2 split without further parity input; earlier false
+  "positive kernel" draft RETRACTED.
+- NEGATIVE (P3, route closed): the naive second variation applied to
+  bump-regularized bang-bang dr does NOT reproduce the width-Hessian (sign
+  mismatch at all tested points).  STRICT mechanism: the width path
+  rho(x; w + e dw) has d^2 rho = sum_i s_i dw_i^2 delta'(x - x_i), a
+  boundary-layer term of leading order the naive form omits; the naive form
+  additionally diverges as bump width -> 0.  The handoff's proposed
+  second-order coefficient identity is REFUTED.
+- EVIDENCE (new conjecture input): SUP tangent-space negative definiteness of
+  the naive Q on {<dr, f> = 0} (n=2,3 R=4; n=2 R=10; piecewise-constant and
+  trigonometric directions); INF n=2 R=4 INDEFINITE, consistent with det K
+  -> 0+ (no uniform margin, R-202).  Tangent quadratic form eigenvalues
+  (n=2 SUP R=4, block basis): [-38.36, -3.58, -0.301, -0.223].
+- Literature: Cox-McLaughlin I/II (Zbl 0709.73044/45) cover lam_1 only, not
+  applicable; Osmolovskii-Maurer (Zbl 1293.49043, Zbl 1534.49015) is the
+  general bang-bang second-order theory and reduces to the same quadratic-form
+  sign condition, no shortcut; fulltexts not obtained.
+- Deliverables: run_notes_addendum_2026-08-13c.md;
+  scripts/_gapn2_second_variation_probe.py (P1/P2/P3),
+  _gapn2_k_global_rank2.py (corrected identity);
+  tools/second-variation-weighted-eigenvalues.md (new tool).
+- Status: (G1') OPEN, now in the precise global form Kp = diag(d) + rank-1
+  vv^T + two eps-masked regularized-resolvent terms; (G2) unchanged CLOSED
+  (R-204).  The global classification conjecture depends only on (G1').
+
+## R-207 (2026-08-13, session 2): corrected half-Green machinery + both 2x2
+## sector closed forms; precise open core for (G1')
+- RETRACTED (handoff draft): green_regularized with extra rho(y) factors in
+  B and P.  STRICT replacement: Gt_k = B - u(x)P(y), B = (u(x)v(y)-v(x)u(y))
+  1_{x>y} - u(x)u(y)I1(x) + v(x)u(y)I2(x), P = <rho u, B>, NO rho(y)
+  factor; L_x B = delta - rho u u^T by direct differentiation; A1/A2 via
+  exact per-block trig primitives (_prims_9/_fold3/_a1a2_exact).  The
+  handoff diagnosis (A1/A2 quadrature accuracy) was also WRONG: exact vs
+  200k-point trapz differ by 2e-8; the constant-density self-test missed the
+  rho(y) bug because rho=1 there.  C2 green: Gt_D/Gt_N/G_D/G_N vs
+  Richardson spectral 1.3e-6..7.7e-6 (tail O(1/N^2)); symmetry 1.4e-17;
+  T_D closed vs spectral 1.8e-11.
+- RETRACTED (handoff convention claim): sector_data Ko is the odd sector
+  Bo^T K Bo of the RAW K, NOT the odd sector of Kp, and diag(1,-1) Ke
+  diag(1,-1) = Ko is FALSE.  STRICT correct identity: eps_{2n-1-j} = -eps_j
+  gives diag(eps) Bo = Be diag(beta), beta_j = -(-1)^j, hence Bo^T Kp Bo =
+  diag(beta) Be^T K Be diag(beta); verified vs FD 2.3e-9 / 8.6e-10.
+- STRICT (n even): both mirror sectors of the raw K at symmetric band-
+  consistent points have exact half-problem closed forms:
+    Kp_odd = diag(d[:n]) + 2 lam_n diag(u)[G_D o ee^T - c^2 G_N] diag(u)
+      (= diag(beta) Ke diag(beta), the even sector of K up to conjugation),
+    Ko = diag(d[:n]) + 2 r (eps v)(eps v)^T
+      + 2 lam_n diag(u)[Gt_N - c^2 Gt_D o ee^T] diag(u),
+  with all four kernels exact (Section 1).  n=2 R=4 EVIDENCE vs FD:
+  Ko err 4.6e-10 (INF) / 3.7e-10 (SUP); both R-205 and collapsed assemblies
+  agree 1.8e-15; INF eig Kp_odd=[-9.12,-0.63] Ko=[-2.91,-1.07], SUP
+  Kp_odd=[2.32,9.05] Ko=[3.18,7.15].
+- STRICT spectral splits (n=2): G_D(mu_2^N)|2 = -alpha v1v1^T + Ph,
+  G_N(mu_1^D)|2 = -beta w1w1^T + Qh, Gt_N = -alphaN w1w1^T + Rh, with
+  Ph, Qh, Gt_D, T_D, Rh positive definite on the 2-point grid (weights
+  positive by Gantmacher-Krein interleaving; rank-2 evaluation argument).
+  Exact B1/B2 decompositions recorded; the R-205 mixed-inertia statement on
+  M reproduced exactly (det M < 0 at R=4 INF), so the non-uniform diagonal d
+  is the only sign source for Kp_odd.
+- EVIDENCE R-scan (n=2): Kp_odd and Ko negative definite (INF) / positive
+  definite (SUP) for R in [1.05,100] (INF) / [1.05,10] (SUP, continuation
+  limit); det J > 0 throughout, consistent with sgn det J = (-1)^n; INF
+  margins decay polynomially as R -> inf (det K -> 0+, R-202).
+- REDUCED OPEN CORE: (G1') at n=2 symmetric points is now equivalent to
+  the explicit 2x2 inequalities (I1)(I2) (addendum Section 6) with exact
+  closed-form entries; Cauchy/Binet expansion writes both determinants as
+  signed double sums.  Proposed route (OPEN): (i) finite rescaled limit
+  L = lim_{R->1+} (R-1)K at the constant string; (ii) monotonicity of
+  det Kp_odd / det Ko in R along the symmetric branch (FH + band-system
+  derivatives); (iii) R -> inf bonding-antibonding asymptotics.
+- Deliverables: run_notes_addendum_2026-08-13d.md; scripts rewritten/new:
+  _gapn2_half_problem_probe.py (corrected), _gapn2_half_debug2/3/4.py,
+  _gapn2_odd2x2_decompose.py, _gapn2_rawko_closed.py, _gapn2_odd2x2_scan.py.
+- Status: (G1') OPEN, reduced at n=2 to explicit 2x2 definiteness (I1)(I2);
+  (G2) unchanged CLOSED (R-204); the parity/convention structure is now
+  fully STRICT (Sections 1-4 of the addendum).
+
+## R-208 (2026-08-13, session 3): R->1+ anchor + half-gap Hessian + monotonicity evidence
+- STRICT Lemma A: at the constant string, W0(x) = (u_{n+1}^0)'u_n^0 -
+  u_{n+1}^0(u_n^0)' does not vanish at any zero of f0 (n>=1).  Proof:
+  f0=0 gives 1-p = c0^2(1-q), p=cos^2((n+1)t), q=cos^2(nt); W0=0 plus
+  f0=0 forces q = -(n+1)^2/n^2 < 0, contradiction (sin(nt)=0 case
+  excluded by gcd(n,n+1)=1).  Hence f0 has exactly 2n simple zeros,
+  f0'(x_j) = -2 lam3^0 eps_j c0 W0(x_j) != 0, sgn det D_xF(1,x*) = (-1)^n.
+- STRICT Theorem B (anchor): near R=1 the solution set Sigma_sigma(R) is a
+  single smooth symmetric branch (each coordinate is one of the 2n simple
+  zeros of the same scalar f(.;R); IFT on the symmetric submanifold).
+  (R-1)K(R) -> (sigma/lam3^0) diag(|f0'(x_j)|), strictly sign-definite, so
+  (G1') holds on (1,1+delta) for EVERY n (even and odd); n=2: (I1)/(I2)
+  hold on (1,1+delta) via (R-1)Kp_odd, (R-1)Ko -> diag(sigma 2c0|W0(x_j)|).
+  EVIDENCE: n=2 R=1.00001 continuation errors 1.2e-4 linear in (R-1),
+  D->5pi^2, switches -> f0 zeros; n=3 diagonal-limit check 3.8e-4/3.1e-3.
+- STRICT half-gap Hessian identity (signs corrected): dg/dx_j = -2 s_j f(x_j)
+  (g = mu_2^N - mu_1^D), grad^2 g = -2(R-1)^2 K = +(2/lam3) Hess(D_n); so
+  (I1)+(I2) <=> strict local min (INF) / max (SUP) of g at the symmetric
+  critical point.
+- FALSIFIED route (EVIDENCE): global convexity of g on the switch triangle
+  (R=4 grid scan: Hessian indefinite off the critical point, 11/15 INF and
+  12/15 SUP violations; eigenvalues up to +/-4800).
+- EVIDENCE: det Kp_odd and det Ko strictly decreasing in R on [1.05,100]
+  for BOTH modes; traces sign-correct (tr<0 INF, tr>0 SUP) but not
+  monotone; chain rule d/dR M = dM/dR|x + sum (dM/dx_j)(dx_j/dR) with
+  dx/dR = -J^{-1} dF/dR verified to 4-5 digits at R=1.5,2,4,10 (probe bug
+  documented: Recon caches pat at init; mutating rc.R does nothing).
+- REDUCED OPEN CORE: (G1') open on [1+delta,infinity); n=2 (I1)/(I2) open on
+  [1+delta,infinity) with obligations (M1) d/dR det Kp_odd, det Ko < 0,
+  (M2) trace signs, (M3) R->inf bonding-antibonding asymptotics.
+- Deliverables: run_notes_addendum_2026-08-13e.md; scripts
+  _gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py,
+  _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py.
