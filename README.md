@@ -8,7 +8,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
    中等价于该空间内的所有正交函数系. 基准论文: Littlejohn-Quintero-Roba,
    *Krein-Sobolev Orthogonal Polynomials* (Springer 2025, DOI 10.1007/978-3-031-90135-5_7).
 2. **特征值间距与比值的最优界**: 对加权 Dirichlet 问题
-   $-y'' = \lambda \rho y, \qquad 0 < a \le \rho \le A \ \text{(可测盒类)}$,
+   $-y'' = \lambda \rho y, \quad 0 < a \le \rho \le A \ \text{(可测盒类)}$,
    优化相邻谱隙 $D_n = \lambda_{n+1} - \lambda_n$ 与比值 $\lambda_{n+1}/\lambda_n$.
 
 所有研究结论遵循严格性标注: 严格证明与数值证据显式区分, 未完成严格证明的断言不标为 "已解决".
