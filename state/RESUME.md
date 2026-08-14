@@ -192,6 +192,14 @@ dD/db=+(R-1)f(b)).
    max/min D_n, n=1 certificate kernel formalization, MDE unified theory, H^s density
    criteria, p-Laplacian, etc.
 5. validate_project.py, budget settlement, stage summary on stage close.
+6. Lean scheduling decision (2026-08-14, user confirmed "original plan"): M3 Lean
+   formalization is NOT scheduled now (B->C gate excludes RIGOROUS_PARTIAL_RESULT).
+   Plan A: after P1 closes the corrected-branch seed, formalize the M3 full chain
+   (cascade structure + seed + leading observables) with the (G1') line.  Fallback B
+   (if P1 fails): formalize the audited R-210 STRICT algebraic core (a0*K0=2,
+   a1=-2K1/K0^2, E5_5 hard constant, dependency structure) with spectral hooks
+   declared as assumptions.  Both queue behind the STATUS.md roadmap gaps (O16
+   isometry, Weyl, MW reproof, n=1 certificate kernel) unless the user prioritizes.
 ## Blockers or missing inputs
 - None: all obligations of the n=1 adjacent-gap extremal problem (SUP + INF, all R>1)
   are closed (a/b/a'/d/c + O3a-C1).  Next work: section 5.5 open problems.
