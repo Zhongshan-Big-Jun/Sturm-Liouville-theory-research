@@ -1,4 +1,4 @@
-﻿---
+---
 title: 数学工具库索引
 tags: [mathtool, index]
 created: 2026-08-04
@@ -63,6 +63,7 @@ created: 2026-08-04
 - [[jump-stability]] - 跳变稳定性: 增长引理定量形式与 omega(log) 门槛 (会话 11)
 - [[third-order-recurrence]] - 三阶递推积分解理论: 积分解分类/精确降阶/最小解 (会话 11)
 - [[gap-band-extremals]] - 带状自洽极值判据: 相邻间距驻点条件与 FH 对称加倍 (会话 13)
+- [[largeR-level-cascade]] - 大 R 层级级联平衡: band 系统整数幂级数层级结构/硬常数机制/分族平移层 (会话 105, R-210/R-211, 审计 R-212)
 - [[gap-n1-reduction]] - 两块族归约定理 (O1, 2026-08-05)
 - [[two-block-gap-bounds]] - 两块相位间距界 3pi^2/R < D < 3pi^2 (O3b, 2026-08-05)
 - [[key-lemma-decomposition]] - KEY LEMMA 分解 + 逐项 q-单调性否证 + (LOG)/(FP) 全解析证明 (O2, 2026-08-05/09)
@@ -157,6 +158,7 @@ created: 2026-08-04
 | [[green-half-inertia]] | 自研 (R-205, 2026-08-13) | 全局 ε 交错与 Green 惯性 STRICT; 奇偶性否证 (EVIDENCE); (G1') 仍开放 | 自研方法 |
 | [[second-variation-weighted-eigenvalues]] | 自研 (R-206, 2026-08-13) | lambda'' 公式 STRICT; P1/P2/P3 EVIDENCE; 交接二阶系数路线否证 (delta' 机制 STRICT) | 自研方法 |
 | [[half-problem-regularized-green]] | 自研 (R-207/208, 2026-08-13) | 闭式/扇区/锚点 STRICT: (G1') 于 (1,1+δ) 一切 n, (I1)/(I2) 于 (1,1+δ) n=2; 剩余 (M1)-(M3) 开放 | 自研方法 |
+| [[largeR-level-cascade]] | 自研 (会话 105, R-210/R-211 + 审计 R-212, 2026-08-14) | STRICT 结构经独立审计 (INDEPENDENTLY_AUDITED_PROOF, F-NL3 更正); 整数幂分支根开放 (K0->0 负结果 EVIDENCE); M3 总体 RIGOROUS_PARTIAL_RESULT | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -450,3 +452,11 @@ created: 2026-08-04
   一致); 新增「假设的强度」注 (弱假设反例: `A_m=B_m=1` 振荡, `A_m-B_m=1/2<c_0` 时
   乘积下界失败) 与审计节 F-001 更正条目; 文档重编译 7 页零警告; lean-proof 状态
   记录同步 (F-001 RESOLVED), `lake build` 复跑通过. 无新数值断言 (纯陈述修正).
+- 2026-08-14 (会话 105): 新增 [[largeR-level-cascade]] (大 R 层级级联平衡, P0
+  会话, run R-20260812T090000Z-g1prime-g2 R-210/R-211 + 审计 R-212): STRICT
+  层级结构 (a0*K0=2; a1=-2K1/K0^2; 归约种子仿射线性; 硬常数 E5_5=K0^3/2+
+  线性(K1,C1) 强制奇分量; 分族平移层) 经独立对抗审计 A1-A8 判定
+  INDEPENDENTLY_AUDITED_PROOF (F-NL3: level-3 4x4 矩阵奇异, 机制更正);
+  决定性负结果 EVIDENCE: 纯整数幂分支至 u^7 无 K0~3.46 零点 (20 组多起点
+  全部收敛退化 K0->0), 修正分支种子根开放; 撤回截断幂字典 eq_coeff 丢项
+  bug (R-211). M3 总体 RIGOROUS_PARTIAL_RESULT.

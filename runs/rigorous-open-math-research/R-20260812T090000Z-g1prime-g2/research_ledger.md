@@ -344,3 +344,111 @@ R-204 bug-fix register.)
 - Deliverables: run_notes_addendum_2026-08-13e.md; scripts
   _gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py,
   _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py.
+
+## R-210 (2026-08-14): M3 cascade structure STRICT; corrected-branch root OPEN
+- Continuation of the intereupted handoff (records next-actions plan).  All
+  numerics EVIDENCE unless flagged STRICT; details in
+  run_notes_addendum_2026-08-14.md.
+- STRICT pre-clearing: E1(x1), E2(xK^2), E5(xK^5), E6(xK) clears the K-power
+  denominators; K>0 on the branch so the zero set is unchanged.
+- STRICT level 0: E1_0 = E2_0 = E6_3 = 0 <=> a0*K0 = 2; E5_2 = (a0K0-2)*F
+  vanishes automatically (the three multiplicative equations carry ONE
+  constraint; E5_2 adds none at this order).  a0 = 2/K0.
+- STRICT level 1: E1_1 = E2_1 = E6_4 = 0 <=> a1 = -2 K1/K0^2 (the exact
+  "A_1 = a0 K1 + a1 K0 = 0" mechanism); K1 remains FREE at this order.
+- STRICT reduced seed (a0=2/K0, a1=-2K1/K0^2): E1_2, E2_2, E6_5 affine-linear
+  in (a2,K2,c0) with K1 entering only via K1^2; E5_4 quadratic (level-2
+  consistency); b0,b1 do NOT appear until E5_6 (b(u) delayed one level);
+  E5_5 carries the hard constant K0^3/2 + [linear in K1,C1] + O(K1^3), so
+  E5_5=0 FORCES a nonzero odd component (even-only ansatz structurally
+  impossible; exact failure mechanism localized to the pair (K1,C1)).
+- STRICT level-j linearity (j>=3): the u^n coefficient of each equation is
+  affine in (K_j,a_j,b_j,c_j) with the constant part from lower levels
+  (uniqueness = nonvanishing of a 4x4 coefficient determinant, NOT yet
+  computed symbolically - OPEN).
+- EVIDENCE observables (STRICT formulas, EVIDENCE seed): a0=2/K0=0.578821
+  matches the fit a0=0.5788; D*R -> 2 K0 c0 = 10.18692 (data last row 10.8806
+  at R=8.99e4, decreasing); Dk/u^5 -> c0 = 1.47410, Dk/u^7 -> c0/u^2;
+  consistency candidate 1 + bK/2 + 3pi/(2K) - K^2/12 = 1.86956 != 0 at the
+  even-only seed (confirms odd corrections are needed, C=0 only on the
+  corrected branch).  m3D - m3N closed value still missing.
+- EVIDENCE failure recorded: 40-unknown unconstrained least_squares escaped to
+  a non-physical root (A0K0 -> 0.0063, K0 -> -0.0075, residual 7e-1) because
+  E1_0/E2_0/E6_3 redundantly encode a0K0=2 and eleven E5 orders let the
+  residual trade the physical constraint; reduced 19-unknown solver (hard
+  a1 identity) did not finish in-session because per-evaluation sp.Poly +
+  truncated-power rebuild is too slow for the numerical Jacobian.  Fix for
+  next action: precompile the reduced residual once (the num3 precompile of
+  the 40-parameter system already builds correctly: 27 orders) and run a
+  single lambdified solve.
+- Deliverables: run_notes_addendum_2026-08-14.md; scripts _gapn2_largeR_cascade.py,
+  _gapn2_cascade_seed.py, _gapn2_cascade_reduce.py, _gapn2_cascade_den/deg.py,
+  _gapn2_cascade_timing.py, _gapn2_cascade_num.py/.py2/.py3,
+  _gapn2_cascade_reducedseed.py, _gapn2_observables.py, and the explore/wip/diag
+  scrap diagnostics.
+- Status: M3 NOT closed.  STRICT cascade structure through the reduced seed and
+  the hard-constant forcing; the corrected-branch seed root and the closed
+  leading observables (m3D-m3N, C=0 value, sector-determinant coefficients)
+  remain OPEN.
+
+## R-211 (2026-08-14): decisive corrected-seed solve; truncated integer-power
+## branch does NOT exist at K0 ~ 3.46
+- Implemented the R-210 recommended fix exactly (precompile reduced residual
+  once, a0=2/K0 and a1=-2K1/K0^2 via dict substitution, single least_squares).
+- RETRACTED the truncated power-dict eq_coeff of _gapn2_cascade_num3.py: it
+  mis-builds the series substitution at order 2 (drops a2*K0^3, 12*K0*K2,
+  -12*K1^2 terms; shown by _gapn2_pddiff_debug.py).  The UNAMBIGUOUS
+  full-substitution eq_coeff (sp.expand(coef.subs(series))*u^m).coeff(u,n) is
+  correct and was used for the seed.
+- STRICT corrected dependency structure: E1_2={K0,K1,K2,A2};
+  E2_2/E6_5/E5_4 add C0; E5_5 adds C1 (first odd correction); E5_6 adds B0;
+  E5_7/E6_7 add B1.  K1 enters E1_2..E5_4 only through K1^2 but enters
+  E5_5..E6_7 linearly -> K1 pinned jointly with C1 at E5_5, not at level 2.
+- EVIDENCE (decisive): 20 independent starts (K0 in {3.0,3.4,3.5,3.6} x K1 in
+  {0,+-0.3,+-1}) on the 8-equation seed E1_2,E2_2,E6_5,E5_4,E5_5,E5_6,E5_7,E6_7
+  ALL converged to K0 -> 0 (0.001..0.02, best residual 1.3e-10); none to
+  K0 ~ 3.4.  The K0->0 attractor is the degenerate empty limit (K=sqrt(lambda)
+  -> 0).  Conclusion: the free-exponent fit limit K0 ~ 3.4553 is NOT a zero of
+  the exact truncated 4-equation system through u^7; the true branch either
+  carries an appreciable odd K-component (K1 != 0) that shifts the even leading
+  value off 3.4553, or the expansion is not a pure integer-power series
+  (logarithmic/slower corrections).  Precise obstacle recorded.
+- M3 still NOT closed; status RIGOROUS_PARTIAL_RESULT unchanged.
+- Scripts: _gapn2_cascade_reduced_final.py, _gapn2_seed_correct.py,
+  _gapn2_seed_multistart.py, _gapn2_reduced_dof.py, _gapn2_reduced_reconcile.py,
+  _gapn2_pddiff_debug.py.
+
+## R-212 (2026-08-14): adversarial audit of R-210 (M3 STRICT structure)
+- Fresh auditor (artifact-only, no shared chain of thought).  Independently
+  rebuilt the P dict (E1/E2/E5/E6) from scratch in sympy; every coefficient
+  matches the pickled dict EXACTLY (A1/A2).  Re-derived all level-0/1/2 cascade
+  equations and the hard-constant mechanism; all STRICT claims of R-210 verified
+  (a0*K0=2, a1=-2*K1/K0^2 with K1 free, E1_2/E2_2/E6_5 affine in (a2,K2,c0),
+  E5_4 quadratic, b0/b1 first at E5_6, E5_5 = K0^3/2 + O(odd) so even-only
+  ansatz impossible).
+- AUDIT FINDING F-NL3: the R-210 S4 claim ("level j>=3 affine with nonsingular
+  4x4 in (K_j,a_j,b_j,c_j)") is FALSE at level 3.  The level-3 cell E1_3,E2_3,
+  E5_5,E6_6 is affine in (K3,A3,B3,C3) but the B3 and C3 columns are identically
+  zero, so det = 0 (symbolic + numeric).  The true structure advances K,A at
+  their own orders and B,C at shifted levels (consistent with the R-211 corrected
+  dependency structure).  R-210 labeled the determinant OPEN (not a false STRICT
+  claim), but the proposed mechanism must be corrected.
+- AUDIT data-validation (A5): D*R = 2Kc + c^2 u^4 verified vs big.json last row
+  (R=89895.877, u=0.1494) to 3.5e-13 at 50-digit mpmath; u = R^{-1/6} to 4e-17;
+  Dk/u^7 = c/u^2 exactly; seed limits a0=2/K0=0.578821, 2K0C0=10.1869,
+  C_cand=1.86956, K0^3/2=20.63 all confirm.
+- A6/A7/A8: OPEN observables (m3D-m3N, C=0, c1/c2) honestly labeled; label
+  separation clean (two A7 F-notes: Section-0 prose groups numeric facts under
+  "all STRICT"; packet-expected c1,c2 left OPEN).  No regression vs
+  R-204/205/207/208.
+- Verdict: R-210 STRICT structure = INDEPENDENTLY_AUDITED_PROOF (as derivations),
+  with S4 corrected by F-NL3; M3 overall REMAINS RIGOROUS_PARTIAL_RESULT
+  (corrected-branch seed root and closed leading observables still OPEN; not a
+  requirement of this audit).
+- Scripts (all under scripts/_audit_*): _audit_m3_inspect.py, _audit_m3_a1a2.py,
+  _audit_m3_e6diff.py, _audit_m3_e5.py, _audit_m3_a2num_a5.py,
+  _audit_m3_cascade2.py, _audit_m3_level3.py, _audit_m3_level3fast.py,
+  _audit_m3_mpmath.py (usable products).  Some exploratory scans
+  (_audit_m3_e64dbg.py, _audit_m3_l34.py, _audit_m3_firstk4.py,
+  _audit_m3_firstb3.py) were too slow and are superseded by level3fast; kept as
+  audit artifacts but not relied upon.

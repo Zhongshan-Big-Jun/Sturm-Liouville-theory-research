@@ -3005,3 +3005,81 @@
 - 状态: M3 未完成; 下一步按级联结构 (level j: E1_j, E2_j, E5_{j+2}, E6_{j+3}) 逐级线性消去, 避免 32 变量同时展开.
 - 诚实声明: 数值均为 EVIDENCE; 严格部分仅为上述代数结构判定; 未宣称大 R 渐近定理已证.
 - 交接: 已按 math-research-workflow 中断交接协议登记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/handoff-interrupted-2026-08-13T151546Z.md (sha256 4631CEDDB56D679CE45277ACBC58F8E8D3C1BABD324FBACEDE8D80E264F3A11D).
+
+### 2026-08-14 会话 104 (DSH 适配 rigorous-open-math-research 插件)
+- 任务: (1) 登录 GitHub 账号并把 xsoc1/math-notes 转 private; (2) 把 Codex marketplace
+  xsoc1/rigorous-open-math-research 的 4 个插件适配为 DSH skills, 先出方案再实施.
+- 完成:
+  - GitHub 登录: 用本机 GCM 已存凭据验证 xsoc1 (id 175226580, email 2671182281@qq.com);
+    配置 git 全局 user.name/user.email/credential.helper; xsoc1/math-notes 已转 private.
+  - 方案经用户确认: 全套 4 插件 / 新仓库 / public / junction 热更新 (均采纳推荐项).
+  - 新仓库 xsoc1/math-research-dsh (public): 4 个 DSH skill bundles
+    (rigorous-open-math-research / manage-math-research-program / math-research-workflow /
+    lean-verify) 同步自上游 debc3be (2026-08-13); DSH 层 = 每 SKILL.md 注入 DSH runtime
+    notes + DSH changelog, workflow 的 Codex doctor 段改写为仓库级 scripts/dsh-doctor.py,
+    Codex 版 doctor.py 移除; 其余文件与上游字节一致 (upstream.lock.json 绑定 62 文件).
+  - 工具链: scripts/sync-from-parent.py (父仓库同步 + DSH 层重放 + MANIFEST 重生成 + lock),
+    scripts/validate_all.py (36 项), scripts/dsh-doctor.py (--json/--list-file),
+    install.ps1 (junction 安装), tests/ 5 个 smoke + 上游 fixtures,
+    GitHub Actions (validate + smoke + sync-check 漂移检查).
+  - 本机安装: $DSH_HOME/skills 下 4 个 junction -> 仓库 bundles; 当前 DSH 会话技能目录即时
+    出现 4 个 skill (watcher 跟随 junction, 无需重启), dsh-doctor 0 problem.
+  - 校验: validate_all 全绿; 5 个 smoke 全过; 已 push origin main (038e0ee).
+  - 修复记录: MANIFEST 自引用条目 (生成与校验均排除 MANIFEST.sha256 自身);
+    dsh-doctor --json 混入汇总行 (--json 只输出 JSON).
+- 路径说明: 产物在 C:\Users\HuangZY\.dsh\ (math-research-dsh 仓库 + _math-research-upstream
+  父仓库克隆); 本工作区内临时克隆 dsh_adaptation/ 已删除; 本文件更新未提交 (工作树含本会话
+  之外的未跟踪文件, 提交时机由用户决定).
+- 后续: 新 DSH 会话可用 /rigorous-open-math-research 等手势或 skill 工具调用 4 个技能;
+  上游更新后跑 sync-from-parent.py; math-research 专属 preset 按方案默认未做 (可选).
+- 补充 (DSH 性能适配两轮): 第 1 轮 - changelog 迁出正文, dsh_run.py 截断感知包装器,
+  dsh-execution.md 执行手册, workflow fan-out 模板 (ccb0424); 第 2 轮 - 上游 rigorous
+  SKILL.md 纯移动拆分为驱动层 168 行 (原 760 行, -72%) + 8 个 phase 引用文件 (上游
+  91293b0 双仓同步, split_rigorous_skill.py --verify 复验零丢失), A2 子代理回传契约
+  (本仓库 1be12f3); A/B planted-error 评测 baseline FATAL_GAP 全命中, after 待出.
+- 补充 (社区方法蒸馏): 检索开源 DSH 生态 (官方 harness 63K stars + awesome 清单),
+  方法级吸收全部可用项: 上游 01140b1 蒸馏 dsh-deep-research 五条 (答案空间/覆盖维度/
+  边际增益停规/证据三态/模型分层) 入 rigorous phase 文件; 本仓库 3dd9d2f + 8ea5a01
+  蒸馏 dsh-agent-teams (依赖+波次), dsh-multiagent-modes (分级回报), 队长模式
+  (roster), dsh_workflow (manifest), dsh-context-doctor (context-audit.py);
+  观察项 jacobian/dsh-automation 未集成. 全部方法来源链接见 math-research-dsh README.
+- 补充 (多模态插件): 上游 dd3bfec phase-01 第 9 条 + 本仓库 d1d566e
+  dsh-optional-capabilities.md (视觉/文档解析调用约定). 本机已装
+  @huanlin/dsh-plugin-mineru (bundle 层) 与 @dsh-external/dsh-vision (普通依赖 +
+  profiles/web/cordis.patch.yml 手工 insert 行), --dump-config 合成树校验通过;
+  激活需重启 dsh web (会结束当前会话, 时机由用户定); vision 需先配 VISION_API_KEY
+  (智谱免费档) 或装 Ollama, mineru 需服务端点 baseURL.
+
+### 2026-08-14 会话 105 (P0: M3 大R主平衡收尾, math-research-workflow 管道)
+- 任务: 完成 P0 - 运行 R-20260812T090000Z-g1prime-g2 的 M3 义务收尾 (n=2 对称 INF 分支
+  大 R 主平衡), 按 math-research-workflow 管道: 管理 -> 求解 -> 对抗审计 -> 摄入 ->
+  门禁 -> git 同步.
+- 管理侧: 任务包 Q-20260814-p0-m3-A71F3C (agenda/task-packets/, 含 B0 新颖性预检与
+  审计契约 A1-A8); validate_pipeline.py 门禁 0 problems; 交接工件哈希绑定 12/12;
+  数据锚点独立核对 (u=R^(-1/6) 14 位, big.json 末行 K=3.519374254 等).
+- 求解器两轮 (fresh subagent 085d05d8):
+  - R-210 STRICT: level 0 a0*K0=2; level 1 a1=-2K1/K0^2 (K1 自由); 归约种子
+    E1_2/E2_2/E6_5 对 (a2,K2,c0) 仿射线性 (K1 仅经 K1^2); E5_4 二次; b0,b1 推迟到
+    E5_6/E5_7; 硬常数 E5_5=K0^3/2+线性(K1,C1)+O(K1^3) => 偶次 ansatz 结构不可能
+    (强制奇分量对 (K1,C1)); EVIDENCE: a0=2/K0=0.578821 与拟合吻合, D*R->2K0c0
+    =10.18692, Dk/u^5->1.47410.
+  - R-211: 撤回截断幂字典 eq_coeff 丢项 bug (2 阶丢 a2*K0^3/12*K0*K2/-12*K1^2);
+    正确依赖结构 (C1 首现 E5_5, B0 E5_6, B1 E5_7, K1 与 C1 在 E5_5 联合钉住);
+    决定性负结果 (20 组多起点全部收敛退化极限 K0->0, 无 K0~3.4): 拟合极限
+    K0~3.4553 不是截断系统至 u^7 的零点 -> 需 {K0,K1,C0,C1} 联合求解或对数型/
+    非整数幂修正; M3 未闭合, 状态 RIGOROUS_PARTIAL_RESULT.
+- 对抗审计 (fresh subagent 1d38cd63, R-212): 独立从零重建 P 字典与级联, 50 位
+  mpmath 数据复核; A1-A8 除 F-NL3 外全 PASS; R-210 STRICT 结构 =
+  INDEPENDENTLY_AUDITED_PROOF; F-NL3: level-3 4x4 矩阵奇异 (B3/C3 列恒零), S4
+  机制更正为分族平移层 (K_j/A_j 同阶推进, B_j 约 2+j 阶, C_j 约 5+j 阶); M3
+  总体保持 RIGOROUS_PARTIAL_RESULT.
+- 摄入与收尾: run-manifest.json (ledger 哈希刷新至 R-200..R-212, 新增
+  addendum/audit 工件与 R-212 note, manager_ingestion_state COMPLETED);
+  工具库新增 tools/largeR-level-cascade.md + README 索引/速查表/维护日志;
+  state/current.json 与 state/RESUME.md 更新; README 中英同步; 概述文档
+  SL_spectral_topics_summary.tex §5.5 (iv) 补 M3 进展注记并重编译;
+  validate_pipeline 门禁复跑; git 提交推送 origin + fork (project.json push_order).
+- 结论 (诚实): P0 收尾但 M3 未闭合 (RIGOROUS_PARTIAL_RESULT); STRICT 层级结构经
+  独立审计确认, 决定性负结果把缺口收紧为两个具体假设; 下一步 (P1): 联合求解
+  {K0,K1,C0,C1} (奇分量续延) 或 Puiseux/对数修正 ansatz; 审计 F-NL3 机制更正已登记.
+- 诚实声明: 全部数值 EVIDENCE; 未宣称 M3 或 (G1') 已解决.

@@ -6,9 +6,9 @@
  "upstream_skill": "$rigorous-open-math-research",
  "upstream_skill_version_or_hash": "v2026-08-05 (changelog)",
  "started_at": "2026-08-12T09:00:00Z",
- "completed_at": "2026-08-13T20:40:00+08:00",
+ "completed_at": "2026-08-14T13:30:00+08:00",
  "run_root": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2",
- "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) CLOSED STRICT (R-204); (G1') STRICT on (1,1+delta) for every n (R-208 anchor, Lemma A + Theorem B, solution set near R=1 = symmetric branch, rescaled second variation strictly definite); open core now [1+delta,infinity); n=2 (I1)/(I2) STRICT on (1,1+delta) and reduced on [1+delta,infinity) to (M1) d/dR det Kp_odd, det Ko < 0 + (M2) trace signs + (M3) R->inf asymptotics; EVIDENCE: det strictly decreasing on [1.05,100] both modes, derivative chain-rule verified 4-5 digits, global half-gap convexity FALSIFIED",
+ "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT: (G2) CLOSED STRICT (R-204); (G1') STRICT on (1,1+delta) for every n (R-208 anchor); open core [1+delta,infinity); n=2 (I1)/(I2) reduced to (M1) d/dR det Kp_odd, det Ko < 0 + (M2) trace signs + (M3) R->inf asymptotics; M3 NOT closed: STRICT level-by-level cascade structure established (R-210: level 0 = a0*K0=2 exact, level 1 = a1=-2K1/K0^2 exact, reduced seed E1_2/E2_2/E6_5 affine-linear in (a2,K2,c0), b0 delayed to E5_6, hard constant E5_5 = K0^3/2 + linear(K1,C1) + O(K1^3) forcing nonzero odd components, even-only ansatz structurally impossible); corrected-branch seed root and closed leading observables (m3D-m3N, C=0 value, sector-determinant coefficients) still OPEN; EVIDENCE: a0=2/K0=0.578821 matches fit, D*R -> 2K0c0 = 10.18692, Dk/u^5 -> 1.47410, consistency candidate 1.86956 != 0",
  "artifacts": [
   {
    "path": "problem_contract.md",
@@ -27,8 +27,8 @@
   },
   {
    "path": "research_ledger.md",
-   "sha256": "5795c9faf9505ac62b006ba442f220fd749a612db4227b76fa73e1f90f8cf19e",
-   "role": "R-200..R-206"
+   "sha256": "c297ddc28eb7003c2663fdaac936b1cd3f25fb87c3c2a2d3f1f9f5e2304efd41",
+   "role": "R-200..R-212"
   },
   {
    "path": "scripts/_gapn2_mtilde_offdiag_identity.py",
@@ -143,7 +143,7 @@
   {
    "path": "research_ledger.md",
    "sha256": "2268465437648AEEAE2162192407762856C79826CD8A010821F7FD64670F112D",
-   "role": "R-200..R-207"
+   "role": "R-200..R-210"
   },
   {
    "path": "scripts/_gapn2_half_problem_probe.py",
@@ -204,6 +204,68 @@
    "path": "scripts/_gapn2_r1_det_derivative_probe.py",
    "sha256": "810DC71AADB5D31A38FBA2DEA44CE470C2CCFFB1FF88B37CE9FE2AC89D553BC2",
    "role": "chain-rule d/dR det/trace vs direct branch FD; fixed-x partials; Recon-cache probe bug documented (EVIDENCE)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-14.md",
+   "role": "R-210: STRICT M3 cascade structure (level 0 a0*K0=2, level 1 a1=-2K1/K0^2, reduced seed, hard-constant E5_5 forcing odd components) + EVIDENCE observables + open corrected-branch root"
+  },
+  {
+   "path": "scripts/_gapn2_largeR_cascade.py",
+   "role": "STRICT cascade driver: pre-cleared level-0/1/2 seed equation extraction"
+  },
+  {
+   "path": "scripts/_gapn2_cascade_seed.py",
+   "role": "joint 12-unknown seed system (orders 0..5)"
+  },
+  {
+   "path": "scripts/_gapn2_cascade_reduce.py",
+   "role": "reduced seed (a0=2/K0, a1=-2K1/K0^2): E1_2/E2_2/E6_5/E5_4/E5_5/E5_6"
+  },
+  {
+   "path": "scripts/_gapn2_observables.py",
+   "role": "STRICT-formula leading-observable arithmetic (EVIDENCE seed values)"
+  },
+  {
+   "path": "scripts/_gapn2_cascade_num3.py",
+   "role": "truncated power-dict full-system precompile (builds 27 orders correctly)"
+  },
+  {
+   "path": "scripts/_gapn2_cascade_reducedseed.py",
+   "role": "reduced-seed root attempt (incomplete in-session; EVIDENCE)"
+  },
+  {
+   "path": "scripts/_gapn2_cascade_reduced_final.py",
+   "role": "R-211 reduced-final seed solve"
+  },
+  {
+   "path": "scripts/_gapn2_seed_correct.py",
+   "role": "correct full-substitution seed system + solve"
+  },
+  {
+   "path": "scripts/_gapn2_seed_multistart.py",
+   "role": "decisive 20-start seed solve (K0->0 attractor)"
+  },
+  {
+   "path": "scripts/_gapn2_reduced_dof.py",
+   "role": "reduced-seed dependency-structure diagnostic"
+  },
+  {
+   "path": "scripts/_gapn2_reduced_reconcile.py",
+   "role": "power-dict vs full-subs reconciliation"
+  },
+  {
+   "path": "scripts/_gapn2_pddiff_debug.py",
+   "role": "power-dict eq_coeff bug localization (order-2 terms dropped)"
+  },
+  {
+   "path": "run_notes_addendum_2026-08-14.md",
+   "sha256": "2aad251cb2f47c45c353ce4a59bfe073d49d88a980792ed905aa2fdaa41486cc",
+   "role": "R-210/R-211 M3 large-R cascade: STRICT structure + decisive negative seed result"
+  },
+  {
+   "path": "audit_report.md",
+   "sha256": "46cafd515beb85a9a8cdde34ac3364e4269329143099a8f2ef3fdb170baff123",
+   "role": "R-212 adversarial audit (A1-A8): INDEPENDENTLY_AUDITED_PROOF of STRICT structure, F-NL3 correction"
   }
  ],
  "environment": {
@@ -229,6 +291,9 @@
   "R-206 literature: Cox-McLaughlin I/II (Zbl 0709.73044/45) cover lam_1 only, not applicable; Osmolovskii-Maurer (Zbl 1293.49043, Zbl 1534.49015) general bang-bang second-order theory reduces to the same sign condition, no shortcut; fulltexts not obtained",
   "R-206 reconciliation: scripts/_gapn2_sector_scan_2_sup.json was overwritten during R-206 probing (lastwrite 2026-08-13 12:27) without a manifest update; hash reconciled to the current file (de19aba6...), content verified as valid n=2 SUP sector-scan data",
   "R-207 (2026-08-13): STRICT corrected regularized half-Green (no rho(y) factor, exact A1/A2; handoff rho(y) draft RETRACTED, handoff A1/A2-quadrature diagnosis WRONG); STRICT eps-conjugation sector identity (sector_data Ko = odd sector of RAW K; handoff convention claim RETRACTED); STRICT both 2x2 mirror sectors in exact half-problem closed form (Kp_odd = diag(beta)Ke diag(beta), Ko new); STRICT spectral splits with PD tails; EVIDENCE C2/C3 green (1e-6..1e-15), Ko vs FD 4.6e-10, R-scan definiteness n=2 INF R in [1.05,100] / SUP [1.05,10], det J > 0; reduced open core: explicit 2x2 inequalities (I1)(I2) with the Cauchy/Binet double-sum expansion; proposed route: rescaled R->1 anchor + R-monotonicity + R->inf asymptotics",
-  "R-208 (2026-08-13): STRICT Lemma A: W0(x)!=0 at every zero of f0 (elementary contradiction q=cos^2(nt)=-(n+1)^2/n^2), all n>=1; f0 has exactly 2n simple zeros with f0'(x_j)=-2 lam3^0 eps_j c0 W0(x_j); STRICT Theorem B: near R=1 the solution set is the unique symmetric branch (coordinates are the 2n simple zeros of the same scalar f; IFT on the symmetric submanifold), (R-1)K -> (sigma/lam3^0) diag(|f0'(x_j)|) strictly definite, hence (G1') holds on (1,1+delta) for every n (reproducing sgn det J(1,x*)=(-1)^n); n=2 (I1)/(I2) hold on (1,1+delta); STRICT half-gap identity grad^2 g = -2(R-1)^2 K = +(2/lam3) Hess(D_n) (sign-corrected), (I1)+(I2) <=> strict local min (INF)/max (SUP) of g=mu_2^N-mu_1^D; FALSIFIED global convexity of g (EVIDENCE, Hessian indefinite off the critical point, 11/15 and 12/15 violations at R=4); EVIDENCE det Kp_odd and det Ko strictly decreasing in R on [1.05,100] both modes, traces sign-correct but not monotone; chain rule d/dR M = dM/dR|x + sum (dM/dx_j)(dx_j/dR), dx/dR = -J^{-1}dF/dR verified to 4-5 digits at R=1.5,2,4,10 (probe bug: Recon caches pat, mutating rc.R does nothing; fixed); reduced open core (M1)-(M3); probe scripts _gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py, _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py"
+  "R-208 (2026-08-13): STRICT Lemma A: W0(x)!=0 at every zero of f0 (elementary contradiction q=cos^2(nt)=-(n+1)^2/n^2), all n>=1; f0 has exactly 2n simple zeros with f0'(x_j)=-2 lam3^0 eps_j c0 W0(x_j); STRICT Theorem B: near R=1 the solution set is the unique symmetric branch (coordinates are the 2n simple zeros of the same scalar f; IFT on the symmetric submanifold), (R-1)K -> (sigma/lam3^0) diag(|f0'(x_j)|) strictly definite, hence (G1') holds on (1,1+delta) for every n (reproducing sgn det J(1,x*)=(-1)^n); n=2 (I1)/(I2) hold on (1,1+delta); STRICT half-gap identity grad^2 g = -2(R-1)^2 K = +(2/lam3) Hess(D_n) (sign-corrected), (I1)+(I2) <=> strict local min (INF)/max (SUP) of g=mu_2^N-mu_1^D; FALSIFIED global convexity of g (EVIDENCE, Hessian indefinite off the critical point, 11/15 and 12/15 violations at R=4); EVIDENCE det Kp_odd and det Ko strictly decreasing in R on [1.05,100] both modes, traces sign-correct but not monotone; chain rule d/dR M = dM/dR|x + sum (dM/dx_j)(dx_j/dR), dx/dR = -J^{-1}dF/dR verified to 4-5 digits at R=1.5,2,4,10 (probe bug: Recon caches pat, mutating rc.R does nothing; fixed); reduced open core (M1)-(M3); probe scripts _gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py, _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py",
+  "R-210 (2026-08-14): M3 cascade structure STRICT (level 0 a0*K0=2, level 1 a1=-2K1/K0^2, reduced seed affine-linear in (a2,K2,c0), b0 delayed to E5_6, hard constant E5_5=K0^3/2+linear(K1,C1) forcing odd components -> even-only ansatz impossible); corrected-branch root and closed observables OPEN; EVIDENCE D*R -> 2K0c0 = 10.18692, Dk/u^5 -> 1.47410, a0=2/K0 matches fit; scripts _gapn2_largeR_cascade.py, _gapn2_cascade_seed.py, _gapn2_cascade_reduce.py, _gapn2_observables.py",
+  "R-211 (2026-08-14): implemented the R-210 fix (precompile reduced residual once with full-substitution eq_coeff); RETRACTED the truncated power-dict eq_coeff (mis-builds order-2 series); STRICT corrected dependency (C1 first at E5_5, B0 at E5_6, B1 at E5_7, K1 pinned jointly with C1 at E5_5); EVIDENCE decisive: 20 starts all -> K0~0 (empty limit), none at K0~3.4, so the fit limit K0~3.4553 is NOT a zero of the truncated system through u^7 -> either odd K-component or non-integer-power (log) corrections; M3 NOT closed, status RIGOROUS_PARTIAL_RESULT",
+  "R-212 (2026-08-14, adversarial audit): independent from-scratch rebuild of the P dict and cascade; A1-A8 verdicts PASS except F-NL3 (level-3 4x4 singularity: B3/C3 columns identically zero, S4 mechanism corrected to per-family shifted levels); R-210 STRICT structure = INDEPENDENTLY_AUDITED_PROOF as derivations; M3 overall remains RIGOROUS_PARTIAL_RESULT (corrected-branch seed root and closed leading observables OPEN); audit scripts scripts/_audit_m3_*.py"
  ]
 }

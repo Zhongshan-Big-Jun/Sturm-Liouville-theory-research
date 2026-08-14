@@ -1,4 +1,4 @@
-﻿# RESUME
+# RESUME
 
 ## Current objective
 Prove (n=1): over 1<=rho<=R, SUP(lambda_2-lambda_1) attained by symmetric 3-block [1,R,1] at u*(R);
@@ -168,16 +168,30 @@ dD/db=+(R-1)f(b)).
 - Task Q-20260806-o3a-c1b-7F3A9B (C1): SOLVED (closed by O3a complete proof)
 - Task Q-20260806-inflimit-5B2C7D (INF limit): COMPLETED as CANDIDATE_COMPLETE_PROOF
 - Run R-20260808T143337Z-o3a-c1 (Blueprint v2.2, phase-ratio rigidity): ingested as evidence/source
+- Task Q-20260814-p0-m3-A71F3C (P0, M3 large-R balance): CLOSED as RIGOROUS_PARTIAL_RESULT
+  2026-08-14 (solver R-210/R-211 + adversarial audit R-212): STRICT cascade structure
+  (a0*K0=2, a1=-2K1/K0^2, hard constant E5_5=K0^3/2+linear(K1,C1) forcing odd components)
+  INDEPENDENTLY_AUDITED_PROOF (F-NL3: level-3 4x4 singular, mechanism corrected to
+  per-family shifted levels); decisive negative result (fit limit K0~3.4553 is not a
+  zero of the truncated integer-power system through u^7; 20 multi-starts all -> K0->0);
+  corrected-branch seed root and closed leading observables (m3D-m3N, C=0, sector
+  coefficients) OPEN.  Artifacts: run_notes_addendum_2026-08-14.md, audit_report.md,
+  tools/largeR-level-cascade.md.
 
 ## Exact next action
 1. Gap (c): CLOSED 2026-08-12 (Theorem A independently re-verified, no errors found).
 2. O3a/C1: REPAIRABLE-GAP RESOLVED 2026-08-12 (stale-doc misregistration; F-210 fixed).
-3. Open problems remaining (per summary section 5.5): n>=2 reflection symmetry GLOBAL
+3. P1 (M3 follow-up, recorded 2026-08-14): solve the corrected-branch seed root of the
+   n=2 INF large-R balance - either (i) joint nonlinear solve of {K0,K1,C0,C1} with
+   odd-direction continuation (the K0->0 attractor may mask a finite root), or (ii) a
+   Puiseux/log-correction ansatz (the expansion may not be a pure integer-power series);
+   then closed m3D-m3N / C=0 / sector-determinant leading coefficients, closing (M3).
+4. Open problems remaining (per summary section 5.5): n>=2 reflection symmetry GLOBAL
    (LOCAL theorem STRICT since 2026-08-12 cont 4b; needs (G1') detJ sign (-1)^n and (G2)
    block-width compactness), switch positions/block lengths, closed-form optimal values
    max/min D_n, n=1 certificate kernel formalization, MDE unified theory, H^s density
    criteria, p-Laplacian, etc.
-4. validate_project.py, budget settlement, stage summary on stage close.
+5. validate_project.py, budget settlement, stage summary on stage close.
 ## Blockers or missing inputs
 - None: all obligations of the n=1 adjacent-gap extremal problem (SUP + INF, all R>1)
   are closed (a/b/a'/d/c + O3a-C1).  Next work: section 5.5 open problems.

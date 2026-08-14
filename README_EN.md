@@ -36,7 +36,7 @@ Strictness convention: rigorous proofs and numerical evidence are explicitly dis
 
 Authoritative list: `docs/SL_spectral_topics_summary.tex` §5 (per-problem progress and failed routes).
 
-1. **Structure closure for gap extremals** ($n\ge2$): closed forms for switch positions/block lengths, reflection symmetry and uniqueness (reduced to proving (G1$'$) $\det K>0$), closed form or sharp bounds for $\max/\min D_n$, formalization of the $n=1$ certificate replay kernel.
+1. **Structure closure for gap extremals** ($n\ge2$): closed forms for switch positions/block lengths, reflection symmetry and uniqueness (reduced to proving (G1$'$) $\det K>0$), closed form or sharp bounds for $\max/\min D_n$, formalization of the $n=1$ certificate replay kernel. Progress (2026-08-14 session 105): the M3 piece of (G1') (n=2 INF large-R asymptotics) has its level-cascade STRICT structure confirmed by an independent adversarial audit (INDEPENDENTLY_AUDITED_PROOF, R-210/R-211/R-212) plus a decisive negative result (no K0~3.46 zero of the truncated integer-power system through u^7); the corrected-branch seed root and closed observables remain open; next (P1): joint {K0,K1,C0,C1} solve or a log-correction ansatz.
 2. **General boundary/potential classes**: Neumann case (Li-Ao line), nonnegative potential $q\ge0$ (Gan-Zheng-Li-Shao line), and sign-changing weights - optimal constants and extremal structure for eigenvalue ratios.
 3. **Unified MDE extremal-measure theory**: extremal measures for Neumann gaps and maximal gaps, unified with nodal bounds (Chu-Guo-Meng-Zhang).
 4. **General denseness criterion in left-definite spaces**: necessary and sufficient conditions for polynomial density in Hilbert spaces with general boundary constraints.
