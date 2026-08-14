@@ -177,6 +177,16 @@ dD/db=+(R-1)f(b)).
   corrected-branch seed root and closed leading observables (m3D-m3N, C=0, sector
   coefficients) OPEN.  Artifacts: run_notes_addendum_2026-08-14.md, audit_report.md,
   tools/largeR-level-cascade.md.
+- Task Q-20260814-densbc-3F8A2C (DensBC, general BC denseness criterion): CLOSED as
+  RIGOROUS_PARTIAL_RESULT 2026-08-14 (run R-20260814T070000Z-densbc-3F8A2C): STRICT
+  theorems A-H (master criterion V cap Q^\perp = {0}; constrained moment
+  characterizations; corrected constraints-restore-density; complete diagonal
+  classification: dense iff beta <= 3/2 AND R has no finite run; first-moment/jump
+  criteria on V); two packet conjectures FALSIFIED (V = span{x^2,x^3}^\perp not dense
+  for all beta - free params relocate to M_4/M_5; "beta<=3/2 OR kill M_2=M_3" false -
+  R={4} finite singleton run).  Audit: coordinator-conducted (fresh-agent independence
+  UNAVAILABLE - subagent provider outage; recorded in audit_report.md), F-densbc-01
+  corrected (run moment ratio M_k = (floor(k/2)/floor(L/2)) M_L).  Open core O1-O3.
 
 ## Exact next action
 1. Gap (c): CLOSED 2026-08-12 (Theorem A independently re-verified, no errors found).
@@ -200,6 +210,14 @@ dD/db=+(R-1)f(b)).
    a1=-2K1/K0^2, E5_5 hard constant, dependency structure) with spectral hooks
    declared as assumptions.  Both queue behind the STATUS.md roadmap gaps (O16
    isometry, Weyl, MW reproof, n=1 certificate kernel) unless the user prioritizes.
+7. DensBC follow-up (recorded 2026-08-14, run R-20260814T070000Z-densbc): open core
+   O1 (exact low-moment-survival criterion for general non-diagonal H), O2 (general
+   L_j expansions killing free parameters for all beta), O3 (fractional window
+   3/2 <= s < 2, inherited).  Natural next attack: extend the run-graph analysis
+   beyond coordinate constraints (form (a) L_j with infinite expansions), and the
+   monomial-vs-sparse dichotomy to general H.  Audit independence limitation for
+   this run recorded (subagent provider outage; coordinator-conducted audit with
+   F-densbc-01 correction).
 ## Blockers or missing inputs
 - None: all obligations of the n=1 adjacent-gap extremal problem (SUP + INF, all R>1)
   are closed (a/b/a'/d/c + O3a-C1).  Next work: section 5.5 open problems.

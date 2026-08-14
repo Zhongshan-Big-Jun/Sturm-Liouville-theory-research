@@ -3049,6 +3049,10 @@
   profiles/web/cordis.patch.yml 手工 insert 行), --dump-config 合成树校验通过;
   激活需重启 dsh web (会结束当前会话, 时机由用户定); vision 需先配 VISION_API_KEY
   (智谱免费档) 或装 Ollama, mineru 需服务端点 baseURL.
+- 补充 (本地 Qwen VLM): Ollama 迁移至 F:\tools\ollama (与 deepseek-harness 同目录),
+  服务运行于 11434, OLLAMA_MODELS=F:\tools\ollama\models, 拉取 qwen3-vl:4b;
+  dsh-vision 已配置指向本地端点 (http://localhost:11434/v1, model=qwen3-vl:4b);
+  重启 dsh web 后 view_image 生效, 视觉链路 = 纯文本模型 -> view_image -> 本地 qwen3-vl.
 
 ### 2026-08-14 会话 105 (P0: M3 大R主平衡收尾, math-research-workflow 管道)
 - 任务: 完成 P0 - 运行 R-20260812T090000Z-g1prime-g2 的 M3 义务收尾 (n=2 对称 INF 分支
@@ -3083,3 +3087,38 @@
   独立审计确认, 决定性负结果把缺口收紧为两个具体假设; 下一步 (P1): 联合求解
   {K0,K1,C0,C1} (奇分量续延) 或 Puiseux/对数修正 ansatz; 审计 F-NL3 机制更正已登记.
 - 诚实声明: 全部数值 EVIDENCE; 未宣称 M3 或 (G1') 已解决.
+
+### 2026-08-14 会话 106 (DensBC: 边界约束子空间多项式稠密性一般判据, math-research-workflow)
+- 任务: 推进概述 §5.5 第 4 条开放问题 - 受一般边界条件约束的 Hilbert 空间中
+  多项式稠密的充要条件; 任务包 Q-20260814-densbc-3F8A2C (B0 预检: 无已发表
+  约束子空间判据; 文献: Berg-Christensen AIF 1981 DOI 10.5802/aif.840,
+  Dette-Zhigljavsky arXiv:2101.11968, Berg-Thill Acta Math 167 (1991)
+  DOI 10.1007/BF02392450, Rodriguez JAT 120 (2003) DOI
+  10.1016/S0021-9045(02)00019-9 - 均为全空间稠密性), 运行
+  R-20260814T070000Z-densbc-3F8A2C.
+- 求解器 (fresh subagent 29aa5e2c) 交付 RIGOROUS_PARTIAL_RESULT, 定理 A-H STRICT:
+  A 主判据 (V∩Q^\perp={0} iff 稠密); B/C 约束矩刻画; D 约束恢复稠密性修正版
+  (全部 p_n in V + x^2,x^3 in V^\perp => 任意 β 稠密, 递推 M_{2m}=m·M_2);
+  E 对角完整分类: 稠密 iff (β<=3/2 且 R 无有限游程) (游程图 + Lemma 4.1);
+  F 一阶矩判据 on V (β<1 + 尾部递推 + 低位参数钉零); G 跳变判据 (条件性依赖
+  项目增长引理); H 边界泛函解释.
+- 两个包猜想被否证 (STRICT 机制): (a) V=span{x^2,x^3}^\perp 非全 β 稠密 -
+  p_4,p_5 不被保留, 自由参数转移到 M_4/M_5, β>3/2 时范数尾 Σ m^{2-2β} 收敛;
+  (b) 判据 "β<=3/2 或约束杀 M_2=M_3" 为假 - R={4} 产生度 2 有限单例游程,
+  有限支撑 w=e_2 在任意 β 破坏稠密性. 推论: 对角空间内保留单项式族恒稠密
+  (稀疏族失败是伪影).
+- 审计: fresh-agent 审计 3 次尝试 + 最小探测全部失败 (子代理机制故障), 由
+  协调者独立重导审计 (audit_report.md 如实记录独立性限制); A1-A10 除
+  F-densbc-01 外全 PASS; F-densbc-01: Lemma 4.1 奇次游程比值公式错误 (递推
+  给出 M_{2m+1}=(m/2)M_5, 精确检查 M_11/M_5=5/2 vs 表述 2; 错误公式在
+  R={2,3} 反例上产生 37 违规, 更正链 0 违规), 更正为
+  M_k=(floor(k/2)/floor(L/2))·M_L; 分类阈值与两个否证不受影响.
+  验证脚本 scripts/_audit_densbc_coord.py (sympy 精确, 可复现).
+- 开放核: O1 一般非对角 H 精确低位矩存活判据; O2 一般 L_j 展开杀自由参数;
+  O3 分数窗 (继承).
+- 摄入: run-manifest (ingestion COMPLETED + audit_note); 工具库新增
+  tools/constrained-denseness-runs.md + README 索引/速查表/维护日志;
+  概述文档 §5.5 第 4 条进展注记并重编译; README 中英同步; RESUME/current.json/
+  checkpoint/activity 更新; 门禁 0 problems; git 提交推送 origin + fork.
+- 诚实声明: 全部数值 EVIDENCE; 审计为协调者执行 (非 fresh-agent 独立, 限制
+  已如实记录); 定理 A-H 为 STRICT 但开放核 O1-O3 未闭合.

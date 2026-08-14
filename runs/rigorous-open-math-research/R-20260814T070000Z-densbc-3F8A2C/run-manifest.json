@@ -1,0 +1,54 @@
+{
+  "run_id": "R-20260814T070000Z-densbc-3F8A2C",
+  "task_id": "Q-20260814-densbc-3F8A2C",
+  "date": "2026-08-14",
+  "project_git_head": "108aa258ef877b88ede886eefacdff96ed52439d",
+  "upstream_status_verbatim": "RIGOROUS_PARTIAL_RESULT",
+  "manager_ingestion_state": "COMPLETED",
+  "audit_note": "Coordinator-conducted audit 2026-08-14 (fresh-agent independence UNAVAILABLE: subagent provider outage at audit time, 3 attempts + probe failed; recorded in audit_report.md header). Verdicts A1-A10 PASS except F-densbc-01 (statement): Lemma 4.1 odd-run ratio formula incorrect as stated (recursion gives M_{2m+1} = (m/2)M_5, exact check M_11/M_5 = 5/2 vs stated 2); corrected uniform statement M_k = (floor(k/2)/floor(L/2)) M_L; Theorem E thresholds and both falsifications unaffected. Both packet conjectures falsified SOUNDLY (exact 0-violation re-derivations). Verification: scripts/_audit_densbc_coord.py (exact sympy).",
+  "python": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe (PYTHONUTF8=1)",
+  "source_bundle_sha256": {
+    "docs/SL_denseness_criteria.tex": "E869849444092C148955BE4B3530F7E9A6C27472650CDAE7DC2E29DF910E8671",
+    "tools/denseness-criteria.md": "7B136CCC4CBC0502FC66E641655C373CDE13A8989C83D66C9CC1660B21239356",
+    "tools/moment-jump-completeness.md": "01E7AD2CCCC1EDDFC04CF1A87D1D03BB8F46410697EDFC4F481BB35B518CE3CC",
+    "docs/SL_h3_completeness_proof.tex": "41E3A8F4289DFA8415A1126348755536C212B3CE4DCDF13617890ED306FB23F0",
+    "papers/axioms14_115.pdf": "D1BCB1759ED6D4FC8E29EDA248A78C646926AD94CA4DCC7E4A13EEA909C2ECC6"
+  },
+  "main_results": {
+    "theorem_species": {
+      "Theorem A master criterion": "STRICT",
+      "Theorem B monomial moment characterization": "STRICT",
+      "Theorem C sparse moment characterization": "STRICT",
+      "Theorem D corrected constraints-restore-density": "STRICT",
+      "Theorem E complete diagonal classification": "STRICT",
+      "Theorem F first-moment criterion on V": "STRICT",
+      "Theorem G jump criterion on V": "STRICT (conditional on project growth lemma)",
+      "Theorem H boundary-functional interpretation": "STRICT"
+    },
+    "falsified": [
+      "packet V=span{x^2,x^3}^perp dense for every beta (FALSE for beta>3/2)",
+      "proposed criterion beta<=3/2 OR constraints force M2=M3=0 (FALSE)"
+    ],
+    "open_core": [
+      "O1 general non-diagonal H exact low-moment-survival criterion",
+      "O2 general L_j expansion killing free params for all beta",
+      "O3 fractional left-definite window (inherited)"
+    ]
+  },
+  "reproducibility": {
+    "densbc_v1_verify_free_params.py": "2533EFD86EBFA718",
+    "densbc_v2_diagonal_classify.py": "B69E7194AF69F3E0",
+    "densbc_v3_diagonal_universal.py": "17D6F676D31677D8",
+    "densbc_v3_OUTPUT.txt": "9986826AB450AB86",
+    "densbc_v4_finite_run_phenomenon.py": "32EED05A68104D46",
+    "densbc_v5_classification_verdict.py": "CE98294E2415D8D8",
+    "densbc_v5_OUTPUT.txt": "E7EDEC7D33BA1B13",
+    "densbc_v6_exact_recursion.py": "37D36D6D115E4C69"
+  },
+  "literature_deepreads": {
+    "berg_christensen_DEEPREAD.md": "AIF 31(3) (1981) 99-114, DOI 10.5802/aif.840",
+    "arxiv_2101_11968_DEEPREAD.md": "Dette-Zhigljavsky arXiv:2101.11968v5",
+    "berg_thill_DEEPREAD.md": "Acta Math. 167 (1991) 207-227, Zbl 0744.44006, DOI 10.1007/BF02392450 (review-level)",
+    "jat2002_shobolev_density_DEEPREAD.md": "Rodriguez JAT 120 (2003) 185-216, DOI 10.1016/S0021-9045(02)00019-9"
+  }
+}
