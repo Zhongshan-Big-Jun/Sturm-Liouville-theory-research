@@ -37,6 +37,8 @@
   "Notes for future agents" 小节.
 - **GitHub 网络**: 直连 github.com 失败时, 用本地代理 push:
   `git -c http.proxy=http://127.0.0.1:7897 push origin main` (本机实测可用).
+- **外部仓库克隆位置**: 临时调研用的外部仓库统一克隆到 `F:\tools\` 下
+  (例如 `F:\tools\rethlas-clone\`), 不要放到 C 盘用户目录; 用完可删除.
 
 ## 会话记录
 
