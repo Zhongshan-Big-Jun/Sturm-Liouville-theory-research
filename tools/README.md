@@ -64,6 +64,7 @@ created: 2026-08-04
 - [[third-order-recurrence]] - 三阶递推积分解理论: 积分解分类/精确降阶/最小解 (会话 11)
 - [[gap-band-extremals]] - 带状自洽极值判据: 相邻间距驻点条件与 FH 对称加倍 (会话 13)
 - [[largeR-level-cascade]] - 大 R 层级级联平衡: band 系统整数幂级数层级结构/硬常数机制/分族平移层 (会话 105, R-210/R-211, 审计 R-212)
+- [[m3-log-correction]] - M3 对数修正假设: 截断整数幂无根 + 数据拟合 u^2 主导 + log u 匹配渐近下一步 (会话 108, 2026-08-16, EVIDENCE)
 - [[constrained-denseness-runs]] - 边界约束子空间多项式稠密性: 矩刻画/游程图/对角完整分类 (会话 106, R-20260814T070000Z-densbc)
 - [[gap-n1-reduction]] - 两块族归约定理 (O1, 2026-08-05)
 - [[two-block-gap-bounds]] - 两块相位间距界 3pi^2/R < D < 3pi^2 (O3b, 2026-08-05)
@@ -160,6 +161,7 @@ created: 2026-08-04
 | [[second-variation-weighted-eigenvalues]] | 自研 (R-206, 2026-08-13) | lambda'' 公式 STRICT; P1/P2/P3 EVIDENCE; 交接二阶系数路线否证 (delta' 机制 STRICT) | 自研方法 |
 | [[half-problem-regularized-green]] | 自研 (R-207/208, 2026-08-13) | 闭式/扇区/锚点 STRICT: (G1') 于 (1,1+δ) 一切 n, (I1)/(I2) 于 (1,1+δ) n=2; 剩余 (M1)-(M3) 开放 | 自研方法 |
 | [[largeR-level-cascade]] | 自研 (会话 105, R-210/R-211 + 审计 R-212, 2026-08-14) | STRICT 结构经独立审计 (INDEPENDENTLY_AUDITED_PROOF, F-NL3 更正); 整数幂分支根开放 (K0->0 负结果 EVIDENCE); M3 总体 RIGOROUS_PARTIAL_RESULT | 自研方法 |
+| [[m3-log-correction]] | 自研 (会话 108) | 数值证据 (RMSE 8e-7, 无严格证明) | 自研 |
 | [[constrained-denseness-runs]] | 自研 (会话 106, run R-20260814T070000Z-densbc, 2026-08-14) | 定理 A-H STRICT (协调者审计, F-densbc-01 更正); 对角完整分类 (β<=3/2 且无有限游程); 两个包猜想被否证; 开放核 O1-O3 | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
