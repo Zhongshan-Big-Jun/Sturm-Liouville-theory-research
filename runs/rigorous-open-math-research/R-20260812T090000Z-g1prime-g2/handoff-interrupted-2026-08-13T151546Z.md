@@ -15,6 +15,21 @@ math-research-workflow handoff protocol; the M3 balance is still open.
 - **Upstream status verbatim:** `RIGOROUS_PARTIAL_RESULT - (G2) CLOSED STRICT (R-204); (G1') STRICT on (1,1+delta) for every n (R-208 anchor); open core [1+delta,infinity); n=2 (I1)/(I2) reduced to (M1) d/dR det Kp_odd, det Ko < 0 + (M2) trace signs + (M3) R->inf asymptotics; M3 NOT closed`
 ```
 
+
+## Completed work progress
+
+- STRICT algebraic lemmas established: hard constant E5_5 = 1/(2K^2) forces odd components; even-only ansatz structurally impossible.
+- Exact closed 4-equation system derived and verified to 1e-12 at R=350; 270-row continuation to R=8.99e4.
+- Free-exponent fits gave primary exponent s ~ 2 and limits K0 ~ 3.4553, a0 ~ 0.5788, b0 ~ 0.2898, c0 ~ 1.4741; retracted old K -> 2.789.
+- Level-by-level cascade plan and reduced seed structure documented.
+
+## Tools and methods tried
+
+- sympy exact coefficient dict (P) and series extraction `[SUCCEEDED]`: structural impossibility of even-only ansatz.
+- scipy least_squares / root solvers `[PARTIAL]`: continuation and fits; no closed balance.
+- transfer-matrix / spectral engine cross-checks `[SUCCEEDED]` (EVIDENCE): closed system validated at R=350.
+- full 32-unknown symbolic solve `[BLOCKED]`: too slow; fix identified (per-monomial truncation + cascade).
+
 ## Completed obligations
 
 Nothing inside the M3 sub-obligation is a complete theorem yet.  The

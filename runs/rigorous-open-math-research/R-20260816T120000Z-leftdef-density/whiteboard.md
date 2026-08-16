@@ -19,18 +19,14 @@ s>=4 repair) -> corrected scoping + exact re-derivation.
 
 ## Route history
 
-- Whole-space recovery (V=H^s) `[SUCCEEDED, scoped]`: L1' for s in {1,2,3};
-  L1'' negative for s>=4.
-- Structural projection density `[SUCCEEDED, s in {1,2,3}]`: L2.
-- Transfer descent `[SUCCEEDED]`: L3 core; remark corrected (r=1 only).
-- Proper V characterization `[SUCCEEDED, s in {1,2,3}]`: L4.
-- Concrete non-density instance `[SUCCEEDED]`: L5 (V=ker Δ in H^2).
-- O1' status `[PARTIAL]`: L6 decided for V=H^s (L1'/L1'') and L5; open for general
-  proper V (O1'LD).
-- Decisive structural finding `[SUCCEEDED]`: S1d/L1'' (sparse family not in H^s
-  for s>=4; p_4 notin H^4, exact).
-- Audits `[DONE]`: REPAIRABLE_GAP then FATAL on first repair; final correction
-  exact-re-derived.
+- `[SUCCEEDED]` Whole-space recovery (V=H^s): L1' for s in {1,2,3}; L1'' negative for s>=4.
+- `[SUCCEEDED]` Structural projection density: L2 for s in {1,2,3}.
+- `[SUCCEEDED]` Transfer descent: L3 core; remark corrected (r=1 only).
+- `[SUCCEEDED]` Proper V characterization: L4 for s in {1,2,3}.
+- `[SUCCEEDED]` Concrete non-density instance: L5 (V=ker Δ in H^2).
+- `[PARTIAL]` O1' status: L6 decided for V=H^s (L1'/L1'') and L5; open for general proper V (O1'LD).
+- `[SUCCEEDED]` Decisive structural finding: S1d/L1'' (sparse family not in H^s for s>=4; p_4 notin H^4, exact).
+- `[SUCCEEDED]` Audits: REPAIRABLE_GAP then FATAL on first repair; final correction exact-re-derived.
 
 ## Ideas to return to
 

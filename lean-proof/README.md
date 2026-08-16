@@ -39,7 +39,10 @@ lean-proof/
 
     ├── ProjectionDensity.lean    DensBC O1 Theorem 1 抽象核: 连续满射把稠密集映到像中稠密集 + 正交投影密度 (DensBC O1)
     ├── DensBCEmpty.lean       DensBC O1 Lemma 6.1 抽象核: 空候选族闭包张成空间为 {0}, 稠密则 V={0} (DensBC O1)    ├── SymlineTensionRatio.lean  对称线张力比代数核心: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 + gamma_0*/Lemma ys2 (间距线 n=1)
-    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
+
+    ├── DensBC_O1_Scaffold.lean       DensBC O1 Theorems 2-5 + O1′ placeholder scaffold (-- SCAFFOLD, sorry)
+    ├── LeftDefDensity_Scaffold.lean  left-definite density L1′-L5 + O1′LD scaffold (-- SCAFFOLD, sorry)
+    ├── formalization_progress.md      scaffold register    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
     ├── SymlineUniqueZero.lean    对称线 KEY LEMMA 装配核心: 唯一零点/符号结论 + 端点代数核心 (间距线 n=1)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
     ├── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
@@ -76,3 +79,8 @@ ReflectionSymmetry / DensenessCriteria / ProjectionDensity / DensBCEmpty /  Syml
 - Windows 下避免 PowerShell `Set-Content -Encoding UTF8` 写入文件 (会加 BOM, lean 报
   "expected token"); 用 Python `write_text(..., encoding='utf-8')` 或
   `[System.IO.File]::WriteAllText(..., UTF8Encoding($false))`.
+
+## Scaffolds
+
+- Partial/structural results have `-- SCAFFOLD` Lean files with `sorry`; they are NOT formally verified.
+- See `formalization_progress.md`.

@@ -78,6 +78,12 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_gap_nge2_exact_2n_switches_proof.tex | 相邻谱隙极值子精确 2n 开关定理 | 已证 | 未开始 |
 | SL_gap_nge2_finite_reduction_proof.tex | n>=2 有限块约化 | 已证 | 未开始 |
 | SL_spectral_topics_summary.tex 等 3 份 summary | 综述/研究总结 | 汇总 | 不适用 |
+## Scaffolds (partial results, NOT formally verified)
+
+- `SL/DensBC_O1_Scaffold.lean` -- DensBC O1 Theorems 2-5 + O1' open core placeholders (`sorry`, `-- SCAFFOLD`).
+- `SL/LeftDefDensity_Scaffold.lean` -- left-definite density L1'/L1''/L2/L3/L4/L5 + O1'LD open core placeholders (`sorry`, `-- SCAFFOLD`).
+- See `formalization_progress.md` for the scaffold register.
+
 ## 3. 诚实说明
 
 - 上表"源状态"以项目文档与 AGENTS.md 会话记录为准; 若某文档在源中即标注数值/开放,
