@@ -46,3 +46,16 @@ recorded P1 obstacle; M3 remains NOT closed.
 - `scripts/_tmp_p1_bounded.py`, `scripts/_tmp_p1_bounded2.py` -- bounded
   multi-start searches (EVIDENCE).
 - Fit used inline python against `scripts/_gapn2_largeR_big.json`.
+
+## 4. Quantitative log-linear evidence
+
+Using K0 = 3.45609479 from the free-exponent fit, the quantity
+y(u) = (K(u) - K0)/u^2 is almost perfectly linear in log u:
+
+    y(u) ~ K2 + L log u,   K2 ~ 2.92536, L ~ 0.04766,
+    correlation ~ 0.99999, RMSE(y) ~ 2.4e-5.
+
+This is consistent with
+    K(u) = K0 + K2 u^2 + L u^2 log u + ...
+and provides a quantitative target for the next matched-asymptotics
+derivation.  EVIDENCE only.

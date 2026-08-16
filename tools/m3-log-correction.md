@@ -44,5 +44,7 @@ C(u) = C0 + C1 u + C2 u^2 + ... (C1 forced nonzero by the hard constant E5_5).
 - Bounded multi-start: `scripts/_tmp_p1_bounded2.py` best residual 3.5e-2,
   no K0~3.4 root.
 - Fit: inline python against `_gapn2_largeR_big.json`, RMSE 8.4e-7.
+- Log-linear check: `(K-K0)/u^2 ~ K2 + L log u` with `K2 ~ 2.92536`,
+  `L ~ 0.04766`, correlation `~0.99999` (EVIDENCE, 2026-08-16).
 - Source: run notes addendum 2026-08-16, run R-20260812T090000Z-g1prime-g2.
 - Status: OPEN; next step is a matched-asymptotics expansion with `log u`.
