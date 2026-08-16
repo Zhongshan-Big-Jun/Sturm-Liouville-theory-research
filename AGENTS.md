@@ -35,6 +35,8 @@
 - **插件仓库注意事项**: 见 `_xsoc1_work/AGENTS.md` (Codex 父仓库) 与
   `C:\Users\HuangZY\.dsh\math-research-dsh\AGENTS.md` (DSH 适配仓库) 的
   "Notes for future agents" 小节.
+- **GitHub 网络**: 直连 github.com 失败时, 用本地代理 push:
+  `git -c http.proxy=http://127.0.0.1:7897 push origin main` (本机实测可用).
 
 ## 会话记录
 
