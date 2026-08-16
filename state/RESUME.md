@@ -30,7 +30,7 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 ## Active: left-definite density criterion (2026-08-16)
 - Task packet: Q-20260816-leftdef-density-E5F6A7B8
 - Run root: runs/rigorous-open-math-research/R-20260816T120000Z-leftdef-density
-- Status: dispatched to background solver subagent ef563561; no result yet.
+- Status: INGESTED as RIGOROUS_PARTIAL_RESULT (run R-20260816T120000Z-leftdef-density). STRICT L1-L6, L5 counterexample (V=ker Delta in H^2), independent audit REPAIRABLE_GAP + repairs; reduced core O1'LD open.
 - Goal: complete/advance general density criterion in left-definite spaces, specializing DensBC O1 and targeting O1'.
 - Literature lead: Fleeman-Frymark-Liaw, J. Approx. Theory 2018/2019, DOI 10.1016/j.jat.2018.10.005 (not yet deep-read).
 
