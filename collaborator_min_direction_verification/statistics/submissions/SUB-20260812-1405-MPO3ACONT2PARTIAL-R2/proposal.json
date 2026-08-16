@@ -1,0 +1,507 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260812-1405-MPO3ACONT2PARTIAL-R2",
+  "author_agent_id": "root-mpo3a-cont2-author",
+  "run_id": "R-20260812T022307Z-mpo3a-cont2",
+  "created_at": "2026-08-12T06:01:30Z",
+  "base_blueprint_hash": "sha256:2b231a1806abad99631c2fec1075e44c48b43744d256c788f5de3f55415911e6",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": "SUB-20260812-1140-MPO3ACONT2PARTIAL",
+  "summary": "Record four independently audited exact partial results from the second multiphase O3a continuation while keeping the universal max, min, and combined targets open; this R2 supersedes a terminally rejected proposal whose review used a receiver-incompatible proof-check key.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-FULL-RELAY",
+        "type": "inference",
+        "title": "Full asymmetric O3a points admit an exact relay reduction",
+        "statement": "The weighted-string structure theorem, exact scaling, relay energy identity, regular Sturm indexing, and strict consecutive-mode quotient monotonicity imply the trajectory bijection and chamberwise two-scalar reduction in CLM-NGE2-MPO3A-FULL-RELAY.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/derivation.md",
+          "sha256": "sha256:0e6f919fa94e5f2a3c1c90ee825916346289d0c2c0f5250315a1a7e17da6679f"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "type": "claim",
+        "title": "Exact full-interval relay and two-scalar formulation",
+        "statement": "For every finite R>1, n>=2 and max/min sign, arbitrary possibly asymmetric self-consistent 2n-switch points are in bijection with finite-switch relay trajectories U_tt=-rho U, V_tt=-mu^2 rho V, S=U^2-mu^2V^2, with the matching saturation law, initial data U(0)=V(0)=0, U_t(0)=1, V_t(0)=q>0, and terminal conditions Theta_U(L)=n pi, Theta_V(L)=(n+1)pi, I_U(L)=I_V(L). Every such terminal solution automatically has q>1 and exactly 2n simple relay events. On every premise-complete transverse chamber this is equivalent to two scalar equations A_n(mu,q)=T_U^n-T_V^(n+1)=0 and B_n(mu,q)=I_U(T_U^n)-I_V(T_U^n)=0, with all chambers and overlapping closures included. This is an exact reduction, not an injectivity or uniqueness theorem.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-FULL-RELAY"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-SHAPE-HESSIAN",
+        "type": "inference",
+        "title": "Reduced resolvents give the exact switch-shape Hessian",
+        "statement": "Feynman-Hellmann differentiation with moving interfaces, weighted normalization, and the reduced resolvent expansion imply the exact Hessian formula, local sign law, and termwise Green-sign obstruction in CLM-NGE2-MPO3A-SHAPE-HESSIAN.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-SHAPE-HESSIAN",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/jacobian_morse/derivation.md",
+          "sha256": "sha256:c438a98c8def533c6ca01ee67f5092298ba8797ad6b61319a5de61f65f6e2fb5"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-SHAPE-HESSIAN",
+        "type": "claim",
+        "title": "Exact reduced-Green switch Hessian and open trace inequality",
+        "statement": "At every premise-complete self-consistent point, with delta_i the left-minus-right material jump and J=D_xG, the adjacent-gap shape Hessian is H=diag(delta_i)J and is the bilinear difference B_{n+1}-B_n, where B_k(h,q)=2 lambda_k c_k[h]c_k[q]-2 lambda_k^2 Q_k(h,q)-2 lambda_k E_k(h,q), Q_k uses the reduced Green kernel sum over ell!=k with denominator lambda_ell-lambda_k, and the moving-interface local term in H is sum_i delta_i h_iq_iF'(x_i). That local term is strictly negative for max and strictly positive for min. The reduced spectral sums contain both denominator signs, so simple Sturm ordering alone cannot prove the Green remainder termwise has the local sign. Full sign definiteness would follow from the strict paired trace-resolvent inequalities stated in the proof package, but they remain open and are sufficient rather than necessary for mere Jacobian nonsingularity.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-SHAPE-HESSIAN"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE",
+        "type": "inference",
+        "title": "Constant midpoint perturbations give parity-alternating gap curvature",
+        "statement": "Exact generalized-eigenvalue second variation at a constant symmetric weight and cotangent partial fractions imply the parity-alternating reflection-chord curvature and scoped no-go statement in CLM-NGE2-MPO3A-POLARIZATION-CURVATURE.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP"],
+        "conclusion": "CLM-NGE2-MPO3A-POLARIZATION-CURVATURE",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/polarization/derivation.md",
+          "sha256": "sha256:de323a73e23ac0dd87729e36ded31b043b0551057cc8536c49d3dfe8f9862a2e"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-POLARIZATION-CURVATURE",
+        "type": "claim",
+        "title": "Parity obstruction to unrestricted reflection-chord curvature",
+        "statement": "For the antisymmetric half-step perturbation rho_s=c+sHh_0 at a constant midpoint, lambda_k''(0)=H^2 pi^2/(2c^3) times -k^2 for odd k and 3k^2 for even k. Consequently the adjacent-gap midpoint curvature is positive for every odd n and negative for every even n. Thus arbitrary-admissible-weight reflection chords are not concave uniformly in all n and are not convex uniformly in all n. This refutes the broad uniform curvature-sign proof mechanism only: it does not exclude the opposite fixed-parity sign, a self-consistency-restricted chord theorem, or multiphase O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-POLARIZATION-CURVATURE"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+        "type": "inference",
+        "title": "Adjacent transfer factors do not have an unrestricted fixed minor sign",
+        "statement": "The subcritical transfer formulas, strict monotonicity of tau, and exact radical certificates imply the local total-positivity obstruction and its precise scope in CLM-NGE2-MPO3A-TRANSFER-OBSTRUCTION.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/derivation.md",
+          "sha256": "sha256:12322dc689e99719e154da6578797dfb54567e6026e1e40b32cb2c3d0f52982d"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+        "type": "claim",
+        "title": "Exact local obstruction to unrestricted transfer total positivity",
+        "statement": "In the subcritical cell chamber 0<theta<mu theta<pi, tau(theta)=mu sin(theta)/sin(mu theta) is strictly increasing and the natural two-cell paired DtN minor has sign equal to tau(theta_+)-tau(theta_-). At mu=2, R=4 and alternating materials, the exact phase pairs (pi/6,pi/4), (pi/4,pi/6), and (pi/6,pi/6) give respectively positive, negative, and zero minors including material prefactors. Hence an unrestricted per-factor fixed strict sign lemma is false. The accepted nodal allocation supplies only an internal-cell phase bound below 2pi, not the subcritical bound. These facts do not prove that all phase orders occur in complete O3a solutions, do not refute every full-word invariant, and do not refute O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-CONT2-JAC",
+      "changes": {
+        "status": "partial",
+        "grade": "B",
+        "attempt_status": "partial",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/routes/jacobian_morse/route_report.md"
+        }
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+      "changes": {
+        "status": "partial",
+        "grade": "B",
+        "attempt_status": "partial",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/routes/polarization/derivation.md"
+        }
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER",
+      "changes": {
+        "status": "partial",
+        "grade": "B",
+        "attempt_status": "partial",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/route_report.md"
+        }
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT2-FULL-RELAY",
+        "type": "attempt",
+        "title": "Full asymmetric relay injectivity route",
+        "statement": "Reduce the complete possibly asymmetric self-consistency system to two scalar zero-time equations and seek global injectivity across every premise-complete relay chamber, or certify two distinct complete roots.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": ["GOAL-NGE2-MPO3A-CONT2"],
+        "method_family": "Hybrid relay shooting, exact event count, zero-time residuals, Hamiltonian saltation, and chamberwise injectivity",
+        "route_key": "mpo3a-cont2-full-asymmetric-relay",
+        "deliverable_contract": "A globally injective two-scalar relay map over all complete chambers, a certified distinct-root witness, or an exact first obstruction with restart conditions.",
+        "falsification_tests": [
+          "Do not assume reflection symmetry, a fixed event word away from roots, or q>1 before deriving it.",
+          "Recover Sturm indices and all 2n transverse events in the converse direction.",
+          "Audit chamber boundaries, duplicate descriptions, grazing away from solutions, and both saturation signs."
+        ],
+        "expected_bottleneck": "Global injectivity across changing relay chambers; symplecticity does not exclude conjugate points.",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/route_report.md"
+        }
+      }
+    },
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-FULL-RELAY", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-FULL-RELAY", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-FULL-RELAY", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-MPO3A-FULL-RELAY", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-FULL-RELAY", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-FULL-RELAY", "target": "CLM-NGE2-MPO3A-FULL-RELAY", "role": "inference_input"},
+
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-SHAPE-HESSIAN", "target": "CLM-NGE2-MPO3A-SHAPE-HESSIAN", "role": "inference_input"},
+
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE", "target": "CLM-NGE2-MPO3A-POLARIZATION-CURVATURE", "role": "inference_input"},
+
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "target": "CLM-NGE2-MPO3A-TRANSFER-OBSTRUCTION", "role": "inference_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-MPO3A-CONT2", "target": "ATT-NGE2-MPO3A-CONT2-FULL-RELAY", "role": "target_input"}
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {
+      "ATT-NGE2-MPO3A-CONT2-JAC": "semantic-sha256:66d36d16741ad97159bbb6d10769134d335b0f61f858046e5e6e6483c9330dbe",
+      "ATT-NGE2-MPO3A-CONT2-POLARIZATION": "semantic-sha256:14fddf18b1fd904bf4071dc200cfbcd53bb13d852de16ea4ccc8b4f30c0578cc",
+      "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER": "semantic-sha256:e4deba0311614240d7af96bed5734993a79e95aa2d680c216f9ca1a805955cbf"
+    },
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-FULL-RELAY",
+      "CLM-NGE2-MPO3A-FULL-RELAY",
+      "INF-NGE2-MPO3A-SHAPE-HESSIAN",
+      "CLM-NGE2-MPO3A-SHAPE-HESSIAN",
+      "INF-NGE2-MPO3A-POLARIZATION-CURVATURE",
+      "CLM-NGE2-MPO3A-POLARIZATION-CURVATURE",
+      "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+      "CLM-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+      "ATT-NGE2-MPO3A-CONT2-FULL-RELAY"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4",
+      "OBL-NGE2-MPO3A-JAC-MAX": "semantic-sha256:c41954bb5db9c986d5cc2da72ea5476c51ece313afa98affb3c3c91c8e61b6e9",
+      "OBL-NGE2-MPO3A-JAC-MIN": "semantic-sha256:5825c92aa95d71b3005014824262dd564482bfa90a74ceaf7a02b2a0b7143a26"
+    }
+  },
+  "rationale": {
+    "research_status": "independently_audited_rigorous_partial_results_with_universal_target_open",
+    "scope": "The proposal records exact reductions, second-variation identities, and scoped proof-strategy obstructions. It neither proves nor refutes universal multiphase O3a.",
+    "independence": "The Jacobian route, reflection polarization route, transfer-order route, and full asymmetric relay route use distinct mechanisms; each exact artifact received an independent definition, logic, boundary, and adversarial audit.",
+    "computation_policy": "Floating root searches and chord/Hessian probes remain non-propagating numerical evidence. No finite scan is used as a universal premise and no interval certificate was invoked because no candidate survived premise checks.",
+    "early_stop": "All four mechanism-distinct routes reached an exact audited obstruction or open injectivity/trace inequality, satisfying the user-authorized early-stop condition before the eight-hour deadline.",
+    "novelty_policy": "Novelty and priority are unknown; no claim is made."
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T022307Z-mpo3a-cont2/artifacts/partial_proof_package.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/derivation.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/audit.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/hamiltonian_structure.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/jacobian_morse/derivation.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/jacobian_morse/audit.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/polarization/derivation.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/polarization/audit.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/derivation.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/independent_audit.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/exact_minor_certificate.json"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Every finite R>1 and integer n>=2.",
+        "contract_explanation": "The frozen universal domain; no finite-grid, asymptotic, or R=infinity replacement is introduced."
+      },
+      {
+        "node_id": "DEF-SL-BOX-ADJ-GAP",
+        "premise_kind": "definition_contract",
+        "scope": "Positive bounded weighted Dirichlet strings and increasingly indexed adjacent eigenvalue gaps.",
+        "contract_explanation": "Every relay, perturbation, Green-kernel, and transfer calculation remains in the canonical model."
+      },
+      {
+        "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+        "premise_kind": "definition_contract",
+        "scope": "Merged positive-length bang-bang cells and effective interior switches.",
+        "contract_explanation": "Null cells and a.e.-irrelevant point values are not counted as phases or switches."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Both saturation signs, exactly 2n effective switches, and arbitrary asymmetric points.",
+        "contract_explanation": "No route assumes reflection symmetry or global optimality merely from self-consistency."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "All finite R>1, n>=2, signs, and zero-aligned complete switch sets.",
+        "contract_explanation": "It supplies the forced simple switch structure and endpoint word in forward arguments; converse relay event counting is independently reconstructed."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-FULL-RELAY",
+        "ordered_steps": [
+          "Scale an arbitrary left-oriented normalized consecutive eigenpair by t=sqrt(lambda_n)x to obtain the two-frequency relay, the sign law, indexed endpoint phases, and equal relay integrals.",
+          "For a relay terminal solution, glue the cell energy across every S=0 event and integrate by parts to derive L(q^2-1)=2(mu^2-1)I and hence q>1.",
+          "Reconstruct a positive weighted Dirichlet coefficient and normalized modes; the lifted phases identify the nth and (n+1)st eigenvalues before any event-count argument.",
+          "Use strict consecutive-mode quotient monotonicity and the endpoint slope ratios to count exactly two simple S crossings in each of the n U-nodal intervals, forcing the complete alternating material word.",
+          "Use finite cellwise IVP uniqueness and induction across the now-simple sign-changing events to make the trajectory unique for fixed scalar labels.",
+          "Eliminate the common terminal time chamberwise to obtain the exact two-equation system in (mu,q), retaining every premise-complete chamber and its closure identifications."
+        ],
+        "boundary_cases": [
+          "n=2 gives four simple events and is included.",
+          "The converse does not assume event count, transversality, q>1, endpoint material, or reflection symmetry.",
+          "Grazing away from roots, chamber changes, duplicate closure descriptions, the common endpoint, and a.e. event values are explicitly scoped.",
+          "All finite R>1 and both saturation signs are retained; no R=1 or R=infinity claim is made."
+        ],
+        "external_results": [
+          "Accepted CLM-NGE2-MPO3A-STRUCTURE for the forward switch description; regular Sturm oscillation and strict consecutive-mode quotient facts are reconstructed in the package for the converse."
+        ],
+        "proof_package_sha256": "sha256:0e6f919fa94e5f2a3c1c90ee825916346289d0c2c0f5250315a1a7e17da6679f",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-SHAPE-HESSIAN",
+        "ordered_steps": [
+          "Represent switch displacement h by the distributional weight derivative sum_i delta_i h_i delta_xi and apply normalized Feynman-Hellmann differentiation.",
+          "Differentiate the first gap derivative at a self-consistent zero set to obtain H=diag(delta)J and weighted Jacobian symmetry.",
+          "Invert the differentiated eigenfunction equation on the weighted-orthogonal complement and include the essential normalization component -c_k u_k/2.",
+          "Differentiate moving interface evaluations to obtain B_k=2lambda_k c_kc_k-2lambda_k^2Q_k-2lambda_kE_k and subtract adjacent modes.",
+          "Combine the alternating F crossing direction with the forced material words to prove the local diagonal is negative for max and positive for min.",
+          "Expand each reduced Green quadratic form spectrally and isolate lower- and higher-mode denominator signs, proving that a termwise same-sign Sturm shortcut is unavailable while leaving the paired trace inequality open."
+        ],
+        "boundary_cases": [
+          "No reflection symmetry is used; arbitrary asymmetric premise-complete interior points are covered.",
+          "The shape path retains the material word and positive cells; R=1, R=infinity, collapsed cells, endpoints, and grazing are excluded exactly as stated.",
+          "The mixed spectral signature is not promoted to actual indefiniteness on every finite interface trace space.",
+          "The strict paired inequality is classified as sufficient but not necessary for nonsingularity."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:c438a98c8def533c6ca01ee67f5092298ba8797ad6b61319a5de61f65f6e2fb5",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE",
+        "ordered_steps": [
+          "At a reflection-symmetric midpoint and antisymmetric affine perturbation, use parity to make every diagonal perturbation matrix element and first eigenvalue derivative vanish.",
+          "Differentiate the generalized eigenproblem twice to obtain the opposite-parity reduced-resolvent sum for lambda_k''.",
+          "At constant weight evaluate the half-step sine products and separate odd/even mode sums.",
+          "Use cotangent and tangent partial fractions and their derivatives at the non-pole parity indices to obtain S_k=-1/(16k^2) for odd k and 3/(16k^2) for even k.",
+          "Restore the weighted normalization and H,c factors to obtain the exact mode curvature and subtract consecutive modes.",
+          "Realize the family as the midpoint of the reflected admissible half-interval bang-bang chord and retain the fixed-parity and self-consistency scope exclusions."
+        ],
+        "boundary_cases": [
+          "Every n>=2 is covered; the strict sign disappears correctly at R=1 and holds for every finite R>1.",
+          "Parity avoids all partial-fraction poles and no eigenvalue degeneracy occurs.",
+          "The chord endpoints have one interface and are not asserted self-consistent 2n-switch points.",
+          "The result refutes only an all-n arbitrary-weight curvature-sign mechanism, not O3a."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:de323a73e23ac0dd87729e36ded31b043b0551057cc8536c49d3dfe8f9862a2e",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+        "ordered_steps": [
+          "Write the exact homogeneous transfer and subcritical Dirichlet-to-Neumann coefficients for the low and high frequencies on one material cell.",
+          "Prove tau(theta)=mu sin(theta)/sin(mu theta) is strictly increasing on 0<theta<pi/mu using monotonicity of z cot z, and hence B-D<0 there.",
+          "Factor the adjacent two-cell paired minor as B_-B_+[tau(theta_+)-tau(theta_-)].",
+          "At mu=2,R=4 evaluate the three exact phase pairs including material square-root prefactors to obtain positive, negative, and zero minors.",
+          "Use the accepted nodal allocation to derive only the internal-cell bound below 2pi and explicitly decline to infer an actual self-consistent cell outside the subcritical chamber.",
+          "Separate the refuted unrestricted local factor lemma from any restricted full-word order conditioned on the complete matching equations."
+        ],
+        "boundary_cases": [
+          "The exact witnesses stay inside the subcritical chamber; no Riccati pole or numerical sign decision is involved.",
+          "The factor is relevant to n=2 and both material orientations but is not a completed global O3a point.",
+          "Phase equality supplies a genuine zero minor, refuting strict sign regularity.",
+          "No conclusion is drawn about every possible full-word invariant or O3a."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:12322dc689e99719e154da6578797dfb54567e6026e1e40b32cb2c3d0f52982d",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT2-JAC",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proved an exact all-solution switch Hessian and local sign theorem, but the paired trace-resolvent inequality and universal nondegeneracy remain open; six high-precision symmetric samples are non-propagating."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proved a parity-alternating curvature formula that blocks the unrestricted all-n chord-sign mechanism, but it does not cover self-consistent endpoint chords or settle either fixed-parity remainder."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proved subcritical cell monotonicity and an exact sign-changing local minor, but the complete matching equations may impose extra phase order and no full-word injectivity theorem or counterexample was obtained."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT2-FULL-RELAY",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route exactly reduced all asymmetric points to two scalar zero-time equations and audited the Hamiltonian saltation structure, but global injectivity across all relay chambers and exclusion of conjugate points remain open."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260813-1040-MPO3ATWIST-R6",
+  "author_agent_id": "codex-root-r6",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-13T02:37:10.686207Z",
+  "base_blueprint_hash": "sha256:4afda6096bbbd922ad3df42d5f533709690f7e06f73760d1858d2421da16253c",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add the exact all-cell phase bound, exact finite-contrast causal twist reduction, and all-n small-contrast twist theorem while preserving universal O3a as open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+        "type": "inference",
+        "title": "Negative relay energy and nodal allocation force subcritical event-cell phases",
+        "statement": "The accepted full-relay and structural nodal-allocation claims imply the all-cell phase bound in CLM-NGE2-MPO3A-CELL-PHASE-R6.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-STRUCTURE"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-CELL-PHASE-R6",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/discrete_jacobi_twist/phase_bound_audit.md",
+          "sha256": "sha256:9df4da71ef9b44b07ab628837a0e74c475c256d8c0aa6835deb21611848d3e18"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-CELL-PHASE-R6",
+        "type": "claim",
+        "title": "Every complete relay event cell has phase below pi",
+        "statement": "Fix finite R>1, n>=2 and either saturation sign. Every premise-complete transverse common-terminal full-relay trajectory with event cells J_j=(t_j,t_(j+1)), material rho_j, theta_j=sqrt(rho_j)(t_(j+1)-t_j), and phi_j=mu theta_j satisfies 0<theta_j<phi_j<pi for every j=0,...,2n. The proof covers both endpoint cells separately, uses the negative relay energy plus transverse endpoint signs on positive cells, and uses the accepted exact nodal allocation to exclude additional unwrapped high-mode rotations.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-CELL-PHASE-R6"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+        "type": "inference",
+        "title": "Green-saltation reduction and the all-n local hybrid twist",
+        "statement": "The accepted full relay and symplectic endpoint identity, distributional Green identities, and constant-contrast desingularization imply CLM-NGE2-MPO3A-HYBRID-TWIST-R6.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+          "CLM-NGE2-MPO3A-CELL-PHASE-R6"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-HYBRID-TWIST-R6",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/hybrid_twist_independent/derivation.md",
+          "sha256": "sha256:63d1c375e73dccf985965c8ab62aee5888123227835e78289c2ad654d600e447"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-HYBRID-TWIST-R6",
+        "type": "claim",
+        "title": "Exact causal twist reduction and all-n small-contrast sign",
+        "statement": "For every finite R>1, n>=2, either relay sign sigma=+1 (max) or -1 (min), and every premise-complete transverse common-terminal root, fixed-mu q-sensitivity including all moving events obeys sign(partial_q A_n)=-sigma sign(J), where J=sum_i U(t_i)^2 S_q(t_i)/abs(S_t(t_i)). The event values S_q(t_i) are the unique solution of the exact strictly lower-triangular Green-saltation system stated in the proof package. Thus the universal twist conjecture is exactly reduced to J<0, which remains open at arbitrary finite contrast. At R=1+epsilon, however, for every fixed n>=2 and q0>1 there is a local premise-complete common-terminal sheet on which partial_q A_n=sigma epsilon C_n(q)+O(epsilon^2), with C_n(q)=2q(q^2-1) sum_j b(t_j)^2/abs(S_0'(t_j))>0. Hence max has positive and min negative fixed-mu twist for all sufficiently small positive contrast locally in q. Individual event displacements have alternating signs already at epsilon=0, so same-direction event induction is false.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-HYBRID-TWIST-R6"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+        "type": "obligation",
+        "title": "Sign the finite-contrast weighted causal relay resolvent",
+        "statement": "Prove J<0 for the exact lower-triangular Green-saltation system at every premise-complete transverse common-terminal root, or certify a root with J>=0 and the required global bifurcation or distinct-root witness.",
+        "formal_statement": "For every finite R>1, n>=2, sigma in {+1,-1}, and every premise-complete common-terminal relay root, prove sum_i U_i^2 x_i/abs(S_t(t_i))<0 for the unique causal system x_i=-2mu^2V_i^2/q+sigma(R-1)sum_(j<i)M_ij x_j/abs(S_t(t_j)); then upgrade local twist to global fixed-mu root order across all chambers and closures. Alternatively interval-certify a premise-complete root with nonnegative J and the additional multiple-root or distinct-solution predicates needed to refute O3a.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MAX",
+          "INF-NGE2-MPO3A-MIN"
+        ],
+        "discharge_criteria": [
+          "Cover every finite R>1, n>=2, both signs, every premise-complete transverse chamber, and compatible closures.",
+          "Entrywise signs, finite scans, same-sign event displacements, or the one-signed saltation crossing form alone are insufficient.",
+          "A local derivative sign must be upgraded to global one-root order before reflection can force symmetry.",
+          "A refutation must certify all phase, event-count, norm, indexing, transversality, and distinctness or bifurcation predicates."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-TWIST-R6",
+        "type": "attempt",
+        "title": "Hybrid twist, cell-phase, and causal-resolvent continuation",
+        "statement": "Combine the exact all-cell subcritical phase theorem, scalar/Green saltation sensitivities, small-contrast orientation, and bounded falsification probes to attack fixed-mu global order without assuming eventwise monotonicity.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Unwrapped Prüfer phase, negative relay energy, distributional Green identities, hybrid saltation, causal resolvents, small-contrast desingularization, and discrete Sturm transfer",
+        "route_key": "mpo3a-cont4-hybrid-twist-r6",
+        "deliverable_contract": "A universal signed causal resolvent/global order theorem, a certified violating root, or an audited exact stopping condition.",
+        "falsification_tests": [
+          "Do not infer phi<pi from nodal allocation alone; use endpoint energy and unwrapped angle.",
+          "Do not assign one sign to every event displacement; this is rigorously false near R=1.",
+          "Do not infer terminal twist from one-signed saltation crossing forms without controlling indefinite cell flow.",
+          "Do not promote sampled recurrence signs or 32 roots to a universal theorem."
+        ],
+        "expected_bottleneck": "A sign-regularity or signed-square theorem for the oscillatory weighted causal Green resolvent at arbitrary finite contrast.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifacts": [
+            "routes/discrete_jacobi_twist/phase_bound_audit.md",
+            "routes/hybrid_twist_independent/derivation.md"
+          ]
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "target": "CLM-NGE2-MPO3A-CELL-PHASE-R6",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "target": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-CELL-PHASE-R6",
+      "target": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "target": "CLM-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX",
+      "target": "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN",
+      "target": "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-TWIST-R6",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+      "ATT-NGE2-MPO3A-CONT4-TWIST-R6"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_universal_target_open",
+    "scope": "The phase theorem repairs a formerly open local transfer premise. The twist theorem proves only an exact finite-contrast reduction and an all-n local small-contrast sign; it does not prove arbitrary finite-contrast J<0, global graphness, unique norm root, or O3a.",
+    "computation_policy": "The 32-root coefficient probe is excluded from all proof steps. It only falsified a simple local coefficient-cone induction and is cited as non-propagating route evidence.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/discrete_jacobi_twist/phase_bound_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/hybrid_twist_independent/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/discrete_jacobi_twist/computation_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/discrete_jacobi_twist/coefficient_probe.json"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Finite R>1, n>=2, both signs, premise-complete transverse common-terminal relay trajectories.",
+        "contract_explanation": "Supplies q>1, negative signed relay energy, indexed common terminal zeros, exactly 2n events, and the fixed-q endpoint derivative identity."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact simple switches and cellwise allocation of U and V zeros for premise-complete self-consistent trajectories.",
+        "contract_explanation": "Used only to count high-mode zeros on positive and negative event cells, including the endpoint-cell allocation."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact q-Jacobi endpoint identity on transverse common-terminal relay chambers.",
+        "contract_explanation": "Converts the distributional Green crossing functional into the sign of partial_q A_n; no no-conjugate conclusion is imported."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Both max/min relay laws, exactly 2n effective switches, and a.e. switch representatives.",
+        "contract_explanation": "Fixes sigma, material jumps, event count, and the premise-complete class throughout both proofs."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+        "ordered_steps": [
+          "Scale one event cell and use the global relay energy E=1-q^2<0 to obtain |y|>|f_s| at every interior switch.",
+          "On every negative cell use absence of an interior high-mode zero and exact harmonic zero spacing pi/mu; treat the two endpoint cells separately.",
+          "On a positive cell combine left/right transversality with |y|>|f_s| to prove the high-mode phase-state derivative coordinate is negative at both endpoints.",
+          "Lift the high-mode state angle continuously; exact one-zero allocation excludes extra 2pi winding, while the endpoint quadrants select the branch phi<pi rather than pi<phi<2pi.",
+          "Use mu>1 and positive cell length to conclude 0<theta<phi<pi for every cell."
+        ],
+        "boundary_cases": [
+          "Covers every finite R>1, n>=2 and both max/min signs only in the premise-complete transverse class.",
+          "Covers the left and right endpoint cells separately and excludes equality phi=pi.",
+          "Does not assert a uniform phase margin on degenerating chamber closures or apply to unfinished relay IVPs."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9df4da71ef9b44b07ab628837a0e74c475c256d8c0aa6835deb21611848d3e18",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+        "ordered_steps": [
+          "Differentiate the relay equations distributionally at fixed mu, retaining every moving-interface delta mass rho_q.",
+          "Apply scalar Lagrange identities to obtain p eta_U=int rho_q U^2 and equality with r eta_V at the common terminal.",
+          "Differentiate the relay sign law to express rho_q=sigma(R-1)delta(S)S_q and derive sign(partial_q A_n)=-sigma sign(J).",
+          "Use retarded Green kernels and the frozen response eta_V^0=V/q to derive the exact strictly lower-triangular causal system for x_i=S_q(t_i) and J.",
+          "At R=1+epsilon set mu_0=(n+1)/n, compute the first contrast variation of both indexed zero times, and differentiate the switching-domain integral; boundary terms vanish on S_0=0.",
+          "Use a=q^2b on every event to obtain the explicit strictly positive C_n(q), giving partial_q A_n=sigma epsilon C_n(q)+O(epsilon^2) locally for every fixed n and q0.",
+          "Differentiate constant-contrast event roots to prove individual event displacements alternate signs, refuting the same-direction event shortcut without affecting the aggregate twist theorem.",
+          "Keep arbitrary finite-contrast J<0 and the upgrade from local twist to global root order as explicit open obligations."
+        ],
+        "boundary_cases": [
+          "The finite-R reduction covers only transverse events and simple common terminal zeros; grazing and unresolved chamber boundaries remain open.",
+          "The small-contrast theorem is local for every fixed n and q0; its epsilon neighborhood need not be uniform in n or q.",
+          "R=1 is only the desingularized base point; the signed conclusion is for sufficiently small R>1.",
+          "No finite numerical scan enters the proof, and a local derivative sign is not called global uniqueness."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:63d1c375e73dccf985965c8ab62aee5888123227835e78289c2ad654d600e447",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+        "record_kind": "proof_obligation",
+        "status_justification": "The exact finite-contrast Green-saltation reduction isolates J<0 as the minimal twist bridge; oscillatory kernels and indefinite cell flow prevent any currently proved entrywise or Maslov shortcut."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-TWIST-R6",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proves a previously missing phase lemma and all-n small-contrast orientation, but neither signs J at arbitrary finite contrast nor produces a certified O3a counterexample."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

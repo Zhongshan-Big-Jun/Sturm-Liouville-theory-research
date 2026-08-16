@@ -1,0 +1,467 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260809-1620-NGE2INIT",
+  "author_agent_id": "root-nge2-researcher",
+  "run_id": "R-20260809T080134Z-nge2-gap",
+  "created_at": "2026-08-09T08:05:34Z",
+  "base_blueprint_hash": "sha256:9ebe63fad3e044adb22ff42ddb68dda384506e73b8de352a27ce3a182f1cbbcd",
+  "base_inventory_hash": "sha256:0422657e3a35ff5a7a2ef761fc6bb6270852d81b9a091027d4ce549fe3d46c51",
+  "supersedes": null,
+  "summary": "Initialize the n>=2 adjacent-gap finite-reduction goal, exact definitions, open proof graph, obligations, and mechanism-distinct attempts.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "DEF-SL-BOX-ADJ-GAP",
+        "type": "definition",
+        "title": "Dirichlet weighted-string adjacent-gap box problem",
+        "statement": "For R>1, K_R is the set of a.e. equivalence classes rho in L-infinity(0,1) with 1<=rho<=R a.e.; lambda_k(rho) are the increasingly ordered Dirichlet eigenvalues of -y''=lambda rho y on (0,1), and D_n(rho)=lambda_{n+1}(rho)-lambda_n(rho).",
+        "status": "active",
+        "grade": "A",
+        "mainline": "mathematics",
+        "epistemic_type": "definition_contract",
+        "context_id": "CTX-DEFAULT",
+        "truth_bearing": false,
+        "source_kind": "problem"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "DEF-BANGBANG-SWITCH-COUNT",
+        "type": "definition",
+        "title": "Bang-bang density and effective switch count",
+        "statement": "A density rho in K_R is bang-bang with at most m switches when, after merging adjacent equal-value cells, it equals 1 or R a.e. on the cells of a partition 0=x_0<x_1<...<x_j<x_{j+1}=1 with j<=m.",
+        "status": "active",
+        "grade": "A",
+        "mainline": "mathematics",
+        "epistemic_type": "definition_contract",
+        "context_id": "CTX-DEFAULT",
+        "truth_bearing": false,
+        "source_kind": "problem"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "HYP-NGE2-DOMAIN",
+        "type": "claim",
+        "title": "All-n adjacent-gap parameter domain",
+        "statement": "R is a real number with R>1 and n is an integer with n>=2.",
+        "status": "given",
+        "grade": "A",
+        "mainline": "mathematics",
+        "epistemic_type": "problem_hypothesis",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "hypothesis",
+        "truth_status": "given",
+        "inference_inputs": [],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-EXISTENCE",
+        "type": "claim",
+        "title": "Existence of adjacent-gap extrema",
+        "statement": "For every R>1 and integer n>=2, D_n attains its maximum and minimum on K_R.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "open",
+        "inference_inputs": ["INF-NGE2-EXISTENCE"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-ZERO-BOUND",
+        "type": "claim",
+        "title": "At most 2n switching-function zeros",
+        "statement": "For every rho in K_R, if u_n and u_{n+1} are weighted-L2 normalized consecutive Dirichlet eigenfunctions, then F_n=lambda_n u_n^2-lambda_{n+1}u_{n+1}^2 has at most 2n distinct zeros in (0,1) and no positive-measure zero set.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "open",
+        "inference_inputs": ["INF-NGE2-ZERO-BOUND"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-BANGBANG",
+        "type": "claim",
+        "title": "Every adjacent-gap extremizer is bang-bang",
+        "statement": "For every R>1 and integer n>=2, every global maximizer and minimizer of D_n on K_R takes only the values 1 and R almost everywhere, and every effective switch lies in the zero set of its F_n.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "open",
+        "inference_inputs": ["INF-NGE2-BANGBANG"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-FINITE-REDUCTION",
+        "type": "claim",
+        "title": "All-n finite-block reduction for adjacent gaps",
+        "statement": "For every R>1 and integer n>=2, D_n attains both extrema on K_R, and every global maximizer and minimizer is bang-bang a.e. with at most 2n switches and hence at most 2n+1 constant blocks.",
+        "status": "target",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "target",
+        "inference_inputs": ["INF-NGE2-SYNTHESIS"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-EXISTENCE",
+        "type": "inference",
+        "title": "Weak-star compactness and spectral convergence imply existence",
+        "statement": "Weak-star compactness of K_R and continuity of the relevant eigenvalues imply CLM-NGE2-EXISTENCE.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP"],
+        "conclusion": "CLM-NGE2-EXISTENCE",
+        "proof_status": "open",
+        "proof_input_eligible": false,
+        "unresolved_obligations": ["Prove two-sided eigenvalue convergence under weak-star convergence of uniformly positive bounded weights."]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-ZERO-BOUND",
+        "type": "inference",
+        "title": "Wronskian quotient monotonicity implies the 2n zero bound",
+        "statement": "Sturm interlacing and a strict-sign Wronskian show that u_{n+1}/u_n is strictly monotone on each nodal interval of u_n, which implies CLM-NGE2-ZERO-BOUND.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP"],
+        "conclusion": "CLM-NGE2-ZERO-BOUND",
+        "proof_status": "open",
+        "proof_input_eligible": false,
+        "unresolved_obligations": ["Prove the Wronskian sign on every nodal interval, including endpoint intervals.", "Exclude positive-measure or accumulating zeros of F_n."]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-BANGBANG",
+        "type": "inference",
+        "title": "Box-constrained first variation implies bang-bang saturation",
+        "statement": "The Feynman-Hellmann first variation, box-constraint needle variations, and CLM-NGE2-ZERO-BOUND imply CLM-NGE2-BANGBANG.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-ZERO-BOUND"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT"],
+        "conclusion": "CLM-NGE2-BANGBANG",
+        "proof_status": "open",
+        "proof_input_eligible": false,
+        "unresolved_obligations": ["Justify the derivative for arbitrary L-infinity directions.", "Derive pointwise saturation from all admissible one-sided variations."]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-SYNTHESIS",
+        "type": "inference",
+        "title": "Existence, zero count, and saturation imply finite reduction",
+        "statement": "CLM-NGE2-EXISTENCE, CLM-NGE2-ZERO-BOUND, and CLM-NGE2-BANGBANG imply CLM-NGE2-FINITE-REDUCTION.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["CLM-NGE2-EXISTENCE", "CLM-NGE2-ZERO-BOUND", "CLM-NGE2-BANGBANG"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT"],
+        "conclusion": "CLM-NGE2-FINITE-REDUCTION",
+        "proof_status": "open",
+        "proof_input_eligible": false,
+        "unresolved_obligations": ["Show that switch points are a subset of the finite zero set and merge inactive adjacent cells."]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "GOAL-NGE2-GAP",
+        "type": "goal",
+        "title": "Prove or refute the all-n finite-block reduction",
+        "statement": "Determine whether CLM-NGE2-FINITE-REDUCTION is true in CTX-DEFAULT.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_goal",
+        "context_id": "CTX-DEFAULT",
+        "goal_status": "open",
+        "mode": "prove_or_refute",
+        "contract_version": "1.0",
+        "target_claim": "CLM-NGE2-FINITE-REDUCTION",
+        "target_inputs": ["CLM-NGE2-FINITE-REDUCTION"],
+        "quantifier_contract": "For every real R>1, every integer n>=2, and every global maximizer or minimizer rho_* in K_R, existence, bang-bang saturation, and the at-most-2n switch bound must hold.",
+        "boundary_cases": ["Measurable weights and weak-star oscillatory sequences.", "The first and last nodal intervals and common Dirichlet endpoint zeros.", "R approaches 1 from above, arbitrary finite R, inactive switches, and positive-measure switching-function zero sets."],
+        "completion_criteria": ["A content-hashed proof or refutation package has no unresolved obligations and passes independent definition, logic, boundary, and adversarial audits.", "The approved proposal is merged and the post-merge trusted closure records the solved or refuted outcome."],
+        "non_completion_conditions": ["Finite scans, transfer-matrix experiments, or a theorem only for smooth or step weights do not count.", "A stationary-point result, self-review, candidate proof, or unmerged proposal does not count."],
+        "permitted_outcomes": ["proof", "refutation"],
+        "tool_constraints": {"finite_computation_is_general_proof": false, "internet_search_permitted": true, "interval_certification_permitted": true, "wall_clock_deadline": "2026-08-10T00:01:34+08:00"}
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-WEAKSTAR",
+        "type": "obligation",
+        "title": "Weak-star spectral continuity",
+        "statement": "Prove the compactness and spectral-continuity step required by INF-NGE2-EXISTENCE.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "formal_statement": "If rho_j converges weak-star to rho in K_R, then lambda_k(rho_j) converges to lambda_k(rho) for every fixed k, and consequently D_n attains both extrema on K_R.",
+        "discharge_criteria": ["Give both limsup and liminf arguments without adding regularity to rho.", "Handle eigenfunction subsequences and normalization explicitly."],
+        "strength_relative_to_target": "strictly_weaker",
+        "target_inputs": ["INF-NGE2-EXISTENCE"]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-WRONS",
+        "type": "obligation",
+        "title": "Strict quotient monotonicity on all nodal intervals",
+        "statement": "Prove the strict Wronskian sign and quotient monotonicity needed by INF-NGE2-ZERO-BOUND.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "formal_statement": "After orienting consecutive eigenfunctions consistently, W=u_{n+1}'u_n-u_{n+1}u_n' has one strict sign on (0,1), so u_{n+1}/u_n is strictly monotone on each component of {u_n!=0}.",
+        "discharge_criteria": ["Use interlacing to control every nodal-cell endpoint sign.", "Include one-sided limits at 0, 1, and poles."],
+        "strength_relative_to_target": "strictly_weaker",
+        "target_inputs": ["INF-NGE2-ZERO-BOUND"]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-FIRSTVAR",
+        "type": "obligation",
+        "title": "First variation and pointwise saturation",
+        "statement": "Prove the Feynman-Hellmann and needle-variation steps required by INF-NGE2-BANGBANG.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "formal_statement": "At a box-constrained global extremizer, all admissible L-infinity directions give the correct one-sided derivative of D_n, forcing rho to saturate to 1 or R wherever F_n is nonzero.",
+        "discharge_criteria": ["Derive the eigenvalue derivative with the declared weighted-L2 normalization.", "Convert integral variational inequalities to a.e. pointwise saturation."],
+        "strength_relative_to_target": "strictly_weaker",
+        "target_inputs": ["INF-NGE2-BANGBANG"]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-WRONS-KNIFE",
+        "type": "attempt",
+        "title": "Wronskian and nodal-knife route",
+        "statement": "Attack the all-n zero bound by a strict-sign Wronskian and two level crossings per nodal interval.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["OBL-NGE2-WRONS"],
+        "method_family": "Sturm separation, Wronskian sign, and quotient level counting",
+        "route_key": "wronskian-zero-count",
+        "deliverable_contract": "A complete all-n proof, a concrete counterexample, or the first exact sign gap with restart conditions.",
+        "falsification_tests": ["Random and designed high-contrast step weights for n<=8; inspect W and all F_n zeros."],
+        "expected_bottleneck": "Endpoint cells and merely measurable rho.",
+        "provenance": {"run_id": "R-20260809T080134Z-nge2-gap", "artifact": "runs/R-20260809T080134Z-nge2-gap/approach_registry.md"}
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-VAR-COMPACT",
+        "type": "attempt",
+        "title": "Weak-star compactness and variational route",
+        "statement": "Prove existence and bang-bang saturation directly in the full measurable box class.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["GOAL-NGE2-GAP"],
+        "method_family": "weak-star compactness, min-max convergence, Feynman-Hellmann, and needle variations",
+        "route_key": "variational-compactness",
+        "deliverable_contract": "Complete proofs of OBL-NGE2-WEAKSTAR and OBL-NGE2-FIRSTVAR or one exact remaining obligation.",
+        "falsification_tests": ["Rapidly oscillating weak-star sequences and directions supported on interior nonsaturated sets."],
+        "expected_bottleneck": "Two-sided spectral convergence and derivative justification for L-infinity directions.",
+        "provenance": {"run_id": "R-20260809T080134Z-nge2-gap", "artifact": "runs/R-20260809T080134Z-nge2-gap/approach_registry.md"}
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-ADVERSARIAL",
+        "type": "attempt",
+        "title": "Adversarial all-n computation route",
+        "statement": "Search for violations of the Wronskian sign, 2n zero bound, exact-switch conjecture, or symmetry conjecture.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["GOAL-NGE2-GAP"],
+        "method_family": "transfer matrices, high-resolution zero counting, randomized and designed weights",
+        "route_key": "adversarial-computation",
+        "deliverable_contract": "A verified counterexample or bounded evidence with exact seeds, ranges, and limitations.",
+        "falsification_tests": ["Reject misindexed eigenvalues, grid-created zeros, and normalization artifacts."],
+        "expected_bottleneck": "Completeness is unavailable; computation cannot prove the universal target.",
+        "provenance": {"run_id": "R-20260809T080134Z-nge2-gap", "artifact": "runs/R-20260809T080134Z-nge2-gap/approach_registry.md"}
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-LITERATURE",
+        "type": "attempt",
+        "title": "All-n finite-switch literature route",
+        "statement": "Search primary literature for exact quotient-monotonicity, bang-bang, or finite-switch theorems under the measurable box constraint.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["GOAL-NGE2-GAP"],
+        "method_family": "primary-source search under alternate Sturm, string, and optimal-control terminology",
+        "route_key": "literature-map",
+        "deliverable_contract": "An exact source theorem and symbol mapping, or a documented novelty map with limitations.",
+        "falsification_tests": ["Reject smooth-only, fixed-jump, ratio-only, or different-boundary results."],
+        "expected_bottleneck": "Most nearby results impose smoother coefficients or optimize a different functional.",
+        "provenance": {"run_id": "R-20260809T080134Z-nge2-gap", "artifact": "runs/R-20260809T080134Z-nge2-gap/approach_registry.md"}
+      }
+    },
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-EXISTENCE", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-EXISTENCE", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-EXISTENCE", "target": "CLM-NGE2-EXISTENCE", "role": "inference_input"},
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-ZERO-BOUND", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-ZERO-BOUND", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-ZERO-BOUND", "target": "CLM-NGE2-ZERO-BOUND", "role": "inference_input"},
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-BANGBANG", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-ZERO-BOUND", "target": "INF-NGE2-BANGBANG", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-BANGBANG", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-BANGBANG", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-BANGBANG", "target": "CLM-NGE2-BANGBANG", "role": "inference_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-EXISTENCE", "target": "INF-NGE2-SYNTHESIS", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-ZERO-BOUND", "target": "INF-NGE2-SYNTHESIS", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-BANGBANG", "target": "INF-NGE2-SYNTHESIS", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-SYNTHESIS", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-SYNTHESIS", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-SYNTHESIS", "target": "CLM-NGE2-FINITE-REDUCTION", "role": "inference_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-FINITE-REDUCTION", "target": "GOAL-NGE2-GAP", "role": "target_input"},
+    {"op": "add_edge", "source": "INF-NGE2-EXISTENCE", "target": "OBL-NGE2-WEAKSTAR", "role": "target_input"},
+    {"op": "add_edge", "source": "INF-NGE2-ZERO-BOUND", "target": "OBL-NGE2-WRONS", "role": "target_input"},
+    {"op": "add_edge", "source": "INF-NGE2-BANGBANG", "target": "OBL-NGE2-FIRSTVAR", "role": "target_input"},
+    {"op": "add_edge", "source": "OBL-NGE2-WRONS", "target": "ATT-NGE2-WRONS-KNIFE", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-GAP", "target": "ATT-NGE2-VAR-COMPACT", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-GAP", "target": "ATT-NGE2-ADVERSARIAL", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-GAP", "target": "ATT-NGE2-LITERATURE", "role": "target_input"}
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "HYP-NGE2-DOMAIN",
+      "CLM-NGE2-EXISTENCE", "CLM-NGE2-ZERO-BOUND", "CLM-NGE2-BANGBANG",
+      "CLM-NGE2-FINITE-REDUCTION", "INF-NGE2-EXISTENCE",
+      "INF-NGE2-ZERO-BOUND", "INF-NGE2-BANGBANG", "INF-NGE2-SYNTHESIS",
+      "GOAL-NGE2-GAP", "OBL-NGE2-WEAKSTAR", "OBL-NGE2-WRONS",
+      "OBL-NGE2-FIRSTVAR", "ATT-NGE2-WRONS-KNIFE", "ATT-NGE2-VAR-COMPACT",
+      "ATT-NGE2-ADVERSARIAL", "ATT-NGE2-LITERATURE"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {"upstream_nodes": {}},
+  "rationale": {
+    "problem_contract": "../runs/R-20260809T080134Z-nge2-gap/problem_contract.md",
+    "obligation_graph": "../runs/R-20260809T080134Z-nge2-gap/obligation_graph.md",
+    "approach_registry": "../runs/R-20260809T080134Z-nge2-gap/approach_registry.md",
+    "non_trusted_status": "All target, open claim, inference, obligation, and attempt records are explicitly non-trusted."
+  },
+  "evidence_refs": [
+    "../runs/R-20260809T080134Z-nge2-gap/problem_contract.md",
+    "../runs/R-20260809T080134Z-nge2-gap/repro_manifest.md",
+    "../runs/R-20260809T080134Z-nge2-gap/obligation_graph.md",
+    "../runs/R-20260809T080134Z-nge2-gap/approach_registry.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {"node_id": "DEF-SL-BOX-ADJ-GAP", "premise_kind": "definition_contract", "scope": "Regular Dirichlet weighted strings with measurable 1<=rho<=R and adjacent gaps.", "contract_explanation": "Frozen directly from the user-authorized problem scope; truth_bearing is false and no theorem is asserted."},
+      {"node_id": "DEF-BANGBANG-SWITCH-COUNT", "premise_kind": "definition_contract", "scope": "A.e. step representatives after merging inactive adjacent cells.", "contract_explanation": "Fixes the exact combinatorial conclusion and prevents artificial switch inflation."},
+      {"node_id": "HYP-NGE2-DOMAIN", "premise_kind": "problem_hypothesis", "scope": "Every finite R>1 and integer n>=2.", "contract_explanation": "Given quantifier domain from the frozen research contract; it is not a research conclusion."}
+    ],
+    "math_proof_justifications": [],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {"node_id": "CLM-NGE2-EXISTENCE", "record_kind": "open_claim", "status_justification": "Expected from compactness, but the full weak-star spectral-continuity proof has not yet been audited."},
+      {"node_id": "CLM-NGE2-ZERO-BOUND", "record_kind": "open_claim", "status_justification": "A Wronskian route is proposed; endpoint and measurable-weight details remain open."},
+      {"node_id": "CLM-NGE2-BANGBANG", "record_kind": "open_claim", "status_justification": "Requires a justified first variation and exclusion of a nontrivial zero set."},
+      {"node_id": "CLM-NGE2-FINITE-REDUCTION", "record_kind": "target_claim", "status_justification": "This is the frozen key theorem selected for the research program."},
+      {"node_id": "INF-NGE2-EXISTENCE", "record_kind": "open_inference", "status_justification": "Its explicit spectral-continuity obligation is unresolved."},
+      {"node_id": "INF-NGE2-ZERO-BOUND", "record_kind": "open_inference", "status_justification": "Its strict Wronskian-sign and zero-set obligations are unresolved."},
+      {"node_id": "INF-NGE2-BANGBANG", "record_kind": "open_inference", "status_justification": "Its derivative and needle-variation obligations are unresolved."},
+      {"node_id": "INF-NGE2-SYNTHESIS", "record_kind": "open_inference", "status_justification": "It depends on three open claims and a finite switch-set argument."},
+      {"node_id": "GOAL-NGE2-GAP", "record_kind": "open_goal", "status_justification": "The target is absent from trusted closure at initialization."},
+      {"node_id": "OBL-NGE2-WEAKSTAR", "record_kind": "proof_obligation", "status_justification": "Both spectral-convergence directions must be proved."},
+      {"node_id": "OBL-NGE2-WRONS", "record_kind": "proof_obligation", "status_justification": "All nodal intervals and endpoint limits must be covered."},
+      {"node_id": "OBL-NGE2-FIRSTVAR", "record_kind": "proof_obligation", "status_justification": "The derivative-to-saturation step must work in the full measurable class."},
+      {"node_id": "ATT-NGE2-WRONS-KNIFE", "record_kind": "research_attempt", "status_justification": "Mechanism-distinct analytic route is active."},
+      {"node_id": "ATT-NGE2-VAR-COMPACT", "record_kind": "research_attempt", "status_justification": "Mechanism-distinct compactness and variational route is active."},
+      {"node_id": "ATT-NGE2-ADVERSARIAL", "record_kind": "research_attempt", "status_justification": "Independent falsification route is active and non-trusted."},
+      {"node_id": "ATT-NGE2-LITERATURE", "record_kind": "research_attempt", "status_justification": "Primary-source search route is active and has not imported a theorem."}
+    ]
+  }
+}

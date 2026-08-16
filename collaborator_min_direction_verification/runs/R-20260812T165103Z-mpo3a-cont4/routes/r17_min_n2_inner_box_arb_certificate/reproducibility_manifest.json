@@ -1,0 +1,114 @@
+{
+  "schema": "blueprint_v22_finite_computational_route_freeze_v1",
+  "route": "r17_min_n2_inner_box_arb_certificate",
+  "epistemic_status": "FINITE_COMPUTATIONAL_RESULT",
+  "verdict": "PASS_FOR_COMPACT_SUBDOMAIN_ONLY",
+  "proved_scope": {
+    "coordinates": "(k,t,y) in [1/64,63/64]^3",
+    "retained_physical_subset": [
+      "g<1",
+      "rB>1"
+    ],
+    "strict_inequalities": [
+      "B1>0",
+      "B2>0",
+      "B3>0",
+      "B4>0"
+    ]
+  },
+  "open_scope": {
+    "collars": [
+      "0<k<1/64",
+      "63/64<k<1",
+      "0<t<1/64",
+      "63/64<t<1",
+      "0<y<1/64",
+      "63/64<y<1"
+    ],
+    "intersections": "all pairwise and triple collar intersections",
+    "global_min_theorem": "OPEN"
+  },
+  "canonical_bindings": {
+    "blueprint_sha256_at_start": "0120d1fb32af1a30449575995efccb6d1afcce416ee671ad00a5f296400fd799",
+    "blueprint_sha256_at_freeze": "a53684ab115d53756d4dc9bd3af7fb1ef56c8cee3b90fc303070ce0503223c46",
+    "inventory_sha256_at_start_and_freeze": "b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "concurrent_advance": "Reviewed R15 integration added the mu=2, min, n>=3 nonexistence theorem; that theorem is not used here."
+  },
+  "upstream_binding": {
+    "path": "runs/R-20260812T165103Z-mpo3a-cont4/routes/r14_min_n2_ratio_bernstein/derivation.md",
+    "bytes": 10721,
+    "sha256": "bc991d859eac196b08a719ded874a9208a648d2578ea0ce0320e4a0a5ced1fd3"
+  },
+  "frozen_route_files": {
+    "problem_contract.md": {
+      "bytes": 2543,
+      "sha256": "8096ad3cb7c748d4ff5c54001036e96571da27f96dcf1a1c80863a0183463386"
+    },
+    "derivation.md": {
+      "bytes": 3977,
+      "sha256": "db63fc1cbdfb08413947e5d927a331a4379bd655ca5a99ef42292c0353b9cbaf"
+    },
+    "exact_checker.py": {
+      "bytes": 8097,
+      "sha256": "ad1e084f40ed11a80576d2f768fe32c418db391d6d4d98700526a0b4e3b8584b"
+    },
+    "exact_checker_output.json": {
+      "bytes": 939,
+      "sha256": "addfaeda7050af026283ef1473fbca86d4288e12a3628786b0b42d6e228647da"
+    },
+    "self_audit.md": {
+      "bytes": 3885,
+      "sha256": "77d981646c8d53223938b31f9c7bcf761a9643f7c08e3e1c311f342e914a4359"
+    }
+  },
+  "runtime": {
+    "os": "Windows 11",
+    "python": "3.12.13",
+    "python_executable": {
+      "path": "E:/ai_auto_solve/O3a_blueprint_v22_research_20260808/.venv/Scripts/python.exe",
+      "bytes": 262144,
+      "sha256": "5912d0884b23c0343983a864c6064242391e2265536f50b88624857e353882c9"
+    },
+    "python_flint": {
+      "version": "0.9.0",
+      "metadata_sha256": "5916181439cbc4d71a2e033aa50f8809cff66a641879da630023500eaef34901",
+      "arb_pyd_sha256": "8216e9ab3fd7358234bbc3aec620998bf4a637ed93baadb2acfabd0a82428360",
+      "native_dll_sha256": {
+        "libflint.24.0.0-9b2d98b6da8eded35def7bc3b288ff65.dll": "aac725ed1c5dbb74c57230dda97634a87d6475e46acd54b3849d16c134a23e57",
+        "libgcc_s_seh-1-ca70890bbc5723b6d0ea31e9c9cded2b.dll": "4661795a1debb1448f2ccfecc054fc369561f44c616ff3dfa25650327555037f",
+        "libgmp-10-b84ebdfad40b1a203ac4096a9c8425c2.dll": "b84ebdfad40b1a203ac4096a9c8425c288d88f1ebc71e052e048ada8a46975b0",
+        "libmpfr-6-681398cede0f6f27feb0cbd931b38241.dll": "dddd060671cc9adfd6e7c78b44b0daff3957abe9f4831212805aebf4cd7bff05",
+        "libwinpthread-1-f5042e8e3d21edce20c1bc99445f551b.dll": "f5042e8e3d21edce20c1bc99445f551b89212403164e9388d2c6f48d6d6bcb78"
+      }
+    },
+    "arb_precision_bits": 128,
+    "dyadic_partition_endpoint_bits": 34
+  },
+  "replay": {
+    "working_directory": "E:/ai_auto_solve/SL_gap_nge2_blueprint_v22_research_20260809",
+    "powershell": "$env:PYTHONPATH='tmp\\r12-flint312'; $env:PATH=(Resolve-Path 'tmp\\r12-flint312\\python_flint.libs').Path+';'+$env:PATH; & 'E:\\ai_auto_solve\\O3a_blueprint_v22_research_20260808\\.venv\\Scripts\\python.exe' 'runs\\R-20260812T165103Z-mpo3a-cont4\\routes\\r17_min_n2_inner_box_arb_certificate\\exact_checker.py'",
+    "result": "PASS",
+    "frozen_stdout_matches_after_lf_normalization": true,
+    "counts": {
+      "visited": 264863,
+      "discard_g": 23007,
+      "discard_r": 59251,
+      "proved": 50174,
+      "split": 132431,
+      "singular": 0,
+      "unresolved": 0,
+      "stack_remaining": 0
+    },
+    "leaf_identity": {
+      "leaves": 132432,
+      "splits_plus_one": 132432
+    },
+    "directed_gap_lower_float_by_index": [
+      0.04340924725160458,
+      0.001998451910768295,
+      0.0004258814105750445,
+      0.0000672793713021407
+    ]
+  },
+  "canonical_or_proposal_files_modified_by_route": false
+}

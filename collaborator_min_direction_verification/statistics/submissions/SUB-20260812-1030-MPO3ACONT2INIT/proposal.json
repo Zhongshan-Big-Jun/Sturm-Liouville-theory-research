@@ -1,0 +1,239 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260812-1030-MPO3ACONT2INIT",
+  "author_agent_id": "root-mpo3a-cont2-author",
+  "run_id": "R-20260812T022307Z-mpo3a-cont2",
+  "created_at": "2026-08-12T02:28:05Z",
+  "base_blueprint_hash": "sha256:2e3b492857f255a84e1f0ed7def2032fd9e7a4babbb45f1edb98ee8f85d7f86c",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Initialize a user-authorized eight-hour continuation goal and three mechanism-distinct routes for universal multiphase O3a without changing the existing open target or promoting any candidate result.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "GOAL-NGE2-MPO3A-CONT2",
+        "type": "goal",
+        "title": "Second bounded continuation of universal multiphase O3a",
+        "statement": "Continue the prove-or-refute program for CLM-NGE2-MPO3A-ALL by attacking all-solution residual-Jacobian nondegeneracy or a certified multiple-point witness and by running at least one mechanism-independent proof route.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_goal",
+        "context_id": "CTX-DEFAULT",
+        "goal_status": "open",
+        "mode": "prove_or_refute",
+        "contract_version": "2.0",
+        "target_claim": "CLM-NGE2-MPO3A-ALL",
+        "target_inputs": ["CLM-NGE2-MPO3A-ALL"],
+        "quantifier_contract": "For every finite real R>1, every integer n>=2, and each sign max or min, all self-consistent bang-bang points with exactly 2n effective switches coincide a.e.",
+        "boundary_cases": [
+          "n=2, both signs, both endpoint material phases, and asymmetric reflection pairs.",
+          "R approaches 1 from above and arbitrary large but finite R.",
+          "Interior singular residual points, disconnected components, tangencies, inactive zeros, switch collisions, endpoint escape, eigenvalue indexing, and a.e. representatives."
+        ],
+        "completion_criteria": [
+          "A content-hashed proof or refutation package with no unresolved obligations passes independent definition, logic, boundary, and adversarial audits.",
+          "An approved immutable proposal is deterministically merged and the post-merge trusted closure or verified refutation resolves CLM-NGE2-MPO3A-ALL.",
+          "A detailed LaTeX report is compiled and visually verified when a complete proof or refutation is obtained."
+        ],
+        "non_completion_conditions": [
+          "Finite scans, floating roots, sampled Jacobians, or uniqueness only on the known symmetric branch do not count.",
+          "A conditional theorem whose missing premise is equivalent to universal uniqueness, an unreviewed candidate, or an unmerged proposal does not count."
+        ],
+        "permitted_outcomes": ["proof", "refutation"],
+        "tool_constraints": {
+          "finite_computation_is_general_proof": false,
+          "internet_search_permitted": true,
+          "interval_certification_permitted": true,
+          "wall_clock_deadline": "2026-08-12T18:23:07+08:00",
+          "early_stop_when_all_mechanism_distinct_routes_audited_blocked": true
+        },
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/problem_contract.md"
+        }
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT2-JAC",
+        "type": "attempt",
+        "title": "All-solution Jacobian and interior-singularity continuation",
+        "statement": "Seek a universal sign-regular or Morse-index proof of residual-Jacobian invertibility at every self-consistent point, or construct and rigorously certify an interior singular point and associated distinct solutions.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["OBL-NGE2-MPO3A-JAC-MAX", "OBL-NGE2-MPO3A-JAC-MIN"],
+        "method_family": "Exact shape Hessian, Green-kernel sign regularity, reflection blocks, Morse index, interval singularity certification",
+        "route_key": "mpo3a-cont2-all-solution-jacobian",
+        "deliverable_contract": "A complete all-solution nondegeneracy proof, a premise-complete certified singular/multiple-root counterexample, or the first exact null-vector obstruction with restart conditions.",
+        "falsification_tests": [
+          "Check n=2 and both signs without symmetry assumptions.",
+          "Separate known symmetric-branch nonsingularity from disconnected or asymmetric sheets.",
+          "Reject eigenvalue misindexing, collapsed cells, and unverified finite-difference determinants."
+        ],
+        "expected_bottleneck": "Controlling the sign or inertia of both reflection sectors at every solution rather than along sampled branches.",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/route_registry.md"
+        }
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+        "type": "attempt",
+        "title": "Reflection polarization and strict comparison route",
+        "statement": "Attempt to rule out every asymmetric self-consistent point by a reflected two-cell polarization, strict spectral comparison, or a minimal asymmetric-pair contradiction independent of residual-Jacobian nondegeneracy.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["GOAL-NGE2-MPO3A-CONT2"],
+        "method_family": "Reflection comparison, two-point polarization, strict spectral variation, and minimal asymmetric cell pairs",
+        "route_key": "mpo3a-cont2-reflection-polarization",
+        "deliverable_contract": "A direct symmetry theorem, an exact polarization obstruction/counterexample, or the first precise comparison inequality that fails.",
+        "falsification_tests": [
+          "Do not use S=0 or assume reflection symmetry.",
+          "Test the smallest n=2 asymmetric cell displacement and both saturation signs.",
+          "Distinguish stationarity of global extrema from self-consistency alone."
+        ],
+        "expected_bottleneck": "Self-consistent points are stationary switch configurations but need not be global extrema under arbitrary polarization paths.",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/route_registry.md"
+        }
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER",
+        "type": "attempt",
+        "title": "Projective transfer order and total-positivity route",
+        "statement": "Reformulate the complete alternating interface system as a product of projective transfer maps and seek a global order, total-positivity, or continued-fraction injectivity theorem independent of local Jacobian continuation.",
+        "status": "active",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "active",
+        "target_inputs": ["GOAL-NGE2-MPO3A-CONT2"],
+        "method_family": "SL(2,R) transfer words, Riccati/Pruefer projective order, total positivity, and continued fractions",
+        "route_key": "mpo3a-cont2-transfer-total-order",
+        "deliverable_contract": "A global injectivity/order theorem for the full interface map, an exact order-reversal witness refuting the route, or one strictly weaker reusable transfer lemma.",
+        "falsification_tests": [
+          "Audit n=2, both signs, projective poles, and cell phases crossing pi/2.",
+          "Do not import symmetric-relay uniqueness or residual-Jacobian invertibility.",
+          "Check whether any claimed total positivity survives alternating materials and two distinct eigenfrequencies."
+        ],
+        "expected_bottleneck": "Möbius derivatives are locally positive but global phase wrapping and alternating cells may destroy a common product order.",
+        "provenance": {
+          "run_id": "R-20260812T022307Z-mpo3a-cont2",
+          "artifact": "runs/R-20260812T022307Z-mpo3a-cont2/route_registry.md"
+        }
+      }
+    },
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-ALL", "target": "GOAL-NGE2-MPO3A-CONT2", "role": "target_input"},
+    {"op": "add_edge", "source": "OBL-NGE2-MPO3A-JAC-MAX", "target": "ATT-NGE2-MPO3A-CONT2-JAC", "role": "target_input"},
+    {"op": "add_edge", "source": "OBL-NGE2-MPO3A-JAC-MIN", "target": "ATT-NGE2-MPO3A-CONT2-JAC", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-MPO3A-CONT2", "target": "ATT-NGE2-MPO3A-CONT2-POLARIZATION", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-MPO3A-CONT2", "target": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER", "role": "target_input"}
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "GOAL-NGE2-MPO3A-CONT2",
+      "ATT-NGE2-MPO3A-CONT2-JAC",
+      "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+      "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4",
+      "OBL-NGE2-MPO3A-JAC-MAX": "semantic-sha256:c41954bb5db9c986d5cc2da72ea5476c51ece313afa98affb3c3c91c8e61b6e9",
+      "OBL-NGE2-MPO3A-JAC-MIN": "semantic-sha256:5825c92aa95d71b3005014824262dd564482bfa90a74ceaf7a02b2a0b7143a26"
+    }
+  },
+  "rationale": {
+    "research_status": "open_continuation_goal_only",
+    "scope": "The mathematical target is unchanged; this transaction records a new operational window and three independent research mechanisms.",
+    "independence": "The Jacobian route attacks the existing sufficient bridge; polarization uses global reflected comparisons; transfer order seeks global projective injectivity. The latter two do not assume the Jacobian conclusion.",
+    "computation_policy": "All finite or floating computation is non-propagating unless a premise-complete interval or exact certificate is produced.",
+    "deadline": "2026-08-12T18:23:07+08:00",
+    "novelty_policy": "No novelty or priority claim is made."
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T022307Z-mpo3a-cont2/problem_contract.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/route_registry.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/obligation_graph.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/reproducibility_manifest.md",
+    "../runs/R-20260812T022307Z-mpo3a-cont2/research_ledger.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [],
+    "math_proof_justifications": [],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {"node_id": "GOAL-NGE2-MPO3A-CONT2", "record_kind": "open_goal", "status_justification": "The unchanged universal target is outside trusted closure and the user authorized a fresh bounded continuation window."},
+      {"node_id": "ATT-NGE2-MPO3A-CONT2-JAC", "record_kind": "research_attempt", "status_justification": "The all-solution nondegeneracy/certified-singularity route is initialized but has produced no new result."},
+      {"node_id": "ATT-NGE2-MPO3A-CONT2-POLARIZATION", "record_kind": "research_attempt", "status_justification": "The reflection-polarization route is mechanism-independent and initialized without assuming symmetry or extremality."},
+      {"node_id": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER", "record_kind": "research_attempt", "status_justification": "The projective transfer-order route is initialized without assuming Jacobian invertibility or symmetric-relay injectivity."}
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

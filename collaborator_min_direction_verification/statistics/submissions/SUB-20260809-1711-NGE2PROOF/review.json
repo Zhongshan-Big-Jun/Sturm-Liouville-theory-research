@@ -1,0 +1,285 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260809-1728-NGE2PROOF",
+  "submission_id": "SUB-20260809-1711-NGE2PROOF",
+  "proposal_hash": "sha256:64ffb36b0e37cf657b6956fb5c6904f8413c45367d55068edf9cd3295f476877",
+  "validation_hash": "sha256:b680de432454fe013877482d48f2dd7fd2b855e8cf804602222e2f4debc07813",
+  "reviewer_agent_id": "independent-nge2-blueprint-reviewer",
+  "reviewed_at": "2026-08-09T09:28:36.8602305Z",
+  "verdict": "approve",
+  "decision_summary": "The exact proposal, validation report, candidate files, proof package, premise contracts, four proof inferences, eight research-state updates, graph, inventory, and protected nodes were independently checked. All four mathematical derivations close in the stated measurable L-infinity scope, all required audits pass, and no blocking or major finding remains.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT",
+      "HYP-NGE2-DOMAIN"
+    ],
+    "reasoning": "These are the three protected grade-A nodes in the base snapshot. The proposal neither updates nor deletes them and changes no incoming dependency. Independent before/candidate semantic comparison returned no protected-node difference."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is a real number with R>1 and n is an integer with n>=2.",
+      "scope": "Every finite real R>1 and every integer n>=2.",
+      "source_verification": "Not applicable: this is the user-frozen problem domain, not an external mathematical result or a basic scientific assumption.",
+      "result": "valid",
+      "reasoning": "The proof fixes an arbitrary R and n in precisely this domain and never strengthens the hypothesis, divides by R-1, selects a special extremizer, or introduces a smoothness assumption."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "K_R consists of a.e. classes rho in L-infinity(0,1) with 1<=rho<=R a.e.; lambda_k are the increasingly ordered Dirichlet eigenvalues of -y''=lambda rho y and D_n=lambda_{n+1}-lambda_n.",
+      "scope": "The full measurable density box, the regular weighted Dirichlet spectrum, and every adjacent index in the frozen domain.",
+      "source_verification": "Not applicable: this is a project definition. The proof constructs the same spectrum from the positive compact operator and proves ODE simplicity.",
+      "result": "valid",
+      "reasoning": "All eigenfunctions, normalizations, gaps, variations, and limits in the proof use this exact coefficient class and ordering. No step-weight, continuity, or selected-index redefinition is introduced."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "premise_kind": "definition_contract",
+      "exact_contract": "After adjacent equal-value cells are merged, rho equals 1 or R a.e. on a finite partition and the effective switch count is the number of interior cell boundaries.",
+      "scope": "A.e.-representative-invariant finite-step densities on (0,1).",
+      "source_verification": "Not applicable: this is a project definition.",
+      "result": "valid",
+      "reasoning": "The synthesis removes the finite zero set, assigns arbitrary endpoint values only at null points, and merges adjacent equal cells. Dirichlet endpoints are not counted as switches, exactly matching the definition."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-EXISTENCE",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP"
+      ],
+      "statement_sha256": "sha256:b6df0432039f1971c2506c22c5c55464986d152361ff735d76e5a3321bb89fae",
+      "proof_package_path": "../runs/R-20260809T080134Z-nge2-gap/artifacts/full_proof.md",
+      "proof_package_sha256": "sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd",
+      "ordered_step_reconstruction": [
+        "The Riesz operator T_rho on H_0^1 is bounded, positive, injective, self-adjoint and compact because the H_0^1 unit ball is relatively compact in L2 (indeed in C[0,1] in one dimension). Its positive compact spectral resolution yields the generalized min-max formula.",
+        "A sequence in K_R has a weak-star convergent subsequence because L1(0,1) is separable; the diagonal limit extends to an L1 functional and nonnegative tests preserve 1<=rho<=R.",
+        "For rho_j weak-star converging to rho, a fixed rho-spectral k-plane gives limsup lambda_k(rho_j)<=lambda_k(rho) because the denominator functionals converge uniformly on its compact unit sphere.",
+        "A moving rho_j-weighted-orthonormal first-k frame has uniform H_0^1 bounds. Weak H_0^1 and strong L2 limits preserve the weighted Gram matrix, hence preserve k independent directions; weak lower semicontinuity then gives lambda_k(rho)<=liminf lambda_k(rho_j).",
+        "The two inequalities give sequential weak-star continuity of lambda_n and lambda_{n+1}; applying it to maximizing and minimizing sequences gives both extrema."
+      ],
+      "result": "valid",
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The proof uses the exact a.e. L-infinity box, the exact Dirichlet generalized eigenproblem, and the exact adjacent gap. Weighted and energy inner products are not conflated."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Both spectral-convergence directions are proved. The liminf argument explicitly retains dimension through the limiting weighted Gram matrix and does not assume convergence of a moving subspace. The min-max inequality directions are correct."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "Rapid weak-star oscillation, merely measurable coefficients, all fixed finite R>1, n=2, and the absence of a uniform R-1 margin are covered. The proof also avoids the nonsequential-compactness trap by using separability of L1."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "I attacked loss of normalization/dimension, an incorrect liminf direction, and dependence on strong coefficient convergence. The moving-frame proof survives all three attacks. Independently, the compact embedding makes {fg: ||f||_H,||g||_H<=1} precompact in L1, which also yields the route's alternate operator-norm convergence check."
+      },
+      "corroborative_source_audit": "The cited Teschl book and Theorem 5.6 locator were verified to contain the compact symmetric spectral theorem. It is corroborative only: every consumed spectral step is reconstructed in the proof package and no external theorem is a graph premise."
+    },
+    {
+      "node_id": "INF-NGE2-ZERO-BOUND",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP"
+      ],
+      "statement_sha256": "sha256:a24a040d8d6510b6e2e2bf493ca5b51d6200e9b2fd9adb5f93f4212f6f4b2a2b",
+      "proof_package_path": "../runs/R-20260809T080134Z-nge2-gap/artifacts/full_proof.md",
+      "proof_package_sha256": "sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd",
+      "ordered_step_reconstruction": [
+        "For L-infinity positive rho, the shooting solution is W^{2,infinity}; the lifted Prüfer angle is absolutely continuous and satisfies theta_x=(s'^2+lambda rho s^2)/(s^2+s'^2)>0 a.e.",
+        "Differentiating the shooting integral equation in lambda gives (s' z-s z')'=rho s^2, so theta(1,lambda) is strictly increasing. Positivity of the first mode and the intermediate-value argument give exactly k-1 interior zeros for u_k.",
+        "On each u_n nodal cell, the strict comparison Wronskian identity forces at least one u_{n+1} zero; the exact nodal count forces exactly one and excludes a common interior zero.",
+        "With both left derivatives positive, u_n and u_{n+1} have the same sign before that zero and opposite signs after it. Hence W'=-(lambda_{n+1}-lambda_n)rho u_nu_{n+1} makes W decrease then increase on each cell.",
+        "At every interior u_n zero, -u_{n+1}u_n'<0. Together with W(0)=W(1)=0, this proves W<0 separately on the first, middle and last cells.",
+        "Thus q=u_{n+1}/u_n is strictly decreasing on each of n nodal cells. F_n=0 is exactly q=+sqrt(lambda_n/lambda_{n+1}) or q=-sqrt(lambda_n/lambda_{n+1}); each level is hit at most once per cell, yielding at most 2n zeros. At a hit q is nonzero and q'<0, so every zero is simple."
+      ],
+      "result": "valid",
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The Wronskian convention, eigenfunction orientation, weighted-L2 normalization, switching function, interior zero count, and quotient domains agree with the canonical statements."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Nodal count, strict interlacing, endpoint signs, global Wronskian negativity, quotient monotonicity, and two-level counting form a noncircular chain. The conclusion does not consume its own open claim."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The Prüfer identities are valid a.e. at L-infinity regularity. Common Dirichlet endpoint zeros give W(0)=W(1)=0; common interior zeros are excluded. The first and last nodal cells, quotient poles, n=2, and even n=1 as a consistency check are all discharged."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "I explicitly reversed the endpoint signs, allowed a common interior zero, and tested whether W could cross zero during the increasing half of the first or last cell. Interlacing and the negative interior-cell endpoint values rule out each failure. The finite computation's 101 failures of the stronger exact-2n assertion do not attack this upper bound and are not used as proof."
+      }
+    },
+    {
+      "node_id": "INF-NGE2-BANGBANG",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN",
+        "CLM-NGE2-ZERO-BOUND"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP",
+        "DEF-BANGBANG-SWITCH-COUNT"
+      ],
+      "statement_sha256": "sha256:e29290a6aadc0a84c5885761456389bf6ffe66cf1f35b52af30b0f3cebd9d884",
+      "proof_package_path": "../runs/R-20260809T080134Z-nge2-gap/artifacts/full_proof.md",
+      "proof_package_sha256": "sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd",
+      "ordered_step_reconstruction": [
+        "For arbitrary h in L-infinity, T_{rho+epsilon h}=T_rho+epsilon T_h in operator norm. Sturm simplicity isolates the kth compact-operator eigenvalue.",
+        "Normalized perturbed eigenvectors are precompact and converge to the oriented unperturbed eigenvector. Pairing the exact perturbed eigen-equation with that eigenvector gives mu_k'[h]=int h z_k^2 without assuming eigenvector differentiability.",
+        "Converting mu_k=1/lambda_k and z_k=u_k/sqrt(lambda_k) gives lambda_k'[h]=-lambda_k int h u_k^2, hence D_n'[h]=int h F_n.",
+        "At a maximizer, feasible positive directions localized on {rho<=R-delta} give F_n<=0 there, while feasible negative directions on {rho>=1+delta} give F_n>=0. Exhaustion over rational delta forces rho=R on {F_n>0} and rho=1 on {F_n<0}.",
+        "For a minimizer, the variational inequality reverses, yielding rho=1 on {F_n>0} and rho=R on {F_n<0}. The established finite zero set removes all positive-measure singular arcs, so every extremizer is bang-bang a.e. and any effective switch lies at an F_n zero."
+      ],
+      "result": "valid",
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The derivative uses the declared weighted-L2 normalization; feasibility is taken in the exact box; conclusions are a.e. and representative-invariant."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Simple-eigenvalue Feynman-Hellmann is derived from an exact compact-operator identity. The signs in D_n' and in all four maximum/minimum endpoint assignments were recomputed and are correct."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The level-set exhaustion handles points with arbitrarily small slack where no single global epsilon works. The ambient derivative is two-sided under positivity, whereas optimality is invoked only from the feasible side. Every maximizer and minimizer is treated, not only an interior stationary point."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "I attacked hidden eigenvalue multiplicity, unsupported eigenvector differentiation, use of a nonfeasible needle, a swapped maximum/minimum sign, and a positive-measure singular arc. Sturm simplicity, eigenvector convergence, delta-localized feasible directions, direct sign recomputation, and the finite zero theorem respectively discharge them."
+      }
+    },
+    {
+      "node_id": "INF-NGE2-SYNTHESIS",
+      "premise_ids": [
+        "CLM-NGE2-EXISTENCE",
+        "CLM-NGE2-ZERO-BOUND",
+        "CLM-NGE2-BANGBANG"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP",
+        "DEF-BANGBANG-SWITCH-COUNT"
+      ],
+      "statement_sha256": "sha256:6a6720e57dad959312046408383b559a4ab2986b9c9c05d19a2c40f73a8e516a",
+      "proof_package_path": "../runs/R-20260809T080134Z-nge2-gap/artifacts/full_proof.md",
+      "proof_package_sha256": "sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd",
+      "ordered_step_reconstruction": [
+        "Existence makes both global extremizer sets nonempty.",
+        "For an arbitrary member of either set, bang-bang saturation fixes one endpoint density value a.e. on each strict-sign component of its continuous F_n.",
+        "At most 2n interior zeros give at most 2n+1 complementary open intervals.",
+        "Changing the density only at the finite zero points does not alter its a.e. class; merging adjacent equal cells produces at most 2n effective interior switches and at most 2n+1 blocks."
+      ],
+      "result": "valid",
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The resulting representative and switch count exactly match DEF-BANGBANG-SWITCH-COUNT."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The three established premises imply each part of the target theorem in topological order, with no open or candidate premise consumed."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "Dirichlet endpoints are partition endpoints, not switches. Null-point assignments and inactive adjacent cells cannot inflate the count, and the universal quantifier covers every extremizer."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The conclusion was checked against stronger but unproved claims. It asserts neither symmetry, uniqueness, exact switch activity, optimizer topology, optimal value, nor novelty, so no such claim leaks into the trusted closure."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "OBL-NGE2-WEAKSTAR",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Both weak-star spectral inequalities, preservation of the k-dimensional limiting frame, sequential compactness, and attainment are proved in the exact measurable box. The obligation node itself is not a truth-propagating inference."
+    },
+    {
+      "node_id": "OBL-NGE2-WRONS",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Strict interlacing, first/middle/last cell signs, W<0, and quotient monotonicity are all proved for positive L-infinity weights. The obligation node itself cannot propagate truth."
+    },
+    {
+      "node_id": "OBL-NGE2-FIRSTVAR",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The arbitrary-L-infinity derivative, localized feasible directions, and both extremum sign assignments are proved. The obligation node itself cannot propagate truth."
+    },
+    {
+      "node_id": "ATT-NGE2-WRONS-KNIFE",
+      "record_kind": "proved_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The frozen isolated route has the declared content hashes and supplies a complete Wronskian/zero-bound derivation consistent with the independently reconstructed proof. Research-attempt nodes are not proof inputs."
+    },
+    {
+      "node_id": "ATT-NGE2-VAR-COMPACT",
+      "record_kind": "proved_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The isolated route completes existence, Feynman-Hellmann, and the conditional saturation implication; the condition is supplied by the separately proved zero-bound inference in the candidate closure. Research-attempt nodes are not proof inputs."
+    },
+    {
+      "node_id": "ATT-NGE2-ADVERSARIAL",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The artifact records exactly 385 finite spectral-pair checks, no target failure, explicit seeds/ranges/tolerances, and major sampling/continuum blind spots. It labels itself numerical evidence, has no universal proof bridge, and is not used by any inference."
+    },
+    {
+      "node_id": "ATT-NGE2-LITERATURE",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The source map identifies close precedent but leaves inaccessible older full-text overlap and novelty unresolved. The proposal makes no novelty or priority claim, and the attempt remains non-propagating grade C."
+    },
+    {
+      "node_id": "GOAL-NGE2-GAP",
+      "record_kind": "solved_goal",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "In the independently rebuilt candidate graph, the given domain reaches CLM-NGE2-FINITE-REDUCTION through exactly four proved inferences, with no contradiction or unresolved proof obligation. Goal status itself is not a truth input; project-level completion still requires deterministic integration and post-merge receipt verification."
+    }
+  ],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "candidate_blueprint_hash": "sha256:e372390ac585ac1faea4614bfd0cfd79711748e4c26084354db578a42cfbb4ec",
+    "candidate_inventory_hash": "sha256:02529f9374d833dab60c7f0650cc0b07431f2d172195100b069de0e7759107be",
+    "independent_validator_passed": true,
+    "closure_check": "The candidate has 19 nodes, 25 typed acyclic edges, four proved inferences, all five available claims in CTX-DEFAULT, no open inference, and no contradiction."
+  },
+  "artifact_binding_checks": {
+    "proposal_file_sha256_recomputed": "sha256:64ffb36b0e37cf657b6956fb5c6904f8413c45367d55068edf9cd3295f476877",
+    "validation_file_sha256_recomputed": "sha256:b680de432454fe013877482d48f2dd7fd2b855e8cf804602222e2f4debc07813",
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "proof_package_sha256_recomputed": "sha256:35cdc88fe84935f08d38a85358b8256743b1bbad11a955e8b58db9f0238d08fd",
+    "all_four_statement_hashes_match": true,
+    "all_six_bound_semantic_hashes_match": true,
+    "candidate_hashes_independently_rebuilt": true,
+    "inventory_operation_checked": "One grade-B established mathematics row points to CLM-NGE2-FINITE-REDUCTION and accurately limits symmetry, uniqueness, exact switches, values, novelty, and formal verification."
+  },
+  "findings": [],
+  "required_actions": []
+}

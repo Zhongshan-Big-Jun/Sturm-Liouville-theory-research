@@ -1,0 +1,351 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260815-0754-MPO3AAMUBOUND-R24",
+  "author_agent_id": "/root",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-14T23:58:59.263815Z",
+  "base_blueprint_hash": "sha256:d04dafda8c4ab23b08ec75d63a9c0102cbe2bae38c147c29ed36157fc26f3956",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add the independently audited max common-terminal A_mu boundary theorem: an exact moving-event response formula, uniform all-q positivity for sufficiently small positive contrast at each fixed n, and the positive q-to-infinity limit at each fixed finite contrast. The remaining finite interior and general max/O3a stay open; no existing node is changed.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+        "type": "inference",
+        "title": "Wronskian response and event-pair compactification orient the max A_mu boundary regimes",
+        "statement": "The accepted finite full-relay structure and reflection-fixed max common-terminal order imply the exact fixed-q A_mu response formula and the two boundary-regime positivity conclusions stated in CLM-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-MPO3A-STRUCTURE",
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-MAX-GLOBAL-ORDER-R9"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/derivation.md",
+          "sha256": "sha256:2f0a0f429c59dfe7a3689888983af3e31bb88691e9e5b517c6af26a893e23625"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+        "type": "claim",
+        "title": "Positive max common-terminal A_mu at the small-contrast and large-q boundaries",
+        "statement": "Fix finite R>1, integer n>=2, and a premise-complete transverse max-law common-terminal root A_n(mu,q)=0 with mu>1 and q>1. With Delta_i=rho(t_i+)-rho(t_i-), J_mu=-sum_i Delta_i t_(i,mu)U_i^2, and I_V=integral rho V^2, one has the exact fixed-q identity partial_mu A_n=[2mu I_V-(q^2-1)J_mu]/q^2 and its equivalent Pohozaev form from the proof package. For every fixed n there exists epsilon_n>0 such that every such root with 1<R<1+epsilon_n has partial_mu A_n>0 uniformly over all q>1. For each fixed finite R>1, every sequence of such roots with q tending to infinity satisfies mu tending to (n+1)/n, L tending to n pi, and partial_mu A_n tending to n^2 pi/(n+1)>0. No positivity is asserted on the remaining finite-contrast bounded-q interior, in a simultaneous R,q to infinity scaling, or at relay-chart degeneracies.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-MAX-AMU-INTERIOR-R24",
+        "type": "obligation",
+        "title": "Orient max A_mu on the remaining finite interior",
+        "statement": "Prove the fixed-q common-terminal orientation partial_mu A_n>0 for every remaining finite-contrast max root, or provide an exact or certified full physical counterexample; R24 already excludes fixed-n small positive contrast and the fixed-finite-R q-to-infinity end.",
+        "formal_statement": "For every finite R>1, integer n>=2, and every premise-complete transverse max-law common-terminal root, prove J_mu<2mu I_V/(q^2-1), equivalently partial_mu A_n>0. It remains to control the bounded-q finite-contrast interior, q approaching 1, high-contrast/noncompact limits, and simultaneous R,q divergence, while retaining all moving-event saltation and endpoint terms; alternatively certify a complete physical root with partial_mu A_n<=0.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MAX"
+        ],
+        "discharge_criteria": [
+          "Cover every finite R>1 and n>=2 strict max common-terminal root outside the two R24 boundary regimes, including both midpoint parities and all compatible relay chambers.",
+          "Retain rho_mu=-sum_i Delta_i t_(i,mu)delta_(t_i); omitting the moving-event term invalidates the orientation problem.",
+          "Treat q approaching 1, R approaching infinity, simultaneous large R and q, grazing, collision, incomplete words, and nontransverse limits separately.",
+          "Do not infer partial_mu A_n>0 from partial_q A_n>0 or fixed-mu cell order without a noncircular fixed-q frequency or equivalent global response estimate.",
+          "Any counterexample must satisfy the full physical relay, common-terminal, event-count, and transversality predicates; scalar ledgers and local-cell witnesses do not discharge this obligation."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-MAX-AMU-BOUNDARY-R24",
+        "type": "attempt",
+        "title": "Max common-terminal A_mu Wronskian and compactified boundary route",
+        "statement": "Use exact parameter Wronskians, Pohozaev identities, a uniform R=1 labelled word, and a blown-up q-to-infinity event-pair analysis to orient partial_mu A_n at both boundary regimes. The finite-contrast bounded-q interior, norm orientation, full residual Jacobian, uniqueness, and general O3a remain open.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Moving-event Wronskians, Pohozaev identities, Chebyshev event counting, uniform transfer bounds, blown-up paired-event implicit-function analysis, and one-point compactification of q",
+        "route_key": "mpo3a-cont4-max-amu-boundary-r24",
+        "deliverable_contract": "An exact all-root A_mu reduction and rigorous positivity on the fixed-n small-positive-contrast and fixed-finite-R large-q boundary regimes, without extending the result to the unresolved finite interior.",
+        "falsification_tests": [
+          "Check the right-minus-left jump convention and the minus sign in rho_mu=-sum Delta_i t_(i,mu)delta_(t_i).",
+          "At R=1 prove exactly 2n simple labelled events for every finite q>=1; do not assume the word persists at q=1 without a double-root audit.",
+          "In the q-to-infinity limit prove paired event-velocity cancellation O(1/q), not merely boundedness of individual event velocities.",
+          "Keep the collapse estimates uniform only on bounded finite-contrast ranges and do not compactify a simultaneous R,q-to-infinity limit.",
+          "Do not use numerical scans, the implication-level wrong-sign scalar ledger, or the blocked phase-field subtraction as theorem premises."
+        ],
+        "expected_bottleneck": "The exact event response J_mu is unsigned on the remaining finite-contrast bounded-q interior; accepted fixed-mu q-twist information controls J_q instead and does not orient J_mu.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifacts": [
+            "routes/r24_max_common_terminal_amu/derivation.md",
+            "routes/r24_max_common_terminal_amu/exact_checker.py",
+            "routes/r24_max_common_terminal_amu/exact_checker_output.txt",
+            "routes/r24_max_common_terminal_amu/problem_contract.md",
+            "routes/r24_max_common_terminal_amu/computation_contract.md",
+            "routes/r24_max_common_terminal_amu/research_ledger.md",
+            "routes/r24_max_common_terminal_amu/route_registry.md",
+            "routes/r24_max_common_terminal_amu/self_audit.md",
+            "routes/r24_max_common_terminal_amu/freeze_manifest.md",
+            "routes/r24_max_common_terminal_amu_independent_audit_r36/independent_audit.md"
+          ]
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-MAX-GLOBAL-ORDER-R9",
+      "target": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "target": "CLM-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX",
+      "target": "OBL-NGE2-MPO3A-MAX-AMU-INTERIOR-R24",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-MAX-AMU-BOUNDARY-R24",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "CLM-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+      "OBL-NGE2-MPO3A-MAX-AMU-INTERIOR-R24",
+      "ATT-NGE2-MPO3A-CONT4-MAX-AMU-BOUNDARY-R24"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:34ddfc0ec931503621e7658d7186318b41b3f910214000e23c55bae7aaac040e",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:6e2749fd147662212ade344e6dec0a715a83e76cb954e031134748a99a134b7b",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MAX-GLOBAL-ORDER-R9": "semantic-sha256:c00cb1bd4c334d1caa6e6a5475b1986f8220ac70df181456898a12f0baaaecf7",
+      "CLM-NGE2-MPO3A-MAX-LOCAL-TWIST-R8": "semantic-sha256:38715d37777669d1738fa0deff86db4062c269022f79b7ce256b32b56f39ef13",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:5a4e8e40668e50766f7594724eb357bddcf7b94139b86e8fdbf14582e39088ee",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:76505a7eb2ffa45225adf487ce6f8f250a2ed35aa415c5a9756536a507db5558",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:788fd7a0a1ab30540c1da2194e6ce6365ae60cc1eea04cc1a13a779b58f07dd8",
+      "INF-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:f377eb235ffcb122f315d646d9a56665dbb55cbfecc826a4f85c19cd1ce4df45",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MAX-GLOBAL-ORDER-R9": "semantic-sha256:d1f72e6b94361cd3e32bb49d6ec156cf27a58575ef984ded860e2e5d420433af",
+      "INF-NGE2-MPO3A-MAX-LOCAL-TWIST-R8": "semantic-sha256:58a814ad8794134c3a9a81df25822f49c7c28c0190dd8f8aac10f76e9316e67c",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:804abd6209285b16cfb62428a98700f2262049146855dd8c6b3b04f0712b139f",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_finite_interior_open",
+    "scope": "All finite R>1 and n>=2 strict max common-terminal roots for the exact A_mu identity; positivity is proved only for fixed-n sufficiently small positive contrast uniformly in q and for q tending to infinity at fixed finite R.",
+    "duplicate_policy": "The canonical R9 theorem orients A_q and fixes reflection but explicitly leaves A_mu open. R24 adds a distinct fixed-q response identity and two rigorous boundary regimes. It does not edit or supersede the protected general max inference or the broader R34 norm-orientation obligation.",
+    "computation_policy": "No numerical evidence is a premise. The exact checker only replays displayed algebra; the event-pair compactification and uniformity arguments were independently reconstructed and audited.",
+    "audit_policy": "The frozen derivation sha256:2f0a0f429c59dfe7a3689888983af3e31bb88691e9e5b517c6af26a893e23625, checker sha256:d36dbca09c4a177a18074ef9d2185c2fa0ef1676a45d75c58f88df2d7a8d7b7c, output sha256:5d5aa414615d9058bfda70c4b54ef430fe602285fa0cd02d61d0cfcf089b9907, self-audit sha256:f008ad721b4c24834444d4297c5de6a598279d324e2e758e637330e0c0455628, freeze manifest sha256:2467b6631510c3ecca4cabf8f8bf349898a7b2f3cf2937f9d817863af84b3409, and independent four-part audit sha256:3463b7f52b07109cf7a6937de2d6930c6e260aed43a5b961668e7aa268e356a4 are bound exactly.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/exact_checker.py",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/exact_checker_output.txt",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/problem_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/computation_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/research_ledger.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/route_registry.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu/freeze_manifest.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r24_max_common_terminal_amu_independent_audit_r36/independent_audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Finite real R>1 and integer n>=2 in the accepted adjacent-gap problem.",
+        "contract_explanation": "Supplies the ambient finite-contrast and fixed-index domain only."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Max relay law, effective-switch convention, and the premise-complete root terminology.",
+        "contract_explanation": "Fixes the physical relay and chart conventions used in the theorem statement."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exactly 2n simple alternating crossings, forced nodal allocation, and finite relay structure.",
+        "contract_explanation": "Supplies the indexed simple events and one high-mode zero per positive cell used in the pair-collapse argument."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact event-driven common-terminal max relay representation with q>1 and all saltation terms retained.",
+        "contract_explanation": "Supplies the oscillator equations, initial normalization, event law, density jumps, and terminal residual A_n."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-MAX-GLOBAL-ORDER-R9",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "All max common-terminal zeros are premise-complete transverse roots and are reflection fixed across relay chambers.",
+        "contract_explanation": "Supplies p^2=1, r^2=q^2 and global chamber compatibility; it does not supply the fixed-q A_mu sign."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-MAX-AMU-BOUNDARY-R24",
+        "ordered_steps": [
+          "At a reflection-fixed max common-terminal root differentiate both scalar zero times at fixed q, including rho_mu=-sum_i Delta_i t_(i,mu)delta_(t_i). The event identity U_i^2=mu^2V_i^2 and p^2=1, r^2=q^2 give partial_mu A_n=[2mu I_V-(q^2-1)J_mu]/q^2 with J_mu=-sum_i Delta_i t_(i,mu)U_i^2.",
+          "Apply the two piecewise Pohozaev identities to obtain the equivalent dilation-remainder formula; this confirms every jump and endpoint sign without replacing J_mu by the independently signed q-response.",
+          "At R=1 show L_0=n pi, mu_0=(n+1)/n and partial_mu A_n=L_0/mu_0>0 for every finite q>=1. Chebyshev factorization, nodal interlacing, and the double-root identity prove that the labelled word has exactly 2n simple events even at the q=1 closure.",
+          "For fixed n and bounded finite contrast, normalize Z=V/q and eta=1/q. Uniform transfer bounds and the forced nodal allocation confine each positive material cell to an O(eta) neighborhood of a simple high-mode zero. Blow up all event pairs and apply the finite-dimensional C1 implicit-function theorem; the limiting event Jacobian is diagonal and nonzero, so paired mu-velocity differences are O(eta), J_mu=O(eta), and I_V/q^2=L_0/(2mu_0^2)+O(eta).",
+          "Substitute these estimates into the exact response formula to obtain mu to mu_0, L to L_0, and partial_mu A_n to n^2 pi/(n+1)>0 for q tending to infinity at each fixed finite R.",
+          "If no uniform small-positive-contrast epsilon_n existed, take R_k to 1 with nonpositive partial_mu A_n. Sturm comparison forces mu_k to mu_0 and L_k to L_0. A bounded-q subsequence converges through the simple R=1 labelled word, while an unbounded-q subsequence is covered by the uniform pair-collapse lemma; both give the same positive limit, a contradiction."
+        ],
+        "boundary_cases": [
+          "The theorem includes n=2 and every fixed n>=2 but the small-contrast constant may depend on n.",
+          "Both terminal parities are covered because only p^2 and r^2 enter the response formula; R9 supplies reflection fixing for every max common-terminal root.",
+          "The q=1 point and R=1 word are used only as proved one-sided labelled closures; the theorem concerns strict q>1 and R>1 roots.",
+          "The q-to-infinity estimates are uniform only on bounded finite-contrast ranges. No claim is made for simultaneous R,q divergence or R tending to infinity.",
+          "Grazing, collision, zero event amplitude, incomplete words, and nontransverse roots are outside the strict chart and are not differentiated by assertion.",
+          "The remaining finite-contrast bounded-q interior, universal A_mu sign, norm slope, full residual Jacobian, uniqueness, and max O3a remain open."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:2f0a0f429c59dfe7a3689888983af3e31bb88691e9e5b517c6af26a893e23625",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-MAX-AMU-INTERIOR-R24",
+        "record_kind": "proof_obligation",
+        "status_justification": "R24 proves the exact response and excludes two boundary regimes, but J_mu remains unsigned on the finite-contrast bounded-q interior and in noncompact high-contrast scalings. This intermediate orientation is also insufficient by itself to prove the norm slope or general max/O3a."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-MAX-AMU-BOUNDARY-R24",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route rigorously closes the fixed-n small-positive-contrast and fixed-finite-R large-q regimes, while the universal finite-interior A_mu orientation and all downstream norm/Jacobian/uniqueness claims remain open."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

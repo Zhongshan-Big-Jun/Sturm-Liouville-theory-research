@@ -1,0 +1,60 @@
+{
+  "route_status": "RIGOROUS_PARTIAL_RESULT",
+  "t0_certificate": {
+    "status": "FINITE_COMPUTATIONAL_RESULT",
+    "claim": "On the full common-angle retained t=0 branch, the ratios (rho_2,rho_3,rho_4) are each strictly below 1/4; rho_1=0.",
+    "complete": true,
+    "precision_bits": 160,
+    "partition_bits": 36,
+    "python_flint": "0.9.0",
+    "charts": [
+      {
+        "chart": "low_k_b_sigma",
+        "domain": {"k": ["0", "1/2"], "y": ["0", "63/64"], "retained": "b>1"},
+        "counts": {"visited": 13627, "discard_nonphysical": 39, "proved": 6775, "split": 6813, "unresolved": 0, "singular": 0},
+        "leaf_identity": [6814, 6814],
+        "max_certified_upper_by_ratio": [0.2499808791437392, 0.24983363205063638, 0.24999535194147596]
+      },
+      {
+        "chart": "upper_mid_B_T",
+        "domain": {"k": ["1/64", "1/2"], "y": ["63/64", "1"], "retained": "B>k"},
+        "counts": {"visited": 2579, "discard_nonphysical": 0, "proved": 1290, "split": 1289, "unresolved": 0, "singular": 0},
+        "leaf_identity": [1290, 1290],
+        "max_certified_upper_by_ratio": [0.02324368713016156, 0.09042672161012888, 0.24944866087753326]
+      },
+      {
+        "chart": "high_k_B_T",
+        "domain": {"k": ["1/2", "1"], "y": ["0", "1"], "retained": "B>k"},
+        "counts": {"visited": 201, "discard_nonphysical": 16, "proved": 85, "split": 100, "unresolved": 0, "singular": 0},
+        "leaf_identity": [101, 101],
+        "max_certified_upper_by_ratio": [0.03203700846643187, 0.10454692045459524, 0.2463842425495386]
+      },
+      {
+        "chart": "low_corner_A",
+        "domain": {"r": ["0", "1/64"], "p": ["0", "1"], "map": "1-y=r, k=rp", "retained": "sigma>x"},
+        "counts": {"visited": 9, "discard_nonphysical": 0, "proved": 5, "split": 4, "unresolved": 0, "singular": 0},
+        "leaf_identity": [5, 5],
+        "max_certified_upper_by_ratio": [0.003703433541886625, 0.006462622081016889, 0.008849994617776247]
+      },
+      {
+        "chart": "low_corner_B",
+        "domain": {"r": ["0", "1/64"], "p": ["0", "1"], "map": "k=r, 1-y=rp", "retained": "sigma>x"},
+        "counts": {"visited": 3, "discard_nonphysical": 0, "proved": 2, "split": 1, "unresolved": 0, "singular": 0},
+        "leaf_identity": [2, 2],
+        "max_certified_upper_by_ratio": [0.002707646486669546, 0.00469700027952058, 0.008403648456805968]
+      }
+    ]
+  },
+  "finite_t_diagnostic": {
+    "status": "INCOMPLETE_NON_PROPAGATING_DIAGNOSTIC",
+    "domain": {"k_t_y": ["1/64", "63/64"], "retained": ["g<1", "rB>1"]},
+    "precision_bits": 160,
+    "partition_bits": 34,
+    "max_boxes": 100000,
+    "counts": {"visited": 100000, "discard_g": 35, "discard_r": 0, "proved": 49956, "split": 50009, "singular": 0, "unresolved": 0},
+    "leaf_identity_at_stop": [49991, 50010],
+    "stack_remaining": 19,
+    "max_certified_upper_by_ratio": [0.08072003308916464, 0.24999971711076796, 0.2001729824713099, 0.1155780528034087],
+    "inference": "none; the cover is incomplete"
+  }
+}

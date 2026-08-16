@@ -1,0 +1,376 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260809-2255-EXACT2NPROOF",
+  "submission_id": "SUB-20260809-2231-EXACT2NPROOF",
+  "proposal_hash": "sha256:8c26f976ae3ce6fcf999b7db194792943b1f42b9644a8dec11785acedb371e68",
+  "validation_hash": "sha256:54047da460b53cfaa94654648d5c7f4cacc291627550e7c5d579accfcb17587c",
+  "reviewer_agent_id": "exact2n-independent-reviewer",
+  "reviewed_at": "2026-08-09T14:55:00Z",
+  "verdict": "approve",
+  "decision_summary": "The frozen proof package independently reconstructs the universal exact-2n theorem without a missing premise or circular step. For an arbitrary finite R>1, n>=2, and arbitrary global maximizer or minimizer, strict quotient monotonicity gives the exact endpoint-indicator zero count and simple zeros; one-sided box saturation identifies those zeros with effective switches; the block-energy jump equals Delta rho times F and therefore glues to K=-2(lambda_{n+1}-lambda_n); endpoint traces force q_0>1 and q_1<-1, activating both indicators. All seven proved inferences, proof/audit hashes, protected-node rules, typed edges, semantic read/write sets, research-state transitions, numerical-evidence limitations, and novelty boundary pass with no blocking or major finding.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "HYP-NGE2-DOMAIN",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT",
+      "DEF-NGE2-ENDPOINT-NORMING",
+      "CLM-NGE2-EXISTENCE",
+      "CLM-NGE2-ZERO-BOUND",
+      "CLM-NGE2-BANGBANG",
+      "CLM-NGE2-FINITE-REDUCTION",
+      "INF-NGE2-EXISTENCE",
+      "INF-NGE2-ZERO-BOUND",
+      "INF-NGE2-BANGBANG",
+      "INF-NGE2-SYNTHESIS"
+    ],
+    "reasoning": "Every existing node in the proposal write set was independently found at grade D with an open, target, or active nonterminal status. The proposal neither updates nor deletes a protected node. Its new dependency edges point only into new nodes or previously open grade-D inferences, so no protected incoming dependency changes. Established grade-A/B premises are cited only as upstream sources."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [
+    {
+      "node_id": "INF-NGE2-ENERGY-INVARIANT",
+      "upstream_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-BANGBANG"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "Finite step reduction supplies constant-density cells and C1 eigenfunction traces; the accepted switch-zero condition kills the exact interface jump. Weighted normalization then fixes the global constant and endpoint signs for an arbitrary max or min extremizer."
+    },
+    {
+      "node_id": "INF-NGE2-ENDPOINT-COUNT",
+      "upstream_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-BANGBANG", "CLM-NGE2-ZERO-BOUND"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "The reconstructed Wronskian and nodal-cell ranges entail the exact strict-indicator formula for every admissible weight. At an extremizer, the reproduced one-sided variational law makes every simple zero, and only such a zero, an effective switch."
+    },
+    {
+      "node_id": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "upstream_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-ENERGY-INVARIANT"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "The energy claim applies to every maximizer and gives the stronger q_0>1 and q_1<-1; strict eigenvalue ordering gives 0<c<1."
+    },
+    {
+      "node_id": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "upstream_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-ENERGY-INVARIANT"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "The same direction-independent interface invariant applies to every minimizer; the reversed material assignment does not alter q_0>1 and q_1<-1."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-MAX",
+      "upstream_ids": ["CLM-NGE2-ENDPOINT-COUNT", "CLM-NGE2-MAX-ENDPOINT-RIGIDITY"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "Both strict endpoint indicators equal one for each maximizer, so the established count and switch-set identity give 2n."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-MIN",
+      "upstream_ids": ["CLM-NGE2-ENDPOINT-COUNT", "CLM-NGE2-MIN-ENDPOINT-RIGIDITY"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "Both strict endpoint indicators equal one for each minimizer, with the minimum saturation direction already handled in the endpoint-count claim."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-SYNTHESIS",
+      "upstream_ids": ["CLM-NGE2-EXACT2N-MAX", "CLM-NGE2-EXACT2N-MIN"],
+      "result": "valid",
+      "first_invalid_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "The conjunction preserves the common all-R, all-n scope and covers every member of both extremizer sets."
+    }
+  ],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is an arbitrary finite real number with R>1 and n is an arbitrary integer with n>=2.",
+      "scope": "Every finite R>1 and every integer n>=2.",
+      "source_verification": "Not applicable; this is the user-frozen problem domain, not a research result or basic assumption.",
+      "result": "valid",
+      "independent_reasoning": "Each of the seven inference chains retains these quantifiers; no small-contrast, large-contrast, uniqueness, symmetry, or selected-branch restriction is introduced."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "K_R is the L-infinity a.e. box 1<=rho<=R, lambda_k are increasingly ordered Dirichlet eigenvalues of -u''=lambda rho u, and D_n=lambda_{n+1}-lambda_n.",
+      "scope": "All measurable positive weights in the frozen unit-interval Dirichlet problem.",
+      "source_verification": "Not applicable; this is an accepted protected problem definition.",
+      "result": "valid",
+      "independent_reasoning": "The proof uses the constant leading coefficient, unit interval, Dirichlet traces, and separate weighted normalizations exactly as defined."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Effective switches are interior boundaries between consecutive positive-length cells with different essential values 1 and R, after equal adjacent cells are merged and a.e. representatives are identified.",
+      "scope": "Finite endpoint-valued representatives; fixed endpoints and null-set values are excluded from the count.",
+      "source_verification": "Not applicable; this is an accepted protected definition.",
+      "result": "valid",
+      "independent_reasoning": "The theorem counts the cardinality of the reduced interior boundary set. The proof neither counts arbitrary partition marks nor treats a Dirichlet endpoint as a switch."
+    },
+    {
+      "node_id": "DEF-NGE2-ENDPOINT-NORMING",
+      "premise_kind": "definition_contract",
+      "exact_contract": "For modes n and n+1, integral rho u_k^2=1 and u_k'(0)>0 fix the real eigenfunctions; c=sqrt(lambda_n/lambda_{n+1}), q_0=u_{n+1}'(0)/u_n'(0), and q_1=u_{n+1}'(1)/u_n'(1).",
+      "scope": "Every admissible rho, finite R>1, and n>=2.",
+      "source_verification": "Endpoint derivatives are nonzero by uniqueness of the second-order initial-value problem; simple regular Dirichlet eigenvalues make the normalization unique up to the fixed sign.",
+      "result": "valid",
+      "independent_reasoning": "The right-end sign is derived from Sturm nodal parity rather than assumed. The same convention is used in the zero formula, energy claim, and endpoint-rigidity conclusions."
+    },
+    {
+      "node_id": "CLM-NGE2-FINITE-REDUCTION",
+      "premise_kind": "accepted_mathematical_claim",
+      "exact_contract": "Both extrema exist and every global extremizer has a finite bang-bang representative with at most 2n effective switches.",
+      "scope": "Every finite R>1, n>=2, both maxima and minima, every extremizer.",
+      "source_verification": "Canonical established grade-B claim with semantic hash semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804 and content-hashed accepted inference package.",
+      "result": "valid",
+      "independent_reasoning": "Only the existence of a finite reduced step representative is used by the energy inference; exact 2n is not imported from this upper bound."
+    },
+    {
+      "node_id": "CLM-NGE2-BANGBANG",
+      "premise_kind": "accepted_mathematical_claim",
+      "exact_contract": "Every global max/min extremizer is endpoint-valued a.e., and every effective switch belongs to the zero set of F_n.",
+      "scope": "The same measurable box and all extremizers.",
+      "source_verification": "Canonical established grade-B claim with semantic hash semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893.",
+      "result": "valid",
+      "independent_reasoning": "Its switch-to-zero direction is exactly what makes every interface energy jump vanish. The converse is not silently assumed; it is independently proved from full box saturation and simple zeros."
+    },
+    {
+      "node_id": "CLM-NGE2-ZERO-BOUND",
+      "premise_kind": "accepted_mathematical_claim",
+      "exact_contract": "For every admissible weight, F_n has at most 2n distinct interior zeros and no positive-measure zero set.",
+      "scope": "Every rho in K_R and consecutive modes n,n+1.",
+      "source_verification": "Canonical established grade-B claim with semantic hash semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6; its accepted inference records the strict Wronskian quotient mechanism.",
+      "result": "valid",
+      "independent_reasoning": "The submitted proof does not extrapolate the upper bound to equality; it reconstructs strict interlacing, quotient ranges, endpoint equality cases, and simplicity to obtain the stronger exact formula."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "inference_id": "INF-NGE2-ENERGY-INVARIANT",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-BANGBANG"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-ENDPOINT-NORMING"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": [
+        "Fix an arbitrary maximum or minimum and its merged finite step representative; bounded-weight eigenfunctions have common C1 interface traces.",
+        "On a constant block r, differentiate u_k'^2+lambda_k r u_k^2 and obtain zero a.e., hence a block constant.",
+        "At a material interface, cancel the derivative traces and compute K(s+)-K(s-)=(r_+-r_-)F(s); the accepted switch-zero premise makes it zero.",
+        "The block constants glue globally. Integrating on the unit interval and using integral rho u_k^2=1 and integral u_k'^2=lambda_k gives K=(a-b)+(a-b)=-2(b-a).",
+        "At either Dirichlet endpoint the potential terms vanish; strict eigenvalue ordering and endpoint parity give q_0>1 and q_1<-1."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "Essential one-sided block values, a.e. representatives, the fixed normalization, K, F, q_0, and q_1 are consistently defined; no interface point value of rho enters."},
+      "logic_audit": {"passed": true, "reasoning": "The jump formula and factor two were independently recomputed. The invariant uses only finite reduction and switch-to-zero, not the desired exact count, so there is no circularity."},
+      "boundary_audit": {"passed": true, "reasoning": "The argument is direction-independent for maxima/minima and valid for every fixed finite R>1, all n>=2, nonsymmetric and nonunique extremizers, and one-sided endpoint traces."},
+      "adversarial_audit": {"passed": true, "reasoning": "For a nonstationary bang-bang weight the jump is generally nonzero, so the proof does not overgeneralize. Separate weighted normalizations, the interval length, endpoint parity, and sign of -2D were each checked."}
+    },
+    {
+      "inference_id": "INF-NGE2-ENDPOINT-COUNT",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-BANGBANG", "CLM-NGE2-ZERO-BOUND"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-ENDPOINT-NORMING"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": [
+        "With W=u_{n+1}'u_n-u_{n+1}u_n', strict consecutive-mode interlacing and W'=-(lambda_{n+1}-lambda_n)rho u_nu_{n+1} give W<0 throughout (0,1).",
+        "Thus Q=u_{n+1}/u_n strictly decreases on every u_n nodal cell, with ranges q_0 to -infinity, +infinity to -infinity on middle cells, and +infinity to q_1 on the last cell.",
+        "Since F=lambda_{n+1}u_n^2(c^2-Q^2), strict level crossing yields 2n-2+1_{q_0>c}+1_{q_1<-c}; equality at a fixed endpoint contributes no interior zero.",
+        "At Q=plus or minus c, F'=-2 lambda_{n+1}u_n^2 Q Q' is nonzero, so all zeros are simple and sign-changing.",
+        "Feynman-Hellmann gives D_n'[h]=integral hF. Local one-sided feasible variations give the correct max/min saturation laws, and simple sign changes identify the effective switch set exactly with the zero set."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The Wronskian convention, quotient domains, endpoint ratios, strict indicator directions, and reduced effective-switch convention are consistent."},
+      "logic_audit": {"passed": true, "reasoning": "No quotient is taken across a pole, zeros at u_n nodes are excluded by strict interlacing, and the two implications between zeros and switches are proved separately."},
+      "boundary_audit": {"passed": true, "reasoning": "For n=2 the middle-cell family is empty; q_0=c and q_1=-c add no interior zero; fixed endpoints and null-set values are excluded."},
+      "adversarial_audit": {"passed": true, "reasoning": "The maximum and minimum one-sided variation signs were independently reversed and checked. Multiple or inactive F-zeros are excluded by simplicity plus full saturation."}
+    },
+    {
+      "inference_id": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-ENERGY-INVARIANT"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-ENDPOINT-NORMING"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": ["Apply the energy lemma to an arbitrary global maximizer.", "Use q_0>1 and q_1<-1 together with 0<c<1.", "Conclude q_0>c and q_1<-c for every maximizer."],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The same orientation and ratios are used in premise and conclusion."},
+      "logic_audit": {"passed": true, "reasoning": "The stronger endpoint bounds directly entail the claimed strict inequalities."},
+      "boundary_audit": {"passed": true, "reasoning": "Every maximizer is covered without uniqueness or symmetry; equality is strictly excluded."},
+      "adversarial_audit": {"passed": true, "reasoning": "No numerical branch or maximum-specific interface direction is needed after the common invariant is established."}
+    },
+    {
+      "inference_id": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-FINITE-REDUCTION", "CLM-NGE2-ENERGY-INVARIANT"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-ENDPOINT-NORMING"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": ["Apply the energy lemma to an arbitrary global minimizer.", "Use q_0>1 and q_1<-1 together with 0<c<1.", "Conclude q_0>c and q_1<-c for every minimizer."],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The fixed signs and endpoint ratios are unchanged by optimization direction."},
+      "logic_audit": {"passed": true, "reasoning": "The reversed material assignment does not alter the interface-zero jump or endpoint consequence."},
+      "boundary_audit": {"passed": true, "reasoning": "Every minimizer is covered for every finite R>1 and n>=2; endpoint equalities cannot occur."},
+      "adversarial_audit": {"passed": true, "reasoning": "The proof does not infer the minimizer result by negating the maximizer objective; it applies the common invariant directly."}
+    },
+    {
+      "inference_id": "INF-NGE2-EXACT2N-MAX",
+      "premise_ids": ["CLM-NGE2-ENDPOINT-COUNT", "CLM-NGE2-MAX-ENDPOINT-RIGIDITY"],
+      "definition_ids": ["DEF-BANGBANG-SWITCH-COUNT"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": ["Fix any maximizer.", "Insert q_0>c and q_1<-c into the exact count formula.", "Both indicators equal one, so the effective switch count is 2n."],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "Only interior effective material changes after merging are counted."},
+      "logic_audit": {"passed": true, "reasoning": "The arithmetic is 2n-2+1+1=2n, with the switch-set equality already established."},
+      "boundary_audit": {"passed": true, "reasoning": "Includes n=2, every finite contrast, and every maximizer."},
+      "adversarial_audit": {"passed": true, "reasoning": "No inactive zeros, endpoint contacts, or duplicate partition marks inflate the count."}
+    },
+    {
+      "inference_id": "INF-NGE2-EXACT2N-MIN",
+      "premise_ids": ["CLM-NGE2-ENDPOINT-COUNT", "CLM-NGE2-MIN-ENDPOINT-RIGIDITY"],
+      "definition_ids": ["DEF-BANGBANG-SWITCH-COUNT"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": ["Fix any minimizer.", "Insert q_0>c and q_1<-c into the exact count formula.", "Both indicators equal one, so the effective switch count is 2n."],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The same representative-invariant effective count is used for minimizers."},
+      "logic_audit": {"passed": true, "reasoning": "The reversed sign-to-material assignment changes topology labels but not the number of sign changes."},
+      "boundary_audit": {"passed": true, "reasoning": "Includes n=2, every finite contrast, and every minimizer."},
+      "adversarial_audit": {"passed": true, "reasoning": "Maximum and minimum material assignments are not conflated."}
+    },
+    {
+      "inference_id": "INF-NGE2-EXACT2N-SYNTHESIS",
+      "premise_ids": ["CLM-NGE2-EXACT2N-MAX", "CLM-NGE2-EXACT2N-MIN"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT"],
+      "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "ordered_step_reconstruction": ["Use the universal maximizer theorem for every member of the maximizer set.", "Use the universal minimizer theorem for every member of the minimizer set.", "Take their conjunction in the common R>1, n>=2 scope."],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "Both premises and the conclusion share the same problem and switch definitions."},
+      "logic_audit": {"passed": true, "reasoning": "The max-or-min claim is exactly the conjunction of the two exhaustive extremum cases."},
+      "boundary_audit": {"passed": true, "reasoning": "Existence of both sets is established upstream; no assertion beyond every global max/min is added."},
+      "adversarial_audit": {"passed": true, "reasoning": "The synthesis adds no symmetry, uniqueness, explicit location, infinite-contrast, or novelty conclusion."}
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "OBL-NGE2-ENDPOINT-COUNT",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The first, middle, and last nodal-cell counts, both endpoint equalities, simplicity, and zero-to-effective-switch converse are proved in full scope."
+    },
+    {
+      "node_id": "OBL-NGE2-MAX-ENDPOINT",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The invariant proves the stronger q_0>1 and q_1<-1 for every maximizer, hence discharges both strict inequalities."
+    },
+    {
+      "node_id": "OBL-NGE2-MIN-ENDPOINT",
+      "record_kind": "proved_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The same invariant proves the stronger endpoint inequalities for every minimizer."
+    },
+    {
+      "node_id": "OBL-NGE2-GLOBAL-CERT",
+      "record_kind": "superseded_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "A continuum-global fewer-switch counterexample certificate is no longer needed after a universal proof; no counterexample is asserted."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-ENDPOINT",
+      "record_kind": "proved_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The endpoint route proved the exact count and independently audited the decisive energy invariant."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-CERT-CEX",
+      "record_kind": "superseded_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The bounded search found no fully saturated lower-switch branch, but was never promoted to proof; the universal analytic theorem makes further counterexample certification unnecessary."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-SMALL-R",
+      "record_kind": "proved_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The independent route proves for each fixed n an epsilon_n>0 such that all weights in the shrinking box satisfy both endpoint inequalities, hence every extremizer is exact 2n. It expressly withholds a uniform-in-n claim."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-LARGE-R",
+      "record_kind": "proved_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The independent route supplies explicit high-density block bounds and a quantitative fixed-n sufficiently-large-R exact-2n theorem for every maximizer; it does not overclaim a minimizer result."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-ADVERSARIAL",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Finite topology scans, high-precision stationary checks, and literature search are retained as bounded adversarial evidence, not universal proof or novelty certification."
+    },
+    {
+      "node_id": "GOAL-NGE2-EXACT2N",
+      "record_kind": "solved_goal",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "In the candidate graph, the exact target is reached from the frozen domain through seven proved inferences with no unresolved proof obligation. After approved deterministic receipt, the goal's merge-and-closure completion criterion will be satisfied."
+    }
+  ],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "candidate_blueprint_hash": "sha256:701e67939345ee2db64c873f580ea8f2fb09f415664b0a29d5827fb450d6111f",
+    "candidate_inventory_hash": "sha256:1e83425e2987078a6fb26f14b37fdef6ce26067798abd3a96683a490ff3b4887",
+    "candidate_nodes": 44,
+    "candidate_edges": 79,
+    "independent_validator_passed": true,
+    "read_write_set_check": {
+      "queried_existing_nodes": 34,
+      "semantic_hash_mismatches": [],
+      "missing_nodes": [],
+      "new_node_ids_absent_on_base": ["INF-NGE2-ENERGY-INVARIANT", "CLM-NGE2-ENERGY-INVARIANT"],
+      "new_inventory_rows_absent_on_base": ["MATH-NGE2-EXACT2N-20260809"]
+    },
+    "closure_reasoning": "The candidate has eleven proved inferences and no open, blocked, candidate, or refuted inference. The new energy claim is reached before endpoint rigidity, the endpoint-count branch is independent of it, and the two branches meet only downstream; no cycle or unsupported truth propagation occurs."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "validation_hash_matches_assignment": true,
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "primary_proof": {
+      "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+      "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+      "exists": true,
+      "hash_matches": true
+    },
+    "definition_audit_sha256": "sha256:92c78b02ed7c6f891907361cb057f60b93e8e7d0083011292178305de07f1659",
+    "logic_audit_sha256": "sha256:cf434c5eef1ae4670f3cdd61593192d61490c845cef079b26b042f86106e5b95",
+    "boundary_audit_sha256": "sha256:ee75de9b3ceda9fabfca6e5e397a0a35a8fe7dfcb68d6dfdffe7b87c5c498496",
+    "adversarial_audit_sha256": "sha256:0add4f07ebf5c8c12784e2986957282aa3c06b8709371751dc449a97221bdc29",
+    "all_artifact_SHA256SUMS_entries_match": true,
+    "independent_audits": [
+      {"path": "routes/endpoint_rigidity_independent/energy_invariant_audit.md", "sha256": "sha256:5a3e72bf634266a8e2434aae59403e60f668d5de08996fb45c1da45011164b3a", "verdict": "PASS"},
+      {"path": "routes/asymptotic_adversarial_independent/energy_invariant_audit.md", "sha256": "sha256:367fa245c0ef21e95c8979e1651b78e9644974d1773da1d4a1496ad45d375eb3", "verdict": "PASS_AS_A_MATHEMATICAL_PROOF_ARTIFACT"},
+      {"path": "routes/synthesis_audit/independent_audit.md", "sha256": "sha256:3fe0d55cf4d09d3e0f0cc8ae23428bd69c058b6b01613ef0cb3ab008ddf3f918", "verdict": "PASS"}
+    ],
+    "numerical_evidence_role": "bounded adversarial evidence only; not used for universal entailment, existence, globality, or topology completeness",
+    "novelty_boundary": "No novelty or priority claim is made; the bounded primary-source search is used only to delimit verified prior-art access."
+  },
+  "findings": [],
+  "required_actions": []
+}

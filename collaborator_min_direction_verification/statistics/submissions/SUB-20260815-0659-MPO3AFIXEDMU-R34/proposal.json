@@ -1,0 +1,372 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260815-0659-MPO3AFIXEDMU-R34",
+  "author_agent_id": "/root",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-14T23:05:16.823869Z",
+  "base_blueprint_hash": "sha256:7ec33148ea0e40b93ae03312a98ba0733e4cec891eb30f80f962bcf7d3d51dbf",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add the independently audited all-n finite-contrast max fixed-mu internal-cell and projective-flight order lemma, together with the exact remaining norm-orientation obligation and a scoped partial-attempt record. No existing node is changed.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+        "type": "inference",
+        "title": "Global mixed-flux induction orients every max internal cell at fixed mu",
+        "statement": "The accepted full-relay recurrences, sharp internal phase separation, positive max path matrix, and physical continuant bridge imply the strict fixed-mu q-orientation stated in CLM-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-MPO3A-STRUCTURE",
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+          "CLM-NGE2-MPO3A-MAX-LOCAL-TWIST-R8",
+          "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/derivation.md",
+          "sha256": "sha256:828f80433a2f05388c716efaabf86b2c5f209543c6b1424392724e2b9cdc786e"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+        "type": "claim",
+        "title": "Strict fixed-mu projective cell order for every max relay root",
+        "statement": "For every finite R>1, integer n>=2, and every possibly asymmetric premise-complete transverse common-terminal max-law root with 2n relay events, let dot denote q partial_q at fixed mu. Every internal positive relay cell has dot(theta_i)<0, every internal negative relay cell has dot(theta_i)>0, and every internal projective flight alpha_i=atanh(sin(theta_i)sin(mu theta_i)/(1+cos(theta_i)cos(mu theta_i))) has dot(alpha_i)<0. Endpoint cells are excluded. No reflection hypothesis is used. The result does not sign the fixed-q mu field, the common-terminal feedback dq/dmu, the norm derivative, the full residual Jacobian, uniqueness, or general O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-MAX-CELL-ORDER-TO-NORM-R34",
+        "type": "obligation",
+        "title": "Bridge fixed-mu max cell order to the norm-orientation scalar",
+        "statement": "Combine the strict fixed-mu per-cell order with a rigorous fixed-q frequency response or an equivalent global feedback identity to orient the common-terminal norm derivative and full max residual Jacobian for every n, or produce an exact or certified physical counterexample.",
+        "formal_statement": "For every finite R>1, integer n>=2, and every premise-complete transverse common-terminal max root, prove c'>0, equivalently the physical frequency Schur scalar S_eta<0, by adding sufficient control of the fixed-q mu field or of the common-terminal feedback to the R34 fixed-mu q-field order. Cover both midpoint parities, asymmetric roots, all relay chambers, and compatible limiting closures separately; alternatively certify a fully physical root with the opposite or zero orientation.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MAX"
+        ],
+        "discharge_criteria": [
+          "Control every finite R>1 and n>=2 max root, including both midpoint parities and arbitrary asymmetric premise-complete roots.",
+          "Retain the endpoint normalization and event saltation terms in the fixed-q mu field or an exactly equivalent border formulation.",
+          "Do not infer dq/dmu<0 from partial_q A_n>0 or from fixed-mu cell order without separately signing A_mu or the full two-residual Jacobian.",
+          "Treat R=1, grazing, collision, zero-amplitude, incomplete-word, and nontransverse closures explicitly rather than extending the strict chart by assertion.",
+          "A counterexample must satisfy the complete physical relay, common-terminal, equal-norm, event-count, and transversality predicates; coefficient-level or local-cell witnesses do not discharge the obligation."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-MAX-FIXED-MU-CELL-ORDER-R34",
+        "type": "attempt",
+        "title": "Fixed-mu mixed-flux cell-order route for the max branch",
+        "statement": "Use inverse positivity of the max physical path matrix and an endpoint-normalized mixed cross-Wronskian induction to prove strict fixed-mu phase and projective-flight order on every internal max cell. The fixed-q frequency response, norm orientation, full Jacobian, and all-n O3a remain open.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Physical continuants, irreducible M-matrix inverse positivity, time-translation comparison flux, endpoint-normalized saltation induction, and exact projective-flight differentiation",
+        "route_key": "mpo3a-cont4-max-fixed-mu-cell-order-r34",
+        "deliverable_contract": "A universal finite-contrast fixed-mu internal-cell order theorem for the max branch and an exact identification of the remaining fixed-q frequency/norm bridge, without promoting local or numerical evidence to O3a.",
+        "falsification_tests": [
+          "Reconstruct strict inverse positivity from L_+ positive definiteness, irreducibility, and the positive terminal continuant; entrywise nonnegativity alone is insufficient.",
+          "Check the first-event base N_1=-q^2+chi_1<-1 and every sign in the inherited mixed-flux recurrence; a purely local two-cell cone is known to fail.",
+          "Audit n=2, all n, both midpoint parities, asymmetric roots, endpoint exclusions, and the two degeneration classes separately.",
+          "Do not interpret fixed-mu q-order as fixed-q mu-order, common-terminal q feedback, a norm slope, a Jacobian theorem, or uniqueness.",
+          "Use exact symbolic replay only for identities; no finite scan or floating-point sign is a theorem premise."
+        ],
+        "expected_bottleneck": "The fixed-q frequency response and endpoint-normalization border terms are not controlled by the fixed-mu positive path cone; an exact physical bridge to c'>0 or S_eta<0 is still required.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifacts": [
+            "routes/r34_max_fixed_mu_cell_order/derivation.md",
+            "routes/r34_max_fixed_mu_cell_order/exact_check.py",
+            "routes/r34_max_fixed_mu_cell_order/exact_check_output.txt",
+            "routes/r34_max_fixed_mu_cell_order/problem_contract.md",
+            "routes/r34_max_fixed_mu_cell_order/reproducibility_manifest.md",
+            "routes/r34_max_fixed_mu_cell_order/research_ledger.md",
+            "routes/r34_max_fixed_mu_cell_order/self_audit.md",
+            "routes/r34_max_fixed_mu_cell_order/freeze_manifest.md",
+            "routes/r34_max_fixed_mu_cell_order_independent_audit/independent_audit.md"
+          ]
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-MAX-LOCAL-TWIST-R8",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "target": "CLM-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX",
+      "target": "OBL-NGE2-MPO3A-MAX-CELL-ORDER-TO-NORM-R34",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-MAX-FIXED-MU-CELL-ORDER-R34",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "CLM-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+      "OBL-NGE2-MPO3A-MAX-CELL-ORDER-TO-NORM-R34",
+      "ATT-NGE2-MPO3A-CONT4-MAX-FIXED-MU-CELL-ORDER-R34"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:34ddfc0ec931503621e7658d7186318b41b3f910214000e23c55bae7aaac040e",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:6e2749fd147662212ade344e6dec0a715a83e76cb954e031134748a99a134b7b",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MAX-LOCAL-TWIST-R8": "semantic-sha256:38715d37777669d1738fa0deff86db4062c269022f79b7ce256b32b56f39ef13",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:5a4e8e40668e50766f7594724eb357bddcf7b94139b86e8fdbf14582e39088ee",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:76505a7eb2ffa45225adf487ce6f8f250a2ed35aa415c5a9756536a507db5558",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:788fd7a0a1ab30540c1da2194e6ce6365ae60cc1eea04cc1a13a779b58f07dd8",
+      "INF-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:f377eb235ffcb122f315d646d9a56665dbb55cbfecc826a4f85c19cd1ce4df45",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MAX-LOCAL-TWIST-R8": "semantic-sha256:58a814ad8794134c3a9a81df25822f49c7c28c0190dd8f8aac10f76e9316e67c",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:804abd6209285b16cfb62428a98700f2262049146855dd8c6b3b04f0712b139f",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_general_max_norm_orientation_open",
+    "scope": "Every finite R>1, n>=2, and arbitrary possibly asymmetric premise-complete transverse common-terminal max root. Only internal fixed-mu q-cell and projective-flight order is established; endpoints, fixed-q mu response, norm orientation, full Jacobian, uniqueness, and O3a retain their prior statuses.",
+    "duplicate_policy": "The R8 theorem signs only the common-terminal residual derivative and positive path matrix. R34 adds strict orientation of every individual internal cell and projective flight. The protected general max inference and existing norm one-crossing obligation are not edited or superseded.",
+    "computation_policy": "No numerical evidence is a premise. The checker replays algebraic identities only; strict inequalities, scope, and boundary cases were independently audited.",
+    "audit_policy": "The frozen derivation sha256:828f80433a2f05388c716efaabf86b2c5f209543c6b1424392724e2b9cdc786e, checker sha256:74d3c4896802d290f02da7c6f035a81f2230b686d9b0a40d4db5f65cace547ce, output sha256:ba68a00a8f8fca585bd0f008624a0eaddf2cc09ac693fa105083190c0eaf82a4, author audit sha256:bfcb32897e047c5c4977df550a773de44c7c128eb33b4f3af0c9d039c7ffac14, freeze manifest sha256:eee52451c0166fd5a5fd212297b68df99bb027506109a4804158fb8a657cb562, and independent four-part audit sha256:a51f500ee1e381ec9da9e853dc886650ea591c143593944daae4b94c7db7adb2 are bound exactly.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/exact_check.py",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/exact_check_output.txt",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/problem_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/reproducibility_manifest.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/research_ledger.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order/freeze_manifest.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r34_max_fixed_mu_cell_order_independent_audit/independent_audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Finite real R>1 and integer n>=2 in the accepted adjacent-gap problem.",
+        "contract_explanation": "Supplies the ambient domain and no relay or derivative sign by itself."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Max/min relay laws, exactly 2n effective switches, and the a.e. switch representative convention.",
+        "contract_explanation": "Fixes the max relay word and premise-complete root terminology without supplying the R34 orientation."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Simple alternating crossings and the exact internal positive/negative cell allocation.",
+        "contract_explanation": "Supplies event orientation, cell parity, and the opposite-label structure used in the recurrence."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact finite-contrast common-terminal full-relay representation for every premise-complete transverse root.",
+        "contract_explanation": "Supplies q>1, common energy, the event saltation laws, and the relative q-field recurrences."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Sharp internal positive/negative phase separation for every strict full-relay root.",
+        "contract_explanation": "Orients adjacent chi differences and excludes the projective singular threshold; endpoints remain separate."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-MAX-LOCAL-TWIST-R8",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Positive-definite physical path matrix L_+ and positive local q-twist at every max root in scope.",
+        "contract_explanation": "Supplies the strict irreducible M-matrix block and terminal orientation needed for all-prefix positivity."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact physical relative path/continuant and terminal cofactor identities in the scaling quotient.",
+        "contract_explanation": "Supplies the exact positive terminal flux-to-continuant bridge used with L_+ inverse positivity."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-MAX-FIXED-MU-CELL-ORDER-R34",
+        "ordered_steps": [
+          "For the logarithmic fixed-mu q-field, use the accepted saltation and cell-transfer recurrences and the terminal relative path equation L_+W=(w_m/a_m)e_last.",
+          "Use MAX-LOCAL-TWIST-R8 and PHYSICAL-CONTINUANT-R7 to obtain L_+ positive definite, irreducible with negative off-diagonals, and w_m>0. Strict inverse positivity then gives w_i>0 on every internal prefix.",
+          "For the time-translation comparison field define gamma_i, Y_i, chi_i, and H_i=Y_i+chi_i. Negative common energy gives H_i<0 and Y_i+chi_(i-1)<0; sharp R8 phase separation and strict increase of chi give sign(chi_(i-1)-chi_i)=sign(gamma_i).",
+          "Define the mixed flux N_i=gamma_i w_i-d_iH_i. The endpoint normalization gives N_1=-q^2+chi_1<-1, and exact saltation cancellation gives N_i(1+Delta_i/H_i)=N_(i-1)+gamma_iw_iDelta_i/H_i. The divisor is positive and the new source strictly negative, so N_i<0 globally by induction.",
+          "Differentiate each simple event and combine the q-field and time-translation recurrences to obtain dot(theta_i)=-sqrt(rho_i)K_iN_i/(gamma_i gamma_(i+1)). Successive event orientations and N_i<0 give sign dot(theta_i)=-sign K_i, hence positive cells contract and negative cells expand.",
+          "Differentiate the exact projective flight alpha_i. Its theta derivative has sign K_i on the two strict phase branches, so every internal dot(alpha_i) is strictly negative. Since q>1, the same signs hold for ordinary partial_q."
+        ],
+        "boundary_cases": [
+          "For n=2 there are three internal cells; the endpoint base initializes the first and the same induction covers the remaining two without using the canonical n=2 norm theorem.",
+          "The proof uses neither reflection nor a midpoint condition and covers both midpoint parities and arbitrary asymmetric roots.",
+          "No phase or projective-flight conclusion is made for either endpoint cell; the left endpoint is used only through Y_0=-q^2, w_0=0, and d_1=-1.",
+          "R=1 and relay-chart degeneracies including grazing, collision, zero event amplitude, nontransversality, and incomplete words are outside the strict statement.",
+          "No uniform margin as R approaches 1 or infinity is asserted, and no fixed-q mu, common-terminal feedback, norm, Jacobian, or uniqueness conclusion is drawn."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:828f80433a2f05388c716efaabf86b2c5f209543c6b1424392724e2b9cdc786e",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-MAX-CELL-ORDER-TO-NORM-R34",
+        "record_kind": "proof_obligation",
+        "status_justification": "R34 signs only the fixed-mu q-field. The fixed-q mu response, common-terminal feedback, and physical frequency/norm border remain unsigned, so c'>0 and the full max Jacobian are still open for general n."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-MAX-FIXED-MU-CELL-ORDER-R34",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route rigorously proves all-n finite-contrast internal fixed-mu cell and projective-flight order, but it does not close norm orientation, residual nonsingularity, uniqueness, or general O3a."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

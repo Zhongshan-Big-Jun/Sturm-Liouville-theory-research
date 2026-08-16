@@ -1,0 +1,661 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260809-2231-EXACT2NPROOF",
+  "author_agent_id": "root-exact2n-author",
+  "run_id": "R-20260809T125847Z-exact2n-switch",
+  "created_at": "2026-08-09T14:37:44Z",
+  "base_blueprint_hash": "sha256:295b5663c5466ed0f8d72e571d5df84630ffa9f204c01a5246e786b92c69b763",
+  "base_inventory_hash": "sha256:02529f9374d833dab60c7f0650cc0b07431f2d172195100b069de0e7759107be",
+  "supersedes": null,
+  "summary": "Establish the universal exact-2n effective-switch theorem for every adjacent-gap maximizer and minimizer, together with its energy invariant, endpoint-count lemma, endpoint rigidity, discharged obligations, and solved research goal.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-ENERGY-INVARIANT",
+        "type": "inference",
+        "title": "Saturated switching interfaces glue a global block-energy invariant",
+        "statement": "For an arbitrary global adjacent-gap extremizer, the accepted finite bang-bang reduction and switch-zero condition imply a global block-energy difference K=-2(lambda_{n+1}-lambda_n), and hence strict endpoint derivative-magnitude inequalities.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-FINITE-REDUCTION",
+          "CLM-NGE2-BANGBANG"
+        ],
+        "definition_inputs": [
+          "DEF-SL-BOX-ADJ-GAP",
+          "DEF-BANGBANG-SWITCH-COUNT",
+          "DEF-NGE2-ENDPOINT-NORMING"
+        ],
+        "conclusion": "CLM-NGE2-ENERGY-INVARIANT",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-ENERGY-INVARIANT",
+        "type": "claim",
+        "title": "Global energy invariant and strict endpoint slope dominance",
+        "statement": "For every finite R>1, integer n>=2, and every global maximizer or minimizer rho_* of D_n on K_R, use DEF-NGE2-ENDPOINT-NORMING and any finite bang-bang representative. The blockwise quantity K=(u_n'^2+lambda_n rho_* u_n^2)-(u_{n+1}'^2+lambda_{n+1} rho_* u_{n+1}^2) glues across every effective switch to the global a.e. constant -2D_n(rho_*). Consequently q_0>1 and q_1<-1.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-ENERGY-INVARIANT"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-FINITE-REDUCTION",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-BANGBANG",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-BOX-ADJ-GAP",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-BANGBANG-SWITCH-COUNT",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-ENDPOINT-NORMING",
+      "target": "INF-NGE2-ENERGY-INVARIANT",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-ENERGY-INVARIANT",
+      "target": "CLM-NGE2-ENERGY-INVARIANT",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-BANGBANG",
+      "target": "INF-NGE2-ENDPOINT-COUNT",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-ZERO-BOUND",
+      "target": "INF-NGE2-ENDPOINT-COUNT",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-ENERGY-INVARIANT",
+      "target": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-ENERGY-INVARIANT",
+      "target": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "role": "premise_input"
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-ENDPOINT-COUNT",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-ENDPOINT-COUNT",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established",
+        "claim_kind": "lemma"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established",
+        "claim_kind": "lemma"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-EXACT2N-MAX",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-EXACT2N-MAX",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established",
+        "claim_kind": "theorem"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-EXACT2N-MIN",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-EXACT2N-MIN",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established",
+        "claim_kind": "theorem"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-EXACT2N-SYNTHESIS",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+          "sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "CLM-NGE2-EXACT2N-ALL",
+      "changes": {
+        "status": "established",
+        "grade": "B",
+        "truth_status": "established",
+        "claim_kind": "theorem"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "OBL-NGE2-ENDPOINT-COUNT",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "obligation_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "OBL-NGE2-MAX-ENDPOINT",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "obligation_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "OBL-NGE2-MIN-ENDPOINT",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "obligation_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "OBL-NGE2-GLOBAL-CERT",
+      "changes": {
+        "status": "superseded",
+        "grade": "D",
+        "obligation_status": "superseded"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-EXACT-ENDPOINT",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "attempt_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-EXACT-CERT-CEX",
+      "changes": {
+        "status": "superseded",
+        "grade": "C",
+        "attempt_status": "superseded"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-EXACT-SMALL-R",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "attempt_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-EXACT-LARGE-R",
+      "changes": {
+        "status": "proved",
+        "grade": "B",
+        "attempt_status": "proved"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-EXACT-ADVERSARIAL",
+      "changes": {
+        "status": "partial",
+        "grade": "C",
+        "attempt_status": "partial"
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "GOAL-NGE2-EXACT2N",
+      "changes": {
+        "status": "solved",
+        "grade": "B",
+        "goal_status": "solved"
+      }
+    }
+  ],
+  "inventory_operations": [
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "MATH-NGE2-EXACT2N-20260809",
+        "title": "Universal exact-2n switching theorem for adjacent weighted Dirichlet gaps",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-NGE2-EXACT2N-ALL",
+        "grade": "B",
+        "status": "established",
+        "headline_value": "For every finite R>1 and n>=2, every global maximizer and minimizer has exactly 2n effective switches",
+        "scope": "All measurable densities 1<=rho<=R a.e. on (0,1), every finite R>1, every integer n>=2, both global maxima and minima, and every extremizer",
+        "primary_artifact": "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+        "main_limitation": "No symmetry, uniqueness, explicit switch locations, closed optimal-gap formula, infinite-contrast theorem, formal-proof-assistant verification, or novelty claim"
+      }
+    }
+  ],
+  "write_set": {
+    "existing_nodes": {
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:6191d8418df81a1a3646c06e9559d3b4e645eb571dfd20a0b73459b87384f111",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:4b961530def448a7bf4e61122f76463c7d9c86197077ece7214ab95916cc68d6",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:499c9af1528ebe7fb1f014e66503e69d7b88fba0bc3720c3bf18af029614115f",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:b99f78757f73ef8288d3acd21d95c02bb2f6f70f5dd6ca05a3ced05cbafc3f20",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:509b28dae9f060ba68f043431921d3689a89946de8e45c961a70fca54ffd36db",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:3b3115d4e2a21115a7b315c5cb7583d5080ee676343f9c18b094e015a36ced17",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:f4f9f35980730ca739a6ae000b09106572fb2bc3a9521037e69951c496b294d9",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:63c46db2e51385069a7ca1f0ace4eec0254928280d7a708119905fc9c59a0400",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:b9114c4f67a18ffceee53ab6d8ce82cf3c641ae26e69c6912d3864354253ac2e",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:7d9857c3f1a88eca7b0bd37964065df6517502acc1e66cf33b50522f69ad7e6f",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:15a5f7d34da01b7474ffd8610b89c101559d7c9de5d66f61fc28a59ef3bbc6ce",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:9c5eb7ebd21682d8e8d81bfb364ec1bda0506ced24956452505527e12032c143",
+      "GOAL-NGE2-EXACT2N": "semantic-sha256:d607cf5bb551130d686c29d0e006223cf95ad5a2525e0691545f4560248e3ccb",
+      "OBL-NGE2-ENDPOINT-COUNT": "semantic-sha256:8155f94b98b9d5c5db23f10a7a42ad933aa4817fdf3ee49d5d35a9a60d17cd72",
+      "OBL-NGE2-MAX-ENDPOINT": "semantic-sha256:81f5374a1cd3d184bd412ab3e38af9cb65ff6395e1b16ac61382d454b77e391e",
+      "OBL-NGE2-MIN-ENDPOINT": "semantic-sha256:14fa72410cf0a3afb11645612eeeba304b67c5c4d54235e916491289bebe7290",
+      "OBL-NGE2-GLOBAL-CERT": "semantic-sha256:0248611a00bebf866a186b0872e6872a76746a9a24cb6ee1f03bbdc6e6224d3e",
+      "ATT-NGE2-EXACT-ENDPOINT": "semantic-sha256:57cb3469eec12697dc320fa11678aa4d3e061bb5e55dc2f079738f16fe902d52",
+      "ATT-NGE2-EXACT-CERT-CEX": "semantic-sha256:c9862129ddf82147678c8999e36059350b2a0d2c6742d3976a5bab7edb2faddc",
+      "ATT-NGE2-EXACT-SMALL-R": "semantic-sha256:f4cb71e6410535e9bc5c64f373087d4ae57179f0fec7e30852381abe522e3c3f",
+      "ATT-NGE2-EXACT-LARGE-R": "semantic-sha256:d276e117e48dbdb750d3521edbac7293b6f7f7e96a5c35f460aa382ec0414887",
+      "ATT-NGE2-EXACT-ADVERSARIAL": "semantic-sha256:15e53d6197aed2bb7d7c863d334e55509c1538b38f0f87e681a5e7042dcc6a3e"
+    },
+    "new_node_ids": [
+      "INF-NGE2-ENERGY-INVARIANT",
+      "CLM-NGE2-ENERGY-INVARIANT"
+    ],
+    "inventory_rows": {
+      "MATH-NGE2-EXACT2N-20260809": null
+    }
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5"
+    }
+  },
+  "rationale": {
+    "research_status": "independently_audited_proof_pending_blueprint_review_and_integration",
+    "quantifier_alignment": "The proof fixes arbitrary finite R>1 and integer n>=2 and then treats every member of both global extremizer sets. It uses no selected branch, uniqueness, reflection symmetry, or contrast-asymptotic weakening.",
+    "proof_mechanism": "Strict quotient monotonicity gives an exact endpoint-indicator formula for the switching-function zeros. Full one-sided saturation identifies simple zeros with effective switches. A block oscillator-energy difference has interface jump Delta rho times F, so it glues across every saturated switch and integrates to -2D. Endpoint traces then force q_0>1 and q_1<-1, activating both indicators.",
+    "independence": "Three mechanism-distinct routes were frozen. Two analytic auditors independently reconstructed the energy invariant and exact-zero lemma, and a separate synthesis auditor returned PASS with no blocking, major, minor, or unresolved mathematical finding.",
+    "computation_policy": "Finite topology scans and high-precision stationary calculations are bounded adversarial evidence only. They are not used for universal entailment or global-completeness certification.",
+    "novelty_policy": "No novelty or priority claim is made. The primary-source search did not verify a theorem with the identical full scope, but inaccessible older literature prevents a priority conclusion.",
+    "scope_boundary": "Symmetry, uniqueness, explicit switch locations, optimal-value formulae, infinite contrast, and transition laws remain outside the theorem."
+  },
+  "evidence_refs": [
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/definition_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/logic_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/boundary_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/adversarial_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/proof_manifest.json",
+    "../runs/R-20260809T125847Z-exact2n-switch/artifacts/SHA256SUMS.txt",
+    "../runs/R-20260809T125847Z-exact2n-switch/routes/endpoint_rigidity_independent/energy_invariant_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/routes/asymptotic_adversarial_independent/derivation.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/routes/asymptotic_adversarial_independent/energy_invariant_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/routes/asymptotic_adversarial_independent/literature_audit.md",
+    "../runs/R-20260809T125847Z-exact2n-switch/routes/synthesis_audit/independent_audit.md",
+    "../routes/certified_topology_independent/audit.md",
+    "../routes/certified_topology_independent/energy_invariant_compute_audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Every finite real R>1 and every integer n>=2.",
+        "contract_explanation": "This is the user-frozen parameter domain and not a research conclusion."
+      },
+      {
+        "node_id": "DEF-SL-BOX-ADJ-GAP",
+        "premise_kind": "definition_contract",
+        "scope": "Measurable a.e. box weights, regular weighted Dirichlet spectrum, and the nth adjacent gap.",
+        "contract_explanation": "All arguments stay inside the exact L-infinity a.e. model and preserve the canonical ordering and gap definition."
+      },
+      {
+        "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+        "premise_kind": "definition_contract",
+        "scope": "Finite endpoint-valued step representatives after adjacent equal-value cells are merged.",
+        "contract_explanation": "Only interior effective material changes are counted; fixed endpoints and isolated representative values are excluded."
+      },
+      {
+        "node_id": "DEF-NGE2-ENDPOINT-NORMING",
+        "premise_kind": "definition_contract",
+        "scope": "Weighted-L2 normalization, left derivative orientation, and endpoint ratios for modes n and n+1.",
+        "contract_explanation": "The convention fixes every sign used in q_0 and q_1; the right-end sign is derived from nodal parity."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-ENERGY-INVARIANT",
+        "ordered_steps": [
+          "Fix an arbitrary global maximum or minimum and its accepted finite bang-bang representative.",
+          "On a constant-density block, differentiate each oscillator energy u_k'^2+lambda_k rho u_k^2 and obtain a constant.",
+          "At an effective interface use C1 matching and the accepted switch-zero condition to compute the sole jump as Delta rho times F and make it vanish.",
+          "Integrate the glued constant over the unit interval; kinetic and weighted normalization each contribute lambda_n-lambda_{n+1}, giving K=-2D.",
+          "Read K at the Dirichlet endpoints and use the fixed left orientation and Sturm parity to obtain q_0>1 and q_1<-1."
+        ],
+        "boundary_cases": [
+          "A.e. density representatives use essential block values and common one-sided eigenfunction traces.",
+          "Maximum and minimum switch directions differ but the zero jump is direction independent.",
+          "The strict inequalities hold for every fixed finite R>1, including R near one and arbitrarily large finite R."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-ENDPOINT-COUNT",
+        "ordered_steps": [
+          "Orient consecutive eigenfunctions and prove W=u_{n+1}'u_n-u_{n+1}u_n'<0 throughout the open interval from strict interlacing and W'=-(lambda_{n+1}-lambda_n)rho u_nu_{n+1}.",
+          "Conclude that Q=u_{n+1}/u_n is strictly decreasing on each u_n nodal interval and list its exact first, middle, and last one-sided limits.",
+          "Rewrite F=lambda_{n+1}u_n^2(c^2-Q^2) and count the two levels Q=+c and Q=-c, with strict endpoint indicators and no contribution from equality.",
+          "Differentiate at every crossing to prove all zeros are simple.",
+          "Use the reproduced Feynman-Hellmann formula and localized one-sided box variations to prove complete max/min saturation, so every simple zero and only every simple zero is an effective switch."
+        ],
+        "boundary_cases": [
+          "For n=2 there are no middle nodal cells and the formula still has the correct four possible contributions.",
+          "The cases q_0=c and q_1=-c add no interior zero.",
+          "No quotient is used across a pole, and fixed endpoints are not counted as switches."
+        ],
+        "external_results": [
+          "The accepted upstream CLM-NGE2-ZERO-BOUND is in the same measurable Sturm-Liouville scope; the current proof package independently reproduces the strict Wronskian and level-crossing argument needed for the stronger exact count."
+        ],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+        "ordered_steps": [
+          "Apply CLM-NGE2-ENERGY-INVARIANT to an arbitrary global maximizer.",
+          "Use q_0>1 and q_1<-1 from that lemma and 0<c<1 from the eigenvalue ordering.",
+          "Conclude q_0>c and q_1<-c for every global maximizer."
+        ],
+        "boundary_cases": [
+          "No selected, symmetric, or unique maximizer is assumed.",
+          "Strictness excludes both endpoint equality cases."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+        "ordered_steps": [
+          "Apply CLM-NGE2-ENERGY-INVARIANT to an arbitrary global minimizer.",
+          "Use q_0>1 and q_1<-1 from that lemma and 0<c<1 from the eigenvalue ordering.",
+          "Conclude q_0>c and q_1<-c for every global minimizer."
+        ],
+        "boundary_cases": [
+          "No selected, symmetric, or unique minimizer is assumed.",
+          "The reversed saturation assignment does not change the energy jump or endpoint conclusion."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-EXACT2N-MAX",
+        "ordered_steps": [
+          "Apply the established exact endpoint-count formula to an arbitrary global maximizer.",
+          "Insert both strict endpoint inequalities from maximizer rigidity.",
+          "Both indicators equal one, so the effective switch count is 2n."
+        ],
+        "boundary_cases": [
+          "The conclusion includes n=2, every finite R>1, and every maximizer.",
+          "Fixed endpoints and inactive partition marks remain excluded."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-EXACT2N-MIN",
+        "ordered_steps": [
+          "Apply the established exact endpoint-count formula to an arbitrary global minimizer.",
+          "Insert both strict endpoint inequalities from minimizer rigidity.",
+          "Both indicators equal one, so the effective switch count is 2n."
+        ],
+        "boundary_cases": [
+          "The conclusion includes n=2, every finite R>1, and every minimizer.",
+          "Maximum/minimum material assignments are not conflated."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-EXACT2N-SYNTHESIS",
+        "ordered_steps": [
+          "Use the proved maximizer theorem for every member of the global maximizer set.",
+          "Use the proved minimizer theorem for every member of the global minimizer set.",
+          "Take their conjunction in the common R>1, n>=2 scope to establish the universal max-or-min claim."
+        ],
+        "boundary_cases": [
+          "Existence of both extremizer sets is already established upstream.",
+          "No assertion of symmetry, uniqueness, location, or novelty is introduced by the conjunction."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-ENDPOINT-COUNT",
+        "record_kind": "proved_obligation",
+        "status_justification": "The exact first/middle/last nodal-cell count, endpoint equalities, simplicity, and zero-to-effective-switch converse are proved in full scope."
+      },
+      {
+        "node_id": "OBL-NGE2-MAX-ENDPOINT",
+        "record_kind": "proved_obligation",
+        "status_justification": "The global energy invariant gives the stronger q_0>1 and q_1<-1 for every maximizer."
+      },
+      {
+        "node_id": "OBL-NGE2-MIN-ENDPOINT",
+        "record_kind": "proved_obligation",
+        "status_justification": "The same direction-independent invariant gives the stronger endpoint inequalities for every minimizer."
+      },
+      {
+        "node_id": "OBL-NGE2-GLOBAL-CERT",
+        "record_kind": "superseded_obligation",
+        "status_justification": "A fewer-switch counterexample certificate is no longer needed because the universal theorem is proved; no counterexample is asserted."
+      },
+      {
+        "node_id": "ATT-NGE2-EXACT-ENDPOINT",
+        "record_kind": "proved_attempt",
+        "status_justification": "The endpoint route independently proved the exact count and audited the energy invariant with no unresolved mathematical obligation."
+      },
+      {
+        "node_id": "ATT-NGE2-EXACT-CERT-CEX",
+        "record_kind": "superseded_attempt",
+        "status_justification": "The bounded search found no fully saturated fewer-switch stationary branch, and the subsequent universal proof makes further counterexample certification unnecessary."
+      },
+      {
+        "node_id": "ATT-NGE2-EXACT-SMALL-R",
+        "record_kind": "proved_attempt",
+        "status_justification": "The route rigorously proved fixed-n exact 2n for all sufficiently small positive contrasts, a strict partial-scope theorem later subsumed by the universal result."
+      },
+      {
+        "node_id": "ATT-NGE2-EXACT-LARGE-R",
+        "record_kind": "proved_attempt",
+        "status_justification": "The route rigorously proved block bounds and fixed-n sufficiently-large-R exact 2n for maximizers and independently audited the universal invariant."
+      },
+      {
+        "node_id": "ATT-NGE2-EXACT-ADVERSARIAL",
+        "record_kind": "partial_attempt",
+        "status_justification": "Finite topology and high-precision checks found no counterexample and strongly attacked the identities, but remain bounded numerical evidence without a completeness theorem."
+      },
+      {
+        "node_id": "GOAL-NGE2-EXACT2N",
+        "record_kind": "solved_goal",
+        "status_justification": "The given domain propagates through seven proved inferences to CLM-NGE2-EXACT2N-ALL, with all proof obligations discharged or superseded and an independent synthesis PASS."
+      }
+    ]
+  }
+}

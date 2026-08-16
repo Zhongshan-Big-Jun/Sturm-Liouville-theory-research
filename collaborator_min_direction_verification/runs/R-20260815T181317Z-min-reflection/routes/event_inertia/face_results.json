@@ -1,0 +1,73 @@
+{
+  "schema": "min-reflection-event-inertia-face-cover/v1",
+  "status": "FINITE_COMPUTATIONAL_RESULT",
+  "canonical_snapshot": {
+    "context_id": "CTX-DEFAULT",
+    "blueprint_sha256": "sha256:76346e2fa9f880fd8c1c02bf4b001b38cb66f2f4688c8497c9d764ebb746c7a7",
+    "inventory_sha256": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f"
+  },
+  "coordinate_contract": {
+    "k": "(mu-1)/(mu+1)",
+    "t": "2*Aplus/pi",
+    "y": "(Aminus-pi/2)/(pi/(1+k)-pi/2)",
+    "interior_interval": "[1/64,63/64]",
+    "low_collar": "[0,1/64]",
+    "high_collar": "[63/64,1]",
+    "retained_subset": ["g<1", "rB>1"],
+    "tested_gaps": ["G1", "G2", "G3", "G4"]
+  },
+  "arithmetic": {
+    "library": "python-flint Arb",
+    "library_version": "0.9.0",
+    "precision_bits": 128,
+    "dyadic_endpoint_bits": 34,
+    "max_boxes_each": 2000000
+  },
+  "faces": {
+    "k_low": {
+      "box": ["[0,1/64]", "[1/64,63/64]", "[1/64,63/64]"],
+      "complete": true,
+      "counts": {"visited": 2135, "discard_g": 66, "discard_r": 161, "proved": 841, "split": 1067, "singular": 0, "unresolved": 0},
+      "leaf_identity": [1068, 1068],
+      "min_gap_lower_endpoints": [0.054878353600670664, 0.003812811338026962, 0.04805697985214752, 0.10857118945757598]
+    },
+    "k_high": {
+      "box": ["[63/64,1]", "[1/64,63/64]", "[1/64,63/64]"],
+      "complete": true,
+      "counts": {"visited": 218831, "discard_g": 32317, "discard_r": 77099, "proved": 0, "split": 109415, "singular": 0, "unresolved": 0},
+      "leaf_identity": [109416, 109416],
+      "result": "retained subset empty after stable g and rB contractors"
+    },
+    "t_high": {
+      "box": ["[1/64,63/64]", "[63/64,1]", "[1/64,63/64]"],
+      "complete": true,
+      "counts": {"visited": 23715, "discard_g": 854, "discard_r": 10936, "proved": 68, "split": 11857, "singular": 0, "unresolved": 0},
+      "leaf_identity": [11858, 11858],
+      "min_gap_lower_endpoints": [0.04832808299911325, 0.007229174193894545, 0.00755813095010365, 0.0005021492256937442]
+    },
+    "y_low": {
+      "box": ["[1/64,63/64]", "[1/64,63/64]", "[0,1/64]"],
+      "complete": true,
+      "counts": {"visited": 101, "discard_g": 50, "discard_r": 0, "proved": 1, "split": 50, "singular": 0, "unresolved": 0},
+      "leaf_identity": [51, 51],
+      "min_gap_lower_endpoints": [0.269037130717961, 0.21516203497000344, 0.2404793915391708, 0.3707727579053461]
+    },
+    "y_high": {
+      "box": ["[1/64,63/64]", "[1/64,63/64]", "[63/64,1]"],
+      "complete": true,
+      "counts": {"visited": 36257, "discard_g": 0, "discard_r": 16451, "proved": 1678, "split": 18128, "singular": 0, "unresolved": 0},
+      "leaf_identity": [18129, 18129],
+      "min_gap_lower_endpoints": [102.63277439472745, 100.29706840629512, 97.21242105524442, 2.722537092949314]
+    }
+  },
+  "not_covered": {
+    "single_face": "t in [0,1/64] with k,y interior",
+    "intersections": "every pairwise and triple intersection of boundary collars",
+    "reason": "the current unrescaled Arb expressions lose dependency control at t=0; face-by-face boxes do not cover collar intersections"
+  },
+  "script_bindings": {
+    "cover_collar.py": "sha256:6c3a4af844a4730b6df577b28c26ded3ac23e1e86f59538ce824c740708c97c2",
+    "upstream_r17_exact_checker.py": "sha256:ad1e084f40ed11a80576d2f768fe32c418db391d6d4d98700526a0b4e3b8584b",
+    "upstream_r14_derivation.md": "sha256:bc991d859eac196b08a719ded874a9208a648d2578ea0ce0320e4a0a5ced1fd3"
+  }
+}

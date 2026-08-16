@@ -1,0 +1,320 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260813-0235-MPO3APARACTION-R5",
+  "author_agent_id": "codex-root-r5",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-12T18:36:30.273122Z",
+  "base_blueprint_hash": "sha256:2167670c1a75fe711263b9b7daa2f49f309a3d70117fb65c16b4df8c9ffc6c17",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add exact mu-transversality, zero-action, norm-criticality, and spectral-frontier tangent identities while preserving the all-n O3a target as open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+        "type": "inference",
+        "title": "Parameter action and spectral-frontier identities for the relay curve",
+        "statement": "The accepted full-relay and symplectic nested-relay claims, exact parameter-dependent saltation, Hamiltonian parameter variation, zero signed action, and unit-interval scaling imply the mu-transversality, action one-form, norm-criticality, and spectral-frontier tangent identities in CLM-NGE2-MPO3A-PARAMETER-ACTION.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED"
+        ],
+        "definition_inputs": [
+          "DEF-SL-BOX-ADJ-GAP",
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-PARAMETER-ACTION",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/parameter_variation_fold/derivation.md",
+          "sha256": "sha256:a237af95ca1a04ff7fefe586266ba24f8de04b6171620266cd632c82e6aa835e"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-PARAMETER-ACTION",
+        "type": "claim",
+        "title": "Exact mu-transversality, zero-action, and unit-slope reduction",
+        "statement": "Fix finite R>1, n>=2, either relay sign, and a premise-complete transverse common-terminal trajectory with mu>1 and q>1. Let nu=partial_mu(U,U_t,V,V_t) at fixed q and fixed physical time, including the parameter-dependent saltation term, and retain p=U_t(L), r=V_t(L). Then -p nu_U(L)+r nu_V(L)=2mu I_V(L) and partial_mu A_n=(1-q^2)nu_U(L)/(p r^2)+2mu I_V(L)/r^2. Consequently every q-Jacobi conjugate point has partial_mu A_n=2mu I_V/r^2>0, so A_n=0 is a smooth curve there with stationary mu projection. Along every differentiable common-terminal sheet the zero signed action gives ((1-q^2)/2)dL=mu I_V dmu. Hence B=I_U-I_V equals ((1-q^2)sqrt(mu^2-1)/(2mu)) d_mu[L sqrt(mu^2-1)], so equal norm is exactly criticality of sqrt(lambda_(n+1)-lambda_n)=L sqrt(mu^2-1). Equivalently, for a=L^2, b=mu^2L^2 and c=I_U/I_V, the relay spectral curve obeys db=c da and complete roots have unit tangent slope. These exact identities do not prove a single-peak/single-valley theorem, exclude disconnected reflected sheets, or settle universal O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-PARAMETER-ACTION"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER",
+        "type": "obligation",
+        "title": "Prove common-terminal graph order and one unit-slope spectral point",
+        "statement": "Upgrade the exact parameter-action reduction to a global all-chamber theorem: make the common-terminal set a single reflection-fixed graph with no q-Jacobi conjugate point and prove that c=I_U/I_V=db/da crosses one exactly once; alternatively certify a distinct complete reflected pair or two unit-slope spectral points.",
+        "formal_statement": "For every finite R>1, n>=2 and max/min sign, prove fixed-mu uniqueness of A_n(mu,q)=0 over all premise-complete chambers and compatible closures, then prove strict one-crossing of c=I_U/I_V through 1 on the resulting spectral curve; or provide interval-certified distinct complete roots satisfying all phase, relay, event-count, norm, and indexing predicates.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MAX",
+          "INF-NGE2-MPO3A-MIN"
+        ],
+        "discharge_criteria": [
+          "Cover every finite R>1, every n>=2, both saturation signs, every premise-complete relay chamber, and compatible chamber closures.",
+          "A local derivative sign, a finite numerical scan, or curvature at only symmetric points is insufficient.",
+          "A spectral-curve argument must separately exclude a nonfixed reflection fiber because reflection preserves both eigenvalues and c.",
+          "A counterexample must be interval-certified with exact mode indices, 2n transverse events, correct sign law, positive cells, common terminal time, and equal integrals."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-PARAMETER-ACTION",
+        "type": "attempt",
+        "title": "Parameter-action and spectral-frontier continuation route",
+        "statement": "Use exact mu sensitivity and zero action to turn norm equality into a unit-slope condition on the common-terminal spectral curve, while testing the two remaining requirements: fixed-mu graph order and single crossing of c=I_U/I_V through one.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Parameter-dependent symplectic saltation, zero Hamilton action, spectral-frontier tangent geometry, fixed-mu root order, bounded reflected-pair search, and interval escalation",
+        "route_key": "mpo3a-cont4-parameter-action",
+        "deliverable_contract": "A global graph plus one-unit-slope theorem, a certified distinct reflected pair, or an audited precise obstruction preserving the universal target as open.",
+        "falsification_tests": [
+          "Retain the explicit h_mu saltation term and verify its event pairing cancellation rather than treating mu as an ordinary smooth parameter.",
+          "Do not infer a fold from partial_q A_n=0 without a nonzero second derivative.",
+          "Do not infer global curvature from db=(I_U/I_V)da or from finitely many derivative signs.",
+          "Reject sign-change brackets that land on relay chamber discontinuities or have the wrong 2n event count.",
+          "Treat high-n/high-R optimizer failure as no conclusion."
+        ],
+        "expected_bottleneck": "A fixed-sign hybrid twist or embedded spectral-frontier theorem strong enough to exclude both conjugate points and disconnected reflection pairs.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifact": "runs/R-20260812T165103Z-mpo3a-cont4/routes/parameter_variation_fold/derivation.md"
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "target": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-BOX-ADJ-GAP",
+      "target": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "target": "CLM-NGE2-MPO3A-PARAMETER-ACTION",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX",
+      "target": "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN",
+      "target": "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-PARAMETER-ACTION",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-PARAMETER-ACTION",
+      "CLM-NGE2-MPO3A-PARAMETER-ACTION",
+      "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER",
+      "ATT-NGE2-MPO3A-CONT4-PARAMETER-ACTION"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_universal_target_open",
+    "scope": "The exact identities orient the conjugate locus and reduce equal norm to a scalar unit-slope/criticality condition. They do not prove global graphness, spectral curvature, symmetry, or uniqueness.",
+    "computation_policy": "The 120 fixed-mu branch scans, 32 retained roots, derivative probes, event probes, and high-n/high-R multistarts are finite binary64 discovery evidence only. Seven discontinuous or wrong-chamber sign brackets were rejected and no candidate survived for interval certification.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/parameter_variation_fold/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/parameter_variation_fold/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/computation_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/common_terminal_branch_scan.json",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/common_terminal_derivative_probe.json",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/event_sensitivity_probe.json"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Finite R>1, n>=2, both signs, premise-complete common-terminal relay trajectories and their indexed zero times and relay integrals.",
+        "contract_explanation": "The action and spectral scaling are applied only on the accepted common-terminal relay class; equal norm is withheld until the derived criticality equivalence."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "The exact q-Jacobi derivative, common-terminal energy, reflection map, and fixed-point diagnostic on transverse q>1 chambers.",
+        "contract_explanation": "The new inference reuses the established conjugate equivalence and adds an independently derived mu sensitivity and action identity; it does not import the still-open no-conjugate theorem."
+      },
+      {
+        "node_id": "DEF-SL-BOX-ADJ-GAP",
+        "premise_kind": "definition_contract",
+        "scope": "Positive box-constrained weighted Dirichlet strings, unit-interval scaling, and the adjacent indexed gap.",
+        "contract_explanation": "The variables a=L^2 and b=mu^2L^2 are exactly the two unit-interval indexed eigenvalues, so L sqrt(mu^2-1) is the square root of the canonical adjacent gap."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Both max/min relay laws, 2n effective switches, and a.e. switch representatives.",
+        "contract_explanation": "The parameter-dependent event algebra treats both signs and never uses point values of rho at switches."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-PARAMETER-ACTION",
+        "ordered_steps": [
+          "Write the exact fixed-time mu-sensitivity jump as nu_+=Xi nu_-+a h_mu/(nabla h dot f_-), retaining h_mu=-2mu V^2.",
+          "Use Xi xi=xi, symplecticity, and omega(xi,a)=-Delta rho h=0 to prove that the extra surface-parameter term does not jump omega(xi,nu).",
+          "Inside every material cell identify the inhomogeneous forcing g_mu=(0,0,0,-2mu rho V) and integrate d_t omega(xi,nu)=2mu rho V^2 to obtain -p nu_U+r nu_V=2mu I_V.",
+          "Differentiate the two simple terminal zero times and combine the preceding pairing with p^2-r^2=1-q^2 to obtain the exact partial_mu A_n formula.",
+          "Invoke the established q-conjugate equivalence; eta_U=eta_V=0 eliminates the nu_U term and leaves partial_mu A_n=2mu I_V/r^2>0.",
+          "Use the signed Lagrangian, common Dirichlet endpoints, integration by parts, and 2Phi=rho S to prove that the action vanishes on every common-terminal sheet.",
+          "Differentiate the zero action with moving endpoint and explicit mu parameter to get ((1-q^2)/2)dL=mu I_V dmu, including the sign of the -H dL endpoint term.",
+          "Combine this one-form with I_U-mu^2I_V=L(1-q^2)/2 to express B=I_U-I_V as a nonzero factor times d_mu[L sqrt(mu^2-1)].",
+          "Rescale to the unit interval to identify L^2 and mu^2L^2 as lambda_n and lambda_(n+1), proving the adjacent-gap criticality formula.",
+          "Normalize the two modes and differentiate b-c a with c=I_U/I_V along the relay interface motion; the switching density is proportional to S and vanishes at every interface, yielding db=c da.",
+          "Separate the resulting unit-slope spectral condition from the still-open curvature, graphness, and reflection-fiber obligations."
+        ],
+        "boundary_cases": [
+          "Every finite R>1, n>=2, and both relay signs are covered only on premise-complete transverse common-terminal sheets with mu,q>1 and simple terminal zeros.",
+          "R=1, R=infinity, grazing events, and unresolved chamber boundaries are not included.",
+          "At dmu=0 the action relation is kept as a one-form and is not divided by dmu.",
+          "A stationary projection is not called a fold without second-order information.",
+          "Unit tangent slope is not promoted to unique curvature, and a spectral point is not promoted to a unique coefficient because reflection is isospectral.",
+          "No finite numerical derivative or root scan is used in the proof."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:a237af95ca1a04ff7fefe586266ba24f8de04b6171620266cd632c82e6aa835e",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER",
+        "record_kind": "proof_obligation",
+        "status_justification": "The new exact identities expose graph order, curvature, and reflection-fiber injectivity as separate missing theorems. None is discharged by the finite scans or by local mu transversality."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-PARAMETER-ACTION",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route adds a proved exact reduction and stronger falsification filters but neither proves the universal max/min claims nor produces a certifiable distinct root pair."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260812-1738-MPO3ACONT3-R3",
+  "author_agent_id": "root-mpo3a-cont3-author",
+  "run_id": "R-20260812T093829Z-mpo3a-cont3",
+  "created_at": "2026-08-12T10:00:00Z",
+  "base_blueprint_hash": "sha256:6b7ddfd0832c6109d178b6bf3f3c2a98612404ed77fb7216143aee6a96701d24",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add two exact relay lemmas: strict first-switch monotonicity in the initial slope and a rigorous second-switch event-order obstruction near the equal-material limit; universal multiphase O3a remains open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+        "type": "inference",
+        "title": "The first relay switch is strictly increasing in the initial slope",
+        "statement": "For every mu>1 and q>1, the first crossing of S=U^2-mu^2V^2 in the initial max or min material cell is unique and its time tau_1(q) is C^1 and strictly increasing in q; the exact derivative is given by the implicit sine equation in the proof package.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T093829Z-mpo3a-cont3/routes/relay_monotonicity/derivation.md",
+          "sha256": "sha256:10ddb879dd69661e3a2c3591249f76c212c947dc597a162f98ea75ff5483afa2"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+        "type": "claim",
+        "title": "Exact first-switch monotonicity",
+        "statement": "In the complete relay model, restricted to the q>1 initial-slope chamber, the first switching time is uniquely defined and strictly increasing in q for both saturation signs after the initial-material time rescaling.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+        "type": "inference",
+        "title": "Successive relay event times have no global q-order",
+        "statement": "There exist mu>1 and genuine contrasts R>1 arbitrarily close to one for which the second relay switching time is not nondecreasing in q>1; the proof uses the exact mu=3/2 equal-material limit and transverse event-time continuation.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "inference_inputs": ["INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3"],
+        "conclusion": "CLM-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T093829Z-mpo3a-cont3/routes/relay_monotonicity/derivation.md",
+          "sha256": "sha256:10ddb879dd69661e3a2c3591249f76c212c947dc597a162f98ea75ff5483afa2"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+        "type": "claim",
+        "title": "Exact obstruction to event-by-event relay monotonicity",
+        "statement": "The second switching time cannot be globally ordered by the initial slope q across all finite contrasts: for mu=3/2 and some R>1 arbitrarily close to one, there are q_a,q_b>1 with q_a<q_b but tau_2(q_b;R)<tau_2(q_a;R). This is an obstruction to a naive event-time induction only and is not a self-consistent O3a counterexample.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-BOX-ADJ-GAP",
+      "target": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "target": "CLM-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-BOX-ADJ-GAP",
+      "target": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "target": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "target": "CLM-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "role": "inference_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "CLM-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+      "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+      "CLM-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366"
+    }
+  },
+  "rationale": {
+    "scope": "The two additions are exact auxiliary relay lemmas. They deliberately do not claim universal relay injectivity, Jacobian nonsingularity, reflection rigidity, or a self-consistent counterexample.",
+    "route_value": "The first lemma supplies the only unconditional q-order available at the first crossing. The second lemma proves that an induction using only successive event times cannot be the missing global injectivity proof; an augmented twist/action or Schur-complement invariant is required.",
+    "status_calibration": "Both inferences are marked proved because the proof package uses exact trigonometric formulas, an explicit asymptotic limit, and transverse implicit-function continuation. The universal O3a frontier remains open in the canonical graph."
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T093829Z-mpo3a-cont3/routes/relay_monotonicity/derivation.md",
+    "../runs/R-20260812T093829Z-mpo3a-cont3/routes/relay_monotonicity/audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Finite positive contrasts and integer mode indices in the canonical weighted-string model.",
+        "contract_explanation": "The auxiliary relay parameters are chosen inside the canonical finite-contrast domain; the R=1 system appears only as a continuity limit and is not promoted as a target instance."
+      },
+      {
+        "node_id": "DEF-SL-BOX-ADJ-GAP",
+        "premise_kind": "definition_contract",
+        "scope": "Positive bounded weighted Dirichlet strings and adjacent modes.",
+        "contract_explanation": "The transfer formulas and relay notation are exactly the canonical two-frequency scaling of this model."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Max/min relay signs, q>1 initial chamber, and effective switching events.",
+        "contract_explanation": "The proposition is explicitly weaker than self-consistency: terminal phases and equal integrals are not imposed on the comparison trajectories."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-FIRST-SWITCH-MONO-R3",
+        "ordered_steps": [
+          "On the initial material cell solve the two constant-coefficient IVPs explicitly and reduce S=0 to sin(y)=q sin(mu y) with 0<y<pi/mu.",
+          "Use strict decrease of sin(mu y)/sin(y), obtained from strict decrease of z cot z on (0,pi), to prove existence and uniqueness of the first root.",
+          "Differentiate the root equation and use the same cotangent inequality to prove the displayed derivative is strictly positive.",
+          "For the min relay rescale time by sqrt(R); the identical argument applies with the initial material frequency in place of one."
+        ],
+        "boundary_cases": [
+          "mu>1 and q>1 are retained; the endpoint q=1 is not needed for this lemma.",
+          "The first event lies before the first V zero, so no phase wrapping or cell-boundary ambiguity occurs.",
+          "The statement is local to the initial cell and makes no terminal or symmetry assumption."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:10ddb879dd69661e3a2c3591249f76c212c947dc597a162f98ea75ff5483afa2",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-SECOND-SWITCH-ORDER-OBSTRUCTION-R3",
+        "ordered_steps": [
+          "At the equal-material comparison R=1 and mu=3/2, solve the q=1 event equations exactly to obtain the first two crossings 2pi/5 and 4pi/5, with the second crossing transverse.",
+          "Let q tend to infinity. The exact first-cell root tends to pi/mu, the post-first-event V slope is order -q, and the next crossing occurs after an O(1/q) increment; hence tau_2(q;1) tends to pi/mu=2pi/3.",
+          "Since 2pi/3<4pi/5, choose a finite Q with a strict separation from the q=1 second-event value.",
+          "Apply the implicit-function theorem at the transverse first two crossings and continuity in the post-first material R to transfer the strict separation to some genuine R>1 arbitrarily close to one and to q values strictly above one.",
+          "The min relay follows by the initial-material time rescaling and the same R downarrow 1 continuity argument."
+        ],
+        "boundary_cases": [
+          "R=1 is only a limiting comparison; the conclusion is asserted for finite R>1.",
+          "q=1 is only a boundary anchor; the final two comparison slopes are both q>1.",
+          "The trajectories do not satisfy terminal indexed phases or equal relay integrals, so no O3a counterexample is claimed.",
+          "The result blocks only event-by-event time ordering, not every possible augmented twist or degree invariant."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:10ddb879dd69661e3a2c3591249f76c212c947dc597a162f98ea75ff5483afa2",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

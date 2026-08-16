@@ -1,0 +1,49 @@
+{
+  "targets": ["LIL", "LIH", "HIL", "HIH"],
+  "max_boxes_per_target": 500000,
+  "results": {
+    "LIL": {
+      "root_dyadic": [[0, 268435456], [268435456, 16911433728], [0, 268435456]],
+      "bits": 34,
+      "complete": true,
+      "counts": {"visited": 55, "discard_g": 22, "discard_r": 0, "proved": 6, "split": 27, "singular": 0, "unresolved": 0},
+      "leaf_identity": [28, 28],
+      "stack_remaining": 0,
+      "min_gaps": [0.11911395972903148, 0.002000562215095026, 0.0461836910237698, 0.323823853735971]
+    },
+    "LIH": {
+      "root_dyadic": [[0, 268435456], [268435456, 16911433728], [16911433728, 17179869184]],
+      "bits": 34,
+      "complete": false,
+      "counts": {"visited": 500000, "discard_g": 0, "discard_r": 185931, "proved": 14, "split": 250027, "singular": 0, "unresolved": 64028},
+      "leaf_identity": [249973, 250028],
+      "stack_remaining": 55,
+      "min_gaps": [66215.98029741962, 65484.36050436677, 63846.9395445643, 60450.65510996927]
+    },
+    "HIL": {
+      "root_dyadic": [[16911433728, 17179869184], [268435456, 16911433728], [0, 268435456]],
+      "bits": 34,
+      "complete": true,
+      "counts": {"visited": 7, "discard_g": 4, "discard_r": 0, "proved": 0, "split": 3, "singular": 0, "unresolved": 0},
+      "leaf_identity": [4, 4],
+      "stack_remaining": 0,
+      "min_gaps": [null, null, null, null]
+    },
+    "HIH": {
+      "root_dyadic": [[16911433728, 17179869184], [268435456, 16911433728], [16911433728, 17179869184]],
+      "bits": 34,
+      "complete": false,
+      "counts": {"visited": 500000, "discard_g": 64730, "discard_r": 94983, "proved": 0, "split": 250015, "singular": 0, "unresolved": 90272},
+      "leaf_identity": [249985, 250016],
+      "stack_remaining": 31,
+      "min_gaps": [null, null, null, null]
+    }
+  },
+  "classification": {
+    "LIL": "FINITE_CONDITIONAL_CERTIFICATE",
+    "HIL": "FINITE_CONDITIONAL_EMPTY_RETAINED_SET",
+    "LIH": "AUDITED_INTERVAL_DEPENDENCY_FAILURE",
+    "HIH": "AUDITED_INTERVAL_DEPENDENCY_FAILURE"
+  },
+  "note": "No incomplete target produced a negative retained box. Atomic unresolved leaves prohibit a larger raw-subdivision replay under the preregistered contract."
+}

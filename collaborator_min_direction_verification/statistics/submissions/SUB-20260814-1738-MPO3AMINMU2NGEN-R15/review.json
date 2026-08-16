@@ -1,0 +1,229 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260814-092849-MPO3AMINMU2NGEN-R15",
+  "submission_id": "SUB-20260814-1738-MPO3AMINMU2NGEN-R15",
+  "proposal_hash": "sha256:d8c5c28b288c00aec8652a6635f7cbdfefc431f51c035537b9dbe194b38bded2",
+  "validation_hash": "sha256:c0eaf6bc1fa749aef8e41e6a2ac40c134acab3d41230c02a3cf4f6e714a70e7c",
+  "reviewer_agent_id": "/root/r12_max_antisector",
+  "reviewed_at": "2026-08-14T09:28:49.6890932Z",
+  "verdict": "approve",
+  "decision_summary": "The immutable proposal has the assigned SHA-256, its validation is valid and binds that proposal, the current canonical files still equal the declared base, and the complete 46-node read set, three-new-node write set, seven typed edges, protected-node policy, acyclic candidate graph, and evidence coverage all replay exactly. Independent reconstruction confirms the restricted theorem: every physical mu=2 minimum-law positive-negative interface has 0<a<1; direct solution of the reverse material order gives ratios (1/b,1/a), hence the left shared positive cell satisfies 1/z_j=a with unchanged r; and I_2,I_3,I_4 form an internal negative-positive-negative triple for every and only n>=3. The proof does not extend to n=2, general mu, the maximum law, boundary words, or universal O3a. No numerical or external-source premise is used, and no blocking finding remains.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "HYP-NGE2-DOMAIN",
+      "CLM-NGE2-MPO3A-STRUCTURE",
+      "CLM-NGE2-MPO3A-FULL-RELAY",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "GOAL-NGE2-MPO3A-CONT2"
+    ],
+    "reasoning": "The proposal contains only three add_node and seven add_edge operations. Every new edge targets a new node; existing reliable nodes and the existing goal are cited only as upstream sources. There is no update, deletion, incoming dependency to an existing node, or inventory mutation. Independent replay of check_protection returns an empty reason list."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is finite with R>1 and n is an integer with n>=2 in the accepted adjacent-gap problem.",
+      "scope": "Ambient finite-contrast domain only; the new inference specializes to the minimum law, mu=2, and n>=3.",
+      "source_verification": "Canonical given grade-A hypothesis in the trusted CTX-DEFAULT closure at semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5.",
+      "result": "valid",
+      "independent_reasoning": "The theorem retains finite R>1 and integer n>=3. It does not claim R=1, n=2, existence, or any limit closure."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "Every strict self-consistent full-relay point has the accepted 2n simple ordered active events, alternating internal sign cells, and no hidden tangencies or inactive zeros.",
+      "scope": "Finite R>1, n>=2, both relay laws, including arbitrary asymmetry.",
+      "source_verification": "Canonical established grade-B claim in the trusted CTX-DEFAULT closure at semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20.",
+      "result": "valid",
+      "independent_reasoning": "It supplies the event/cell indexing and transversality used to define every nonzero amplitude ratio. The proof neither imports reflection nor uses a norm or existence conclusion from this premise."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "Premise-complete self-consistent points correspond to the exact two-oscillator relay U_tt=-rho U, V_tt=-mu^2 rho V with continuous state and momentum, the matching saturation law, common terminal conditions, and all chambers and compatible closures retained.",
+      "scope": "Every finite R>1, n>=2, either relay law, and arbitrary possibly asymmetric premise-complete transverse common-terminal roots.",
+      "source_verification": "Canonical established grade-B claim in the trusted CTX-DEFAULT closure at semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46.",
+      "result": "valid",
+      "independent_reasoning": "It fixes the physical momentum-matching problem and material order. The new proof uses only its local restrictions; endpoint and equal-integral equations are not used to create the contradiction."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "Each internal positive cell has 0<theta<pi/(mu+1), each internal negative cell has pi/(mu+1)<theta<pi/mu, with odd-positive/even-negative allocation and no reflection premise.",
+      "scope": "Every finite R>1, n>=2, either relay law, and every strict premise-complete transverse common-terminal root.",
+      "source_verification": "Canonical established grade-B claim in the trusted CTX-DEFAULT closure at semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702.",
+      "result": "valid",
+      "independent_reasoning": "At mu=2 it gives 0<x<1/sqrt(3)<y<1 in half-angle variables. These strict inequalities sign every denominator and boundary gap in the local contraction."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "The minimum law reverses the maximum material assignment: rho=1 on S>0 and rho=R on S<0, with exactly 2n effective positive-length switches and a.e. identification on S=0.",
+      "scope": "Finite R>1 max/min self-consistent relay points.",
+      "source_verification": "Canonical active grade-A non-truth-bearing definition at semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366.",
+      "result": "valid",
+      "independent_reasoning": "It makes a positive-negative minimum-law pair have material frequencies (1,r). Reversing a physical negative-positive pair with order (r,1) therefore produces the same canonical order (1,r), not a formula with reciprocal contrast."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-MIN-MU2-NGE3-NONEXISTENCE-R15",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN",
+        "CLM-NGE2-MPO3A-STRUCTURE",
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8"
+      ],
+      "definition_ids": [
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence/derivation.md",
+      "proof_package_sha256": "sha256:97816827f2044ee7abbc2f80b90d0323c48298d3f797dfb6a15379127ed9509e",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "Normalize the shared amplitude of a physical mu=2 positive-negative pair to one and solve the two lower/high momentum continuity equations. This independently reconstructs the displayed rational amplitudes a(x,y,r) and b(x,y,r), with a the forward positive-cell ratio and b the following negative-cell ratio.",
+        "A strict negative cell has b<0 by the two-ended switching-sign classification. With X=x^2, Y=y^2 and kappa=r x(3Y-1)/(y(1-3X)), the physical branch is kappa_0<kappa<kappa_N. The exact feasibility factorization gives 0<X<(1-Y)^2/(4Y), so all factors C,E,1-X,1-3X,Y-X and 1-XY used below have strict positive signs.",
+        "The exact gap kappa_D-kappa_N=2(Y-X)^2(1-XY)/((1-X)(1-3X)E)>0 gives D_a>0 and hence a>0. The identity a-1=(1-X)T/D_a and the negative kappa_N boundary value of T, together with its positive kappa slope and kappa<kappa_N, give a<1. Thus every physical positive-negative interface has 0<a<1.",
+        "For a generic oscillator, J M_omega(t) J=M_omega(t)^(-1). More decisively, direct solution of the forward negative-positive material pair (r,1) gives endpoint amplitudes b and 1/a when the shared amplitude is one; its forward ratios are therefore (1/b,1/a). Both possible starting quotient-sign gauges give the same result.",
+        "For an internal odd positive cell I_j, the right positive-negative pair gives z_j=a(x_j,y_(j+1),r), while the direct left negative-positive solution gives z_j=1/a(x_j,y_(j-1),r). Therefore a(x_j,y_(j-1),r)a(x_j,y_(j+1),r)=1 with unchanged r.",
+        "If n>=3 then 2n-1>=5 and 3<=2n-3, so I_2,I_3,I_4 are internal negative-positive-negative cells. Applying the strict contraction to both sides of I_3 makes the compatibility product strictly less than one, a contradiction."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "Event amplitudes, cell ratios, phase variables, material frequencies, traversal direction, quotient-sign gauge, and the roles of a and b are kept distinct. Direct negative-positive elimination confirms that the time-reversed left relation is 1/z_j=a and uses the same r; no pictorial symmetry, reflection, or reciprocal material is assumed."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The contraction follows from strict physical phase and amplitude branches through exact identities with all divided factors signed. The local maps are applied only to actual adjacent restrictions of the assumed trajectory, and the internal incompatibility implies nonexistence before endpoint or norm equations are imposed. No existence premise, target conclusion, finite enumeration, or minimum-to-maximum transfer is used."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "For n=3 the index range closes at j=3 and the triple I_2,I_3,I_4 exists; for every larger n it remains internal. For n=2 no flanked internal positive cell exists, so the proof correctly makes no claim. R=1, mu other than 2, phase endpoints, b=0, a=1, collapsed feasibility, grazing, collisions, zero-length cells, nontransverse roots, endpoint escape, and maximum-law words are explicitly excluded. Arbitrary asymmetry is retained."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The weakest step was attacked by applying the minimum material law before and after reversal, verifying JMJ=M^-1 symbolically, directly solving the negative-positive equations, checking both quotient-sign gauges, and proving the j=3 range arithmetically rather than by finite tables. These tests exclude z_j versus 1/z_j confusion, swapping a and b, replacing r by 1/r, event-sign dependence, and an n=3 endpoint overrun."
+      },
+      "route_audit": {
+        "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence_independent_audit/independent_audit.md",
+        "bytes": 9121,
+        "sha256": "sha256:f49cc644bf8a0dd5a6159688dd55f0853381fc0d3c57da64209a005ac15acb71",
+        "verdict": "PASS",
+        "present_and_hash_matched": true
+      },
+      "exact_checker_replay": {
+        "author_checker_sha256": "sha256:e72deabb74c2e1b88f02dfdabae7e242d418e23354dff4640db4f1f088ecdb42",
+        "author_result_sha256": "sha256:52c84d41496f406c1e83d6a8bd6e977b20fdef3d3c4bbaf6c7abbc73c2f93e65",
+        "independent_checker_sha256": "sha256:1a9c3e2d810eba915f6a3e9536d23ad4bd0e10caedb765c0f8b62c3431d6160a",
+        "sympy_version": "1.14.0",
+        "passed": true,
+        "reasoning": "Both exact scripts replayed with all assertions passing. Their finite n=2..12 tables are indexing diagnostics only; the universal step is the analytic inequality 3<=2n-3."
+      },
+      "independent_reasoning": "The frozen proof package, exact algebra checker, direct orientation checker, and independent four-part audit establish exactly the restricted nonexistence statement. There are no unresolved mathematical obligations in this inference."
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT4-MIN-MU2-NGE3-R15",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The route completely proves its restricted mu=2 minimum-law n>=3 theorem but is only partial relative to GOAL-NGE2-MPO3A-CONT2: n=2, general mu, the maximum law, boundary closures, and universal O3a remain unresolved. The partial/B attempt status is calibrated and cannot enter the trusted mathematics closure."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "duplicate_new_edges": [],
+    "base_blueprint_hash_matches": true,
+    "base_inventory_hash_matches": true,
+    "candidate_blueprint_hash": "sha256:a53684ab115d53756d4dc9bd3af7fb1ef56c8cee3b90fc303070ce0503223c46",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_node_count": 123,
+    "candidate_edge_count": 254,
+    "independent_validator_passed": true,
+    "read_set_check": {
+      "passed": true,
+      "entry_count": 46,
+      "reasoning": "The current canonical blueprint and inventory exactly match the proposal base. Reapplying the seven typed edges and three nodes in memory and invoking the deterministic read-set validator reproduces the complete 46-node transitive incoming closure with no ID or semantic-hash mismatch."
+    },
+    "write_set_check": {
+      "passed": true,
+      "existing_node_count": 0,
+      "new_node_count": 3,
+      "new_edge_count": 7,
+      "inventory_row_count": 0,
+      "reasoning": "The operations are exactly three add_node and seven add_edge operations. Node-side typed arrays and edge roles agree; all targets are new nodes and no existing or inventory object is mutated."
+    },
+    "candidate_semantic_hashes": {
+      "INF-NGE2-MPO3A-MIN-MU2-NGE3-NONEXISTENCE-R15": "semantic-sha256:0fba660ab6c305c34a93f6352c96b634904a3dcc762deeeecfd0c1a19a082709",
+      "CLM-NGE2-MPO3A-MIN-MU2-NGE3-NONEXISTENCE-R15": "semantic-sha256:4af1935600ad664686d266cca69671b41ca1fe998992bb0d1bb51238cf458fda",
+      "ATT-NGE2-MPO3A-CONT4-MIN-MU2-NGE3-R15": "semantic-sha256:76ae966b3da7aa67ceb22a8a3d1fe1c9a5e3fbdaee530ce944b2a4ef5e275a27"
+    },
+    "trusted_closure_scope": "Only CLM-NGE2-MPO3A-MIN-MU2-NGE3-NONEXISTENCE-R15 enters the candidate trusted closure through the separately reviewed proved inference. The partial attempt remains non-truth-bearing. Existing n=2 minimum theorems, all maximum-law nodes, general-mu obligations, and the universal O3a goal remain unchanged."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "proposal_hash_recomputed": "sha256:d8c5c28b288c00aec8652a6635f7cbdfefc431f51c035537b9dbe194b38bded2",
+    "validation_hash_recomputed": "sha256:c0eaf6bc1fa749aef8e41e6a2ac40c134acab3d41230c02a3cf4f6e714a70e7c",
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "author_reviewer_distinct": true,
+    "candidate_hashes_match_validation": true,
+    "primary_proof_package": {
+      "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence/derivation.md",
+      "bytes": 10241,
+      "sha256": "sha256:97816827f2044ee7abbc2f80b90d0323c48298d3f797dfb6a15379127ed9509e",
+      "present_and_hash_matched": true
+    },
+    "author_exact_checker": {
+      "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence/general_n_exact_check.py",
+      "bytes": 11383,
+      "sha256": "sha256:e72deabb74c2e1b88f02dfdabae7e242d418e23354dff4640db4f1f088ecdb42",
+      "present_hash_matched_and_replayed": true
+    },
+    "author_checker_result": {
+      "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence/general_n_exact_check.json",
+      "bytes": 7110,
+      "sha256": "sha256:52c84d41496f406c1e83d6a8bd6e977b20fdef3d3c4bbaf6c7abbc73c2f93e65",
+      "present_and_hash_matched": true
+    },
+    "author_self_audit": {
+      "sha256": "sha256:684aa7a05edff5be564f493d157f29044624e61b2a16db2aa74921211fb99a12",
+      "present_and_hash_matched": true
+    },
+    "freeze_manifest": {
+      "sha256": "sha256:44c99d2d779ecf03a6f258c6c334afdd0d2ab6448e1326edddd7621c6464667f",
+      "present_and_hash_matched": true
+    },
+    "independent_four_part_audit": {
+      "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence_independent_audit/independent_audit.md",
+      "sha256": "sha256:f49cc644bf8a0dd5a6159688dd55f0853381fc0d3c57da64209a005ac15acb71",
+      "present_and_hash_matched": true,
+      "verdict": "PASS"
+    },
+    "independent_orientation_checker": {
+      "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence_independent_audit/independent_orientation_check.py",
+      "sha256": "sha256:1a9c3e2d810eba915f6a3e9536d23ad4bd0e10caedb765c0f8b62c3431d6160a",
+      "present_hash_matched_and_replayed": true
+    },
+    "numerical_correspondence": {
+      "status": "not_applicable",
+      "reasoning": "No numerical measurement or finite search is an ordered proof premise. The symbolic scripts check exact identities and orientation; finite indexing tables are explicitly non-universal diagnostics."
+    },
+    "novelty_boundary": "Novelty is explicitly unknown; no priority claim is made."
+  },
+  "findings": [],
+  "required_actions": []
+}

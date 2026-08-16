@@ -1,0 +1,1388 @@
+\documentclass[UTF8,12pt,openany,fontset=fandol]{ctexrep}
+
+\usepackage[a4paper,margin=2.35cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,longtable,array,multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{url}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  urlcolor=blue!55!black,
+  citecolor=blue!55!black,
+  pdftitle={Sturm--Liouville 间隙问题最小化方向的反射对称性研究进展},
+  pdfauthor={Blueprint v2.2 数学研究记录整理}
+}
+\Urlmuskip=0mu plus 1mu
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\allowdisplaybreaks[2]
+\sloppy
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{最小化方向的全局反射对称性}
+\fancyhead[R]{截至 2026-08-16}
+\fancyfoot[C]{\thepage}
+
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{remark}[theorem]{说明}
+\newtheorem{obligation}[theorem]{开放义务}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\In}{\operatorname{In}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\file}[1]{{\small\ttfamily\detokenize{#1}}}
+\newcommand{\Trusted}{\textcolor{green!45!black}{\textbf{蓝图已接受}}}
+\newcommand{\Reviewed}{\textcolor{blue!65!black}{\textbf{已独立预审、尚未入库}}}
+\newcommand{\Certified}{\textcolor{violet!70!black}{\textbf{有限严格证书}}}
+\newcommand{\Open}{\textcolor{red!65!black}{\textbf{开放}}}
+
+\title{\bfseries Sturm--Liouville 间隙问题最小化方向的反射对称性研究进展\\[0.5em]
+\large 完整推导、严格证书、失败机制与开放前沿}
+\author{基于 Blueprint v2.2 数学图与冻结证明包整理}
+\date{2026 年 8 月 16 日}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+本文整理当前在 Sturm--Liouville 相邻谱隙最小化方向上关于全局反射对称性的全部主要进展。核心结论是：对任意有限对比度 $R>1$，$n=2,\mu=2$ 的固定频率公共终点根至多一个，且每个根均被反射固定；对每个紧对比度区间，$n=2$ 在 $\mu=2$ 附近存在统一反射带，而固定 $n\ge 3$ 在该带内不存在最小化根。对一般 $n$，局部方向问题已被精确化为一个 $(n-1)\times(n-1)$ 双 Schur 矩阵 $H$ 的行列式符号 $\det H>0$，并建立了路径森林/区间电荷展开。对任意有限 $\mu>1$、$n=2$，已得到显式的相位依赖弱反差局部正性带，以及从完整三维系数立方体正性到全局反射的闭合条件链；但完整立方体仍有边界区域未覆盖。对 $n\ge3$，共享对比度和双动量消元已经定位首个未控的中央加载块与四边际补偿不等式。本文严格区分蓝图已接受的定理、已经独立预审但尚未进入 canonical 图的结果、有限区间计算证书以及开放义务。全文不宣称一般 $n\ge2$ 的最小化全局反射对称性已经解决。
+\end{abstract}
+
+\tableofcontents
+
+\chapter{问题、记号与可信性边界}
+
+\section{研究目标}
+
+考虑区间 $[0,1]$ 上的加权 Dirichlet Sturm--Liouville 问题
+\begin{equation}
+ -u''=\lambda\rho(x)u,\qquad u(0)=u(1)=0,
+\end{equation}
+其中系数只取两个值 $1,R$，$R>1$。在相邻本征值 $\lambda_n,\lambda_{n+1}$ 的间隙优化中，最小化侧的 bang--bang 自洽律由两相邻归一化本征函数决定。目标是证明：所有有限对比度的最小化自洽点均关于区间中点反射对称。本文采用连续频率比
+\begin{equation}
+  \mu=\sqrt{\lambda_{n+1}/\lambda_n}>1
+\end{equation}
+和左端斜率比 $q>1$ 作为主要坐标。
+
+截至本文冻结时，完整命题
+\begin{quote}
+对所有 $n\ge2$、所有有限 $R>1$，每个最小化自洽点均反射对称
+\end{quote}
+仍为 \Open。尚未发现物理的非对称反例，也尚未完成一般证明。
+
+\section{可信性分层}
+
+本文使用四个层级。
+\begin{enumerate}[label=\arabic*.]
+  \item \Trusted：已通过不可变提案、独立审查和确定性合并进入 Blueprint canonical 图，可作为后续证明前提。
+  \item \Reviewed：严格推导和 exact checker 已完成，并通过独立预审，但因用户要求暂停，尚未提交或合并；不能冒充 canonical 定理。
+  \item \Certified：有限区间上的定向 Arb 或精确代数证书；它们对声明的有限域严格，但不自动传播为物理全局定理。
+  \item \Open：尚未证明的符号、覆盖或全局闭合义务。
+\end{enumerate}
+
+本文绑定的 canonical 快照为
+\begin{quote}\small
+\file{blueprint sha256:}\\
+\file{b93b42029f95d55489c71e344af32922}\\
+\file{0c3182ff07c2d0b57b9e170b7d4f7056}\\[0.3em]
+\file{inventory sha256:}\\
+\file{b6286574edbcb70ad22e5c6758a81f00}\\
+\file{dd01572c0764b8816be23cb6b166fb6f}
+\end{quote}
+快照包含 $146$ 个节点和 $324$ 条边。
+
+\chapter{全区间 relay 约化}
+
+\section{无量纲化与 relay 方程}
+
+固定 $n\ge2$、$R>1$ 和最小化律。取相邻模态 $u_n,u_{n+1}$，令
+\begin{equation}
+ a=\lambda_n,\qquad b=\lambda_{n+1},\qquad
+ \mu=\sqrt{b/a},\qquad L=\sqrt a,
+\end{equation}
+并按 $u_n'(0)>0$ 定向，定义
+\begin{equation}
+ q=\frac{u_{n+1}'(0)}{u_n'(0)},\qquad
+ U(t)=\frac{\sqrt a}{u_n'(0)}u_n(t/\sqrt a),\quad
+ V(t)=\frac{\sqrt a}{u_n'(0)}u_{n+1}(t/\sqrt a).
+\end{equation}
+则在 $0\le t\le L$ 上
+\begin{equation}\label{eq:relay}
+ U_{tt}=-\rho U,\qquad V_{tt}=-\mu^2\rho V,\qquad
+ (U,U_t,V,V_t)(0)=(0,1,0,q).
+\end{equation}
+置
+\begin{equation}
+ S=U^2-\mu^2V^2.
+\end{equation}
+最小化律为
+\begin{equation}\label{eq:minrelay}
+ \rho=1\quad(S>0),\qquad \rho=R\quad(S<0).
+\end{equation}
+在 $S=0$ 上的点值按几乎处处意义无关紧要。
+
+\section{三标量等价定理}
+
+定义连续 Prüfer 相位 $\Theta_U,\Theta_V$，从 $0$ 起始。再记
+\begin{equation}
+ I_U(T)=\int_0^T\rho U^2\dd t,\qquad
+ I_V(T)=\int_0^T\rho V^2\dd t.
+\end{equation}
+
+\begin{theorem}[完整 relay 等价，\Trusted]\label{thm:full-relay}
+具有 $2n$ 个有效开关的最小化自洽点，与满足
+\begin{equation}\label{eq:three-scalar}
+ \Theta_U(L)=n\pi,\qquad
+ \Theta_V(L)=(n+1)\pi,\qquad
+ I_U(L)=I_V(L)
+\end{equation}
+的定向 relay 三元组 $(\mu,q,L)$ 一一对应。任意满足 \eqref{eq:three-scalar} 的三元组自动满足 $q>1$，并且 $S$ 在 $(0,L)$ 内恰有 $2n$ 个简单零点。
+\end{theorem}
+
+\begin{proof}
+正向已经由无量纲化得到 \eqref{eq:relay}--\eqref{eq:minrelay}。Sturm 节点计数给出两个终端相位。若两个物理本征函数均按
+\(\int_0^1\rho u_j^2=1\) 归一化，则变量代换给出
+\begin{equation}
+ 1=\frac{u_n'(0)^2}{a^{3/2}}I_U(L)
+  =\frac{u_n'(0)^2}{a^{3/2}}I_V(L),
+\end{equation}
+所以两个 relay 积分相等。
+
+反向设 \eqref{eq:three-scalar} 成立。relay 能量
+\begin{equation}\label{eq:relay-energy}
+ E=U_t^2+\rho U^2-\bigl(V_t^2+\mu^2\rho V^2\bigr)
+\end{equation}
+在每个材料胞内守恒；跨越 $S=0$ 时跳跃为 $\Delta\rho\,S=0$，故全局守恒且 $E=1-q^2$。终端相位使 $U(L)=V(L)=0$。分部积分得
+\begin{equation}
+ \int_0^L U_t^2\dd t=I_U(L),\qquad
+ \int_0^L V_t^2\dd t=\mu^2 I_V(L).
+\end{equation}
+将其代入 \eqref{eq:relay-energy} 并对全区间积分，若 $I=I_U=I_V$，则
+\begin{equation}\label{eq:qgreater1}
+ L(q^2-1)=2(\mu^2-1)I>0.
+\end{equation}
+故 $q>1$。
+
+令
+\begin{equation}
+ a=L^2,\quad b=\mu^2L^2,\quad A^2=L^3/I,\quad
+ u(x)=\frac{A}{L}U(Lx),\quad v(x)=\frac{A}{L}V(Lx).
+\end{equation}
+则 $u,v$ 是权函数 $\rho(Lx)$ 的 Dirichlet 本征函数，两个加权范数均为 $1$；相位指标将其识别为第 $n$ 和第 $n+1$ 模态。
+
+剩余工作是排除隐藏的 grazing 或少开关情形。令
+\begin{equation}
+ W=V_tU-VU_t.
+\end{equation}
+则
+\begin{equation}
+ W'=-(\mu^2-1)\rho UV.
+\end{equation}
+相邻模态严格交错，故在每个 $U$ 的节点胞内 $V/U$ 严格下降。初端比值为 $q>1$，末端能量给出
+\begin{equation}
+ V_t(L)^2-U_t(L)^2=q^2-1>0,
+\end{equation}
+而节点奇偶性给出末端导数比为负且绝对值大于 $1$。因此在 $U$ 的每个节点胞内，$V/U$ 各穿过 $+1/\mu$ 和 $-1/\mu$ 一次。它们正是 $S=0$，总计 $2n$ 个。由于 $V/U$ 严格单调，每个穿越均横截。于是重构系数确实满足完整最小化 relay 律，且正反变换互逆。
+\end{proof}
+
+\section{两标量公共终点系统}
+
+在每个 premise-complete 横截材料字 chamber 内，定义
+\begin{equation}
+ A_n(\mu,q)=T_U^{(n)}(\mu,q)-T_V^{(n+1)}(\mu,q),
+\end{equation}
+以及
+\begin{equation}
+ B_n(\mu,q)=I_U(T_U^{(n)})-I_V(T_U^{(n)}).
+\end{equation}
+定理 \ref{thm:full-relay} 表明，自洽问题精确等价于
+\begin{equation}
+ A_n(\mu,q)=0,\qquad B_n(\mu,q)=0.
+\end{equation}
+这把原来的多开关问题降为二维标量根问题。全局证明仍须跨越所有 chamber 及其相容闭包，不能只在一个固定材料字内证明局部唯一性。
+
+\chapter{辛结构、反射对合与端点序}
+
+\section{混合 Hamilton 结构}
+
+使用状态 $z=(U,P,V,Q)$ 以及带号辛形式
+\begin{equation}
+ \omega=\dd U\wedge\dd P-\dd V\wedge\dd Q.
+\end{equation}
+令 $\Phi(S)$ 为分段线性势，在最小化律下 $S>0$ 一侧斜率为 $1/2$，$S<0$ 一侧斜率为 $R/2$。则
+\begin{equation}
+ \mathcal H=\frac{P^2-Q^2}{2}+\Phi(S)
+\end{equation}
+给出 relay 方程。横截事件的盐跃矩阵为
+\begin{equation}
+ \Xi=I+\frac{a(\nabla S)^T}{(\nabla S)^Tf_-},
+\end{equation}
+其中 $a=f_+-f_-$. 直接展开得
+\begin{equation}
+ \Xi^T\Omega\Xi=\Omega.
+\end{equation}
+故完整混合变分流精确保辛。
+
+\section{$q$--Jacobi 场和公共终点导数}
+
+齐次缩放 Jacobi 场为 $\xi=z$。令 $\eta=\partial_qz$，其中已包含所有移动事件的盐跃修正。初端
+\begin{equation}
+ \xi(0)=(0,1,0,q),\qquad \eta(0)=(0,0,0,1),\qquad
+ \omega(\xi,eta)=0.
+\end{equation}
+若公共终点斜率记为
+\begin{equation}
+ p=U_t(L),\qquad r=V_t(L),
+\end{equation}
+保辛性给出精确关系
+\begin{equation}\label{eq:sympl-terminal}
+ -p\eta_U(L)+r\eta_V(L)=0.
+\end{equation}
+简单终端零点使
+\begin{equation}
+ \partial_qT_U^{(n)}=-\frac{\eta_U(L)}p,\qquad
+ \partial_qT_V^{(n+1)}=-\frac{\eta_V(L)}r.
+\end{equation}
+同时能量给出
+\begin{equation}
+ p^2-r^2=1-q^2.
+\end{equation}
+代入 \eqref{eq:sympl-terminal}，得到
+\begin{equation}\label{eq:Aderivative}
+ \partial_qA_n=\frac{(1-q^2)\eta_U(L)}{pr^2}.
+\end{equation}
+所以 $q>1$ 时，$\partial_qA_n=0$ 当且仅当两个终端 $q$--Jacobi 位置同时为零。局部 twist 的本质是排除这一共轭点。
+
+\section{反射对合}
+
+对公共终点根定义正向重定向反射
+\begin{equation}
+ U^\sharp(s)=\frac{-\sgn(p)}{|p|}U(L-s),\qquad
+ V^\sharp(s)=\frac{-\sgn(r)}{|p|}V(L-s).
+\end{equation}
+反射后的初始斜率比为
+\begin{equation}
+ q^\sharp=\frac{|r|}{|p|}>1.
+\end{equation}
+能量关系推出
+\begin{equation}\label{eq:qsharp}
+ (q^\sharp)^2-1=\frac{q^2-1}{p^2}.
+\end{equation}
+反射保持 $R,\mu,L$、事件数、相位指标、relay 律及积分比。它是对合，并且
+\begin{equation}\label{eq:fixedpoint}
+ q^\sharp=q\quad\Longleftrightarrow\quad p^2=1
+ \quad\Longleftrightarrow\quad r^2=q^2.
+\end{equation}
+若固定点条件成立，由定向初值问题唯一性，整条轨道和材料系数均反射不变。
+
+因此全局问题可精确重述为：在固定 $(R,n,\mu)$ 的根集上证明反射对合没有非平凡二周期。一个等价而比单根唯一性更弱的序条件是
+\begin{equation}\label{eq:endpoint-order}
+ q_1<q_2\quad\Longrightarrow\quad
+ \frac{q_1^2-1}{p_1^2}\le\frac{q_2^2-1}{p_2^2}.
+\end{equation}
+因为右端正是 $(q^\sharp)^2-1$，所以 \eqref{eq:endpoint-order} 说明反射对合保序；区间上的递增对合只能是恒等映射。
+
+\chapter{物理 continuant 与双 Schur 行列式}
+
+\section{相对事件递推}
+
+设 $m=2n$ 个事件为 $t_1<\cdots<t_m$。取对数 $q$--Jacobi 场
+\begin{equation}
+ \zeta=q\partial_q(U,U_t,V,V_t)=(u,u_t,v,v_t).
+\end{equation}
+在每个材料胞内定义公共 Wronskian
+\begin{equation}
+ w=Uu_t-U_tu=Vv_t-V_tv.
+\end{equation}
+在事件 $i$ 定义相对位移
+\begin{equation}
+ d_i=\frac{u(t_i)}{U(t_i)}-\frac{v(t_i)}{V(t_i)}.
+\end{equation}
+精确盐跃计算给出最小化律下
+\begin{equation}\label{eq:eventrec1}
+ w_i-w_{i-1}=a_i d_i,\qquad a_i>0,
+\end{equation}
+而内部胞传播给出
+\begin{equation}\label{eq:eventrec2}
+ d_{i+1}-d_i=K_iw_i,\qquad
+ K_i=\frac{\sin\theta_i+\mu\sin(\mu\theta_i)}{\sqrt{\rho_i}U_iU_{i+1}}.
+\end{equation}
+相位配置给出
+\begin{equation}
+ \sgn K_i=(-1)^{i+1}.
+\end{equation}
+
+消去 $d_i$ 得到 $(m-1)\times(m-1)$ 三对角路径矩阵
+\begin{equation}\label{eq:Lminus}
+ (L_-)_{ii}=\frac1{a_i}+\frac1{a_{i+1}}+K_i,\qquad
+ (L_-)_{i,i+1}=-\frac1{a_{i+1}}.
+\end{equation}
+对数 $q$ 场满足 $w_0=0,d_1=-1,w_1=-a_1$。continuant 展开给出
+\begin{equation}\label{eq:wm-cont}
+ w_m=-\Bigl(\prod_{i=1}^m a_i\Bigr)\det L_-.
+\end{equation}
+这是多项式恒等式，包含 $\det L_-=0$ 的奇异情形。结合端点辛关系，
+\begin{equation}
+ \det L_-=0\quad\Longleftrightarrow\quad
+ \partial_qU(L)=\partial_qV(L)=0.
+\end{equation}
+
+将 \eqref{eq:wm-cont} 与因果 Green 泛函 $J$ 及 \eqref{eq:Aderivative} 对齐，可得最小化侧的精确等价
+\begin{equation}\label{eq:R7bridge}
+ J<0\quad\Longleftrightarrow\quad
+ \det L_->0\quad\Longleftrightarrow\quad
+ \partial_qA_n<0.
+\end{equation}
+因此局部单调性的全部困难被集中到一个物理 continuant 符号。
+
+\section{奇偶边分解和双矩阵 $H$}
+
+令 $B$ 为路径 incidence 矩阵，$D=\diag(a_1,\ldots,a_m)>0$，$K=\diag(K_1,\ldots,K_{m-1})$，则
+\begin{equation}
+ L_-=K+BD^{-1}B^T.
+\end{equation}
+定义代数对偶
+\begin{equation}
+ M=D+B^TK^{-1}B.
+\end{equation}
+将正的奇边和负的偶边分开：
+\begin{equation}
+ K_o>0,\qquad W=\diag(-K_{2},-K_4,\ldots)>0,
+\end{equation}
+\begin{equation}
+ P=D+B_o^TK_o^{-1}B_o>0,\qquad C=B_e.
+\end{equation}
+则
+\begin{equation}
+ M=P-C^TW^{-1}C,\qquad
+ H=CP^{-1}C^T-W.
+\end{equation}
+其中 $H$ 的维数为 $N=n-1$。
+
+\begin{theorem}[行列式奇偶校准，\Trusted]\label{thm:parity}
+在任意 premise-complete 横截最小化根上，
+\begin{equation}\label{eq:detparity}
+ \sgn\det L_-=\sgn\det H,
+\end{equation}
+包括零行列式情形。因此真正需要的是 $\det H>0$。当 $n=2$ 时 $H$ 为标量；当 $n\ge3$ 时，$\det H>0$ 严格弱于 $H>0$。
+\end{theorem}
+
+\begin{proof}
+Sylvester 恒等式 $\det(I+XY)=\det(I+YX)$ 给出
+\begin{equation}
+ \det M=\frac{\det D}{\det K}\det L_-.
+\end{equation}
+$K$ 有 $n-1$ 个负对角元，故
+\begin{equation}
+ \sgn\det M=(-1)^{n-1}\sgn\det L_-.
+\end{equation}
+另一方面，双 Schur 分解给出
+\begin{align*}
+ \det M
+ &=\det P\det(I-P^{-1}C^TW^{-1}C)\\
+ &=\frac{\det P}{\det W}\det(W-CP^{-1}C^T)\\
+ &=(-1)^{n-1}\frac{\det P}{\det W}\det H.
+\end{align*}
+因 $P,W$ 正定，比较符号即可得到 \eqref{eq:detparity}。全程没有除以 $\det L_-$ 或 $\det H$，所以奇异点也包括在内。
+\end{proof}
+
+\chapter{$n=2,\mu=2$ 的完整局部 twist 证明}
+
+本章结果为 \Trusted。它是当前最强的无条件全对比度局部符号定理。
+
+\section{三胞标量化}
+
+$n=2$ 时 $H$ 是一维标量。每个正材料胞对应 $P_j^{-1}$ 的 $2\times2$ 块
+\begin{equation}
+ P_j^{-1}=\begin{pmatrix}\ell_j&s_j\\s_j&r_j\end{pmatrix},\qquad
+ \ell_j,r_j>s_j>0.
+\end{equation}
+若正胞左端幅值为 $u$、幅比为 $z>0$、相位为 $\theta$，令
+\begin{equation}
+ g=A(\theta)(z-k(\theta))>0,\qquad
+ h=A(\theta)\frac{1-k(\theta)z}{z}>0,
+\end{equation}
+其中 $k<z<1/k$。再令
+\begin{equation}
+ \delta=R-1,\quad Q=\sin\theta+\mu\sin(\mu\theta),\quad
+ D_*=\delta zQ+h+z^2g.
+\end{equation}
+精确反演给出
+\begin{equation}\label{eq:blockfact}
+ u^2\ell=\frac{g(\delta zQ+h)}{\delta D_*},\qquad
+ u^2r=\frac{h(\delta Q+zg)}{\delta zD_*},\qquad
+ u^2s=\frac{gh}{\delta D_*}.
+\end{equation}
+所有因子严格为正。
+
+对正--负--正三个内部胞，设幅比 $z_1>0,z_2<0,z_3>0$，则
+\begin{equation}\label{eq:Hscalar}
+ u_2^2H=z_1^2\widehat r_1+z_2^{-2}\widehat\ell_3+\frac{Q_2}{\sqrt R\,z_2}.
+\end{equation}
+前两项正、最后一项负。只使用相位阈值和 switch 导数匹配不能判定该和；确切地，冻结证明包给出了满足这些弱条件却使 $H<0$ 的有理代数样例，而该样例违反第二个独立动量匹配，因此不是物理反例。
+
+\section{双动量消元}
+
+现在固定 $\mu=2$，置
+\begin{equation}
+ x=\tan(\theta_+/2),\qquad y=\tan(\theta_-/2),\qquad r=\sqrt R.
+\end{equation}
+物理相位域为
+\begin{equation}\label{eq:mu2domain}
+ r>1,\qquad 0<x<1/\sqrt3<y<1.
+\end{equation}
+设正胞幅比为 $a>0$，负胞幅比为 $b<0$。两个独立动量连续方程可精确解为
+\begin{align}
+ D_a={}&3rx^3y^2-rx^3-3rxy^2+rx+x^4y+2x^2y^3-4x^2y+y,\nonumber\\
+ N_b={}&2rx^3y^2+rxy^4-4rxy^2+rx+3x^2y^3-3x^2y-y^3+y,\nonumber\\
+ a={}&-\frac{y(x-y)(x+y)(1+x^2)}{D_a},\qquad
+ b=\frac{N_b}{rx(x-y)(x+y)(1+y^2)}.\label{eq:abmu2}
+\end{align}
+物理分支等价于 $D_a>0,N_b>0$。
+
+把 \eqref{eq:abmu2} 代入左、右 Schur split gap 后，两边分子都化为同一个本原多项式 $P(x,y,r)$ 乘严格正因子。具体地，若 $N_L,N_R$ 为两侧分子，则
+\begin{equation}
+ N_L=\frac{P}{x^3(1+x^2)(1+y^2)^2D_a^3},
+\end{equation}
+\begin{equation}
+ N_R=-\frac{rP}{x^2y^2(x-y)(x+y)(1+x^2)^3(1+y^2)N_bD_a}.
+\end{equation}
+在 \eqref{eq:mu2domain} 和物理分支上，两个分母的总符号使 $N_L,N_R$ 均与 $P$ 同号。
+
+\section{精确 Bernstein 正性}
+
+置
+\begin{equation}
+ X=x^2,\qquad Y=y^2,\qquad
+ \kappa=\frac{rx(3Y-1)}{y(1-3X)}.
+\end{equation}
+物理域嵌入开盒
+\begin{equation}
+ 0<X<\frac13,\qquad \frac13<Y<1,\qquad 0<\kappa<1.
+\end{equation}
+并且
+\begin{equation}
+ P(x,y,r)=\frac{Y^2}{(3Y-1)^2}Q(X,Y,\kappa).
+\end{equation}
+再做仿射变换
+\begin{equation}
+ X=u/3,\qquad Y=(1+2v)/3,\qquad \kappa=w,\qquad (u,v,w)\in(0,1)^3.
+\end{equation}
+去掉正有理 content 后，$Q_{\rm box}$ 的次数为 $(10,6,6)$。其同次数张量 Bernstein 展开共有 $539$ 个系数：$387$ 个正，$152$ 个零，没有负系数。由于开立方体内每个 Bernstein 基函数严格为正，且至少一个系数为正，故
+\begin{equation}
+ Q_{\rm box}>0\quad\Longrightarrow\quad P>0.
+\end{equation}
+这不是采样判号，而是有理数域上的全系数证书，并且冻结脚本从 Bernstein 系数完整反变换回幂基验证恒等性。
+
+分别在实际左界面与时间反演后的实际右界面应用该局部引理，不要求两侧正相位相等。若
+\begin{equation}
+ x_*=(\gamma_3-\gamma_2)/|K_2|>0,
+\end{equation}
+则精确 Schur 分裂为
+\begin{equation}
+ Hx_*=E_L+E_R,\qquad E_L>0,\quad E_R>0.
+\end{equation}
+所以 $H>0$。结合定理 \ref{thm:parity} 与 \eqref{eq:R7bridge} 得
+\begin{equation}\label{eq:mu2twist}
+ \det L_->0,\qquad J<0,\qquad \partial_qA_2(2,q)<0.
+\end{equation}
+
+\begin{theorem}[$n=2,\mu=2$ 局部 twist，\Trusted]
+对任意有限 $R>1$，在每个可能非对称的 premise-complete 横截最小化公共终点根上，\eqref{eq:mu2twist} 成立。没有预设反射对称性。
+\end{theorem}
+
+\chapter{从局部 twist 到全局反射}
+
+\section{全局 relay 初值问题}
+
+固定 $q>1$。能量 $E=1-q^2<0$ 排除了所有非共同零点的 grazing。若 $S(t_0)=0$ 且 $(U,V)\ne(0,0)$，切触条件会导致 $E=(\mu^2-1)Q(t_0)^2\ge0$，矛盾。若 $U(t_0)=V(t_0)=0$，则
+\begin{equation}
+ S(t_0+h)=\bigl(P(t_0)^2-\mu^2Q(t_0)^2\bigr)h^2+o(h^2)<0,
+\end{equation}
+所以共同零点只是负侧二次接触，左右材料均唯一为 $R$。因此 relay IVP 可逐胞唯一延拓。
+
+有限时刻不可能积聚开关：若零点积聚，极限点满足 $S=S_t=0$；非共同极限违背横截性，共同极限又违背上面的穿孔邻域负性。故轨道全局存在且每个紧时间区间只有有限事件。
+
+对于 $q_k\to q$，一致有界性和 Arzelà--Ascoli 紧性给出状态子列一致收敛。极限零点仍由负能量分类，零点集有限；远离零点时材料标号最终稳定。将极限代入 Volterra 方程并用初值问题唯一性，可得整个族连续依赖于 $q$，不需要固定材料字。
+
+标量解的每个零点简单。Prüfer 相位满足
+\begin{equation}
+ \theta_t=\frac{y_t^2+a(t)y^2}{y^2+y_t^2}\ge1,
+\end{equation}
+故所有固定指标零时刻存在且连续。因此
+\begin{equation}
+ q\mapsto A_n(\mu,q)
+\end{equation}
+是定义在连通区间 $(1,\infty)$ 上的一个全局连续函数，而非若干彼此无关的 chamber 分支。
+
+\section{根的自动完备性与终端柔性}
+
+若 $A_n(\mu,q_0)=0$，则 $U,V$ 在共同终点分别具有第 $n$ 与第 $n+1$ 个正零点。Sturm 交错和 Wronskian 单调性给出每个 $U$ 节点胞内 $V/U$ 严格下降，从而 $S$ 恰有 $2n$ 个内部简单零点。因此全局残差的每个零自动属于局部 twist 定理的 premise-complete 范围。
+
+终端共同零可能对应一对长度趋零的正材料事件的出生或死亡。固定最后负材料胞的光滑延拓记作 $A_n^c$。在根附近，令 $\delta=q-q_0,x=t-L$，有
+\begin{equation}
+ S^c(q_0,L+x)=(p^2-\mu^2r^2)x^2+O(|x|^3),\qquad p^2-\mu^2r^2<0,
+\end{equation}
+并可估计
+\begin{equation}
+ S^c(q,L+x)\le-cx^2+C(|\delta||x|+\delta^2).
+\end{equation}
+实际流与固定字流只在长度 $O(|\delta|)$ 的终端窗口内可能不同，且该窗口内强迫差为 $O(|\delta|)$。积分方程与 Grönwall 估计给出速度差 $O(\delta^2)$、位置差 $O(|\delta|^3)$，所以
+\begin{equation}
+ A_n(\mu,q)=A_n^c(\mu,q)+O((q-q_0)^2).
+\end{equation}
+因此全局残差在根处的导数正是固定字导数。
+
+\section{同向根不能重复}
+
+\begin{lemma}
+设连续函数 $f$ 在每个零点可微。若存在固定 $\sigma\in\{\pm1\}$，使每个零点均满足 $\sigma f'>0$，则 $f$ 至多有一个零点。
+\end{lemma}
+\begin{proof}
+令 $g=\sigma f$。在每个零点，$g$ 左负右正。若存在两个零，取第一个零右侧 $g>0$ 的小邻域，再取右侧第一个新零；其左侧连续无零，故仍应 $g>0$，但正导数要求左侧 $g<0$，矛盾。
+\end{proof}
+
+结合自动完备性与终端柔性，任何对所有局部根一致的 $\partial_qA_n$ 符号都传播为全局至多一根。反射把每个根送到同一个全局残差的另一个根，因此至多一根迫使 $q^\sharp=q$，继而由 \eqref{eq:fixedpoint} 得到反射固定。
+
+\begin{theorem}[$n=2,\mu=2$ 全局反射，\Trusted]\label{thm:global-mu2}
+对任意有限 $R>1$，最小化 relay 的全局残差 $A_2(2,q)$ 在 $q>1$ 上至多有一个零。每个零自动是四事件横截公共终点根，并被反射固定。该定理不声称根一定存在。
+\end{theorem}
+
+\chapter{$\mu=2$ 切片上的高指标非存在性}
+
+本章也是 \Trusted，并解释为何 $n\ge3$ 的 $\mu=2$ 情形不是“尚未证明对称”，而是根集本身为空。
+
+\section{单界面收缩}
+
+固定 $\mu=2$，令 $r=\sqrt R>1$。正材料胞相位半角正切为 $x$，相邻负材料胞为 $y$，则
+\begin{equation}
+ 0<x<1/\sqrt3<y<1.
+\end{equation}
+两个独立动量匹配给出的正胞和负胞幅比为
+\begin{equation}
+ a=-\frac{y(x-y)(x+y)(1+x^2)}{D_a},\qquad
+ b=\frac{N_b}{rx(x-y)(x+y)(1+y^2)},
+\end{equation}
+其中 $D_a,N_b$ 与 \eqref{eq:abmu2} 相同。置
+\begin{equation}
+ X=x^2,\quad Y=y^2,\quad
+ \kappa=\frac{rx(3Y-1)}{y(1-3X)},
+\end{equation}
+\begin{equation}
+ C=(3Y-1)(1-Y),\qquad E=C+2Y(Y-X),\qquad \kappa_N=C/E.
+\end{equation}
+严格物理分支满足
+\begin{equation}
+ \frac13<Y<1,\qquad 0<X<\frac{(1-Y)^2}{4Y},\qquad
+ \kappa_0<\kappa<\kappa_N.
+\end{equation}
+精确分解
+\begin{equation}
+ D_a=y\bigl[X^2+2XY-4X+1-\kappa(1-X)(1-3X)\bigr]
+\end{equation}
+以及
+\begin{equation}
+ \kappa_D-\kappa_N=
+ \frac{2(Y-X)^2(1-XY)}{(1-X)(1-3X)E}>0
+\end{equation}
+给出 $D_a>0$。再由
+\begin{equation}
+ a-1=\frac{(1-X)y[\kappa(1-3X)+2X+Y-1]}{D_a}
+\end{equation}
+和
+\begin{equation}
+ \kappa_N(1-3X)+2X+Y-1
+ =-\frac{(Y-X)((1-Y)^2-4XY)}E<0
+\end{equation}
+得到严格收缩
+\begin{equation}\label{eq:interface-contraction}
+ 0<a(x,y,r)<1.
+\end{equation}
+
+\section{内部正胞的双侧矛盾}
+
+设内部胞依次为 $I_j=(\tau_j,\tau_{j+1})$。奇数 $j$ 为正胞，偶数 $j$ 为负胞。取任意有两个负邻居的内部正胞 $I_j$。右侧正--负界面给出
+\begin{equation}
+ z_j=a(x_j,y_{j+1},r).
+\end{equation}
+左侧负--正界面做时间反演；常系数传播矩阵满足
+\begin{equation}
+ J M_\omega(t)J=M_\omega(t)^{-1},\qquad J=\diag(1,-1),
+\end{equation}
+所以反演后仍是相同 $r$ 的正--负界面，并给出
+\begin{equation}
+ z_j^{-1}=a(x_j,y_{j-1},r).
+\end{equation}
+因此物理兼容性要求
+\begin{equation}
+ a(x_j,y_{j-1},r)a(x_j,y_{j+1},r)=1.
+\end{equation}
+但 \eqref{eq:interface-contraction} 使左端严格位于 $(0,1)$，矛盾。
+
+当 $n\ge3$ 时，$I_3$ 总是有两个负邻居，因此矛盾必然出现；当 $n=2$ 时没有这样的内部正胞，所以该论证不适用。
+
+\begin{theorem}[$\mu=2,n\ge3$ 非存在性，\Trusted]
+对任意有限 $R>1$ 和任意 $n\ge3$，不存在 premise-complete 横截的最小化公共终点 $2n$--事件根。结论甚至不需要等范数方程。
+\end{theorem}
+
+\chapter{紧对比度下的 $\mu=2$ 邻域}
+
+\begin{theorem}[紧锚点切片引理，\Trusted]\label{thm:compact-strip}
+固定 $K=[1+\eta,M]$，$\eta>0,M<\infty$。
+\begin{enumerate}[label=(\roman*)]
+  \item 存在 $\delta_2(K)>0$，使所有 $R\in K$、$|\mu-2|<\delta_2(K)$ 的最小化四事件自洽点均反射对称。
+  \item 对每个固定 $n\ge3$，存在 $\delta_n(K)>0$，使该参数带内不存在最小化 $2n$--事件自洽点。
+\end{enumerate}
+宽度不显式，也不对 $n$ 一致，不控制 $R\downarrow1$ 或 $R\to\infty$。
+\end{theorem}
+
+\begin{proof}
+先证明一般锚点引理。假设锚点 $\mu_0$ 上所有自洽根均反射固定且 $\partial_qA_n\ne0$。若不存在统一反射带，可取非对称根列 $(R_k,x_k)$，其中 $R_k\in K,\mu_k\to\mu_0$。properness 使开关向量在开单形内部有收敛子列，极限 $(R_*,x_*)$ 仍是锚点切片上的 premise-complete 自洽根。端点归一化斜率在该紧集上远离零，所以 $q_k$ 连续且有界。
+
+锚点假设使极限根反射固定，且 $\partial_qA_n(R_*,\mu_0,q_*)\ne0$。隐函数定理给出一个相对 $R>1$ 邻域：每个附近 $(R,\mu)$ 至多有一个附近 $q$ 根。可是每个非对称 $x_k$ 与其反射具有相同 $(R_k,\mu_k)$、不同的 $q_k,q_k^\sharp$，二者都趋于 $q_*$，矛盾。若锚点切片无根，则任意逼近根列经 properness 直接产生锚点根，同样矛盾。
+
+对 $n=2$，取 $\mu_0=2$，定理 \ref{thm:global-mu2} 给出锚点根反射固定，本章前面的局部 twist 给出 $\partial_qA_2<0$，故得到 (i)。对 $n\ge3$，锚点切片根集由上一章为空，故得到 (ii)。
+\end{proof}
+
+\chapter{一般 $n$ 的路径森林展开}
+
+\section{Jacobi 形式}
+
+每个奇边正块逆写成
+\begin{equation}
+ P_j^{-1}=\begin{pmatrix}\ell_j&s_j\\s_j&r_j\end{pmatrix},\qquad
+ \ell_j,r_j>s_j>0.
+\end{equation}
+$H$ 是不可约 Jacobi $Z$--矩阵：
+\begin{equation}
+ H_{ii}=r_i+\ell_{i+1}-W_i,\qquad H_{i,i+1}=-s_{i+1}.
+\end{equation}
+令
+\begin{equation}
+ \tau_i=s_{i+1}>0,\qquad
+ z_i=H_{ii}-\mathbf 1_{\{i>1\}}s_i-\mathbf 1_{\{i<N\}}s_{i+1}.
+\end{equation}
+则
+\begin{equation}\label{eq:Hlap}
+ H=L_\tau+\diag(z_1,\ldots,z_N),
+\end{equation}
+其中 $L_\tau$ 是加权路径 Laplacian。
+
+\section{有根森林公式}
+
+\begin{theorem}[路径森林/区间电荷展开，\Trusted]\label{thm:forest}
+令 $E$ 遍历路径边集的所有子集，$\operatorname{Comp}(E)$ 为森林的区间连通分量，并记
+\begin{equation}
+ Z_I=\sum_{i\in I}z_i.
+\end{equation}
+则
+\begin{equation}\label{eq:forest}
+ \det H=\sum_E\left(\prod_{i\in E}\tau_i\right)
+                \left(\prod_{I\in\operatorname{Comp}(E)}Z_I\right).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+向路径图添加根顶点 $0$，将顶点 $i$ 与 $0$ 以形式权 $z_i$ 相连，并保留路径边权 $\tau_i$。删除根行列后得到的加权 Laplacian 正是 \eqref{eq:Hlap}。矩阵树定理把其行列式写成增广图所有生成树的权重和。删除根后，每棵生成树成为路径森林，且每个区间分量恰有一条边接向根。固定一个分量 $I$，对根边选择求和得到 $\sum_{i\in I}z_i=Z_I$。对各分量相乘、再对森林求和即得 \eqref{eq:forest}。该证明是整数系数多项式恒等式，故 $z_i$ 可有任意符号。
+\end{proof}
+
+前三个维数为
+\begin{align*}
+ N=1:&\quad \det H=z_1,\\
+ N=2:&\quad \det H=z_1z_2+\tau_1(z_1+z_2),\\
+ N=3:&\quad \det H=z_1z_2z_3+\tau_1(z_1+z_2)z_3
+ +\tau_2z_1(z_2+z_3)+\tau_1\tau_2(z_1+z_2+z_3).
+\end{align*}
+因此正边权本身不够；必须控制每个区间电荷和，或证明它们在最终森林多项式中发生定量补偿。
+
+\section{物理跳跃缩放}
+
+设 $\gamma_i$ 为时间平移事件值，最小化交替方向给出
+\begin{equation}
+ \gamma_{2i}<0<\gamma_{2i+1}.
+\end{equation}
+定义正跳跃向量
+\begin{equation}
+ v_i=\frac{\gamma_{2i+1}-\gamma_{2i}}{W_i}>0.
+\end{equation}
+若 $f=M\gamma$，则从 $P\gamma-C^Tv=f$ 得
+\begin{equation}
+ Hv=-CP^{-1}f.
+\end{equation}
+置
+\begin{equation}
+ q_i=v_i(Hv)_i,\qquad e_i=s_{i+1}v_iv_{i+1}>0.
+\end{equation}
+令 $V=\diag(v_i)$，则
+\begin{equation}
+ VHV=L_e+\diag(q_1,\ldots,q_N),
+\end{equation}
+从而
+\begin{equation}\label{eq:charged-forest}
+ \left(\prod_i v_i^2\right)\det H
+ =\sum_E\left(\prod_{i\in E}e_i\right)
+ \left(\prod_{I\in\operatorname{Comp}(E)}Q_I\right),\qquad
+ Q_I=\sum_{i\in I}q_i.
+\end{equation}
+
+若 $P_j^{-1}f_j=(L_j,R_j)^T$，则
+\begin{equation}
+ q_i=v_i(R_i-L_{i+1}),
+\end{equation}
+以及
+\begin{equation}
+ Q_{[a,b]}=v_aR_a-v_bL_{b+1}
+ +\sum_{j=a+1}^b(v_jR_j-v_{j-1}L_j).
+\end{equation}
+这展示了精确的“不望远镜化”位置：同一个内部正块左右响应不同，且被两个不同负胞跳跃权重乘。共享对比度并不代数地强迫这些量相等。
+
+\section{首个耦合维数}
+
+$n=3$ 时 $N=2$，\eqref{eq:charged-forest} 退化为
+\begin{equation}\label{eq:n3forest}
+ v_1^2v_2^2\det H=q_1q_2+e_1(q_1+q_2).
+\end{equation}
+冻结证明包构造了满足正块代数、交替相位符号和 $\mu=2$ 标量平移强迫的精确有理降阶样例，使 $q_1=q_2=-1,e_1=3/2,\det H=-2$。但两个正胞从物理幅值公式要求两个不同的 $(R-1)^2$，所以样例不是物理反例。它严格说明：若不使用“同一共享对比度”和完整动量闭合，约化层面的正性证明不可能成立。
+
+\chapter{端点缺陷与共同平移}
+
+\section{正胞缺陷函数}
+
+考虑一个正材料胞，低频相位 $0<\theta<\pi/(\mu+1)$，左端幅值 $A$，右端幅比 $z>0$。记
+\begin{equation}
+ s=\sin\theta, c=\cos\theta, S=\sin(\mu\theta), C=\cos(\mu\theta).
+\end{equation}
+两频率精确传播给出
+\begin{align*}
+ U'_L&=A(z-c)/s,&V'_L&=-\varepsilon A(z+C)/S,\\
+ U'_R&=A(zc-1)/s,&V'_R&=-\varepsilon A(1+zC)/S.
+\end{align*}
+令 $C_0=q^2-1>0$。事件处势能抵消，故
+\begin{equation}
+ C_0=A^2E_\mu(\theta,z),\qquad
+ E_\mu(\theta,z)=\frac{(z+C)^2}{S^2}-\frac{(z-c)^2}{s^2}.
+\end{equation}
+定义
+\begin{equation}
+ k_\mu(\theta)=\frac{\sin((\mu-1)\theta/2)}{\sin((\mu+1)\theta/2)}.
+\end{equation}
+则
+\begin{equation}\label{eq:Efactor}
+ E_\mu(\theta,z)=
+ \frac{(S^2-s^2)(1/k_\mu-z)(z-k_\mu)}{s^2S^2}.
+\end{equation}
+所以严格物理分支恰为 $k_\mu<z<1/k_\mu$。
+
+\section{端点低频缺陷的全根分解}
+
+令
+\begin{equation}
+ D=p^2-1.
+\end{equation}
+低频胞能量 $U_t^2+\rho U^2$ 跨第 $j$ 个事件的跳跃为 $\Delta\rho_jU_j^2$。最小化字从 $R$ 开始并以 $R$ 结束，故
+\begin{equation}
+ D=(R-1)\sum_{j=1}^{2n}(-1)^jU_j^2.
+\end{equation}
+按 $n$ 个正胞配对，
+\begin{equation}
+ \frac{D}{R-1}=\sum_{a=1}^n(U_{2a}^2-U_{2a-1}^2).
+\end{equation}
+应用 \eqref{eq:Efactor} 得
+\begin{equation}\label{eq:defectsum}
+ D=(R-1)(q^2-1)\sum_{a=1}^n
+ \Phi_\mu(\theta_{2a-1},z_{2a-1}),\qquad
+ \Phi_\mu(\theta,z)=\frac{z^2-1}{E_\mu(\theta,z)}.
+\end{equation}
+直接代数给出
+\begin{equation}
+ z^2E_\mu(\theta,1/z)=E_\mu(\theta,z),\qquad
+ \Phi_\mu(\theta,1/z)=-\Phi_\mu(\theta,z).
+\end{equation}
+这正对应全轨道反射下 $D^\sharp=-D/p^2$。
+
+然而单胞项没有固定符号。以 $\mu=2,\theta=\pi/6$ 为例，$z=1/2$ 与 $z=2$ 都在严格物理区间内，也都是 first-crossing 胞，但 $\Phi$ 分别严格为负、严格为正。因此任何逐胞同号证明均被精确排除；必须使用负胞动量胶合和全局终端闭合。
+
+\section{共同平移速度}
+
+将所有内部开关同时向右平移 $h$，端点附近保持材料 $R$。若原单调矩阵为 $M(\lambda)$，常材料传播矩阵为 $T_R$，则
+\begin{equation}
+ M_h(\lambda)=T_R(-h,\lambda)M(\lambda)T_R(h,\lambda).
+\end{equation}
+在 Dirichlet 本征值处，以 $u'(0)=1$ 归一化，
+\begin{equation}
+ M(\lambda)=\begin{pmatrix}1/p&0\\m&p\end{pmatrix}.
+\end{equation}
+对 $h$ 求导，$(1,2)$ 元为 $1/p-p$；另一方面
+\begin{equation}
+ \partial_\lambda M_{12}=I/p,\qquad I=\int\rho u^2.
+\end{equation}
+隐式微分 $M_h(\lambda(h))_{12}=0$ 得
+\begin{equation}\label{eq:translationspeed}
+ \lambda'(0)=\frac{p^2-1}{I}=\frac{D}{I}.
+\end{equation}
+对两个相邻模态，在等范数根上 $r^2-q^2=p^2-1=D$，并且高模按左斜率一归一化后的终端斜率为 $r/q$、范数为 $I/q^2$，所以
+\begin{equation}
+ \lambda_n'(0)=\lambda_{n+1}'(0)=D/I.
+\end{equation}
+因此一阶平移使两个本征值以相同速度移动，谱隙一阶导数恒消失。一阶平移最小性不能决定 $D$ 的符号；需要二阶平移曲率或新的谱泛函。
+
+\chapter{任意 $\mu$、$n=2$ 的弱反差局部定理}
+
+本章为 \Reviewed：严格证明和 exact checker 已通过独立预审，但尚未提交进入 canonical 图。
+
+\section{公共角变量}
+
+固定
+\begin{equation}
+ 0<\alpha<\frac\pi{\mu+1}<\beta<\frac\pi\mu.
+\end{equation}
+对任意相位 $\theta$ 定义
+\begin{align*}
+ s&=\sin\theta,&S&=\sin(\mu\theta),&c&=\cos\theta,&C&=\cos(\mu\theta),\\
+ F&=S/s,&U&=1/s+\mu/S,&Q&=s+\mu S,\\
+ x&=\frac{Fc-\mu C}{F+\mu},&
+ \rho&=\frac{\mu F+1}{F+\mu},&p&=Q/U,\\
+ e&=\frac{(\mu^2-1)F(c+C)}{(F+\mu)^2},&
+ \kappa&=1-x^2-p.
+\end{align*}
+在 $\alpha$ 处加下标 $+$，在 $\beta$ 处加下标 $-$。严格相位配置给出
+\begin{equation}
+ x_\pm,p_\pm,\kappa_\pm>0,\quad \rho_+>1>\rho_-,\quad e_+>0>e_-.
+\end{equation}
+令
+\begin{equation}
+ \lambda=U_+/U_-,\quad d=\rho_+-\rho_->0,\quad \eta=-e_->0,
+\end{equation}
+\begin{equation}
+ r=\sqrt R,\quad \delta=r^2-1,\quad
+ w=\frac{e_+-r\eta/\lambda}{d},\quad u=x_++w,\quad A_0=1-x_+u.
+\end{equation}
+这正是两个独立动量方程的 Cramer 解。负胞幅值严格性等价于
+\begin{equation}
+ 1<r<r_B:=\frac{\lambda e_+}{\eta+dx_-}.
+\end{equation}
+左 split numerator 为
+\begin{equation}
+ N_L=\frac{U_+^2}{\lambda u^3}\Phi,
+\end{equation}
+\begin{equation}\label{eq:Phi}
+ \Phi=(\lambda^2w^2+r^2\kappa_-+p_-)
+ (A_0+\delta p_+u^2)-\delta p_-wu^3.
+\end{equation}
+
+\section{严格正余量}
+
+首先证明
+\begin{equation}\label{eq:positive-margin}
+ p_+(\rho_+-1)-x_+e_+>0.
+\end{equation}
+令 $A=(\mu+1)\alpha/2,B=(\mu-1)\alpha/2,q=B/A\in(0,1)$。直接化简后，\eqref{eq:positive-margin} 的关键括号等于正因子乘
+\begin{equation}
+ q\tan A-\tan B\bigl(\cos^2B+q^2\sin^2B\bigr).
+\end{equation}
+因为 $\tan t/t$ 在 $(0,\pi/2)$ 严格递增，$\tan B<q\tan A$；同时括号内乘 $\tan B$ 的因子小于 $1$，故余量严格为正。由于 $d>\rho_+-1$，得到
+\begin{equation}
+ A_0>\kappa_+>0.
+\end{equation}
+
+将 \eqref{eq:Phi} 重排为
+\begin{align}
+ \Phi={}&p_-(A_0-\delta wu^3)
+ +(\lambda^2w^2+(1+\delta)\kappa_-)A_0\nonumber\\
+ &+\delta p_+u^2(\lambda^2w^2+(1+\delta)\kappa_-+p_-).\label{eq:threepositive}
+\end{align}
+后两块严格为正，因此
+\begin{equation}
+ A_0-\delta wu^3>0\quad\Longrightarrow\quad\Phi>0.
+\end{equation}
+另一个平方完成给出
+\begin{align*}
+ &\lambda^2A_0w^2+\delta p_+p_-u^2-\delta p_-wu^3\\
+ &\quad=\lambda^2A_0\left(w-\frac{\delta p_-u^3}{2\lambda^2A_0}\right)^2
+ +\frac{\delta p_-u^2}{4\lambda^2A_0}
+ \bigl(4\lambda^2p_+A_0-\delta p_-u^4\bigr).
+\end{align*}
+故第二个充分条件是
+\begin{equation}
+ 4\lambda^2p_+A_0-\delta p_-u^4>0.
+\end{equation}
+
+\section{显式相位依赖阈值}
+
+在 $r=1$ 处令
+\begin{equation}
+ w_0=\frac{e_+-\eta/\lambda}{d},\qquad
+ u_0=x_++w_0,\qquad A_{00}=1-x_+u_0.
+\end{equation}
+物理分支非空时 $w_0,u_0>0$ 且 $A_{00}>\kappa_+>0$。随 $r$ 增加，$w,u$ 严格下降而 $A_0$ 上升。因此定义
+\begin{equation}
+ \tau_1=\frac{A_{00}}{w_0u_0^3},\qquad
+ \tau_2=\frac{4\lambda^2p_+A_{00}}{p_-u_0^4},\qquad
+ \tau=\max\{\tau_1,\tau_2\}>0.
+\end{equation}
+若 $\delta=R-1<\tau_1$，则第一充分条件成立；若 $\delta<\tau_2$，则第二充分条件成立。因此
+\begin{equation}\label{eq:weakcontrast}
+ 1<R<\min\{r_B^2,1+\tau\}\quad\Longrightarrow\quad\Phi>0.
+\end{equation}
+取任意非对称正--负--正三胞字，分别从实际左相位对和时间反演后的实际右相位对得到 $\tau_L,\tau_R$。Schur 分裂恒等式
+\begin{equation}
+ Hx_*=E_L+E_R,\qquad x_*>0,\qquad E_{L/R}>0\iff\Phi_{L/R}>0
+\end{equation}
+给出
+\begin{equation}
+ R-1<\min\{\tau_L,\tau_R\}\quad\Longrightarrow\quad H>0.
+\end{equation}
+没有使用左右正相位相等或反射对称。阈值只对固定相位对为正；尚未证明在所有物理相位对上的统一正下界，因而不能直接推出新的全局小反差反射定理。
+
+\chapter{一般 $\mu$ 的条件性全局闭合链}
+
+本章为 \Reviewed 的条件定理。唯一未满足的前提是一个完整三维系数立方体的严格覆盖。
+
+\section{相位立方体}
+
+定义
+\begin{equation}
+ k=\frac{\mu-1}{\mu+1},\qquad A_+=\frac{\mu+1}{2}\alpha,\qquad
+ A_-=\frac{\mu+1}{2}\beta,
+\end{equation}
+以及
+\begin{equation}
+ t=\frac{2A_+}{\pi},\qquad
+ y=\frac{A_--\pi/2}{\pi/(1+k)-\pi/2}.
+\end{equation}
+物理严格相位域与 $(k,t,y)\in(0,1)^3$ 双射，逆变换为
+\begin{equation}
+ \mu=\frac{1+k}{1-k},\quad
+ \alpha=\frac\pi2(1-k)t,\quad
+ \beta=\frac\pi2(1-k)+\frac\pi2y\frac{(1-k)^2}{1+k}.
+\end{equation}
+
+\section{解析半域与四个 Bernstein 系数}
+
+对 \eqref{eq:Phi} 定义
+\begin{equation}
+ g=\frac{\lambda^2p_+}{p_-}.
+\end{equation}
+将 $\Phi$ 减去严格正余量后，可化为
+\begin{equation}
+ \Psi=\lambda^2w^2A_0+\delta p_-u^2\bigl[(g-1)w^2+p_+-x_+w\bigr].
+\end{equation}
+上一章已证 $p_+-x_+w>0$，故 $g\ge1$ 时 $\Phi>0$，不需要计算证书。
+
+在 $0<g<1$ 半域，定义
+\begin{equation}
+ K_{\rm new}=\kappa_++p_+\frac{1-\rho_-}{d},\quad
+ h=x_++(1-g)w,\quad \ell=2h+(1-g)u,
+\end{equation}
+以及
+\begin{equation}
+ D(r)=gK_{\rm new}-\delta p_+u\ell.
+\end{equation}
+精确代数链为
+\begin{equation}
+ D(r)>0\Longrightarrow E_{\rm new}>0\Longrightarrow E>0
+ \Longrightarrow\Psi>0\Longrightarrow\Phi>0.
+\end{equation}
+将 $r\in[1,r_B]$ 仿射参数化为 $r=1+(r_B-1)z$。$D(r)$ 是 $z$ 的四次多项式，其 Bernstein 系数为
+\begin{equation}
+ B_i=gK_{\rm new}-p_+N_i,\qquad i=0,\ldots,4,
+\end{equation}
+其中
+\begin{align*}
+ N_0&=0,\\
+ N_1&=(r_B-1)u_0\ell_0/2,\\
+ N_2&=\frac{2(r_B-1)(u_1\ell_0+u_0\ell_1)+(r_B^2-1)u_0\ell_0}{6},\\
+ N_3&=\frac{2(r_B-1)u_1\ell_1+(r_B^2-1)(u_1\ell_0+u_0\ell_1)}4,\\
+ N_4&=(r_B^2-1)u_1\ell_1.
+\end{align*}
+$B_0>0$ 自动成立。稳定公共角变量消去边界抵消后，存在正因子 $c_p>0$，使
+\begin{equation}\label{eq:GtoB}
+ G_i=c_p^4B_i,\qquad i=1,\ldots,4.
+\end{equation}
+
+\begin{theorem}[完整系数立方体的条件桥，\Reviewed]\label{thm:conditionalcube}
+若在每个满足 $g<1,r_B>1$ 的 $(k,t,y)\in(0,1)^3$ 上均有
+\begin{equation}
+ G_1,G_2,G_3,G_4>0,
+\end{equation}
+则对任意有限 $\mu>1,R>1$，每个 $n=2$ 最小化公共终点根均满足 $H>0$、$\partial_qA_2<0$；从而固定 $\mu$ 的全局残差至多一根，每个根反射固定。所有等范数自洽根因而也反射固定。
+\end{theorem}
+
+\begin{proof}
+$g\ge1$ 半域已有解析正性。$g<1$ 半域由前提、\eqref{eq:GtoB} 得所有 $B_i>0$，故 Bernstein 基的凸性给出 $D(r)>0$，沿上面的链得到每个实际界面的 $\Phi>0$。分别应用于实际左界面与反演右界面，得到 $E_L,E_R>0$，所以 $Hx_*=E_L+E_R>0$，即 $H>0$。再依次使用定理 \ref{thm:parity}、\eqref{eq:R7bridge} 与全局同向根引理，得到 $\partial_qA_2<0$、至多一根和反射固定。
+\end{proof}
+
+注意该定理的前提目前尚未完全证明，故不能删除“若”。
+
+\chapter{系数立方体的严格计算进展}
+
+本章所有结果属于 \Certified 或条件性边界引理，不是 canonical 全局定理。
+
+\section{内立方体的统一 $1/4$ 余量}
+
+在
+\begin{equation}
+ (k,t,y)\in[1/64,63/64]^3,\qquad g<1,\quad r_B>1
+\end{equation}
+上，定向 $128$--bit Arb 覆盖严格证明
+\begin{equation}\label{eq:quarter}
+ \frac{P_+\widehat N_i}{gK_{\rm new}c_p^4}<\frac14,\qquad i=1,\ldots,4.
+\end{equation}
+完整运行访问 $5{,}848{,}407$ 个盒；其中 $117{,}875$ 个由 $g$ 精确剔除，$61{,}610$ 个由 $r_B$ 精确剔除，$2{,}744{,}719$ 个叶盒证明成功，$2{,}924{,}203$ 次分裂，奇异盒和原子未决盒均为零，最终栈为空。四个最小定向下端点为
+\begin{equation}
+ 1.7210393146\times10^{-2},\quad
+ 8.0236795872\times10^{-6},\quad
+ 4.2838433236\times10^{-7},\quad
+ 1.8713493338\times10^{-8}.
+\end{equation}
+因此内立方体不仅有 $G_i>0$，而且有显著的四分之一余量。
+
+\section{$t=0$ 整个物理边界}
+
+在完整 retained $t=0$ 分支上，第一比值为 $0$，其余三个可写为
+\begin{equation}
+ \rho_2=Z_0^2/2,\qquad \rho_3=3Z_0Z_1/2,\qquad \rho_4=3Z_1^2.
+\end{equation}
+五个互补紧图表以 $160$--bit Arb 完整覆盖，均严格小于 $1/4$，无未决或奇异盒。各图表最大严格上界见冻结 JSON；最接近 $1/4$ 的值仍严格低于它。
+
+在 $k=0$ 端，临界比值还有纯解析证明。令 $x=-\tan\theta>0$，则
+\begin{equation}
+ \rho=\frac{x^2(\theta-x)}{2(\theta+x)}.
+\end{equation}
+若 $x\le1/\sqrt2$，结论显然。否则把 $\rho<1/4$ 化为
+\begin{equation}
+ h(x)=R(x)+\arctan x-\pi>0,\qquad
+ R(x)=\frac{x(1+2x^2)}{2x^2-1}.
+\end{equation}
+计算得
+\begin{equation}
+ h'(x)=\frac{x^2(4x^4-13)}{(1+x^2)(2x^2-1)^2},
+\end{equation}
+所以唯一极小点为 $x_0=(13/4)^{1/4}>1$。又
+\begin{equation}
+ \arctan x_0>\pi/4,\qquad x_0<27/20,\qquad
+ R(x_0)>R(27/20)=25083/10580>33/14>3\pi/4,
+\end{equation}
+最后一步用 $\pi<22/7$。故 $h(x_0)>0$，从而全域成立。
+
+\section{高 $t$ 领与已完成的 dyadic 胞}
+
+定义 $L=[0,1/64],I=[1/64,63/64],H=[63/64,1]$。截至暂停时，$27$ 个完整 dyadic 胞中已有 $16$ 个具有精确或定向 Arb 条件证书：
+\begin{equation*}
+ \mathrm{III,LII,HII,IHI,IIL,IIH,LIL,HIL,LHI,IHH,HIH,HHL,HHI,HHH,LHL,IHL}.
+\end{equation*}
+仍未完成的 $11$ 个为
+\begin{equation*}
+ \mathrm{LLL,LLI,LLH,ILL,ILI,ILH,HLL,HLI,HLH,LIH,LHH}.
+\end{equation*}
+其中前九个组成整个低 $t$ slab；$\mathrm{LIH}$ 是上 $y$ 环带，$\mathrm{LHH}$ 是高 $t$/高 $y$ 依赖区。
+
+此外已证明完整原坐标领
+\begin{equation}
+ t\ge1-2^{-17}.
+\end{equation}
+所用 blow-up 为
+\begin{equation}
+ h=\frac\pi2(1-t),\quad \kappa=k^2/h,\quad
+ \beta=\frac{(\pi/2)y(1-k)/(1+k)-h}{h^2}.
+\end{equation}
+在稳定矩形 $0\le h\le2^{-16},0\le\kappa\le3/8,-3/2\le\beta\le0$ 上，$2304$ 个固定张量盒中 $1311$ 个严格剔除，余下 $993$ 个全部证明
+\begin{equation}
+ J_E>999/1000,\qquad \rho_i/h^2<5.
+\end{equation}
+逃逸区由解析和有限证书完全排空，得到上述原坐标高 $t$ 领。$\mathrm{IHL}$ 最后 $21$ 个残盒又经端点序 contractor 在 $2319$ 次访问后完全关闭，最终栈、原子失败和异常均为零。
+
+\section{为什么这些证书还不够}
+
+定理 \ref{thm:conditionalcube} 需要覆盖所有 retained 内点及其趋近六个边界面的序列。内立方体和 $t=0$ 边界都有强余量，但尚缺把 $t=0$ 边界余量延伸为显式正 $t$ 领的统一余项模；低 $t$ 九个胞因此仍开。另有 $\mathrm{LIH}$ 和 $\mathrm{LHH}$ 两个紧环带未闭合。故完整立方体前提尚未成立，不能据此宣称一般 $\mu$ 的 $n=2$ 全局反射已经证明。
+
+\chapter{$n=3$ 的共享对比度与中央加载块}
+
+\section{一般 $\mu$ 的双动量界面映射}
+
+设正胞相位 $\theta$、负胞相位 $\eta$ 满足
+\begin{equation}
+ 0<\theta<\pi/(\mu+1)<\eta<\pi/\mu.
+\end{equation}
+记
+\begin{align*}
+ c&=\cos\theta,&s&=\sin\theta,&C&=\cos\mu\theta,&S&=\sin\mu\theta,\\
+ d&=\cos\eta,&t&=\sin\eta,&D&=\cos\mu\eta,&T&=\sin\mu\eta.
+\end{align*}
+两个动量匹配方程为
+\begin{equation}
+ \frac{c-1/a}{s}=r\frac{b-d}{t},\qquad
+ -\frac{1/a+C}{S}=r\frac{b+D}{T}.
+\end{equation}
+定义
+\begin{align*}
+ \Delta&=tS-sT,&A_0&=tSc+sTC,&A_1&=sS(d+D),\\
+ B_0&=tT(c+C),&B_1&=tSD+sTd.
+\end{align*}
+则
+\begin{equation}\label{eq:geninterface}
+ a=\frac\Delta{A_0+rA_1},\qquad
+ b=-\frac{B_0+rB_1}{r\Delta}.
+\end{equation}
+严格相位域给出
+\begin{equation}
+ \Delta>0,\quad A_1<0,\quad B_0>0,\quad B_1<0.
+\end{equation}
+
+\section{中间正胞的共享对比度二次式}
+
+在 $n=3$ 中，令中间正胞相位为 $\theta_3$，左右负胞相位为 $\eta_L,\eta_R$。同一物理幅比 $z$ 必须满足
+\begin{equation}
+ z=a(\theta_3,\eta_R;r),\qquad z^{-1}=a(\theta_3,\eta_L;r).
+\end{equation}
+所以共享的 $r=\sqrt R$ 必须满足
+\begin{align}\label{eq:Cmid}
+ C_{\rm mid}(r)={}&A_{1L}A_{1R}r^2
+ +(A_{0L}A_{1R}+A_{1L}A_{0R})r\\
+ &+(A_{0L}A_{0R}-\Delta_L\Delta_R)=0.\nonumber
+\end{align}
+这是非物理降阶样例所缺失的首个真实胶合条件，但它还不直接给出 $\det H$ 的符号。
+
+定义相位系数
+\begin{equation}
+ \Xi(\theta,\eta;\mu)
+ =-\frac{dT}{Dt}-\frac{S}{s}\frac{1-c}{1+C}.
+\end{equation}
+精确分解
+\begin{equation}
+ A_1B_0-B_1(A_0-\Delta)=s t\Delta(1+C)(-D)\Xi
+\end{equation}
+说明 $\Xi$ 正是幅比穿越 $a=1$ 与物理边界 $b=0$ 的相对次序。若 $\Xi\ge0$，则严格物理界面必有 $0<a<1$。中间正胞左右两个 $a$ 的乘积为 $1$，所以任意物理 $n=3$ 字至少一侧满足
+\begin{equation}
+ \Xi<0.
+\end{equation}
+反射固定时左右相位相同，故该唯一相位系数必须严格为负。这是新的必要条件，但不是行列式目标的改写。
+
+\section{四边际补偿恒等式}
+
+令正块逆为 $P_j^{-1}=[\ell_j,s_j;s_j,r_j]$，跳跃权为 $v_1,v_2>0$。定义
+\begin{equation}
+ E_1=\gamma_2+r_1v_1,\quad F_2=\ell_2v_1-\gamma_3,\quad
+ E_2=\gamma_4+r_2v_2,\quad F_3=\ell_3v_2-\gamma_5.
+\end{equation}
+总区间电荷有两种精确表示：
+\begin{equation}
+ Q_{[1,2]}=f^TP^{-1}f-\gamma^Tf,
+\end{equation}
+右侧是两个正量之差；以及
+\begin{equation}
+ Q_{[1,2]}=v_1E_1+\bigl(v_1F_2+v_2E_2-2s_2v_1v_2\bigr)+v_2F_3.
+\end{equation}
+中央加载矩阵为
+\begin{equation}
+ R_2^{\rm load}=\begin{pmatrix}F_2/v_1&s_2\\s_2&E_2/v_2\end{pmatrix},\qquad
+ \det R_2^{\rm load}=-\frac{D_{\rm mid}}{v_1v_2},
+\end{equation}
+其中 $D_{\rm mid}=s_2^2v_1v_2-E_2F_2$。最终森林多项式精确化为
+\begin{equation}\label{eq:fourmargin}
+ v_1^2v_2^2\det H
+ =v_1v_2\left[(E_1+F_2)(E_2+F_3)-s_2^2v_1v_2\right].
+\end{equation}
+因此 $n=3$ 的首个真正开放义务是
+\begin{equation}
+ (E_1+F_2)(E_2+F_3)>s_2^2v_1v_2.
+\end{equation}
+当前共享对比度二次式 \eqref{eq:Cmid} 仍无法比较 $\gamma_3/v_1$ 与 $-\gamma_4/v_2$，故中央加载块和四边际余量均未判号。
+
+\chapter{跨根 Picone 路线的精确障碍}
+
+本章记录一个可复用的 no-go：它排除一整类线性 Green/Picone/Pohozaev 证明，但不排除非线性的全局比较定理。
+
+\section{双根端点恒等式}
+
+把两个固定 $(R,n,\mu)$ 根分别缩放到 $[0,1]$，记
+\begin{equation}
+ -u_j''=a_j\rho_ju_j,\qquad -v_j''=\mu^2a_j\rho_jv_j,\qquad
+ (u_j',v_j')(0)=(1,q_j),\quad (u_j',v_j')(1)=(p_j,r_j).
+\end{equation}
+令 $X_j=(u_j,v_j)^T,D=\diag(1,\mu^2)$。对任意常矩阵 $C$，定义
+\begin{equation}
+ E_C=X_1'^TCX_2'+X_1^T\frac{A_1DC+A_2CD}{2}X_2,\qquad A_j=a_j\rho_j.
+\end{equation}
+逐胞微分得
+\begin{equation}
+ E_C'=\frac12\left[X_1'^T(A_1DC-A_2CD)X_2
+ -X_1^T(A_1DC-A_2CD)X_2'\right],
+\end{equation}
+根 $1$ 或根 $2$ 的事件跳跃分别为
+\begin{equation}
+ \frac{\Delta A_1}{2}X_1^TDCX_2,\qquad
+ \frac{\Delta A_2}{2}X_1^TCDX_2.
+\end{equation}
+取 $C=J_0=[0,1;-1,0]$，积分后得到
+\begin{equation}\label{eq:picone}
+ |p_1p_2|(h_1-h_2)=q_2-q_1+\Psi_{12}-\Psi_{21},\qquad
+ h_j=|r_j|/|p_j|.
+\end{equation}
+对 $q_1<q_2$，端点序恰等价于
+\begin{equation}
+ \Psi_{12}-\Psi_{21}\le-(q_2-q_1).
+\end{equation}
+所以 \eqref{eq:picone} 本身只是目标的恒等改写，不是较弱进展。
+
+\section{不可控的斜极化}
+
+在只属于根 $1$ 的事件处，第一项为
+\begin{equation}
+ \frac{a_1\Delta\rho_1}{2}(u_1v_2-\mu^2v_1u_2),
+\end{equation}
+在只属于根 $2$ 的事件处为
+\begin{equation}
+ \frac{a_2\Delta\rho_2}{2}(\mu^2u_1v_2-v_1u_2).
+\end{equation}
+最小化 relay 的单调图只给出
+\begin{equation}
+ (\rho_1-\rho_2)(S_1-S_2)\le0,
+\end{equation}
+它控制同模 Minkowski 差，不控制上述跨模斜极化。精确同象限局部数据可以让斜极化取正负两种符号，故局部 relay 符号无法修复。
+
+更强地，任意四个线性交叉 Green 传输由一个 $2\times2$ 矩阵 $C$ 表示。要在两种交替 null 事件射线 $(\mu,1)^T$ 和 $(-\mu,1)^T$ 上消去所有自由交叉项，必须
+\begin{equation}
+ \begin{pmatrix}\mu&\mu^2\\-\mu&\mu^2\end{pmatrix}C=0.
+\end{equation}
+左矩阵行列式为 $2\mu^3\ne0$，故只能 $C=0$。但 $C=0$ 又失去端点斜率行列式。两个根各自的等范数和 Pohozaev 恒等式只含单根自乘项，不能消去开集上的双线性跨项。因此任何固定线性 Green/Picone/Pohozaev 组合都必然留下斜极化。
+
+这条路线只能由新的非线性结构重启，例如 null-event 的分量交错与射影锥不变性，或反射扇区的谱投影定位；直接假设 $\Psi_{12}-\Psi_{21}$ 的符号只是重述端点序。
+
+\chapter{最终结论与精确开放义务}
+
+\section{已经严格得到什么}
+
+\begin{longtable}{p{0.27\textwidth}p{0.17\textwidth}p{0.47\textwidth}}
+\toprule
+范围 & 状态 & 结论\\
+\midrule
+\endfirsthead
+\toprule
+范围 & 状态 & 结论\\
+\midrule
+\endhead
+$n=2,\mu=2$, 任意有限 $R>1$ & \Trusted & 局部 $H>0$、$\partial_qA_2<0$；全局公共终点根至多一个；每个根反射固定。\\
+$n\ge3,\mu=2$ & \Trusted & premise-complete 最小化公共终点根不存在。\\
+固定紧对比度 $K$, $\mu\approx2$ & \Trusted & $n=2$ 有统一反射带；固定 $n\ge3$ 有统一空带。\\
+一般 $n$ & \Trusted & $\sgn\det L_-=\sgn\det H$；建立路径森林和物理区间电荷展开。\\
+端点缺陷 & \Trusted & $D=p^2-1$ 的正胞漂移和式及共同平移速度；逐胞定号和一阶平移路线被排除。\\
+$n=2$, 任意有限 $\mu$，相位固定、弱反差 & \Reviewed & 显式相位依赖阈值内 $H>0$，左右界面允许非对称。\\
+$n=2$, 任意有限 $\mu$，全对比度 & \Reviewed 条件定理 & 完整系数立方体 $G_i>0$ 将推出全局反射；前提尚未完全证完。\\
+系数立方体 & \Certified & 内立方体和 $t=0$ 边界有统一 $1/4$ 余量；$16/27$ 完整 dyadic 胞已覆盖；仍缺 $11$ 胞。\\
+$n=3$ & 严格部分结果 & 已得共享对比度二次式、$\Xi$ 必要条件及四边际恒等式；符号仍开。\\
+一般 $n\ge2$ 全局反射 & \Open & 无物理反例，但证明尚未闭合。\\
+\bottomrule
+\end{longtable}
+
+\section{最短的忠实继续路线}
+
+若未来恢复研究，最短路线是：
+\begin{enumerate}[label=\arabic*.]
+  \item 先把任意 $\mu$ 的弱反差局部定理和条件立方体桥正式提交、独立审查并确定性合并；
+  \item 利用 $t=0$ 的 $1/4$ 边界余量构造显式低 $t$ 正领，关闭九个低 $t$ 胞；
+  \item 处理 $\mathrm{LIH}$ 与 $\mathrm{LHH}$ 两个剩余紧环带；
+  \item 此时才能由定理 \ref{thm:conditionalcube} 得到 $n=2$、任意 $\mu$ 的无条件全局反射；
+  \item 对 $n\ge3$ 单独证明 \eqref{eq:charged-forest} 的最终森林多项式为正，首要目标是 $n=3$ 的四边际不等式 \eqref{eq:fourmargin}，而不是重新要求更强的 $H>0$。
+\end{enumerate}
+
+\begin{obligation}[一般 $n$ 的最小矩阵义务]
+在每个物理、premise-complete、横截的最小化根上证明
+\begin{equation}
+ \det H>0,
+\end{equation}
+或给出满足全部相位、动量、共享对比度、终端与等范数条件的物理根且 $\det H\le0$。
+\end{obligation}
+
+\begin{obligation}[$n=2$ 的系数覆盖义务]
+证明所有 retained $(k,t,y)\in(0,1)^3$ 上 $G_1,\ldots,G_4>0$，尤其补齐低 $t$ 九胞和 $\mathrm{LIH},\mathrm{LHH}$；或发现一个严格 retained 负盒并将其提升为物理界面分析。
+\end{obligation}
+
+\chapter*{附录 A：冻结证明包与证书索引}
+\addcontentsline{toc}{chapter}{附录 A：冻结证明包与证书索引}
+
+以下路径均相对于项目根目录
+\begin{quote}
+\file{E:/ai_auto_solve/}\\
+\file{SL_gap_nge2_blueprint_v22_research_20260809}
+\end{quote}
+
+\begin{itemize}[leftmargin=0pt,label={},itemsep=0.8em]
+\item \textbf{完整 relay 约化（accepted）}\\
+\file{runs/R-20260812T022307Z-mpo3a-cont2/routes/}\\
+\file{full_relay/derivation.md}
+\item \textbf{辛结构与反射（accepted）}\\
+\file{runs/R-20260812T165103Z-mpo3a-cont4/routes/}\\
+\file{symplectic_nested_reduction/derivation.md}
+\item \textbf{物理 continuant R7（accepted）}\\
+\file{runs/R-20260812T165103Z-mpo3a-cont4/routes/}\\
+\file{physical_realizability_r7/derivation_r1.md}
+\item \textbf{$n=2,\mu=2$ 局部 twist（accepted）}\\
+\file{runs/R-20260812T165103Z-mpo3a-cont4/routes/}\\
+\file{r9_min_complementary/derivation.md}
+\item \textbf{$n=2,\mu=2$ 全局序（accepted）}\\
+\file{runs/R-20260812T165103Z-mpo3a-cont4/routes/}\\
+\file{r11_min_mu2_global_order/derivation.md}
+\item \textbf{$n\ge3,\mu=2$ 非存在性（accepted）}\\
+\file{runs/R-20260812T165103Z-mpo3a-cont4/routes/}\\
+\file{r15_min_mu2_general_n_nonexistence/derivation.md}
+\item \textbf{紧 $\mu=2$ 排除带（accepted）}\\
+\file{runs/R-20260815T181317Z-min-reflection/routes/}\\
+\file{compact_mu2_strip/derivation.md}
+\item \textbf{行列式奇偶校准（accepted）}\\
+\file{runs/R-20260815T181317Z-min-reflection/routes/}\\
+\file{event_inertia/determinant_parity_proof.md}
+\item \textbf{森林/区间电荷（accepted）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{det_forest/report.md}
+\item \textbf{端点缺陷/平移（accepted）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{defect_amplitude/report.md}
+\item \textbf{任意 $\mu$ 弱反差界面（pre-reviewed）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{general_mu_interface/report.md}
+\item \textbf{条件立方体桥（pre-reviewed）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{r14_r17_bridge_rebind/bridge_proof.md}
+\item \textbf{内立方体 $1/4$ 证书（finite certified）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{quarter_inner_box/report.md}
+\item \textbf{$t=0$ 边界证书（finite certified）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{physical_quarter_bound/cover_results.json}
+\item \textbf{高 $t$ 领（finite/analytic）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{t1_effective_union/report.md}
+\item \textbf{$n=3$ 共享对比度（rigorous partial）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{charge_compensation/report.md}
+\item \textbf{跨根 Picone no-go（rigorous partial）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/routes/}\\
+\file{cross_picone/report.md}
+\item \textbf{暂停时总报告（status freeze）}\\
+\file{runs/R-20260816T034422Z-min-reflection-cont2/}\\
+\file{PAUSED_REPORT.md}
+\end{itemize}
+
+\chapter*{附录 B：范围声明}
+\addcontentsline{toc}{chapter}{附录 B：范围声明}
+
+本文所有严格根级结论均假设有限 $R>1$、有限 $\mu>1$、premise-complete 横截 relay 根。$R=1$ 时材料标签合并；grazing、胞碰撞、零胞长和未完成材料字不在严格局部公式的直接范围内，除非正文另行给出闭包论证。本文没有证明根的存在性，没有证明一般 $n\ge2$ 的等范数根唯一性，也没有将有限 Arb 覆盖当作未覆盖边界上的解析定理。局部有理反例和局部 relay jet 只用于排除证明机制，均未被称为物理全局反例。
+
+\end{document}

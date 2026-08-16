@@ -1,0 +1,207 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260812-1405-MPO3ACONT2PARTIAL-R2",
+  "submission_id": "SUB-20260812-1405-MPO3ACONT2PARTIAL-R2",
+  "proposal_hash": "sha256:8d2f399c3060909a7ddef65ecbc6823e15529a56b53fe3e4cd869304c269d26f",
+  "validation_hash": "sha256:574745f4d43503f7a8b48e280831aa86d228b3541326d98b0c608117160ea86e",
+  "reviewer_agent_id": "bifurcation-route-proposal-reviewer-r2",
+  "reviewed_at": "2026-08-12T06:05:17.1986094Z",
+  "verdict": "approve",
+  "decision_summary": "The R2 proposal and validation hashes match the assignment, validation.valid is true and binds the proposal, and the canonical Blueprint and inventory still match both base hashes. R2 changes only submission metadata, summary, and supersedes relative to the previously reconstructed mathematics. I independently rechecked all four proved inferences, their exact proof-package bindings, claim scopes, four-axis audits, and the three updated plus one new partial-attempt statuses. The full asymmetric relay bijection, exact reduced-Green Hessian, parity-alternating arbitrary-chord curvature, and unrestricted local transfer-minor obstruction follow at precisely their declared partial-result scopes. No protected node or protected incoming dependency is changed, the read/write sets and typed acyclic graph are valid, numerical scans do not propagate, and the universal O3a and Jacobian obligations remain open.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "ATT-NGE2-MPO3A-CONT2-JAC",
+      "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+      "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER",
+      "CLM-NGE2-MPO3A-STRUCTURE",
+      "HYP-NGE2-DOMAIN",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "GOAL-NGE2-MPO3A-CONT2"
+    ],
+    "reasoning": "Only three existing grade-D active research attempts are updated; their truth-bearing statements, target edges, route keys, methods, and deliverable contracts are unchanged, while status/grade/provenance accurately advance to partial/B. All theorem and inference nodes plus the full-relay attempt are new. Every new dependency targets a new node, so no protected existing node receives a new incoming dependency. Validation independently reports protected_node_check.passed=true."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "contract": "R is finite real with R>1 and n is integer with n>=2.",
+      "scope": "All four inferences retain every finite R>1 and n>=2 where applicable; no R=1, R=infinity, finite-grid, or asymptotic substitute is introduced.",
+      "result": "valid",
+      "independent_reasoning": "This is the frozen problem hypothesis. The polarization formula covers each finite R>1; the transfer obstruction legitimately uses R=4 to refute a universally quantified local-factor statement."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "contract": "Positive L-infinity weights 1<=rho<=R a.e., increasing Dirichlet weighted-string eigenvalues, and D_n=lambda_(n+1)-lambda_n.",
+      "scope": "Relay scaling, shape differentiation, polarization, and transfer formulas stay in the canonical model.",
+      "result": "valid",
+      "independent_reasoning": "Every calculation uses -u''=lambda rho u, increasing Dirichlet indices, and weighted normalization. No alternate boundary condition, normalization, or gap is substituted."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "contract": "Effective switches are positive-length cell boundaries after adjacent equal phases are merged.",
+      "scope": "Used by the full-relay and shape-Hessian inferences.",
+      "result": "valid",
+      "independent_reasoning": "Relay words are finite and modulo a.e. event values; the terminal zero is not counted. Shape coordinates retain strictly ordered interior interfaces and exclude collapsed cells."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "contract": "Exactly 2n effective switches, weighted-normalized consecutive modes, both max/min laws, arbitrary asymmetric points, and a.e. zero-set allocation.",
+      "scope": "Used by full relay, shape Hessian, and transfer obstruction.",
+      "result": "valid",
+      "independent_reasoning": "No proof assumes reflection symmetry. The transfer witnesses are explicitly local factors and are not called complete self-consistent points. Both saturation laws and all actual-point premises are retained."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+      "contract": "Established exact simple-zero, endpoint-word, nodal-allocation, and energy structure for every complete self-consistent point.",
+      "scope": "All finite R>1, n>=2, and both signs, used only in the directions stated in the proof packages.",
+      "result": "valid",
+      "independent_reasoning": "This is an established grade-B claim in the bound snapshot. Full relay independently recovers converse event count after indexing; shape Hessian uses it for crossing signs; transfer order derives only the weaker internal bound below 2pi and does not assume subcriticality."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-FULL-RELAY",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/full_relay/derivation.md",
+      "proof_package_sha256": "sha256:0e6f919fa94e5f2a3c1c90ee825916346289d0c2c0f5250315a1a7e17da6679f",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "Scale t=sqrt(lambda_n)x with common left-slope normalization to obtain the relay equations, F=A^2S, exact sign law, indexed endpoint phases, and equal relay integrals.",
+        "Glue E=U_t^2+rho U^2-(V_t^2+mu^2rho V^2) across S=0 and integrate by parts to obtain L(q^2-1)=2(mu^2-1)I>0.",
+        "Invert the scaling and use lifted phases to identify the nth and (n+1)st weighted Dirichlet eigenvalues before counting events.",
+        "Use strict consecutive quotient monotonicity, endpoint slopes, and interlacing to obtain exactly 2n transverse crossings and the forced material word.",
+        "Use cellwise IVP uniqueness and induction through simple sign-changing events to descend from labelled trajectories to scalar labels.",
+        "Eliminate the common terminal time on every fixed finite-word transverse chamber and retain the union of all chambers and closure duplicate identifications."
+      ],
+      "definition_audit": {"passed": true, "reasoning": "The labelled trajectory, orientations, a.e. event allocation, indexed phases, effective word, and chamber scope are explicit. Forward and inverse scalings and norm factors agree."},
+      "logic_audit": {"passed": true, "reasoning": "The energy, indexing, event count, trajectory uniqueness, and zero-time elimination occur noncircularly. The converse does not assume q>1, event count, transversality, endpoint material, or symmetry."},
+      "boundary_audit": {"passed": true, "reasoning": "n=2, both signs, asymmetric points, every finite R>1, grazing away from roots, chamber changes, shared closures, a.e. event values, and the terminal endpoint are treated. R=1 and R=infinity are excluded."},
+      "adversarial_audit": {"passed": true, "reasoning": "Independent checks recover all L/A factors, the energy sign, event count only after mode indexing, and independent reflection orientation signs. The result is a reduction, not global injectivity or uniqueness."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-SHAPE-HESSIAN",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/jacobian_morse/derivation.md",
+      "proof_package_sha256": "sha256:c438a98c8def533c6ca01ee67f5092298ba8797ad6b61319a5de61f65f6e2fb5",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "Interface motion gives dot rho_h=sum_i(r_(i-1)-r_i)h_i delta_(x_i), and normalized Feynman-Hellmann gives dot lambda_k=-lambda_k c_k[h].",
+        "Differentiate the eigenfunction equation and normalization to get dot u_k=lambda_k R_k(dot rho_h u_k)-(c_k[h]/2)u_k with Green denominator lambda_ell-lambda_k.",
+        "Differentiate again, including x_i+tq_i, to get B_k=2lambda_kc_k[h]c_k[q]-2lambda_k^2Q_k-2lambda_kE_k.",
+        "Subtract adjacent modes to get the exact Hessian and local term sum_i delta_i h_iq_iF'(x_i), while D'=sum_i delta_i h_iF(x_i) gives H=diag(delta)D_xG.",
+        "Combine simple alternating crossings with forced material words to make the local term negative for max and positive for min.",
+        "Use both signs in each reduced spectral expansion only to block the termwise same-sign shortcut; retain the paired strict inequalities as open sufficient conditions."
+      ],
+      "definition_audit": {"passed": true, "reasoning": "The jump is left-minus-right, the reduced Green inverse uses Lebesgue pairing on the weighted-orthogonal complement, and the shape path retains an ordered positive-cell word."},
+      "logic_audit": {"passed": true, "reasoning": "The Green denominator, dot-u sign, normalization term, coefficient two, moving local term, and F' sign independently recompute correctly. The revised (6.3) is sufficient rather than necessary for nonsingularity."},
+      "boundary_audit": {"passed": true, "reasoning": "Arbitrary asymmetric interior points and every finite R>1 are covered. R=1, R=infinity, collapsed cells, endpoints, and grazing/inactive switches are not silently included."},
+      "adversarial_audit": {"passed": true, "reasoning": "Mixed spectral denominators are not overpromoted to finite-trace indefiniteness. Numerical probes do not establish definiteness, singularity, uniqueness, or O3a."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-POLARIZATION-CURVATURE",
+      "premise_ids": ["HYP-NGE2-DOMAIN"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP"],
+      "proof_package_path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/polarization/derivation.md",
+      "proof_package_sha256": "sha256:de323a73e23ac0dd87729e36ded31b043b0551057cc8536c49d3dfe8f9862a2e",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "At the symmetric midpoint, antisymmetry and eigenfunction parity kill the diagonal perturbation matrix element, so lambda_k'=0 and only opposite parity contributes.",
+        "Differentiate the affine generalized eigenproblem twice to obtain lambda_k''=2lambda_k^2 sum_(j!=k)(integral h u_ku_j)^2/(lambda_k-lambda_j).",
+        "At rho=c, retain the weighted sqrt(2/c) normalization and reduce half-step integrals to opposite-parity sums S_k.",
+        "Differentiate cotangent/tangent partial fractions at non-pole parity indices to obtain S_k=-1/(16k^2) for odd k and 3/(16k^2) for even k.",
+        "Restore H and c to obtain mode curvature, then subtract consecutive modes to get positive gap curvature for odd n and negative for even n.",
+        "Set c=(R+1)/2 and H=R-1 to realize reflected admissible one-interface endpoints and infer only the scoped all-n arbitrary-chord no-go."
+      ],
+      "definition_audit": {"passed": true, "reasoning": "Generalized mass normalization, parity, affine parameter, and chord endpoints are exact. The one-interface endpoints are not called 2n-switch self-consistent points."},
+      "logic_audit": {"passed": true, "reasoning": "Projection confirms the denominator, factor two, c^-3 normalization, partial fractions, and adjacent-gap parity signs. The claim has the repaired all-n mechanism quantifier."},
+      "boundary_audit": {"passed": true, "reasoning": "Every n>=2 and finite R>1 is covered; the sign vanishes at excluded R=1. Parity avoids all partial-fraction poles and no degeneracy or infinite limit is used."},
+      "adversarial_audit": {"passed": true, "reasoning": "No generalized-mass or parameter-rescaling term is missing. The result does not rule out fixed-parity signs, self-consistency-restricted chords, other polarization paths, or O3a."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-TRANSFER-OBSTRUCTION",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_path": "../runs/R-20260812T022307Z-mpo3a-cont2/routes/transfer_order/derivation.md",
+      "proof_package_sha256": "sha256:12322dc689e99719e154da6578797dfb54567e6026e1e40b32cb2c3d0f52982d",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "Homogeneous cell transfer gives B=alpha csc(theta) and D=mu alpha csc(mu theta) on 0<theta<mu theta<pi.",
+        "Monotonicity of z cot z gives (log tau)'=cot theta-mu cot(mu theta)>0 for tau=D/B, hence C=B-D<0 in that chamber.",
+        "Factor the adjacent paired minor as Delta=B_-B_+[tau(theta_+)-tau(theta_-)].",
+        "At mu=2, R=4 with material square-root factors retained, phase pairs (pi/6,pi/4), (pi/4,pi/6), and (pi/6,pi/6) give exact positive, negative, and zero minors.",
+        "Use nodal allocation only for the internal phase bound below 2pi; do not infer every actual cell is subcritical or exhibit an actual cell outside it.",
+        "Conclude only that the unrestricted alternating two-cell fixed-sign lemma fails, not that a complete-word invariant, global injectivity, or O3a fails."
+      ],
+      "definition_audit": {"passed": true, "reasoning": "Phase, material-prefactor, transfer, Riccati, and DtN conventions agree. The exact witnesses have positive lengths and remain inside the non-pole chamber."},
+      "logic_audit": {"passed": true, "reasoning": "The tau derivative, determinant factorization, and radical signs are exact. The repaired proof distinguishes an unavailable deduction from an actual counterexample."},
+      "boundary_audit": {"passed": true, "reasoning": "R=4 suffices for the universal local-lemma refutation; n=2 relevance and both orientations are retained without calling the factor a complete point. Equality, pi/2, poles, endpoints, and finite contrast are scoped."},
+      "adversarial_audit": {"passed": true, "reasoning": "Exact signs were independently recomputed with material factors. Local witnesses are not propagated to a complete matching word, multiple solutions, or O3a."}
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT2-JAC",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The exact Hessian and local sign are proved, but the paired inequality and universal all-solution nonsingularity remain open. Partial/B is accurate; numerical samples are non-propagating."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT2-POLARIZATION",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Parity curvature blocks one all-n arbitrary-chord mechanism but leaves fixed parity and self-consistency-restricted comparisons open. Partial/B is accurate."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT2-TRANSFER-ORDER",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Chamber monotonicity and sign-changing local minors are exact, but no complete-word order theorem or complete-root witness exists. Partial/B is accurate."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT2-FULL-RELAY",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The route reduces arbitrary asymmetric solutions to chamberwise two-scalar equations, but global root count and no-conjugate-point obligations remain open. Partial/B accurately records reusable progress without target completion."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "base_blueprint_hash_matches": true,
+    "base_inventory_hash_matches": true,
+    "candidate_blueprint_hash": "sha256:6b7ddfd0832c6109d178b6bf3f3c2a98612404ed77fb7216143aee6a96701d24",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_node_count": 82,
+    "candidate_edge_count": 166,
+    "independent_validator_passed": true,
+    "read_set_check": {"passed": true, "reasoning": "Recomputed canonical hashes equal the proposal bases. Validation accepts the semantic read set. Every proof input is given, a definition, or an established claim; no open target, obligation, attempt, or numerical result is used."},
+    "write_set_check": {"passed": true, "reasoning": "The write set contains exactly three existing attempt updates and nine new nodes. All proposed edges match declared roles and target new nodes; no inventory row or protected incoming dependency changes."},
+    "trusted_closure_scope": "Only the four precisely scoped established claims enter closure. Attempt records remain non-truth-bearing, while universal max/min/O3a and both Jacobian obligations remain unresolved."
+  },
+  "artifact_checks": {
+    "all_four_proof_packages_present": true,
+    "all_four_proof_package_hashes_match": true,
+    "all_four_independent_audits_pass": true,
+    "numerical_nonpropagation_passed": true,
+    "reasoning": "Exact derivations and exact analytic/radical identities support the claims. Floating continuation, Hessian samples, and chord probes are not proof inputs."
+  },
+  "findings": [],
+  "required_actions": []
+}

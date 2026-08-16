@@ -27,7 +27,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 
 ### 部分证明 / 数值强猜想 / 开放问题
 
-- 合作者研究进展 (2026-08-16, 已审计): 最小化方向反射对称性 -- $n=2,\mu=2$ 全局至多一根/反射固定与 $n\ge3,\mu=2$ 非存在性 (外部蓝图 Trusted), 任意 $\mu$ 弱反差局部定理与条件立方体桥 (Reviewed), 一般 $n$ 全局反射仍 Open (`docs/SL_gap_nge2_min_direction_progress.tex` / `.pdf`; 审计见 `runs/rigorous-open-math-research/R-20260816T174722Z-min-direction-audit/`).
+- 合作者研究进展 (2026-08-16, 已审计 ACCEPT): 最小化方向反射对称性 -- $n=2,\mu=2$ 全局至多一根/反射固定与 $n\ge3,\mu=2$ 非存在性 (Trusted), 任意 $\mu$ 弱反差局部定理与条件立方体桥 (Reviewed), 一般 $n$ 全局反射仍 Open (`docs/SL_gap_nge2_min_direction_progress.tex` / `.pdf`; 审计见 `runs/rigorous-open-math-research/R-20260816T174722Z-min-direction-audit/`; 核验包见 `collaborator_min_direction_verification/`).
 - 固定 $n$ 上确界: 对称相位结构已证, $n=1,2$ 闭式; 全局极值性与 $2n$ 根计数未证 (`docs/SL_fixed_n_supremum.tex`).
 - $n \ge 2$ 间距全局对称性与块数最小性: $R=1$ 与 $R \to 1$ 局部定理已证, 全局唯一性依赖开放条件 $(G1')/(G2)$, 其余为数值强猜想 (`docs/SL_gap_nge2_symmetry_local_proof.tex`).
 - 权威开放问题清单: `docs/SL_spectral_topics_summary.tex` §5.

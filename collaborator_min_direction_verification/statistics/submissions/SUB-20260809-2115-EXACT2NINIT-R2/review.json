@@ -1,0 +1,279 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260809-2121-EXACT2NINIT-R2",
+  "submission_id": "SUB-20260809-2115-EXACT2NINIT-R2",
+  "proposal_hash": "sha256:5835785830871273044b62af68f744a24f865ba65a14640350ef1440caad980d",
+  "validation_hash": "sha256:edcd59830144b79486690e66cbd1dc2f74851608bcf7347eadc938657fe198f6",
+  "reviewer_agent_id": "independent-exact2n-init-reviewer",
+  "reviewed_at": "2026-08-09T13:21:33.9632780Z",
+  "verdict": "changes_requested",
+  "decision_summary": "The proposal and validation bindings, immutable-base boundary, candidate hashes, protected nodes, typed acyclic graph, open/non-propagating status design, goal split, and route coverage are sound. Two correctable contract defects remain: the sign-sensitive endpoint ratios and their R,n scope are not bound by an exact definition/hypothesis contract, and the continuum-global counterexample obligation is outcome-sufficient rather than strictly weaker than the prove-or-refute target. A new immutable proposal must correct both classifications before integration.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT",
+      "HYP-NGE2-DOMAIN",
+      "CLM-NGE2-EXISTENCE",
+      "CLM-NGE2-ZERO-BOUND",
+      "CLM-NGE2-BANGBANG",
+      "CLM-NGE2-FINITE-REDUCTION",
+      "INF-NGE2-EXISTENCE",
+      "INF-NGE2-ZERO-BOUND",
+      "INF-NGE2-BANGBANG",
+      "INF-NGE2-SYNTHESIS",
+      "OBL-NGE2-WEAKSTAR",
+      "OBL-NGE2-WRONS",
+      "OBL-NGE2-FIRSTVAR",
+      "ATT-NGE2-WRONS-KNIFE",
+      "ATT-NGE2-VAR-COMPACT"
+    ],
+    "reasoning": "The proposal only adds new downstream nodes and edges. It neither updates nor deletes a protected node and does not alter any incoming dependency of a protected node. Independent before/candidate semantic comparison returned no protected-node finding."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is real with R>1 and n is an integer with n>=2.",
+      "scope": "Every finite R>1 and every integer n>=2.",
+      "source_verification": "Not applicable; this is the frozen problem domain.",
+      "result": "valid",
+      "reasoning": "The target goal and maximizer/minimizer subclaims correctly state this quantifier order. The endpoint-count claim, however, leaves R and n free and its inference does not include this hypothesis; that downstream defect is recorded separately."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "K_R is the measurable L-infinity box, lambda_k are increasingly ordered weighted Dirichlet eigenvalues, and D_n=lambda_{n+1}-lambda_n.",
+      "scope": "The full measurable box for the adjacent-gap problem.",
+      "source_verification": "Not applicable; this is a protected problem definition.",
+      "result": "valid",
+      "reasoning": "This definition correctly fixes the spectral object but does not fix eigenfunction signs or endpoint norming ratios, so it cannot by itself serve as the missing endpoint-ratio definition."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Effective switches are interior boundaries after adjacent equal endpoint-valued blocks are merged, modulo a.e. representatives.",
+      "scope": "Finite bang-bang representatives in K_R.",
+      "source_verification": "Not applicable; this is a protected problem definition.",
+      "result": "valid",
+      "reasoning": "The exact-2n target, its maximum/minimum split, null-set policy, and route contracts use this definition consistently."
+    },
+    {
+      "node_id": "CLM-NGE2-FINITE-REDUCTION",
+      "premise_kind": "accepted_mathematical_result",
+      "exact_contract": "Both extrema exist and every global extremizer is bang-bang with at most 2n effective switches.",
+      "scope": "Every R>1, every integer n>=2, and every maximizer or minimizer over K_R.",
+      "source_verification": "Canonical grade-B established claim, supplied by four proved inferences bound to the accepted proof package.",
+      "result": "valid",
+      "reasoning": "It legitimately reduces counterexample certification to the finite-block class and supplies existence. It does not itself assert exact switch activity or endpoint slope inequalities, which the new graph correctly leaves open."
+    }
+  ],
+  "math_proof_checks": [],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "CLM-NGE2-ENDPOINT-COUNT",
+      "record_kind": "open_claim",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The open grade-D label is non-propagating and the proposed level-count formula is a plausible research reduction, but q_0 and q_1 change sign under an independent eigenfunction sign flip. The phrase 'orient' does not specify a unique convention, and R,n are not explicitly quantified in this claim."
+    },
+    {
+      "node_id": "CLM-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "record_kind": "open_claim",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "Its conjectural grade-D status is appropriate, but 'consistently oriented' has no bound definition, so the two sign inequalities do not yet have a unique graph-level truth condition."
+    },
+    {
+      "node_id": "CLM-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "record_kind": "open_claim",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "Its conjectural grade-D status is appropriate, but the sign-sensitive endpoint ratios lack an exact orientation definition."
+    },
+    {
+      "node_id": "CLM-NGE2-EXACT2N-MAX",
+      "record_kind": "open_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The every-maximizer exact-switch statement is absent from trusted closure, correctly separated from the minimizer statement, and cannot propagate while open."
+    },
+    {
+      "node_id": "CLM-NGE2-EXACT2N-MIN",
+      "record_kind": "open_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The every-minimizer exact-switch statement is absent from trusted closure, correctly separated from the maximizer statement, and cannot propagate while open."
+    },
+    {
+      "node_id": "CLM-NGE2-EXACT2N-ALL",
+      "record_kind": "target_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The universal every-R, every-n, every-extremizer quantifier is frozen exactly, target status is non-trusted, and one certified failure of either max or min side would refute it."
+    },
+    {
+      "node_id": "INF-NGE2-ENDPOINT-COUNT",
+      "record_kind": "open_inference",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The first/middle/last-cell and zero-to-switch gaps are explicitly unresolved, but the inference lacks a definition input fixing endpoint-ratio orientation and lacks HYP-NGE2-DOMAIN as a premise for the free R,n in its conclusion."
+    },
+    {
+      "node_id": "INF-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "record_kind": "open_inference",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The principal endpoint-rigidity gap is honestly open, but its conclusion needs the missing endpoint-orientation definition contract."
+    },
+    {
+      "node_id": "INF-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "record_kind": "open_inference",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The minimizer rigidity gap is honestly open, but its conclusion needs the missing endpoint-orientation definition contract."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-MAX",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "It is a transparent conditional step with two explicitly open premises, proof_input_eligible=false, and an unresolved full-scope obligation."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-MIN",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "It is a transparent conditional step with two explicitly open premises, proof_input_eligible=false, and an unresolved full-scope obligation."
+    },
+    {
+      "node_id": "INF-NGE2-EXACT2N-SYNTHESIS",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The conjunction of universal max and min subclaims exactly yields the combined target, but both premises remain open and therefore no truth propagates."
+    },
+    {
+      "node_id": "GOAL-NGE2-EXACT2N",
+      "record_kind": "open_goal",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The goal accurately uses prove-or-refute mode, preserves the universal quantifier order, distinguishes the two extremizer classes, states the eight-hour deadline, and rejects finite scans or unmerged candidates as completion."
+    },
+    {
+      "node_id": "OBL-NGE2-ENDPOINT-COUNT",
+      "record_kind": "proof_obligation",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "It is a genuine subordinate structural obligation and correctly separates zero count from switch activity, but q_0/q_1 and their equality cases need the missing orientation definition."
+    },
+    {
+      "node_id": "OBL-NGE2-MAX-ENDPOINT",
+      "record_kind": "proof_obligation",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The every-maximizer and full-box globality conditions are appropriately strong and still subordinate to the combined max-plus-min target, but the endpoint signs are not yet definition-bound."
+    },
+    {
+      "node_id": "OBL-NGE2-MIN-ENDPOINT",
+      "record_kind": "proof_obligation",
+      "result": "incomplete",
+      "cannot_propagate_truth": true,
+      "reasoning": "The every-minimizer and strictness conditions are appropriately explicit, but the endpoint signs are not yet definition-bound."
+    },
+    {
+      "node_id": "OBL-NGE2-GLOBAL-CERT",
+      "record_kind": "proof_obligation",
+      "result": "inaccurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "Open grade-D status is safe, and the obligation correctly rejects finite-grid globality. However, discharging its formal statement for one explicit R,n,rho_* supplies a verified counterexample and therefore resolves the universal target by refutation; it is not honestly 'strictly_weaker' than the prove-or-refute target."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-ENDPOINT",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "This analytic route covers exact nodal-cell counting and both endpoint-rigidity branches; active grade-D attempt status cannot enter trusted closure."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-CERT-CEX",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "This mechanism-distinct route correctly separates numerical discovery from continuum-global certification and lists the key grid, topology, and indexing failure modes."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-SMALL-R",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The perturbative route covers R approaching 1 and explicitly identifies global uniformity, rather than local transversality, as the main proof bridge."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-LARGE-R",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The high-contrast route covers large finite R, competing topologies, vanishing blocks, and the finite-R remainder bottleneck."
+    },
+    {
+      "node_id": "ATT-NGE2-EXACT-ADVERSARIAL",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The independent adversarial/literature route covers n=2, both contrast limits, max versus min, symmetry/nonuniqueness, endpoint equality, and prior-art search; computation remains explicitly non-universal."
+    }
+  ],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "candidate_blueprint_hash": "sha256:0650ae7288d2dcb2468eeb240588cdd1cc263f32a41071eedd6c44d3c540503f",
+    "candidate_inventory_hash": "sha256:02529f9374d833dab60c7f0650cc0b07431f2d172195100b069de0e7759107be",
+    "independent_validator_passed": true,
+    "trusted_closure_unchanged": true,
+    "closure_reasoning": "All 22 added records have grade D and status open, target, or active; all six new inferences are open with proof_input_eligible=false. The candidate trusted closure therefore remains the five previously accepted claims reached through the four previously proved inferences, with no contradiction."
+  },
+  "artifact_checks": {
+    "problem_contract_present": true,
+    "reproducibility_manifest_present": true,
+    "research_ledger_present": true,
+    "route_registry_present": true,
+    "snapshot_hashes_match": true,
+    "deadline_is_eight_hours": true,
+    "route_coverage": "Endpoint rigidity, certified counterexample, small contrast, large contrast, and independent adversarial/literature routes are mechanism-distinct and jointly cover the main analytic, computational, asymptotic, and prior-art failure modes."
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "node_id": "CLM-NGE2-ENDPOINT-COUNT",
+      "edge": {
+        "source": "DEF-SL-BOX-ADJ-GAP",
+        "target": "INF-NGE2-ENDPOINT-COUNT"
+      },
+      "rule": "GRAPH_ERROR",
+      "explanation": "The first semantic failure is the definition of q_0 and q_1: weighted-L2 normalization fixes magnitude but not sign, and independently replacing u_n or u_{n+1} by its negative flips both ratios while leaving F_n and the switch count unchanged. Neither 'orient' nor 'consistently oriented' specifies a canonical convention in a definition node. In addition, CLM-NGE2-ENDPOINT-COUNT leaves R and n free, while INF-NGE2-ENDPOINT-COUNT does not include HYP-NGE2-DOMAIN as a premise.",
+      "required_fix": "In a new proposal, add an exact endpoint-norming definition contract, for example weighted-L2 normalization together with u_n'(0)>0 and u_{n+1}'(0)>0, and connect it as a definition_input to all three endpoint-count/rigidity inferences. Explicitly quantify R>1,n>=2 in CLM-NGE2-ENDPOINT-COUNT and add HYP-NGE2-DOMAIN as a premise_input and typed edge to INF-NGE2-ENDPOINT-COUNT (or provide an equivalent unambiguous scope binding)."
+    },
+    {
+      "severity": "major",
+      "node_id": "OBL-NGE2-GLOBAL-CERT",
+      "edge": {
+        "source": "GOAL-NGE2-EXACT2N",
+        "target": "OBL-NGE2-GLOBAL-CERT"
+      },
+      "rule": "SCOPE_OVERREACH",
+      "explanation": "The formal obligation asks for an explicit global maximizer or minimizer with fewer than 2n switches. Once discharged, that object is a verified counterexample to CLM-NGE2-EXACT2N-ALL and fully resolves the prove-or-refute target on the refutation side. Labeling this obligation strength_relative_to_target='strictly_weaker' understates its logical strength.",
+      "required_fix": "Use the schema-supported value 'unknown' for this outcome-sufficient counterexample obligation, or decompose it into genuinely strictly weaker technical certification sub-obligations while keeping the final verified-counterexample conclusion outside a misleading strictly-weaker label."
+    }
+  ],
+  "required_actions": [
+    "Create a new immutable proposal that binds a precise eigenfunction-orientation/endpoint-norming definition, fixes the endpoint-count R,n scope, and adds the corresponding definition and hypothesis edges.",
+    "Correct OBL-NGE2-GLOBAL-CERT.strength_relative_to_target to 'unknown' or replace it with genuinely strictly weaker sub-obligations."
+  ]
+}

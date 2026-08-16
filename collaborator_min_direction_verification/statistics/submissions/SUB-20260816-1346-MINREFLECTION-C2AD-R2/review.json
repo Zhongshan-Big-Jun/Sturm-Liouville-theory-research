@@ -1,0 +1,204 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260816-1350-MINREFLECTION-C2AD-R2",
+  "submission_id": "SUB-20260816-1346-MINREFLECTION-C2AD-R2",
+  "proposal_hash": "sha256:9d13b0691ccc9d55292dde04043a9b9542ae0b4f2c0df1279a692ade300f9e59",
+  "validation_hash": "sha256:587408a2b1fb3a88e5e08f037350c828dff95b4a701f42f952207ab30ac3b4fd",
+  "reviewer_agent_id": "/root/formal_reviewer",
+  "reviewed_at": "2026-08-16T05:50:28Z",
+  "verdict": "approve",
+  "decision_summary": "Approved the superseding submission's two narrow exact mathematics deltas. The proposal operations, proof packages, scopes, read set, write set, and review evidence are mathematically identical to the independently reconstructed predecessor; the new package correctly supersedes it only to obtain receiver-compatible review records. The forest/interval-charge identity and defect/common-translation-speed identity are valid, while det(H)>0, a one-sided endpoint defect, a complete asymmetric counterexample, and global minimum reflection symmetry remain open. Conditional C/E routes are excluded.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [],
+    "reasoning": "The proposal adds four new nodes and their dependency edges only. It contains no update, deletion, inventory mutation, or incoming-dependency change to an existing protected node."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "result": "valid",
+      "problem_source_definition_contract": "Problem hypothesis: finite real contrast R>1 and integer n>=2 in CTX-DEFAULT.",
+      "scope": "Both new inferences remain inside this open finite-contrast domain.",
+      "source_verification": "Not applicable; this is the declared problem domain rather than an external assumption.",
+      "independent_reasoning": "Neither claim extends to R=1, infinite contrast, or n<2. The defect claim's mu>1 is supplied by the full-relay formulation."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "result": "valid",
+      "problem_source_definition_contract": "A minimum-self-consistent bang-bang weight has exactly 2n effective switching-function zeros and obeys the reversed saturation law modulo a.e. equality.",
+      "scope": "Premise-complete transverse minimum roots with a fixed 2n-event word.",
+      "source_verification": "Not applicable; this is a canonical definition contract.",
+      "independent_reasoning": "It supplies the fixed-dimensional minimum event class and does not assert root existence, symmetry, or uniqueness. Both proofs exclude grazing, coalesced, inactive, or incomplete words."
+    },
+    {
+      "node_id": "DEF-NGE2-ENDPOINT-NORMING",
+      "result": "valid",
+      "problem_source_definition_contract": "Canonical adjacent Dirichlet eigenfunction orientation and endpoint norming ratios under weighted-L2 normalization.",
+      "scope": "Used to calibrate endpoint slopes; the relay low mode is normalized by U_t(0)=1 and the high mode is divided by its left slope q for the translation calculation.",
+      "source_verification": "Not applicable; this is a canonical definition contract.",
+      "independent_reasoning": "Dirichlet simplicity makes all terminal slopes nonzero. For V/q the terminal slope and norm are r/q and I_V/q^2, so no q-factor is lost."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+      "result": "valid",
+      "problem_source_definition_contract": "Established exact-2n-switch structure with simple alternating events, forced minimum endpoint material R, fixed nodal allocation, and no hidden zeros.",
+      "scope": "Every finite-contrast exact-2n-switch self-consistent point.",
+      "source_verification": "Canonical established grade-B claim with a content-hashed proved inference.",
+      "independent_reasoning": "It fixes the positive-odd/negative-even edge word, the alternating signs of the event translation values, Delta rho_j=(R-1)(-1)^j for the minimum word, and the n internal material-one event pairs."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "result": "valid",
+      "problem_source_definition_contract": "Exact relay bijection with U_tt=-rho U, V_tt=-mu^2 rho V, initial slopes 1 and q>1, common terminal time, and I_U=I_V.",
+      "scope": "Arbitrary possibly asymmetric premise-complete transverse common-terminal roots.",
+      "source_verification": "Canonical established grade-B claim with a content-hashed proved inference.",
+      "independent_reasoning": "It supplies the cell ODEs, q>1 and C0=q^2-1>0, p,r, and equal norm. The proposal does not add injectivity, uniqueness, or existence."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "result": "valid",
+      "problem_source_definition_contract": "Every internal positive relay cell has 0<theta<pi/(mu+1), with the complementary strict negative-cell range and no reflection hypothesis.",
+      "scope": "Every internal cell of a premise-complete transverse common-terminal root.",
+      "source_verification": "Canonical established grade-B claim with a content-hashed proved inference.",
+      "independent_reasoning": "The strict range makes all trigonometric denominators in k_mu and E_mu nonzero, gives sin(mu theta)>sin(theta), and retains arbitrary asymmetry."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35",
+      "result": "valid",
+      "problem_source_definition_contract": "The accepted minimum dual matrix is H=C P^(-1)C^T-W, with n positive odd-edge blocks, n-1 negative even edges, P>0, W>0, dim H=n-1, and sign det(L_-)=sign det(H) including zero.",
+      "scope": "Every physical premise-complete event-transverse common-terminal minimum root with 2n events.",
+      "source_verification": "Canonical established grade-B claim. Its bound proof package sha256:2e4619ac52392aadf00369e8c9afdea3ddf76ec5e3d00452dc44a258ee8de40 was checked for the inherited block and incidence conventions.",
+      "independent_reasoning": "Inverting each disjoint positive two-vertex block gives ell_j>s_j>0 and r_j>s_j>0. Hence H_ii=r_i+ell_(i+1)-W_i and H_i,i+1=-s_(i+1), exactly as required by the forest proof, without importing det(H)>0."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "result": "valid",
+      "problem_source_definition_contract": "Established terminal/reflection relation q_sharp=|r|/|p| and q_sharp^2-1=(q^2-1)/p^2 for the full relay.",
+      "scope": "Premise-complete transverse common-terminal trajectories for either saturation sign.",
+      "source_verification": "Canonical established grade-B claim with a content-hashed proved inference.",
+      "independent_reasoning": "The relation rearranges to r^2-q^2=p^2-1 without choosing endpoint-slope signs. That is the exact terminal identity used to match the two translation speeds; no reflection fixed point is assumed."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1",
+      "result": "valid",
+      "problem_source_definition_contract": "Established weighted-norm and common-terminal action conventions, retaining degenerate one-form cases.",
+      "scope": "Premise-complete transverse common-terminal relay trajectories.",
+      "source_verification": "Canonical established grade-B claim with a content-hashed proved inference.",
+      "independent_reasoning": "This is conservative provenance for the accepted norm and endpoint variation conventions. The new spatial-translation identity is independently rederived and does not borrow graphness, curvature, or a sign theorem."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "result": "valid",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN",
+        "CLM-NGE2-MPO3A-STRUCTURE",
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+        "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35"
+      ],
+      "definition_ids": [
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_sha256": "sha256:858ca18b12bda01334dad53f163e0d4fe1cfd61dc790aedff634582ad7b4e1b2",
+      "ordered_step_reconstruction": [
+        "Put N=n-1. Direct inversion of each positive odd-edge two-by-two block gives P_j^(-1)=[[ell_j,s_j],[s_j,r_j]] with ell_j>s_j>0 and r_j>s_j>0. The negative-edge incidence rows give H_ii=r_i+ell_(i+1)-W_i and H_i,i+1=-s_(i+1).",
+        "Set tau_i=s_(i+1)>0 and define z_i by subtracting incident path conductances from H_ii. Entrywise H=L_tau+diag(z), including N=1 with no path edge.",
+        "Adjoin one root with formal signed edge z_i at each path vertex. The reduced Laplacian is H. Grouping spanning trees by the retained path forest gives one interval component factor Z_I=sum_(j in I)z_j. The matrix-tree equality is polynomial, so signed z and det(H)=0 are included.",
+        "For V=diag(v), q_i=v_i(Hv)_i and e_i=tau_i v_i v_(i+1), direct comparison gives VHV=L_e+diag(q) and det(VHV)=(product_i v_i^2)det(H). The same forest identity therefore has interval charges Q_I=sum_(i in I)q_i.",
+        "No premise signs every interval charge, so the proof stops before determinant orientation or reflection."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "P is 2n by 2n, C is (n-1) by 2n, and H,L_tau,V are N by N. Reversing every incidence row convention leaves C P^(-1)C^T and the negative H off-diagonals unchanged. The canonical event quantity gamma=S_t/(2U^2) alternates strictly, so v_i=(gamma_(2i+1)-gamma_(2i))/W_i>0."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The all-N result is an exact matrix-tree polynomial identity followed by a positive diagonal congruence. For N=2 it yields z_1z_2+tau_1(z_1+z_2); for N=3 it yields the four correct interval-partition terms. No inverse of H or interval charge occurs."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "At n=2, N=1 and det(H)=z_1=q_1/v_1^2. Exact det(H)=0 and arbitrary asymmetry are retained. The statement is fixed-dimensional and does not pass signs through R=1, grazing, switch coalescence, or a terminal soft-pair birth."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The raw W coefficients strictly alternate. The exact reduced N=2 witness has det(H)=-2 and q=(-1,-1), but its two tested positive cells require unequal shared contrasts 57344/41905 and 52707600/1246373479, so it is not a full physical root or counterexample. Reflection only reverses and positively rescales Q, and the proof makes no false identification with the reflection-odd endpoint defect."
+      },
+      "replayed_artifacts": [
+        {
+          "path": "../runs/R-20260816T034422Z-min-reflection-cont2/routes/det_forest/exact_forest_checker.py",
+          "sha256": "sha256:5cbe9aabbcbe53447c20f7109f44f52d78a9095cf84f185cbb862c8f22aaa614",
+          "result": "pass",
+          "scope": "Exact SymPy checks at N=1..4 plus the exact rational reduced witness; the all-N proof is the bound report's matrix-tree argument."
+        }
+      ]
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "result": "valid",
+      "premise_ids": [
+        "HYP-NGE2-DOMAIN",
+        "CLM-NGE2-MPO3A-STRUCTURE",
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+        "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1"
+      ],
+      "definition_ids": [
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "DEF-NGE2-ENDPOINT-NORMING"
+      ],
+      "proof_package_sha256": "sha256:ed2ba73608c4359e98a56d08b4db7c5a6c9eb2e8175ec562644d4e951c114210",
+      "ordered_step_reconstruction": [
+        "On a strict internal material-one positive cell, solve U and V between opposite relay rays with U_left=A and U_right=zA. At either event the potential terms cancel, giving C0=A^2 E_mu(theta,z).",
+        "Factor E_mu as (sin(mu theta)^2-sin(theta)^2)(1/k_mu-z)(z-k_mu)/(sin(theta)^2 sin(mu theta)^2). The strict phase range makes the prefactor positive, so k_mu<z<1/k_mu.",
+        "Low-mode energy U_t^2+rho U^2 is constant on cells and jumps by Delta rho_j U(t_j)^2. Summing Delta rho_j=(R-1)(-1)^j from slopes 1 to p and pairing the n material-one cells yields D=(R-1)C0 sum_a Phi_mu(theta_a,z_a).",
+        "The identity z^2E_mu(theta,1/z)=E_mu(theta,z) gives reciprocal oddness of Phi. The exact mu=2, theta=pi/6 cells z=1/2 and 2 are strict local first crossings with opposite Phi, refuting only a cellwise sign mechanism.",
+        "For a small common interface translation, M_h=T_R(-h)MT_R(h). At a Dirichlet eigenvalue M=[[1/p,0],[m,p]], so partial_h(M_h)_12=1/p-p while partial_lambda M_12=I/p. Thus lambda'(0)=(p^2-1)/I.",
+        "For V/q the speed is (r^2-q^2)/I_V. Equal norm and r^2-q^2=p^2-1 make it D/I, equal to the low-mode speed. The gap derivative cancels and no sign or symmetry follows."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The relay normalization U_t(0)=1, V_t(0)=q>1, p=U_t(L), r=V_t(L), I=I_U=I_V and C0=q^2-1 is consistent. z>0 because a strict positive cell contains no U zero. The translation is a fixed-interval coefficient translation through the common endpoint material, not the upstream mu/action variation."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The repaired proof package directly derives the energy-jump sum. Independently, -(1/p-p)/(I/p)=(p^2-1)/I, and normalizing V by q produces exactly (r^2-q^2)/I_V without a missing q^2."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The sum has n terms for every n>=2 and allows unequal theta_a,z_a. At z=1 the local drift vanishes while E_mu>0. No theorem divides by R-1 at R=1. Strict phase inequalities prevent denominator zeros. Endpoint cells remain in the global closure, and the common translation is only for small h preserving endpoint material R."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The two mu=2 examples are only locally relay-admissible strict positive cells; they are not claimed to satisfy negative-cell gluing, terminal closure, equal norm, or any complete-root equation. First-order translation supplies no sign of D, no second-variation inequality, no determinant orientation, and no global reflection theorem."
+      },
+      "replayed_artifacts": [
+        {
+          "path": "../runs/R-20260816T034422Z-min-reflection-cont2/routes/defect_amplitude/exact_checker.py",
+          "sha256": "sha256:5cffe28a45cd0d0e6738e1b514f86701616e543e0b6dd2a86f22c2b80db46d16",
+          "result": "pass",
+          "scope": "Exact SymPy replay of reciprocal energy, both strict local first-crossing witnesses, all quadratic endpoint signs, and the translation commutator."
+        }
+      ]
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "semantic_duplicates": [],
+    "dependency_audit": "Every edge has the declared mathematical role, every premise is trusted in CTX-DEFAULT, and no dependency is circular. The canonical determinant-parity, defect, and parameter-action claims do not already contain either proposed exact identity."
+  },
+  "findings": [],
+  "required_actions": []
+}

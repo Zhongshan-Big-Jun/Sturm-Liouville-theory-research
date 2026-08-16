@@ -1,0 +1,222 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260812-0135-MPO3APARTIAL-R2",
+  "submission_id": "SUB-20260812-0128-MPO3APARTIAL-R2",
+  "proposal_hash": "sha256:527142f0d65df3c28dec7c41750f915c00239450531db9a7094c3e41d9c39915",
+  "validation_hash": "sha256:aee912cc13d712399d21b2f383819b40f7ee48ec748f8d8b7f1238cf4e8c4a15",
+  "reviewer_agent_id": "certified-counterexample-route-reviewer",
+  "reviewed_at": "2026-08-11T17:35:28.678Z",
+  "verdict": "approve",
+  "decision_summary": "The four proved inferences were independently reconstructed from their hash-bound proof packages. The structure, defect, fixed-n small-contrast, and finite-contrast properness/conditional-continuation conclusions follow with their stated quantifiers and limitations. Definition, logic, boundary, and adversarial audits pass. The universal max, min, and combined multiphase O3a targets remain open; the unresolved all-solution Jacobian obligations are recorded as open, and bounded numerical searches do not propagate truth. Validation, graph integrity, semantic freshness, protected-node policy, inventory scoping, and all artifact hashes pass.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "HYP-NGE2-DOMAIN",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT",
+      "DEF-NGE2-ENDPOINT-NORMING",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "CLM-NGE2-EXISTENCE",
+      "CLM-NGE2-ZERO-BOUND",
+      "CLM-NGE2-BANGBANG",
+      "CLM-NGE2-FINITE-REDUCTION",
+      "CLM-NGE2-ENERGY-INVARIANT",
+      "CLM-NGE2-ENDPOINT-COUNT",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY",
+      "CLM-NGE2-EXACT2N-MAX",
+      "CLM-NGE2-EXACT2N-MIN",
+      "CLM-NGE2-EXACT2N-ALL",
+      "CLM-NGE2-MPO3A-MAX",
+      "CLM-NGE2-MPO3A-MIN",
+      "CLM-NGE2-MPO3A-ALL",
+      "INF-NGE2-MPO3A-MAX",
+      "INF-NGE2-MPO3A-MIN",
+      "ATT-NGE2-MPO3A-PHASE",
+      "ATT-NGE2-MPO3A-CERT-CEX",
+      "ATT-NGE2-MPO3A-SMALLR"
+    ],
+    "reasoning": "No protected node is updated or deleted and no incoming dependency of a protected node changes. Established claims and definitions are cited only as upstream inputs. The five existing write-set nodes are open grade-D inferences or active research attempts; all other writes create new nodes or new inventory rows. Deterministic validation reports protected_node_check.passed=true."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is any finite real number with R>1 and n is any integer with n>=2.",
+      "scope": "Every finite R>1 and integer n>=2.",
+      "source_verification": "Frozen problem hypothesis, semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5.",
+      "result": "valid",
+      "independent_reasoning": "The proved conclusions either retain the full domain or explicitly restrict to fixed n, small contrast, or compact finite-contrast intervals; no restricted result is promoted to the universal target."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "The model is the positive box-constrained weighted Dirichlet string with indexed adjacent eigenvalue gap.",
+      "scope": "Positive L-infinity weights on the unit interval and the indexed modes n,n+1.",
+      "source_verification": "Accepted definition, semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f.",
+      "result": "valid",
+      "independent_reasoning": "All eigenvalue, normalization, Volterra, transfer, and a.e. arguments remain in this model and preserve the indices n and n+1."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Effective switches are reduced interior boundaries of positive-length endpoint-valued cells after adjacent equal cells are merged.",
+      "scope": "Finite bang-bang step representatives modulo null-set values.",
+      "source_verification": "Accepted definition, semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074.",
+      "result": "valid",
+      "independent_reasoning": "Every count excludes zero cells, fixed endpoints, artificial partition marks, and isolated representative values."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "A max/min self-consistent point is a bang-bang weight with exactly 2n effective switches satisfying the corresponding switching-function saturation law.",
+      "scope": "Both saturation signs, exactly 2n effective switches, values on the finite zero set understood a.e.",
+      "source_verification": "Accepted definition, semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366.",
+      "result": "valid",
+      "independent_reasoning": "The proofs use switch-zero alignment and the sign law but never assume global extremality, reflection symmetry, or uniqueness."
+    },
+    {
+      "node_id": "CLM-NGE2-ZERO-BOUND",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "For every admissible positive weight, the consecutive-mode switching function has at most 2n distinct interior zeros and no positive-measure zero set.",
+      "scope": "Every positive box weight and the indexed consecutive modes n,n+1.",
+      "source_verification": "Canonical established grade-B claim, semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6; its accepted Sturm-interlacing setting is used and the stricter crossing details are rederived.",
+      "result": "valid",
+      "independent_reasoning": "The proposal does not assume exactness or simplicity from the upper bound; the Wronskian/quotient argument proves those stronger facts for zero-aligned step weights."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-STRUCTURE",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-ZERO-BOUND"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+      "ordered_step_reconstruction": [
+        "Fix an arbitrary zero-aligned bang-bang weight with exactly 2n effective switches and orient the separately weighted-normalized indexed modes n and n+1.",
+        "Glue the blockwise oscillator-energy difference at each interface because its jump is the material jump times F, which vanishes there.",
+        "Integrate the global constant and use both normalizations to obtain K=-2(lambda_{n+1}-lambda_n), yielding strict derivative dominance at endpoints and switches.",
+        "Use strict consecutive-mode interlacing and Wronskian negativity to make v/u decrease on every nodal interval and count exactly 2n crossings of the two levels plus/minus sqrt(lambda_n/lambda_{n+1}).",
+        "Differentiate F at each crossing to prove simplicity and compare the complete 2n-zero set with the 2n distinct effective switches.",
+        "Apply the two saturation laws to force endpoint materials and nodal allocation; verify reflection equivariance without using uniqueness."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "Weighted normalization, mode indices, effective switches, zero alignment, saturation signs, and a.e. interface values are used exactly as defined."},
+      "logic_audit": {"passed": true, "reasoning": "Energy gluing needs self-consistency but not global extremality; quotient monotonicity, cardinality, and simplicity establish every stated structural consequence without circularly assuming symmetry or exact zeros."},
+      "boundary_audit": {"passed": true, "reasoning": "The proof covers n=2, both signs, every finite R>1, endpoint cells, null-set values, and excludes tangencies, inactive zeros, hidden zeros, and zero intervals."},
+      "adversarial_audit": {"passed": true, "reasoning": "Potential eigenvalue misindexing, reflection duplicates, non-effective switches, and the false requirement of global extremality were each checked and are absent."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-DEFECT",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+      "ordered_step_reconstruction": [
+        "Propagate both modes through the two forced endpoint cells and eliminate endpoint slopes using switch alignment and derivative dominance.",
+        "Sum the individual oscillator-energy jumps across the internal alternating interfaces to obtain the signed amplitude defect S.",
+        "Substitute the endpoint formulas to derive exactly S=2 Delta times the difference h(beta)-h(alpha); the second-mode balance gives no independent equation.",
+        "Differentiate h and prove strict decrease for the max ratio sigma>=1.",
+        "At tau=4/3, sigma=1/100, t=3pi/5, reduce the derivative sign to the exact inequality 910>262 sqrt(5), proving failure of unrestricted min-side monotonicity."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "Endpoint phases, tau, sigma, the alternating signed defect S, and sign-specific material ratios are explicitly defined and consistently used."},
+      "logic_audit": {"passed": true, "reasoning": "The transfer identity and monotonicity calculation are exact. The proof correctly notes that self-consistency does not force S=0 and that the two energy balances are not independent."},
+      "boundary_audit": {"passed": true, "reasoning": "Both signs and every n>=2 are covered; the n=1 empty-defect comparison is explanatory only, and the min derivative example refutes only a proof shortcut."},
+      "adversarial_audit": {"passed": true, "reasoning": "Neither S=0, phase equality, full reflection symmetry, nor uniqueness is inferred. The exact min-side point is not treated as a spectral or self-consistency counterexample."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-SMALL-CONTRAST",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-ZERO-BOUND", "CLM-NGE2-MPO3A-STRUCTURE"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_sha256": "sha256:14d37a23aa74fcf032047bf003456505d8ef2b1029d64cabdda7b4ffab8986cf",
+      "ordered_step_reconstruction": [
+        "Establish uniform L1-to-C1 Lipschitz stability of the indexed eigenpairs and switching functions near the constant weight by Volterra estimates and simple characteristic roots.",
+        "Localize the 2n simple constant-weight switching zeros in disjoint ordered intervals with uniform derivative bounds.",
+        "For each forced initial phase, define the complete zero map on the switch rectangle and bound its Lipschitz constant by C_n(R-1).",
+        "Choose epsilon_n so that the map is contractive and obtain one fixed point for each phase.",
+        "Use the nonperturbative zero-aligned structure lemma to show fixed points satisfy the full max/min saturation laws and every competing self-consistent point lies in the same rectangle.",
+        "Apply reflection equivariance and uniqueness to obtain a.e. symmetry and paired switch positions."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The zero map uses all 2n ordered effective switches, both forced phases, separately normalized modes, and the complete self-consistency law."},
+      "logic_audit": {"passed": true, "reasoning": "The proof closes both common gaps: a fixed point is upgraded from zero alignment to saturation, and arbitrary competitors are forced into the contraction rectangle before uniqueness is applied."},
+      "boundary_audit": {"passed": true, "reasoning": "The quantifier is for each fixed n there exists epsilon_n; it covers n=2 and both signs but makes no uniform-in-n or all-contrast claim."},
+      "adversarial_audit": {"passed": true, "reasoning": "Extra roots, endpoint escape, tangencies, coalescing cells, arbitrary switch locations, and the possibility of a disconnected small-contrast competitor are explicitly excluded by uniform localization plus the structural lemma."}
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-PROPERNESS",
+      "premise_ids": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE", "CLM-NGE2-MPO3A-SMALL-CONTRAST"],
+      "definition_ids": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+      "proof_package_sha256": "sha256:0741d7e385a123756bd3886e000c455b84c37fde4e714a88bb627aee1c7e3b74",
+      "ordered_step_reconstruction": [
+        "Assume a collapsing or endpoint-escaping sequence on a compact contrast interval and take an L1 limit after deleting zero cells and merging equal neighbors.",
+        "Use Volterra spectral stability to pass the indexed normalized modes and F in C1; every effective limiting jump remains an F-zero.",
+        "Glue the limiting energy and apply the strict quotient count to obtain exactly 2n distinct simple interior limiting zeros.",
+        "C1 localization forces the original 2n switches one-to-one into neighborhoods of those zeros, contradicting every collision or escape and proving compactness.",
+        "Use analytic transfer matrices and simple spectrum to make the residual analytic.",
+        "Conditioned on D_xG being invertible at every solution, combine proper local-diffeomorphism covering theory with small-contrast uniqueness to obtain exactly one solution for all finite R."
+      ],
+      "result": "valid",
+      "definition_audit": {"passed": true, "reasoning": "The open switch simplex, alternating sign-specific pattern, complete solution set, residual, and compact finite-contrast scope are consistently defined."},
+      "logic_audit": {"passed": true, "reasoning": "Sequential compactness rules out boundary loss independently of the conditional Jacobian hypothesis; proper covering and small-contrast uniqueness then prove only the explicitly conditional continuation statement."},
+      "boundary_audit": {"passed": true, "reasoning": "Endpoint escape, single and simultaneous cell collisions, a.e. merging, disconnected components, both signs, and arbitrary compact intervals away from R=1 and infinity are handled."},
+      "adversarial_audit": {"passed": true, "reasoning": "Global nondegeneracy is not assumed as an established fact. The theorem leaves singular interior points as an open alternative and does not promote sampled Jacobians to a universal result."}
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {"node_id": "INF-NGE2-MPO3A-MAX", "record_kind": "open_inference", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "The new structural and properness premises do not prove all-solution max nondegeneracy or exclude an interior singular multiple-point mechanism."},
+    {"node_id": "INF-NGE2-MPO3A-MIN", "record_kind": "open_inference", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "Universal min uniqueness remains unproved, and the exact defect audit invalidates the unrestricted scalar-monotonicity shortcut."},
+    {"node_id": "OBL-NGE2-MPO3A-JAC-MAX", "record_kind": "proof_obligation", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "All-solution interior Jacobian nondegeneracy or an equivalent exact order/degree theorem is a sufficient unresolved bridge for max."},
+    {"node_id": "OBL-NGE2-MPO3A-JAC-MIN", "record_kind": "proof_obligation", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "The analogous exact all-solution bridge for min remains unresolved and may not use the false monotonicity step."},
+    {"node_id": "ATT-NGE2-MPO3A-PHASE", "record_kind": "partial_attempt", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "The route proves structure and the exact defect identity but stops at the nonvanishing internal defect."},
+    {"node_id": "ATT-NGE2-MPO3A-CERT-CEX", "record_kind": "partial_attempt", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "The 1756-root bounded search and 22 high-precision collapse calls found no certifiable witness; floating roots and sampled symmetry are retained only as non-propagating numerical evidence."},
+    {"node_id": "ATT-NGE2-MPO3A-SMALLR", "record_kind": "partial_attempt", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "A complete fixed-n small-contrast theorem is proved, but the route supplies no all-contrast continuation invariant."},
+    {"node_id": "ATT-NGE2-MPO3A-BIFURCATION", "record_kind": "partial_attempt", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "Exact Jacobian/reflection-sector formulas and bounded scans do not establish a universal block-sign theorem or certified singular point."},
+    {"node_id": "ATT-NGE2-MPO3A-SYMMETRIC-RELAY", "record_kind": "partial_attempt", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "Exact reductions and sampled negative searches leave relay injectivity and asymmetric rigidity open."},
+    {"node_id": "GOAL-NGE2-MPO3A", "record_kind": "open_goal", "result": "accurate", "cannot_propagate_truth": true, "reasoning": "Neither CLM-NGE2-MPO3A-MAX nor CLM-NGE2-MPO3A-MIN enters trusted closure, so CLM-NGE2-MPO3A-ALL and the main goal remain open."}
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "candidate_blueprint_hash": "sha256:2e3b492857f255a84e1f0ed7def2032fd9e7a4babbb45f1edb98ee8f85d7f86c",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_nodes": 69,
+    "candidate_edges": 140,
+    "independent_validator_passed": true,
+    "read_write_set_check": {
+      "base_blueprint_hash_current": true,
+      "base_inventory_hash_current": true,
+      "semantic_hash_mismatches": [],
+      "missing_nodes": [],
+      "new_nodes_absent_on_base": true,
+      "new_inventory_rows_absent_on_base": true
+    },
+    "closure_reasoning": "The four new established claims enter closure only through their four proved inferences. The updated universal max/min inferences remain open, their Jacobian obligations remain open, the combined universal target is unavailable, and there are no contradictions."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "validation_hash_recomputed": "sha256:aee912cc13d712399d21b2f383819b40f7ee48ec748f8d8b7f1238cf4e8c4a15",
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "proof_package_hashes": {
+      "INF-NGE2-MPO3A-STRUCTURE": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+      "INF-NGE2-MPO3A-DEFECT": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "sha256:14d37a23aa74fcf032047bf003456505d8ef2b1029d64cabdda7b4ffab8986cf",
+      "INF-NGE2-MPO3A-PROPERNESS": "sha256:0741d7e385a123756bd3886e000c455b84c37fde4e714a88bb627aee1c7e3b74"
+    },
+    "all_proof_package_hashes_match": true,
+    "definition_logic_boundary_adversarial_audits_complete": true,
+    "numerical_evidence_role": "Bounded adversarial or exploratory evidence only; no floating root, sampled branch, finite grid, or numerical Jacobian propagates mathematical truth.",
+    "inventory_scope": "The two new inventory rows describe only the fixed-n small-contrast theorem and the finite-contrast properness/conditional-continuation theorem with their limitations.",
+    "novelty_boundary": "No novelty or priority claim is made."
+  },
+  "findings": [],
+  "required_actions": []
+}

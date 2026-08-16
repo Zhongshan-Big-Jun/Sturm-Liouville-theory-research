@@ -1,0 +1,30 @@
+{
+  "targets":["LHH","IHH","HHH"],
+  "max_boxes_per_target":500000,
+  "results":{
+    "LHH":{
+      "root_dyadic":[[0,268435456],[16911433728,17179869184],[16911433728,17179869184]],
+      "bits":34,"complete":false,
+      "counts":{"visited":500000,"discard_g":0,"discard_r":187486,"proved":0,"split":250022,"singular":0,"unresolved":62492},
+      "leaf_identity":[249978,250023],"stack_remaining":45,"min_gaps":[null,null,null,null]
+    },
+    "IHH":{
+      "root_dyadic":[[268435456,16911433728],[16911433728,17179869184],[16911433728,17179869184]],
+      "bits":34,"complete":true,
+      "counts":{"visited":1269,"discard_g":0,"discard_r":635,"proved":0,"split":634,"singular":0,"unresolved":0},
+      "leaf_identity":[635,635],"stack_remaining":0,"min_gaps":[null,null,null,null]
+    },
+    "HHH":{
+      "root_dyadic":[[16911433728,17179869184],[16911433728,17179869184],[16911433728,17179869184]],
+      "bits":34,"complete":false,
+      "counts":{"visited":500000,"discard_g":62626,"discard_r":187368,"proved":0,"split":250006,"singular":0,"unresolved":0},
+      "leaf_identity":[249994,250007],"stack_remaining":13,"min_gaps":[null,null,null,null]
+    }
+  },
+  "classification":{
+    "IHH":"FINITE_CONDITIONAL_EMPTY_RETAINED_SET",
+    "LHH":"AUDITED_INTERVAL_DEPENDENCY_FAILURE",
+    "HHH":"BOUNDED_ESCALATION_ELIGIBLE"
+  },
+  "note":"HHH alone has no atomic unresolved leaf and a shrinking residual stack, so one preregistered 2,000,000-box replay is permitted."
+}

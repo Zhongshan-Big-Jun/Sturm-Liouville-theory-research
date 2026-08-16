@@ -1,0 +1,195 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260812-0031-MPO3AINIT-FAST",
+  "submission_id": "SUB-20260812-0015-MPO3AINIT",
+  "proposal_hash": "sha256:58c2d200b2ab9f6df0907d136105f48e1e0469c5986e88bfd2e6f0f4277d0a17",
+  "validation_hash": "sha256:4edd13d3741381a2510167705017eefdc6a53db63e9d7dfd6bc3aebb33d06c74",
+  "reviewer_agent_id": "reviewer-mpo3a-init-fast",
+  "reviewed_at": "2026-08-11T16:31:33.2826525Z",
+  "verdict": "approve",
+  "decision_summary": "The proposal accurately initializes a non-propagating multi-phase O3a prove-or-refute program and asserts no proof or refutation. The exact proposal and validation hashes match, validation.valid is true and binds the proposal, the canonical base snapshot is unchanged, all four premise/definition contracts are valid in scope, and every new claim, inference, goal, obligation, and attempt is honestly labeled open, target, or active at grade D with open inferences explicitly proof_input_eligible=false. Independent candidate reconstruction reproduced the validated candidate hashes; the 57-node, 104-edge candidate is acyclic with valid typed dependencies, leaves the two-row evidence inventory unchanged, changes no protected node or protected incoming dependency, and leaves the trusted mathematical closure unchanged.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "HYP-NGE2-DOMAIN",
+      "CLM-NGE2-BANGBANG",
+      "CLM-NGE2-EXACT2N-ALL",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-BANGBANG-SWITCH-COUNT"
+    ],
+    "reasoning": "All Blueprint operations add new nodes or add outgoing dependencies from accepted upstream nodes to new downstream nodes. No canonical node is updated or deleted, and no incoming dependency of a protected node is added, removed, or changed. Independent application of the proposal and the configured protection check returned no protection reason."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "For finite R>1, K_R consists of a.e. classes of measurable densities with 1<=rho<=R; lambda_k are the increasingly ordered Dirichlet eigenvalues of -y''=lambda rho y on (0,1), and D_n=lambda_{n+1}-lambda_n.",
+      "scope": "Regular weighted Dirichlet strings on (0,1), every finite R>1, and adjacent indices n,n+1.",
+      "source_verification": "Verified as an accepted protected definition at semantic hash semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f in the bound canonical snapshot.",
+      "result": "valid",
+      "reasoning": "The new definition and all three open inferences use the same coefficient class, eigenvalue ordering, and adjacent-gap context without extending the accepted scope."
+    },
+    {
+      "node_id": "DEF-BANGBANG-SWITCH-COUNT",
+      "premise_kind": "definition_contract",
+      "exact_contract": "A bang-bang density is represented a.e. by positive-length cells taking values 1 or R; effective switches are the interior boundaries remaining after adjacent equal-value cells are merged.",
+      "scope": "Finite bang-bang representatives in K_R, modulo a.e. equality.",
+      "source_verification": "Verified as an accepted protected definition at semantic hash semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074 in the bound canonical snapshot.",
+      "result": "valid",
+      "reasoning": "The proposed self-consistency contract uses exactly this representative-invariant effective-switch convention and explicitly requires positive-length cells."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Weighted-L2 normalized consecutive eigenfunctions define F_{n,rho}=lambda_n u_n^2-lambda_{n+1}u_{n+1}^2. A max-self-consistent point has exactly 2n effective switches and takes R where F>0 and 1 where F<0; a min-self-consistent point obeys the reversed saturation law, modulo a.e. representatives.",
+      "scope": "Every finite R>1, every integer n>=2, and both max and min saturation signs in CTX-DEFAULT.",
+      "source_verification": "This is a new problem definition, not an imported theorem or factual basic assumption. Its ingredients are bound to accepted definitions, the given domain, and the accepted no-positive-measure-zero-set result CLM-NGE2-ZERO-BOUND in the proposal read set.",
+      "result": "valid",
+      "reasoning": "The definition is well posed on a.e. density classes: eigenfunction signs do not affect F because only squares occur, the saturation directions match the first-variation sign convention for D_n, effective switches are defined independently of redundant cell splits, and the accepted zero-set theorem makes values on {F=0} irrelevant a.e. No existence, uniqueness, symmetry, or extremality conclusion is embedded in the definition."
+    },
+    {
+      "node_id": "HYP-NGE2-DOMAIN",
+      "premise_kind": "problem_hypothesis",
+      "exact_contract": "R is a finite real number with R>1 and n is an integer with n>=2.",
+      "scope": "Every finite R>1 and integer n>=2.",
+      "source_verification": "Verified as the accepted problem hypothesis at semantic hash semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5 in the bound canonical snapshot.",
+      "result": "valid",
+      "reasoning": "The proposed max, min, synthesis, goal, and obligation quantifiers retain this exact domain, including arbitrary large but finite R and the boundary case n=2."
+    }
+  ],
+  "math_proof_checks": [],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "CLM-NGE2-MPO3A-MAX",
+      "record_kind": "open_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "No accepted theorem or verified counterexample in the bound snapshot resolves uniqueness of all max-self-consistent 2n-switch points. The conjecture is grade D with status and truth_status open and depends only on an open inference."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-MIN",
+      "record_kind": "open_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "No accepted theorem or verified counterexample in the bound snapshot resolves uniqueness of all min-self-consistent 2n-switch points. The conjecture is grade D with status and truth_status open and depends only on an open inference."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-ALL",
+      "record_kind": "target_claim",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The combined max/min uniqueness and reflection statement is the frozen target, not an asserted theorem. Status and truth_status are target, grade is D, and its sole inference input is open."
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-MAX",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The global max phase-rigidity step is explicitly unresolved, proof_status is open, proof_input_eligible is false, and tangencies, inactive zeros, reflection pairs, and coalescing cells remain named obligations."
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-MIN",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The global min phase-rigidity step is explicitly unresolved, proof_status is open, proof_input_eligible is false, and the same degeneracy and completeness obligations are retained."
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-SYNTHESIS",
+      "record_kind": "open_inference",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The conjunction route is correctly typed, but both premise claims remain open; the inference is therefore open, grade D, and explicitly ineligible as a proof input."
+    },
+    {
+      "node_id": "GOAL-NGE2-MPO3A",
+      "record_kind": "open_goal",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The target IDs are absent from the current canonical snapshot and trusted closure, no refutation is recorded, and the goal correctly requires a proof or refutation package, independent audits, integration, and a post-merge closure check."
+    },
+    {
+      "node_id": "OBL-NGE2-MPO3A-MAX",
+      "record_kind": "proof_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The obligation honestly requires either full-scope max uniqueness or two distinct fully certified premise-satisfying points, including residual, sign, switch, eigenvalue-index, and a.e.-distinction checks."
+    },
+    {
+      "node_id": "OBL-NGE2-MPO3A-MIN",
+      "record_kind": "proof_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The obligation honestly requires either full-scope min uniqueness or two distinct fully certified premise-satisfying points, with numerical witnesses requiring interval or exact certification."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-PHASE",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "This is an enabled analytic route at initialization, not a result. It is mainline research, grade D, attempt_status active, carries only a target dependency, and promises a proof, a weaker lemma, or an exact obstruction rather than asserting success."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CERT-CEX",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "This is an enabled certification route at initialization, not numerical evidence. Its deliverable and falsification tests explicitly distinguish floating-point discovery from an interval- or exact-certified counterexample."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-SMALLR",
+      "record_kind": "research_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "This is an enabled perturbative route at initialization. It asserts no local theorem, identifies uniform remainder and sign-persistence obligations, and remains a grade-D research attempt with no truth-propagating edge."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "candidate_blueprint_hash": "sha256:6bc5a75ed24ec0b2b783d67d51106f7fec0bbd6bffd2d69cce5b16603b4b4984",
+    "candidate_inventory_hash": "sha256:1e83425e2987078a6fb26f14b37fdef6ce26067798abd3a96683a490ff3b4887",
+    "independent_validator_passed": true,
+    "candidate_node_count": 57,
+    "candidate_edge_count": 104,
+    "trusted_closure_unchanged": true,
+    "closure_reasoning": "The new definition is non-truth-bearing; the three new mathematical inferences are open and proof_input_eligible=false; the three new truth-bearing claims are open or target grade D. Under the configured policy only given, imported_verified, or established claims and proved inferences propagate, so the candidate trusted closure exactly matches the 12 accepted claims and 11 proved inferences in the base snapshot and contains no contradiction."
+  },
+  "artifact_checks": {
+    "problem_contract": {
+      "present": true,
+      "sha256": "sha256:42b7a8b1336986a19105320ab7bbb2fe4917f4bdb38cc2e7d471a8478a8a4051"
+    },
+    "reproducibility_manifest": {
+      "present": true,
+      "sha256": "sha256:a0863a0a617c3013586652291efde8ba413ddaf1ed8ecfac960dd0fafcc7f638"
+    },
+    "research_ledger": {
+      "present": true,
+      "sha256": "sha256:4d01faa3fc5939bb963997580d865a8d5f5704efe75c5fee7055c1f8a033a531"
+    },
+    "route_registry": {
+      "present": true,
+      "sha256": "sha256:f25317415f80f54e61bc139f7369aba37de4963588cb9825ebaaaaef907e79ad"
+    },
+    "obligation_graph": {
+      "present": true,
+      "sha256": "sha256:962c88e15d7f678dc0f0e17aadfc6b5621f4f0bf184a9b415b2a8a314767f39a"
+    },
+    "snapshot_hashes_match": true,
+    "deadline_is_eight_hours": true,
+    "evidence_inventory_unchanged": true,
+    "reasoning": "All five proposal-referenced initialization artifacts exist. Their contracts preserve the universal quantifiers, both saturation signs, exact certification threshold, boundary cases, and the distinction between enabled research routes and completed evidence. No new evidence-inventory row or proof artifact is claimed."
+  },
+  "findings": [],
+  "required_actions": []
+}

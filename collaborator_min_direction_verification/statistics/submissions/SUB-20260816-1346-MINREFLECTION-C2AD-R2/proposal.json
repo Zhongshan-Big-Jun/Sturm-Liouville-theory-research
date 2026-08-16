@@ -1,0 +1,379 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260816-1346-MINREFLECTION-C2AD-R2",
+  "author_agent_id": "/root",
+  "run_id": "R-20260816T034422Z-min-reflection-cont2",
+  "created_at": "2026-08-16T05:46:08.014900Z",
+  "base_blueprint_hash": "sha256:358354060d1429c27b18767092c8a7d481b09f767740f6498eda195513f70dc0",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": "SUB-20260816-1229-MINREFLECTION-C2AD",
+  "summary": "Add two exact minimum-side lemmas: a signed path-forest/interval-charge expansion of the dual determinant and an endpoint-defect positive-cell decomposition with a common adjacent-eigenvalue translation speed. Keep determinant orientation and global reflection explicitly open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+        "type": "inference",
+        "title": "Path-forest expansion of the minimum dual determinant",
+        "statement": "The accepted minimum dual-event matrix, its positive odd-cell blocks, and the alternating transverse event word imply the signed rooted-forest and positive-jump scaled determinant identities stated in CLM-NGE2-MPO3A-MIN-FOREST-CHARGE-R36.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-MPO3A-STRUCTURE",
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+          "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260816T034422Z-min-reflection-cont2/routes/det_forest/report.md",
+          "sha256": "sha256:858ca18b12bda01334dad53f163e0d4fe1cfd61dc790aedff634582ad7b4e1b2"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+        "type": "claim",
+        "title": "Signed forest and interval-charge formula for the minimum determinant",
+        "statement": "For every finite R>1, integer n>=2, and arbitrary possibly asymmetric premise-complete event-transverse common-terminal minimum-law root, put N=n-1 and let H=C P^(-1)C^T-W be the accepted dual negative-edge Schur matrix. There are strictly positive path conductances tau_i and real vertex charges z_i such that H=L_tau+diag(z). If E ranges over retained edge subsets and Comp(E) over their interval components, then det(H)=sum_E (product_(i in E) tau_i) (product_(I in Comp(E)) sum_(j in I)z_j), including det(H)=0. Moreover, for the strictly positive physical event-jump vector v_i=(gamma_(2i+1)-gamma_(2i))/W_i, put q_i=v_i(Hv)_i and e_i=s_(i+1)v_i v_(i+1)>0. Then (product_i v_i^2)det(H) is the same forest polynomial with tau_i replaced by e_i and every interval charge replaced by Q_I=sum_(i in I)q_i. No sign of the interval charges, det(H)>0, reflection symmetry, uniqueness, or existence follows from these identities alone.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+        "type": "inference",
+        "title": "Positive-cell defect decomposition and common translation drift",
+        "statement": "Exact two-frequency propagation on each positive minimum cell, direct low-mode energy jumps at all relay events, and monodromy conjugation under common spatial translation imply the defect and drift identities stated in CLM-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-MPO3A-STRUCTURE",
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+          "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+          "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+          "DEF-NGE2-ENDPOINT-NORMING"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260816T034422Z-min-reflection-cont2/routes/defect_amplitude/report.md",
+          "sha256": "sha256:ed2ba73608c4359e98a56d08b4db7c5a6c9eb2e8175ec562644d4e951c114210"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+        "type": "claim",
+        "title": "Minimum endpoint defect as positive-cell drift and common translation speed",
+        "statement": "For every finite R>1, integer n>=2, mu>1, and arbitrary possibly asymmetric premise-complete event-transverse equal-norm minimum full-relay root, normalize the low mode by U_t(0)=1, put p=U_t(L), D=p^2-1, and C0=q^2-1>0. For each of the n internal positive cells let 0<theta_a<pi/(mu+1), z_a>0 be its positive low-mode amplitude ratio, k_mu(theta)=sin((mu-1)theta/2)/sin((mu+1)theta/2), and E_mu(theta,z)=(sin(mu theta)^2-sin(theta)^2)(1/k_mu-z)(z-k_mu)/(sin(theta)^2 sin(mu theta)^2). Then k_mu<z_a<1/k_mu and D=(R-1)C0 sum_a Phi_mu(theta_a,z_a), where Phi_mu=(z^2-1)/E_mu and Phi_mu(theta,1/z)=-Phi_mu(theta,z). Strict first-crossing physical positive cells occur with either sign of Phi, so no cellwise fixed-sign conclusion is valid. If all interfaces are translated through the common endpoint material, the adjacent Dirichlet eigenvalues have the same first derivative D/I at a complete equal-norm root. Thus first-order translation cancels from their gap and supplies neither a one-sided sign of D nor global reflection symmetry.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "target": "CLM-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-ENDPOINT-NORMING",
+      "target": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "target": "CLM-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "role": "inference_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "CLM-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+      "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+      "CLM-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:34ddfc0ec931503621e7658d7186318b41b3f910214000e23c55bae7aaac040e",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:6e2749fd147662212ade344e6dec0a715a83e76cb954e031134748a99a134b7b",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702",
+      "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35": "semantic-sha256:bccb84587f0fb907314362677afbcc473037f8f1f26ef1aaa0d2368acf911014",
+      "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1": "semantic-sha256:e7b57c2609991baea373a087ffc72da945e4a8b018d4bf33559908d09167ab06",
+      "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:5a4e8e40668e50766f7594724eb357bddcf7b94139b86e8fdbf14582e39088ee",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:76505a7eb2ffa45225adf487ce6f8f250a2ed35aa415c5a9756536a507db5558",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:788fd7a0a1ab30540c1da2194e6ce6365ae60cc1eea04cc1a13a779b58f07dd8",
+      "INF-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:f377eb235ffcb122f315d646d9a56665dbb55cbfecc826a4f85c19cd1ce4df45",
+      "INF-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35": "semantic-sha256:5ae94477cf6a3d146099f5a011bc24a24c878d7cbcc0fde74463ed4bcd23807d",
+      "INF-NGE2-MPO3A-PARAMETER-ACTION-R1": "semantic-sha256:37d19efdd57c206c31ec6593f16c7cb104bba6df9b0a900861d344b3e02683bf",
+      "INF-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:804abd6209285b16cfb62428a98700f2262049146855dd8c6b3b04f0712b139f",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_global_minimum_reflection_open",
+    "scope": "Both identities cover arbitrary finite contrast, all n>=2, and asymmetric premise-complete transverse minimum roots. Neither signs the physical interval charges or the coupled positive-cell defect sum.",
+    "duplicate_policy": "The canonical determinant-parity lemma defines H and calibrates its target sign but contains no rooted-forest or interval-charge expansion. Existing defect and parameter-action claims contain neither this positive-cell Phi decomposition nor the common spatial-translation speed.",
+    "computation_policy": "Exact checkers audit algebra and strict local first-crossing witnesses only. No finite search, conditional R14/R17 result, or local cell is used as a universal root theorem or physical counterexample.",
+    "audit_policy": "Forest proof bound to sha256:858ca18b12bda01334dad53f163e0d4fe1cfd61dc790aedff634582ad7b4e1b2; repaired defect proof bound to sha256:ed2ba73608c4359e98a56d08b4db7c5a6c9eb2e8175ec562644d4e951c114210. Independent definition, logic, boundary, and adversarial review is required.",
+    "novelty_policy": "unknown; no priority claim",
+    "supersession_policy": "The first immutable submission was rejected only because its independently written review records used receiver-incompatible field names. This proposal preserves the identical operations, proof packages, scopes, read set, and write set and requests a fresh independent review with the exact receiver schema."
+  },
+  "evidence_refs": [
+    "../runs/R-20260816T034422Z-min-reflection-cont2/problem_contract.md",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/routes/det_forest/report.md",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/routes/det_forest/exact_checker.py",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/routes/defect_amplitude/report.md",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/routes/defect_amplitude/exact_checker.py",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/review/pre_review.md",
+    "../runs/R-20260816T034422Z-min-reflection-cont2/review/replay.log"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Finite real contrast R>1 and integer n>=2.",
+        "contract_explanation": "Supplies only the ambient contrast and index domain."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "The exact minimum law, effective switch count, and a.e. convention.",
+        "contract_explanation": "Fixes the target class without asserting existence, symmetry, or uniqueness."
+      },
+      {
+        "node_id": "DEF-NGE2-ENDPOINT-NORMING",
+        "premise_kind": "definition_contract",
+        "scope": "Canonical endpoint slopes and norming ratios for adjacent Dirichlet modes.",
+        "contract_explanation": "Fixes the endpoint orientation used in the translation identity."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every finite-contrast exact-2n-switch self-consistent point.",
+        "contract_explanation": "Supplies alternating events, endpoint material, simplicity, and the physical sign word."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Arbitrary possibly asymmetric premise-complete transverse common-terminal roots.",
+        "contract_explanation": "Supplies the two-frequency relay ODE, equal-norm terminal closure, and physical event coordinates."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every internal cell of a premise-complete root.",
+        "contract_explanation": "Supplies the strict positive-cell phase range and nonzero event coefficients."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-MIN-DETERMINANT-PARITY-R35",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every physical premise-complete event-transverse minimum common-terminal root.",
+        "contract_explanation": "Supplies the exact dual matrix H=C P^(-1)C^T-W and its block dimensions and signs."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every premise-complete transverse common-terminal full-relay root.",
+        "contract_explanation": "Supplies the endpoint energy relation and normalized reflection/terminal conventions."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-PARAMETER-ACTION-R1",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every premise-complete transverse common-terminal trajectory.",
+        "contract_explanation": "Supplies the accepted weighted-norm and endpoint variational conventions; the spatial-translation formula is rederived in the new proof package."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-MIN-FOREST-CHARGE-R36",
+        "ordered_steps": [
+          "Expand the accepted positive two-by-two odd-cell blocks to write the tridiagonal dual matrix exactly as H=L_tau+diag(z), with tau_i>0 and real charges z_i.",
+          "Adjoin a root vertex with formal edge weights z_i. The signed matrix-tree polynomial groups spanning trees by their retained path forest; each interval component contributes the sum of its possible root attachments, proving the rooted-forest formula without a positivity assumption on z.",
+          "Use the transverse alternating event signs to define v_i=(gamma_(2i+1)-gamma_(2i))/W_i>0. The exact physical matrix equation gives q_i=v_i(Hv)_i and diagonal congruence gives VHV=L_e+diag(q).",
+          "Apply the same forest identity to VHV and use det(VHV)=(product v_i^2)det(H), yielding the interval-charge formula. Stop before asserting a sign, since no premise signs every Q_I."
+        ],
+        "boundary_cases": [
+          "For n=2, N=1 and the formula is det(H)=z_1=q_1/v_1^2; no path edge is introduced.",
+          "Signed root edges are handled as a polynomial identity, so exact cancellations and det(H)=0 are included without division by H.",
+          "Arbitrary asymmetric roots and both reflection orientations are retained; reflection reverses and positively rescales the charges but does not sign them.",
+          "No sign is propagated across switch coalescence or a dimension-changing soft-pair limit without rates for v,q,e; the theorem is stated in the premise-complete transverse fixed-dimension scope."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:858ca18b12bda01334dad53f163e0d4fe1cfd61dc790aedff634582ad7b4e1b2",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-MIN-DEFECT-TRANSLATION-R36",
+        "ordered_steps": [
+          "Solve both constant-coefficient oscillators on a strict internal positive minimum cell. At the two opposite relay rays obtain C0=A^2 E_mu(theta,z) and factor E_mu to prove k_mu(theta)<z<1/k_mu(theta).",
+          "Derive rather than assume the endpoint defect: low-mode energy is constant on cells and jumps by Delta rho_j U(t_j)^2. Summing the alternating minimum jumps from slopes 1 to p gives D=(R-1) sum_j (-1)^j U(t_j)^2, then pair the positive-cell endpoints and substitute C0=A^2E_mu.",
+          "Use z^2E_mu(theta,1/z)=E_mu(theta,z) to obtain the reciprocal oddness of Phi. Exact mu=2, theta=pi/6, z=1/2 and z=2 propagations certify strict first crossings with opposite Phi signs, refuting only a cellwise fixed-sign mechanism.",
+          "Translate all switches through the common endpoint material. Monodromy conjugation M_h=T_R(-h)MT_R(h) and the differentiated Dirichlet condition give lambda'(0)=(p^2-1)/I.",
+          "Normalize the adjacent high mode and use equal norm plus the terminal energy relation to obtain the same D/I speed for both eigenvalues. Hence the first derivative of the gap cancels and no sign or reflection conclusion is drawn."
+        ],
+        "boundary_cases": [
+          "The sum has n terms for every n>=2 and retains arbitrary asymmetric positive-cell phases and amplitudes.",
+          "At z=1 the local drift vanishes but the cell remains strict; this gives no information about other cells.",
+          "The formula uses the factor R-1 without dividing by it in a claimed R=1 theorem, so no uniform nonzero limit as R decreases to 1 is asserted.",
+          "Endpoint cells are absent from the paired sum but remain in the full-root closure; the exact local opposite-sign cells are not claimed to close globally or form a counterexample.",
+          "First-order translation is exhausted; no second-variation sign, one-sided D inequality, determinant orientation, or global reflection theorem is asserted."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:ed2ba73608c4359e98a56d08b4db7c5a6c9eb2e8175ec562644d4e951c114210",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

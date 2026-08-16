@@ -1,0 +1,45 @@
+{
+  "status": "FINITE_COMPUTATIONAL_RESULT",
+  "result": "PASS_DIRECT_COLLAR",
+  "scope": {
+    "h": "[0,2^-16]",
+    "kappa": "[0,3/8]",
+    "beta": "[-3/2,0]"
+  },
+  "grid": {
+    "kappa_cells": 24,
+    "beta_cells": 96,
+    "total": 2304
+  },
+  "retained_or_unresolved_boxes": 993,
+  "discarded_boxes": 1311,
+  "failures": 0,
+  "certified_rational_bounds": {
+    "J_E": ">999/1000",
+    "rho_i_over_h2": "<5 for i=1,2,3,4",
+    "rho_i": "<5/2^32<1"
+  },
+  "diagnostic_directed_bounds": {
+    "min_J_lower": 0.9999685509658817,
+    "max_rho_i_over_h2_upper": [
+      2.3660734817385674,
+      3.608982417732477,
+      4.403209675103426,
+      4.973568633198738
+    ]
+  },
+  "requested_remainder_bound": {
+    "status": "NOT_CERTIFIED_BY_BOX_ARITHMETIC",
+    "first_blowup_expression": "D_4=(rho_4/h^2-4*pi^2*R0*kappa)/h",
+    "R0": "-beta-pi^2*kappa/2",
+    "max_abs_numerator_interval_hbits16": 1.1720564036106347,
+    "max_abs_numerator_interval_hbits24": 1.170332769531536,
+    "diagnosis": "parameter dependency leaves O(1) width, creating a spurious 1/h interval pole"
+  },
+  "arithmetic": {
+    "library": "python-flint 0.9.0 / Arb",
+    "precision_bits": 256,
+    "parameter_endpoints": "exact dyadics",
+    "floating_sign_tests": 0
+  }
+}

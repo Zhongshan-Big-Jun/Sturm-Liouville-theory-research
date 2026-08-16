@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260813-1040-MPO3ATWIST-R6",
+  "submission_id": "SUB-20260813-1040-MPO3ATWIST-R6",
+  "proposal_hash": "sha256:5e98ac81e6c6a347dccaa8c0e211b3e6f113dbcdfb22ac5588093cb052a3a03c",
+  "validation_hash": "sha256:6ff00375f40afc86266a8f12d67b88a416334b7fb8586f4c03c28536a2e2eace",
+  "reviewer_agent_id": "independent-reviewer-r6-phase-twist",
+  "reviewed_at": "2026-08-13T02:52:21.2634701Z",
+  "verdict": "approve",
+  "decision_summary": "The proposal hash, validation binding, base snapshot, candidate Blueprint hash, and both proof-package hashes match exactly. Independent reconstruction verifies the all-cell phase proof, including both endpoint cells and the unwrapped-angle branch; the distributional relay derivative and Lagrange signs; the retarded Green causal system; the constant-contrast zero-time variations; the positive C_n formula; and the local fixed-mu twist expansion. The claim remains explicitly local in contrast and q where required, while arbitrary finite-contrast J<0, global root order, and universal O3a remain open. All four mathematics audits, graph, protected-node, and research-state checks pass.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "CLM-NGE2-MPO3A-FULL-RELAY",
+      "CLM-NGE2-MPO3A-STRUCTURE",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "INF-NGE2-MPO3A-MAX",
+      "INF-NGE2-MPO3A-MIN",
+      "GOAL-NGE2-MPO3A-CONT2"
+    ],
+    "reasoning": "All six node operations add absent R6 IDs. Every proposed edge targets a new R6 node; existing reliable nodes are cited only upstream. No canonical node is updated or deleted and no protected incoming dependency changes. Validation independently reports protected_node_check.passed=true."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "Premise-complete full-relay roots have mu>1, q>1, indexed common terminal zeros, equal norm when B_n=0, exactly 2n simple events, and the exact fixed-q endpoint framework.",
+      "scope": "Every finite R>1, n>=2 and both signs, only on premise-complete transverse common-terminal chambers.",
+      "source_verification": "Trusted CTX-DEFAULT claim at semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46.",
+      "result": "valid",
+      "independent_reasoning": "It supplies negative relay energy E=1-q^2, exact event count and common-terminal indexing without importing injectivity, global order, or uniqueness."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "The 2n events are all simple switching zeros, their quotient crossings alternate, endpoint cells are negative, and the exact U/V nodal allocation holds.",
+      "scope": "Complete self-consistent trajectories for finite R>1, n>=2 and either sign.",
+      "source_verification": "Trusted CTX-DEFAULT claim at semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20.",
+      "result": "valid",
+      "independent_reasoning": "The phase proof uses this claim only for zero allocation and crossing order. It does not silently assume the desired phi<pi bound."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "For the fixed-mu q-Jacobi field with exact saltation, partial_q A_n=(1-q^2)eta_U(L)/(p r^2) at a transverse common terminal.",
+      "scope": "Fixed-mu sensitivity on premise-complete transverse chambers; no global no-conjugate or uniqueness theorem.",
+      "source_verification": "Trusted CTX-DEFAULT claim at semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e.",
+      "result": "valid",
+      "independent_reasoning": "It is used only to convert the independently derived p eta_U crossing functional into the sign of partial_q A_n."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Max uses rho=R on S>0 and rho=1 on S<0, min reverses the law, with exactly 2n effective zero-aligned switches modulo a.e. representatives.",
+      "scope": "Both relay signs and positive-length event cells.",
+      "source_verification": "Canonical definition at semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366.",
+      "result": "valid",
+      "independent_reasoning": "It fixes sigma and Delta rho. Point values at switches do not enter the distributional formulas."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-CELL-PHASE-R6",
+      "premise_ids": [
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-STRUCTURE"
+      ],
+      "definition_ids": [
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/discrete_jacobi_twist/phase_bound_audit.md",
+      "proof_package_sha256": "sha256:9df4da71ef9b44b07ab628837a0e74c475c256d8c0aa6835deb21611848d3e18",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "On a material cell set f=U, g=mu V and y=g_s/mu. The global E=1-q^2<0 becomes E/rho=f_s^2+f^2-y^2-g^2; at an event g=plus-or-minus f, so |y|>|f_s|.",
+        "On every negative cell g has no open-cell zero. Harmonic zero spacing pi/mu gives phi<pi; separate next-zero and previous-zero arguments cover the left and right Dirichlet endpoint cells and exclude equality.",
+        "On a positive cell choose f>0. Crossing order gives g(0)=f(0), g(theta)=-f(theta), while inward transversality gives S_s(0)>0>S_s(theta). Combining these strict inequalities with |y|>|f_s| yields y(0)<0 and y(theta)<0.",
+        "For the continuous high-state angle alpha=arg(g,y), alpha_s=-mu. Exact one-zero allocation places the terminal lift in (-3pi/2,-pi/2); its quadrant-III signs select (-pi,-pi/2), excluding the pi<phi<2pi branch and giving phi<pi.",
+        "Positive cell length and mu>1 then give 0<theta<phi=mu theta<pi for all 2n+1 cells."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The low and high phase lengths, one-sided material scaling, unwrapped phase convention, event orientation, and exclusion of the terminal Dirichlet endpoint from interior event counts are explicit and consistent."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The endpoint y signs are derived rather than assumed. Nodal allocation alone supplies only the zero count and exclusion of extra 2pi winding; negative energy plus transverse endpoint quadrants selects phi<pi. No circular use of the conclusion occurs."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "Both endpoint cells, internal positive and negative cells, n=2, both max/min words, equality phi=pi, and a.e. switch values are covered. Degenerate zero-length cells, grazing and unfinished relay IVPs are expressly outside scope."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "A one-zero harmonic segment may have pi<phi<2pi, so the proof explicitly closes the real branch ambiguity. Extra 2pi winding would add two zeros. Sign normalization of both modes leaves every inequality invariant."
+      }
+    },
+    {
+      "node_id": "INF-NGE2-MPO3A-HYBRID-TWIST-R6",
+      "premise_ids": [
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "CLM-NGE2-MPO3A-CELL-PHASE-R6"
+      ],
+      "definition_ids": [
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/hybrid_twist_independent/derivation.md",
+      "proof_package_sha256": "sha256:63d1c375e73dccf985965c8ab62aee5888123227835e78289c2ad654d600e447",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "Fixed-time q differentiation gives eta_U''+rho eta_U=-rho_q U and eta_V''+mu^2rho eta_V=-mu^2rho_q V. Direct Wronskian integration with common terminal positions gives p eta_U=int rho_q U^2 and r eta_V=mu^2 int rho_q V^2, with the displayed signs.",
+        "Differentiating rho=(R+1)/2+sigma(R-1)sign(S)/2 gives rho_q=sigma(R-1)delta(S)S_q. Since U^2=mu^2V^2 on the support, p eta_U=r eta_V and p eta_U=sigma(R-1)J. The accepted endpoint identity then yields sign(partial_q A_n)=-sigma sign(J).",
+        "Retarded variation of constants gives eta_U=-int G_U rho_q U and eta_V=V/q-mu^2 int G_V rho_q V. Substitution at ordered events and mu V_i=epsilon_i U_i yields the strictly lower-triangular system x_i=-2mu^2V_i^2/q+sigma(R-1)sum_(j<i)M_ij x_j/abs(d_j), with M_ij=2U_iU_j[-G_U+mu^2epsilon_i epsilon_jG_V], and J=sum U_i^2x_i/abs(d_i).",
+        "At R=1+epsilon and mu_0=(n+1)/n, scalar zero-time differentiation independently gives T_U,epsilon=-int chi_sigma a and T_V,epsilon=-int chi_sigma b. Thus F_+=int_(a>q^2b)(b-a)<0 and F_-=-F_+.",
+        "Distributional differentiation of the moving switching domain gives F_+'=sum(-2qb)(b-a)/abs(S_0') at a=q^2b, namely C_n=2q(q^2-1)sum b(t_j)^2/abs(S_0'(t_j))>0; F_-'=-C_n. Simplicity and no common interior zero make every term finite and positive.",
+        "Because A_n(mu,q,0)=n pi-(n+1)pi/mu has positive mu derivative and zero q and mixed q-mu derivatives at the base, the implicit common-terminal sheet exists locally and fixed-mu partial_q A_n=sigma epsilon C_n(q)+O(epsilon^2), uniformly on a compact q-neighborhood.",
+        "At equal norm q=mu_0 is a simple root, so the complete root persists locally. Constant-contrast event differentiation gives alternating, not common, displacement signs. Arbitrary finite-contrast J<0 and global one-root order remain open."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "Fixed-time versus moving-event derivatives, sigma convention, Delta rho, retarded Green normalization, event sign epsilon_i, indexed zero times, fixed-mu derivative, and local common-terminal sheet are all distinguished correctly."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Equations (2.2)-(2.9), (3.1)-(3.3), and (5.3)-(5.10) independently recompute with the stated signs and factors. The C_n boundary contribution is positive because h_q=-2qb and b-a=-(q^2-1)b at h=0. The O(epsilon) sign is not promoted beyond its local smooth sheet."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "All finite-R reductions require transverse interior events and simple terminal zeros. The signed theorem is only for each fixed n and q0 in a possibly nonuniform small positive contrast neighborhood. R=1 is the desingularized base, not a claimed bang-bang point. Grazing, chamber boundaries, q approaching 1, large contrast and global continuation remain excluded or open."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "Reversing the sign convention reproduces both max/min formulas; direct event differentiation agrees with rho_q=-sum Delta rho_i t_i' delta. Oscillatory Green kernels prevent an unjustified entrywise sign theorem, and the proof explicitly refutes same-direction event induction. No finite probe supports a theorem."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "OBL-NGE2-MPO3A-CAUSAL-RESOLVENT-R6",
+      "record_kind": "proof_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The proof reduces the general twist sign to J<0 but does not sign the oscillatory causal resolvent, upgrade local twist to global root order, or supply a certified distinct pair. Open/D and the stated discharge criteria are accurate."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT4-TWIST-R6",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The route establishes an exact phase lemma, a finite-contrast reduction, and a local all-n small-contrast sign, while preserving the universal target and both max/min inferences as open. Partial/B is accurate; computation remains non-propagating."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "base_blueprint_hash_matches": true,
+    "base_inventory_hash_matches": true,
+    "candidate_blueprint_hash": "sha256:3e0839c6d73e194653314ae1c456bbc77899bdc279f171f590089ad9c0f38394",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_node_count": 96,
+    "candidate_edge_count": 193,
+    "independent_validator_passed": true,
+    "read_set_check": {
+      "passed": true,
+      "reasoning": "The live canonical snapshot exactly matches both proposal base hashes. Every theorem input is in the trusted CTX-DEFAULT closure with the declared semantic hash, and the definition is active."
+    },
+    "write_set_check": {
+      "passed": true,
+      "reasoning": "The write set contains exactly six absent R6 IDs and no inventory changes. All twelve typed edges agree with node-side declarations, point into new nodes, preserve acyclicity, and do not alter protected incoming dependencies."
+    },
+    "trusted_closure_scope": "Only the precisely scoped cell-phase and hybrid-twist claims enter trusted closure. The causal-resolvent obligation and partial attempt are non-truth-bearing. INF-NGE2-MPO3A-MAX, INF-NGE2-MPO3A-MIN, GOAL-NGE2-MPO3A-CONT2 and universal O3a remain open."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "validation_hash_recomputed": "sha256:6ff00375f40afc86266a8f12d67b88a416334b7fb8586f4c03c28536a2e2eace",
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "candidate_blueprint_hash_matches_assignment": true,
+    "phase_proof_package_present": true,
+    "phase_proof_package_sha256": "sha256:9df4da71ef9b44b07ab628837a0e74c475c256d8c0aa6835deb21611848d3e18",
+    "phase_proof_package_hash_matches": true,
+    "hybrid_proof_package_present": true,
+    "hybrid_proof_package_sha256": "sha256:63d1c375e73dccf985965c8ab62aee5888123227835e78289c2ad654d600e447",
+    "hybrid_proof_package_hash_matches": true,
+    "numerical_evidence_role": "The 32-root coefficient probe is bounded binary64 falsification evidence only and is absent from every proof step.",
+    "novelty_boundary": "Novelty is explicitly unknown; no priority claim is made."
+  },
+  "findings": [],
+  "required_actions": []
+}

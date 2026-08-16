@@ -1,0 +1,381 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260814-0103-MPO3AMINORDER-R11",
+  "author_agent_id": "r10_min_mu2_audit",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-13T17:16:22.935314Z",
+  "base_blueprint_hash": "sha256:7eb6256786ff20ce8dcf5bb1b8ce669337eb216a38e4e274c8292f1ef6456242",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add an audited either-orientation conditional local-sign-to-global-order theorem, specialize it with trusted R10 to the unconditional min n=2, mu=2 at-most-one/reflection theorem, and retain the larger min program as a partial attempt without modifying protected canonical nodes.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+        "type": "inference",
+        "title": "Either-orientation same-sign local twist implies global root order",
+        "statement": "Negative relay energy, global relay well-posedness and word-independent continuous zero-time dependence, automatic 2n-event premise completeness, and terminal event-pair softness imply the conditional global-order theorem stated in CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11 for either relay orientation and either one uniform strict derivative sign.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-ZERO-BOUND",
+          "CLM-NGE2-MPO3A-FULL-RELAY"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/derivation.md",
+          "sha256": "sha256:66916110c3d90b47c4054c77a744acc204b481f63f36321662dac165ae7d5c93"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+        "type": "claim",
+        "title": "Either-orientation conditional global relay root order",
+        "statement": "For every finite R>1, integer n>=2, frequency mu>1, and either relay orientation rho_- in {1,R} on S<0 with the other coefficient on S>0, if one sign sigma in {+1,-1} satisfies sigma partial_q A_n^c(mu,q)>0 at every premise-complete transverse common-terminal root, then the global indexed residual A_n(mu,q)=T_U^n(mu,q)-T_V^(n+1)(mu,q) is continuous on q>1, has at most one zero across all relay chambers and compatible closures, and every zero is fixed by reflection after positive reorientation.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+        "type": "inference",
+        "title": "Trusted negative min twist closes n=2, mu=2 global root order",
+        "statement": "Specialize the either-orientation conditional theorem to the min relay, n=2 and mu=2. Every global residual zero is automatically a premise-complete transverse four-event root, so trusted R10 supplies partial_q A_2^c<0; the sign sigma=-1 gives the restricted global-order and reflection theorem in CLM-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+          "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10"
+        ],
+        "definition_inputs": [],
+        "conclusion": "CLM-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/derivation.md",
+          "sha256": "sha256:66916110c3d90b47c4054c77a744acc204b481f63f36321662dac165ae7d5c93"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+        "type": "claim",
+        "title": "Global min root order at n=2 and mu=2",
+        "statement": "For every finite R>1, under the min relay with n=2 and mu=2, the global indexed residual A_2(2,q)=T_U^2(q)-T_V^3(q), q>1, is continuous and has at most one zero across all relay chambers and compatible closures; every zero is automatically a premise-complete transverse four-event common-terminal root and is fixed by reflection after positive reorientation.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-MIN-GLOBAL-ORDER-R11",
+        "type": "attempt",
+        "title": "Conditional relay order and restricted min global closure",
+        "statement": "Extract a relay-sign-independent local-to-global theorem from negative energy, word-independent continuous dependence, Sturm indexing, terminal softness, oriented-zero topology, and reflection covariance. Combining it with trusted R10 closes min global at-most-one and reflection fixing only for n=2, mu=2. Root existence, arbitrary mu, all n, equal norm, and O3a remain open; the separate dual-Jacobi route continues the all-n local min-sign attack.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Negative-energy zero classification, relay-IVP compactness, global scalar-zero indexing, automatic 2n-event completeness, terminal event-pair softness, same-oriented-zero topology, and reflection covariance",
+        "route_key": "mpo3a-cont4-min-global-order-r11",
+        "deliverable_contract": "A reusable local-sign-to-global-order implication and every rigorously supported min specialization, while retaining existence, equal-norm, general-mu, general-n, and O3a as explicit open obligations.",
+        "falsification_tests": [
+          "Do not globalize by fixing one material word; prove continuity through event-pair birth, death, and collision.",
+          "Do not apply the R10 local theorem until every global A_2 zero has been proved premise-complete with exactly four transverse events.",
+          "Use rho_-=R on the min initial and terminal punctured cells and reverse the oriented-zero derivative sign.",
+          "Prove terminal chamber/global residual agreement to second order before importing the chamber derivative.",
+          "Do not infer root existence, arbitrary mu, n>2, equal-norm uniqueness, min O3a, or universal O3a."
+        ],
+        "expected_bottleneck": "Proving the min local q-twist beyond n=2, mu=2, especially controlling off-diagonal transfer in the general-n dual Jacobi continuant.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifacts": [
+            "routes/r11_min_mu2_global_order/problem_contract.md",
+            "routes/r11_min_mu2_global_order/derivation.md",
+            "routes/r11_min_mu2_global_order/self_audit.md",
+            "routes/r11_min_mu2_global_order/independent_audit.md"
+          ]
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-ZERO-BOUND",
+      "target": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "target": "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "target": "CLM-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-MIN-GLOBAL-ORDER-R11",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+      "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "CLM-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+      "ATT-NGE2-MPO3A-CONT4-MIN-GLOBAL-ORDER-R11"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:34ddfc0ec931503621e7658d7186318b41b3f910214000e23c55bae7aaac040e",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:6e2749fd147662212ade344e6dec0a715a83e76cb954e031134748a99a134b7b",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10": "semantic-sha256:157a7bf928676b7565e5e08e965909ab0657e48888d37095c43352a228bbbd21",
+      "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:5a4e8e40668e50766f7594724eb357bddcf7b94139b86e8fdbf14582e39088ee",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:76505a7eb2ffa45225adf487ce6f8f250a2ed35aa415c5a9756536a507db5558",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:788fd7a0a1ab30540c1da2194e6ce6365ae60cc1eea04cc1a13a779b58f07dd8",
+      "INF-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:f377eb235ffcb122f315d646d9a56665dbb55cbfecc826a4f85c19cd1ce4df45",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10": "semantic-sha256:04d7bb4c8d64824b2f1354adf34076d107fd2e124e758700a699228c64213820",
+      "INF-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:804abd6209285b16cfb62428a98700f2262049146855dd8c6b3b04f0712b139f",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_restricted_theorem_with_reusable_conditional_bridge_and_universal_target_open",
+    "scope": "The conditional theorem covers either relay orientation at fixed finite R>1, n>=2, mu>1 only under one uniform strict local q-derivative orientation. Trusted R10 discharges that hypothesis only for min n=2, mu=2, yielding global at-most-one and reflection fixing there. Existence, general min mu or n, equal norm, and O3a remain open.",
+    "duplicate_policy": "The protected R9 max global-order theorem is one positive-sign instance of the new reusable implication; it is not changed. The protected R10 theorem is pointwise local and is an upstream premise for the new downstream min global corollary. No existing obligation or incoming protected dependency is changed.",
+    "computation_policy": "No numerical or external-source result enters the proof. The package is exact analytic mathematics.",
+    "audit_policy": "The derivation sha256:66916110c3d90b47c4054c77a744acc204b481f63f36321662dac165ae7d5c93, author self-audit sha256:74779447f7edcd4104482132b856169dc04fa895859be02235661ae8f3655cd0, and independent APPROVE audit sha256:b15764f21e75849293188edc74266cc14183223890a302700facbea06562d4a7 are bound exactly.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/problem_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r11_min_mu2_global_order/independent_audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Every finite real R>1 and integer n>=2 in the accepted adjacent-gap problem.",
+        "contract_explanation": "Supplies the ambient R,n domain only. The proof introduces mu>1 and q>1 in the relay IVP and makes no existence or uniqueness assumption."
+      },
+      {
+        "node_id": "CLM-NGE2-ZERO-BOUND",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "One-dimensional weighted Dirichlet Sturm zero count for consecutive modes in the accepted coefficient class.",
+        "contract_explanation": "Supports scalar nodal indexing and consecutive-mode interpretation. Relay-zero transversality, word continuity, and the exact 2n event count are proved in the package."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Finite R>1, n>=2, either relay sign, and the exact two-scalar full-relay common-terminal formulation.",
+        "contract_explanation": "Supplies the relay model, indexed common-terminal residual, and accepted physical correspondence. The package independently proves its global q>1 IVP and automatic premise completeness at residual zeros."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Max/min material assignment by the sign of S, effective switch convention, and the exactly 2n-event self-consistent class.",
+        "contract_explanation": "Fixes relay-sign terminology and a.e. event conventions; it is not a truth-bearing local-sign or existence premise."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+        "premise_kind": "newly_proved_mathematical_claim",
+        "scope": "Either relay orientation, fixed finite R>1, n>=2, mu>1, conditional on a common strict orientation of all local root derivatives.",
+        "contract_explanation": "The restricted inference uses this new proved implication only after specializing to min n=2, mu=2; it does not treat the conditional hypothesis as generally established."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Every arbitrary possibly asymmetric premise-complete transverse common-terminal min root at finite R>1, n=2, mu=2.",
+        "contract_explanation": "Supplies exactly partial_q A_2^c<0 in the permanent-scaling quotient and assumes neither reflection nor global order. Automatic root completeness and chamber/global derivative equality are established in the R11 package."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-EITHER-CONDITIONAL-GLOBAL-ORDER-R11",
+        "ordered_steps": [
+          "Conserve E=P^2-Q^2+rho S=1-q^2<0 across every relay event. This excludes nonjoint tangency; a joint zero has a strict punctured S<0 neighborhood and coefficient rho_-.",
+          "Construct the unique cellwise relay IVP and exclude finite Zeno accumulation by the complete zero classification and Rolle's theorem.",
+          "Use compactness and the surviving energy identity at limit zeros to prove word-independent continuous dependence in q through event birth, death, and collision.",
+          "Use the lifted phase inequality and scalar-zero simplicity to construct one globally continuous indexed residual A_n(mu,q) on all q>1.",
+          "At each residual zero, consecutive Dirichlet indexing, strict interlacing, and the Wronskian sign show that V/U crosses both relay levels exactly once on each U nodal cell, giving exactly 2n transverse active events and automatic premise completeness.",
+          "Continue the final rho_- chamber across the terminal joint contact. The coefficient mismatch acts over O(|delta|) time on positions O(|delta|), so zero-time errors are O(delta^2) and partial_q A_n=partial_q A_n^c.",
+          "Apply the same-oriented-zero lemma to sigma A_n. At-most-one follows across all chambers and closures; reflection produces another root and therefore must fix the unique root and trajectory."
+        ],
+        "boundary_cases": [
+          "Covers every finite R>1, integer n>=2, mu>1 and either relay orientation only conditionally on one uniform strict local derivative orientation at every premise-complete root.",
+          "R=1, mu=1, and q=1 are outside the strict domain; no q-endpoint sign or root-existence assertion is used.",
+          "Nonzero grazing is excluded by strict negative energy; joint event collisions and terminal event-pair closures remain in the global domain and are treated as negative-side contacts.",
+          "The theorem proves no local twist sign for arbitrary min n or mu, no equal-norm result, and no O3a conclusion."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:66916110c3d90b47c4054c77a744acc204b481f63f36321662dac165ae7d5c93",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-MIN-N2-MU2-GLOBAL-ORDER-R11",
+        "ordered_steps": [
+          "Specialize the conditional theorem to the min relay with rho_-=R, rho_+=1, n=2, and mu=2.",
+          "The conditional theorem itself proves that every global A_2(2,q) zero has exactly four active transverse events, both endpoint cells negative, and no interior joint zero, so it lies in trusted R10's arbitrary-asymmetric premise-complete scope.",
+          "Trusted R10 gives the smooth-chamber quotient derivative partial_q A_2^c<0 without reflection. Terminal softness proves that it equals the global derivative even at a terminal event-pair closure.",
+          "Set sigma=-1 in the conditional global-order theorem to obtain at most one q>1 root. Reflecting a root yields another root of the same global residual, so at-most-one and IVP uniqueness give reflection fixing."
+        ],
+        "boundary_cases": [
+          "Covers every finite R>1 only at min n=2, mu=2, including arbitrary asymmetric premise-complete roots; no reflection premise is used.",
+          "The n=2 endpoint case contains two U nodal cells and exactly four active events, with no nonexistent interior-cell induction.",
+          "R=1, q=1, mu!=2, n>2, nontransverse roots, and positive-length-cell degeneracies are outside the strict local theorem; terminal pair closures are included by softness.",
+          "No root existence, q-endpoint sign, equal norm, general min order, min O3a, or universal O3a is asserted."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:66916110c3d90b47c4054c77a744acc204b481f63f36321662dac165ae7d5c93",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-MIN-GLOBAL-ORDER-R11",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proves the reusable conditional local-to-global bridge and closes min n=2, mu=2 global at-most-one/reflection via trusted R10. Root existence, arbitrary mu, n>2, equal-norm orientation, and O3a remain open, and the general-n dual-Jacobi route has not established the needed local sign."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

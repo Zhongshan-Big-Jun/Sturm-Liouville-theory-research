@@ -1,0 +1,48 @@
+{
+  "targets": ["LHL", "LHI", "IHL", "HHL", "HHI"],
+  "max_boxes_per_target": 500000,
+  "results": {
+    "LHL": {
+      "root_dyadic": [[0,268435456],[16911433728,17179869184],[0,268435456]],
+      "bits": 34,
+      "complete": false,
+      "counts": {"visited":500000,"discard_g":84625,"discard_r":0,"proved":123750,"split":250025,"singular":0,"unresolved":41600},
+      "leaf_identity":[249975,250026],"stack_remaining":51,
+      "min_gaps":[0.11848562781091385,0.00045839567706516045,0.04504321921459031,0.2695034326709624]
+    },
+    "LHI": {
+      "root_dyadic": [[0,268435456],[16911433728,17179869184],[268435456,16911433728]],
+      "bits":34,"complete":true,
+      "counts":{"visited":13,"discard_g":0,"discard_r":6,"proved":1,"split":6,"singular":0,"unresolved":0},
+      "leaf_identity":[7,7],"stack_remaining":0,
+      "min_gaps":[0.1280283626441388,0.11896720873898561,0.12590908238303472,0.15050797821729217]
+    },
+    "IHL": {
+      "root_dyadic": [[268435456,16911433728],[16911433728,17179869184],[0,268435456]],
+      "bits":34,"complete":false,
+      "counts":{"visited":500000,"discard_g":82393,"discard_r":0,"proved":123573,"split":250027,"singular":0,"unresolved":44007},
+      "leaf_identity":[249973,250028],"stack_remaining":55,
+      "min_gaps":[0.10144088088595851,0.009952434990496155,0.0467194256921425,0.2611836470038255]
+    },
+    "HHL": {
+      "root_dyadic": [[16911433728,17179869184],[16911433728,17179869184],[0,268435456]],
+      "bits":34,"complete":false,
+      "counts":{"visited":500000,"discard_g":100044,"discard_r":99969,"proved":0,"split":250023,"singular":0,"unresolved":49964},
+      "leaf_identity":[249977,250024],"stack_remaining":47,"min_gaps":[null,null,null,null]
+    },
+    "HHI": {
+      "root_dyadic": [[16911433728,17179869184],[16911433728,17179869184],[268435456,16911433728]],
+      "bits":34,"complete":false,
+      "counts":{"visited":500000,"discard_g":108103,"discard_r":74924,"proved":0,"split":250013,"singular":0,"unresolved":66960},
+      "leaf_identity":[249987,250014],"stack_remaining":27,"min_gaps":[null,null,null,null]
+    }
+  },
+  "classification": {
+    "LHI":"FINITE_CONDITIONAL_CERTIFICATE",
+    "LHL":"AUDITED_INTERVAL_DEPENDENCY_FAILURE",
+    "IHL":"AUDITED_INTERVAL_DEPENDENCY_FAILURE",
+    "HHL":"AUDITED_INTERVAL_DEPENDENCY_FAILURE",
+    "HHI":"AUDITED_INTERVAL_DEPENDENCY_FAILURE"
+  },
+  "note":"No incomplete target produced a rigorously negative retained box. Atomic unresolved leaves prohibit raw subdivision escalation."
+}

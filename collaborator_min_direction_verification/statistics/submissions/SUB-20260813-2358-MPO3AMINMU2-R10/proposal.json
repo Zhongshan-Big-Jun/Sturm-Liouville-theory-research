@@ -1,0 +1,359 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260813-2358-MPO3AMINMU2-R10",
+  "author_agent_id": "codex-root-r10",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-13T16:00:55.657239Z",
+  "base_blueprint_hash": "sha256:002a9f58d6ac878bd8620c65fa33d7110230372333c3f250c2ef47347af7af48",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add the exact restricted min local-twist theorem for every finite-R root at n=2, mu=2, backed by full physical interface elimination and two independent rational Bernstein replays, while preserving general mu, general n, global min order, and O3a as open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+        "type": "inference",
+        "title": "Exact full-interface Bernstein closure of the min n=2, mu=2 twist",
+        "statement": "The accepted physical full-relay, sharp internal phase, and relative-continuant claims, together with exact elimination of both momentum matching equations and a rational tensor-Bernstein positivity certificate, imply the restricted min complementary-inertia and local-twist theorem in CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-NGE2-DOMAIN",
+          "CLM-NGE2-MPO3A-STRUCTURE",
+          "CLM-NGE2-MPO3A-FULL-RELAY",
+          "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+          "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7"
+        ],
+        "definition_inputs": [
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r9_min_complementary/derivation.md",
+          "sha256": "sha256:44da5f1d76b4d8208366b3d055e4ad5456e372bd2f14077a39e51577a4353f19"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+        "type": "claim",
+        "title": "Restricted min local twist at n=2 and mu=2",
+        "statement": "For every finite R>1 and every arbitrary possibly asymmetric premise-complete transverse common-terminal min-law root with n=2 and mu=2, the scalar dual negative-edge Schur complement H=C P^(-1) C^T-W is strictly positive. Hence the 4-by-4 physical event matrix has inertia (3 positive,1 negative,0 zero), the 3-by-3 relative path matrix satisfies det(L_-)>0, the exact causal functional J is negative, and partial_q A_2<0 in the quotient by the permanent scaling field. No reflection symmetry is assumed. This is conditional on a root in the stated scope and is pointwise local: it asserts neither existence nor fixed-mu global root order, and it does not cover mu!=2, n>2, global min uniqueness, or O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-MIN-N2-GENERAL-MU-R10",
+        "type": "obligation",
+        "title": "Extend the n=2 min full-interface sign beyond mu=2",
+        "statement": "For n=2, prove the full positive-negative-positive physical interface scalar H>0 for every mu>1 and finite R>1, or produce an exact or certified premise-complete transverse min root violating the determinant orientation.",
+        "formal_statement": "At every arbitrary possibly asymmetric premise-complete transverse common-terminal min-law root with n=2, finite R>1, and mu>1, use both independent momentum matching equations, common negative energy, strict first-crossing branches, and the sharp positive-negative-positive phase allocation to prove the scalar dual Schur complement H>0. Equivalently establish inertia (3 positive,1 negative,0 zero), det(L_-)>0, J<0, and partial_q A_2<0; or certify a fully physical violating root. The mu=2 slice is already proved and is not the remaining obligation.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MIN"
+        ],
+        "discharge_criteria": [
+          "Cover every mu>1 and finite R>1 for n=2, including arbitrary asymmetric roots; do not infer the result by continuity from the isolated mu=2 slice.",
+          "Retain both independent momentum interface equations. The exact gamma-only rational no-go shows that phase thresholds and the combined switch-derivative equation are insufficient.",
+          "Keep grazing, collisions, nontransverse roots, and compatible closures separate from the transverse local theorem.",
+          "Finite samples or floating-point positivity are non-propagating; a proof must be analytic or exact/certified.",
+          "Even a universal n=2 local twist still requires separate fixed-mu global order, norm-residual, and all-n arguments for O3a."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-MIN-MU2-R10",
+        "type": "attempt",
+        "title": "Full-interface Schur and Bernstein attack on the min branch",
+        "statement": "Split the min event matrix into positive two-by-two cells and negative edges, reduce n=2 to one dual Schur scalar, use the physical time-translation jump to split it into two interface gaps, solve both momentum matches exactly, and certify the resulting mu=2 residual polynomial by rational tensor-Bernstein coefficients. The mu=2,n=2 local theorem is proved; general mu, general n, global min order, and O3a remain open.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Physical event-matrix Schur complementation, exact half-angle momentum elimination, time-reversal interface reciprocity, semialgebraic domain reduction, and exact rational tensor-Bernstein positivity",
+        "route_key": "mpo3a-cont4-min-mu2-r10",
+        "deliverable_contract": "A universal min complementary-inertia theorem, an exact or certified physical counterexample, or rigorously audited restricted theorems with the remaining interface and global obligations made explicit.",
+        "falsification_tests": [
+          "Audit the dual Schur inertia direction; n_-(M)=n_+(H), not n_-(H).",
+          "Use both independent momentum equations at each material interface; gamma matching alone admits an exact negative scalar no-go.",
+          "Apply the local interface theorem separately to actual (x_1,y_2) and time-reversed actual (x_3,y_2), without assuming x_1=x_3 or reflection.",
+          "Verify the full rational identity and every tensor Bernstein coefficient over QQ, including strict positivity in the open cube despite zero coefficients.",
+          "Do not promote the mu=2 slice, sampled roots, or local twist to general mu, all n, global uniqueness, or O3a."
+        ],
+        "expected_bottleneck": "A non-polynomial full-interface inequality for arbitrary mu>1 and, beyond n=2, a positive vector or continuant theorem controlling the off-diagonal dual Jacobi transfer.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifacts": [
+            "routes/r9_min_complementary/derivation.md",
+            "routes/r9_min_complementary/self_audit.md",
+            "routes/r9_min_complementary/symbolic_split_gap_mu2.py",
+            "routes/r9_min_complementary/bernstein_mu2_closure.py",
+            "routes/r10_min_full_interface/derivation.md",
+            "routes/r10_min_full_interface/independent_bernstein_audit.py",
+            "routes/r10_min_full_interface/independent_bernstein_audit.json",
+            "routes/r10_min_mu2_audit/independent_audit.md"
+          ]
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-NGE2-DOMAIN",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-STRUCTURE",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "target": "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN",
+      "target": "OBL-NGE2-MPO3A-MIN-N2-GENERAL-MU-R10",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-MIN-MU2-R10",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "CLM-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+      "OBL-NGE2-MPO3A-MIN-N2-GENERAL-MU-R10",
+      "ATT-NGE2-MPO3A-CONT4-MIN-MU2-R10"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:34ddfc0ec931503621e7658d7186318b41b3f910214000e23c55bae7aaac040e",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:6e2749fd147662212ade344e6dec0a715a83e76cb954e031134748a99a134b7b",
+      "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:43f3bbdfa4b51c4504501ea9d5d68bf05ec1ca5b844da5dcf271da1f640d6702",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:5a4e8e40668e50766f7594724eb357bddcf7b94139b86e8fdbf14582e39088ee",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-CELL-PHASE-R6": "semantic-sha256:76505a7eb2ffa45225adf487ce6f8f250a2ed35aa415c5a9756536a507db5558",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-HYBRID-TWIST-R6": "semantic-sha256:788fd7a0a1ab30540c1da2194e6ce6365ae60cc1eea04cc1a13a779b58f07dd8",
+      "INF-NGE2-MPO3A-INTERNAL-PHASE-R8": "semantic-sha256:f377eb235ffcb122f315d646d9a56665dbb55cbfecc826a4f85c19cd1ce4df45",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7": "semantic-sha256:804abd6209285b16cfb62428a98700f2262049146855dd8c6b3b04f0712b139f",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED": "semantic-sha256:2d850dbc0f45b117b6cd84f045e8a6934b60c85cea809631a184b91e11039c98",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_restricted_theorem_with_universal_target_open",
+    "scope": "The proposal proves only the pointwise min complementary inertia and q-twist at n=2 and mu=2 for roots already satisfying the complete transverse physical premises. It does not assert existence at mu=2, fixed-mu global order, any result for mu!=2 or n>2, norm-residual uniqueness, min O3a, or universal O3a.",
+    "computation_policy": "The Bernstein calculations are exact symbolic arithmetic over QQ and are part of the proof package. Finite floating-point root scans are excluded from every proof step and remain non-propagating discovery evidence.",
+    "audit_policy": "The frozen proof package 44da5f1d... and every exact support artifact passed an independent definition, logic, boundary, and adversarial audit bound in 195e5393.... No historical hash or weak gamma-only candidate is submitted as a premise.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r9_min_complementary/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r9_min_complementary/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r9_min_complementary/symbolic_split_gap_mu2.py",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r9_min_complementary/bernstein_mu2_closure.py",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r10_min_full_interface/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r10_min_full_interface/independent_bernstein_audit.py",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r10_min_full_interface/independent_bernstein_audit.json",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/r10_min_mu2_audit/independent_audit.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-NGE2-DOMAIN",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Finite R>1 and integer n>=2 in the accepted one-dimensional adjacent-gap problem.",
+        "contract_explanation": "Supplies only the ambient parameter domain. The proof further restricts to n=2 and mu=2 and does not import existence or uniqueness."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact simple alternating crossings, nodal allocation, and material sign class on premise-complete full-relay roots.",
+        "contract_explanation": "Identifies the n=2 internal word as positive-negative-positive for the min law and supplies strict physical crossing labels; no reflection is imported."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Finite R>1, both signs, arbitrary premise-complete transverse common-terminal physical relay roots.",
+        "contract_explanation": "Supplies the two oscillator equations, q>1, common negative energy, exactly four simple events when n=2, and both physical momentum matching equations at each interface."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-INTERNAL-PHASE-R8",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Sharp sign-separated phase bounds on every internal positive and negative relay cell.",
+        "contract_explanation": "At mu=2 gives 0<theta_positive<pi/3 and pi/3<theta_negative<pi/2, selecting the strict half-angle chamber used in the exact elimination."
+      },
+      {
+        "node_id": "CLM-NGE2-MPO3A-PHYSICAL-CONTINUANT-R7",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "Exact physical event/path matrices and determinant, causal-functional, and q-twist equivalence for both relay signs in the scaling quotient.",
+        "contract_explanation": "Supplies the relative matrix and the final det(L_-)>0 iff J<0 iff partial_q A_2<0 bridge. It supplies no determinant sign."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "The min relay law, exactly 2n effective switches, and the a.e. switch representative convention.",
+        "contract_explanation": "Fixes the physical min class and event word; it is not a truth-bearing research premise."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-MIN-N2-MU2-TWIST-R10",
+        "ordered_steps": [
+          "Split the min event matrix into the positive odd-edge block P=D+B_o^T K_o^(-1)B_o>0 and the negative even-edge incidence term. A double Schur complement gives n_-(M)=n_+(H) and n_0(M)=n_0(H) for H=C P^(-1)C^T-W; at n=2, H is the scalar beta_R+beta_L-|K_2|.",
+          "Use the exact time-translation jump values on the middle negative cell to define x_*=(gamma_3-gamma_2)/|K_2|>0 and split Hx_* into E_L=beta_R x_*+gamma_2 and E_R=beta_L x_*-gamma_3.",
+          "At mu=2 introduce x=tan(theta_positive/2), y=tan(theta_negative/2), and r=sqrt(R). The R8 phase theorem gives r>1 and 0<x<1/sqrt(3)<y<1.",
+          "Solve both independent momentum matching equations exactly at a positive-negative interface. The positive and negative amplitude ratios reduce to rational functions with physical denominator signs D_a>0 and N_b>0. Time reversal gives the corresponding right-interface family without equating the actual left and right positive phases.",
+          "Substitute the exact interface ratios in E_L and E_R. Both gaps reduce, with fully signed denominators, to the same primitive residual polynomial P(x,y,r), whose expanded rational polynomial has 228 terms, degree (16,12,6), and frozen expanded-string hash 906da324....",
+          "Set X=x^2, Y=y^2, and kappa=rx(3Y-1)/(y(1-3X)). The exact N_b decomposition proves 0<kappa<1, and direct cancellation gives P=y^4 Q(X,Y,kappa)/(3Y-1)^2 on the box 0<X<1/3<Y<1.",
+          "Map that box to the open unit cube. The exact QQ tensor-Bernstein expansion of Q at degree (10,6,6) has 539 coefficients: 387 positive, 152 zero, and none negative; a full inverse transform and an independent differently oriented reconstruction both pass. Every basis function is positive in the open cube, hence Q>0 and P>0.",
+          "Apply the interface lemma separately to the actual left pair (x_1,y_2) and the time-reversed actual right pair (x_3,y_2). They share the same actual middle-cell x_*, so E_L+E_R=Hx_*>0 and H>0 without reflection symmetry.",
+          "The scalar H>0 gives In(M)=(3 positive,1 negative,0 zero). Apply the accepted R7 relative-continuant bridge to conclude det(L_-)>0, J<0, and partial_q A_2<0, keeping the theorem pointwise and in the permanent-scaling quotient."
+        ],
+        "boundary_cases": [
+          "Covers every finite R>1 but only the exact slice n=2, mu=2 and only premise-complete transverse common-terminal min roots; the theorem is conditional on such a root and does not assert existence.",
+          "Arbitrary asymmetric roots are covered. The two actual positive phases may differ, and time reversal is used only as a local interface identity, not as global reflection symmetry.",
+          "R=1, mu!=2, n>2, grazing, switch collisions, nontransverse roots, unfinished words, and compatible nongeneric closures remain outside this theorem.",
+          "The open phase boundaries x=1/sqrt(3), y=1/sqrt(3), y=1, kappa=0, and kappa=1 are excluded by strict physical energy, phase, and ratio hypotheses. Zero Bernstein coefficients cannot create an interior equality because every basis function is strictly positive there.",
+          "The exact gamma-only rational no-go is a failed intermediate lemma, not a physical counterexample. It shows why both momentum equations are essential and is not used to infer the theorem.",
+          "All polynomial and Bernstein operations are exact over QQ. Finite root scans and floating-point margins enter no proof step.",
+          "A pointwise local q-twist does not imply fixed-mu global root order, norm uniqueness, min O3a, or universal O3a."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:44da5f1d76b4d8208366b3d055e4ad5456e372bd2f14077a39e51577a4353f19",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-MIN-N2-GENERAL-MU-R10",
+        "record_kind": "proof_obligation",
+        "status_justification": "The exact full-interface positivity certificate currently uses the mu=2 tangent double-angle rationalization. No proof for arbitrary mu>1 and no fully physical violating root is known."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-MIN-MU2-R10",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route proves a rigorous n=2, mu=2 local min theorem and exactly refutes a weakened gamma-only proof, while general mu, general n, global min order, and O3a remain open."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

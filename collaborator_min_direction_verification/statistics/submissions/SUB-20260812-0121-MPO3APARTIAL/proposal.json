@@ -1,0 +1,529 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260812-0121-MPO3APARTIAL",
+  "author_agent_id": "root-mpo3a-partial-author",
+  "run_id": "R-20260811T161135Z-multiphase-o3a",
+  "created_at": "2026-08-11T17:21:00Z",
+  "base_blueprint_hash": "sha256:6bc5a75ed24ec0b2b783d67d51106f7fec0bbd6bffd2d69cce5b16603b4b4984",
+  "base_inventory_hash": "sha256:1e83425e2987078a6fb26f14b37fdef6ce26067798abd3a96683a490ff3b4887",
+  "supersedes": null,
+  "summary": "Record independently audited structural closure, the exact multiphase defect law, fixed-n small-contrast uniqueness, finite-contrast properness, and the sharpened interior-singularity frontier while keeping universal multiphase O3a open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-STRUCTURE",
+        "type": "inference",
+        "title": "Switch-zero alignment closes the complete multiphase zero structure",
+        "statement": "The weighted-string domain, strict consecutive-mode quotient theorem, and switch-zero alignment imply the global energy, exact simple-zero, endpoint-phase, and reflection properties in CLM-NGE2-MPO3A-STRUCTURE.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-ZERO-BOUND"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-STRUCTURE",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260811T161135Z-multiphase-o3a/routes/phase_rigidity/derivation.md",
+          "sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-STRUCTURE",
+        "type": "claim",
+        "title": "Structural closure of multiphase self-consistent points",
+        "statement": "For every finite R>1 and n>=2, any bang-bang weight with exactly 2n effective switches all lying in the switching-function zero set has global difference energy K=-2(lambda_{n+1}-lambda_n), endpoint ratios q_L>1 and q_R<-1, and exactly those 2n switches as all interior zeros of F, each simple and ordered by quotient crossings +c,-c,... . Hence every max/min self-consistent point has forced endpoint materials 1/R respectively, forced nodal-cell allocation, no tangencies, inactive zeros, zero intervals or hidden extra zeros, and reflection preserves its sign class.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-STRUCTURE"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-DEFECT",
+        "type": "inference",
+        "title": "Interface-energy balance gives the exact multiphase phase defect",
+        "statement": "The structural theorem and constant-cell endpoint transfer formula imply the exact alternating interface-amplitude defect identity, max-side boundary monotonicity, and the exact failure of the analogous unrestricted min-side monotonicity in CLM-NGE2-MPO3A-DEFECT.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-DEFECT",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260811T161135Z-multiphase-o3a/routes/phase_rigidity/derivation.md",
+          "sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-DEFECT",
+        "type": "claim",
+        "title": "Exact internal phase-defect law and obstruction to the old O3a proof",
+        "statement": "For every finite R>1, n>=2, sign and self-consistent point, with endpoint phases alpha,beta, tau=sqrt(lambda_{n+1}/lambda_n), sigma equal to the inner/outer material ratio, and S the alternating internal interface-amplitude sum defined in the proof package, S=2(lambda_{n+1}-lambda_n)[h_{tau,sigma}(beta)-h_{tau,sigma}(alpha)]. For max, h is strictly decreasing and alpha=beta iff S=0. For min, unrestricted global monotonicity of the same h is false: tau=4/3, sigma=1/100, t=3pi/5 gives h'(t)>0 exactly. The n=1 proof has empty S, whereas n>=2 has no self-consistency equation forcing S=0.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-DEFECT"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-SMALL-CONTRAST",
+        "type": "inference",
+        "title": "A uniform switching-zero map is contractive at fixed n and small contrast",
+        "statement": "L1-to-C1 spectral stability at the constant string, exact simple-zero localization, the structural zero-aligned lemma, and a contraction of the complete switch map imply CLM-NGE2-MPO3A-SMALL-CONTRAST.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-ZERO-BOUND", "CLM-NGE2-MPO3A-STRUCTURE"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-SMALL-CONTRAST",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260811T161135Z-multiphase-o3a/routes/small_contrast_audit/proof.md",
+          "sha256": "sha256:14d37a23aa74fcf032047bf003456505d8ef2b1029d64cabdda7b4ffab8986cf"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-SMALL-CONTRAST",
+        "type": "claim",
+        "title": "Fixed-n small-contrast multiphase O3a uniqueness",
+        "statement": "For every fixed integer n>=2 there exists epsilon_n>0 such that for every 1<R<1+epsilon_n there exists exactly one max-self-consistent and exactly one min-self-consistent bang-bang weight with exactly 2n effective switches. Each of the two weights is reflection invariant a.e. and its ordered switches satisfy x_j+x_{2n+1-j}=1.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-SMALL-CONTRAST"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-PROPERNESS",
+        "type": "inference",
+        "title": "Compactness rules out finite-contrast boundary loss and reduces continuation to interior nondegeneracy",
+        "statement": "L1/C1 compactness, the structural exact-zero theorem, analytic transfer residuals, and fixed-n small-contrast uniqueness imply the properness and conditional continuation theorem CLM-NGE2-MPO3A-PROPERNESS.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": ["HYP-NGE2-DOMAIN", "CLM-NGE2-MPO3A-STRUCTURE", "CLM-NGE2-MPO3A-SMALL-CONTRAST"],
+        "definition_inputs": ["DEF-SL-BOX-ADJ-GAP", "DEF-BANGBANG-SWITCH-COUNT", "DEF-NGE2-MPO3A-SELFCONSISTENCY"],
+        "conclusion": "CLM-NGE2-MPO3A-PROPERNESS",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260811T161135Z-multiphase-o3a/routes/continuation_compactness/compactness_and_continuation.md",
+          "sha256": "sha256:0741d7e385a123756bd3886e000c455b84c37fde4e714a88bb627aee1c7e3b74"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-PROPERNESS",
+        "type": "claim",
+        "title": "Finite-contrast properness and interior-Jacobian continuation reduction",
+        "statement": "For every fixed n>=2, sign e and compact interval 1+eta<=R<=M<infinity, all e-self-consistent 2n-switch points have a uniform positive lower bound on every endpoint and interior cell length, and the complete solution set is compact in the open switch simplex. Its residual G_e(R,x) is analytic. If det D_xG_e is nonzero at every such point for every finite R>1, then there is exactly one e-self-consistent point for every R>1 and it is reflection invariant. Hence any finite-contrast failure of uniqueness must involve an interior singular self-consistent point, not switch collision or endpoint escape.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": ["INF-NGE2-MPO3A-PROPERNESS"],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-JAC-MAX",
+        "type": "obligation",
+        "title": "Universal interior nondegeneracy for max self-consistency",
+        "statement": "Prove an all-solution interior residual-Jacobian nondegeneracy or an equivalent degree/order theorem for the max sign.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "formal_statement": "For every n>=2, R>1, and every max-self-consistent 2n-switch point x, prove det D_xG_max(R,x) is nonzero, or replace this with a theorem that excludes every interior singular component while preserving the properness conclusion.",
+        "discharge_criteria": ["The argument must cover every solution, not only the symmetric branch or sampled parameters.", "It must be exact or rigorously certified and handle both reflection sectors."],
+        "strength_relative_to_target": "strictly_weaker",
+        "target_inputs": ["INF-NGE2-MPO3A-MAX"]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-JAC-MIN",
+        "type": "obligation",
+        "title": "Universal interior nondegeneracy for min self-consistency",
+        "statement": "Prove an all-solution interior residual-Jacobian nondegeneracy or an equivalent degree/order theorem for the min sign.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "formal_statement": "For every n>=2, R>1, and every min-self-consistent 2n-switch point x, prove det D_xG_min(R,x) is nonzero, or replace this with a theorem that excludes every interior singular component while preserving the properness conclusion.",
+        "discharge_criteria": ["The argument must cover every solution, not only the symmetric branch or sampled parameters.", "It must be exact or rigorously certified and cannot use the false unrestricted min-side scalar monotonicity step."],
+        "strength_relative_to_target": "strictly_weaker",
+        "target_inputs": ["INF-NGE2-MPO3A-MIN"]
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-BIFURCATION",
+        "type": "attempt",
+        "title": "Reflection-sector Jacobian and bifurcation route",
+        "statement": "Derive the exact residual Jacobian and search both reflection sectors for an interior singularity or a universal nondegeneracy law.",
+        "status": "partial",
+        "grade": "C",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": ["OBL-NGE2-MPO3A-JAC-MAX", "OBL-NGE2-MPO3A-JAC-MIN"],
+        "method_family": "Exact transfer Jacobian, gap Hessian, reflection block decomposition, and high-precision continuation",
+        "route_key": "mpo3a-bifurcation-blocks",
+        "deliverable_contract": "A universal block-sign theorem or a certified singular point with local bifurcation data.",
+        "falsification_tests": ["Recompute suspected folds by simultaneous high-precision indexed eigenvalue and switch solves."],
+        "expected_bottleneck": "Controlling both reflection blocks at every solution, including disconnected components.",
+        "provenance": {"run_id": "R-20260811T161135Z-multiphase-o3a", "artifact": "runs/R-20260811T161135Z-multiphase-o3a/routes/bifurcation_route/bifurcation_report.md"}
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-SYMMETRIC-RELAY",
+        "type": "attempt",
+        "title": "Symmetric half-interval and relay-injectivity route",
+        "statement": "Reduce the symmetric family to a half-interval indexed transfer system and a three-scalar relay system, then seek global injectivity or a second premise-valid symmetric root.",
+        "status": "partial",
+        "grade": "C",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": ["GOAL-NGE2-MPO3A"],
+        "method_family": "Half-interval phase lifting, three-scalar relay reduction, multistart, and pseudo-arclength continuation",
+        "route_key": "mpo3a-symmetric-relay",
+        "deliverable_contract": "A global relay injectivity theorem or two distinct certified symmetric roots.",
+        "falsification_tests": ["Probe folds, disconnected roots, large contrast degeneration, and failure of P-matrix sufficient conditions."],
+        "expected_bottleneck": "Relay injectivity does not by itself exclude asymmetric self-consistent points.",
+        "provenance": {"run_id": "R-20260811T161135Z-multiphase-o3a", "artifact": "runs/R-20260811T161135Z-multiphase-o3a/routes/symmetric_branch_route/route_report.md"}
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-MPO3A-MAX",
+      "changes": {
+        "statement": "Accepted structural closure, fixed-n small-contrast uniqueness, and finite-contrast properness reduce CLM-NGE2-MPO3A-MAX to an all-solution interior nondegeneracy or equivalent global degree/order theorem; alternatively a certified distinct pair would refute it.",
+        "unresolved_obligations": ["Prove det D_xG_max(R,x)!=0 at every max-self-consistent point for every n>=2 and finite R>1, or supply an equivalent theorem excluding all interior singular components.", "Alternatively certify two distinct premise-complete max-self-consistent points at one finite n,R."]
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "INF-NGE2-MPO3A-MIN",
+      "changes": {
+        "statement": "Accepted structural closure, fixed-n small-contrast uniqueness, and finite-contrast properness reduce CLM-NGE2-MPO3A-MIN to an all-solution interior nondegeneracy or equivalent global degree/order theorem; alternatively a certified distinct pair would refute it.",
+        "unresolved_obligations": ["Prove det D_xG_min(R,x)!=0 at every min-self-consistent point for every n>=2 and finite R>1, or supply an equivalent theorem excluding all interior singular components without the false unrestricted scalar monotonicity step.", "Alternatively certify two distinct premise-complete min-self-consistent points at one finite n,R."]
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-PHASE",
+      "changes": {
+        "status": "partial",
+        "grade": "B",
+        "attempt_status": "partial",
+        "provenance": {"run_id": "R-20260811T161135Z-multiphase-o3a", "artifact": "runs/R-20260811T161135Z-multiphase-o3a/routes/phase_rigidity/route_report.md"}
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-CERT-CEX",
+      "changes": {
+        "status": "partial",
+        "grade": "C",
+        "attempt_status": "partial",
+        "provenance": {"run_id": "R-20260811T161135Z-multiphase-o3a", "artifact": "runs/R-20260811T161135Z-multiphase-o3a/routes/certified_counterexample/route_report.md"}
+      }
+    },
+    {
+      "op": "update_node",
+      "node_id": "ATT-NGE2-MPO3A-SMALLR",
+      "changes": {
+        "status": "partial",
+        "grade": "B",
+        "attempt_status": "partial",
+        "provenance": {"run_id": "R-20260811T161135Z-multiphase-o3a", "artifact": "runs/R-20260811T161135Z-multiphase-o3a/routes/small_contrast_audit/proof.md"}
+      }
+    },
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-STRUCTURE", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-ZERO-BOUND", "target": "INF-NGE2-MPO3A-STRUCTURE", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-STRUCTURE", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-MPO3A-STRUCTURE", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-STRUCTURE", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-STRUCTURE", "target": "CLM-NGE2-MPO3A-STRUCTURE", "role": "inference_input"},
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-DEFECT", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-DEFECT", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-DEFECT", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-DEFECT", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-DEFECT", "target": "CLM-NGE2-MPO3A-DEFECT", "role": "inference_input"},
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-ZERO-BOUND", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-SMALL-CONTRAST", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-SMALL-CONTRAST", "target": "CLM-NGE2-MPO3A-SMALL-CONTRAST", "role": "inference_input"},
+    {"op": "add_edge", "source": "HYP-NGE2-DOMAIN", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-SMALL-CONTRAST", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "premise_input"},
+    {"op": "add_edge", "source": "DEF-SL-BOX-ADJ-GAP", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-BANGBANG-SWITCH-COUNT", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "definition_input"},
+    {"op": "add_edge", "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "target": "INF-NGE2-MPO3A-PROPERNESS", "role": "definition_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-PROPERNESS", "target": "CLM-NGE2-MPO3A-PROPERNESS", "role": "inference_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-MAX", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-SMALL-CONTRAST", "target": "INF-NGE2-MPO3A-MAX", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-PROPERNESS", "target": "INF-NGE2-MPO3A-MAX", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-STRUCTURE", "target": "INF-NGE2-MPO3A-MIN", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-SMALL-CONTRAST", "target": "INF-NGE2-MPO3A-MIN", "role": "premise_input"},
+    {"op": "add_edge", "source": "CLM-NGE2-MPO3A-PROPERNESS", "target": "INF-NGE2-MPO3A-MIN", "role": "premise_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-MAX", "target": "OBL-NGE2-MPO3A-JAC-MAX", "role": "target_input"},
+    {"op": "add_edge", "source": "INF-NGE2-MPO3A-MIN", "target": "OBL-NGE2-MPO3A-JAC-MIN", "role": "target_input"},
+    {"op": "add_edge", "source": "OBL-NGE2-MPO3A-JAC-MAX", "target": "ATT-NGE2-MPO3A-BIFURCATION", "role": "target_input"},
+    {"op": "add_edge", "source": "OBL-NGE2-MPO3A-JAC-MIN", "target": "ATT-NGE2-MPO3A-BIFURCATION", "role": "target_input"},
+    {"op": "add_edge", "source": "GOAL-NGE2-MPO3A", "target": "ATT-NGE2-MPO3A-SYMMETRIC-RELAY", "role": "target_input"}
+  ],
+  "inventory_operations": [
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "MATH-NGE2-MPO3A-SMALLR-20260812",
+        "title": "Fixed-n small-contrast uniqueness for multiphase O3a self-consistency",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-NGE2-MPO3A-SMALL-CONTRAST",
+        "grade": "B",
+        "status": "established",
+        "headline_value": "For every fixed n>=2, max and min 2n-switch self-consistent points are each unique and symmetric for all sufficiently small positive R-1",
+        "scope": "Every fixed integer n>=2, both saturation signs, and 1<R<1+epsilon_n for an n-dependent positive epsilon_n",
+        "primary_artifact": "../runs/R-20260811T161135Z-multiphase-o3a/routes/small_contrast_audit/proof.md",
+        "main_limitation": "No uniform epsilon in n and no uniqueness conclusion for arbitrary finite contrast"
+      }
+    },
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "MATH-NGE2-MPO3A-PROPERNESS-20260812",
+        "title": "Finite-contrast properness and continuation reduction for multiphase O3a",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-NGE2-MPO3A-PROPERNESS",
+        "grade": "B",
+        "status": "established",
+        "headline_value": "Self-consistent cells cannot collide or escape at finite contrast; all-contrast uniqueness reduces to interior residual-Jacobian nondegeneracy",
+        "scope": "Every fixed n>=2 and sign over compact finite-contrast intervals, with a conditional continuation consequence over all finite R>1",
+        "primary_artifact": "../runs/R-20260811T161135Z-multiphase-o3a/routes/continuation_compactness/compactness_and_continuation.md",
+        "main_limitation": "Universal all-solution Jacobian nondegeneracy remains unproved, so the full O3a conjecture remains open"
+      }
+    }
+  ],
+  "write_set": {
+    "existing_nodes": {
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:4db1876ecdcdfe9a295542704f959e143a0bd7b6a32c8039b038b1e49e048fbd",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:ae65cde1c4a931ee6901f405c0f8f4f6adcc490658147736a96658c11c016d09",
+      "ATT-NGE2-MPO3A-PHASE": "semantic-sha256:6fa796dc06ba987e563e018e6cb44640eb4a178d31b7108b2345bee04aa95ebb",
+      "ATT-NGE2-MPO3A-CERT-CEX": "semantic-sha256:065dc0fed03f8679b3d2104a6619291b9173018479d0b36c086253855e2ca7fc",
+      "ATT-NGE2-MPO3A-SMALLR": "semantic-sha256:b6a0343cd3a7698dfed28101e146510336317ff0c291897e76097cb2f3e07935"
+    },
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-STRUCTURE",
+      "CLM-NGE2-MPO3A-STRUCTURE",
+      "INF-NGE2-MPO3A-DEFECT",
+      "CLM-NGE2-MPO3A-DEFECT",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST",
+      "INF-NGE2-MPO3A-PROPERNESS",
+      "CLM-NGE2-MPO3A-PROPERNESS",
+      "OBL-NGE2-MPO3A-JAC-MAX",
+      "OBL-NGE2-MPO3A-JAC-MIN",
+      "ATT-NGE2-MPO3A-BIFURCATION",
+      "ATT-NGE2-MPO3A-SYMMETRIC-RELAY"
+    ],
+    "inventory_rows": {
+      "MATH-NGE2-MPO3A-SMALLR-20260812": null,
+      "MATH-NGE2-MPO3A-PROPERNESS-20260812": null
+    }
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "GOAL-NGE2-MPO3A": "semantic-sha256:664371712a27ce6f709292a05a0ee3887e2306cf37e497e4ea072e1ec8ba8eaa"
+    }
+  },
+  "rationale": {
+    "research_status": "independently_audited_rigorous_partial_result_with_universal_target_open",
+    "quantifier_alignment": "The structural and defect theorems have the full finite-R, all-n self-consistent scope; small-contrast uniqueness has quantifier order for each fixed n there exists epsilon_n; properness is uniform only on compact finite-contrast intervals and its uniqueness consequence is explicitly conditional on universal interior nondegeneracy.",
+    "proof_mechanism": "Switch-zero energy gluing and strict quotient crossings close the exact zero structure. Volterra L1-to-C1 stability and a complete zero-map contraction give local-in-contrast global uniqueness. Sequential L1/C1 compactness rules out cell loss and converts all-contrast continuation into an interior Jacobian problem.",
+    "independence": "The small-contrast proof was independently repaired and audited; a separate agent independently audited phase/defect results; another independent route audited the compactness/properness theorem. Proposal-bound review remains separate.",
+    "computation_policy": "The 1756 root searches, 22 high-precision refinements, branch continuations, and Jacobian samples are non-propagating falsification evidence only. No finite scan is used in a proof or claimed exhaustive.",
+    "novelty_policy": "Novelty is unknown and no priority claim is made.",
+    "scope_boundary": "The universal max, min, and combined O3a claims remain open because no all-solution interior nondegeneracy theorem and no certified multiple-point witness was obtained."
+  },
+  "evidence_refs": [
+    "../runs/R-20260811T161135Z-multiphase-o3a/artifacts/partial_proof_package.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/phase_rigidity/derivation.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/phase_rigidity/audit.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/audits/phase_small_independent_audit.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/small_contrast_audit/proof.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/small_contrast_audit/audit.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/continuation_compactness/compactness_and_continuation.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/bifurcation_route/compactness_audit.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/bifurcation_route/bifurcation_report.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/certified_counterexample/route_report.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/routes/symmetric_branch_route/route_report.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/research_ledger.md",
+    "../runs/R-20260811T161135Z-multiphase-o3a/route_registry.md"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {"node_id": "HYP-NGE2-DOMAIN", "premise_kind": "problem_hypothesis", "scope": "Every finite R>1 and integer n>=2.", "contract_explanation": "The frozen quantifier domain; no asymptotic or finite-grid weakening is introduced."},
+      {"node_id": "DEF-SL-BOX-ADJ-GAP", "premise_kind": "definition_contract", "scope": "Positive L-infinity weighted Dirichlet strings and indexed adjacent eigenvalue gaps.", "contract_explanation": "All transfer, Volterra, Sturm, normalization, and a.e. arguments remain in the canonical model."},
+      {"node_id": "DEF-BANGBANG-SWITCH-COUNT", "premise_kind": "definition_contract", "scope": "Merged positive-length endpoint-valued cells and effective switches.", "contract_explanation": "All switch counts exclude null cells, fixed endpoints, and isolated representative values."},
+      {"node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY", "premise_kind": "definition_contract", "scope": "Exactly 2n effective switches and both saturation signs.", "contract_explanation": "The proof treats values on the finite zero set a.e. and never assumes reflection symmetry."},
+      {"node_id": "CLM-NGE2-ZERO-BOUND", "premise_kind": "established_mathematical_claim", "scope": "Every positive box weight and consecutive indexed modes.", "contract_explanation": "It binds the accepted Sturm interlacing/strict quotient setting; the stronger simplicity and exact-count steps needed here are reproduced in the proof packages."}
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-STRUCTURE",
+        "ordered_steps": [
+          "Fix an arbitrary zero-aligned 2n-switch bang-bang weight and orient/normalize the consecutive modes.",
+          "Differentiate the two cell oscillator energies and use switch-zero alignment to glue their difference across every interface.",
+          "Integrate the glued constant to obtain K=-2(lambda_{n+1}-lambda_n), then read strict derivative dominance at both endpoints and switches.",
+          "Use strict consecutive-mode Wronskian negativity to make v/u decreasing on each u nodal interval and count exactly the crossings +c and -c.",
+          "Differentiate F at every crossing to prove simplicity; compare the 2n-zero set with the 2n effective switches and derive nodal allocation and endpoint sign.",
+          "Apply the two saturation laws to force endpoint materials, and verify reflection equivariance without assuming uniqueness."
+        ],
+        "boundary_cases": ["n=2 has no middle nodal intervals but still has four simple crossings.", "Tangencies, inactive zeros, zero intervals, hidden roots, endpoint phases, and a.e. values at switches are explicitly discharged.", "The proof applies to both material directions and every finite R>1."],
+        "external_results": ["Accepted CLM-NGE2-ZERO-BOUND binds the regular positive-weight Sturm interlacing and quotient setting; the strict crossing details are reproduced."],
+        "proof_package_sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-DEFECT",
+        "ordered_steps": [
+          "Solve both consecutive oscillators on the two node-free endpoint cells and impose the first and last quotient crossings.",
+          "Eliminate endpoint slopes with the structural derivative-square identity and locate alpha,beta in (pi/(tau+1),pi/tau).",
+          "Sum the individual u-mode energy jumps across the internal alternating interfaces to obtain S.",
+          "Substitute the endpoint expressions to obtain S=2Delta[h(beta)-h(alpha)].",
+          "Differentiate h to prove strict decrease for sigma>=1 and evaluate the exact tau=4/3, sigma=1/100, t=3pi/5 min-side derivative sign.",
+          "Compare n=1, where S is empty, with n>=2 and verify that modal defect equality supplies no additional S=0 equation."
+        ],
+        "boundary_cases": ["Both signs and n=2 are explicit.", "The exact min-side derivative example refutes only a proof step, not the uniqueness target.", "Reflection is not used to set S=0, avoiding circularity."],
+        "external_results": [],
+        "proof_package_sha256": "sha256:62e24a1ab1828cb7aea575d3b3d9f92f57a88702605b087a02eabce021022aba",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-SMALL-CONTRAST",
+        "ordered_steps": [
+          "Use the left-shooting Volterra equations, Gronwall estimates, simple indexed roots, and normalization to prove uniform L1-to-C1 Lipschitz dependence of both modes and F near rho=1.",
+          "At rho=1 use strict quotient crossings to locate exactly 2n simple roots in disjoint monotonicity intervals.",
+          "For each of the two initial material phases define the complete selected-zero map on the ordered interval product.",
+          "Bound the L1 distance of two moved-jump weights by (R-1) times switch distance and obtain a contraction for sufficiently small R-1.",
+          "Use the zero-aligned structural theorem to show a fixed point has no extra roots and obeys the full max or min saturation law.",
+          "Force every competing self-consistent point into the same contraction rectangle; conclude one point per sign and derive symmetry by reflection."
+        ],
+        "boundary_cases": ["Quantifier order is for each fixed n there exists epsilon_n; no uniform-in-n or all-R claim is made.", "n=2, both endpoint phases, coalescence, endpoint escape, tangencies, inactive roots, and a.e. representatives are covered.", "The contraction proves existence and global uniqueness in the complete frozen class, not only local uniqueness near a selected branch."],
+        "external_results": ["Accepted CLM-NGE2-ZERO-BOUND supplies the canonical Sturm setting; the proof package expands the Volterra and simple-root estimates."],
+        "proof_package_sha256": "sha256:14d37a23aa74fcf032047bf003456505d8ef2b1029d64cabdda7b4ffab8986cf",
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-NGE2-MPO3A-PROPERNESS",
+        "ordered_steps": [
+          "Assume a sequence of self-consistent points on a compact contrast interval has a collapsing endpoint or interior cell and pass to ordered-switch and contrast limits.",
+          "Merge zero-length cells, use L1 coefficient convergence plus Volterra estimates and simple indexed eigenvalues to obtain C1 mode and switching-function convergence.",
+          "Apply switch-zero energy gluing to the merged limit and the strict quotient theorem to produce exactly 2n distinct simple interior limit zeros.",
+          "Use disjoint monotonicity neighborhoods and C1 convergence; because each approximant has exactly its switches as all zeros, pair every ordered switch with a distinct interior limit root and contradict collapse.",
+          "Deduce closedness and compactness of the complete solution set and analyticity of the residual on the open switch simplex.",
+          "Under universal residual-Jacobian invertibility, use proper local-diffeomorphism covering theory and the small-contrast one-solution fiber to conclude exactly one global branch."
+        ],
+        "boundary_cases": ["Endpoint escape, one or multiple simultaneous collisions, and cells disappearing after a.e. merging are all covered.", "Uniform separation is asserted only on compact finite-contrast intervals, not at R=1 or R=infinity.", "The all-R uniqueness consequence is explicitly conditional on all-solution nondegeneracy."],
+        "external_results": [],
+        "proof_package_sha256": "sha256:0741d7e385a123756bd3886e000c455b84c37fde4e714a88bb627aee1c7e3b74",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {"node_id": "INF-NGE2-MPO3A-MAX", "record_kind": "open_inference", "status_justification": "Boundary-loss and zero-degeneracy mechanisms are discharged, but universal max interior nondegeneracy or a certified multiple-point witness is absent."},
+      {"node_id": "INF-NGE2-MPO3A-MIN", "record_kind": "open_inference", "status_justification": "Boundary-loss and zero-degeneracy mechanisms are discharged, but universal min interior nondegeneracy or a certified multiple-point witness is absent; the old unrestricted scalar monotonicity shortcut is exactly false."},
+      {"node_id": "OBL-NGE2-MPO3A-JAC-MAX", "record_kind": "proof_obligation", "status_justification": "Properness makes all-solution max residual-Jacobian nondegeneracy a sufficient exact bridge; only sampled branches have been tested."},
+      {"node_id": "OBL-NGE2-MPO3A-JAC-MIN", "record_kind": "proof_obligation", "status_justification": "Properness makes all-solution min residual-Jacobian nondegeneracy a sufficient exact bridge; only sampled branches have been tested."},
+      {"node_id": "ATT-NGE2-MPO3A-PHASE", "record_kind": "partial_attempt", "status_justification": "The route proved structural and defect theorems but stopped because the internal alternating defect is not forced to vanish and the min scalar monotonicity extension fails."},
+      {"node_id": "ATT-NGE2-MPO3A-CERT-CEX", "record_kind": "partial_attempt", "status_justification": "A bounded search of 1756 roots plus 22 high-precision collapse calls found no certifiable candidate; every retained sampled-valid root was symmetric, so no interval certificate was invoked."},
+      {"node_id": "ATT-NGE2-MPO3A-SMALLR", "record_kind": "partial_attempt", "status_justification": "The route proved a complete fixed-n small-contrast theorem but supplied no all-contrast continuation invariant."},
+      {"node_id": "ATT-NGE2-MPO3A-BIFURCATION", "record_kind": "partial_attempt", "status_justification": "Exact Jacobian and reflection-sector identities were derived and a suspected fold was disproved numerically, but no universal block-sign theorem or certified singular point was obtained."},
+      {"node_id": "ATT-NGE2-MPO3A-SYMMETRIC-RELAY", "record_kind": "partial_attempt", "status_justification": "Exact symmetric half-interval and relay reductions were derived and no sampled extra root was found; global relay injectivity and asymmetric rigidity remain open."},
+      {"node_id": "GOAL-NGE2-MPO3A", "record_kind": "open_goal", "status_justification": "Neither max nor min universal uniqueness is in trusted closure and no premise-complete counterexample exists; the user's early-stop condition was reached after all declared routes exhausted."}
+    ]
+  }
+}

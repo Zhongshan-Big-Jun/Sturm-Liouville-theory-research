@@ -1,0 +1,169 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260813-0246-MPO3APARACTION-R5-R1",
+  "submission_id": "SUB-20260813-0246-MPO3APARACTION-R5-R1",
+  "proposal_hash": "sha256:1a0be915167f44ee8cf4bf851d58e467a323e7ae3ba8d6bce7cb6574bbf429ed",
+  "validation_hash": "sha256:dbe58cf530b3425d6b175306620e34ffdaed28dc000ec693c3bed901dca53fd5",
+  "reviewer_agent_id": "independent-reviewer-r5",
+  "reviewed_at": "2026-08-12T18:51:00.4041943Z",
+  "verdict": "approve",
+  "decision_summary": "The revision uses new mathematics node IDs, correctly supersedes the changes-requested submission, and matches the assigned proposal hash, valid validation binding, canonical base hashes, candidate Blueprint hash, proof-package hash, and embedded inference-statement binding. Independent reconstruction confirms the parameter-dependent saltation term, event continuity of the signed symplectic pairing, positive cell forcing, full unsimplified partial_mu A_n formula, zero signed action, moving-terminal -H dL sign, action one-form, unit-interval scaling, normalized Feynman-Hellmann density, and db=c da. The prior defects are materially repaired: no sign is inferred for partial_mu A_n from partial_q A_n=0; norm-criticality is biconditional only on a regular mu chart; and c is read as a spectral slope only when da is nonzero. Degenerate tangents retain only the one-form identities. All definition, logic, boundary, adversarial, research-state, protected-node, and graph checks pass, while graphness, curvature, reflection-fiber injectivity, and universal O3a remain open.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "CLM-NGE2-MPO3A-FULL-RELAY",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "INF-NGE2-MPO3A-MAX",
+      "INF-NGE2-MPO3A-MIN",
+      "GOAL-NGE2-MPO3A-CONT2"
+    ],
+    "reasoning": "All four node operations add absent R1 node IDs, and every proposed edge targets a new R1 node. No existing node is updated or deleted and no incoming dependency of a protected node changes. The supersedes field names only the prior rejected transaction and does not mutate its immutable files. Deterministic validation reports protected_node_check.passed=true."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "Premise-complete transverse full-relay trajectories encode indexed common-terminal zeros and relay integrals for every finite R>1, n>=2 and either sign, without assuming symmetry or injectivity.",
+      "scope": "Common-terminal trajectories with mu>1, q>1, simple terminal zeros, and transverse interior relay events; equal norm is imposed only when B=0.",
+      "source_verification": "Canonical established grade-B claim at semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46 in the bound CTX-DEFAULT trusted closure.",
+      "result": "valid",
+      "independent_reasoning": "The R1 proof uses only the relay equations, indexed common terminal conditions, energy and integral definitions furnished by this accepted reduction. It does not import global uniqueness or equal norm."
+    },
+    {
+      "node_id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "The fixed-mu q-Jacobi derivative, terminal energy, reflection map and fixed-point diagnostic are exact on transverse q>1 common-terminal chambers.",
+      "scope": "Fixed-mu q sensitivity eta with exact saltation and simple terminal zeros; no global no-conjugate theorem.",
+      "source_verification": "Canonical established grade-B claim at semantic-sha256:4c11a291f871bf44dab3d4970f8b6457bbacafcac6842ae950bd9729be4d2c0e in the bound trusted closure.",
+      "result": "valid",
+      "independent_reasoning": "The corrected package uses this premise only for comparison with eta and explicitly states that eta=partial_q z does not constrain the independent nu=partial_mu z. No invalid mu-transversality is imported."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "The canonical object is the positive box-constrained weighted Dirichlet string on the unit interval with adjacent indexed eigenvalues lambda_n and lambda_(n+1).",
+      "scope": "Finite R>1, integer n>=2 and unit-interval scaling of the relay trajectory.",
+      "source_verification": "Canonical definition at semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f.",
+      "result": "valid",
+      "independent_reasoning": "The phase indices and rescaling t=Lx independently give a=L^2=lambda_n and b=mu^2L^2=lambda_(n+1), so L sqrt(mu^2-1)=sqrt(b-a) with no normalization error."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Both max/min relay laws use exactly 2n effective switches, with switch values understood a.e. and every interface satisfying S=0.",
+      "scope": "Both saturation signs, arbitrary reflection sector, positive-length cells and transverse interior events.",
+      "source_verification": "Canonical definition at semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366.",
+      "result": "valid",
+      "independent_reasoning": "The saltation cancellation and Feynman-Hellmann interface density use S=0 and are independent of the sign of Delta rho. Point values of rho at switches never enter."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-PARAMETER-ACTION-R1",
+      "premise_ids": [
+        "CLM-NGE2-MPO3A-FULL-RELAY",
+        "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP",
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/parameter_variation_fold/derivation_r1.md",
+      "proof_package_sha256": "sha256:f151a5e61c782449ebfc6e06b70dff55fede00f810023897a94568f4b7646046",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "For h=U^2-mu^2V^2, implicit differentiation of a transverse event gives nu_+=Xi nu_-+a h_mu/d with h_mu=-2mu V^2. Since Xi xi=xi, Xi is symplectic, and omega(xi,a)=-Delta rho h=0 on the event, the extra parameter-surface term contributes no jump to omega(xi,nu).",
+        "Inside a material cell, g_mu=(0,0,0,-2mu rho V). Direct evaluation in omega=dU wedge dP-dV wedge dQ gives d_t omega(xi,nu)=2mu rho V^2. With nu(0)=0 and event continuity this yields -p nu_U(L)+r nu_V(L)=2mu I_V.",
+        "Simple indexed terminal zeros give partial_mu A_n=-nu_U/p+nu_V/r. Eliminating nu_V and using p^2-r^2=1-q^2 gives partial_mu A_n=(1-q^2)nu_U/(p r^2)+2mu I_V/r^2.",
+        "The R1 proof stops correctly: partial_q A_n=0 constrains eta_U=eta_V=0 but gives no condition on nu_U, so no sign, nonvanishing, smoothness or fold conclusion is assigned to partial_mu A_n.",
+        "For the signed Lagrangian, common Dirichlet endpoints give integral P^2=I_U and integral Q^2=mu^2I_V, while 2Phi=rho(U^2-mu^2V^2). Kinetic and potential contributions cancel and the action is zero without equal norm.",
+        "Differentiating zero action along a differentiable sheet cancels paired event terms because the Lagrangian is continuous. Fixed endpoint configurations leave the moving terminal contribution -H dL, and the explicit parameter term is +mu I_V dmu. Thus H dL=mu I_V dmu for H=(1-q^2)/2.",
+        "The integrated energy I_U-mu^2I_V=LH and the regular-chart relation L_mu=mu I_V/H give B=H sqrt(mu^2-1)/mu times d_mu[L sqrt(mu^2-1)]. Because the prefactor is nonzero, B=0 is equivalent to gap criticality only on that regular mu chart.",
+        "Rescaling t=Lx yields a=L^2 and b=mu^2L^2. Separate weighted normalizations give squared modes (L/I_U)U^2 and (L/I_V)V^2. For c=I_U/I_V the Feynman-Hellmann density of db-c da is (L^3/I_V)(U^2-mu^2V^2), which vanishes at every moving interface, proving db=c da.",
+        "When da is nonzero, db/da=c, so a complete root with c=1 has unit spectral slope. When dmu=0, action gives dL=0 and hence da=db=0; the proof retains only the degenerate one-form and does not infer equal norm from automatic gap stationarity or assign a slope.",
+        "Reflection preserves mu, L and c, so the spectral data cannot distinguish a nonfixed reflected pair. The R1 obligation correctly leaves graph order, curvature, reflection-fiber injectivity and certified counterexamples open."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "State order, signed symplectic convention, parameter-dependent surface, fixed-time eta and nu fields, moving terminal times, signed action, regular mu chart, spectral immersion condition da!=0 and separate mode normalizations are explicit and consistent."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Every algebraic sign and transformation independently recomputes. Crucially, the corrected proof retains nu_U in partial_mu A_n and makes no inference from vanishing eta to nu. The action and Feynman-Hellmann routes independently give the same one-form db=c da."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "Finite R>1, all n>=2, both signs and arbitrary reflection sectors are covered only on differentiable premise-complete sheets with transverse events and simple terminal zeros. R=1, infinite contrast, grazing, nonsimple terminal zeros and unresolved chamber boundaries are excluded. Degenerate dmu=0 and da=0 tangents retain only valid one-form statements."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The revision survives the independent eta-versus-nu and degenerate-chart tests that defeated the prior submission. It does not infer a fold, global graphness, curvature, uniqueness, reflection-fiber injectivity or a universal theorem from finite numerical scans."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "OBL-NGE2-MPO3A-SPECTRAL-FRONTIER-R1",
+      "record_kind": "proof_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The exact R1 identities do not establish fixed-mu graph order, eliminate q-Jacobi conjugate points, prove one crossing of c, or distinguish reflected isospectral fibers. Open/D with interval-certified alternative criteria is accurate."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT4-PARAMETER-ACTION-R1",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The route now contains a correct reusable exact reduction but no global order theorem or certified distinct root pair. The 120 fixed-mu scans, 32 retained roots, derivative/event probes, rejected wrong-chamber brackets and optimizer failures remain finite non-propagating discovery evidence. Partial/B is accurate."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "base_blueprint_hash_matches": true,
+    "base_inventory_hash_matches": true,
+    "candidate_blueprint_hash": "sha256:4afda6096bbbd922ad3df42d5f533709690f7e06f73760d1858d2421da16253c",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_node_count": 90,
+    "candidate_edge_count": 181,
+    "independent_validator_passed": true,
+    "read_set_check": {
+      "passed": true,
+      "reasoning": "The current canonical snapshot exactly matches the proposal base hashes. Both premise claims are in the trusted mathematics closure with the declared semantic hashes; definitions also match exactly."
+    },
+    "write_set_check": {
+      "passed": true,
+      "reasoning": "The write set contains exactly four absent R1 node IDs and no inventory rows. All eight typed edges match node-side declarations and target new nodes, preserving acyclicity and protected incoming dependencies."
+    },
+    "trusted_closure_scope": "Only the precisely qualified R1 claim enters trusted closure through the proved R1 inference. The obligation and attempt remain non-truth-bearing; max/min inferences and universal O3a remain open."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "validation_hash_recomputed": "sha256:dbe58cf530b3425d6b175306620e34ffdaed28dc000ec693c3bed901dca53fd5",
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "proof_package_present": true,
+    "proof_package_sha256": "sha256:f151a5e61c782449ebfc6e06b70dff55fede00f810023897a94568f4b7646046",
+    "proof_package_hash_matches": true,
+    "inference_statement_sha256": "sha256:e0e66a925f206c544021062060211f25b3b3ad77ba5cb5c16b895d10a76292f8",
+    "inference_statement_binding_matches": true,
+    "self_audit_present": true,
+    "self_audit_sha256": "sha256:1ef6bc0c9ef57e1f7500cf3d45f1ca5c97d3048fcf5e35054cec99a540dd84c9",
+    "supporting_evidence_refs_present": true,
+    "numerical_evidence_role": "All binary64 branch and sensitivity probes remain bounded discovery data and are not inputs to the proved inference.",
+    "novelty_boundary": "Novelty is explicitly unknown and no priority claim is made."
+  },
+  "findings": [],
+  "required_actions": []
+}

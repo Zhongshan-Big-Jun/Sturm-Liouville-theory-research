@@ -1,0 +1,26 @@
+{
+  "schema_version": "cross-picone-artifact-manifest/v1",
+  "route_id": "MIN-REFL-C2-B",
+  "context_id": "CTX-DEFAULT",
+  "canonical_blueprint_sha256": "sha256:358354060d1429c27b18767092c8a7d481b09f767740f6498eda195513f70dc0",
+  "canonical_inventory_sha256": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "artifacts": [
+    {
+      "path": "runs/R-20260816T034422Z-min-reflection-cont2/routes/cross_picone/report.md",
+      "sha256": "sha256:c66d8f2564a6502e18807f411c41f4214bc5d2bc49789e5e90bfd9993e722879",
+      "role": "route_report"
+    },
+    {
+      "path": "runs/R-20260816T034422Z-min-reflection-cont2/routes/cross_picone/exact_checker.py",
+      "sha256": "sha256:fee96e5ea6f35da087a5b4fe54e78ec8f7e2ab72aa6cc0a9d7b2b41a54244a51",
+      "role": "exact_symbolic_checker"
+    }
+  ],
+  "replay": {
+    "interpreter": "E:/ai_auto_solve/O3a_blueprint_v22_research_20260808/.venv/Scripts/python.exe",
+    "command": "E:/ai_auto_solve/O3a_blueprint_v22_research_20260808/.venv/Scripts/python.exe runs/R-20260816T034422Z-min-reflection-cont2/routes/cross_picone/exact_checker.py",
+    "expected_stdout": "PASS: scalar identity, full-rank event obstruction, and rational sign witnesses"
+  },
+  "computation_scope": "Exact symbolic polynomial identities, matrix ranks, and rational local sign witnesses only; no global-root search or universal numerical inference.",
+  "formalization_status": "not_requested"
+}

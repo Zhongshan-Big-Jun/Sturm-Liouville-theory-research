@@ -1,0 +1,296 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260813-0145-MPO3ASYMPLECTIC-R4",
+  "author_agent_id": "codex-root-r4",
+  "run_id": "R-20260812T165103Z-mpo3a-cont4",
+  "created_at": "2026-08-12T17:49:22.667724Z",
+  "base_blueprint_hash": "sha256:6b7ddfd0832c6109d178b6bf3f3c2a98612404ed77fb7216143aee6a96701d24",
+  "base_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+  "supersedes": null,
+  "summary": "Add an exact signed-symplectic nested-relay lemma, a reflection-pair diagnostic, and a precise no-conjugate-point/global-order obligation while keeping universal multiphase O3a open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "type": "inference",
+        "title": "Symplectic Jacobi and reflection identities for the nested relay map",
+        "statement": "The accepted full-relay reduction, direct Hamiltonian-saltation algebra, homogeneity, symplectic conservation, simple terminal zeros, relay energy, and reflection imply the Jacobi derivative, conjugate-point, and reflected-pair identities in CLM-NGE2-MPO3A-SYMPLECTIC-NESTED.",
+        "status": "proved",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "CLM-NGE2-MPO3A-FULL-RELAY"
+        ],
+        "definition_inputs": [
+          "DEF-SL-BOX-ADJ-GAP",
+          "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+        ],
+        "conclusion": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "proof_status": "proved",
+        "proof_input_eligible": true,
+        "proof_package": {
+          "path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/symplectic_nested_reduction/derivation.md",
+          "sha256": "sha256:b6dc98980a00b8b500e6569ffacdd6f273e50ac0170fd710e9a96a0ad931b878"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "type": "claim",
+        "title": "Exact symplectic nested-relay reduction and reflection diagnostic",
+        "statement": "Fix finite R>1, n>=2, either saturation sign, and a premise-complete transverse full-relay trajectory with parameters (mu,q), q>1, whose indexed zero times coincide at L. Write p=U_t(L), r=V_t(L), A_n=T_U^n-T_V^(n+1), and let eta=partial_q(U,U_t,V,V_t) at fixed time, including exact saltation corrections. Then -p eta_U(L)+r eta_V(L)=0 and partial_q A_n=(1-q^2)eta_U(L)/(p r^2); hence partial_q A_n=0 exactly when the q-Jacobi field vanishes in both terminal position components. Reflection sends q to q_sharp=abs(r)/abs(p), preserves mu, sign, indexed phases, event count and the integral ratio, and satisfies q_sharp^2-1=(q^2-1)/p^2. Its fixed points obey q_sharp=q iff p^2=1 iff r^2=q^2, in which case cellwise relay uniqueness makes the trajectory reflection invariant. These are exact reductions; they do not prove global no-conjugate-points, fixed-mu uniqueness, or universal O3a.",
+        "status": "established",
+        "grade": "B",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "lemma",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-NGE2-MPO3A-SYMPLECTIC-NESTED"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "OBL-NGE2-MPO3A-NO-CONJUGATE",
+        "type": "obligation",
+        "title": "Exclude q-Jacobi conjugate points and close the invariant norm residual",
+        "statement": "Prove a global fixed-mu uniqueness or no-conjugate-point theorem for the common-terminal equation A_n(mu,q)=0 in every premise-complete relay chamber, then prove the reflection-invariant norm residual has exactly one zero across all chamber closures; alternatively certify a distinct reflected root pair.",
+        "formal_statement": "For every finite R>1, n>=2 and max/min sign, show that the q-Jacobi field cannot have eta_U(L)=eta_V(L)=0 at a common indexed terminal point and upgrade the resulting local order to a global one-root theorem for A_n, together with one zero of C_n=log(I_U/I_V); or provide two interval-certified premise-complete reflected roots.",
+        "status": "open",
+        "grade": "D",
+        "mainline": "research",
+        "epistemic_type": "proof_obligation",
+        "context_id": "CTX-DEFAULT",
+        "obligation_status": "open",
+        "target_inputs": [
+          "INF-NGE2-MPO3A-MAX",
+          "INF-NGE2-MPO3A-MIN"
+        ],
+        "discharge_criteria": [
+          "Cover every finite R>1, every n>=2, both saturation signs, all premise-complete relay chambers, and compatible chamber closures.",
+          "Do not infer symmetry from reversibility alone or global uniqueness from a merely local nonzero derivative.",
+          "A counterexample route must certify two distinct complete roots or a singular root with a bifurcation witness, including all terminal, event, positivity, indexing, and equal-integral premises."
+        ],
+        "strength_relative_to_target": "strictly_weaker"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "ATT-NGE2-MPO3A-CONT4-SYMPLECTIC",
+        "type": "attempt",
+        "title": "Symplectic nested-relay and full asymmetric counterexample route",
+        "statement": "Use the signed-symplectic hybrid variational flow and reflection involution to isolate the single q-Jacobi conjugate-point obstruction, while independently searching the unrestricted two-scalar relay system for a premise-complete reflected root pair.",
+        "status": "partial",
+        "grade": "B",
+        "mainline": "research",
+        "epistemic_type": "research_attempt",
+        "context_id": "CTX-DEFAULT",
+        "attempt_status": "partial",
+        "target_inputs": [
+          "GOAL-NGE2-MPO3A-CONT2"
+        ],
+        "method_family": "Signed-symplectic Jacobi fields, reflection involution, nested zero-time residuals, deterministic full-relay multistart, and interval-certificate escalation",
+        "route_key": "mpo3a-cont4-symplectic-nested",
+        "deliverable_contract": "An exact no-conjugate-point/global order theorem, a unique invariant norm-residual zero, a premise-complete certified reflected root pair, or a precise audited stopping condition.",
+        "falsification_tests": [
+          "Check fixed-time versus moving-terminal derivatives and include every saltation correction.",
+          "Do not infer symmetry from the finite observation p^2 approximately 1 on sampled A_n roots.",
+          "Reject small residuals with the wrong 2n event count or failed energy identity.",
+          "Treat finite mu/q caps, failed optimization, and no-found-root cases as non-exclusion."
+        ],
+        "expected_bottleneck": "A global hybrid no-conjugate-point theorem and global one-root count across changing relay chambers; finite scans cannot exclude disconnected reflected pairs.",
+        "provenance": {
+          "run_id": "R-20260812T165103Z-mpo3a-cont4",
+          "artifact": "runs/R-20260812T165103Z-mpo3a-cont4/routes/symplectic_nested_reduction/derivation.md"
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "target": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-BOX-ADJ-GAP",
+      "target": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "target": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "target": "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MAX",
+      "target": "OBL-NGE2-MPO3A-NO-CONJUGATE",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-NGE2-MPO3A-MIN",
+      "target": "OBL-NGE2-MPO3A-NO-CONJUGATE",
+      "role": "target_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "GOAL-NGE2-MPO3A-CONT2",
+      "target": "ATT-NGE2-MPO3A-CONT4-SYMPLECTIC",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "CLM-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "OBL-NGE2-MPO3A-NO-CONJUGATE",
+      "ATT-NGE2-MPO3A-CONT4-SYMPLECTIC"
+    ],
+    "inventory_rows": {}
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "CLM-NGE2-BANGBANG": "semantic-sha256:c2da831e3743218571668231c7f98b188a5a3363ba1fa185baaeb4051d15f893",
+      "CLM-NGE2-ENDPOINT-COUNT": "semantic-sha256:e36784da539e1faab0c3403c33349fccad0ddb77e412e372b6bfeec80a2e4a04",
+      "CLM-NGE2-ENERGY-INVARIANT": "semantic-sha256:cbd00bec041c6bc6e7dbae4fa62b0e2957ea946e1706cf585aa911dc680a9274",
+      "CLM-NGE2-EXACT2N-ALL": "semantic-sha256:aa8c454d1628e7582a8e9a621567ffff115d45521bd653c2e8eccc1445e96fd0",
+      "CLM-NGE2-EXACT2N-MAX": "semantic-sha256:e6d890f47362efbf6a98553beb1089ca48b28e0d6569b55684b9e9e2957e7199",
+      "CLM-NGE2-EXACT2N-MIN": "semantic-sha256:654c34d2c3b5af85b7745290c191b9ea8072b789f70f25ac729b9841433642b5",
+      "CLM-NGE2-EXISTENCE": "semantic-sha256:8de200f175e075d3f237bbe2acd3c31d898098bfef5386734c066851fbf88031",
+      "CLM-NGE2-FINITE-REDUCTION": "semantic-sha256:674fec0c357d4a6a7a54251a7a61a517af50658b5d8dc240781ac64f46367804",
+      "CLM-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:1ec54081b0c277dff94f0532aba097288de980c3ad8b9ee951700e7a547c0aa6",
+      "CLM-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:f609aaf51aeb2ad665699137e140f378a483044d1102d998ffdce539a033f140",
+      "CLM-NGE2-MPO3A-ALL": "semantic-sha256:6f85432e60d0fe1c4e145c18904f7ca1a5afa32aa6c30119540d92339f702666",
+      "CLM-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46",
+      "CLM-NGE2-MPO3A-MAX": "semantic-sha256:0926011d55103057d5641d97d1b4c4d3eeaf308f19a5f6de723a7fb6ebca5f1e",
+      "CLM-NGE2-MPO3A-MIN": "semantic-sha256:b66ad3a2ff5a8c8f56a1d6f48e6c96a72f01e114029c03b5789159dfe68a8d27",
+      "CLM-NGE2-MPO3A-PROPERNESS": "semantic-sha256:b429060dd6662757e95cc783dcb737040dad2920cb3ac9ebc4ed15b13fe43695",
+      "CLM-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:975ece9f6048cbe3c8bde1a68e273c92f23b6f4e6f706523ac42483814793f2d",
+      "CLM-NGE2-MPO3A-STRUCTURE": "semantic-sha256:86658c00dea17604d3571c88e1624edc5cace6cbbd9a7eaf9548d45a8280cb20",
+      "CLM-NGE2-ZERO-BOUND": "semantic-sha256:49bf4cf80c0026e580c61340ba7066bec075da0bb2f7e4ee8a019e981f0acab6",
+      "DEF-BANGBANG-SWITCH-COUNT": "semantic-sha256:98d761a44bd051d9d05fe5cc257ef6491825bc57772a33b460c1ce6f553f8074",
+      "DEF-NGE2-ENDPOINT-NORMING": "semantic-sha256:1d55990ee7d6e25f63744af2bd9c7d47becf0f092ff324002468a65d8fa063fa",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY": "semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366",
+      "DEF-SL-BOX-ADJ-GAP": "semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f",
+      "GOAL-NGE2-MPO3A-CONT2": "semantic-sha256:6b58d8012244525e780e3173bfb8f8cc093b669a84cdcf2f184e63d20e837af4",
+      "HYP-NGE2-DOMAIN": "semantic-sha256:86946c7b3ea4e0ec4424c2d92c3e8fd36144d4cd6c960acbf0a334b7062636b5",
+      "INF-NGE2-BANGBANG": "semantic-sha256:55f5f4418c30f9de4411fff2a6ca89d9a50a53bb0668b47900a74edfe2d817fa",
+      "INF-NGE2-ENDPOINT-COUNT": "semantic-sha256:d58961f2fe741c932cdeb8fc7fb4aecf8ab9bfdbe6eba5b9872b84d4364420f8",
+      "INF-NGE2-ENERGY-INVARIANT": "semantic-sha256:933e45b816610a7a7691efd0cc02c7f6fe015767cad5175a3a1d6bfb70eedfca",
+      "INF-NGE2-EXACT2N-MAX": "semantic-sha256:b6900fc244632b43c808465c3edb3d4c100e923605df3e90165813ad875b93f1",
+      "INF-NGE2-EXACT2N-MIN": "semantic-sha256:d0443a902c7c3f235df6ce70410e8d4399cec1be04558ae96c932ca9e88eec99",
+      "INF-NGE2-EXACT2N-SYNTHESIS": "semantic-sha256:009fdb5815dd109dd562f16fd11cff7a16ec0bd5006edd3da0bd45325bdffc17",
+      "INF-NGE2-EXISTENCE": "semantic-sha256:847752867f67c060dbe8f03af8963e03e1babd34b6a729e38e2d59d6e86e7e01",
+      "INF-NGE2-MAX-ENDPOINT-RIGIDITY": "semantic-sha256:9db2fe8bd5f3649a8b19452ab74dc67ef00c36785b35389181ec9499766c9871",
+      "INF-NGE2-MIN-ENDPOINT-RIGIDITY": "semantic-sha256:77a721a79d2af5c49467c70e82c3d7b7af76b368180f9b4420d2e892d38ef81e",
+      "INF-NGE2-MPO3A-FULL-RELAY": "semantic-sha256:67619802347bd09bf36fad79d71becc6a79a954e930d31ee3f1611864a544934",
+      "INF-NGE2-MPO3A-MAX": "semantic-sha256:0b3aa5267fed0ca75f062d609dcf010d80e213f897b55580564626cd5bcd2896",
+      "INF-NGE2-MPO3A-MIN": "semantic-sha256:60af73ec98a3eddf909cd1ede43120ec24d959e60e7977e458228fc4c3c3da71",
+      "INF-NGE2-MPO3A-PROPERNESS": "semantic-sha256:d698c67222bae7f4efb5f2f61df4c627d79197da50013140237ea487353656e6",
+      "INF-NGE2-MPO3A-SMALL-CONTRAST": "semantic-sha256:9d2ce4f717c8f3ccced987a307b63b6a89a0d88734d5cff822473f0c67b63201",
+      "INF-NGE2-MPO3A-STRUCTURE": "semantic-sha256:c40f12d8da042ca1858f28228c36148e9f77491cfac8500cf99bc4eaa036332a",
+      "INF-NGE2-MPO3A-SYNTHESIS": "semantic-sha256:5423ba44ce6cc2f75f01b40dd96f1886c2ce8d533a342a028966f9cfaa91d349",
+      "INF-NGE2-SYNTHESIS": "semantic-sha256:4a2995f805a72dea4e009ca4388baf814471b46cb262a64c65c3de8e6108ab62",
+      "INF-NGE2-ZERO-BOUND": "semantic-sha256:014a9f5107989699237b856c4dd0fd50ec259eba0d8affa1bba5d801216a5dc4"
+    }
+  },
+  "rationale": {
+    "research_status": "rigorous_partial_result_with_universal_target_open",
+    "scope": "The exact identities reduce one nested derivative to a hybrid conjugate-point obstruction and characterize reflection-fixed common-terminal trajectories. They do not prove global injectivity, symmetry, uniqueness, or the max/min target.",
+    "computation_policy": "The 36-case full-relay scan, selected n=5,6 cases, and 13 common-terminal probes are finite binary64 discovery evidence only. They are not proposed as truth-propagating numerical results and no counterexample candidate survived premise checks.",
+    "novelty_policy": "unknown; no priority claim"
+  },
+  "evidence_refs": [
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/symplectic_nested_reduction/derivation.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/symplectic_nested_reduction/self_audit.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/computation_contract.md",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/full_relay_scan_focused.json",
+    "../runs/R-20260812T165103Z-mpo3a-cont4/routes/full_relay_counterexample/common_terminal_probe.json"
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+        "premise_kind": "established_mathematical_claim",
+        "scope": "All finite R>1, n>=2, both signs, arbitrary asymmetric premise-complete full-relay trajectories and their chamberwise two-scalar residuals.",
+        "contract_explanation": "The new lemma starts only on the accepted common-terminal subset and does not silently add reflection symmetry or norm equality."
+      },
+      {
+        "node_id": "DEF-SL-BOX-ADJ-GAP",
+        "premise_kind": "definition_contract",
+        "scope": "Positive box-constrained weighted Dirichlet strings and consecutive indexed eigenmodes.",
+        "contract_explanation": "The relay state and terminal phases use the canonical weighted-string normalization and indexing."
+      },
+      {
+        "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+        "premise_kind": "definition_contract",
+        "scope": "Max/min saturation, exactly 2n effective switches, and a.e. equivalence.",
+        "contract_explanation": "Reflection preserves the sign class and point values at switches remain irrelevant."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+        "ordered_steps": [
+          "Write the max/min relay as a continuous homogeneous piecewise-quadratic Hamiltonian for omega=dU wedge dP-dV wedge dQ.",
+          "Derive the exact transverse saltation matrix and verify directly that both it and every constant-cell flow preserve omega.",
+          "Use state homogeneity to identify xi=z as a hybrid Jacobi field and pair it symplectically with the fixed-time q-sensitivity eta, yielding -p eta_U(L)+r eta_V(L)=0 at a double Dirichlet terminal point.",
+          "Differentiate the two simple indexed terminal zero times and combine the pairing with p^2-r^2=1-q^2 to obtain partial_q A_n=(1-q^2)eta_U(L)/(p r^2) and the exact conjugate-point equivalence.",
+          "Reflect and positively reorient the terminal trajectory, compute q_sharp=abs(r)/abs(p), show both relay integrals scale by p^(-2), and derive q_sharp^2-1=(q^2-1)/p^2.",
+          "Use q>1 and relay IVP uniqueness to identify the fixed-point conditions q_sharp=q, p^2=1, r^2=q^2 and their reflection-symmetry consequence."
+        ],
+        "boundary_cases": [
+          "Every n>=2 and both signs are covered on premise-complete transverse common-terminal chambers.",
+          "R=1, R=infinity, grazing away from roots, and non-simple terminal zeros are not silently included.",
+          "Fixed-time sensitivities are kept distinct from moving terminal-time derivatives.",
+          "Reversibility is not promoted to uniqueness, and local nondegeneracy is not promoted to a global root count.",
+          "The finite computations motivating the route are not used in the proof."
+        ],
+        "external_results": [],
+        "proof_package_sha256": "sha256:b6dc98980a00b8b500e6569ffacdd6f273e50ac0170fd710e9a96a0ad931b878",
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "OBL-NGE2-MPO3A-NO-CONJUGATE",
+        "record_kind": "proof_obligation",
+        "status_justification": "The exact derivative formula isolates the q-Jacobi conjugate point, but no global no-conjugate-point theorem, all-chamber order theorem, or unique norm-residual zero is proved. The obligation is strictly weaker than the max/min synthesis only when both required clauses are discharged."
+      },
+      {
+        "node_id": "ATT-NGE2-MPO3A-CONT4-SYMPLECTIC",
+        "record_kind": "partial_attempt",
+        "status_justification": "The route produced a proved exact partial lemma and finite non-certifying searches with no distinct reflected pair. Universal O3a and both branch inferences remain open."
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

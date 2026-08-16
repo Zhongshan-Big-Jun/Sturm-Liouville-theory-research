@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-20260813-0145-MPO3ASYMPLECTIC-R4",
+  "submission_id": "SUB-20260813-0145-MPO3ASYMPLECTIC-R4",
+  "proposal_hash": "sha256:fb107aa0453e6d06900c0f136bbc6e1ec0af0a71ffb1d59bdb4f171472bc25da",
+  "validation_hash": "sha256:50f92156cb2a5aaa13ff575dfc138bbacb62f16b77c7f0ec5736806edddbb895",
+  "reviewer_agent_id": "independent-reviewer-r4",
+  "reviewed_at": "2026-08-12T18:00:28.6734117Z",
+  "verdict": "approve",
+  "decision_summary": "The assigned proposal and validation hashes match exactly, validation.valid is true and binds the proposal, and the canonical Blueprint and inventory remain at the proposal base hashes. I independently reconstructed the signed-Hamiltonian flow, transverse saltation matrix, homogeneous Jacobi field, fixed-time q-sensitivity, moving zero-time derivatives, terminal energy sign, reflection normalization and involution, and the fixed-point symmetry consequence. The claimed derivative and reflection identities follow with the stated chamberwise and transverse scope. The proof package hash and embedded inference-statement binding match, all four mathematics audits pass, no protected node or incoming protected dependency changes, the graph and research-state contracts are sound, and the universal no-conjugate-point, global-order, and O3a claims remain explicitly open.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "CLM-NGE2-MPO3A-FULL-RELAY",
+      "DEF-SL-BOX-ADJ-GAP",
+      "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "INF-NGE2-MPO3A-MAX",
+      "INF-NGE2-MPO3A-MIN",
+      "GOAL-NGE2-MPO3A-CONT2"
+    ],
+    "reasoning": "All four node operations add new IDs, all seven edge operations target new nodes, and no operation updates, deletes, or adds an incoming dependency to an existing protected node. Existing reliable claims and definitions are used only as upstream inputs. Deterministic validation also reports protected_node_check.passed=true."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "CLM-NGE2-MPO3A-FULL-RELAY",
+      "premise_kind": "established_mathematical_claim",
+      "exact_contract": "For every finite R>1, n>=2 and either sign, complete self-consistent points are exactly the premise-complete full-relay roots with mu>1, q>0, indexed terminal phases and equal relay integrals; complete roots have q>1 and exactly 2n simple interior relay events, and the chamberwise residual is (A_n,B_n).",
+      "scope": "The new proof uses only a transverse common-terminal relay trajectory with fixed mu and q>1. Equal integrals are not needed for the Jacobi identity; when invoked for complete roots, they are preserved by reflection.",
+      "source_verification": "Canonical established grade-B claim at semantic-sha256:59581f99dcf540ddca1c9ec94818da1568b7eaebdce0f06b41fac8b81a3d2a46, present in the trusted CTX-DEFAULT mathematics closure. Its accepted proof package hash was also confirmed as sha256:0e6f919fa94e5f2a3c1c90ee825916346289d0c2c0f5250315a1a7e17da6679f.",
+      "result": "valid",
+      "independent_reasoning": "The proposal does not import uniqueness or symmetry from this premise. It retains mu>1, fixed finite R, both sign laws, indexed simple terminal zeros, transversality of interior events, and the union-of-chambers limitation."
+    },
+    {
+      "node_id": "DEF-SL-BOX-ADJ-GAP",
+      "premise_kind": "definition_contract",
+      "exact_contract": "The model is the regular weighted Dirichlet string -y''=lambda rho y on (0,1), with 1<=rho<=R a.e. and the adjacent indexed gap D_n=lambda_(n+1)-lambda_n.",
+      "scope": "Finite R>1 and consecutive indices n,n+1 with n>=2.",
+      "source_verification": "Canonical definition at semantic-sha256:c6ee9a0ef59b085763d3be78055528f0bf910eb75698f61b04d0ae3e01f8b13f.",
+      "result": "valid",
+      "independent_reasoning": "The relay scaling, mode indices, endpoint phases and weighted square integrals remain in the canonical model; no alternate boundary condition, normalization or spectral ordering is introduced."
+    },
+    {
+      "node_id": "DEF-NGE2-MPO3A-SELFCONSISTENCY",
+      "premise_kind": "definition_contract",
+      "exact_contract": "Max/min self-consistency uses exactly 2n effective switches and the corresponding a.e. saturation law determined by F=lambda_n u_n^2-lambda_(n+1)u_(n+1)^2; switch-point representatives are irrelevant.",
+      "scope": "Both max and min signs, arbitrary possibly asymmetric points, positive-length cells, and a.e. equality.",
+      "source_verification": "Canonical definition at semantic-sha256:861dabf5b917094121f0525e49e5e3942199266698b821b0ed566a2d6a785366.",
+      "result": "valid",
+      "independent_reasoning": "The signed relay Hamiltonian treats the two saturation laws by reversing the two slopes of Phi. Every algebraic identity is independent of the sign of Delta rho, and reflection preserves S, the sign law, the event count and a.e. switch values."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-NGE2-MPO3A-SYMPLECTIC-NESTED",
+      "premise_ids": [
+        "CLM-NGE2-MPO3A-FULL-RELAY"
+      ],
+      "definition_ids": [
+        "DEF-SL-BOX-ADJ-GAP",
+        "DEF-NGE2-MPO3A-SELFCONSISTENCY"
+      ],
+      "proof_package_path": "../runs/R-20260812T165103Z-mpo3a-cont4/routes/symplectic_nested_reduction/derivation.md",
+      "proof_package_sha256": "sha256:b6dc98980a00b8b500e6569ffacdd6f273e50ac0170fd710e9a96a0ad931b878",
+      "result": "valid",
+      "ordered_step_reconstruction": [
+        "With z=(U,P,V,Q) and omega=dU wedge dP-dV wedge dQ, the convention i_(X_H)omega=dH applied to H=(P^2-Q^2)/2+Phi(U^2-mu^2V^2) gives U_t=P, P_t=-rho U, V_t=Q, Q_t=-mu^2 rho V for either relay sign.",
+        "At a transverse switch, a=f_+-f_-=(0,-Delta rho U,0,-mu^2 Delta rho V) and n=grad S=(2U,0,-2mu^2V,0). For the signed symplectic matrix Omega, Omega a=-(Delta rho/2)n. Expanding Xi=I+a n^T/(n^T f_-) therefore gives Xi^T Omega Xi=Omega exactly; constant-cell Hamiltonian flows are symplectic as well.",
+        "The vector field and switching surface are homogeneous. Differentiating common positive scaling of both initial slopes yields the exact hybrid Jacobi field xi=z; at each switch n^T xi=2S=0, so the saltation update agrees with xi=z.",
+        "For eta=partial_q z at fixed mu and fixed physical time, eta(0)=(0,0,0,1), whereas xi(0)=(0,1,0,q). Their signed symplectic pairing is zero initially and hence at L. Since xi(L)=(0,p,0,r), this gives -p eta_U(L)+r eta_V(L)=0.",
+        "Simple indexed terminal zeros give the moving-endpoint formulas partial_q T_U^n=-eta_U(L)/p and partial_q T_V^(n+1)=-eta_V(L)/r. Conservation of twice H from the initial to the common terminal point gives p^2-r^2=1-q^2 with the stated sign.",
+        "Combining the preceding identities gives partial_q A_n=(p^2-r^2)eta_U/(p r^2)=(1-q^2)eta_U/(p r^2). Because q>1 and p,r are nonzero, this vanishes exactly when both terminal position components of eta vanish.",
+        "Time reversal followed by the common magnitude normalization 1/abs(p), with independent harmless orientation signs, gives U_sharp=-sign(p)U(L-t)/abs(p), V_sharp=-sign(r)V(L-t)/abs(p), and q_sharp=abs(r)/abs(p). It preserves mu, sign law, indexed phases, reversed event list, and multiplies both relay integrals by p^(-2).",
+        "The energy identity gives q_sharp^2-1=(q^2-1)/p^2. Applying the same transformation twice recovers q and the normalized trajectory, so it is an involution. Since q>1, q_sharp=q iff p^2=1 iff r^2=q^2. At such a fixed point the reflected IVP has the same oriented initial data and, by the accepted cellwise uniqueness through transverse events, coincides with the original trajectory."
+      ],
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The state order, signed symplectic form, Hamiltonian convention, relay surface, fixed-time sensitivity, moving terminal derivatives, indexed zero times, common reflection scale and independent orientation signs are mutually consistent. The terminal common zero is not counted as an interior relay event."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Every nontrivial implication was independently recomputed. In particular Omega a=-(Delta rho/2)grad S makes the saltation update symplectic; the terminal pairing has signs -p eta_U+r eta_V; and the energy sign is p^2-r^2=1-q^2, yielding the displayed denominator p r^2 without a missing terminal-time term."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The proof covers every n>=2, finite R>1 and both relay signs on premise-complete chambers with transverse interior events and simple indexed terminal zeros. It correctly excludes R=1, infinite contrast, grazing/nontransverse chamber boundaries, non-simple terminal zeros, and any claim beyond fixed-mu chamberwise differentiability."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The proof does not infer global uniqueness from local nondegeneracy, symmetry from reversibility alone, or a universal theorem from finite scans. Section 5's informal completion route is not truth-propagating; the proposed obligation explicitly requires upgrading local no-conjugate information to a global one-root theorem across all chambers and closures before using reflection."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "OBL-NGE2-MPO3A-NO-CONJUGATE",
+      "record_kind": "proof_obligation",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The exact derivative identity isolates a necessary local obstruction, but neither absence of q-Jacobi terminal conjugacy, nor global fixed-mu root order across chamber closures, nor uniqueness of the reflection-invariant norm residual has been proved. The open/D label and explicit global-or-certified-pair discharge criteria prevent accidental promotion."
+    },
+    {
+      "node_id": "ATT-NGE2-MPO3A-CONT4-SYMPLECTIC",
+      "record_kind": "partial_attempt",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The route produced the exact proved symplectic/reflection lemma and a useful counterexample diagnostic, while the 36-case binary64 scan, selected n=5,6 scans and 13 common-terminal probes remain finite discovery evidence with no interval-certified distinct pair. Partial/B accurately records reusable progress without resolving max, min or universal O3a."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": [],
+    "duplicate_new_node_ids": [],
+    "base_blueprint_hash_matches": true,
+    "base_inventory_hash_matches": true,
+    "candidate_blueprint_hash": "sha256:2167670c1a75fe711263b9b7daa2f49f309a3d70117fb65c16b4df8c9ffc6c17",
+    "candidate_inventory_hash": "sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f",
+    "candidate_node_count": 86,
+    "candidate_edge_count": 173,
+    "independent_validator_passed": true,
+    "read_set_check": {
+      "passed": true,
+      "reasoning": "A bound snapshot immediately before review writing still equals blueprint sha256:6b7ddfd0832c6109d178b6bf3f3c2a98612404ed77fb7216143aee6a96701d24 and inventory sha256:b6286574edbcb70ad22e5c6758a81f00dd01572c0764b8816be23cb6b166fb6f. The three actual proof inputs have the exact semantic hashes declared in the proposal and are trusted claims or definitions."
+    },
+    "write_set_check": {
+      "passed": true,
+      "reasoning": "The write set contains exactly four absent new node IDs and no inventory rows. All seven typed edges agree with their node-side input declarations and point into new nodes, so the proposal adds no cycle or protected incoming dependency."
+    },
+    "trusted_closure_scope": "Only CLM-NGE2-MPO3A-SYMPLECTIC-NESTED enters the mathematics closure through the single proved inference. The new obligation and attempt are non-truth-bearing, while INF-NGE2-MPO3A-MAX, INF-NGE2-MPO3A-MIN and universal O3a remain open."
+  },
+  "artifact_checks": {
+    "proposal_hash_matches_assignment": true,
+    "validation_hash_matches_assignment": true,
+    "validation_binds_proposal": true,
+    "validation_valid": true,
+    "proof_package_present": true,
+    "proof_package_sha256": "sha256:b6dc98980a00b8b500e6569ffacdd6f273e50ac0170fd710e9a96a0ad931b878",
+    "proof_package_hash_matches": true,
+    "inference_statement_sha256": "sha256:522848b2fcfb6bde8e248864259ae9f8a2d080fbbf74df3f608c21d3587d9181",
+    "inference_statement_binding_matches": true,
+    "supporting_evidence_refs_present": true,
+    "numerical_evidence_role": "The full-relay scans and common-terminal probes are finite IEEE-754 discovery data only. No floating root, sampled p^2 approximately 1 observation, no-found-root case, or optimizer outcome supports the proved inference or propagates truth.",
+    "novelty_boundary": "Novelty is explicitly unknown and no priority claim is made."
+  },
+  "findings": [],
+  "required_actions": []
+}

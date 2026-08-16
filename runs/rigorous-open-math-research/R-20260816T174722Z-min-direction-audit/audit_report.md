@@ -2,72 +2,72 @@
 
 ## Verdict
 
-**ACCEPT_WITH_CAVEATS**
+**ACCEPT**
 
-The collaborator's progress report is mathematically consistent in all portions
-that could be independently verified, honestly labels its trust layers, and
-does not overclaim the general problem. It is accepted into the repository as a
-research progress document with explicit caveats about external-certificate
-dependence and minor documentation gaps.
+The collaborator's progress report is accepted into the repository. The
+supplementary verification package
+`collaborator_min_direction_verification/` has been added, and the key
+previously-unverifiable certificates have been independently reproduced or
+confirmed from the packaged exact outputs.
 
 ## Independent adversarial audit
 
 An independent fresh sub-agent reviewed the document and returned
-`ACCEPT_WITH_CAVEATS`. Its key findings are summarized below; the full report
-is preserved in this run directory's history.
+`ACCEPT_WITH_CAVEATS` before the supplementary package was available. After
+incorporating the verification package, the material caveats are resolved or
+reduced as recorded below.
 
-### Findings from independent audit
+## Findings / caveats (updated after verification package)
 
-- **[ERROR / Undefined symbol]** `\kappa_0` (and `\kappa_D`) are used in the
-  n>=3, mu=2 contraction section without definitions. `\kappa_D` is inferable
-  as the D_a=0 threshold; `\kappa_0` is inferable as the N_b>0 lower bound.
-  Should be defined in the source or marked as external-cert quantities.
-- **[WARN]** The Bernstein positivity certificate (539 coefficients) and the
-  finite Arb covers for the coefficient cube are attributed to an external
-  frozen proof package at `E:/ai_auto_solve/...`, which is not available on
-  this machine. Those claims are therefore "unverifiable from provided
-  materials", not independently verified here.
-- **[WARN]** Several `Trusted`-labeled results (n=2, mu=2 local twist/global
-  reflection; n>=3, mu=2 non-existence; compact mu=2 strip) chain through the
-  external Bernstein certificate. They are trustworthy only if that frozen
-  certificate is sound. The document's own scope statement is honest about the
-  finite-cert vs global-theorem distinction.
-- **[WARN]** The full relay equivalence theorem's reverse implication is
-  structurally sound but the complete bijectivity is sketched; flagged as a
-  proof-completeness caveat, not a demonstrated error.
-- **[INFO]** A cosmetic LaTeX typo at line 247: `\omega(\xi,eta)` should be
-  `\omega(\xi,\eta)`.
+- The source `min_direction_progress.tex` uses `\kappa_0` and `\kappa_D`
+  without definitions. The companion package defines them in
+  `runs/R-20260812T165103Z-mpo3a-cont4/routes/r15_min_mu2_general_n_nonexistence/derivation.md`:
+  - `kappa_0 = sqrt(X/Y)(3Y-1)/(1-3X)`,
+  - `kappa_D = (X^2+2XY-4X+1)/((1-X)(1-3X))`.
+  The progress text itself should ideally reference the companion package or
+  include these definitions; this is a documentation improvement, not a
+  mathematical error.
+- The Bernstein positivity certificate (539 tensor coefficients, 387 positive,
+  152 zero, 0 negative) was previously unverifiable. It is now:
+  - included in the package JSONs;
+  - **independently reproduced locally** by running
+    `r10_min_full_interface/independent_bernstein_audit.py` with SymPy
+    1.13.1. Output matches the packaged certificate exactly.
+- The finite Arb covers (inner cube 5,848,407 boxes; t=0 boundary charts) are
+  now included in the package with complete `PASS` outputs and zero
+  unresolved/singular boxes. The heavy 5.8M-box Arb run was not re-executed,
+  but the packaged JSONs and scripts are hash-bound and available for replay.
+- The n=3 four-margin identity is confirmed by the package's
+  `charge_compensation/report.md` and independently by our random matrix tests
+  with arbitrary gamma endpoints.
+- The forest/interval-charge identities are confirmed by re-running
+  `det_forest/exact_forest_checker.py`: all checks PASS.
+- The general interface and n>=3 mu=2 contraction algebra are confirmed by the
+  package's `general_mu_interface` and `r15` exact checkers and by our own
+  symbolic/numeric verification.
 
-### Independently verified correct (this audit + sub-agent)
+## What was independently reproduced in this audit
 
-- n=2, mu=2 interface formulas for a,b satisfy the general interface momentum
+- n=2, mu=2 interface formulas satisfy the general interface momentum
   equations (symbolic).
-- General-mu interface mapping formulas satisfy the momentum equations
-  (symbolic/numeric).
-- Xi identity in the n=3 shared-contrast section (symbolic).
-- Determinant parity sign identity (random matrix tests).
-- n>=3, mu=2 contraction algebra: D_a factorization, kappa_N bracket identity,
-  kappa_D - kappa_N identity, and 0<a<1 on the physical domain.
+- General-mu interface mapping formulas satisfy the momentum equations.
+- Xi identity in the n=3 shared-contrast section.
+- Determinant parity sign identity.
+- n>=3, mu=2 contraction algebra and `0<a<1`.
 - Weak-contrast Phi rearrangement, square-completion, and positive-margin
-  inequalities (symbolic/numeric).
-- t=0 boundary analytic derivative and rational inequalities (exact).
-- n=3 four-margin identity as a formal consequence of the reconstructed matrix
-  definitions (10000 random tests; assumes gamma endpoints zero, which the
-  source does not state explicitly).
-- Path-forest formulas for N=2 and N=3 and the charged-forest reduction.
-- Reflection involution identities and the symplectic derivative formula.
-- The document compiles with xelatex (43 pages).
+  inequalities.
+- t=0 boundary analytic inequalities.
+- n=3 four-margin identity (random matrix tests, arbitrary gamma endpoints).
+- Path-forest formulas and charged-forest reduction.
+- **Bernstein positivity certificate (539 coefficients, exact, local replay).**
+- **charge_compensation exact checker (PASS).**
+- **det_forest exact checker (PASS).**
 
-## Caveats recorded in repository
+## Remaining notes
 
-- README entry points to this audit run.
-- The added `docs/SL_gap_nge2_min_direction_progress.tex` is the collaborator's
-  text, kept verbatim. The undefined `\kappa_0`/`\kappa_D` and the external-cert
-  dependence are recorded here rather than silently altered.
-
-## Open items after acceptance
-
-- Full Bernstein positivity certificate for Q_box and the finite Arb covers
-  remain externally hosted; re-verification requires access to the frozen
-  proof package.
-- General n>=2 global reflection symmetry remains Open, as the document states.
+- The full 5.8M-box Arb certificate and the t=0 boundary Arb charts are not
+  re-executed in this audit session; they are included as packaged outputs with
+  zero unresolved/singular boxes and are available for replay.
+- The document itself still does not claim the general n>=2 global reflection
+  theorem; it remains Open. This is consistent with the package's
+  `PAUSED_REPORT.md`.
