@@ -20,6 +20,22 @@
 7. 从论文学到新方法或在研究中发现新工具时, 实时更新 `tools/` 工具库: 新建 `tools/<slug>.md` (含解析与适用范围), 更新 `tools/README.md` 索引, 并在本文件会话记录中登记.
 8. **数值检验不得作为结果呈现.** 整理文档 (docs/*.tex, tools/*.md, run 工件) 时, 必须把数值部分与严格证明部分区分开来并显式标注: 严格证明用 ``严格证明``/``定理已证``/``STRICT`` 标签; 数值证据用 ``数值证据``/``数值验证 (精度)``/``EVIDENCE`` 标签且注明不构成证明; 猜想/开放必须标 ``猜想``/``开放``. 未完成严格证明的断言不得称为``已解决``.
 
+## 注意事项 (Notes for future agents)
+
+- **本文件保持精简**: 完整历史会话日志在 `state/AGENTS_SESSION_LOG.md`; 需要归档时用
+  `scripts/split_agents_log.py --agents AGENTS.md --archive state/AGENTS_SESSION_LOG.md`.
+- **runs/misc 归档**: 使用 `scripts/archive_old_runs.py` (默认 dry-run, `--apply` 才执行);
+  策略说明见 `docs/archive-policy.md`.
+- **未跟踪临时脚本**: `scripts/_tmp_p1_bounded.py`、`scripts/_tmp_p1_bounded2.py` 等
+  `_tmp_*` 文件是临时探索产物, 不属于正式工件; 提交前清理或加入 `.gitignore`, 不要纳入
+  正式研究提交.
+- **远程推送顺序**: `project.json` 配置 `git_sync.push_order = ["origin", "fork"]`;
+  先 push `Zhongshan-Big-Jun/Sturm-Liouville-theory-research`, 再 push
+  `xsoc1/Sturm-Liouville-theory-research`.
+- **插件仓库注意事项**: 见 `_xsoc1_work/AGENTS.md` (Codex 父仓库) 与
+  `C:\Users\HuangZY\.dsh\math-research-dsh\AGENTS.md` (DSH 适配仓库) 的
+  "Notes for future agents" 小节.
+
 ## 会话记录
 
 - 完整历史会话日志: `state/AGENTS_SESSION_LOG.md` (由 `scripts/split_agents_log.py` 维护, 本文件只保留指针与近期摘要).
