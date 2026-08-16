@@ -3264,3 +3264,5 @@
 - 远程同步: 本地已提交 cdc75cf, 5e23353, 72d0b0b, 34b2b1b; push origin/fork 因 github.com 连接失败 (proxy/网络) 未完成, 已登记 activity ACT-20260816-026, 待网络恢复后重试.
 
 - DensBC O1 已派发后台求解子代理 (0f421207), run root R-20260816T000000Z-densbc-o1; 本轮 P1 尝试未闭合, 已记录 log-correction 假设.
+
+- DensBC O1 后台求解完成 (R-20260816T000000Z-densbc-o1): RIGOROUS_PARTIAL_RESULT, 新增 STRICT 定理 1-5/命题 6, 精确剩余核 O1', 已摄入索引.

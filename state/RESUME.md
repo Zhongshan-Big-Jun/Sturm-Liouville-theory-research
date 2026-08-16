@@ -25,7 +25,7 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 - Handoff: untracked/ignored files investigated and committed; AGENTS session log split to state/AGENTS_SESSION_LOG.md.
 - Sync: old run-manifest formalization decisions added; DensBC whiteboard added; indexes/state updated; origin+fork pushed to 7e48bc6.
 - P1/M3: NOT closed. Bounded search confirms truncated integer-power seed has no non-degenerate root; continuation data strongly supports K(u) = K0 + K2 u^2 + L u^2 log u (K0 ~ 3.4561, K2 ~ 2.9254, L ~ 0.0477, corr ~ 0.99999). Next: matched-asymptotics/log-correction derivation.
-- DensBC O1: task packet Q-20260816-densbc-o1-A1B2C3D4 dispatched to background solver subagent 0f421207 (run R-20260816T000000Z-densbc-o1); awaiting final artifacts.
+- DensBC O1: task packet Q-20260816-densbc-o1-A1B2C3D4 dispatched to background solver subagent 0f421207; run R-20260816T000000Z-densbc-o1 INGESTED as RIGOROUS_PARTIAL_RESULT with new STRICT structure theorems (projection-density, obstruction system, run/first-obstruction, diagonal reduction, finite-rank structure) and reduced core O1'.
 
 ## Read these files first
 1. `docs/SL_gap_n1_global_goodroot_proof.pdf` (gap (d) closure, 6 pp, STRICT, 2026-08-12; INF minimizer is a sign-consistent good root; boundary exclusion + FH + structure lemma; closes INF side for all R>1)
