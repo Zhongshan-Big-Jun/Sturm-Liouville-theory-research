@@ -82,6 +82,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 
 - `SL/DensBC_O1_Scaffold.lean` -- DensBC O1 Theorems 2-5 + O1' open core placeholders (`sorry`, `-- SCAFFOLD`).
 - `SL/LeftDefDensity_Scaffold.lean` -- left-definite density L1'/L1''/L2/L3/L4/L5 + O1'LD open core placeholders (`sorry`, `-- SCAFFOLD`).
+- `SL/MinDirectionAudit_Scaffold.lean` -- min-direction audit accepted-claims placeholder (`sorry`, `-- SCAFFOLD`).
 - See `formalization_progress.md` for the scaffold register.
 
 ## 3. 诚实说明

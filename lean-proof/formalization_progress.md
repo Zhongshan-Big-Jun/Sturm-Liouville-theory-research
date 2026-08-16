@@ -26,3 +26,8 @@ intended statements.
 Scaffold files contain `-- SCAFFOLD` headers and `sorry`; they are never
 reported as `FORMALLY_VERIFIED`.  They must be replaced by real proofs or
 superseded before a completion label is used.
+
+### Min-direction audit (run R-20260816T174722Z-min-direction-audit)
+
+- Scaffold: `SL/MinDirectionAudit_Scaffold.lean` -- placeholder for accepted claims.
+- Status: audit accepted with caveats; no full formalization yet.
