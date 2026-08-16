@@ -147,43 +147,61 @@ criterion is:
         (membership in V), with w != 0.
 This is NOT a purely finite-rank condition in general: both (a) and (b) depend
 on the infinite moment data a^{(j)}_k = <v_j, x^k>_H and on the realization
-(moment problem) structure of H.  It IS finite/structured when:
-  - every representer v_j is a polynomial (then a^{(j)}_k has finite support and
-    N, hence the run/free-base structure, is finite to determine), AND
-  - the moment-representability + membership step is finite-rank in H
+(moment problem) structure of H.  It IS finite/structured when the combined
+condition holds:
+  - the membership equations <w,v_j> = 0 are finite linear equations in the
+    moments M_0,...,M_d (e.g. every v_j is a polynomial of degree <= d AND the
+    moment matrix <x^i,x^k>_H has banded/diagonal structure, so that
+    <v_j,x^k> = sum_i \bar c_i <x^i,x^k> is finitely supported in k), so that
+    N = { n : <v_j,p_n> = 0 for all j } is determined by finitely many data
     (e.g. the diagonal/coordinate case, where it is H_beta summability).
+  AUDIT CORRECTION: "v_j a polynomial" ALONE does NOT make the problem finite in
+  a general H.  Even for a polynomial representer, a^{(j)}_k = <v_j,x^k> need not
+  be finitely supported (it equals sum_i \bar c_i <x^i,x^k>, which can be
+  nonzero for all k), and determining which p_n lie in V requires infinitely many
+  values <v_j,x^k>.  Polynomial representers make the membership EQUATION a
+  finite moment equation, but do NOT make the kept set N finite to determine
+  unless the moment matrix is banded/diagonal.
 
 Proof.  (a) The obstruction space is characterized by Theorems 2-3.  The "free
 base parameter realized" step is exactly: find nonzero w in H with <w,x^k> = m_k
 and <w,v_j>=0.  This is a moment problem / linear feasibility in H; in a general
 H it is not determined by finitely many moments or finitely many representer
-moments.  (b) If all v_j are polynomials of max degree d, then N = {n : p_n
-orthogonal to a finite-dimensional polynomial space}, a finitely-presented set,
-and the run/free-base data is finite; the realizability step is the only
-remaining (possibly infinite) part.  qed
+moments.  (b) When the membership equations are finite moment equations (all v_j
+polynomials, degree <= d), <w,v_j> = sum_{i<=d} \bar c^{(j)}_i M_i(w) = 0 becomes
+a finite linear system in M_0,...,M_d; but the kept set N is determined by
+<v_j,p_n> = sum_{i<=d} \bar c^{(j)}_i a^{(i)}_{?} for all n, requiring the values
+<v_j,x^k> for all k, which is finite data only under a banded/diagonal-moment
+assumption.  Thus the honest sufficient condition for full finiteness is the
+combined one above (diagonal/banded is the clean example).  qed
 
 This RESOLVES the packet's ambiguity: the answer is a structured linear system in
 M_k with a genuine moment-problem core O1'; it is not a universally finite-rank
 closed form.
 
 ============================================================================
-6. STRICT — Negative/structure observation (generic constraints)
+6. Structure observation on generic constraints (STRICT conditional + heuristic)
 ============================================================================
-Proposition 6 (generic empty kept set).  For a generic single non-coordinate
-constraint (v_1 not a scalar multiple of any monomial, and the equations
-a^{(1)}_n = (m/(m-1)) a^{(1)}_{n-2} holding only exceptionally), N is empty or
-sparse; for N empty, Q_sp = empty and closure(span Q_sp) = {0}, so density fails
-whenever V != {0}.
+Lemma 6.1 (STRICT).  If N is empty (no p_n lies in V), then Q_sp = empty, so
+closure(span Q_sp) = {0}; density closure(span Q_sp) = V then holds only in the
+degenerate case V = {0}.
 
-Proof.  For N to be nonempty at index n we need <v_1,p_n> = a_1(n) - (m/(m-1)) a_1(n-2)
-= 0 for n >= 4 (and 0,1 similarly).  For a generic infinite sequence a_1(k) these
-finitely-parameter constraints are satisfied only exceptionally; generically no n
-qualifies.  If N is empty, Q_sp has no elements, so its closed span is {0}.  qed
+Proof.  Q_sp = {p_n : n in N} is empty, so its linear span is {0} and its closed
+span is {0}.  qed
 
-REMARK.  The EVIDENCE scripts (o1_projection_density.py with v_1 = e^x, and
-o1_poly_rep_example.py with v_1 = x - 1/2 x^2) both confirm N = empty: the kept
-set is empty and the runs collapse to isolated bases.  These are EVIDENCE, not
-the proof of Proposition 6.
+HEURISTIC 6.2 (genericity; NOT a proven theorem).  For a "generic" single
+non-coordinate representer v_1, the kept set N is empty or sparse: for
+n >= 4, <v_1,p_n> = a^{(1)}_n - (m/(m-1)) a^{(1)}_{n-2} = 0 is a codimension-1
+linear condition on the infinite sequence (a^{(1)}_k), and requiring it to hold
+for every n in a run is "exceptional".  This is a plausibility statement, not a
+rigorous Baire/measure theorem (no topology/measure on the space of moment
+sequences is specified), and it is NOT load-bearing for the criterion.  AUDIT
+CORRECTION: this heuristic must stay labeled EVIDENCE/HEURISTIC, not STRICT.
+
+EVIDENCE REMARK.  The scripts (o1_projection_density.py with v_1 = e^x, and
+o1_poly_rep_example.py with v_1 = x - 1/2 x^2) both confirm N = empty for those
+instances: the kept set is empty and the runs collapse to isolated bases.  These
+are EVIDENCE, not the proof of Heuristic 6.2.
 
 ============================================================================
 7. Reduced open core (honest, NOT claimed)

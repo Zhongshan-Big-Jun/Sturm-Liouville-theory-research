@@ -59,3 +59,20 @@ This is consistent with
     K(u) = K0 + K2 u^2 + L u^2 log u + ...
 and provides a quantitative target for the next matched-asymptotics
 derivation.  EVIDENCE only.
+
+## 5. STRICT: simple K-log ansatz is inconsistent at leading order
+
+Using the precomputed power dict and the ansatz
+K = K0 + K2 u^2 + L u^2 log u (no log terms in A,B,C), the exact v^1
+coefficients of the low-order seed equations are:
+
+    E1_2 v^1 = -sqrt(2) K0^5 L / 2
+    E2_2 v^1 =  sqrt(2) K0^7 L / 2
+    E6_5 v^1 = -2 K0^6 L
+
+Since K0 > 0, the v^1 equations force L = 0.  Therefore a log correction
+confined to K alone is NOT compatible with the exact truncated system at the
+lowest orders.  The observed log-linear trend in the numerical data must be
+produced by a more subtle mechanism (log terms in C/A/B, or higher-order
+couplings), or it is a finite-u artifact.  This is a STRICT coefficient
+identity (EVIDENCE for the numerical trend interpretation).

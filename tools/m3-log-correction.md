@@ -46,5 +46,10 @@ C(u) = C0 + C1 u + C2 u^2 + ... (C1 forced nonzero by the hard constant E5_5).
 - Fit: inline python against `_gapn2_largeR_big.json`, RMSE 8.4e-7.
 - Log-linear check: `(K-K0)/u^2 ~ K2 + L log u` with `K2 ~ 2.92536`,
   `L ~ 0.04766`, correlation `~0.99999` (EVIDENCE, 2026-08-16).
+- STRICT coefficient identity: under ansatz `K = K0 + K2 u^2 + L u^2 log u`
+  with no log in A/B/C, the v^1 coefficients are
+  `E1_2 v^1 = -sqrt(2) K0^5 L/2`, `E2_2 v^1 = sqrt(2) K0^7 L/2`,
+  `E6_5 v^1 = -2 K0^6 L`, hence `L = 0` (simple K-log ansatz inconsistent).
 - Source: run notes addendum 2026-08-16, run R-20260812T090000Z-g1prime-g2.
-- Status: OPEN; next step is a matched-asymptotics expansion with `log u`.
+- Status: OPEN; next step is a matched-asymptotics expansion with `log u`
+  in C/A/B or higher-order couplings.
