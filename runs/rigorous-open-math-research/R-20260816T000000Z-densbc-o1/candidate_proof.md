@@ -170,7 +170,7 @@ H it is not determined by finitely many moments or finitely many representer
 moments.  (b) When the membership equations are finite moment equations (all v_j
 polynomials, degree <= d), <w,v_j> = sum_{i<=d} \bar c^{(j)}_i M_i(w) = 0 becomes
 a finite linear system in M_0,...,M_d; but the kept set N is determined by
-<v_j,p_n> = sum_{i<=d} \bar c^{(j)}_i a^{(i)}_{?} for all n, requiring the values
+<v_j,p_n> = sum_k (coeff of p_n at x^k) <v_j,x^k> for all n, requiring the values
 <v_j,x^k> for all k, which is finite data only under a banded/diagonal-moment
 assumption.  Thus the honest sufficient condition for full finiteness is the
 combined one above (diagonal/banded is the clean example).  qed

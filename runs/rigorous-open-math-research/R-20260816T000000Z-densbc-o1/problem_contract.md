@@ -137,8 +137,11 @@ honest that the numeric/representability check does not close a proof obligation
 
 - Whether O1 admits a purely finite-rank criterion: RESOLVED (Theorem 5) —
   in general it does NOT; it requires the representer-moment data and a genuine
-  moment representability/membership step.  It IS finite-rank when representers
-  are polynomials and the H-realization step is finite-rank (e.g. diagonal).
+  moment representability/membership step.  It IS finite/structured when the
+  membership equations are finite moment equations AND the moment matrix has
+  banded/diagonal structure (so the kept set N is finitely determined), e.g. the
+  diagonal case.  (Audit-corrected: polynomial representers ALONE do not make it
+  finite in a general H.)
 - The kept/free "run" notion carries over verbatim from the diagonal analysis
   because the kept recursions are the same in any H (linearity of moments); only
   the realization step changes.  This is the exact resolution of the packet's

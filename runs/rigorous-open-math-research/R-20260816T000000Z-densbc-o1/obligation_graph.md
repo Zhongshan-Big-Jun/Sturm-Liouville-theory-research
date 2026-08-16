@@ -33,9 +33,10 @@ N6 (Theorem 5 finite-rank structure) = N3 + N4.
    (all v_j polynomials) + (finite-rank realization).
    status: PROVED (STRICT structural claim); the realizability core is O1' (OPEN).
 
-N7 (Proposition 6 generic empty kept set) = N3.
-   Generic non-coordinate single constraint => N empty / Q_sp = empty (density fails).
-   status: PROVED (STRICT structural); EVIDENCE corroboration in both scripts.
+N7 (Lemma 6.1 empty kept set) = N3.
+   N empty => Q_sp = empty => density fails unless V = {0}.
+   status: PROVED (STRICT).  Heuristic 6.2 (generic N empty) is EVIDENCE/HEURISTIC,
+   NOT STRICT (audit correction).  EVIDENCE corroboration in both scripts.
 
 ## Open obligations
 
@@ -53,5 +54,5 @@ N7 (Proposition 6 generic empty kept set) = N3.
 
 ## Verification status
 
-- Theorems 1-5, Proposition 6 are candidate STRICT statements; the independent
+- Theorems 1-5 and Lemma 6.1 are STRICT statements; Heuristic 6.2 is EVIDENCE; the independent
   adversarial audit (audit_report.md) checks them.  Numerical scripts are EVIDENCE.

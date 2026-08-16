@@ -41,14 +41,18 @@ Task: Q-20260816-densbc-o1-A1B2C3D4
   Theorem 1).
 - R-O1-003 (o1_poly_rep_example.py): H = L^2([-1,1]), V = {f: <x - 1/2 x^2,f>=0}
   (single polynomial non-coordinate representer).  Kept set N = empty; all runs
-  isolated.  Confirms Proposition 6 generic-emptiness in a polynomial-representer
-  case (EVIDENCE).
+  isolated.  Confirms Lemma 6.1/Heuristic 6.2 (empty kept set) in a
+  polynomial-representer case (EVIDENCE).
 - These are EVIDENCE; they do NOT constitute the proofs (Theorems 1-6).
 
 ## Phase 7-8: synthesis + adversarial audit
 
-- Synthesized candidate_proof.md: Theorems 1-5 + Proposition 6 (STRICT), reduced
-  core O1'.  See candidate_proof.md.
+- Synthesized candidate_proof.md: Theorems 1-5 + Lemma 6.1 (STRICT) + Heuristic
+  6.2 (EVIDENCE), reduced core O1'.  See candidate_proof.md.
+- Adversarial audit (fresh subagent) returned REPAIRABLE_GAP; repaired: Theorem 4
+  representer-normalization + prose, Theorem 5 polynomial-representer sufficiency
+  (corrected to banded/diagonal condition), Proposition 6 split into Lemma 6.1
+  (STRICT) + Heuristic 6.2 (EVIDENCE).  See audit_report.md.
 - Adversarial audit: see audit_report.md.
 
 ## Decisions / stop

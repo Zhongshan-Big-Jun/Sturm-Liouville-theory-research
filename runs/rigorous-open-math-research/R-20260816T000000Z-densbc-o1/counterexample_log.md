@@ -9,7 +9,7 @@ Run: R-20260816T000000Z-densbc-o1
   representer moments <e^x,p_n> and <1,p_n>: N = EMPTY.  Hence Q_sp = empty,
   closure(span Q_sp) = {0} != V (V 2-codimensional).  Density fails trivially.
   This shows generic non-coordinate constraints generically delete the whole kept
-  sparse family (Proposition 6).  [EVIDENCE: o1_projection_density.py]
+  sparse family (Lemma 6.1 + Heuristic 6.2).  [EVIDENCE: o1_projection_density.py]
 
 ### C-O1-002: single polynomial non-coordinate representer (x - 1/2 x^2)
 - H = L^2([-1,1]); V = {f : <x - 1/2 x^2, f> = 0}.  Representer is a polynomial

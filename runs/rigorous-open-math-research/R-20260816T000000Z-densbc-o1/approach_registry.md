@@ -42,7 +42,7 @@ Run: R-20260816T000000Z-densbc-o1
 ### Route 5: Generic-constraint emptiness
 - Route key / family: NEGATIVE / generic behavior.
 - Core mechanism: generic non-coordinate v_1 => no p_n in V.
-- First concrete deliverable: Proposition 6 (STRICT) + EVIDENCE scripts.
+- First concrete deliverable: Lemma 6.1 (STRICT) + Heuristic 6.2 (EVIDENCE/HEURISTIC) + EVIDENCE scripts.
 - Status: PROVED (structural).
 
 ## Blocked / refuted

@@ -58,5 +58,7 @@ stronger claim; not asserted here beyond the project's own preflight).
 - The projection-density theorem (Theorem 1) is STRICT and new to this run.
 - The finite-rank/non-finite-rank answer (Theorem 5) resolves the packet's risk
   honestly: in general O1 requires moment-problem data, not a purely finite-rank
-  closed form.
+  closed form.  Audit-corrected: finiteness holds under a banded/diagonal-moment
+  condition (diagonal case cleanly satisfies it), NOT merely from polynomial
+  representers.
 - No git commit/push; see repro_manifest.md.
