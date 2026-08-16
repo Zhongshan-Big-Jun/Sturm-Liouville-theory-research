@@ -31,3 +31,8 @@ superseded before a completion label is used.
 
 - Scaffold: `SL/MinDirectionAudit_Scaffold.lean` -- placeholder for accepted claims.
 - Status: audit accepted with caveats; no full formalization yet.
+
+### H^s operator-domain vs completion (run R-20260816T200000Z-hs-operator-domain)
+
+- Scaffold: `SL/HsOperatorDomain_Scaffold.lean` -- placeholders for MO/SPD/ND, deficit lemmas.
+- Status: RIGOROUS_PARTIAL_RESULT; load-bearing STRICT theorems MO/SPD/ND, Q1a(ii) open.

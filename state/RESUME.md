@@ -37,7 +37,7 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 ## Active: H^s operator-domain vs completion (2026-08-16)
 - Task packet: Q-20260816-hs-operator-domain-C0D1E2F3
 - Run root: runs/rigorous-open-math-research/R-20260816T200000Z-hs-operator-domain
-- Status: dispatched to background solver subagent 404d3a72; in progress.
+- Status: INGESTED as RIGOROUS_PARTIAL_RESULT (run R-20260816T200000Z-hs-operator-domain). STRICT MO/SPD/ND; Q1a(ii) open; refutes upstream S1d; Lean scaffold created.
 - Goal: resolve whether SL_hs system {Q_n^(s)} lies in D(K_c^{s/2}) for s>=4; compare operator-domain vs abstract-completion H^s.
 
 ## Read these files first

@@ -42,6 +42,7 @@ lean-proof/
 
     ├── DensBC_O1_Scaffold.lean       DensBC O1 Theorems 2-5 + O1′ placeholder scaffold (-- SCAFFOLD, sorry)
     ├── LeftDefDensity_Scaffold.lean  left-definite density L1′-L5 + O1′LD scaffold (-- SCAFFOLD, sorry)
+    ├── HsOperatorDomain_Scaffold.lean    H^s operator-domain scaffold (-- SCAFFOLD, sorry)
     ├── MinDirectionAudit_Scaffold.lean  min-direction audit scaffold (-- SCAFFOLD, sorry)
     ├── formalization_progress.md      scaffold register    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
     ├── SymlineUniqueZero.lean    对称线 KEY LEMMA 装配核心: 唯一零点/符号结论 + 端点代数核心 (间距线 n=1)

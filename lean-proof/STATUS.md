@@ -83,6 +83,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 - `SL/DensBC_O1_Scaffold.lean` -- DensBC O1 Theorems 2-5 + O1' open core placeholders (`sorry`, `-- SCAFFOLD`).
 - `SL/LeftDefDensity_Scaffold.lean` -- left-definite density L1'/L1''/L2/L3/L4/L5 + O1'LD open core placeholders (`sorry`, `-- SCAFFOLD`).
 - `SL/MinDirectionAudit_Scaffold.lean` -- min-direction audit accepted-claims placeholder (`sorry`, `-- SCAFFOLD`).
+- `SL/HsOperatorDomain_Scaffold.lean` -- hs-operator-domain (s>=4): Theorem MO (Q_n^{(s)} in D(K_c^{s/2}) iff n in {0,1}), Lemma DE/DO/DM/A-POS/L-KS (Krein transport deficit positivity), Theorem SPD (operator domain != abstract completion), Theorem ND (span not dense), Q1a degree-spectrum open. Placeholders (`sorry`, `-- SCAFFOLD`). `lake build SL.HsOperatorDomain_Scaffold` = 8567 jobs, exit 0.
 - See `formalization_progress.md` for the scaffold register.
 
 ## 3. 诚实说明
