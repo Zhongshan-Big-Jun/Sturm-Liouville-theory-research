@@ -1,6 +1,6 @@
 # lean-proof 形式化状态总表
 
-> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 102) 已形式化 26 个文件, 覆盖
+> 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 102) 已形式化 28 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
 > H^3 线代数核心、解析 H1 矩上界与 FTC 胶水 (H1 内积识别/正定核心), 比值上确界证明线的核心三角闭式,
 > 稳定性门槛线 (Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数),
@@ -18,7 +18,7 @@
 | `SL/TransferMatrix.lean` | 比值证明线转移矩阵/secular 核心: supM1/supM2/supM3 ([1,R,1] 三段矩阵), infM1/infM2/infM3 ([R,1,R] 三段矩阵), sup/inf top-right 乘积闭式与 Dirichlet 条件等价, theta/pi-theta/phi 满足矩阵 Dirichlet 条件, 平凡不等式 λ_{n+1}<=λ_{2n} 的严格单调序列版本 | `docs/SL_ratio_proof.tex` 第 1-3 节 | lake build 绿; sorry/axiom 0; 转移矩阵到特征值的谱论连接未形式化 |
 | `SL/ReflectionSymmetry.lean` | 固定 n 交替配置反射对称 (J-共轭): J=diag(1,-1), Tcell/Tend/M/F; J_Tcell/J_Tend (单块 J-共轭), J_conj_pow (矩阵幂共轭), M_reflection (M_n(pi-y)=-J M_n(y) J), J_conj_entry, F_reflection (F_n(pi-y)=F_n(y)) | `docs/SL_fixed_n_supremum.tex` 定理 "反射对称" | lake build 绿; sorry/axiom 0; 形式化固定 ω 参数的矩阵版本, 源中 y=ω√R·t 相位归一化与谱论连接未形式化 |
 | `SL/DensenessCriteria.lean` | 稠密性准则的稀疏基矩刻画 (R 上): moments M_k=M(X^k); sparse_even_apply/sparse_odd_apply (pEvenR/pOddR 的矩展开), even/odd_moments_of_orthogonal (正交性 => M_{2m}=m M_2, M_{2m+1}=m M_3) 与 even/odd_orthogonal_of_moments (反向), sparse_moment_characterization (定理 2 的 iff) | `docs/SL_denseness_criteria.tex` 定理 2 (矩刻画) | lake build 绿; sorry/axiom 0; Hilbert 空间与稠密性收尾未形式化 |
-| `SL/SymlineUniqueZero.lean` | 对称线 KEY LEMMA 装配核心 (源 4.4 节 thm:keylemma): Fe/Mf 定义与 Mf_pos, FeHalf_neg (端点 (ii) 代数核心), FeZero_limit_pos (端点 (i) 极限值), positive/negative_of_no_zero_and_pos (零免费上符号恒定), existsUnique_zero_signs_of_nonneg_mono (通用分析装配: 右极限正 + IVT 存在性, 极大点/左右斜率极限 + ge_of_tendsto 唯一性, 符号结论), Fe_deriv_neg_of_nonneg (eq:mono 蕴含, 由 Fep_lt_zero_of_nonneg), keylemma_concrete (具体 KEY LEMMA, 分析钩子隔离为假设) | `docs/SL_gap_n1_symline_proof.tex` 4.4 节 (KEY LEMMA) | lake build 绿 (8584 jobs); sorry/axiom 0; 端点符号/相位分支/导数恒等式为文档钩子未形式化 (文件头诚实标注); 义务级独立复核未执行 |
+| `SL/SymlineUniqueZero.lean` | 对称线 KEY LEMMA 装配核心 (源 4.4 节 thm:keylemma): Fe/Mf 定义与 Mf_pos, FeHalf_neg (端点 (ii) 代数核心), FeZero_limit_pos (端点 (i) 极限值), positive/negative_of_no_zero_and_pos (零免费上符号恒定), existsUnique_zero_signs_of_nonneg_mono (通用分析装配: 右极限正 + IVT 存在性, 极大点/左右斜率极限 + ge_of_tendsto 唯一性, 符号结论), Fe_deriv_neg_of_nonneg (eq:mono 蕴含, 由 Fep_lt_zero_of_nonneg), keylemma_concrete (具体 KEY LEMMA, 分析钩子隔离为假设) | `docs/SL_gap_n1_symline_proof.tex` 4.4 节 (KEY LEMMA) | lake build 绿 (8586 jobs); sorry/axiom 0; 端点符号/相位分支/导数恒等式为文档钩子未形式化 (文件头诚实标注); 义务级独立复核未执行 |
 | `SL/SymlineTensionRatio.lean` | 间距线 n=1 对称线代数核心 (R 上): Phi/Mf/FeEquiv/Delta/T/rho 定义, Phi_nonneg/Phi_eq (Phi 闭式), P1 (u<=tan u => c/(q+c)<=t/(y+t), c=arctan(q*t)/y) 与 P1_tan, FeEquiv_eq (对称线公分母形式), FeEquiv_iff_rho_lt_one (FeEquiv<0 <=> rho<1, Delta>0), p/Q0/rho0 定义, P2 (s1^2*s2^2*T/Delta*(1-q^2)<=Q0, 三正项分解 E0/y^2=cos^2γ(p-A^2)+cos^2A(y^2s2^2-p)+cos^2A*A^2*cos^2γ, 对一切实数 q 成立) 与 tension_ratio_chain (rho<=rho0, 由 P1+P2), exists_gamma_star/GammaStar (tan γ=2(π-γ)/3 在 (π/4, 9π/20) 的 IVT 根) 与 ys2_of_ge_gamma_star (Lemma ys2 严格形式 p<(π-γ)^2*sinγ^2, strictConcaveOn_f/f_pi_div_four_gt: 严格凹 + 弦界, 只用 γ_0*>π/4) | `docs/SL_gap_n1_symline_allR_proof.tex` (引理 P1/P2 + 张力比链) | lake build 绿; sorry/axiom 0; 源 γ_0* 有理位置证书 (交替级数) 未复刻, 以 IVT + 严格凹弦界替代 (audit_report §16); 义务级独立复核未执行 |
 | `SL/SymlineKeyLemma.lean` | 对称线 KEY LEMMA 代数核心 (源 4.2-4.3 节): q0=sqrt(2/3)/Gamma0/gamma0/W0/Phi/G 定义, q0 定位 (4/5<q0<5/6), Gamma0 定位 (0<Gamma0<π/2-4/9) 与 cos Gamma0/cot Gamma0>1/2/cot 反单调, W0 引理 (0<γ<=Gamma0 时 W0 γ<4q0/3, 证书自由), P1_bound (G<=-(6√6-6)/5<-4/3), P2_bound (-4/3<G(π-γ), 以 γ<=Gamma0 为假设), P1_neg/P1_lt_P2/Fep_lt_zero_of_nonneg (KEY LEMMA 单调步), gamma0_mono (γ_0(q)<=Gamma0) | `docs/SL_gap_n1_symline_proof.tex` 4.2-4.3 节 (P1/P2/W0) | lake build 绿 (8583 jobs); sorry/axiom 0; 相位分支约化 γ=π-α2(c)<=γ_0(q) 为文档钩子未形式化 (文件头诚实标注); 义务级独立复核未执行 |
 | `SL/KcPolynomial.lean` | K_c 作用在 H^2 多项式基的系数恒等式: K_c p_{2n}=c x^{2n}-A_n x^{2n-2}+B_n x^{2n-4}, 奇次同理; A_n-B_n=4n+cn/(n-1) | `docs/SL_h2_completeness_proof.tex` 引理 4.1 | lake build 绿; sorry/axiom 0 |
@@ -39,8 +39,10 @@
 | `SL/KreinDegenerateLimit.lean` | Krein c->0 退化极限 (多项式级): c=0 配对 pair0 与 radical_pair0 (pair0 f f = 0 <-> f in span{1,x}: 积分非负零 + 开区间点态零 + 无穷根 + 导数为常数 => 仿射), K_0..K_4 低模范数闭式 (kS_norm_zero..four, ||K_4||^2=(2c+240+5040/c+28350/c^2)/9), ||K_4||^2 -> atTop (c->0+, tendsto_norm_four_atTop, 主导 3150/c^2), span 分解 poly_mem_span_quotient (Theorem complete (a): Pi = span{1,x} + span{S_2..S_N}, 强归纳 + 前导项消去) | `docs/SL_krein_c0_limit.tex` (Theorem radical/low/high/complete (a), 多项式版本) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 未形式化 (文件头诚实标注) |
 | `SL/KreinHighGrowth.lean` | Krein c->0 一般高阶增长 (Theorem "high" 一般部分): aSeq_rec (递推 (19)), aSeq_nonneg_step_ge (逐奇偶类非负/单调), aSeq_lower_step / aSeq_upper_step (一步上下界), lower/upper Even/OddProd (显式乘积常数), aSeq_lower_even/odd 与 aSeq_upper_even/odd (a_n = Theta(c^{-(n-2)/2}) 偶 / Theta(c^{-(n-3)/2}) 奇), norm_even_ge/norm_odd_ge (范数下界), tendsto_norm_even/odd_atTop 与 tendsto_norm_atTop (每个 n>=4 的 ||K_n||^2 -> +infinity) | `docs/SL_krein_c0_limit.tex` (Theorem "high" 一般部分) | lake build 绿; sorry/axiom 0; 商空间级 (quotient/unit/complete (b)-(d)) 仍未形式化 (文件头诚实标注) |
 
-机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 26 个 SL/ 下 .lean 文件
-共 27 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8584 jobs). 义务级审计: `audit_report.md` +
+| `SL/ProjectionDensity.lean` | DensBC O1 Theorem 1 的抽象核: 连续满射把稠密集映到像中的稠密集; 正交投影到闭子空间是连续满射, 故稠密集的投影像在子空间中稠密 | runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md Theorem 1 | lake build 通过, sorry/axiom 0 |
+| `SL/DensBCEmpty.lean` | DensBC O1 Lemma 6.1 的抽象核: 空候选族 Q_sp 的闭包张成空间为 {0}; 若空族在 V 中稠密则 V = {0} | runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md Lemma 6.1 | lake build 通过, sorry/axiom 0 |
+机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 28 个 SL/ 下 .lean 文件
+共 27 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8586 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
 MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报告独立性说明).
 
@@ -130,7 +132,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
     (Mf_pos/FeHalf_neg/FeZero_limit_pos 代数核心, positive/negative_of_no_zero_and_pos
     符号恒定, existsUnique_zero_signs_of_nonneg_mono 通用装配: 右极限正 + IVT 存在性,
     极大点/左右斜率极限 + ge_of_tendsto 唯一性, 符号结论; Fe_deriv_neg_of_nonneg 与
-    keylemma_concrete 具体化), 26 文件 (27 扫描) lake build 绿 (8584 jobs), sorry/axiom 0.
+    keylemma_concrete 具体化), 26 文件 (27 扫描) lake build 绿 (8586 jobs), sorry/axiom 0.
     分析钩子 (端点符号 lem:endpoints, 导数恒等式 eq:Fep, 相位分支 γ=π-α2(c)<=γ_0(q))
     在文件头与 audit_report §18 显式声明; 剩余: 钩子证明收尾, n=1 定理族其余文档与
     n>=2 开关/约化.

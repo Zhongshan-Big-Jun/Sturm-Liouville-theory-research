@@ -36,7 +36,9 @@ lean-proof/
     ├── TransferMatrix.lean   三段转移矩阵乘积/secular 方程 + 平凡不等式 (比值证明线)
     ├── ReflectionSymmetry.lean 固定 n 交替配置 J-共轭反射对称 F_n(pi-y)=F_n(y) (固定 n 比值线)
     ├── DensenessCriteria.lean   稠密性准则矩刻画: 稀疏基正交性 <-> 矩条件 (稠密性准则线)
-    ├── SymlineTensionRatio.lean  对称线张力比代数核心: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 + gamma_0*/Lemma ys2 (间距线 n=1)
+
+    ├── ProjectionDensity.lean    DensBC O1 Theorem 1 抽象核: 连续满射把稠密集映到像中稠密集 + 正交投影密度 (DensBC O1)
+    ├── DensBCEmpty.lean       DensBC O1 Lemma 6.1 抽象核: 空候选族闭包张成空间为 {0}, 稠密则 V={0} (DensBC O1)    ├── SymlineTensionRatio.lean  对称线张力比代数核心: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 + gamma_0*/Lemma ys2 (间距线 n=1)
     ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
     ├── SymlineUniqueZero.lean    对称线 KEY LEMMA 装配核心: 唯一零点/符号结论 + 端点代数核心 (间距线 n=1)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
@@ -61,7 +63,7 @@ python <lean-verify>/scripts/verify_lean_project.py --project . --build
 StabilityGrowth / Stability / MomentRecurrence / MomentBound / Completeness /
 H3Completeness / H3MomentBound / H1Isometry / Transfer / HsOrthogonalSystems / BalancedPhase / ThirdOrder /
 ThirdOrderClosedForms / ThirdOrderClassification / ThirdOrderMinimal / TransferMatrix /
-ReflectionSymmetry / DensenessCriteria / SymlineTensionRatio / SymlineKeyLemma / SymlineUniqueZero / KreinDegenerateLimit / KreinHighGrowth).
+ReflectionSymmetry / DensenessCriteria / ProjectionDensity / DensBCEmpty /  SymlineTensionRatio / SymlineKeyLemma / SymlineUniqueZero / KreinDegenerateLimit / KreinHighGrowth).
 新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
 
 ## 规则
