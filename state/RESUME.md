@@ -34,6 +34,12 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 - Goal: complete/advance general density criterion in left-definite spaces, specializing DensBC O1 and targeting O1'.
 - Literature lead: Fleeman-Frymark-Liaw, J. Approx. Theory 2018/2019, DOI 10.1016/j.jat.2018.10.005 (not yet deep-read).
 
+## Active: H^s operator-domain vs completion (2026-08-16)
+- Task packet: Q-20260816-hs-operator-domain-C0D1E2F3
+- Run root: runs/rigorous-open-math-research/R-20260816T200000Z-hs-operator-domain
+- Status: dispatched to background solver subagent 404d3a72; in progress.
+- Goal: resolve whether SL_hs system {Q_n^(s)} lies in D(K_c^{s/2}) for s>=4; compare operator-domain vs abstract-completion H^s.
+
 ## Read these files first
 1. `docs/SL_gap_n1_global_goodroot_proof.pdf` (gap (d) closure, 6 pp, STRICT, 2026-08-12; INF minimizer is a sign-consistent good root; boundary exclusion + FH + structure lemma; closes INF side for all R>1)
 2. `docs/SL_gap_n1_symline_allR_proof.pdf` (gap (a') closure for ALL R>1, 9 pp, STRICT, 2026-08-12; tension-ratio chain + rational certificates C1-C5; KEY LEMMA all R)
