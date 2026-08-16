@@ -3274,3 +3274,5 @@
 - 左定空间稠密性判据最终摄入 (ad9fd29): 经两轮独立审计, 修正范围为 s∈{1,2,3} (L1'/L2/L3/L4/L5 STRICT) 与 s≥4 决定性负结果 L1'' (稀疏 p_n 不在 H^s, Q_sp={1,x}, 不恢复 H^s); O1'LD 仍开放; 新增 {Q_n^(s)} 在 D(K_c^{s/2}) 的开放点.
 
 - 新工作流插件 scaffold 模式: 为 DensBC O1 与左定空间稠密性 partial results 创建 Lean scaffold (DensBC_O1_Scaffold.lean, LeftDefDensity_Scaffold.lean) + formalization_progress.md; run-manifest 更新为 formalization: scaffold.
+
+- 新工作流继续: 派发 H^s 算子域 vs 完备化开放点 (Q-20260816-hs-operator-domain-C0D1E2F3, run R-20260816T200000Z-hs-operator-domain).
