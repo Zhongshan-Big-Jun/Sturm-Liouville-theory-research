@@ -27,6 +27,13 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 - P1/M3: NOT closed. Bounded search confirms truncated integer-power seed has no non-degenerate root; continuation data strongly supports K(u) = K0 + K2 u^2 + L u^2 log u (K0 ~ 3.4561, K2 ~ 2.9254, L ~ 0.0477, corr ~ 0.99999). Next: matched-asymptotics/log-correction derivation.
 - DensBC O1: task packet Q-20260816-densbc-o1-A1B2C3D4 dispatched to background solver subagent 0f421207; run R-20260816T000000Z-densbc-o1 INGESTED as RIGOROUS_PARTIAL_RESULT with new STRICT structure theorems (projection-density, obstruction system, run/first-obstruction, diagonal reduction, finite-rank structure) and reduced core O1'.
 
+## Active: left-definite density criterion (2026-08-16)
+- Task packet: Q-20260816-leftdef-density-E5F6A7B8
+- Run root: runs/rigorous-open-math-research/R-20260816T120000Z-leftdef-density
+- Status: dispatched to background solver subagent ef563561; no result yet.
+- Goal: complete/advance general density criterion in left-definite spaces, specializing DensBC O1 and targeting O1'.
+- Literature lead: Fleeman-Frymark-Liaw, J. Approx. Theory 2018/2019, DOI 10.1016/j.jat.2018.10.005 (not yet deep-read).
+
 ## Read these files first
 1. `docs/SL_gap_n1_global_goodroot_proof.pdf` (gap (d) closure, 6 pp, STRICT, 2026-08-12; INF minimizer is a sign-consistent good root; boundary exclusion + FH + structure lemma; closes INF side for all R>1)
 2. `docs/SL_gap_n1_symline_allR_proof.pdf` (gap (a') closure for ALL R>1, 9 pp, STRICT, 2026-08-12; tension-ratio chain + rational certificates C1-C5; KEY LEMMA all R)
