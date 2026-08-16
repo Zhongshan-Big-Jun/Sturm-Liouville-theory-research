@@ -41,6 +41,9 @@
 
 | `SL/ProjectionDensity.lean` | DensBC O1 Theorem 1 的抽象核: 连续满射把稠密集映到像中的稠密集; 正交投影到闭子空间是连续满射, 故稠密集的投影像在子空间中稠密 | runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md Theorem 1 | lake build 通过, sorry/axiom 0 |
 | `SL/DensBCEmpty.lean` | DensBC O1 Lemma 6.1 的抽象核: 空候选族 Q_sp 的闭包张成空间为 {0}; 若空族在 V 中稠密则 V = {0} | runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md Lemma 6.1 | lake build 通过, sorry/axiom 0 |
+
+待形式化/待 scaffold: DensBC O1 剩余核心 `O1'` (矩可实现/成员步) 尚未搭建
+Lean scaffold; 注册点: `runs/.../R-20260816T000000Z-densbc-o1/formalization_progress.md`.
 机器验证证据: `run-manifest.json` (lean 4.31.0 / mathlib v4.31.0, 28 个 SL/ 下 .lean 文件
 共 27 个扫描 (含 lakefile.lean), sorry/admit/axiom 命中 0, lake build exit 0, 8586 jobs). 义务级审计: `audit_report.md` +
 `verification.json` (会话 66-69, 单 agent 自审计, 24 项义务 O1-O24 全部 FAITHFUL 或
