@@ -3260,3 +3260,5 @@
   - `misc/TestParse.lean`, `misc/filters.xml`: 调试/机器诊断残留, 按之前约定不提交, 已在 .gitignore 忽略.
 - 同步: AGENTS.md 会话日志已拆分归档; state/current.json 与 RESUME 继续保留最新数学状态 (n=1 gap 闭合, n>=2 局部对称 STRICT, M3/P1 与 DensBC O1-O3 开放).
 - 尝试闭合: 已复核 P0/M3 task packet 与 gate 日志, 下一步优先闭合 P1 (M3 修正分支种子根) 或 DensBC O1.
+
+- 远程同步: 本地已提交 cdc75cf, 5e23353, 72d0b0b, 34b2b1b; push origin/fork 因 github.com 连接失败 (proxy/网络) 未完成, 已登记 activity ACT-20260816-026, 待网络恢复后重试.
