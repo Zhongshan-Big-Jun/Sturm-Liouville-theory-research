@@ -1,6 +1,10 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-08-18
+Last updated: 2026-08-18T16:41:48.400295Z
+
+
+
+
 
 This is a project-wide, human-readable map of every problem being studied and
 how the problems relate to each other. It is a living document: update it at
@@ -139,3 +143,20 @@ flowchart LR
 - B3/B4: if (G1')/(G2) or fixed-n global extremality is proved, mark
   corresponding PARTIAL nodes SOLVED and link the proof/tool.
 - Add new problem nodes as they appear (e.g. operator-domain results).
+
+## Routes and methods tried
+| densbc-o1p2|solver|PARTIAL-SUCCEEDED|O1' closed on H_lambda (banded non-diagonal) + finite polynomial representers: density <=> ker(T|B_fin)={0}; v_1=x^4 non-dense for all lambda |
+
+| densbc-o1p2|solver|PARTIAL(in-progress)|banded / finitely-supported representer-moment extension of O1' |
+
+## Intermediate results and unexpected findings
+
+- lean-proof/LEMMA_INDEX.md regenerated (487 declarations) to reuse existing formalizations; performance test points P1-P6 in reports/plugin-performance-test-round2.md
+
+## Failed attempts and failure reasons
+
+- single representer density-holding search in H_lambda found no candidate in tried grids (EVIDENCE only)
+
+## Avoid list (dead ends)
+
+- do not claim general banded-O1' from H_lambda alone; realizability in general banded H needs moment-problem data

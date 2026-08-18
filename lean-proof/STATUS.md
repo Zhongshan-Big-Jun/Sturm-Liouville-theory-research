@@ -149,5 +149,6 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
     n>=2 开关/约化.
 
 ## Scaffold register
+- `SL/DensBCO1p2Hlambda.lean` | RIGOROUS_PARTIAL_RESULT | runs/rigorous-open-math-research/R-20260816T220000Z-densbc-o1p2/candidate_proof.md | open: O1': general/weighted-L2 realizability (open)
 
 - `SL/DensBCO1pDecision.lean` | RIGOROUS_PARTIAL_RESULT | runs/rigorous-open-math-research/R-20260816T210000Z-densbc-o1p/candidate_proof.md | open: O1': general H realizability step (open)
