@@ -147,3 +147,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
     分析钩子 (端点符号 lem:endpoints, 导数恒等式 eq:Fep, 相位分支 γ=π-α2(c)<=γ_0(q))
     在文件头与 audit_report §18 显式声明; 剩余: 钩子证明收尾, n=1 定理族其余文档与
     n>=2 开关/约化.
+
+## Scaffold register
+
+- `SL/DensBCO1pDecision.lean` | RIGOROUS_PARTIAL_RESULT | runs/rigorous-open-math-research/R-20260816T210000Z-densbc-o1p/candidate_proof.md | open: O1': general H realizability step (open)
