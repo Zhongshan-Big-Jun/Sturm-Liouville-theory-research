@@ -55,3 +55,26 @@ superseded before a completion label is used.
 - Status: RIGOROUS_PARTIAL_RESULT; O3 closed, O1/O2 remain open.
 - Sources: `runs/plugin-perf-eval2/R-20260822T220000Z-b3-baseline/candidate_proof.md`,
   audit `runs/plugin-perf-eval2/R-20260822T230000Z-b3-audit/audit_report.md`.
+
+## 2026-08-23 (plugin perf eval round 3 baseline)
+
+### DensBC O1' banded-shift extension (run R-20260823T000000Z-o1p-baseline)
+
+- Scaffold: `SL/DensBCO1p3BandShift.lean` -- placeholders for the stable
+  banded-shift moment-map invertibility lemma, the finite-rank criterion
+  `closure(span Q_sp)=V <=> ker(T|B_fin)={0}`, and the bandwidth-2
+  `v_1=x^4` non-density example.
+- Status: RIGOROUS_PARTIAL_RESULT; general O1' remains open.
+- Sources: `runs/plugin-perf-eval3/R-20260823T000000Z-o1p-baseline/candidate_proof.md`.
+
+## 2026-08-23 (plugin perf eval round 3 light-reuse)
+
+### DensBC O1' weighted-shift extension (run R-20260823T000000Z-o1p-lightreuse)
+
+- Scaffold: `SL/DensBCO1p3WeightedShift_Scaffold.lean` -- placeholders for the
+  H_{beta,lambda} density criterion and the beta>3/2 infinite-run realizability
+  threshold.
+- Status: RIGOROUS_PARTIAL_RESULT after independent audit REPAIRABLE_GAP repair;
+  general O1' remains open.
+- Sources: `runs/plugin-perf-eval3/R-20260823T000000Z-o1p-lightreuse/candidate_proof.md`,
+  audit `runs/plugin-perf-eval3/R-20260823T010000Z-o1p-audit/audit_report.md`.
