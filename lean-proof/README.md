@@ -45,6 +45,7 @@ lean-proof/
     ├── HsOperatorDomain_Scaffold.lean    H^s operator-domain scaffold (-- SCAFFOLD, sorry)
     ├── MinDirectionAudit_Scaffold.lean  min-direction audit scaffold (-- SCAFFOLD, sorry)
     ├── A6Root1RationalNoGo_Scaffold.lean   A6 root-1 rational no-go scaffold (-- SCAFFOLD, sorry)
+    ├── B3FixedN_Scaffold.lean               B3 fixed-n ratio structure + 2n-root count scaffold (-- SCAFFOLD, sorry)
     ├── formalization_progress.md      scaffold register    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
     ├── SymlineUniqueZero.lean    对称线 KEY LEMMA 装配核心: 唯一零点/符号结论 + 端点代数核心 (间距线 n=1)
     ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
@@ -87,4 +88,5 @@ ReflectionSymmetry / DensenessCriteria / ProjectionDensity / DensBCEmpty /  Syml
 
 - Partial/structural results have `-- SCAFFOLD` Lean files with `sorry`; they are NOT formally verified.
 - A6 root-1 rational no-go scaffold: `SL/A6Root1RationalNoGo_Scaffold.lean`.
+- B3 fixed-n ratio structure / 2n-root count scaffold: `SL/B3FixedN_Scaffold.lean`.
 - See `formalization_progress.md`.

@@ -45,7 +45,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | --- | --- | --- | --- | --- |
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
 | B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Weyl asymptotic; inf not attained |
-| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; global extremality + 2n root count OPEN |
+| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
 | B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof etc. | n=1 SOLVED; n>=2 local symmetry STRICT, global needs (G1')/(G2); M3 large-R balance partial |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
@@ -127,6 +127,11 @@ flowchart LR
 - A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
   higher-degree rational product exclusion STRICT partial (independent audit
   REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
+- B3 baseline (plugin performance experiment round 2, R-20260822T220000Z-b3-baseline):
+  new STRICT (i) every fixed-n ratio maximizer is bang-bang `[1,R,1,...,1]` with exactly 2n switches
+  (ratio energy invariant E=0, q0=1/c, q1=-1/c);
+  (ii) alternating balanced secular `F_n` has exactly 2n simple roots in (0,pi)
+  (transfer-matrix recurrence + Chebyshev/Jacobi argument). This closes O3; O1 equal-width/value and O2 monotonicity remain open.
 
 ## Tools shared across problems
 

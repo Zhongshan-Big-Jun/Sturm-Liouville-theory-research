@@ -47,3 +47,11 @@ superseded before a completion label is used.
 - Status: RIGOROUS_PARTIAL_RESULT; root-0/minimal branch remains open.
 - Sources: `runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md`,
   audit `runs/plugin-perf-eval/R-20260822T000000Z-a6-audit/audit_report.md`.
+
+## 2026-08-22 B3 round 2
+
+- Scaffold: `SL/B3FixedN_Scaffold.lean` -- ratio extremizer structure theorem
+  and 2n-root count theorem, after independent audit REPAIRABLE_GAP + repaired.
+- Status: RIGOROUS_PARTIAL_RESULT; O3 closed, O1/O2 remain open.
+- Sources: `runs/plugin-perf-eval2/R-20260822T220000Z-b3-baseline/candidate_proof.md`,
+  audit `runs/plugin-perf-eval2/R-20260822T230000Z-b3-audit/audit_report.md`.
