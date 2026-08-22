@@ -36,3 +36,14 @@ superseded before a completion label is used.
 
 - Scaffold: `SL/HsOperatorDomain_Scaffold.lean` -- placeholders for MO/SPD/ND, deficit lemmas.
 - Status: RIGOROUS_PARTIAL_RESULT; load-bearing STRICT theorems MO/SPD/ND, Q1a(ii) open.
+
+## 2026-08-22
+
+### A6 root-1 rational no-go (plugin performance experiment)
+
+- Scaffold: `SL/A6Root1RationalNoGo_Scaffold.lean` -- root-1 higher-degree
+  rational product exclusion (both parities, all c>0), after independent audit
+  REPAIRABLE_GAP + repair.
+- Status: RIGOROUS_PARTIAL_RESULT; root-0/minimal branch remains open.
+- Sources: `runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md`,
+  audit `runs/plugin-perf-eval/R-20260822T000000Z-a6-audit/audit_report.md`.

@@ -55,3 +55,19 @@ created: 2026-08-05
 - 相关: [[left-definite-moment-recurrence]], [[moment-jump-completeness]].
 - 开放: 最小解闭式与渐近常数 $K$; 一般系数族积分解分类;
   盒式归纳封闭 ($d_j \geq 0$ 的退化配置).
+
+## 2026-08-22 更新: A6 root-1 高阶有理积分解排除 (RIGOROUS_PARTIAL_RESULT)
+
+- **新结果 (论文级 partial, 独立审计 REPAIRABLE_GAP 已修复)**: 对 z-尺度三阶递推的
+  root-1 分支 ($e_j \to 1$), 偶/奇两族与一切 $c>0$, 一切有理乘积比值 $e_j$ 的
+  既约次数至多为 2; 因此不存在高次 (次数 > 2) 有理乘积解. 已知族 $E^{(\tau)}$
+  与 $E^-$ 是 root-1 分支仅有的有理乘积比值.
+- **机制**: 渐近分类 + 固定点恒等式的高阶对三角性 + 对径系数引理
+  (偶 $D_m=2u-(m-1)$, 奇 $D_m=2u-(m+1)$) + 有理函数由无穷处 Laurent 展开唯一决定.
+- **证据**: 候选证明
+  `runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md`;
+  独立审计 `runs/plugin-perf-eval/R-20260822T000000Z-a6-audit/audit_report.md`
+  (0 fatal, 2 repairable, 已修复); 符号脚本
+  `runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/reproducibility/verify_diagonal_coefficient.py`.
+- **仍开放**: root-0/最小解分支的有理排除未成完整定理; 最小解闭式常数 $K$ 与
+  盒式归纳源项控制仍开放 (原 A6 开放项).

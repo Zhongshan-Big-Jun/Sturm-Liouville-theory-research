@@ -472,3 +472,8 @@ created: 2026-08-04
   R={4} 有限单例游程); 协调者审计 (子代理机制不可用, 独立性限制如实记录),
   F-densbc-01 更正 Lemma 4.1 奇次比值公式为 M_k=(floor(k/2)/floor(L/2))·M_L;
   开放核 O1-O3 (一般非对角精确判据/L_j 展开杀自由参数/分数窗).
+- 2026-08-22: 更新 [[third-order-recurrence]] (A6 root-1 高阶有理积分解排除,
+  插件性能实验): root-1 分支偶/奇+c>0 的有理乘积比值既约次数<=2; 独立审计
+  REPAIRABLE_GAP (0 fatal, 2 小缺口) 已修复; root-0/最小解分支仍开放.
+  Artifacts: runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md,
+  audit runs/plugin-perf-eval/R-20260822T000000Z-a6-audit/audit_report.md.

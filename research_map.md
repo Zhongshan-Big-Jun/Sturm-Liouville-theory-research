@@ -37,7 +37,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Stability / threshold-line classification (moment-jump) | PARTIAL | docs/SL_stability_moment_jump | threshold line family ~ log m not fully classified |
-| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory | three gaps open (casoratian nonzero, minimal-solution asymptotics, classification) |
+| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory | root-1 high-degree rational no-go STRICT partial (2026-08-22); root-0/minimal and other gaps open |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
@@ -124,6 +124,9 @@ flowchart LR
   counterexample (V = ker Delta in H^2); open core O1'LD.
 - min-direction audit (R-20260816T174722Z): ACCEPT with verification package.
 - hs-operator-domain (R-20260816T200000Z): in progress partial.
+- A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
+  higher-degree rational product exclusion STRICT partial (independent audit
+  REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
 
 ## Tools shared across problems
 
