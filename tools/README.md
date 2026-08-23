@@ -68,6 +68,7 @@ created: 2026-08-04
 - [[constrained-denseness-runs]] - 边界约束子空间多项式稠密性: 矩刻画/游程图/对角完整分类 (会话 106, R-20260814T070000Z-densbc)
 - [[banded-shift-toeplitz-density]] - 稳定移位带 Toeplitz 空间 O1' 有限秩判据: 带宽 m>=1 非对角推广 (R-20260823T000000Z-o1p-baseline, 2026-08-23)
 - [[weighted-shift-beta-lambda-density]] - 加权移位族 H_{beta,lambda} O1' 判据: beta>3/2 无穷游程可实现门槛 (R-20260823T000000Z-o1p-lightreuse, 2026-08-23)
+- [[leftdef-o1pld-l2-structural]] - 左定 O1'LD 的 L^2 降维结构定理 (有限支撑矩刚性/无限游程不可实现/奇偶分解, R-20260823T030000Z-leftdef-o1pld, 2026-08-23)
 - [[gap-n1-reduction]] - 两块族归约定理 (O1, 2026-08-05)
 - [[two-block-gap-bounds]] - 两块相位间距界 3pi^2/R < D < 3pi^2 (O3b, 2026-08-05)
 - [[key-lemma-decomposition]] - KEY LEMMA 分解 + 逐项 q-单调性否证 + (LOG)/(FP) 全解析证明 (O2, 2026-08-05/09)
@@ -171,6 +172,7 @@ created: 2026-08-04
 | [[constrained-denseness-runs]] | 自研 (会话 106, run R-20260814T070000Z-densbc, 2026-08-14) | 定理 A-H STRICT (协调者审计, F-densbc-01 更正); 对角完整分类 (β<=3/2 且无有限游程); 两个包猜想被否证; 开放核 O1-O3 | 自研方法 |
 | [[banded-shift-toeplitz-density]] | 自研 (R-20260823T000000Z-o1p-baseline, 2026-08-23) | STRICT: 稳定移位带 Toeplitz 空间 O1' 有限秩判据 (带宽 m>=1); 一般 O1' 仍开放 | 自研方法 |
 | [[weighted-shift-beta-lambda-density]] | 自研 (R-20260823T000000Z-o1p-lightreuse, 2026-08-23) | STRICT (审计修复后): H_{beta,lambda} 加权移位 O1' 判据; 一般 O1' 仍开放 | 自研方法 |
+| [[leftdef-o1pld-l2-structural]] | 自研 (R-20260823T030000Z-leftdef-o1pld, 2026-08-23) | STRICT: L^2 有限支撑矩刚性/无限游程不可实现/奇偶分解/cofinite-N 稠密; 一般 O1'LD 仍开放 | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |

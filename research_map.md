@@ -129,6 +129,7 @@ flowchart LR
   REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
 - DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
 - DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
+- O1'LD (R-20260823T030000Z-leftdef-o1pld): new STRICT L^2-descent results: finite-support moment rigidity (Müntz-Szász L^p), Cauchy-Schwarz non-realizability, parity decomposition, concrete μ_4 non-density; cofinite-N density / proper-V corollary are NOT-YET-STRICT; H^1 infinite-run inadmissibility is EVIDENCE; general O1'LD remains open.
 - B3 baseline (plugin performance experiment round 2, R-20260822T220000Z-b3-baseline):
   new STRICT (i) every fixed-n ratio maximizer is bang-bang `[1,R,1,...,1]` with exactly 2n switches
   (ratio energy invariant E=0, q0=1/c, q1=-1/c);

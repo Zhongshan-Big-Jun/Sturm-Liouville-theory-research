@@ -78,3 +78,14 @@ superseded before a completion label is used.
   general O1' remains open.
 - Sources: `runs/plugin-perf-eval3/R-20260823T000000Z-o1p-lightreuse/candidate_proof.md`,
   audit `runs/plugin-perf-eval3/R-20260823T010000Z-o1p-audit/audit_report.md`.
+
+## 2026-08-23 (O1'LD left-definite density)
+
+- Scaffold: `SL/O1pLD_L2_Scaffold.lean` -- L^2-descent structural results:
+  finite-support moment rigidity, Cauchy-Schwarz bound, parity decomposition,
+  mu_4 non-density (STRICT subset); tail rigidity / cofinite-N theorem /
+  proper-V corollary / H^1 infinite-run marked NOT-YET-STRICT or EVIDENCE.
+- Status: RIGOROUS_PARTIAL_RESULT; general O1'LD remains open.
+- Sources: `runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md`,
+  audits `.../R-20260823T040000Z-leftdef-o1pld-audit` and
+  `.../R-20260823T050000Z-leftdef-o1pld-reaudit`.
