@@ -130,6 +130,10 @@ flowchart LR
 - DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
 - DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
 - O1'LD (R-20260823T030000Z-leftdef-o1pld): new STRICT L^2-descent results: finite-support moment rigidity (Müntz-Szász L^p), Cauchy-Schwarz non-realizability, parity decomposition, concrete μ_4 non-density; cofinite-N density / proper-V corollary are NOT-YET-STRICT; H^1 infinite-run inadmissibility is EVIDENCE; general O1'LD remains open.
+- B3 current (plugin performance experiment round 4, R-20260823T060000Z-b3-current):
+  new STRICT general equal-within-type alternating Chebyshev secular representation
+  `(M_n)_01 = sin(p)[U_n(m)+delta U_{n-1}(m)]`, `delta=sin(q)/(s sin(p))`;
+  amplitude-equality corollary from E=0; O1/O2 remain open (EVIDENCE for maxima).
 - B3 baseline (plugin performance experiment round 2, R-20260822T220000Z-b3-baseline):
   new STRICT (i) every fixed-n ratio maximizer is bang-bang `[1,R,1,...,1]` with exactly 2n switches
   (ratio energy invariant E=0, q0=1/c, q1=-1/c);
@@ -144,7 +148,8 @@ flowchart LR
   `run-free-base` (O1'), `banded-shift-toeplitz-density` (stable banded-shift O1' finite-rank criterion), `weighted-shift-beta-lambda-density` (weighted-shift O1' criterion).
 - Ratio/gap side: `balanced-phase`, `transfer-matrix-secular`,
   `bang-bang`, `keller-variational`, `mw-periodic-extension`,
-  `r1plus-perturbation-sheet`, `gap-band-extremals`.
+  `r1plus-perturbation-sheet`, `gap-band-extremals`,
+  `general-alternating-secular-chebyshev` (round 4).
 - Cross: `cell-merging`, `half-problem-regularized-green`.
 
 ## What to update next

@@ -94,6 +94,7 @@ created: 2026-08-04
 - [[switch-saturation-k-invariant]] - 开关饱和与块能量不变量: FH 完全盒饱和 + 零点=开关 + K=-2D (会话 50, 2026-08-10)
 - [[ratio-energy-invariant]] - 比值能量不变量: 固定 n 比值极大子结构, E=0 + q0=1/c + q1=-1/c (R-20260822T220000Z-b3-baseline, 2026-08-22)
 - [[secular-chebyshev-jacobi-rootcount]] - 交替平衡世俗多项式 2n 根计数: 转移矩阵递推 + Chebyshev/Jacobi 谱论证 (R-20260822T220000Z-b3-baseline, 2026-08-22)
+- [[general-alternating-secular-chebyshev]] - 一般等宽交替世俗 Chebyshev 表示: sin(p)[U_n+delta*U_{n-1}], delta=sin(q)/(s sin(p)) (R-20260823T060000Z-b3-current, 2026-08-23)
 - [[green-half-inertia]] - 半问题 Green 惯性: 奇偶性更正 + 全局 ε 交错 + (G1') 的 Green 函数化归 (R-205, 2026-08-13)
 - [[second-variation-weighted-eigenvalues]] - 加权特征值二阶变分 lambda'' 公式 + 移动框架与 delta' 边界层两陷阱 (R-206, 2026-08-13)
 - [[half-problem-regularized-green]] - 半问题约化 Green 闭式: 无 rho(y) 因子约化预解核 + 精确 A1/A2 原函数 + K 两镜扇区闭式 (R-207, 2026-08-13)
@@ -163,6 +164,7 @@ created: 2026-08-04
 | [[switch-saturation-k-invariant]] | 自研 (会话 50, 2026-08-10; 更新 会话 58 续作 8, 2026-08-13) | 定理已证 (独立审计 PASS); 2026-08-13 应用: K 恒等式 + 精确零点公式 + 内部零点简单性 闭合 (G2) STRICT | 自研方法 |
 | [[ratio-energy-invariant]] | 自研 (R-20260822T220000Z-b3-baseline, 2026-08-22) | 定理已证 (STRICT) | 自研方法 |
 | [[secular-chebyshev-jacobi-rootcount]] | 自研 (R-20260822T220000Z-b3-baseline, 2026-08-22) | 定理已证 (STRICT) | 自研方法 |
+| [[general-alternating-secular-chebyshev]] | 自研 (R-20260823T060000Z-b3-current, 2026-08-23) | 定理已证 (STRICT; 未独立审计) | 自研方法 |
 | [[band-selfconsistency-equivariance]] | 自研 (会话 58 续作 4b, 2026-08-12; 更新 2026-08-13) | 等变恒等式与反对合结构 STRICT; 框架定理已证; (G2) 已闭合 STRICT (2026-08-13); (G1') 开放 | 自研方法 |
 | [[green-half-inertia]] | 自研 (R-205, 2026-08-13) | 全局 ε 交错与 Green 惯性 STRICT; 奇偶性否证 (EVIDENCE); (G1') 仍开放 | 自研方法 |
 | [[second-variation-weighted-eigenvalues]] | 自研 (R-206, 2026-08-13) | lambda'' 公式 STRICT; P1/P2/P3 EVIDENCE; 交接二阶系数路线否证 (delta' 机制 STRICT) | 自研方法 |

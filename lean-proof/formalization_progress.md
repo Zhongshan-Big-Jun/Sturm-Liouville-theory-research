@@ -89,3 +89,14 @@ superseded before a completion label is used.
 - Sources: `runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md`,
   audits `.../R-20260823T040000Z-leftdef-o1pld-audit` and
   `.../R-20260823T050000Z-leftdef-o1pld-reaudit`.
+
+## 2026-08-23 (B3 current performance benchmark)
+
+- Scaffold: `SL/B3GeneralAlternatingChebyshev_Scaffold.lean` -- general
+  equal-within-type alternating Chebyshev secular representation, fixed-delta
+  root-location lemma, amplitude-equality corollary (STRICT subset).
+- Status: RIGOROUS_PARTIAL_RESULT after independent audit + repair + re-audit
+  PASS; O1/O2 remain open.
+- Sources: `runs/plugin-perf-eval4/R-20260823T060000Z-b3-current/candidate_proof.md`,
+  audits `R-20260823T070000Z-b3-current-audit`,
+  `R-20260823T080000Z-b3-current-reaudit`.
