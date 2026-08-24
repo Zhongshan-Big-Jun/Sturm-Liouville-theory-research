@@ -1,0 +1,68 @@
+{
+  "benchmark": "B3-OOD-MIXING-20260824",
+  "task": "Exponential mixing by bounded shear? (QED problem 3 unpolluted)",
+  "arms": [
+    {
+      "arm": "A",
+      "name": "our-plugin v1.6.0",
+      "implementation": "DSH subagent + rigorous-open-math-research v1.6.0",
+      "status": "complete candidate proof (No)",
+      "wall_seconds": 502.3,
+      "steps": 14,
+      "assistant_messages": 14,
+      "tool_calls": 19,
+      "input_tokens": 65963,
+      "cache_tokens": 803712,
+      "output_tokens": 55024,
+      "reasoning_tokens": 46914,
+      "artifact_bytes_no_task": 16162
+    },
+    {
+      "arm": "B",
+      "name": "blank control",
+      "implementation": "plain prompt, no skills/memory/subagents",
+      "status": "partial (No, one lemma sketched)",
+      "wall_seconds": 762.5,
+      "steps": 11,
+      "assistant_messages": 11,
+      "tool_calls": 10,
+      "input_tokens": 21520,
+      "cache_tokens": 703744,
+      "output_tokens": 84502,
+      "reasoning_tokens": 80577,
+      "artifact_bytes_no_task": 9247
+    },
+    {
+      "arm": "C",
+      "name": "Rethlas actual",
+      "implementation": "Codex generation + verification service on DeepSeek",
+      "status": "complete blueprint, no verified flag; verification service returned 500",
+      "wall_seconds": 1031,
+      "codex_tokens_used": 909689,
+      "blueprint_bytes": 17955,
+      "memory_files": 11,
+      "network_used": true,
+      "note": "MCP theorem search/downloads used despite no-network instruction"
+    },
+    {
+      "arm": "D",
+      "name": "Danus actual",
+      "implementation": "codex-branch worker/verifier fact graph on DeepSeek",
+      "status": "verified fact-graph proof (No)",
+      "wall_seconds_approx": 1200,
+      "codex_tokens_used_captured": 286649,
+      "verified_facts": 3,
+      "project_bytes": 320611,
+      "note": "two workers, verifier-gated fact graph; target theorem fact c07f7dd7c0797a95"
+    },
+    {
+      "arm": "E",
+      "name": "MMAT actual",
+      "implementation": "NL-Prover Codex harness on DeepSeek",
+      "status": "no final artifact; orchestration progressed but no proof files before reconnect/timeout",
+      "wall_seconds_attempted": 780,
+      "files_produced": 0,
+      "note": "first read-only run could not write; writable run hit Codex reconnect and was stopped"
+    }
+  ]
+}
