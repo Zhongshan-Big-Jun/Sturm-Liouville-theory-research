@@ -1,6 +1,6 @@
 # Codex and QED three-arm replication
 
-Status: Arm A completed on 2026-08-24. Arms B and C are pending.
+Status: Arms A and B completed on 2026-08-24. Arm C is pending.
 
 This replication executes the three systems from the original pre-registration with their actual runtimes:
 
@@ -21,7 +21,7 @@ Scored solver usage excludes harness preflights and the post-hoc neutral reviewe
 ## Current state
 
 - Arm A: `STRICT`, internal audit `PASS`, external anonymous audit `PASS`.
-- Arm B: pending.
+- Arm B: `STRICT`, external anonymous audit `PASS`.
 - Arm C: pending.
 
-See `arms/a-plugin/stage_report.md` and `arms/a-plugin/metrics.json` for the first stage.
+See each completed arm's `stage_report.md` and `metrics.json` for its frozen stage data.
