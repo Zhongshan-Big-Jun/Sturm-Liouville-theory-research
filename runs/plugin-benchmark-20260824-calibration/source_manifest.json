@@ -1,42 +1,81 @@
 {
-	"benchmark_id": "B3-O3-CAL-20260824",
-	"status": "preregistered",
-	"frozen_task_sha256": "1FA717B9A5F195C42ECCA97D51E20327CB4EB2C316C936C054F55F7DD7416F16",
-	"problem_source_commit": "613cf5f1e103c99563987d01d5d2a43adca93746",
-	"historical_gold_commit": "e6cf00fe87df93a7c0bc63de840b4aa7cdc2708f",
-	"source_files": [
-		{
-			"path": "docs/SL_fixed_n_supremum.tex",
-			"git_blob": "5fc724803714734023bbbef44a3c493852d3094e",
-			"sha256": "C1CC07EF9D8D51F5B5111EE9D86E454CB785B7ED331A8AB465A5B952DF2F29F0"
-		},
-		{
-			"path": "tools/transfer-matrix-secular.md",
-			"git_blob": "3c2c7effa3a490ba8494806b4975a2718783add0",
-			"sha256": "C3BC8C017F58AA411DE781A384436E4EE9DD45205C309258A676BEAFB1C8B7E4"
-		}
-	],
-	"arm_a": {
-		"system": "rigorous-open-math-research",
-		"version": "1.6.0",
-		"parent_commit": "88e1c97",
-		"subagents_enabled": true
-	},
-	"arm_b": {
-		"system": "plain Codex",
-		"skills_enabled": false,
-		"plugins_enabled": false,
-		"memories_enabled": false,
-		"subagents_enabled": false
-	},
-	"arm_c": {
-		"system": "QED",
-		"commit": "121900964e6572aaf094412d434b5ac2a792a65f",
-		"max_proof_attempts": 1,
-		"max_revisions": 1,
-		"max_decompositions": 1
-	},
-	"model": "gpt-5.6-sol",
-	"reasoning_effort": "xhigh",
-	"network_allowed": false
+  "benchmark_id": "B3-O3-CAL-20260824",
+  "status": "executed-20260824",
+  "frozen_task_sha256": "1FA717B9A5F195C42ECCA97D51E20327CB4EB2C316C936C054F55F7DD7416F16",
+  "problem_source_commit": "613cf5f1e103c99563987d01d5d2a43adca93746",
+  "historical_gold_commit": "e6cf00fe87df93a7c0bc63de840b4aa7cdc2708f",
+  "source_files": [
+    {
+      "path": "docs/SL_fixed_n_supremum.tex",
+      "git_blob": "5fc724803714734023bbbef44a3c493852d3094e",
+      "sha256": "C1CC07EF9D8D51F5B5111EE9D86E454CB785B7ED331A8AB465A5B952DF2F29F0"
+    },
+    {
+      "path": "tools/transfer-matrix-secular.md",
+      "git_blob": "3c2c7effa3a490ba8494806b4975a2718783add0",
+      "sha256": "C3BC8C017F58AA411DE781A384436E4EE9DD45205C309258A676BEAFB1C8B7E4"
+    }
+  ],
+  "arm_a": {
+    "system": "rigorous-open-math-research",
+    "version": "1.6.0",
+    "parent_commit": "88e1c97",
+    "subagents_enabled": true
+  },
+  "arm_b": {
+    "system": "plain Codex",
+    "skills_enabled": false,
+    "plugins_enabled": false,
+    "memories_enabled": false,
+    "subagents_enabled": false
+  },
+  "arm_c": {
+    "system": "QED",
+    "commit": "121900964e6572aaf094412d434b5ac2a792a65f",
+    "max_proof_attempts": 1,
+    "max_revisions": 1,
+    "max_decompositions": 1
+  },
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "network_allowed": false,
+  "actual_runtime_model": "deepseek-v4-flash-vision-exp",
+  "actual_reasoning_effort": "high",
+  "arms": [
+    {
+      "id": "A",
+      "system": "rigorous-open-math-research",
+      "version": "1.6.0",
+      "parent_commit": "88e1c97",
+      "dsh_commit": "0cc9961",
+      "subagents_enabled": true,
+      "spawned_subagents": 0
+    },
+    {
+      "id": "B",
+      "system": "blank control",
+      "skills_enabled": false,
+      "plugins_enabled": false,
+      "memories_enabled": false,
+      "subagents_enabled": false
+    },
+    {
+      "id": "C",
+      "system": "Rethlas methodology (prompt-level emulation)",
+      "repo": "F:/tools/rethlas-clone/Rethlas",
+      "full_system_reproduction": false
+    },
+    {
+      "id": "D",
+      "system": "Danus methodology (prompt-level emulation)",
+      "repo": "F:/tools/danus-clone/Danus",
+      "full_system_reproduction": false
+    },
+    {
+      "id": "E",
+      "system": "MMath/MMAT methodology (prompt-level emulation)",
+      "repo": "F:/tools/mmat-agent-team",
+      "full_system_reproduction": false
+    }
+  ]
 }

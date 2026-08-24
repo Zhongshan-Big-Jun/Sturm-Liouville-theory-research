@@ -1,19 +1,27 @@
-# Three-arm calibration benchmark
+# Five-arm calibration benchmark (B3 O3)
 
-Status: preregistered, not yet scored.
+Status: executed on 2026-08-24. This is a contaminated regression calibration.
 
-This run is a contaminated regression calibration. The B3 O3 problem was used in earlier plugin work, and plugin v1.6.0 was optimized with knowledge of that history. Results from this calibration must not be used as evidence of out-of-distribution generalization.
+The B3 O3 problem was used in earlier plugin work, and plugin v1.6.0 was optimized with knowledge of that history. Results from this calibration must not be used as evidence of out-of-distribution generalization.
 
 ## Frozen objects
 
 - Calibration problem source commit: `613cf5f1e103c99563987d01d5d2a43adca93746`.
 - Historical gold commit, hidden from solvers: `e6cf00fe87df93a7c0bc63de840b4aa7cdc2708f`.
-- Arm A: `rigorous-open-math-research` v1.6.0, parent plugin commit `88e1c97`, with subagents.
-- Arm B: plain Codex with only the frozen task prompt, with skills, plugins, memories, and multi-agent disabled.
-- Arm C: `proofQED/QED` at commit `121900964e6572aaf094412d434b5ac2a792a65f`.
-- Model for every model call: `gpt-5.6-sol` with `xhigh` reasoning.
+- Frozen task: `frozen_task.md`.
+- Model requested by pre-registration: `gpt-5.6-sol` with `xhigh` reasoning.
+- Actual runtime model (all arms): `deepseek-v4-flash-vision-exp` with `high` reasoning, as recorded in DSH session descriptors. This is a protocol deviation from the pre-registered model and must be noted in any scoring interpretation.
 - Network and external research: forbidden for every arm.
-- Run order: A, then B, then C. Each arm is gated by the live quota check after the preceding arm.
+
+## Arms
+
+- **Arm A — our-plugin v1.6.0**: `rigorous-open-math-research` v1.6.0, parent plugin commit `88e1c97`, DSH repo `0cc9961`, skills enabled, no nested subagents spawned by the arm.
+- **Arm B — blank control**: plain model with only the frozen task prompt; skills/plugins/memories/subagents disabled by instruction.
+- **Arm C — Rethlas methodology**: prompt-level emulation of Rethlas-style memory/branch/counterexample traces; the original external repository is not executed as a full verified service.
+- **Arm D — Danus methodology**: prompt-level emulation of Danus-style orchestrator/worker/verifier-gate fact graph; the original external repository is not executed as a full verified service.
+- **Arm E — MMath/MMAT methodology**: prompt-level emulation of MechMath MMAT-style obligation-decomposition/verification roles; the original external solver is not executed as a full verified service.
+
+External arms are methodology-inspired single-session emulations, not complete reproductions of the upstream systems. They receive the same frozen task and isolation rules, and they emulate the public workflow shape (memory, fact gates, obligation graphs) inside their own arm directories.
 
 ## Isolation
 
@@ -23,24 +31,25 @@ Forbidden material includes the full historical `runs/plugin-perf-eval2/` tree, 
 
 ## Resource policy
 
-- Arm A may use at most 3 concurrent research subagents.
+- Arm A may use at most 3 concurrent research subagents (it spawned none).
 - Arm B may not spawn subagents.
-- Arm C uses its native orchestration with `max_proof_attempts=1`, `max_revisions=1`, and `max_decompositions=1`.
+- External-methodology arms are single-session prompt-level emulations; they may use memory/fact/verifier artifacts but not nested fresh agents.
 - No arm receives project-local helper scripts or literature.
-- A run stops at 60 minutes if it has not already returned a result.
+- A run stops at 60 minutes if it has not already returned a result (all arms returned within this cap).
 
 ## Captured metrics
 
 - Wall-clock time.
 - Total input tokens, cached input tokens, and output tokens when exposed by the runtime.
-- Model calls, tool calls, and subagent count.
+- Model calls, tool calls, steps, and subagent count.
 - Output artifact bytes.
-- Live weekly quota percentage before and after each arm.
 - Leakage and protocol violations.
+- Independent mathematical evaluation.
+
+Metrics are in `metrics.json` (or the equivalent table in `RESULTS.md`).
 
 ## Independent mathematical evaluation
 
 Every candidate is copied to a neutral identifier and reviewed without the arm label. The reviewer checks statement fidelity, recurrence or equivalent reduction, complete root count, interval endpoints, simplicity, `n=1`, `y=0`, `y=pi`, `y=pi/2`, and the `R=1` boundary. Labels are `PASS`, `REPAIRABLE_GAP`, or `FATAL_GAP`. Numerical evidence never upgrades a theorem to `STRICT`.
 
 Only audited mathematical content is integrated into the project. A correct result that duplicates known mathematics is retained as a benchmark reproduction, not claimed as a novel theorem.
-
