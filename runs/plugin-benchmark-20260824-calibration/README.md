@@ -53,3 +53,7 @@ Metrics are in `metrics.json` (or the equivalent table in `RESULTS.md`).
 Every candidate is copied to a neutral identifier and reviewed without the arm label. The reviewer checks statement fidelity, recurrence or equivalent reduction, complete root count, interval endpoints, simplicity, `n=1`, `y=0`, `y=pi`, `y=pi/2`, and the `R=1` boundary. Labels are `PASS`, `REPAIRABLE_GAP`, or `FATAL_GAP`. Numerical evidence never upgrades a theorem to `STRICT`.
 
 Only audited mathematical content is integrated into the project. A correct result that duplicates known mathematics is retained as a benchmark reproduction, not claimed as a novel theorem.
+
+## Codex and QED replication
+
+The actual `gpt-5.6-sol` three-arm replication from the original pre-registration is tracked separately in `codex-qed-replication/`. It uses real Codex research subagents for Arm A, a context-empty Codex control for Arm B, and the pinned QED checkout for Arm C. Do not merge its measurements with the five-arm DSH table above.
