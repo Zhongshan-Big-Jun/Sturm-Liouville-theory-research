@@ -5,6 +5,7 @@
 - System: plain Codex.
 - Model: `gpt-5.6-sol`.
 - Reasoning effort: `xhigh`.
+- Codex CLI: `0.149.0-alpha.4.3`.
 - Model-visible task context: the frozen task only, plus the unavoidable Codex sandbox environment layer.
 - Skills, plugins, memories, project instructions, MCP servers, web search, and subagents: disabled.
 - Network: disabled for the solver.

@@ -1,0 +1,217 @@
+============================================================
+  Proof Agent Pipeline
+============================================================
+  Problem:    /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/problem.tex
+  Output:     /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output
+  Mode:       decomposition
+  Max proof attempts:    1
+  Max revisions:         1
+  Max decompositions:    1
+  Token log:  /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/TOKEN_USAGE.md
+
+============================================================
+  CONFIGURATION
+  (/mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/config.safe.yaml)
+============================================================
+# =============================================================================
+# QED Pipeline Configuration
+# =============================================================================
+
+
+
+
+# =============================================================================
+# MODEL PROVIDERS
+# =============================================================================
+
+# --- Claude (Anthropic) ---
+claude:
+  cli_path: "claude"
+  permission_mode: "bypassPermissions"
+
+  # Choose ONE provider: "subscription", "bedrock", or "api_key"
+  provider: "api_key"
+
+  # --- Option 1: Claude subscription (Pro/Max) ---
+  # No API key needed. Use "claude-opus-5" for Opus 5.
+  subscription:
+    model: "claude-fable-5"
+
+  # --- Option 2: AWS Bedrock ---
+  bedrock:
+    model: "us.anthropic.claude-fable-5[1m]"  # or "us.anthropic.claude-opus-5[1m]"
+    aws_profile: "default"
+
+  # --- Option 3: Anthropic API key ---
+  api_key:
+    model: "claude-fable-5"  # or "claude-opus-5"
+    key: ""  # paste your Anthropic API key here
+
+# --- Codex (OpenAI) ---
+codex:
+  cli_path: "codex"
+  model: "gpt-5.6-sol"
+  reasoning_effort: "xhigh"
+
+# --- Gemini (Google) ---
+gemini:
+  cli_path: "gemini"
+  model: "gemini-3.1-pro-preview"  # or "gemini-3-flash-preview"
+  approval_mode: "yolo"
+  thinking_level: "HIGH"  # Gemini 3 thinking strength; for Gemini 2.5 use thinking_budget instead
+  api_key: ""  # paste your Google Gemini API key here, leave empty if Gemini CLI is already logged in with subscription
+
+
+
+
+# =============================================================================
+# PROVER MODE SELECTION
+# =============================================================================
+
+prover:
+  mode: "decomposition"  # only "decomposition" is supported
+
+
+
+
+# =============================================================================
+# PIPELINE SETTINGS
+# =============================================================================
+
+pipeline:
+  # Each agent below is a dict with at least a `provider` key (claude, codex,
+  # or gemini). Optional fields override the global provider section for this
+  # agent only:
+  #   model: "..."             # overrides {provider}.model
+  #   reasoning_effort: "..."  # (codex only)
+  #   thinking_level: "..."    # (gemini only)
+  #   thinking_budget: N       # (gemini only)
+  # Knobs not set here fall back to the global codex:/gemini:/claude: section.
+
+  # Literature survey agent (Stage 0).
+  # Evaluates problem difficulty and surveys related work before proof search.
+  literature_survey:
+    provider: "codex"
+    
+
+  # Proof effort summary agent (Stage 2).
+  # Generates a summary of the entire proof journey after completion.
+  proof_summary:
+    provider: "codex"
+
+
+
+
+# =============================================================================
+# DECOMPOSITION MODE SETTINGS
+# =============================================================================
+
+decomposition:
+  # Retry limits
+  max_proof_attempts: 1    # REVISE_PROOF limit: proof attempts per revision
+  max_revisions: 1         # REVISE_PLAN limit: total revisions per attempt (including original)
+  max_decompositions: 1    # REWRITE limit: total decomposition attempts
+
+  # Per-agent model selection. Each entry is a dict like:
+  #   decomposer:
+  #     provider: "codex"
+  #     model: "gpt-5.6-sol"       # optional — overrides global codex.model
+  #     reasoning_effort: "xhigh"  # optional — overrides global codex.reasoning_effort
+  # Unset knobs fall back to the global codex:/gemini:/claude: section.
+  models:
+    decomposer:
+      provider: "codex"           # creates/revises proof decomposition plan
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    single_prover:
+      provider: "codex"           # executes decomposition plan, writes complete proof
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    regulator:
+      provider: "codex"           # decides REVISE_PROOF/REVISE_PLAN/REWRITE after verification fails
+    structural_verifier:
+      provider: "codex"           # structural verification of proof (Phases 1-5)
+    detailed_verifier:
+      provider: "codex"           # detailed verification of proof (Phase 6)
+    verdict:
+      provider: "codex"           # final verdict on verification reports (DONE/CONTINUE)
+
+
+# =============================================================================
+# STANDALONE VERIFIER (used by verify/verify.py)
+# =============================================================================
+
+standalone_verifier:
+  # Same dict-with-provider format as the agents above. CLI flags
+  # --provider and --model on verify.py override these per-agent settings.
+  judge:
+    provider: "codex"
+  structural_verifier:
+    provider: "codex"
+  detailed_verifier:
+    provider: "codex"
+  problem_reviewer:
+    provider: "codex"             # used in --problem-only mode
+
+
+============================================================
+  PROBLEM STATEMENT
+  (/mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/problem.tex)
+============================================================
+# Frozen calibration task: B3 O3 root count
+
+Blind benchmark. Do not inspect any repository, git history, internet source, memory, or prior solution to this exact problem. Scratch symbolic computation may be used for falsification, but the final result must be a uniform exact proof.
+
+Let `n>=1` be an integer and `R>1`. Set `s=sqrt(R)`. For `y in R`, write `c=cos(y)` and `q=sin(y)`, and define
+
+```text
+E(y)=[[c,q],[-q,c]],
+C_s(y)=[[c^2-s^(-1)q^2,(1+s^(-1))cq],[-(1+s)cq,c^2-sq^2]],
+M_{n,s}(y)=E(y)C_s(y)^n,
+G_{n,s}(y)=(M_{n,s}(y))_{12},
+```
+
+where `(.)_{12}` is the first-row, second-column entry.
+
+These are normalized transfer matrices for the Dirichlet problem `-u''=lambda rho(x)u`, `u(0)=u(1)=0`, with balanced alternating density `[1,R,1,R,...,1]` consisting of `2n+1` blocks. The `1`-blocks have length `st`, the `R`-blocks have length `t`, `t=1/((n+1)s+n)`, and `y=sqrt(lambda)st`.
+
+Prove or disprove: for every `n>=1` and `R>1`, `G_{n,s}` has exactly `2n` zeros in `(0,pi)`, all simple.
+
+An equivalent polynomial formulation may be used only if justified. For `x in (-1,1)`, define `Q_{n,s}(x)=G_{n,s}(arccos(x))/sqrt(1-x^2)`. Prove any claimed polynomial extension, degree, root location, and simplicity. Audit `n=1`, `y=0`, `y=pi`, `y=pi/2`, and boundary `R=1` separately. Do not count endpoint zeros. Numerical scans, finitely many `n/R`, pairing without a count, or a degree bound without location and simplicity do not complete the task. State every external theorem with hypotheses. If incomplete, return the strongest exact partial result and first unresolved obligation without claiming completion.
+
+
+
+============================================================
+  HUMAN GUIDANCE (prove)
+  (/mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/human_help/additional_prove_human_help_global.md)
+============================================================
+(empty)
+
+============================================================
+  VERIFY RULE
+  (/mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/human_help/additional_verify_rule_global.md)
+============================================================
+(empty)
+
+============================================================
+STAGE 0: Literature Survey
+============================================================
+[Auxiliary] Running Literature Survey with role config={'provider': 'codex'}
+[Codex] Starting Literature Survey (model=gpt-5.6-sol)
+[Codex] stderr:
+Reading additional input from stdin...
+[Codex] Completed Literature Survey in 284s (82667 in / 11583 out)
+  Survey saved to: /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/related_info
+  Difficulty: EASY
+
+============================================================
+EASY PATH: Survey agent produced proof directly
+  Skipping Stage 1 (decomposition prover) and Stage 2 (summary).
+============================================================
+
+============================================================
+  PIPELINE COMPLETE  [easy short-circuit]
+============================================================
+  Proof at:    /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/proof.md
+  Token usage: /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output/TOKEN_USAGE.md
+  Output:      /mnt/f/benchmark/B3-O3-CAL-20260824/arm-c-qed-run1/output

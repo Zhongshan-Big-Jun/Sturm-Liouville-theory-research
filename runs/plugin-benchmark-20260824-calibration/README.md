@@ -56,4 +56,4 @@ Only audited mathematical content is integrated into the project. A correct resu
 
 ## Codex and QED replication
 
-The actual `gpt-5.6-sol` three-arm replication from the original pre-registration is tracked separately in `codex-qed-replication/`. It uses real Codex research subagents for Arm A, a context-empty Codex control for Arm B, and the pinned QED checkout for Arm C. Do not merge its measurements with the five-arm DSH table above.
+The actual `gpt-5.6-sol` three-arm replication from the original pre-registration is completed in `codex-qed-replication/RESULTS.md`. It uses real Codex research subagents for Arm A, a context-empty Codex control for Arm B, and the pinned QED checkout for Arm C. All three mathematical outputs passed anonymous review. QED took its one-role Easy short circuit, so its full verifier chain was not exercised. Do not merge these measurements with the five-arm DSH table above.

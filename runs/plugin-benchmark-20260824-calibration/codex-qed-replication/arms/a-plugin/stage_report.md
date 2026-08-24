@@ -5,6 +5,7 @@
 - System: `rigorous-open-math-research` v1.6.0.
 - Model: `gpt-5.6-sol`.
 - Reasoning effort: `xhigh`.
+- Codex CLI: `0.149.0-alpha.4.3`.
 - Root research agent: 1.
 - Initial independent route agents: 3.
 - Independent integrated-proof audit: the adversarial agent was reused with a new hash-bound packet.
