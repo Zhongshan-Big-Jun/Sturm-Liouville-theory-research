@@ -23,6 +23,7 @@ Strictness convention: rigorous proofs and numerical evidence are explicitly dis
 | $\{p_n\}$ complete in every integer left-definite space $H^s$ ($s \ge 1$) | `docs/SL_h3_completeness_proof.tex` | Proved |
 | $n=1$ gap extremals: SUP/INF attained by $[1,R,1]$ / $[R,1,R]$ | `docs/SL_gap_n1_proof.tex` et al. | Proved |
 | $n \ge 2$ gaps: finite-block reduction (at most $2n+1$ blocks) + exact $2n$-switch theorem | `docs/SL_gap_nge2_finite_reduction_proof.tex`, `SL_gap_nge2_exact_2n_switches_proof.tex` | Proved |
+| Even minimal-solution anchor $K(1)=e/4$ | `docs/SL_third_order_K1_proof.tex` | Proved (STRICT for the even c=1 anchor; general $K(c)$ open) |
 | $n \ge 2$ gaps (local): reflection symmetry at $R=1$ + local uniqueness as $R \to 1$; global uniqueness depends on $(G1')/(G2)$ (open) | `docs/SL_gap_nge2_symmetry_local_proof.tex` | Proved (local) |
 
 ### Partial proofs / strong numerical conjectures / open problems
@@ -43,7 +44,7 @@ Authoritative list: `docs/SL_spectral_topics_summary.tex` §5 (per-problem progr
 5. **Nonlinear generalizations (p-Laplacian etc.)**: scope of the Wen-Zhou singular-measure technique.
 6. **General moment-representability criterion**: closed-form criterion in general Hilbert spaces.
 7. **Threshold-line classification for jump stability**: coefficient families on the threshold line ($\sum\sim\log m$) not fully classified; higher-order moment-jump replacement mechanism (S3) for variable-coefficient operators.
-8. **Third-order recurrence theory**: closed form for the minimal solution $h^*$ and its asymptotic constant $K$, exclusion of degenerate configurations in box induction, classification of product solutions for general coefficient families.
+8. **Third-order recurrence theory**: general $K(c)$ closed form, source-term control and exclusion of degenerate configurations in box induction, and classification of product solutions for general coefficient families remain open. The even c=1 anchor $K(1)=e/4$ is proved in `docs/SL_third_order_K1_proof.tex`.
 9. **Fixed-$n$ supremum closure**: global extremality (Keller reduction), $2n$-root count, monotone convergence $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 formal verification (lean-proof/)
 

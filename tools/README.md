@@ -62,6 +62,7 @@ created: 2026-08-04
 - [[denseness-criteria]] - 稠密性准则: 矩刻画/一阶/跳变判据与对角临界 3/2 (会话 11)
 - [[jump-stability]] - 跳变稳定性: 增长引理定量形式与 omega(log) 门槛 (会话 11)
 - [[third-order-recurrence]] - 三阶递推积分解理论: 积分解分类/精确降阶/最小解 (会话 11)
+- [[third-order-minimal-K1]] - Strict c=1 even minimal-solution anchor K(1)=e/4 (R-20260824T184147Z-k1-e4-ab, 2026-08-25)
 - [[gap-band-extremals]] - 带状自洽极值判据: 相邻间距驻点条件与 FH 对称加倍 (会话 13)
 - [[largeR-level-cascade]] - 大 R 层级级联平衡: band 系统整数幂级数层级结构/硬常数机制/分族平移层 (会话 105, R-210/R-211, 审计 R-212)
 - [[m3-log-correction]] - M3 对数修正假设: 截断整数幂无根 + 数据拟合 u^2 主导 + log u 匹配渐近下一步 (会话 108, 2026-08-16, EVIDENCE)

@@ -37,7 +37,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Stability / threshold-line classification (moment-jump) | PARTIAL | docs/SL_stability_moment_jump | threshold line family ~ log m not fully classified |
-| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory | root-1 high-degree rational no-go STRICT partial (2026-08-22); root-0/minimal and other gaps open |
+| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | even c=1 anchor K(1)=e/4 STRICT; general K(c), source-term control, and general families OPEN |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
@@ -127,6 +127,9 @@ flowchart LR
 - A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
   higher-degree rational product exclusion STRICT partial (independent audit
   REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
+- A6 c=1 anchor (R-20260824T184147Z-k1-e4-ab, 2026-08-25): the even minimal
+  solution has a standalone STRICT proof of K(1)=e/4. General K(c), source-term
+  control, and general coefficient-family classification remain OPEN.
 - DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
 - DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
 - O1'LD (R-20260823T030000Z-leftdef-o1pld): new STRICT L^2-descent results: finite-support moment rigidity (Müntz-Szász L^p), Cauchy-Schwarz non-realizability, parity decomposition, concrete μ_4 non-density; cofinite-N density / proper-V corollary are NOT-YET-STRICT; H^1 infinite-run inadmissibility is EVIDENCE; general O1'LD remains open.

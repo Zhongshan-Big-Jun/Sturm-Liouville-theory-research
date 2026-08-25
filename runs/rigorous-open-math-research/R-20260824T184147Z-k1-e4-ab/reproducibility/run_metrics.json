@@ -1,0 +1,65 @@
+{
+  "benchmark_id": "SL-K1-E4-20260825",
+  "time_cap_seconds_per_arm": 7200,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "service_tier": "priority",
+  "solver_only_accounting": true,
+  "blueprint_v23": {
+    "root_thread_id": "01a03514-376f-7053-9c06-05d15c0a4f3b",
+    "started_at": "2026-08-25T02:41:52.1463845+08:00",
+    "ended_at": "2026-08-25T02:56:57.8592445+08:00",
+    "wall_seconds": 905.708,
+    "timed_out": false,
+    "wrapper_exit_code": 0,
+    "session_count": 7,
+    "token_usage": {
+      "input_tokens": 7037733,
+      "cached_input_tokens": 6621696,
+      "uncached_input_tokens": 416037,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 108062,
+      "reasoning_output_tokens": 80918,
+      "total_input_plus_output_tokens": 7145795
+    },
+    "sessions": [
+      {"agent": "root", "input_tokens": 4257444, "cached_input_tokens": 4079360, "output_tokens": 22223, "reasoning_output_tokens": 14310, "total_tokens": 4279667},
+      {"agent": "route_factor", "input_tokens": 810402, "cached_input_tokens": 756480, "output_tokens": 32224, "reasoning_output_tokens": 24761, "total_tokens": 842626},
+      {"agent": "route_asymp", "input_tokens": 893304, "cached_input_tokens": 811520, "output_tokens": 23310, "reasoning_output_tokens": 18763, "total_tokens": 916614},
+      {"agent": "protocol_transport", "input_tokens": 328320, "cached_input_tokens": 307968, "output_tokens": 2807, "reasoning_output_tokens": 1409, "total_tokens": 331127},
+      {"agent": "terminal_none", "input_tokens": 50380, "cached_input_tokens": 42240, "output_tokens": 284, "reasoning_output_tokens": 56, "total_tokens": 50664},
+      {"agent": "route_genfun", "input_tokens": 569106, "cached_input_tokens": 502528, "output_tokens": 21393, "reasoning_output_tokens": 17043, "total_tokens": 590499},
+      {"agent": "fresh_math_reviewer", "input_tokens": 128777, "cached_input_tokens": 121600, "output_tokens": 5821, "reasoning_output_tokens": 4576, "total_tokens": 134598}
+    ]
+  },
+  "bare_codex": {
+    "root_thread_id": "01a03514-23f8-70c0-b51b-f58b2be51080",
+    "started_at": "2026-08-25T02:41:47.1056593+08:00",
+    "ended_at": "2026-08-25T02:49:53.1145941+08:00",
+    "wall_seconds": 486.004,
+    "timed_out": false,
+    "wrapper_exit_code": 0,
+    "session_count": 1,
+    "token_usage": {
+      "input_tokens": 415186,
+      "cached_input_tokens": 350464,
+      "uncached_input_tokens": 64722,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 26899,
+      "reasoning_output_tokens": 21811,
+      "total_input_plus_output_tokens": 442085
+    }
+  },
+  "ratios_blueprint_over_bare": {
+    "wall_time": 1.8635813697,
+    "total_tokens": 16.1638485812,
+    "uncached_input_tokens": 6.4280615556,
+    "output_tokens": 4.0173240641
+  },
+  "excluded": [
+    "public repository scouting and task selection",
+    "aborted pre-start runs made before the cap changed from 45 minutes to 2 hours",
+    "sandbox diagnostics and preflights",
+    "post-hoc blinded evaluation"
+  ]
+}

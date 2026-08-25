@@ -1,0 +1,18 @@
+{
+  "audit_scope": "structured tool-call inputs in the formal root sessions and every Blueprint descendant session",
+  "blueprint_v23": {
+    "session_count": 7,
+    "tool_call_count": 145,
+    "web_call_count": 34,
+    "prohibited_reference_patterns": ["bare_codex", "source_repo", "evaluation\\blind", "cli_final.md"],
+    "prohibited_path_hits": 0
+  },
+  "bare_codex": {
+    "session_count": 1,
+    "tool_call_count": 15,
+    "web_call_count": 6,
+    "prohibited_reference_patterns": ["blueprint_v23", "source_repo", "evaluation\\blind", "cli_final.md"],
+    "prohibited_path_hits": 0
+  },
+  "interpretation": "No structured tool call in either formal solver arm attempted to access the other arm, the original clone, post-hoc evaluation files, or a solver final-output file. The isolation was protocol-enforced and event-audited, not a cryptographic filesystem barrier."
+}

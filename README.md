@@ -23,6 +23,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 | $\{p_n\}$ 在一切整数左定空间 $H^s$ ($s \ge 1$) 完备 | `docs/SL_h3_completeness_proof.tex` | 已证 |
 | $n=1$ 间距极端值: SUP/INF 由 $[1,R,1]$ / $[R,1,R]$ 达到 | `docs/SL_gap_n1_proof.tex` 等 | 已证 |
 | $n \ge 2$ 间距: 有限块约化 (至多 $2n+1$ 块) + 精确 $2n$ 开关定理 | `docs/SL_gap_nge2_finite_reduction_proof.tex`, `SL_gap_nge2_exact_2n_switches_proof.tex` | 已证 |
+| 偶次最小解锚点 $K(1)=e/4$ | `docs/SL_third_order_K1_proof.tex` | 已证 (STRICT, 仅 c=1; 一般 $K(c)$ 开放) |
 | $n \ge 2$ 间距 (局部): $R=1$ 反射对称 + $R \to 1$ 局部唯一性; 全局唯一性依赖 $(G1')/(G2)$ (开放) | `docs/SL_gap_nge2_symmetry_local_proof.tex` | 已证 (局部) |
 
 ### 部分证明 / 数值强猜想 / 开放问题
@@ -44,7 +45,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 5. **p-Laplacian 等非线性推广**: Wen-Zhou 奇异测度技巧的适用范围.
 6. **矩量可表示性的一般刻画**: 一般 Hilbert 空间的闭式判据.
 7. **跳变稳定性门槛线分类**: 门槛线上系数族 ($\sum\sim\log m$) 未完全分类; 变系数算子高阶矩跳跃替代机制 (S3).
-8. **三阶递推理论**: 最小解 $h^*$ 闭式与渐近常数 $K$, 盒式归纳退化配置排除, 一般系数族积分解分类.
+8. **三阶递推理论**: 一般 $K(c)$ 闭式, 盒式归纳源项与退化配置排除, 一般系数族积分解分类仍开放. 偶次 c=1 锚点 $K(1)=e/4$ 已在 `docs/SL_third_order_K1_proof.tex` 中严格证明.
 9. **固定 $n$ 上确界收尾**: 全局极值性 (Keller 型归约), $2n$-根计数, $\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$.
 ## Lean 4 形式化验证 (lean-proof/)
 

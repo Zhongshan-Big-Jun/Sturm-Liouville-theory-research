@@ -3278,3 +3278,10 @@
 - 新工作流继续: 派发 H^s 算子域 vs 完备化开放点 (Q-20260816-hs-operator-domain-C0D1E2F3, run R-20260816T200000Z-hs-operator-domain).
 
 - H^s 算子域 vs 完备化 run R-20260816T200000Z-hs-operator-domain INGESTED: RIGOROUS_PARTIAL_RESULT, STRICT MO/SPD/ND, Q1a(ii) EVIDENCE/open, 否证上游 S1d; Lean scaffold HsOperatorDomain_Scaffold.lean.
+
+### 2026-08-25 session: isolated K(1)=e/4 proof benchmark and handoff
+- Task: compare Blueprint v2.3 with bare Codex on the unresolved even minimal-solution anchor, under a two-hour cap and isolated workspaces.
+- Run: `runs/rigorous-open-math-research/R-20260824T184147Z-k1-e4-ab/`.
+- Result: both arms independently derived the exact finite backward formula, the positive minimal solution, and the strict asymptotic constant `K(1)=e/4`. An independent blind audit rated the Blueprint candidate `PASS_WITH_MINOR_FIX` (wording only) and the bare candidate `PASS_FULL`.
+- Handoff: added `docs/SL_third_order_K1_proof.tex` and `.pdf`, raw solver outputs, source/metrics/isolation manifests, proof/audit/final reports, and `tools/third-order-minimal-K1.md`. Historical decimal computations remain labeled `EVIDENCE` and are not used as proof.
+- Caveat: Blueprint deterministic proposal/review/integration stopped at the local helper with `helper_unknown_error` before process creation. The mathematical proof remains independently audited, and general `K(c)` plus source-term control stay `OPEN`.

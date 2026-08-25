@@ -2,7 +2,7 @@
 title: 三阶递推积分解理论 (third-order product-solution theory)
 tags: [mathtool, self-developed, recurrence, poincare-perron, minimal-solution]
 source: 自研 (会话 11, 方向 4), 路线 A 副产品系统化
-status: 定理已证 + 符号/精确/高精度数值验证
+status: 定理已证 for the structural recurrence results; STRICT c=1 anchor K(1)=e/4; general K(c) OPEN
 created: 2026-08-05
 ---
 
@@ -37,8 +37,10 @@ created: 2026-08-05
 - 边界情形: $j=2$ 基始不满足积分解 (三阶递推初值自由, 标准现象);
   $E^+$/$E^-$ 的比值 $1/(2j+1)$ (偶) 与 $3/(2j+3)$ (奇) 给出 $s$-递推显式特解;
   Casoratian 非零.
-- 不适用: 无积分解的一般三阶递推 (分类未完成); 需要最小解闭式
-  ($K$ 常数未闭式化, 开放); 盒式归纳的退化配置排除 (路线 A 缺口, 开放).
+- 不适用: 无积分解的一般三阶递推 (分类未完成); general c minimal-solution
+  closed form and the constant K(c) (OPEN); box-induction source-term control
+  and degenerate configurations (OPEN). The even c=1 anchor K(1)=e/4 is now
+  STRICT in `docs/SL_third_order_K1_proof.tex`.
 
 ## 验证与备注
 
@@ -71,3 +73,12 @@ created: 2026-08-05
   `runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/reproducibility/verify_diagonal_coefficient.py`.
 - **仍开放**: root-0/最小解分支的有理排除未成完整定理; 最小解闭式常数 $K$ 与
   盒式归纳源项控制仍开放 (原 A6 开放项).
+
+## 2026-08-25 update: strict c=1 minimal anchor
+
+- **STRICT**: for the even recurrence at c=1, the normalized minimal solution
+  has the exact backward-series representation and asymptotic constant
+  `K(1)=e/4`. See `docs/SL_third_order_K1_proof.tex` and run
+  `runs/rigorous-open-math-research/R-20260824T184147Z-k1-e4-ab/`.
+- **Scope boundary**: this closes only the c=1 anchor. The general K(c), source
+  term control, and general coefficient-family classification remain **OPEN**.
