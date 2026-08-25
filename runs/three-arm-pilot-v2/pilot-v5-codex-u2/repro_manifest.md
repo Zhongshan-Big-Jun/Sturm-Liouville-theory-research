@@ -1,0 +1,22 @@
+# Reproducibility manifest
+
+- Benchmark ID: `PILOT-V5-CODEX-U2-20260825`.
+- Preregistered at repository commit: `9b1ae2f`.
+- Repository branch: `main`.
+- Pre-existing untracked files: `scratch_1d_numeric.py`, `scratch_1d_numeric2.py`.
+- Frozen task: `frozen_task.md`.
+- Frozen task sha256: `6859E0AF922BA8454758E2195FCEFCFE8FA164A40E2C23022EC7EBB2DA228943`.
+- Arm A prompt: `arm-a-prompt.md`.
+- Arm A prompt sha256: `0AB0AF8E6936C0597626493029004DC4F8851BF79E5F6AE4076CCC2605D012A7`.
+- Arm A model: `gpt-5.6-sol`.
+- Arm A reasoning effort: `xhigh`.
+- Arm A plugin: installed `rigorous-open-math-research` v1.6.0 plugin cache.
+- Arm A plugin SKILL.md sha256: `ABC45897207D4BD445282CCFEB2B53840CB45A1FB956D9C312264C2426E0252F`.
+- Excluded source: the separate personal skill directory has a different hash and is not copied into the arm.
+- Arm A maximum subagent concurrency: `3`.
+- Network during blind discovery: disabled.
+- Primary quota at preregistration: `3` percent used, `300` minute window.
+- Secondary quota at preregistration: `0` percent used, `10080` minute window.
+- Primary reset observed: `2026-08-26 04:16:38 +08:00`.
+- Secondary reset observed: `2026-09-01 23:16:38 +08:00`.
+- Unknown field: account plan type was not exposed by local rate-limit telemetry.
