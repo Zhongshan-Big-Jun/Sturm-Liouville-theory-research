@@ -57,8 +57,11 @@ sum_(R,K,A) |h_t(R,K,A)-h_t(R,K,A+2)|
   original constant-order target explicitly left open.
 - Exact integer replay: `PASS` through `t=100`. This is `EVIDENCE` for conjectural comparisons and
   a deterministic check for displayed finite identities, not a proof of the open bound.
-- External anonymous audit: pending at the time of this stage-file creation. Its usage is post-hoc
-  and excluded from scored metrics.
+- External anonymous audit: `PASS` for the claimed partial theorem. It explicitly leaves `O3`
+  open. Source review SHA256: `0AD06B9EB728A40AFA779A68D954DBDE21B1B3D93C75B3B62F8192A98BB05BEA`.
+  The repository copy is LF-normalized and has SHA256
+  `9F3972097410C81D4882C9312D3CCAEE904E311307040F3D719571D346BA3638`. Its usage is
+  post-hoc and excluded from scored metrics.
 
 ## Scored resource data
 
