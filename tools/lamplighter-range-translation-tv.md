@@ -67,10 +67,28 @@ lamplighter chains whose conditional decorations are uniform on the visited inte
 the joint bound from marginal TVs without a path-specific proof. Do not assume fiberwise
 unimodality; the exact fiber at `(t,R,K)=(6,4,2)` is `[1,0,1]`.
 
+## Strict finite counterexample to the one-turn fiber claim
+
+The stronger claim that every parity-restricted fiber
+`A -> h_t(R,K,A)` has at most one change of monotonicity is false. For
+`(t,R,K)=(48,8,4)` and `A=0,2,4,6,8`, exact integer path counting gives
+
+```text
+[1000894788882,1029170933020,1017584921004,1029170933020,1000894788882].
+```
+
+The consecutive difference signs are `[+,-,+,-]`. This is a strict finite counterexample:
+the recurrence propagates exact integer counts on
+`(position,visited_0,visited_8)` and exhausts every length-48 nearest-neighbor path. It is not a
+floating-point scan. Consequently, a proof of the open aggregate variation bound cannot use a
+universal one-turn coarea shortcut.
+
 ## Verification and artifacts
 
 - Run package: `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/a-plugin/`.
 - Primary replay: `python3 reproducibility/audit_exact.py 100` from the arm directory.
 - Fresh global audit: `subagents/global_audit.md`, `PASS` for the claimed partial theorem.
+- One-turn counterexample replay:
+  `arms/b-blank/reproducibility/audit_false_one_turn.py` in the pilot v5 run.
 - Candidate proof SHA256:
   `C76537D71604F3F5402D520423BCB045B8E203B4FC967C6FB8D1EBBF8ABF043B`.
