@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WorkRoot=/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-a-plugin-wsl-run1
+WorkRoot=${1:-/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-a-plugin-wsl-run1}
 CodexHome=/home/huangzy/.codex-benchmark/B3-O3-CAL-20260824/arm-a
 ProxyUrl=http://172.22.112.1:7898
 
