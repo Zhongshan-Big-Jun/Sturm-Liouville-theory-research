@@ -40,3 +40,16 @@
 - Termination: verified WSL process group for the exact pilot v5 work root received `SIGINT`.
 - Resume rule: start a fresh scored Arm A directory only after the primary 300-minute window
   resets. Do not count either infrastructure attempt in Arm A metrics.
+
+## Scored Arm A hard-limit continuation
+
+- Scored workspace: `F:\benchmark\PILOT-V5-CODEX-U2-20260825\arm-a-plugin-wsl-run2`.
+- Scored thread: `01a03b91-c0d3-7792-ab90-c80bb7b40e46`.
+- First segment active wall: `2764` seconds.
+- First segment stop: service-enforced five-hour usage limit at `100` percent.
+- Preserved results: theorem contract, ledgers, exact enumeration, `direct_coupling.md`, and
+  `range_translation.md`.
+- Resume policy: same thread, model, reasoning effort, sandbox, prompt contract, and workspace.
+  The continuation cap is `2036` seconds, preserving the preregistered `4800` second total active
+  wall cap.
+- User instruction after reset: continue with no emergency reserve.
