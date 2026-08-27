@@ -21,3 +21,8 @@ If the regression is resumed:
    first-segment measurements.
 
 The external neutral audit is post-hoc and remains excluded from scored usage.
+
+The continuation was preflighted at `2026-08-27T12:31:29Z`. It uses the exact
+first-segment CLI `0.149.0-alpha.4.3`, pinned by SHA256 in
+`CONTINUATION_PREFLIGHT.md`, rather than the newer WSL default CLI. The frozen
+launcher is `harness/resume-v17-a-wsl.sh`.
