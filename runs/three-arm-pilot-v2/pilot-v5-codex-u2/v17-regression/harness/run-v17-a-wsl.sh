@@ -2,7 +2,7 @@
 set -euo pipefail
 
 BenchRoot=${1:-/mnt/f/benchmark/PILOT-V5-V17-U2-20260827}
-ProxyUrl=${2:-http://172.22.112.1:7897}
+ProxyUrl=${2:-http://172.22.112.1:7898}
 CodexHome="$BenchRoot/codex-home"
 WorkRoot="$BenchRoot/arm-a-plugin-v17"
 

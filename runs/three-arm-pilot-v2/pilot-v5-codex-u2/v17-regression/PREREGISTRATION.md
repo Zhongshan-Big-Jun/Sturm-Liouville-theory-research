@@ -14,6 +14,8 @@
 - Isolation: fresh `CODEX_HOME`, no memory, `--ignore-rules`, isolated work
   directory, no repository reads, no internet, workspace-write sandbox.
 - Wall cap: 75 minutes. No emergency quota reserve.
+- WSL transport proxy: `http://172.22.112.1:7898`, preflight returned HTTP
+  401 from the unauthenticated `/v1/models` probe; port 7897 timed out.
 - Controls: reuse frozen v1.6 Arm A, blank Arm B, and QED Arm C metrics; do not
   rerun controls.
 
