@@ -2,6 +2,8 @@
 
 Status: preregistered before any pilot v5 solver arm.
 
+Execution completed on `2026-08-27`. Final audited comparison: `RESULTS.md`.
+
 ## Objective
 
 Run a real Codex three-arm benchmark on the clarified U2 switch-walk-switch problem.

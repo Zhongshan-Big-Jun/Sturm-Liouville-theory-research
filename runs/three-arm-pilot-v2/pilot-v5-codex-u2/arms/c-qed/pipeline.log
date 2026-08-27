@@ -1,0 +1,200 @@
+============================================================
+  Proof Agent Pipeline
+============================================================
+  Problem:    /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/problem.tex
+  Output:     /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output
+  Mode:       decomposition
+  Max proof attempts:    1
+  Max revisions:         1
+  Max decompositions:    1
+  Token log:  /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/TOKEN_USAGE.md
+
+  RESUMING previous run:
+    - Literature survey: SKIP (already complete)
+
+============================================================
+  CONFIGURATION
+  (/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/config.safe.yaml)
+============================================================
+claude:
+  cli_path: "claude"
+  permission_mode: "bypassPermissions"
+  provider: "api_key"
+  api_key:
+    model: "claude-fable-5"
+    key: ""
+
+codex:
+  cli_path: "codex"
+  model: "gpt-5.6-sol"
+  reasoning_effort: "xhigh"
+
+gemini:
+  cli_path: "gemini"
+  model: "gemini-3.1-pro-preview"
+  approval_mode: "yolo"
+  thinking_level: "HIGH"
+  api_key: ""
+
+prover:
+  mode: "decomposition"
+
+pipeline:
+  literature_survey:
+    provider: "codex"
+    model: "gpt-5.6-sol"
+    reasoning_effort: "xhigh"
+  proof_summary:
+    provider: "codex"
+    model: "gpt-5.6-sol"
+    reasoning_effort: "xhigh"
+
+decomposition:
+  max_proof_attempts: 1
+  max_revisions: 1
+  max_decompositions: 1
+  models:
+    decomposer:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    single_prover:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    regulator:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    structural_verifier:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    detailed_verifier:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+    verdict:
+      provider: "codex"
+      model: "gpt-5.6-sol"
+      reasoning_effort: "xhigh"
+
+standalone_verifier:
+  judge:
+    provider: "codex"
+  structural_verifier:
+    provider: "codex"
+  detailed_verifier:
+    provider: "codex"
+  problem_reviewer:
+    provider: "codex"
+
+
+============================================================
+  PROBLEM STATEMENT
+  (/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/problem.tex)
+============================================================
+# Frozen task: U2 total-variation asymptotics
+
+Blind benchmark. Do not inspect any repository, git history, internet source, external memory,
+prior benchmark output, or prior solution to this exact problem. Scratch exact or numerical
+computation may be used only for falsification. Numerical evidence does not constitute proof.
+
+Let `Z_2 wr Z` be the lamplighter group. Write each state as `(eta,z)`, where
+`eta: Z -> Z_2` has finite support and `z in Z` is the base position. Let `0` denote the
+all-zero lamp configuration.
+
+Consider the discrete-time switch-walk-switch chain. From `(eta,z)`, independently resample the
+lamp at `z` from `Bernoulli(1/2)`, move the base to `z+1` or `z-1` with probability `1/2` each,
+then independently resample the lamp at the arrival site from `Bernoulli(1/2)`. Let `P_t^x`
+denote the law at integer time `t>=0` started from `x`.
+
+Set
+
+```text
+x=(0,0),
+y=(0,2).
+```
+
+Thus both initial lamp configurations are all zero, and the two initial base positions are `0`
+and `2`.
+
+Prove that there are explicit constants `0<c<=C<infinity` and an explicit integer `t_0` such
+that, for every integer `t>=t_0`,
+
+```text
+c/sqrt(t) <= ||P_t^x-P_t^y||_TV <= C/sqrt(t).
+```
+
+Here total variation is `sup_A |P_t^x(A)-P_t^y(A)|`, equivalently one half of the `l^1`
+distance on the countable state space.
+
+State every external theorem in the exact form used and verify all hypotheses. Audit parity,
+small times, the effect of the two forced initial zero lamps, and every conditioning or
+coupling step. Do not replace the chain by a different lamp convention or interpret `(0,2)` as
+a lamp lit at site `2`.
+
+A complete result requires both bounds with explicit constants. If incomplete, return the
+strongest exact partial result and the first unresolved obligation without claiming completion.
+
+
+============================================================
+  HUMAN GUIDANCE (prove)
+  (/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/human_help/additional_prove_human_help_global.md)
+============================================================
+(file not found)
+
+============================================================
+  VERIFY RULE
+  (/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/human_help/additional_verify_rule_global.md)
+============================================================
+(file not found)
+
+============================================================
+STAGE 0: Literature Survey  [SKIPPED — already complete]
+============================================================
+  Using existing survey at: /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/related_info
+  Difficulty: HARD
+
+============================================================
+STAGE 1: Proof Search  [DECOMPOSITION MODE]
+  (Decomposition-based proving with step-by-step verification)
+============================================================
+[DecompProver] Model configuration: {'decomposer': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'single_prover': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'regulator': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'structural_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'detailed_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'verdict': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}}
+[DecompProver] RESUMING: attempt=1, revision=1, proof=1, resume_point=prove
+[DecompProver] Decomposition: 10 steps, 1 key steps
+[DecompProver] Running single prover (attempt 1, revision 1, proof 1)
+[DecompProver] [SINGLE_PROVER] Writing complete proof (model=codex) | attempt=1 | revision=1 | proof=1
+[DecompProver] [SINGLE_PROVER] Result: Proof written
+[DecompProver] Running structural verification
+[DecompProver] [STRUCTURAL_VERIFIER] Structural verification of aggregated proof (model=codex)
+[DecompProver] [STRUCTURAL_VERIFIER] Result: Structural verification report generated
+[DecompProver] Running structural verdict check...
+[DecompProver] [VERDICT] Verdict on structural verification (model=codex) | mode=STRUCTURAL
+[DecompProver] [VERDICT] Result: STRUCTURAL verdict: CONTINUE
+[DecompProver] Structural verification FAILED. Consulting regulator...
+[DecompProver] [REGULATOR] Evaluating verification failure (model=codex) | attempt=1 | revision=1 | proof=1
+[DecompProver] [REGULATOR] Result: Decision: REVISE_PROOF
+[DecompProver] Regulator: REVISE_PROOF - trying new proof with same plan
+[DecompProver] Max revisions (1) exhausted, triggering rewrite
+[DecompProver] All decomposition attempts exhausted - running final failure analysis
+[DecompProver] [REGULATOR] Writing failure analysis (model=codex) | mode=FINAL | attempt=2 | revision=1 | proof=1
+[DecompProver] [REGULATOR] Result: Failure analysis complete
+  Decomposition prover completed successfully
+
+============================================================
+STAGE 2: Proof Effort Summary
+============================================================
+[Auxiliary] Running Proof Effort Summary with role config={'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}
+[Codex] Starting Proof Effort Summary (model=gpt-5.6-sol)
+[Codex] Completed Proof Effort Summary in 53s (10642 in / 1467 out)
+  Fallback: saved response to /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/proof_effort_summary.md
+  Summary saved to: /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/proof_effort_summary.md
+
+============================================================
+  PIPELINE COMPLETE
+============================================================
+  Proof at:    /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/proof.md
+  Summary at:  /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/proof_effort_summary.md
+  Token usage: /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output/TOKEN_USAGE.md
+  Output:      /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run3/output

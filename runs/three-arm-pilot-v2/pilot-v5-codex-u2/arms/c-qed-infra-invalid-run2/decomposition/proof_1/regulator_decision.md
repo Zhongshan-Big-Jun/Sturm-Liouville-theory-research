@@ -1,0 +1,1 @@
+The workspace host is indeed rejecting every read before execution, exactly as the verifier reported. With no structural findings and no evidence against the decomposition, the defensible classification is an execution/infrastructure failure; I’ll keep the plan unchanged and record `REVISE_PROOF`, with guidance to rerun verification once tool access is restored.

@@ -12,6 +12,7 @@ test -f "$OutputRoot/problem.tex"
 test ! -e "$OutputRoot/AGENTS.md"
 test "$(sha256sum "$OutputRoot/problem.tex" | cut -d ' ' -f 1)" = '6859e0af922ba8454758e2195fcefcfe8fa164a40e2c23022ec7ebb2da228943'
 bash -n /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/qed-safe-bin/codex
+python3 -m py_compile /mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/qed-safe-bin/qed-inline-prompt.py
 bash -n '/mnt/f/LaTeX/BVE research/runs/three-arm-pilot-v2/pilot-v5-codex-u2/harness/run-c-wsl.sh'
 export PYTHONPYCACHEPREFIX=/tmp/qed-pilot-v5-pyc
 python3 -m py_compile "$QEDSource/code/pipeline.py" "$QEDSource/code/model_runner.py" "$QEDSource/code/decomposition_prover.py"

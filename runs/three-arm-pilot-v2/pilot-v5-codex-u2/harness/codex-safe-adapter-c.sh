@@ -4,6 +4,7 @@ set -euo pipefail
 RealCodex=${QED_REAL_CODEX:-/home/huangzy/.local/bin/codex}
 CodexHome=/home/huangzy/.codex-benchmark/PILOT-V5-CODEX-U2-20260825/arm-c
 WrapperLog=${QED_WRAPPER_LOG:-/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/arm-c-qed-run1/wrapper.log}
+PromptAdapter=${QED_PROMPT_ADAPTER:-/mnt/f/benchmark/PILOT-V5-CODEX-U2-20260825/qed-safe-bin/qed-inline-prompt.py}
 
 FilteredArgs=()
 for Arg in "$@"
@@ -36,9 +37,14 @@ fi
 PreArgs=("${FilteredArgs[@]:0:$ExecIndex}")
 PostStart=$((ExecIndex + 1))
 PostArgs=("${FilteredArgs[@]:$PostStart}")
-PromptArg=${FilteredArgs[$((${#FilteredArgs[@]} - 1))]}
+LastIndex=$((${#FilteredArgs[@]} - 1))
+PromptArg=${FilteredArgs[$LastIndex]}
 PromptHash=$(printf '%s' "$PromptArg" | sha256sum | cut -d ' ' -f 1)
-printf '%s START pid=%s prompt_chars=%s prompt_sha256=%s\n' "$(date -Iseconds)" "$$" "${#PromptArg}" "$PromptHash" >> "$WrapperLog"
+AdaptedPrompt=$(python3 "$PromptAdapter" "$PromptArg" "$(pwd -P)")
+AdaptedHash=$(printf '%s' "$AdaptedPrompt" | sha256sum | cut -d ' ' -f 1)
+FilteredArgs[$LastIndex]=$AdaptedPrompt
+PostArgs=("${FilteredArgs[@]:$PostStart}")
+printf '%s START pid=%s prompt_chars=%s prompt_sha256=%s adapted_chars=%s adapted_sha256=%s\n' "$(date -Iseconds)" "$$" "${#PromptArg}" "$PromptHash" "${#AdaptedPrompt}" "$AdaptedHash" >> "$WrapperLog"
 
 ProxyUrl=${QED_MODEL_PROXY_URL:?QED_MODEL_PROXY_URL is required}
 export HTTP_PROXY="$ProxyUrl"

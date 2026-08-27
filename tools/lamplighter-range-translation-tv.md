@@ -1,7 +1,7 @@
 ---
 title: Lamplighter range-translation TV reduction
 tags: [mathtool, self-developed, probability, coupling, coarea, strict]
-source: Pilot v5 U2 Arm A
+source: Pilot v5 U2 Arms A and C
 status: STRICT partial theorem and reductions; constant-order joint upper bound OPEN
 created: 2026-08-26
 ---
@@ -18,9 +18,21 @@ the corresponding `(L,U,Z)` range triples.
 The audited partial theorem is
 
 ```text
-1/(4 sqrt(t)) <= TV(P_t^x,P_t^y),                      t>=1,
+1/(2 sqrt(t)) <= TV(P_t^x,P_t^y),                      t>=1,
 TV(P_t^x,P_t^y) <= (2 log(t)+15)/sqrt(t),             t>=16.
 ```
+
+The improved lower constant follows from endpoint projection and the exact parity-lattice
+identity
+
+```text
+TV(Law_0(W_t),Law_2(W_t))
+= max_k 2^(-t) binom(t,(t+k)/2)
+>= 1/(2 sqrt(t)).
+```
+
+Arm C independently derived and audited the same endpoint identity. It also proved the valid,
+but weaker for the open target, upper bound `(5+3 log(t))/sqrt(t)` for every `t>=1`.
 
 The one-sided `(L,Z)` and `(U,Z)` translated marginal TVs are each at most `12/sqrt(t)` for
 `t>=1`.
@@ -90,5 +102,7 @@ universal one-turn coarea shortcut.
 - Fresh global audit: `subagents/global_audit.md`, `PASS` for the claimed partial theorem.
 - One-turn counterexample replay:
   `arms/b-blank/reproducibility/audit_false_one_turn.py` in the pilot v5 run.
+- Arm C independent audit:
+  `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/c-qed/external_anonymous_audit.md`.
 - Candidate proof SHA256:
   `C76537D71604F3F5402D520423BCB045B8E203B4FC967C6FB8D1EBBF8ABF043B`.

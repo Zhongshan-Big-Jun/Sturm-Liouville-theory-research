@@ -1,0 +1,1 @@
+I’m blocked by the execution environment: every filesystem/tool call returns `code-mode host is disabled`. I therefore cannot read the mandatory inputs or write `decomposition.yaml` without fabricating content. Please rerun with the workspace tool host enabled.

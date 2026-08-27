@@ -53,3 +53,34 @@
   The continuation cap is `2036` seconds, preserving the preregistered `4800` second total active
   wall cap.
 - User instruction after reset: continue with no emergency reserve.
+
+## Arm C invalid run 1
+
+- Classification: `INFRA_INVALID`, excluded.
+- The initial wrapper stripped the CLI search flag and disabled sandbox network, but the Code Mode
+  host still exposed nested `web__run` calls to the QED literature-survey role.
+- The run was stopped after 44 nested Web calls among 46 model tool calls and before decomposition.
+- Compact evidence is under `arms/c-qed-infra-invalid-run1`.
+
+## Arm C invalid run 2
+
+- Classification: `INFRA_INVALID`, excluded.
+- Setting `features.code_mode_host=false` closed Web access but also disabled all model-side file
+  reads and writes. QED roles received only paths and returned tool-access blockers.
+- The run used six sessions and 242392 input tokens, but no role received the problem contents.
+- Compact evidence is under `arms/c-qed-infra-invalid-run2`.
+
+## Arm C scored run 3
+
+- Workspace: `F:\benchmark\PILOT-V5-CODEX-U2-20260825\arm-c-qed-run3`.
+- QED source: content-only export of commit `121900964e6572aaf094412d434b5ac2a792a65f`.
+- Offline adaptation: append exact contents of existing files named in each prompt and confined to
+  the output root; all model tools and network remain disabled.
+- Preflight and prompt-input probe: `PASS`, with all context-leakage markers zero.
+- Decomposer response: valid 10-step YAML. QED fallback selected an inner Markdown fence and saved
+  a scalar; the unchanged response was restored as `decomposition.yaml` and parsed as a mapping.
+- Scored event span: `2198.87` seconds across seven QED roles.
+- Pipeline result: structural `FAIL`, regulator `REVISE_PROOF`, final QED state `FAILED` because the
+  preregistered one-proof cap was exhausted.
+- Fresh external audit: `PARTIAL_NOT_COMPLETE`, accepting the explicit lower bound and logarithmic
+  upper bound while leaving the constant-order upper bound open.

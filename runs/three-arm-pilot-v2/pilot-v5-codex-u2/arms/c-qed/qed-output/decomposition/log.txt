@@ -1,0 +1,25 @@
+[2026-08-27 08:53:12] Model configuration: {'decomposer': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'single_prover': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'regulator': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'structural_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'detailed_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'verdict': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}}
+[2026-08-27 08:53:12] Starting decomposition-based proof (fresh)
+[2026-08-27 08:53:12] Running decomposer in CREATE mode (attempt 1)
+[2026-08-27 08:53:12] [DECOMPOSER] CREATE mode (model=codex) | attempt=1 | revision=1 | proof=1
+[2026-08-27 09:03:48] [DECOMPOSER] Result: CREATE completed
+[2026-08-27 09:05:42] Model configuration: {'decomposer': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'single_prover': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'regulator': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'structural_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'detailed_verifier': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}, 'verdict': {'provider': 'codex', 'model': 'gpt-5.6-sol', 'reasoning_effort': 'xhigh'}}
+[2026-08-27 09:05:42] RESUMING: attempt=1, revision=1, proof=1, resume_point=prove
+[2026-08-27 09:05:42] Decomposition: 10 steps, 1 key steps
+[2026-08-27 09:05:42] Running single prover (attempt 1, revision 1, proof 1)
+[2026-08-27 09:05:42] [SINGLE_PROVER] Writing complete proof (model=codex) | attempt=1 | revision=1 | proof=1
+[2026-08-27 09:21:38] [SINGLE_PROVER] Result: Proof written
+[2026-08-27 09:21:38] Running structural verification
+[2026-08-27 09:21:39] [STRUCTURAL_VERIFIER] Structural verification of aggregated proof (model=codex)
+[2026-08-27 09:26:48] [STRUCTURAL_VERIFIER] Result: Structural verification report generated
+[2026-08-27 09:26:48] Running structural verdict check...
+[2026-08-27 09:26:48] [VERDICT] Verdict on structural verification (model=codex) | mode=STRUCTURAL
+[2026-08-27 09:26:59] [VERDICT] Result: STRUCTURAL verdict: CONTINUE
+[2026-08-27 09:26:59] Structural verification FAILED. Consulting regulator...
+[2026-08-27 09:26:59] [REGULATOR] Evaluating verification failure (model=codex) | attempt=1 | revision=1 | proof=1
+[2026-08-27 09:27:45] [REGULATOR] Result: Decision: REVISE_PROOF
+[2026-08-27 09:27:45] Regulator: REVISE_PROOF - trying new proof with same plan
+[2026-08-27 09:27:45] Max revisions (1) exhausted, triggering rewrite
+[2026-08-27 09:27:45] All decomposition attempts exhausted - running final failure analysis
+[2026-08-27 09:27:45] [REGULATOR] Writing failure analysis (model=codex) | mode=FINAL | attempt=2 | revision=1 | proof=1
+[2026-08-27 09:29:06] [REGULATOR] Result: Failure analysis complete
