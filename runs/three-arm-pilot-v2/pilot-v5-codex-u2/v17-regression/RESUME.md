@@ -1,10 +1,10 @@
-# Resume protocol after the quota reset
+# Resume protocol and completion record
 
 The scored v1.7 root session is
 `01a041fc-0f14-79b3-86b3-aef3d4aa1b8a` in the frozen external `CODEX_HOME` at
 `F:\benchmark\PILOT-V5-V17-U2-20260827\codex-home`.
 
-If the regression is resumed:
+The regression was resumed on 2026-08-27 under the following frozen rules:
 
 1. Use the same root session, work directory, model, reasoning effort, proxy,
    and plugin installation.
@@ -20,7 +20,14 @@ If the regression is resumed:
 6. Add the continuation usage to `session_metrics.json`; do not overwrite the
    first-segment measurements.
 
-The external neutral audit is post-hoc and remains excluded from scored usage.
+The same root completed the stopping package in 569.206 additional active
+seconds, for 1881.050 total root seconds. It launched no new child session,
+did not retry Route B, and did not start a new mathematical route. Final scored
+status: `COMPLETED_WITH_AUDITED_PARTIAL_RESULT`. The fixed-constant upper bound
+remains open at `O3`.
+
+All external neutral audits are post-hoc and remain excluded from scored
+usage. No further scored resume is authorized for this regression run.
 
 The continuation was preflighted at `2026-08-27T12:31:29Z`. It uses the exact
 first-segment CLI `0.149.0-alpha.4.3`, pinned by SHA256 in

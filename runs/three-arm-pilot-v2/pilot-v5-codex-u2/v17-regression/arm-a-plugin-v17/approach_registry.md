@@ -14,7 +14,11 @@
 - **Expected bottleneck:** simultaneously covering both pre-coupling extremes.
 - **First open claim:** a quantitative path/range coupling with failure `O(t^{-1/2})`.
 - **Cost tier:** 3, authorized by explicit user request and closure-gate `ESCALATE`.
-- **Status:** ACTIVE (subagent A).
+- **Status:** PARTIAL.  Hash-verified artifact `subagents/route_a.md` proves the explicit
+  logarithmic-loss bound (5.1) and a coupling-specific `Omega(log(t)/sqrt(t))` mismatch lower
+  bound; therefore constant optimization of this reflected coupling is BLOCKED.
+- **Exact gap:** a different coupling or direct signed-count argument is required for fixed
+  `C/sqrt(t)`.
 
 ## R-B — convolution/analytic smoothing
 
@@ -27,10 +31,13 @@
 - **Required results:** any general inequality must be stated and proved in exact form.
 - **First deliverable:** explicit full-state `C_B,t_B`, or the first invalid factorization.
 - **Fast tests:** parity; noncommutation of adjacent lamp-switch projections; compare small TV.
-- **Expected bottleneck:** a universal group gradient estimate is false without extra structure.
+- **Expected bottleneck:** no universal group-gradient estimate with the needed hypotheses and
+  constants was verified in this blind run; extra chain-specific structure would be required.
 - **First open claim:** locate a one-dimensional convolution factor that survives the lamps.
 - **Cost tier:** 3.
-- **Status:** ACTIVE (subagent B).
+- **Status:** INCOMPLETE_RETURN.  No `subagents/route_b.md` exists at the stopping boundary.
+  No mathematical assertion, success, or route-level refutation was ingested, and the route
+  was not retried under the continuation restriction.
 
 ## R-C — exact combinatorial state comparison
 
@@ -47,7 +54,11 @@
 - **Expected bottleneck:** signs after summing over latent ranges.
 - **First open claim:** an `l1`-summable translation difference formula.
 - **Cost tier:** 3.
-- **Status:** ACTIVE (subagent C).
+- **Status:** PARTIAL.  Hash-verified artifact `subagents/route_c.md` proves exact state-mass
+  and normalized-range formulas, an explicit logarithmic-loss upper bound, and the V-shaped
+  counterexample `(26,16,26)` to naive unimodality.
+- **Exact gap:** prove the fixed-constant array estimate (6.3), or find a mechanism bypassing
+  the sufficient triple comparison.
 
 ## Avoid list
 
@@ -56,3 +67,5 @@
 - Do not use a generic reversible-chain neighbour-gradient assertion: it fails on chains with
   persistent boundary information unless extra hypotheses are proved.
 - Do not require equality of full paths; their distinct starting vertices make that impossible.
+- Do not retry parity-class unimodality for `a -> h_t^r(a,j)`; the exact V-shaped slice refutes it.
+- Do not treat Route B's missing artifact as evidence for or against its analytic mechanism.

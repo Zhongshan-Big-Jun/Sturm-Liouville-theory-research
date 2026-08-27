@@ -139,7 +139,11 @@ universal one-turn coarea shortcut.
   `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/c-qed/external_anonymous_audit.md`.
 - v1.7 regression package:
   `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/`.
-- v1.7 neutral audit SHA256:
+- v1.7 first-segment neutral audit SHA256:
   `1F5E907B3FCBBE2190CBB6B4611C558D165A8CB51EC28E0F554CADD8D6CE00B8`.
-- Candidate proof SHA256:
-  `C76537D71604F3F5402D520423BCB045B8E203B4FC967C6FB8D1EBBF8ABF043B`.
+- v1.7 final-package neutral audit SHA256:
+  `12EE19BF382C8E7E391180FEBCA1706A75BB69771321DC5F9E50DE2200ED9F0D`.
+- Final candidate proof SHA256:
+  `40359F326AEC9C01ECC0FA73C43BAC72FFCA74B1BEA2E847F0BED1A601B812E9`.
+- Repository-corrected artifact manifest SHA256:
+  `CB811D40BE24EC74ED301463AFFB32ADE7BC7B27FA93E51385ACBBC1E9DDCD1A`.

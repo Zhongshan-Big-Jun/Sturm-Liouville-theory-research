@@ -1,4 +1,4 @@
-# Candidate proof (live draft)
+# Candidate proof — stopping-boundary rigorous partial result
 
 This draft carries obligation identifiers.  It is not a completion claim while `O3` and `O4`
 remain open.
@@ -103,7 +103,127 @@ Combining endpoint projection, (4.1), and (4.2) proves
 
 Thus the eventual theorem may take `c=1/4`; no external estimate is used.
 
-## 5. Full-state upper bound (`O3`)
+## 5. A self-contained logarithmic-loss upper bound (`O3-partial`)
 
-Open at this draft stage.  Any completed version must insert an explicit uniform upper bound
-for the full law (equivalently, by (3.2), the visible-hull law) and then pass `O4`.
+For `N>=1`, write `H_N=sum_{k=1}^N 1/k`.  We prove that, for every integer `t>=2`, with
+`n=floor(t/2)`,
+
+`||P_t^x-P_t^y||_TV
+ <= 1/sqrt(n+1) + 2 H_(n+1)/sqrt(t-n+1)`                       (5.1)
+
+and hence
+
+`||P_t^x-P_t^y||_TV
+ <= sqrt(2) [3+2 log(t+1)]/sqrt(t)`.                           (5.2)
+
+This is not the fixed-constant upper bound required by the frozen target.
+
+### 5.1 One-sided survival
+
+Let `R` be simple symmetric random walk from zero and `M_m=max_{0<=j<=m}R_j`.  For integers
+`m>=0,a>=1`, reflection after the first visit to `a` maps paths ending at `b<a` that visit `a`
+bijectionally to unrestricted paths ending at `2a-b`.  Summing over accessible `b<a` and using
+symmetry gives the exact half-open identity
+
+`Pr(M_m<a)=Pr(-a<=R_m<a)`.                                    (5.3)
+
+For `m>=1`, every endpoint atom is at most `1/sqrt(m+1)`.  Here is the complete estimate.  If
+`q_m=2^{-m} binom(m,floor(m/2))`, then
+
+`q_(2r)=product_{j=1}^r (2j-1)/(2j)` and `q_(2r)^2<=1/(2r+1)`.
+
+The inequality follows by induction: after multiplying by `((2r+1)/(2r+2))^2`, the next
+step is exactly `(2r+1)(2r+3)<=(2r+2)^2`.  Also
+`q_(2r+1)=((2r+1)/(2r+2))q_(2r)<=1/sqrt(2r+2)`.  The half-open interval in (5.3) has exactly
+`a` accessible sites, so
+
+`Pr(M_m<a)<=a/sqrt(m+1)`.                                     (5.4)
+
+### 5.2 Reflected/coalescing base coupling
+
+Let `X` start at zero and set `tau=inf{j:X_j=1}`.  Until `tau`, put `Y_j=2-X_j`; from `tau`
+onward give the two walks the same fresh increments.  At every time, the next increment of `Y`
+is either a fresh fair sign or its negative, according to the already observed past.  Thus its
+increments are themselves independent fair signs, and `Y` is a simple symmetric walk from two.
+
+Put `D=-min_{0<=j<=tau}X_j`.  Before coalescence the visited intervals are exactly `[-D,1]`
+and `[1,D+2]`.  If the common tail visits both `-D` and `D+2`, the endpoint and the two complete
+visited intervals agree.  By Section 1, the same fair bits can then be used on that common
+interval, coupling the complete frozen lamplighter states.
+
+We need two exact consequences of (5.3).  First,
+
+`Pr(tau>N)<=1/sqrt(N+1)`.                                      (5.5)
+
+Second, for every integer `d>=1`, a first-step recursion in the finite interval `[-d,1]`
+shows that the probability, from zero, of hitting `-d` before `1` is `1/(d+1)`: the unique
+linear function with boundary values one and zero is `(1-k)/(d+1)`.  Absorption is almost
+sure because every block of `d+1` steps has a fixed positive probability of reaching a
+boundary.  Hence
+
+`Pr(D>=d)=1/(d+1)`.                                           (5.6)
+
+On `{tau<=N}`, `D<=N`; expanding an integer variable as the sum of its tail indicators yields
+
+`E[(D+1) 1_{tau<=N}] <= 1+sum_{d=1}^N Pr(D>=d)=H_(N+1)`.       (5.7)
+
+Take `n=floor(t/2)` and declare coupling failure if `tau>n`.  On `{tau<=n}`, the fresh common
+tail has `m=t-tau>=t-n` steps from site one.  Each required extreme is at distance `D+1`.
+By (5.4) on the two sides and a union bound, its conditional probability of missing at least
+one extreme is at most
+
+`2(D+1)/sqrt(t-n+1)`.
+
+Equations (5.5) and (5.7) prove that the state-coupling mismatch probability is bounded by the
+right side of (5.1).  For any coupling `(V,W)` and event `A`, the discrepancy of the two event
+probabilities is at most `Pr(V!=W)`; taking the supremum proves the coupling inequality and
+therefore (5.1).
+
+Finally, `H_N<=1+log N`, since `sum_{k=2}^N 1/k<=integral_1^N dx/x`, while
+`n+1>=t/2`, `t-n+1>=t/2`, and `n+1<=t+1`.  These inequalities give (5.2).  Both starts are even,
+reflection occurs about site one, and coalescence is at site one at an allowed time, so the
+coupling respects the common endpoint parity `t mod 2`.
+
+## 6. Exact normalized-range frontier and a falsified shortcut
+
+Let `N_t^0(l,u,z)` be the number of length-`t` base paths from zero to `z` with exact minimum
+`l` and maximum `u`.  For `0<=a,j<=r`, set
+
+`h_t^r(a,j)=N_t^0(-a,r-a,j-a)`,                               (6.1)
+
+and set it to zero outside that index range.  At the actual triple `(l,u,z)`, put
+`r=u-l`, `a=-l`, `j=z-l`.  Translation by two changes the normalized starting coordinate from
+`a` to `a+2` but leaves `(r,j)` fixed.  Since each base path has mass `2^{-t}`, summing all
+actual triples gives the exact identity
+
+`||Law_0(L_t,U_t,S_t)-Law_2(L_t,U_t,S_t)||_TV
+ = 2^{-t-1} sum_{r=0}^t sum_{j=0}^r sum_{a in Z}
+     |h_t^r(a,j)-h_t^r(a+2,j)|`.                             (6.2)
+
+By the common conditional-lamp kernel of Section 1, this triple TV upper-bounds the full-state
+TV.  Thus an explicit fixed `C_*` and threshold in
+
+`sum_{r,j,a}|h_t^r(a,j)-h_t^r(a+2,j)| <= 2 C_* 2^t/sqrt(t)`    (6.3)
+
+would be a sufficient proof of the still-open frozen upper bound.
+
+The simplest proposed proof of (6.3) is false.  Exact killed-walk recurrence and
+inclusion-exclusion give, at `t=10,r=4,j=2`, the accessible-parity values
+
+`(h_10^4(0,2),h_10^4(2,2),h_10^4(4,2))=(26,16,26)`.
+
+Hence the slice is V-shaped, not unimodal; its translated differences do not have one sign.
+The replay check is `python3 reproducibility/verify_route_claims.py`.
+
+## 7. Strongest exact partial theorem and first unresolved obligation
+
+Combining Sections 4 and 5 proves, for every integer `t>=2`,
+
+`1/(4sqrt(t)) <= ||P_t^x-P_t^y||_TV
+ <= 1/sqrt(floor(t/2)+1)
+    + 2H_(floor(t/2)+1)/sqrt(ceil(t/2)+1)`.                   (7.1)
+
+The upper bound is `O(log(t)/sqrt(t))`, not the requested `C/sqrt(t)`.  The first unresolved
+load-bearing obligation is a fixed-constant full-state upper bound.  Inequality (6.3) is one
+explicit sufficient subobligation; the counterexample above shows that parity-class
+unimodality cannot prove it.

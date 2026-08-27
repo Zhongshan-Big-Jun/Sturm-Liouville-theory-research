@@ -2,7 +2,7 @@
 
 - **Run ID:** `U2-TV-2026-08-27`.
 - **Task packet ID:** `FROZEN-U2`.
-- **Current cost tier:** 3.
+- **Current cost tier:** stopping boundary; no further escalation authorized.
 
 ## Attempts
 
@@ -20,8 +20,18 @@
   subagents, together with the named load-bearing gap `O3` and closure decision `ESCALATE`.
   Three routes have distinct mechanisms and can decide whether the range detour is necessary.
 
+## Returns and de-escalation
+
+- Route A -> PARTIAL: explicit logarithmic upper bound plus proof that its coupling has a
+  logarithmic mismatch obstruction.  De-escalated to exact gap `O3`.
+- Route C -> PARTIAL: exact finite formulas and V-shaped counterexample.  De-escalated to
+  sufficient array obligation `O3c`.
+- Route B -> INCOMPLETE_RETURN: no artifact; no retry and no mathematical inference.
+- Continuation boundary: user explicitly prohibited new agents, Route B retry, or another wave.
+
 ## Avoid list
 
 - Endpoint-only upper bound.
 - Equality of entire trajectories.
 - Unproved generic heat-kernel gradient theorem.
+- Reflected-coupling constant optimization and naive normalized-range unimodality.

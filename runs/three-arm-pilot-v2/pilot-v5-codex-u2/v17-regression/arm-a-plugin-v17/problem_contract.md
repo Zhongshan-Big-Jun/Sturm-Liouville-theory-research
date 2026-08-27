@@ -40,8 +40,8 @@ uses the given chain, not a change of lamp convention.
 - At time `t`, both base positions have parity `t (mod 2)` because both starts are even;
   parity therefore does not itself separate the two laws.
 - At `t=0`, the laws are point masses at distinct states and their TV distance is one.
-- A site visited at least once, including the initial base site, is resampled; an unvisited
-  site's initially zero lamp stays zero.
+- For `t>=1`, every site visited by the base path, including its initial site, is resampled;
+  an unvisited site's initially zero lamp stays zero.  At `t=0` no resampling occurs.
 - Repeated switches at one site do not create dependence in the final lamps: the last switch
   at each visited site is an independent fair bit.
 - `(0,2)` means base position two with the all-zero lamp configuration; it never means a lit

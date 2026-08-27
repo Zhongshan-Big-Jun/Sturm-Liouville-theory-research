@@ -54,3 +54,26 @@
   `1/(4 sqrt(t))` for every integer `t>=1`.
 - Durable delta: `O2` is closed locally and `O1b` is a new exact reduction.  Both await the
   independent package audit.
+
+## 2026-08-27 — hard-limit continuation and route ingestion
+
+- Continuation restrictions: preserve the frozen contract and all artifacts; read only this
+  directory and installed plugin cache; no internet, new subagent, Route B retry, or new wave.
+- Recomputed `sha256sum` before ingestion.  Route A matched its reported full hash
+  `6ce207738f66fcd3b0b5b2c39175cf068be15f8b8532b76593e11b5cd386b647`.
+  Route C matched
+  `f260fe18d316ad8d58294700ad4bb3cd40514537728a7ac67ae576c19ca7bbf2`.
+- No `subagents/route_b.md` exists.  Route B is recorded as INCOMPLETE_RETURN; no claim or
+  failure mechanism is inferred from absence.
+- Route A's supported result: for `t>=2`, (5.1) gives an explicit full-state
+  `O(log(t)/sqrt(t))` upper bound.  Its Section 4 lower-bounds only that coupling's mismatch,
+  not total variation; this distinction is retained.
+- Route C's supported results: exact state-mass formula, exact normalized-range triple-TV
+  identity, an alternative logarithmic-loss bound, and the exact V-shaped counterexample to
+  parity-class unimodality.  Its array bound (17) remains open and is used only as a sufficient
+  future obligation.
+- Independently replayed `python3 reproducibility/verify_route_claims.py`; it exactly verified
+  the killed-count table `(26,16,26)` and literal `t=1` full-state TV `3/4`.
+- Replayed the full-state exact enumerator through `t=12`; output matched the earlier ledger.
+- Integrated strongest exact partial theorem (7.1) into `candidate_proof.md`.  The fixed-
+  constant upper bound `O3` remains open.

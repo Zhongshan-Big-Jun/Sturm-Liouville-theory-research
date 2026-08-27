@@ -2,18 +2,25 @@
 
 ## Status
 
-`PAUSED_QUOTA_WITH_AUDITED_PARTIAL_RESULT`.
+`COMPLETED_WITH_AUDITED_PARTIAL_RESULT`.
 
-The scored solver reached the service-enforced five-hour limit after 1311.844
-seconds. It had completed two of three research routes and written a live
-candidate proof, but had not written a final response or performed its own
-global package audit. A post-hoc independent neutral audit, excluded from
-scored usage, returned `PASS` for every retained partial theorem claim. The
-original fixed-constant upper bound remains `OPEN`.
+The scored solver resumed the same root session after the quota reset and
+completed its stopping-boundary package in 569.206 additional active seconds.
+The two scored segments total 1881.050 root seconds. Route A and Route C were
+hash-verified and integrated; Route B remained an `INCOMPLETE_RETURN` and no
+claim was inferred from its missing artifact. The solver wrote a final
+response, coordinator audit, files-only convergence check, replay scripts, and
+hash manifest. It honestly retained the label `RIGOROUS_PARTIAL_RESULT`.
 
-This checkpoint is valid evidence about time to an audited partial package. It
-is not a completed end-to-end regression and does not confirm the full v1.7
-optimization hypothesis.
+A post-hoc independent audit is excluded from scored usage. The original
+fixed-constant upper bound remains `OPEN` at obligation `O3`. The regression
+therefore confirms the v1.7 efficiency hypothesis for producing an honest,
+auditable partial package, not mathematical completion of the frozen target.
+
+Repository capture note: the CLI launcher replaced `final_response.md` with
+the actual completed-turn answer after the solver had generated its manifest.
+The archived manifest updates only that capture-file hash; all mathematical
+artifact hashes are unchanged. See `repro_manifest.md` for both bindings.
 
 ## Audited mathematics
 
@@ -43,26 +50,27 @@ The fixed numerical `C` in a full-state `C/sqrt(t)` upper bound remains
 `OPEN`. Finite exact replays are labeled `EVIDENCE`, not proof. Novelty is
 `UNKNOWN` because the scored and neutral runs prohibited literature access.
 
-## Scored resource checkpoint
+## Final scored resource comparison
 
-| Metric | v1.6 Arm A | v1.7 quota checkpoint | Change | Target | Checkpoint target |
+| Metric | v1.6 Arm A | v1.7 final | Change | Target | Target met |
 | --- | ---: | ---: | ---: | ---: | --- |
-| Root active wall | 4052 s | 1311.844 s | -67.62% | <=3039 s | met |
-| Model responses | 307 | 56 | -81.76% | <=184 | met |
-| Tool calls | 216 | 44 | -79.63% | <=151 | met |
+| Root active wall | 4052 s | 1881.050 s | -53.58% | <=3039 s | met |
+| Model responses | 307 | 72 | -76.55% | <=184 | met |
+| Tool calls | 216 | 58 | -73.15% | <=151 | met |
 | Child sessions | 7 | 3 | -57.14% | <=4 | met |
-| Uncached input | 1,108,074 | 211,820 | -80.88% | <=609,441 | met |
-| Output | 390,390 | 101,940 | -73.89% | <=234,234 | met |
-| Cost proxy | USD 21.7088192 | USD 3.5672448 | -83.57% | <=USD 13.0252915 | met |
+| Uncached input | 1,108,074 | 338,812 | -69.42% | <=609,441 | met |
+| Output | 390,390 | 125,692 | -67.80% | <=234,234 | met |
+| Cost proxy | USD 21.7088192 | USD 5.183904 | -76.12% | <=USD 13.0252915 | met |
 
 The cost proxy is
 `uncached_input*USD 4/M + cached_input*USD 0.40/M + output*USD 20/M`.
 It is a comparison metric, not an actual bill.
 
-All six preregistered efficiency thresholds were met at the interruption
-boundary. Because v1.6 completed after two five-hour segments and v1.7 has not
-yet resumed, these percentages establish an early-checkpoint efficiency
-signal only.
+All preregistered efficiency thresholds were met after the end-to-end v1.7
+stopping package completed. The comparison is matched on task, prompt, model,
+reasoning effort, isolation, and scoring definitions. It measures workflow
+efficiency and audit honesty on this reused U2 regression task; it does not by
+itself establish broad out-of-distribution superiority.
 
 ## Scheduling observations
 
@@ -73,19 +81,27 @@ signal only.
   smallest-batch recommendation.
 - Two routes returned hash-bound partial artifacts. Route B consumed scored
   resources but hit the hard limit before writing its promised artifact.
-- No network was used and no extra child sessions were launched.
+- The same-session continuation launched no new child session, no new route,
+  and no Route B retry. It only ingested existing artifacts and froze the
+  stopping package.
+- No network was used.
 
 ## Quota and audit
 
-- First observed five-hour usage: 55%.
-- Last observed five-hour usage: 100%.
-- First observed weekly usage: 75%.
-- Last observed weekly usage: 82%.
-- Termination log: `You've hit your usage limit ... try again at 7:06 PM.`
-- Neutral audit: `PASS_FOR_RETAINED_PARTIAL_THEOREMS`.
-- Neutral audit SHA256:
+- First segment ended at the five-hour hard limit after 1311.844 seconds.
+- Continuation observed five-hour usage from 50% to 71% and weekly usage from
+  90% to 93%.
+- The first-segment neutral audit returned
+  `PASS_FOR_RETAINED_PARTIAL_THEOREMS`; SHA256
   `1f5e907b3fcbbe2190cbb6b4611c558d165a8cb51ec28e0f554cadd8d6ce00b8`.
+- The exact final-package independent verdict and hash are recorded in
+  `arm-a-plugin-v17/external_final_audit.md` and
+  `external_final_audit_verdict.json`. The verdict is `PASS` for the retained
+  partial theorem and `FAIL` for frozen-target completion. Review SHA256:
+  `12ee19bf382c8e7e391180febca1706a75bb69771321dc5f9e50de2200ed9f0d`.
+- Repository-corrected artifact manifest SHA256:
+  `cb811d40be24ec74ed301463affb32ade7bc7b27fa93e51385acbbc1e9ddcd1a`.
 
 See `arm-a-plugin-v17/stage_report.md`, `candidate_proof.md`,
-`subagents/route_a.md`, `subagents/route_c.md`, and
-`external_neutral_audit.md` for the bound package.
+`final_report.md`, `subagents/route_a.md`, `subagents/route_c.md`, and the two
+external audit records for the bound package.

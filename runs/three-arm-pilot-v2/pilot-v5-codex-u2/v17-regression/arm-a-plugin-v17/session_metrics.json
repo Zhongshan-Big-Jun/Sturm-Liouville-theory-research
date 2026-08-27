@@ -2,22 +2,48 @@
 	"metric_contract": {
 		"model_responses": "Count of exposed token_count records with non-null usage info.",
 		"tool_calls": "Count of raw custom_tool_call records.",
-		"token_totals": "Last total_token_usage record in each scored session, summed across sessions.",
+		"token_totals": "Last cumulative total_token_usage record in each scored session, summed across sessions.",
 		"posthoc_review_included": false
 	},
 	"sessions": [
 		{
 			"session": "01a041fc-0f14-79b3-86b3-aef3d4aa1b8a",
 			"role": "root_coordinator",
-			"status": "HARD_RATE_LIMIT_WITH_PARTIAL_ARTIFACT",
-			"wall_seconds": 1311.844,
-			"model_responses": 24,
-			"tool_calls": 16,
-			"input": 1084003,
-			"cached": 1006080,
-			"uncached": 77923,
-			"output": 36585,
-			"reasoning": 24057
+			"status": "COMPLETE_PARTIAL_PACKAGE_AFTER_SAME_SESSION_RESUME",
+			"wall_seconds": 1881.050,
+			"model_responses": 40,
+			"tool_calls": 30,
+			"input": 2795123,
+			"cached": 2590208,
+			"uncached": 204915,
+			"output": 60337,
+			"reasoning": 32897,
+			"segments": [
+				{
+					"name": "first_segment",
+					"status": "HARD_RATE_LIMIT_WITH_PARTIAL_ARTIFACT",
+					"wall_seconds": 1311.844,
+					"model_responses": 24,
+					"tool_calls": 16,
+					"input": 1084003,
+					"cached": 1006080,
+					"uncached": 77923,
+					"output": 36585,
+					"reasoning": 24057
+				},
+				{
+					"name": "stopping_boundary_continuation",
+					"status": "COMPLETE_PARTIAL_PACKAGE",
+					"wall_seconds": 569.206,
+					"model_responses": 16,
+					"tool_calls": 14,
+					"input_delta": 1711120,
+					"cached_delta": 1584128,
+					"uncached_delta": 126992,
+					"output_delta": 23752,
+					"reasoning_delta": 8840
+				}
+			]
 		},
 		{
 			"session": "01a04203-153b-74d0-b232-0b0b46d1bcc0",
@@ -60,14 +86,14 @@
 		}
 	],
 	"totals": {
-		"root_wall_seconds": 1311.844,
-		"aggregate_agent_seconds": 3826.420,
-		"model_responses": 56,
-		"tool_calls": 44,
-		"input": 1914732,
-		"cached": 1702912,
-		"uncached": 211820,
-		"output": 101940,
-		"reasoning": 74637
+		"root_wall_seconds": 1881.050,
+		"aggregate_agent_seconds": 4395.626,
+		"model_responses": 72,
+		"tool_calls": 58,
+		"input": 3625852,
+		"cached": 3287040,
+		"uncached": 338812,
+		"output": 125692,
+		"reasoning": 83477
 	}
 }

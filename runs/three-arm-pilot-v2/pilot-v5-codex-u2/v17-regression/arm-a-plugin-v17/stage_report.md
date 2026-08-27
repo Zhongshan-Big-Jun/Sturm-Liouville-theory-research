@@ -14,18 +14,24 @@
 
 ## Termination and scored status
 
-The root stopped at the service-enforced five-hour limit after 1311.844 active
-seconds. Route A and Route C returned complete partial artifacts. Route B did
-not write an artifact before termination. The root wrote a live candidate
-proof but no final response and no internal global audit.
+The root first stopped at the service-enforced five-hour limit after 1311.844
+active seconds. It then resumed in the same session and completed a bounded
+stopping-only continuation in 569.206 seconds. Total root active wall was
+1881.050 seconds. Route A and Route C returned complete partial artifacts and
+matched their reported hashes. Route B did not write an artifact and was not
+retried. The root wrote a final response, coordinator audit, files-only
+convergence check, and hash-bound final package.
 
-Primary status: `PAUSED_QUOTA_WITH_AUDITED_PARTIAL_RESULT`.
+Primary status: `COMPLETED_WITH_AUDITED_PARTIAL_RESULT`.
 
 Solver label for the retained mathematics: `RIGOROUS_PARTIAL_RESULT`.
 
-The post-hoc neutral audit is independent and excluded from scored metrics. It
-returned `PASS` for every retained partial theorem claim. It does not convert
-the interrupted run into a completed end-to-end regression.
+Both post-hoc neutral audits are independent and excluded from scored metrics.
+The first audit checked the retained first-segment theorems; the final audit
+checked candidate SHA256
+`40359f326aec9c01ecc0fa73c43bac72ffca74b1bea2e847f0bed1a601b812e9`
+and returned `PASS` for `O1`, `O1b`, `O2`, `O3p`, and `O5`. They do not
+convert the open frozen target into a completed theorem.
 
 ## Audited partial theorem
 
@@ -58,37 +64,42 @@ triple formulas and falsifies the naive parity-class unimodality argument.
 
 | Metric | Value |
 | --- | ---: |
-| Root active wall | 1311.844 s |
-| Aggregate agent time | 3826.420 s |
+| Root active wall | 1881.050 s |
+| Aggregate agent time | 4395.626 s |
 | Sessions | 4 |
 | Child sessions | 3 |
-| Model responses | 56 |
-| Tool calls | 44 |
-| Input tokens | 1,914,732 |
-| Cached input tokens | 1,702,912 |
-| Uncached input tokens | 211,820 |
-| Output tokens | 101,940 |
-| Reasoning output tokens | 74,637 |
-| Cost proxy | USD 3.5672448 |
+| Model responses | 72 |
+| Tool calls | 58 |
+| Input tokens | 3,625,852 |
+| Cached input tokens | 3,287,040 |
+| Uncached input tokens | 338,812 |
+| Output tokens | 125,692 |
+| Reasoning output tokens | 83,477 |
+| Cost proxy | USD 5.183904 |
 
-One incomplete Route B return is fully charged to these totals. The neutral
-audit and repository-side exact replay are excluded.
+One incomplete Route B return is fully charged to these totals. The two
+neutral audits and repository-side exact replay are excluded. The continuation
+alone used 569.206 seconds, 16 responses, 14 tool calls, 126,992 uncached input
+tokens, 23,752 output tokens, and 8,840 reasoning tokens.
 
 ## Protocol compliance
 
 The coordinator completed a direct attempt and exact falsification probe before
 delegation and required hash-bound route packets. The three-route first batch
 met the preregistered cap, but was more aggressive than the closure-first
-smallest-batch recommendation. This is a scheduling observation, not a frozen
-protocol violation.
+smallest-batch recommendation. The continuation corrected this by launching no
+new child session or research wave and stopping at the first exact gap. This is
+a scheduling observation, not a frozen protocol violation.
 
 ## Reproducibility
 
-Run:
+Run the strict route-interface replay:
 
 ```text
-py -3 reproducibility/audit_exact_claims.py
+py -3 reproducibility/verify_route_claims.py
 ```
 
-The replay passes on its finite declared domains. It is `EVIDENCE` only.
-Session-level metric definitions and totals are in `session_metrics.json`.
+The older exact finite-domain replay remains available as
+`reproducibility/audit_exact_claims.py`. Finite replays are `EVIDENCE` only;
+the theorem proof is in `candidate_proof.md`. Session-level metric definitions
+and totals are in `session_metrics.json`.
