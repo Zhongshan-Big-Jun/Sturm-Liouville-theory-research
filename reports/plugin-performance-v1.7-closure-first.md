@@ -2,9 +2,11 @@
 
 ## Status
 
-`IMPLEMENTED_AND_STATICALLY_VALIDATED`. This report does not yet claim an
-end-to-end performance improvement. The matched v1.7 regression arm below is
-the confirmatory test.
+`IMPLEMENTED_STATICALLY_VALIDATED_AND_PARTIALLY_REGRESSION_TESTED`. The matched
+v1.7 arm reached an independently audited partial package with substantially
+less scored usage, but then hit the five-hour service limit before its final
+response. This report therefore records a strong early-checkpoint efficiency
+signal, not a confirmed end-to-end improvement.
 
 ## Benchmark evidence used
 
@@ -92,6 +94,36 @@ Pre-registered efficiency targets relative to v1.6.0 Arm A:
 | Output | at most 234,234 |
 | Cost proxy | at most USD 13.0252915 |
 
-These targets are hypotheses, not achieved results. Reusing U2 makes the run
-a matched scheduling regression, not a new OOD quality benchmark. No v1.6
-solution or result artifact is exposed to the solver.
+Reusing U2 makes the run a matched scheduling regression, not a new OOD quality
+benchmark. No v1.6 solution or result artifact was exposed to the solver.
+
+## Matched regression checkpoint
+
+The v1.7 root ran for 1311.844 seconds before the service-enforced five-hour
+limit. Two of three research routes returned hash-bound artifacts; Route B did
+not return an artifact. The root had not written a final response or run its
+own global audit. A post-hoc independent neutral audit, excluded from scored
+usage, returned `PASS` for all retained partial theorem claims.
+
+| Metric | v1.6.0 Arm A | v1.7 checkpoint | Change | Target met at checkpoint |
+| --- | ---: | ---: | ---: | --- |
+| Root wall | 4052 s | 1311.844 s | -67.62% | yes |
+| Model responses | 307 | 56 | -81.76% | yes |
+| Tool calls | 216 | 44 | -79.63% | yes |
+| Child sessions | 7 | 3 | -57.14% | yes |
+| Uncached input | 1,108,074 | 211,820 | -80.88% | yes |
+| Output | 390,390 | 101,940 | -73.89% | yes |
+| Cost proxy | USD 21.7088192 | USD 3.5672448 | -83.57% | yes |
+
+The v1.7 checkpoint reproduced an audited `O(log(t)/sqrt(t))` upper bound and
+the audited `1/(4sqrt(t))` lower bound, and added an exact visible-hull TV
+sufficiency theorem. The requested `C/sqrt(t)` upper bound remains open.
+
+All preregistered efficiency thresholds were met at the interruption boundary.
+Because v1.6 completed after two quota segments while v1.7 has not resumed,
+the full optimization hypothesis remains unconfirmed. The first v1.7 Worker
+batch also launched all three permitted routes at once: this respected the cap
+but was more aggressive than the new smallest-batch recommendation.
+
+Detailed results and the resume contract are in
+`runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/`.

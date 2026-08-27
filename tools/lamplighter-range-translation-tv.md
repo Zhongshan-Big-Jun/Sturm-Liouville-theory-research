@@ -1,7 +1,7 @@
 ---
 title: Lamplighter range-translation TV reduction
 tags: [mathtool, self-developed, probability, coupling, coarea, strict]
-source: Pilot v5 U2 Arms A and C
+source: Pilot v5 U2 Arms A and C; v1.7 closure-first regression
 status: STRICT partial theorem and reductions; constant-order joint upper bound OPEN
 created: 2026-08-26
 ---
@@ -37,6 +37,35 @@ but weaker for the open target, upper bound `(5+3 log(t))/sqrt(t)` for every `t>
 The one-sided `(L,Z)` and `(U,Z)` translated marginal TVs are each at most `12/sqrt(t)` for
 `t>=1`.
 
+## Exact visible-hull sufficiency
+
+For a final state `(eta,z)`, define
+
+```text
+V(eta,z)=(min(supp(eta) union {z}),max(supp(eta) union {z}),z).
+```
+
+For either all-zero start at base `r`, the mass of `(eta,z)` is
+
+```text
+sum_(ell<=min(r,alpha),u>=max(r,beta))
+q_t^r(ell,u,z) 2^(-(u-ell+1)),
+```
+
+where `(alpha,beta,z)=V(eta,z)` and `q_t^r` is the exact base range-endpoint
+mass. Hence both point-mass functions are constant on each finite fiber of
+`V`. Summing the fiberwise `l1` contributions proves the exact identity
+
+```text
+TV(P_t^(0,0),P_t^(0,2))
+= TV(V_*P_t^(0,0),V_*P_t^(0,2)),                    t>=1.
+```
+
+This is `STRICT` after independent neutral audit. It is stronger than the
+range-triple data-processing upper bound in a different direction: the latent
+visited range can be discarded after mixing, while the outermost lit lamps
+and endpoint retain all start information.
+
 ## Exact joint reduction
 
 Let `h_t(R,K,A)` count zero-start simple-walk paths with range width `R`, endpoint height above the
@@ -63,7 +92,8 @@ cancellation lost by termwise reflection bounds.
 
 - `STRICT`: conditional lamp kernel, endpoint lower bound, logarithmic upper bound, one-sided
   `12/sqrt(t)` bounds, killed-kernel identity, periodized-binomial decomposition, and coarea
-  identity.
+  identity. The exact visible-hull TV equality and the finite full-state mass formula are also
+  strict.
 - `STRICT route obstruction`: reflection until meeting followed by synchronization has optimal
   conditional mismatch of order `log(t)/sqrt(t)`. This blocks only that coupling class.
 - `EVIDENCE`: exact integer enumeration through finite `t` supports the constant-order aggregate
@@ -78,6 +108,9 @@ Use this tool for translation sensitivity of one-dimensional random-walk range f
 lamplighter chains whose conditional decorations are uniform on the visited interval. Do not infer
 the joint bound from marginal TVs without a path-specific proof. Do not assume fiberwise
 unimodality; the exact fiber at `(t,R,K)=(6,4,2)` is `[1,0,1]`.
+
+The v1.7 regression gives another exact sign counterexample:
+`h_10^4(A,2)=(26,16,26)` on accessible `A=0,2,4`.
 
 ## Strict finite counterexample to the one-turn fiber claim
 
@@ -104,5 +137,9 @@ universal one-turn coarea shortcut.
   `arms/b-blank/reproducibility/audit_false_one_turn.py` in the pilot v5 run.
 - Arm C independent audit:
   `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/c-qed/external_anonymous_audit.md`.
+- v1.7 regression package:
+  `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/`.
+- v1.7 neutral audit SHA256:
+  `1F5E907B3FCBBE2190CBB6B4611C558D165A8CB51EC28E0F554CADD8D6CE00B8`.
 - Candidate proof SHA256:
   `C76537D71604F3F5402D520423BCB045B8E203B4FC967C6FB8D1EBBF8ABF043B`.

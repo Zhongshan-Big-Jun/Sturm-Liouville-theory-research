@@ -70,7 +70,7 @@ created: 2026-08-04
 - [[banded-shift-toeplitz-density]] - 稳定移位带 Toeplitz 空间 O1' 有限秩判据: 带宽 m>=1 非对角推广 (R-20260823T000000Z-o1p-baseline, 2026-08-23)
 - [[weighted-shift-beta-lambda-density]] - 加权移位族 H_{beta,lambda} O1' 判据: beta>3/2 无穷游程可实现门槛 (R-20260823T000000Z-o1p-lightreuse, 2026-08-23)
 - [[leftdef-o1pld-l2-structural]] - 左定 O1'LD 的 L^2 降维结构定理 (有限支撑矩刚性/无限游程不可实现/奇偶分解, R-20260823T030000Z-leftdef-o1pld, 2026-08-23)
-- [[lamplighter-range-translation-tv]] - Lamplighter range-triple 平移 TV: 改进下界, 对数上界, one-sided 界, killed-kernel 与 coarea 归约 (pilot v5 Arms A/C, 2026-08-27)
+- [[lamplighter-range-translation-tv]] - Lamplighter 平移 TV: 可见包络精确充分统计量, 改进下界, 对数上界, one-sided 界, killed-kernel 与 coarea 归约 (pilot v5 Arms A/C + v1.7 regression, 2026-08-27)
 - [[gap-n1-reduction]] - 两块族归约定理 (O1, 2026-08-05)
 - [[two-block-gap-bounds]] - 两块相位间距界 3pi^2/R < D < 3pi^2 (O3b, 2026-08-05)
 - [[key-lemma-decomposition]] - KEY LEMMA 分解 + 逐项 q-单调性否证 + (LOG)/(FP) 全解析证明 (O2, 2026-08-05/09)
@@ -177,7 +177,7 @@ created: 2026-08-04
 | [[banded-shift-toeplitz-density]] | 自研 (R-20260823T000000Z-o1p-baseline, 2026-08-23) | STRICT: 稳定移位带 Toeplitz 空间 O1' 有限秩判据 (带宽 m>=1); 一般 O1' 仍开放 | 自研方法 |
 | [[weighted-shift-beta-lambda-density]] | 自研 (R-20260823T000000Z-o1p-lightreuse, 2026-08-23) | STRICT (审计修复后): H_{beta,lambda} 加权移位 O1' 判据; 一般 O1' 仍开放 | 自研方法 |
 | [[leftdef-o1pld-l2-structural]] | 自研 (R-20260823T030000Z-leftdef-o1pld, 2026-08-23) | STRICT: L^2 有限支撑矩刚性/无限游程不可实现/奇偶分解/cofinite-N 稠密; 一般 O1'LD 仍开放 | 自研方法 |
-| [[lamplighter-range-translation-tv]] | 自研 (pilot v5 Arms A/C, 2026-08-27) | STRICT partial: 1/(2sqrt(t)) 下界, (2log(t)+15)/sqrt(t) 上界, one-sided 12/sqrt(t), killed-kernel/coarea; 常数阶 joint 上界 OPEN | 自研方法 |
+| [[lamplighter-range-translation-tv]] | 自研 (pilot v5 Arms A/C + v1.7 regression, 2026-08-27) | STRICT partial: 可见包络 TV 精确等式, 1/(2sqrt(t)) 下界, (2log(t)+15)/sqrt(t) 上界, one-sided 12/sqrt(t), killed-kernel/coarea; 常数阶 joint 上界 OPEN | 自研方法 |
 | [[fp-arm-max-root]] | 自研 (会话 33 续, 2026-08-08) | 数值工具; 已记录伪根缺陷 (F-017) | 数值 |
 | [[workflow-divergent-search]] | MMAT searcher (AI4Math V2) | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
 | [[workflow-hub-spoke-contract]] | MMAT nl-prover / LeanMarathon | 文献引用 (prompt 已读, 2026-08-12) | 研究工作流 |
@@ -189,6 +189,7 @@ created: 2026-08-04
 | [[workflow-eve-coevolution]] | EvE (scaling-group) | 文献引用 (README+arXiv:2605.09018, 2026-08-12) | 研究工作流 |
 
 ## 维护日志
+- 2026-08-27 (v1.7 closure-first regression): 更新 [[lamplighter-range-translation-tv]]. 新增独立中性审计 `PASS` 的可见包络 TV 精确等式, 完整状态质量有限公式, Route A 显式调和数上界/耦合障碍, 以及 `h_10^4(A,2)=(26,16,26)` 精确反例. 原常数阶 `C/sqrt(t)` 上界保持 OPEN. 工件位于 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/`.
 - 2026-08-26 (pilot v5 Arm A): 新增 [[lamplighter-range-translation-tv]]. 独立审计 PASS 的 STRICT partial theorem 包含 TV 下界 `1/(4sqrt(t))`, 对数损失上界 `(2log(t)+15)/sqrt(t)`, two one-sided `12/sqrt(t)` 界, fixed reflection route 障碍, killed-kernel 和 discrete coarea 归约. 常数阶 joint 上界明确保持 OPEN. 运行工件位于 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/a-plugin/`.
 - 2026-08-27 (pilot v5 Arm C): QED 独立导出并经 fresh blind audit 确认 endpoint projection 下界 `1/(2sqrt(t))` for all `t>=1`, 同时确认 `(5+3log(t))/sqrt(t)` 上界. 工具主定理采用 Arm C 的更强下界和 Arm A 的已审计上界. 常数阶上界仍为 OPEN.
 - 2026-08-13 (会话 97, R-206): 新增 [[second-variation-weighted-eigenvalues]] -- 加权特征值二阶变分. STRICT 公式 (固定空间广义特征问题 A=-d^2/dx^2, B=×ρ 于 H_0^1, 约束 <u_e,B_e u_e>=1, 四步推导): λ'' = 2λ<dr,u^2>^2 - 2λ^2 Σ_{l≠k} <dr u,u_l>^2/(λ_l-λ), 不加权配对, 两个求和分母同为 λ_l-λ; 移动空间框架 L^2(ρdx) 伪项 4λ<dr^2/ρ,u^2> 已登记为错误陷阱; 宽度路径二阶密度变分 d^2ρ = Σ s_i dw_i^2 δ'(x-x_i) 为 delta' 边界层 (STRICT 机制), 否证交接提议的 "naive 二阶变分 = 宽度 Hessian + 可控余项" (P3 符号级); SUP 切空间负定 (EVIDENCE), INF n=2 R=4 不定 (与 det K -> 0+ 一致); 全局 Kp 恒等式修正版 (ε-mask 内禀, 早前假正核草稿 RETRACTED, 见 scripts/_gapn2_k_global_rank2.py); 文献: Cox-McLaughlin I/II 仅 λ_1, Osmolovskii-Maurer 一般 bang-bang 二阶理论化归同一符号条件; 运行笔记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-13c.md; 脚本 scripts/_gapn2_second_variation_probe.py (P1/P2/P3).
