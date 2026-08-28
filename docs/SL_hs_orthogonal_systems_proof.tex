@@ -14,12 +14,33 @@
 \newtheorem{remark}[theorem]{注}
 \newtheorem{definition}[theorem]{定义}
 
-\title{左定空间 \texorpdfstring{$H^s[-1,1]$}{Hs} 中显式完备正交多项式系: 证明文档}
+\title{[算子域结论已撤回] 左定空间 \texorpdfstring{$H^s[-1,1]$}{Hs} 中显式完备正交多项式系}
 \author{研究证明文档 (项目: BVE research)}
-\date{2026-08-05}
+\date{初稿 2026-08-05, 勘误 2026-08-28}
 
 \begin{document}
 \maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.92\textwidth}
+\textbf{2026-08-28 撤回勘误.}
+本文把多项式空间上的代数逆
+$L_{\mathrm{poly}}^{-r}=(c-D^2)_{\mathrm{poly}}^{-r}$
+误认为满足 Krein 边界条件的自伴算子逆 $K_c^{-r}$.
+因此下文关于 ``显式完备正交多项式系属于算子幂域'' 的主结论无效,
+不得作为算子域定理引用. 多项式闭式只在抽象多项式完备化中有效.
+
+严格更正为: 对一切 $c>0$, 整数 $s\geq4$ 和 $n\geq0$,
+代数多项式族满足
+\[
+Q_n^{(s)}\in D(K_c^{s/2})\quad\Longleftrightarrow\quad n\in\{0,1\}.
+\]
+抽象多项式完备化与算子域自然酉等价, 但在多项式代表的恒等映射下不相等.
+真正的算子逆像在算子幂域中稠密, 但一般不是多项式.
+完整证明与双重独立审计见
+\texttt{runs/three-arm-pilot-v2/pilot-v6-hs-domain/arms/a-plugin/}.
+\end{minipage}}
+\end{center}
 
 \begin{abstract}
 本文回答后续方向 1: 对移位 Krein Laplacian $K_c f = -f'' + c f$ ($c>0$,
@@ -388,5 +409,4 @@ Krein-Sobolev 多项式 ($s=1$) 的根全实、单、且位于 $(-1,1)$ [2, Theo
 \end{thebibliography}
 
 \end{document}
-
 

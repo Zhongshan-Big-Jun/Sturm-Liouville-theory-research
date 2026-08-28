@@ -1,0 +1,66 @@
+{
+  "verdict": "PASS",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "None; no repair is required.",
+  "covered_scope": "Verified the four frozen SHA-256-bound inputs and independently re-derived O1--O6 for every real c>0, every integer s>=4, both s=2r and s=2r+1, and every n>=0. The audit covered the true Krein form and equality case, the exact integer/half-integer power-domain recursion, both orthogonality contradictions, the abstract and operator completion maps, failure of canonical identity, literal-span language, genuine inverse images and their density, and the affine, degree-2, s=4, s=5, and arbitrary-r boundary cases. It also checked every external functional-analytic input used by the package together with its hypotheses.",
+  "residual_risk": "None within the frozen theorem contract. This is an independent mathematical audit rather than a formal-proof-assistant certification. Literature, novelty, repository state, and unlisted project artifacts were neither consulted nor needed and are outside the audited claim. The artifact_sha256 value is computed from the exact UTF-8 JSON file content immediately before the artifact_sha256 field is appended, as permitted by the packet.",
+  "first_error": null,
+  "definition_audit": {
+    "status": "PASS",
+    "checks": [
+      "All four input hashes exactly match the packet: problem_contract b0a4b723f1b3d6dd49b6d06f7c26ff543ed3578287e8a1e7c2359e323c394e38; candidate_proof 0e36b83891a4b5a509174eb7e367365652c0637267b5d4610f5e01a7c42ec080; obligation_graph 3b4e07af5709b5104a8f27d9b924cd9fd2f636c7652fef972db90defb7ac53d7; closure_gate 07996f0733084622d3a913f1eb0aa794eb07ebe30ed2fdcdc4b620a989269ad7.",
+      "With inner products linear in the first variable, integration by parts gives endpoint coefficients f'(1)-Delta(f)/2 and -f'(-1)+Delta(f)/2, hence exactly the two stated Krein equations; no sign or endpoint is lost.",
+      "Writing a=Delta(f)/2 gives a0(f,f)=integral |f'-a|^2. Thus a0 is nonnegative and its nullspace consists exactly of affine H1 functions. Adding c||f||^2 for c>0 makes the form positive definite and equivalent to the H1 norm.",
+      "L_poly^{-r} is the triangular degree-preserving algebraic inverse on polynomials, whereas K_c^{-r} is the bounded spectral inverse whose values satisfy operator boundary conditions; the proof never identifies them.",
+      "The abstract completion is interpreted through its polynomial representatives, and canonical equality is correctly distinguished from the boundary-correcting unitary equivalence."
+    ],
+    "external_results_checked": [
+      "Sobolev fundamental theorem, traces, and integration by parts on the bounded interval: H1 functions have endpoint traces and Delta(f)=integral f'; the H1 trace map onto C^2 is surjective because affine interpolants realize arbitrary endpoint data; weak second derivative in L2 yields H2 in one dimension.",
+      "First representation theorem: H1 is dense in L2; a0 is nonnegative; and the form norm is complete because a0 is the squared derivative modulo constants while the L2 term controls its two-dimensional affine kernel. Hence the theorem applies and gives the stated self-adjoint K0 and D(K_c^{1/2})=H1.",
+      "Polynomial density: polynomials are dense in L2 on the compact finite interval, and they are dense in H1 by approximating f' in L2 by polynomials and integrating while fixing one constant. Consequently the P_n span is dense in L2 and the R_n span is dense in the form space."
+    ]
+  },
+  "logic_audit": {
+    "status": "PASS",
+    "checks": [
+      "For a polynomial p, induction on m proves p in D(K_c^m) iff B(L^j p)=0 for 0<=j<m; at each step K_c^j p=L^j p and the next application is allowed exactly by the next boundary pair.",
+      "For self-adjoint A=K_c>=cI>0, spectral integration proves D(A^{m+1/2})={f in D(A^m): A^m f in D(A^{1/2})}. For polynomials the terminal L^m p lies in H1, so the odd half-power contributes no additional boundary equation.",
+      "Even obstruction: if v=L_poly^{-1}P_n lies in D(K_c), L2 orthogonality to P_n-cv=-v'' gives 0=||K0v||^2+c a0(v,v), forcing v affine; degree preservation contradicts n>=2.",
+      "Odd obstruction: if v=L_poly^{-1}R_n lies in D(K_c), form orthogonality to R_n-cv=-v'' and the representation identity give 0=a_c(R_n,R_n)-c||R_n||^2=a0(R_n,R_n), forcing R_n affine and contradicting n>=2.",
+      "If Q_n^{(s)} is in the required power domain, its penultimate polynomial image L^{r-1}Q_n^{(s)} is in D(K_c), so the relevant obstruction forces n<=1. Conversely every affine polynomial is a K_c-eigenvector with eigenvalue c and lies in every positive power domain.",
+      "L^r maps the even abstract polynomial space isometrically onto all polynomials in L2 and maps the odd one onto all polynomials in H1 with the a_c norm. Spectral calculus makes K_c^r unitary from the corresponding operator power domain onto the same target; their composition is the asserted boundary-correcting unitary.",
+      "Canonical identity fails because x^2 is a valid nonzero abstract polynomial representative but B(x^2)=(2,-2), so x^2 is not in D(K_c), and D(K_c^{s/2}) is contained in D(K_c) for s>=4.",
+      "The literal span contains non-domain members for every n>=2 and therefore is not a linear subspace of the operator domain. The individually admissible named members span exactly {1,x}, a proper finite-dimensional closed subspace.",
+      "For the genuine reading, K_c^{-r} is unitary from L2 to D(K_c^r) in the even case and from D(K_c^{1/2}) to D(K_c^{r+1/2}) in the odd case, with the stated graph/left-definite norms. Images of the dense P_n and R_n spans are therefore dense."
+    ],
+    "circularity_check": "No conclusion or equivalent-strength statement is used as a premise. O1 and spectral/domain facts feed O2; O1 plus independent orthogonality gives O3E/O3O; those imply O4; O4 and independent isometries imply O5/O6."
+  },
+  "boundary_audit": {
+    "status": "PASS",
+    "checks": [
+      "c=0 is never used; c>0 supplies algebraic invertibility of L, strict positivity K_c>=cI, bounded negative powers, and nonvanishing sinh(sqrt(c)). No exceptional positive c occurs.",
+      "For n=0,1 all P_n, R_n, and their algebraic inverse images are affine; B vanishes and K_c acts as cI. For every n>=2 the contradiction arguments use only degree preservation and orthogonality and are uniform in n.",
+      "At the smallest nonaffine degree, choosing the monic normalization P_2=R_2=x^2-1/3 gives L_poly^{-1}P_2=x^2/c-1/(3c)+2/c^2, whose endpoint derivatives are 2/c and -2/c while Delta=0; it fails B for every c>0.",
+      "For s=4 (r=2), membership requires B(Q)=B(LQ)=0 and the latter gate is the obstructed L_poly^{-1}P_n or L_poly^{-1}R_n. For s=5 (r=2), the same two integer-power boundary gates occur and the final H1 half-power condition is automatic; degree 2 already fails at B(LQ). Higher r only adds earlier gates and cannot remove this failure.",
+      "The explicit genuine inverse K_c^{-1}x^2=x^2/c+2/c^2-2 cosh(sqrt(c)x)/(c sqrt(c) sinh(sqrt(c))) solves Lu=x^2 and has zero endpoint derivatives and zero jump, confirming the formal-versus-genuine distinction for every c>0.",
+      "There are no empty, disconnected, singular, parity-omitted, or normalization-degenerate cases under I=[-1,1], c>0, s>=4, n>=0, and nonzero degree-normalized P_n,R_n."
+    ]
+  },
+  "adversarial_audit": {
+    "status": "PASS",
+    "attacks": [
+      "Reversed both boundary signs in the integration-by-parts calculation and tested independent endpoint traces; the displayed B is the unique correct pair.",
+      "Tested the Cauchy--Schwarz equality case rather than only positivity; equality forces f' constant a.e., so no nonaffine zero-form vector can invalidate either orthogonality contradiction.",
+      "Checked the potentially weakest odd step with the linear-first convention: a_c(R_n,v)=<R_n,K_cv>=||R_n||^2 is valid because v is assumed in D(K_c) and the form is Hermitian.",
+      "Tested whether boundary failures of individual high-degree Q_n could be cancelled in combinations. Such cancellations may describe span intersection D(K_c^{s/2}), but they cannot make the literal full span a subset of the domain, so they do not affect conclusion 3; the contract makes the exact intersection spectrum optional.",
+      "Tested whether abstract and operator completions could be identified merely because both are unitarily isomorphic. The x^2 representative is an exact obstruction to the identity map, while W=K_c^{-r}L^r on polynomials supplies the distinct valid unitary.",
+      "Tested completeness separately in the two target norms: triangular one-polynomial-per-degree systems span all polynomials; polynomial closure is L2 for P_n and H1 with the a_c norm for R_n; the applicable inverse-power unitary transfers exactly those closures.",
+      "Tested the explicit resolvent correction by applying c-D^2 and both Krein endpoint equations; it solves the inhomogeneous equation and is nonpolynomial, so the genuine inverse cannot be silently treated as L_poly^{-1}."
+    ],
+    "smallest_objects": "The affine equality cases 1 and x pass; x^2 is the smallest canonical-identity counterexample; the monic degree-2 orthogonal representative fails the first load-bearing D(K_c) gate; and s=4 and s=5 realize the minimal even and odd domain recursions.",
+    "equivalent_reduction_check": "Neither orthogonality obstruction restates the target: each reduces membership to a nonnegative sum or a0 equality with an independently proved affine kernel."
+  },
+  "decision_delta": "Close O7 as PASS. The exact hash-bound package supports the label INDEPENDENTLY_AUDITED_PROOF for the three conclusions under both frozen interpretations, without making any broader project-wide, literature, novelty, or formal-verification claim.",
+  "artifact_sha256": "6c35d10326702369a50821314d7a69be54fbda2f93926a5b14c6c21363ba52d9"
+}

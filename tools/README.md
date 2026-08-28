@@ -59,6 +59,7 @@ created: 2026-08-04
 - [[moment-jump-completeness]] - 矩跳跃完备性判据 (会话 9)
 - [[left-definite-moment-recurrence]] - 左定矩跳跃: H^s 完备性判据 (会话 10)
 - [[left-definite-orthogonal-systems]] - 左定传输正交系: H^s 显式完备正交多项式系 (会话 11)
+- [[krein-power-domain-polynomial-obstruction]] - Krein 幂算子域中的代数多项式逆障碍, 以及抽象完备化与算子域的精确接口
 - [[denseness-criteria]] - 稠密性准则: 矩刻画/一阶/跳变判据与对角临界 3/2 (会话 11)
 - [[jump-stability]] - 跳变稳定性: 增长引理定量形式与 omega(log) 门槛 (会话 11)
 - [[third-order-recurrence]] - 三阶递推积分解理论: 积分解分类/精确降阶/最小解 (会话 11)
@@ -190,6 +191,7 @@ created: 2026-08-04
 
 ## 维护日志
 - 2026-08-27 (v1.7 closure-first regression): 更新 [[lamplighter-range-translation-tv]]. 新增独立中性审计 `PASS` 的可见包络 TV 精确等式, 完整状态质量有限公式, Route A 显式调和数上界/耦合障碍, 以及 `h_10^4(A,2)=(26,16,26)` 精确反例. 原常数阶 `C/sqrt(t)` 上界保持 OPEN. 工件位于 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/`.
+- 2026-08-28 (pilot v6 Arm A): 新增 [[krein-power-domain-polynomial-obstruction]]. STRICT 结论为 `Q_n^(s) in D(K_c^(s/2))` 当且仅当 `n in {0,1}`, 适用于一切 `c>0` 和整数 `s>=4`. 区分代数逆 `L_poly^(-r)` 与真正算子逆 `K_c^(-r)`, 并修正 [[left-definite-orthogonal-systems]] 的算子域解释. 内部与外部独立审计均 `PASS`.
 - 2026-08-26 (pilot v5 Arm A): 新增 [[lamplighter-range-translation-tv]]. 独立审计 PASS 的 STRICT partial theorem 包含 TV 下界 `1/(4sqrt(t))`, 对数损失上界 `(2log(t)+15)/sqrt(t)`, two one-sided `12/sqrt(t)` 界, fixed reflection route 障碍, killed-kernel 和 discrete coarea 归约. 常数阶 joint 上界明确保持 OPEN. 运行工件位于 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/arms/a-plugin/`.
 - 2026-08-27 (pilot v5 Arm C): QED 独立导出并经 fresh blind audit 确认 endpoint projection 下界 `1/(2sqrt(t))` for all `t>=1`, 同时确认 `(5+3log(t))/sqrt(t)` 上界. 工具主定理采用 Arm C 的更强下界和 Arm A 的已审计上界. 常数阶上界仍为 OPEN.
 - 2026-08-13 (会话 97, R-206): 新增 [[second-variation-weighted-eigenvalues]] -- 加权特征值二阶变分. STRICT 公式 (固定空间广义特征问题 A=-d^2/dx^2, B=×ρ 于 H_0^1, 约束 <u_e,B_e u_e>=1, 四步推导): λ'' = 2λ<dr,u^2>^2 - 2λ^2 Σ_{l≠k} <dr u,u_l>^2/(λ_l-λ), 不加权配对, 两个求和分母同为 λ_l-λ; 移动空间框架 L^2(ρdx) 伪项 4λ<dr^2/ρ,u^2> 已登记为错误陷阱; 宽度路径二阶密度变分 d^2ρ = Σ s_i dw_i^2 δ'(x-x_i) 为 delta' 边界层 (STRICT 机制), 否证交接提议的 "naive 二阶变分 = 宽度 Hessian + 可控余项" (P3 符号级); SUP 切空间负定 (EVIDENCE), INF n=2 R=4 不定 (与 det K -> 0+ 一致); 全局 Kp 恒等式修正版 (ε-mask 内禀, 早前假正核草稿 RETRACTED, 见 scripts/_gapn2_k_global_rank2.py); 文献: Cox-McLaughlin I/II 仅 λ_1, Osmolovskii-Maurer 一般 bang-bang 二阶理论化归同一符号条件; 运行笔记 runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-13c.md; 脚本 scripts/_gapn2_second_variation_probe.py (P1/P2/P3).

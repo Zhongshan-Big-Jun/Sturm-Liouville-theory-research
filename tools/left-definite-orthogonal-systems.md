@@ -2,11 +2,21 @@
 title: 左定传输正交系 (left-definite transfer orthogonal systems)
 tags: [mathtool, self-developed, left-definite, orthogonal-polynomials, completeness]
 source: 自研 (会话 11), 方向 1: H^s 显式完备正交多项式系
-status: 定理已证 + 855 项精确有理数验证
+status: SUPERSEDED IN OPERATOR-DOMAIN INTERPRETATION
 created: 2026-08-05
 ---
 
 # 左定传输正交系 (Left-Definite Transfer Orthogonal Systems)
+
+> [!WARNING]
+> 2026-08-28 correction. The polynomial triangular inverse in this note is
+> `L_poly^(-r)` for `L=c-D^2`, not the genuine self-adjoint operator inverse
+> `K_c^(-r)`. For every integer `s>=4`, the resulting polynomial belongs to
+> `D(K_c^(s/2))` exactly for degrees 0 and 1. The abstract polynomial completion
+> is unitarily equivalent to, but not canonically identical with, the operator
+> domain. See [[krein-power-domain-polynomial-obstruction]] for the strict audited
+> theorem. The formulas below are retained as formulas in the abstract polynomial
+> model and must not be cited as operator-domain polynomial bases.
 
 ## 解析
 
