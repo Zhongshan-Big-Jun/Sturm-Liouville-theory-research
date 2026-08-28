@@ -2,12 +2,14 @@
 set -euo pipefail
 
 BenchRoot=${1:-/mnt/f/benchmark/PILOT-V6-HS-DOMAIN-20260828}
-ProxyUrl=${2:-http://172.22.112.1:7898}
-RunRoot="$BenchRoot/arm-c-qed-run1"
+RunName=${2:-arm-c-qed-run1}
+CodexHomeName=${3:-codex-home-c}
+ProxyUrl=${4:-http://172.22.112.1:7898}
+RunRoot="$BenchRoot/$RunName"
 QEDRoot="$RunRoot/qed"
 OutputRoot="$RunRoot/output"
 SafeBin="$RunRoot/safe-bin"
-CodexHome="$BenchRoot/codex-home-c"
+CodexHome="$BenchRoot/$CodexHomeName"
 CodexBin='/mnt/c/Program Files/WindowsApps/OpenAI.Codex_26.818.8289.0_x64__2p2nqsd0c76g0/app/resources/codex'
 
 export PATH="$SafeBin:/usr/bin:/bin:/home/huangzy/.local/bin"

@@ -91,6 +91,22 @@ Every arm first receives a label-blind audit against the frozen contract.
 Only after all solver artifacts are frozen may a separate evaluator inspect
 hidden gold and score agreement or genuinely stronger audited mathematics.
 
+## Infrastructure amendment log
+
+The initial Arm C launch at `arm-c-qed-run1` exited before any model process was created. QED commit
+`1219009` unconditionally checks that executables named `claude` and `python3` exist, although the
+frozen configuration assigns every active role to Codex. The launch produced no wrapper log, no
+Codex session, and no mathematical output, so it is classified `INFRA_INVALID` and excluded.
+
+Before the permitted fresh-root replacement, the harness was amended only as follows:
+
+- add a fail-closed executable named `claude` that exits 70 if it is ever invoked;
+- parameterize the C work root and `CODEX_HOME` names;
+- preserve every frozen provider, model, effort, prompt, QED commit, budget, isolation rule, and run count.
+
+The replacement roots are `arm-c-qed-replacement1` and `codex-home-c-replacement1`. The shim only
+satisfies QED's unconditional `which` check and cannot produce a model response.
+
 ## Stage reporting
 
 After every arm report wall time, sessions, responses, tools, token metrics,
