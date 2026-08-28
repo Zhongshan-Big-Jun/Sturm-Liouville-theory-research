@@ -1,0 +1,104 @@
+{
+  "verdict": "REPAIRABLE_GAP",
+  "status": "ACCEPTED_WITH_REPAIRABLE_GAPS",
+  "first_error": {
+    "location": "Section 1, equation (2)",
+    "smallest_failing_claim": "The exact characterization of D(A^(s/2)) is attributed to spectral calculus and one-dimensional regularity without stating the regularity theorem hypotheses or the power-domain induction.",
+    "error_layer": "dependency/proof",
+    "load_bearing": true,
+    "claim_truth_assessment": "correct_but_under_justified"
+  },
+  "critical_errors": [],
+  "gaps": [
+    {
+      "location": "Section 1, equation (2)",
+      "issue": "The external regularity step and domain recursion are not stated with hypotheses, contrary to the frozen rule.",
+      "load_bearing": true,
+      "repairability": "local"
+    },
+    {
+      "location": "Final degree-spectrum sentence",
+      "issue": "The exact degree spectrum is mathematically correct but asserted without proof.",
+      "load_bearing": false,
+      "repairability": "local"
+    }
+  ],
+  "repair_hints": "Add the spectral power-domain recursion and constant-coefficient interval regularity induction for equation (2). Add the parity-triangular leading-coefficient proof for the degree spectrum.",
+  "required_claims": {
+    "membership_condition": "correct",
+    "abstract_vs_operator_completion": "correct",
+    "operator_domain_density_reading": "correct_with_necessary_distinction"
+  },
+  "bonus_claims": {
+    "constrained_polynomial_density": "correct_and_adequately_sketched",
+    "exact_degree_spectrum": "correct_but_unproved_in_submission"
+  },
+  "checks": {
+    "definitions": "pass",
+    "endpoint_signs": "pass",
+    "even_parity_case": "pass",
+    "odd_parity_case": "pass",
+    "quantifiers": "pass",
+    "power_domain_recursion": "repairable_support_gap",
+    "completion_interface": "pass",
+    "density_wording": "pass_with_literal_vs_intersection_distinction",
+    "classical_formulas": "pass"
+  },
+  "scores": {
+    "correctness_closure": {
+      "score": 37,
+      "maximum": 40
+    },
+    "contract_fidelity_completeness": {
+      "score": 19,
+      "maximum": 20
+    },
+    "strict_progress": {
+      "score": 15,
+      "maximum": 15
+    },
+    "calibration": {
+      "score": 10,
+      "maximum": 10
+    },
+    "evidence_citations": {
+      "score": 8,
+      "maximum": 10
+    },
+    "reproducibility": {
+      "score": 5,
+      "maximum": 5
+    },
+    "total": {
+      "score": 94,
+      "maximum": 100
+    }
+  },
+  "acceptance_threshold": {
+    "total_at_least_70": true,
+    "correctness_at_least_32": true,
+    "no_fatal_category": true,
+    "accepted": true
+  },
+  "isolation": {
+    "anonymous_first_time_audit": true,
+    "repository_history_inspected": false,
+    "hidden_gold_inspected": false,
+    "other_arms_inspected": false,
+    "project_documents_inspected": false,
+    "memories_inspected": false,
+    "network_sources_inspected": false,
+    "scored_session_trace_inspected": false,
+    "review_usage_excluded_from_scored_metrics": true
+  },
+  "input_sha256": {
+    "frozen_task_md": "359D335803EAE43F45120E3CA3995B8F12EC2F98B357E2B10116EAFE2D8C6332",
+    "arm_b_final_response_md": "874B0BDE9DFAF194E8279519C2C70D739A8E4125094AA5495884FFFA5C78EE58"
+  },
+  "output_hash_scheme": "Canonical UTF-8 SHA256 after replacing both output-hash values by their literal angle-bracket placeholders.",
+  "output_sha256": {
+    "review_md_canonical_sha256": "59E8E49AA52AFB167540F630CBBC22A30BD05767936E6EC89A4C23128C2F9B0C",
+    "verdict_json_canonical_sha256": "ACDB5BDE125C1B673F6F61FC4EF5796B8B84CF505272B4C634199BBD4876A281"
+  },
+  "scored_metrics_note": "This neutral posthoc audit's usage is excluded from scored Arm B metrics."
+}

@@ -99,3 +99,28 @@ The hyperbolic correction is exactly what enforces the operator boundary conditi
 This theorem supersedes the operator-domain interpretation in
 `left-definite-orthogonal-systems.md`. The earlier polynomial formulas remain valid only for the
 algebraic inverse `L_poly^(-r)` and the corresponding abstract completion.
+
+## Posthoc Arm B refinements
+
+Status: `CANDIDATE_POSTHOC_REPAIR`, not credited to the scored blank arm and awaiting a separate
+independent audit of the reviewer-authored proof.
+
+Let `r=floor(s/2)`. The Arm B response proposed, and its anonymous reviewer supplied a short proof
+of, the exact degree spectrum
+
+```text
+{deg p: 0!=p in C[x] intersect D(K_c^(s/2))}
+= {0,1} union {N:N>=2r+2}.
+```
+
+The mechanism is parity-triangular. The even constraints are
+`p_e^(2j+1)(1)=0`, and the odd constraints are
+`p_o^(2j+1)(1)-p_o^(2j)(1)=0`, for `0<=j<r`. Descending through `j` eliminates
+every possible leading degree from 2 through `2r+1`. Above that threshold, the `r` trace
+functionals have full rank on the lower even or odd monomials, so any higher leading monomial can
+be corrected without changing its degree.
+
+The same review argues that `C[x] intersect D(K_c^(s/2))` is dense in the operator domain. Approximate
+in `H^s`, then apply a fixed polynomial right inverse for the finite trace map to correct the
+boundary residual. This is distinct from the non-density of the individually admissible named
+system members, which span only `span{1,x}`.
