@@ -100,7 +100,26 @@ This theorem supersedes the operator-domain interpretation in
 `left-definite-orthogonal-systems.md`. The earlier polynomial formulas remain valid only for the
 algebraic inverse `L_poly^(-r)` and the corresponding abstract completion.
 
-## Posthoc Arm B refinements
+## Operator-domain polynomial graph core
+
+Status: `STRICT`, independently audited in Pilot v6 Arm C.
+
+Although the individually admissible named members span only `span{1,x}`, the larger space
+
+```text
+C[x] intersect D(K_c^(s/2))
+```
+
+is graph-norm dense in `D(K_c^(s/2))`. The proof approximates in `H^s`, constructs a finite
+polynomial right inverse for the full endpoint trace map by Hermite interpolation, and subtracts
+the boundary residual. The energy norm, graph norm, and `H^s` norm are equivalent on the operator
+domain.
+
+This result is distinct from density of the original named system. Compatible linear
+cancellations among non-admissible named polynomials can enter the domain even though no
+individual member of degree at least 2 does.
+
+## Posthoc Arm B degree-spectrum candidate
 
 Status: `CANDIDATE_POSTHOC_REPAIR`, not credited to the scored blank arm and awaiting a separate
 independent audit of the reviewer-authored proof.
@@ -119,8 +138,3 @@ The mechanism is parity-triangular. The even constraints are
 every possible leading degree from 2 through `2r+1`. Above that threshold, the `r` trace
 functionals have full rank on the lower even or odd monomials, so any higher leading monomial can
 be corrected without changing its degree.
-
-The same review argues that `C[x] intersect D(K_c^(s/2))` is dense in the operator domain. Approximate
-in `H^s`, then apply a fixed polynomial right inverse for the finite trace map to correct the
-boundary residual. This is distinct from the non-density of the individually admissible named
-system members, which span only `span{1,x}`.

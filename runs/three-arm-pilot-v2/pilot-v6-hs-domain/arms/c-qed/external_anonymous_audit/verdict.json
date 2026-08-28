@@ -1,0 +1,97 @@
+{
+	"schema_version": "pilot-v6-neutral-review-1",
+	"arm": "C",
+	"review_kind": "first-time_anonymous_mathematical_audit",
+	"verdict": "PASS",
+	"first_load_bearing_error": null,
+	"critical_errors": [],
+	"repairable_mathematical_gaps": [],
+	"acceptance": {
+		"accepted": true,
+		"rule": "total >= 70, correctness_closure >= 32, and no fatal category",
+		"fatal_category": false
+	},
+	"scores": {
+		"correctness_closure": {
+			"score": 39,
+			"maximum": 40
+		},
+		"contract_fidelity_completeness": {
+			"score": 19,
+			"maximum": 20
+		},
+		"strict_progress": {
+			"score": 15,
+			"maximum": 15
+		},
+		"calibration": {
+			"score": 10,
+			"maximum": 10
+		},
+		"evidence_citations": {
+			"score": 9,
+			"maximum": 10
+		},
+		"reproducibility": {
+			"score": 5,
+			"maximum": 5
+		},
+		"total": {
+			"score": 97,
+			"maximum": 100
+		}
+	},
+	"independent_mathematical_findings": {
+		"operator_and_form_domains": "PASS",
+		"self_adjointness": "PASS",
+		"power_domain_regularities_and_traces": "PASS",
+		"algebraic_polynomial_transport": "PASS",
+		"even_obstruction": "PASS",
+		"odd_obstruction": "PASS",
+		"degree_spectrum": "PASS",
+		"completion_map": "PASS",
+		"identity_non_equality": "PASS",
+		"polynomial_graph_core_density": "PASS",
+		"span_interpretations": "PASS",
+		"quantifiers_signs_and_boundary_cases": "PASS"
+	},
+	"non_load_bearing_observations": [
+		"The unavailable offline-status citation is unnecessary and supports no mathematical inference.",
+		"The unitary statement uses the explicitly defined energy norm; for the conventional additive graph norm the map is a bounded isomorphism, with no change to completion or density.",
+		"The frozen statement gives the named SL_hs polynomial construction in shorthand; a full source definition would improve provenance for STEP2."
+	],
+	"qed_self_verification": {
+		"system_status": "FAILED",
+		"separate_from_independent_proof_verdict": true,
+		"documented_failure": "The sole structural verification failure was an unavailable nonmathematical offline-status citation.",
+		"regulator_classification": "proof-execution and documentation problem, not a mathematical plan or strategy problem",
+		"mathematical_counterexample_reported": false
+	},
+	"blind_scope": {
+		"read_before_provisional_verdict": [
+			"F:\\LaTeX\\BVE research\\runs\\three-arm-pilot-v2\\pilot-v6-hs-domain\\frozen_task.md",
+			"F:\\benchmark\\PILOT-V6-HS-DOMAIN-20260828\\arm-c-qed-replacement1\\output\\proof.md"
+		],
+		"read_after_provisional_verdict": [
+			"F:\\benchmark\\PILOT-V6-HS-DOMAIN-20260828\\arm-c-qed-replacement1\\output\\decomposition\\attempt_1\\revision_1\\proof_1\\structural_verification.md",
+			"F:\\benchmark\\PILOT-V6-HS-DOMAIN-20260828\\arm-c-qed-replacement1\\output\\decomposition\\attempt_1\\revision_1\\proof_1\\regulator_decision.md",
+			"F:\\benchmark\\PILOT-V6-HS-DOMAIN-20260828\\arm-c-qed-replacement1\\output\\decomposition\\failure_analysis.md"
+		],
+		"forbidden_sources_inspected": false
+	},
+	"usage_excluded_from_scored_metrics": true,
+	"sha256": {
+		"inputs": {
+			"frozen_task.md": "359D335803EAE43F45120E3CA3995B8F12EC2F98B357E2B10116EAFE2D8C6332",
+			"proof.md": "DAF055B84E09024F6A653B57ADB771E50B268E1CF9692DAB97C6AB59A7BD9987",
+			"structural_verification.md": "916EA1907955A99C17AB70E9198D25B692E29D8B34A82634A381231A79B117E4",
+			"regulator_decision.md": "0A61A4C640AE037BB158DCE5F08AB635AEA6741B0BFE1F9E80A37D6FB66E8FB0",
+			"failure_analysis.md": "7585D7937B247A32115E303BB2BBBAE0BD2DE33CFC7BDD9A5798C03152D0BB86"
+		},
+		"outputs": {
+			"review.md": "763ACDD921D14153EDF21653DDC934864C218F8AE72A693A634518FFC7E44E9C",
+			"verdict.json": null
+		},
+		"verdict_json_hash_note": "The exact file SHA256 is reported in the external handoff because embedding it would alter the hashed bytes."
+	}
+}

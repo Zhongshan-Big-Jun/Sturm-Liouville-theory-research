@@ -1,0 +1,1 @@
+Unable to produce the requested artifact: the provided prompt did not include the referenced input-file contents, and the filesystem tool was disabled (`code-mode host is disabled`). Consequently, I could not read the proof archive or write and verify `proof_effort_summary.md` and `error_proof_effort_summary.md` without inventing unsupported details.
