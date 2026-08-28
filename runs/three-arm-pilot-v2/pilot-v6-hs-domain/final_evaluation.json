@@ -1,0 +1,140 @@
+{
+	"schema_version": "pilot-v6-neutral-final-evaluation-2",
+	"status": "INDEPENDENTLY_AUDITED_BENCHMARK_COMPARISON",
+	"network_used": false,
+	"hidden_gold_unsealed_after_all_arms_frozen": true,
+	"posthoc_repairs_credited": false,
+	"scores": {
+		"A": {
+			"correctness_closure": 40,
+			"contract_fidelity_completeness": 20,
+			"strict_progress": 15,
+			"calibration": 10,
+			"evidence_citations": 9,
+			"reproducibility": 5,
+			"total": 99,
+			"blind_mathematical_verdict": "PASS",
+			"system_closure": "PASS",
+			"first_load_bearing_gap": null,
+			"first_non_load_bearing_issue": "The phrase two-dimensional affine space should say two-dimensional linear space of affine functions."
+		},
+		"B": {
+			"correctness_closure": 37,
+			"contract_fidelity_completeness": 19,
+			"strict_progress": 15,
+			"calibration": 10,
+			"evidence_citations": 8,
+			"reproducibility": 5,
+			"total": 94,
+			"blind_mathematical_verdict": "REPAIRABLE_GAP",
+			"system_closure": "REPAIRABLE_GAP",
+			"first_load_bearing_gap": "Section 1 equation (2) does not state the regularity theorem hypotheses or prove the operator-power recursion.",
+			"bonus_gap": "The complete all-polynomial degree spectrum is asserted without proof."
+		},
+		"C": {
+			"correctness_closure": 40,
+			"contract_fidelity_completeness": 19,
+			"strict_progress": 15,
+			"calibration": 10,
+			"evidence_citations": 8,
+			"reproducibility": 5,
+			"total": 97,
+			"blind_mathematical_verdict": "PASS",
+			"system_closure": "FAILED",
+			"first_load_bearing_mathematical_gap": null,
+			"first_system_failure": "The structural verifier could not inspect the nonmathematical offline-status citation related_info/related_work.md.",
+			"first_non_load_bearing_provenance_risk": "STEP2 reconstructs the algebraic SL_hs pullback from the frozen shorthand rather than a full source definition."
+		}
+	},
+	"acceptance_thresholds": {
+		"A": true,
+		"B": true,
+		"C_mathematical_artifact": true,
+		"C_end_to_end_system": false
+	},
+	"winners": {
+		"overall_quality": "A",
+		"efficiency": "B",
+		"strongest_mathematical_package": "C"
+	},
+	"hidden_gold_comparison": {
+		"commit": "0f9b2b0",
+		"blind_start": "e9aee2c",
+		"gold_strict_results": [
+			"MO",
+			"SPD",
+			"ND"
+		],
+		"all_arms_agree_with_gold_main_results": true,
+		"strict_advances_gold": [
+			{
+				"arm": "C",
+				"result": "C[x] intersect D(K_c^(s/2)) is graph-norm dense for every c>0 and integer s>=4.",
+				"mechanism": "Endpoint-jet polynomial right inverse plus H^s approximation.",
+				"independent_of_open_degree_spectrum": true
+			}
+		],
+		"complete_all_polynomial_degree_spectrum_proved_by_any_arm": false,
+		"degree_spectrum_note": "A proves only deg Q_n^(s)=n. B asserts the full spectrum without proof. C classifies Q_n membership indices and proves a graph core, but does not prove the degree spectrum of every domain polynomial."
+	},
+	"metrics": {
+		"A": {
+			"wall_seconds": 1514.327,
+			"aggregate_active_seconds": 1984.341,
+			"sessions": 3,
+			"responses": 82,
+			"tools": 62,
+			"uncached_input": 215462,
+			"cached_input": 4651520,
+			"output": 74357,
+			"proxy_usd": 4.209596,
+			"artifact_bytes": 76549
+		},
+		"B": {
+			"wall_seconds": 602.092,
+			"aggregate_active_seconds": 602.092,
+			"sessions": 1,
+			"responses": 1,
+			"tools": 0,
+			"uncached_input": 950,
+			"cached_input": 8960,
+			"output": 25020,
+			"proxy_usd": 0.507784,
+			"artifact_bytes": 8698
+		},
+		"C": {
+			"wall_seconds": 1438.3,
+			"aggregate_active_seconds": 1373.396,
+			"sessions": 7,
+			"responses": 8,
+			"tools": 1,
+			"uncached_input": 148069,
+			"cached_input": 18944,
+			"output": 61896,
+			"proxy_usd": 1.8377736,
+			"artifact_bytes": 170999
+		}
+	},
+	"relative_to_A": {
+		"B": {
+			"wall_reduction_fraction": 0.6024029156186214,
+			"uncached_input_reduction_fraction": 0.9955908698517604,
+			"proxy_cost_reduction_fraction": 0.8793746478284377
+		},
+		"C": {
+			"wall_reduction_fraction": 0.05020514063342996,
+			"uncached_input_reduction_fraction": 0.31278369271611695,
+			"proxy_cost_reduction_fraction": 0.563432310368976
+		}
+	},
+	"one_run_non_statistical_design": true,
+	"bindings": {
+		"frozen_task_sha256": "359d335803eae43f45120e3ca3995b8f12ec2f98b357e2b10116eafe2d8c6332",
+		"arm_A_proof_sha256": "0e36b83891a4b5a509174eb7e367365652c0637267b5d4610f5e01a7c42ec080",
+		"arm_A_external_review_sha256": "86d6e02c79dd436014896b92a39425eec28f136aac9f52d1a19d32599b19de8d",
+		"arm_B_final_response_sha256": "874b0bde9dfaf194e8279519c2c70d739a8e4125094aa5495884fffa5c78ee58",
+		"arm_B_external_review_sha256": "486ce4ffac8544990ba6450363f738e1cba631e98ce0c8f820dd434a5e33c4be",
+		"arm_C_proof_sha256": "daf055b84e09024f6a653b57adb771e50b268e1cf9692dab97c6ab59a7bd9987",
+		"arm_C_external_review_sha256": "763acdd921d14153edf21653ddc934864c218f8ae72a693a634518ffc7e44e9c"
+	}
+}

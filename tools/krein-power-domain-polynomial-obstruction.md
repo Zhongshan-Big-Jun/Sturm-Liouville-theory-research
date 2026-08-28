@@ -119,10 +119,10 @@ This result is distinct from density of the original named system. Compatible li
 cancellations among non-admissible named polynomials can enter the domain even though no
 individual member of degree at least 2 does.
 
-## Posthoc Arm B degree-spectrum candidate
+## Exact polynomial degree spectrum
 
-Status: `CANDIDATE_POSTHOC_REPAIR`, not credited to the scored blank arm and awaiting a separate
-independent audit of the reviewer-authored proof.
+Status: `STRICT`, independently audited `PASS`. This theorem is a posthoc result and is not
+credited to the scored blank arm.
 
 Let `r=floor(s/2)`. The Arm B response proposed, and its anonymous reviewer supplied a short proof
 of, the exact degree spectrum
@@ -138,3 +138,7 @@ The mechanism is parity-triangular. The even constraints are
 every possible leading degree from 2 through `2r+1`. Above that threshold, the `r` trace
 functionals have full rank on the lower even or odd monomials, so any higher leading monomial can
 be corrected without changing its degree.
+
+The complete proof, including the odd triangular diagonal `(2j+3)!/3`, sharp `s=4,5` examples,
+four mandatory audits, and content hashes, is archived in
+`runs/three-arm-pilot-v2/pilot-v6-hs-domain/posthoc-degree-spectrum-audit/`.

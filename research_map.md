@@ -38,7 +38,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Stability / threshold-line classification (moment-jump) | PARTIAL | docs/SL_stability_moment_jump | threshold line family ~ log m not fully classified |
 | A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | even c=1 anchor K(1)=e/4 STRICT; general K(c), source-term control, and general families OPEN |
-| A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core |
+| A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
@@ -125,7 +125,14 @@ flowchart LR
 - leftdef-density (R-20260816T120000Z): STRICT L1-L6 with a concrete
   counterexample (V = ker Delta in H^2); open core O1'LD.
 - min-direction audit (R-20260816T174722Z): ACCEPT with verification package.
-- hs-operator-domain (R-20260816T200000Z): in progress partial.
+- hs-operator-domain (historical run R-20260816T200000Z, pilot v6 2026-08-28):
+  main obstruction/completion/non-density package is STRICT. For every `c>0`,
+  integer `s>=4`, the algebraic transported polynomial `Q_n^(s)` belongs to
+  `D(K_c^(s/2))` iff `n in {0,1}`. The abstract polynomial completion is not
+  the operator domain under the identity, although a boundary-correcting unitary
+  relates them. The larger space `C[x] intersect D(K_c^(s/2))` is a STRICT
+  graph core. Its exact nonzero polynomial degree spectrum is also STRICT:
+  `{0,1} union {N:N>=2 floor(s/2)+2}`.
 - A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
   higher-degree rational product exclusion STRICT partial (independent audit
   REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
