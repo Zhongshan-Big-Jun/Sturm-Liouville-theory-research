@@ -1,0 +1,66 @@
+{
+  "checkpoint_id": "sha256:3f34de576ba1e195716822533c9eb30a47627bc61cba402c05b243407d34e78d",
+  "checkpoint_sequence": 0,
+  "checkpoint_sha256": "e4495641353d620470261a4361278badb004ca170c640b51242c375399a4434e",
+  "completed_obligation_ids": [
+    "RETAINED-ROUTE-A",
+    "RETAINED-ROUTE-C"
+  ],
+  "do_not_repeat_action_ids": [
+    "launch-route-a",
+    "launch-route-c"
+  ],
+  "experiment_integrity": {
+    "arm_id": "A-v1.7-regression-recovery-drill",
+    "checkpoint_overhead_policy": "separate_unscored",
+    "cumulative_metrics": {
+      "cached_input_tokens": 1702912,
+      "cost_usd": 3.5672448,
+      "model_responses": 56,
+      "output_tokens": 101940,
+      "tool_calls": 44,
+      "uncached_input_tokens": 211820,
+      "wall_seconds": 1311.844
+    },
+    "next_segment_index": 1,
+    "task_id": "U2",
+    "workspace_id": "pilot-v5-v17-u2-frozen"
+  },
+  "first_action": {
+    "action_id": "reconcile-route-b",
+    "kind": "RECONCILE_INFLIGHT",
+    "target_id": "route-b-operator"
+  },
+  "minimal_read_set": [
+    {
+      "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/task_contract.md",
+      "sha256": "879e7e0c0b238160529af76568db71617c288ba0d0d266c0a51717e6a8d848fe"
+    },
+    {
+      "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/whiteboard-00.md",
+      "sha256": "046771c465f520ad9b21caa54087f09d4371c1cde52ec94e889f5afb7566299c"
+    }
+  ],
+  "next_checkpoint_sequence": 1,
+  "open_obligation_ids": [
+    "O3"
+  ],
+  "result_status": "RIGOROUS_PARTIAL_RESULT",
+  "resume_budget": {
+    "limit": 1,
+    "unit": "tool_calls"
+  },
+  "resumed_at": "2026-08-29T01:41:00Z",
+  "run_id": "R-20260829T014000Z-v19-recovery-drill",
+  "schema_version": 1,
+  "stop_condition": "Record Route B as NO_RETURN, write the successor checkpoint, and stop.",
+  "task_packet_id": "Q-20260829-v19-recovery-drill",
+  "unresolved_inflight_work": [
+    {
+      "artifact": null,
+      "session_id": "01a04203-2e61-7293-b637-4a6f4a313c06",
+      "status": "UNKNOWN",
+      "worker_id": "route-b-operator"
+    }
+  ]
+}

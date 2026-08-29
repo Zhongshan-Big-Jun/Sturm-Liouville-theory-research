@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "checkpoint_sequence": 1,
+  "predecessor": {
+    "checkpoint": {
+      "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/interruption_checkpoint-00.json",
+      "sha256": "e4495641353d620470261a4361278badb004ca170c640b51242c375399a4434e"
+    },
+    "resume_receipt": {
+      "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/resume_receipt-00.json",
+      "sha256": "bffc6243dbea008d3322f5292cf2e188365e54cdf483769822a1cbf80205c2ad"
+    }
+  },
+  "run_id": "R-20260829T014000Z-v19-recovery-drill",
+  "task_packet_id": "Q-20260829-v19-recovery-drill",
+  "reason": "QUOTA_BOUNDARY",
+  "created_at": "2026-08-29T01:42:00Z",
+  "source_commit": "0d25f52c8f40e590dde7e285e7b367064f2a0f0f",
+  "task_contract": {
+    "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/task_contract.md",
+    "sha256": "879e7e0c0b238160529af76568db71617c288ba0d0d266c0a51717e6a8d848fe"
+  },
+  "closure_gate": {
+    "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/closure_gate.md",
+    "sha256": "5a31bb8904fbf9933aaa05b2bf7a045d8b104b8d545f4374772740ccd6891fa6"
+  },
+  "whiteboard": {
+    "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/whiteboard-01.md",
+    "sha256": "ae49072756bed8c8a3b31b438e75cd6039f67e4e9c25f27e6c6400d1473b5cf6"
+  },
+  "latest_audit": {
+    "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/external_final_audit.md",
+    "sha256": "12ee19bf382c8e7e391180febca1706a75bb69771321dc5f9e50de2200ed9f0d"
+  },
+  "completed_obligations": [
+    {
+      "id": "RETAINED-ROUTE-A",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/subagents/route_a.md",
+        "sha256": "6ce207738f66fcd3b0b5b2c39175cf068be15f8b8532b76593e11b5cd386b647"
+      }
+    },
+    {
+      "id": "RETAINED-ROUTE-C",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/subagents/route_c.md",
+        "sha256": "f260fe18d316ad8d58294700ad4bb3cd40514537728a7ac67ae576c19ca7bbf2"
+      }
+    },
+    {
+      "id": "FINAL-AUDITED-PARTIAL-PACKAGE",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/candidate_proof.md",
+        "sha256": "40359f326aec9c01ecc0fa73c43bac72ffca74b1bea2e847f0bed1a601b812e9"
+      }
+    }
+  ],
+  "open_obligations": [
+    {
+      "id": "O3",
+      "exact_gap": "The frozen fixed-constant C/sqrt(t) upper bound remains open.",
+      "next_action": {
+        "action_id": "hold-o3-no-research",
+        "description": "Keep O3 open; this files-only drill authorizes no research."
+      },
+      "required_inputs": [
+        {
+          "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/candidate_proof.md",
+          "sha256": "40359f326aec9c01ecc0fa73c43bac72ffca74b1bea2e847f0bed1a601b812e9"
+        }
+      ]
+    }
+  ],
+  "inflight_work": [],
+  "inflight_reconciliation": [
+    {
+      "worker_id": "route-b-operator",
+      "session_id": "01a04203-2e61-7293-b637-4a6f4a313c06",
+      "outcome": "NO_RETURN",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/session_metrics.json",
+        "sha256": "744bc76fa6c5dd7f52f98de70f60240a797377eb949665326be4d80ba846b97d"
+      }
+    }
+  ],
+  "do_not_repeat": [
+    {
+      "action_id": "launch-route-a",
+      "reason": "Route A already returned and was audited.",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/subagents/route_a.md",
+        "sha256": "6ce207738f66fcd3b0b5b2c39175cf068be15f8b8532b76593e11b5cd386b647"
+      }
+    },
+    {
+      "action_id": "launch-route-c",
+      "reason": "Route C already returned and was audited.",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/subagents/route_c.md",
+        "sha256": "f260fe18d316ad8d58294700ad4bb3cd40514537728a7ac67ae576c19ca7bbf2"
+      }
+    },
+    {
+      "action_id": "reconcile-route-b",
+      "reason": "The recorded worker ended at the hard limit without an artifact.",
+      "evidence": {
+        "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/session_metrics.json",
+        "sha256": "744bc76fa6c5dd7f52f98de70f60240a797377eb949665326be4d80ba846b97d"
+      }
+    }
+  ],
+  "result_status": "RIGOROUS_PARTIAL_RESULT",
+  "status_transition": null,
+  "experiment_integrity": {
+    "enabled": true,
+    "arm_id": "A-v1.7-regression-recovery-drill",
+    "task_id": "U2",
+    "workspace_id": "pilot-v5-v17-u2-frozen",
+    "prompt": {
+      "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/PROMPT.md",
+      "sha256": "0ab0af8e6936c0597626493029004dc4f8851bf79e5f6ae4076ccc2605d012a7"
+    },
+    "harness": {
+      "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/harness/resume-v17-a-wsl.sh",
+      "sha256": "a147e8b40b5c89b1787e9c1c9ecf27f0b954eeea59a6e533fa7ac7934147aad2"
+    },
+    "source_snapshot": {
+      "path": "runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/arm-a-plugin-v17/repro_manifest.md",
+      "sha256": "f13c56c62bb99a72f6bb21f60a9c362ba1e75b863ee4c3bd0abbc86d4cecbc15"
+    },
+    "hidden_gold_state": "SEALED",
+    "metrics_scope": "cumulative_pre_checkpoint",
+    "checkpoint_overhead_policy": "separate_unscored",
+    "cost_status": "MEASURED",
+    "segment_index": 1,
+    "cumulative_metrics": {
+      "model_responses": 72,
+      "tool_calls": 58,
+      "uncached_input_tokens": 338812,
+      "cached_input_tokens": 3287040,
+      "output_tokens": 125692,
+      "wall_seconds": 1881.05,
+      "cost_usd": 5.183904
+    }
+  },
+  "resume": {
+    "first_action": {
+      "kind": "AWAIT_INPUT",
+      "action_id": "await-new-authority",
+      "target_id": ""
+    },
+    "minimal_read_set": [
+      {
+        "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/task_contract.md",
+        "sha256": "879e7e0c0b238160529af76568db71617c288ba0d0d266c0a51717e6a8d848fe"
+      },
+      {
+        "path": "runs/plugin-benchmark-20260829-v19-recovery-drill/whiteboard-01.md",
+        "sha256": "ae49072756bed8c8a3b31b438e75cd6039f67e4e9c25f27e6c6400d1473b5cf6"
+      }
+    ],
+    "budget": {
+      "unit": "tool_calls",
+      "limit": 1
+    },
+    "stop_condition": "Await new authority; no research action is authorized by this drill."
+  }
+}
