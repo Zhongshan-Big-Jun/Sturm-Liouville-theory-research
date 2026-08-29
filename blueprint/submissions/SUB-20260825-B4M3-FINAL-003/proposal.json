@@ -1,0 +1,799 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260825-B4M3-FINAL-003",
+  "author_agent_id": "final-proposal-author",
+  "contributor_agent_ids": [
+    "determinant-closure-researcher",
+    "finite-branch-researcher",
+    "refutation-schema-probe",
+    "root-coordinator",
+    "route-planner",
+    "transseries-researcher"
+  ],
+  "proposal_editor_agent_ids": [],
+  "artifact_producer_agent_ids": [
+    "determinant-closure-researcher",
+    "finite-branch-researcher",
+    "route-planner",
+    "transseries-researcher"
+  ],
+  "node_authorship": {
+    "HYP-SL-B4-M3-SYSTEM-V1": [
+      "route-planner"
+    ],
+    "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1": [
+      "determinant-closure-researcher"
+    ],
+    "CLM-R001-FINITE-R-BRANCH-V1": [
+      "finite-branch-researcher"
+    ],
+    "INF-R001-FINITE-R-BRANCH-V1": [
+      "finite-branch-researcher"
+    ],
+    "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1": [
+      "transseries-researcher"
+    ],
+    "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1": [
+      "transseries-researcher"
+    ],
+    "CLM-SL-B4-M3-TARGET-V1": [
+      "determinant-closure-researcher",
+      "finite-branch-researcher",
+      "transseries-researcher"
+    ],
+    "INF-R003-CORRECTED-M3-CLOSURE-V1": [
+      "determinant-closure-researcher",
+      "finite-branch-researcher",
+      "transseries-researcher"
+    ],
+    "GOAL-SL-B4-M3-V1": [
+      "determinant-closure-researcher",
+      "finite-branch-researcher",
+      "route-planner",
+      "transseries-researcher"
+    ]
+  },
+  "run_id": "R-20260825T100044Z-b4-m3-blueprint",
+  "created_at": "2026-08-25T16:09:36.102380Z",
+  "base_blueprint_hash": "sha256:972fe8d8f84a98b1eb9abee896d5f19aacf0514c7226d06646bbf42a38d12793",
+  "base_inventory_hash": "sha256:88c9b2d30ddd06ffd6531ccad7c76129ea658b442f676b5831f1f073fdab8aa0",
+  "supersedes": "SUB-20260825-B4M3-FINAL-002",
+  "summary": "Admit the complete corrected n=2 symmetric INF M3 chain: the exact finite-R branch, admitted-class scale exhaustiveness, and the established corrected observable and sector-determinant asymptotics, whose exact values exclude the incompatible legacy assertions without first-class refutation nodes.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "HYP-SL-B4-M3-SYSTEM-V1",
+        "type": "claim",
+        "title": "Exact n=2 symmetric INF M3 system",
+        "statement": "For R > 1 and u = R^(-1/6), the M3 problem is the exact real four-equation system E1 = E2 = E5 = E6 = 0 bound in the frozen problem contract, with k2 = K(u)u, k3 = K(u)u + Cbr(u)u^5, p1 = pi/2 + A(u)u^2, and p3 = pi/4 + B(u)u^2. Every admitted asymptotic assertion must correspond to the exact finite-R real symmetric band-consistent n=2 INF branch and is restricted to M3.",
+        "status": "given",
+        "grade": "A",
+        "mainline": "mathematics",
+        "epistemic_type": "problem_hypothesis",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "hypothesis",
+        "truth_status": "given",
+        "inference_inputs": [],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+        "type": "definition",
+        "title": "Corrected M3 observable and determinant normalization",
+        "statement": "On the finite-interior n=2 symmetric INF germ, Cbr denotes the positive branch coefficient in k3 = K(u)u + Cbr(u)u^5 and is distinct from Chi_up = 1 + B(u)K(u)/2 + 3pi/(2K(u)) - K(u)^2/12. The quantities m3D and m3N are the exact D-side and N-side third-block masses from the closed residual. Kp_odd and Ko are the full two-by-two sector matrices in the exact orthonormal mirror bases, with the source spectral pole convention and reduced-Green finite part Gt = L0 + Lminus/2 fixed by the bound normalization package.",
+        "status": "active",
+        "grade": "C",
+        "mainline": "support",
+        "epistemic_type": "definition_contract",
+        "context_id": "CTX-DEFAULT",
+        "truth_bearing": false,
+        "source_kind": "project"
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-R001-FINITE-R-BRANCH-V1",
+        "type": "claim",
+        "title": "Exact even analytic finite-R INF branch",
+        "statement": "Let kappa = (18pi - 48/pi)^(1/3). There exist u0 > 0 and M < infinity and an exact locally unique real-analytic even branch in the finite nonzero interior chart for every 0 < u < u0 on which E1 = E2 = E5 = E6 = 0, K(u) = kappa + O(u^2), A(u) = 2/kappa + O(u^2), B(u) = 1/kappa + O(u^2), Cbr(u) = 16/(pi kappa) + O(u^2), K1 = C1 = 0, and k3 - k2 = (16/(pi kappa))u^5 + O(u^7), with the corresponding absolute remainder bounds. For every R > u0^(-6), this root is a nondegenerate real symmetric band-consistent n=2 INF branch with positive widths and the lambda_2 and lambda_3 indexing certified in the proof package.",
+        "status": "established",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-R001-FINITE-R-BRANCH-V1"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-R001-FINITE-R-BRANCH-V1",
+        "type": "inference",
+        "title": "Exact blow-up and finite-R branch proof",
+        "statement": "The exact M3 problem hypothesis implies the locally unique even analytic finite-R branch theorem after two exact blow-ups, a nonzero seed Jacobian certificate, analytic implicit continuation, and the finite-R branch-selection and nodal-sign audit.",
+        "status": "proved",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-SL-B4-M3-SYSTEM-V1"
+        ],
+        "definition_inputs": [],
+        "conclusion": "CLM-R001-FINITE-R-BRANCH-V1",
+        "proof_status": "proved",
+        "proof_package": {
+          "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+          "sha256": "sha256:0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+        "type": "claim",
+        "title": "Admitted-class scale exhaustiveness",
+        "statement": "Within the finite nonzero interior limiting class where K stays in a compact subset of (0,infinity), p1 tends to pi/2, p3 tends to pi/4, k3/k2 tends to 1, and the listed phase denominators stay separated from zero, every exact zero branch is the unique analytic germ in v = u^2 from CLM-R001-FINITE-R-BRANCH-V1. Thus no distinct rational-Puiseux, logarithmic, inverse-logarithmic, mixed power-log, odd-power, flat, or non-transseries exact correction branch exists in this admitted class. The singular geometries K tending to 0 or infinity, nonunit limiting k3/k2, and vanishing phase-denominator limits are expressly outside the result and are not refuted.",
+        "status": "established",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+        "type": "inference",
+        "title": "Two-face analytic uniqueness and scale exhaustion",
+        "statement": "The exact M3 hypothesis implies the admitted-class scale-exhaustiveness theorem by the corrected first and secondary Newton faces, two nonzero exact Jacobians, two analytic implicit-function steps in v = u^2, and local uniqueness for every exact branch entering the finite-interior chart.",
+        "status": "proved",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-SL-B4-M3-SYSTEM-V1"
+        ],
+        "definition_inputs": [],
+        "conclusion": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+        "proof_status": "proved",
+        "proof_package": {
+          "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+          "sha256": "sha256:88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-SL-B4-M3-TARGET-V1",
+        "type": "claim",
+        "title": "Corrected M3 observable and sector-determinant closure",
+        "statement": "On the exact locally unique branch of CLM-R001-FINITE-R-BRANCH-V1, which is the only branch in the admitted finite nonzero interior class of CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1, let kappa^3 = 18pi - 48/pi. There exists a finite, not numerically asserted, R0 such that for every R > R0, with u = R^(-1/6), m3D - m3N = -(4/kappa^5)u^4 + O(u^6) < 0, Chi_up = 3/2 + 4/(pi kappa) + O(u^2) > 0, det Kp_odd = (128kappa^2/pi^2)u^20 + O(u^22) = (128kappa^2/pi^2)R^(-10/3) + O(R^(-11/3)) > 0, and det Ko = (2048kappa^2/pi^4)u^26 + O(u^28) = (2048kappa^2/pi^4)R^(-13/3) + O(R^(-14/3)) > 0. All four signs hold on the exact finite-R roots through the analytic normalized-quotient and compact derivative-supremum bridge, and Chi_up is distinct from Cbr(u) = 16/(pi kappa) + O(u^2) > 0.",
+        "status": "established",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-R003-CORRECTED-M3-CLOSURE-V1"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+        "type": "inference",
+        "title": "Corrected observable and determinant theorem",
+        "statement": "The exact M3 hypothesis, the proved finite-R branch, the admitted-class uniqueness result, and the bound observable and sector normalizations imply the corrected observable identities, determinant coefficients, alternative R exponents, and uniform finite-R signs in CLM-SL-B4-M3-TARGET-V1.",
+        "status": "proved",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-SL-B4-M3-SYSTEM-V1",
+          "CLM-R001-FINITE-R-BRANCH-V1",
+          "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1"
+        ],
+        "definition_inputs": [
+          "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+        ],
+        "conclusion": "CLM-SL-B4-M3-TARGET-V1",
+        "proof_status": "proved",
+        "proof_package": {
+          "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+          "sha256": "sha256:6d1c8cbbc7cb68b569675fcad5854288692f4fbc17ae87a76d8768ea8afd0dd8"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "GOAL-SL-B4-M3-V1",
+        "type": "goal",
+        "title": "Resolve the corrected B4 M3 branch contract",
+        "statement": "Determine the exact finite-interior n=2 symmetric INF M3 branch, its admitted-class scale classification, m3D - m3N, the distinct upstream Chi_up relation, and both normalized sector-determinant leading terms and signs.",
+        "status": "solved",
+        "grade": "C",
+        "mainline": "research",
+        "epistemic_type": "research_goal",
+        "context_id": "CTX-DEFAULT",
+        "target_claim": "CLM-SL-B4-M3-TARGET-V1",
+        "target_inputs": [
+          "CLM-SL-B4-M3-TARGET-V1"
+        ],
+        "mode": "prove_or_refute",
+        "goal_status": "solved",
+        "contract_version": "1",
+        "quantifier_contract": "For the exact real n=2 symmetric INF M3 system, determine the branch and every listed M3 output for all sufficiently large finite R, with an explicit asymptotic remainder and finite-R correspondence, while allowing integer, Puiseux, logarithmic, inverse-logarithmic, mixed, and flat corrections in the admitted finite-interior class.",
+        "boundary_cases": [
+          "The degenerate K0 -> 0 attractor and all other singular geometries are separated from the proved finite nonzero interior branch.",
+          "Integer-power, Puiseux, logarithmic, inverse-logarithmic, mixed, odd, flat, and non-transseries exact corrections are handled only within the stated admitted class.",
+          "The overloaded upstream scalar Chi_up is separated from the positive branch coefficient Cbr.",
+          "Kp_odd and Ko use separate exact orthonormal bases, orientations, Green normalizations, and determinant expansions.",
+          "The singular u = 0 analysis is bridged to every sufficiently large finite R by analytic remainder bounds and local branch continuation.",
+          "Spurious truncated roots, phase-denominator singularities, and local branch switching are excluded only in the proved chart."
+        ],
+        "completion_criteria": [
+          "CLM-R001-FINITE-R-BRANCH-V1, CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1, and CLM-SL-B4-M3-TARGET-V1 enter the trusted closure of CTX-DEFAULT through proved inferences.",
+          "The exact branch and corrected target conclusions give K1 = C1 = 0, Chi_up > 0, det Kp_odd proportional to R^(-10/3), and det Ko proportional to R^(-13/3), thereby excluding the incompatible staged Pbuild cascade and legacy Chi_up = 0, R^(-7/2), and R^(-9/2) assertions without separate refutation nodes.",
+          "The exact proof and correction packages, normalization, reproducibility certificates, and finite-R sign bridge pass independent definition, logic, boundary, and adversarial review and are integrated by the deterministic receiver."
+        ],
+        "non_completion_conditions": [
+          "Numerical roots, fits, continuation tables, or multistart failures without a proof bridge do not count.",
+          "A formal series, truncated cascade, partial lemma, or result omitting either determinant does not count.",
+          "No M3 result is reported as closing M1, M2, general G1-prime, SUP, n >= 3, global n >= 2 reflection symmetry, or a different singular chart."
+        ],
+        "permitted_outcomes": [
+          "proof",
+          "refutation"
+        ],
+        "tool_constraints": {
+          "finite_computation_is_general_proof": false,
+          "formalization_mode": "off",
+          "numerical_evidence_requires_proof_bridge": true
+        }
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R001-FINITE-R-BRANCH-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-R001-FINITE-R-BRANCH-V1",
+      "target": "CLM-R001-FINITE-R-BRANCH-V1",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "target": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-R001-FINITE-R-BRANCH-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "target": "CLM-SL-B4-M3-TARGET-V1",
+      "role": "inference_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "CLM-SL-B4-M3-TARGET-V1",
+      "target": "GOAL-SL-B4-M3-V1",
+      "role": "target_input"
+    }
+  ],
+  "inventory_operations": [
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "EV-SL-B4-M3-BRANCH-V1",
+        "title": "Exact finite-R n=2 symmetric INF branch theorem",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-R001-FINITE-R-BRANCH-V1",
+        "grade": "C",
+        "status": "established",
+        "headline_value": "kappa^3 = 18pi - 48/pi; unique even analytic finite-interior branch with finite-R correspondence and nondegeneracy.",
+        "scope": "n=2 real symmetric band-consistent INF branch, M3, all sufficiently large finite R",
+        "primary_artifact": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+        "main_limitation": "Local uniqueness is only in the finite nonzero interior chart; u0 is existential and no effective numerical threshold is claimed."
+      }
+    },
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "EV-SL-B4-M3-SCALE-EXHAUSTIVENESS-V1",
+        "title": "Finite-interior scale-exhaustiveness theorem",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+        "grade": "C",
+        "status": "established",
+        "headline_value": "The exact finite-interior germ is analytic in u^2 and exhausts the admitted Puiseux, logarithmic, inverse-logarithmic, mixed, odd, and flat correction class.",
+        "scope": "Finite nonzero interior n=2 symmetric INF chart only",
+        "primary_artifact": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+        "main_limitation": "K -> 0 or infinity, nonunit limiting k3/k2, and phase-denominator singular geometries are outside the admitted class and are not globally classified."
+      }
+    },
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "EV-SL-B4-M3-CORRECTED-CLOSURE-V1",
+        "title": "Corrected M3 observable and determinant closure",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-SL-B4-M3-TARGET-V1",
+        "grade": "C",
+        "status": "established",
+        "headline_value": "m3D-m3N = -(4/kappa^5)u^4 + O(u^6); Chi_up > 0; det Kp_odd ~ (128kappa^2/pi^2)R^(-10/3); det Ko ~ (2048kappa^2/pi^4)R^(-13/3), both positive.",
+        "scope": "Exact finite-R n=2 symmetric INF branch, M3 only",
+        "primary_artifact": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+        "main_limitation": "Depends on the proved finite-interior branch chain; the finite sign threshold R0 is existential and not numerically optimized."
+      }
+    }
+  ],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "CLM-R001-FINITE-R-BRANCH-V1",
+      "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "CLM-SL-B4-M3-TARGET-V1",
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "GOAL-SL-B4-M3-V1",
+      "HYP-SL-B4-M3-SYSTEM-V1",
+      "INF-R001-FINITE-R-BRANCH-V1",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1"
+    ],
+    "inventory_rows": {
+      "EV-SL-B4-M3-BRANCH-V1": null,
+      "EV-SL-B4-M3-CORRECTED-CLOSURE-V1": null,
+      "EV-SL-B4-M3-SCALE-EXHAUSTIVENESS-V1": null
+    }
+  },
+  "read_set": {
+    "upstream_nodes": {}
+  },
+  "rationale": {
+    "selection": "The canonical graph and inventory are empty at the bound snapshot because the seed transaction did not integrate. The final planner reconciliation found the M3 scientific content candidate-complete with mixed proof and refutation outcomes and no further mathematical route required before review. This schema probe adds the complete premise, proof chain, corrected theorem, and requested post-integration goal state while leaving incompatible legacy assertions to be excluded by the exact established conclusions rather than by first-class refuted or verified-counterexample nodes.",
+    "final_reconciliation": {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/final_reconciliation.md",
+      "sha256": "sha256:1810e483d2242129f004b9488f77b4216cce141d300770dd8620b31e395f076b",
+      "decision": "candidate_complete_mixed_proof_and_refutation; proposal_review_ready; no new mathematical route required before review"
+    },
+    "route_result_bindings": [
+      {
+        "route_id": "route-001-finite-r-branch-certification",
+        "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/route-results/route-001-finite-r-branch-certification/plan-001.result.final.json",
+        "file_sha256": "sha256:cab5f43162bae1aea313d388a6930863bb90ede307e9c734ec3980098597aa7b",
+        "result_hash": "sha256:a3f4499dc11735849efe2c55322a929cd54f73232565fa0116b9330a4e7d2b8c"
+      },
+      {
+        "route_id": "route-002-noninteger-balance-classification",
+        "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/route-results/route-002-noninteger-balance-classification/plan-001.result.final.json",
+        "file_sha256": "sha256:03e895073021fdb06f8aef106cd0bb2323e933389b38f864e34e0ee90a550222",
+        "result_hash": "sha256:08af2e96bd4e250d5080d4bdbfc5136f54042ea423904658866b29425d5ea228"
+      },
+      {
+        "route_id": "route-003-observable-determinant-closure",
+        "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-002/route-results/route-003-observable-determinant-closure/plan-002.result.final.json",
+        "file_sha256": "sha256:bfd4143940bba9490e69f028bf72abdd3bfad85672ead107903ce3dd1aabd686",
+        "result_hash": "sha256:3a788d04113881f6ba61d0e9a368b38dd01d23099227b023a7fba0432a98e7a3"
+      }
+    ],
+    "source_hash_bindings": [
+      {
+        "repository_path": "scripts/_gapn2_largeR_closed.py",
+        "sha256": "sha256:e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4",
+        "role": "exact closed residual and exact D/N mass definitions"
+      },
+      {
+        "repository_path": "scripts/_gapn2_largeR_Pbuild.py",
+        "sha256": "sha256:58c98af44d074bdfd9412a1541d4a7a393f0cf3e074653c1108964b62ea6caea",
+        "role": "excluded defective staged D-side E5 cascade retained only for failure provenance"
+      },
+      {
+        "repository_path": "scripts/_gapn2_rawko_closed.py",
+        "sha256": "sha256:8bb79393282c481a0b83332e044bf5740d0809086d7fabce3d24207242c04b6e",
+        "role": "replayed exact sector-definition source"
+      },
+      {
+        "repository_path": "scripts/_gapn2_largeR_probe2.py",
+        "sha256": "sha256:b0d5589920bbae963da2f6483bec85576a060b47a5351d75bab0274a5bfd00e7",
+        "role": "replayed exact sector-convention source"
+      },
+      {
+        "repository_path": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-14.md",
+        "sha256": "sha256:a4b5c8b72b08508e9e8f1a6ead786e837d0c316a564ba6a6dd06bb7d1d7284cb",
+        "role": "source locator for the legacy Chi_up assertion and legacy determinant exponents"
+      },
+      {
+        "repository_path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+        "sha256": "sha256:6c2029fbd71885b8d94131ad93e865f13f42884d75e68a03d2d079bea79efe0a",
+        "role": "replayed structural scope and Wronskian sign source, not an imported branch-existence premise"
+      }
+    ],
+    "dependency_contract": "INF-R003-CORRECTED-M3-CLOSURE-V1 remains explicitly conditional on the proved finite-R branch and admitted-class result through premise_input edges. Its exact proof binding includes the finite-R normalized-quotient remainder and sign bridge at sha256:f3fc4a793b667e93c272c3358f1a5c57f3df75b7aa281dd9537dc2ae2f505917.",
+    "status_accuracy": "The three complete mathematical inferences are proposed as proved with grade C because their immutable packages are candidate complete proofs pending fresh independent audit, and their conclusions are proposed as established grade C. This schema probe contains no grade X refuted nodes and no verified-counterexample nodes; the exact corrected conclusions themselves exclude the incompatible legacy values. The solved goal is the requested post-review and post-integration candidate state; the current canonical goal remains open until a receipt exists. No grade B, novelty claim, or effective numerical R0 is requested.",
+    "scope": "Every positive result is restricted to the finite-interior real symmetric band-consistent n=2 INF M3 germ. Nothing here establishes M1, M2, SUP, n >= 3, general G1-prime, global reflection symmetry, or a different singular geometry."
+  },
+  "evidence_refs": [
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/problem_contract.md",
+      "sha256": "sha256:6dc56880458e66119f66c2a16f33df65afa799e03bbc681db5809e127e585e19"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/final_reconciliation.md",
+      "sha256": "sha256:1810e483d2242129f004b9488f77b4216cce141d300770dd8620b31e395f076b"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/reproducibility_manifest.json",
+      "sha256": "sha256:518dfaad384640ae0cdb2792e37b633c689998beeb30e2b8b86497a9f5dde177"
+    },
+    {
+      "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/route-results/route-001-finite-r-branch-certification/plan-001.result.final.json",
+      "sha256": "sha256:cab5f43162bae1aea313d388a6930863bb90ede307e9c734ec3980098597aa7b"
+    },
+    {
+      "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/route-results/route-002-noninteger-balance-classification/plan-001.result.final.json",
+      "sha256": "sha256:03e895073021fdb06f8aef106cd0bb2323e933389b38f864e34e0ee90a550222"
+    },
+    {
+      "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-002/plans/plan-002.final.json",
+      "sha256": "sha256:432df3e2d4dc19d886097482a39e4d8b8b052a98e4302ca039cfbeea02d8e2a9"
+    },
+    {
+      "path": "work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-002/route-results/route-003-observable-determinant-closure/plan-002.result.final.json",
+      "sha256": "sha256:bfd4143940bba9490e69f028bf72abdd3bfad85672ead107903ce3dd1aabd686"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/branch_theorem_statement.txt",
+      "sha256": "sha256:b717ff0832a4ee050668eb04dc51d0056d8853235ce47d9af38cbc16a31870f2"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+      "sha256": "sha256:0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/audited_source_failure.md",
+      "sha256": "sha256:8e45d6a741b1e5e8cad56f3901309e60eff263fae46a7b3c528f6a3c3dd0a4b6"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/computation_manifest.json",
+      "sha256": "sha256:da26aaefdbe51be072f76da036293770a18dcd9d7eec5cb1661af16a98db7935"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/finite_r_direct_check.py",
+      "sha256": "sha256:d38ba50947a95a8c47bd3faa03f2ddfc0b742408b21ece638fbdf8cab500eac2"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/finite_r_replay.py",
+      "sha256": "sha256:d929f0eb0c84cd6cd26515e93928c23fff2126c79876fa03cc75794a07515a56"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/completion_report.md",
+      "sha256": "sha256:c4c952f9b2f093bec5b866d056cd959b0e335ff335a311b3d967847f1095ca61"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+      "sha256": "sha256:88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/normalization_audit.md",
+      "sha256": "sha256:22caadc22e1c263af46bc980ee5c366e85a54482c4bd89f931ac6d32292054f6"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/valuation_and_exhaustiveness.md",
+      "sha256": "sha256:4e6b45befa420b7b65f49a93fd3157946d53c50482e4c1262f225964df3122b4"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/replay_summary.md",
+      "sha256": "sha256:8f2dc2871578b2c581aa82c7f7b6a8865367939e504dd6e1e5bffcd66d113cc6"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/reproducibility_manifest.json",
+      "sha256": "sha256:24a39162dd8458bf9328448b5aa59a4e65aca2acc0c7f44376e19eaf4c4b0e83"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/corrected_bounded_general.py",
+      "sha256": "sha256:700a0498b434f1dcb6bd0ee3a7856b8f3512747c4f70847f4e7b1b084fccd215"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/high_precision_residual_check.py",
+      "sha256": "sha256:a4b25244757dd527c2c754673a4fbe4e80cfd740c827305a6d4a461ca391f9e4"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/seed_rank_check.py",
+      "sha256": "sha256:0d096dfa6ad094b232b6481ad1ad68c4735d9dfea8aa3202bfea7dbe506be5da"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+      "sha256": "sha256:6d1c8cbbc7cb68b569675fcad5854288692f4fbc17ae87a76d8768ea8afd0dd8"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/normalization_and_symbol_map.md",
+      "sha256": "sha256:4fdc1adf500d4d798de904e7dd81897c0d11fe00e99e17003c9084a8e525b1a8"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/finite_R_remainder_and_signs.md",
+      "sha256": "sha256:f3fc4a793b667e93c272c3358f1a5c57f3df75b7aa281dd9537dc2ae2f505917"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/exact_algebraic_sector_replay.py",
+      "sha256": "sha256:adc1bc744aaa2ec4c0d5f03eedb625f9570c6369d4c0fbf40baba086f4e9d899"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/exact_replay_log.txt",
+      "sha256": "sha256:22134bdac184e8563c4befcfdac0b9e74c326cc591368221e4b7e9358d398187"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/reproducibility_manifest.json",
+      "sha256": "sha256:2efd9ec66d779d19755b1e91a19ca704463fc7c90d187cf383dc968bea6116ea"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/high_precision_adversarial_check.py",
+      "sha256": "sha256:64e97008fc925c8a403ae3ad286f5d081f5b642d8311150e939a86d6de3d1343"
+    },
+    {
+      "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/adversarial_evidence_log.txt",
+      "sha256": "sha256:cbec660ef009a062d477f7a3ecf78b48fb54bd07d4f05d184f34daff7564f4b7"
+    }
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-SL-B4-M3-SYSTEM-V1",
+        "context_id": "CTX-DEFAULT",
+        "premise_kind": "problem_hypothesis",
+        "exact_statement": "The active problem is the exact E1 = E2 = E5 = E6 finite-R system with the frozen n=2 real symmetric band-consistent INF normalization and M3-only quantifier contract.",
+        "contract_explanation": "This problem-local given fixes the exact equations, branch coordinates, admissible asymptotic corrections, finite-R proof bridge, boundary cases, and scope. It does not assume that the branch or any requested observable or determinant assertion is true.",
+        "scope": "n=2 symmetric INF M3 branch only",
+        "source_kind": "problem",
+        "source_contract": {
+          "artifact_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/problem_contract.md",
+          "artifact_sha256": "sha256:6dc56880458e66119f66c2a16f33df65afa799e03bbc681db5809e127e585e19",
+          "exact_locator": "Mathematical objects; Target claim; Quantifier and scope contract; Boundary and adversarial cases; Completion conditions"
+        }
+      },
+      {
+        "node_id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+        "context_id": "CTX-DEFAULT",
+        "premise_kind": "definition_contract",
+        "exact_statement": "Cbr is the positive branch coefficient in k3 = K(u)u + Cbr(u)u^5 and is distinct from Chi_up = 1 + B(u)K(u)/2 + 3pi/(2K(u)) - K(u)^2/12; m3D and m3N are the exact third-block masses from the closed residual; and Kp_odd and Ko are the full two-by-two sector matrices in the exact orthonormal mirror bases with the source spectral-pole convention and reduced-Green finite part Gt = L0 + Lminus/2.",
+        "contract_explanation": "This project definition fixes the symbol separation, whole-string factors, sector bases, orientations, row and column scalings, pole subtraction, reduced-Green convention, and determinant normalizations used by the corrected M3 inference. It supplies definitions only and does not assume the observable values, determinant coefficients, asymptotic exponents, or signs.",
+        "scope": "Exact observable and full-sector determinant normalization on the finite-interior real symmetric band-consistent n=2 INF M3 germ",
+        "source_kind": "project",
+        "source_contract": {
+          "artifact_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/normalization_and_symbol_map.md",
+          "artifact_sha256": "sha256:4fdc1adf500d4d798de904e7dd81897c0d11fe00e99e17003c9084a8e525b1a8",
+          "exact_locator": "Branch coordinates; Exact masses and whole-string normalization; Dynamic stiffness and Green matrices; Orthonormal mirror bases and the two determinants; The overloaded upstream scalar"
+        }
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-R001-FINITE-R-BRANCH-V1",
+        "context_id": "CTX-DEFAULT",
+        "scope": "Exact finite-R real symmetric band-consistent n=2 INF branch in the finite nonzero interior chart",
+        "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+        "proof_package_sha256": "sha256:0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8",
+        "ordered_steps": [
+          "Replay the exact closed residual and identify the rank-one ordinary endpoint Jacobian without treating that method failure as a refutation.",
+          "Introduce Delta = (AK - 2)/u^2 and derive C0(K) = 16/(pi K) and Delta0(K) = -(K^3 - 18pi + 24)/(6K) directly from the exact first blow-up.",
+          "Regenerate E5 from the exact mass formula, obtain exact E5_5 = 0, and exclude the defective staged-builder obstruction.",
+          "Introduce Delta = Delta0(K) + u^2 X and Cbr = 16/(pi K) + u^2 Y and extend G = (E1/u^4,E2/u^4,E5/u^6,E6/u^7) analytically.",
+          "Eliminate X and Y at u = 0 to obtain BK = 1 and pi K^3 - 18pi^2 + 48 = 0, hence the unique positive seed kappa^3 = 18pi - 48/pi.",
+          "Reduce the exact endpoint Jacobian to -6(3pi^2 - 8)/kappa^8 < 0 and apply the real-analytic implicit-function theorem.",
+          "Use exact even parity and local uniqueness to obtain an analytic branch in u^2 with K1 = C1 = 0 and uniform O(u^2) coefficient remainders.",
+          "Map the desingularized solution to the original residual for every 0 < u < u0 and prove finite-u residual nondegeneracy.",
+          "Audit positive symmetric widths, half-mode zero counts, lambda_2 and lambda_3 indexing, all switch equalities, and the INF sign pattern.",
+          "Translate u to R = u^(-6) to obtain the exact branch for every sufficiently large finite R."
+        ],
+        "boundary_cases": [
+          "K -> 0 is excluded by the exact positive seed and no denominator is cleared at K = 0.",
+          "The singular endpoint u = 0 is connected to every sufficiently small positive u by the analytic extension and implicit-function theorem.",
+          "The alleged forced odd correction is checked directly and refuted; the branch is even.",
+          "All phase denominators, widths, realness, spectral indexing, INF signs, spurious roots, and local branch switching are audited in the exact chart.",
+          "The theorem asserts local uniqueness only and does not classify other singular geometries."
+        ],
+        "external_results": [
+          "Real-analytic implicit-function theorem, used after the exact nonzero desingularized Jacobian certificate.",
+          "Sturm nodal theorem for a positive piecewise-constant Dirichlet string, used only after the explicit zero count."
+        ],
+        "supporting_artifacts": [
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/branch_theorem_statement.txt",
+            "sha256": "sha256:b717ff0832a4ee050668eb04dc51d0056d8853235ce47d9af38cbc16a31870f2"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/computation_manifest.json",
+            "sha256": "sha256:da26aaefdbe51be072f76da036293770a18dcd9d7eec5cb1661af16a98db7935"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/finite_r_direct_check.py",
+            "sha256": "sha256:d38ba50947a95a8c47bd3faa03f2ddfc0b742408b21ece638fbdf8cab500eac2"
+          }
+        ],
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+        "context_id": "CTX-DEFAULT",
+        "scope": "Exact branches in the declared finite nonzero interior limiting class only",
+        "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+        "proof_package_sha256": "sha256:88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008",
+        "ordered_steps": [
+          "Audit the exact residual and regenerate the D-side mass normalization, excluding the defective Pbuild E5 cascade.",
+          "Set v = u^2 and q = (AK - 2)/v and prove the required exact residual quotients are analytic with the stated parity.",
+          "Solve the corrected first face F1 = F2 = 0 to obtain q0(K) and C0(K) with determinant -pi/16.",
+          "Apply the first analytic implicit-function theorem to solve q and Cbr as analytic functions of v, K, and B.",
+          "Divide the dependent reduced E6 and E5 equations by one further v and derive H6 = 8(BK - 1)/K^2 and the exact H5 face.",
+          "Obtain the unique positive seed kappa^3 = 18pi - 48/pi and the secondary determinant 16/kappa^5.",
+          "Apply the second analytic implicit-function theorem in v to obtain the unique exact analytic branch and uniform coefficient remainder bounds.",
+          "Use local analytic uniqueness to exhaust rational-Puiseux, logarithmic, inverse-logarithmic, mixed, odd, flat, and non-transseries alternatives in the admitted class.",
+          "Check the rescaled interior p3 -> theta chart and force theta = pi/4, while retaining the singular endpoint charts as exclusions.",
+          "Map the branch to every sufficiently large finite R and audit positive widths, denominators, symmetry, band consistency, and local non-switching."
+        ],
+        "boundary_cases": [
+          "K -> 0 or infinity, nonunit limiting k3/k2, and vanishing phase-denominator limits are separate singular geometries and are not classified.",
+          "The exact branch, not a formal series, enters the uniqueness neighborhoods for every sufficiently small positive u.",
+          "Fractional, logarithmic, inverse-logarithmic, mixed, odd, flat, and hidden p3 phase shifts are checked within the admitted class.",
+          "Multiple roots, rank changes, spurious truncated roots, and local branch switching are excluded by the two exact nonzero Jacobians and the fixed phase box."
+        ],
+        "external_results": [
+          "Real-analytic implicit-function theorem, applied twice with exact nonzero Jacobians and its local uniqueness conclusion."
+        ],
+        "supporting_artifacts": [
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/normalization_audit.md",
+            "sha256": "sha256:22caadc22e1c263af46bc980ee5c366e85a54482c4bd89f931ac6d32292054f6"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/valuation_and_exhaustiveness.md",
+            "sha256": "sha256:4e6b45befa420b7b65f49a93fd3157946d53c50482e4c1262f225964df3122b4"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/reproducibility_manifest.json",
+            "sha256": "sha256:24a39162dd8458bf9328448b5aa59a4e65aca2acc0c7f44376e19eaf4c4b0e83"
+          }
+        ],
+        "unresolved_obligations": []
+      },
+      {
+        "node_id": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+        "context_id": "CTX-DEFAULT",
+        "scope": "Corrected observables and full normalized sector determinants on the proved finite-R n=2 symmetric INF germ",
+        "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+        "proof_package_sha256": "sha256:6d1c8cbbc7cb68b569675fcad5854288692f4fbc17ae87a76d8768ea8afd0dd8",
+        "ordered_steps": [
+          "Bind the exact proved branch premise and reconcile the Delta, q, X, Y, and Cbr coordinates while keeping Cbr distinct from Chi_up.",
+          "Replay kappa^3 = 18pi - 48/pi, the seed, and every branch one-jet coefficient used by the successor computation against the exact scaled residual.",
+          "Regenerate m3D and m3N from the exact closed mass formulas to obtain m3D - m3N = -(4/kappa^5)u^4 + O(u^6).",
+          "Regenerate the raw Wronskians, fix their local absolute-value branch, and use exact E5 for the whole-string normalization factors.",
+          "Identify Chi_up = 1 + BK/2 + 3pi/(2K) - K^2/12 and reduce its endpoint exactly to 3/2 + 4/(pi kappa) > 0.",
+          "Derive the D and N switch dynamic-stiffness matrices and the exact reduced-Green finite-part convention Gt = L0 + Lminus/2.",
+          "Reconstruct Kp_odd and Ko in the exact orthonormal mirror bases with every normalization and prefactor.",
+          "Expand the full Kp_odd determinant, prove the u^16 and u^18 cancellations, and obtain the first nonzero term (128kappa^2/pi^2)u^20.",
+          "Expand the full Ko determinant, prove the leading rank-one cancellation, and obtain the first nonzero term (2048kappa^2/pi^4)u^26.",
+          "Audit omitted-jet sufficiency and repeat the exact certificate at two guard orders with identical promoted coefficients.",
+          "Analytically remove the normalized endpoint powers and use compact derivative suprema to obtain uniform O(u^6), O(u^2), O(u^22), and O(u^28) remainders on exact finite-R roots.",
+          "Translate u = R^(-1/6) to the corrected R exponents -10/3 and -13/3 and fix all four signs for every R greater than an existential finite R0."
+        ],
+        "boundary_cases": [
+          "The positive finite seed is separated from K -> 0, K -> infinity, and other singular charts.",
+          "Cbr and Chi_up are distinct objects and are evaluated separately.",
+          "Both determinant bases, orientations, row and column scalings, parity conventions, rank-one cancellations, and reduced-resolvent normalization are audited.",
+          "The first nonzero determinant coefficients are exact and are unchanged by omitted branch jets at the promoted orders.",
+          "All endpoint singularities are removed analytically before compact finite-R remainder bounds are applied.",
+          "No effective decimal R0 and no result outside the n=2 symmetric INF M3 germ is claimed."
+        ],
+        "external_results": [
+          "Standard closure of real-analytic functions under composition and inversion on nonvanishing denominators.",
+          "Compactness of a closed interval and the mean-value theorem, used to define finite derivative suprema and the existential finite-R sign threshold."
+        ],
+        "supporting_artifacts": [
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/normalization_and_symbol_map.md",
+            "sha256": "sha256:4fdc1adf500d4d798de904e7dd81897c0d11fe00e99e17003c9084a8e525b1a8"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/finite_R_remainder_and_signs.md",
+            "sha256": "sha256:f3fc4a793b667e93c272c3358f1a5c57f3df75b7aa281dd9537dc2ae2f505917"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/exact_algebraic_sector_replay.py",
+            "sha256": "sha256:adc1bc744aaa2ec4c0d5f03eedb625f9570c6369d4c0fbf40baba086f4e9d899"
+          },
+          {
+            "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/reproducibility_manifest.json",
+            "sha256": "sha256:2efd9ec66d779d19755b1e91a19ca704463fc7c90d187cf383dc968bea6116ea"
+          }
+        ],
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [
+      {
+        "node_id": "GOAL-SL-B4-M3-V1",
+        "record_kind": "research_goal",
+        "status": "solved",
+        "status_justification": "This proposal requests the post-approval and post-integration solved state. In the proposed CTX-DEFAULT candidate, the exact branch theorem, admitted-class scale-exhaustiveness theorem, and corrected observable and determinant target enter trusted closure through proved inferences. Their exact established values exclude the incompatible legacy values without separate refutation witnesses. The current canonical goal remains open until fresh review approval and a deterministic integration receipt exist.",
+        "completion_node_ids": [
+          "CLM-R001-FINITE-R-BRANCH-V1",
+          "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+          "CLM-SL-B4-M3-TARGET-V1"
+        ],
+        "refuted_node_ids": [],
+        "remaining_obligations": []
+      }
+    ],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

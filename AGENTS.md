@@ -1,3 +1,13 @@
+<!-- blueprint-project-layout:v1:start -->
+# Blueprint v2.2 project layout (highest precedence)
+
+- `blueprint-project.json` is the physical-layout authority.
+- Canonical graph, inventory, submissions, and audit history are under `blueprint/`.
+- Raw inputs and generated artifacts are under `research/`; disposable work is under `research/work/`.
+- Do not run or copy project-local Python tools. Resolve the active plugin's `runtime/blueprintctl.py`, then run `ensure` once and use that gateway.
+- Any legacy `statistics/.../tools/...` command below is documentation only and is superseded by this block.
+<!-- blueprint-project-layout:v1:end -->
+
 # AGENTS.md
 
 ## 项目目标
@@ -9,6 +19,9 @@
 ## 当前关注问题
 1. 多大的空间中 SL 边值问题的解能等价于该空间内的所有正交函数系 (基准论文: Springer 章节 10.1007/978-3-031-90135-5_7).
 2. 优化 SL 边值问题相邻特征值间距的界 (联网检索先进结果).
+
+## Recent session summary
+- 2026-08-29: B4/P1 M3 closed in the stated n=2 symmetric INF large-R finite-interior chart. Added the accepted Blueprint graph, proof packages, approved immutable submission and merge receipt, plus a post-freeze Codex+Whiteboard blind replication. The replication exactly matches the seed, mass difference, upstream scalar, and both determinant coefficients and signs. Old staged-Pbuild odd/log conclusions are marked SUPERSEDED. Global all-R `(G1')` and `(G2)` remain open.
 
 ## 工作方法
 1. 进入项目先读 AGENTS.md; 若不存在则创建并开始维护.

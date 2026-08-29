@@ -1,0 +1,105 @@
+{
+  "schema_version": "route-computation-manifest/v1",
+  "run_id": "R-20260825T100044Z-b4-m3-blueprint",
+  "round_id": "round-001",
+  "route_id": "route-001-finite-r-branch-certification",
+  "researcher_agent_id": "finite-branch-researcher",
+  "mathematical_object": "The desingularized exact residual G=(E1/u^4,E2/u^4,E5/u^6,E6/u^7), its algebraic seed, endpoint Jacobian, and half-mode endpoint signs.",
+  "validity_predicate": [
+    "Every bound input hash equals the frozen contract hash.",
+    "The independent exact-form expansion returns the displayed first- and third-blow-up maps.",
+    "The exact E5 coefficient at u^5 is zero.",
+    "At the seed, BK-1=0 and pi*K^3-18*pi^2+48=0.",
+    "The endpoint Jacobian numerator reduces modulo the seed polynomial to -6*(3*pi^2-8), which is nonzero.",
+    "The low-block endpoint coefficients reduce to +2/K^2 for the D half-mode and -2/K^2 for the N half-mode.",
+    "The builder replay reproduces the audited exponent error and is not used as proof evidence."
+  ],
+  "parameter_domain": {
+    "u": "real, initially symbolic; theorem restricts 0<u<u0",
+    "K": "real, positive, in a neighborhood of kappa=(18*pi-48/pi)^(1/3)",
+    "B_X_Y": "real, in a neighborhood of the exact seed",
+    "boundary_chart": "K is separated from zero; sin(p1t), sin(p3), and cos(p3t) are separated from zero"
+  },
+  "arithmetic_model": "Exact SymPy expressions over rational functions in symbolic pi, sqrt(2), and K; polynomial reduction modulo pi*K^3-18*pi^2+48.",
+  "precision_and_tolerance": {
+    "proof_computation": "exact; no tolerance",
+    "adversarial_direct_residual_check": "mpmath 100 decimal digits; no acceptance threshold and no proof use"
+  },
+  "enumeration_or_sampling_range": "No sampling is used for the proof. The falsification check uses K=3, B=1/5, u in {1/20,1/40,1/80,1/160}.",
+  "random_seeds": [],
+  "time_or_memory_limit": "No user hard limit. Exact replay completed on the recorded runtime; no benchmark claim is made.",
+  "software": {
+    "operating_system": "Windows 11 10.0.26200",
+    "python_executable": "C:\\Users\\graphene\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "python_version": "3.12.13",
+    "sympy_version": "1.13.1",
+    "sympy_pythonpath": "C:\\Users\\graphene\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages"
+  },
+  "exact_replay_commands": [
+    "$env:PYTHONDONTWRITEBYTECODE='1'; $env:PYTHONPATH='C:\\Users\\graphene\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages'; & 'C:\\Users\\graphene\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-001-finite-r-branch-certification\\finite_r_direct_check.py'",
+    "$env:PYTHONDONTWRITEBYTECODE='1'; $env:PYTHONPATH='C:\\Users\\graphene\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages'; & 'C:\\Users\\graphene\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-001-finite-r-branch-certification\\finite_r_replay.py'"
+  ],
+  "artifacts": [
+    {
+      "path": "branch_theorem_statement.txt",
+      "sha256": "b717ff0832a4ee050668eb04dc51d0056d8853235ce47d9af38cbc16a31870f2"
+    },
+    {
+      "path": "candidate_branch_proof.md",
+      "sha256": "0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8"
+    },
+    {
+      "path": "audited_source_failure.md",
+      "sha256": "8e45d6a741b1e5e8cad56f3901309e60eff263fae46a7b3c528f6a3c3dd0a4b6"
+    },
+    {
+      "path": "finite_r_direct_check.py",
+      "sha256": "d38ba50947a95a8c47bd3faa03f2ddfc0b742408b21ece638fbdf8cab500eac2"
+    },
+    {
+      "path": "finite_r_replay.py",
+      "sha256": "d929f0eb0c84cd6cd26515e93928c23fff2126c79876fa03cc75794a07515a56"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/problem_contract.md",
+      "sha256": "1de731ba2eeb40b2e20a2f7817de0f6f1d13d42e888f42ce3d5719e9c2700148"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-14.md",
+      "sha256": "a4b5c8b72b08508e9e8f1a6ead786e837d0c316a564ba6a6dd06bb7d1d7284cb"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_closed.py",
+      "sha256": "e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_Pbuild.py",
+      "sha256": "58c98af44d074bdfd9412a1541d4a7a393f0cf3e074653c1108964b62ea6caea"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_big.json",
+      "sha256": "1e3c924b8caa4b9424bf666f52bfcb826722de582d9e90d2658e36f1f0d66f45"
+    },
+    {
+      "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+      "sha256": "6c2029fbd71885b8d94131ad93e865f13f42884d75e68a03d2d079bea79efe0a"
+    }
+  ],
+  "adversarial_tests": [
+    "Compared the bound series builder term-by-term against an independent re-encoding of the exact mass formulas.",
+    "Tested the K->0 denominator boundary and kept the proof in K>=kappa/2.",
+    "Tested the alleged hard odd term exactly; it vanishes.",
+    "Checked phase denominators, positive widths, spectral zero counts, and the INF sign pattern.",
+    "Separated exact symbolic certificates from the 100-digit numerical residual check."
+  ],
+  "held_out_tests": "The direct exact-form implementation was written independently of the bound series builder and exposed its E5 error.",
+  "witness_or_certificate_format": "Displayed exact rational expressions, a cubic seed polynomial, polynomial-remainder determinant certificate, and content-hashed proof artifacts.",
+  "evaluator_blind_spots": [
+    "The analytic IFT supplies genuine but non-optimized constants u0 and M; this run does not compute numerical interval values for them.",
+    "No global uniqueness outside the certified local blow-up chart is claimed.",
+    "No M3 observable or sector-determinant coefficient is computed in this route."
+  ],
+  "proof_bridge": "Analytic removability plus exact divisibility defines G at u=0; the exact nonzero endpoint Jacobian invokes the real-analytic implicit-function theorem; the phase and nodal audit identifies the branch with lambda_2, lambda_3 and the INF band component for every sufficiently small positive u."
+}

@@ -1,0 +1,374 @@
+{
+  "project": {
+    "id": "new-mathematics-blueprint",
+    "title": "New Blueprint v2.2 Mathematics Project",
+    "version": "2.2.0",
+    "updated": "2026-08-07",
+    "architecture": "unified mathematics and cross-disciplinary claim, inference, evidence, and research-state graph",
+    "scope": [],
+    "out_of_scope": []
+  },
+  "taxonomy": {
+    "mainlines": {
+      "mathematics": "propositions, hypotheses, definitions, inferences, proofs, and refutations",
+      "research": "goals, open obligations, candidate routes, and audited failures",
+      "theory": "generic scientific assumptions and derivations",
+      "simulation": "numerical contracts, methods, and direct measurements",
+      "synthesis": "theory-plus-numerics interpretations and applicability judgments",
+      "support": "cross-mainline definitions, source contracts, and quality gates",
+      "archive": "superseded or non-current content"
+    },
+    "epistemic_types": {
+      "problem_hypothesis": "a premise given by the active mathematical problem contract",
+      "definition_contract": "a project, problem, or literature definition and notation contract",
+      "external_mathematical_result": "a source-verified theorem imported from the literature",
+      "mathematical_claim": "a proposition whose truth status may be open, established, refuted, or contested",
+      "mathematical_inference": "a first-class multi-premise proof step with its own proof status",
+      "verified_counterexample": "a certificate-bound counterexample that refutes named claims",
+      "research_goal": "a prove, refute, or prove-or-refute target",
+      "proof_obligation": "a precise unresolved substatement or proof gap",
+      "research_attempt": "a reusable route, candidate derivation, or audited failure record",
+      "research_claim": "a context- and scope-qualified cross-disciplinary claim",
+      "research_inference": "a first-class exact, approximate, numerical, empirical, or synthesis inference",
+      "basic_assumption": "an externally established generic scientific premise",
+      "theory_from_assumptions": "a strict generic derivation from declared assumptions and theory inputs",
+      "numerical_method": "an implemented numerical method, detector, or quality gate",
+      "numerical_result": "a direct output or measurement from a declared numerical method",
+      "numerical_experiment_design": "a planned numerical test without a released result",
+      "theory_from_numerics": "an interpretation requiring theory and numerical inputs",
+      "superseded": "historical content excluded from current conclusions"
+    }
+  },
+  "evidence_grades": {
+    "A": "kernel-checked proof, exact identity, or independently reproduced controlled result",
+    "B": "complete independently audited proof or quality-gated result",
+    "C": "rigorous conditional or partial result with explicit scope",
+    "D": "open goal, conjecture, candidate proof, blocked route, or experiment design",
+    "X": "refuted, contradicted, contested, invalid, or superseded content"
+  },
+  "status_axes": [
+    "statement_contract",
+    "definitions_bound",
+    "hypotheses_declared",
+    "source_verification",
+    "proof_obligations",
+    "definition_audit",
+    "logic_audit",
+    "boundary_audit",
+    "adversarial_audit",
+    "formalization",
+    "validity_scope",
+    "uncertainty_control",
+    "artifact_reproducibility",
+    "independent_review",
+    "canonical_receipt"
+  ],
+  "math_profile": {
+    "schema_version": "math-proof/v1",
+    "enabled": true,
+    "default_context": "CTX-DEFAULT",
+    "contexts": [
+      {
+        "id": "CTX-DEFAULT",
+        "title": "Default mathematical problem context",
+        "assumptions": [],
+        "definitions": [],
+        "available_results": [],
+        "goals": []
+      }
+    ]
+  },
+  "research_profile": {
+    "schema_version": "research-inference/v1",
+    "enabled": true,
+    "default_context": "CTX-DEFAULT",
+    "contexts": [
+      {
+        "id": "CTX-DEFAULT",
+        "title": "Default cross-disciplinary research context",
+        "discipline": "interdisciplinary",
+        "premises": [],
+        "definitions": [],
+        "available_results": [],
+        "goals": []
+      }
+    ],
+    "propagation_policy": {
+      "trusted_claim_statuses": [
+        "given",
+        "imported_verified",
+        "established"
+      ],
+      "trusted_inference_statuses": [
+        "verified"
+      ],
+      "closure_lanes": {
+        "exact": [
+          "exact",
+          "formal"
+        ],
+        "qualified": [
+          "controlled_approximation",
+          "asymptotic",
+          "certified_finite_computation",
+          "reproduced_numerical"
+        ],
+        "nonpropagating": [
+          "empirical",
+          "synthesis",
+          "phenomenological",
+          "heuristic"
+        ]
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "HYP-SL-B4-M3-SYSTEM-V1",
+      "type": "claim",
+      "title": "Exact n=2 symmetric INF M3 system",
+      "statement": "For R > 1 and u = R^(-1/6), the M3 problem is the exact real four-equation system E1 = E2 = E5 = E6 = 0 bound in the frozen problem contract, with k2 = K(u)u, k3 = K(u)u + Cbr(u)u^5, p1 = pi/2 + A(u)u^2, and p3 = pi/4 + B(u)u^2. Every admitted asymptotic assertion must correspond to the exact finite-R real symmetric band-consistent n=2 INF branch and is restricted to M3.",
+      "status": "given",
+      "grade": "A",
+      "mainline": "mathematics",
+      "epistemic_type": "problem_hypothesis",
+      "context_id": "CTX-DEFAULT",
+      "claim_kind": "hypothesis",
+      "truth_status": "given",
+      "inference_inputs": [],
+      "refutation_inputs": []
+    },
+    {
+      "id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "type": "definition",
+      "title": "Corrected M3 observable and determinant normalization",
+      "statement": "On the finite-interior n=2 symmetric INF germ, Cbr denotes the positive branch coefficient in k3 = K(u)u + Cbr(u)u^5 and is distinct from Chi_up = 1 + B(u)K(u)/2 + 3pi/(2K(u)) - K(u)^2/12. The quantities m3D and m3N are the exact D-side and N-side third-block masses from the closed residual. Kp_odd and Ko are the full two-by-two sector matrices in the exact orthonormal mirror bases, with the source spectral pole convention and reduced-Green finite part Gt = L0 + Lminus/2 fixed by the bound normalization package.",
+      "status": "active",
+      "grade": "C",
+      "mainline": "support",
+      "epistemic_type": "definition_contract",
+      "context_id": "CTX-DEFAULT",
+      "truth_bearing": false,
+      "source_kind": "project"
+    },
+    {
+      "id": "CLM-R001-FINITE-R-BRANCH-V1",
+      "type": "claim",
+      "title": "Exact even analytic finite-R INF branch",
+      "statement": "Let kappa = (18pi - 48/pi)^(1/3). There exist u0 > 0 and M < infinity and an exact locally unique real-analytic even branch in the finite nonzero interior chart for every 0 < u < u0 on which E1 = E2 = E5 = E6 = 0, K(u) = kappa + O(u^2), A(u) = 2/kappa + O(u^2), B(u) = 1/kappa + O(u^2), Cbr(u) = 16/(pi kappa) + O(u^2), K1 = C1 = 0, and k3 - k2 = (16/(pi kappa))u^5 + O(u^7), with the corresponding absolute remainder bounds. For every R > u0^(-6), this root is a nondegenerate real symmetric band-consistent n=2 INF branch with positive widths and the lambda_2 and lambda_3 indexing certified in the proof package.",
+      "status": "established",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_claim",
+      "context_id": "CTX-DEFAULT",
+      "claim_kind": "theorem",
+      "truth_status": "established",
+      "inference_inputs": [
+        "INF-R001-FINITE-R-BRANCH-V1"
+      ],
+      "refutation_inputs": []
+    },
+    {
+      "id": "INF-R001-FINITE-R-BRANCH-V1",
+      "type": "inference",
+      "title": "Exact blow-up and finite-R branch proof",
+      "statement": "The exact M3 problem hypothesis implies the locally unique even analytic finite-R branch theorem after two exact blow-ups, a nonzero seed Jacobian certificate, analytic implicit continuation, and the finite-R branch-selection and nodal-sign audit.",
+      "status": "proved",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_inference",
+      "context_id": "CTX-DEFAULT",
+      "premise_inputs": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_inputs": [],
+      "conclusion": "CLM-R001-FINITE-R-BRANCH-V1",
+      "proof_status": "proved",
+      "proof_package": {
+        "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+        "sha256": "sha256:0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8"
+      },
+      "unresolved_obligations": []
+    },
+    {
+      "id": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "type": "claim",
+      "title": "Admitted-class scale exhaustiveness",
+      "statement": "Within the finite nonzero interior limiting class where K stays in a compact subset of (0,infinity), p1 tends to pi/2, p3 tends to pi/4, k3/k2 tends to 1, and the listed phase denominators stay separated from zero, every exact zero branch is the unique analytic germ in v = u^2 from CLM-R001-FINITE-R-BRANCH-V1. Thus no distinct rational-Puiseux, logarithmic, inverse-logarithmic, mixed power-log, odd-power, flat, or non-transseries exact correction branch exists in this admitted class. The singular geometries K tending to 0 or infinity, nonunit limiting k3/k2, and vanishing phase-denominator limits are expressly outside the result and are not refuted.",
+      "status": "established",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_claim",
+      "context_id": "CTX-DEFAULT",
+      "claim_kind": "theorem",
+      "truth_status": "established",
+      "inference_inputs": [
+        "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1"
+      ],
+      "refutation_inputs": []
+    },
+    {
+      "id": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "type": "inference",
+      "title": "Two-face analytic uniqueness and scale exhaustion",
+      "statement": "The exact M3 hypothesis implies the admitted-class scale-exhaustiveness theorem by the corrected first and secondary Newton faces, two nonzero exact Jacobians, two analytic implicit-function steps in v = u^2, and local uniqueness for every exact branch entering the finite-interior chart.",
+      "status": "proved",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_inference",
+      "context_id": "CTX-DEFAULT",
+      "premise_inputs": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_inputs": [],
+      "conclusion": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "proof_status": "proved",
+      "proof_package": {
+        "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+        "sha256": "sha256:88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008"
+      },
+      "unresolved_obligations": []
+    },
+    {
+      "id": "CLM-SL-B4-M3-TARGET-V1",
+      "type": "claim",
+      "title": "Corrected M3 observable and sector-determinant closure",
+      "statement": "On the exact locally unique branch of CLM-R001-FINITE-R-BRANCH-V1, which is the only branch in the admitted finite nonzero interior class of CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1, let kappa^3 = 18pi - 48/pi. There exists a finite, not numerically asserted, R0 such that for every R > R0, with u = R^(-1/6), m3D - m3N = -(4/kappa^5)u^4 + O(u^6) < 0, Chi_up = 3/2 + 4/(pi kappa) + O(u^2) > 0, det Kp_odd = (128kappa^2/pi^2)u^20 + O(u^22) = (128kappa^2/pi^2)R^(-10/3) + O(R^(-11/3)) > 0, and det Ko = (2048kappa^2/pi^4)u^26 + O(u^28) = (2048kappa^2/pi^4)R^(-13/3) + O(R^(-14/3)) > 0. All four signs hold on the exact finite-R roots through the analytic normalized-quotient and compact derivative-supremum bridge, and Chi_up is distinct from Cbr(u) = 16/(pi kappa) + O(u^2) > 0.",
+      "status": "established",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_claim",
+      "context_id": "CTX-DEFAULT",
+      "claim_kind": "theorem",
+      "truth_status": "established",
+      "inference_inputs": [
+        "INF-R003-CORRECTED-M3-CLOSURE-V1"
+      ],
+      "refutation_inputs": []
+    },
+    {
+      "id": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "type": "inference",
+      "title": "Corrected observable and determinant theorem",
+      "statement": "The exact M3 hypothesis, the proved finite-R branch, the admitted-class uniqueness result, and the bound observable and sector normalizations imply the corrected observable identities, determinant coefficients, alternative R exponents, and uniform finite-R signs in CLM-SL-B4-M3-TARGET-V1.",
+      "status": "proved",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_inference",
+      "context_id": "CTX-DEFAULT",
+      "premise_inputs": [
+        "HYP-SL-B4-M3-SYSTEM-V1",
+        "CLM-R001-FINITE-R-BRANCH-V1",
+        "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1"
+      ],
+      "definition_inputs": [
+        "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+      ],
+      "conclusion": "CLM-SL-B4-M3-TARGET-V1",
+      "proof_status": "proved",
+      "proof_package": {
+        "path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+        "sha256": "sha256:6d1c8cbbc7cb68b569675fcad5854288692f4fbc17ae87a76d8768ea8afd0dd8"
+      },
+      "unresolved_obligations": []
+    },
+    {
+      "id": "GOAL-SL-B4-M3-V1",
+      "type": "goal",
+      "title": "Resolve the corrected B4 M3 branch contract",
+      "statement": "Determine the exact finite-interior n=2 symmetric INF M3 branch, its admitted-class scale classification, m3D - m3N, the distinct upstream Chi_up relation, and both normalized sector-determinant leading terms and signs.",
+      "status": "solved",
+      "grade": "C",
+      "mainline": "research",
+      "epistemic_type": "research_goal",
+      "context_id": "CTX-DEFAULT",
+      "target_claim": "CLM-SL-B4-M3-TARGET-V1",
+      "target_inputs": [
+        "CLM-SL-B4-M3-TARGET-V1"
+      ],
+      "mode": "prove_or_refute",
+      "goal_status": "solved",
+      "contract_version": "1",
+      "quantifier_contract": "For the exact real n=2 symmetric INF M3 system, determine the branch and every listed M3 output for all sufficiently large finite R, with an explicit asymptotic remainder and finite-R correspondence, while allowing integer, Puiseux, logarithmic, inverse-logarithmic, mixed, and flat corrections in the admitted finite-interior class.",
+      "boundary_cases": [
+        "The degenerate K0 -> 0 attractor and all other singular geometries are separated from the proved finite nonzero interior branch.",
+        "Integer-power, Puiseux, logarithmic, inverse-logarithmic, mixed, odd, flat, and non-transseries exact corrections are handled only within the stated admitted class.",
+        "The overloaded upstream scalar Chi_up is separated from the positive branch coefficient Cbr.",
+        "Kp_odd and Ko use separate exact orthonormal bases, orientations, Green normalizations, and determinant expansions.",
+        "The singular u = 0 analysis is bridged to every sufficiently large finite R by analytic remainder bounds and local branch continuation.",
+        "Spurious truncated roots, phase-denominator singularities, and local branch switching are excluded only in the proved chart."
+      ],
+      "completion_criteria": [
+        "CLM-R001-FINITE-R-BRANCH-V1, CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1, and CLM-SL-B4-M3-TARGET-V1 enter the trusted closure of CTX-DEFAULT through proved inferences.",
+        "The exact branch and corrected target conclusions give K1 = C1 = 0, Chi_up > 0, det Kp_odd proportional to R^(-10/3), and det Ko proportional to R^(-13/3), thereby excluding the incompatible staged Pbuild cascade and legacy Chi_up = 0, R^(-7/2), and R^(-9/2) assertions without separate refutation nodes.",
+        "The exact proof and correction packages, normalization, reproducibility certificates, and finite-R sign bridge pass independent definition, logic, boundary, and adversarial review and are integrated by the deterministic receiver."
+      ],
+      "non_completion_conditions": [
+        "Numerical roots, fits, continuation tables, or multistart failures without a proof bridge do not count.",
+        "A formal series, truncated cascade, partial lemma, or result omitting either determinant does not count.",
+        "No M3 result is reported as closing M1, M2, general G1-prime, SUP, n >= 3, global n >= 2 reflection symmetry, or a different singular chart."
+      ],
+      "permitted_outcomes": [
+        "proof",
+        "refutation"
+      ],
+      "tool_constraints": {
+        "finite_computation_is_general_proof": false,
+        "formalization_mode": "off",
+        "numerical_evidence_requires_proof_bridge": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R001-FINITE-R-BRANCH-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "INF-R001-FINITE-R-BRANCH-V1",
+      "target": "CLM-R001-FINITE-R-BRANCH-V1",
+      "role": "inference_input"
+    },
+    {
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "target": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "role": "inference_input"
+    },
+    {
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "CLM-R001-FINITE-R-BRANCH-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "target": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "role": "definition_input"
+    },
+    {
+      "source": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "target": "CLM-SL-B4-M3-TARGET-V1",
+      "role": "inference_input"
+    },
+    {
+      "source": "CLM-SL-B4-M3-TARGET-V1",
+      "target": "GOAL-SL-B4-M3-V1",
+      "role": "target_input"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "schema": "blueprint-route-reproducibility/v1",
+  "run_id": "R-20260825T100044Z-b4-m3-blueprint",
+  "round_id": "round-003",
+  "route_id": "route-004-scale-entry-lemma-audit",
+  "researcher_agent_id": "/root/scale_entry_lemma_researcher",
+  "created_date": "2026-08-26",
+  "formalization_mode": "off",
+  "network_used": false,
+  "randomness": {
+    "used": false,
+    "seeds": []
+  },
+  "mathematical_object": "A uniform entry lemma for every exact finite-nonzero-interior M3 zero selection, proving the forced scales of p1-pi/2, k3/k2-1, and p3-pi/4 before invoking the existing two-face IFT uniqueness theorem.",
+  "validity_predicate": [
+    "Every bound input hash equals its recorded SHA-256.",
+    "Exact algebra turns E1=0 and E2=0 into the two tangent identities (T1) and (T2).",
+    "Uniform cotangent expansion on K_- <= K <= K_+ forces q=(K*(p1-pi/2)-2v)/v^2 and Cbr=K*(r-1)/v^2 to be bounded.",
+    "The exact residual replay has zero coefficients below E1,E2 order u^2, E6 order u^5, and E5 order u^4 in the unscaled-y chart.",
+    "The first-face determinant is exactly -pi/16.",
+    "After first-face chain-rule elimination, S6_y=8/K, S6_v=-8/K^2, S5_y=4*pi/K^5, and S5_v=2*(pi*K^3-24*pi^2+48)/(3*pi*K^6).",
+    "The S6 zero graph has y=v/K+O(v^2), proving B=y/v bounded without assuming it.",
+    "The remaining scalar endpoint is 2*(pi*K^3-18*pi^2+48)/(3*pi*K^6), with unique positive root kappa and nonzero derivative 2/kappa^4.",
+    "The recovered secondary faces equal the existing exact H6 and H5, with determinant 16/kappa^5."
+  ],
+  "parameter_domain": {
+    "u": "all sufficiently small positive real values; v=u^2",
+    "K": "real and contained in a branch-dependent compact subset [K_-,K_+] of (0,infinity)",
+    "p1_p3_r": "real, with p1->pi/2, p3->pi/4, r=k3/k2->1",
+    "zero_selection_regularity": "none assumed",
+    "phase_chart": "sin(p1t), sin(p3), and cos(p3t) remain nonzero; this follows locally from the admitted limits"
+  },
+  "arithmetic_model": "Exact SymPy expressions over rational functions in real symbolic variables, pi, and sqrt(2).",
+  "precision_and_tolerance": "Exact identities only; no floating-point precision or tolerance.",
+  "enumeration_or_sampling_range": "None.",
+  "software": {
+    "operating_system": "Windows",
+    "shell": "PowerShell",
+    "python_executable": "C:/Users/graphene/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "python_version": "3.12.13",
+    "sympy_version": "1.13.1",
+    "sympy_pythonpath": "C:/Users/graphene/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/site-packages"
+  },
+  "exact_replay_command": "$env:PYTHONPATH='C:\\Users\\graphene\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages'; & 'C:\\Users\\graphene\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-003\\route-004-scale-entry-lemma-audit\\scale_entry_replay.py'",
+  "bound_inputs": [
+    {
+      "path": "scripts/_gapn2_largeR_closed.py",
+      "sha256": "e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4"
+    },
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/problem_contract.md",
+      "sha256": "6dc56880458e66119f66c2a16f33df65afa799e03bbc681db5809e127e585e19"
+    },
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+      "sha256": "0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8"
+    },
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+      "sha256": "88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008"
+    },
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/normalization_audit.md",
+      "sha256": "22caadc22e1c263af46bc980ee5c366e85a54482c4bd89f931ac6d32292054f6"
+    },
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/valuation_and_exhaustiveness.md",
+      "sha256": "4e6b45befa420b7b65f49a93fd3157946d53c50482e4c1262f225964df3122b4"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "lemma_statement.txt",
+      "sha256": "10358fe112ed5d183acf7417f80668b6c5d816756b31bcaba78ffb19a0e46bb8",
+      "role": "exact quantified statement"
+    },
+    {
+      "path": "proof_package.md",
+      "sha256": "0e87c79d2bef460528846c92067c1df72f15304ea0c7cd5f6ba6c158e9d73f56",
+      "role": "candidate-complete proof package"
+    },
+    {
+      "path": "boundary_adversarial_audit.md",
+      "sha256": "0818e6510ef168eb5e599b651772f087be45908ae3fc8cffd3faa0423cabb5d8",
+      "role": "definition, logic, boundary, and adversarial self-audit"
+    },
+    {
+      "path": "scale_entry_replay.py",
+      "sha256": "9abbe792df1fa5e74e113bdae8553a52d2e564d825a7d8a349052f1533f0c9c0",
+      "role": "exact independent unscaled-y coefficient replay"
+    },
+    {
+      "path": "scale_entry_replay.log",
+      "sha256": "3afc18c92388027a5f37ffdef5806839c78017610b7e4a5069403f8568eb3c67",
+      "role": "passing exact replay output"
+    }
+  ],
+  "adversarial_tests": [
+    "Allow q, Cbr, or B to diverge arbitrarily slowly while the unscaled variables retain the admitted limits.",
+    "Allow the exact zero selection to be discontinuous in u.",
+    "Test all positive finite K accumulation points against the exact scalar endpoint.",
+    "Check tangent and phase denominators before every exact division.",
+    "Keep K->0/infinity, nonunit r limit, and phase-denominator singularities outside the conclusion.",
+    "Regenerate the E5 coefficients from the exact mass formula rather than the known-defective Pbuild source."
+  ],
+  "held_out_tests": "The unscaled-y chain-rule replay is distinct from the prior p3=pi/4+B*v calculation and recovers its H6,H5 only after independently computing the four partial derivatives.",
+  "proof_bridge": "Exact tangent identities first force q and Cbr bounded. Compactness then enters the first analytic IFT graph in unscaled y. The nonzero S6_y derivative forces y=O(v), and the remaining exact scalar mass equation forces K to the unique positive seed. Local analytic uniqueness then identifies every admitted zero with the existing exact germ.",
+  "blind_spots_and_limitations": [
+    "The constants M and u0 are existential and are not numerically optimized.",
+    "The excluded singular geometries are neither classified nor refuted.",
+    "No Lean formalization was requested or performed.",
+    "This researcher self-audit is not the independent Blueprint proposal review."
+  ]
+}

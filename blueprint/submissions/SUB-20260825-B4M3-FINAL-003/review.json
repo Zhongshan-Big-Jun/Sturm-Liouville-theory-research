@@ -1,0 +1,244 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-SUB-20260825-B4M3-FINAL-003",
+  "submission_id": "SUB-20260825-B4M3-FINAL-003",
+  "proposal_hash": "sha256:e88cff6fcac76b008da38cba564c35ff01213d15c52cda8cb846a1676586d6be",
+  "validation_hash": "sha256:47f488df8e9ca5229beeded33e58a98ebe8c304ec733d20c322b33b6bd65946d",
+  "reviewer_agent_id": "independent-final-reviewer-002",
+  "reviewed_at": "2026-08-25T16:14:38.054772Z",
+  "verdict": "approve",
+  "decision_summary": "A repeat full semantic review, performed after the machine required a new semantic pass, independently rechecked the immutable proposal, validation, canonical snapshots, manifest-resolved policy, all recursively bound artifacts, and all three proof chains. All 15 manifest-required mathematics audits pass. Fresh exact replays reproduce the finite-R branch faces and Jacobians, the admitted-class scale-exhaustiveness ranks, and the corrected observable and full-sector determinant coefficients and signs. The three proved inferences establish the M3 target within the expressly limited finite-nonzero-interior n=2 symmetric INF scope; the proposed solved goal state is accurate as a candidate post-integration state and cannot itself propagate truth. No protected-node, graph, status, quantifier, hash, major, or blocking defect remains.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": []
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "result": "valid",
+      "reasoning": "The hash-bound normalization package fixes Cbr separately from Chi_up, the exact D-side and N-side third-block masses, both full two-by-two orthonormal mirror-sector matrices, the source spectral-pole convention, and Gt = L0 + Lminus/2. These are definitions only and do not assume any target coefficient, exponent, or sign; the exact locator and artifact hash match the proposal."
+    },
+    {
+      "node_id": "HYP-SL-B4-M3-SYSTEM-V1",
+      "result": "valid",
+      "reasoning": "The problem-local premise binds the exact E1 = E2 = E5 = E6 system and the finite-R coordinate map for the real symmetric band-consistent n=2 INF M3 object. Its source contract and exact locator match the frozen problem artifact, its scope is explicit, and it assumes neither branch existence nor any requested observable or determinant conclusion."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-R001-FINITE-R-BRANCH-V1",
+      "premise_ids": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_ids": [],
+      "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-001-finite-r-branch-certification/candidate_branch_proof.md",
+      "proof_package_sha256": "sha256:0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8",
+      "ordered_step_reconstruction": [
+        "Bind the stated hypothesis to the frozen closed E1, E2, E5, E6 residual and verify that the ordinary endpoint Jacobian has rank one on AK = 2, so an ordinary IFT is unavailable but no contradiction follows.",
+        "Introduce Delta = (AK - 2)/u^2 and independently expand the exact residual to obtain Cbr0(K) = 16/(pi K) and Delta0(K) = -(K^3 - 18pi + 24)/(6K).",
+        "Regenerate the D-side mass from the closed formula and verify exact E5_5 = 0, thereby excluding the defective staged-Pbuild hard term and its forced-odd consequence.",
+        "Set Delta = Delta0(K) + u^2 X and Cbr = 16/(pi K) + u^2 Y; the verified cancellations make G = (E1/u^4,E2/u^4,E5/u^6,E6/u^7) analytic at u = 0.",
+        "Solve the first two endpoint rows for X and Y and substitute into the last two; the remaining exact equations are BK = 1 and pi K^3 - 18pi^2 + 48 = 0.",
+        "Use positivity of 18pi - 48/pi and strict monotonicity of the cubic to obtain the unique positive seed kappa, then reduce the endpoint Jacobian to -6(3pi^2 - 8)/kappa^8, which is nonzero.",
+        "Apply the real-analytic IFT to G; exact u-parity and local uniqueness make the branch even and analytic in u^2, giving K1 = C1 = 0 and genuine O(u^2) coefficient bounds.",
+        "Check that the blow-up coordinate map and residual row rescalings are invertible for u > 0, so the continued branch solves the original four equations and has a nonzero finite-u residual Jacobian.",
+        "Use the positive phase box and the replayed endpoint coefficients +2/kappa^2 and -2/kappa^2 to count half-mode zeros and identify the reflected modes as lambda_2 and lambda_3.",
+        "Combine the four switch equalities with the energy and Wronskian argument to get exactly four simple switches and the (-,+,-,+,-) INF signs, then set u = R^(-1/6) to obtain every sufficiently large finite R; no global uniqueness outside this chart is inferred."
+      ],
+      "result": "valid",
+      "reasoning": "The exact package hash, sole premise, analytic blow-ups, seed, nonzero desingularized Jacobian, even IFT branch, finite-u coordinate correspondence, spectral indexing, and INF sign selection were all independently reconstructed and replayed. The conclusion is precisely the local finite-nonzero-interior branch claim and does not overreach to other singular geometries.",
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The proof detects and excludes the defective staged Pbuild D-mass shift instead of reusing its false hard E5_5 term. Independent direct replay gives exact E5_5 = 0, rejects a forced odd correction, checks the two half-mode endpoint signs, and separates numerical residual sequences from the proof. Exact residual use and local nondegeneracy exclude spurious truncated roots and local switching in the certified chart."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The positive seed keeps K away from zero, all phase denominators have nonzero endpoint limits, and continuity yields positive symmetric widths and real phases for sufficiently small positive u. The analytic extension bridges u = 0 to every R > u0^(-6), while the nodal and switch-sign audit identifies lambda_2, lambda_3, and the INF pattern. The theorem correctly claims only local uniqueness and does not classify other singular geometries."
+      },
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The proof consistently uses u = R^(-1/6), k2 = Ku, k3 = Ku + Cbr u^5, p1 = pi/2 + A u^2, p3 = pi/4 + B u^2, and the exact closed residual. Delta = (AK - 2)/u^2, its second blow-up by X, and the Cbr blow-up by Y agree with the proposal and preserve the K != 0 chart without illicit denominator clearing."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Independent exact replay reproduces C0(K) = 16/(pi K), Delta0(K), BK = 1, the unique positive seed kappa^3 = 18pi - 48/pi, and det D G = -6(3pi^2 - 8)/kappa^8 != 0. The analytic IFT then gives an exact locally unique branch; evenness and uniqueness make it analytic in u^2 with K1 = C1 = 0 and genuine O(u^2) bounds. The finite-u coordinate and row scalings are invertible, so the desingularized solution solves the original four equations nondegenerately."
+      }
+    },
+    {
+      "node_id": "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1",
+      "premise_ids": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_ids": [],
+      "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-001/route-002-noninteger-balance-classification/proof_package.md",
+      "proof_package_sha256": "sha256:88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008",
+      "ordered_step_reconstruction": [
+        "Bind the theorem only to the exact closed residual and independently audit the staged D-mass power shifts, excluding the false Pbuild E5 cascade from the proof.",
+        "For an arbitrary exact branch in the declared admitted class, expand E1 and the adjacent half-mode equation to force p1 - pi/2 = O(u^2) and k3/k2 - 1 = O(u^4); after the first face, the reduced E6 equation forces p3 - pi/4 = O(u^2). Thus q, Cbr, and B are bounded and the branch must enter the blow-up charts without assuming a transseries.",
+        "Put v = u^2 and q = (AK - 2)/v; exact parity and removable-factor checks make F1 = E1/u^2, F2 = E2/u^2, F5 = E5/u^4, and F6 = E6/u^5 analytic in the interior chart.",
+        "Solve the exact first face F1 = F2 = 0 to obtain q0(K) = (18pi - 24 - K^3)/(6K), Cbr0(K) = 16/(pi K), and determinant -pi/16.",
+        "Apply the first analytic IFT to solve q and Cbr uniquely as analytic functions of v, K, and B near the first-face manifold.",
+        "Substitute that solution into the dependent residuals, divide by the additional factor v, and reconstruct H6 = 8(BK - 1)/K^2 and the stated exact H5 face without an equal-or-lower omitted valuation.",
+        "Solve H6 = H5 = 0 to get BK = 1 and K^3 = 18pi - 48/pi; the unique positive seed has secondary determinant 16/kappa^5, so the second analytic IFT applies.",
+        "Compose the two IFT solutions to obtain the exact analytic v-germ, its O(u^2) coefficient bounds, positive phase box, original-variable remainders, and exact roots for all sufficiently large finite R.",
+        "Every cluster point of an admitted exact zero branch satisfies the two exact faces and hence the same unique seed; the entry estimates then put all sufficiently small-u zeros in the IFT uniqueness neighborhood.",
+        "Use that local uniqueness, without assuming any expansion exists, to exclude distinct rational-Puiseux, logarithmic, inverse-logarithmic, mixed, odd, flat, and non-transseries corrections within the admitted class; even analyticity eliminates odd powers.",
+        "Check the separate interior p3 -> theta chart, which forces theta = pi/4, while leaving K -> 0 or infinity, nonunit k3/k2 limits, and phase-denominator singular geometries expressly unclassified."
+      ],
+      "result": "valid",
+      "reasoning": "The exact two-face derivation and both nonzero Jacobians support an exact analytic branch and local uniqueness. Independent leading-equation entry estimates close the only possible gap between the broad admitted asymptotic class and the IFT coordinates, so the alternative-scale exclusion is valid exactly in that class and is not a global classification of all singular geometries.",
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The package checks rational Puiseux, logarithmic, inverse-logarithmic, mixed, odd, flat, and even non-transseries exact alternatives through local analytic uniqueness, not through a finite ansatz list. The independent entry estimate from E1 and the adjacent half-mode equation bounds q and Cbr, and the reduced equation with nonzero B coefficient forces p3 - pi/4 = O(u^2), so admitted exact branches do enter the IFT neighborhood. The separate p3 -> theta chart forces theta = pi/4 in the interior."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "The conclusion is expressly restricted to the finite-nonzero-interior class with K bounded away from zero and infinity, unit limiting k3/k2, interior p1 and p3 limits, and nonvanishing phase denominators. K -> 0 or infinity, nonunit ratio, and denominator-singular endpoint charts remain unclassified, so the inference does not overstate a global classification. Exact roots for all sufficiently large finite R, positivity, and local non-switching follow after shrinking the analytic neighborhood."
+      },
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The admitted class, v = u^2, q = (AK - 2)/v, the exact residual quotients, and the two Newton faces are consistently defined. The route uses the corrected closed mass formula and not the defective staged E5 cascade. Its statement and proof preserve the distinction between this local interior chart and all excluded singular geometries."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "Exact replay gives the first-face determinant -pi/16, q0(K), C0(K), the reduced faces H6 = 8(BK - 1)/K^2 and H5, and the secondary determinant 16/kappa^5. These nonzero Jacobians support two analytic IFT steps and a unique analytic v-germ. Leading-equation estimates force every exact branch satisfying the declared physical limits into these neighborhoods; hence a distinct fractional, logarithmic, inverse-logarithmic, mixed, odd, flat, or non-transseries correction is excluded only in the stated admitted class."
+      }
+    },
+    {
+      "node_id": "INF-R003-CORRECTED-M3-CLOSURE-V1",
+      "premise_ids": [
+        "HYP-SL-B4-M3-SYSTEM-V1",
+        "CLM-R001-FINITE-R-BRANCH-V1",
+        "CLM-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1"
+      ],
+      "definition_ids": [
+        "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+      ],
+      "proof_package_path": "artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/round-002/route-003-observable-determinant-closure/observable_determinant_refutation.md",
+      "proof_package_sha256": "sha256:6d1c8cbbc7cb68b569675fcad5854288692f4fbc17ae87a76d8768ea8afd0dd8",
+      "ordered_step_reconstruction": [
+        "Bind the exact M3 hypothesis, both proved branch claims, and the normalization definition, and reconcile Delta = q together with the X, Y, and Cbr coordinates while keeping Cbr distinct from Chi_up.",
+        "Reconstruct the seed and the K2, B2, X2, Y2 one-jet in the exact quotient field and verify that every coefficient through u^3 of all four scaled residuals is zero.",
+        "Regenerate the closed D-side and N-side third-block masses to obtain m3D - m3N = -(4/kappa^5)u^4 + O(u^6), and regenerate both negative raw Wronskians to fix the local absolute-value branch.",
+        "Evaluate the separately defined Chi_up = 1 + BK/2 + 3pi/(2K) - K^2/12 at the seed and use the cubic to reduce it to 3/2 + 4/(pi kappa) > 0, independently of positive Cbr.",
+        "Derive the two exact switch dynamic-stiffness matrices and match the delta Laurent pole to P/(k^2 - z^2), which gives the reduced-Green convention Gt = L0 + Lminus/2.",
+        "Reconstruct the full Kp_odd and Ko matrices in their separate orthonormal mirror bases with the E conjugation and all d, c, r, eigenfunction-normalization, and rank-one prefactors.",
+        "Expand the full Kp_odd determinant: the structural u^16 and exact u^18 terms cancel, and the branch one-jet gives the first nonzero term (128 kappa^2/pi^2)u^20.",
+        "Expand the full Ko determinant: the u^12 leading matrix is rank one, so u^24 cancels and the first nonzero term is (2048 kappa^2/pi^4)u^26.",
+        "Audit jet sufficiency after factoring Kp_odd = diag(u^2,u^6) H(v) diag(u^2,u^6) and Ko = u^12 M(v); later branch coefficients cannot enter the promoted first nonzero determinant terms, and guard orders 30 and 34 agree.",
+        "After fixing denominator and Wronskian signs, analytically extend the four normalized quotients and use derivative suprema on a compact branch interval to obtain uniform O(u^6), O(u^2), O(u^22), and O(u^28) remainders and one finite existential R0.",
+        "Translate u^20 and u^26 to R^(-10/3) and R^(-13/3), respectively, retain all four strict finite-R signs, and restrict the theorem to the exact n=2 symmetric INF M3 germ."
+      ],
+      "result": "valid",
+      "reasoning": "Fresh ORDER = 34 exact replay exited successfully and independently reproduced the scaled-residual cancellations, mass difference, Wronskians, full matrix entries, and both determinant coefficients. The source-basis, pole-subtraction, omitted-jet, analytic remainder, finite-R sign, exponent, and scope checks all agree with the proof statement and its three premises plus one definition.",
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "The certificate expands the full two-by-two determinants rather than pivots or eigenvalue proxies, checks the u^16, u^18, and rank-one cancellations, and audits omitted-jet sufficiency before promotion. Fresh exact ORDER = 34 replay exits successfully with the recorded coefficients, while the separately bound high-precision roots and pole-subtraction comparisons remain evidence only. Both basis orientations, the E conjugation, Wronskian absolute-value branch, prefactors, and defective Pbuild exclusion were independently checked."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "After removable endpoint powers are extracted, the four normalized observables are analytic in v on a compact branch interval. Derivative suprema give uniform O(u^6), O(u^2), O(u^22), and O(u^28) remainders and one finite existential R0 fixing all four signs. The translations u^20 = R^(-10/3) and u^26 = R^(-13/3) are exact, and no effective R0 or conclusion outside the n=2 symmetric INF M3 germ is claimed."
+      },
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "Cbr is correctly separated from Chi_up; m3D and m3N are regenerated from the closed residual; and Kp_odd and Ko use the exact full orthonormal mirror bases. The dynamic-stiffness matrices, normalized switch values, Wronskians, r and c prefactors, source pole 1/(lambda - z^2), and reduced-Green identity Gt = L0 + Lminus/2 all agree with the hash-bound source conventions."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The exact branch one-jet satisfies all four scaled residuals through the required order. Fresh exact quotient-field replay gives m3D - m3N = -(4/kappa^5)u^4 + O(u^6), Chi_up = 3/2 + 4/(pi kappa) + O(u^2), det Kp_odd = (128kappa^2/pi^2)u^20 + O(u^22), and det Ko = (2048kappa^2/pi^4)u^26 + O(u^28). All leading constants have the stated strict signs, and the analytic remainder bridge transfers them to the exact finite-R roots."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [
+    {
+      "node_id": "GOAL-SL-B4-M3-V1",
+      "record_kind": "research_goal",
+      "recorded_status": "solved",
+      "result": "accurate",
+      "cannot_propagate_truth": true,
+      "reasoning": "The proposed candidate graph accurately records this prove-or-refute research goal as solved: the exact branch, admitted-class uniqueness, and corrected observable and determinant target are conclusions of the three independently valid proved inferences, satisfy the completion criteria, and leave no mathematical obligation in the stated M3 scope. The corrected established theorem excludes the incompatible legacy values without making those false assertions premises or requiring a separate false-claim node. This is a requested candidate post-approval/post-integration state only: the bound canonical snapshot is empty and remains unsolved until deterministic integration. As a research-state record, it cannot propagate mathematical truth independently; truth is supplied only by the proved inference chain."
+    }
+  ],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": []
+  },
+  "findings": [],
+  "required_actions": [],
+  "review_execution": {
+    "schema_version": "blueprint-review-execution/v2",
+    "mode": "single",
+    "manifest_hash": "sha256:300891a5706b84a3694fe153bf58999b631cc44dc93f808c9ea211be322fcd35",
+    "proposal_hash": "sha256:e88cff6fcac76b008da38cba564c35ff01213d15c52cda8cb846a1676586d6be",
+    "validation_hash": "sha256:47f488df8e9ca5229beeded33e58a98ebe8c304ec733d20c322b33b6bd65946d",
+    "reviewer_agent_id": "independent-final-reviewer-002",
+    "reviewer_agent_count": 1,
+    "semantic_review_passes": 2,
+    "structure_check_attempts": 2,
+    "safe_repair_count": 0,
+    "resolved_structure_codes": [],
+    "content_commitment_hash": "sha256:436af7e25c6e87f53c553b8c63c37ad43a3ad10b8d3dd697bf6a5f2c79b51c66",
+    "required_audit_keys": [
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1:math_premise",
+      "GOAL-SL-B4-M3-V1:math_state",
+      "HYP-SL-B4-M3-SYSTEM-V1:math_premise",
+      "INF-R001-FINITE-R-BRANCH-V1:adversarial",
+      "INF-R001-FINITE-R-BRANCH-V1:boundary",
+      "INF-R001-FINITE-R-BRANCH-V1:definition",
+      "INF-R001-FINITE-R-BRANCH-V1:logic",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:adversarial",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:boundary",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:definition",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:logic",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:adversarial",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:boundary",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:definition",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:logic"
+    ],
+    "covered_audit_keys": [
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1:math_premise",
+      "GOAL-SL-B4-M3-V1:math_state",
+      "HYP-SL-B4-M3-SYSTEM-V1:math_premise",
+      "INF-R001-FINITE-R-BRANCH-V1:adversarial",
+      "INF-R001-FINITE-R-BRANCH-V1:boundary",
+      "INF-R001-FINITE-R-BRANCH-V1:definition",
+      "INF-R001-FINITE-R-BRANCH-V1:logic",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:adversarial",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:boundary",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:definition",
+      "INF-R002-FINITE-INTERIOR-SCALE-EXHAUSTIVENESS-V1:logic",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:adversarial",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:boundary",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:definition",
+      "INF-R003-CORRECTED-M3-CLOSURE-V1:logic"
+    ],
+    "ephemeral_agents": true,
+    "inherited_parent_context": false,
+    "delegated": false,
+    "hash_telemetry": {
+      "input_hash_computations": 2,
+      "metadata_cache_hits": 4,
+      "seal_submission_freshness_hashes": 2,
+      "seal_snapshot_freshness_hashes": 3,
+      "structure_retry_content_hashes": 0
+    },
+    "preflight_certificate": {
+      "blueprint_snapshot_hash": "sha256:972fe8d8f84a98b1eb9abee896d5f19aacf0514c7226d06646bbf42a38d12793",
+      "inventory_snapshot_hash": "sha256:88c9b2d30ddd06ffd6531ccad7c76129ea658b442f676b5831f1f073fdab8aa0",
+      "config_hash": "sha256:fe6556c17a0e140697127c851b1b7976ccff901b6b83a47be5a212d44df1c83f",
+      "changed_node_count": 9,
+      "upstream_contract_count": 0,
+      "upstream_contracts_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "required_audit_count": 15,
+      "required_audits_hash": "sha256:b1dabab58d589b651e426d7dcedb3bf6a041060ce1e2d41e13651c0909827cb1"
+    }
+  }
+}

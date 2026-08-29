@@ -1,0 +1,41 @@
+CANDIDATE_COMPLETE_PROOF
+
+Command (PowerShell, from E:\ai_benchmark):
+
+$env:PYTHONPATH='C:\Users\graphene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages'
+& 'C:\Users\graphene\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\python.exe' 'E:\ai_benchmark\source_repo\research\artifacts\blueprint-rigorous-math\R-20260825T100044Z-b4-m3-blueprint\round-002\route-003-observable-determinant-closure\exact_algebraic_sector_replay.py'
+
+Exact stdout with ORDER=34:
+
+STAGE=masses
+STAGE=ordinary_Green
+STAGE=reduced_Green
+STAGE=certificate
+M3_DIFFERENCE=u^4*(-pi**2*kappa/(9*(-8 + 3*pi**2)**2))
+W1=u^6*(-4*pi/(3*(-8 + 3*pi**2)))
+W2=u^6*(-4*pi/(3*(-8 + 3*pi**2)))
+G1_TRUNCATION_REMAINDER=u^4*(sqrt(2)*kappa**2*(-3542940*pi**11 - 745886720*pi**6 - 7464960*pi**9 - 1417176*pi**10 - 1894440960*pi**3 - 675938304 + 704839680*pi + 463601664*pi**2 + 1360189440*pi**4 + 495191040*pi**5 + 56384640*pi**7 + 95999040*pi**8 + 1121931*pi**12)/(4536000*pi**2*(-8 + 3*pi**2)**4))
+G2_TRUNCATION_REMAINDER=u^4*(-sqrt(2)*kappa**2*(-232580160*pi**9 - 7726556160*pi**5 - 18308160*pi**8 - 1417176*pi**10 - 1336412160*pi**4 - 9540403200*pi - 675938304 + 2631204864*pi**2 + 265338880*pi**6 + 13169418240*pi**3 + 1121931*pi**12 + 3542940*pi**11 + 2111379840*pi**7)/(4536000*pi**2*(-8 + 3*pi**2)**4))
+G3_TRUNCATION_REMAINDER=u^4*(kappa*(-113898960*pi**9 - 3707880960*pi**5 - 51451200*pi**8 - 4047744000*pi**4 - 2335716*pi**10 - 4882268160*pi - 5320802304 + 8498356224*pi**2 + 6043914240*pi**3 + 793293440*pi**6 + 1121931*pi**12 + 1069467840*pi**7)/(6804000*(-8 + 3*pi**2)**5))
+G4_TRUNCATION_REMAINDER=u^4*(kappa**2*(-35925120*pi**9 - 1168312320*pi**5 - 1084752*pi**10 - 101081600*pi**6 - 1472593920*pi - 225312768 + 40376320*pi**4 + 484835328*pi**2 + 1887764480*pi**3 + 18069120*pi**8 + 373977*pi**12 + 335354880*pi**7)/(378000*pi**2*(-8 + 3*pi**2)**4))
+KP11=u^4*(-6*kappa*(-8 + 3*pi**2)/pi**2)
+KP12=u^8*(4*kappa**2/pi)
+KP22=u^12*(-16/pi)
+DET_KP_ODD=u^20*(128*kappa**2/pi**2)
+KO11=u^12*(-16/pi)
+KO12=u^12*(-32/pi)
+KO22=u^12*(-64/pi)
+DET_KO=u^26*(2048*kappa**2/pi**4)
+
+Audit assertions executed before stdout:
+
+- source SHA-256 equals e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4;
+- kappa^3=18*pi-48/pi in the exact quotient field;
+- sqrt(2)^2=2 in the exact quotient field;
+- a nontrivial quotient-field division probe equals one;
+- every coefficient u^0,u^1,u^2,u^3 of every scaled residual G1,...,G4 is zero.
+
+Truncation audit:
+
+The same certificate was first run with ORDER=30 and then rerun with ORDER=34.
+All displayed leading orders and coefficients were identical. PASS.

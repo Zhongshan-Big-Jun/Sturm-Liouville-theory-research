@@ -1,0 +1,23 @@
+EVIDENCE_ONLY
+
+Command (PowerShell, from E:\ai_benchmark):
+
+$env:PYTHONPATH='C:\Users\graphene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages'
+& 'C:\Users\graphene\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\python.exe' 'E:\ai_benchmark\source_repo\research\artifacts\blueprint-rigorous-math\R-20260825T100044Z-b4-m3-blueprint\round-002\route-003-observable-determinant-closure\high_precision_adversarial_check.py'
+
+100-digit stdout:
+
+u= 0.08
+scaled_residual= 1.2640818e-95
+finite_part_max_error= 3.6109981e-35
+detKp/u^20= 158.021297239984262170460006845  exact_lead= 154.881098264214048574215070873
+detKo/u^26= 260.84140739484342675446233038  exact_lead= 251.083779199286295433195105027
+u= 0.05
+scaled_residual= 2.9570382e-84
+finite_part_max_error= 9.6716035e-26
+detKp/u^20= 156.104656039007664464467424795  exact_lead= 154.881098264214048574215070873
+detKo/u^26= 254.866360685030857054082003062  exact_lead= 251.083779199286295433195105027
+
+Interpretation: the finite-part delta jet agrees with a separately evaluated
+pole-subtracted limit, and both determinant ratios move toward the exact
+coefficients as u decreases. None of these decimal checks is a proof premise.

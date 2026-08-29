@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-08-18T16:41:48.400295Z
+Last updated: 2026-08-29T01:00:00Z
 
 
 
@@ -47,7 +47,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
 | B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Weyl asymptotic; inf not attained |
 | B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
-| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof etc. | n=1 SOLVED; n>=2 local symmetry STRICT, global needs (G1')/(G2); M3 large-R balance partial |
+| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 SOLVED; n>=2 local symmetry STRICT; M3 large-R finite-interior chart STRICT CLOSED 2026-08-29; global needs remaining (G1')/(G2) |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
 
@@ -70,7 +70,7 @@ B1 (sup ratio, solved)
   |-- informs --> B4 (gap extremals, partial)
 B2 (inf ratio, solved) --informs--> B4
 B3 --uses--> Fixed-n configuration tools
-B4 --depends on--> (G1'), (G2), M3 large-R balance
+B4 --depends on--> (G1'), (G2); M3 large-R finite-interior chart is CLOSED
 B5 (MDE unify) <--unifies--> B1,B2,B3,B4
 B6 (p-Laplacian) <--generalizes--> B4
 

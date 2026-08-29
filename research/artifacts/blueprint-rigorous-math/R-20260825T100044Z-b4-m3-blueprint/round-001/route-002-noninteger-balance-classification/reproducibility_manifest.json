@@ -1,0 +1,174 @@
+{
+  "schema": "blueprint-route-reproducibility/v1",
+  "run_id": "R-20260825T100044Z-b4-m3-blueprint",
+  "round_id": "round-001",
+  "route_id": "route-002-noninteger-balance-classification",
+  "researcher_agent_id": "transseries-researcher",
+  "created_date": "2026-08-25",
+  "formalization_mode": "off",
+  "network_used": false,
+  "randomness": {
+    "used": false,
+    "seeds": []
+  },
+  "bound_workflow_inputs": [
+    {
+      "path": "research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/problem_contract.md",
+      "sha256": "6dc56880458e66119f66c2a16f33df65afa799e03bbc681db5809e127e585e19"
+    },
+    {
+      "path": "research/work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/plans/plan-001.final.json",
+      "sha256": "b71cb5643dc3c4143f8e22f8eaf5dcadb0021cf68a490056aa3f3246a8397091",
+      "embedded_plan_hash": "sha256:197a723b399296fe371eeb42e55bc188348732cf2beee2d9188aabb99c059a76"
+    },
+    {
+      "path": "research/work/agent-deliveries/R-20260825T100044Z-b4-m3-blueprint/round-001/route-results/route-002-noninteger-balance-classification/plan-001.result.manifest.json",
+      "sha256": "ee3fed1a6cf32cfadf11aab3b6a68c30b1639821cad56133f69314d181db8088",
+      "embedded_manifest_hash": "sha256:be506fcdeed39a12ef453f0033a5e5cda6f9a1eb37d14af6a8abf3fbffe64acd",
+      "embedded_route_contract_hash": "sha256:ae8ae2501857e2c89efd144589fe16e254d2acac5c503ace239a0296e00f7885"
+    }
+  ],
+  "bound_repository_sources": [
+    {
+      "path": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/problem_contract.md",
+      "sha256": "1de731ba2eeb40b2e20a2f7817de0f6f1d13d42e888f42ce3d5719e9c2700148"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-14.md",
+      "sha256": "a4b5c8b72b08508e9e8f1a6ead786e837d0c316a564ba6a6dd06bb7d1d7284cb"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_closed.py",
+      "sha256": "e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_Pbuild.py",
+      "sha256": "58c98af44d074bdfd9412a1541d4a7a393f0cf3e074653c1108964b62ea6caea"
+    },
+    {
+      "path": "scripts/_gapn2_largeR_big.json",
+      "sha256": "1e3c924b8caa4b9424bf666f52bfcb826722de582d9e90d2658e36f1f0d66f45"
+    },
+    {
+      "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+      "sha256": "6c2029fbd71885b8d94131ad93e865f13f42884d75e68a03d2d079bea79efe0a"
+    }
+  ],
+  "software": {
+    "os_shell": "Windows PowerShell",
+    "python_executable": "C:/Program Files/WindowsApps/PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0/python3.11.exe",
+    "python": "3.11.9",
+    "sympy": "1.13.1",
+    "mpmath": "1.3.0",
+    "high_precision_decimal_digits": 100
+  },
+  "arithmetic_models": [
+    "Exact SymPy expressions over rational operations, pi, sqrt(2), and symbolic real variables for coefficient and determinant identities.",
+    "mpmath 100-decimal-digit real arithmetic for adversarial original-residual limits; no tolerance-based result is promoted to proof."
+  ],
+  "exact_replay_commands": [
+    "& 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\python3.11.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-002-noninteger-balance-classification\\corrected_bounded_general.py'",
+    "& 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\python3.11.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-002-noninteger-balance-classification\\corrected_seed_face.py'",
+    "& 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\python3.11.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-002-noninteger-balance-classification\\seed_rank_check.py'",
+    "& 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\python3.11.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-002-noninteger-balance-classification\\high_precision_residual_check.py'",
+    "& 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\python3.11.exe' 'research\\artifacts\\blueprint-rigorous-math\\R-20260825T100044Z-b4-m3-blueprint\\round-001\\route-002-noninteger-balance-classification\\general_phase_chart_fast.py'"
+  ],
+  "validity_predicates": [
+    "Every replay script exits unless the exact closed-source SHA-256 matches the frozen hash.",
+    "The exact first determinant equals -pi/16.",
+    "The exact secondary quotients equal H6=8(BK-1)/K^2 and H5=2(6pi^2BK+piK^3-24pi^2+48)/(3piK^6).",
+    "The seed solves BK=1 and K^3=18pi-48/pi with K>0.",
+    "The exact secondary Jacobian is nonzero and simplifies to 16/K0^5 on the seed.",
+    "The direct 100-digit original residual cancels E1/u^4, E2/u^4, E6/u^7, E5/u^6 at the corrected seed truncation.",
+    "At an off-seed point, direct E6/u^7 and E5/u^6 converge to the exact predicted H6 and H5 values."
+  ],
+  "adversarial_tests": [
+    "Compared every D-side mass power shift against the original exact mass formula and the correctly shifted N-side implementation.",
+    "Tested the staged hard E5 coefficient against the original exact residual at 100 digits; it is cancelled.",
+    "Tested a nonzero secondary coefficient off seed rather than checking only the common zero.",
+    "Tested an O(1) leading p3 shift theta in the interior phase box; elimination forces theta=pi/4.",
+    "Separated K->0, nonunit ratio, and vanishing phase denominators from the admitted finite interior chart.",
+    "Compared the unique seed with the 270-row continuation only as evidence, not as a premise."
+  ],
+  "computation_limits": {
+    "parameter_enumeration": "none",
+    "tolerances": "none for exact identities",
+    "random_multistart": "none",
+    "time_limit": "no user time limit; two abandoned symbolic expansion attempts are retained as audited failures"
+  },
+  "proof_bridge": "The exact symbolic faces feed two applications of the real-analytic implicit-function theorem in v=u^2; this yields exact finite-u zeros, local uniqueness, and a quantified O(u^2) remainder. Numerical limits are not used in this bridge.",
+  "blind_spots_and_limitations": [
+    "No proof assistant or independent symbolic implementation was used.",
+    "The existence radius u0 and constant M are quantified but non-effective; no certified numerical interval is claimed.",
+    "K->0/infinity, nonunit limiting k3/k2, and phase-denominator boundary geometries are not globally classified.",
+    "Observable and sector-determinant outputs are outside this route.",
+    "Independent proof review and deterministic Blueprint integration remain pending."
+  ],
+  "artifacts": [
+    {
+      "path": "completion_report.md",
+      "sha256": "c4c952f9b2f093bec5b866d056cd959b0e335ff335a311b3d967847f1095ca61",
+      "role": "calibrated route completion report"
+    },
+    {
+      "path": "corrected_bounded_general.py",
+      "sha256": "700a0498b434f1dcb6bd0ee3a7856b8f3512747c4f70847f4e7b1b084fccd215",
+      "role": "exact corrected general face and chain-rule elimination"
+    },
+    {
+      "path": "corrected_seed_face.py",
+      "sha256": "64da3a39681d0e275b3bbaf95ed5df17d5f64a7e3af8c094ca8315ca518d73bf",
+      "role": "exact corrected first-face specialization"
+    },
+    {
+      "path": "general_phase_chart_fast.py",
+      "sha256": "c61853f92b2fd096736463ea8bf4080f86b93a6b312e4fcd757739724836bd35",
+      "role": "direct exact residual expansion for an O(1) p3 shift"
+    },
+    {
+      "path": "high_precision_residual_check.py",
+      "sha256": "a4b25244757dd527c2c754673a4fbe4e80cfd740c827305a6d4a461ca391f9e4",
+      "role": "100-digit original-residual adversarial checks"
+    },
+    {
+      "path": "seed_rank_check.py",
+      "sha256": "0d096dfa6ad094b232b6481ad1ad68c4735d9dfea8aa3202bfea7dbe506be5da",
+      "role": "compact exact seed and Jacobian check"
+    },
+    {
+      "path": "normalization_audit.md",
+      "sha256": "22caadc22e1c263af46bc980ee5c366e85a54482c4bd89f931ac6d32292054f6",
+      "role": "line-level source defect audit"
+    },
+    {
+      "path": "valuation_and_exhaustiveness.md",
+      "sha256": "4e6b45befa420b7b65f49a93fd3157946d53c50482e4c1262f225964df3122b4",
+      "role": "admitted class, valuation table, and scale exhaustion"
+    },
+    {
+      "path": "proof_package.md",
+      "sha256": "88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008",
+      "role": "candidate proof and finite-R bridge"
+    },
+    {
+      "path": "replay_coefficients.py",
+      "sha256": "f613604a37882f70a80af836c0ff89c46cd7d6a275ebfb7c1f9e39dc2d54400a",
+      "role": "audited failed reuse of the defective staged P source"
+    },
+    {
+      "path": "replay_summary.md",
+      "sha256": "8f2dc2871578b2c581aa82c7f7b6a8865367939e504dd6e1e5bffcd66d113cc6",
+      "role": "exact command outputs and evidence log"
+    },
+    {
+      "path": "general_phase_chart.py",
+      "sha256": "db4330faf3144c4f54ec81a3468fe12dc5b759591347333b42c16a00b426b5bf",
+      "role": "retained failed untruncated SymPy attempt"
+    },
+    {
+      "path": "interactive_chart.py",
+      "sha256": "0bec15cf8d9f23131b9d7bb3fadcf5ea35f2392e8c721d05c49e1f9a96f92c0e",
+      "role": "retained interactive discovery helper"
+    }
+  ]
+}

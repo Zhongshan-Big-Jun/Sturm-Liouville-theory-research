@@ -1,0 +1,35 @@
+REPLAY STATUS: PASS
+Arithmetic: exact SymPy 1.13.1 expressions; no numerical tolerance.
+Command (PowerShell, repository root):
+$env:PYTHONPATH='C:\Users\graphene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages'; & 'C:\Users\graphene\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'research\artifacts\blueprint-rigorous-math\R-20260825T100044Z-b4-m3-blueprint\round-003\route-004-scale-entry-lemma-audit\scale_entry_replay.py'
+
+Bound source hashes:
+problem_contract.md=6dc56880458e66119f66c2a16f33df65afa799e03bbc681db5809e127e585e19
+candidate_branch_proof.md=0f609135b8d8bd2c9d830d0c9b86ef3b41454c217578a18992c76a9afad404d8
+route-002/proof_package.md=88be4d4c2a987729706aa8c7cf7860c9ede0a53f5bdd5732019fc683f7695008
+valuation_and_exhaustiveness.md=4e6b45befa420b7b65f49a93fd3157946d53c50482e4c1262f225964df3122b4
+scripts/_gapn2_largeR_closed.py=e357d8e447ce998020c8dadc94eb27db884dd85932d592a9b4331366f8ac13a4
+
+first_face_F1=-sqrt(2)*(K**3 + 6*K*q - 18*pi + 24)/(24*K)
+first_face_F2=sqrt(2)*(3*pi*C*K + K**3 + 6*K*q - 18*pi - 24)/(24*K)
+first_jacobian=-pi/16
+S6_y=8/K
+S6_v=-8/K**2
+S5_y=4*pi/K**5
+S5_v=2*(pi*K**3 - 24*pi**2 + 48)/(3*pi*K**6)
+q0=(-K**3 - 24 + 18*pi)/(6*K)
+C0=16/(pi*K)
+z_y=Matrix([[-4/K],[0]])
+z_v=Matrix([
+  [(-K**6 - 120*K**3 + 90*pi*K**3 - 4320*pi + 4800 + 1620*pi**2)/(360*K**2)],
+  [4*K/(3*pi) - 128/(pi**2*K**2) + 48/K**2]
+])
+H6=8*(B*K - 1)/K**2
+H5=2*(6*pi**2*B*K + pi*K**3 - 24*pi**2 + 48)/(3*pi*K**6)
+divisibility_checks={
+  'E1_below_u2': [0, 0],
+  'E2_below_u2': [0, 0],
+  'E6_below_u5': [0, 0, 0, 0, 0],
+  'E5_below_u4': [0, 0, 0, 0]
+}
+validity_predicate=all exact identities passed

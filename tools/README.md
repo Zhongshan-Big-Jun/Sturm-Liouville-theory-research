@@ -498,3 +498,9 @@ created: 2026-08-04
   REPAIRABLE_GAP (0 fatal, 2 小缺口) 已修复; root-0/最小解分支仍开放.
   Artifacts: runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md,
   audit runs/plugin-perf-eval/R-20260822T000000Z-a6-audit/audit_report.md.
+- 2026-08-29: 新增 [[m3-largeR-closure]]. B4/P1 M3 在 n=2 对称 INF large-R
+  有限内部 chart 内 STRICT 闭合: exact analytic branch, admitted-class scale
+  exhaustiveness, `m3D-m3N<0`, `Chi_up>0`, and positive first nonzero sector
+  determinants at `u^20` and `u^26`. Blueprint accepted proof 与事后 blind
+  Codex+Whiteboard replication 完全一致. [[largeR-level-cascade]] 与
+  [[m3-log-correction]] 因 staged D-side mass power 错误改为 SUPERSEDED.

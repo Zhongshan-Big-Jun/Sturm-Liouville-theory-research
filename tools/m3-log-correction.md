@@ -1,10 +1,14 @@
 ---
 type: tool
-status: EVIDENCE
+status: SUPERSEDED
 tags: [m3, large-r, asymptotic, log-correction, gap-extremals]
 ---
 
 # M3 log-correction hypothesis
+
+## 2026-08-29 correction
+
+This hypothesis is superseded. It was motivated by a staged Pbuild D-side mass expansion with incorrect powers of `u`. The exact closed residual instead has a locally unique even analytic branch in `v=u^2`, with no logarithmic correction in the admitted finite-interior chart. See [[m3-largeR-closure]]. The material below is retained only as route history.
 
 ## 解析
 

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "python": "3.12 with sympy and mpmath",
+  "working_directory": "reproducibility",
+  "commands": [
+    "python -m pip install -r requirements.txt",
+    "python fresh_seed_eliminate.py",
+    "python fresh_cascade_even4.py",
+    "python fresh_level4_solution.py",
+    "python fresh_numeric_branch.py 0.06",
+    "python fresh_sector_numeric.py 0.06 3.46599068494472860796 0.57659105165713084694 0.28790997498917085528 1.48525794704649728607",
+    "python fresh_sector_series_mp.py"
+  ],
+  "classifications": {
+    "fresh_seed_eliminate.py": "conditional exact symbolic derivation",
+    "fresh_cascade_even4.py": "conditional exact symbolic derivation",
+    "fresh_level4_solution.py": "conditional exact symbolic derivation",
+    "fresh_numeric_branch.py": "high-precision finite-u evidence",
+    "fresh_sector_numeric.py": "high-precision full-system evidence",
+    "fresh_sector_series_mp.py": "140-digit formal Laurent verified replication"
+  },
+  "expected_headline": {
+    "kappa_cubic": "pi*kappa^3 - 18*pi^2 + 48 = 0",
+    "m3D_minus_m3N": "-4/kappa^5*u^4 + O(u^6)",
+    "upstream_scalar": "3/2 + 4/(pi*kappa) + O(u^2)",
+    "det_Kp_odd": "128*kappa^2/pi^2*u^20 + O(u^22)",
+    "det_Ko": "2048*kappa^2/pi^4*u^26 + O(u^28)"
+  },
+  "not_included": "The experimental exact coefficient-field script did not complete and is not part of the claimed replication package."
+}

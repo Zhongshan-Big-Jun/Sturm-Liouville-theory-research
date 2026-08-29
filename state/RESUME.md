@@ -24,7 +24,14 @@ Note: barrier<->well identity D^well(a,b)=D^bar(1-b,1-a) is FALSE (R=4, a=0.2, b
 ## Session 108 status (2026-08-16)
 - Handoff: untracked/ignored files investigated and committed; AGENTS session log split to state/AGENTS_SESSION_LOG.md.
 - Sync: old run-manifest formalization decisions added; DensBC whiteboard added; indexes/state updated; origin+fork pushed to 7e48bc6.
-- P1/M3: NOT closed. Bounded search confirms truncated integer-power seed has no non-degenerate root; continuation data strongly supports K(u) = K0 + K2 u^2 + L u^2 log u (K0 ~ 3.4561, K2 ~ 2.9254, L ~ 0.0477, corr ~ 0.99999). Next: matched-asymptotics/log-correction derivation.
+- Historical P1/M3 status from 2026-08-16: SUPERSEDED. The negative staged-cascade and log-correction diagnosis used incorrect D-side mass powers and is retained only as route history.
+
+## B4/P1 M3 closure (2026-08-29)
+- Status: CLOSED in the stated n=2 symmetric INF large-R finite-nonzero-interior chart.
+- Blueprint: target `CLM-SL-B4-M3-TARGET-V1` is established through 3 proved inferences, 0 contradictions, an approved immutable review, and merged receipt `SUB-20260825-B4M3-FINAL-003`.
+- Headline: `kappa^3=18pi-48/pi`; `m3D-m3N=-(4/kappa^5)u^4+O(u^6)<0`; `Chi_up=3/2+4/(pi*kappa)+O(u^2)>0`; `det Kp_odd=(128kappa^2/pi^2)u^20+O(u^22)>0`; `det Ko=(2048kappa^2/pi^4)u^26+O(u^28)>0`.
+- Replication: run `R-20260828T061236Z-b4-m3-independent-replication` reproduced all headline formulas without reading Blueprint before freeze.
+- Boundary: all-R `(G1')`, `(G2)`, and global n>=2 uniqueness remain open outside M3.
 - DensBC O1: task packet Q-20260816-densbc-o1-A1B2C3D4 dispatched to background solver subagent 0f421207; run R-20260816T000000Z-densbc-o1 INGESTED as RIGOROUS_PARTIAL_RESULT with new STRICT structure theorems (projection-density, obstruction system, run/first-obstruction, diagonal reduction, finite-rank structure) and reduced core O1'.
 
 ## Active: left-definite density criterion (2026-08-16)
@@ -210,25 +217,18 @@ dD/db=+(R-1)f(b)).
 ## Exact next action
 1. Gap (c): CLOSED 2026-08-12 (Theorem A independently re-verified, no errors found).
 2. O3a/C1: REPAIRABLE-GAP RESOLVED 2026-08-12 (stale-doc misregistration; F-210 fixed).
-3. P1 (M3 follow-up, recorded 2026-08-14): solve the corrected-branch seed root of the
-   n=2 INF large-R balance - either (i) joint nonlinear solve of {K0,K1,C0,C1} with
-   odd-direction continuation (the K0->0 attractor may mask a finite root), or (ii) a
-   Puiseux/log-correction ansatz (the expansion may not be a pure integer-power series);
-   then closed m3D-m3N / C=0 / sector-determinant leading coefficients, closing (M3).
+3. M3 follow-up: CLOSED 2026-08-29 in the stated finite-interior large-R chart. Do not resume
+   the old odd/log route; it used the defective staged D-side mass powers.
 4. Open problems remaining (per summary section 5.5): n>=2 reflection symmetry GLOBAL
    (LOCAL theorem STRICT since 2026-08-12 cont 4b; needs (G1') detJ sign (-1)^n and (G2)
    block-width compactness), switch positions/block lengths, closed-form optimal values
    max/min D_n, n=1 certificate kernel formalization, MDE unified theory, H^s density
    criteria, p-Laplacian, etc.
 5. validate_project.py, budget settlement, stage summary on stage close.
-6. Lean scheduling decision (2026-08-14, user confirmed "original plan"): M3 Lean
-   formalization is NOT scheduled now (B->C gate excludes RIGOROUS_PARTIAL_RESULT).
-   Plan A: after P1 closes the corrected-branch seed, formalize the M3 full chain
-   (cascade structure + seed + leading observables) with the (G1') line.  Fallback B
-   (if P1 fails): formalize the audited R-210 STRICT algebraic core (a0*K0=2,
-   a1=-2K1/K0^2, E5_5 hard constant, dependency structure) with spectral hooks
-   declared as assumptions.  Both queue behind the STATUS.md roadmap gaps (O16
-   isometry, Weyl, MW reproof, n=1 certificate kernel) unless the user prioritizes.
+6. Lean scheduling update: M3 now passes the theorem-status gate, but Lean formalization
+   was not performed in this submission. A separate task may formalize the exact branch,
+   seed, observables, and determinant chain. Do not formalize the superseded R-210 hard
+   odd-correction obstruction.
 7. DensBC follow-up (recorded 2026-08-14, run R-20260814T070000Z-densbc): open core
    O1 (exact low-moment-survival criterion for general non-diagonal H), O2 (general
    L_j expansions killing free parameters for all beta), O3 (fractional window

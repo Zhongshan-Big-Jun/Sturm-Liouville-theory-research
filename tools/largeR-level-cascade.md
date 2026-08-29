@@ -1,13 +1,17 @@
 ---
 slug: largeR-level-cascade
-title: 大 R 层级级联平衡 (band 系统整数幂级数)
+title: 大 R 层级级联平衡 (historical staged route)
 tags: [谱优化, 级联, 渐近, bang-bang, 硬常数, 负结果]
-status: STRICT 结构已证 (独立审计通过); 分支根开放
+status: SUPERSEDED
 source: 会话 105 (R-210/R-211/R-212, run R-20260812T090000Z-g1prime-g2)
 related: ["[[balanced-phase]]", "[[gap-band-extremals]]", "[[band-selfconsistency-equivariance]]", "[[transfer-matrix-secular]]"]
 ---
 
 # 大 R 层级级联平衡
+
+## 2026-08-29 correction
+
+This route is retained as failure history only. The staged Pbuild source used incorrect D-side mass powers and does not reproduce the exact closed residual. Its hard `E5_5` term, forced odd correction, and claimed obstruction to an even branch are invalid for the exact system. The corrected strict theorem is [[m3-largeR-closure]]. Everything below describes the superseded staged calculation and must not be used as a live premise.
 
 ## 解析
 

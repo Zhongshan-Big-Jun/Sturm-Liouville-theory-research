@@ -1,0 +1,196 @@
+{
+  "schema_version": "2.2",
+  "request_log": ".blueprint/audit/events.jsonl",
+  "submissions_dir": "submissions",
+  "canonical_blueprint": "blueprint.json",
+  "evidence_inventory": "evidence_inventory.csv",
+  "merge_lock": "../research/work/runtime/locks/merge.lock",
+  "transactions_dir": "../research/work/runtime/transactions",
+  "semantic_hash": {
+    "algorithm": "sha256-canonical-json-v1",
+    "include_incoming_dependency_ids": true,
+    "excluded_node_fields": [
+      "title",
+      "display_label",
+      "display_notes",
+      "layout",
+      "ui"
+    ]
+  },
+  "retrieval_policy": {
+    "default_limit": 10,
+    "max_limit": 50,
+    "default_depth": 1,
+    "max_depth": 5,
+    "default_max_nodes": 30,
+    "max_nodes": 100,
+    "exclude_archived_by_default": true,
+    "default_math_view": "trusted"
+  },
+  "mathematics_policy": {
+    "profile_schema": "math-proof/v1",
+    "trusted_claim_statuses": [
+      "given",
+      "imported_verified",
+      "established"
+    ],
+    "truth_propagating_inference_statuses": [
+      "proved"
+    ],
+    "require_content_hashed_proof_packages": true,
+    "require_definition_logic_boundary_adversarial_audits": true,
+    "candidate_and_open_nodes_are_never_proof_inputs": true,
+    "statement_changes_require_new_node_ids": true
+  },
+  "research_policy": {
+    "profile_schema": "research-inference/v1",
+    "require_validity_contract_for_nonexact_inferences": true,
+    "required_audits_by_mode": {
+      "exact": [
+        "definition",
+        "logic",
+        "boundary",
+        "adversarial"
+      ],
+      "formal": [
+        "definition",
+        "logic",
+        "boundary",
+        "adversarial"
+      ],
+      "controlled_approximation": [
+        "definition",
+        "logic",
+        "validity_scope",
+        "error_control",
+        "limiting_case"
+      ],
+      "asymptotic": [
+        "definition",
+        "logic",
+        "validity_scope",
+        "error_control",
+        "limiting_case"
+      ],
+      "certified_finite_computation": [
+        "model_method_match",
+        "convergence",
+        "uncertainty",
+        "artifact_reproducibility"
+      ],
+      "reproduced_numerical": [
+        "model_method_match",
+        "convergence",
+        "uncertainty",
+        "artifact_reproducibility"
+      ],
+      "empirical": [
+        "source",
+        "uncertainty",
+        "common_scope"
+      ],
+      "synthesis": [
+        "common_scope",
+        "alternative_explanations",
+        "uncertainty_propagation"
+      ],
+      "phenomenological": [
+        "scope",
+        "alternative_explanations",
+        "limiting_case"
+      ],
+      "heuristic": [
+        "scope",
+        "adversarial"
+      ]
+    }
+  },
+  "review_optimization": {
+    "work_dir": "../research/work/runtime/review-work",
+    "reviewer_agent_count": 1,
+    "require_ephemeral_reviewers": true,
+    "inherit_parent_context": false,
+    "allow_reviewer_delegation": false,
+    "require_exact_audit_coverage": true,
+    "bind_reviewer_on_first_structure_check": true,
+    "allow_structure_only_recheck": true,
+    "expected_semantic_review_passes_without_content_retry": 1,
+    "safe_structure_repair": true
+  },
+  "cleanup_policy": {
+    "cleanup_review_work_after_seal": true,
+    "transaction_gc_after_merged_receipt": true,
+    "require_replay_verification": true,
+    "cleanup_receipts_dir": ".blueprint/audit/cleanup-receipts",
+    "genesis_dir": ".blueprint/history/genesis"
+  },
+  "orchestration_policy": {
+    "parallel_routes": true,
+    "max_parallel_research_agents": 3,
+    "require_mechanism_distinct_routes": true,
+    "require_falsification_route": true,
+    "require_independent_reviewer": true,
+    "subagents_may_write_canonical": false
+  },
+  "feedback_policy": {
+    "require_reasons_on_nonapproval": true,
+    "require_expected_actual_hashes_on_conflict": true,
+    "busy_is_transient_and_has_no_receipt": true
+  },
+  "protected_node_policy": {
+    "explicit_boolean_fields": [
+      "protected",
+      "completed",
+      "locked"
+    ],
+    "explicit_statuses": [
+      "completed",
+      "released",
+      "frozen"
+    ],
+    "reliable_grades": [
+      "A",
+      "B"
+    ],
+    "reliable_terminal_statuses": [
+      "active",
+      "required",
+      "exact_identity",
+      "conditional_theorem",
+      "given",
+      "imported_verified",
+      "established",
+      "proved",
+      "implemented",
+      "validated",
+      "reproduced",
+      "released"
+    ],
+    "protect_incoming_dependencies": true
+  },
+  "basic_assumption_policy": {
+    "forbid_current_research_content": true,
+    "accepted_source_sets": [
+      {
+        "authoritative_review_standard_or_textbook_min": 1
+      },
+      {
+        "independent_peer_reviewed_primary_min": 2
+      }
+    ],
+    "require_exact_locator": true,
+    "require_consensus_explanation": true
+  },
+  "manual_only_operations": [
+    "modify_taxonomy",
+    "modify_evidence_grade_definitions",
+    "modify_validator",
+    "modify_math_profile_schema",
+    "modify_research_profile_schema",
+    "delete_node",
+    "modify_protected_node",
+    "modify_protected_incoming_dependency"
+  ],
+  "artifact_root": "../research",
+  "validation_work_dir": "../research/work/runtime/validation"
+}

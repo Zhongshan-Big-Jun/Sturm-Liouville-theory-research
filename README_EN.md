@@ -25,6 +25,7 @@ Strictness convention: rigorous proofs and numerical evidence are explicitly dis
 | $n \ge 2$ gaps: finite-block reduction (at most $2n+1$ blocks) + exact $2n$-switch theorem | `docs/SL_gap_nge2_finite_reduction_proof.tex`, `SL_gap_nge2_exact_2n_switches_proof.tex` | Proved |
 | Even minimal-solution anchor $K(1)=e/4$ | `docs/SL_third_order_K1_proof.tex` | Proved (STRICT for the even c=1 anchor; general $K(c)$ open) |
 | $n \ge 2$ gaps (local): reflection symmetry at $R=1$ + local uniqueness as $R \to 1$; global uniqueness depends on $(G1')/(G2)$ (open) | `docs/SL_gap_nge2_symmetry_local_proof.tex` | Proved (local) |
+| B4/P1 M3: n=2 symmetric INF large-R finite-interior branch, including scale, mass difference, upstream scalar, and two sector determinants | `blueprint/blueprint.json`, `research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/` | Proved (STRICT in the stated M3 scope) |
 
 ### Partial proofs / strong numerical conjectures / open problems
 
@@ -37,7 +38,7 @@ Strictness convention: rigorous proofs and numerical evidence are explicitly dis
 
 Authoritative list: `docs/SL_spectral_topics_summary.tex` §5 (per-problem progress and failed routes).
 
-1. **Structure closure for gap extremals** ($n\ge2$): closed forms for switch positions/block lengths, reflection symmetry and uniqueness (reduced to proving (G1$'$) $\det K>0$), closed form or sharp bounds for $\max/\min D_n$, formalization of the $n=1$ certificate replay kernel. Progress (2026-08-14 session 105): the M3 piece of (G1') (n=2 INF large-R asymptotics) has its level-cascade STRICT structure confirmed by an independent adversarial audit (INDEPENDENTLY_AUDITED_PROOF, R-210/R-211/R-212) plus a decisive negative result (no K0~3.46 zero of the truncated integer-power system through u^7); the corrected-branch seed root and closed observables remain open; next (P1): joint {K0,K1,C0,C1} solve or a log-correction ansatz.
+1. **Structure closure for gap extremals** ($n\ge2$): closed forms for switch positions/block lengths, reflection symmetry and uniqueness, closed form or sharp bounds for $\max/\min D_n$, and formalization of the $n=1$ certificate replay kernel. Progress (2026-08-29): B4/P1 M3 is rigorously closed in the n=2 symmetric INF large-R finite-interior chart. With $u=R^{-1/6}$ and $\kappa^3=18\pi-48/\pi$, one has $m_{3D}-m_{3N}=-(4/\kappa^5)u^4+O(u^6)<0$, $\Chi_{up}=3/2+4/(\pi\kappa)+O(u^2)>0$, $\det Kp_{odd}=(128\kappa^2/\pi^2)u^{20}+O(u^{22})>0$, and $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$. A post-freeze Codex plus Whiteboard blind replication independently reproduced the accepted Blueprint result. The remaining open core lies outside M3: all-R $(G1')/(G2)$ and global uniqueness.
 2. **General boundary/potential classes**: Neumann case (Li-Ao line), nonnegative potential $q\ge0$ (Gan-Zheng-Li-Shao line), and sign-changing weights - optimal constants and extremal structure for eigenvalue ratios.
 3. **Unified MDE extremal-measure theory**: extremal measures for Neumann gaps and maximal gaps, unified with nodal bounds (Chu-Guo-Meng-Zhang).
 4. **General denseness criterion in left-definite spaces**: necessary and sufficient conditions for polynomial density in Hilbert spaces with general boundary constraints. Progress (2026-08-14 session 106, run R-20260814T070000Z-densbc): STRICT theorems A-H (master criterion V ∩ Q^\perp = {0}; constrained moment characterizations; corrected constraints-restore-density; complete diagonal classification: the sparse family is dense in a coordinate-constrained subspace iff beta <= 3/2 AND R has no finite run; first-moment/jump criteria on V); two packet conjectures falsified (V = span{x^2,x^3}^\perp is NOT dense for all beta - free parameters relocate to M_4/M_5; the criterion "beta <= 3/2 OR constraints kill M_2 = M_3" is false - R = {4} creates a finite singleton run); open core O1-O3 (exact criterion for general non-diagonal H / general L_j expansions / fractional window).
@@ -74,6 +75,8 @@ A machine-checkable proof project (Lean 4.31.0 + mathlib v4.31.0). Authoritative
 | `papers/` | Reference full texts (copyrighted items for personal research only) |
 | `research_cache/`, `images/`, `misc/` | Search caches, scanned pages, failed/test artifacts |
 | `runs/` | rigorous-open-math-research run directories (contracts/ledgers/audits) |
+| `blueprint/`, `blueprint-project.json` | Blueprint canonical graph, evidence inventory, immutable submissions, reviews, and integration receipts |
+| `research/artifacts/` | Blueprint proof packages and reproducibility artifacts; `research/work/` is disposable runtime state |
 | `state/`, `index/`, `agenda/`, `knowledge/`, `literature/`, `reports/`, `archive/` | Project management (manage-math-research-program) |
 | `AGENTS.md`, `PROJECT.md` | Project rules + session log; MRP project entry |
 
