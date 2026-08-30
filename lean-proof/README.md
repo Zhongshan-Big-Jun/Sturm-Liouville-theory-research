@@ -97,5 +97,6 @@ ReflectionSymmetry / DensenessCriteria / ProjectionDensity / DensBCEmpty /  Syml
 - DensBC O1' weighted-shift scaffold: `SL/DensBCO1p3WeightedShift_Scaffold.lean`.
 - O1'LD L^2-descent scaffold: `SL/O1pLD_L2_Scaffold.lean`.
 - B3 general alternating Chebyshev scaffold: `SL/B3GeneralAlternatingChebyshev_Scaffold.lean`.
+- n=2 symmetric INF odd-sector first-zero scaffold: `SL/KpOddFirstZero_Scaffold.lean`.
 - DensBC O1' banded-shift extension scaffold: `SL/DensBCO1p3BandShift.lean` (stable H_shift(m,lambda), bandwidth m>=1).
 - See `formalization_progress.md`.

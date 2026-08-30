@@ -2,39 +2,42 @@
 
 - **Project:** v1.9 live recovery G1 prime benchmark
 - **Project ID:** `MRP-20260830-v19-live-recovery-g1p-094e55`
-- **Updated:** 2026-08-30T02:00:00Z
+- **Updated:** 2026-08-30T15:22:54+08:00
 
 ## Current objective
 
-Run the frozen G1 prime sector task and test live in-flight recovery.
+The controlled live recovery experiment is complete. Preserve its audited
+partial mathematics and plugin findings.
 
 ## Read these files first
 
-1. `project.json`
-2. `agenda/task-packets/Q-20260830-g1p-live-recovery.md`
-3. `refs/source_contract.md`
-4. `refs/blueprint_snapshot.md`
-5. `refs/literature_status.md`
+1. `runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/final_report.md`
+2. `runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/independent_audit.json`
+3. `runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/interruption_checkpoint-01.json`
+4. `../PLUGIN_FINDINGS.md`
 
 ## Last completed action
 
-Initialized the isolated project and froze its scope.
+Reconciled W2 as `INGESTED`, sealed checkpoint sequence 01, obtained an
+independent audit `PASS`, and compiled the Tier 0 Lean scaffold.
 
 ## Active tasks and runs
 
-- Task `Q-20260830-g1p-live-recovery`.
-- Run `R-20260830T020000Z-g1p-live-recovery`.
+None.
 
 ## Exact next action
 
-Pass the scoped pipeline gate, then dispatch the closure-first planner.
+No automatic research continuation is authorized. A later plugin round may
+implement the deterministic v1.10 usability findings. A later mathematics run
+requires a new mechanism for the same-sign Jacobi kernel or simultaneous sector
+singularity.
 
 ## Blockers or missing inputs
 
-The parent project has legacy validator debt. This scoped workspace is the
-gate boundary for the new experiment and does not claim the parent is valid.
+- `KP-DET`, simultaneous sector singularity, and `KO-DET` remain open.
+- Parent-wide pipeline validation still has historical migration debt; the
+  isolated workspace is the valid boundary for this run.
 
-## Budget remaining
+## Latest checkpoint
 
-No emergency reserve. Stop only at a safe checkpoint boundary or experiment
-completion.
+`runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/interruption_checkpoint-01.json`.

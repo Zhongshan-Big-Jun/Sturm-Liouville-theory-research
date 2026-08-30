@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "checkpoint_sequence": 0,
+  "predecessor": null,
+  "run_id": "R-20260830T020000Z-g1p-live-recovery",
+  "task_packet_id": "Q-20260830-g1p-live-recovery",
+  "reason": "OTHER",
+  "created_at": "2026-08-30T10:28:39+08:00",
+  "source_commit": "afc6044b22fcab4828cd4bda2aa6c824c4e63d2b",
+  "task_contract": {
+    "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/problem_contract.md",
+    "sha256": "38bcbaccfa6f00209b9cfe2796950318b961728ac99e2a493bcec76c696e2043"
+  },
+  "closure_gate": {
+    "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/closure_gate.md",
+    "sha256": "ac86b01d5a2f7f3dbd8a442e796a34553ac7d45301e2fff5072b65db1102a69e"
+  },
+  "whiteboard": {
+    "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/whiteboard.md",
+    "sha256": "20989bb96bfb19916c7ed4d47383d3702b166be328abfcfbd2dbe2cb34d1cbd0"
+  },
+  "latest_audit": null,
+  "completed_obligations": [
+    {
+      "id": "TRACE-BY-INERTIA",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/direct_attempt.md",
+        "sha256": "f530dd3a39575a3ab4070f94752139628bec44e5e2f38aff6a9096dd343b7b09"
+      }
+    },
+    {
+      "id": "KP-DOUBLEZERO-EXCLUDED",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/route-01-spectral-coercivity/route_report.md",
+        "sha256": "1acb935d917daf26bec63f45673402d51c6fa3559faac3c7333070a4e6371681"
+      }
+    }
+  ],
+  "open_obligations": [
+    {
+      "id": "KP-CORANKONE-BRANCH-EQUALITY",
+      "exact_gap": "Exclude or realize the exact branch equality gamma_2>b and gamma_1-a=b^2/(gamma_2-b) at a finite middle first zero.",
+      "next_action": {
+        "action_id": "TEST-KP-BRANCH-EQUALITY-AFTER-W2",
+        "description": "After W2 reconciliation, combine its Jacobi condition with the W1 scalar equality and decide whether the branch can realize it."
+      },
+      "required_inputs": [
+        {
+          "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/route-01-spectral-coercivity/route_report.md",
+          "sha256": "1acb935d917daf26bec63f45673402d51c6fa3559faac3c7333070a4e6371681"
+        }
+      ]
+    },
+    {
+      "id": "KO-DET",
+      "exact_gap": "Prove or refute det Ko(R)>0 on the prescribed all-finite-R symmetric INF branch; intentionally deferred by closure-first ordering.",
+      "next_action": {
+        "action_id": "ATTACK-KO-DET-AFTER-KP",
+        "description": "Open the even-sector determinant only after the earlier KP obligation reaches a terminal state."
+      },
+      "required_inputs": [
+        {
+          "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/problem_contract.md",
+          "sha256": "38bcbaccfa6f00209b9cfe2796950318b961728ac99e2a493bcec76c696e2043"
+        }
+      ]
+    }
+  ],
+  "inflight_work": [
+    {
+      "worker_id": "W2-KP-FIRSTZERO-JACOBI",
+      "session_id": "/root/kp_jacobi",
+      "status": "RUNNING",
+      "artifact": null
+    }
+  ],
+  "inflight_reconciliation": [],
+  "do_not_repeat": [
+    {
+      "action_id": "A0-DIRECT-CLOSURE",
+      "reason": "The direct attempt already established the inertia bridge and the exact compact first-zero gap.",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/direct_attempt.md",
+        "sha256": "f530dd3a39575a3ab4070f94752139628bec44e5e2f38aff6a9096dd343b7b09"
+      }
+    },
+    {
+      "action_id": "W1-KP-SPECTRAL-COERCIVITY",
+      "reason": "The bounded route terminated PARTIAL with a single exact positive-cone scalar equality; repeating its Green decomposition adds no new mechanism.",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/route-01-spectral-coercivity/route_report.md",
+        "sha256": "1acb935d917daf26bec63f45673402d51c6fa3559faac3c7333070a4e6371681"
+      }
+    }
+  ],
+  "result_status": "RIGOROUS_PARTIAL_RESULT",
+  "status_transition": null,
+  "experiment_integrity": {
+    "enabled": false
+  },
+  "resume": {
+    "first_action": {
+      "kind": "RECONCILE_INFLIGHT",
+      "action_id": "RECONCILE-W2-SEG00",
+      "target_id": "W2-KP-FIRSTZERO-JACOBI"
+    },
+    "minimal_read_set": [
+      {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/problem_contract.md",
+        "sha256": "38bcbaccfa6f00209b9cfe2796950318b961728ac99e2a493bcec76c696e2043"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/whiteboard.md",
+        "sha256": "20989bb96bfb19916c7ed4d47383d3702b166be328abfcfbd2dbe2cb34d1cbd0"
+      }
+    ],
+    "budget": {
+      "unit": "wall_minutes",
+      "limit": 40
+    },
+    "stop_condition": "Reconcile W2 as INGESTED, INTERRUPTED, or NO_RETURN and seal checkpoint sequence 01 before any new research dispatch."
+  }
+}

@@ -67,6 +67,7 @@ created: 2026-08-04
 - [[gap-band-extremals]] - 带状自洽极值判据: 相邻间距驻点条件与 FH 对称加倍 (会话 13)
 - [[largeR-level-cascade]] - 大 R 层级级联平衡: band 系统整数幂级数层级结构/硬常数机制/分族平移层 (会话 105, R-210/R-211, 审计 R-212)
 - [[m3-log-correction]] - M3 对数修正假设: 截断整数幂无根 + 数据拟合 u^2 主导 + log u 匹配渐近下一步 (会话 108, 2026-08-16, EVIDENCE)
+- [[kp-odd-firstzero-reduction]] - n=2 对称 INF 奇扇区首次零点归约: 半可分 Green 恒等式, double-zero 排除, 同号 Jacobi 核与非奇异 Ko 分支图 (2026-08-30, STRICT partial, audit PASS)
 - [[constrained-denseness-runs]] - 边界约束子空间多项式稠密性: 矩刻画/游程图/对角完整分类 (会话 106, R-20260814T070000Z-densbc)
 - [[banded-shift-toeplitz-density]] - 稳定移位带 Toeplitz 空间 O1' 有限秩判据: 带宽 m>=1 非对角推广 (R-20260823T000000Z-o1p-baseline, 2026-08-23)
 - [[weighted-shift-beta-lambda-density]] - 加权移位族 H_{beta,lambda} O1' 判据: beta>3/2 无穷游程可实现门槛 (R-20260823T000000Z-o1p-lightreuse, 2026-08-23)
@@ -120,6 +121,7 @@ created: 2026-08-04
 | [[transfer-matrix-secular]] | 经典数值法 | 已验证 (本项目全部数值) | 谱理论 |
 | [[prufer-phase]] | 经典 | 文献引用 | 谱理论 |
 | [[sturm-oscillation]] | 经典 | 文献引用 | 谱理论 |
+| [[kp-odd-firstzero-reduction]] | 自研 (R-20260830T020000Z-g1p-live-recovery) | STRICT partial, 独立审计 PASS; KP-DET/KO-DET/global G1' OPEN | 谱隙极值 |
 | [[feynman-hellmann]] | 量子力学标准 | 文献引用 | 谱理论 |
 | [[liouville-transform]] | 经典 | 文献引用 | 谱理论 |
 | [[bloch-band]] | 周期介质理论 | 数值验证 (能带极限) | 谱理论 |

@@ -23,3 +23,9 @@ Maintain the isolated v1.9 live recovery experiment. Use
 
 - 2026-08-30: Isolated project initialized and target frozen for the v1.9
   live in-flight recovery experiment.
+- 2026-08-30: Live recovery experiment completed. W2 was checkpointed in
+  flight, reconciled once as `INGESTED`, and never restarted. The independent
+  audit returned `PASS` for the strict partial package. `KP-DET`, simultaneous
+  sector singularity, `KO-DET`, non-symmetric roots, and global G1 prime remain
+  open. Scoped program and pipeline gates passed, and the Tier 0 Lean scaffold
+  compiles with two expected `sorry` warnings.

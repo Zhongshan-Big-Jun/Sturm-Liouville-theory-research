@@ -100,3 +100,12 @@ superseded before a completion label is used.
 - Sources: `runs/plugin-perf-eval4/R-20260823T060000Z-b3-current/candidate_proof.md`,
   audits `R-20260823T070000Z-b3-current-audit`,
   `R-20260823T080000Z-b3-current-reaudit`.
+
+## 2026-08-30 (v1.9 live recovery G1 prime sector run)
+
+- Scaffold: `SL/KpOddFirstZero_Scaffold.lean` -- finite-dimensional
+  semiseparable first-zero algebra, positive-off-diagonal double-zero exclusion,
+  and the exact same-sign-kernel open obligation.
+- Status: RIGOROUS_PARTIAL_RESULT after independent audit PASS; `KP-DET`,
+  simultaneous odd/even singularity, and `KO-DET` remain open.
+- Source: `runs/plugin-benchmark-20260830-v19-live-recovery-g1p/workspace/runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/candidate_proof.md`.

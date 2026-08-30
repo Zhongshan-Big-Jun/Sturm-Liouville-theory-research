@@ -493,3 +493,6 @@ Reuse before re-proving: search this table for an existing declaration.
 | `TransferOperator.lean` | `KcR_inv_left_public` | `VERIFIED` |
 | `TransferOperator.lean` | `KcR_inv_right_public` | `VERIFIED` |
 | `TransferOperator.lean` | `KcR_inj_public` | `VERIFIED` |
+| `KpOddFirstZero_Scaffold.lean` | `positive_offdiag_excludes_double_zero` | `SCAFFOLD` |
+| `KpOddFirstZero_Scaffold.lean` | `scalar_first_zero_of_det` | `SCAFFOLD` |
+| `KpOddFirstZero_Scaffold.lean` | `no_branch_same_sign_kernel` | `OPEN_SCAFFOLD` |

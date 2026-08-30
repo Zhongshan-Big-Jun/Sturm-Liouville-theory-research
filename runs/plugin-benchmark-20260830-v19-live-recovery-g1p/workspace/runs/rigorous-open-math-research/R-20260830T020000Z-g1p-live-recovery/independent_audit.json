@@ -1,0 +1,82 @@
+{
+	"verdict": "PASS",
+	"critical_errors": [],
+	"gaps": [],
+	"repair_hints": "",
+	"covered_scope": "Fresh first-time informal audit of the exact n=2 symmetric finite-interior INF partial package: statement fidelity, normalization, Green semiseparability, b>0, U^2 congruence, equality and singular cases, Jacobi equations, nodal and Wronskian signs, residual differentiation, transfer determinant identity, Ko-regular branch chart, and honest residual obligations.",
+	"residual_risk": "KP-DET remains open at the same-sign corank-one Jacobi kernel or equivalent scalar equality. The Ko-regular chart does not cover simultaneous Kp_odd and Ko singularity. KO-DET remains open. The authorized read set did not include a Lean scaffold, Lean full verification, paper-level assembly, or the upstream source records, so those separate gates were not checked.",
+	"first_error": null,
+	"candidate_sha256": "4e688ad5d7c0e3f4869e4aa43cad823549fc66db76bcd9293341eb85b0d8e556",
+	"package_correctness": "PASS",
+	"target_completion": false,
+	"strict_partial_claims_acceptable_for_project_ingestion": true,
+	"ingestion_qualification": "Accept only as RIGOROUS_PARTIAL_RESULT. This audit supplies the independent informal layer, not full dual-track or target completion certification.",
+	"audit_layers": {
+		"definition_audit": {
+			"verdict": "PASS",
+			"checks": [
+				"Exact branch-local INF scope preserved",
+				"Kp_odd and Ko not conflated",
+				"Half and full eigenfunction normalizations agree",
+				"Green parameters, E signs, and gamma fourth-power normalization agree"
+			]
+		},
+		"logic_audit": {
+			"verdict": "PASS",
+			"checks": [
+				"Inertia bridge is valid",
+				"Green semiseparable identity and b positivity are exact",
+				"Jacobi and moving-level equations have the correct signs and boundary conditions",
+				"Transfer determinant sign includes det(E)=-1",
+				"Ko-regular implicit-function chart avoids inversion of the singular sector",
+				"Corank-one and equality reductions are exhaustive at first loss"
+			]
+		},
+		"boundary_audit": {
+			"verdict": "PASS",
+			"checks": [
+				"R=1 and R=infinity treated only as anchors",
+				"Finite-interior nonvanishing and strict nodal cases checked",
+				"Double zero, corank one, higher-order crossing, and simultaneous singularity distinguished",
+				"Switch collision and boundary collapse remain explicitly out of scope"
+			]
+		},
+		"adversarial_audit": {
+			"verdict": "PASS",
+			"checks": [
+				"No numerical or citation-dependent proof step",
+				"Abstract scalar witness used only to prove route insufficiency",
+				"No crossing-form sign is claimed without proof",
+				"KP-DET and KO-DET remain explicitly open",
+				"Simultaneous singularity is a method boundary nested in the remaining determinant obligations, not a hidden completion claim"
+			]
+		}
+	},
+	"exact_residual_open_obligations": [
+		{
+			"id": "KP-CORANK1",
+			"status": "OPEN",
+			"claim": "Exclude gamma_2>b and gamma_1-a=b^2/(gamma_2-b), equivalently exclude the same-sign one-dimensional Jacobi kernel or prove the forbidden crossing sign."
+		},
+		{
+			"id": "KP-KO-SIMULTANEOUS",
+			"status": "OPEN_METHOD_BOUNDARY",
+			"claim": "Treat a candidate where Kp_odd and Ko are both singular. This is not independent of the unresolved determinant obligations and is outside the Ko-regular branch chart."
+		},
+		{
+			"id": "KO-DET",
+			"status": "OPEN",
+			"claim": "Prove or refute det Ko(R)>0 for every finite R>1 on the prescribed branch."
+		}
+	],
+	"artifact_hashes": {
+		"problem_contract.md": "38bcbaccfa6f00209b9cfe2796950318b961728ac99e2a493bcec76c696e2043",
+		"whiteboard-01.md": "37d3977f9e99ddd3804970e388ace546c0e79ba3d88c5c32e9894d0e079fd23b",
+		"closure_gate-01.md": "71261e957d6d900509d570976a7c919f58824f79e332d9a50fa7fb1de79091f3",
+		"candidate_proof.md": "4e688ad5d7c0e3f4869e4aa43cad823549fc66db76bcd9293341eb85b0d8e556",
+		"route-01-spectral-coercivity/route_report.md": "1acb935d917daf26bec63f45673402d51c6fa3559faac3c7333070a4e6371681",
+		"route-01-spectral-coercivity/derivation.md": "6beedc48be799450d8e8430dcfd39787af801d281afb066896f5054dda084416",
+		"route-02-firstzero-jacobi/route_report.md": "6e951602458330c22f90e52e45997c3a582297c0b80a34bc1cef2916ee1f0f68",
+		"route-02-firstzero-jacobi/derivation.md": "ce72a80d18a5d94abdc0cb5627db11b6cebe950fe48438c79d6513cc4db69542"
+	}
+}
