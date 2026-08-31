@@ -1,0 +1,22 @@
+SCAFFOLDED
+
+Lean version: Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783.
+Lake version: 5.0.0-src+68218e8.
+Toolchain: leanprover/lean4:v4.31.0.
+Environment project: F:/LaTeX/BVE research/lean-proof.
+Checked file: ../research/runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/SL/KpDetPhaseReduction_Scaffold.lean.
+Checked file SHA256: ecd23a118328c5c81a4bfb87df9f5f1aadfb73e01264942d290a3921c127471f.
+
+Final command:
+
+lake env lean ../research/runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/SL/KpDetPhaseReduction_Scaffold.lean
+
+Observed exit code: 0.
+Observed output: one warning that `phi_sign_open` uses `sorry`.
+Interpretation: the Tier 0 scaffold parses and the two closed algebraic lemmas are machine accepted. The open `Phi` sign is not proved, so the artifact is not formally verified.
+
+Repair history:
+
+- Attempt 1 failed because Lean 4 rejects tab characters. The source was converted to spaces, the only valid Lean indentation.
+- Attempt 2 localized two noncomputable real-division definitions. Both definitions were marked `noncomputable` without changing their statements.
+- Attempt 3 passed with the expected scaffold `sorry` warning.

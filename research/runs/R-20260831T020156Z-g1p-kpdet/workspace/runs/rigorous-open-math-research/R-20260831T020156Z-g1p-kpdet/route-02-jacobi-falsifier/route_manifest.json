@@ -1,0 +1,83 @@
+{
+	"route_id": "W2-JACOBI-FALSIFIER",
+	"run_id": "R-20260831T020156Z-g1p-kpdet",
+	"completed_at": "2026-08-31T02:26:06Z",
+	"status": "RIGOROUS_PARTIAL_RESULT",
+	"scope": "Same-sign parity-crossing Jacobi field for KP-DET on the finite-interior n=2 symmetric INF branch",
+	"inputs": [
+		{
+			"path": "AGENTS.md",
+			"sha256": "4cbff1dbfcd22c0880337d2e880b2915edd0b2de7b1a42686637129a5d145680",
+			"role": "root instructions"
+		},
+		{
+			"path": "research/runs/R-20260831T020156Z-g1p-kpdet/workspace/AGENTS.md",
+			"sha256": "9f488c2aa83c5220b9bb9da324f2594238db29e38b3b4af2acee53593bdd216b",
+			"role": "scoped instructions"
+		},
+		{
+			"path": "research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+			"sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d",
+			"role": "current theorem contract"
+		},
+		{
+			"path": "research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+			"sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58",
+			"role": "new direct gamma_2>b_0 theorem under independent audit"
+		},
+		{
+			"path": "research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/obligation_graph.md",
+			"sha256": "0197f0461daea38dc6eb85c326f1502491c9fdccc7e6b1327b7b45d11703d4b9",
+			"role": "current shortest obligation chain"
+		},
+		{
+			"path": "research/runs/R-20260831T020156Z-g1p-kpdet/workspace/refs/source_contract.md",
+			"sha256": "45f844a99eb64994ec86a94746ba85e8b619eeea60322ccb3e60d50b3da1658b",
+			"role": "frozen source record"
+		},
+		{
+			"path": "runs/plugin-benchmark-20260830-v19-live-recovery-g1p/workspace/runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/candidate_proof.md",
+			"sha256": "4e688ad5d7c0e3f4869e4aa43cad823549fc66db76bcd9293341eb85b0d8e556",
+			"role": "prior audited candidate boundary"
+		},
+		{
+			"path": "runs/plugin-benchmark-20260830-v19-live-recovery-g1p/workspace/runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/route-02-firstzero-jacobi/derivation.md",
+			"sha256": "ce72a80d18a5d94abdc0cb5627db11b6cebe950fe48438c79d6513cc4db69542",
+			"role": "prior Jacobi realization"
+		}
+	],
+	"restrictions": {
+		"subagents": 0,
+		"web_queries": 0,
+		"project_local_python_runs": 0,
+		"commits": 0,
+		"pushes": 0,
+		"numerical_claims_used_as_proof": 0,
+		"shared_coordinator_files_edited": 0
+	},
+	"outputs": [
+		{
+			"path": "route-02-jacobi-falsifier/derivation.md",
+			"sha256": "1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d"
+		},
+		{
+			"path": "route-02-jacobi-falsifier/route_report.md",
+			"sha256": "fca49535ee9a5e081ec6aa88b296ac8f309e3cc2294e29b08d397fe006ab4300"
+		}
+	],
+	"direct_theorem_audit": {
+		"claim": "gamma_2>b_0>0 at every finite-interior branch point",
+		"verdict": "PASS",
+		"basis": "independent last-layer phase, endpoint-normalized Green, Wronskian, and strict trigonometric sign derivation"
+	},
+	"strict_delta": [
+		"common projective-flux identity for the two Jacobi fields",
+		"unique simple locking point xi in (a,z)",
+		"branch-only exact integral for xi",
+		"exact positive endpoint impulse ratio"
+	],
+	"exact_result": "Any same-sign kernel has one and only one projective locking point before the zero of w and must satisfy the stated endpoint ratio; the direct theorem gamma_2>b_0 passes independent audit.",
+	"exact_remaining_gap": "Determine the strict sign of the first-switch moving-level residual after propagating the endpoint ratio through the middle layer, or construct an exact branch-realizable zero satisfying all frozen conditions.",
+	"transaction_status": "route_artifacts_only",
+	"research_status": "partial_progress"
+}

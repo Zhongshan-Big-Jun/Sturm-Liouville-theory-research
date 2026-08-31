@@ -1,0 +1,146 @@
+{
+  "schema_version": "2.2",
+  "review_id": "REV-SUB-20260831-G1P-KPDET-001",
+  "submission_id": "SUB-20260831-G1P-KPDET-001",
+  "proposal_hash": "sha256:49cbb0ead84a9bb75af291ba92c376ed8a277ec2c0370989a0029660048d7c2b",
+  "validation_hash": "sha256:1ce5f41081a12cddaef934537014b4f5f24bbf49b4237cc215b2eff13328faf1",
+  "reviewer_agent_id": "kpdet-blueprint-reviewer-01",
+  "reviewed_at": "2026-08-31T03:08:51.719646Z",
+  "verdict": "approve",
+  "decision_summary": "The immutable proposal and validation hashes match the assignment, validation binds the proposal and is valid, and the canonical base hashes and upstream semantic read set are fresh. Independent reconstruction confirms P1 through P4 in the exact finite-interior real symmetric band-consistent n=2 INF M3 scope. The final-layer Green signs, Wronskian normalization, half-to-whole factor 2, strict pivot gamma2>b0>0, Schur factorization, lossless five-phase elimination and reconstruction, common Jacobi flux, unique conditional locking point, and positive endpoint impulse ratio are correct. The claim and inventory row explicitly preserve Phi sign, KP-DET, KO-DET, non-symmetric roots, and global G1-prime as open. The Lean file is accurately classified as a Tier 0 scaffold with one expected sorry and is not used as formal verification. No protected-node, graph, evidence-hash, grade, status, scope, numerical-as-proof, major, or blocking defect remains.",
+  "protected_node_check": {
+    "passed": true,
+    "checked_node_ids": [
+      "HYP-SL-B4-M3-SYSTEM-V1",
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+    ],
+    "reasoning": "The proposal only adds two new downstream nodes, three typed edges, and one inventory row. It does not update or delete an existing node and does not alter any incoming dependency of a protected node. The new outgoing uses of the existing hypothesis and definition are permitted."
+  },
+  "basic_assumption_checks": [],
+  "logical_relation_checks": [
+    {
+      "node_id": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "upstream_ids": [
+        "HYP-SL-B4-M3-SYSTEM-V1",
+        "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+      ],
+      "result": "valid",
+      "first_invalid_derivation_step": null,
+      "missing_premises": [],
+      "lost_scope_or_conditions": [],
+      "independent_reasoning": "The proof uses only the exact branch equations and the fixed Kp odd, Green, Wronskian, pole, and half-string normalization. The normalized semiseparable matrix is a proof-internal lemma derived from those inputs, not an additional research assumption. P1 through P4 are exact transformations or conditional consequences within the shared finite-interior M3 scope, and no implication to the unresolved phase sign is made."
+    }
+  ],
+  "method_result_checks": [],
+  "math_premise_checks": [
+    {
+      "node_id": "HYP-SL-B4-M3-SYSTEM-V1",
+      "result": "valid",
+      "reasoning": "The canonical hypothesis fixes the exact finite-R real symmetric band-consistent n=2 INF M3 system and its branch-local scope. It supplies no determinant sign, no Phi sign, and no global branch conclusion. The proposed theorem remains conditional on an exact finite-interior branch point in this contract."
+    },
+    {
+      "node_id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "result": "valid",
+      "reasoning": "The canonical definition fixes the full two-by-two Kp odd matrix, orthonormal mirror basis, source spectral-pole convention, reduced-Green finite part, and normalization used in the proof. It is definition-only and does not assume the pivot, Schur sign, Phi sign, or KP-DET."
+    }
+  ],
+  "math_proof_checks": [
+    {
+      "node_id": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "premise_ids": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_ids": [
+        "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+      ],
+      "proof_package_path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+      "proof_package_sha256": "sha256:e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188",
+      "ordered_step_reconstruction": [
+        "On the final density-R half-layer, write v=B sin(k2(L-x)) and w=A cos(k3(L-x)), use w(b)=-c v(b), and differentiate Q=w/v to obtain Q'(b)=-c k3[tan(theta3)+c cot(theta2)] with 0<theta2=c theta3<theta3<pi/2.",
+        "Use u2=v/sqrt(2), hence the whole-string Wronskian W=v^2 Q'/2, together with the two ordinary cross-Green diagonal values to obtain the exact factor 2 in b0 and gamma2. The two strict trigonometric gaps and R/(R-1)>1 give gamma2-b0>0 and therefore the negative lower-right pivot.",
+        "Factor det M exactly as (b0-gamma2)[a0-gamma1+b0^2/(gamma2-b0)]. Since the congruence from Kp odd to M has positive scalar and diagonal factors, det Kp odd>0 is equivalent to S_KP<0.",
+        "Propagate the lambda3 right-Neumann and lambda2 right-Dirichlet shapes through the three layers to reproduce X, Z, D, Y, T, and N and the exact spectral and band equations. Recompute the weighted masses I3=I3hat/p and I2=I2hat/(c p), so normalization is exactly C^2 I2hat=c^3 s^2 I3hat with no sign loss.",
+        "Reconstruct p, a, b, lambda3, and lambda2 from the five phases. The strict modal inequalities give 0<a<b<L, the positive first DD mode, and exactly one zero for the second DN mode. All divisors K0, Y^2, s^2, C^2, and Dtheta are positive, so S_KP<0 iff Phi<0 and S_KP=0 iff Phi=0 without adding or removing branch points.",
+        "For a hypothetical same-sign Kp odd kernel, derive equal projective-flux jumps from lambda3 w(xj)^2=lambda2 v(xj)^2. The negative common flux and |w|<v between the switches force exactly one simple downward zero of h=v psi-w phi before the simple zero of w, yield the locking integral, and reproduce y1 v(a)^2/[y2 v(b)^2]=(gamma2-b0)/b0>0.",
+        "Because the locking integral ranges from zero to infinity, it is uniquely realizable and is not an exclusion of the kernel. The proof therefore stops at the exact scalar phase frontier and leaves Phi sign and KP-DET open."
+      ],
+      "result": "valid",
+      "reasoning": "Each promoted statement is an exact consequence of the two canonical inputs in their common scope. P1 fixes the signs and normalization, P2 is an equality-preserving two-by-two identity, P3 is a reversible transfer and normalization reduction on the strict phase domain, and P4 is conditional kernel geometry. No numerical evidence, asymptotic extrapolation, or unproved phase sign is used.",
+      "definition_audit": {
+        "passed": true,
+        "reasoning": "The review independently matched the density order (R,1,R), L=1/2, c^2=lambda2/lambda3, v=sqrt(2)u2, w=sqrt(2)u3, the Kp odd normalized matrix, Green boundary conventions, Wronskian orientation, phase coordinates, and weighted normalization. The symbols a0 and b0 remain matrix coefficients and are not confused with switch positions."
+      },
+      "logic_audit": {
+        "passed": true,
+        "reasoning": "The determinant direction is correct because b0-gamma2<0. Every step in the phase reduction is reversible under explicitly positive factors, and the reconstruction checks both normalized band relations. The Jacobi route is used only under a hypothetical same-sign kernel and does not infer that such a kernel exists."
+      },
+      "boundary_audit": {
+        "passed": true,
+        "reasoning": "R>1 excludes the singular R=1 endpoint. Strict finite-interior and modal inequalities exclude switch collision, theta=0 or pi/2, alpha=0 or pi, and zero denominators. The result does not extend to singular charts, non-symmetric roots, other modes, KO-DET, or global G1-prime."
+      },
+      "adversarial_audit": {
+        "passed": true,
+        "reasoning": "Fresh calculations checked both outer-switch signs, the half-to-whole factor 2, the mass-ratio exponent c^3, the determinant sign, the pole behavior at the zero of w, the locking-crossing direction, and the endpoint impulse ratio. The open positive term in Phi is not dominated or discarded, and no finite scan or numerical value is used as proof."
+      }
+    }
+  ],
+  "math_refutation_checks": [],
+  "math_research_state_checks": [],
+  "research_claim_checks": [],
+  "research_inference_checks": [],
+  "research_state_checks": [],
+  "artifact_checks": {
+    "passed": true,
+    "verified_reference_count": 9,
+    "mismatches": [],
+    "reasoning": "All nine proposal evidence references exist under the configured artifact root and match their declared SHA256 values. The prior semiseparable and Jacobi package named by the current contract was also located at its declared SHA256 and treated only as a proof-internal derivation from the canonical inputs."
+  },
+  "formalization_boundary_check": {
+    "passed": true,
+    "artifact_path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/SL/KpDetPhaseReduction_Scaffold.lean",
+    "artifact_sha256": "sha256:ecd23a118328c5c81a4bfb87df9f5f1aadfb73e01264942d290a3921c127471f",
+    "classification": "tier_0_scaffold_not_formally_verified",
+    "reasoning": "The file parses and its pivot and Schur algebra lemmas are machine accepted, but phi_sign_open contains one explicit sorry. The proposal accurately records this boundary and does not use the scaffold to upgrade the informal theorem to formal verification."
+  },
+  "inventory_check": {
+    "passed": true,
+    "reasoning": "The new inventory row points to the new claim, uses grade C and established status consistently, limits scope to exact finite-interior n=2 symmetric INF M3 branch points with R>1, and names Phi sign, KP-DET, KO-DET, non-symmetric roots, and global G1-prime as open limitations."
+  },
+  "graph_checks": {
+    "unknown_references": [],
+    "cycles": [],
+    "invalid_typed_edges": []
+  },
+  "findings": [],
+  "required_actions": [],
+  "review_execution": {
+    "schema_version": "blueprint-review-execution/v2",
+    "mode": "single",
+    "proposal_hash": "sha256:49cbb0ead84a9bb75af291ba92c376ed8a277ec2c0370989a0029660048d7c2b",
+    "validation_hash": "sha256:1ce5f41081a12cddaef934537014b4f5f24bbf49b4237cc215b2eff13328faf1",
+    "reviewer_agent_id": "kpdet-blueprint-reviewer-01",
+    "reviewer_agent_count": 1,
+    "semantic_review_passes": 1,
+    "structure_check_attempts": 1,
+    "safe_repair_count": 0,
+    "required_audit_keys": [
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1:math_premise",
+      "HYP-SL-B4-M3-SYSTEM-V1:math_premise",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:definition",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:logic",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:boundary",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:adversarial"
+    ],
+    "covered_audit_keys": [
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1:math_premise",
+      "HYP-SL-B4-M3-SYSTEM-V1:math_premise",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:definition",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:logic",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:boundary",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1:adversarial"
+    ],
+    "ephemeral_agents": true,
+    "inherited_parent_context": false,
+    "delegated": false
+  }
+}

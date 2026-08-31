@@ -47,7 +47,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
 | B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Weyl asymptotic; inf not attained |
 | B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
-| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 SOLVED; n>=2 local symmetry STRICT; (G2) STRICT CLOSED 2026-08-13; M3 large-R finite-interior chart STRICT CLOSED 2026-08-29; n=2 symmetric INF odd-sector first zero reduced to one same-sign Jacobi kernel 2026-08-30; global remaining obstruction is (G1') |
+| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 SOLVED; n>=2 local symmetry STRICT; (G2) STRICT CLOSED 2026-08-13; M3 large-R finite-interior chart STRICT CLOSED 2026-08-29; n=2 symmetric INF odd-sector lower-right pivot is globally negative and KP-DET is exactly reduced to Phi<0 on a five-phase system 2026-08-31; global remaining obstruction is (G1') |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
 

@@ -1,0 +1,63 @@
+{
+  "verdict": "PASS",
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "auditor_role": "fresh_independent_adversarial_auditor",
+  "authorship_independent": true,
+  "bound_inputs": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d",
+      "hash_verified": true
+    },
+    {
+      "path": "candidate_proof.md",
+      "sha256": "e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188",
+      "hash_verified": true
+    },
+    {
+      "path": "direct_attempt.md",
+      "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58",
+      "hash_verified": true
+    },
+    {
+      "path": "route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3",
+      "hash_verified": true
+    },
+    {
+      "path": "route-02-jacobi-falsifier/derivation.md",
+      "sha256": "1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d",
+      "hash_verified": true
+    }
+  ],
+  "obligation_findings": [
+    {
+      "obligation_id": "P1",
+      "verdict": "PASS",
+      "finding": "The final-layer quotient derivative, cross-Green signs, half-to-whole Wronskian factor 2, modal angle ranges, and strict gamma_2>b_0 inequality are correct."
+    },
+    {
+      "obligation_id": "P2",
+      "verdict": "PASS",
+      "finding": "The determinant factors as (b_0-gamma_2)S_KP, and the positive congruence preserves determinant sign, so KP-DET is equivalent to S_KP<0."
+    },
+    {
+      "obligation_id": "P3",
+      "verdict": "PASS",
+      "finding": "The three-layer transfer, weighted mass identity, band signs, physical reconstruction, positivity of removed factors, and equality-preserving equivalence S_KP<0 iff Phi<0 are correct on the stated phase domain."
+    },
+    {
+      "obligation_id": "P4",
+      "verdict": "PASS",
+      "finding": "The common flux jumps, unique locking point, integral identity, and endpoint impulse ratio follow with the stated signs and factors. They are used only as necessary kernel geometry."
+    }
+  ],
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "",
+  "covered_scope": "The exact contracted finite-interior n=2 symmetric INF branch; definitions and normalizations; P1 final-layer strict pivot; P2 determinant and Schur equivalence; P3 exact five-phase transfer, modal domains, weighted mass normalization, branch reconstruction, and equality preservation; P4 projective flux, locking-point geometry, and endpoint ratio; numerical-evidence and status-boundary checks.",
+  "residual_risk": "The sign of Phi on the admissible five-phase constraint set remains unproved, and no admissible Phi=0 witness is supplied. Accordingly KP-DET remains OPEN. KO-DET, simultaneous sector singularity, non-symmetric roots, and global G1 prime were not audited because they are excluded by the contract.",
+  "result_status": "RIGOROUS_PARTIAL_RESULT",
+  "kp_det_status": "OPEN",
+  "numerical_evidence_used_as_proof": false
+}

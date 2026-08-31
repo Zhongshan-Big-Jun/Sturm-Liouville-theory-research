@@ -1,0 +1,188 @@
+{
+  "checkpoint_sequence": 1,
+  "closure_gate": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/closure_gate-01.md",
+    "sha256": "b55aeefdec2801e9217c6896ccc35f8406e6f6f91f333833d2e4f530c545ea78"
+  },
+  "completed_obligations": [
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+        "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+      },
+      "id": "KP22-DIRECT-DERIVATION"
+    },
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/route_report.md",
+        "sha256": "be770a358dc89cb5abc742572a6f89de94c4dd48e0e01a69cd7076816cdd9b66"
+      },
+      "id": "W1-TRANSFER-PHASE-REDUCTION"
+    },
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/route_report.md",
+        "sha256": "fca49535ee9a5e081ec6aa88b296ac8f309e3cc2294e29b08d397fe006ab4300"
+      },
+      "id": "W2-JACOBI-FLUX-REDUCTION"
+    },
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+        "sha256": "e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+      },
+      "id": "MERGED-CANDIDATE-PACKAGE"
+    }
+  ],
+  "created_at": "2026-08-31T02:29:34Z",
+  "do_not_repeat": [
+    {
+      "action_id": "A0-DIRECT-LAST-LAYER",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+        "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+      },
+      "reason": "The exact final-layer calculation already reduced KP-DET to the scalar Schur margin; repeating it adds no new mechanism."
+    },
+    {
+      "action_id": "RECONCILE-KP-SCHUR-WAVE-01",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/reconciliation-wave-01.md",
+        "sha256": "d5e67015d875649fd326c2016325b57b47f026c87cb1a48e8fbb16ce310264b4"
+      },
+      "reason": "Both bounded workers were reconciled exactly once and their immutable artifacts were ingested."
+    },
+    {
+      "action_id": "W1-TRANSFER-SCHUR",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/route_report.md",
+        "sha256": "be770a358dc89cb5abc742572a6f89de94c4dd48e0e01a69cd7076816cdd9b66"
+      },
+      "reason": "The transfer and Schur route already produced the exact phase reduction and remaining scalar sign obligation."
+    },
+    {
+      "action_id": "W2-JACOBI-FALSIFIER",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/route_report.md",
+        "sha256": "fca49535ee9a5e081ec6aa88b296ac8f309e3cc2294e29b08d397fe006ab4300"
+      },
+      "reason": "The Jacobi route already derived the common projective flux, locking point, and endpoint impulse ratio."
+    }
+  ],
+  "experiment_integrity": {
+    "enabled": false
+  },
+  "inflight_reconciliation": [
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/reconciliation-wave-01.md",
+        "sha256": "d5e67015d875649fd326c2016325b57b47f026c87cb1a48e8fbb16ce310264b4"
+      },
+      "outcome": "INGESTED",
+      "session_id": "/root/transfer_schur",
+      "worker_id": "W1-TRANSFER-SCHUR"
+    },
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/reconciliation-wave-01.md",
+        "sha256": "d5e67015d875649fd326c2016325b57b47f026c87cb1a48e8fbb16ce310264b4"
+      },
+      "outcome": "INGESTED",
+      "session_id": "/root/jacobi_falsifier",
+      "worker_id": "W2-JACOBI-FALSIFIER"
+    }
+  ],
+  "inflight_work": [],
+  "latest_audit": null,
+  "open_obligations": [
+    {
+      "exact_gap": "Prove Phi<0 on the exact five-phase spectral, band, mass, and mode-index constraint system, or construct an admissible exact tuple with Phi=0.",
+      "id": "PHI-SIGN",
+      "lineage": {
+        "evidence": {
+          "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/route_report.md",
+          "sha256": "be770a358dc89cb5abc742572a6f89de94c4dd48e0e01a69cd7076816cdd9b66"
+        },
+        "predecessor_id": "KP-SCHUR",
+        "relation": "REFINES"
+      },
+      "next_action": {
+        "action_id": "AUDIT-CANDIDATE-PARTIAL-01",
+        "description": "Run one fresh independent audit of the bounded P1-P4 partial package, then stop the solve wave and finalize its calibrated status."
+      },
+      "required_inputs": [
+        {
+          "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+          "sha256": "e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+        },
+        {
+          "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/derivation.md",
+          "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+        },
+        {
+          "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/derivation.md",
+          "sha256": "1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d"
+        }
+      ]
+    }
+  ],
+  "predecessor": {
+    "checkpoint": {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/interruption_checkpoint-00.json",
+      "sha256": "3210db5fe2ae9525d80254c1c16c5df95a23b2fecd04f41694f89aef853c60c7"
+    },
+    "resume_receipt": {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/resume_receipt-00.json",
+      "sha256": "4f28f157476d39685f698f8eb51677cf21df8ba9977767eba395c00a48a41a30"
+    }
+  },
+  "reason": "OTHER",
+  "result_status": "BLOCKED_REDUCTION",
+  "resume": {
+    "budget": {
+      "limit": 1,
+      "unit": "model_responses"
+    },
+    "first_action": {
+      "action_id": "AUDIT-CANDIDATE-PARTIAL-01",
+      "kind": "CONTINUE_OBLIGATION",
+      "target_id": "PHI-SIGN"
+    },
+    "minimal_read_set": [
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+        "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard-01.md",
+        "sha256": "62f3a71a894690331ed17982de0b8297e9f715b96e88ec8923978bda7f73ae6d"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+        "sha256": "e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/derivation.md",
+        "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/derivation.md",
+        "sha256": "1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d"
+      }
+    ],
+    "stop_condition": "Run one independent audit of P1-P4, record PASS, REPAIRABLE_GAP, or FATAL_GAP, and do not start another solve wave."
+  },
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "schema_version": 1,
+  "source_commit": "2ce430d07ac25997eddd3edcdc34b18e37e6c97e",
+  "status_transition": null,
+  "task_contract": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+    "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+  },
+  "task_packet_id": "Q-20260831-g1p-kpdet",
+  "whiteboard": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard-01.md",
+    "sha256": "62f3a71a894690331ed17982de0b8297e9f715b96e88ec8923978bda7f73ae6d"
+  }
+}

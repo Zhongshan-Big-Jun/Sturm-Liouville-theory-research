@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checkpoint_sequence": 0,
+  "predecessor": null,
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "task_packet_id": "Q-20260831-g1p-kpdet",
+  "reason": "OTHER",
+  "created_at": "2026-08-31T02:19:23Z",
+  "source_commit": "2ce430d07ac25997eddd3edcdc34b18e37e6c97e",
+  "task_contract": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+    "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+  },
+  "closure_gate": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/closure_gate.md",
+    "sha256": "0daa8e5e12d01938b116bab6ca899ffc5c681d49aeba579882fbc7c587a6fa84"
+  },
+  "whiteboard": {
+    "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard.md",
+    "sha256": "243b38dd3f032c8ab72334187556e3b4f4a9630ad3c27866894e1a2ad1ccc2d0"
+  },
+  "latest_audit": null,
+  "completed_obligations": [
+    {
+      "id": "KP22-DIRECT-DERIVATION",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+        "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+      }
+    }
+  ],
+  "open_obligations": [
+    {
+      "id": "KP-SCHUR",
+      "exact_gap": "Prove or refute the exact branch-uniform sign S_KP=a_0-gamma_1+b_0^2/(gamma_2-b_0)<0 after the direct derivation establishes gamma_2>b_0.",
+      "next_action": {
+        "action_id": "RECONCILE-KP-SCHUR-WAVE-01",
+        "description": "Reconcile both in-flight bounded routes once and merge only hash-bound exact decision deltas."
+      },
+      "required_inputs": [
+        {
+          "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+          "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+        }
+      ]
+    }
+  ],
+  "inflight_work": [
+    {
+      "worker_id": "W1-TRANSFER-SCHUR",
+      "session_id": "/root/transfer_schur",
+      "status": "RUNNING",
+      "artifact": null
+    },
+    {
+      "worker_id": "W2-JACOBI-FALSIFIER",
+      "session_id": "/root/jacobi_falsifier",
+      "status": "RUNNING",
+      "artifact": null
+    }
+  ],
+  "inflight_reconciliation": [],
+  "do_not_repeat": [
+    {
+      "action_id": "A0-DIRECT-LAST-LAYER",
+      "reason": "The exact final-layer calculation already reduced KP-DET to the scalar Schur margin; repeating it adds no new mechanism.",
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+        "sha256": "c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+      }
+    }
+  ],
+  "result_status": "BLOCKED_REDUCTION",
+  "status_transition": null,
+  "experiment_integrity": {
+    "enabled": false
+  },
+  "resume": {
+    "first_action": {
+      "kind": "RECONCILE_INFLIGHT",
+      "action_id": "RECONCILE-KP-SCHUR-WAVE-01",
+      "target_id": "W1-TRANSFER-SCHUR"
+    },
+    "minimal_read_set": [
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+        "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+      },
+      {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard.md",
+        "sha256": "243b38dd3f032c8ab72334187556e3b4f4a9630ad3c27866894e1a2ad1ccc2d0"
+      }
+    ],
+    "budget": {
+      "unit": "wall_minutes",
+      "limit": 60
+    },
+    "stop_condition": "Reconcile W1 and W2 exactly once as INGESTED, INTERRUPTED, or NO_RETURN before any replacement dispatch or new research wave."
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": "2.2",
+  "submission_id": "SUB-20260831-G1P-KPDET-001",
+  "author_agent_id": "root-kpdet-submit",
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "created_at": "2026-08-31T03:01:38Z",
+  "base_blueprint_hash": "sha256:3b99f2090d73029fa77498a897979e614ddccbb205b613449fdd2181ce6ccc48",
+  "base_inventory_hash": "sha256:0c1e576e4902ffb8720e8a9b7c02a0df1c5425af805f1c9aba05b9968279ed5e",
+  "supersedes": null,
+  "summary": "Add the independently audited finite-interior Kp odd lower-right pivot, Schur frontier, exact five-phase reduction, and Jacobi locking geometry while preserving Phi sign and global KP-DET as open.",
+  "operations": [
+    {
+      "op": "add_node",
+      "node": {
+        "id": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "type": "claim",
+        "title": "Finite-interior Kp odd pivot and exact phase reduction",
+        "statement": "At every finite-interior n=2 symmetric INF branch point with R>1 in the exact M3 contract, the normalized odd-sector matrix M=[[a0-gamma1,b0],[b0,b0-gamma2]] has b0>0 and gamma2>b0, so its lower-right entry is strictly negative and det M>0 is equivalent to S_KP=a0-gamma1+b0^2/(gamma2-b0)<0. Under the exact five-phase spectral, band, mass, and mode-index system of the proof package, S_KP<0 is equivalent to the explicit elementary inequality Phi<0 and equality is equivalent to Phi=0. Any same-sign kernel obeys the common projective-flux identity, has a unique simple downward locking point in the stated interval, and has positive endpoint impulse ratio (gamma2-b0)/b0. These are exact reductions only: the sign of Phi, det Kp_odd>0 for all finite-interior points, KO-DET, and global G1-prime remain open.",
+        "status": "established",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "context_id": "CTX-DEFAULT",
+        "claim_kind": "theorem",
+        "truth_status": "established",
+        "inference_inputs": [
+          "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1"
+        ],
+        "refutation_inputs": []
+      }
+    },
+    {
+      "op": "add_node",
+      "node": {
+        "id": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "type": "inference",
+        "title": "Exact endpoint, transfer, and Jacobi reduction proof",
+        "statement": "The exact n=2 symmetric INF M3 contract and the bound odd-sector normalization imply the finite-interior pivot and phase-reduction theorem by the final-layer Green quotient calculation, the two-by-two Schur identity, exact transfer elimination with reconstruction, and the projective-flux and locking-point argument.",
+        "status": "proved",
+        "grade": "C",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_inference",
+        "context_id": "CTX-DEFAULT",
+        "premise_inputs": [
+          "HYP-SL-B4-M3-SYSTEM-V1"
+        ],
+        "definition_inputs": [
+          "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+        ],
+        "conclusion": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "proof_status": "proved",
+        "proof_package": {
+          "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+          "sha256": "sha256:e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+        },
+        "unresolved_obligations": []
+      }
+    },
+    {
+      "op": "add_edge",
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "premise_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "target": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "definition_input"
+    },
+    {
+      "op": "add_edge",
+      "source": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "target": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "inference_input"
+    }
+  ],
+  "inventory_operations": [
+    {
+      "op": "add_inventory_row",
+      "row": {
+        "result_id": "EV-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "title": "Finite-interior Kp odd pivot and exact phase reduction",
+        "mainline": "mathematics",
+        "epistemic_type": "mathematical_claim",
+        "blueprint_node_id": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "grade": "C",
+        "status": "established",
+        "headline_value": "gamma2>b0>0 globally on the finite-interior chart; det Kp_odd>0 iff S_KP<0 iff Phi<0, with exact Jacobi flux and locking-point geometry.",
+        "scope": "Exact finite-interior real symmetric band-consistent n=2 INF M3 branch points, R>1.",
+        "primary_artifact": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+        "main_limitation": "The branch-uniform sign Phi<0, complete KP-DET, KO-DET, non-symmetric roots, and global G1-prime remain open."
+      }
+    }
+  ],
+  "write_set": {
+    "existing_nodes": {},
+    "new_node_ids": [
+      "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1"
+    ],
+    "inventory_rows": {
+      "EV-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1": null
+    }
+  },
+  "read_set": {
+    "upstream_nodes": {
+      "HYP-SL-B4-M3-SYSTEM-V1": "semantic-sha256:370b3ee637f41b864cbdbf0e1e0490da2b667d040e18b7be07ff5008fe8ac6e1",
+      "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1": "semantic-sha256:a6131cf49d7f79c233539fd91d87d71a389c09787563a22de97133791b682a61"
+    }
+  },
+  "rationale": {
+    "selection": "The closure-first run proved and independently audited four exact reductions but did not close the remaining scalar phase sign. The proposal admits only the strict partial theorem that has passed review and does not create a completion node for KP-DET.",
+    "scope": "The claim is conditional on being an exact finite-interior branch point in the frozen n=2 symmetric INF M3 contract. It neither asserts existence outside the canonical sufficiently-large-R branch theorem nor extends to singular charts, non-symmetric roots, other modes, or other sectors.",
+    "status_accuracy": "The new inference is complete for its stated reduction claim and has no internal unresolved step. Phi<0 and KP-DET are outside the conclusion and are explicitly retained as open limitations. The Lean artifact is a Tier 0 scaffold with an expected sorry and is not a formal-verification claim.",
+    "independent_audit": {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/audit/independent_audit.md",
+      "sha256": "sha256:738d96cfe749681e47dd67954653a3159068f51f1c9ba78f79ecdd8bfc4e9a83",
+      "verdict": "PASS"
+    }
+  },
+  "evidence_refs": [
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+      "sha256": "sha256:67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+      "sha256": "sha256:e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/direct_attempt.md",
+      "sha256": "sha256:c6f8343eede001af58b50bb4b229cfd381e06323ada14c1cfe381fc3dbe4ed58"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/derivation.md",
+      "sha256": "sha256:a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/derivation.md",
+      "sha256": "sha256:1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/audit/independent_audit.md",
+      "sha256": "sha256:738d96cfe749681e47dd67954653a3159068f51f1c9ba78f79ecdd8bfc4e9a83"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/audit/independent_audit.json",
+      "sha256": "sha256:2a106ffbfd96c2087652384a6df10137e6f80b35e9996cdaf4c4fe525fc59eb9"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/SL/KpDetPhaseReduction_Scaffold.lean",
+      "sha256": "sha256:ecd23a118328c5c81a4bfb87df9f5f1aadfb73e01264942d290a3921c127471f"
+    },
+    {
+      "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/machine_check.log",
+      "sha256": "sha256:5dbc63355072c10e11e609fffc4258c2bf2a5c932b899cb505ccdfe1ee549315"
+    }
+  ],
+  "review_evidence": {
+    "logic_justifications": [],
+    "method_matches": [],
+    "literature_sources": [],
+    "math_premise_contracts": [
+      {
+        "node_id": "HYP-SL-B4-M3-SYSTEM-V1",
+        "premise_kind": "problem_hypothesis",
+        "scope": "Exact real symmetric band-consistent n=2 INF M3 system.",
+        "contract_explanation": "This canonical premise fixes the branch equations, phase conventions, mode indices, and finite-interior scope; it does not assume any determinant sign."
+      },
+      {
+        "node_id": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+        "premise_kind": "definition_contract",
+        "scope": "Exact odd-sector Kp matrix and reduced-Green normalization.",
+        "contract_explanation": "This canonical definition fixes the two-by-two sector matrix, orthonormal basis, spectral-pole convention, and finite-part normalization used by the reduction."
+      }
+    ],
+    "math_proof_justifications": [
+      {
+        "node_id": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+        "context_id": "CTX-DEFAULT",
+        "scope": "Exact finite-interior real symmetric band-consistent n=2 INF M3 branch points with R>1.",
+        "proof_package_path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+        "proof_package_sha256": "sha256:e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188",
+        "ordered_steps": [
+          "Use the exact final half-layer Green and quotient formulas, the mode-index phase ranges, and the positive trigonometric gap identities to prove gamma2-b0>0 with the full half-to-whole factor 2.",
+          "Factor the two-by-two determinant through its strictly negative lower-right pivot to obtain det Kp_odd>0 if and only if S_KP<0.",
+          "Eliminate eigenfunction amplitudes, Green kernels, and Wronskians through the exact transfer identities and impose the spectral, band, mass, and modal equations to obtain S_KP<0 if and only if Phi<0, with equality preserved.",
+          "Reconstruct the normalized finite-interior branch point from the exact phase system and verify that every cleared denominator is strictly positive.",
+          "For a hypothetical same-sign kernel, derive the common projective flux on all three layers, the unique simple downward locking point, its exact integral equation, and the positive endpoint impulse ratio.",
+          "Observe that the locking integral ranges strictly from zero to infinity, so the pure quotient-monotonicity route is exhausted without deciding Phi; retain Phi sign and KP-DET as open."
+        ],
+        "boundary_cases": [
+          "R>1 makes R/(R-1)>1 and excludes the singular R=1 endpoint.",
+          "The exact mode indices give both terminal phases in (0,pi/2), so every tangent, cotangent, sine, cosine, and cleared denominator has the declared sign.",
+          "No singular point is assumed before deriving the global Schur equivalence on the finite-interior chart.",
+          "The locking point lies strictly before the unique zero of w; the divergent endpoint integral is used only to show realizability, not determinant positivity.",
+          "No numerical computation is used as proof, and no claim is made outside the prescribed symmetric finite-interior branch."
+        ],
+        "external_results": [
+          "Elementary trigonometric identities and positivity on (0,pi/2).",
+          "The exact two-by-two determinant and Schur complement identity.",
+          "Standard Sturm quotient and Wronskian identities, rederived in the proof package for the present normalization."
+        ],
+        "supporting_artifacts": [
+          {
+            "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/audit/independent_audit.md",
+            "sha256": "sha256:738d96cfe749681e47dd67954653a3159068f51f1c9ba78f79ecdd8bfc4e9a83"
+          },
+          {
+            "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/lean-proof/SL/KpDetPhaseReduction_Scaffold.lean",
+            "sha256": "sha256:ecd23a118328c5c81a4bfb87df9f5f1aadfb73e01264942d290a3921c127471f"
+          }
+        ],
+        "unresolved_obligations": []
+      }
+    ],
+    "math_refutations": [],
+    "math_research_state_records": [],
+    "research_claim_contracts": [],
+    "research_inference_justifications": [],
+    "research_state_records": []
+  }
+}

@@ -317,6 +317,47 @@
         "formalization_mode": "off",
         "numerical_evidence_requires_proof_bridge": true
       }
+    },
+    {
+      "id": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "type": "claim",
+      "title": "Finite-interior Kp odd pivot and exact phase reduction",
+      "statement": "At every finite-interior n=2 symmetric INF branch point with R>1 in the exact M3 contract, the normalized odd-sector matrix M=[[a0-gamma1,b0],[b0,b0-gamma2]] has b0>0 and gamma2>b0, so its lower-right entry is strictly negative and det M>0 is equivalent to S_KP=a0-gamma1+b0^2/(gamma2-b0)<0. Under the exact five-phase spectral, band, mass, and mode-index system of the proof package, S_KP<0 is equivalent to the explicit elementary inequality Phi<0 and equality is equivalent to Phi=0. Any same-sign kernel obeys the common projective-flux identity, has a unique simple downward locking point in the stated interval, and has positive endpoint impulse ratio (gamma2-b0)/b0. These are exact reductions only: the sign of Phi, det Kp_odd>0 for all finite-interior points, KO-DET, and global G1-prime remain open.",
+      "status": "established",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_claim",
+      "context_id": "CTX-DEFAULT",
+      "claim_kind": "theorem",
+      "truth_status": "established",
+      "inference_inputs": [
+        "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1"
+      ],
+      "refutation_inputs": []
+    },
+    {
+      "id": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "type": "inference",
+      "title": "Exact endpoint, transfer, and Jacobi reduction proof",
+      "statement": "The exact n=2 symmetric INF M3 contract and the bound odd-sector normalization imply the finite-interior pivot and phase-reduction theorem by the final-layer Green quotient calculation, the two-by-two Schur identity, exact transfer elimination with reconstruction, and the projective-flux and locking-point argument.",
+      "status": "proved",
+      "grade": "C",
+      "mainline": "mathematics",
+      "epistemic_type": "mathematical_inference",
+      "context_id": "CTX-DEFAULT",
+      "premise_inputs": [
+        "HYP-SL-B4-M3-SYSTEM-V1"
+      ],
+      "definition_inputs": [
+        "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1"
+      ],
+      "conclusion": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "proof_status": "proved",
+      "proof_package": {
+        "path": "runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+        "sha256": "sha256:e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+      },
+      "unresolved_obligations": []
     }
   ],
   "edges": [
@@ -369,6 +410,21 @@
       "source": "CLM-SL-B4-M3-TARGET-V1",
       "target": "GOAL-SL-B4-M3-V1",
       "role": "target_input"
+    },
+    {
+      "source": "HYP-SL-B4-M3-SYSTEM-V1",
+      "target": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "premise_input"
+    },
+    {
+      "source": "DEF-SL-B4-M3-OBS-DET-NORMALIZATION-V1",
+      "target": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "definition_input"
+    },
+    {
+      "source": "INF-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "target": "CLM-SL-B4-KP-PIVOT-PHASE-REDUCTION-V1",
+      "role": "inference_input"
     }
   ]
 }

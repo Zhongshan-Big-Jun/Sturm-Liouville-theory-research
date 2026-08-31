@@ -1,0 +1,54 @@
+{
+  "checkpoint_id": "sha256:9d82a92017fc32b779fa3cc4fe36b09afded1481ac6fbcf220c9d182d8985f8d",
+  "checkpoint_sequence": 0,
+  "checkpoint_sha256": "3210db5fe2ae9525d80254c1c16c5df95a23b2fecd04f41694f89aef853c60c7",
+  "completed_obligation_ids": [
+    "KP22-DIRECT-DERIVATION"
+  ],
+  "do_not_repeat_action_ids": [
+    "A0-DIRECT-LAST-LAYER"
+  ],
+  "first_action": {
+    "action_id": "RECONCILE-KP-SCHUR-WAVE-01",
+    "kind": "RECONCILE_INFLIGHT",
+    "target_id": "W1-TRANSFER-SCHUR"
+  },
+  "minimal_read_set": [
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard.md",
+      "sha256": "243b38dd3f032c8ab72334187556e3b4f4a9630ad3c27866894e1a2ad1ccc2d0"
+    }
+  ],
+  "next_checkpoint_sequence": 1,
+  "open_obligation_ids": [
+    "KP-SCHUR"
+  ],
+  "result_status": "BLOCKED_REDUCTION",
+  "resume_budget": {
+    "limit": 60,
+    "unit": "wall_minutes"
+  },
+  "resumed_at": "2026-08-31T02:21:06Z",
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "schema_version": 1,
+  "stop_condition": "Reconcile W1 and W2 exactly once as INGESTED, INTERRUPTED, or NO_RETURN before any replacement dispatch or new research wave.",
+  "task_packet_id": "Q-20260831-g1p-kpdet",
+  "unresolved_inflight_work": [
+    {
+      "artifact": null,
+      "session_id": "/root/transfer_schur",
+      "status": "RUNNING",
+      "worker_id": "W1-TRANSFER-SCHUR"
+    },
+    {
+      "artifact": null,
+      "session_id": "/root/jacobi_falsifier",
+      "status": "RUNNING",
+      "worker_id": "W2-JACOBI-FALSIFIER"
+    }
+  ]
+}

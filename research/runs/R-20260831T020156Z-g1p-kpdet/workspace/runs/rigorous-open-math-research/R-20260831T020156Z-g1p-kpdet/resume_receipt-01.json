@@ -1,0 +1,70 @@
+{
+  "checkpoint_id": "sha256:82da32f7d7c94494dda81b385c28380f4678f1db472b2e6b00d620cfe60ffabc",
+  "checkpoint_sequence": 1,
+  "checkpoint_sha256": "75667c3cf06fab9640082fd15f4be3679cf03d76b20f24529774017f0307cd68",
+  "completed_obligation_ids": [
+    "KP22-DIRECT-DERIVATION",
+    "W1-TRANSFER-PHASE-REDUCTION",
+    "W2-JACOBI-FLUX-REDUCTION",
+    "MERGED-CANDIDATE-PACKAGE"
+  ],
+  "do_not_repeat_action_ids": [
+    "A0-DIRECT-LAST-LAYER",
+    "RECONCILE-KP-SCHUR-WAVE-01",
+    "W1-TRANSFER-SCHUR",
+    "W2-JACOBI-FALSIFIER"
+  ],
+  "first_action": {
+    "action_id": "AUDIT-CANDIDATE-PARTIAL-01",
+    "kind": "CONTINUE_OBLIGATION",
+    "target_id": "PHI-SIGN"
+  },
+  "minimal_read_set": [
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard-01.md",
+      "sha256": "62f3a71a894690331ed17982de0b8297e9f715b96e88ec8923978bda7f73ae6d"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/candidate_proof.md",
+      "sha256": "e9305a8795b31cd528555108c5268b92664e63f48ab728592f2947336a050188"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-02-jacobi-falsifier/derivation.md",
+      "sha256": "1e664a7742ea6a9e5674cc2499e7a47c6c4955309ed14d0b9e1e0b164f851f5d"
+    }
+  ],
+  "next_checkpoint_sequence": 2,
+  "obligation_lineage": [
+    {
+      "evidence": {
+        "path": "runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-01-transfer-schur/route_report.md",
+        "sha256": "be770a358dc89cb5abc742572a6f89de94c4dd48e0e01a69cd7076816cdd9b66"
+      },
+      "id": "PHI-SIGN",
+      "predecessor_id": "KP-SCHUR",
+      "relation": "REFINES"
+    }
+  ],
+  "open_obligation_ids": [
+    "PHI-SIGN"
+  ],
+  "result_status": "BLOCKED_REDUCTION",
+  "resume_budget": {
+    "limit": 1,
+    "unit": "model_responses"
+  },
+  "resumed_at": "2026-08-31T02:38:00Z",
+  "run_id": "R-20260831T020156Z-g1p-kpdet",
+  "schema_version": 1,
+  "stop_condition": "Run one independent audit of P1-P4, record PASS, REPAIRABLE_GAP, or FATAL_GAP, and do not start another solve wave.",
+  "task_packet_id": "Q-20260831-g1p-kpdet",
+  "unresolved_inflight_work": []
+}
