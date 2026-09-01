@@ -1,0 +1,46 @@
+{
+  "reaudit_id": "REAUDIT-W5-NEARONE-01",
+  "verdict": "PASS",
+  "critical_errors": [],
+  "gaps": [],
+  "covered_scope": [
+    "Verified all five packet-bound SHA256 values before review.",
+    "Verified beta<3pi/2 from the exact modal inequality and the resulting compact phase closure.",
+    "Re-derived the switch-uniform min-max eigenvalue bounds and identified lambda_2 as the first DD mode and lambda_3 as the second DN mode.",
+    "Checked both phase-length identities, including the factor m multiplying beta and the factor m in p=m sqrt(lambda_3).",
+    "Independently recomputed I3hat->3pi/4 and I2hat->pi/2 from both the phase-integral formulas and the physical scale conventions.",
+    "Recomputed the limiting mass equation and verified that it excludes theta=0 and theta=pi/2 before any relevant denominator is used.",
+    "Verified that sequential compactness upgrades the phase, norm, endpoint-separation, U-positivity, and Dtheta-divergence statements uniformly over moving switches.",
+    "Checked D_0, N_0, the limiting formula for U, its uniform positive lower bound, uniform divergence of Dtheta, and the bounded remainder estimate.",
+    "Confirmed the fixed eta scope excludes alpha approaching 0 and makes no global G-sign, PHI-SIGN, or KP-DET claim."
+  ],
+  "residual_risk": [
+    "The theorem does not cover the simultaneous near-one left-collision regime alpha->0.",
+    "It does not establish G>=0 for arbitrary finite R.",
+    "PHI-SIGN and KP-DET remain open."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "route-04-mass-g-wave/falsifier_result.md",
+      "sha256": "03a06fbe30ae7acea06a7da21d694f3d07bb3140458c93ce78b16b911fefb9e9"
+    },
+    {
+      "path": "route-04-mass-g-wave/audit/independent_audit.json",
+      "sha256": "7e56fc988a361efa5aeec7d232fb43b03b7889dacfc8ebc3d4afd6a02231c175"
+    },
+    {
+      "path": "route-04-mass-g-wave/repair/near_one_repair.md",
+      "sha256": "8defee6c05565313b5d9f2e4365d102349c32e8cf9ef04bde6f288ace6c30314"
+    }
+  ],
+  "first_error": null,
+  "decision_delta": "PASS accepts the repaired branch-uniform near-one theorem for every fixed separation eta. The moving-switch compactness gap is closed. The alpha->0 regime, global G-sign, PHI-SIGN, and KP-DET remain open."
+}

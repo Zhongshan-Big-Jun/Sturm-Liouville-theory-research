@@ -20,3 +20,4 @@ rigorous audit.
 ## Session record
 
 - 2026-08-31: Scope initialized. The bounded literature preflight returned `PARTIALLY_OPEN`; no same-quantifier KP-DET theorem was located.
+- 2026-09-01: Sequences 14-17 accepted exact global sign coherence and the common-beta chamber after two independent `PASS` audits, proving KP-DET for every complete `0<c<=1/2` tuple. W14/W15 remain immutable `UNREVIEWED` candidates after an audit `NO_RETURN`. Sequence-20 checkpoint is `READY`; scoped validation has 0 hard problems.

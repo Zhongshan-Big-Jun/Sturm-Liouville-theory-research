@@ -1,0 +1,41 @@
+{
+  "subtask_id": "AUDIT-W3-MASS-SLOPE-01",
+  "verdict": "PASS",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": [],
+  "covered_scope": [
+    "Verified the input hashes and audited coordinator_direct.md and worker_result.md as a first-time submission.",
+    "Re-derived the safe spectral elimination, including Phi < 0 if and only if Xi > 0 and the equality case Xi = X Phi.",
+    "Re-derived the Lagrange identity signs, the p and cp scale derivatives, and the factors in M3 and M2.",
+    "Verified that the original exact mass equation is equivalent in both directions to M-slope on the strict modal domain.",
+    "Verified K-id, strict K < 0, and Xi = X^2 G - r K Dtheta.",
+    "Checked all divisions, strict denominator signs, modal-domain exclusions, and boundary-face statements used by the two audited artifacts.",
+    "Verified that G >= 0 is stated and used only as a sufficient condition, not as an equivalent reduction."
+  ],
+  "residual_risk": [
+    "The mass-slope system has not been proved to force G >= 0 or any alternative lower bound sufficient for Xi > 0.",
+    "PHI-SIGN and KP-DET remain open and are not certified by this audit."
+  ],
+  "reviewer_id": "AUDIT-W3-MASS-SLOPE-01-INDEPENDENT",
+  "reviewed_artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "route-03-phi-exact/coordinator_direct.md",
+      "sha256": "de7939ba6ebbc2fd8667fcf2eb44aeb3754ff64d0c88107298cf8bff222742f3"
+    },
+    {
+      "path": "route-03-phi-exact/worker_result.md",
+      "sha256": "6c1bbbd871c9aef7c8c316d47d0b61c3ab34bfb806eb5ee715ed915df6103ee3"
+    }
+  ],
+  "first_error": null,
+  "decision_delta": "PASS confirms the W3 exact identity package as a rigorous partial reduction. It does not close the mass-to-G sign bridge and does not change the open status of PHI-SIGN or KP-DET."
+}

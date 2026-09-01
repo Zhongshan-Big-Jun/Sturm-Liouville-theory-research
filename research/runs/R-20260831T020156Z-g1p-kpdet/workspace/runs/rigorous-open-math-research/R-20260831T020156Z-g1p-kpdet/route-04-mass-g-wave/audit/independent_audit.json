@@ -1,0 +1,62 @@
+{
+  "audit_id": "AUDIT-W4-W5-MASS-G-01",
+  "verdict": "REPAIRABLE_GAP",
+  "critical_errors": [],
+  "gaps": [
+    {
+      "location": "route-04-mass-g-wave/falsifier_result.md, Section 3, first paragraph after the hypotheses",
+      "issue": "The claimed uniform phase, norm, and endpoint-separation limits for m approaching 1 are asserted from standard Sturm continuity without a compactness or branch-continuity proof that is uniform over moving switch positions. The later uniform positivity of U and boundedness of the remainder depend on that missing step."
+    }
+  ],
+  "repair_hints": [
+    "Use the modal inequalities to bound beta, then argue sequentially on the compact phase closure. Prove uniform eigenvalue convergence from the uniform density estimate ||rho_m-1||_infinity<=m^2-1, yielding c->2/3 and the two total-phase limits independently of moving switches.",
+    "Pass the exact continuous norm formulas along every convergent phase subsequence. Use the limiting mass identity to obtain cos(theta)=(2/3)sin(2theta/3), exclude both endpoint limits, and upgrade this by compactness to uniform endpoint separation. Only then bound X Ttheta^2/C^2 and use the uniform positive minimum of cos(2alpha/3)-cos(alpha) on [eta,pi-eta]."
+  ],
+  "covered_scope": [
+    "Verified all six packet-bound SHA256 values before review.",
+    "Independently rederived Q3, Q2, equations (1)-(3), formulas (4)-(5), every displayed power of c, and all signs in W4.",
+    "Verified W4 mixed-sign logic, bounds (6)-(7), equality cases, denominators, excluded faces, and that (SC) is only an unproved sufficient implication.",
+    "Checked the W5 exact tuple, both spectral equations, the band equation, all modal inequalities, and strict interior reconstruction.",
+    "Recomputed Ttheta, Dtheta, U, K, G, Xi, the exact mass residual, and a rational outward interval certificate sufficient for the strict signs.",
+    "Verified that the W5 witness is explicitly mass-defective and does not refute G>=0, PHI-SIGN, or KP-DET on the complete system.",
+    "Audited the restricted near-one argument and localized its first missing uniform compactness step.",
+    "Checked the joint denominator, boundary-face, equality, and exact-versus-interval labels."
+  ],
+  "residual_risk": [
+    "The restricted near-one sign statement is not accepted until the moving-switch compactness and uniform spectral-continuity argument is written out.",
+    "No complete mass-admissible tuple with G<0 was produced, and no proof that mass admissibility forces G>=0 was established.",
+    "PHI-SIGN and KP-DET remain open."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "route-03-phi-exact/worker_result.md",
+      "sha256": "6c1bbbd871c9aef7c8c316d47d0b61c3ab34bfb806eb5ee715ed915df6103ee3"
+    },
+    {
+      "path": "route-03-phi-exact/audit/independent_audit.json",
+      "sha256": "3bace4993b5a14c55950043322dd410e65f7f0135df5e03c95dde18a5ad6b3dd"
+    },
+    {
+      "path": "route-04-mass-g-wave/prover_result.md",
+      "sha256": "d55114570d516c69e446f2c228a76fb8827335e596df6c62e3d355a5232f9ffa"
+    },
+    {
+      "path": "route-04-mass-g-wave/falsifier_result.md",
+      "sha256": "03a06fbe30ae7acea06a7da21d694f3d07bb3140458c93ce78b16b911fefb9e9"
+    }
+  ],
+  "first_error": {
+    "location": "route-04-mass-g-wave/falsifier_result.md, Section 3, sentence beginning 'To prove this, standard Sturm continuity'",
+    "layer": "proof",
+    "issue": "Uniform convergence is used over a moving-switch family without proving the compactness and uniform continuity hypotheses needed to justify it."
+  },
+  "decision_delta": "W4 is accepted as a rigorous exact mixed-sign reduction, and the W5 exact mass-defective witness is accepted as a valid obstruction to any mass-free G-sign proof. The restricted near-one theorem is downgraded pending a repairable uniform compactness proof. G>=0, PHI-SIGN, and KP-DET remain open."
+}

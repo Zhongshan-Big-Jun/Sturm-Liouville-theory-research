@@ -26,7 +26,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 | 偶次最小解锚点 $K(1)=e/4$ | `docs/SL_third_order_K1_proof.tex` | 已证 (STRICT, 仅 c=1; 一般 $K(c)$ 开放) |
 | $n \ge 2$ 间距 (局部): $R=1$ 反射对称 + $R \to 1$ 局部唯一性; $(G2)$ 已闭合; 全局唯一性剩余依赖 $(G1')$ | `docs/SL_gap_nge2_symmetry_local_proof.tex` | 已证 (局部) |
 | B4/P1 M3: $n=2$ 对称 INF large-R 有限内部支, 含尺度, 质量差, 上游标量与两个扇区行列式 | `blueprint/blueprint.json`, `research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/` | 已证 (STRICT, M3 规定范围) |
-| $n=2$ 对称 INF 奇扇区首次零点: 半可分 Green 归约, 全局负 pivot, Schur/五相位等价, double-zero 排除, 同号 Jacobi 核与唯一锁定点 | `research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/` | STRICT 部分结果, 独立审计 PASS; KP-DET 精确剩余为 Phi<0, KO-DET 开放 |
+| $n=2$ 对称 INF 奇扇区首次零点: 半可分 Green 归约, 全局负 pivot, Schur/五相位等价, complete $0<c\le1/2$ 的 KP-DET | `research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/` | STRICT 部分结果, 三轮独立审计 PASS; arbitrary finite $c$ 的 KP-DET 与 KO-DET 开放 |
 
 ### 部分证明 / 数值强猜想 / 开放问题
 
@@ -40,7 +40,7 @@ Sturm-Liouville (SL) 边值问题的前沿数学研究项目, 覆盖两条主线
 
 权威清单: `docs/SL_spectral_topics_summary.tex` §5 (含各问题的进展与失败路线).
 
-1. **相邻间距极端值结构收尾** ($n\ge2$): 开关位置/块长闭式, 反射对称性与唯一性, 最优值 $\max/\min D_n$ 闭式或锐界, $n=1$ 证书重放内核的形式化. 进展 (2026-08-29): B4/P1 M3 已在 n=2 对称 INF large-R 有限内部 chart 内严格闭合. 令 $u=R^{-1/6}$, $\kappa^3=18\pi-48/\pi$, 则 $m_{3D}-m_{3N}=-(4/\kappa^5)u^4+O(u^6)<0$, $\Chi_{up}=3/2+4/(\pi\kappa)+O(u^2)>0$, $\det Kp_{odd}=(128\kappa^2/\pi^2)u^{20}+O(u^{22})>0$, $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$. Blueprint 严格证书已由事后 Codex+Whiteboard 盲复现完全复算. 2026-08-31 又证明 all-finite-interior n=2 对称 INF 奇扇区的 lower-right pivot 全局为负, 并把 KP-DET 无损归约为完整五相位约束上的 $\Phi<0$; 同号 Jacobi 核具有唯一锁定点, 因而纯 Sturm 商单调路线被严格封闭. $(G2)$ 已闭合, 剩余全局开放核为 $(G1')$ 与全局唯一性.
+1. **相邻间距极端值结构收尾** ($n\ge2$): 开关位置/块长闭式, 反射对称性与唯一性, 最优值 $\max/\min D_n$ 闭式或锐界, $n=1$ 证书重放内核的形式化. 进展 (2026-08-29): B4/P1 M3 已在 n=2 对称 INF large-R 有限内部 chart 内严格闭合. 令 $u=R^{-1/6}$, $\kappa^3=18\pi-48/\pi$, 则 $m_{3D}-m_{3N}=-(4/\kappa^5)u^4+O(u^6)<0$, $\Chi_{up}=3/2+4/(\pi\kappa)+O(u^2)>0$, $\det Kp_{odd}=(128\kappa^2/\pi^2)u^{20}+O(u^{22})>0$, $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$. Blueprint 严格证书已由事后 Codex+Whiteboard 盲复现完全复算. 2026-08-31 至 2026-09-01 又证明 all-finite-interior n=2 对称 INF 奇扇区的 lower-right pivot 全局为负, 把 KP-DET 无损归约为完整五相位约束上的 $\Phi<0$, 并由 exact common-beta orientation 闭合所有 complete $0<c\le1/2$ tuple. 同号 Jacobi 核具有唯一锁定点, 因而纯 Sturm 商单调路线被严格封闭. Arbitrary finite $c$ 的 acute branch, KO-DET, $(G1')$ 与全局唯一性仍开放.
 2. **一般边界/势类推广**: Neumann 情形 (Li-Ao 线), 非负势 $q\ge0$ (Gan-Zheng-Li-Shao 线), 变号权重的比值最优常数与极值结构.
 3. **MDE 极值测度统一理论**: Neumann 间距与最大间距的极值测度结构, 及其与节点界 (Chu-Guo-Meng-Zhang) 的统一.
 4. **左定空间稠密性一般判据**: 受一般边界条件约束的 Hilbert 空间中多项式稠密的充要条件. 进展 (2026-08-14 会话 106, run R-20260814T070000Z-densbc): 定理 A-H STRICT (主判据 V∩Q^\perp={0}; 约束矩刻画; 约束恢复稠密性修正版; 对角完整分类: 稀疏族在约束坐标子空间稠密 iff β≤3/2 且 R 无有限游程; 一阶矩/跳变判据 on V); 两个包猜想被否证 (V=span{x²,x³}^⊥ 非全 β 稠密 - 自由参数转移到 M₄/M₅; "β≤3/2 或杀 M₂=M₃" 判据为假 - R={4} 有限单例游程); 开放核 O1-O3 (一般非对角精确判据/L_j 展开杀自由参数/分数窗).

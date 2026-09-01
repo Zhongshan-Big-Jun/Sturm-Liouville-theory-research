@@ -109,3 +109,19 @@ superseded before a completion label is used.
 - Status: RIGOROUS_PARTIAL_RESULT after independent audit PASS; `KP-DET`,
   simultaneous odd/even singularity, and `KO-DET` remain open.
 - Source: `runs/plugin-benchmark-20260830-v19-live-recovery-g1p/workspace/runs/rigorous-open-math-research/R-20260830T020000Z-g1p-live-recovery/candidate_proof.md`.
+
+## 2026-09-01 (KP-DET common-beta sign run)
+
+- Scaffold: `SL/KpDetCommonBeta_Scaffold.lean`.
+- Machine-checked algebraic cores: positive-weight mass balance forces the
+  middle coefficient negative under the audited phase implications; the exact
+  `G` factorization gives `G>0` from `q<E`; the accepted `Xi` split then gives
+  `Xi>0`.
+- Informal audited boundary: branch-safe common-`beta` reconstruction and the
+  strict chamber `c alpha<=pi/2`, including every complete tuple with
+  `0<c<=1/2`.
+- Status: Tier 0 algebraic core only. The transcendental reconstruction and
+  statement fidelity to the complete Sturm-Liouville system are not formally
+  encoded, so this is not `FORMALLY_VERIFIED`. Direct single-file compilation
+  with Lean 4.31.0 exits 0 and the scaffold contains no `sorry` or `admit`.
+- Source: `research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-08-common-beta-orientation/accepted_package.md`.

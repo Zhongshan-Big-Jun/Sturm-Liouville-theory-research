@@ -1,0 +1,49 @@
+{
+  "audit_id": "AUDIT-W7-ALPHA-COLLISION-01",
+  "verdict": "PASS",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": [],
+  "covered_scope": [
+    "Verified all five packet-bound SHA256 values before review.",
+    "Verified compact phase subsequence extraction from the exact modal beta bound.",
+    "Re-derived switch-uniform spectral convergence by min-max and checked the factor m in the total phase identity.",
+    "Removed both left-layer norm singularities directly from the exact spectral equations, retaining all m, c, Z, and T factors.",
+    "Independently computed the full limits I3hat to 3pi/4 and I2hat to pi/2.",
+    "Derived the limiting mass equation, checked the nonnegative square-root sign, and excluded both theta endpoints.",
+    "Checked Z to -1, T to -1, X/alpha to -1, and Y/alpha to 2/3 from the exact transfer and spectral equations.",
+    "Checked the exact band-equation limit and its contradiction with the mass ratio.",
+    "Verified equivalence between sequential nonexistence and a uniform empty wedge without assuming branch existence.",
+    "Verified that the uniform wedge implies alpha/(m-1) to positive infinity along every complete sequence with m to 1+.",
+    "Confirmed that arbitrary finite-R G-sign, Xi-sign, PHI-SIGN, and KP-DET remain outside the theorem."
+  ],
+  "residual_risk": [
+    "The theorem does not establish existence or continuation of complete admissible tuples near m=1.",
+    "It supplies no sign theorem for G, Xi, or Phi outside the excluded wedge.",
+    "PHI-SIGN and KP-DET remain open for arbitrary finite R."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "problem_contract.md",
+      "sha256": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d"
+    },
+    {
+      "path": "route-01-transfer-schur/derivation.md",
+      "sha256": "a96fde4cfaaf3cb83fcf416d3d7e627a5d63c4a48c2cd8a0c562e9dd8636e7d3"
+    },
+    {
+      "path": "route-04-mass-g-wave/repair/near_one_repair.md",
+      "sha256": "8defee6c05565313b5d9f2e4365d102349c32e8cf9ef04bde6f288ace6c30314"
+    },
+    {
+      "path": "route-04-mass-g-wave/repair/reaudit.json",
+      "sha256": "3f88a6ed8cf6da7f7adc41a195776fbfa9f00c8cec97153156a98f773a0c573d"
+    },
+    {
+      "path": "route-05-alpha-collision/falsifier_result.md",
+      "sha256": "191b0a1cd621b8f8451647a5273a2f79efd0d57b71e3a7ba570e8644cae6e044"
+    }
+  ],
+  "first_error": null,
+  "decision_delta": "PASS accepts the exact exclusion of m to 1+ with alpha to 0, equivalently the uniform empty wedge. The ratio consequence is justified. No arbitrary finite-R G-sign, Xi-sign, PHI-SIGN, or KP-DET conclusion is added."
+}
