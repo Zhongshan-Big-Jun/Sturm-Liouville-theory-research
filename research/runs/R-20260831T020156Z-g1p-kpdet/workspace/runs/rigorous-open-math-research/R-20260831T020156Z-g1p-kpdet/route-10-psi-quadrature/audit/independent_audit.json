@@ -1,0 +1,42 @@
+{
+  "audit_id": "AUDIT-DIRECT-PSI-QUAD-01",
+  "reviewer_role": "fresh independent Route 10 verifier",
+  "independence": "The reviewer did not author Route 10, used only the four hash-bound inputs, did not rerun a solver, and did not use web search.",
+  "input_hashes": {
+    "problem_contract.md": "67427fe00b6b7758552581cde19fdb449202b5e9ea7bf9013f6ba0a4135f3f9d",
+    "route-08-common-beta-orientation/accepted_package.md": "2257a61c95cdcfa58b12cae577c5097ea4f124cd5d6077b6ebe550eb0779f8ed",
+    "route-09-acute-threshold/accepted_package.md": "c76ed655d854bb327fc3755cbd0c2438cddd6eaf37f64111944dcf13db7be45d",
+    "route-10-psi-quadrature/coordinator_direct.md": "e156f97b449daef0eac35ed7ae7ef30ceb2c6eac35983bc24534cf6f1b1a4634"
+  },
+  "verdict": "REPAIRABLE_GAP",
+  "first_error": {
+    "location": "Q7, the sentence claiming substitution in the accepted formula for E, and consequently the E term in Q8",
+    "layer": "dependency",
+    "issue": "None of the four authorized hash-bound inputs states the exact formula defining E. The Route 08 package states only that E is a positive correction when Bcoef<0, and the Route 09 package uses E without defining it. Therefore the displayed transformed E term and q-E=Q_quad/(mr) cannot be independently derived from the authorized dependency closure."
+  },
+  "critical_errors": [],
+  "gaps": [
+    {
+      "location": "Q7-Q8",
+      "issue": "The q contribution, acute inverse-trigonometric branches, and positivity of the displayed denominator verify, but the displayed second term cannot be identified with mrE from the bound inputs. Q8 and the exact reduction to Q9 remain unaudited at this interface."
+    }
+  ],
+  "repair_hints": [
+    "Bind an immutable accepted source that states the exact formula for E, or restate that formula in a hash-bound repair artifact with its provenance. Then show the substitution to the displayed denominator line by line and re-audit Q7-Q8 only."
+  ],
+  "checked_claims": [
+    "Q1 is correct from c alpha=pi-H_m(B), c theta=H_m(g), and c beta=B-g.",
+    "Q2 is correct from the positive lock sin(A)^2=r sin(B)^2 and sin(d)^2=r sin(g)^2.",
+    "Q3 is correct, including the derivative sign and strict positivity of the integral.",
+    "Q4 is correct and uses only positive divisors.",
+    "Q5 is an exact identity and both gain terms are strictly positive.",
+    "Q6 follows strictly, and T_quad is below sin(A)^2.",
+    "The acute reconstructions of A and d in Q7 use the correct principal branches.",
+    "Every factor in the displayed Q7 denominator is strictly positive.",
+    "The first term of Q_quad equals mrq exactly.",
+    "The second term of Q_quad cannot be checked against E because E has no exact definition in the authorized inputs.",
+    "Q9 is open and is not accepted as proved."
+  ],
+  "evidence_boundary": "No numerical evidence is used in Route 10 or in this audit. The gap is a hash-bound dependency omission, not a numerical uncertainty.",
+  "global_status": "RIGOROUS_PARTIAL_RESULT WITH REPAIRABLE DEPENDENCY GAP. Q1-Q6 and the q-side branch algebra in Q7-Q8 are verified. Q7-Q8 cannot yet be accepted as an exact q-E transformation, so the proposed equivalence with open Q9 is not yet in the audited closure. Complete c>2/3 PHI-SIGN and KP-DET remain open."
+}

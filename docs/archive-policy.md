@@ -1,32 +1,24 @@
-# Archive policy for runs/ and misc/
+# 研究仓库清理与归档
 
-Long-running research projects accumulate run roots and throwaway artifacts.
-Keep the working tree navigable without deleting history.
+[目录说明](repository-guide.md) | [2026-09-09 清理记录](../reports/repository-cleanup-20260909/REPORT.md)
 
-## Policy
+整理以证据可追溯和后续研究可用为准. 文件年代, scratch 名称, 重复字节或任务无返回都不能单独决定删除.
 
-- `runs/rigorous-open-math-research/<RUN_ID>/` directories older than the
-  configured cutoff are zipped into `archive/runs/<RUN_ID>.zip` and removed
-  from the live tree.
-- `misc/` files older than the cutoff are zipped into
-  `archive/misc/misc-old-<YYYYMMDD>.zip` and removed.
-- Default cutoff is 90 days. Adjust with `--days`.
-- The script is **dry-run by default**; pass `--apply` to execute.
+## 清理前核对
 
-## Usage
+1. 保存工作树状态, 未提交文件的备份和待清理项的 SHA256. 区分本轮修改与原有研究进展.
+2. 检查路径, 文件名, 哈希及调用引用. 证明清单, 审计, canonical inventory, checkpoint 和复现脚本依赖的工件保留原路径与字节.
+3. 判断是可再生生成物, 已完成的一次性维护实现, 可复用工具, 还是独有研究记录. 有疑义时保留并说明理由.
+4. 删除和迁移写逐项 manifest, 指向原 Git 版本或备份. 完成后检查保留工件的哈希与文档链接.
 
-```text
-py -3 scripts/archive_old_runs.py --days 90            # preview
-py -3 scripts/archive_old_runs.py --days 90 --apply    # execute
-```
+## 各类文件的处理
 
-## Notes
+- **TeX 中间物.** 未被证据绑定或调用引用, 且来源明确的 aux, toc, out, fls, fdb_latexmk, xdv, synctex.gz 和普通编译日志可以重新生成. 只清理已经核对的具体文件; PDF 与 TeX 原文保留.
+- **编译日志.** 日志可能本身是证据. `docs/build/SL_gap_n1_O3a_phase_rigidity_proof.log` 被旧复现清单按 SHA256 绑定, 即使位于 build 目录也保留. 来源不清的诊断日志同样保留.
+- **代码副本.** 同内容的 run 副本和 scripts 入口可能承担不同路径契约. 可共享的新实现另行设计; 固定历史包与其引用保持不动.
+- **失败路线.** 保留条件, 反例, 实现错误及后续修正. 新发现可以使某类方法重新值得研究; 旧判断需要带范围阅读.
+- **历史首页和会话.** 可以把长说明归入专页或历史快照, 同时维护入口. 对原字节有保存要求时保留未经重写的快照.
 
-- Archives live in `archive/` so they remain in the repository (or can be
-  pushed to a release/backup location) instead of being lost.
-- Do not archive active runs. The script uses file modification time; an
-  active run is usually recent. For a run you want to keep live, touch its
-  directory or move it out of the scanned root.
-- This is a maintenance convenience, not a research artifact. It never deletes
-  without `--apply` and never touches `docs/`, `scripts/`, `tools/`, or
-  `lean-proof/`.
+旧 `scripts/archive_old_runs.py` 按 mtime 选择 run, 不能判断证据绑定或活跃状态, 不作为当前归档入口. 根 AGENTS 的插件运行时约定继续适用; 本轮没有运行旧归档或项目本地 Blueprint Python 工具.
+
+如果以后确实需要迁移研究工件, 应先处理所有引用及相关审计绑定, 再按项目的专门迁移程序进行. 日常维护优先用导航改善可读性.

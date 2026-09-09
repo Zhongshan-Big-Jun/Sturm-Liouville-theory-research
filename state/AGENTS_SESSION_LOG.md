@@ -3317,3 +3317,198 @@
 - Formalization: added `lean-proof/SL/KpDetCommonBeta_Scaffold.lean` for the algebraic mass-balance, `G`, and `Xi` sign chain. Lean 4.31.0 single-file compilation exits 0 and the file contains no `sorry` or `admit`. It intentionally does not encode the trigonometric common-beta reconstruction and is not `FORMALLY_VERIFIED`.
 - Repository hygiene: four checkpoint-bound Markdown artifacts retain their original trailing blank lines because changing them would break audit hashes. The existing run-specific `.gitattributes` rule now disables only the `blank-at-eof` style check while continuing to enforce LF.
 - Open boundary: arbitrary finite `c` on the unique acute branch, `KO-DET`, simultaneous sector singularity, non-symmetric roots, and global `(G1')` remain OPEN. Newly audited P8-P15 still require a later immutable Blueprint proposal and independent review before deterministic canonical integration.
+
+### 2026-09-02 session: KP-DET acute audit, quadrature reduction, and quota boundary
+
+- User quota report: weekly 16 percent and five-hour 65 percent at the start. The session used closure-first checkpoints before every model action and reported phase data after each subexperiment.
+- Sequence-21: the distinct W14/W15 retry audit returned `PASS` with zero critical errors and zero gaps. Accepted P16-P19 prove strict intrinsic compatibility monotonicity, exclude the acute branch for `c<=2/3`, establish complete KP-DET for `0<c<=2/3`, collapse exact mass to `Psi=0`, and classify the uniform all-`m` mass-defective collar. Numerical scans remain `EVIDENCE` only.
+- Sequence-22: one coordinator response derived the candidate quadrature identities `(Q1)-(Q8)`, including exact elimination of physical layer weights and the strict gain `(Q5)` below the old coefficient threshold.
+- Sequence-23: a fresh independent audit returned `REPAIRABLE_GAP`. It accepted `(Q1)-(Q6)` and isolated one dependency omission: the authorized Route 8 summary did not state the exact formula for `E`.
+- Sequence-24: the minimal repair bound the immutable Route 8 prover source and derived `mrE`, `mrq`, and `Q_quad=mr(q-E)` line by line. No part of `(Q9)` was attempted.
+- Sequence-25: the narrow re-audit returned `PASS` with zero errors and zero gaps. Accepted package P20-P21 has SHA-256 `53b2e95ddb65396385cc90ba2cac0472c779bafc60b97b8dd6e62aa67607d96a`. The only remaining Route 10 gap is the constrained quadrature implication `(Q9)` for `c>2/3`.
+- Sequence-26: the bounded Q9 proof and falsification wave produced zero valid artifacts. W17 was rejected at the service usage limit before mathematics. W16 had no observable return or artifact, so its failure cause is recorded as unknown. The wave was reconciled exactly once with no retry.
+- Recovery: sequence-26 checkpoint ID is `sha256:192a9e92cbdd5366a5c6405327d98c296f6debf429a77297106e31e66f47f980`, status `READY`, with 48 bound artifacts. Restart, duplicate dispatch, and transcript replay counts are all zero. The next authorized model action after quota recovery is `DISPATCH-PSI-QUAD-WAVE-09` with distinct worker action IDs.
+- Open boundary: `(Q9)`, complete `c>2/3` KP-DET, `KO-DET`, simultaneous sector singularity, non-symmetric roots, and global `(G1')` remain OPEN. P16-P21 still require immutable Blueprint submission, independent proposal review, deterministic integration, and a targeted Lean scaffold before the repository stage is complete.
+
+
+## 2026-09-09: 2.0 成果仓库整理与历史 AGENTS 快照
+
+用户要求将本仓库标为研究插件的成果仓库, 修缮中英文 README, 整理目录和清理冗余代码. 本体与插件由不同 agent 并行维护. 本体范围禁止进入 _xsoc1_work/, 不 commit/push, 不改 canonical, 不移动或改写证明哈希绑定文件. 既存 68 项工作树内容已有外部完整备份.
+
+方法: 保存本轮完整文件哈希基线, 核对 sequence-26 与插件公开 Q9 对照报告, 分开表述 run 审计与 canonical 接收. 首页缩短, 详细研究导航与项目理解页承接证明范围, 失败路线再检视和人的批注. 清理先查内容, 调用与证据引用, 数学脚本和含疑义历史文件保留. 验证结果见 reports/repository-cleanup-20260909/REPORT.md.
+
+以下完整保存整理前根 AGENTS 的原始文字, 仅作历史记录; 当前维护规则以仓库根 AGENTS.md 为准.
+
+<!-- pre-v2-agents-snapshot:start -->
+<!-- blueprint-project-layout:v1:start -->
+# Blueprint v2.2 project layout (highest precedence)
+
+- `blueprint-project.json` is the physical-layout authority.
+- Canonical graph, inventory, submissions, and audit history are under `blueprint/`.
+- Raw inputs and generated artifacts are under `research/`; disposable work is under `research/work/`.
+- Do not run or copy project-local Python tools. Resolve the active plugin's `runtime/blueprintctl.py`, then run `ensure` once and use that gateway.
+- Any legacy `statistics/.../tools/...` command below is documentation only and is superseded by this block.
+<!-- blueprint-project-layout:v1:end -->
+
+# AGENTS.md
+
+## 项目目标
+- 寻找, 阅读论文, 研究前沿数学问题 (当前主题: Sturm-Liouville 边值问题).
+- 研究数学问题时调用 `rigorous-open-math-research` skill.
+- 查找论文时多用 Google, 寻找最前沿结果, 总结证明技术.
+- 用户会提供论文链接, 生成 tex 文件解析论文, 并以此为基准寻找相关结果.
+
+## 当前关注问题
+1. 多大的空间中 SL 边值问题的解能等价于该空间内的所有正交函数系 (基准论文: Springer 章节 10.1007/978-3-031-90135-5_7).
+2. 优化 SL 边值问题相邻特征值间距的界 (联网检索先进结果).
+
+## Recent session summary
+- 2026-08-29: B4/P1 M3 closed in the stated n=2 symmetric INF large-R finite-interior chart. Added the accepted Blueprint graph, proof packages, approved immutable submission and merge receipt, plus a post-freeze Codex+Whiteboard blind replication. The replication exactly matches the seed, mass difference, upstream scalar, and both determinant coefficients and signs. Old staged-Pbuild odd/log conclusions are marked SUPERSEDED. Global all-R `(G1')` and `(G2)` remain open.
+- 2026-08-31: B4/G1' KP-DET closure-first run produced an audited STRICT partial package. It proves the global pivot `gamma_2>b_0>0`, the exact Schur reduction, the lossless phase reduction `KP-DET iff Phi<0`, and Jacobi flux/locking identities. Fresh audit PASS, Blueprint partial integration merged, Tier 0 Lean scaffold parses. `PHI-SIGN` and complete KP-DET remain open. Final sequence-03 recovery checkpoint is READY and scoped workflow validation has 0 hard problems.
+- 2026-09-01: Continued the same KP-DET run through exact global sign coherence and branch-safe common-beta orientation. Two fresh joint audits PASS. Every complete tuple has `Bcoef<0`, and every complete `0<c<=1/2` tuple satisfies `KP-DET`. W14/W15 propose a `c<=2/3` extension and a mass-defective collar, but their audit hit the usage limit before producing a verdict, so both remain immutable `UNREVIEWED` candidates. Sequence-20 checkpoint is READY for audit-only recovery, and scoped validation has 0 hard problems.
+- 2026-09-02: The W14/W15 retry audit returned PASS, proving branch-local KP-DET for every complete `0<c<=2/3` tuple and accepting the exact mass collapse plus the uniform mass-defective collar. Route 10 then derived and audited the strict quadrature reduction P20-P21. The remaining `c>2/3` implication `(Q9)` is OPEN. Its first two-worker wave produced no valid artifacts at the quota boundary. Sequence-26 is READY with 48 bound artifacts and no restart, duplicate dispatch, or replay.
+
+## 工作方法
+1. 进入项目先读 AGENTS.md; 若不存在则创建并开始维护.
+2. 每次变更后更新 AGENTS.md, 简述工作内容.
+3. 研究数学问题严格按 rigorous-open-math-research skill: 精确定义问题, 多路线探索, 对抗性审查, 边界情形检查, 结论可验证.
+4. 生成 obsidian 仓库中的 md 文件时调用 obsidian 相关 skill.
+5. 任何问题如实回答, 不允许编造答案或想象问题.
+6. 只允许使用英文标点符号; 代码使用 tab 缩进.
+7. 从论文学到新方法或在研究中发现新工具时, 实时更新 `tools/` 工具库: 新建 `tools/<slug>.md` (含解析与适用范围), 更新 `tools/README.md` 索引, 并在本文件会话记录中登记.
+8. **数值检验不得作为结果呈现.** 整理文档 (docs/*.tex, tools/*.md, run 工件) 时, 必须把数值部分与严格证明部分区分开来并显式标注: 严格证明用 ``严格证明``/``定理已证``/``STRICT`` 标签; 数值证据用 ``数值证据``/``数值验证 (精度)``/``EVIDENCE`` 标签且注明不构成证明; 猜想/开放必须标 ``猜想``/``开放``. 未完成严格证明的断言不得称为``已解决``.
+
+## 注意事项 (Notes for future agents)
+
+- **本文件保持精简**: 完整历史会话日志在 `state/AGENTS_SESSION_LOG.md`; 需要归档时用
+  `scripts/split_agents_log.py --agents AGENTS.md --archive state/AGENTS_SESSION_LOG.md`.
+- **runs/misc 归档**: 使用 `scripts/archive_old_runs.py` (默认 dry-run, `--apply` 才执行);
+  策略说明见 `docs/archive-policy.md`.
+- **未跟踪临时脚本**: `scripts/_tmp_p1_bounded.py`、`scripts/_tmp_p1_bounded2.py` 等
+  `_tmp_*` 文件是临时探索产物, 不属于正式工件; 提交前清理或加入 `.gitignore`, 不要纳入
+  正式研究提交.
+- **远程推送顺序**: `project.json` 配置 `git_sync.push_order = ["origin", "fork"]`;
+  先 push `Zhongshan-Big-Jun/Sturm-Liouville-theory-research`, 再 push
+  `xsoc1/Sturm-Liouville-theory-research`.
+- **插件仓库注意事项**: 见 `_xsoc1_work/AGENTS.md` (Codex 父仓库) 与
+  `C:\Users\HuangZY\.dsh\math-research-dsh\AGENTS.md` (DSH 适配仓库) 的
+  "Notes for future agents" 小节.
+- **GitHub 网络**: 直连 github.com 失败时, 用本地代理 push:
+  `git -c http.proxy=http://127.0.0.1:7897 push origin main` (本机实测可用).
+- **外部仓库克隆位置**: 临时调研用的外部仓库统一克隆到 `F:\tools\` 下
+  (例如 `F:\tools\rethlas-clone\`), 不要放到 C 盘用户目录; 用完可删除.
+
+## 会话记录
+
+- 完整历史会话日志: `state/AGENTS_SESSION_LOG.md` (由 `scripts/split_agents_log.py` 维护, 本文件只保留指针与近期摘要).
+- 每次变更后在本节追加一行近期摘要; 长日志一律写入归档文件.
+- 2026-08-16 会话 108: 清查未跟踪文件并交接 (session log 归档, G1' EVIDENCE 脚本, 社区蒸馏缓存, 维护脚本); 同步状态; 尝试闭合 P1/M3 或 DensBC O1.
+- 2026-08-16 会话 109 (R-20260816T000000Z-densbc-o1): DensBC O1 求解 run. 新 STRICT 结构定理 (投影稠密性 P_V(Pi)=V, 障碍矩系统, 游程/首个障碍, 对角归约 Theorem E, 有限秩分类); 诚实化约核 O1' (矩可实现/成员步). 独立对抗审计 (fresh subagent) REPAIRABLE_GAP 并已修复. 未 commit/push.
+- 2026-08-16 会话 110 (R-20260816T174722Z-min-direction-audit): 审计合作者 min_direction_progress.tex; 独立对抗审计 + 符号/数值验证; 补充核验包 collaborator_min_direction_verification/ 后重放 Bernstein 证书/charge_compensation/det_forest 全部 PASS, 结论升级为 ACCEPT. 已加入 docs/SL_gap_nge2_min_direction_progress.tex/.pdf, README 索引, 审计 run + 核验包入库.
+- 2026-08-22: 插件性能实验完成 (A6 root-1 高阶有理积分解排除, Q-20260822-a6-perf-A1B2C3D4). baseline (97ba72f7) 与 reuse-gate (c13dd1f0) 均得 root-1 no-go RIGOROUS_PARTIAL_RESULT; reuse-gate 多耗约 2x input/cache、46% tool calls, 未显著改善数学产出, 但更显式可审计. 独立审计 (b1df4d9e) REPAIRABLE_GAP 2 处已修复; 可用结果已登记 (research_map/tools/Lean scaffold/状态/性能报告 reports/plugin-performance-a6-ab.md).
+- 2026-08-22: 第二轮插件性能实验完成 (B3 fixed-n 上确界, 更难更大). baseline (b9543550) 与 reuse-gate (c93ffd79) 均独立得出 2 项 STRICT 结果: 固定 n 比值全局极大子 = bang-bang [1,R,1,...,1] 且恰 2n 开关; 交替平衡世俗多项式 F_n 在 (0,pi) 恰 2n 个简单根 (关闭 O3). reuse-gate 本回合更省 cache/步骤 (但产物文档较少), 另发现非平衡自洽解; O1/O2 仍开放. 独立审计 (cb3b9695) REPAIRABLE_GAP 3 处已修复; 性能报告 reports/plugin-performance-b3-ab.md, scaffold/tools/research_map 已登记.
+- 2026-08-22: B3 baseline run R-20260822T220000Z-b3-baseline: 新 STRICT 结果 2 项 — (i) 固定 n 比值全局极大子均为 bang-bang [1,R,1,...,1] 且恰 2n 开关 (比值能量不变量 E=0, q0=1/c, q1=-1/c); (ii) 交替平衡世俗多项式 F_n(y) 在 (0,pi) 恰 2n 个简单根 (转移矩阵递推 + Chebyshev/Jacobi 谱论证). O1 全局极值闭式/O2 交替族单调仍开放. Artifacts 在 run root.
+- 2026-08-23: 第三轮插件性能实验完成 (DensBC O1' 一般非对角 H). baseline (40a27890) 与 light-reuse (5fda63a6) 各得互补 STRICT 子类结果: 稳定带 Toeplitz H_shift(m,lambda) 有限秩判据 (baseline) 和加权移位 H_{beta,lambda} 判据 (light-reuse, beta>3/2 门槛). 轻量 reuse 协议比 baseline 少 41% 步骤/53% 工具调用/59% cache, 且维持最低产物集 (94K 未缓存 vs 127K); 独立审计 (b086bc37) baseline 无缺口、light-reuse REPAIRABLE_GAP 已修复; 性能报告 reports/plugin-performance-o1p-ab.md, 两个 scaffold/tools/research_map 已登记.
+- 2026-08-23: 第三轮插件性能实验 baseline run R-20260823T000000Z-o1p-baseline 完成: 新 STRICT 有限秩判据 (稳定移位带 Toeplitz 空间 H_shift(m,lambda), 带宽 m>=1, 有限多项式 representer): dense <=> ker(T|B_fin)={0}; 带宽 2 v_1=x^4 非稠密例; 一般 O1' 仍开放. 工具/状态未提交, 工件在 run root.
+- 2026-08-23: 启动左定空间稠密性一般判据 O1'LD 研究 (Q-20260823-leftdef-o1pld-D4E5F6A7, run R-20260823T030000Z-leftdef-o1pld). solver c3cdb7b0, 使用 v1.5.0 轻量 reuse 协议, 等待结果后审计并登记.
+- 2026-08-23: O1'LD run R-20260823T030000Z-leftdef-o1pld 完成: 新 STRICT 结构定理 (L^2 有限支撑矩刚性 via Müntz-Szász L^p, 无限游程不可实现, cofinite-N 稠密 => H^2 真子空间保留集非余有限, 奇偶分解) + 具体 W=ker μ_4 非稠密例; 一般 O1'LD 仍开放. Artifacts 在 run root; 工具 [[leftdef-o1pld-l2-structural]]/research_map 已登记.
+- 2026-08-23: O1'LD run 独立审计 (R-20260823T040000Z-leftdef-o1pld-audit) 判定 REPAIRABLE_GAP; 已修复: Lemma 1 改为 Lebesgue L^2 加权代入, 移除 DensBC O1 两项游程代数, 尾部刚性/cofinite-N 降级 NOT-YET-STRICT, μ_4 奇侧用 SL_h2 奇增长引理, H^1 无限游程降级 EVIDENCE; run/工具/报告已同步.
+- 2026-08-23: O1'LD re-audit R-20260823T050000Z (PASS): 修复后的 STRICT 断言 (有限支撑矩刚性/Cauchy-Schwarz/奇偶分解/μ_4 非稠密) 可入库; cofinite-N/H^1 无限游程按 NOT-YET-STRICT/EVIDENCE 登记; 陈旧 MET/SUCCEEDED 标签已清理.
+- 2026-08-23: 根据用户 11 页手写 SL 笔记在 F:\LaTeX\SL_Spectral_Theory_Lecture 创建 LaTeX 讲义 (SL_Spectral_Theory_Lecture.tex + Handwritten_Notes_LaTeX.tex + images/), 笔记整理含 Euler-Bernoulli 梁推导、Liouville 标准形、Prüfer 变换、Sturm 比较、正交性与广义 Fourier 级数.
+- 2026-08-23: 安装 LaTeX 工具链并接入 VSCode: WSL TinyTeX (~/.local/bin/xelatex, texlive 2026, 已装 ctex/xecjk) + Windows MiKTeX (user PATH 已加入); LaTeX Workshop 扩展已装 Windows 与 WSL Remote; 在 F:\LaTeX\SL_Spectral_Theory_Lecture 创建 .vscode/settings.json (xelatex/latexmk-xelatex) 并成功编译两份 PDF.
+- 2026-08-23: 将 SL 谱理论 LaTeX 讲义转为 Obsidian Markdown 并同步: 安装 kepano/obsidian-skills 到 DSH 技能目录 C:\Users\HuangZY\.dsh\skills; 新建 SL谱理论/ 目录 (讲义 7 篇 + 手写图片 11 张 + 入门计划移入); 更新 README/AGENTS; 通过 Windows Git + Clash 代理 push 到 xsoc1/math-notes (55d97cb, 清理后 228a460).
+- 2026-08-23: 当前插件 v1.5.0 性能 benchmark 启动 (B3 剩余 O1/O2, run R-20260823T060000Z-b3-current). solver 557e3ac0; 将采集指标并与 round2 B3 baseline 比较, 运行 performance_alert.
+- 2026-08-23: 当前插件 v1.5.0 性能 benchmark 完成 (B3 O1/O2, 557e3ac0): 新 STRICT 一般交替 Chebyshev 世俗表示 + 振幅相等推论 + 固定 delta 根定位引理; O1/O2 仍开放. 性能指标 vs round2 baseline: steps -16%, tool calls -30%, uncached -37%, cache -48%, wall -22%; performance_alert INFO. 独立审计 REPAIRABLE_GAP 2 处已修复, re-audit PASS; 报告 reports/plugin-performance-b3-o1o2-current.md, 工具与 scaffold 已登记.
+- 2026-08-24: 研究插件更新并优化到 v1.6.0. 父插件 commit 88e1c97, DSH commit 0cc9961. 四个 SKILL.md 静态入口总量减少 21.4%, rigorous 入口减少 43.0%. 修复 Markdown fence 协议缺陷, 加入 Codex 轻量上下文路径和静态门禁. 父仓库 81/81, DSH 51/51, 全部 smoke tests 和本地 doctor 通过. 本轮未重跑端到端数学 A/B, 详见 reports/plugin-performance-v1.6-codex-context.md.
+- 2026-08-24: 预注册 B3 O3 三臂 calibration benchmark. 冻结 prompt, source/gold commits, A/B/C 配置, 污染声明, 隔离规则, 指标与独立审计口径已写入 runs/plugin-benchmark-20260824-calibration/. 尚未运行任何 arm.
+- 2026-08-24: 五臂 B3 O3 校准 benchmark 启动 (our-plugin 7ee9c2af, blank cb6dbbb0, rethlas 78a98af9, danus fe794a81, mmat 1c14031e). 使用 frozen_task 隔离; 采集指标与独立评审后出表格.
+- 2026-08-24: 五臂 B3 O3 校准 benchmark 完成并出结果表 (our-plugin/blank/rethlas/danus/mmat). 五臂均给出同一 STRICT 证明 (Chebyshev 约化); 独立中性评审 A/B/C/D PASS, E (MMAT) 一处非致命 leading-coefficient 笔误 REPAIRABLE_GAP 并已修正. 实际运行模型 deepseek-v4-flash-vision-exp (非预注册 gpt-5.6-sol xhigh); 外部三臂为提示词级模拟, 非完整上游系统. 详细表见 runs/plugin-benchmark-20260824-calibration/RESULTS.md 与 independent_review.md.
+- 2026-08-24: Codex/QED 三臂复现实验 Arm A 完成. gpt-5.6-sol xhigh + rigorous-open-math-research v1.6.0 + 子 agent 得到 B3 O3 STRICT 证明, Chebyshev 与 Sturm shooting 两条路线; 插件内审与外部匿名审计均 PASS. 正式 wall 1132.770 s, 77 model responses, 71 tool calls, 222773 uncached input, 3672576 cached input, 73731 output; 周额度剩余 43%. 工件在 runs/plugin-benchmark-20260824-calibration/codex-qed-replication/arms/a-plugin/.
+- 2026-08-24: Codex/QED 三臂复现实验 Arm B 空白对照完成. 上下文探针确认 AGENTS/skills/plugins/memory/multi-agent 均为 0; 单次 gpt-5.6-sol xhigh 响应独立给出 STRICT Chebyshev 证明, 外部匿名审计 PASS. 正式 wall 253.951 s, 1 model response, 0 tool calls, 9397 uncached input, 0 cache, 10279 output; 周额度剩余 41%. 工件在 runs/plugin-benchmark-20260824-calibration/codex-qed-replication/arms/b-blank/.
+- 2026-08-24: OOD 未污染 benchmark 完成 (指数混合/有界剪切问题, QED problem 3 复现). F 盘部署三个真实系统: Rethlas (verification service + Codex/DeepSeek), Danus codex branch (workers+verify fact graph), MMAT NL-Prover (Codex/DeepSeek). 结果: A 本插件 PASS 自含证明; B 空白 PARTIAL_NOT_COMPLETE; C Rethlas blueprint PASS 但 verify 500 且用了 MCP 网络; D Danus 完整 fact graph 证明 No (3 verified facts), 独立审查把单一 theorem fact 给 REPAIRABLE_GAP 但 fact graph 含全部引理; E MMAT 未产出最终工件 (read-only 误启动/重连). 详细见 runs/plugin-benchmark-20260824-ood-mixing/RESULTS.md.
+- 2026-08-24: 完成 B3 O3 实际 Codex/QED 三组校准. A 插件, B 空白 Codex, C 固定 QED 均获匿名审计 PASS, 数学证明全部保留. B 在单题上最省资源; C 走 Easy 短路, 未运行 QED 分解与验证链; A 产出多路线, 内审与最大研究包. 结果与协议限制见 runs/plugin-benchmark-20260824-calibration/codex-qed-replication/RESULTS.md.
+- 2026-08-25: 按要求把 DeepSeek 适配版单独拆出并标注，原配置恢复保留. 适配拷贝: F:\tools\rethlas-deepseek, danus-deepseek, mmat-deepseek (每个有 DEEPSEEK-ADAPT.md, 总览 F:\tools\DEEPSEEK-ADAPT-README.md). Rethlas verify 服务修复(HTTP 500 -> correct), MMAT writable/thread 稳定化. 用 QED problem 4 Batchelor-scale liminf 做足够难新测试: 31分钟 cap 内 A 本地插件 RIGOROUS_PARTIAL_RESULT (独立性评审 PARTIAL_NOT_COMPLETE), B 空白 REPAIRABLE_GAP (外部定理引用不精确), C/D/E DeepSeek 适配版未出最终证明 (Rethlas iter0, Danus 无 fact, MMAT sketch phase). 结果见 runs/plugin-benchmark-20260824-ood-batchelor/RESULTS.md.
+- 2026-08-25: K(1)=e/4 strict-anchor benchmark (2 hour cap) completed. Run R-20260824T184147Z-k1-e4-ab stores the two isolated solver outputs, metrics, source manifest, blind audit, and handoff documents. Added the standalone proof `docs/SL_third_order_K1_proof.tex` and PDF, plus `tools/third-order-minimal-K1.md`. The c=1 even anchor is STRICT; general K(c) and source-term control remain OPEN. The Blueprint deterministic integration helper failed before process creation with `helper_unknown_error`; this workflow caveat is recorded in the run and does not change the independently audited mathematical proof.
+- 2026-08-25: 依据用户提供的三臂 pilot 方案制定并启动适配版 (A=本插件, B=空白, C=QED 1219009). 已生成 runs/three-arm-pilot-v2/PLAN.md, blind-main/task.md, BLOCKER.md; calibration 运行目录与 run-a/b/c.sh 已就绪 (F:\benchmark\PILOT-V2-20260825\calibration). 尝试启动时 GPT-5.6 proxy 172.22.112.1:7898 不可达, 校准未产出结果, 等待 proxy 恢复后重跑.
+- 2026-08-25: Execute pilot v3: five arms x 3 new QED tasks (Bessel/exponential mixing/lamplighter) with 30-min cap under DeepSeek. A/T2 and D/T2 independent reviews PASS; B/T2 and C/T2 REPAIRABLE_GAP; T1/T3 mostly incomplete. Results in runs/three-arm-pilot-v2/pilot-v3/RESULTS.md.
+- 2026-08-25: Pilot v4 long-run launched. Synced collaborator remote e2d652d; merged and pushed origin+fork to ff11cf9. Chose U1 Batchelor-scale liminf, U2 TV asymptotics, U3 LICT_Z over Z; 15 runs (A/B/C/D/E x U1/U2/U3) with DeepSeek, 2h watchdog in F:\benchmark\PILOT-V4-LONG-20260825. Old v3 T1/T2/T3 lingering processes stopped. Repo skeleton runs/three-arm-pilot-v2/pilot-v4-long/ prepared.
+- 2026-08-25: Pilot v4 long-run recovered from API billing outage and completed. GitHub sync fully merged collaborator e2d652d and pushed origin+fork to a6e9961. Results: U3 had PASS from B (86), C (92), D (93); A/U3 REPAIRABLE_GAP (78); U2 C/U2 WRONG_PROBLEM, E/U2 PARTIAL; U1 no completed proof. Details runs/three-arm-pilot-v2/pilot-v4-long/RESULTS.md, INDEPENDENT_REVIEWS.md, RECOVERY.md.
+- 2026-08-25: Preregistered pilot v5 real-Codex U2 three-arm benchmark after quota reset. Clarified `(0,2)` as all lamps off with base at 2, fixed A/B/C isolation and scoring, and adopted a 75 percent per-five-hour work cap with 25 percent reserve. Arm A uses gpt-5.6-sol xhigh plus rigorous-open-math-research v1.6.0 and bounded research subagents.
+- 2026-08-25: Pilot v5 Arm A first Windows launch classified INFRA_INVALID and excluded because the managed profile became read-only, preventing v1.6.0 phase reads and artifact writes. Stopped at primary quota 32 percent. WSL replacement passed explicit workspace read/write and proxy preflights; details in pilot-v5-codex-u2/INFRASTRUCTURE_LOG.md.
+- 2026-08-25: Pilot v5 WSL replacement hit the preregistered five-hour stop during full v1.6.0 protocol loading (primary 32 -> 46 percent, secondary 5 -> 7 percent) before mathematics began. Marked PAUSED_QUOTA and excluded from scored Arm A. Next run starts from a fresh directory after the 300-minute reset.
+- 2026-08-27: 用户确认五小时额度恢复并要求继续, 后报告周额度剩余 18%. 完成 v1.7 closure-first 匹配回归首段: 1311.844 s 后触发五小时硬限制, 3 个子 agent 中 Route A/C 返回, Route B 未落盘; 指标为 56 responses, 44 tools, 211820 uncached, 101940 output, USD 3.5672448 proxy. 独立中性审计对保留部分定理 `PASS`; 新 STRICT 可见包络 TV 等式, 端点下界, 两个显式对数上界, Route A 耦合障碍与 Route C 精确公式/反例已归档并更新 `tools/lamplighter-range-translation-tv.md`. 原 `C/sqrt(t)` 上界仍 OPEN. 结果在 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/`; 状态 `PAUSED_QUOTA_WITH_AUDITED_PARTIAL_RESULT`.
+- 2026-08-27: 用户报告五小时剩余 57%, 周额度剩余 11%, 要求继续. 已预注册 v1.7 同 session 续跑: 使用原 CLI 0.149.0-alpha.4.3, 剩余 root wall 1727 s, 禁止新子 agent/Route B 重试/新研究波次, 仅合并 Route A/C, 登记 Route B 未返回, 执行 files-only convergence check 并完成诚实 partial package. 预检见 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/CONTINUATION_PREFLIGHT.md`.
+- 2026-08-27: Pilot v5 三臂完成并同步 (A plugin PARTIAL_NOT_COMPLETE, B blank FATAL_GAP, C QED PARTIAL_NOT_COMPLETE); 数学合并结果为 `1/(2sqrt(t)) <= TV` 和 `TV <= (2log(t)+15)/sqrt(t)` (`t>=16`), 常数阶上界仍开放. 结果提交 `fe7eb1f`.
+- 2026-08-27: 基于 pilot v5 的 307 responses/7 child sessions/1,108,074 uncached input 诊断插件调度冲突, 发布 rigorous/workflow v1.7.0 closure-first 协议. 父插件 `957d80b` 已推 origin+fork; DSH `0a852d1` 已推送; Codex 本地重装 1.7.0. 静态校验 parent 81/81 + 10 smoke, DSH 51/51 + 14 smoke + BUNDLE OK.
+- 2026-08-27: 预注册 U2 v1.7 matched regression `R-20260827T063025Z-u2-v17-regression`, 复用字节相同 Arm A prompt, fresh CODEX_HOME, 75 min cap, 不重跑 controls; 目标验证 closure-first 是否在保持审计质量的同时降低 wall/responses/tools/child sessions/tokens/cost.
+- 2026-08-26: Pilot v5 scored Arm A ran 2764 active seconds before the service hard limit. Preserved two STRICT partial results: an explicit O(log(t)/sqrt(t)) range-triple upper bound and a matching logarithmic obstruction for reflection-then-synchronization with optimal conditional lamp coupling. Added same-thread WSL resume harness with 2036 seconds remaining under the original 80-minute cap. General O(t^-1/2) upper bound remains OPEN.
+- 2026-08-26: Pilot v5 Arm A same-thread continuation completed at 4052 total active seconds. Final status PARTIAL_NOT_COMPLETE with internal fresh audit PASS for the partial theorem: lower 1/(4sqrt(t)), upper (2log(t)+15)/sqrt(t), one-sided 12/sqrt(t), fixed-reflection obstruction, killed-kernel and coarea reductions. Scored metrics and full artifacts copied under pilot-v5-codex-u2/arms/a-plugin; added tools/lamplighter-range-translation-tv.md. External anonymous audit pending; original constant-order upper bound remains OPEN.
+- 2026-08-26: User removed the pilot v5 emergency reserve after quota reset. Recorded USAGE_AMENDMENT.md at primary 3 percent and secondary 9 percent; frozen task and arm definitions remain unchanged. WSL Arm A launcher now accepts an explicit fresh work-root argument.
+- 2026-08-26: Pilot v5 Arm A post-hoc label-blind external audit returned PASS for the claimed partial theorem and explicitly left O3 open. Review SHA256 0ad06b9eb728a40afa779a68d954dbde21b1b3d93c75b3b62f8192a98bb05bea; review usage excluded from scored Arm A metrics.
+- 2026-08-26: Prepared pilot v5 Arm B blank-control WSL harness. It uses a fresh content-only workspace, gpt-5.6-sol xhigh, project_doc_max_bytes=0, and disables agents, memories, skills, plugins, apps, browser, computer use, and network tools. A prompt-input leakage probe is mandatory before the 45-minute run.
+- 2026-08-26: Pilot v5 Arm B blank control completed in 1254.674 s with 17 model responses and 16 tool calls. It claimed C=12, but label-blind audit returned FATAL_GAP: the load-bearing one-turn fiber claim is false at t=48,w=8,e=4 with exact signs +,-,+,-. Lower bound c=1/4 and range-kernel reductions are certified; constant-order upper bound remains OPEN. Full raw output, metrics, audit, and exact replay are preserved under arms/b-blank.
+- 2026-08-26: Prepared pilot v5 Arm C QED harness at pinned commit 121900964e6572aaf094412d434b5ac2a792a65f. The offline-safe adapter strips search and sandbox bypass flags, disables base Codex skills, memory, plugins, and multi-agent features, and retains QED's own decomposition and verification prompts. Arm C has a 90-minute wall cap and no quota reserve stop.
+- 2026-08-26: Pilot v5 Arm C QED run1 was terminated and excluded as INFRA_INVALID. Despite CLI search stripping, sandbox network=false, and a clean prompt probe, code_mode_host exposed nested web__run; the survey made 44 web calls among 46 tools. It consumed 47 model responses, primary 48->68, and produced no proof. Protocol evidence is preserved under c-qed-infra-invalid-run1; replacement adapter now disables code_mode_host and must use a fresh workspace.
+- 2026-08-26: Arm C replacement policy: code_mode_host is fail-closed, and the fresh QED workspace pre-seeds only neutral Hard/no-external-literature metadata so the offline benchmark skips incompatible Stage 0 and enters the pinned decomposition/prover/verifier core. This adaptation supplies no proof hint and must be disclosed in scoring.
+- 2026-08-27: Pilot v5 Arm C run2 was excluded as INFRA_INVALID because fail-closed Code Mode also prevented all QED roles from reading path-only inputs. It consumed 6 sessions and 242392 input tokens but received no problem contents. Compact evidence is retained under arms/c-qed-infra-invalid-run2.
+- 2026-08-27: Pilot v5 scored Arm C completed with QED 1219009 and an offline content-inline adapter. QED structural verification rejected the complete target; fresh blind audit accepted the partial theorem `1/(2sqrt(t)) <= TV <= (5+3log(t))/sqrt(t)` for all `t>=1`. Result is PARTIAL_NOT_COMPLETE. Seven roles used 2198.87 s, 131517 uncached input, and 67782 output; constant-order upper bound remains OPEN.
+- 2026-08-27: Pilot v5 three-arm benchmark finalized. A=PARTIAL_NOT_COMPLETE with the broadest audited package, B=FATAL_GAP from a false one-turn fiber lemma, C=PARTIAL_NOT_COMPLETE with the best audited lower constant and lower cost. Combined STRICT project theorem uses Arm C lower `1/(2sqrt(t))` and Arm A upper `(2log(t)+15)/sqrt(t)`. Full comparison is in pilot-v5-codex-u2/RESULTS.md; tools index updated.
+- 2026-08-27: v1.7 closure-first matched regression 同 session 收口完成. 两段 root wall 合计 1881.050 s, 72 responses, 58 tools, 3 child sessions, 338812 uncached input, 125692 output, USD 5.183904 proxy. 相对 v1.6 Arm A 的七项预注册效率阈值全部通过. 最终独立审计对 `O1/O1b/O2/O3p/O5` PASS, 原固定 `C/sqrt(t)` 上界仍 OPEN at `O3`. 数学工件, 指标, convergence check, 审计与 hash manifest 已归档至 `runs/three-arm-pilot-v2/pilot-v5-codex-u2/v17-regression/`.
+- 2026-08-28: Pilot v6 Hs-domain Arm A 完成并入库. v1.7 插件在 1514.327 s root wall 内闭合三项目标, 得到 STRICT 充要条件 `Q_n^(s) in D(K_c^(s/2)) iff n in {0,1}` for all `c>0`, integer `s>=4`. 证明区分代数多项式逆与真正算子逆, 并修正旧工具和 `SL_hs_orthogonal_systems_proof` tex/pdf 的算子域解释. 内部审计 PASS, 外部匿名盲审 PASS 99/100, 无修复. 工件与指标在 `runs/three-arm-pilot-v2/pilot-v6-hs-domain/arms/a-plugin/`. 隐藏金标准尚未查看, B/C 尚待运行.
+- 2026-08-28: Pilot v6 Arm B 空白对照完成. 单次无工具响应用 602.092 s, 1 response, 950 uncached input, 25020 output, 独立得到与 A 相同的三项主结论. 外部匿名审计 `REPAIRABLE_GAP`, 94/100 并通过接受阈值. 首个缺口为幂算子域公式未展开正则性和递推假设, bonus 度谱正确但未证. 审计补证作为非计分附录归档, 工件在 `runs/three-arm-pilot-v2/pilot-v6-hs-domain/arms/b-blank/`. 隐藏金标准尚未查看, C 尚待运行.
+- 2026-08-28: Pilot v6 Arm C 首次启动在模型创建前因 QED 无条件检查 `claude` 可执行文件而退出, 分类 `INFRA_INVALID` 并排除. 无 wrapper log, Codex session 或数学输出. 预注册基础设施修订加入 fail-closed Claude shim 和可参数化 replacement root, 不改变任何模型, prompt, provider, QED commit, 预算或评分配置. replacement 使用全新目录.
+- 2026-08-28: Pilot v6 Arm C QED replacement 完成. 1438.3 s pipeline wall, 7 QED calls, 167013 input, 61896 output, USD 1.8377736 proxy. QED 内部因不可见的非数学 offline-status citation 标为 FAILED, regulator 判定为 documentation issue. 外部匿名数学审计对完整 8 步证明 `PASS`, 97/100, 无 load-bearing error. 主结论与 A 相同, 另得 STRICT graph-core 定理 `C[x] intersect D(K_c^(s/2))` 在算子域稠密. 工件在 `runs/three-arm-pilot-v2/pilot-v6-hs-domain/arms/c-qed/`. A/B/C 均已冻结, 下一步可解封 hidden gold 并出总表.
+- 2026-08-28: 用户报告周额度与五小时额度均重置并要求继续. 预注册 pilot v6 H^s operator-domain OOD 三臂主实验. A=v1.7 plugin with max 3 research children, B=blank Codex, C=QED 1219009, all gpt-5.6-sol xhigh and pinned CLI 0.149.0-alpha.4.3. 一轮每臂一次, 依次 A/B/C, hidden gold 0f9b2b0 在 solver 全部冻结前隔离. 计划与 harness 在 `runs/three-arm-pilot-v2/pilot-v6-hs-domain/`.
+- 2026-08-28: 用户报告五小时额度恢复并要求继续. Pilot v6 三臂最终统一评估完成: A plugin=99/PASS/PASS, B blank=94/REPAIRABLE_GAP, C QED=97/math PASS/system FAILED. 综合质量 A 胜, 效率 B 胜, 数学包 C 胜. 三臂复现 hidden-gold MO/SPD/ND; C 新增 STRICT polynomial graph-core 定理. 另一次独立 posthoc 审计 `PASS` 闭合旧 gold 的一般次数谱缺口 `{0,1} union {N:N>=2 floor(s/2)+2}`, 不计入任何 arm 分数. Files-only 收敛检查发现并修正 C/B bonus 标签歧义与审计输入 hash 指针; 总表, errata 和审计在 `runs/three-arm-pilot-v2/pilot-v6-hs-domain/`.
+- 2026-08-29: 发布插件 v1.9.0 quota-safe interruption recovery. 新增 immutable checkpoint, canonical resume receipt, predecessor lineage, exact action/minimal read set, in-flight worker/session 对账, 累计计分指标和全谱系审计新鲜性门禁; 独立对抗复审最终 PASS. 父仓库 `bc386ee` 已推 origin+fork, DSH `1c76124` 已推送, 本地 Codex rigorous/workflow 已刷新为 1.9.0. 已维护 `docs/pipeline-full-flow.md`; 本轮未重跑数学 benchmark arm.
+- 2026-08-29: 完成 v1.9 real-artifact quota recovery drill. 对 v1.7 U2 五小时中断包执行两段 checkpoint/receipt/predecessor 恢复, Route B 原 session 确定性收敛为 `NO_RETURN`, 最终 `AWAIT_INPUT`; 5 次协议操作总耗时 1294.558 ms, 模型/子 agent/网络调用均为 0. 两段 replay 与 12 个工件 hash 均 PASS, 结果标签保持 `RIGOROUS_PARTIAL_RESULT`, `O3` 保持开放. Drill 目录固定 LF 以防 Windows autocrlf 破坏 hash 绑定. 通用 project validator 因 HEAD 已缺 Blueprint knowledge 文件及历史工件布局而保持 INVALID, 未越权迁移; 详见 `runs/plugin-benchmark-20260829-v19-recovery-drill/`.
+- 2026-08-30: 用户报告额度恢复并继续优化. 已同步协作者 M3 严格闭合提交 `2f2f41c`, 选择 n=2 对称 INF 全有限 R 扇区负定性作为 v1.9 live in-flight recovery 目标. 父项目 pipeline 存在 66 项历史迁移问题和 19 项警告, 因此新建隔离作用域项目 `runs/plugin-benchmark-20260830-v19-live-recovery-g1p/workspace/`; 冻结 closure-first, 两 worker 最小波次, 在途 checkpoint 和先对账后续跑协议. 尚未派发 solver.
+- 2026-08-30: v1.9 live in-flight recovery 实验完成. W2 在途 checkpoint 后按 canonical receipt 仅对账一次并登记 `INGESTED`, worker restart, duplicate dispatch, transcript replay 均为 0. 两段 checkpoint/receipt 均 `READY`, 独立审计和 files-only convergence 均 `PASS`. 新 STRICT partial package 将 n=2 对称 INF odd sector 首次奇异归约到同号一维 Jacobi kernel, 得到 Green semiseparable 结构, 正 off-diagonal, double-zero exclusion, 精确 scalar equality, Jacobi/transfer identities 和 Ko-regular chart. `KP-DET`, simultaneous sector singularity, `KO-DET`, non-symmetric roots, global G1 prime 仍开放. Scoped validators 0 problems, Lean Tier 0 scaffold 编译通过且保留 2 个预期 `sorry`. 结果在 `runs/plugin-benchmark-20260830-v19-live-recovery-g1p/`.
+- 2026-08-30: 上述 v1.9 live recovery 数学结果已提交为 `f6159fb`, 并按 `origin -> fork` 顺序成功推送. 仓库事务记录在 `runs/plugin-benchmark-20260830-v19-live-recovery-g1p/REPOSITORY_SYNC.md`; 无关 LaTeX build 和 scratch 文件保持未提交.
+- 2026-08-30: 发布插件 v1.10.0 checkpoint recovery usability. 新增 `advance` 自动版本化 bound whiteboard/closure 和 guarded next-state draft, 修复 project-prefixed path 与 PowerShell 7 位 timestamp, 新增 typed `REFINES`/`SUPERSEDES` obligation lineage 自动退休旧 action. v1.9 G1 prime 实工件无模型 replay PASS: sequence 01 保持 `READY`, sequence 02 advance 成功, 两个 copy hash 相等, draft seal 按预期拒绝. 父插件 `dff2248` 已双推, DSH `09aa74d` 已推, Codex 本地 rigorous/workflow 已更新 1.10.0. 校验 parent 81/81 + 11 smoke, DSH 51/51 + 15 smoke + BUNDLE OK. 详见 `reports/plugin-performance-v1.10-recovery-usability.md`.
+- 2026-08-30: 发布 workflow v1.11.0 scoped pipeline validation. `--scope` 将仓库内带 project marker 的自包含目录作为完整逻辑项目根, 限制 discovery/hash/formalization/checkpoint/git pathspec, 并明确 scoped PASS 不等于全仓 PASS. BVE v1.9 G1 prime 真实重放 0 problem/2 warning, 全仓 67 problem/20 warning 仍可见. 父插件 `2c61581` 双推, DSH `eae522a` 推送, 本地 Codex 已安装 1.11.0. 当前无 active `runtime/blueprintctl.py`, 未运行旧 project-local Blueprint tools. 详见 `reports/plugin-performance-v1.11-scoped-pipeline-validation.md`.
+- 2026-08-30: 发布 workflow v1.12.0 cross-root Tier 0 formalization handoff. immutable exact-copy receipt 绑定隔离 Stage B logical root, run manifest, proof, source/parent scaffold 和 3 个父 Lean registration anchors; 真实 v1.9 G1' 工件 seal/verify `READY`, receipt hash `4742146D...F751F7A5`, 数学状态保持 `RIGOROUS_PARTIAL_RESULT`, 未升级 `FORMALLY_VERIFIED`. workflow 常驻入口 31,931 -> 27,619 bytes. 父插件 `299111d` 双推, DSH `aed0d4a` 推送, 本地 Codex 已安装 1.12.0. 当前仍无 active `runtime/blueprintctl.py`; 详见 `reports/plugin-performance-v1.12-formalization-handoff.md`.
+- 2026-08-30: 发布 workflow v1.13.0 canonical formalization consumption. `consume/verify-consumption` 在 v1.12 receipt `READY` 后写唯一 immutable sibling, 显式保持 mathematical/verification `UNCHANGED`, 且允许消费后 Stage C 合法演化 destination scaffold; seal/consume exclusive-create 关闭 overwrite TOCTOU. 真实 G1' consumption `CONSUMED_READY`, hash `15655FD0...E7351E1C`, 数学状态未变. 父插件 `96df6de` 双推, DSH `c371ee6` 推送, 本地 Codex 已安装 1.13.0. 详见 `reports/plugin-performance-v1.13-formalization-consumption.md`.
+- 2026-08-31: 发布 v1.14.0 Blueprint v2.2 active runtime gateway. manage 1.7.0 的 `runtime/blueprintctl.py` 通过单次 `ensure` 绑定 layout/config/runtime, canonical validate/query/proposal/integrate 不再执行或复制 project-local Python tools; Codex 与 DSH 扁平布局共用同一工具集. 父插件 `45abefa` + `968a1cd` 已双推, DSH `4ee31a2` 已推送, 本地 Codex workflow/rigorous/manage 已更新为 1.14.0/1.11.0/1.7.0. BVE 本体唯一一次 ensure 为 `READY` (0.364 s); canonical 9 nodes/10 edges/3 inventory rows 全部有效, 跨根证明工件 hash 验证 PASS. 数学状态未变, 详见 `reports/plugin-performance-v1.14-blueprint-runtime-gateway.md`.
+- 2026-08-31: KP-DET run `R-20260831T020156Z-g1p-kpdet` 完成并摄入. 新 STRICT partial: `gamma_2>b_0>0`, `KP-DET iff S_KP<0 iff Phi<0`, Jacobi common flux/unique locking/endpoint ratio; 独立审计 PASS, Blueprint submission merged, Lean Tier 0 scaffold exit 0 with one expected `sorry` at PHI-SIGN. 完整 KP-DET 保持 OPEN. sequence-03 checkpoint/receipt READY, 0 worker restart/duplicate/replay, scoped validator 0 problem/1 expected warning.
+- 2026-08-31: 发布 workflow v1.14.1 checkpoint-current validator fix. 最新 checkpoint 先做完整 lineage verify, 再选择其绑定的 numbered whiteboard/closure, stale latest fail-closed, 无 checkpoint 保持旧行为. 真实 KP-DET sequence-03 安装缓存重放为 0 problem/1 expected warning. 父插件 `516037f` 双推, DSH `5f2b997` 推送, 本地 Codex 已安装 1.14.1. `docs/pipeline-full-flow.md` 已维护, 详见 `reports/plugin-performance-v1.14.1-checkpoint-current-validator.md`.
+- 2026-09-01: KP-DET continuation sequence-14 through sequence-20. W10/W11 and W12/W13 joint audits PASS, yielding exact `G=X(M Dtheta/P)(q-E)`, complete `Bcoef<0`, branch-safe common-beta orientation, and complete `0<c<=1/2` KP-DET. W14/W15 remain `UNREVIEWED` after audit `NO_RETURN` at the quota boundary. Sequence-20 checkpoint ID `sha256:db12944f10c127db1adca4fe977d1e4bc5063c9fe040750245db9699046b917b` is READY with 0 worker restart, duplicate dispatch, or transcript replay; scoped validator reports 0 problems and 2 expected warnings. Added the tool note and a Tier 0 Lean algebra scaffold, which compiles without `sorry` or `admit`, without claiming full formal verification. Preserved checkpoint-bound EOF bytes and scoped their Git whitespace rule accordingly.
+- 2026-09-02: KP-DET continuation sequence-21 through sequence-26. W14/W15 retry audit PASS accepted P16-P19 and closed the complete branch for `0<c<=2/3`. Route 10 direct reduction, dependency repair, and re-audit PASS accepted P20-P21: the exact mass residual is an explicit quadrature threshold strictly below the old coefficient threshold, and `q-E=Q_quad/(m r)`. `(Q9)` remains OPEN for `c>2/3`. The Route 11 proof and falsification workers produced zero valid artifacts at the usage boundary and were reconciled once as `NO_RETURN`. Sequence-26 checkpoint ID `sha256:192a9e92cbdd5366a5c6405327d98c296f6debf429a77297106e31e66f47f980` is READY with 48 bound artifacts and 0 restart, duplicate dispatch, or replay.
+- 2026-09-05: 按用户要求核查 BVE 与研究插件的维护记录, benchmark 标准和当前 Codex 环境, 在插件仓库新增 `_xsoc1_work/docs/codex-performance-optimization-plan-2026-09-05.md`. 方案包含当前基线, 重复 skill 来源, 指标口径修正, 协议与状态整理优化, 分级 A/B 和质量门禁. 本轮仅方案与维护索引, 未改研究工件或插件行为, 未续跑 Q9 或新 benchmark.
+
+- 2026-09-05: 用户批准插件优化并增加文献实际读取/agent 批注工具库及指针表/额度中断续接. 本轮工程实现 workflow 1.15.0, rigorous 1.12.0, manage 1.8.0; 父插件 81 项校验与 18 smoke 通过, 独立行为审查发现旧工具归档信息丢失后修复并复审 PASS. 方案与结果在 _xsoc1_work/docs/codex-performance-optimization-plan-2026-09-05.md 和 optimization-20260905-results.md. 未运行数学 A/B, 未改变 Q9 或 accepted graph. 发布状态见插件 progress 文件.
+
+- 2026-09-06: 用户报告额度恢复后完成插件第一批优化发布. workflow 1.15.0, rigorous 1.12.0, manage 1.8.1, DSH 1.15.1 已同步; 父仓库和 DSH CI 通过, 本地 helper 哈希一致. 77 张真实工具卡及 sequence-26 的隔离回放通过, 原始 267 个文件未变; 论文 29 段读取精确重组. 详细结果见 _xsoc1_work/docs/optimization-20260905-results.md. 未续跑 Q9 或新数学 A/B.
+
+- 2026-09-06: 用户批准旧版/新版/空白三臂 benchmark. 在 _xsoc1_work/benchmarks/codex-20260906-l1 冻结候选题目并准备 6 个隔离目录. 无模型预检发现 Windows 读隔离未生效, WSL 直连失败且代理转发启动被自动审批拒绝. 尚无计分 solver 或数学结果; 断点见 STATUS.md, 原研究工件未改.
+
+- 2026-09-06 用户要求继续插件 benchmark. 外部 WSL r1 环境已通过 T1 三臂工具执行与隔离预检; 初次空白组的宿主配置故障已排除计分并保存. 下一步受额度门槛约束, 入口为 _xsoc1_work/benchmarks/codex-20260906-l1/STATUS.md. 本次未改变数学结论, accepted graph 或 Q9 状态.
+
+<!-- pre-v2-agents-snapshot:end -->
+
+
+### 2026-09-09 成果仓库交付验证
+
+- 首页和专页已整理. 删除 10 个无引用的过时维护程序和 115 个可再生 TeX 中间物, 合计 1,199,252 bytes. 14 组代码副本因历史复现/路径职责保留. 所有数学实现, TeX, PDF, 证明包和 canonical 原字节不变.
+- 4,523 项基线检查: 4,392 unchanged, 6 authorized document edits, 125 listed deletions, 0 unexpected changes. 原 68 项 dirty 中 56 unchanged, 5 authorized edits, 7 backed-up regenerable intermediates removed. 61 份文档 PDF 严格解析通过.
+- 当前文档链接/UTF-8/LF/标点与 scoped Git whitespace 检查通过; 历史日志原第 1465 行尾空格保持原字节, 不为格式检查改写既有记录. 当前插件 gateway canonical validate exit 0, 11 nodes, 13 edges, 4 inventory rows. 未重跑数学证明或 Lean build, 未改变结果等级.
+- 未进入 _xsoc1_work/, 未创建子 agent, 未 commit/push. 最终清单与完整检查记录在 reports/repository-cleanup-20260909/.
+
+
+### 2026-09-09 中断后续接导航发布依赖
+
+- 用户原任务: 恢复成果仓库发布依赖工作, 仅拥有 /mnt/f/LaTeX/BVE research 的文档/报告修正, 禁止进入或修改独立 _xsoc1_work 仓库. 已完成的中英文首页, 导航及 125 项删除保留; 协调器之后统一 commit/push. 不 stage, 不重写数学工件, 不 canonical integrate, 不启动子 agent, 不运行项目本地 Python 工具.
+- 用户要求: 枚举新导航依赖的既有未跟踪证据, 递归检查 manifest, 按精确路径和 SHA256 记录 publication-dependencies.json, 用拟提交文件集验证相对链接, 保留备份内原有 68 项工作及无关 CRLF/scratch.
+- 方法: 先读取根 AGENTS, 清理 REPORT 与 KP-DET scoped AGENTS. 在 /tmp 使用独立只读检查程序, 对照 4,523 项原始基线, 原 dirty JSON, HEAD blob 和 index 哈希. 解析 Markdown 链接及 run/workspace/artifact-root 路径, 递归核对审计与接受包中的文件绑定. 没有执行数学程序或新增审计.
+- 结果: 保留当前导航需要 12 个既有未跟踪证据. Route 10 的第一次缺口审计, E 公式来源修补及窄范围复审一并纳入, Route 08 原证明已跟踪. 精确协调器集合为 155 个路径, 其中 121 个已跟踪删除; 另 4 个已删生成物原本未跟踪.
+- 边界: 旧管理文件绑定, CRLF 历史源哈希与主机外插件路径单独记录, 不冒充整个历史包完全可复现. sequence-26 最新 checkpoint 恢复包未纳入只读导航发布. 本次只改根 AGENTS, REPORT, 本日志并新增 publication-dependencies.json; 全部数学/canonical/run/code 字节保留, 未 stage/commit/push.
+- 验证: 157 个递归文件, 456 组唯一文件绑定, 其中 Route 09/10 的 57 组全部精确匹配; 拟提交集合的 200 次导航相对链接检查通过. 12 个新增证据共 52,754 bytes 与原基线及备份一致. 11 组继承的历史原始哈希不匹配单列, 不冒充全历史复现 PASS; HEAD/index 未变, 基线意外变更为 0.
+
+
+### 2026-09-09 归档 clean-filter 提交字节补查
+
+- 用户要求: 协调器暂存前检查两份原始 README 历史快照和完整 state/AGENTS_SESSION_LOG.md 的 Git clean 过滤, 不能只检查 12 个证明文件或工作树前缀. 如发生转换, 只在 docs/history 或 state 为精确文件新增 -text, 禁止修改原根 .gitattributes. 用实际 hash-object/show 检查过滤后的内容, 不 stage/commit/push, 数学/源码/TeX/PDF 保持不变.
+- 发现: WSL Git 当前默认保留这 3 个文件, 但原生 Windows Git 的 D:/Git/etc/gitconfig 设置 autocrlf=true, 实际 clean blob 会把 CRLF 归一化. autocrlf=input 的结果相同. 原首轮检查不覆盖这一归档发布风险, 已在 REPORT 和清单历史记录中明确.
+- 修正: docs/history/.gitattributes 只匹配两个 README.pre-v2.*.txt 的精确文件名, state/.gitattributes 只匹配 AGENTS_SESSION_LOG.md, 均用 -text. 原根属性的 dirty 字节完全保留, 两份旧 README 不改字节; 本日志仅追加本条, 追加前的完整前缀不变.
+- 验证方法: 独立临时对象目录中实际执行 hash-object -w --path, 然后 show --no-ext-diff --no-textconv 读取 clean blob 全文. 对默认及 autocrlf=true/input/false 核对三份完整归档, 并与原生 Windows Git 的 blob ID 对照. 新属性随归档加入精确协调器集合, 路径总数从 155 增至 157, 原历史检查可辨识.
+- 交付边界: 过滤前后 SHA256, 原生 Git 配置, 精确属性作用域, 更新后的文档哈希和协调器前提记入 publication-dependencies.json. 完整日志验证包含本条新增内容. 旧数学审计限制保持原状, HEAD/index 不变, 未 stage/commit/push.
