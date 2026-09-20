@@ -1,0 +1,1969 @@
+def SL.AuditRound4.second_difference.{u_1} : {K : Type u_1} → [Field.{u_1} K] → (Nat → K) → Nat → K :=
+fun {K} [inst : Field.{u_1} K] v n =>
+  @HAdd.hAdd.{u_1, u_1, u_1} K K K
+    (@instHAdd.{u_1} K
+      (@Distrib.toAdd.{u_1} K
+        (@instDistribOfSemiring.{u_1} K
+          (@DivisionSemiring.toSemiring.{u_1} K
+            (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+    (@HSub.hSub.{u_1, u_1, u_1} K K K
+      (@instHSub.{u_1} K
+        (@SubNegMonoid.toSub.{u_1} K
+          (@AddGroup.toSubNegMonoid.{u_1} K
+            (@AddGroupWithOne.toAddGroup.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+      (v
+        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+      (@HMul.hMul.{u_1, u_1, u_1} K K K
+        (@instHMul.{u_1} K
+          (@Distrib.toMul.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 2)
+          (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            SL.AuditRound4.second_difference._proof_1))
+        (v
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))
+    (v n)
+'SL.AuditRound4.second_difference' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.recurrence_iff_second_difference.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (t v : Nat → K),
+  Iff
+    (@SL.ThirdOrder.IsSolution.{u_1} K inst
+      (fun j =>
+        @HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (@OfNat.ofNat.{u_1} K (nat_lit 2)
+            (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+              (@AddMonoidWithOne.toNatCast.{u_1} K
+                (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                  (@Ring.toAddGroupWithOne.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+              ⋯))
+          (t j))
+      (fun j =>
+        @Neg.neg.{u_1} K
+          (@NegZeroClass.toNeg.{u_1} K
+            (@SubNegZeroMonoid.toNegZeroClass.{u_1} K
+              (@SubtractionMonoid.toSubNegZeroMonoid.{u_1} K
+                (@SubtractionCommMonoid.toSubtractionMonoid.{u_1} K
+                  (@AddCommGroup.toDivisionAddCommMonoid.{u_1} K
+                    (@Ring.toAddCommGroup.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+          (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+            (@instHAdd.{u_1} K
+              (@Distrib.toAdd.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@OfNat.ofNat.{u_1} K (nat_lit 1)
+              (@One.toOfNat1.{u_1} K
+                (@AddMonoidWithOne.toOne.{u_1} K
+                  (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (@OfNat.ofNat.{u_1} K (nat_lit 2)
+                (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+                  (@AddMonoidWithOne.toNatCast.{u_1} K
+                    (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+                  ⋯))
+              (t j))))
+      t v)
+    (∀ (n : Nat),
+      @Eq.{u_1 + 1} K
+        (@SL.AuditRound4.second_difference.{u_1} K inst v
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+        (@HMul.hMul.{u_1, u_1, u_1} K K K
+          (@instHMul.{u_1} K
+            (@Distrib.toMul.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (t
+            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+          (@SL.AuditRound4.second_difference.{u_1} K inst v n))) :=
+⋯
+'SL.AuditRound4.recurrence_iff_second_difference' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.affine_second_difference.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (A B : K) (n : Nat),
+  @Eq.{u_1 + 1} K
+    (@SL.AuditRound4.second_difference.{u_1} K inst
+      (fun j =>
+        @HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          A
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            B
+            (@Nat.cast.{u_1} K
+              (@AddMonoidWithOne.toNatCast.{u_1} K
+                (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                  (@Ring.toAddGroupWithOne.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+              j)))
+      n)
+    (@OfNat.ofNat.{u_1} K (nat_lit 0)
+      (@Zero.toOfNat0.{u_1} K
+        (@MulZeroClass.toZero.{u_1} K
+          (@instMulZeroClassOfSemiring.{u_1} K
+            (@DivisionSemiring.toSemiring.{u_1} K
+              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))) :=
+⋯
+'SL.AuditRound4.affine_second_difference' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.affine_solution.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (t : Nat → K) (A B : K),
+  @SL.ThirdOrder.IsSolution.{u_1} K inst
+    (fun j =>
+      @HAdd.hAdd.{u_1, u_1, u_1} K K K
+        (@instHAdd.{u_1} K
+          (@Distrib.toAdd.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 2)
+          (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            ⋯))
+        (t j))
+    (fun j =>
+      @Neg.neg.{u_1} K
+        (@NegZeroClass.toNeg.{u_1} K
+          (@SubNegZeroMonoid.toNegZeroClass.{u_1} K
+            (@SubtractionMonoid.toSubNegZeroMonoid.{u_1} K
+              (@SubtractionCommMonoid.toSubtractionMonoid.{u_1} K
+                (@AddCommGroup.toDivisionAddCommMonoid.{u_1} K
+                  (@Ring.toAddCommGroup.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+        (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (@OfNat.ofNat.{u_1} K (nat_lit 1)
+            (@One.toOfNat1.{u_1} K
+              (@AddMonoidWithOne.toOne.{u_1} K
+                (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                  (@Ring.toAddGroupWithOne.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@OfNat.ofNat.{u_1} K (nat_lit 2)
+              (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+                (@AddMonoidWithOne.toNatCast.{u_1} K
+                  (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+                ⋯))
+            (t j))))
+    t fun j =>
+    @HAdd.hAdd.{u_1, u_1, u_1} K K K
+      (@instHAdd.{u_1} K
+        (@Distrib.toAdd.{u_1} K
+          (@instDistribOfSemiring.{u_1} K
+            (@DivisionSemiring.toSemiring.{u_1} K
+              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+      A
+      (@HMul.hMul.{u_1, u_1, u_1} K K K
+        (@instHMul.{u_1} K
+          (@Distrib.toMul.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        B
+        (@Nat.cast.{u_1} K
+          (@AddMonoidWithOne.toNatCast.{u_1} K
+            (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+          j)) :=
+⋯
+'SL.AuditRound4.affine_solution' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.zero_second_difference_iff_affine.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (v : Nat → K),
+  Iff
+    (∀ (n : Nat),
+      @Eq.{u_1 + 1} K (@SL.AuditRound4.second_difference.{u_1} K inst v n)
+        (@OfNat.ofNat.{u_1} K (nat_lit 0)
+          (@Zero.toOfNat0.{u_1} K
+            (@MulZeroClass.toZero.{u_1} K
+              (@instMulZeroClassOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))))
+    (∀ (n : Nat),
+      @Eq.{u_1 + 1} K (v n)
+        (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (v (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@HSub.hSub.{u_1, u_1, u_1} K K K
+              (@instHSub.{u_1} K
+                (@SubNegMonoid.toSub.{u_1} K
+                  (@AddGroup.toSubNegMonoid.{u_1} K
+                    (@AddGroupWithOne.toAddGroup.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+              (v (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+              (v (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+            (@Nat.cast.{u_1} K
+              (@AddMonoidWithOne.toNatCast.{u_1} K
+                (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                  (@Ring.toAddGroupWithOne.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+              n)))) :=
+⋯
+'SL.AuditRound4.zero_second_difference_iff_affine' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.difference_proportional.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {t v a : Nat → K},
+  (∀ (n : Nat),
+      @Eq.{u_1 + 1} K
+        (@SL.AuditRound4.second_difference.{u_1} K inst v
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+        (@HMul.hMul.{u_1, u_1, u_1} K K K
+          (@instHMul.{u_1} K
+            (@Distrib.toMul.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (t
+            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+          (@SL.AuditRound4.second_difference.{u_1} K inst v n))) →
+    (∀ (n : Nat),
+        @Eq.{u_1 + 1} K
+          (a
+            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+              (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (t
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+            (a n))) →
+      @Ne.{u_1 + 1} K (a (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+          (@OfNat.ofNat.{u_1} K (nat_lit 0)
+            (@Zero.toOfNat0.{u_1} K
+              (@MulZeroClass.toZero.{u_1} K
+                (@instMulZeroClassOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))) →
+        ∀ (n : Nat),
+          @Eq.{u_1 + 1} K (@SL.AuditRound4.second_difference.{u_1} K inst v n)
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+                (@instHDiv.{u_1} K
+                  (@DivInvMonoid.toDiv.{u_1} K
+                    (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+                (@SL.AuditRound4.second_difference.{u_1} K inst v
+                  (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+                (a (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+              (a n)) :=
+⋯
+'SL.AuditRound4.difference_proportional' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.first_difference_sum.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (v : Nat → K) (n : Nat),
+  @Eq.{u_1 + 1} K
+    (@HSub.hSub.{u_1, u_1, u_1} K K K
+      (@instHSub.{u_1} K
+        (@SubNegMonoid.toSub.{u_1} K
+          (@AddGroup.toSubNegMonoid.{u_1} K
+            (@AddGroupWithOne.toAddGroup.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+      (v
+        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+      (v n))
+    (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+      (@instHAdd.{u_1} K
+        (@Distrib.toAdd.{u_1} K
+          (@instDistribOfSemiring.{u_1} K
+            (@DivisionSemiring.toSemiring.{u_1} K
+              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+      (@HSub.hSub.{u_1, u_1, u_1} K K K
+        (@instHSub.{u_1} K
+          (@SubNegMonoid.toSub.{u_1} K
+            (@AddGroup.toSubNegMonoid.{u_1} K
+              (@AddGroupWithOne.toAddGroup.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K
+                  (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+        (v (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+        (v (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+      (∑ k ∈ Finset.range n, @SL.AuditRound4.second_difference.{u_1} K inst v k)) :=
+⋯
+'SL.AuditRound4.first_difference_sum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.reconstruct_second_difference.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (v : Nat → K)
+  (n : Nat),
+  @Eq.{u_1 + 1} K (v n)
+    (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+      (@instHAdd.{u_1} K
+        (@Distrib.toAdd.{u_1} K
+          (@instDistribOfSemiring.{u_1} K
+            (@DivisionSemiring.toSemiring.{u_1} K
+              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+      (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+        (@instHAdd.{u_1} K
+          (@Distrib.toAdd.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (v (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+        (@HMul.hMul.{u_1, u_1, u_1} K K K
+          (@instHMul.{u_1} K
+            (@Distrib.toMul.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (@HSub.hSub.{u_1, u_1, u_1} K K K
+            (@instHSub.{u_1} K
+              (@SubNegMonoid.toSub.{u_1} K
+                (@AddGroup.toSubNegMonoid.{u_1} K
+                  (@AddGroupWithOne.toAddGroup.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+            (v (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+            (v (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+          (@Nat.cast.{u_1} K
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            n)))
+      (∑ i ∈ Finset.range n, ∑ k ∈ Finset.range i, @SL.AuditRound4.second_difference.{u_1} K inst v k)) :=
+⋯
+'SL.AuditRound4.reconstruct_second_difference' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.reduction_residual_identity.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K]
+  {a1 a2 a3 E : Nat → K},
+  @SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 E →
+    ∀ (r : Nat → K) (n : Nat),
+      @Eq.{u_1 + 1} K
+        (@HSub.hSub.{u_1, u_1, u_1} K K K
+          (@instHSub.{u_1} K
+            (@SubNegMonoid.toSub.{u_1} K
+              (@AddGroup.toSubNegMonoid.{u_1} K
+                (@AddGroupWithOne.toAddGroup.{u_1} K
+                  (@Ring.toAddGroupWithOne.{u_1} K
+                    (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (E
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+            (r
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))
+          (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+            (@instHAdd.{u_1} K
+              (@Distrib.toAdd.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+              (@instHAdd.{u_1} K
+                (@Distrib.toAdd.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (@HMul.hMul.{u_1, u_1, u_1} K K K
+                (@instHMul.{u_1} K
+                  (@Distrib.toMul.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (a1
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (E
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                  (r
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))))
+              (@HMul.hMul.{u_1, u_1, u_1} K K K
+                (@instHMul.{u_1} K
+                  (@Distrib.toMul.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (a2
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (E
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+                  (r
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (a3
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+              (@HMul.hMul.{u_1, u_1, u_1} K K K
+                (@instHMul.{u_1} K
+                  (@Distrib.toMul.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (E n) (r n)))))
+        (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+            (@instHAdd.{u_1} K
+              (@Distrib.toAdd.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (E
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+              (@HSub.hSub.{u_1, u_1, u_1} K K K
+                (@instHSub.{u_1} K
+                  (@SubNegMonoid.toSub.{u_1} K
+                    (@AddGroup.toSubNegMonoid.{u_1} K
+                      (@AddGroupWithOne.toAddGroup.{u_1} K
+                        (@Ring.toAddGroupWithOne.{u_1} K
+                          (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                (r
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                (r
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+                (@instHAdd.{u_1} K
+                  (@Distrib.toAdd.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (a2
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (E
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (a3
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (E n)))
+              (@HSub.hSub.{u_1, u_1, u_1} K K K
+                (@instHSub.{u_1} K
+                  (@SubNegMonoid.toSub.{u_1} K
+                    (@AddGroup.toSubNegMonoid.{u_1} K
+                      (@AddGroupWithOne.toAddGroup.{u_1} K
+                        (@Ring.toAddGroupWithOne.{u_1} K
+                          (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                (r
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                (r
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))))
+          (@HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (a3
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+              (E n))
+            (@HSub.hSub.{u_1, u_1, u_1} K K K
+              (@instHSub.{u_1} K
+                (@SubNegMonoid.toSub.{u_1} K
+                  (@AddGroup.toSubNegMonoid.{u_1} K
+                    (@AddGroupWithOne.toAddGroup.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+              (r
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+              (r n)))) :=
+⋯
+'SL.AuditRound4.reduction_residual_identity' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.reduction_product_iff.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E : Nat → K},
+  @SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 E →
+    ∀ (r : Nat → K),
+      Iff
+        (@SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 fun j =>
+          @HMul.hMul.{u_1, u_1, u_1} K K K
+            (@instHMul.{u_1} K
+              (@Distrib.toMul.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            (E j) (r j))
+        (∀ (n : Nat),
+          @Eq.{u_1 + 1} K
+            (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+              (@instHAdd.{u_1} K
+                (@Distrib.toAdd.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+                (@instHAdd.{u_1} K
+                  (@Distrib.toAdd.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (E
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (@HSub.hSub.{u_1, u_1, u_1} K K K
+                    (@instHSub.{u_1} K
+                      (@SubNegMonoid.toSub.{u_1} K
+                        (@AddGroup.toSubNegMonoid.{u_1} K
+                          (@AddGroupWithOne.toAddGroup.{u_1} K
+                            (@Ring.toAddGroupWithOne.{u_1} K
+                              (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                    (r
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                    (r
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+                    (@instHAdd.{u_1} K
+                      (@Distrib.toAdd.{u_1} K
+                        (@instDistribOfSemiring.{u_1} K
+                          (@DivisionSemiring.toSemiring.{u_1} K
+                            (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                    (@HMul.hMul.{u_1, u_1, u_1} K K K
+                      (@instHMul.{u_1} K
+                        (@Distrib.toMul.{u_1} K
+                          (@instDistribOfSemiring.{u_1} K
+                            (@DivisionSemiring.toSemiring.{u_1} K
+                              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                      (a2
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                      (E
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+                    (@HMul.hMul.{u_1, u_1, u_1} K K K
+                      (@instHMul.{u_1} K
+                        (@Distrib.toMul.{u_1} K
+                          (@instDistribOfSemiring.{u_1} K
+                            (@DivisionSemiring.toSemiring.{u_1} K
+                              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                      (a3
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                      (E n)))
+                  (@HSub.hSub.{u_1, u_1, u_1} K K K
+                    (@instHSub.{u_1} K
+                      (@SubNegMonoid.toSub.{u_1} K
+                        (@AddGroup.toSubNegMonoid.{u_1} K
+                          (@AddGroupWithOne.toAddGroup.{u_1} K
+                            (@Ring.toAddGroupWithOne.{u_1} K
+                              (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                    (r
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                    (r
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))))
+              (@HMul.hMul.{u_1, u_1, u_1} K K K
+                (@instHMul.{u_1} K
+                  (@Distrib.toMul.{u_1} K
+                    (@instDistribOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                (@HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (a3
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (E n))
+                (@HSub.hSub.{u_1, u_1, u_1} K K K
+                  (@instHSub.{u_1} K
+                    (@SubNegMonoid.toSub.{u_1} K
+                      (@AddGroup.toSubNegMonoid.{u_1} K
+                        (@AddGroupWithOne.toAddGroup.{u_1} K
+                          (@Ring.toAddGroupWithOne.{u_1} K
+                            (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                  (r
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+                  (r n))))
+            (@OfNat.ofNat.{u_1} K (nat_lit 0)
+              (@Zero.toOfNat0.{u_1} K
+                (@MulZeroClass.toZero.{u_1} K
+                  (@instMulZeroClassOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst)))))))) :=
+⋯
+'SL.AuditRound4.reduction_product_iff' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.reduction_iff.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E z : Nat → K},
+  @SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 E →
+    (∀ (j : Nat),
+        @Ne.{u_1 + 1} K (E j)
+          (@OfNat.ofNat.{u_1} K (nat_lit 0)
+            (@Zero.toOfNat0.{u_1} K
+              (@MulZeroClass.toZero.{u_1} K
+                (@instMulZeroClassOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst)))))))) →
+      Iff (@SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 z)
+        (@SL.ThirdOrderMinimal.IsSolution2.{u_1} K inst (@SL.ThirdOrderMinimal.Acoef.{u_1} K inst a2 a3 E)
+          (@SL.ThirdOrderMinimal.Bcoef.{u_1} K inst a3 E) fun j =>
+          @HSub.hSub.{u_1, u_1, u_1} K K K
+            (@instHSub.{u_1} K
+              (@SubNegMonoid.toSub.{u_1} K
+                (@AddGroup.toSubNegMonoid.{u_1} K
+                  (@AddGroupWithOne.toAddGroup.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+            (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+              (@instHDiv.{u_1} K
+                (@DivInvMonoid.toDiv.{u_1} K
+                  (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+              (z j) (E j))
+            (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+              (@instHDiv.{u_1} K
+                (@DivInvMonoid.toDiv.{u_1} K
+                  (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+              (z
+                (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+                  (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+              (E
+                (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+                  (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))) :=
+⋯
+'SL.AuditRound4.reduction_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.integrate_from_zero.{u_1} : {K : Type u_1} → [Field.{u_1} K] → K → (Nat → K) → Nat → K :=
+fun {K} [inst : Field.{u_1} K] r0 s j =>
+  @SL.ThirdOrderMinimal.withInitial.{u_1} K inst
+    (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+      (@instHAdd.{u_1} K
+        (@Distrib.toAdd.{u_1} K
+          (@instDistribOfSemiring.{u_1} K
+            (@DivisionSemiring.toSemiring.{u_1} K
+              (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+      r0 (s (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+    s j
+'SL.AuditRound4.integrate_from_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.integrate_initial.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (r0 : K) (s : Nat → K),
+  And
+    (@Eq.{u_1 + 1} K
+      (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s
+        (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      r0)
+    (And
+      (@Eq.{u_1 + 1} K
+        (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+        (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          r0 (s (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+      (@Eq.{u_1 + 1} K
+        (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+          (@instHAdd.{u_1} K
+            (@Distrib.toAdd.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (@HAdd.hAdd.{u_1, u_1, u_1} K K K
+            (@instHAdd.{u_1} K
+              (@Distrib.toAdd.{u_1} K
+                (@instDistribOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+            r0 (s (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+          (s (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))) :=
+⋯
+'SL.AuditRound4.integrate_initial' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.integrate_increment.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (r0 : K) (s : Nat → K)
+  (j : Nat),
+  @Eq.{u_1 + 1} K
+    (@HSub.hSub.{u_1, u_1, u_1} K K K
+      (@instHSub.{u_1} K
+        (@SubNegMonoid.toSub.{u_1} K
+          (@AddGroup.toSubNegMonoid.{u_1} K
+            (@AddGroupWithOne.toAddGroup.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+      (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s
+        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+      (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s j))
+    (s
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) :=
+⋯
+'SL.AuditRound4.integrate_increment' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.reduction_reconstruction.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E : Nat → K},
+  @SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 E →
+    (∀ (j : Nat),
+        @Ne.{u_1 + 1} K (E j)
+          (@OfNat.ofNat.{u_1} K (nat_lit 0)
+            (@Zero.toOfNat0.{u_1} K
+              (@MulZeroClass.toZero.{u_1} K
+                (@instMulZeroClassOfSemiring.{u_1} K
+                  (@DivisionSemiring.toSemiring.{u_1} K
+                    (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst)))))))) →
+      ∀ {s : Nat → K},
+        @SL.ThirdOrderMinimal.IsSolution2.{u_1} K inst (@SL.ThirdOrderMinimal.Acoef.{u_1} K inst a2 a3 E)
+            (@SL.ThirdOrderMinimal.Bcoef.{u_1} K inst a3 E) s →
+          ∀ (r0 : K),
+            And
+              (@SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 fun j =>
+                @HMul.hMul.{u_1, u_1, u_1} K K K
+                  (@instHMul.{u_1} K
+                    (@Distrib.toMul.{u_1} K
+                      (@instDistribOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                  (E j) (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s j))
+              (And
+                (@Eq.{u_1 + 1} K
+                  ((fun j =>
+                      @HMul.hMul.{u_1, u_1, u_1} K K K
+                        (@instHMul.{u_1} K
+                          (@Distrib.toMul.{u_1} K
+                            (@instDistribOfSemiring.{u_1} K
+                              (@DivisionSemiring.toSemiring.{u_1} K
+                                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                        (E j) (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s j))
+                    (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+                  (@HMul.hMul.{u_1, u_1, u_1} K K K
+                    (@instHMul.{u_1} K
+                      (@Distrib.toMul.{u_1} K
+                        (@instDistribOfSemiring.{u_1} K
+                          (@DivisionSemiring.toSemiring.{u_1} K
+                            (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                    (E (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))) r0))
+                (∀ (j : Nat),
+                  @Eq.{u_1 + 1} K
+                    (@HSub.hSub.{u_1, u_1, u_1} K K K
+                      (@instHSub.{u_1} K
+                        (@SubNegMonoid.toSub.{u_1} K
+                          (@AddGroup.toSubNegMonoid.{u_1} K
+                            (@AddGroupWithOne.toAddGroup.{u_1} K
+                              (@Ring.toAddGroupWithOne.{u_1} K
+                                (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+                      (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+                        (@instHDiv.{u_1} K
+                          (@DivInvMonoid.toDiv.{u_1} K
+                            (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+                        (@HMul.hMul.{u_1, u_1, u_1} K K K
+                          (@instHMul.{u_1} K
+                            (@Distrib.toMul.{u_1} K
+                              (@instDistribOfSemiring.{u_1} K
+                                (@DivisionSemiring.toSemiring.{u_1} K
+                                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                          (E
+                            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+                              (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+                          (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s
+                            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+                              (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+                        (E
+                          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+                            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+                      (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+                        (@instHDiv.{u_1} K
+                          (@DivInvMonoid.toDiv.{u_1} K
+                            (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+                        (@HMul.hMul.{u_1, u_1, u_1} K K K
+                          (@instHMul.{u_1} K
+                            (@Distrib.toMul.{u_1} K
+                              (@instDistribOfSemiring.{u_1} K
+                                (@DivisionSemiring.toSemiring.{u_1} K
+                                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+                          (E j) (@SL.AuditRound4.integrate_from_zero.{u_1} K inst r0 s j))
+                        (E j)))
+                    (s
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) j
+                        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))) :=
+⋯
+'SL.AuditRound4.reduction_reconstruction' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.p : Nat → Rat → Nat → Rat :=
+fun ε c j =>
+  @ite.{1} Rat (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (instDecidableEqNat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (SL.ThirdOrderClosedForms.PEven c j) (SL.ThirdOrderClosedForms.POdd c j)
+'SL.AuditRound4.p' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.q : Nat → Rat → Nat → Rat :=
+fun ε c j =>
+  @ite.{1} Rat (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (instDecidableEqNat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (SL.ThirdOrderClosedForms.QEven c j) (SL.ThirdOrderClosedForms.QOdd c j)
+'SL.AuditRound4.q' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.r : Nat → Rat → Nat → Rat :=
+fun ε c j =>
+  @ite.{1} Rat (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (instDecidableEqNat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (SL.ThirdOrderClosedForms.REven c j) (SL.ThirdOrderClosedForms.ROdd c j)
+'SL.AuditRound4.r' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.theta : Nat → Rat → Nat → Rat :=
+fun ε c j =>
+  @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) c
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+        (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub) (@Nat.cast.{0} Rat Rat.instNatCast j)
+          (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))
+      (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast j))
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast ε)))
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))
+'SL.AuditRound4.theta' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.factorial_step : Nat → Nat → Rat :=
+fun ε j =>
+  @HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast j))
+      (@Nat.cast.{0} Rat Rat.instNatCast ε))
+    (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+          (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast j))
+        (@Nat.cast.{0} Rat Rat.instNatCast ε))
+      (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+'SL.AuditRound4.factorial_step' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.factorial_weight : Nat → Nat → Rat :=
+fun ε j =>
+  @Nat.cast.{0} Rat Rat.instNatCast
+    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+        (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) j)
+        ε).factorial
+'SL.AuditRound4.factorial_weight' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.factorial_weight_ne_zero : ∀ (ε j : Nat),
+  @Ne.{1} Rat (SL.AuditRound4.factorial_weight ε j) (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) :=
+⋯
+'SL.AuditRound4.factorial_weight_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.factorial_weight_succ : ∀ (ε n : Nat),
+  @Eq.{1} Rat
+    (SL.AuditRound4.factorial_weight ε
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (SL.AuditRound4.factorial_step ε
+        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+      (SL.AuditRound4.factorial_weight ε n)) :=
+⋯
+'SL.AuditRound4.factorial_weight_succ' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.factorial_step_ne_zero : ∀ (ε n : Nat),
+  @Ne.{1} Rat
+    (SL.AuditRound4.factorial_step ε
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+    (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) :=
+⋯
+'SL.AuditRound4.factorial_step_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.parity_coefficient_factors : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (n : Nat),
+          And
+            (@Eq.{1} Rat
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (SL.AuditRound4.p ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) c
+                  (SL.AuditRound4.factorial_step ε
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))))
+              (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+                (SL.AuditRound4.theta ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))))
+            (And
+              (@Eq.{1} Rat
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (SL.AuditRound4.q ε c
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                    (SL.AuditRound4.factorial_step ε
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                    (SL.AuditRound4.factorial_step ε
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))))
+                (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                  (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                    (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+                    (SL.AuditRound4.theta ε c
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))))
+              (@Eq.{1} Rat
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) c
+                    (SL.AuditRound4.r ε c
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                      (SL.AuditRound4.factorial_step ε
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                      (SL.AuditRound4.factorial_step ε
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+                    (SL.AuditRound4.factorial_step ε
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))
+                (SL.AuditRound4.theta ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))) :=
+⋯
+'SL.AuditRound4.parity_coefficient_factors' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.scale_factor : Nat → Rat → Nat → Rat :=
+fun ε c j =>
+  @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+    (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat Rat.instPowNat) c j)
+    (SL.AuditRound4.factorial_weight ε j)
+'SL.AuditRound4.scale_factor' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.scaled_sequence : Nat → Rat → (Nat → Rat) → Nat → Rat :=
+fun ε c μ j =>
+  @HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) (SL.AuditRound4.scale_factor ε c j) (μ j)
+'SL.AuditRound4.scaled_sequence' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.moment_solution : Nat → Rat → (Nat → Rat) → Prop :=
+fun ε c μ =>
+  ∀ (n : Nat),
+    @Eq.{1} Rat
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (μ
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (SL.AuditRound4.p ε c
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+            (μ
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (SL.AuditRound4.q ε c
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+            (μ
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+          (SL.AuditRound4.r ε c
+            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+          (μ n)))
+'SL.AuditRound4.moment_solution' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.scale_factor_ne_zero : ∀ (ε : Nat) {c : Rat},
+  @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+    ∀ (j : Nat),
+      @Ne.{1} Rat (SL.AuditRound4.scale_factor ε c j) (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) :=
+⋯
+'SL.AuditRound4.scale_factor_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.scale_factor_succ : ∀ (ε : Nat) (c : Rat) (n : Nat),
+  @Eq.{1} Rat
+    (SL.AuditRound4.scale_factor ε c
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) c
+        (SL.AuditRound4.factorial_step ε
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+      (SL.AuditRound4.scale_factor ε c n)) :=
+⋯
+'SL.AuditRound4.scale_factor_succ' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.conjugate_solution_iff.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (a1 a2 a3 w z : Nat → K),
+  (∀ (j : Nat),
+      @Ne.{u_1 + 1} K (w j)
+        (@OfNat.ofNat.{u_1} K (nat_lit 0)
+          (@Zero.toOfNat0.{u_1} K
+            (@MulZeroClass.toZero.{u_1} K
+              (@instMulZeroClassOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst)))))))) →
+    Iff (@SL.ThirdOrder.IsSolution.{u_1} K inst a1 a2 a3 z)
+      (@SL.ThirdOrder.IsSolution.{u_1} K inst
+        (fun j =>
+          @HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (w j) (a1 j))
+            (w
+              (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+                (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+        (fun j =>
+          @HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (w j) (a2 j))
+            (w
+              (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+        (fun j =>
+          @HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@HMul.hMul.{u_1, u_1, u_1} K K K
+              (@instHMul.{u_1} K
+                (@Distrib.toMul.{u_1} K
+                  (@instDistribOfSemiring.{u_1} K
+                    (@DivisionSemiring.toSemiring.{u_1} K
+                      (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+              (w j) (a3 j))
+            (w
+              (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))
+        fun j =>
+        @HMul.hMul.{u_1, u_1, u_1} K K K
+          (@instHMul.{u_1} K
+            (@Distrib.toMul.{u_1} K
+              (@instDistribOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          (w j) (z j)) :=
+⋯
+'SL.AuditRound4.conjugate_solution_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.scaled_coefficients : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (n : Nat),
+          And
+            (@Eq.{1} Rat
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                  (SL.AuditRound4.scale_factor ε c
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                    (SL.AuditRound4.p ε c
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                    (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+                (SL.AuditRound4.scale_factor ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+              (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+                (SL.AuditRound4.theta ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))))
+            (And
+              (@Eq.{1} Rat
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                    (SL.AuditRound4.scale_factor ε c
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                      (@Neg.neg.{0} Rat Rat.instNeg
+                        (SL.AuditRound4.q ε c
+                          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                            (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))
+                      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+                  (SL.AuditRound4.scale_factor ε c
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+                (@Neg.neg.{0} Rat Rat.instNeg
+                  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                    (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                      (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+                      (SL.AuditRound4.theta ε c
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))))))
+              (@Eq.{1} Rat
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                    (SL.AuditRound4.scale_factor ε c
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                        (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                      (SL.AuditRound4.r ε c
+                        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+                  (SL.AuditRound4.scale_factor ε c n))
+                (SL.AuditRound4.theta ε c
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))))) :=
+⋯
+'SL.AuditRound4.scaled_coefficients' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.moment_iff_normalized : ∀ (ε : Nat) (c : Rat),
+  @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+    ∀ (μ : Nat → Rat),
+      Iff (SL.AuditRound4.moment_solution ε c μ)
+        (@SL.ThirdOrder.IsSolution.{0} Rat Rat.instField
+          (fun j =>
+            @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) (SL.AuditRound4.p ε c j)
+              (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+          (fun j =>
+            @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+              (@Neg.neg.{0} Rat Rat.instNeg (SL.AuditRound4.q ε c j))
+              (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+          (fun j =>
+            @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) (SL.AuditRound4.r ε c j)
+              (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+          μ) :=
+⋯
+'SL.AuditRound4.moment_iff_normalized' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.moment_iff_scaled : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (μ : Nat → Rat),
+          Iff (SL.AuditRound4.moment_solution ε c μ)
+            (@SL.ThirdOrder.IsSolution.{0} Rat Rat.instField
+              (fun j =>
+                @HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                  (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (SL.AuditRound4.theta ε c j))
+              (fun j =>
+                @Neg.neg.{0} Rat Rat.instNeg
+                  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                    (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                      (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (SL.AuditRound4.theta ε c j))))
+              (SL.AuditRound4.theta ε c) (SL.AuditRound4.scaled_sequence ε c μ)) :=
+⋯
+'SL.AuditRound4.moment_iff_scaled' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.moment_iff_second_difference : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (μ : Nat → Rat),
+          Iff (SL.AuditRound4.moment_solution ε c μ)
+            (∀ (n : Nat),
+              @Eq.{1} Rat
+                (@SL.AuditRound4.second_difference.{0} Rat Rat.instField (SL.AuditRound4.scaled_sequence ε c μ)
+                  (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                    (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+                (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                  (SL.AuditRound4.theta ε c
+                    (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                      (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+                  (@SL.AuditRound4.second_difference.{0} Rat Rat.instField (SL.AuditRound4.scaled_sequence ε c μ)
+                    n))) :=
+⋯
+'SL.AuditRound4.moment_iff_second_difference' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.difference_weight : Nat → Rat → Nat → Rat :=
+fun ε c n =>
+  @HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) (@Nat.cast.{0} Rat Rat.instNatCast n)
+      (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))))
+    (SL.AuditRound4.scale_factor ε c
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+'SL.AuditRound4.difference_weight' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.difference_weight_ne_zero : ∀ (ε : Nat) (c : Rat),
+  @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+    ∀ (n : Nat),
+      @Ne.{1} Rat (SL.AuditRound4.difference_weight ε c n)
+        (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) :=
+⋯
+'SL.AuditRound4.difference_weight_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.difference_weight_recurrence : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat) (n : Nat),
+      @Eq.{1} Rat
+        (SL.AuditRound4.difference_weight ε c
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+            (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+          (SL.AuditRound4.theta ε c
+            (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+          (SL.AuditRound4.difference_weight ε c n)) :=
+⋯
+'SL.AuditRound4.difference_weight_recurrence' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.moment_difference_formula : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (μ : Nat → Rat),
+          SL.AuditRound4.moment_solution ε c μ →
+            ∀ (n : Nat),
+              @Eq.{1} Rat
+                (@SL.AuditRound4.second_difference.{0} Rat Rat.instField (SL.AuditRound4.scaled_sequence ε c μ) n)
+                (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                  (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                    (@SL.AuditRound4.second_difference.{0} Rat Rat.instField (SL.AuditRound4.scaled_sequence ε c μ)
+                      (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+                    (SL.AuditRound4.difference_weight ε c
+                      (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+                  (SL.AuditRound4.difference_weight ε c n)) :=
+⋯
+'SL.AuditRound4.moment_difference_formula' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.moment_finite_reconstruction : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        ∀ (μ : Nat → Rat),
+          SL.AuditRound4.moment_solution ε c μ →
+            ∀ (n : Nat),
+              @Eq.{1} Rat (SL.AuditRound4.scaled_sequence ε c μ n)
+                (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                    (SL.AuditRound4.scaled_sequence ε c μ (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+                    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                      (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+                        (SL.AuditRound4.scaled_sequence ε c μ
+                          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+                        (SL.AuditRound4.scaled_sequence ε c μ
+                          (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+                      (@Nat.cast.{0} Rat Rat.instNatCast n)))
+                  (∑ i ∈ Finset.range n,
+                    ∑ k ∈ Finset.range i,
+                      @HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+                        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                          (@SL.AuditRound4.second_difference.{0} Rat Rat.instField
+                            (SL.AuditRound4.scaled_sequence ε c μ)
+                            (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+                          (SL.AuditRound4.difference_weight ε c
+                            (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+                        (SL.AuditRound4.difference_weight ε c k))) :=
+⋯
+'SL.AuditRound4.moment_finite_reconstruction' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.affine_moment : Nat → Rat → Rat → Rat → Nat → Rat :=
+fun ε c A B j =>
+  @HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) (SL.AuditRound4.factorial_weight ε j)
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat Rat.instPowNat) c j))
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) A
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) B (@Nat.cast.{0} Rat Rat.instNatCast j)))
+'SL.AuditRound4.affine_moment' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.scaled_affine_moment : ∀ (ε : Nat) (c A B : Rat),
+  @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+    @Eq.{1} (Nat → Rat) (SL.AuditRound4.scaled_sequence ε c (SL.AuditRound4.affine_moment ε c A B)) fun j =>
+      @HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) A
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) B (@Nat.cast.{0} Rat Rat.instNatCast j)) :=
+⋯
+'SL.AuditRound4.scaled_affine_moment' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.affine_moment_solution : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c A B : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        SL.AuditRound4.moment_solution ε c (SL.AuditRound4.affine_moment ε c A B) :=
+⋯
+'SL.AuditRound4.affine_moment_solution' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.normalized_solution_with_zero_term : ∀ (ε : Nat),
+  Or (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@Eq.{1} Nat ε (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+    ∀ (c : Rat),
+      @Ne.{1} Rat c (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+        And
+          (SL.AuditRound4.moment_solution ε c
+            (SL.AuditRound4.affine_moment ε c (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+                (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))))
+          (And
+            (@Eq.{1} Rat
+              (SL.AuditRound4.affine_moment ε c (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+                  (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+                (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+              (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+            (@Eq.{1} Rat
+              (SL.AuditRound4.affine_moment ε c (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+                  (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+                (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+              (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))))) :=
+⋯
+'SL.AuditRound4.normalized_solution_with_zero_term' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.table_ratio : Rat → Rat → Rat → Rat → Rat → Rat :=
+fun a b cc d j =>
+  @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) j
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) a j))
+      b)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) j
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul) cc j))
+      d)
+'SL.AuditRound4.table_ratio' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.table_cancellation : ∀ (τ j : Rat),
+  @Ne.{1} Rat j (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+    @Ne.{1} Rat (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) j τ)
+        (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) →
+      @Eq.{1} Rat
+        (SL.AuditRound4.table_ratio
+          (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) τ
+            (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+              (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+              (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))))
+          (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) τ
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))))
+          τ (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) j)
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+          (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+            (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+            (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+              (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) j))) :=
+⋯
+'SL.AuditRound4.table_cancellation' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.missed_table_parameter : ∀ (j : Nat),
+  @LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) j →
+    @Eq.{1} Rat
+      (SL.AuditRound4.table_ratio
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+          (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))))
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+          (@OfNat.ofNat.{0} Rat (nat_lit 8) (@Rat.instOfNat (nat_lit 8))))
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+          (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))))
+        (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) (@Nat.cast.{0} Rat Rat.instNatCast j))
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast j)))) :=
+⋯
+'SL.AuditRound4.missed_table_parameter' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.missed_table_not_in_old_branches : And
+  (@Ne.{1} Rat
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+        (@abs.{0} Rat Rat.instLattice Rat.addGroup
+          (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+            (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+              (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2)))
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+                (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4)))))
+            (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+      (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))))
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+      (@OfNat.ofNat.{0} Rat (nat_lit 8) (@Rat.instOfNat (nat_lit 8)))))
+  (@Ne.{1} Rat
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@Neg.neg.{0} Rat Rat.instNeg
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+            (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+            (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))))
+          (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))
+      (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))))
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@Neg.neg.{0} Rat Rat.instNeg (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3))))
+      (@OfNat.ofNat.{0} Rat (nat_lit 8) (@Rat.instOfNat (nat_lit 8))))) :=
+⋯
+'SL.AuditRound4.missed_table_not_in_old_branches' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.legendre2.{u_1} : {K : Type u_1} → [Field.{u_1} K] → K → K :=
+fun {K} [inst : Field.{u_1} K] x =>
+  @HDiv.hDiv.{u_1, u_1, u_1} K K K
+    (@instHDiv.{u_1} K
+      (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+    (@HSub.hSub.{u_1, u_1, u_1} K K K
+      (@instHSub.{u_1} K
+        (@SubNegMonoid.toSub.{u_1} K
+          (@AddGroup.toSubNegMonoid.{u_1} K
+            (@AddGroupWithOne.toAddGroup.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+      (@HMul.hMul.{u_1, u_1, u_1} K K K
+        (@instHMul.{u_1} K
+          (@Distrib.toMul.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 3)
+          (@instOfNatAtLeastTwo.{u_1} K (nat_lit 3)
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            SL.AuditRound4.legendre2._proof_1))
+        (@HPow.hPow.{u_1, 0, u_1} K Nat K
+          (@instHPow.{u_1, 0} K Nat
+            (@Monoid.toPow.{u_1} K
+              (@Semiring.toMonoid.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          x (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+      (@OfNat.ofNat.{u_1} K (nat_lit 1)
+        (@One.toOfNat1.{u_1} K
+          (@AddMonoidWithOne.toOne.{u_1} K
+            (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+    (@OfNat.ofNat.{u_1} K (nat_lit 2)
+      (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+        (@AddMonoidWithOne.toNatCast.{u_1} K
+          (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+            (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+        SL.AuditRound4.second_difference._proof_1))
+'SL.AuditRound4.legendre2' depends on axioms: [propext, Quot.sound.{u}]
+def SL.AuditRound4.legendre3.{u_1} : {K : Type u_1} → [Field.{u_1} K] → K → K :=
+fun {K} [inst : Field.{u_1} K] x =>
+  @HDiv.hDiv.{u_1, u_1, u_1} K K K
+    (@instHDiv.{u_1} K
+      (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+    (@HSub.hSub.{u_1, u_1, u_1} K K K
+      (@instHSub.{u_1} K
+        (@SubNegMonoid.toSub.{u_1} K
+          (@AddGroup.toSubNegMonoid.{u_1} K
+            (@AddGroupWithOne.toAddGroup.{u_1} K
+              (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+      (@HMul.hMul.{u_1, u_1, u_1} K K K
+        (@instHMul.{u_1} K
+          (@Distrib.toMul.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 5)
+          (@instOfNatAtLeastTwo.{u_1} K (nat_lit 5)
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            SL.AuditRound4.legendre3._proof_1))
+        (@HPow.hPow.{u_1, 0, u_1} K Nat K
+          (@instHPow.{u_1, 0} K Nat
+            (@Monoid.toPow.{u_1} K
+              (@Semiring.toMonoid.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+          x (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+      (@HMul.hMul.{u_1, u_1, u_1} K K K
+        (@instHMul.{u_1} K
+          (@Distrib.toMul.{u_1} K
+            (@instDistribOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 3)
+          (@instOfNatAtLeastTwo.{u_1} K (nat_lit 3)
+            (@AddMonoidWithOne.toNatCast.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+            SL.AuditRound4.legendre2._proof_1))
+        x))
+    (@OfNat.ofNat.{u_1} K (nat_lit 2)
+      (@instOfNatAtLeastTwo.{u_1} K (nat_lit 2)
+        (@AddMonoidWithOne.toNatCast.{u_1} K
+          (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+            (@Ring.toAddGroupWithOne.{u_1} K (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))
+        SL.AuditRound4.second_difference._proof_1))
+'SL.AuditRound4.legendre3' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound4.low_mode_representative_differences.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (x a b : K),
+  And
+    (@Eq.{u_1 + 1} K
+      (@HSub.hSub.{u_1, u_1, u_1} K K K
+        (@instHSub.{u_1} K
+          (@SubNegMonoid.toSub.{u_1} K
+            (@AddGroup.toSubNegMonoid.{u_1} K
+              (@AddGroupWithOne.toAddGroup.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K
+                  (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+        (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+          (@instHDiv.{u_1} K
+            (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+          (@SL.AuditRound4.legendre2.{u_1} K inst x) a)
+        (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+          (@instHDiv.{u_1} K
+            (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+          (@HSub.hSub.{u_1, u_1, u_1} K K K
+            (@instHSub.{u_1} K
+              (@SubNegMonoid.toSub.{u_1} K
+                (@AddGroup.toSubNegMonoid.{u_1} K
+                  (@AddGroupWithOne.toAddGroup.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+            (@SL.AuditRound4.legendre2.{u_1} K inst x)
+            (@OfNat.ofNat.{u_1} K (nat_lit 1)
+              (@One.toOfNat1.{u_1} K
+                (@AddMonoidWithOne.toOne.{u_1} K
+                  (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+          a))
+      (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+        (@instHDiv.{u_1} K
+          (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+        (@OfNat.ofNat.{u_1} K (nat_lit 1)
+          (@One.toOfNat1.{u_1} K
+            (@AddMonoidWithOne.toOne.{u_1} K
+              (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K
+                  (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+        a))
+    (@Eq.{u_1 + 1} K
+      (@HSub.hSub.{u_1, u_1, u_1} K K K
+        (@instHSub.{u_1} K
+          (@SubNegMonoid.toSub.{u_1} K
+            (@AddGroup.toSubNegMonoid.{u_1} K
+              (@AddGroupWithOne.toAddGroup.{u_1} K
+                (@Ring.toAddGroupWithOne.{u_1} K
+                  (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+        (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+          (@instHDiv.{u_1} K
+            (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+          (@SL.AuditRound4.legendre3.{u_1} K inst x) b)
+        (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+          (@instHDiv.{u_1} K
+            (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+          (@HSub.hSub.{u_1, u_1, u_1} K K K
+            (@instHSub.{u_1} K
+              (@SubNegMonoid.toSub.{u_1} K
+                (@AddGroup.toSubNegMonoid.{u_1} K
+                  (@AddGroupWithOne.toAddGroup.{u_1} K
+                    (@Ring.toAddGroupWithOne.{u_1} K
+                      (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+            (@SL.AuditRound4.legendre3.{u_1} K inst x) x)
+          b))
+      (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+        (@instHDiv.{u_1} K
+          (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+        x b)) :=
+⋯
+'SL.AuditRound4.low_mode_representative_differences' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.low_mode_difference_nonzero.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (a b : K),
+  @Ne.{u_1 + 1} K a
+      (@OfNat.ofNat.{u_1} K (nat_lit 0)
+        (@Zero.toOfNat0.{u_1} K
+          (@MulZeroClass.toZero.{u_1} K
+            (@instMulZeroClassOfSemiring.{u_1} K
+              (@DivisionSemiring.toSemiring.{u_1} K
+                (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))) →
+    @Ne.{u_1 + 1} K b
+        (@OfNat.ofNat.{u_1} K (nat_lit 0)
+          (@Zero.toOfNat0.{u_1} K
+            (@MulZeroClass.toZero.{u_1} K
+              (@instMulZeroClassOfSemiring.{u_1} K
+                (@DivisionSemiring.toSemiring.{u_1} K
+                  (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))) →
+      And
+        (@Ne.{u_1 + 1} K
+          (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@SL.AuditRound4.legendre2.{u_1} K inst
+              (@OfNat.ofNat.{u_1} K (nat_lit 0)
+                (@Zero.toOfNat0.{u_1} K
+                  (@MulZeroClass.toZero.{u_1} K
+                    (@instMulZeroClassOfSemiring.{u_1} K
+                      (@DivisionSemiring.toSemiring.{u_1} K
+                        (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))))
+            a)
+          (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@HSub.hSub.{u_1, u_1, u_1} K K K
+              (@instHSub.{u_1} K
+                (@SubNegMonoid.toSub.{u_1} K
+                  (@AddGroup.toSubNegMonoid.{u_1} K
+                    (@AddGroupWithOne.toAddGroup.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+              (@SL.AuditRound4.legendre2.{u_1} K inst
+                (@OfNat.ofNat.{u_1} K (nat_lit 0)
+                  (@Zero.toOfNat0.{u_1} K
+                    (@MulZeroClass.toZero.{u_1} K
+                      (@instMulZeroClassOfSemiring.{u_1} K
+                        (@DivisionSemiring.toSemiring.{u_1} K
+                          (@Semifield.toDivisionSemiring.{u_1} K (@Field.toSemifield.{u_1} K inst))))))))
+              (@OfNat.ofNat.{u_1} K (nat_lit 1)
+                (@One.toOfNat1.{u_1} K
+                  (@AddMonoidWithOne.toOne.{u_1} K
+                    (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+            a))
+        (@Ne.{u_1 + 1} K
+          (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@SL.AuditRound4.legendre3.{u_1} K inst
+              (@OfNat.ofNat.{u_1} K (nat_lit 1)
+                (@One.toOfNat1.{u_1} K
+                  (@AddMonoidWithOne.toOne.{u_1} K
+                    (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+            b)
+          (@HDiv.hDiv.{u_1, u_1, u_1} K K K
+            (@instHDiv.{u_1} K
+              (@DivInvMonoid.toDiv.{u_1} K (@DivisionRing.toDivInvMonoid.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))
+            (@HSub.hSub.{u_1, u_1, u_1} K K K
+              (@instHSub.{u_1} K
+                (@SubNegMonoid.toSub.{u_1} K
+                  (@AddGroup.toSubNegMonoid.{u_1} K
+                    (@AddGroupWithOne.toAddGroup.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst)))))))
+              (@SL.AuditRound4.legendre3.{u_1} K inst
+                (@OfNat.ofNat.{u_1} K (nat_lit 1)
+                  (@One.toOfNat1.{u_1} K
+                    (@AddMonoidWithOne.toOne.{u_1} K
+                      (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                        (@Ring.toAddGroupWithOne.{u_1} K
+                          (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+              (@OfNat.ofNat.{u_1} K (nat_lit 1)
+                (@One.toOfNat1.{u_1} K
+                  (@AddMonoidWithOne.toOne.{u_1} K
+                    (@AddGroupWithOne.toAddMonoidWithOne.{u_1} K
+                      (@Ring.toAddGroupWithOne.{u_1} K
+                        (@DivisionRing.toRing.{u_1} K (@Field.toDivisionRing.{u_1} K inst))))))))
+            b)) :=
+⋯
+'SL.AuditRound4.low_mode_difference_nonzero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.a4 : Rat → Rat :=
+fun c =>
+  @HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+    (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@OfNat.ofNat.{0} Rat (nat_lit 15) (@Rat.instOfNat (nat_lit 15))) c)
+'SL.AuditRound4.a4' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.a6 : Rat → Rat :=
+fun c =>
+  @HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+      (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+        (@OfNat.ofNat.{0} Rat (nat_lit 105) (@Rat.instOfNat (nat_lit 105))) c))
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (@OfNat.ofNat.{0} Rat (nat_lit 945) (@Rat.instOfNat (nat_lit 945)))
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid)) c
+        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+'SL.AuditRound4.a6' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.coefficient_step : Nat → Rat → Rat → Rat → Rat :=
+fun n c an am =>
+  @HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+            (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+              (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4)))
+              (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid))
+                (@Nat.cast.{0} Rat Rat.instNatCast n) (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+            (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+          c))
+      an)
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast n))
+          (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+        (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (@OfNat.ofNat.{0} Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast.{0} Rat Rat.instNatCast n))
+          (@OfNat.ofNat.{0} Rat (nat_lit 3) (@Rat.instOfNat (nat_lit 3)))))
+      (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub) an am))
+'SL.AuditRound4.coefficient_step' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.remainder_coefficients_from_initials : ∀ (c : Rat),
+  And
+    (@Eq.{1} Rat
+      (SL.AuditRound4.coefficient_step (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) c
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+        (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+      (SL.AuditRound4.a4 c))
+    (@Eq.{1} Rat
+      (SL.AuditRound4.coefficient_step (@OfNat.ofNat.{0} Nat (nat_lit 4) (instOfNatNat (nat_lit 4))) c
+        (SL.AuditRound4.a4 c) (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))
+      (SL.AuditRound4.a6 c)) :=
+⋯
+'SL.AuditRound4.remainder_coefficients_from_initials' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.remainder_identity : ∀ (c : Rat),
+  @Eq.{1} Rat
+    (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub) (SL.AuditRound4.a6 c)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+          (@OfNat.ofNat.{0} Rat (nat_lit 63) (@Rat.instOfNat (nat_lit 63))) c)
+        (SL.AuditRound4.a4 c)))
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+      (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+        (@OfNat.ofNat.{0} Rat (nat_lit 42) (@Rat.instOfNat (nat_lit 42))) c)) :=
+⋯
+'SL.AuditRound4.remainder_identity' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.remainder_unbounded_on_reciprocals : ∀ (M : Rat) (N : Nat),
+  ∃ n,
+    And (@LT.lt.{0} Nat instLTNat N n)
+      (And
+        (@LT.lt.{0} Rat Rat.instLT (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0)))
+          (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+            (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+            (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) (@Nat.cast.{0} Rat Rat.instNatCast n)
+              (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))))
+        (@LT.lt.{0} Rat Rat.instLT M
+          (@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+            (SL.AuditRound4.a6
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd) (@Nat.cast.{0} Rat Rat.instNatCast n)
+                  (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))))
+            (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+              (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                (@OfNat.ofNat.{0} Rat (nat_lit 63) (@Rat.instOfNat (nat_lit 63)))
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                    (@Nat.cast.{0} Rat Rat.instNatCast n)
+                    (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))))))
+              (SL.AuditRound4.a4
+                (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+                  (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+                  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+                    (@Nat.cast.{0} Rat Rat.instNatCast n)
+                    (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))))))) :=
+⋯
+'SL.AuditRound4.remainder_unbounded_on_reciprocals' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.even_z_plus : Nat → Rat :=
+fun j =>
+  @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+    (SL.ThirdOrderClosedForms.muEvenPlus (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))) j)
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid))
+        (@Nat.cast.{0} Rat Rat.instNatCast j.factorial) (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat Rat.instPowNat)
+        (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))) j))
+'SL.AuditRound4.even_z_plus' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.even_z_minus : Nat → Rat :=
+fun j =>
+  @HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+    (SL.ThirdOrderClosedForms.muEvenMinus (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1))) j)
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat (@Monoid.toPow.{0} Rat Rat.monoid))
+        (@Nat.cast.{0} Rat Rat.instNatCast j.factorial) (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+      (@HPow.hPow.{0, 0, 0} Rat Nat Rat (@instHPow.{0, 0} Rat Nat Rat.instPowNat)
+        (@OfNat.ofNat.{0} Rat (nat_lit 4) (@Rat.instOfNat (nat_lit 4))) j))
+'SL.AuditRound4.even_z_minus' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.example_ratio_difference : Nat → Rat :=
+fun j =>
+  @HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv) (SL.AuditRound4.even_z_minus j)
+      (SL.AuditRound4.even_z_plus j))
+    (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+      (SL.AuditRound4.even_z_minus
+        (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+      (SL.AuditRound4.even_z_plus
+        (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat) j
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+'SL.AuditRound4.example_ratio_difference' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound4.printed_reduction_residual : Rat :=
+@HSub.hSub.{0, 0, 0} Rat Rat Rat (@instHSub.{0} Rat Rat.instSub)
+  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (SL.ThirdOrderClosedForms.a2Even (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+        (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+        (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (SL.ThirdOrderClosedForms.a3Even (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+        (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+      (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+          (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+        (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))
+  (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+    (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+    (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+'SL.AuditRound4.printed_reduction_residual' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.printed_reduction_counterexample : @Eq.{1} Rat SL.AuditRound4.printed_reduction_residual
+  (@HDiv.hDiv.{0, 0, 0} Rat Rat Rat (@instHDiv.{0} Rat Rat.instDiv)
+    (@OfNat.ofNat.{0} Rat (nat_lit 69) (@Rat.instOfNat (nat_lit 69)))
+    (@OfNat.ofNat.{0} Rat (nat_lit 224) (@Rat.instOfNat (nat_lit 224)))) :=
+⋯
+'SL.AuditRound4.printed_reduction_counterexample' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound4.corrected_reduction_same_data : @Eq.{1} Rat
+  (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+    (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+        (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3)))))
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (@HAdd.hAdd.{0, 0, 0} Rat Rat Rat (@instHAdd.{0} Rat Rat.instAdd)
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (SL.ThirdOrderClosedForms.a2Even (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+            (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+          (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+            (SL.ThirdOrderClosedForms.a3Even (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+              (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+            (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))))
+        (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+    (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+      (@HMul.hMul.{0, 0, 0} Rat Rat Rat (@instHMul.{0} Rat Rat.instMul)
+        (SL.ThirdOrderClosedForms.a3Even (@OfNat.ofNat.{0} Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))
+          (@OfNat.ofNat.{0} Nat (nat_lit 3) (instOfNatNat (nat_lit 3))))
+        (SL.AuditRound4.even_z_plus (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))
+      (SL.AuditRound4.example_ratio_difference (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+  (@OfNat.ofNat.{0} Rat (nat_lit 0) (@Rat.instOfNat (nat_lit 0))) :=
+⋯
+'SL.AuditRound4.corrected_reduction_same_data' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]

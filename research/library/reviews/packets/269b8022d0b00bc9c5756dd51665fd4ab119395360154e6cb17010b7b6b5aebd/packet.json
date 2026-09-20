@@ -1,0 +1,91 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359"
+	],
+	"claims": [
+		{
+			"id": "R4-d4-software",
+			"statement": "Independently review and execute the repaired d4 program from frozen input snapshots. Validate all four rational divisions; correct reduction coefficients with required nonzero baseline; symbolic beta checks; finite positive-second-difference backward algorithm with correct zero-index normalization and both parities; positive rational c input; quiet import; and explicit nonzero exits on any failed section, including Python -O. The numerical method uses arbitrary exponent/precision, not an interval certificate. It computes finite terminal data, not a machine proof of an infinite limit. Preserve the original failed and nan output evidence as historical.",
+			"verification": "software"
+		},
+		{
+			"id": "R4-d4-regression",
+			"statement": "Replay behavior_checks.py with AUDIT_SOURCE_ROOT pointing to a copied frozen input directory and AUDIT_CHECK_OUTPUT in a fresh temporary directory; set PYTHONDONTWRITEBYTECODE=1 to avoid altering frozen snapshots. Independently attack representative cases beyond supplied tests. Compare the finite backward implementation against independently evaluated rational original mu recurrence, not a duplicate of the same transformed algorithm. Check the actual floor defects, N=0/1/2 and large N, invalid inputs, reduction indexing and error status. A homogeneous zero solution is valid and was a faulty first negative control, correctly replaced by actual floor mutation; do not misreport that test-design correction as a production fix.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"research/artifacts/proof-audit-round4-20260921/before/scripts/d4_third_order_theory.py": {
+			"role": "original-software",
+			"sha256": "a501cec86df11c7394b1fee1f127f20111f89311a95ea3bdc09c7e09ac385efc",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/before/scripts/d4_third_order_theory.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/after-run.json": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "4e996a07523b031377d5b3965c7f8561ca433da499c4b2dca421480d203acf0d",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/after-run.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/after.stderr.txt": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/after.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/after.stdout.txt": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/after.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/before-run.json": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "ed7db296ecd7fadc5b9eef65f0ee790de087b7d97055d26ef50d4a564302dd7d",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/before-run.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/before.stderr.txt": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/before.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/before.stdout.txt": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "07be93076b7aabdec454a2b7a124b251567325389e402c909a19986338aa8064",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/before.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/behavior-results.json": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "299fa7ceae838e7e0342c81b48ce2a299d44f1c8465a32e96951e30cfc8a23b9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/behavior-results.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks-first-attempt.py": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "17953fc8e95afe5fa6d7810df06f29b2c66454263456f18a9f0e48e5c3abd87b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks-first-attempt.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks.py": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "b2863ada72d4b5525f5911dd2ca41f99cd052a8b11bb7a278ad543c75600c5c0",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks/test-control-correction.json": {
+			"role": "author-harness-or-execution-evidence",
+			"sha256": "c70431537583ce1f002bc2d3e841099e8c1e99f0e2bd1b3994995d565c5beef8",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks/test-control-correction.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md": {
+			"role": "mathematical-finite-backward-model",
+			"sha256": "a2f9f466277304a5a7f1d2e3ce62fd2c15adfd4813b941fb69f000e177c7058f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/submitted/proof_audit_round4_20260920.md": {
+			"role": "external-findings",
+			"sha256": "633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/submitted/proof_audit_round4_20260920.md"
+		},
+		"scripts/d4_third_order_theory.py": {
+			"role": "repaired-software",
+			"sha256": "b3abf50795b992821f7409fc8acd7ae66eeddf5faeb4316bb3cb760771a12b43",
+			"snapshot": "inputs/scripts/d4_third_order_theory.py"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

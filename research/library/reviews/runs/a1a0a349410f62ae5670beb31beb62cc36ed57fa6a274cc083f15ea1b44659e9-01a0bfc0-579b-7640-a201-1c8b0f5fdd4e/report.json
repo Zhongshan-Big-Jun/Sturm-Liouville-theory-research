@@ -1,0 +1,72 @@
+{
+	"checked_paths": [
+		"docs/SL_fractional_left_definite.tex",
+		"docs/SL_krein_c0_limit.tex",
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt",
+		"research/artifacts/proof-audit-round4-20260921/before/docs/SL_krein_c0_limit.tex",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.before.tex",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.ready.tex",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/artifact_manifest.json",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/author_notes.md",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/changes.diff",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_output.txt",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_repairs.py",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_results.json",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/diff-check-output.txt",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_output.txt",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_results.json",
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/repro_manifest.json",
+		"research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md",
+		"research/library/card-versions/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.md",
+		"research/library/card-versions/a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e.md",
+		"research/library/corrections/evidence/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.bin",
+		"research/library/corrections/evidence/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.bin",
+		"research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin",
+		"research/library/corrections/evidence/7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a.bin",
+		"research/library/corrections/evidence/d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d.bin",
+		"research/library/corrections/requests/077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598.json",
+		"research/library/corrections/requests/2aef55214b67792af602bd14bebc3922ea74a84adfde27045b0775cc637cb120.json",
+		"research/library/corrections/requests/45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe.json",
+		"research/library/corrections/requests/81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838.json",
+		"tools/krein-power-domain-polynomial-obstruction.md",
+		"tools/krein-sobolev-polynomials.md",
+		"tools/left-definite-orthogonal-systems.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe",
+			"reason": "The exact repaired card resolves the original scoped issue. Its boundary condition uses first derivatives and agrees with the frozen operator setting and primary excerpt. The stale H2-open statement and unrestricted polynomial-transfer assertion are removed. The replacement confines spectral transfer to fixed c>0 and 0<=s<=3. The low-order density statement is also consistent with a direct argument: the boundary residuals of x^2 and x^3 are (2,-2) and (2,2), so polynomial Sobolev approximants can be corrected to satisfy both boundary equations; degree elimination shows the supplied sparse p_n span these constrained polynomials. On the constrained H3 domain the operator norm is equivalent to the ordinary Sobolev norm, and the supplied spectral truncation argument transfers density to the stated lower orders. The distinction between the genuine operator inverse and the algebraic polynomial inverse is correctly retained.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838",
+			"reason": "The new paragraph correctly distinguishes ordinary Sobolev representatives from quotient classes: the n=2,3 limits retain 1/sqrt(6) and x/sqrt(10), while n>=4 converges to Q_n. All fixed n>=2 have quotient limit [Q_n]. The card correctly replaces the invalid O(1) recurrence remainder with O(a_n), including the exact diagnostic a_6-(63/c)a_4=1+42/c. Its source binding matches the repaired TeX hash bf56125edd8bcc635893b6f9a1a81a232d82d22f6a9620171a4a4b9014e50b87. These conclusions follow from the current proof, rather than the supplied historical verdict or proposed repairs.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R4-F01-F05-analytic",
+			"reason": "The all-index arguments are valid for real c>0 approaching zero and each fixed integer n. Vanishing endpoint values, integration by parts, Legendre orthogonality and leading coefficients establish S_n'=(2n-1)P_(n-1) and the diagonal zero-form Gram identity for every n,m>=2, including the n=2 base case. Independently, the shifted S-basis Gram matrix is tridiagonal within each parity; the defining recurrence cancels its interior pairings and yields ||K_n||^2=2c*a_n*a_(n+2)/(2n+1), so this dependency need not be inferred from finite tests. Both parity inductions start at a_2=a_3=1 and establish a_n>=a_(n-2)>=1. Consequently a_n<=R_n<=(1+b_n)a_n, making every division legitimate and proving the stated C_n, r_n and norm leading constants. For n>=4, the finite polynomial expansion bounds K_(n-2)/a_n by O_n(c) in ordinary H1; the positive normalization factor and its reciprocal also have O_n(c) errors. The explicit low-mode factors establish the same rate toward P_2/sqrt(6) and P_3/sqrt(10), whose squared H1 discrepancies from Q_2,Q_3 are 1/3 and 4/15. The continuous quotient map removes precisely those affine discrepancies; n=0,1 have zero quotient classes for every c>0. Completeness follows from the quotient isometry and Legendre density. The adjacent formulas also check: ||K_4||^2=3150/c^2+560/c+80/3+2c/9, its stated value at c=1/1000 is exact, n=5 has leading squared norm 22050/c^2, and the n=4 projection coefficient is a_4/||K_4|| with residual squared quotient norm 6/||K_4||^2. No uniform convergence or joint-limit conclusion is required or inferred.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R4-quotient-card-propagation",
+			"reason": "The repaired card preserves the earlier boundary/domain corrections and adds the correct fixed-index limit statement. All three source hashes in its metadata match the supplied snapshots. Its previous body is unchanged before the new limit section. Exact comparison also confirms preservation of the TeX setting, radical, isometry and completeness block. These results apply to the repaired argument: the form is sesquilinear on complex H1, its radical is span{1,x}, and T([f])=f'-(f(1)-f(-1))/2 maps the quotient isometrically onto mean-zero L2. The preserved spectral argument uses the form domain H1, correctly treats the affine modes as zero classes, and uses the actual sine image mu_n*cos(mu_n*x)-sin(mu_n). No operator boundary condition is incorrectly imposed on arbitrary H1 representatives. The card explicitly excludes its other retained literature summaries from this correction review.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R4-quotient-execution-scope",
+			"reason": "All 31 snapshot hashes matched the packet. Artifact-manifest sizes and hashes matched, and applying the supplied diff to the frozen original reconstructed the exact repaired TeX bytes. I executed a disposable copy with Python 3.14.4 and SymPy 1.14.0, changing only the script's hard-coded Root assignment to the temporary snapshot root. Execution exited 0 with 274 passing checks, and every result row matched the frozen final report: 260 finite exact mathematical checks, nine preservation checks and five TeX-structure checks. The preserved first-run reports remain FAIL with 272/274 passing; their two failures are 'glossary bibliography and EOF' and 'trailing newlines'. They are not mathematical failures or successful attempts. The final original/repaired snapshots both retain five trailing newline bytes, and the final tested source hash matches the packet. Temporary copies were removed and frozen-input hashes remained unchanged. These executable checks supplement the analytic review and do not establish universal claims, formal verification or PDF correctness.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval covers only the requested current claims at the supplied hashes. Other literature summaries, unrelated findings in the historical audit and other project results were not reaudited.",
+		"The first-run transient TeX snapshot is not supplied. Its retained failure reports were inspected, but the exact transient bytes, stated editing cause and historical process execution were not independently reproduced.",
+		"The author's original Git-baseline and working-tree checks were not reproduced because the working tree was excluded. Snapshot comparison independently verified the supplied diff and preservation claims.",
+		"The rerun required the disclosed Root-path adaptation; the executed script therefore had a different hash from the frozen original, while its mathematical checks and result rows were unchanged.",
+		"No Lean verification, TeX compilation, PDF inspection or external literature retrieval was performed. Only the supplied primary-source excerpt was inspected. This approval does not assert complete formalization, uniform-in-n convergence or a joint limit."
+	],
+	"packet_sha256": "a1a0a349410f62ae5670beb31beb62cc36ed57fa6a274cc083f15ea1b44659e9",
+	"verdict": "APPROVED"
+}

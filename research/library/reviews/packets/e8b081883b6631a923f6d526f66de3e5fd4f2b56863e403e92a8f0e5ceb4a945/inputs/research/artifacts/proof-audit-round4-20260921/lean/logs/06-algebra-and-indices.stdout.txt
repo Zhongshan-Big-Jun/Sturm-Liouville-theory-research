@@ -1,0 +1,53 @@
+SL/AuditRound4.lean:150:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound4.lean:222:6: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound4.lean:267:4: error: ring failed, ring expressions not equal
+K : Type u_1
+inst✝ : Field K
+a1 a2 a3 w z : ℕ → K
+hw : ∀ (j : ℕ), w j ≠ 0
+h :
+  IsSolution (fun j => w j * a1 j / w (j - 1)) (fun j => w j * a2 j / w (j - 2)) (fun j => w j * a3 j / w (j - 3))
+    fun j => w j * z j
+n : ℕ
+hn : z (n + 3) = a1 (n + 3) * z (n + 2) + a2 (n + 3) * z (n + 1) + a3 (n + 3) * z n
+⊢ w (n + 3) * z (n + 3) - w (n + 3) * a1 (n + 3) * z (n + 2) - w (n + 3) * a2 (n + 3) * z (n + 1) -
+              w (n + 3) * a3 (n + 3) * z n -
+            z (n + 3) +
+          a1 (n + 3) * z (n + 2) +
+        a2 (n + 3) * z (n + 1) +
+      a3 (n + 3) * z n =
+    0
+SL/AuditRound4.lean:287:8: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SL/AuditRound4.lean:290:8: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SL/AuditRound4.lean:293:8: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SL/AuditRound4.lean:287:8: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SL/AuditRound4.lean:290:8: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SL/AuditRound4.lean:293:8: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SL/AuditRound4.lean:363:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound4.lean:418:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound4.lean:425:54: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound4.lean:462:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

@@ -1,0 +1,91 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359"
+	],
+	"claims": [
+		{
+			"id": "R4-d4-v2-exact",
+			"statement": "Independently verify the entire current d4 program, particularly the former mixed integer/Fraction precision leak. Numeric inputs in coefficients and reduction_coefficients must be converted before any division, while symbolic expressions retain their semantics; Python floats represent their actual binary rationals rather than intended decimal inputs. Check the positive c=64,j=3 baseline E=(1+5j)H_j counterexample from the first review with exact equality, and additional integer/Fraction/SymPy combinations. Verify rational forms, reduction/nonzero hypotheses and indexing, symbolic identities, finite positive-difference backward construction, endpoint normalization and input failure behavior.",
+			"verification": "software"
+		},
+		{
+			"id": "R4-d4-v2-execution",
+			"statement": "Run copied frozen program and behavior_checks.py normally and under -O; set AUDIT_SOURCE_ROOT to the copied frozen input directory, AUDIT_CHECK_OUTPUT to temporary output and PYTHONDONTWRITEBYTECODE=1. Check reported27 behavior tests,624 independent original-mu finite comparisons and8 injected nonzero failures, and add adversarial cases where useful. Numerical finite-N diagnostics do not prove infinite convergence or interval error bounds. Preserve first CHANGES_REQUIRED and both corrected test-design expectations as history, not fake passes.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior-results.json": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "8cb38c83e1a7d36b108e1b7a1b3580190a343074ae0cf5bfd2cde504016c449a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior-results.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior_checks-first-attempt.py": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "facec186fd08686d9a8f1ca9f3cdc6a56a6e3f842a36f9494a7c72b61b07a54d",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior_checks-first-attempt.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior_checks.py": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "1e66dfe625d1438f4e6136d852ae74353d30a4e7ad8c9f066e7780175553b347",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/behavior_checks.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/expected-value-correction.json": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "5d99268c8da3b83b2f1ccd5d45693346136d77ae47c61cfaa82e48938ce2f927",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/expected-value-correction.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/first-repair.py": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "b3abf50795b992821f7409fc8acd7ae66eeddf5faeb4316bb3cb760771a12b43",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/first-repair.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal-run.json": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "e77cb7717a94fff0399fd13d4d4b4b4c899a020fa6de569161c5783370fec936",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal-run.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal.stderr.txt": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal.stdout.txt": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/normal.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized-run.json": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "d2fcded28bac95321aeb75e8ba7cfdf3350e5822265659b827e7f172a8a024aa",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized-run.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized.stderr.txt": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized.stdout.txt": {
+			"role": "regression-or-actual-execution-evidence",
+			"sha256": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/script-checks-revision2/optimized.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md": {
+			"role": "finite-recurrence-model",
+			"sha256": "a2f9f466277304a5a7f1d2e3ce62fd2c15adfd4813b941fb69f000e177c7058f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md"
+		},
+		"research/library/reviews/runs/269b8022d0b00bc9c5756dd51665fd4ab119395360154e6cb17010b7b6b5aebd-01a0bfb3-20bc-7300-87e3-5a9dc693c9f3/report.json": {
+			"role": "actual-first-independent-rejection",
+			"sha256": "355495b5a0c8483abf096d97046124f956ffbe9f90ba258feba0f1fb3c0a1112",
+			"snapshot": "inputs/research/library/reviews/runs/269b8022d0b00bc9c5756dd51665fd4ab119395360154e6cb17010b7b6b5aebd-01a0bfb3-20bc-7300-87e3-5a9dc693c9f3/report.json"
+		},
+		"scripts/d4_third_order_theory.py": {
+			"role": "current-repaired-program",
+			"sha256": "6fab78799dfcf328b4cdaed9c5e61e45acdd0c340bf9367f2d6ecaaffeb3fd38",
+			"snapshot": "inputs/scripts/d4_third_order_theory.py"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

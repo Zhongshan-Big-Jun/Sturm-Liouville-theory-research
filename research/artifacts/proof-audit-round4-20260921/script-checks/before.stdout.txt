@@ -1,0 +1,26 @@
+=== (A) closed forms mu_j = (2j+1)!/c^j, (2j)!/c^j (even); odd analog ===
+  c=1: even (2j+1)!/c^j ok=True, even (2j)!/c^j ok=True, odd (2j+3)!/(6(j+1)c^j) ok=True, odd (2j+1)!/c^j ok=True
+  c=3: even (2j+1)!/c^j ok=False, even (2j)!/c^j ok=False, odd (2j+3)!/(6(j+1)c^j) ok=False, odd (2j+1)!/c^j ok=False
+  c=5: even (2j+1)!/c^j ok=False, even (2j)!/c^j ok=False, odd (2j+3)!/(6(j+1)c^j) ok=False, odd (2j+1)!/c^j ok=False
+  c=10: even (2j+1)!/c^j ok=False, even (2j)!/c^j ok=False, odd (2j+3)!/(6(j+1)c^j) ok=False, odd (2j+1)!/c^j ok=False
+=== (B) beta-characterization ===
+  parity=e: solving beta from coefficient conditions ...
+    equations (j=3,4,5 numerator=0) solved: beta = [{beta: -1}, {beta: 1}]
+  parity=o: solving beta from coefficient conditions ...
+    equations (j=3,4,5 numerator=0) solved: beta = [{beta: 1}, {beta: 3}]
+=== (C) s-recurrence (exact reduction of order) ===
+  parity=e c=1: s-recurrence exact for z=random initial data: False
+  parity=e c=3: s-recurrence exact for z=random initial data: False
+  parity=e c=10: s-recurrence exact for z=random initial data: False
+  parity=o c=1: s-recurrence exact for z=random initial data: False
+  parity=o c=3: s-recurrence exact for z=random initial data: False
+  parity=o c=10: s-recurrence exact for z=random initial data: False
+=== (D) minimal solution (backward iteration) ===
+  parity=e c=3: h*_1/h*_0 = nan, h*_2/h*_0 = nan
+    forward ratios: h1/h0=nan h2/h1=nan h3/h2=nan h4/h3=nan
+    log h_j for j=0,1,2,3,4: [nan, nan, nan, nan, nan]
+    ratios at j=10,100,1000: nan, nan, nan
+  parity=o c=3: h*_1/h*_0 = nan, h*_2/h*_0 = nan
+    forward ratios: h1/h0=nan h2/h1=nan h3/h2=nan h4/h3=nan
+    log h_j for j=0,1,2,3,4: [nan, nan, nan, nan, nan]
+    ratios at j=10,100,1000: nan, nan, nan

@@ -1,0 +1,193 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359",
+		"01a0bfab-01ac-7dd2-b9e3-15edb3ffd3f3",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "correction:45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe",
+			"statement": "Independently check the repaired card tools/krein-sobolev-polynomials.md at sha256 a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e, its scope and dependencies, against the original issue 077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598 and old version 370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838",
+			"statement": "Independently check the repaired card tools/krein-sobolev-polynomials.md at sha256 a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e, its scope and dependencies, against the original issue 2aef55214b67792af602bd14bebc3922ea74a84adfde27045b0775cc637cb120 and old version 0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-F01-F05-analytic",
+			"statement": "Independently verify the fixed-index ordinary Sobolev representative limits versus quotient limits, explicit Legendre derivative and Gram identities, positive parity induction with controlled O_n(a_n) remainder, coefficient/norm leading constants, and O_n(c) rate in the repaired thm:unit for every fixed n. In particular n=2,3 must retain affine discrepancies and n=0,1 have zero quotient classes. Check all-index proofs instead of inferring them from finite symbolic tests. No uniform-in-n or joint-limit claim is allowed. Check adjacent corrected numerical-section formulas (n=4 norm, n=5 exponent, actual projection coefficient).",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-quotient-card-propagation",
+			"statement": "Check the exact repaired Krein-Sobolev card resolves both original issue and new issue: first-derivative boundary, removal of stale H2-open/all-order polynomial-transfer claims, and new ordinary-versus-quotient c->0 limit paragraph/source bindings. Other retained literature summaries are explicitly not reaudited. The third-round setting/radical/isometry/completeness block is unchanged; check preservation and applicability rather than claim a new full-project audit.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-quotient-execution-scope",
+			"statement": "Check the 274 author checks are accurately described as260 exact mathematical finite checks plus14 preservation/structure checks. Re-execute in disposable space if possible using copied snapshots (do not write into frozen inputs); report any unavailable part or required path adaptation honestly. Finite checks and TeX structure checks are not universal mathematical proof, independent review or PDF verification. Inspect actual first-run preservation failures and final hashes without relabeling failed attempts.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"docs/SL_fractional_left_definite.tex": {
+			"role": "unchanged-previous-scope-reference",
+			"sha256": "95ef1c87bb4b0598f5314ad96153ec97d86611d6c59e561d648028d226c1c6a4",
+			"snapshot": "inputs/docs/SL_fractional_left_definite.tex"
+		},
+		"docs/SL_krein_c0_limit.tex": {
+			"role": "repaired-proof",
+			"sha256": "bf56125edd8bcc635893b6f9a1a81a232d82d22f6a9620171a4a4b9014e50b87",
+			"snapshot": "inputs/docs/SL_krein_c0_limit.tex"
+		},
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt": {
+			"role": "primary-source-setting",
+			"sha256": "13e3398efc98a19dc037baa3bc4f4865298844599ee05d9852a1cf70d8a810dc",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/before/docs/SL_krein_c0_limit.tex": {
+			"role": "original-proof",
+			"sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/before/docs/SL_krein_c0_limit.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.before.tex": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.before.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.ready.tex": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "bf56125edd8bcc635893b6f9a1a81a232d82d22f6a9620171a4a4b9014e50b87",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/SL_krein_c0_limit.ready.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/artifact_manifest.json": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "9c8bfcd6f3a39138357ff41b443d9b33dd59cd21cb78707a0bb2a195f2ba22b0",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/artifact_manifest.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/author_notes.md": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "2fd4efbaeda5a0a0b37e23cfcdbe9633ef12c9e85bbac986bb3837f9c504dc3d",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/author_notes.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/changes.diff": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "a190c8a1b32fea77cd8086bff8a7a9aa345af193ffa9ca1cf963e9bea363272e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/changes.diff"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_output.txt": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "2dc338a474bf9e6f7dca0599a956494f941d5e26e9de6e470187ab0734fb9336",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/check_output.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_repairs.py": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "03a94e755b718170db47c92183f1373ebfa9f6bbf471c37a51e0829cc54c4338",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/check_repairs.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/check_results.json": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "fcd56dd331e4752b8f126dbcc8de66d898ed74fab959eeb2c29295f8ad7a53d5",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/check_results.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/diff-check-output.txt": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/diff-check-output.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_output.txt": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "d4a3db9672d260f15a38725e9b666be9891c6afc98c0d236a24cd059c390df03",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_output.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_results.json": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "fbf6487c43d2aa1fbe46c83fb63bff3df6a83463e1fdad79d717b468e63bc8e0",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/first-run-check_results.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/quotient-checks/repro_manifest.json": {
+			"role": "author-exact-check-or-manifest",
+			"sha256": "add159356232af4a7f8779c072064876c7ef005104e845445616188f9e163b55",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/quotient-checks/repro_manifest.json"
+		},
+		"research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md": {
+			"role": "correction-review-input",
+			"sha256": "0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe",
+			"snapshot": "inputs/research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md"
+		},
+		"research/library/card-versions/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.md": {
+			"role": "correction-review-input",
+			"sha256": "370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0",
+			"snapshot": "inputs/research/library/card-versions/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.md"
+		},
+		"research/library/card-versions/a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e.md": {
+			"role": "correction-review-input",
+			"sha256": "a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e",
+			"snapshot": "inputs/research/library/card-versions/a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e.md"
+		},
+		"research/library/corrections/evidence/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.bin": {
+			"role": "correction-review-input",
+			"sha256": "0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe",
+			"snapshot": "inputs/research/library/corrections/evidence/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.bin"
+		},
+		"research/library/corrections/evidence/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.bin": {
+			"role": "correction-review-input",
+			"sha256": "370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0",
+			"snapshot": "inputs/research/library/corrections/evidence/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.bin"
+		},
+		"research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin": {
+			"role": "correction-review-input",
+			"sha256": "633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e",
+			"snapshot": "inputs/research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin"
+		},
+		"research/library/corrections/evidence/7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a.bin": {
+			"role": "correction-review-input",
+			"sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+			"snapshot": "inputs/research/library/corrections/evidence/7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a.bin"
+		},
+		"research/library/corrections/evidence/d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d.bin": {
+			"role": "correction-review-input",
+			"sha256": "d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d",
+			"snapshot": "inputs/research/library/corrections/evidence/d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d.bin"
+		},
+		"research/library/corrections/requests/077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598.json": {
+			"role": "correction-review-input",
+			"sha256": "077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598",
+			"snapshot": "inputs/research/library/corrections/requests/077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598.json"
+		},
+		"research/library/corrections/requests/2aef55214b67792af602bd14bebc3922ea74a84adfde27045b0775cc637cb120.json": {
+			"role": "correction-review-input",
+			"sha256": "2aef55214b67792af602bd14bebc3922ea74a84adfde27045b0775cc637cb120",
+			"snapshot": "inputs/research/library/corrections/requests/2aef55214b67792af602bd14bebc3922ea74a84adfde27045b0775cc637cb120.json"
+		},
+		"research/library/corrections/requests/45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe.json": {
+			"role": "correction-review-input",
+			"sha256": "45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe",
+			"snapshot": "inputs/research/library/corrections/requests/45c52d40dbcf88197f0dbf96c3b21fe12a9fa7a600bb407c029d3a1edd0c3afe.json"
+		},
+		"research/library/corrections/requests/81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838.json": {
+			"role": "correction-review-input",
+			"sha256": "81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838",
+			"snapshot": "inputs/research/library/corrections/requests/81a161ab7e7d64eda92a25fe426857039af2f2767100c3c18ad3f7ee1b8ab838.json"
+		},
+		"tools/krein-power-domain-polynomial-obstruction.md": {
+			"role": "unchanged-operator-domain-scope-reference",
+			"sha256": "09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55",
+			"snapshot": "inputs/tools/krein-power-domain-polynomial-obstruction.md"
+		},
+		"tools/krein-sobolev-polynomials.md": {
+			"role": "correction-review-input",
+			"sha256": "a30cc958fcad356598d250a402346caae7b7f61b153c05a618d517f0302fd19e",
+			"snapshot": "inputs/tools/krein-sobolev-polynomials.md"
+		},
+		"tools/left-definite-orthogonal-systems.md": {
+			"role": "withdrawn-all-order-interpretation",
+			"sha256": "d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d",
+			"snapshot": "inputs/tools/left-definite-orthogonal-systems.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

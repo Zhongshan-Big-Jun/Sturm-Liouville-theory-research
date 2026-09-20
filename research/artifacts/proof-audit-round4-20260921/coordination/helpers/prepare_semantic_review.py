@@ -1,0 +1,20 @@
+from pathlib import Path
+import sys,json
+Root=Path('/mnt/f/LaTeX/BVE research'); Out=Path('/mnt/f/tools/math-audit-round4-20260921'); Art='research/artifacts/proof-audit-round4-20260921/lean'
+sys.path.insert(0,str(Root/'_xsoc1_work/plugins/manage-math-research-program/skills/manage-math-research-program/scripts'))
+import research_review as Review
+Readback=json.loads((Out/'readback-review-dispatch.json').read_text())['bundle']
+assert Review.verify_review_bundle(Root,Readback)['verdict']=='APPROVED'
+Replay=json.loads((Root/Art/'coordinator-replay/RESULT.json').read_text()); assert Replay['status']=='PASS'
+Inputs=[{'path':'lean-proof/SL/AuditRound4.lean','role':'current-formal-source'}, {'path':Readback+'/report.json','role':'independent-blind-readback'}]
+Names=['CONTRACT.md','ContractChecks.lean','FINAL_CHECKS.json','environment.json','DEPENDENCY_ADAPTATION.json','closure-consistency.json','root-object-bindings.json','negative-control-results.json','protected-source-comparison.json','command-index.json','final/declarations.json','final/formal-statements.txt','final/formal-statements-fully-explicit.txt','final/local-definition-closure.txt','final/loaded-modules.json','final/module-artifact-hashes.json','InspectAuditRound4.lean','run_lean.py','controls/PositiveControls.lean','controls/WrongPrintedReduction.lean','controls/PerturbedTable.lean','source-snapshot/proof_audit_round4_20260920.md','source-snapshot/constructive_repairs.md','coordinator-replay/RESULT.json','coordinator-replay/replay_lean.py','coordinator-replay/InspectAuditRound4.lean','coordinator-replay/root-AuditRound4.olean.bin','coordinator-first-attempt/NOTE.json']
+Names += ['coordinator-replay/artifact-rehash.json','coordinator-replay/comparison-correction.json','coordinator-replay/finalize_lean_replay.py']
+Names += [str(P.relative_to(Root/Art)) for Sub in ['logs','coordinator-replay/logs','dependency-src','source-snapshot','pins'] for P in (Root/Art/Sub).rglob('*') if P.is_file()]
+for Name in sorted(set(Names)): Inputs.append({'path':Art+'/'+Name,'role':'formal-contract-export-environment-or-execution-evidence'})
+Claims=[
+	{'id':'R4-Lean-semantic','verification':'formal','statement':'Independently compare all actual elaborated declarations and their blind readback against the supplied author contract and original problem formulas. Check both parities and exact P/Q/R object identity; Q-only concrete bridge versus field-polymorphic general lemmas; natural-index shifts; division/nonzero assumptions; arbitrary r0,s1,s2 reconstruction; finite versus infinite scope; low-mode differences only algebraic, not Gram/norm or convergence; reciprocal-sequence unbounded counterexample, not an IsBigO/Tendsto theorem; table witness rather than all-degree classification. Identify any hidden narrowing, inconsistent/vacuous hypotheses, or contract mismatch. No full-project theorem is asserted.'},
+	{'id':'R4-Lean-machine-evidence','verification':'software','statement':'Audit execution evidence, actual imported root identity before/after inspection and controls, fresh coordinator recompilation of four restricted-import dependencies and the new root, exports/graph/axiom closure, complete loaded module hashes, source preservation and exact dependency adaptation. Four old mathematical bodies were preserved but their imports narrowed only in external copies: do not certify a broad-import whole-project build. Check positive/negative controls really target current objects and fail for False, and the coordinator initial root-path command failure remains disclosed. Author checks and coordinator replay are not independent semantic approval. You may perform disposable consistency computations; report that binaries or all pinned installed modules were not executed/rehashed here if unavailable in the frozen packet.'}
+]
+Packet=Review.create_packet(Root,{'kind':'mathematics','author_ids':['01a06f46-dd03-7c83-9267-32048412c359','01a0bfab-b562-7f91-89f0-13d88fd645c8'],'inputs':Inputs,'claims':Claims})
+(Out/'semantic-review-packet.json').write_text(json.dumps(Packet,ensure_ascii=False,indent=2)+'\n')
+print(Packet['packet_sha256'])

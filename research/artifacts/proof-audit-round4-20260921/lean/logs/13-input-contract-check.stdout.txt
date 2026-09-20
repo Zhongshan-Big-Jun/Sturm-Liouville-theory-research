@@ -1,0 +1,33 @@
+CONTRACT_ROOT=F:\tools\math-audit-round4-20260921\lean-author\final\build\SL\AuditRound4.olean
+F:\tools\math-audit-round4-20260921\lean-author\ContractChecks.lean:32:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  (∀ (n : ℕ), c ^ 2 * μ (n + 3) = p ε c (n + 3) * μ (n + 2) - q ε c (n + 3) * μ (n + 1) + r ε c (n + 3) * μ n) ↔
+    ∀ (n : ℕ),
+      c ^ (n + 3) * μ (n + 3) / ↑(2 * (n + 3) + ε).factorial -
+            2 * (c ^ (n + 2) * μ (n + 2) / ↑(2 * (n + 2) + ε).factorial) +
+          c ^ (n + 1) * μ (n + 1) / ↑(2 * (n + 1) + ε).factorial =
+        c *
+            (c ^ (n + 2) * μ (n + 2) / ↑(2 * (n + 2) + ε).factorial -
+                2 * (c ^ (n + 1) * μ (n + 1) / ↑(2 * (n + 1) + ε).factorial) +
+              c ^ n * μ n / ↑(2 * n + ε).factorial) /
+          (2 * (↑n + 3 - 1) * (2 * (↑n + 3) + 2 * ↑ε - 1))
+but is expected to have type
+  (∀ (n : ℕ), c ^ 2 * μ (n + 3) = p ε c (n + 3) * μ (n + 2) - q ε c (n + 3) * μ (n + 1) + r ε c (n + 3) * μ n) ↔
+    ∀ (n : ℕ),
+      c ^ (n + 3) * μ (n + 3) / ↑(2 * (n + 3) + ε).factorial -
+            2 * (c ^ (n + 2) * μ (n + 2) / ↑(2 * (n + 2) + ε).factorial) +
+          c ^ (n + 1) * μ (n + 1) / ↑(2 * (n + 1) + ε).factorial =
+        c *
+            (c ^ (n + 2) * μ (n + 2) / ↑(2 * (n + 2) + ε).factorial -
+                2 * (c ^ (n + 1) * μ (n + 1) / ↑(2 * (n + 1) + ε).factorial) +
+              c ^ n * μ n / ↑(2 * n + ε).factorial) /
+          (2 * (↑n + 2) * (2 * (↑n + 3) + 2 * ↑ε - 1))
+F:\tools\math-audit-round4-20260921\lean-author\ContractChecks.lean:40:2: error: Type mismatch: After simplification, term
+  recurrence_iff_second_difference t v
+ has type
+  (∀ (n : ℕ), v (n + 3) = (2 + t (n + 3)) * v (n + 2) + (-(2 * t (n + 3)) + -1) * v (n + 1) + t (n + 3) * v n) ↔
+    ∀ (n : ℕ), v (n + 3) + -(2 * v (n + 2)) + v (n + 1) = t (n + 3) * (v (n + 2) + -(2 * v (n + 1)) + v n)
+but is expected to have type
+  (∀ (n : ℕ), v (n + 3) = (2 + t (n + 3)) * v (n + 2) + -((1 + 2 * t (n + 3)) * v (n + 1)) + t (n + 3) * v n) ↔
+    ∀ (n : ℕ), v (n + 3) + -(2 * v (n + 2)) + v (n + 1) = t (n + 3) * (v (n + 2) + -(2 * v (n + 1)) + v n)

@@ -2,6 +2,8 @@
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
+The fourth revision on 2026-09-21 separates ordinary-function and quotient limits, repairs the third-order program, reduction assumptions and parameter table, and proves general-c minimal solutions for the specified even/odd coefficient family. See the [fourth-audit report](reports/proof-audit-round4-20260921/REPORT.md) for analytic, independent-review and local-Lean scopes.
+
 The third audit on 2026-09-20 corrects the general recurrence versus product-model distinction, false basis-perturbation stability claims, and a quotient-completeness proof gap. Updated cards, programs, local Lean checks, independent reviews and their limits are documented in the [third-audit report](reports/proof-audit-round3-20260920/REPORT.md).
 
 The 2026-09-20 second audit repairs spectral/domain claims, the first-pair global extremum argument and K1 terminal conditions, and connects external findings to versioned library corrections. See the [audit report](reports/proof-audit-round2-20260920/REPORT.md) for independent reviews, local Lean evidence and remaining gaps.
@@ -47,7 +49,7 @@ The plugin repository separately contains [three complete Q9 benchmark proofs an
 - Global nondegeneracy, symmetry, uniqueness, and optimal values for n>=2 gap extremals.
 - Fixed-n ratio optima and remaining monotonicity questions. Later STRICT results already cover the 2n root count; see the [guide](docs/research-guide.md).
 - General non-diagonal density criteria O1'/O1'LD, the remaining fractional window, and threshold classification.
-- General K(c), source-term control, and broader coefficient families in the third-order recurrence. [K(1)=e/4](docs/SL_third_order_K1_proof.tex) is a proved specific anchor.
+- Nonhomogeneous source-term control and broader coefficient families in the third-order recurrence. The [specified even/odd family](docs/SL_third_order_recurrence_theory.tex) now has minimal-solution constants for every c>0 and a rational-ratio classification. [K(1)=e/4](docs/SL_third_order_K1_proof.tex) remains the even-family anchor.
 
 The research map and early survey contain records from different dates. Follow the precise theorem, audit, scope, and relevant latest run when resuming. The guide identifies historical G2 status differences that still need statement-level reconciliation.
 

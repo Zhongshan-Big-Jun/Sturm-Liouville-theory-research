@@ -16,6 +16,10 @@
 命令入口随已加载插件版本确定; 本轮开发实现位于插件源码仓库 `_xsoc1_work/`,
 是否已发布和安装见对应版本报告, 不从目录存在推断安装成功.
 
+## 第四轮修订 (2026-09-21)
+
+[三阶递推](third-order-recurrence.md)给出指定双奇偶系数族的正项尾解、一般c常数和全部有理比值分类; [K1锚点](third-order-minimal-K1.md)保留独立有限终端约定. [Krein-Sobolev](krein-sobolev-polynomials.md)区分普通函数代表与商类极限. [稳定性](jump-stability.md)及四张未改正文的卡片完成精确审计绑定续接. 原错误版本、退回记录和批注仍可溯源, 默认检索只按当前纠错状态复用. 证明、程序与局部Lean的不同范围见 [第四轮报告](../reports/proof-audit-round4-20260921/REPORT.md).
+
 ## 本轮修订入口
 
 | 主题 | 工具 |
@@ -113,7 +117,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | symline-n1-monotonicity | [card](<symline-n1-monotonicity.md>) | 0 |
 | tension-ratio-chain | [card](<tension-ratio-chain.md>) | 0 |
 | third-order-minimal-K1 | [card](<third-order-minimal-K1.md>) | 1 |
-| third-order-recurrence | [card](<third-order-recurrence.md>) | 0 |
+| third-order-recurrence | [card](<third-order-recurrence.md>) | 1 |
 | transfer-matrix-secular | [card](<transfer-matrix-secular.md>) | 0 |
 | true-curve-region-decomposition | [card](<true-curve-region-decomposition.md>) | 0 |
 | two-block-gap-bounds | [card](<two-block-gap-bounds.md>) | 0 |

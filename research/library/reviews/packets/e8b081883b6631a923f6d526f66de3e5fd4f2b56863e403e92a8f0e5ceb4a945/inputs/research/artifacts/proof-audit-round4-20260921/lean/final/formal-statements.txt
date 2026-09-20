@@ -1,0 +1,572 @@
+definition SL.AuditRound4.second_difference :
+{K : Type u_1} → [Field.{u_1} K] → (ℕ → K) → ℕ → K
+:=
+fun {K} [Field.{u_1} K] v n =>
+  HAdd.hAdd.{u_1, u_1, u_1}
+    (HSub.hSub.{u_1, u_1, u_1} (v (HAdd.hAdd.{0, 0, 0} n 2))
+      (HMul.hMul.{u_1, u_1, u_1} 2 (v (HAdd.hAdd.{0, 0, 0} n 1))))
+    (v n)
+
+theorem SL.AuditRound4.recurrence_iff_second_difference :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (t v : ℕ → K),
+  SL.ThirdOrder.IsSolution.{u_1} (fun j => HAdd.hAdd.{u_1, u_1, u_1} 2 (t j))
+      (fun j => Neg.neg.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 (t j)))) t v ↔
+    ∀ (n : ℕ),
+      Eq.{u_1 + 1} (SL.AuditRound4.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 1))
+        (HMul.hMul.{u_1, u_1, u_1} (t (HAdd.hAdd.{0, 0, 0} n 3)) (SL.AuditRound4.second_difference.{u_1} v n))
+
+theorem SL.AuditRound4.affine_second_difference :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (A B : K) (n : ℕ),
+  Eq.{u_1 + 1}
+    (SL.AuditRound4.second_difference.{u_1} (fun j => HAdd.hAdd.{u_1, u_1, u_1} A (HMul.hMul.{u_1, u_1, u_1} B ↑j)) n) 0
+
+theorem SL.AuditRound4.affine_solution :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (t : ℕ → K) (A B : K),
+  SL.ThirdOrder.IsSolution.{u_1} (fun j => HAdd.hAdd.{u_1, u_1, u_1} 2 (t j))
+    (fun j => Neg.neg.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 (t j)))) t fun j =>
+    HAdd.hAdd.{u_1, u_1, u_1} A (HMul.hMul.{u_1, u_1, u_1} B ↑j)
+
+theorem SL.AuditRound4.zero_second_difference_iff_affine :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (v : ℕ → K),
+  (∀ (n : ℕ), Eq.{u_1 + 1} (SL.AuditRound4.second_difference.{u_1} v n) 0) ↔
+    ∀ (n : ℕ),
+      Eq.{u_1 + 1} (v n)
+        (HAdd.hAdd.{u_1, u_1, u_1} (v 0) (HMul.hMul.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (v 1) (v 0)) ↑n))
+
+theorem SL.AuditRound4.difference_proportional :
+∀ {K : Type u_1} [inst : Field.{u_1} K] {t v a : ℕ → K},
+  (∀ (n : ℕ),
+      Eq.{u_1 + 1} (SL.AuditRound4.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 1))
+        (HMul.hMul.{u_1, u_1, u_1} (t (HAdd.hAdd.{0, 0, 0} n 3)) (SL.AuditRound4.second_difference.{u_1} v n))) →
+    (∀ (n : ℕ),
+        Eq.{u_1 + 1} (a (HAdd.hAdd.{0, 0, 0} n 1)) (HMul.hMul.{u_1, u_1, u_1} (t (HAdd.hAdd.{0, 0, 0} n 3)) (a n))) →
+      Ne.{u_1 + 1} (a 0) 0 →
+        ∀ (n : ℕ),
+          Eq.{u_1 + 1} (SL.AuditRound4.second_difference.{u_1} v n)
+            (HMul.hMul.{u_1, u_1, u_1} (HDiv.hDiv.{u_1, u_1, u_1} (SL.AuditRound4.second_difference.{u_1} v 0) (a 0))
+              (a n))
+
+theorem SL.AuditRound4.first_difference_sum :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (v : ℕ → K) (n : ℕ),
+  Eq.{u_1 + 1} (HSub.hSub.{u_1, u_1, u_1} (v (HAdd.hAdd.{0, 0, 0} n 1)) (v n))
+    (HAdd.hAdd.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (v 1) (v 0))
+      (∑ k ∈ Finset.range n, SL.AuditRound4.second_difference.{u_1} v k))
+
+theorem SL.AuditRound4.reconstruct_second_difference :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (v : ℕ → K) (n : ℕ),
+  Eq.{u_1 + 1} (v n)
+    (HAdd.hAdd.{u_1, u_1, u_1}
+      (HAdd.hAdd.{u_1, u_1, u_1} (v 0) (HMul.hMul.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (v 1) (v 0)) ↑n))
+      (∑ i ∈ Finset.range n, ∑ k ∈ Finset.range i, SL.AuditRound4.second_difference.{u_1} v k))
+
+theorem SL.AuditRound4.reduction_residual_identity :
+∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E : ℕ → K},
+  SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 E →
+    ∀ (r : ℕ → K) (n : ℕ),
+      Eq.{u_1 + 1}
+        (HSub.hSub.{u_1, u_1, u_1}
+          (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} n 3)) (r (HAdd.hAdd.{0, 0, 0} n 3)))
+          (HAdd.hAdd.{u_1, u_1, u_1}
+            (HAdd.hAdd.{u_1, u_1, u_1}
+              (HMul.hMul.{u_1, u_1, u_1} (a1 (HAdd.hAdd.{0, 0, 0} n 3))
+                (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} n 2)) (r (HAdd.hAdd.{0, 0, 0} n 2))))
+              (HMul.hMul.{u_1, u_1, u_1} (a2 (HAdd.hAdd.{0, 0, 0} n 3))
+                (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} n 1)) (r (HAdd.hAdd.{0, 0, 0} n 1)))))
+            (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (HMul.hMul.{u_1, u_1, u_1} (E n) (r n)))))
+        (HAdd.hAdd.{u_1, u_1, u_1}
+          (HAdd.hAdd.{u_1, u_1, u_1}
+            (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} n 3))
+              (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 3)) (r (HAdd.hAdd.{0, 0, 0} n 2))))
+            (HMul.hMul.{u_1, u_1, u_1}
+              (HAdd.hAdd.{u_1, u_1, u_1}
+                (HMul.hMul.{u_1, u_1, u_1} (a2 (HAdd.hAdd.{0, 0, 0} n 3)) (E (HAdd.hAdd.{0, 0, 0} n 1)))
+                (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (E n)))
+              (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 2)) (r (HAdd.hAdd.{0, 0, 0} n 1)))))
+          (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (E n))
+            (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 1)) (r n))))
+
+theorem SL.AuditRound4.reduction_product_iff :
+∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E : ℕ → K},
+  SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 E →
+    ∀ (r : ℕ → K),
+      (SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 fun j => HMul.hMul.{u_1, u_1, u_1} (E j) (r j)) ↔
+        ∀ (n : ℕ),
+          Eq.{u_1 + 1}
+            (HAdd.hAdd.{u_1, u_1, u_1}
+              (HAdd.hAdd.{u_1, u_1, u_1}
+                (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} n 3))
+                  (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 3)) (r (HAdd.hAdd.{0, 0, 0} n 2))))
+                (HMul.hMul.{u_1, u_1, u_1}
+                  (HAdd.hAdd.{u_1, u_1, u_1}
+                    (HMul.hMul.{u_1, u_1, u_1} (a2 (HAdd.hAdd.{0, 0, 0} n 3)) (E (HAdd.hAdd.{0, 0, 0} n 1)))
+                    (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (E n)))
+                  (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 2)) (r (HAdd.hAdd.{0, 0, 0} n 1)))))
+              (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (E n))
+                (HSub.hSub.{u_1, u_1, u_1} (r (HAdd.hAdd.{0, 0, 0} n 1)) (r n))))
+            0
+
+theorem SL.AuditRound4.reduction_iff :
+∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E z : ℕ → K},
+  SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 E →
+    (∀ (j : ℕ), Ne.{u_1 + 1} (E j) 0) →
+      (SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 z ↔
+        SL.ThirdOrderMinimal.IsSolution2.{u_1} (SL.ThirdOrderMinimal.Acoef.{u_1} a2 a3 E)
+          (SL.ThirdOrderMinimal.Bcoef.{u_1} a3 E) fun j =>
+          HSub.hSub.{u_1, u_1, u_1} (HDiv.hDiv.{u_1, u_1, u_1} (z j) (E j))
+            (HDiv.hDiv.{u_1, u_1, u_1} (z (HSub.hSub.{0, 0, 0} j 1)) (E (HSub.hSub.{0, 0, 0} j 1))))
+
+definition SL.AuditRound4.integrate_from_zero :
+{K : Type u_1} → [Field.{u_1} K] → K → (ℕ → K) → ℕ → K
+:=
+fun {K} [Field.{u_1} K] r0 s j => SL.ThirdOrderMinimal.withInitial.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} r0 (s 1)) s j
+
+theorem SL.AuditRound4.integrate_initial :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (r0 : K) (s : ℕ → K),
+  Eq.{u_1 + 1} (SL.AuditRound4.integrate_from_zero.{u_1} r0 s 0) r0 ∧
+    Eq.{u_1 + 1} (SL.AuditRound4.integrate_from_zero.{u_1} r0 s 1) (HAdd.hAdd.{u_1, u_1, u_1} r0 (s 1)) ∧
+      Eq.{u_1 + 1} (SL.AuditRound4.integrate_from_zero.{u_1} r0 s 2)
+        (HAdd.hAdd.{u_1, u_1, u_1} (HAdd.hAdd.{u_1, u_1, u_1} r0 (s 1)) (s 2))
+
+theorem SL.AuditRound4.integrate_increment :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (r0 : K) (s : ℕ → K) (j : ℕ),
+  Eq.{u_1 + 1}
+    (HSub.hSub.{u_1, u_1, u_1} (SL.AuditRound4.integrate_from_zero.{u_1} r0 s (HAdd.hAdd.{0, 0, 0} j 1))
+      (SL.AuditRound4.integrate_from_zero.{u_1} r0 s j))
+    (s (HAdd.hAdd.{0, 0, 0} j 1))
+
+theorem SL.AuditRound4.reduction_reconstruction :
+∀ {K : Type u_1} [inst : Field.{u_1} K] {a1 a2 a3 E : ℕ → K},
+  SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 E →
+    (∀ (j : ℕ), Ne.{u_1 + 1} (E j) 0) →
+      ∀ {s : ℕ → K},
+        SL.ThirdOrderMinimal.IsSolution2.{u_1} (SL.ThirdOrderMinimal.Acoef.{u_1} a2 a3 E)
+            (SL.ThirdOrderMinimal.Bcoef.{u_1} a3 E) s →
+          ∀ (r0 : K),
+            (SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 fun j =>
+                HMul.hMul.{u_1, u_1, u_1} (E j) (SL.AuditRound4.integrate_from_zero.{u_1} r0 s j)) ∧
+              Eq.{u_1 + 1}
+                  ((fun j => HMul.hMul.{u_1, u_1, u_1} (E j) (SL.AuditRound4.integrate_from_zero.{u_1} r0 s j)) 0)
+                  (HMul.hMul.{u_1, u_1, u_1} (E 0) r0) ∧
+                ∀ (j : ℕ),
+                  Eq.{u_1 + 1}
+                    (HSub.hSub.{u_1, u_1, u_1}
+                      (HDiv.hDiv.{u_1, u_1, u_1}
+                        (HMul.hMul.{u_1, u_1, u_1} (E (HAdd.hAdd.{0, 0, 0} j 1))
+                          (SL.AuditRound4.integrate_from_zero.{u_1} r0 s (HAdd.hAdd.{0, 0, 0} j 1)))
+                        (E (HAdd.hAdd.{0, 0, 0} j 1)))
+                      (HDiv.hDiv.{u_1, u_1, u_1}
+                        (HMul.hMul.{u_1, u_1, u_1} (E j) (SL.AuditRound4.integrate_from_zero.{u_1} r0 s j)) (E j)))
+                    (s (HAdd.hAdd.{0, 0, 0} j 1))
+
+definition SL.AuditRound4.p :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c j => ite.{1} (Eq.{1} ε 0) (SL.ThirdOrderClosedForms.PEven c j) (SL.ThirdOrderClosedForms.POdd c j)
+
+definition SL.AuditRound4.q :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c j => ite.{1} (Eq.{1} ε 0) (SL.ThirdOrderClosedForms.QEven c j) (SL.ThirdOrderClosedForms.QOdd c j)
+
+definition SL.AuditRound4.r :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c j => ite.{1} (Eq.{1} ε 0) (SL.ThirdOrderClosedForms.REven c j) (SL.ThirdOrderClosedForms.ROdd c j)
+
+definition SL.AuditRound4.theta :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c j =>
+  HDiv.hDiv.{0, 0, 0} c
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (HSub.hSub.{0, 0, 0} (↑j) 1))
+      (HSub.hSub.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) (HMul.hMul.{0, 0, 0} 2 ↑ε)) 1))
+
+definition SL.AuditRound4.factorial_step :
+ℕ → ℕ → ℚ
+:=
+fun ε j =>
+  HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) ↑ε)
+    (HSub.hSub.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) ↑ε) 1)
+
+definition SL.AuditRound4.factorial_weight :
+ℕ → ℕ → ℚ
+:=
+fun ε j => ↑(HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 j) ε).factorial
+
+theorem SL.AuditRound4.factorial_weight_ne_zero :
+∀ (ε j : ℕ), Ne.{1} (SL.AuditRound4.factorial_weight ε j) 0
+
+theorem SL.AuditRound4.factorial_weight_succ :
+∀ (ε n : ℕ),
+  Eq.{1} (SL.AuditRound4.factorial_weight ε (HAdd.hAdd.{0, 0, 0} n 1))
+    (HMul.hMul.{0, 0, 0} (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 1))
+      (SL.AuditRound4.factorial_weight ε n))
+
+theorem SL.AuditRound4.factorial_step_ne_zero :
+∀ (ε n : ℕ), Ne.{1} (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 1)) 0
+
+theorem SL.AuditRound4.parity_coefficient_factors :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (n : ℕ),
+          Eq.{1}
+              (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.p ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                (HMul.hMul.{0, 0, 0} c (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 3))))
+              (HAdd.hAdd.{0, 0, 0} 2 (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))) ∧
+            Eq.{1}
+                (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.q ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                  (HMul.hMul.{0, 0, 0} (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 3))
+                    (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 2))))
+                (HAdd.hAdd.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3)))) ∧
+              Eq.{1}
+                (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} c (SL.AuditRound4.r ε c (HAdd.hAdd.{0, 0, 0} n 3)))
+                  (HMul.hMul.{0, 0, 0}
+                    (HMul.hMul.{0, 0, 0} (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 3))
+                      (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 2)))
+                    (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 1))))
+                (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))
+
+definition SL.AuditRound4.scale_factor :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c j => HDiv.hDiv.{0, 0, 0} (HPow.hPow.{0, 0, 0} c j) (SL.AuditRound4.factorial_weight ε j)
+
+definition SL.AuditRound4.scaled_sequence :
+ℕ → ℚ → (ℕ → ℚ) → ℕ → ℚ
+:=
+fun ε c μ j => HMul.hMul.{0, 0, 0} (SL.AuditRound4.scale_factor ε c j) (μ j)
+
+definition SL.AuditRound4.moment_solution :
+ℕ → ℚ → (ℕ → ℚ) → Prop
+:=
+fun ε c μ =>
+  ∀ (n : ℕ),
+    Eq.{1} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) (μ (HAdd.hAdd.{0, 0, 0} n 3)))
+      (HAdd.hAdd.{0, 0, 0}
+        (HSub.hSub.{0, 0, 0}
+          (HMul.hMul.{0, 0, 0} (SL.AuditRound4.p ε c (HAdd.hAdd.{0, 0, 0} n 3)) (μ (HAdd.hAdd.{0, 0, 0} n 2)))
+          (HMul.hMul.{0, 0, 0} (SL.AuditRound4.q ε c (HAdd.hAdd.{0, 0, 0} n 3)) (μ (HAdd.hAdd.{0, 0, 0} n 1))))
+        (HMul.hMul.{0, 0, 0} (SL.AuditRound4.r ε c (HAdd.hAdd.{0, 0, 0} n 3)) (μ n)))
+
+theorem SL.AuditRound4.scale_factor_ne_zero :
+∀ (ε : ℕ) {c : ℚ}, Ne.{1} c 0 → ∀ (j : ℕ), Ne.{1} (SL.AuditRound4.scale_factor ε c j) 0
+
+theorem SL.AuditRound4.scale_factor_succ :
+∀ (ε : ℕ) (c : ℚ) (n : ℕ),
+  Eq.{1} (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 1))
+    (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} c (SL.AuditRound4.factorial_step ε (HAdd.hAdd.{0, 0, 0} n 1)))
+      (SL.AuditRound4.scale_factor ε c n))
+
+theorem SL.AuditRound4.conjugate_solution_iff :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (a1 a2 a3 w z : ℕ → K),
+  (∀ (j : ℕ), Ne.{u_1 + 1} (w j) 0) →
+    (SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 z ↔
+      SL.ThirdOrder.IsSolution.{u_1}
+        (fun j => HDiv.hDiv.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (w j) (a1 j)) (w (HSub.hSub.{0, 0, 0} j 1)))
+        (fun j => HDiv.hDiv.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (w j) (a2 j)) (w (HSub.hSub.{0, 0, 0} j 2)))
+        (fun j => HDiv.hDiv.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (w j) (a3 j)) (w (HSub.hSub.{0, 0, 0} j 3)))
+        fun j => HMul.hMul.{u_1, u_1, u_1} (w j) (z j))
+
+theorem SL.AuditRound4.scaled_coefficients :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (n : ℕ),
+          Eq.{1}
+              (HDiv.hDiv.{0, 0, 0}
+                (HMul.hMul.{0, 0, 0} (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                  (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.p ε c (HAdd.hAdd.{0, 0, 0} n 3)) (HPow.hPow.{0, 0, 0} c 2)))
+                (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 2)))
+              (HAdd.hAdd.{0, 0, 0} 2 (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))) ∧
+            Eq.{1}
+                (HDiv.hDiv.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                    (HDiv.hDiv.{0, 0, 0} (Neg.neg.{0} (SL.AuditRound4.q ε c (HAdd.hAdd.{0, 0, 0} n 3)))
+                      (HPow.hPow.{0, 0, 0} c 2)))
+                  (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 1)))
+                (Neg.neg.{0}
+                  (HAdd.hAdd.{0, 0, 0} 1
+                    (HMul.hMul.{0, 0, 0} 2 (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))))) ∧
+              Eq.{1}
+                (HDiv.hDiv.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                    (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.r ε c (HAdd.hAdd.{0, 0, 0} n 3)) (HPow.hPow.{0, 0, 0} c 2)))
+                  (SL.AuditRound4.scale_factor ε c n))
+                (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))
+
+theorem SL.AuditRound4.moment_iff_normalized :
+∀ (ε : ℕ) (c : ℚ),
+  Ne.{1} c 0 →
+    ∀ (μ : ℕ → ℚ),
+      SL.AuditRound4.moment_solution ε c μ ↔
+        SL.ThirdOrder.IsSolution.{0} (fun j => HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.p ε c j) (HPow.hPow.{0, 0, 0} c 2))
+          (fun j => HDiv.hDiv.{0, 0, 0} (Neg.neg.{0} (SL.AuditRound4.q ε c j)) (HPow.hPow.{0, 0, 0} c 2))
+          (fun j => HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.r ε c j) (HPow.hPow.{0, 0, 0} c 2)) μ
+
+theorem SL.AuditRound4.moment_iff_scaled :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (μ : ℕ → ℚ),
+          SL.AuditRound4.moment_solution ε c μ ↔
+            SL.ThirdOrder.IsSolution.{0} (fun j => HAdd.hAdd.{0, 0, 0} 2 (SL.AuditRound4.theta ε c j))
+              (fun j => Neg.neg.{0} (HAdd.hAdd.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 (SL.AuditRound4.theta ε c j))))
+              (SL.AuditRound4.theta ε c) (SL.AuditRound4.scaled_sequence ε c μ)
+
+theorem SL.AuditRound4.moment_iff_second_difference :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (μ : ℕ → ℚ),
+          SL.AuditRound4.moment_solution ε c μ ↔
+            ∀ (n : ℕ),
+              Eq.{1}
+                (SL.AuditRound4.second_difference.{0} (SL.AuditRound4.scaled_sequence ε c μ) (HAdd.hAdd.{0, 0, 0} n 1))
+                (HMul.hMul.{0, 0, 0} (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))
+                  (SL.AuditRound4.second_difference.{0} (SL.AuditRound4.scaled_sequence ε c μ) n))
+
+definition SL.AuditRound4.difference_weight :
+ℕ → ℚ → ℕ → ℚ
+:=
+fun ε c n =>
+  HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 2) (SL.AuditRound4.scale_factor ε c (HAdd.hAdd.{0, 0, 0} n 2))
+
+theorem SL.AuditRound4.difference_weight_ne_zero :
+∀ (ε : ℕ) (c : ℚ), Ne.{1} c 0 → ∀ (n : ℕ), Ne.{1} (SL.AuditRound4.difference_weight ε c n) 0
+
+theorem SL.AuditRound4.difference_weight_recurrence :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ) (n : ℕ),
+      Eq.{1} (SL.AuditRound4.difference_weight ε c (HAdd.hAdd.{0, 0, 0} n 1))
+        (HMul.hMul.{0, 0, 0} (SL.AuditRound4.theta ε c (HAdd.hAdd.{0, 0, 0} n 3))
+          (SL.AuditRound4.difference_weight ε c n))
+
+theorem SL.AuditRound4.moment_difference_formula :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (μ : ℕ → ℚ),
+          SL.AuditRound4.moment_solution ε c μ →
+            ∀ (n : ℕ),
+              Eq.{1} (SL.AuditRound4.second_difference.{0} (SL.AuditRound4.scaled_sequence ε c μ) n)
+                (HMul.hMul.{0, 0, 0}
+                  (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.second_difference.{0} (SL.AuditRound4.scaled_sequence ε c μ) 0)
+                    (SL.AuditRound4.difference_weight ε c 0))
+                  (SL.AuditRound4.difference_weight ε c n))
+
+theorem SL.AuditRound4.moment_finite_reconstruction :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        ∀ (μ : ℕ → ℚ),
+          SL.AuditRound4.moment_solution ε c μ →
+            ∀ (n : ℕ),
+              Eq.{1} (SL.AuditRound4.scaled_sequence ε c μ n)
+                (HAdd.hAdd.{0, 0, 0}
+                  (HAdd.hAdd.{0, 0, 0} (SL.AuditRound4.scaled_sequence ε c μ 0)
+                    (HMul.hMul.{0, 0, 0}
+                      (HSub.hSub.{0, 0, 0} (SL.AuditRound4.scaled_sequence ε c μ 1)
+                        (SL.AuditRound4.scaled_sequence ε c μ 0))
+                      ↑n))
+                  (∑ i ∈ Finset.range n,
+                    ∑ k ∈ Finset.range i,
+                      HMul.hMul.{0, 0, 0}
+                        (HDiv.hDiv.{0, 0, 0}
+                          (SL.AuditRound4.second_difference.{0} (SL.AuditRound4.scaled_sequence ε c μ) 0)
+                          (SL.AuditRound4.difference_weight ε c 0))
+                        (SL.AuditRound4.difference_weight ε c k)))
+
+definition SL.AuditRound4.affine_moment :
+ℕ → ℚ → ℚ → ℚ → ℕ → ℚ
+:=
+fun ε c A B j =>
+  HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.factorial_weight ε j) (HPow.hPow.{0, 0, 0} c j))
+    (HAdd.hAdd.{0, 0, 0} A (HMul.hMul.{0, 0, 0} B ↑j))
+
+theorem SL.AuditRound4.scaled_affine_moment :
+∀ (ε : ℕ) (c A B : ℚ),
+  Ne.{1} c 0 →
+    Eq.{1} (SL.AuditRound4.scaled_sequence ε c (SL.AuditRound4.affine_moment ε c A B)) fun j =>
+      HAdd.hAdd.{0, 0, 0} A (HMul.hMul.{0, 0, 0} B ↑j)
+
+theorem SL.AuditRound4.affine_moment_solution :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c A B : ℚ), Ne.{1} c 0 → SL.AuditRound4.moment_solution ε c (SL.AuditRound4.affine_moment ε c A B)
+
+theorem SL.AuditRound4.normalized_solution_with_zero_term :
+∀ (ε : ℕ),
+  Eq.{1} ε 0 ∨ Eq.{1} ε 1 →
+    ∀ (c : ℚ),
+      Ne.{1} c 0 →
+        SL.AuditRound4.moment_solution ε c (SL.AuditRound4.affine_moment ε c 1 (-1 / 3)) ∧
+          Eq.{1} (SL.AuditRound4.affine_moment ε c 1 (-1 / 3) 0) 1 ∧
+            Eq.{1} (SL.AuditRound4.affine_moment ε c 1 (-1 / 3) 3) 0
+
+definition SL.AuditRound4.table_ratio :
+ℚ → ℚ → ℚ → ℚ → ℚ → ℚ
+:=
+fun a b cc d j =>
+  HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HPow.hPow.{0, 0, 0} j 2) (HMul.hMul.{0, 0, 0} a j)) b)
+    (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HPow.hPow.{0, 0, 0} j 2) (HMul.hMul.{0, 0, 0} cc j)) d)
+
+theorem SL.AuditRound4.table_cancellation :
+∀ (τ j : ℚ),
+  Ne.{1} j 0 →
+    Ne.{1} (HAdd.hAdd.{0, 0, 0} j τ) 0 →
+      Eq.{1} (SL.AuditRound4.table_ratio (HAdd.hAdd.{0, 0, 0} τ (1 / 2)) (HDiv.hDiv.{0, 0, 0} τ 2) τ 0 j)
+        (HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 j)))
+
+theorem SL.AuditRound4.missed_table_parameter :
+∀ (j : ℕ),
+  LE.le.{0} 1 j →
+    Eq.{1} (SL.AuditRound4.table_ratio (-1 / 4) (-3 / 8) (-3 / 4) 0 ↑j)
+      (HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 ↑j)))
+
+theorem SL.AuditRound4.missed_table_not_in_old_branches :
+Ne.{1}
+    (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (abs.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (-3 / 4)) 1)) 1) 4)
+    (-3 / 8) ∧
+  Ne.{1} (HDiv.hDiv.{0, 0, 0} (Neg.neg.{0} (HAdd.hAdd.{0, 0, 0} (-3 / 4) 1)) 2) (-3 / 8)
+
+definition SL.AuditRound4.legendre2 :
+{K : Type u_1} → [Field.{u_1} K] → K → K
+:=
+fun {K} [Field.{u_1} K] x =>
+  HDiv.hDiv.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 3 (HPow.hPow.{u_1, 0, u_1} x 2)) 1) 2
+
+definition SL.AuditRound4.legendre3 :
+{K : Type u_1} → [Field.{u_1} K] → K → K
+:=
+fun {K} [Field.{u_1} K] x =>
+  HDiv.hDiv.{u_1, u_1, u_1}
+    (HSub.hSub.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 5 (HPow.hPow.{u_1, 0, u_1} x 3))
+      (HMul.hMul.{u_1, u_1, u_1} 3 x))
+    2
+
+theorem SL.AuditRound4.low_mode_representative_differences :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (x a b : K),
+  Eq.{u_1 + 1}
+      (HSub.hSub.{u_1, u_1, u_1} (HDiv.hDiv.{u_1, u_1, u_1} (SL.AuditRound4.legendre2.{u_1} x) a)
+        (HDiv.hDiv.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (SL.AuditRound4.legendre2.{u_1} x) 1) a))
+      (HDiv.hDiv.{u_1, u_1, u_1} 1 a) ∧
+    Eq.{u_1 + 1}
+      (HSub.hSub.{u_1, u_1, u_1} (HDiv.hDiv.{u_1, u_1, u_1} (SL.AuditRound4.legendre3.{u_1} x) b)
+        (HDiv.hDiv.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (SL.AuditRound4.legendre3.{u_1} x) x) b))
+      (HDiv.hDiv.{u_1, u_1, u_1} x b)
+
+theorem SL.AuditRound4.low_mode_difference_nonzero :
+∀ {K : Type u_1} [inst : Field.{u_1} K] (a b : K),
+  Ne.{u_1 + 1} a 0 →
+    Ne.{u_1 + 1} b 0 →
+      Ne.{u_1 + 1} (HDiv.hDiv.{u_1, u_1, u_1} (SL.AuditRound4.legendre2.{u_1} 0) a)
+          (HDiv.hDiv.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (SL.AuditRound4.legendre2.{u_1} 0) 1) a) ∧
+        Ne.{u_1 + 1} (HDiv.hDiv.{u_1, u_1, u_1} (SL.AuditRound4.legendre3.{u_1} 1) b)
+          (HDiv.hDiv.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} (SL.AuditRound4.legendre3.{u_1} 1) 1) b)
+
+definition SL.AuditRound4.a4 :
+ℚ → ℚ
+:=
+fun c => HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} 15 c)
+
+definition SL.AuditRound4.a6 :
+ℚ → ℚ
+:=
+fun c =>
+  HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} 105 c))
+    (HDiv.hDiv.{0, 0, 0} 945 (HPow.hPow.{0, 0, 0} c 2))
+
+definition SL.AuditRound4.coefficient_step :
+ℕ → ℚ → ℚ → ℚ → ℚ
+:=
+fun n c an am =>
+  HAdd.hAdd.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0}
+      (HAdd.hAdd.{0, 0, 0} 1
+        (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} (↑n) 2)) 1) c))
+      an)
+    (HMul.hMul.{0, 0, 0}
+      (HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1)
+        (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 3))
+      (HSub.hSub.{0, 0, 0} an am))
+
+theorem SL.AuditRound4.remainder_coefficients_from_initials :
+∀ (c : ℚ),
+  Eq.{1} (SL.AuditRound4.coefficient_step 2 c 1 1) (SL.AuditRound4.a4 c) ∧
+    Eq.{1} (SL.AuditRound4.coefficient_step 4 c (SL.AuditRound4.a4 c) 1) (SL.AuditRound4.a6 c)
+
+theorem SL.AuditRound4.remainder_identity :
+∀ (c : ℚ),
+  Eq.{1}
+    (HSub.hSub.{0, 0, 0} (SL.AuditRound4.a6 c) (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} 63 c) (SL.AuditRound4.a4 c)))
+    (HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} 42 c))
+
+theorem SL.AuditRound4.remainder_unbounded_on_reciprocals :
+∀ (M : ℚ) (N : ℕ),
+  ∃ n,
+    LT.lt.{0} N n ∧
+      LT.lt.{0} 0 (HDiv.hDiv.{0, 0, 0} 1 (HAdd.hAdd.{0, 0, 0} (↑n) 1)) ∧
+        LT.lt.{0} M
+          (HSub.hSub.{0, 0, 0} (SL.AuditRound4.a6 (HDiv.hDiv.{0, 0, 0} 1 (HAdd.hAdd.{0, 0, 0} (↑n) 1)))
+            (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} 63 (HDiv.hDiv.{0, 0, 0} 1 (HAdd.hAdd.{0, 0, 0} (↑n) 1)))
+              (SL.AuditRound4.a4 (HDiv.hDiv.{0, 0, 0} 1 (HAdd.hAdd.{0, 0, 0} (↑n) 1)))))
+
+definition SL.AuditRound4.even_z_plus :
+ℕ → ℚ
+:=
+fun j =>
+  HDiv.hDiv.{0, 0, 0} (SL.ThirdOrderClosedForms.muEvenPlus 1 j)
+    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (↑j.factorial) 2) (HPow.hPow.{0, 0, 0} 4 j))
+
+definition SL.AuditRound4.even_z_minus :
+ℕ → ℚ
+:=
+fun j =>
+  HDiv.hDiv.{0, 0, 0} (SL.ThirdOrderClosedForms.muEvenMinus 1 j)
+    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (↑j.factorial) 2) (HPow.hPow.{0, 0, 0} 4 j))
+
+definition SL.AuditRound4.example_ratio_difference :
+ℕ → ℚ
+:=
+fun j =>
+  HSub.hSub.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.even_z_minus j) (SL.AuditRound4.even_z_plus j))
+    (HDiv.hDiv.{0, 0, 0} (SL.AuditRound4.even_z_minus (HSub.hSub.{0, 0, 0} j 1))
+      (SL.AuditRound4.even_z_plus (HSub.hSub.{0, 0, 0} j 1)))
+
+definition SL.AuditRound4.printed_reduction_residual :
+ℚ
+:=
+HSub.hSub.{0, 0, 0}
+  (HAdd.hAdd.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.ThirdOrderClosedForms.a2Even 1 3) (SL.AuditRound4.even_z_plus 1))
+      (HAdd.hAdd.{0, 0, 0} (SL.AuditRound4.example_ratio_difference 3) (SL.AuditRound4.example_ratio_difference 2)))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.ThirdOrderClosedForms.a3Even 1 3) (SL.AuditRound4.even_z_plus 0))
+      (HAdd.hAdd.{0, 0, 0}
+        (HAdd.hAdd.{0, 0, 0} (SL.AuditRound4.example_ratio_difference 3) (SL.AuditRound4.example_ratio_difference 2))
+        (SL.AuditRound4.example_ratio_difference 1))))
+  (HMul.hMul.{0, 0, 0} (SL.AuditRound4.even_z_plus 3) (SL.AuditRound4.example_ratio_difference 3))
+
+theorem SL.AuditRound4.printed_reduction_counterexample :
+Eq.{1} SL.AuditRound4.printed_reduction_residual (69 / 224)
+
+theorem SL.AuditRound4.corrected_reduction_same_data :
+Eq.{1}
+  (HAdd.hAdd.{0, 0, 0}
+    (HAdd.hAdd.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (SL.AuditRound4.even_z_plus 3) (SL.AuditRound4.example_ratio_difference 3))
+      (HMul.hMul.{0, 0, 0}
+        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.ThirdOrderClosedForms.a2Even 1 3) (SL.AuditRound4.even_z_plus 1))
+          (HMul.hMul.{0, 0, 0} (SL.ThirdOrderClosedForms.a3Even 1 3) (SL.AuditRound4.even_z_plus 0)))
+        (SL.AuditRound4.example_ratio_difference 2)))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.ThirdOrderClosedForms.a3Even 1 3) (SL.AuditRound4.even_z_plus 0))
+      (SL.AuditRound4.example_ratio_difference 1)))
+  0
+

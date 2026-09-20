@@ -1,0 +1,54 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "c5c821de86304b4af1a008f7dd3dd0f11306bdd70ca141fbb4256cbb8a01b18b",
+  "reviewer_id": "01a0bfea-9a67-7640-b135-4eab62d43dbb",
+  "bindings": {
+    "docs/SL_third_order_K1_proof.tex": "e6d81354b9f73985d7d7f21c278ebf90a5ba90990379095c3b7d7bd5b8e0cbc5",
+    "docs/SL_third_order_recurrence_theory.tex": "71f45bf0a48eb3b6b2007597e1209f7757b45bcbdccb770eaf39d5407887633e",
+    "research/library/card-versions/282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21.md": "282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21",
+    "research/library/card-versions/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.md": "d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b",
+    "research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin": "633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e",
+    "research/library/corrections/evidence/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.bin": "f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08",
+    "research/library/corrections/requests/2e1b5228123e8e108c525e42373c55f5cef33ca840f2bd46e0ed792da85e4256.json": "2e1b5228123e8e108c525e42373c55f5cef33ca840f2bd46e0ed792da85e4256",
+    "research/library/corrections/requests/c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700.json": "c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700",
+    "research/library/reviews/runs/f8807ce08a1206de1c42fbeb0f80d2192e7527b62db8162c808b8dfceac37954-01a0bfcd-1254-7d51-8b33-6c083e198e1a/report.json": "bd077fc6aab1593e5af39509d965eb18bc40f16b82a15589dbc22a686de590c4",
+    "tools/third-order-minimal-K1.md": "282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21",
+    "tools/third-order-recurrence.md": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae"
+  },
+  "claims": [
+    {
+      "id": "correction:2e1b5228123e8e108c525e42373c55f5cef33ca840f2bd46e0ed792da85e4256",
+      "reason": "All 11 input hashes match. The current K1 card equals its version snapshot, and its dependency hash 9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae and both proof-source hashes resolve correctly. Comparison with the old card confirms that the anchor formulas are unchanged; the repair updates dependency bindings and the scope of the general-c result. The supplied current recurrence proof independently establishes the required extension for its explicit coefficients, epsilon in {0,1}, and fixed real c>0. The relevant upstream parameter representations include the corrected even E+, odd E-, and A=0 cancellation cases; reduction and variation formulas now require termwise nonzero divisors and retain the necessary initial data. The K1 inference does not depend on historical numerical diagnostics. This resolves the inherited issue for this exact card without certifying other cards, software execution, or broader coefficient families.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R4-K1-inherited-obligation",
+      "reason": "Direct coefficient cancellation gives d_j=theta_j*d_(j-1), with free initial data at indices 0,1,2 and no added j=2 recurrence equation. The positive, convergent tail Phi_j yields every scaled solution as A+Bj+C*Phi_j; comparison with the affine part proves minimality and uniqueness after normalization. For the original K1 terminal convention, d_j=j/((N+1)(2j)!), hence d_N>0, and the stated finite formula holds on 0<=j<=N-1 with mu_0^(N)>0. Its normalized fixed-index limit is the displayed factorial series. The upstream convention z_N=1, z_(N+1)=z_(N+2)=0 uses a different finite multiplier and truncation, but converges after normalization to the same even c=1 tail. The analytic bound T_(j,l)/T_(j,1)<=l^2*q_j^(l-1), summed for sufficiently large j, proves K_epsilon(c)=c^2/(16*Phi_0). Evaluation of the convergent series gives Phi_0=(c*cosh(sqrt(c))-sqrt(c)*sinh(sqrt(c)))/4 in the even case, so Phi_0(1)=1/(4e) and K_0(1)=e/4. No additional factorial rescaling is appropriate. Independent finite exact checks also confirmed the lowest terminal cases, including N=3 with mu_0=11/480, mu_1=1/480 and d_3=1/960.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "docs/SL_third_order_K1_proof.tex",
+    "docs/SL_third_order_recurrence_theory.tex",
+    "research/library/card-versions/282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21.md",
+    "research/library/card-versions/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.md",
+    "research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin",
+    "research/library/corrections/evidence/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.bin",
+    "research/library/corrections/requests/2e1b5228123e8e108c525e42373c55f5cef33ca840f2bd46e0ed792da85e4256.json",
+    "research/library/corrections/requests/c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700.json",
+    "research/library/reviews/runs/f8807ce08a1206de1c42fbeb0f80d2192e7527b62db8162c808b8dfceac37954-01a0bfcd-1254-7d51-8b33-6c083e198e1a/report.json",
+    "tools/third-order-minimal-K1.md",
+    "tools/third-order-recurrence.md"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/c5c821de86304b4af1a008f7dd3dd0f11306bdd70ca141fbb4256cbb8a01b18b-01a0bfea-9a67-7640-b135-4eab62d43dbb",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Only the frozen packet and its listed snapshots were used as project evidence. No source-project files were modified.",
+    "The supplied prior review was treated as provenance, not proof. Its original packet, execution scripts and logs were not supplied here; historical execution counts, release events and canonical integration status were not independently verified.",
+    "The active d4 implementation, failure-exit behavior, historical K1 audits, rendered PDFs and historical root-1 artifacts were not supplied. Their runtime or historical claims are not certified by this review; they are unnecessary for the checked K1 inference.",
+    "The asymptotic conclusions concern each fixed c>0 and the two displayed coefficient families. They do not provide uniform estimates over all c, include c=0 in the recurrence, or settle arbitrary coefficients, nonhomogeneous source terms, box invariance or historical higher-order remainder claims.",
+    "The 640 independently executed exact rational assertions were finite boundary and algebra checks. Infinite convergence, uniqueness and asymptotic conclusions were checked analytically. No historical numerical scripts, TeX compilation, Lean verification or full-project audit were performed. Approval is restricted to the requested obligations and does not assert complete formalization."
+  ]
+}

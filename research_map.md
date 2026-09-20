@@ -37,7 +37,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | docs/SL_stability_moment_jump | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
-| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | even c=1 anchor K(1)=e/4 STRICT; general K(c), source-term control, and general families OPEN |
+| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
 | A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
@@ -135,10 +135,11 @@ flowchart LR
   `{0,1} union {N:N>=2 floor(s/2)+2}`.
 - A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
   higher-degree rational product exclusion STRICT partial (independent audit
-  REPAIRABLE_GAP repaired); root-0/minimal branch remains open.
+  REPAIRABLE_GAP repaired); the root-0/minimal branch was open at that date and is now covered for the specified P,Q,R family by the 2026-09-21 fourth-round proof.
 - A6 c=1 anchor (R-20260824T184147Z-k1-e4-ab, 2026-08-25): the even minimal
-  solution has a standalone STRICT proof of K(1)=e/4. General K(c), source-term
-  control, and general coefficient-family classification remain OPEN.
+  solution has a standalone STRICT proof of K(1)=e/4. Its then-open general-c
+  extension is covered by the 2026-09-21 fourth-round proof for the same explicit
+  coefficient family. Nonhomogeneous source control and arbitrary families remain OPEN.
 - DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
 - DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
 - O1'LD (R-20260823T030000Z-leftdef-o1pld): new STRICT L^2-descent results: finite-support moment rigidity (Müntz-Szász L^p), Cauchy-Schwarz non-realizability, parity decomposition, concrete μ_4 non-density; cofinite-N density / proper-V corollary are NOT-YET-STRICT; H^1 infinite-run inadmissibility is EVIDENCE; general O1'LD remains open.

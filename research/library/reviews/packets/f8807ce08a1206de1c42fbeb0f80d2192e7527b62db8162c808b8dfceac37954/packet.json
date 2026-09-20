@@ -1,0 +1,238 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359",
+		"01a0bfab-5af3-7352-a134-deabd755066c",
+		"coordinator-20260920-round2"
+	],
+	"claims": [
+		{
+			"id": "correction:fd181a1aa6ab76ebd60d71bb5ee2873de66f237f01473f8eb4ab7e81e8c62958",
+			"statement": "Independently check the repaired card tools/third-order-recurrence.md at sha256 9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae, its scope and dependencies, against the original issue c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700 and old version f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:4d6e270c32c7208b4de38700a685b167d0c81fdec6f0a2ef03469e4963adaa74",
+			"statement": "Independently check the repaired card tools/third-order-minimal-K1.md at sha256 282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21, its scope and dependencies, against the original issue 629723badc4a37e43786b352a26aa482aa0e356caa4d519729b1db7a6ec8b759 and old version d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:f7ec343c1c4c78a59940620e3f2d5c0a4e633a33209eba97bbbdb0aaa12169a9",
+			"statement": "Independently check the repaired card tools/third-order-minimal-K1.md at sha256 282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21, its scope and dependencies, against the original issue d467db21b7e6ecb65920d2a15e1cefe91ebe7bb41401d9dc80d745b72f7c4cf5 and old version cbe7d2da44b3323ff07911fc7168afbb0240b651c6f61a5a6bba68cdefcef4af. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-recurrence-analytic",
+			"statement": "Independently audit all new analytic proofs of the exact even/odd P,Q,R recurrence for every real c>0: reversible scales and three initial data; difference factorization; full solution v=A+Bj+C Phi; finite terminal convention z_N=1,z_(N+1)=z_(N+2)=0 and positive normalized convergence; unique positive normalized minimal solution; closed K0(c),K1(c) and all-index tail/error estimates. Check infinite convergence/positivity/limit operations directly; finite tests are not a proof. Verify K0(1)=e/4 and explain the old K1 card uses a different finite unnormalized terminal convention.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-rational-classification",
+			"statement": "Verify the arbitrary-degree rational-ratio classification by poles and polynomial degree, and all monic quadratic numerator/denominator representations including cancellations, all exceptional tau branches, and A=0 tail representations with d!=0. Raw denominators must not vanish on a claimed recurrence domain; eventual rational identity is distinct from a normalized global solution. Check reduction and its converse require termwise nonzero E, correctly retain r0,s1,s2 and variation nonzero hypotheses. Check the homogeneous-box counterexample and ensure a rational-subclass exclusion is not generalized to all homogeneous solutions. Reconnect the existing frozen all-degree root-1 proof without modifying it or mistaking its historical repaired-gap verdict for new approval.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R4-recurrence-evidence",
+			"statement": "Check the supplied exact/symbolic, high precision and static checks are honestly separated, including original failed attempts and corrections. Re-execute useful disposable checks from snapshots when feasible, disclose path adaptations. Historical higher asymptotic tables and old numerical error estimates were not recertified. Current TeX/card claims must not promote finite computations, historical tables or local formal algebra into an all-project or all-Lean theorem.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"docs/SL_third_order_K1_proof.tex": {
+			"role": "current-proof-or-disclosed-history",
+			"sha256": "e6d81354b9f73985d7d7f21c278ebf90a5ba90990379095c3b7d7bd5b8e0cbc5",
+			"snapshot": "inputs/docs/SL_third_order_K1_proof.tex"
+		},
+		"docs/SL_third_order_recurrence_theory.tex": {
+			"role": "current-proof-or-disclosed-history",
+			"sha256": "71f45bf0a48eb3b6b2007597e1209f7757b45bcbdccb770eaf39d5407887633e",
+			"snapshot": "inputs/docs/SL_third_order_recurrence_theory.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/before/docs/SL_third_order_recurrence_theory.tex": {
+			"role": "current-proof-or-disclosed-history",
+			"sha256": "17f220d11b83b6c7adfac9d8d0882bcfbf84f6e7c273b4ec1eac6ed867852ff2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/before/docs/SL_third_order_recurrence_theory.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/approach_registry.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "b27919f65cb0cbbcde113efcfa944376eebc3e05f393f52679d232ad3ad4e172",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/approach_registry.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/author_report.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "34b3b8621c361c6ab9f42f171e34af175a685971d0902b87d0155c58afda8f44",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/author_report.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/before.tex": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "17f220d11b83b6c7adfac9d8d0882bcfbf84f6e7c273b4ec1eac6ed867852ff2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/before.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/candidate.tex": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "71f45bf0a48eb3b6b2007597e1209f7757b45bcbdccb770eaf39d5407887633e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/candidate.tex"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/check.stderr.txt": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/check.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/check.stdout.txt": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "45007707a52839c1c3ee4ad80dbb47d51dec4a332c62cc54bd6df535dd438e3f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/check.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/check_recurrence.py": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "b477d95296986b13bc11470b139f91cd67e7c074944bf572bdb9a4d267c2173b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/check_recurrence.py"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/counterexample_log.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "a98800338d77153ecceb5ddb6e28ca26ed015f7a99b268e2b0e016dc4156ae36",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/counterexample_log.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/handoff_manifest.json": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "998922d490e6e34d31266bf06b56bdcc98eacd1efd72d2585ddf7f6d46b98309",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/handoff_manifest.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/inputs.json": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "4158acff0b52ee67ce98cad3ce415f2bdf021212469d9318211a60952f8242dd",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/inputs.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/numerical_diagnostics.json": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "41d636893c940d5d3759dd3a5968679db9ed11111e666fde83a4dcc921da23e1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/numerical_diagnostics.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/obligation_graph.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "3dadc7fe8f441a6eeaa0f4e062a32763b32868a6b49864f488d7aa13de37a366",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/obligation_graph.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/problem_contract.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "d32264538ec8e201b3a53d8af647210908eaea61264281dbe03d67ce783b03c7",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/problem_contract.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/research_ledger.md": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "3db173373855123a1dcf971001dfc5af04063a4d21ef90440ab7a15903b577ba",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/research_ledger.md"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/results.json": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "199980d4fc7b5b429facb4c7ecb311b9d9e42415872d48d886345a80106bbadd",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/results.json"
+		},
+		"research/artifacts/proof-audit-round4-20260921/recurrence-checks/static_final.stdout.txt": {
+			"role": "author-checks-and-execution-scope",
+			"sha256": "5b9563821111f5d5f0bf23f4ba335b6effc34616ec75b36218ed3486c76dd612",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/recurrence-checks/static_final.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md": {
+			"role": "current-proof-or-disclosed-history",
+			"sha256": "a2f9f466277304a5a7f1d2e3ce62fd2c15adfd4813b941fb69f000e177c7058f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md"
+		},
+		"research/library/card-versions/282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21.md": {
+			"role": "correction-review-input",
+			"sha256": "282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21",
+			"snapshot": "inputs/research/library/card-versions/282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21.md"
+		},
+		"research/library/card-versions/9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae.md": {
+			"role": "correction-review-input",
+			"sha256": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae",
+			"snapshot": "inputs/research/library/card-versions/9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae.md"
+		},
+		"research/library/card-versions/cbe7d2da44b3323ff07911fc7168afbb0240b651c6f61a5a6bba68cdefcef4af.md": {
+			"role": "correction-review-input",
+			"sha256": "cbe7d2da44b3323ff07911fc7168afbb0240b651c6f61a5a6bba68cdefcef4af",
+			"snapshot": "inputs/research/library/card-versions/cbe7d2da44b3323ff07911fc7168afbb0240b651c6f61a5a6bba68cdefcef4af.md"
+		},
+		"research/library/card-versions/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.md": {
+			"role": "correction-review-input",
+			"sha256": "d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b",
+			"snapshot": "inputs/research/library/card-versions/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.md"
+		},
+		"research/library/card-versions/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.md": {
+			"role": "correction-review-input",
+			"sha256": "f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08",
+			"snapshot": "inputs/research/library/card-versions/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.md"
+		},
+		"research/library/corrections/evidence/5e07c9c417f7bc8fd8d97cd94960237dd93af90a8daa32b600bf7eab184585df.bin": {
+			"role": "correction-review-input",
+			"sha256": "5e07c9c417f7bc8fd8d97cd94960237dd93af90a8daa32b600bf7eab184585df",
+			"snapshot": "inputs/research/library/corrections/evidence/5e07c9c417f7bc8fd8d97cd94960237dd93af90a8daa32b600bf7eab184585df.bin"
+		},
+		"research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin": {
+			"role": "correction-review-input",
+			"sha256": "633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e",
+			"snapshot": "inputs/research/library/corrections/evidence/633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e.bin"
+		},
+		"research/library/corrections/evidence/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.bin": {
+			"role": "correction-review-input",
+			"sha256": "d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b",
+			"snapshot": "inputs/research/library/corrections/evidence/d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b.bin"
+		},
+		"research/library/corrections/evidence/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.bin": {
+			"role": "correction-review-input",
+			"sha256": "f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08",
+			"snapshot": "inputs/research/library/corrections/evidence/f4981c985f94244c00d51b9767eb4cbe1dd4e02191daa47768fbe5f238605b08.bin"
+		},
+		"research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin": {
+			"role": "correction-review-input",
+			"sha256": "f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264",
+			"snapshot": "inputs/research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin"
+		},
+		"research/library/corrections/requests/4d6e270c32c7208b4de38700a685b167d0c81fdec6f0a2ef03469e4963adaa74.json": {
+			"role": "correction-review-input",
+			"sha256": "4d6e270c32c7208b4de38700a685b167d0c81fdec6f0a2ef03469e4963adaa74",
+			"snapshot": "inputs/research/library/corrections/requests/4d6e270c32c7208b4de38700a685b167d0c81fdec6f0a2ef03469e4963adaa74.json"
+		},
+		"research/library/corrections/requests/629723badc4a37e43786b352a26aa482aa0e356caa4d519729b1db7a6ec8b759.json": {
+			"role": "correction-review-input",
+			"sha256": "629723badc4a37e43786b352a26aa482aa0e356caa4d519729b1db7a6ec8b759",
+			"snapshot": "inputs/research/library/corrections/requests/629723badc4a37e43786b352a26aa482aa0e356caa4d519729b1db7a6ec8b759.json"
+		},
+		"research/library/corrections/requests/c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700.json": {
+			"role": "correction-review-input",
+			"sha256": "c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700",
+			"snapshot": "inputs/research/library/corrections/requests/c4294f1790080a868502850f7619278972582ff05d51f57fa744797518e91700.json"
+		},
+		"research/library/corrections/requests/d467db21b7e6ecb65920d2a15e1cefe91ebe7bb41401d9dc80d745b72f7c4cf5.json": {
+			"role": "correction-review-input",
+			"sha256": "d467db21b7e6ecb65920d2a15e1cefe91ebe7bb41401d9dc80d745b72f7c4cf5",
+			"snapshot": "inputs/research/library/corrections/requests/d467db21b7e6ecb65920d2a15e1cefe91ebe7bb41401d9dc80d745b72f7c4cf5.json"
+		},
+		"research/library/corrections/requests/f7ec343c1c4c78a59940620e3f2d5c0a4e633a33209eba97bbbdb0aaa12169a9.json": {
+			"role": "correction-review-input",
+			"sha256": "f7ec343c1c4c78a59940620e3f2d5c0a4e633a33209eba97bbbdb0aaa12169a9",
+			"snapshot": "inputs/research/library/corrections/requests/f7ec343c1c4c78a59940620e3f2d5c0a4e633a33209eba97bbbdb0aaa12169a9.json"
+		},
+		"research/library/corrections/requests/fd181a1aa6ab76ebd60d71bb5ee2873de66f237f01473f8eb4ab7e81e8c62958.json": {
+			"role": "correction-review-input",
+			"sha256": "fd181a1aa6ab76ebd60d71bb5ee2873de66f237f01473f8eb4ab7e81e8c62958",
+			"snapshot": "inputs/research/library/corrections/requests/fd181a1aa6ab76ebd60d71bb5ee2873de66f237f01473f8eb4ab7e81e8c62958.json"
+		},
+		"runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md": {
+			"role": "current-proof-or-disclosed-history",
+			"sha256": "37a2a5009d097fab438153089ce2284bd9f341a623a5a16a0edea2aafae7f703",
+			"snapshot": "inputs/runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md"
+		},
+		"tools/third-order-minimal-K1.md": {
+			"role": "correction-review-input",
+			"sha256": "282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21",
+			"snapshot": "inputs/tools/third-order-minimal-K1.md"
+		},
+		"tools/third-order-recurrence.md": {
+			"role": "correction-review-input",
+			"sha256": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae",
+			"snapshot": "inputs/tools/third-order-recurrence.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

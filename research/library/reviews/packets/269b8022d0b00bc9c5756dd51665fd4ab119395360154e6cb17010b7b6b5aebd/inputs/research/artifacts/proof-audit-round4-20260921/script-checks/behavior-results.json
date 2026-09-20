@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "checks": 23,
+  "results": [
+    {
+      "name": "quiet import",
+      "status": "PASS",
+      "detail": "No diagnostic execution or output on import"
+    },
+    {
+      "name": "fractional closed form retained",
+      "status": "PASS",
+      "detail": "80/3, not floor 26"
+    },
+    {
+      "name": "floor negative control even_form1",
+      "status": "PASS",
+      "detail": {
+        "first_failure": 3
+      }
+    },
+    {
+      "name": "floor negative control even_form2",
+      "status": "PASS",
+      "detail": {
+        "first_failure": 3
+      }
+    },
+    {
+      "name": "floor negative control odd_form1",
+      "status": "PASS",
+      "detail": {
+        "first_failure": 3
+      }
+    },
+    {
+      "name": "floor negative control odd_form2",
+      "status": "PASS",
+      "detail": {
+        "first_failure": 3
+      }
+    },
+    {
+      "name": "positive-difference implementation versus independent exact mu backward recurrence",
+      "status": "PASS",
+      "detail": {
+        "entries": 624,
+        "shifts": [
+          "1/100",
+          "1/4",
+          "1",
+          "3",
+          "10",
+          "1000"
+        ],
+        "N": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          12,
+          20
+        ]
+      }
+    },
+    {
+      "name": "large finite backward e",
+      "status": "PASS",
+      "detail": "N=2000, positive finite arbitrary-exponent values including terminal"
+    },
+    {
+      "name": "large finite backward o",
+      "status": "PASS",
+      "detail": "N=2000, positive finite arbitrary-exponent values including terminal"
+    },
+    {
+      "name": "invalid parity",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "zero shift",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "negative shift",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "negative index",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "too short validation range",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "zero baseline division",
+      "status": "PASS",
+      "detail": "explicit rejection"
+    },
+    {
+      "name": "nonzero failure floor-return",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure ratio-identity",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure reduction",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure nan-numerical",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure floor-return optimized",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure ratio-identity optimized",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure reduction optimized",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "nonzero failure nan-numerical optimized",
+      "status": "PASS",
+      "detail": {
+        "exit_code": 1
+      }
+    }
+  ],
+  "failure_runs": [
+    {
+      "case": "floor-return",
+      "optimized": false,
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); Original=M.even_form1; M.even_form1=lambda J,C: Original(J,C).__floor__(); raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); Original=M.even_form1; M.even_form1=lambda J,C: Original(J,C).__floor__(); raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                                                   ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 178, in main\n    require(Passed, f\"closed form {Form.__name__}, c={C}, failed at j={FirstFailure}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: closed form <lambda>, c=3, failed at j=3\n"
+    },
+    {
+      "case": "ratio-identity",
+      "optimized": false,
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.z_residual_poly=lambda *Args: M.sp.Integer(1); raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.z_residual_poly=lambda *Args: M.sp.Integer(1); raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                         ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 185, in main\n    require({Row[Beta] for Row in Solutions} == Expected, f\"unexpected beta candidates: {Solutions}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: unexpected beta candidates: []\n"
+    },
+    {
+      "case": "reduction",
+      "optimized": false,
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.check_s_recurrence=lambda *Args: False; raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n  parity=e: candidates [-1, 1], general identities PASS\n  parity=o: candidates [1, 3], general identities PASS\n(C) exact reduction, positive baseline Eplus; arbitrary initial data 1,2,3\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.check_s_recurrence=lambda *Args: False; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                  ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 192, in main\n    require(check_s_recurrence(Parity, C, 119), f\"reduction failed: parity={Parity}, c={C}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: reduction failed: parity=e, c=1/4\n"
+    },
+    {
+      "case": "nan-numerical",
+      "optimized": false,
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.minimal_solution=lambda *Args: [M.mp.nan]*2001; raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n  parity=e: candidates [-1, 1], general identities PASS\n  parity=o: candidates [1, 3], general identities PASS\n(C) exact reduction, positive baseline Eplus; arbitrary initial data 1,2,3\n  parity=e: j=3..119 PASS for four rational shifts\n  parity=o: j=3..119 PASS for four rational shifts\n(D) finite backward numerical diagnostics; not an infinite-index certificate\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.minimal_solution=lambda *Args: [M.mp.nan]*2001; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                          ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 199, in main\n    require(all(mp.isfinite(Value) and Value > 0 for Value in Ratios), \"invalid finite ratio\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: invalid finite ratio\n"
+    },
+    {
+      "case": "floor-return",
+      "optimized": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-O",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); Original=M.even_form1; M.even_form1=lambda J,C: Original(J,C).__floor__(); raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); Original=M.even_form1; M.even_form1=lambda J,C: Original(J,C).__floor__(); raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                                                   ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 178, in main\n    require(Passed, f\"closed form {Form.__name__}, c={C}, failed at j={FirstFailure}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: closed form <lambda>, c=3, failed at j=3\n"
+    },
+    {
+      "case": "ratio-identity",
+      "optimized": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-O",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.z_residual_poly=lambda *Args: M.sp.Integer(1); raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.z_residual_poly=lambda *Args: M.sp.Integer(1); raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                         ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 185, in main\n    require({Row[Beta] for Row in Solutions} == Expected, f\"unexpected beta candidates: {Solutions}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: unexpected beta candidates: []\n"
+    },
+    {
+      "case": "reduction",
+      "optimized": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-O",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.check_s_recurrence=lambda *Args: False; raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n  parity=e: candidates [-1, 1], general identities PASS\n  parity=o: candidates [1, 3], general identities PASS\n(C) exact reduction, positive baseline Eplus; arbitrary initial data 1,2,3\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.check_s_recurrence=lambda *Args: False; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                  ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 192, in main\n    require(check_s_recurrence(Parity, C, 119), f\"reduction failed: parity={Parity}, c={C}\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: reduction failed: parity=e, c=1/4\n"
+    },
+    {
+      "case": "nan-numerical",
+      "optimized": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-O",
+        "-c",
+        "import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.minimal_solution=lambda *Args: [M.mp.nan]*2001; raise SystemExit(M.main())"
+      ],
+      "exit_code": 1,
+      "stdout": "(A) exact rational closed forms; every reported check must pass\n  c=1/4: all four forms PASS, j=3..40\n  c=1: all four forms PASS, j=3..40\n  c=3: all four forms PASS, j=3..40\n  c=5: all four forms PASS, j=3..40\n  c=10: all four forms PASS, j=3..40\n(B) symbolic ratio identities and necessary coefficient conditions\n  parity=e: candidates [-1, 1], general identities PASS\n  parity=o: candidates [1, 3], general identities PASS\n(C) exact reduction, positive baseline Eplus; arbitrary initial data 1,2,3\n  parity=e: j=3..119 PASS for four rational shifts\n  parity=o: j=3..119 PASS for four rational shifts\n(D) finite backward numerical diagnostics; not an infinite-index certificate\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib.util; S=importlib.util.spec_from_file_location(\"d4\",'/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py'); M=importlib.util.module_from_spec(S); S.loader.exec_module(M); M.minimal_solution=lambda *Args: [M.mp.nan]*2001; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                                          ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 199, in main\n    require(all(mp.isfinite(Value) and Value > 0 for Value in Ratios), \"invalid finite ratio\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d4_third_order_theory.py\", line 169, in require\n    raise ArithmeticError(Message)\nArithmeticError: invalid finite ratio\n"
+    }
+  ]
+}

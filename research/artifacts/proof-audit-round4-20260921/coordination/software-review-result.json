@@ -1,0 +1,58 @@
+{
+  "verdict": "CHANGES_REQUIRED",
+  "packet_sha256": "269b8022d0b00bc9c5756dd51665fd4ab119395360154e6cb17010b7b6b5aebd",
+  "reviewer_id": "01a0bfb3-20bc-7300-87e3-5a9dc693c9f3",
+  "bindings": {
+    "research/artifacts/proof-audit-round4-20260921/before/scripts/d4_third_order_theory.py": "a501cec86df11c7394b1fee1f127f20111f89311a95ea3bdc09c7e09ac385efc",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after-run.json": "4e996a07523b031377d5b3965c7f8561ca433da499c4b2dca421480d203acf0d",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after.stdout.txt": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before-run.json": "ed7db296ecd7fadc5b9eef65f0ee790de087b7d97055d26ef50d4a564302dd7d",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before.stdout.txt": "07be93076b7aabdec454a2b7a124b251567325389e402c909a19986338aa8064",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior-results.json": "299fa7ceae838e7e0342c81b48ce2a299d44f1c8465a32e96951e30cfc8a23b9",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks-first-attempt.py": "17953fc8e95afe5fa6d7810df06f29b2c66454263456f18a9f0e48e5c3abd87b",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks.py": "b2863ada72d4b5525f5911dd2ca41f99cd052a8b11bb7a278ad543c75600c5c0",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/test-control-correction.json": "c70431537583ce1f002bc2d3e841099e8c1e99f0e2bd1b3994995d565c5beef8",
+    "research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md": "a2f9f466277304a5a7f1d2e3ce62fd2c15adfd4813b941fb69f000e177c7058f",
+    "research/artifacts/proof-audit-round4-20260921/submitted/proof_audit_round4_20260920.md": "633f558cf706e1b8d4f270759209bc8a5f61f5d75f93e411d29e41851cc30c9e",
+    "scripts/d4_third_order_theory.py": "b3abf50795b992821f7409fc8acd7ae66eeddf5faeb4316bb3cb760771a12b43"
+  },
+  "claims": [
+    {
+      "id": "R4-d4-software",
+      "reason": "The four rational closed forms, symbolic beta identities and admissible denominators, reduction formula and indexing, positive finite backward construction, zero-index normalization, input rejection, and quiet import passed independent checks. The repaired executable reproduced the supplied successful output in normal and -O modes; 14 additional injected failures exited nonzero. However, reduction_coefficients does not preserve exactness for integer-valued exact inputs: its second division can produce a binary float. This affects the helper's stated exact-input contract, although the built-in Fraction-only driver passes. All snapshot hashes matched and remained unchanged; the original failed checks and nan output were reproduced and preserved.",
+      "verdict": "CHANGES_REQUIRED"
+    },
+    {
+      "id": "R4-d4-regression",
+      "reason": "Replayed the harness in normal and -O modes using a copied frozen input directory, fresh output directories, and PYTHONDONTWRITEBYTECODE=1. Each replay passed 23 checks, 624 finite-reference comparisons, and eight failure-exit controls. Independent checks added 6,210 comparisons against the rational original mu recurrence, including N=0/1/2, both parities, shifts 10^160 and 10^-160, and every returned entry at N=2000. Also verified 1,984 reduction identities with exact arithmetic and 81 invalid-input rejections. The additional mixed integer/Fraction reduction case fails exact equality and is absent from the supplied regression coverage. The first-attempt zero-solution control failure was reproduced and correctly classified as a test-design error, not a production defect.",
+      "verdict": "CHANGES_REQUIRED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round4-20260921/before/scripts/d4_third_order_theory.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after-run.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/after.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before-run.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/before.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior-results.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks-first-attempt.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/behavior_checks.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks/test-control-correction.json",
+    "research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md",
+    "research/artifacts/proof-audit-round4-20260921/submitted/proof_audit_round4_20260920.md",
+    "scripts/d4_third_order_theory.py"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/269b8022d0b00bc9c5756dd51665fd4ab119395360154e6cb17010b7b6b5aebd-01a0bfb3-20bc-7300-87e3-5a9dc693c9f3",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Execution used Python 3.14.4, SymPy 1.14.0, and mpmath 1.3.0; other dependency versions were not tested.",
+    "Numerical comparisons concern finite terminal problems and provide no interval certificate or proof of an infinite-index limit.",
+    "Unlisted TeX sources, formal proofs, and repository-wide checks were unavailable within the authorized packet-only scope and were not inspected."
+  ]
+}

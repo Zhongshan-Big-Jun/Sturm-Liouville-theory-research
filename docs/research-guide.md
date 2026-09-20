@@ -38,7 +38,7 @@
 | 幂域障碍 A7 | [工具与精确定理](../tools/krein-power-domain-polynomial-obstruction.md), [pilot v6 证明与审计](../runs/three-arm-pilot-v2/pilot-v6-hs-domain/RESULTS.md) | 对 c>0, 整数 s>=4, 指定的代数传输多项式属于真正幂域当且仅当 n=0,1; 这不否定经边界修正的真正算子逆 |
 | 受约束空间稠密性 | [早期判据](SL_denseness_criteria.tex), [项目问题图](../research_map.md), [非对角子类对比](../reports/plugin-performance-o1p-ab.md) | 对角及若干带状/加权移位子类已有结果; 一般非对角 O1' 与 O1'LD 仍开放 |
 | 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 原 Krein 窗口 3/2<=s<2 已由 H3 谱截断覆盖; 一般递推只有乘积下界, B=0 模型有精确分类; 有界基扰动稳健性已否定 |
-| 三阶递推 | [递推理论](SL_third_order_recurrence_theory.tex), [K(1)=e/4 证明](SL_third_order_K1_proof.tex) | 偶次 c=1 锚点 STRICT; 一般 K(c), 源项控制与一般系数族仍开放 |
+| 三阶递推 | [递推理论](SL_third_order_recurrence_theory.tex), [K(1)=e/4 证明](SL_third_order_K1_proof.tex) | 指定偶/奇 P,Q,R、c>0 的正项尾解、K0/K1 与全有理比值分类见第四轮证明; 偶族 K0(1)=e/4; 非齐次源项控制与一般系数族另计 |
 | Krein c->0 | [退化极限](SL_krein_c0_limit.tex) | 多项式级结论与商空间级结论分别核对 |
 
 ## 从研究过程找工具

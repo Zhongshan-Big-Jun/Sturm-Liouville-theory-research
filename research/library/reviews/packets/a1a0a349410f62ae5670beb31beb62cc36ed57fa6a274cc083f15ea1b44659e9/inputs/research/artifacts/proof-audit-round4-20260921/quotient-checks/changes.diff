@@ -1,0 +1,409 @@
+diff --git a/docs/SL_krein_c0_limit.tex b/docs/SL_krein_c0_limit.tex
+index 9f04f16..958460e 100644
+--- a/docs/SL_krein_c0_limit.tex
++++ b/docs/SL_krein_c0_limit.tex
+@@ -31,22 +31,27 @@ polynomials $\{S_n=P_n-P_{n-2}: n\ge 2\}$ span the image of all polynomials
+ exactly, hence any Gram--Schmidt orthonormalization of them is a complete
+ orthonormal system of the quotient.  For the Krein--Sobolev system
+ $\{K_n^{(c)}\}$ we prove: $K_0=1$, $K_1=x$ have squared norms $2c$, $2c/3$
+-(vanish linearly); $K_2=P_2$, $K_3=P_3$ are $c$-independent with limits $6,10$;
+-for $n\ge 4$ the coefficients and the norms
++(vanish linearly); $K_2=P_2$, $K_3=P_3$ are $c$-independent, and their
++squared norms tend to $6,10$, respectively.  For each fixed $n\ge4$ the
++coefficients $a_n$ and the squared norms
+ $\|K_n^{(c)}\|_{1,c}^2=2c\,a_n a_{n+2}/(2n+1)$ \emph{diverge} (e.g.\
+ $\|K_4^{(c)}\|_{1,c}^2\sim 3150/c^2$), while the \emph{unit-normalized} system
+-$\widehat u_n^{(c)}=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$ converges to the
+-orthonormal system $\{Q_n:n\ge 2\}$ obtained by orthonormalizing
+-$\{S_n:n\ge 2\}$ in $(\cdot,\cdot)_{1,0}$.  This corrects the earlier
++$\widehat u_n^{(c)}=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$ has, for every fixed
++$n\ge2$, a limit in the ordinary Sobolev $H^1$ norm.  With
++$Q_n=S_n/\sqrt{2(2n-1)}$, the representatives converge to
++$P_2/\sqrt6=Q_2+1/\sqrt6$ for $n=2$, to
++$P_3/\sqrt{10}=Q_3+x/\sqrt{10}$ for $n=3$, and to $Q_n$ for $n\ge4$.
++Thus $[\widehat u_n^{(c)}]\to[Q_n]$ in $H^1/W$ for every fixed $n\ge2$,
++and these limiting classes form a complete orthonormal system.  This
++corrects both the low-mode representative limits and the earlier
+ heuristic that ``all norms for $n\ge 2$ have finite limits'' (which holds only
+-for $n=2,3$) and pins down the precise sense in which the Krein--Sobolev
+-system is structurally stable.  \emph{Proof status:} the degeneration of
+-the low modes, the divergence of the high norms, and the quotient
+-completeness are proven rigorously (Theorems~\ref{thm:low},
+-\ref{thm:high}, \ref{thm:complete}); the convergence of the
+-unit-normalized system (Theorem~\ref{thm:unit}) is a proof sketch with
+-exact-rational numerical audit (Section~\ref{sec:audit}), not yet a fully
+-rigorous proof (see the remark after Theorem~\ref{thm:unit}).
++for $n=2,3$).  \emph{Proof status:} explicit Gram identities, parity
++induction with a controlled remainder, and finite polynomial expansions
++give full analytical proofs of these fixed-index assertions
++(Lemma~\ref{lem:explicit-q}, Theorems~\ref{thm:high}, \ref{thm:unit}).
++Finite checks are supplementary, and this author revision does not itself
++constitute independent acceptance.  No convergence estimate uniform in
++$n$, or limit with $n$ varying with $c$, is asserted.
+ \end{abstract}
+ 
+ \section{Setting}
+@@ -212,6 +217,45 @@ coefficient, top-down elimination gives the exact decomposition
+ 	this proves their density.
+ \end{proof}
+ 
++\begin{lemma}[explicit orthonormal representatives]\label{lem:explicit-q}
++	For all $n,m\ge2$,
++	\begin{equation}
++		S_n'=(2n-1)P_{n-1},\qquad
++		(S_n,S_m)_{1,0}=2(2n-1)\delta_{nm}.
++		\label{eq:zero-gram}
++	\end{equation}
++	Consequently the Gram--Schmidt procedure applied in order to
++	$S_2,S_3,\ldots$, with positive leading coefficients, gives the
++	polynomial representatives
++	\begin{equation}
++		Q_n:=\frac{S_n}{\sqrt{2(2n-1)}}\qquad(n\ge2).
++		\label{eq:explicit-q}
++	\end{equation}
++	Their classes form a complete orthonormal system of $H^1/W$.
++\end{lemma}
++
++\begin{proof}
++	Use the Legendre normalization
++	$\int_{-1}^1P_jP_k=2\delta_{jk}/(2j+1)$ and leading coefficient
++	$\ell_j=2^{-j}\binom{2j}{j}$.  Since
++	$P_n(1)=P_{n-2}(1)=1$ and
++	$P_n(-1)=P_{n-2}(-1)=(-1)^n$, both endpoint values of $S_n$ vanish.
++	For any polynomial $p$ of degree at most $n-2$, integration by parts
++	gives
++	\begin{equation*}
++		\int_{-1}^1S_n'p=-\int_{-1}^1(P_n-P_{n-2})p'=0.
++	\end{equation*}
++	For $n=2$ this holds because $p'=0$; for $n\ge3$ it follows from
++	$\deg p'\le n-3$ and Legendre orthogonality.  Thus $S_n'$ is a
++	multiple of $P_{n-1}$, and its leading coefficient gives the factor
++	$n\ell_n/\ell_{n-1}=2n-1$.  The boundary term in
++	$(S_n,S_m)_{1,0}$ is zero, so the derivative identity and Legendre
++	orthogonality prove \eqref{eq:zero-gram}.  The Gram--Schmidt procedure
++	therefore only divides each $S_n$ by its positive norm, which proves
++	\eqref{eq:explicit-q}.  Completeness follows from
++	Theorem~\ref{thm:complete}(a)--(c).
++\end{proof}
++
+ \section{Structural stability of the Krein--Sobolev system}
+ 
+ The Krein--Sobolev polynomials $\{K_n^{(c)}\}$ are defined by
+@@ -246,47 +290,176 @@ and satisfy the orthogonality \cite[Theorem 3]{axioms}
+ 	\eqref{eq:norm}.
+ \end{proof}
+ 
+-\begin{theorem}[divergence of the high modes]\label{thm:high}
+-	For $n\ge 4$ the coefficients in \eqref{eq:rec} satisfy
+-	$a_n(c)=\Theta(c^{-(n-2)/2})$ (even $n$) and
+-	$a_n(c)=\Theta(c^{-(n-3)/2})$ (odd $n$) as $c\to 0$, and consequently
+-	\begin{equation*}
+-		\|K_n^{(c)}\|_{1,c}^2=\frac{2c}{2n+1}\,a_n(c)a_{n+2}(c)
+-		\to+\infty\qquad(n\ge 4).
+-	\end{equation*}
+-	In particular $\|K_4^{(c)}\|_{1,c}^2=3150/c^2+O(1/c)$.
++\begin{theorem}[fixed-index asymptotics and high-mode divergence]\label{thm:high}
++	For $n=2m+\epsilon$, where $m\ge1$ and $\epsilon\in\{0,1\}$, set
++	\begin{equation}
++		r_n:=m-1,\qquad
++		C_n:=\prod_{j=1}^{m-1}\bigl(4(2j+\epsilon)^2-1\bigr)>0,
++		\label{eq:parity-constants}
++	\end{equation}
++	with an empty product equal to $1$.  For every fixed $n\ge2$, as
++	$c\downarrow0$,
++	\begin{equation}
++		\begin{aligned}
++			a_n(c)&=C_n c^{-r_n}\bigl(1+O_n(c)\bigr),\\
++			\|K_n^{(c)}\|_{1,c}^2
++			&=2(2n-1)C_n^2 c^{-2r_n}\bigl(1+O_n(c)\bigr).
++		\end{aligned}
++		\label{eq:fixed-asymptotics}
++	\end{equation}
++	Here $O_n$ allows constants depending on the fixed index $n$.
++	In particular, $r_n=(n-2)/2$ for even $n$ and $r_n=(n-3)/2$ for odd
++	$n$, and the squared norms tend to $+\infty$ for every fixed $n\ge4$.
++	For $n=4$ the exact formula is
++	\begin{equation}
++		\|K_4^{(c)}\|_{1,c}^2
++		=\frac{3150}{c^2}+\frac{560}{c}+\frac{80}{3}+\frac{2c}{9}.
++		\label{eq:norm-four}
++	\end{equation}
+ \end{theorem}
+ 
+ \begin{proof}
+-	From \eqref{eq:rec}, $a_{n+2}=(4n^2-1)a_n/c+O(1)$ for $n\ge 2$; iterating
+-	with $a_2=a_3=1$ gives the stated orders.  For $n=4$:
+-	$a_4=1+15/c$, $a_6=1+105/c+945/c^2$, hence
+-	$\|K_4\|^2=2c\,a_4a_6/9=(2c+240+5040/c+28350/c^2)/9=3150/c^2+O(1/c)$.
+-	The general case follows from \eqref{eq:norm}.
++	Fix $c>0$.  Write $b_n=(2n+1)/(2n-3)>0$ and
++	$\delta_n=a_n-a_{n-2}$ for $n\ge2$.  The recurrence gives
++	\begin{equation*}
++		\delta_{n+2}=\frac{4n^2-1}{c}\,a_n+b_n\delta_n.
++	\end{equation*}
++	Starting with $a_0=a_2=1$, $\delta_2=0$ in the even chain and
++	$a_1=a_3=1$, $\delta_3=0$ in the odd chain, induction yields
++	$a_n\ge a_{n-2}\ge1$ and $\delta_n\ge0$.  In particular, division
++	by $a_n$ is legitimate.  More precisely, \eqref{eq:rec} says
++	\begin{equation}
++		a_{n+2}=\frac{4n^2-1}{c}\,a_n+R_n,\qquad
++		R_n:=a_n+b_n(a_n-a_{n-2}),\qquad
++		a_n\le R_n\le(1+b_n)a_n.
++		\label{eq:legitimate-remainder}
++	\end{equation}
++	Thus the remainder is $O_n(a_n)$, and
++	\begin{equation}
++		c\,\frac{a_{n+2}}{a_n}
++		=4n^2-1+c\left(1+b_n\left(1-\frac{a_{n-2}}{a_n}\right)\right)
++		=4n^2-1+O_n(c).
++		\label{eq:normalized-ratio}
++	\end{equation}
++	For $n=2,3$, $r_n=0$, $C_n=1$, and the coefficient assertion in
++	\eqref{eq:fixed-asymptotics} is exact.  If it holds at $n$, then
++	\eqref{eq:legitimate-remainder} gives
++	\begin{equation*}
++		a_{n+2}
++		=(4n^2-1)C_n c^{-(r_n+1)}\bigl(1+O_n(c)\bigr).
++	\end{equation*}
++	Since $r_{n+2}=r_n+1$ and $C_{n+2}=(4n^2-1)C_n$, this completes
++	the induction on each parity chain, for all fixed $n$.  Substitution
++	in \eqref{eq:norm} proves the norm assertion, using
++	$2C_nC_{n+2}/(2n+1)=2(2n-1)C_n^2$.  When $n\ge4$, $r_n\ge1$,
++	so these norms diverge.  Finally,
++	$a_4=1+15/c$ and $a_6=1+105/c+945/c^2$ give
++	\eqref{eq:norm-four}.  They also exhibit the failure of an $O(1)$
++	remainder: $a_6-(63/c)a_4=1+42/c$.
+ \end{proof}
+ 
+-\begin{theorem}[convergence of the unit-normalized system]\label{thm:unit}
++Throughout the next theorem the ordinary Sobolev norm is
++\begin{equation*}
++	\|f\|_{H^1_{\rm Sob}}^2
++	:=\int_{-1}^1\bigl(|f|^2+|f'|^2\bigr)\,dx.
++\end{equation*}
++It is distinct from the degenerate seminorm $\|f\|_{1,0}$ and from the
++$c$-dependent norm $\|f\|_{1,c}$.
++
++\begin{theorem}[fixed-index limits of representatives and classes]\label{thm:unit}
+ 	Let $\widehat u_n^{(c)}:=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$.
+-	For $n\ge 2$, as $c\to 0$ the polynomial $\widehat u_n^{(c)}$ converges
+-	in $H^1$ to the $n$-th Gram--Schmidt orthonormal polynomial $Q_n$ of the
+-	sequence $\{S_2,S_3,\ldots\}$ in $(\cdot,\cdot)_{1,0}$; the limits
+-	$\{[Q_n]:n\ge 2\}$ form a complete orthonormal system of $H^1/W$
+-	(Theorem~\ref{thm:complete}).  For $n=0,1$ the images satisfy
+-	$[\widehat u_n^{(c)}]=0$ in $H^1/W$.
++	For every fixed $n\ge2$, as $c\downarrow0$,
++	\begin{equation}
++		\widehat u_n^{(c)}\longrightarrow L_n
++		\quad\text{in }H^1_{\rm Sob},\qquad
++		L_n:=
++		\begin{cases}
++			P_2/\sqrt6=Q_2+1/\sqrt6,&n=2,\\
++			P_3/\sqrt{10}=Q_3+x/\sqrt{10},&n=3,\\
++			Q_n=S_n/\sqrt{2(2n-1)},&n\ge4.
++		\end{cases}
++		\label{eq:representative-limits}
++	\end{equation}
++	In fact $\|\widehat u_n^{(c)}-L_n\|_{H^1_{\rm Sob}}=O_n(c)$.
++	For every fixed $n\ge2$ the quotient limit is
++	\begin{equation}
++		[\widehat u_n^{(c)}]\longrightarrow[Q_n]
++		\quad\text{in }(H^1/W,\|\cdot\|_{1,0}),
++		\label{eq:quotient-limits}
++	\end{equation}
++	and $\{[Q_n]:n\ge2\}$ is a complete orthonormal system there.
++	For $n=0,1$, $[\widehat u_n^{(c)}]=0$ for every $c>0$.
++	These assertions are for each fixed index; they make no claim of
++	convergence uniform over $n$.
+ \end{theorem}
+ 
+ \begin{proof}
+-	Sketch of the mechanism (details verified numerically, see
+-	Section~\ref{sec:audit}).  The Gram matrix of $\{S_2,\ldots,S_N\}$ in
+-	$(\cdot,\cdot)_{1,c}$ converges entrywise to that in $(\cdot,\cdot)_{1,0}$,
+-	which is nonsingular for every $N$ (numerically; provable by the
+-	$c=0$ orthogonality structure below), so the Gram--Schmidt coefficients
+-	converge.  Since $K_n^{(c)}$ is the Gram--Schmidt orthogonalization of
+-	$\{S_0,\ldots,S_n\}$ in $(\cdot,\cdot)_{1,c}$, its projection onto
+-	$\operatorname{span}\{S_2,\ldots,S_n\}$ converges to $Q_n$, while the
+-	components along $S_0,S_1$ become negligible after unit normalization
+-	(their Gram entries are $O(c)$).  The vanishing of
+-	$[\widehat u_0^{(c)}]$, $[\widehat u_1^{(c)}]$ is
++	Theorem~\ref{thm:low} gives
++	\begin{equation*}
++		\widehat u_2^{(c)}=\frac{P_2}{\sqrt{6+2c/5}},\qquad
++		\widehat u_3^{(c)}=\frac{P_3}{\sqrt{10+2c/7}}.
++	\end{equation*}
++	The scalar factors differ from $1/\sqrt6$ and $1/\sqrt{10}$ by
++	$O(c)$, respectively.  This proves the two low-mode limits and rates
++	in the ordinary Sobolev norm.  Their affine terms persist in that
++	norm: explicitly,
++	\begin{equation*}
++		\|L_2-Q_2\|_{H^1_{\rm Sob}}^2=\frac13,\qquad
++		\|L_3-Q_3\|_{H^1_{\rm Sob}}^2=\frac4{15}.
++	\end{equation*}
++
++	Now fix $n=2m+\epsilon\ge4$, so $m\ge2$.  Iterating the defining
++	polynomial recurrence is a finite identity:
++	\begin{equation}
++		K_n^{(c)}=P_\epsilon+
++		\sum_{j=1}^m a_{2j+\epsilon}(c)S_{2j+\epsilon},\qquad
++		\frac{K_n^{(c)}}{a_n}=S_n+\frac{K_{n-2}^{(c)}}{a_n}.
++		\label{eq:finite-expansion}
++	\end{equation}
++	For $1\le j\le m-1$, Theorem~\ref{thm:high} yields
++	\begin{equation*}
++		\frac{a_{2j+\epsilon}}{a_n}
++		=\frac{C_{2j+\epsilon}}{C_n}c^{m-j}\bigl(1+O_n(c)\bigr),
++		\qquad \frac1{a_n}=O_n(c^{m-1}).
++	\end{equation*}
++	The error constants can be combined because there are only finitely
++	many $j$ for this fixed $n$.  Applying the triangle inequality to
++	\eqref{eq:finite-expansion}, and using $m-j\ge1$ and $m-1\ge1$,
++	gives the explicit finite-sum bound
++	\begin{equation}
++		\left\|\frac{K_{n-2}^{(c)}}{a_n}\right\|_{H^1_{\rm Sob}}
++		\le\frac{\|P_\epsilon\|_{H^1_{\rm Sob}}}{a_n}
++		+\sum_{j=1}^{m-1}\frac{a_{2j+\epsilon}}{a_n}
++		\|S_{2j+\epsilon}\|_{H^1_{\rm Sob}}
++		=O_n(c).
++		\label{eq:polynomial-remainder}
++	\end{equation}
++	All coefficient ratios here are positive.  By \eqref{eq:norm} and
++	\eqref{eq:normalized-ratio}, the positive scalar
++	$\beta_n(c):=\|K_n^{(c)}\|_{1,c}/a_n(c)$ satisfies
++	\begin{equation*}
++		\beta_n(c)^2=\frac{2c}{2n+1}\frac{a_{n+2}}{a_n}
++		=2(2n-1)+O_n(c),\qquad
++		\beta_n(c)=\sqrt{2(2n-1)}+O_n(c).
++	\end{equation*}
++	Since this limit is positive, its reciprocal also differs from
++	$1/\sqrt{2(2n-1)}$ by $O_n(c)$.  Therefore
++	\begin{equation*}
++		\widehat u_n^{(c)}
++		=\frac{S_n+K_{n-2}^{(c)}/a_n}{\beta_n(c)}
++		=Q_n+O_n(c)\quad\text{in }H^1_{\rm Sob},
++	\end{equation*}
++	where the last error denotes a polynomial whose Sobolev norm is
++	$O_n(c)$.  This proves the representative assertion for every fixed
++	$n\ge4$ without taking any infinite-dimensional limit.
++
++	Finally the quotient map is continuous, since
++	$\|[f]\|_{1,0}\le\|f'\|_{L^2}\le\|f\|_{H^1_{\rm Sob}}$.
++	For all $n\ge2$, $L_n-Q_n\in W$, so the representative convergence
++	implies \eqref{eq:quotient-limits}, also with an $O_n(c)$ error.
++	Lemma~\ref{lem:explicit-q} proves orthonormality and completeness of
++	the limiting classes.  For $n=0,1$, the normalized polynomials are
++	still affine and hence have zero quotient class by
+ 	Theorem~\ref{thm:radical}.
+ \end{proof}
+ 
+@@ -294,21 +467,30 @@ and satisfy the orthogonality \cite[Theorem 3]{axioms}
+ 	The natural guess that ``$\|K_n^{(c)}\|_{1,c}$ has a finite limit for all
+ 	$n\ge 2$'' is \emph{false}: it holds only for $n=2,3$
+ 	(Theorem~\ref{thm:low}); for $n\ge 4$ the norms diverge
+-	(Theorem~\ref{thm:high}).  The convergence holds for the unit-normalized
+-	system (Theorem~\ref{thm:unit}).  Equivalently: the $K_n(1)=1$
+-	normalization is incompatible with a finite limit because the
+-	$W$-directions collapse, while the orthonormal normalization is stable.
++	(Theorem~\ref{thm:high}).  The unit-normalized representatives have
++	the limits stated in Theorem~\ref{thm:unit}, and their classes converge
++	to $[Q_n]$ for all fixed $n\ge2$.  For $n\ge4$, dividing by
++	$a_n\to\infty$ leaves $S_n$ as the leading polynomial, whose endpoint
++	values are zero.  The endpoint normalization $K_n(1)=1$ therefore hides
++	this finite limiting shape.  For $n=2,3$, the nonzero affine difference
++	between $L_n$ and $Q_n$ disappears only after passage to the quotient.
+ \end{remark}
+ 
+-\begin{remark}[proof status of Theorem~\ref{thm:unit}]
+-	Theorem~\ref{thm:unit} is supported by the mechanism sketch above plus
+-	the exact-rational numerical audit in Section~\ref{sec:audit}
+-	(scripts/\texttt{op08\_c0\_verify2.py}); the convergence of the
+-	Gram--Schmidt coefficients for \emph{every} $N$ is verified numerically
+-	up to $N=12$ and is expected to follow from the $c=0$ orthogonality
+-	structure.  This is \emph{numerical evidence + proof sketch}, not a
+-	fully rigorous proof; the remaining gap (uniform-in-$N$ nonsingularity)
+-	is recorded as open.
++\begin{remark}[verification status and quantifiers]
++	The fourth-round author repair supplies full analytical proofs of
++	Theorems~\ref{thm:high} and \ref{thm:unit}; their universal
++	fixed-index assertions do not depend on finite checks.  The original
++	proof-sketch status is superseded by the explicit induction and
++	Sobolev remainder estimate above.  In particular, the Gram matrix
++	of $S_2,\ldots,S_N$ at $c=0$ is exactly
++	$\operatorname{diag}(6,10,\ldots,2(2N-1))$ for every $N\ge2$.
++	Its smallest eigenvalue is $6$ for every such $N$; nonsingularity
++	is not an open obligation.  This Gram bound alone is not a
++	uniform-in-$n$ convergence estimate for $\widehat u_n^{(c)}$.
++	The proofs allow their constants to depend on $n$ and do not address
++	joint limits or infinite sums with indices varying as $c\downarrow0$.
++	This is an author proof revision, not an independent-acceptance
++	certificate or a claim of full formalization.
+ \end{remark}
+ 
+ \begin{remark}[spectral interpretation]
+@@ -320,33 +502,44 @@ and satisfy the orthogonality \cite[Theorem 3]{axioms}
+ 	$(f,f)_{1,0}=(K_0f,f)_{L^2}$ for $f\in D(K_0)$.
+ \end{remark}
+ 
+-\section{Numerical audit}\label{sec:audit}
++\section{Exact checks and their scope}\label{sec:audit}
+ 
+-All computations use exact rational arithmetic
+-(\texttt{scripts/op08\_c0\_verify2.py}).
++The following identities follow from the analytical proofs and also give
++finite regression targets.  The fourth-round author checks use a separate
++local symbolic/rational test program; they are supplementary evidence,
++not proofs of a statement for all indices or independent acceptance.
++Historical output of \texttt{scripts/op08\_c0\_verify2.py} is not used as a
++premise for the repaired results.
+ 
+ \begin{enumerate}[leftmargin=1.6em]
+ 	\item \emph{Radical (Theorem~\ref{thm:radical}).}  For $f\in\{x^2,S_4,S_7\}$,
+ 	$(1,f)_{1,0}=(x,f)_{1,0}=0$ exactly.
+-	\item \emph{Gram of $\{S_2,\ldots,S_N\}$ in $(\cdot,\cdot)_{1,0}$.}  For
+-	$N=4,6,8,10,12$ the Gram matrix is positive definite with determinant
+-	$8.4\times10^2, 3.33\times10^5, 2.59\times10^8, 3.35\times10^{11},
+-	6.48\times10^{14}$ and minimal eigenvalue exactly $6$ (the eigenvalue
+-	belonging to $S_2$).
++	\item \emph{Gram of $\{S_2,\ldots,S_N\}$.}  For every $N\ge2$,
++	\eqref{eq:zero-gram} gives determinant
++	$\prod_{n=2}^N2(2n-1)$ and smallest eigenvalue $6$.  Thus, for
++	example, the determinant at $N=4$ is $6\cdot10\cdot14=840$.
+ 	\item \emph{Norms (Theorems~\ref{thm:low}, \ref{thm:high}).}
+-	$\|K_n\|^2$ for $n=0..6$ at $c=1,0.1,0.01,0.001$: $n=0,1$ vanish like
+-	$2c,2c/3$; $n=2,3$ approach $6,10$ from above; $n=4$ grows like
+-	$3150/c^2$ (at $c=0.001$: $1.4178\times10^{10}$ vs $3.15\times10^9/c$-
+-	scale), $n=5,6$ grow faster.
++	The first two squared norms are $2c,2c/3$, and the next two are
++	$6+2c/5,10+2c/7$.  Equation~\eqref{eq:norm-four} gives, at
++	$c=10^{-3}$, the exact value
++	$3150560026+3001/4500$ for $\|K_4\|_{1,c}^2$.
++	Both $n=4$ and $n=5$ have squared-norm growth of order $c^{-2}$;
++	for $n=6$ the order is $c^{-4}$, as dictated by $2r_n$.
+ 	\item \emph{Unit-normalized convergence (Theorem~\ref{thm:unit}).}
+-	$K_4^{(c)}=a_4S_4+S_2+1$ with $a_4=1+15/c$; the projection of
+-	$\widehat u_4^{(c)}$ onto $\operatorname{span}\{S_4\}$ in
+-	$(\cdot,\cdot)_{1,0}$ is $1/\sqrt{14}$ (the unit vector of $S_4$), and
+-	the residual squared norm is $6/\|K_4\|_{1,c}^2\to0$.
+-	\item \emph{Exact spanning (Theorem~\ref{thm:complete}).}  For random
+-	targets of degree $N=5,8,11$, top-down elimination with
+-	$S_2,\ldots,S_N$ leaves an affine remainder of degree $\le1$, confirming
+-	$\Pi_N=\operatorname{span}\{1,x\}\oplus\operatorname{span}\{S_2,\ldots,S_N\}$.
++	The low-mode squared Sobolev discrepancies from $Q_2,Q_3$ tend to
++	$1/3,4/15$.  For $n=4$, $K_4^{(c)}=a_4S_4+S_2+1$, so the
++	quotient-orthogonal projection of $[\widehat u_4^{(c)}]$ onto
++	$\operatorname{span}\{[S_4]\}$ is
++	$\bigl(a_4/\|K_4\|_{1,c}\bigr)[S_4]$.  Its coefficient tends to
++	$1/\sqrt{14}$; it is not equal to that limit for $c>0$.
++	The residual squared quotient norm is exactly
++	$6/\|K_4\|_{1,c}^2\to0$.  The ordinary Sobolev convergence also
++	controls the affine remainder, by \eqref{eq:polynomial-remainder}.
++	\item \emph{Exact spanning (Theorem~\ref{thm:complete}).}
++	Top-down elimination with $S_2,\ldots,S_N$ leaves an affine
++	remainder for every polynomial of degree at most $N$, by the
++	nonzero leading coefficients.  This is an algebraic proof;
++	finite sample elimination checks only test its implementation.
+ \end{enumerate}
+ 
+ \section{Mathematics involved}

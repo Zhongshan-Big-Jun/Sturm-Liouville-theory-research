@@ -1,0 +1,72 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "1a698290c9232e6caccb4087b95affb1667c9a058ae7898d911b344b6246bab4",
+  "reviewer_id": "01a0bfd8-477c-7131-9b85-bd832ec2731b",
+  "bindings": {
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/behavior_checks.py": "52bf45e2df686947a02764398800e9cd6c4d95ffe3718e1945eb3bdd2895ac9c",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/first-repair.py": "b3abf50795b992821f7409fc8acd7ae66eeddf5faeb4316bb3cb760771a12b43",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior-results.json": "9993381fe90a79f74a326dc3b0572239c37f1b23793ce44afaaecf6647a90d76",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.json": "5618ee0ec88d33371463d2b375e878ce118fda1e8b887ab88f543339338b9d57",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.stdout.txt": "456ea4e7db2ba9b0665c5fa44cc319ca41cc78714664a3f099e46efc805b1c5b",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.json": "0385c9ae5598db353494ecc58a3cb57106cd5b51a80836b891be1a63893fd697",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.stdout.txt": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior-results.json": "9993381fe90a79f74a326dc3b0572239c37f1b23793ce44afaaecf6647a90d76",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.json": "6025dea1724884b6b3128fc4b00825e8df04fd3867fb236a8060e0baeed0359d",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.stdout.txt": "456ea4e7db2ba9b0665c5fa44cc319ca41cc78714664a3f099e46efc805b1c5b",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.json": "86d7fa24d9f7e40469b5b50ee4aa8c1706c33f1a62156acca57a2b6d6da89fcb",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.stdout.txt": "66ba23fb51ee02fcb9f49ebb54e523611550bd8f22cc24d2e10f0f5c207b5a95",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/second-repair.py": "6fab78799dfcf328b4cdaed9c5e61e45acdd0c340bf9367f2d6ecaaffeb3fd38",
+    "research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md": "a2f9f466277304a5a7f1d2e3ce62fd2c15adfd4813b941fb69f000e177c7058f",
+    "research/library/reviews/runs/da6c5ae3a3b8ad92b0112cf9d20f54d11506c1ef75f641e4c2a4a228720820f2-01a0bfc8-4fc2-7d10-b35f-ff218490bda1/report.json": "d921cc6b5b254570e0d611f69b09c86c1a61a68f6ed7840ad8e86443bf1fc7cd",
+    "scripts/d4_third_order_theory.py": "929c4780fade179fdfc7b8f005b788b0dad7f5a494f7110dcdb5878b77be303f"
+  },
+  "claims": [
+    {
+      "id": "R4-d4-v3-exact",
+      "reason": "The requested repairs pass independent adversarial checks. Both wrappers preserve exact binary-rational conversion, including 1.0, 0.1, adjacent floats, subnormal values and the largest finite float; existing SymPy expressions retain their supplied semantics. All three specified symbolic-zero baselines raise ValueError, while an unknown symbolic baseline remains conditional on caller-established nonzeroness. Independently reconstructed the c=64 regression, obtaining E=(1,3,33/8,5), z=(0,3,33/8,4), s=(1,0,-1/5) and exact reduction coefficients (103/40,-1/5). Checked P/Q/R against separately expanded formulas. Symbolic calculation establishes the transformed recurrence and its second-difference factorization, the four factorial solutions, beta values {-1,1} and {1,3}, admissible denominators for integer j>=3 and c>0, and the general reduction signs and indexing under the nonzero-baseline hypothesis. The backward construction implements positive finite weighted sums and normalization at zero, including N=0,1,2. Independent tests passed in both modes: 216 coefficient tuples, 243 mixed-type reduction tuples, 208 factorial values, ten zero rejections and 65 invalid-input/failure checks. Historical defects were reproduced using the supplied older snapshots, not counted as current findings.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R4-d4-v3-execution",
+      "reason": "All 20 input hashes matched and remained unchanged. Executed the copied frozen program and harness normally and under -O with AUDIT_SOURCE_ROOT and AUDIT_CHECK_OUTPUT directed to disposable paths and PYTHONDONTWRITEBYTECODE=1. All four executions exited zero and reproduced the supplied stdout and stderr. Each harness execution passed 36 cases, 624 independent finite-mu comparisons and eight failure-exit injections; their exception messages confirmed the intended failure causes. Additional independent tests passed in both modes, comparing 560 numerical entries against two exact finite constructions across 60 terminal problems, including shifts 10^-200 and 10^200. Also verified precision-context restoration, minimum supported precision, normalization and the documented unused K argument. No source-project files were modified.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "scripts/d4_third_order_theory.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/behavior_checks.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/first-repair.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/second-repair.py",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior-results.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-behavior.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/normal-program.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior-results.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-behavior.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.json",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.stderr.txt",
+    "research/artifacts/proof-audit-round4-20260921/script-checks-revision3/optimized-program.stdout.txt",
+    "research/artifacts/proof-audit-round4-20260921/submitted/constructive_repairs.md",
+    "research/library/reviews/runs/da6c5ae3a3b8ad92b0112cf9d20f54d11506c1ef75f641e4c2a4a228720820f2-01a0bfc8-4fc2-7d10-b35f-ff218490bda1/report.json"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/1a698290c9232e6caccb4087b95affb1667c9a058ae7898d911b344b6246bab4-01a0bfd8-477c-7131-9b85-bd832ec2731b",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Execution used Python 3.14.4, SymPy 1.14.0 and mpmath 1.3.0. Other dependency versions were not tested.",
+    "Symbolic zero detection uses equality with zero and SymPy is_zero=True; it is not a complete symbolic zero decision procedure. Other symbolic baselines require caller-established nonzeroness at every index used for division.",
+    "Finite-precision comparisons provide neither interval error certificates nor proofs of infinite-terminal convergence or infinite-index asymptotics.",
+    "Unlisted TeX sources, formal proofs, repository-wide tests and unrelated claims in constructive_repairs.md were outside the supplied review scope and were not checked.",
+    "Approval applies only to the requested review scope and does not assert complete formalization."
+  ]
+}

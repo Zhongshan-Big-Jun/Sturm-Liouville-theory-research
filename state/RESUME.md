@@ -1,5 +1,11 @@
 # RESUME
 
+## 2026-09-21 fourth-round audit repair completed
+
+Current entry: reports/proof-audit-round4-20260921/REPORT.md. All five input findings and discovered propagation defects are repaired. Both analytic proofs, software revision3, unchanged-card renewal, Lean blind readback and separate semantic review have actual fresh-session APPROVED receipts. The first two software rejections remain frozen history. Three PDFs are rebuilt;36 behavior cases,624 finite reference entries and8 failure controls pass normally and under -O. Local Lean41 theorems/23 definitions have a replayed root,3217 loaded modules/12853 artifact hashes and two real negative controls. This is not complete analytic or all-real-parameter formalization.
+
+Eight relevant current cards are released; default retrieval is78 available/1 withdrawn. Source-term control, arbitrary recurrence families and the3<s<7/2 density window remain open. Canonical and44 prior Lean source files remain unchanged, as do unrelated dirty files and134 preexisting untracked files. Delivery uses exact staging, origin then fork; reconcile F:/tools/math-audit-round4-20260921/DELIVERY.json and live remote heads before retrying any interrupted push. Never rerun completed authors or replace immutable receipts. The main run's unrelated mathematical tasks retain their prior status below.
+
 ## 2026-09-20 third-round audit repair
 
 Current correction entry: `reports/proof-audit-round3-20260920/REPORT.md`. R3-F1 separates the general product lower bound from B=0 model equalities. R3-F2 corrects both perturbed coefficients, adds a P2 orthogonal witness and an all-index sufficient condition; formal polynomial images are distinct from the Krein operator domain. R3-F3 uses fixed-c form-norm spectral truncation and the actual quotient images. The five active scripts and two affected tool cards are repaired; the first software review found a further multistep sign error and prompted exact-rational sign tracking. New local Lean: 24 theorems, 10 definitions, separate compiler replay and scoped semantic review. Current delivery and retrieval evidence belongs to the third-round report; older dated status paragraphs retain their historical scope.

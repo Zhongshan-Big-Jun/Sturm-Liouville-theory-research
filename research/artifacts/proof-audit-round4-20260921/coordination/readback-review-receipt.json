@@ -1,0 +1,354 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "155918f59978ee79e953f48081d76c30f0bbba72a798be86caf97b6db2e7aa1a",
+  "reviewer_id": "01a0bfce-26b1-7231-81f7-ecd1c2b3f164",
+  "bindings": {
+    "research/artifacts/proof-audit-round4-20260921/lean/final/formal-statements-fully-explicit.txt": "4ee2bcc97f0a34f636ea62dc2e4b4fc42b2a81df43cc0e6e688855a7a04d89a8",
+    "research/artifacts/proof-audit-round4-20260921/lean/final/formal-statements.txt": "906a735aec274ce8912dd0a0d4f178e7fdb21234f01582647820aa418086c045",
+    "research/artifacts/proof-audit-round4-20260921/lean/final/local-definition-closure.txt": "3cec601daa12a3f32edb7738defbad4b922be6b3bf1b1c2a561df81e846b63f9",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lakefile.lean": "159fdc8ea408eb69ce540b5ec802ed19cce7692654d1045b7b5806100ae5ed12",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+  },
+  "claims": [
+    {
+      "id": "SL.AuditRound4.second_difference",
+      "reason": "Complete definition over an arbitrary field and a sequence indexed by natural numbers: v(n+2)−2v(n+1)+v(n). No characteristic-zero assumption is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.recurrence_iff_second_difference",
+      "reason": "Both sequence binders and the field parameter are explicit. The equivalence uses t(n+3), and the third-order recurrence starts at output index 3.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.affine_second_difference",
+      "reason": "Quantifies over every field, A, B and natural index n. The affine sequence uses the natural-number cast into that field, including in positive characteristic.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.affine_solution",
+      "reason": "Every coefficient sequence t and every pair A, B are quantified. No nonvanishing assumption on t or the affine sequence is included.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.zero_second_difference_iff_affine",
+      "reason": "The conclusion specifies the affine sequence determined by v(0) and v(1), with equality at every natural index; it is not merely an existential affine representation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.difference_proportional",
+      "reason": "Includes both first-order recurrence hypotheses and a(0)≠0. Later values of a and the multiplier sequence are not assumed nonzero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.first_difference_sum",
+      "reason": "Applies to every field-valued sequence and every natural n. Its sum ranges over k<n and is empty at n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.reconstruct_second_difference",
+      "reason": "The reconstruction uses the initial value, initial first difference and finite sums over k<i<n. It includes n=0 and n=1 without a recurrence hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.reduction_residual_identity",
+      "reason": "Assumes only that E solves the third-order recurrence. The identity involves products and differences, with no division or nonvanishing requirement.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.reduction_product_iff",
+      "reason": "Under the solution hypothesis for E, the product E·r solves the recurrence exactly when the displayed residual vanishes at every natural index. Zeros of E are permitted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.reduction_iff",
+      "reason": "Includes E(j)≠0 for every natural j. The quotient difference uses truncated natural subtraction, so its index-zero value is zero; IsSolution2 does not use that value.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.integrate_from_zero",
+      "reason": "The supplied withInitial definition resolves the integration convention completely: the result is r0 plus the sum of s(1) through s(j), excluding s(0).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.integrate_initial",
+      "reason": "States all three initial identities at indices 0, 1 and 2 for arbitrary r0 and s. There is no condition on s(0).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.integrate_increment",
+      "reason": "For every natural j, the increment from j to j+1 equals s(j+1). It does not assert an increment representing s(0).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.reduction_reconstruction",
+      "reason": "Retains the solution and everywhere-nonzero hypotheses for E and the reduced-recurrence hypothesis for s. The reconstructed quotient increments agree with s at positive indices, with initial product value E(0)r0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.p",
+      "reason": "Defines a rational-valued function for every natural ε and j and rational c. Its branch test is ε=0; every nonzero ε selects POdd.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.q",
+      "reason": "The supplied coefficient definitions resolve both branches. Every nonzero ε selects QOdd; the definition itself does not restrict ε to 0 or 1.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.r",
+      "reason": "Both rational coefficient branches are supplied and independent of c, although c remains a function parameter. Every nonzero ε selects ROdd.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.theta",
+      "reason": "All arithmetic after the natural-number casts is rational. There is no denominator hypothesis in this definition; in particular, its value at j=1 uses division by zero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.factorial_step",
+      "reason": "Defines (2j+ε)(2j+ε−1) using rational casts and rational subtraction. The definition includes j=0 and does not assert nonvanishing there.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.factorial_weight",
+      "reason": "Takes the factorial of the natural number 2j+ε and then casts the result to the rationals. Both natural parameters are unrestricted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.factorial_weight_ne_zero",
+      "reason": "Quantifies over all natural ε and j, including zero. The codomain is specifically the rationals, rather than an arbitrary field.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.factorial_weight_succ",
+      "reason": "States the two-factor factorial increment for every natural ε and n. No parity restriction is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.factorial_step_ne_zero",
+      "reason": "The nonvanishing assertion concerns factorial_step ε (n+1), so its index is positive. It does not include factorial_step ε 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.parity_coefficient_factors",
+      "reason": "All three factor identities retain ε=0∨ε=1 and c≠0. Their common coefficient index is n+3, with factorial-step indices n+3, n+2 and n+1.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scale_factor",
+      "reason": "Defines c^j divided by the rational factorial weight for arbitrary natural ε,j and rational c, including c=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scaled_sequence",
+      "reason": "The sequence binder is μ:ℕ→ℚ, and scaling is pointwise multiplication. The definition contains no solution or nonvanishing hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_solution",
+      "reason": "Defines a recurrence predicate on rational sequences, with equations at n+3 for every natural n. It adds no integral representation, positivity or initial normalization.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scale_factor_ne_zero",
+      "reason": "The implicit rational c is universally quantified with hypothesis c≠0. The conclusion holds at every natural j and for arbitrary natural ε.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scale_factor_succ",
+      "reason": "The successor identity quantifies over every rational c, including zero, and every natural ε,n. No parity hypothesis is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.conjugate_solution_iff",
+      "reason": "All five sequences are quantified over an arbitrary field. The hypothesis requires every w(j) to be nonzero, and all shifted sequence indices use natural subtraction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scaled_coefficients",
+      "reason": "Retains the parity and nonzero-c hypotheses and all three coefficient equalities. The middle transformed coefficient carries the minus sign.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_iff_normalized",
+      "reason": "Requires c≠0 but permits every natural ε. The normalized coefficients are p/c², −q/c² and r/c².",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_iff_scaled",
+      "reason": "Requires ε=0∨ε=1 and c≠0. The recurrence is imposed on the scaled rational sequence, with coefficients 2+θ, −(1+2θ) and θ.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_iff_second_difference",
+      "reason": "The equivalence concerns every natural n and retains the parity and nonzero-c hypotheses. Its multiplier is θ evaluated at n+3.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.difference_weight",
+      "reason": "Defines (n+2) times the scale factor at index n+2, with the prefactor interpreted rationally. All natural ε,n and rational c are permitted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.difference_weight_ne_zero",
+      "reason": "Requires c≠0 and quantifies over every natural ε,n. It has no parity restriction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.difference_weight_recurrence",
+      "reason": "Requires ε=0∨ε=1 but does not require c≠0. The successor relation uses θ(n+3) for every natural n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_difference_formula",
+      "reason": "Includes the parity, nonzero-c and moment-solution hypotheses. The proportionality constant divides the initial second difference by the initial difference weight.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.moment_finite_reconstruction",
+      "reason": "The conclusion reconstructs the scaled sequence using finite nested sums for each natural n. It contains no infinite series or convergence assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.affine_moment",
+      "reason": "Defines a rational sequence from ε:ℕ and c,A,B:ℚ using totalized division. Neither parity nor c≠0 is part of the definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.scaled_affine_moment",
+      "reason": "States equality of functions ℕ→ℚ, with c≠0 and arbitrary natural ε. The right-hand function is j↦A+Bj.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.affine_moment_solution",
+      "reason": "For ε=0 or 1 and nonzero rational c, every rational pair A,B gives a sequence satisfying the defined moment recurrence.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.normalized_solution_with_zero_term",
+      "reason": "For each allowed ε,c, the specified affine moment sequence satisfies the recurrence and has values 1 at index 0 and 0 at index 3. No other normalization or nonvanishing property is asserted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.table_ratio",
+      "reason": "All five arguments, including j, are rational. The quotient definition has no nonzero-denominator hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.table_cancellation",
+      "reason": "Quantifies over rational τ,j and explicitly requires both j≠0 and j+τ≠0 before giving the cancellation identity.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.missed_table_parameter",
+      "reason": "The variable j is natural with 1≤j and is cast to the rationals in the formula. The assertion does not include j=0 or arbitrary rational j.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.missed_table_not_in_old_branches",
+      "reason": "This is a closed conjunction of two rational inequalities. No branch-classification predicate or quantified completeness statement occurs in its type.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.legendre2",
+      "reason": "Defines (3x²−1)/2 over every field. There is no characteristic restriction, so division by the field element 2 must retain Lean's totalized semantics.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.legendre3",
+      "reason": "Defines (5x³−3x)/2 over every field, without assuming characteristic zero or that 2 is nonzero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.low_mode_representative_differences",
+      "reason": "Quantifies over arbitrary x,a,b in every field and states two quotient-difference identities. The denominators a,b are not assumed nonzero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.low_mode_difference_nonzero",
+      "reason": "Includes a≠0 and b≠0 and evaluates the two inequalities at x=0 and x=1 respectively. There is no additional characteristic hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.a4",
+      "reason": "Defines the rational function value 1+15/c for every rational c, including its totalized value at zero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.a6",
+      "reason": "Defines 1+105/c+945/c² for every rational c. No domain exclusion is supplied.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.coefficient_step",
+      "reason": "The arguments are one natural index and three rational scalars. Subtraction in 2n−3 occurs after casting to the rationals, not in the natural numbers.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.remainder_coefficients_from_initials",
+      "reason": "States two specific coefficient-step identities for every rational c, including zero. It does not quantify over a recursively defined coefficient sequence.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.remainder_identity",
+      "reason": "The exact rational identity is universally quantified over c without c≠0. Its zero case therefore uses totalized division.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.remainder_unbounded_on_reciprocals",
+      "reason": "For every rational M and natural N, the declaration asserts existence of a natural n>N with positive reciprocal parameter and remainder exceeding M. It is not stated as a limit or as an inequality for every n>N.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.even_z_plus",
+      "reason": "The supplied dependency gives a rational sequence with numerator (2j+1)! at c=1 and denominator (j!)²4^j, for every natural j.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.even_z_minus",
+      "reason": "The supplied dependency gives a rational sequence with numerator (2j)! at c=1 and denominator (j!)²4^j, for every natural j.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.example_ratio_difference",
+      "reason": "Defines the backward difference of the quotient of the two supplied sequences. At j=0, truncated subtraction compares the same quotient with itself.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.printed_reduction_residual",
+      "reason": "Defines one rational constant using c=1 and indices 0 through 3. It has no free parameter or universal recurrence assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.printed_reduction_counterexample",
+      "reason": "The declaration states only that the specified rational residual equals 69/224. Its type does not separately assert recurrence membership of the example sequences or encode a general formula being refuted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound4.corrected_reduction_same_data",
+      "reason": "States that one explicitly displayed rational expression on the same fixed data is zero. Its scope is this single identity, not a universally quantified reduction theorem.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round4-20260921/lean/final/formal-statements-fully-explicit.txt",
+    "research/artifacts/proof-audit-round4-20260921/lean/final/formal-statements.txt",
+    "research/artifacts/proof-audit-round4-20260921/lean/final/local-definition-closure.txt",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lake-manifest.json",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lakefile.lean",
+    "research/artifacts/proof-audit-round4-20260921/lean/pins/lean-toolchain"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/155918f59978ee79e953f48081d76c30f0bbba72a798be86caf97b6db2e7aa1a-01a0bfce-26b1-7231-81f7-ecd1c2b3f164",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "APPROVED applies only to the requested formal readback of the supplied declarations and definitions. It does not certify their proof terms, correspondence to an intended theorem, or complete formalization.",
+    "The packet supplies theorem statements but no theorem proof bodies, compiled modules or build evidence. Independent Lean kernel checking and transitive proof-axiom auditing were unavailable within the permitted inputs.",
+    "The environment snapshots specify Lean v4.31.0 and mathlib revision fabf563a7c95a166b8d7b6efca11c8b4dc9d911f. The installed runtime, dependency contents and provenance of the textual exports were not independently verified.",
+    "All six input hashes matched. Both statement exports list the same 64 claims in packet order, and all 23 listed definition bodies match their copies in the supplied definition closure. These integrity checks do not establish theorem correctness.",
+    "No numerical experiment was used to establish an infinite or universally quantified assertion."
+  ]
+}
