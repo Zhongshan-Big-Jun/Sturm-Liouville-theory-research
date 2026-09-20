@@ -1,0 +1,82 @@
+{
+	"author_ids": [
+		"01a0befe-2063-7630-af8a-48c7bc446ece",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "R3-software-behavior",
+			"statement": "Independently inspect and execute the five repaired scripts from frozen snapshots, and replay the supplied regression harnesses with AUDIT_SOURCE_ROOT set to the frozen inputs directory, never the live checkout. Validate the c0 normalization, actual perturbed A and B, conservative rejection of nonpositive/unresolved subtractive steps, exact-rational logs, B=0 model scope/Gamma(2+C)/u0, actual log(k) examples, true sparse indices 2^(2^j) (j>=1), import/main behavior and nonzero failure exits. Finite floating outputs must not be advertised as universal proof or convergence certification. The log solver is diagnostic and can reject ill-conditioned positive steps; exact recurrence remains separate.",
+			"verification": "software"
+		},
+		{
+			"id": "R3-software-counterexamples",
+			"statement": "Check the recurrence and perturbation counterexamples are executable and the reported author regression evidence is consistent with supplied source hashes. In particular A=3,B=2 gives 2^m-1, A=3+2/m,B=2 is not the B=0 product, c=3,m=4,delta=1 gives A=63,B=70, exact-zero recurrence cancellation is rejected, C=2 B=0 beta=2.4 is analytically divergent despite a finite partial sum. Review scope is these five scripts, not project-wide mathematics.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"research/artifacts/proof-audit-round3-20260920/script-checks/REPLAY.md": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "0c5b552c1fca8bffb273ccae5d56aa52421b13d05316a9124cb401294b2bfd2f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/REPLAY.md"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/assertion-failure-probes.json": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "6df3ee48c7d0af16bfa59e4969b50d8c88975d39577604e0242f924a3291cf41",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/assertion-failure-probes.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/before-reproduction.log": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "f54fc5051690fa6878fc7945b59a9b4030bf16505bc3d0c078521f05a5b2888a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/before-reproduction.log"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/behavior_checks.py": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "a1be862f908c37c85193b196a30f6b6aa86964ad411d21c814350ea0208e0bde",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/behavior_checks.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/cancellation-regression-before.log": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "14c39459651ac8ba659eb55fd25a3f80bb5c7453755c7a2f2c263acc3523ec90",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/cancellation-regression-before.log"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/reproduce_defects.py": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "d0ef32c911412f504c5a9c7c8620185d1d7282c6f69b1d7766cf819bc1b0f64a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/reproduce_defects.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks/result.json": {
+			"role": "execution-evidence-or-harness",
+			"sha256": "aed347bb7c752aef077064159451408b178c8a9f6e94343df27a1f995def8667",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks/result.json"
+		},
+		"scripts/d3_stability_verify.py": {
+			"role": "repaired-script",
+			"sha256": "91eb40749c8cf733fcfbf22af1a86206a4134e4d28d31a19962ab16408080ee0",
+			"snapshot": "inputs/scripts/d3_stability_verify.py"
+		},
+		"scripts/d3_stability_verify2.py": {
+			"role": "repaired-script",
+			"sha256": "a8e33b3bde6a357c5a75391f3cd2371cf4a972c9a85ea131babf57214eecbb9c",
+			"snapshot": "inputs/scripts/d3_stability_verify2.py"
+		},
+		"scripts/op12_dichotomy_verify.py": {
+			"role": "repaired-script",
+			"sha256": "d124eaf9423c4dc64f8b7717994df3ef632f42935259dc01b09e90db9586db1c",
+			"snapshot": "inputs/scripts/op12_dichotomy_verify.py"
+		},
+		"scripts/op12_sparse_check.py": {
+			"role": "repaired-script",
+			"sha256": "fe92db7157211123c9724869cf60f3579dbce1e19f212693cc10cde76afbea88",
+			"snapshot": "inputs/scripts/op12_sparse_check.py"
+		},
+		"scripts/op12_threshold_verify.py": {
+			"role": "repaired-script",
+			"sha256": "02028d366699136a106679d699f4bc87d1b183318397a63e8abf3ea48ac26458",
+			"snapshot": "inputs/scripts/op12_threshold_verify.py"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

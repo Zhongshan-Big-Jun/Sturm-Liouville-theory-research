@@ -1,0 +1,195 @@
+{
+  "indexed": 78,
+  "blocked": 1,
+  "version_count": 94,
+  "event_count": 30,
+  "review_problems": [],
+  "queries": {
+    "stability": {
+      "verdict": "RETRIEVAL_ONLY",
+      "card": {
+        "score": 1,
+        "tool_id": "jump-stability",
+        "title": "矩跳跃的条件稳定性: 实际递推与 B=0 模型",
+        "kind": "tool",
+        "correction_state": {
+          "status": "clear",
+          "issues": [],
+          "reuse_allowed": true
+        },
+        "reuse_allowed": true,
+        "dependencies": [],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/jump-stability.md",
+        "sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+        "version": "research/library/card-versions/8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a.md",
+        "summary": "# 跳变稳定性 (Jump Stability) ## 解析 矩跳跃完备性判据的稳定性理论. 对二阶跳变递推 $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ ($u_0=0$, $u_1=1$, $B_m \\geq 0$, $A_m - B_m \\geq c_0$), 增长引理 (定量形式): $u_m$ 单调且 $$u_m \\geq \\prod_{k=2}^m \\frac{A_k - B_k}{c_0} = \\prod_{k=2}^m (1+\\varepsilon_k), \\quad \\varepsilon_k = \\frac{A_k-B_k-c_0}{c_0} \\geq 0.$$ **稳定性定理**: 若 $\\sum_{k \\leq m} \\min(\\varepsilon_k, 1) = \\omega(\\log m)$, 则 $u_m$ 超多项式增长 ($u_m/m^\\beta \\to \\infty$, 一切 $\\beta$), 从而任意满足 (H1) 多项式稠密 + (H2) 矩良定 + 单幂范数界 $\\|x^k\\|_H \\leq C k^\\beta$",
+        "conditions": "UNSPECIFIED",
+        "scope": "Both parity recurrences; product equality only for B=Bprime=0; formal polynomial images distinguished from Krein domain.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ANALYTIC_PROOF_SCOPED",
+        "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "evidence",
+          "resources",
+          "lean",
+          "experience"
+        ],
+        "annotations": [
+          {
+            "path": "research/library/annotations/207469ecaecd987b78fb7a22cd0761bbdf18a0d29e02b26db76519c8232cf038.json",
+            "sha256": "207469ecaecd987b78fb7a22cd0761bbdf18a0d29e02b26db76519c8232cf038",
+            "kind": "failed-route-lesson",
+            "author": "coordinator-20260920-round3",
+            "locator": "general recurrence and all-index perturbation hypotheses",
+            "source_id": null,
+            "tool_sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+            "state": "CURRENT"
+          }
+        ],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "thm:growth, thm:exact, thm:sharp, thm:line, thm:margin, prop:perturb-counter",
+            "path": "docs/SL_stability_moment_jump.tex",
+            "sha256": "f77079f053c7d22a03ae5dffc38f092fb9b532c92345256582a96d2d41f03c45",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [],
+        "lean": [],
+        "experience": {}
+      },
+      "blocked": 1
+    },
+    "propagation": {
+      "verdict": "RETRIEVAL_ONLY",
+      "card": {
+        "score": 1,
+        "tool_id": "krein-sobolev-polynomials",
+        "title": "Krein-Sobolev 正交多项式",
+        "kind": "tool",
+        "correction_state": {
+          "status": "clear",
+          "issues": [],
+          "reuse_allowed": true
+        },
+        "reuse_allowed": true,
+        "dependencies": [],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/krein-sobolev-polynomials.md",
+        "sha256": "0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe",
+        "version": "research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md",
+        "summary": "# Krein-Sobolev 正交多项式 ## 解析 移位 Krein Laplacian $K_c$ (边界 $f''(\\pm1)=(f(1)-f(-1))/2$) 的第一左定空间为 $(H^1[-1,1],(\\cdot,\\cdot)_{1,c})$. 对其作 Gram-Schmidt 正交化得到 Krein-Sobolev 多项式 $\\{K_n\\}$: 在 $H^1$ 中完备正交, 根全实单且位于 $(-1,1)$; 偶次 $K_{2n}$ 与 Althammer (Sobolev-Legendre) 多项式重合; 显式系数由超几何求和给出; 对偶恒等式 $(f,g)_{1,c}=c\\langle f,g\\rangle_{1/c}$. ## 适用范围 - 适用: 左定空间中构造完备正交多项式基; 研究代数完备与解析完备的区别. - 边界情形: $H^2[-1,1]$ (边界约束) 中多项式基 $\\{p_n\\}$ 缺 2,3 次项, 代数不完备; 其解析完备性是开放问题. - 不适用: 不能直接用于特征值比值问题 (那是主题 2). ## 与完备性证明基 {p_n} 的区别 (重要",
+        "conditions": "UNSPECIFIED",
+        "scope": "UNSPECIFIED",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "SCOPED_CORRECTION; OTHER_LITERATURE_SUMMARY_NOT_REAUDITED",
+        "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "scope",
+          "evidence",
+          "resources",
+          "lean",
+          "experience"
+        ],
+        "annotations": [],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "setting: first derivative boundary and form-domain identity",
+            "path": "docs/SL_krein_c0_limit.tex",
+            "sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "0<=s<=3 spectral truncation consequence",
+            "path": "docs/SL_fractional_left_definite.tex",
+            "sha256": "95ef1c87bb4b0598f5314ad96153ec97d86611d6c59e561d648028d226c1c6a4",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "operator inverse versus polynomial inverse",
+            "path": "tools/krein-power-domain-polynomial-obstruction.md",
+            "sha256": "09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [],
+        "lean": [],
+        "experience": {}
+      },
+      "blocked": 1
+    }
+  },
+  "releases": {
+    "stability": {
+      "request_id": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "reused": false,
+      "path": "research/library/corrections/requests/bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73.json",
+      "sha256": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "pointers": {
+        "index": "index/tools.json",
+        "indexed": 77,
+        "blocked": 2,
+        "verdict": "INDEXED",
+        "needs_metadata_review": [],
+        "retained_unscanned": 0,
+        "parsed": 0,
+        "reused": 79,
+        "index_changed": true,
+        "previous_index_snapshot": "research/library/index-history/c65012da6f83085268acb7b32f6813d0acea4ef453b5c02c05dae63c48bb0654.json",
+        "issues": []
+      },
+      "reuse_allowed": true,
+      "verdict": "RELEASED"
+    },
+    "propagation": {
+      "request_id": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "reused": false,
+      "path": "research/library/corrections/requests/f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044.json",
+      "sha256": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "pointers": {
+        "index": "index/tools.json",
+        "indexed": 78,
+        "blocked": 1,
+        "verdict": "INDEXED",
+        "needs_metadata_review": [],
+        "retained_unscanned": 0,
+        "parsed": 0,
+        "reused": 79,
+        "index_changed": true,
+        "previous_index_snapshot": "research/library/index-history/4a11f9d310f53e01e6e9e81227e25d60a280793cfccfbe6b33950b9aa7318b11.json",
+        "issues": []
+      },
+      "reuse_allowed": true,
+      "verdict": "RELEASED"
+    }
+  },
+  "annotation": {
+    "annotation_id": "207469ecaecd987b78fb7a22cd0761bbdf18a0d29e02b26db76519c8232cf038",
+    "schema_version": 1,
+    "tool_path": "tools/jump-stability.md",
+    "tool_sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+    "author": "coordinator-20260920-round3",
+    "kind": "failed-route-lesson",
+    "locator": "general recurrence and all-index perturbation hypotheses",
+    "content": "第三轮经独立复核的研究经验: 正反馈项 B/c*(u_prev-u_prevprev) 使同一系数差对应不同实际增长; A=3,B=2 是零超额但指数增长的基准反例. 迁移扰动定理时同时微分两个项、核对真正算子域和全部下标. 有限前缀可以消去增长分量, 因此最终满足小扰动界不够. 批注绑定本次修订卡版本, 不把历史数值 PASS 或局部 Lean 当作无穷维完备性认证.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  }
+}

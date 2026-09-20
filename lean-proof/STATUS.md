@@ -1,5 +1,13 @@
 # lean-proof 形式化状态总表
 
+## 2026-09-20 第三轮审计的局部形式化
+
+新增 `SL/AuditRound3.lean`: 24 个定理、10 个定义. 原生 Lean 4.31.0 编译及协调器在新输出目录中的重放均通过, 实际声明、定义闭包和根编译对象的字节一致; 两个旧公式负对照均编译失败. 当前声明的传递公理限于 `propext`, `Classical.choice`, `Quot.sound`.
+
+覆盖范围是一般递推分解、全指标单调性与乘积下界、明确 B=0 的乘积等式、A=3/B=2 的全指标指数反例、实际扰动系数差, 以及 P2 相关有理恒等式. P2 积分识别、无穷级数分类、Hilbert 空间完备性、全指标扰动充分界与商空间谱截断没有在本模块中形式化. 43 个既有 SL 源文件保持原字节, 本轮未重建全库.
+
+独立盲回译与语义对照的实际结果见 [第三轮报告](../reports/proof-audit-round3-20260920/REPORT.md), [局部目标](../research/artifacts/proof-audit-round3-20260920/lean/contract.md) 和对应原生回执. 旧 `Stability.lean` 的 `sharpB` 本来就定义为 0, 因而其历史编译通过不能支持旧文稿对一般 B>=0 的错误扩展.
+
 ## 2026-09-20 第二轮审计的局部形式化
 
 新增 `SL/AuditRound2.lean`: 25 个局部定理, 实际 Lean 4.31.0 编译与逐声明传递公理检查;
@@ -44,7 +52,7 @@
 | `SL/H3Completeness.lean` | H^3 线代数核心 (R 上, 复用 Completeness 系数族): M_0=M_1=0, 偶/奇二阶跳变递推 c M_{2m}=A_m M_{2m-2}-B_m M_{2m-4}, 缩放 M_{2m}=M_2 u_m, 超阶乘增长 u_m >= (4/c)^(m-1) m! (StabilityGrowth.product_growth 统一覆盖两组系数), 湮灭 M_2=M_3=0, all_moments_zero_of_orthogonal (解析 H1 上界为假设 hbdE/hbdO), h1_moments_zero_of_orthogonal (用 H3MomentBound 的具体上界实例化, 闭合 H^3 矩全零) | `docs/SL_h3_completeness_proof.tex` 第 3-6 节 | lake build 绿, sorry/axiom 0; 等距同构 K_c: H^3->H^1 未形式化 |
 | `SL/H3MomentBound.lean` | H^3 线解析 H1 矩上界 (R 上, 积分形式, 源文档第 5 节引理 6): 边界差泛函 delta p=p(1)-p(-1) (delta X^{2m}=0, delta X^{2m+1}=2), h1MomentFunctional M(p)=∫wd·p'+c∫w·p-(1/2)·delta p·∫wd, M(X^{2m})=momentsEven / M(X^{2m+1})=momentsOdd 恒等式, sqrt 初等估计 ((2m)√(2/(4m-1))≤2√m, (2m+1)√(2/(4m+1))≤3√m, √(2/(4m+1))≤√2·√m, √(2/(4m+3))≤√2·√m, √2≤√2·√m), Cauchy-Schwarz 矩上界 |M_{2m}|≤(2‖wd‖₂+c√2‖w‖₂)√m 与 |M_{2m+1}|≤((3+√2)‖wd‖₂+c√2‖w‖₂)√m | `docs/SL_h3_completeness_proof.tex` 第 5 节 (引理 6) | lake build 绿, sorry/axiom 0 |
 | `SL/H1Isometry.lean` | H^3 线胶水 (R 上, 具体泛函): FTC 恒等式 ftc_delta (MomentBound.moments wd 0 = w 1 - w (-1), integral_deriv_eq_sub' 接入), H1 内积 h1Inner 与 h1MomentFunctional 的识别 (h1Inner_eq_h1MomentFunctional), 正交传输 h1Inner_moments_zero_of_orthogonal / h1Inner_eq_zero_of_orthogonal (isometry-transport 步骤), 正定核心 moments_zero_sq_le / delta_sq_le_two_int_sq ((Δw)^2<=2∫wd^2) / h1NormSq_nonneg / h1NormSq_eq_zero_imp_sq_int_zero / h1NormSq_eq_zero_imp_ae_zero (w=0 a.e.) | `docs/SL_h3_completeness_proof.tex` 第 2/4/6 节 | lake build 绿, sorry/axiom 0; 算符级等距 (双射/谱) 与 H^1 稠密性未形式化 (文件头诚实标注) |
-| `SL/Stability.lean` | 稳定性定理 Thm 2.2 (R 上泛函核心): 发散对数和 (1/2)Σmin(eps_k,1) → 超多项式增长 (superpolynomial_of_divergent_sum/logsum), 多项式界湮灭 (annihilate_of_superpolynomial/divergent_sum), 偶/奇矩递推 + 湮灭 + 多项式上界 → stability_moments_zero (矩全零); 尖锐性 Thm 2.3 (C/k 族): sharp_product_eq (乘积闭式) + sharp_recurrence (递推) + sharp_poly_bound (多项式增长) + sharp_term_bound/sharp_series_summable (β>C+1/2 级数收敛) | `docs/SL_stability_moment_jump.tex` 定理 2.2-2.3 | lake build 绿 (8569 jobs), sorry/axiom 0 |
+| `SL/Stability.lean` | 稳定性定理 Thm 2.2 (R 上泛函核心): 发散对数和 (1/2)Σmin(eps_k,1) → 超多项式增长 (superpolynomial_of_divergent_sum/logsum), 多项式界湮灭 (annihilate_of_superpolynomial/divergent_sum), 偶/奇矩递推 + 湮灭 + 多项式上界 → stability_moments_zero (矩全零); 尖锐性 (明确 sharpB=0 的 C/k 模型, 不覆盖一般 B>=0): sharp_product_eq (乘积闭式) + sharp_recurrence (递推) + sharp_poly_bound (多项式增长) + sharp_term_bound/sharp_series_summable (β>C+1/2 级数收敛) | `docs/SL_stability_moment_jump.tex` 增长充分性与 B=0 模型; 旧定理号已变 | 历史 lake build 绿 (8569 jobs), sorry/axiom 0; 本轮未重建此旧模块 |
 | `SL/ThirdOrderClassification.lean` | Theorem 1 反向 (分类方向): 若比值轨迹 e_j=1+beta/(2j) 对一切 j>=3 精确, 则偶族 beta in {1,-1}, 奇族 beta in {3,1}; 证明 = 在 j=3,4,5 三指标上通分消分母 + 提取因子 (beta-1)(beta+1) / (beta-3)(beta-1) + 相邻三点消去 | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (反向) | lake build 绿; sorry/axiom 0; TEven/TOdd 分子由符号计算导出并如实声明 (文件头注释) |
 | `SL/ThirdOrder.lean` | 三阶递推一般理论 (任意域): IsSolution/ratioMap 框架, Lemma 1 (fixed_point_iff: 序列 E 满足递推 <=> 连续比值 e_j=E_j/E_{j-1} 满足固定点方程 e_j=F_j(e_{j-1},e_{j-2})), Theorem 3 前向 (reduction: 差序列 s_j=r_j-r_{j-1} 满足二阶递推) | `docs/SL_third_order_recurrence_theory.tex` 第 2-4 节 (Lemma 1 + Theorem 3 前向) | lake build 绿; sorry/axiom 0 |
 | `SL/ThirdOrderClosedForms.lean` | Theorem 2 闭式验证 (偶族 mu+=(2j+1)!/c^j, mu-=(2j)!/c^j; 奇族 mu+=(2j+3)!/(6(j+1)c^j), mu-=(2j+1)!/c^j 逐项满足三阶递推) + 固定点轨迹充分方向 (e_j=1+beta/(2j), beta in {1,-1}/{3,1}, 乘法与 ratioMap 形式) + 比值恒等式 (偶 mu-/mu+=1/(2n+7), 奇 =3/(2n+9)) | `docs/SL_third_order_recurrence_theory.tex` 定理 1 (充分方向) + 定理 2 | lake build 绿; sorry/axiom 0; 分类方向 (Theorem 1 反向) 由 ThirdOrderClassification.lean 形式化 |
@@ -74,7 +82,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_hs_orthogonal_systems_proof.tex | 抽象多项式传输公式; 真正算子幂域的全阶多项式基解释已撤回 | 旧解释 SUPERSEDED | 部分: 传输算子闭式与 K_c^{-1} 迭代 (TransferOperator) + 传输约化机制与组装 (HsOrthogonalSystems: Q_n=K_c^{-r} P_n / Q_n=K_c^{-r} K_n 的正交与次数约化, Legendre 闭式 deg P_n=n, aSeq 递推; Legendre/Krein-Sobolev 正交性以 LegendreFacts/KreinSobolevFacts 假设接入); 算符级等距与 H^s 完备性未形式化 |
 | SL_fractional_left_definite.tex | 完整谱系与精确成员阈值; H3 前提下 0<=s<=3 稠密, 3<s<7/2 开放 | 已证 | 未开始 |
 | SL_denseness_criteria.tex | 一般稠密性准则: 一阶矩准则 + 临界指数 | 已证 | 部分: 稀疏基矩刻画 iff (DensenessCriteria); 一阶矩/临界指数定理的 Hilbert 空间与稠密性收尾未形式化 |
-| SL_stability_moment_jump.tex | 矩跳跃稳定性: 定量增长引理 (一般系数, B_m>=0 且 A_m-B_m>=c_0), 稳定性定理 (发散对数和 ω(log m) => 完备), 尖锐性 (C/k 族) | 已证 | 部分: 定量增长引理 + eps 形式 (StabilityGrowth); Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数 (Stability); 未形式化: 完备性收尾 w=0 (稠密性, 同 O16 缺口) 与 §4 后门槛分类 (S-门槛/门槛线/Krein 余量) |
+| SL_stability_moment_jump.tex | 一般递推增长下界与充分性; 实际解对角判据; B=0 模型分类; 有条件扰动与非零正交元反例 | 第三轮修订, 旧一般分类及无条件基扰动结论撤回 | 历史 StabilityGrowth 给出下界, Stability 的 sharpB 明确为 0; 新 AuditRound3 仅覆盖所列局部代数与递推目标. 完整 Hilbert 空间证明、无穷级数分类与扰动反例全链未全部形式化 |
 | SL_third_order_recurrence_theory.tex | 三阶递推一般理论: 积分解分类/精确降阶/最小解 | 已证 | 部分: 一般框架 + Lemma 1 固定点等价 + Theorem 3 前向降阶 (ThirdOrder); Theorem 2 闭式 + 固定点轨迹充分方向 + 比值恒等式 (ThirdOrderClosedForms); 分类方向 (Theorem 1 反向, ThirdOrderClassification); 变差常数/第三解代数核心 + 定理 3 反向 (ThirdOrderMinimal); 剩余: 三解 Casoratian 非零 (源数值) 与最小解唯一性/渐近 (源数值/符号计算) 未形式化 |
 | SL_krein_c0_limit.tex | 移位 Krein 算子 c->0 退化极限的结构稳定性 | 已证 | 部分: 多项式级 radical (c=0 配对 radical = span{1,x}) + 低模范数闭式 (K_0..K_4) + ||K_4||^2 -> atTop + span 分解 (KreinDegenerateLimit) + n>=4 一般 Θ 增长与 ||K_n||^2 -> +infinity (KreinHighGrowth); 商空间级 (H^1/W ≅ L^2_0, quotient/unit, complete (b)-(d)) 未形式化 |
 | SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心) + TransferMatrix (三段转移矩阵乘积/secular 方程/平凡不等式); 转移矩阵到特征值的谱论连接与 MW 引理重证仍未形式化 |

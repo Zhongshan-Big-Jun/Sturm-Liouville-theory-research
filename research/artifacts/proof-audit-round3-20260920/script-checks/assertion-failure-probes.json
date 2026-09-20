@@ -1,0 +1,117 @@
+[
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify as M; M.check_growth_lemma=lambda *a, **kw: (False, 1); raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "Finite author diagnostics; no completeness proof from scans or partial sums.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify as M; M.check_growth_lemma=lambda *a, **kw: (False, 1); raise SystemExit(M.main())\n                                                                                                                                                                                           ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d3_stability_verify.py\", line 75, in main\n    raise AssertionError(f'product lower-bound regression: B={b}, error={Worst}')\nAssertionError: product lower-bound regression: B=0, error=1\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-O",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify as M; M.check_growth_lemma=lambda *a, **kw: (False, 1); raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "Finite author diagnostics; no completeness proof from scans or partial sums.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify as M; M.check_growth_lemma=lambda *a, **kw: (False, 1); raise SystemExit(M.main())\n                                                                                                                                                                                           ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d3_stability_verify.py\", line 75, in main\n    raise AssertionError(f'product lower-bound regression: B={b}, error={Worst}')\nAssertionError: product lower-bound regression: B=0, error=1\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify2 as M; M.solve_u_log=lambda *a, **kw: [0, 0, 0]; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "Finite author diagnostics; positive log solver is not a stability certificate.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify2 as M; M.solve_u_log=lambda *a, **kw: [0, 0, 0]; raise SystemExit(M.main())\n                                                                                                                                                                                    ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d3_stability_verify2.py\", line 54, in main\n    raise AssertionError('missing c0 normalization in log recurrence')\nAssertionError: missing c0 normalization in log recurrence\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-O",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify2 as M; M.solve_u_log=lambda *a, **kw: [0, 0, 0]; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "Finite author diagnostics; positive log solver is not a stability certificate.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import d3_stability_verify2 as M; M.solve_u_log=lambda *a, **kw: [0, 0, 0]; raise SystemExit(M.main())\n                                                                                                                                                                                    ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/d3_stability_verify2.py\", line 54, in main\n    raise AssertionError('missing c0 normalization in log recurrence')\nAssertionError: missing c0 normalization in log recurrence\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_dichotomy_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_series=lambda *a: 0; M.power_product=lambda *a: 0; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "B=0 product diagnostics only; finite sums do not establish convergence or completeness.\neps=k^(-1/2): log u_4000/log(4000)=0.0 (finite growth diagnostic).\neps=1/(k log(k)), N=20000: log u_N/loglog(N)=0.0.\n  beta=0.5: finite partial sum=0; analytic B=0 series: diverges.\n  beta=0.6: finite partial sum=0; analytic B=0 series: converges.\n  beta=1.0: finite partial sum=0; analytic B=0 series: converges.\neps=2/(k log(k)), N=20000: log u_N/loglog(N)=0.0.\nSparse B=0 example: jumps=[4, 16, 256]; log u_4000=276.01815004 (finite value).\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_dichotomy_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_series=lambda *a: 0; M.power_product=lambda *a: 0; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                            ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_dichotomy_verify.py\", line 78, in main\n    raise AssertionError('Gamma(2+C) product normalization regression')\nAssertionError: Gamma(2+C) product normalization regression\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-O",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_dichotomy_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_series=lambda *a: 0; M.power_product=lambda *a: 0; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "B=0 product diagnostics only; finite sums do not establish convergence or completeness.\neps=k^(-1/2): log u_4000/log(4000)=0.0 (finite growth diagnostic).\neps=1/(k log(k)), N=20000: log u_N/loglog(N)=0.0.\n  beta=0.5: finite partial sum=0; analytic B=0 series: diverges.\n  beta=0.6: finite partial sum=0; analytic B=0 series: converges.\n  beta=1.0: finite partial sum=0; analytic B=0 series: converges.\neps=2/(k log(k)), N=20000: log u_N/loglog(N)=0.0.\nSparse B=0 example: jumps=[4, 16, 256]; log u_4000=276.01815004 (finite value).\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_dichotomy_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_series=lambda *a: 0; M.power_product=lambda *a: 0; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                            ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_dichotomy_verify.py\", line 78, in main\n    raise AssertionError('Gamma(2+C) product normalization regression')\nAssertionError: Gamma(2+C) product normalization regression\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_threshold_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_partial=lambda *a: []; M.power_product=lambda *a: 0; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "B=0 product examples only; each displayed number is a finite partial sum.\nSeries labels come from analytic asymptotics, not convergence of these samples.\neps=1/(k log(k)), N=10000:\n  beta=0.5: []; analytic B=0 series: diverges.\n  beta=0.6: []; analytic B=0 series: converges.\neps=1/(k log(k)), N=20000:\n  beta=0.5: []; analytic B=0 series: diverges.\n  beta=0.6: []; analytic B=0 series: converges.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_threshold_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_partial=lambda *a: []; M.power_product=lambda *a: 0; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                              ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_threshold_verify.py\", line 42, in main\n    raise AssertionError('Gamma(2+C) product normalization regression')\nAssertionError: Gamma(2+C) product normalization regression\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-O",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_threshold_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_partial=lambda *a: []; M.power_product=lambda *a: 0; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "B=0 product examples only; each displayed number is a finite partial sum.\nSeries labels come from analytic asymptotics, not convergence of these samples.\neps=1/(k log(k)), N=10000:\n  beta=0.5: []; analytic B=0 series: diverges.\n  beta=0.6: []; analytic B=0 series: converges.\neps=1/(k log(k)), N=20000:\n  beta=0.5: []; analytic B=0 series: diverges.\n  beta=0.6: []; analytic B=0 series: converges.\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_threshold_verify as M; M.u_sequence=lambda eps, N: [mp.mpf(0)]+[mp.mpf(1)]*N; M.diag_partial=lambda *a: []; M.power_product=lambda *a: 0; raise SystemExit(M.main())\n                                                                                                                                                                                                                                                              ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_threshold_verify.py\", line 42, in main\n    raise AssertionError('Gamma(2+C) product normalization regression')\nAssertionError: Gamma(2+C) product normalization regression\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_sparse_check as M; M.is_sparse=lambda k: False; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_sparse_check as M; M.is_sparse=lambda k: False; raise SystemExit(M.main())\n                                                                                                                                                                    ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_sparse_check.py\", line 47, in main\n    raise AssertionError(f'sparse-index regression: {Jumps}, count={Count}')\nAssertionError: sparse-index regression: [], count=0\n"
+  },
+  {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-O",
+      "-c",
+      "import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_sparse_check as M; M.is_sparse=lambda k: False; raise SystemExit(M.main())"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys, mpmath as mp; sys.path.insert(0, '/mnt/f/LaTeX/BVE research/scripts'); import op12_sparse_check as M; M.is_sparse=lambda k: False; raise SystemExit(M.main())\n                                                                                                                                                                    ~~~~~~^^\n  File \"/mnt/f/LaTeX/BVE research/scripts/op12_sparse_check.py\", line 47, in main\n    raise AssertionError(f'sparse-index regression: {Jumps}, count={Count}')\nAssertionError: sparse-index regression: [], count=0\n"
+  }
+]

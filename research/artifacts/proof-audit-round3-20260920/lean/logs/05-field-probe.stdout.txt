@@ -1,0 +1,41 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+F:\tools\math-audit-round3-20260920\lean-author\FieldProbe.lean:13:61: error: unsolved goals
+m : ℝ
+hm : m - 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+hd : (m - 1) * (2 * m + 3) * (4 * m ^ 2 - 6 * m - 7) ≠ 0
+⊢ -1 + m - m * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 30 - m ^ 2 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 12 =
+    -(m * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 19) - m ^ 2 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 44 -
+          m ^ 3 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 8 +
+        m ^ 4 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 8 +
+      (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 21
+[Tactic.field_simp] clearing denominators in 1 -
+      6 * m * (2 * m + 5) /
+        ((m - 1) * (2 * m + 3) *
+          (4 * m ^ 2 - 6 * m -
+            7)) ~ (m - 3) * (2 * m - 1) * (4 * m ^ 2 + 10 * m + 7) / ((m - 1) * (2 * m + 3) * (4 * m ^ 2 - 6 * m - 7))
+[Tactic.field_simp] ✅️ discharge m - 1 ≠ 0
+[Tactic.field_simp] ❌️ discharge m * 2 + 3 ≠ 0
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+[Tactic.field_simp] ❌️ discharge m * (m * 4 - 6) - 7 ≠ 0
+[Tactic.field_simp] ✅️ discharge m - 1 ≠ 0
+[Tactic.field_simp] ❌️ discharge m * 2 + 3 ≠ 0
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+  [Tactic.field_simp] ❌️ discharge Subsingleton (AddUnits ℝ)
+[Tactic.field_simp] ❌️ discharge m * (m * 4 - 6) - 7 ≠ 0
+m : ℝ
+hm : m - 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+hd : (m - 1) * (2 * m + 3) * (4 * m ^ 2 - 6 * m - 7) ≠ 0
+⊢ m - 1 - 6 * m * (m * 2 + 5) / ((m * 2 + 3) * (m * (m * 4 - 6) - 7)) =
+    (m - 3) * (m * 2 - 1) * (m * (m * 4 + 10) + 7) / ((m * 2 + 3) * (m * (m * 4 - 6) - 7))

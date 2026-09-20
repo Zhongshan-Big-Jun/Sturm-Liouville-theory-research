@@ -1,0 +1,100 @@
+SL/AuditRound3.lean:161:55: error: unsolved goals
+n : ℕ
+⊢ (3 - 2) ^ (n - 1) = 1
+SL/AuditRound3.lean:228:42: error: linarith failed to find a contradiction
+m : ℝ
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+a✝ : 2 * (m - 1) + 1 = 0
+⊢ False
+failed
+SL/AuditRound3.lean:229:42: error: linarith failed to find a contradiction
+m : ℝ
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hprev1 : 2 * (m - 1) + 1 ≠ 0
+a✝ : 2 * (m - 1) + 3 = 0
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+SL/AuditRound3.lean:226:35: error: unsolved goals
+m : ℝ
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hprev1 : 2 * (m - 1) + 1 ≠ 0
+hprev3 : 2 * (m - 1) + 3 ≠ 0
+⊢ -(m * 2) - m * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 3 + m ^ 2 * 6 - m ^ 3 * 4 + m ^ 3 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 12 =
+    -(m * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 9) + m ^ 2 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 2 +
+          m ^ 3 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 40 -
+        m ^ 4 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 8 -
+      m ^ 5 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 16
+SL/AuditRound3.lean:239:42: error: linarith failed to find a contradiction
+m : ℝ
+hm : m - 1 ≠ 0
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+a✝ : 2 * (m - 1) + 1 = 0
+⊢ False
+failed
+SL/AuditRound3.lean:240:42: error: linarith failed to find a contradiction
+m : ℝ
+hm : m - 1 ≠ 0
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+hprev1 : 2 * (m - 1) + 1 ≠ 0
+a✝ : 2 * (m - 1) + 3 = 0
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+SL/AuditRound3.lean:237:45: error: unsolved goals
+m : ℝ
+hm : m - 1 ≠ 0
+h0 : 2 * m - 1 ≠ 0
+h1 : 2 * m + 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+hprev1 : 2 * (m - 1) + 1 ≠ 0
+hprev3 : 2 * (m - 1) + 3 ≠ 0
+⊢ -(m * 28) - m * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 36 - m * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 840 - m ^ 2 * 24 +
+                    m ^ 2 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 8 -
+                  m ^ 2 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 1056 +
+                m ^ 3 * 16 +
+              m ^ 3 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 160 +
+            m ^ 3 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 192 -
+          m ^ 4 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 32 +
+        m ^ 4 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 192 -
+      m ^ 5 * (3 + m * 8 + m ^ 2 * 4)⁻¹ * 64 =
+    0
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+SL/AuditRound3.lean:248:61: error: unsolved goals
+m : ℝ
+hm : m - 1 ≠ 0
+h3 : 2 * m + 3 ≠ 0
+hq : 4 * m ^ 2 - 6 * m - 7 ≠ 0
+⊢ -1 + m - m * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 30 - m ^ 2 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 12 =
+    -(m * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 19) - m ^ 2 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 44 -
+          m ^ 3 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 8 +
+        m ^ 4 * (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 8 +
+      (-21 - m * 32 + m ^ 3 * 8)⁻¹ * 21

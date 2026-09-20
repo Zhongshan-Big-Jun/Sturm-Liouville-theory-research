@@ -1,5 +1,9 @@
 # RESUME
 
+## 2026-09-20 third-round audit repair
+
+Current correction entry: `reports/proof-audit-round3-20260920/REPORT.md`. R3-F1 separates the general product lower bound from B=0 model equalities. R3-F2 corrects both perturbed coefficients, adds a P2 orthogonal witness and an all-index sufficient condition; formal polynomial images are distinct from the Krein operator domain. R3-F3 uses fixed-c form-norm spectral truncation and the actual quotient images. The five active scripts and two affected tool cards are repaired; the first software review found a further multistep sign error and prompted exact-rational sign tracking. New local Lean: 24 theorems, 10 definitions, separate compiler replay and scoped semantic review. Current delivery and retrieval evidence belongs to the third-round report; older dated status paragraphs retain their historical scope.
+
 ## 2026-09-20 second-round audit and cloud synchronization
 
 Current correction entry: `reports/proof-audit-round2-20260920/REPORT.md`. Nine repaired cards have independent scoped approval; the tool index contains 78 available cards and one withdrawn card. In particular, p4 belongs to the nonnegative-order Hs domain exactly for s<7/2; density of the original family for 3<s<7/2 remains open. The earlier dated errata below record their then-current scope. The user has authorized synchronization of these repairs and their evidence; local Lean checks are not a complete formalization of the project.

@@ -1,0 +1,37 @@
+{
+	"checked_paths": [
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/RESULT.json",
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/assertion-failure-probes.json",
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py",
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py.stderr.log",
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/reproduce_defects.py",
+		"research/library/reviews/runs/02089f63240fab3a512269599ddd21eeb381d994e8c95c075d73128032a5cf59-01a0bf15-2470-7c21-bb16-e679aa45bee9/report.json",
+		"scripts/d3_stability_verify.py",
+		"scripts/d3_stability_verify2.py",
+		"scripts/op12_dichotomy_verify.py",
+		"scripts/op12_sparse_check.py",
+		"scripts/op12_threshold_verify.py"
+	],
+	"claim_results": [
+		{
+			"id": "R3-software-v2-signs",
+			"reason": "The revised sign decision is algebraically sound within the declared domain: u0=0 and u1=1 give r2=A2/c0; while preceding steps are positive, dividing the recurrence by u_(m-1) gives r_m=(A_m-B_m/r_(m-1))/c0. Fraction arithmetic computes this ratio exactly, and floating logarithms never feed back into it. Fresh independent replays rejected both supplied counterexamples at m=4, whose exact final values are respectively 0 and -1/18014398509481984. An additional 105 constructed cases with nonunit normalizations and stopping indices through 64 correctly accepted 35 positive endpoints and rejected 70 zero or negative endpoints, including magnitudes 10^-1000. Conversion checks confirmed preservation of represented binary floats and exact decimal/rational inputs. The nextafter case computes the approximate logarithm of the exactly positive value 2^-53; an input already rounded to 1 correctly produces rejection of the resulting zero step. Empty prefixes, invalid coefficients, first-failure termination and extreme ratios were checked. Ratio denominators demonstrably grow: for A=3, B=2, c0=1, r_m=(2^m-1)/(2^(m-1)-1), consistent with the documented performance tradeoff.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R3-software-v2-regressions",
+			"reason": "All five frozen scripts exited successfully. Unmodified reviewer-owned copies of both harnesses passed all 17 behavior tests and all five minimal regressions with AUDIT_SOURCE_ROOT pointing to the frozen inputs. All ten injected failures raised AssertionError and exited nonzero, including five runs under -O. All 11 snapshot hashes and all seven source hashes recorded in RESULT.json matched; packet and snapshot hashes remained unchanged afterward. Checked normalization, large-rational growth diagnostics, initial values, quiet imports, preserved mpmath precision, log(k), finite sums and sparse indices. Independently expanding (c-D^2)(x^(2m)-alpha*x^(2m-2)) yields the implemented coefficients and boundary derivative -(2m-2)*delta. Under c0>0, B>=0 and eps>=0, monotonicity gives u_m>=(1+eps_m)u_(m-1), establishing the product lower bound; equality is restricted to the stated B=0 examples. The Gamma denominator is Gamma(2+C). The stated series thresholds follow analytically from terms proportional to m^(2C-2beta), or m^(-2beta)*(log m)^(2C); the stated equality cases diverge. Sparse indices are exactly 2^(2^j), j>=1, and consecutive jumps K and K^2 justify the stated last-jump bound. Finite numerical outputs are appropriately distinguished from these analytic statements.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Fresh execution used Python 3.14.4 and mpmath 1.3.0. Other runtime versions were not tested. Harness output was confined to a reviewer-owned temporary directory.",
+		"Logarithms remain floating approximations. These checks establish neither uniform error bounds nor interval certification, and cannot recover information lost before coefficient conversion.",
+		"Exact rational arithmetic can incur growing time and memory costs. No general large-N resource bound was established.",
+		"Historical execution provenance and author-reported timings were not independently reconstructed; current frozen implementations were freshly executed.",
+		"Approval is restricted to the two requested software-review claims and supplied snapshots. It does not establish project-wide mathematical completeness or complete formalization."
+	],
+	"packet_sha256": "d98e7b19c097b6a4e8a8de74ddaa2550532a92c24bbd68d3683ab7bcde1f2dec",
+	"verdict": "APPROVED"
+}

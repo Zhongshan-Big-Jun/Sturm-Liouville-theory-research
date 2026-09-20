@@ -1,0 +1,113 @@
+{
+	"author_ids": [
+		"01a0befe-2cc9-7340-9865-41c66b57a7e7",
+		"01a0bf17-6866-78b3-8e7b-ce6056975a29",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "R3-local-formal-semantics",
+			"statement": "Compare the 34 actual exported declarations and definition closure, the independently generated blind readback, and the supplied local contract. Check every quantified variable, index, sign and denominator condition, and the meaning of normalized recurrence and product ranges. Assess statement fidelity only for the 24 local theorems and 10 definitions: no integration, analytic completeness, Gamma asymptotics, domain membership or quotient spectral theorem is claimed. In particular the P2 assertions are rational identities, and the no-general-equality theorem is a concrete counterexample rather than a universal classification.",
+			"verification": "formal"
+		},
+		{
+			"id": "R3-local-formal-evidence",
+			"statement": "Check the machine evidence coherently binds the actual source, printed declarations, transitive axioms and separate fresh compile/export replay; negative controls must actually fail. Parse declarations.json as structured data rather than accepting author PASS labels. Axioms are restricted to propext/Classical.choice/Quot.sound, with no missing/unsafe dependency declarations. Report what was not rerun or independently rebuilt; successful local checking is not complete project formalization. Do not access unprovided live checkout or compiler inputs.",
+			"verification": "formal"
+		}
+	],
+	"inputs": {
+		"lean-proof/SL/AuditRound3.lean": {
+			"role": "actual-formal-source",
+			"sha256": "7e93fae0e42dd572d8d9127e8949c0caaa0ef965c321bf8a11cea46163a6c714",
+			"snapshot": "inputs/lean-proof/SL/AuditRound3.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/FINAL_CHECKS.json": {
+			"role": "author-check-summary",
+			"sha256": "3e4d97f590e1cf1ffe1b425f5d0c7e78f4a3fb8a5e290a7d5bc466dc2ed296f9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/FINAL_CHECKS.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/contract.md": {
+			"role": "intended-local-contract",
+			"sha256": "99d048ac439e873791782c22daae6d11c4daf930e41ad0c122af9c55d08056bb",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/contract.md"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/declarations.json": {
+			"role": "actual-axiom-and-dependency-export",
+			"sha256": "920c55b0a5853bfc7695cc56dbed0d90bb98dbca2c273d3634f17f2a174713d1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/declarations.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements-fully-explicit.txt": {
+			"role": "actual-explicit-types",
+			"sha256": "e2ea6da5a55444cf4761cb33bdf07a9d3d8f7cc504951cb0cdca43a25ca7d10f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements-fully-explicit.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements.txt": {
+			"role": "actual-types",
+			"sha256": "535a4ceb2b0d369e150e59b8d7b7cbb4ffd8c63d06d6115a15e3c471ec4ea215",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/local-definition-closure.txt": {
+			"role": "actual-definitions",
+			"sha256": "282a20644aa103c4ef631987ddda79a9ccdbb30d3e097f49e5b2630631c079e3",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/local-definition-closure.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/10-final-clean-build.json": {
+			"role": "compiler-record",
+			"sha256": "a29f6c9982a1029aee0db906cd0499a7bd0a63e054b6b24fd97f137b36a34c9f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/10-final-clean-build.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.json": {
+			"role": "inspection-record",
+			"sha256": "fdeff512f77c72cf5e1ef28c0c454a1a8878a7dca6aadf7bb2a1189bf446cce8",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.stdout.txt": {
+			"role": "actual-compiler-print-output",
+			"sha256": "bbe700a4571a7dea97ea67a1ebe79640c4412d5276d2882c62c3026e2d77456b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/pins/lake-manifest.json": {
+			"role": "dependency-pins",
+			"sha256": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/pins/lake-manifest.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/pins/lean-toolchain": {
+			"role": "environment-pin",
+			"sha256": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/pins/lean-toolchain"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/RESULT.json": {
+			"role": "coordinator-replay-comparison",
+			"sha256": "f992fd1a0eadcb2682ef4631572126d9633df73bff9bc65e0d56d5368e7049af",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/RESULT.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/01-fresh-build.json": {
+			"role": "fresh-replay-record",
+			"sha256": "0a6d5c902bf8cc29454b64f6f5af62a62139963c9237fbb710ef44a56162375e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/01-fresh-build.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.stdout.txt": {
+			"role": "negative-control",
+			"sha256": "6398094ac476890a3c86083acbc728f871a91015f02e7c6fcbbeda7d4c2cb52e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.stdout.txt": {
+			"role": "negative-control",
+			"sha256": "e529602f8959dd53c6490c0a804a61157ccf3b34ae8180eba8f9de6b646656a5",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.stdout.txt"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/receipt.json": {
+			"role": "readback-receipt",
+			"sha256": "8c6dc581852f1a772d4ec7cd1caff9e1d5df815eef53d811e98adbc5dad0fa1a",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/receipt.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/report.json": {
+			"role": "independent-blind-readback",
+			"sha256": "10fa40338cc8a84b79b0a26ecd12d94b5d4738e262c18c58dd30b2feff6a5d0e",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/report.json"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

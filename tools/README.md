@@ -73,7 +73,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | inf-limit-comparison | [card](<inf-limit-comparison.md>) | 0 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |
 | interval-dec-directed-rounding | [card](<interval-dec-directed-rounding.md>) | 0 |
-| jump-stability | [card](<jump-stability.md>) | 0 |
+| jump-stability | [card](<jump-stability.md>) | 1 |
 | keller-variational | [card](<keller-variational.md>) | 0 |
 | key-lemma-decomposition | [card](<key-lemma-decomposition.md>) | 0 |
 | kp-odd-firstzero-reduction | [card](<kp-odd-firstzero-reduction.md>) | 0 |

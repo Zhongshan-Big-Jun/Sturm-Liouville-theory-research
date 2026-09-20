@@ -1,0 +1,164 @@
+{
+	"author_ids": [
+		"01a0befe-1a75-7cf2-8c92-a7071f984c79",
+		"01a0befe-2063-7630-af8a-48c7bc446ece",
+		"01a0befe-2cc9-7340-9865-41c66b57a7e7",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "correction:7edff79b4f6befc7281b1d9b9735335ec9ad14faae9e8038ac1404efc9a002f5",
+			"statement": "Independently check the repaired card tools/jump-stability.md at sha256 8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a, its scope and dependencies, against the original issue 56dcdbf242189f6a9a58e651f5f34f7f95b081356e9713c7ee688ac2d2c9cccc and old version 85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:eb5fe4399b59e5ff9955290d89e331d08e23e3560bc1ae50d220b4b9465c5939",
+			"statement": "Independently check the repaired card tools/krein-sobolev-polynomials.md at sha256 0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe, its scope and dependencies, against the original issue 077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598 and old version 370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R3-F1-analytic",
+			"statement": "Independently verify the corrected general recurrence lower bound, both-parity sufficient conditions, sparse example, actual-solution iff criterion in the coefficient-diagonal Hilbert space, and B=Bprime=0 C/k and C/(k log k) model classifications including endpoint exponents and Gamma(2+C). Validate the general-B counterexamples and removal of the false S=O(log m) equivalence. Scope is precisely the current SL_stability_moment_jump.tex; preserve distinctions between arbitrary H, H_beta and Krein power domains.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R3-F2-analytic",
+			"statement": "Independently verify both actual perturbed coefficients, even/odd boundary defects, the explicit all-index |delta_m|,|delta_prime_m|<=1/(8m) sufficient condition, and the all-index P2 orthogonal-witness counterexample with bounded decaying delta. Check m=2 and m=3 exceptional prefixes, nonzero denominators, asymptotics, and why eventual smallness cannot replace all-index hypotheses. Verify the result concerns formal polynomial images and does not silently claim true Krein domain membership.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R3-propagation-scope",
+			"statement": "Check the two repaired cards and the specific stability paragraph in the overview agree with the repaired analytic scope. In the Krein-Sobolev source card review only the first-derivative boundary, removal of stale H2-open language, and withdrawal of the unsupported all-order-polynomial transport; unrelated retained literature summaries are explicitly not re-audited. Inspect constrained-denseness-runs.md only for whether its jump-stability relation requires the withdrawn classification or perturbation claims; do not certify all of that card. Finite exact tests are not universal mathematical proofs.",
+			"verification": "analytic"
+		}
+	],
+	"inputs": {
+		"docs/SL_fractional_left_definite.tex": {
+			"role": "previously-repaired-scope-reference",
+			"sha256": "95ef1c87bb4b0598f5314ad96153ec97d86611d6c59e561d648028d226c1c6a4",
+			"snapshot": "inputs/docs/SL_fractional_left_definite.tex"
+		},
+		"docs/SL_krein_c0_limit.tex": {
+			"role": "domain-setting",
+			"sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+			"snapshot": "inputs/docs/SL_krein_c0_limit.tex"
+		},
+		"docs/SL_spectral_topics_summary.tex": {
+			"role": "propagated-summary",
+			"sha256": "585a984516a1227781237fe073cdc4810cefab076367c644ca10ea5af9f4375b",
+			"snapshot": "inputs/docs/SL_spectral_topics_summary.tex"
+		},
+		"docs/SL_stability_moment_jump.tex": {
+			"role": "repaired-analytic-proof",
+			"sha256": "f77079f053c7d22a03ae5dffc38f092fb9b532c92345256582a96d2d41f03c45",
+			"snapshot": "inputs/docs/SL_stability_moment_jump.tex"
+		},
+		"research/artifacts/proof-audit-round3-20260920/check_exact_math.py": {
+			"role": "exact-check-program",
+			"sha256": "7b22f8cd80e3c26625eeb35d233f0ff6da152b58d8f64718bb0eb6f7b800a64e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/check_exact_math.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/exact-math-results.json": {
+			"role": "author-exact-results",
+			"sha256": "a53a27818531c604144f8a32883bf2b07fda8cb77c9dd0929492a2d8d114925d",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/exact-math-results.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt": {
+			"role": "primary-domain-reference",
+			"sha256": "13e3398efc98a19dc037baa3bc4f4865298844599ee05d9852a1cf70d8a810dc",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt"
+		},
+		"research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md": {
+			"role": "correction-review-input",
+			"sha256": "0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe",
+			"snapshot": "inputs/research/library/card-versions/0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe.md"
+		},
+		"research/library/card-versions/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.md": {
+			"role": "correction-review-input",
+			"sha256": "370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0",
+			"snapshot": "inputs/research/library/card-versions/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.md"
+		},
+		"research/library/card-versions/85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af.md": {
+			"role": "correction-review-input",
+			"sha256": "85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af",
+			"snapshot": "inputs/research/library/card-versions/85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af.md"
+		},
+		"research/library/card-versions/8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a.md": {
+			"role": "correction-review-input",
+			"sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+			"snapshot": "inputs/research/library/card-versions/8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a.md"
+		},
+		"research/library/corrections/evidence/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.bin": {
+			"role": "correction-review-input",
+			"sha256": "370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0",
+			"snapshot": "inputs/research/library/corrections/evidence/370a49182fb46cb902df8ee635cc09c8e84c760d8b832cf9fa85cd06f4cd6ee0.bin"
+		},
+		"research/library/corrections/evidence/7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a.bin": {
+			"role": "correction-review-input",
+			"sha256": "7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a",
+			"snapshot": "inputs/research/library/corrections/evidence/7c7a24de803c1eb0d8af97b4162daa09be2c74d333f2c92daca062fd44aa364a.bin"
+		},
+		"research/library/corrections/evidence/85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af.bin": {
+			"role": "correction-review-input",
+			"sha256": "85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af",
+			"snapshot": "inputs/research/library/corrections/evidence/85ba87c5a6159fec4c4da3d9def59375f4569fce060122a1165d06030a4f67af.bin"
+		},
+		"research/library/corrections/evidence/a5fa0e1ba64627c9d1b04e46e1add3e013b0ab94bf9a93b0b9e2623e192cb548.bin": {
+			"role": "correction-review-input",
+			"sha256": "a5fa0e1ba64627c9d1b04e46e1add3e013b0ab94bf9a93b0b9e2623e192cb548",
+			"snapshot": "inputs/research/library/corrections/evidence/a5fa0e1ba64627c9d1b04e46e1add3e013b0ab94bf9a93b0b9e2623e192cb548.bin"
+		},
+		"research/library/corrections/evidence/d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d.bin": {
+			"role": "correction-review-input",
+			"sha256": "d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d",
+			"snapshot": "inputs/research/library/corrections/evidence/d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d.bin"
+		},
+		"research/library/corrections/requests/077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598.json": {
+			"role": "correction-review-input",
+			"sha256": "077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598",
+			"snapshot": "inputs/research/library/corrections/requests/077b4aecda424e6af5496965dda92dfa0f8502d4ffb749018c835a04e933e598.json"
+		},
+		"research/library/corrections/requests/56dcdbf242189f6a9a58e651f5f34f7f95b081356e9713c7ee688ac2d2c9cccc.json": {
+			"role": "correction-review-input",
+			"sha256": "56dcdbf242189f6a9a58e651f5f34f7f95b081356e9713c7ee688ac2d2c9cccc",
+			"snapshot": "inputs/research/library/corrections/requests/56dcdbf242189f6a9a58e651f5f34f7f95b081356e9713c7ee688ac2d2c9cccc.json"
+		},
+		"research/library/corrections/requests/7edff79b4f6befc7281b1d9b9735335ec9ad14faae9e8038ac1404efc9a002f5.json": {
+			"role": "correction-review-input",
+			"sha256": "7edff79b4f6befc7281b1d9b9735335ec9ad14faae9e8038ac1404efc9a002f5",
+			"snapshot": "inputs/research/library/corrections/requests/7edff79b4f6befc7281b1d9b9735335ec9ad14faae9e8038ac1404efc9a002f5.json"
+		},
+		"research/library/corrections/requests/eb5fe4399b59e5ff9955290d89e331d08e23e3560bc1ae50d220b4b9465c5939.json": {
+			"role": "correction-review-input",
+			"sha256": "eb5fe4399b59e5ff9955290d89e331d08e23e3560bc1ae50d220b4b9465c5939",
+			"snapshot": "inputs/research/library/corrections/requests/eb5fe4399b59e5ff9955290d89e331d08e23e3560bc1ae50d220b4b9465c5939.json"
+		},
+		"tools/constrained-denseness-runs.md": {
+			"role": "related-card-impact-check",
+			"sha256": "7f779730c24419f05bbe6a2adfa1ded1c17c3c017278d908f3a7801d147da954",
+			"snapshot": "inputs/tools/constrained-denseness-runs.md"
+		},
+		"tools/jump-stability.md": {
+			"role": "correction-review-input",
+			"sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+			"snapshot": "inputs/tools/jump-stability.md"
+		},
+		"tools/krein-power-domain-polynomial-obstruction.md": {
+			"role": "operator-domain-reference",
+			"sha256": "09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55",
+			"snapshot": "inputs/tools/krein-power-domain-polynomial-obstruction.md"
+		},
+		"tools/krein-sobolev-polynomials.md": {
+			"role": "correction-review-input",
+			"sha256": "0ba8418b18d1baca226a8d7a6f42a5038469e92d717eb5223ced8704670917fe",
+			"snapshot": "inputs/tools/krein-sobolev-polynomials.md"
+		},
+		"tools/left-definite-orthogonal-systems.md": {
+			"role": "withdrawn-interpretation",
+			"sha256": "d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d",
+			"snapshot": "inputs/tools/left-definite-orthogonal-systems.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

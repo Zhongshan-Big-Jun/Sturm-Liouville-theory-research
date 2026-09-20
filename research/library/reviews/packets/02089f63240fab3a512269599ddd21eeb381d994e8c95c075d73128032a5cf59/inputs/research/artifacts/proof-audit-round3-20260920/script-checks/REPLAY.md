@@ -1,0 +1,3 @@
+These two harness copies replace the author machine-specific Repo assignment with required AUDIT_SOURCE_ROOT. Set it to the repository root for local replay, or to the frozen packet inputs directory for isolated review. The five files must be under its scripts/.
+
+Run: AUDIT_SOURCE_ROOT=/path/to/root python3 -B behavior_checks.py (15 tests), and likewise reproduce_defects.py. Original author logs precede this harness adaptation. They are author checks, not an independent verdict. Source hashes in result.json identify the five actual scripts; the full frozen packet binds the adapted harnesses separately.

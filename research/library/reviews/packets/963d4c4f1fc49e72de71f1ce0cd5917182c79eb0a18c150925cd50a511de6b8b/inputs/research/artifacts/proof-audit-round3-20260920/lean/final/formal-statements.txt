@@ -1,0 +1,261 @@
+definition SL.AuditRound3.recurrence_solution :
+ℝ → (ℕ → ℝ) → (ℕ → ℝ) → ℕ → ℝ
+:=
+fun c A B x => Nat.brecOn.{1} x (SL.AuditRound3.recurrence_solution._f c A B)
+
+definition SL.AuditRound3.solves_recurrence :
+ℝ → (ℕ → ℝ) → (ℕ → ℝ) → (ℕ → ℝ) → Prop
+:=
+fun c A B u =>
+  Eq.{1} (u 0) 0 ∧
+    Eq.{1} (u 1) 1 ∧
+      ∀ (n : ℕ),
+        Eq.{1} (HMul.hMul.{0, 0, 0} c (u (HAdd.hAdd.{0, 0, 0} n 2)))
+          (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} (A (HAdd.hAdd.{0, 0, 0} n 2)) (u (HAdd.hAdd.{0, 0, 0} n 1)))
+            (HMul.hMul.{0, 0, 0} (B (HAdd.hAdd.{0, 0, 0} n 2)) (u n)))
+
+definition SL.AuditRound3.epsilon :
+ℝ → (ℕ → ℝ) → (ℕ → ℝ) → ℕ → ℝ
+:=
+fun c A B n => HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (HSub.hSub.{0, 0, 0} (A n) (B n)) c) c
+
+definition SL.AuditRound3.product_bound :
+ℝ → (ℕ → ℝ) → (ℕ → ℝ) → ℕ → ℝ
+:=
+fun c A B n => ∏ k ∈ Finset.Icc.{0} 2 n, HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (A k) (B k)) c
+
+theorem SL.AuditRound3.recurrence_solution_solves :
+∀ {c : ℝ},
+  Ne.{1} c 0 → ∀ (A B : ℕ → ℝ), SL.AuditRound3.solves_recurrence c A B (SL.AuditRound3.recurrence_solution c A B)
+
+theorem SL.AuditRound3.recurrence_solution_unique :
+∀ {c : ℝ} {A B u : ℕ → ℝ},
+  Ne.{1} c 0 →
+    SL.AuditRound3.solves_recurrence c A B u → ∀ (n : ℕ), Eq.{1} (u n) (SL.AuditRound3.recurrence_solution c A B n)
+
+theorem SL.AuditRound3.second_order_decomposition :
+∀ {c A B v w z : ℝ},
+  Ne.{1} c 0 →
+    Eq.{1} (HMul.hMul.{0, 0, 0} c z) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} A v) (HMul.hMul.{0, 0, 0} B w)) →
+      Eq.{1} z
+        (HAdd.hAdd.{0, 0, 0}
+          (HMul.hMul.{0, 0, 0}
+            (HAdd.hAdd.{0, 0, 0} 1 (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (HSub.hSub.{0, 0, 0} A B) c) c)) v)
+          (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} B c) (HSub.hSub.{0, 0, 0} v w)))
+
+theorem SL.AuditRound3.second_order_lower_bound :
+∀ {c A B v w z : ℝ},
+  LT.lt.{0} 0 c →
+    LE.le.{0} 0 B →
+      LE.le.{0} w v →
+        Eq.{1} (HMul.hMul.{0, 0, 0} c z) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} A v) (HMul.hMul.{0, 0, 0} B w)) →
+          LE.le.{0} (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} A B) c) v) z
+
+theorem SL.AuditRound3.second_order_exact_iff :
+∀ {c A B v w z : ℝ},
+  Ne.{1} c 0 →
+    Eq.{1} (HMul.hMul.{0, 0, 0} c z) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} A v) (HMul.hMul.{0, 0, 0} B w)) →
+      (Eq.{1} z (HMul.hMul.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} A B) c) v) ↔ Eq.{1} B 0 ∨ Eq.{1} v w)
+
+theorem SL.AuditRound3.recurrence_monotone_nonnegative :
+∀ {c : ℝ} {A B u : ℕ → ℝ},
+  LT.lt.{0} 0 c →
+    SL.AuditRound3.solves_recurrence c A B u →
+      (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} 0 (B n)) →
+        (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} c (HSub.hSub.{0, 0, 0} (A n) (B n))) →
+          ∀ (n : ℕ), LE.le.{0} 0 (u n) ∧ LE.le.{0} (u n) (u (HAdd.hAdd.{0, 0, 0} n 1))
+
+theorem SL.AuditRound3.recurrence_product_lower_bound :
+∀ {c : ℝ} {A B u : ℕ → ℝ},
+  LT.lt.{0} 0 c →
+    SL.AuditRound3.solves_recurrence c A B u →
+      (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} 0 (B n)) →
+        (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} c (HSub.hSub.{0, 0, 0} (A n) (B n))) →
+          ∀ (n : ℕ), LE.le.{0} 1 n → LE.le.{0} (SL.AuditRound3.product_bound c A B n) (u n)
+
+theorem SL.AuditRound3.recurrence_product_eq_of_B_zero :
+∀ {c : ℝ} {A B u : ℕ → ℝ},
+  Ne.{1} c 0 →
+    SL.AuditRound3.solves_recurrence c A B u →
+      (∀ (n : ℕ), LE.le.{0} 2 n → Eq.{1} (B n) 0) →
+        ∀ (n : ℕ), LE.le.{0} 1 n → Eq.{1} (u n) (SL.AuditRound3.product_bound c A B n)
+
+theorem SL.AuditRound3.product_bound_eq_epsilon :
+∀ {c : ℝ},
+  Ne.{1} c 0 →
+    ∀ (A B : ℕ → ℝ) (n : ℕ),
+      Eq.{1} (SL.AuditRound3.product_bound c A B n)
+        (∏ k ∈ Finset.Icc.{0} 2 n, HAdd.hAdd.{0, 0, 0} 1 (SL.AuditRound3.epsilon c A B k))
+
+definition SL.AuditRound3.exponential_sequence :
+ℕ → ℝ
+:=
+fun n => HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} 2 n) 1
+
+theorem SL.AuditRound3.exponential_sequence_solves :
+SL.AuditRound3.solves_recurrence 1 (fun x => 3) (fun x => 2) SL.AuditRound3.exponential_sequence
+
+theorem SL.AuditRound3.constant_recurrence_solution :
+∀ (n : ℕ),
+  Eq.{1} (SL.AuditRound3.recurrence_solution 1 (fun x => 3) (fun x => 2) n)
+    (HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} 2 n) 1)
+
+theorem SL.AuditRound3.constant_recurrence_parameters :
+LT.lt.{0} 0 1 ∧
+  (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} 0 2) ∧
+    (∀ (n : ℕ), LE.le.{0} 2 n → LE.le.{0} 1 (HSub.hSub.{0, 0, 0} 3 2)) ∧
+      ∀ (n : ℕ), Eq.{1} (SL.AuditRound3.epsilon 1 (fun x => 3) (fun x => 2) n) 0
+
+theorem SL.AuditRound3.constant_recurrence_product :
+∀ (n : ℕ), Eq.{1} (SL.AuditRound3.product_bound 1 (fun x => 3) (fun x => 2) n) 1
+
+theorem SL.AuditRound3.constant_recurrence_strict_gap :
+∀ (n : ℕ),
+  LT.lt.{0} (SL.AuditRound3.product_bound 1 (fun x => 3) (fun x => 2) (HAdd.hAdd.{0, 0, 0} n 2))
+    (SL.AuditRound3.recurrence_solution 1 (fun x => 3) (fun x => 2) (HAdd.hAdd.{0, 0, 0} n 2))
+
+theorem SL.AuditRound3.no_general_product_equality :
+¬∀ (n : ℕ),
+    LE.le.{0} 1 n →
+      Eq.{1} (SL.AuditRound3.recurrence_solution 1 (fun x => 3) (fun x => 2) n)
+        (SL.AuditRound3.product_bound 1 (fun x => 3) (fun x => 2) n)
+
+definition SL.AuditRound3.perturbed_A :
+ℝ → ℝ → ℝ → ℝ
+:=
+fun m c delta =>
+  HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+    (HMul.hMul.{0, 0, 0} c (HAdd.hAdd.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} m (HSub.hSub.{0, 0, 0} m 1)) delta))
+
+definition SL.AuditRound3.perturbed_B :
+ℝ → ℝ → ℝ
+:=
+fun m delta =>
+  HMul.hMul.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} m (HSub.hSub.{0, 0, 0} m 1)) delta)
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 2))
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3)
+
+theorem SL.AuditRound3.perturbed_coefficient_difference :
+∀ (m c delta : ℝ),
+  Ne.{1} m 1 →
+    Eq.{1} (HSub.hSub.{0, 0, 0} (SL.AuditRound3.perturbed_A m c delta) (SL.AuditRound3.perturbed_B m delta))
+      (HAdd.hAdd.{0, 0, 0}
+        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 m)
+          (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} c m) (HSub.hSub.{0, 0, 0} m 1)))
+        (HMul.hMul.{0, 0, 0} delta
+          (HSub.hSub.{0, 0, 0} c
+            (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 2)
+              (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3)))))
+
+theorem SL.AuditRound3.perturbed_m4_values :
+Eq.{1} (SL.AuditRound3.perturbed_A 4 3 1) 63 ∧
+  Eq.{1} (SL.AuditRound3.perturbed_B 4 1) 70 ∧
+    Eq.{1} (HSub.hSub.{0, 0, 0} (SL.AuditRound3.perturbed_A 4 3 1) (SL.AuditRound3.perturbed_B 4 1)) (-7)
+
+theorem SL.AuditRound3.old_m4_expression :
+Eq.{1}
+  (HAdd.hAdd.{0, 0, 0}
+    (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 4)
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} 3 4) (HSub.hSub.{0, 0, 0} 4 1)))
+    (HMul.hMul.{0, 0, 0} 3 1))
+  23
+
+theorem SL.AuditRound3.perturbed_m4_rejects_old_expression :
+Ne.{1} (HSub.hSub.{0, 0, 0} (SL.AuditRound3.perturbed_A 4 3 1) (SL.AuditRound3.perturbed_B 4 1))
+  (HAdd.hAdd.{0, 0, 0}
+    (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 4)
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} 3 4) (HSub.hSub.{0, 0, 0} 4 1)))
+    (HMul.hMul.{0, 0, 0} 3 1))
+
+definition SL.AuditRound3.p2_moment_formula :
+ℝ → ℝ
+:=
+fun m =>
+  HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 m)
+    (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1)
+      (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3))
+
+definition SL.AuditRound3.p2_image_moment_formula :
+ℝ → ℝ
+:=
+fun m =>
+  HDiv.hDiv.{0, 0, 0}
+    (Neg.neg.{0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 m)
+        (HSub.hSub.{0, 0, 0}
+          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 2 m)) 9)))
+    (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1)
+      (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3))
+
+definition SL.AuditRound3.p2_delta_formula :
+ℝ → ℝ
+:=
+fun m =>
+  HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 6 m) (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 5))
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} m 1) (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3))
+      (HSub.hSub.{0, 0, 0}
+        (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 6 m)) 7))
+
+theorem SL.AuditRound3.p2_moment_rational_identity :
+∀ (m : ℝ),
+  Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1) 0 →
+    Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3) 0 →
+      Eq.{1}
+        (HSub.hSub.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} 3 (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3))
+          (HDiv.hDiv.{0, 0, 0} 1 (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1)))
+        (SL.AuditRound3.p2_moment_formula m)
+
+theorem SL.AuditRound3.p2_image_moment_rational_identity :
+∀ (m : ℝ),
+  Ne.{1} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1) 0 →
+    Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1) 0 →
+      Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3) 0 →
+        Eq.{1}
+          (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 3 (SL.AuditRound3.p2_moment_formula m))
+            (HMul.hMul.{0, 0, 0}
+              (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+              (SL.AuditRound3.p2_moment_formula (HSub.hSub.{0, 0, 0} m 1))))
+          (SL.AuditRound3.p2_image_moment_formula m)
+
+theorem SL.AuditRound3.p2_perturbation_cancellation :
+∀ (m : ℝ),
+  Ne.{1} (HSub.hSub.{0, 0, 0} m 1) 0 →
+    Ne.{1} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1) 0 →
+      Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1) 0 →
+        Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3) 0 →
+          Ne.{1}
+              (HSub.hSub.{0, 0, 0}
+                (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 6 m)) 7)
+              0 →
+            Eq.{1}
+              (HSub.hSub.{0, 0, 0} (SL.AuditRound3.p2_image_moment_formula m)
+                (HMul.hMul.{0, 0, 0}
+                  (HAdd.hAdd.{0, 0, 0} (HDiv.hDiv.{0, 0, 0} m (HSub.hSub.{0, 0, 0} m 1))
+                    (SL.AuditRound3.p2_delta_formula m))
+                  (SL.AuditRound3.p2_image_moment_formula (HSub.hSub.{0, 0, 0} m 1))))
+              0
+
+theorem SL.AuditRound3.p2_delta_complement :
+∀ (m : ℝ),
+  Ne.{1} (HSub.hSub.{0, 0, 0} m 1) 0 →
+    Ne.{1} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3) 0 →
+      Ne.{1}
+          (HSub.hSub.{0, 0, 0}
+            (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 6 m)) 7)
+          0 →
+        Eq.{1} (HSub.hSub.{0, 0, 0} 1 (SL.AuditRound3.p2_delta_formula m))
+          (HDiv.hDiv.{0, 0, 0}
+            (HMul.hMul.{0, 0, 0}
+              (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} m 3) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+              (HAdd.hAdd.{0, 0, 0}
+                (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 10 m)) 7))
+            (HMul.hMul.{0, 0, 0}
+              (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} m 1) (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 3))
+              (HSub.hSub.{0, 0, 0}
+                (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} m 2)) (HMul.hMul.{0, 0, 0} 6 m)) 7)))
+
+theorem SL.AuditRound3.p2_delta_special_values :
+Eq.{1} (SL.AuditRound3.p2_delta_formula 2) (-36 / 7) ∧ Eq.{1} (SL.AuditRound3.p2_delta_formula 3) 1
+

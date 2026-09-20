@@ -1,0 +1,78 @@
+{
+	"author_ids": [
+		"01a0befe-2063-7630-af8a-48c7bc446ece",
+		"01a0bf15-2470-7c21-bb16-e679aa45bee9",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "R3-software-v2-signs",
+			"statement": "Independently verify the revised exact-ratio sign method solves the reported multistep zero/negative-step failures, using current frozen scripts and fresh executions only. Fraction conversion preserves the supplied rational values, including binary floats; r2=A2/c and rm=(Am-Bm/rprev)/c must decide positivity without floating error. Logs remain diagnostic approximations and input rounding is not undone. Validate rejection/domain behavior, tiny positive cases, range handling and the explicit denominator-growth performance tradeoff. Replay both reviewer counterexamples and additional multistep cases.",
+			"verification": "software"
+		},
+		{
+			"id": "R3-software-v2-regressions",
+			"statement": "Execute all five frozen scripts and the 17-test behavior harness plus 5 minimal regressions, with AUDIT_SOURCE_ROOT set to the frozen inputs root; use a reviewer-owned copy of harnesses if they write results. Check normalization, actual polynomial coefficients, exact-rational growth diagnostics, B=0 scope/Gamma/u0, finite-sum claims, log(k), true sparse indices, imports and failure exits. Supplied source hashes must match. The changed tiny-positive test now expects its exactly known positive value to be computed, rather than labeled unresolved. Do not infer universal floating-log accuracy or mathematical completeness from samples.",
+			"verification": "software"
+		}
+	],
+	"inputs": {
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/RESULT.json": {
+			"role": "revision2-tests-and-execution",
+			"sha256": "28bcaa775d95faa4c4b7d8969c6e49c8916572758f72befa58fc62b090ad116c",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks-revision2/RESULT.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/assertion-failure-probes.json": {
+			"role": "revision2-tests-and-execution",
+			"sha256": "0344f4d3e93e153e5d0387dc3c458c5bcbec4e630f6803e3a0075c0a170a45db",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks-revision2/assertion-failure-probes.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py": {
+			"role": "revision2-tests-and-execution",
+			"sha256": "1cca1550a9b572a754042b570bb768e8bea119494752782e282d5e80e910ee54",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py.stderr.log": {
+			"role": "revision2-tests-and-execution",
+			"sha256": "496530054ebea2452b738c28ea7554ac371449c65f7590ca1d6a61b5461075ec",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks-revision2/behavior_checks.py.stderr.log"
+		},
+		"research/artifacts/proof-audit-round3-20260920/script-checks-revision2/reproduce_defects.py": {
+			"role": "revision2-tests-and-execution",
+			"sha256": "d0ef32c911412f504c5a9c7c8620185d1d7282c6f69b1d7766cf819bc1b0f64a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/script-checks-revision2/reproduce_defects.py"
+		},
+		"research/library/reviews/runs/02089f63240fab3a512269599ddd21eeb381d994e8c95c075d73128032a5cf59-01a0bf15-2470-7c21-bb16-e679aa45bee9/report.json": {
+			"role": "prior-review-finding",
+			"sha256": "0dda948daeece06fce86b53133fd899540827e88957674978b7743c110c8141a",
+			"snapshot": "inputs/research/library/reviews/runs/02089f63240fab3a512269599ddd21eeb381d994e8c95c075d73128032a5cf59-01a0bf15-2470-7c21-bb16-e679aa45bee9/report.json"
+		},
+		"scripts/d3_stability_verify.py": {
+			"role": "current-script",
+			"sha256": "91eb40749c8cf733fcfbf22af1a86206a4134e4d28d31a19962ab16408080ee0",
+			"snapshot": "inputs/scripts/d3_stability_verify.py"
+		},
+		"scripts/d3_stability_verify2.py": {
+			"role": "current-script",
+			"sha256": "f543f5c11d767015d060af0f0fded449f4166d8773353e742ccb6525350c335d",
+			"snapshot": "inputs/scripts/d3_stability_verify2.py"
+		},
+		"scripts/op12_dichotomy_verify.py": {
+			"role": "current-script",
+			"sha256": "d124eaf9423c4dc64f8b7717994df3ef632f42935259dc01b09e90db9586db1c",
+			"snapshot": "inputs/scripts/op12_dichotomy_verify.py"
+		},
+		"scripts/op12_sparse_check.py": {
+			"role": "current-script",
+			"sha256": "fe92db7157211123c9724869cf60f3579dbce1e19f212693cc10cde76afbea88",
+			"snapshot": "inputs/scripts/op12_sparse_check.py"
+		},
+		"scripts/op12_threshold_verify.py": {
+			"role": "current-script",
+			"sha256": "02028d366699136a106679d699f4bc87d1b183318397a63e8abf3ea48ac26458",
+			"snapshot": "inputs/scripts/op12_threshold_verify.py"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

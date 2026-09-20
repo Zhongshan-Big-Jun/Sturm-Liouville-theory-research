@@ -1,0 +1,32 @@
+{
+	"checked_paths": [
+		"docs/SL_krein_c0_limit.tex",
+		"research/artifacts/proof-audit-round3-20260920/before/docs/SL_krein_c0_limit.tex",
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/check_local_math.py",
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/exact-checks.json",
+		"research/artifacts/proof-audit-round3-20260920/quotient-checks/primary-excerpt.txt",
+		"research/artifacts/proof-audit-round3-20260920/submitted-audit.md"
+	],
+	"claim_results": [
+		{
+			"id": "R3-F3-quotient",
+			"reason": "The historical finding is independently confirmed: h=x has mean zero and squared L2 norm 2/3, is orthogonal to every original cosine, and has sine moment 2(sin(mu)-mu*cos(mu))/mu^2, which vanishes at each positive tangent root. Nevertheless, its pairing with T([cos(pi*x)]) is -2. This refutes the old inference, not the corrected completeness conclusion. In the repair, complex conjugation and the modulus-squared endpoint term are correct. The form at c=0 equals the squared L2 norm of the mean-subtracted derivative, with radical precisely the complex affine functions. T annihilates that radical, is injective on the quotient, and is surjective by integrating any mean-zero L2 function. Its target is closed, proving quotient completeness. For (a)-(c), distinct leading degrees give the stated polynomial decomposition and prevent zero Gram-Schmidt pivots modulo the radical. Polynomial density in H1 follows by approximating the derivative in L2 and integrating; the displayed quotient-norm bound transfers this density. For (d), both displayed T images are correct. The supplied excerpt supports the complete L2 eigenbasis and left-definite identification. Independently, the positive shifted form is closed on H1, and integration by parts identifies its associated operator with exactly the stated Krein boundary conditions. Thus its square-root domain is H1, without imposing operator boundary conditions on arbitrary f. For fixed c>0, the weighted spectral tails converge to zero in the form norm, which dominates the quotient norm. Both affine eigenmodes are included and then vanish in the quotient. This proves density for every quotient class without any uniform estimate or interchange of limits as c tends to zero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R3-F3-exact-scope",
+			"reason": "All six snapshot hashes match their packet entries. The 18 recorded checks were audited against the script and independently checked mathematically. Trigonometric images and moments follow by differentiation and integration; the positive-mu assumption excludes division by zero, and the tangent-root substitution is valid. Independent standard-library exact-rational execution verified the complex cubic identity on all 64 ordered pairs of real/imaginary monomial basis vectors, affine annihilation, conjugate symmetry, and the operator/form pairing. The operator test vector satisfies both boundary conditions; the second vector has boundary residual 2+2i at x=1 and correctly belongs only to the form domain. Their pairing simplifies to (-128/35-352i/105)+c*(-8/35-256i/315), agreeing with the supplied expression. The historical non-modulus expression gives 4 for ix, while the corrected form gives zero. The supplied script could not execute past its SymPy import; this is explicitly recorded as a limitation. Its evidence is accurately labeled AUTHOR and restricted to local algebra/integrals. These checks do not establish infinite-dimensional completeness; that conclusion is supported by the separately audited analytic proof.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"A byte-identical temporary copy of the supplied script was attempted, but execution stopped with ModuleNotFoundError: No module named 'sympy'. Its 18 PASS records were therefore not reproduced by that script; independent exact-rational checks and analytic calculations were performed instead.",
+		"Only the frozen packet and its six listed snapshots were consulted. The full primary paper and historical execution environment were not independently inspected.",
+		"The later unit-normalization sketch, unrelated later theorems, formal proof checking, and document compilation are outside this approval. Approval is limited to the requested repair and evidence scope.",
+		"No source-project files were modified; the packet and snapshot hashes remained unchanged."
+	],
+	"packet_sha256": "10e4db313f0b3f150291b7d747cbcb538c5ef450cb80234a15c3f6cbb6e6d1e5",
+	"readback": "Not applicable: this is a mathematics packet, not a formal-readback packet.",
+	"verdict": "APPROVED"
+}

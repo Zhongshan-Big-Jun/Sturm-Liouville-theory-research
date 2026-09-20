@@ -1,0 +1,264 @@
+SL.AuditRound3.epsilon :
+(c : Real) → (A B : Nat → Real) → (n : Nat) → Real
+:=
+fun (c : Real) (A B : Nat → Real) (n : Nat) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (A n) (B n)) c)
+    c
+
+SL.AuditRound3.exponential_sequence :
+(n : Nat) → Real
+:=
+fun (n : Nat) =>
+  @HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+    (@HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid))
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+      n)
+    (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+
+SL.AuditRound3.p2_delta_formula :
+(m : Real) → Real
+:=
+fun (m : Real) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+        (@OfNat.ofNat.{0} Real (nat_lit 6)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 6) Real.instNatCast SL.AuditRound3.p2_delta_formula._proof_1))
+        m)
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 5)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 5) Real.instNatCast SL.AuditRound3.p2_delta_formula._proof_2))))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+        (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) m
+          (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+        (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (@OfNat.ofNat.{0} Real (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+            m)
+          (@OfNat.ofNat.{0} Real (nat_lit 3)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 3) Real.instNatCast SL.AuditRound3.perturbed_B._proof_1))))
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+        (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (@OfNat.ofNat.{0} Real (nat_lit 4)
+              (@instOfNatAtLeastTwo.{0} Real (nat_lit 4) Real.instNatCast SL.AuditRound3.p2_moment_formula._proof_1))
+            (@HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid)) m
+              (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (@OfNat.ofNat.{0} Real (nat_lit 6)
+              (@instOfNatAtLeastTwo.{0} Real (nat_lit 6) Real.instNatCast SL.AuditRound3.p2_delta_formula._proof_1))
+            m))
+        (@OfNat.ofNat.{0} Real (nat_lit 7)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 7) Real.instNatCast SL.AuditRound3.p2_delta_formula._proof_3))))
+
+SL.AuditRound3.p2_image_moment_formula :
+(m : Real) → Real
+:=
+fun (m : Real) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@Neg.neg.{0} Real Real.instNeg
+      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 4)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 4) Real.instNatCast SL.AuditRound3.p2_moment_formula._proof_1))
+          m)
+        (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+          (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (@OfNat.ofNat.{0} Real (nat_lit 4)
+                (@instOfNatAtLeastTwo.{0} Real (nat_lit 4) Real.instNatCast SL.AuditRound3.p2_moment_formula._proof_1))
+              (@HPow.hPow.{0, 0, 0} Real Nat Real (@instHPow.{0, 0} Real Nat (@Monoid.toPow.{0} Real Real.instMonoid)) m
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (@OfNat.ofNat.{0} Real (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast
+                  SL.AuditRound3.exponential_sequence._proof_1))
+              m))
+          (@OfNat.ofNat.{0} Real (nat_lit 9)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 9) Real.instNatCast
+              SL.AuditRound3.p2_image_moment_formula._proof_1)))))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 3)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 3) Real.instNatCast SL.AuditRound3.perturbed_B._proof_1))))
+
+SL.AuditRound3.p2_moment_formula :
+(m : Real) → Real
+:=
+fun (m : Real) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@OfNat.ofNat.{0} Real (nat_lit 4)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 4) Real.instNatCast SL.AuditRound3.p2_moment_formula._proof_1))
+      m)
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 3)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 3) Real.instNatCast SL.AuditRound3.perturbed_B._proof_1))))
+
+SL.AuditRound3.perturbed_A :
+(m c delta : Real) → Real
+:=
+fun (m c delta : Real) =>
+  @HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+        (@OfNat.ofNat.{0} Real (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+        m)
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) c
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid)) m
+          (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) m
+            (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))
+        delta))
+
+SL.AuditRound3.perturbed_B :
+(m delta : Real) → Real
+:=
+fun (m delta : Real) =>
+  @HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid)) m
+          (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) m
+            (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))
+        delta)
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+        (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+          (@OfNat.ofNat.{0} Real (nat_lit 2)
+            (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+          m)
+        (@OfNat.ofNat.{0} Real (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))))
+    (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+      (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+        (@OfNat.ofNat.{0} Real (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound3.exponential_sequence._proof_1))
+        m)
+      (@OfNat.ofNat.{0} Real (nat_lit 3)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 3) Real.instNatCast SL.AuditRound3.perturbed_B._proof_1)))
+
+SL.AuditRound3.product_bound :
+(c : Real) → (A B : Nat → Real) → (n : Nat) → Real
+:=
+fun (c : Real) (A B : Nat → Real) (n : Nat) =>
+  @Finset.prod.{0, 0} Nat Real Real.instCommMonoid
+    (@Finset.Icc.{0} Nat Nat.instPreorder Nat.instLocallyFiniteOrder
+      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) n)
+    fun (k : Nat) =>
+    @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (A k) (B k)) c
+
+SL.AuditRound3.recurrence_solution :
+(c : Real) → (A B : Nat → Real) → Nat → Real
+:=
+fun (c : Real) (A B : Nat → Real) (x : Nat) =>
+  @Nat.brecOn.{1} (fun (x : Nat) => Real) x (SL.AuditRound3.recurrence_solution._f c A B)
+
+SL.AuditRound3.solves_recurrence :
+(c : Real) → (A B u : Nat → Real) → Prop
+:=
+fun (c : Real) (A B u : Nat → Real) =>
+  And
+    (@Eq.{1} Real (u (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+      (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)))
+    (And
+      (@Eq.{1} Real (u (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+        (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+      (∀ (n : Nat),
+        @Eq.{1} Real
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul) c
+            (u
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+          (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (A
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+              (u
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (B
+                (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                  (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+              (u n)))))
+
+SL.AuditRound3.recurrence_solution._f :
+(c : Real) → (A B : Nat → Real) → (x : Nat) → (f : @Nat.below.{1} (fun (x : Nat) => Real) x) → Real
+:=
+fun (c : Real) (A B : Nat → Real) (x : Nat) (f : @Nat.below.{1} (fun (x : Nat) => Real) x) =>
+  SL.AuditRound3.recurrence_solution.match_1.{1} (fun (x : Nat) => @Nat.below.{1} (fun (x : Nat) => Real) x → Real) x
+    (fun (_ : Unit)
+        (x : @Nat.below.{1} (fun (x : Nat) => Real) (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))) =>
+      @OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+    (fun (_ : Unit)
+        (x : @Nat.below.{1} (fun (x : Nat) => Real) (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) =>
+      @OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+    (fun (n : Nat) (x : @Nat.below.{1} (fun (x : Nat) => Real) (Nat.succ (Nat.succ n))) =>
+      @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+        (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (A
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+            x.1)
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (B
+              (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) n
+                (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+            x.2.1))
+        c)
+    f
+
+SL.AuditRound3.recurrence_solution.match_1 :
+(motive : Nat → Sort u_1) →
+  (x : Nat) →
+    (h_1 : (a : Unit) → motive (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))) →
+      (h_2 : (a : Unit) → motive (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))) →
+        (h_3 : (n : Nat) → motive (Nat.succ (Nat.succ n))) → motive x
+:=
+fun (motive : Nat → Sort u_1) (x : Nat)
+    (h_1 : (a : Unit) → motive (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))
+    (h_2 : (a : Unit) → motive (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))
+    (h_3 : (n : Nat) → motive (Nat.succ (Nat.succ n))) =>
+  @Nat.casesOn.{u_1} (fun (x : Nat) => motive x) x (h_1 Unit.unit) fun (n : Nat) =>
+    @Nat.casesOn.{u_1} (fun (x : Nat) => motive (Nat.succ x)) n (h_2 Unit.unit) fun (n : Nat) => h_3 n
+

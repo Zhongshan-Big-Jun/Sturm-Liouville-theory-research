@@ -1,0 +1,309 @@
+{
+	"author_ids": [
+		"01a0befe-2cc9-7340-9865-41c66b57a7e7",
+		"01a0bf17-6866-78b3-8e7b-ce6056975a29",
+		"01a0bf21-40c9-7d63-bd60-8b9b983ff165",
+		"coordinator-20260920-round3"
+	],
+	"claims": [
+		{
+			"id": "R3-local-formal-semantics",
+			"statement": "Compare the 34 actual exported declarations and definition closure, the independently generated blind readback, and the supplied local contract. Check every quantified variable, index, sign and denominator condition, and the meaning of normalized recurrence and product ranges. Assess statement fidelity only for the 24 local theorems and 10 definitions: no integration, analytic completeness, Gamma asymptotics, domain membership or quotient spectral theorem is claimed. In particular the P2 assertions are rational identities, and the no-general-equality theorem is a concrete counterexample rather than a universal classification.",
+			"verification": "formal"
+		},
+		{
+			"id": "R3-local-formal-evidence",
+			"statement": "Check the machine evidence coherently binds the actual source, printed declarations, transitive axioms and separate fresh compile/export replay; negative controls must actually fail. Parse declarations.json as structured data rather than accepting author PASS labels. Axioms are restricted to propext/Classical.choice/Quot.sound, with no missing/unsafe dependency declarations. Report what was not rerun or independently rebuilt; successful local checking is not complete project formalization. Do not access unprovided live checkout or compiler inputs. The supplied supplemental bound replay records root-object hashes before/after export and controls, a native --deps import resolution, and export hashes; a byte snapshot of that root object is included. Verify the missing-control and replay-export gaps identified in the prior report are resolved. The reviewer need not rebuild external dependencies; do not treat artifact provenance checks as a new kernel replay.",
+			"verification": "formal"
+		}
+	],
+	"inputs": {
+		"lean-proof/SL/AuditRound3.lean": {
+			"role": "actual-formal-source",
+			"sha256": "7e93fae0e42dd572d8d9127e8949c0caaa0ef965c321bf8a11cea46163a6c714",
+			"snapshot": "inputs/lean-proof/SL/AuditRound3.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/FINAL_CHECKS.json": {
+			"role": "author-check-summary",
+			"sha256": "3e4d97f590e1cf1ffe1b425f5d0c7e78f4a3fb8a5e290a7d5bc466dc2ed296f9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/FINAL_CHECKS.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/InspectAuditRound3.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "818cd17a328dda9adf753c5436860a66fb5c24009e480333c88ec4667a7a0cf9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/InspectAuditRound3.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/BOUND-RESULT.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "f84e40a34d8614b5c104bfcbe8baca699cf01abcd231ddd6a1c822355b78e0e1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/BOUND-RESULT.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/InspectBound.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "dc84c0c29a3c77b75e0db0d4ab50280ad821c40a6d102a76f5deeda246bb4578",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/InspectBound.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/OldPerturbedDifference.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "bcd72bde40c0c435e420426a7fb46ecf5ee6c35f8936f8e7b4c419e2fa5ac03a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/OldPerturbedDifference.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/OldProductEquality.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "496af29e6a725be63838fb294546b4d15c0162798564f30e8d66de9822ed1b92",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/OldProductEquality.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/bind_lean_replay.py": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "64a36fafc8aef7cc0ab1c61bac84f897103bf42fdec5cb13d529f45e150408cd",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/bind_lean_replay.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/finalize_bound_replay.py": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "7d6b63e2c89165fafef71ddf00daea2cc3a925f05f42838b8eada80420156495",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/finalize_bound_replay.py"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/loaded-modules.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "9ed548acf18a908a484a34444f9666bf9b6a457b0aacee54d012d5617ea0b8ea",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/loaded-modules.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "fdef9b6af45e83b1913b93dc129c3404981cac01a035926f73913a4bc08b7621",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.stderr.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "bbe700a4571a7dea97ea67a1ebe79640c4412d5276d2882c62c3026e2d77456b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/04-bound-export.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "50363d70702e0d6f29074cbffbb1c049629aaf3f7665d15665cb9b83fbb294ab",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.stderr.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "98c0b40e79d6115f337eb44d4135b9e8ac94ae7149821fa59416a36ef7c91026",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/05-bound-deps.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "ec2ec8522f2c0e7683fdad2e7d3126367e5273f579687075b62ea0e5cf7bff18",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.stderr.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "e529602f8959dd53c6490c0a804a61157ccf3b34ae8180eba8f9de6b646656a5",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/06-bound-OldProductEquality.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "9f086dc2ca0f90686d0169188079caa0ce64e04b03e881cd846b60f371387d04",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.stderr.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "6398094ac476890a3c86083acbc728f871a91015f02e7c6fcbbeda7d4c2cb52e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/logs/07-bound-OldPerturbedDifference.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/bound-replay/root-AuditRound3.olean.bin": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "8ee57958d54da151f9a1c6a815ec5d6ced9ecc2a0fed43ae07988e76a0756b3a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/bound-replay/root-AuditRound3.olean.bin"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/contract.md": {
+			"role": "intended-local-contract",
+			"sha256": "99d048ac439e873791782c22daae6d11c4daf930e41ad0c122af9c55d08056bb",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/contract.md"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/environment.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "204a538e8f994140add5c14d66f29a3e089684f1d035bc8478aaeb39013f51f6",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/environment.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/declarations.json": {
+			"role": "actual-axiom-and-dependency-export",
+			"sha256": "920c55b0a5853bfc7695cc56dbed0d90bb98dbca2c273d3634f17f2a174713d1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/declarations.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements-fully-explicit.txt": {
+			"role": "actual-explicit-types",
+			"sha256": "e2ea6da5a55444cf4761cb33bdf07a9d3d8f7cc504951cb0cdca43a25ca7d10f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements-fully-explicit.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements.txt": {
+			"role": "actual-types",
+			"sha256": "535a4ceb2b0d369e150e59b8d7b7cbb4ffd8c63d06d6115a15e3c471ec4ea215",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/formal-statements.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/loaded-modules.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "493c410f6a64d5ffcfc8a29466e2f2b02760d6c21d24ab96a78cdc05007ff844",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/loaded-modules.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/local-definition-closure.txt": {
+			"role": "actual-definitions",
+			"sha256": "282a20644aa103c4ef631987ddda79a9ccdbb30d3e097f49e5b2630631c079e3",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/local-definition-closure.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/final/module-artifact-hashes.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "3f0c92eef77f24c26e665e660ccc98ea6d604f3ad6e969696338308056100a35",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/final/module-artifact-hashes.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/01-version.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "3c373b8d93b418d2e9d4411f5970169db42dbf7d553b00be81db56e051f01fef",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/01-version.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/01-version.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/01-version.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/10-final-clean-build.json": {
+			"role": "compiler-record",
+			"sha256": "a29f6c9982a1029aee0db906cd0499a7bd0a63e054b6b24fd97f137b36a34c9f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/10-final-clean-build.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.json": {
+			"role": "inspection-record",
+			"sha256": "fdeff512f77c72cf5e1ef28c0c454a1a8878a7dca6aadf7bb2a1189bf446cce8",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.stdout.txt": {
+			"role": "actual-compiler-print-output",
+			"sha256": "bbe700a4571a7dea97ea67a1ebe79640c4412d5276d2882c62c3026e2d77456b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/logs/14-unabridged-statement-export.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/pins/lake-manifest.json": {
+			"role": "dependency-pins",
+			"sha256": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/pins/lake-manifest.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/pins/lakefile.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "159fdc8ea408eb69ce540b5ec802ed19cce7692654d1045b7b5806100ae5ed12",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/pins/lakefile.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/pins/lean-toolchain": {
+			"role": "environment-pin",
+			"sha256": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/pins/lean-toolchain"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/InspectAuditRound3.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "5623f85966ba42903b4bfb680ef6e04fc6164b95d4de3c45548cf477ff370509",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/InspectAuditRound3.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/OldPerturbedDifference.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "bcd72bde40c0c435e420426a7fb46ecf5ee6c35f8936f8e7b4c419e2fa5ac03a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/OldPerturbedDifference.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/OldProductEquality.lean": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "496af29e6a725be63838fb294546b4d15c0162798564f30e8d66de9822ed1b92",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/OldProductEquality.lean"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/RESULT.json": {
+			"role": "coordinator-replay-comparison",
+			"sha256": "f992fd1a0eadcb2682ef4631572126d9633df73bff9bc65e0d56d5368e7049af",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/RESULT.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/01-fresh-build.json": {
+			"role": "fresh-replay-record",
+			"sha256": "0a6d5c902bf8cc29454b64f6f5af62a62139963c9237fbb710ef44a56162375e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/01-fresh-build.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/02-inspection.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "83eaa67f8335ccbf1e2a46453a087c89b1246344248e112a3158bc5ae5145419",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/02-inspection.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/02-inspection.stdout.txt": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "bbe700a4571a7dea97ea67a1ebe79640c4412d5276d2882c62c3026e2d77456b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/02-inspection.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "b6b757619639168ccb95ee5d32f1a14c965b0265f8b1685d8b7e95668e2268f9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.stdout.txt": {
+			"role": "negative-control",
+			"sha256": "6398094ac476890a3c86083acbc728f871a91015f02e7c6fcbbeda7d4c2cb52e",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldPerturbedDifference.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.json": {
+			"role": "supplemental-machine-evidence",
+			"sha256": "c20d3666616cff7c6b3a91be71346f0c50eaa72db72736d813f5b863762c954b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.json"
+		},
+		"research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.stdout.txt": {
+			"role": "negative-control",
+			"sha256": "e529602f8959dd53c6490c0a804a61157ccf3b34ae8180eba8f9de6b646656a5",
+			"snapshot": "inputs/research/artifacts/proof-audit-round3-20260920/lean/replay/logs/03-OldProductEquality.stdout.txt"
+		},
+		"research/library/reviews/packets/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a/packet.json": {
+			"role": "blind-readback-packet",
+			"sha256": "d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a",
+			"snapshot": "inputs/research/library/reviews/packets/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a/packet.json"
+		},
+		"research/library/reviews/runs/1e7bbef38036354f9c5459401622a1bbfb221eeb4c9d3a82738d7b0b3ca794f1-01a0bf21-40c9-7d63-bd60-8b9b983ff165/report.json": {
+			"role": "prior-evidence-gap-findings",
+			"sha256": "bd7444fc05a38ff9c413797701c560526009e88a7decea90bc000f09dfad86d0",
+			"snapshot": "inputs/research/library/reviews/runs/1e7bbef38036354f9c5459401622a1bbfb221eeb4c9d3a82738d7b0b3ca794f1-01a0bf21-40c9-7d63-bd60-8b9b983ff165/report.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/completion.json": {
+			"role": "blind-readback-provenance",
+			"sha256": "6a26256a3fc04e8509f7899b44d62050a0312afde1144a1ddb9fd664a3512af9",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/completion.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/dispatch.json": {
+			"role": "blind-readback-provenance",
+			"sha256": "6077f40614f5900d53b57f537d84ede521a3f55284b578b03aefb2cb4fa15866",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/dispatch.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/receipt.json": {
+			"role": "readback-receipt",
+			"sha256": "8c6dc581852f1a772d4ec7cd1caff9e1d5df815eef53d811e98adbc5dad0fa1a",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/receipt.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/report.json": {
+			"role": "independent-blind-readback",
+			"sha256": "10fa40338cc8a84b79b0a26ecd12d94b5d4738e262c18c58dd30b2feff6a5d0e",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/report.json"
+		},
+		"research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/spawn.json": {
+			"role": "blind-readback-provenance",
+			"sha256": "ac8b48911e9588abe7345d4126f05fdfa21a5efbc37a2e6b56563661331e43fe",
+			"snapshot": "inputs/research/library/reviews/runs/d78ce34c974ce004c8335e4a6bb8e561be0ccfc64c821fd6286c2536e0a7be2a-01a0bf17-6866-78b3-8e7b-ce6056975a29/spawn.json"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

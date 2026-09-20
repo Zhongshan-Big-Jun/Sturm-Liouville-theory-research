@@ -1,0 +1,339 @@
+﻿\documentclass[11pt]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{The Degenerate Limit $c\to 0$ of the Shifted Krein Laplacian\\ \large (Quotient Left-Definite Space, Structural Stability of the Krein--Sobolev System, and a Correction to the ``Finite-Limit'' Heuristic)}
+\author{BVE research project --- session 12}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze the limit $c\to 0$ of the first left-definite space
+$(H^1[-1,1],(\cdot,\cdot)_{1,c})$ associated with the shifted Krein Laplacian
+$K_c f = -f''+cf$ on $[-1,1]$.  The limit inner product
+$(\cdot,\cdot)_{1,0}$ is only a pseudo inner product whose radical is exactly
+$W=\operatorname{span}\{1,x\}$ (the null space of $K_0$); we prove that the
+quotient $H^1/W$ is a Hilbert space isometrically isomorphic to
+$L^2_0(-1,1)=\{g\in L^2: \int_{-1}^1 g=0\}$, and that the images of the
+polynomials $\{S_n=P_n-P_{n-2}: n\ge 2\}$ span the image of all polynomials
+exactly, hence any Gram--Schmidt orthonormalization of them is a complete
+orthonormal system of the quotient.  For the Krein--Sobolev system
+$\{K_n^{(c)}\}$ we prove: $K_0=1$, $K_1=x$ have squared norms $2c$, $2c/3$
+(vanish linearly); $K_2=P_2$, $K_3=P_3$ are $c$-independent with limits $6,10$;
+for $n\ge 4$ the coefficients and the norms
+$\|K_n^{(c)}\|_{1,c}^2=2c\,a_n a_{n+2}/(2n+1)$ \emph{diverge} (e.g.\
+$\|K_4^{(c)}\|_{1,c}^2\sim 3150/c^2$), while the \emph{unit-normalized} system
+$\widehat u_n^{(c)}=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$ converges to the
+orthonormal system $\{Q_n:n\ge 2\}$ obtained by orthonormalizing
+$\{S_n:n\ge 2\}$ in $(\cdot,\cdot)_{1,0}$.  This corrects the earlier
+heuristic that ``all norms for $n\ge 2$ have finite limits'' (which holds only
+for $n=2,3$) and pins down the precise sense in which the Krein--Sobolev
+system is structurally stable.  \emph{Proof status:} the degeneration of
+the low modes, the divergence of the high norms, and the quotient
+completeness are proven rigorously (Theorems~\ref{thm:low},
+\ref{thm:high}, \ref{thm:complete}); the convergence of the
+unit-normalized system (Theorem~\ref{thm:unit}) is a proof sketch with
+exact-rational numerical audit (Section~\ref{sec:audit}), not yet a fully
+rigorous proof (see the remark after Theorem~\ref{thm:unit}).
+\end{abstract}
+
+\section{Setting}
+
+Let $H^1=H^1[-1,1]$, $\Pi$ the polynomials, and for $c\ge 0$ consider the
+sesquilinear form \cite[eq.~(2)]{axioms}
+\begin{equation}
+	\begin{aligned}
+		(f,g)_{1,c}&:=-\tfrac12\,(f(1)-f(-1))\,\overline{(g(1)-g(-1))}
+		&\qquad+\int_{-1}^1\bigl(f'(x)\overline{g'(x)}+c\,f(x)\overline{g(x)}\bigr)\,dx,
+	\end{aligned}
+	\label{eq:ld}
+\end{equation}
+For $c>0$ this is the inner product of the first left-definite space of the
+shifted Krein Laplacian \cite[eqs.~(3)--(4)]{axioms}
+\begin{equation*}
+	\begin{aligned}
+		K_c f&:=-f''+cf,\quad D(K_c):=\bigl\{f\in\Delta:\ f'(1)=f'(-1)=\tfrac{f(1)-f(-1)}2\bigr\},\\
+		\Delta&:=\{f:\ f,f'\in AC[-1,1],\ f''\in L^2\}.
+	\end{aligned}
+\end{equation*}
+and the identity $(f,g)_{1,c}=(K_c f,g)_{L^2}$ holds on $D(K_c)$ (integration
+by parts).  The spectrum is $\sigma(K_c)=\sigma(K_0)+c$ where
+\cite[eq.~(7)]{axioms}
+\begin{equation*}
+	\sigma(K_0)=\{0\}\cup\{(n\pi)^2:n\ge 1\}\cup\{\mu_n^2:n\ge 1\},
+	\qquad \tan\mu_n=\mu_n,\ \mu_n>0,
+\end{equation*}
+with eigenfunctions $\{1,x\}$, $\{\cos n\pi x\}$, $\{\sin\mu_n x\}$; the null
+space of $K_0$ is $W:=\operatorname{span}\{1,x\}$.
+
+\section{The limit inner product and the quotient space}
+
+\begin{theorem}[quadratic form and radical]\label{thm:radical}
+	For $f\in H^1$,
+	\begin{equation*}
+		(f,f)_{1,0}=\int_{-1}^1|f'|^2\,dx-\frac{(f(1)-f(-1))^2}{2}
+		=\Bigl\|f'-\frac{f(1)-f(-1)}2\Bigr\|_{L^2}^2\ge 0,
+	\end{equation*}
+	and $(f,f)_{1,0}=0$ if and only if $f\in W=\operatorname{span}\{1,x\}$.
+	Consequently $W$ is exactly the radical of $(\cdot,\cdot)_{1,0}$:
+	$(w,f)_{1,0}=0$ for all $w\in W$, $f\in H^1$.
+\end{theorem}
+
+\begin{proof}
+	Since $f(1)-f(-1)=\int_{-1}^1 f'$, the Cauchy--Schwarz inequality gives
+	$(f(1)-f(-1))^2\le 2\|f'\|_{L^2}^2$, i.e.\ the first two expressions
+	coincide and are nonnegative.  The last identity is the expansion of
+	$\|f'-\alpha\|^2$ with $\alpha=(f(1)-f(-1))/2$ (note $\int\alpha =2\alpha$
+	and $\int 1 =2$).  Equality in Cauchy--Schwarz holds iff $f'$ is constant
+	a.e., iff $f$ is affine, iff $f\in W$.  For $w\in W$, say $w=\alpha x+\beta$,
+	one has $w'=\alpha$ and $w(1)-w(-1)=2\alpha$, so
+	$(w,f)_{1,0}=\int \alpha\overline{f'}-\alpha\int\overline{f'}=0$.
+\end{proof}
+
+\begin{theorem}[isometric isomorphism of the quotient]\label{thm:quotient}
+	The quotient $H^1/W$ equipped with the inner product induced by
+	$(\cdot,\cdot)_{1,0}$ is a Hilbert space, and the map
+	\begin{equation*}
+		T\colon H^1/W\to L^2_0(-1,1):=\{g\in L^2(-1,1): \int_{-1}^1 g=0\},
+		\qquad
+		T([f]):=f'-\frac{f(1)-f(-1)}2,
+	\end{equation*}
+	is an isometric isomorphism.
+\end{theorem}
+
+\begin{proof}
+	By Theorem~\ref{thm:radical}, $(\cdot,\cdot)_{1,0}$ factors through the
+	quotient and is positive definite there.  The map $T$ is well defined and
+	injective: if $T([f])=0$ then $f'$ is constant, so $f$ is affine, so
+	$[f]=0$.  It is surjective: for $h\in L^2_0$, $f(x):=\int_0^x h(t)\,dt$
+	lies in $H^1$ with $f'=h$ and $\int h=0$, so $T([f])=h$.  It is
+	isometric:
+	$\|T([f])\|_{L^2}^2=\|f'-\alpha\|^2=(f,f)_{1,0}$.  Hence $H^1/W$ is
+	complete.
+\end{proof}
+
+\section{Complete systems in the quotient}
+
+Let $P_n$ be the Legendre polynomials ($P_n(1)=1$) and set
+\begin{equation*}
+	S_0:=1,\qquad S_1:=x,\qquad S_n:=P_n-P_{n-2}\quad(n\ge 2),
+\end{equation*}
+the polynomial basis used to construct the Krein--Sobolev polynomials
+\cite[eq.~(15)]{axioms}.  Since $\deg S_n=n$ with nonzero leading
+coefficient, top-down elimination gives the exact decomposition
+\begin{equation*}
+	\Pi_N=\operatorname{span}\{1,x\}\oplus
+	\operatorname{span}\{S_2,\ldots,S_N\}.
+\end{equation*}
+
+\begin{theorem}[completeness in the quotient]\label{thm:complete}
+	(a) The images $\{[S_n]: n\ge 2\}$ span $[\Pi]$
+	$\bigl(=\operatorname{span}\{[p]:p\in\Pi\}\bigr)$ exactly;
+	(b) $[\Pi]$ is dense in $H^1/W$;
+	(c) any orthonormal system $\{Q_n:n\ge 2\}$ obtained from
+	$\{S_n:n\ge 2\}$ by Gram--Schmidt in $(\cdot,\cdot)_{1,0}$ is a complete
+	orthonormal system of $H^1/W$;
+	(d) the images of the eigenfunctions,
+	$\{[\cos n\pi x]:n\ge 1\}\cup\{[\sin\mu_n x]:n\ge 1\}$, also form a
+	complete system in $H^1/W$.
+\end{theorem}
+
+\begin{proof}
+	(a) is the displayed decomposition (the affine part has image $0$).
+	(b) Polynomials are dense in $H^1$ (standard); the quotient map
+	$H^1\to H^1/W$ is continuous because
+	$\|[f]\|_{1,0}\le\|f'\|_{L^2}\le\|f\|_{H^1}$, so $[\Pi]$ is dense.
+	(c) follows from (a), (b) and the density of the span in the closure.
+	(d) The set $\{1,x\}\cup\{\cos n\pi x\}\cup\{\sin\mu_n x\}$ is complete
+	in $L^2$; given $h\in L^2_0$ orthogonal to all the images, we have
+	$\int h=0$, $\int h\cos n\pi x=0$, and
+	$\int h\sin\mu_n x-\sin\mu_n\int h=0$, so $h\perp$ all eigenfunctions,
+	hence $h=0$.
+\end{proof}
+
+\section{Structural stability of the Krein--Sobolev system}
+
+The Krein--Sobolev polynomials $\{K_n^{(c)}\}$ are defined by
+$K_n=a_nS_n+K_{n-2}$, $K_n(1)=1$, with $a_0=a_1=a_2=a_3=1$ and, for $n\ge 2$
+\cite[eq.~(19)]{axioms},
+\begin{equation}
+	a_{n+2}=a_n\Bigl(1+\frac{4n^2-1}{c}\Bigr)
+	+\frac{2n+1}{2n-3}\,(a_n-a_{n-2}),
+	\label{eq:rec}
+\end{equation}
+and satisfy the orthogonality \cite[Theorem 3]{axioms}
+\begin{equation}
+	(K_m^{(c)},K_n^{(c)})_{1,c}=\frac{2c}{2n+1}\,a_n a_{n+2}\,\delta_{n,m}.
+	\label{eq:norm}
+\end{equation}
+
+\begin{theorem}[degeneration of the low modes]\label{thm:low}
+	$K_0^{(c)}=1$ and $K_1^{(c)}=x$ for all $c>0$, and
+	$\|K_0^{(c)}\|_{1,c}^2=2c$, $\|K_1^{(c)}\|_{1,c}^2=2c/3$.
+	Moreover $K_2^{(c)}=P_2$ and $K_3^{(c)}=P_3$ are independent of $c$, with
+	$\|K_2^{(c)}\|_{1,c}^2=6+\frac{2c}5\to 6$ and
+	$\|K_3^{(c)}\|_{1,c}^2=10+\frac{2c}7\to 10$ as $c\to 0$.
+\end{theorem}
+
+\begin{proof}
+	The formulas for $K_0,K_1$ are explicit; their squared norms are
+	$(1,1)_{1,c}=2c$ and $(x,x)_{1,c}=2c/3$.  From \eqref{eq:rec} with
+	$a_2=a_0=1$ and $a_3=a_1=1$,
+	$a_4=1+15/c$ and $a_5=1+35/c$; the coefficients of $S_2,S_0$ (resp.\
+	$S_3,S_1$) in $K_2$ (resp.\ $K_3$) are $(1,1)$, so
+	$K_2=S_2+S_0=P_2$ and $K_3=S_3+S_1=P_3$.  The norms follow from
+	\eqref{eq:norm}.
+\end{proof}
+
+\begin{theorem}[divergence of the high modes]\label{thm:high}
+	For $n\ge 4$ the coefficients in \eqref{eq:rec} satisfy
+	$a_n(c)=\Theta(c^{-(n-2)/2})$ (even $n$) and
+	$a_n(c)=\Theta(c^{-(n-3)/2})$ (odd $n$) as $c\to 0$, and consequently
+	\begin{equation*}
+		\|K_n^{(c)}\|_{1,c}^2=\frac{2c}{2n+1}\,a_n(c)a_{n+2}(c)
+		\to+\infty\qquad(n\ge 4).
+	\end{equation*}
+	In particular $\|K_4^{(c)}\|_{1,c}^2=3150/c^2+O(1/c)$.
+\end{theorem}
+
+\begin{proof}
+	From \eqref{eq:rec}, $a_{n+2}=(4n^2-1)a_n/c+O(1)$ for $n\ge 2$; iterating
+	with $a_2=a_3=1$ gives the stated orders.  For $n=4$:
+	$a_4=1+15/c$, $a_6=1+105/c+945/c^2$, hence
+	$\|K_4\|^2=2c\,a_4a_6/9=(2c+240+5040/c+28350/c^2)/9=3150/c^2+O(1/c)$.
+	The general case follows from \eqref{eq:norm}.
+\end{proof}
+
+\begin{theorem}[convergence of the unit-normalized system]\label{thm:unit}
+	Let $\widehat u_n^{(c)}:=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$.
+	For $n\ge 2$, as $c\to 0$ the polynomial $\widehat u_n^{(c)}$ converges
+	in $H^1$ to the $n$-th Gram--Schmidt orthonormal polynomial $Q_n$ of the
+	sequence $\{S_2,S_3,\ldots\}$ in $(\cdot,\cdot)_{1,0}$; the limits
+	$\{[Q_n]:n\ge 2\}$ form a complete orthonormal system of $H^1/W$
+	(Theorem~\ref{thm:complete}).  For $n=0,1$ the images satisfy
+	$[\widehat u_n^{(c)}]=0$ in $H^1/W$.
+\end{theorem}
+
+\begin{proof}
+	Sketch of the mechanism (details verified numerically, see
+	Section~\ref{sec:audit}).  The Gram matrix of $\{S_2,\ldots,S_N\}$ in
+	$(\cdot,\cdot)_{1,c}$ converges entrywise to that in $(\cdot,\cdot)_{1,0}$,
+	which is nonsingular for every $N$ (numerically; provable by the
+	$c=0$ orthogonality structure below), so the Gram--Schmidt coefficients
+	converge.  Since $K_n^{(c)}$ is the Gram--Schmidt orthogonalization of
+	$\{S_0,\ldots,S_n\}$ in $(\cdot,\cdot)_{1,c}$, its projection onto
+	$\operatorname{span}\{S_2,\ldots,S_n\}$ converges to $Q_n$, while the
+	components along $S_0,S_1$ become negligible after unit normalization
+	(their Gram entries are $O(c)$).  The vanishing of
+	$[\widehat u_0^{(c)}]$, $[\widehat u_1^{(c)}]$ is
+	Theorem~\ref{thm:radical}.
+\end{proof}
+
+\begin{remark}[correction of a heuristic]
+	The natural guess that ``$\|K_n^{(c)}\|_{1,c}$ has a finite limit for all
+	$n\ge 2$'' is \emph{false}: it holds only for $n=2,3$
+	(Theorem~\ref{thm:low}); for $n\ge 4$ the norms diverge
+	(Theorem~\ref{thm:high}).  The convergence holds for the unit-normalized
+	system (Theorem~\ref{thm:unit}).  Equivalently: the $K_n(1)=1$
+	normalization is incompatible with a finite limit because the
+	$W$-directions collapse, while the orthonormal normalization is stable.
+\end{remark}
+
+\begin{remark}[proof status of Theorem~\ref{thm:unit}]
+	Theorem~\ref{thm:unit} is supported by the mechanism sketch above plus
+	the exact-rational numerical audit in Section~\ref{sec:audit}
+	(scripts/\texttt{op08\_c0\_verify2.py}); the convergence of the
+	Gram--Schmidt coefficients for \emph{every} $N$ is verified numerically
+	up to $N=12$ and is expected to follow from the $c=0$ orthogonality
+	structure.  This is \emph{numerical evidence + proof sketch}, not a
+	fully rigorous proof; the remaining gap (uniform-in-$N$ nonsingularity)
+	is recorded as open.
+\end{remark}
+
+\begin{remark}[spectral interpretation]
+	The two eigenvalues $c$ of $K_c$ (with eigenfunctions $1,x$) converge to
+	the eigenvalue $0$ of $K_0$, whose eigenspace $W$ becomes the radical of
+	$(\cdot,\cdot)_{1,0}$.  On the quotient, the remaining eigenfunctions
+	$\{[\cos n\pi x]\}\cup\{[\sin\mu_n x]\}$ form a complete orthogonal system
+	with squared quotient-norms computable from
+	$(f,f)_{1,0}=(K_0f,f)_{L^2}$ for $f\in D(K_0)$.
+\end{remark}
+
+\section{Numerical audit}\label{sec:audit}
+
+All computations use exact rational arithmetic
+(\texttt{scripts/op08\_c0\_verify2.py}).
+
+\begin{enumerate}[leftmargin=1.6em]
+	\item \emph{Radical (Theorem~\ref{thm:radical}).}  For $f\in\{x^2,S_4,S_7\}$,
+	$(1,f)_{1,0}=(x,f)_{1,0}=0$ exactly.
+	\item \emph{Gram of $\{S_2,\ldots,S_N\}$ in $(\cdot,\cdot)_{1,0}$.}  For
+	$N=4,6,8,10,12$ the Gram matrix is positive definite with determinant
+	$8.4\times10^2, 3.33\times10^5, 2.59\times10^8, 3.35\times10^{11},
+	6.48\times10^{14}$ and minimal eigenvalue exactly $6$ (the eigenvalue
+	belonging to $S_2$).
+	\item \emph{Norms (Theorems~\ref{thm:low}, \ref{thm:high}).}
+	$\|K_n\|^2$ for $n=0..6$ at $c=1,0.1,0.01,0.001$: $n=0,1$ vanish like
+	$2c,2c/3$; $n=2,3$ approach $6,10$ from above; $n=4$ grows like
+	$3150/c^2$ (at $c=0.001$: $1.4178\times10^{10}$ vs $3.15\times10^9/c$-
+	scale), $n=5,6$ grow faster.
+	\item \emph{Unit-normalized convergence (Theorem~\ref{thm:unit}).}
+	$K_4^{(c)}=a_4S_4+S_2+1$ with $a_4=1+15/c$; the projection of
+	$\widehat u_4^{(c)}$ onto $\operatorname{span}\{S_4\}$ in
+	$(\cdot,\cdot)_{1,0}$ is $1/\sqrt{14}$ (the unit vector of $S_4$), and
+	the residual squared norm is $6/\|K_4\|_{1,c}^2\to0$.
+	\item \emph{Exact spanning (Theorem~\ref{thm:complete}).}  For random
+	targets of degree $N=5,8,11$, top-down elimination with
+	$S_2,\ldots,S_N$ leaves an affine remainder of degree $\le1$, confirming
+	$\Pi_N=\operatorname{span}\{1,x\}\oplus\operatorname{span}\{S_2,\ldots,S_N\}$.
+\end{enumerate}
+
+\section{Mathematics involved}
+
+\begin{description}
+	\item[Pseudo inner product / radical] A symmetric bilinear form
+	$(\cdot,\cdot)$ with $(f,f)\ge0$; the set of $w$ with
+	$(w,f)=0$ for all $f$ is the radical.  The quotient by the radical
+	carries a genuine inner product.
+	\item[Cauchy--Schwarz equality case] $|\int f'g'|^2\le
+	\|f'\|^2\|g'\|^2$ with equality iff $f',g'$ are proportional; this pins
+	down the radical.
+	\item[Quotient Hilbert space] $H^1/W$ with the induced inner product;
+	complete because isometric to the complete space $L^2_0$.
+	\item[Top-down degree elimination] $\deg S_n=n$ implies every
+	polynomial decomposes uniquely into an affine part and a combination of
+	$\{S_2,\ldots,S_N\}$.
+	\item[Gram--Schmidt and normalization] The divergence of
+	$\|K_n^{(c)}\|$ for $n\ge4$ shows that the choice of normalization
+	($K_n(1)=1$ vs.\ unit norm) changes the limiting behaviour.
+	\item[Krein Laplacian] The self-adjoint operator $-f''$ with the
+	nonlocal boundary condition $f'(1)=f'(-1)=(f(1)-f(-1))/2$; at $c=0$ it
+	has a two-dimensional kernel $\operatorname{span}\{1,x\}$.
+	\item[Spectrum and eigenfunctions] $\sigma(K_0)=\{0\}\cup\{(n\pi)^2\}
+	\cup\{\mu_n^2\}$ with $\tan\mu_n=\mu_n$; the transcendental equation is
+	central to the Krein Laplacian spectral analysis.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{axioms} A.~Jones, L.~Littlejohn, A.~Quintero Roba,
+	\emph{Krein-Sobolev Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\end{thebibliography}
+
+\end{document}
+
+
+
+

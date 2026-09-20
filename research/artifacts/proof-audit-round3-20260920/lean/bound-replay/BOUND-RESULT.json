@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scope": "The declaration/type/definition exports match original bytes. Loaded-module paths intentionally identify the separate replay root: only the SL.AuditRound3 path differs; all dependency paths agree. Supplemental runs bind root-object hashes before/after export and controls. Native --deps corroborates resolution. Dependency binaries were not rebuilt.",
+  "root_object": {
+    "path": "/mnt/f/tools/math-audit-round3-20260920/lean-replay/final/build/SL/AuditRound3.olean",
+    "sha256": "8ee57958d54da151f9a1c6a815ec5d6ced9ecc2a0fed43ae07988e76a0756b3a"
+  },
+  "source_sha256": "7e93fae0e42dd572d8d9127e8949c0caaa0ef965c321bf8a11cea46163a6c714",
+  "exports": {
+    "declarations.json": "920c55b0a5853bfc7695cc56dbed0d90bb98dbca2c273d3634f17f2a174713d1",
+    "formal-statements.txt": "535a4ceb2b0d369e150e59b8d7b7cbb4ffd8c63d06d6115a15e3c471ec4ea215",
+    "formal-statements-fully-explicit.txt": "e2ea6da5a55444cf4761cb33bdf07a9d3d8f7cc504951cb0cdca43a25ca7d10f",
+    "local-definition-closure.txt": "282a20644aa103c4ef631987ddda79a9ccdbb30d3e097f49e5b2630631c079e3",
+    "loaded-modules.json": "9ed548acf18a908a484a34444f9666bf9b6a457b0aacee54d012d5617ea0b8ea"
+  },
+  "export_record": "logs/04-bound-export.json",
+  "resolved_import_record": "logs/05-bound-deps.json",
+  "negative_control_records": [
+    "logs/06-bound-OldProductEquality.json",
+    "logs/07-bound-OldPerturbedDifference.json"
+  ],
+  "orchestration_correction": "The initial outer comparison demanded equality of loaded-module path inventories despite the separate output roots. It failed after the four successful native executions. The comparison here checks the distinct root path explicitly; no compiler success/failure was relabeled."
+}
