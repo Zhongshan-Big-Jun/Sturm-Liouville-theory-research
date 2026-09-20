@@ -1,5 +1,14 @@
 # RESUME
 
+## 2026-09-20 second-round audit and cloud synchronization
+
+Current correction entry: `reports/proof-audit-round2-20260920/REPORT.md`. Nine repaired cards have independent scoped approval; the tool index contains 78 available cards and one withdrawn card. In particular, p4 belongs to the nonnegative-order Hs domain exactly for s<7/2; density of the original family for 3<s<7/2 remains open. The earlier dated errata below record their then-current scope. The user has authorized synchronization of these repairs and their evidence; local Lean checks are not a complete formalization of the project.
+
+## 2026-09-20 proof errata and local verification
+
+See `reports/proof-audit-20260920/REPORT.md`. Repaired the C1 Taylor envelope, SUP normalized certificate interface and B4, good-root eigenfunction normalization, O1 similarity/kernel bound, exact-2n energy formulas, and the well-family reflected interval. The n=1 historical closure scope remains the normalized box class 1<=rho<=R for all R>1; this is not a new full-chain audit or Lean verification. The same original polynomial family is dense for 0<=s<=3 by H3 plus spectral truncation; its old all-order claim is withdrawn because p4 is not in H4. The 3<s<4 range is not determined here. See the dated proof revisions for these corrections; historical sections below retain their original dates and scope.
+
+
 ## Current objective
 Prove (n=1): over 1<=rho<=R, SUP(lambda_2-lambda_1) attained by symmetric 3-block [1,R,1] at u*(R);
 INF attained at symmetric [R,1,R].  HONEST STATUS (2026-08-12 session 58 continuation 3):

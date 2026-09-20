@@ -1,0 +1,233 @@
+% Compile with xelatex or tectonic: SL_third_order_K1_proof.tex
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\title{A Strict Proof of the Even Minimal-Solution Anchor $K(1)=e/4$}
+\author{BVE research project}
+\date{2026-08-25}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The repository previously recorded the even minimal-solution constant
+\(K(1)=e/4\) as a high-precision numerical conjecture.  This note proves the
+claim directly from the defining backward recurrence.  An exact factorial
+scaling reduces the third-order recurrence to a first-order recurrence for a
+second difference.  The finite backward solution, its fixed-index limit, the
+unique minimal branch, and the asymptotic tail are all obtained by positive
+factorial series.  No numerical fit, formal asymptotic ansatz, or unchecked
+computer algebra is used.
+\end{abstract}
+
+\section{Statement}
+
+For \(j\geq 3\), set
+\begin{align*}
+P_j&=8j^2-4j+\frac{j}{j-1},\\
+Q_j&=4j(j-1)(2j-1)(2j-3)+4j(2j-3),\\
+R_j&=4j(j-2)(2j-3)(2j-5).
+\end{align*}
+Consider
+\begin{equation}
+\mu_j=P_j\mu_{j-1}-Q_j\mu_{j-2}+R_j\mu_{j-3}.
+\tag{R}
+\end{equation}
+For \(N\geq 3\), define the backward solution by
+\[
+\mu_{N+1}^{(N)}=1,\qquad \mu_N^{(N)}=\mu_{N-1}^{(N)}=0,
+\]
+and use (R) backwards for \(j=N+1,N,\ldots,3\).  Whenever the denominator is
+nonzero, put \(\widehat\mu_k^{(N)}=\mu_k^{(N)}/\mu_0^{(N)}\).
+
+\begin{theorem}[Strict \(K(1)\) anchor]
+For every fixed \(k\geq 0\), the limit
+\(\mu_k^*=\lim_{N\to\infty}\widehat\mu_k^{(N)}\) exists.  It is the unique
+normalized minimal solution and has the exact representation
+\begin{equation}
+\boxed{\displaystyle
+\mu_k^*=2e(2k)!\sum_{r=k+2}^{\infty}
+\frac{r-k-1}{(2r-1)!}}.
+\tag{1}
+\end{equation}
+Moreover,
+\begin{equation}
+\boxed{\displaystyle \lim_{j\to\infty}j^3\mu_j^*=\frac{e}{4}}.
+\tag{2}
+\end{equation}
+\end{theorem}
+
+\section{Exact factorization}
+
+Define
+\[
+v_j=\frac{\mu_j}{(2j)!},
+\qquad
+c_j=\frac{1}{2(j-1)(2j-1)}.
+\]
+Direct cancellation gives
+\[
+\frac{P_j(2j-2)!}{(2j)!}=2+c_j,\qquad
+\frac{Q_j(2j-4)!}{(2j)!}=1+2c_j,\qquad
+\frac{R_j(2j-6)!}{(2j)!}=c_j.
+\]
+Thus (R) is equivalent to
+\begin{equation}
+v_j=(2+c_j)v_{j-1}-(1+2c_j)v_{j-2}+c_jv_{j-3}.
+\tag{3}
+\end{equation}
+Set
+\[
+d_j=v_j-2v_{j-1}+v_{j-2}.
+\]
+Equation (3) factors as
+\begin{equation}
+d_j=c_jd_{j-1}.
+\tag{4}
+\end{equation}
+Since
+\[
+\frac{j/(2j)!}{(j-1)/(2j-2)!}
+=\frac{1}{2(j-1)(2j-1)}=c_j,
+\]
+all solutions of (4) have the form
+\begin{equation}
+d_j=C\frac{j}{(2j)!}
+\tag{5}
+\end{equation}
+for a constant \(C\).
+
+\section{Finite backward solutions and the fixed-index limit}
+
+For the terminal solution, \(v_N^{(N)}=v_{N-1}^{(N)}=0\) and
+\(v_{N+1}^{(N)}=1/(2N+2)!\).  Hence
+\[
+d_N^{(N)}=0,\qquad d_{N+1}^{(N)}=\frac{1}{(2N+2)!}.
+\]
+Backward use of (4) gives
+\begin{equation}
+d_j^{(N)}=\frac{j}{(N+1)(2j)!},
+\qquad 2\leq j\leq N+1.
+\tag{6}
+\end{equation}
+Twice summing the second differences in (6), with the two terminal zeros,
+gives the exact finite formula
+\begin{equation}
+\mu_j^{(N)}
+=\frac{(2j)!}{2N+2}\sum_{r=j+2}^{N}
+\frac{r-j-1}{(2r-1)!},
+\qquad 0\leq j\leq N-1.
+\tag{7}
+\end{equation}
+In particular,
+\[
+\mu_0^{(N)}=\frac{1}{2N+2}
+\sum_{r=2}^{N}\frac{r-1}{(2r-1)!}>0
+\]
+for every \(N\geq 3\).  Therefore the prescribed normalization is always
+valid, not merely eventually.
+
+For fixed \(k\), (7) yields
+\[
+\widehat\mu_k^{(N)}=(2k)!
+\frac{\displaystyle\sum_{r=k+2}^{N}(r-k-1)/(2r-1)!}
+{\displaystyle\sum_{r=2}^{N}(r-1)/(2r-1)!}.
+\]
+Both sums are positive and convergent.  Moreover,
+\begin{align*}
+\sum_{r=2}^{\infty}\frac{r-1}{(2r-1)!}
+&=\frac12\sum_{r=2}^{\infty}
+\left(\frac{1}{(2r-2)!}-\frac{1}{(2r-1)!}\right)\\
+&=\frac12\bigl((\cosh 1-1)-(\sinh 1-1)\bigr)
+=\frac{1}{2e}.
+\end{align*}
+Taking the limit proves (1) and \(\mu_0^*=1\).
+
+\section{Minimality and uniqueness}
+
+Define
+\[
+\phi_j=\sum_{r=j+2}^{\infty}
+\frac{r(r-j-1)}{(2r)!}.
+\]
+The series is absolutely convergent and tends to zero.  Direct telescoping of
+the tails gives
+\[
+\phi_j-2\phi_{j-1}+\phi_{j-2}=\frac{j}{(2j)!}.
+\]
+Consequently every solution of (3) has the form
+\begin{equation}
+\frac{\mu_j}{(2j)!}=A+Bj+C\phi_j.
+\tag{8}
+\end{equation}
+The minimal branch is the subfactorial branch, equivalently the branch for
+which \(\mu_j/(2j)!\to 0\).  By (8), this forces \(A=B=0\), so the minimal
+solution space is one-dimensional.  Since
+\[
+\phi_0=\sum_{r=2}^{\infty}\frac{r(r-1)}{(2r)!}=\frac{1}{4e},
+\]
+the condition \(\mu_0=1\) fixes \(C=4e\).  The resulting formula is exactly
+(1), so the backward limit is the unique normalized minimal solution.
+
+\section{Asymptotic constant}
+
+Write \(r=j+\ell+1\) in (1):
+\begin{equation}
+\mu_j^*=2e\sum_{\ell=1}^{\infty}
+\ell\frac{(2j)!}{(2j+2\ell+1)!}.
+\tag{9}
+\end{equation}
+The first term is
+\[
+T_{j,1}=\frac{2e}{(2j+1)(2j+2)(2j+3)}.
+\]
+For \(\ell\geq 2\), every extra factorial factor is at least \(2j+1\), so
+\[
+0\leq j^3\sum_{\ell=2}^{\infty}
+\ell\frac{(2j)!}{(2j+2\ell+1)!}
+\leq j^3x_j^5
+\left(\frac{2}{1-x_j^2}+
+\frac{x_j^2}{(1-x_j^2)^2}\right),
+\qquad x_j=\frac{1}{2j+1}.
+\]
+The right side is \(O(j^{-2})\).  Finally,
+\[
+j^3T_{j,1}\longrightarrow \frac{e}{4},
+\]
+which proves (2).
+
+\section{Index and sign audit}
+
+At the last backward step,
+\[
+P_3=\frac{123}{2},\qquad Q_3=396,\qquad R_3=36,
+\qquad c_3=\frac1{20},
+\]
+so every required denominator is nonzero.  The upper terminal check from (7)
+is
+\[
+\mu_{N-2}^{(N)}=\frac{1}{R_{N+1}},
+\]
+which makes the \(j=N+1\) equation recover \(\mu_{N+1}^{(N)}=1\) with the
+prescribed zeros at \(N\) and \(N-1\).  For \(N=3\), (7) gives
+\(\mu_1^{(3)}=1/480\) and \(\mu_0^{(3)}=11/480\), agreeing with direct
+backward substitution.
+
+All rearrangements above involve nonnegative terms.  No numerical evidence,
+formal asymptotic ansatz, or unchecked symbolic computation is used in the
+proof.
+
+\begin{remark}
+This theorem settles the \(c=1\) anchor only.  A closed form for the general
+constant \(K(c)\), the source-term control in the broader recurrence program,
+and the general coefficient-family classification remain open.
+\end{remark}
+
+\end{document}

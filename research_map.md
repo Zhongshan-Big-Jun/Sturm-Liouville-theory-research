@@ -32,8 +32,8 @@ stage boundaries and whenever a problem, result, or relationship changes.
 
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
-| A1 | `{p_n}` analytic completeness in H^s [-1,1], all integer s >= 1 (Krein-Sobolev) | SOLVED | docs/SL_h2_completeness_proof, SL_h3_completeness_proof, SL_hs_orthogonal_systems | moment-jump + growth lemma + Weierstrass |
-| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | OPEN | docs/SL_fractional_left_definite | inherits DensBC O3 window |
+| A1 | `{p_n}` density in genuine H^s, 0 <= s <= 3 (Krein-Sobolev) | SOLVED | docs/SL_h2_completeness_proof, SL_h3_completeness_proof | H3 + spectral truncation; all-order claim withdrawn 2026-09-20: p4 in Hs iff s<7/2 for s>=0; same-family density for 3<s<7/2 remains undetermined |
+| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Stability / threshold-line classification (moment-jump) | PARTIAL | docs/SL_stability_moment_jump | threshold line family ~ log m not fully classified |
@@ -45,7 +45,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
-| B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Weyl asymptotic; inf not attained |
+| B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Constant-density high modes suffice; inf not attained |
 | B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
 | B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 SOLVED; n>=2 local symmetry STRICT; (G2) STRICT CLOSED 2026-08-13; M3 large-R finite-interior chart STRICT CLOSED 2026-08-29; n=2 symmetric INF odd-sector pivot and exact Phi reduction STRICT, complete 0<c<=1/2 KP-DET STRICT 2026-09-01; arbitrary finite c acute branch, KO-DET, and global (G1') remain OPEN |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
@@ -56,12 +56,12 @@ stage boundaries and whenever a problem, result, or relationship changes.
 ```text
 Line A:
 A1 (H^s completeness, solved)
-  |-- extends --> A2 (fractional window 3/2<=s<2, open)
+  |-- extends --> A2 (fractional window 3/2<=s<2, solved via H3)
   |-- uses moment-jump/growth-lemma --> A5 (stability, partial), A6 (3rd-order, partial)
 A3 (constrained density, open)
   |-- reduces_to --> A4 (O1' moment-realizability, partial)
   A4 --uses--> run R-20260816T000000Z-densbc-o1 structure theorems
-  A3 --inherits O3--> A2 (fractional window)
+  A3 --historical O3--> A2 (Krein window now solved; general constraints separate)
 A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
 
 Line B:
@@ -86,7 +86,7 @@ moment/jump techniques reused in A4/A5.
 ```mermaid
 flowchart LR
   A1["A1 H^s completeness (SOLVED)"]
-  A2["A2 fractional H^s (OPEN)"]
+  A2["A2 fractional H^s window (SOLVED)"]
   A3["A3 constrained density (OPEN)"]
   A4["A4 O1' moment step (PARTIAL)"]
   A5["A5 stability/threshold (PARTIAL)"]

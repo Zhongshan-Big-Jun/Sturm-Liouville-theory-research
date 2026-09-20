@@ -1,0 +1,174 @@
+{
+	"author_ids": [
+		"01a0be43-f248-7382-9bd1-ceb658230539",
+		"01a0be43-f65b-79b3-81c3-f0f6ca4a1a84",
+		"01a0be45-e849-7e40-ba7a-c869b38414c9",
+		"coordinator-20260920-round2"
+	],
+	"claims": [
+		{
+			"id": "correction:1ea29c65779dd9efd974254f4961457cf8b6e8c0c0683a12ff82438c6aee760f",
+			"statement": "Independently check the repaired card tools/balanced-phase.md at sha256 9fe258e05102c0abb8b7552f61a500eb55c655592bdab8c8f8878a6ca19182ca, its scope and dependencies, against the original issue 7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef and old version 9cccf716d3c4407b5e6b7bb38cb25e9448c1789821ba295d8153c7e36e7e9cf8. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:ee7f3dcd0bd308e877fdcaa20a9a2eecd7de3b69bffa0c0d60caedc60ad5c5fa",
+			"statement": "Independently check the repaired card tools/mw-zero-truncation.md at sha256 cd7de9d255facefed91efe8e5070f743462b268cdc55027da66c40018d53d25d, its scope and dependencies, against the original issue 7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef and old version 0dbcde53859bb275481e2cdc8ab47608a9f56fd2effe89ca3867656173d659b4. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:02afdd67971cc54c162eb29ebf38e65813378e71e7f724d2ae7d43dd706184ad",
+			"statement": "Independently check the repaired card tools/mw-periodic-extension.md at sha256 da8b28d2cf9c2014982cad4236fbe1fa35545d4a3900f86fb9993681d4500e84, its scope and dependencies, against the original issue 7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef and old version 81c9ded9e7870e1150622c3ad26d55583f2859c6c97733e0a447cf60f522938f. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:9e997a7dc4ad27b42c45eedd91e0b9d6876b2d82eac742673a6d6e16a95ce2fe",
+			"statement": "Independently check the repaired card tools/spectral-monotonicity-reduction.md at sha256 da43338cc67b38b8515e4e31e091eaff814c8d0ac6a2057feb1fc0a1089a5fdc, its scope and dependencies, against the original issue 7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef and old version b780a499234fb3981b04c2debfb7c22848144c743aedf4cccf8dd26c196c3b08. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "first-pair-and-mw",
+			"statement": "Independently review the repaired global first-pair extremum and MW transfer proofs, including compactness, bang-bang structure, energy/interface argument, affine c2 scaling, signed matching, zero truncation including equality and density extension. Verify corrections to the omitted sin(p)=0 branch, the crossing corollary endpoint scope and the all-index infimum=1. Prior review is not a substitute for your analysis. Check the new variational card and repaired cards against this proof.",
+			"verification": "analytic"
+		},
+		{
+			"id": "summary-scope",
+			"statement": "Check consistency of current first-pair/all-index versus fixed-index conclusions in the summary and cards. Historical numerical tables are not requested to be replayed or promoted to proof; report this limit. Recheck the prior F1-F5 findings: abstract all-index infimum, general tiled spectral law, R=4 balanced widths, omitted global-extremum step, and false claimed coefficient coincidence. Treat the current summary as a reader-facing statement of scope.",
+			"verification": "analytic"
+		}
+	],
+	"inputs": {
+		"docs/SL_mw_lemma_reproof.tex": {
+			"role": "proof",
+			"sha256": "f000311c18d86e104c4e35effca225603140b139dbbb4c307eb685edfef5dfd3",
+			"snapshot": "inputs/docs/SL_mw_lemma_reproof.tex"
+		},
+		"docs/SL_ratio_proof.tex": {
+			"role": "proof",
+			"sha256": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21",
+			"snapshot": "inputs/docs/SL_ratio_proof.tex"
+		},
+		"docs/SL_ratio_summary.tex": {
+			"role": "scope-summary",
+			"sha256": "af2f4683e5ac4595261e734abe35854b8e99846e5ca7cdf0b8c3c221d8f58ff4",
+			"snapshot": "inputs/docs/SL_ratio_summary.tex"
+		},
+		"papers/keller1976.pdf": {
+			"role": "primary-source",
+			"sha256": "761cee5186f0946c8746a5ac3d8de7a7bb30356a70c96763c657073549455201",
+			"snapshot": "inputs/papers/keller1976.pdf"
+		},
+		"papers/mw1976.pdf": {
+			"role": "primary-source",
+			"sha256": "360843524a6156bcdac94ffbcb398f66936a8ed2cd66448afd089b05996e37a1",
+			"snapshot": "inputs/papers/mw1976.pdf"
+		},
+		"research/artifacts/proof-audit-round2-20260920/ratio-completion-1.json": {
+			"role": "prior-findings",
+			"sha256": "2f6b31349b705cf30ed2cbd9430b017bf8f53ff6b591825f031f6b007a6bdcaa",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/ratio-completion-1.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/ratio-completion-2.json": {
+			"role": "prior-findings",
+			"sha256": "906c202b33d33fa1d11cecc9c27983a4d369f893cf206dd40d5fd17d36ec03a0",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/ratio-completion-2.json"
+		},
+		"research/library/card-versions/0dbcde53859bb275481e2cdc8ab47608a9f56fd2effe89ca3867656173d659b4.md": {
+			"role": "correction-review-input",
+			"sha256": "0dbcde53859bb275481e2cdc8ab47608a9f56fd2effe89ca3867656173d659b4",
+			"snapshot": "inputs/research/library/card-versions/0dbcde53859bb275481e2cdc8ab47608a9f56fd2effe89ca3867656173d659b4.md"
+		},
+		"research/library/card-versions/81c9ded9e7870e1150622c3ad26d55583f2859c6c97733e0a447cf60f522938f.md": {
+			"role": "correction-review-input",
+			"sha256": "81c9ded9e7870e1150622c3ad26d55583f2859c6c97733e0a447cf60f522938f",
+			"snapshot": "inputs/research/library/card-versions/81c9ded9e7870e1150622c3ad26d55583f2859c6c97733e0a447cf60f522938f.md"
+		},
+		"research/library/card-versions/9cccf716d3c4407b5e6b7bb38cb25e9448c1789821ba295d8153c7e36e7e9cf8.md": {
+			"role": "correction-review-input",
+			"sha256": "9cccf716d3c4407b5e6b7bb38cb25e9448c1789821ba295d8153c7e36e7e9cf8",
+			"snapshot": "inputs/research/library/card-versions/9cccf716d3c4407b5e6b7bb38cb25e9448c1789821ba295d8153c7e36e7e9cf8.md"
+		},
+		"research/library/card-versions/9fe258e05102c0abb8b7552f61a500eb55c655592bdab8c8f8878a6ca19182ca.md": {
+			"role": "correction-review-input",
+			"sha256": "9fe258e05102c0abb8b7552f61a500eb55c655592bdab8c8f8878a6ca19182ca",
+			"snapshot": "inputs/research/library/card-versions/9fe258e05102c0abb8b7552f61a500eb55c655592bdab8c8f8878a6ca19182ca.md"
+		},
+		"research/library/card-versions/b780a499234fb3981b04c2debfb7c22848144c743aedf4cccf8dd26c196c3b08.md": {
+			"role": "correction-review-input",
+			"sha256": "b780a499234fb3981b04c2debfb7c22848144c743aedf4cccf8dd26c196c3b08",
+			"snapshot": "inputs/research/library/card-versions/b780a499234fb3981b04c2debfb7c22848144c743aedf4cccf8dd26c196c3b08.md"
+		},
+		"research/library/card-versions/cd7de9d255facefed91efe8e5070f743462b268cdc55027da66c40018d53d25d.md": {
+			"role": "correction-review-input",
+			"sha256": "cd7de9d255facefed91efe8e5070f743462b268cdc55027da66c40018d53d25d",
+			"snapshot": "inputs/research/library/card-versions/cd7de9d255facefed91efe8e5070f743462b268cdc55027da66c40018d53d25d.md"
+		},
+		"research/library/card-versions/da43338cc67b38b8515e4e31e091eaff814c8d0ac6a2057feb1fc0a1089a5fdc.md": {
+			"role": "correction-review-input",
+			"sha256": "da43338cc67b38b8515e4e31e091eaff814c8d0ac6a2057feb1fc0a1089a5fdc",
+			"snapshot": "inputs/research/library/card-versions/da43338cc67b38b8515e4e31e091eaff814c8d0ac6a2057feb1fc0a1089a5fdc.md"
+		},
+		"research/library/card-versions/da8b28d2cf9c2014982cad4236fbe1fa35545d4a3900f86fb9993681d4500e84.md": {
+			"role": "correction-review-input",
+			"sha256": "da8b28d2cf9c2014982cad4236fbe1fa35545d4a3900f86fb9993681d4500e84",
+			"snapshot": "inputs/research/library/card-versions/da8b28d2cf9c2014982cad4236fbe1fa35545d4a3900f86fb9993681d4500e84.md"
+		},
+		"research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin": {
+			"role": "correction-review-input",
+			"sha256": "f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264",
+			"snapshot": "inputs/research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin"
+		},
+		"research/library/corrections/requests/02afdd67971cc54c162eb29ebf38e65813378e71e7f724d2ae7d43dd706184ad.json": {
+			"role": "correction-review-input",
+			"sha256": "02afdd67971cc54c162eb29ebf38e65813378e71e7f724d2ae7d43dd706184ad",
+			"snapshot": "inputs/research/library/corrections/requests/02afdd67971cc54c162eb29ebf38e65813378e71e7f724d2ae7d43dd706184ad.json"
+		},
+		"research/library/corrections/requests/1ea29c65779dd9efd974254f4961457cf8b6e8c0c0683a12ff82438c6aee760f.json": {
+			"role": "correction-review-input",
+			"sha256": "1ea29c65779dd9efd974254f4961457cf8b6e8c0c0683a12ff82438c6aee760f",
+			"snapshot": "inputs/research/library/corrections/requests/1ea29c65779dd9efd974254f4961457cf8b6e8c0c0683a12ff82438c6aee760f.json"
+		},
+		"research/library/corrections/requests/7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef.json": {
+			"role": "correction-review-input",
+			"sha256": "7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef",
+			"snapshot": "inputs/research/library/corrections/requests/7c0d014327662bba87594a4e004fb264820532e26f65130b86b6add43e76deef.json"
+		},
+		"research/library/corrections/requests/9e997a7dc4ad27b42c45eedd91e0b9d6876b2d82eac742673a6d6e16a95ce2fe.json": {
+			"role": "correction-review-input",
+			"sha256": "9e997a7dc4ad27b42c45eedd91e0b9d6876b2d82eac742673a6d6e16a95ce2fe",
+			"snapshot": "inputs/research/library/corrections/requests/9e997a7dc4ad27b42c45eedd91e0b9d6876b2d82eac742673a6d6e16a95ce2fe.json"
+		},
+		"research/library/corrections/requests/ee7f3dcd0bd308e877fdcaa20a9a2eecd7de3b69bffa0c0d60caedc60ad5c5fa.json": {
+			"role": "correction-review-input",
+			"sha256": "ee7f3dcd0bd308e877fdcaa20a9a2eecd7de3b69bffa0c0d60caedc60ad5c5fa",
+			"snapshot": "inputs/research/library/corrections/requests/ee7f3dcd0bd308e877fdcaa20a9a2eecd7de3b69bffa0c0d60caedc60ad5c5fa.json"
+		},
+		"tools/balanced-phase.md": {
+			"role": "correction-review-input",
+			"sha256": "9fe258e05102c0abb8b7552f61a500eb55c655592bdab8c8f8878a6ca19182ca",
+			"snapshot": "inputs/tools/balanced-phase.md"
+		},
+		"tools/mw-periodic-extension.md": {
+			"role": "correction-review-input",
+			"sha256": "da8b28d2cf9c2014982cad4236fbe1fa35545d4a3900f86fb9993681d4500e84",
+			"snapshot": "inputs/tools/mw-periodic-extension.md"
+		},
+		"tools/mw-zero-truncation.md": {
+			"role": "correction-review-input",
+			"sha256": "cd7de9d255facefed91efe8e5070f743462b268cdc55027da66c40018d53d25d",
+			"snapshot": "inputs/tools/mw-zero-truncation.md"
+		},
+		"tools/ratio-first-pair-variational.md": {
+			"role": "correction-review-input",
+			"sha256": "0a92348158f098dd0114fecf3c5ed320476ed9bcafe42af97d7766695380b33a",
+			"snapshot": "inputs/tools/ratio-first-pair-variational.md"
+		},
+		"tools/spectral-monotonicity-reduction.md": {
+			"role": "correction-review-input",
+			"sha256": "da43338cc67b38b8515e4e31e091eaff814c8d0ac6a2057feb1fc0a1089a5fdc",
+			"snapshot": "inputs/tools/spectral-monotonicity-reduction.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

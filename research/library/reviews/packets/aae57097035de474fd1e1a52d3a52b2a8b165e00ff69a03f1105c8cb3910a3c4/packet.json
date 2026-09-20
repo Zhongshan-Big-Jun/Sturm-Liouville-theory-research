@@ -1,0 +1,164 @@
+{
+	"author_ids": [
+		"01a0be43-f248-7382-9bd1-ceb658230539",
+		"01a0be43-f65b-79b3-81c3-f0f6ca4a1a84",
+		"01a0be45-e849-7e40-ba7a-c869b38414c9",
+		"coordinator-20260920-round2"
+	],
+	"claims": [
+		{
+			"id": "semantic-and-kernel",
+			"statement": "Independently compare all 25 precise Lean declarations and the actual blind readback with the supplied informal contract, hypotheses, definitions and source. Inspect actual compilation and transitive-axiom evidence. Replay the new source with native Lean in disposable space using the recorded environment if available; never overwrite originals. Check bridges to relevant existing source definitions and explicitly distinguish cached legacy declarations from rebuilt old proofs. Verify the failed old-K1 negative control. Approval is only for these local formal targets and faithful limited scope, not the full spectral theorems.",
+			"verification": "formal"
+		}
+	],
+	"inputs": {
+		"lean-proof/SL/AuditRound2.lean": {
+			"role": "formal-source",
+			"sha256": "5a8708c3a756e1bb86974fb887b30458290498ad0cde0fd452bdcaf250b2f050",
+			"snapshot": "inputs/lean-proof/SL/AuditRound2.lean"
+		},
+		"lean-proof/SL/BalancedPhase.lean": {
+			"role": "existing-definition",
+			"sha256": "fe6979d238af32028ee4ea3a8568a1a920ad8dae8c536bcdddcb24d8db61f37a",
+			"snapshot": "inputs/lean-proof/SL/BalancedPhase.lean"
+		},
+		"lean-proof/SL/ThirdOrder.lean": {
+			"role": "existing-definition",
+			"sha256": "114a297790e9d01cda6a5f26928a9e834e637f95d63ded2ed7b792e52f3bf5c0",
+			"snapshot": "inputs/lean-proof/SL/ThirdOrder.lean"
+		},
+		"lean-proof/SL/ThirdOrderClosedForms.lean": {
+			"role": "existing-definition",
+			"sha256": "b92ce7133f66f6f197634661f8c942ffb826b5becf9e85cf736bfb4dd3002cac",
+			"snapshot": "inputs/lean-proof/SL/ThirdOrderClosedForms.lean"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/14-print-types-axioms.stdout.txt": {
+			"role": "actual-types-and-axioms",
+			"sha256": "34cd232edb5c8f4a09541b0b6db740f32e70dcf6ad5b3aeae0c0732386f1ed1b",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/14-print-types-axioms.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/contract.md": {
+			"role": "informal-contract",
+			"sha256": "63847455ad5235ccdf5ed69d7b53b33c58d3ef482ae9158b163217094f1290f6",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/contract.md"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/BridgeToExistingSL.lean": {
+			"role": "machine-evidence",
+			"sha256": "3e3dba4d108c1f84aa12ff14f62d3cbe8f002ffa9c93961460e3fa0af1a2044f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/BridgeToExistingSL.lean"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/InspectAuditRound2.lean": {
+			"role": "machine-evidence",
+			"sha256": "040f5edadf81646f5418bf9bf6815ce140d57da94c04ec222687695437b61446",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/InspectAuditRound2.lean"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/NegativeK1.lean": {
+			"role": "machine-evidence",
+			"sha256": "fb04490cb34cdb80bd73f60e273270b1023ccafb488690f432dcfc921427fea1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/NegativeK1.lean"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/bridge-evidence.json": {
+			"role": "machine-evidence",
+			"sha256": "dd4b2370f3d2c3b06d398d24e6e3fe3cfed72f833e8f5373b6ca36226ccaf2f1",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/bridge-evidence.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/declaration-evidence.json": {
+			"role": "machine-evidence",
+			"sha256": "7cdd98d2d6f53a58d9fc661276aba44d9e5b78fcc2fb358db4a7cea720199ea9",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/declaration-evidence.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/existing-sl-cache-copies.json": {
+			"role": "machine-evidence",
+			"sha256": "b50a8c20e0cc0b0a49871f7523459f41282035d7300d435ee5a9d57807473b23",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/existing-sl-cache-copies.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/imported-artifact-hashes.json": {
+			"role": "machine-evidence",
+			"sha256": "ec591e9d3b2b9d638df5b45a42537a9a87c0a7493136de8ab188c4a2c495b98c",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/imported-artifact-hashes.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/13-interface-fix.json": {
+			"role": "machine-evidence",
+			"sha256": "fa08b50a1864dd96d23f99a5e652a62f87d714e43150fbf9965f827f87a9f619",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/13-interface-fix.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/14-print-types-axioms.json": {
+			"role": "machine-evidence",
+			"sha256": "ac28085be5b6daa3dfe276d472bba9017732ab2d6a592a10e1bbb9f2c9063be2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/14-print-types-axioms.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.json": {
+			"role": "machine-evidence",
+			"sha256": "a0449ad19661d622a5b872a3c5f99433921cece7de7b51d8020ed748abf0789a",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.stdout.txt": {
+			"role": "machine-evidence",
+			"sha256": "b4875262b6d462872b536d8f4b13629b95203ecfd1b6e02aa22dfe206965d680",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.json": {
+			"role": "machine-evidence",
+			"sha256": "9b4a3a34e2f40743d1413141f5fa7416281cf81cc6d16c750f5bc27070643559",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.stdout.txt": {
+			"role": "machine-evidence",
+			"sha256": "868017f69d124873977f2a794029b36143c44b9ee4a47bb260ab9569567f2fb2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.json": {
+			"role": "machine-evidence",
+			"sha256": "6c6c5a9168303c8dcbaa920061cafb728bb173fca44cdafc9b1abef8c3fc4dac",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stderr.txt": {
+			"role": "machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stderr.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stdout.txt": {
+			"role": "machine-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/explicit-types.stdout.txt": {
+			"role": "explicit-types",
+			"sha256": "abc74b9345d8ebc2df519cbe738ec96285e2b2a75c25ec61d434b0b91db36dd2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/explicit-types.stdout.txt"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/readback-completion.json": {
+			"role": "native-readback-completion",
+			"sha256": "657bb040cbfda2ffeeeac01be3d58518847ef71733e2dbae836a67c8da46f9c2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/readback-completion.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/readback-report.json": {
+			"role": "blind-readback",
+			"sha256": "61191af83610d351deb3224f19c7efc5232c1164585ee8aee96bdec0c26567e5",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/readback-report.json"
+		},
+		"research/artifacts/proof-audit-round2-20260920/lean/runtime-evidence.json": {
+			"role": "environment",
+			"sha256": "f76f2f57f0a5c8889a80c84c855bd60805bbdcc7263c758f5910cc7871a3ac8f",
+			"snapshot": "inputs/research/artifacts/proof-audit-round2-20260920/lean/runtime-evidence.json"
+		},
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/dispatch.json": {
+			"role": "review-provenance",
+			"sha256": "a354d31cc7995a3fca1baa13a2322949cf5c0db235a3a6f5495ec13e73bd7388",
+			"snapshot": "inputs/research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/dispatch.json"
+		},
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/receipt.json": {
+			"role": "review-provenance",
+			"sha256": "a846d70565169c1e16191081290b0e8af44692eb0d7dd4a303a5ad85796ca586",
+			"snapshot": "inputs/research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/receipt.json"
+		},
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/spawn.json": {
+			"role": "review-provenance",
+			"sha256": "a8900819663e5a8e233278660d7ee5738807eb250471db8b27ad20b3b0085eaf",
+			"snapshot": "inputs/research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/spawn.json"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

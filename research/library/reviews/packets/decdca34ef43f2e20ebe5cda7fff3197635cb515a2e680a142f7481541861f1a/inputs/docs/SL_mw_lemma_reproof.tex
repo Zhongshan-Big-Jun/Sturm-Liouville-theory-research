@@ -1,0 +1,544 @@
+﻿\documentclass[11pt]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\emergencystretch 3em
+% hidden links (hidelinks)
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Reproof of the Mahar--Willner Doubling Lemmas\\ \large (Signed Cell Extension, Wronskian Zero Motion, and Zero Truncation)}
+\author{BVE research project --- proof revision author}
+\date{2026-09-20}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give an author's revised proof of the two structural lemmas associated with
+Mahar--Willner \cite{mw} in their solution of the extremal problem for
+$\lambda_2/\lambda_1$ of $-y''=\lambda\rho y$ (Dirichlet, $a\le\rho\le 1$):
+Lemma 1 (the \emph{cell-extension} identity
+$\lambda_{2n}(\rho_n)/\lambda_n(\rho_n)=\lambda_2(\rho_0)/\lambda_1(\rho_0)$
+for the $1/n$-periodic ``blow-up'' $\rho_n$ of an arbitrary $\rho_0$) and
+Lemma 2 (the \emph{zero-truncation} induction establishing
+$\mu_{2n,n}(a)=\mu(a)$, $\nu_{2n,n}(a)=\nu(a)$).
+Here $\mu,\nu$ are defined as the first-pair infimum and supremum; the
+doubling lemmas do not determine their values. The proof uses classical
+Sturm oscillation and comparison and compact self-adjoint spectral theory.
+We include the common-zero equality branch, prove zero motion by a
+parameter Wronskian, and justify passage from finite step densities to
+piecewise continuous and bounded measurable densities. The explicit
+first-pair value requires the separate variational theorem in
+\texttt{SL\_ratio\_proof.tex}, not merely its balanced-candidate calculation.
+This is a proof submission by the revision author, not an independent
+acceptance report.
+\end{abstract}
+
+\section{Setting and notation}
+
+Initially, $\rho$ is a finite step density on $I=[-1/2,1/2]$ with
+$a\le\rho\le1$ almost everywhere, where $0<a\le1$, and $\mathcal P_a$
+is this class. Write $\mathcal Q_a$ for all $L^\infty(I)$ densities with
+the same bounds and $\mathcal{PC}_a$ for the piecewise continuous subclass.
+Values at jump points have no spectral effect. Consider
+\begin{equation}
+	-y''=\lambda\rho(x)\,y,\qquad y(-1/2)=y(1/2)=0,
+	\label{eq:main}
+\end{equation}
+with eigenvalues $0<\lambda_1(\rho)<\lambda_2(\rho)<\cdots$ (simplicity and
+discreteness are classical).  Write
+\[
+	\mu(a):=\inf_{\rho\in\mathcal P_a}\frac{\lambda_2}{\lambda_1},\qquad
+	\nu(a):=\sup_{\rho\in\mathcal P_a}\frac{\lambda_2}{\lambda_1},
+	\qquad
+	\mu_{2n,n}(a):=\inf_{\rho\in\mathcal P_a}\frac{\lambda_{2n}}{\lambda_n},
+	\qquad
+	\nu_{2n,n}(a):=\sup_{\rho\in\mathcal P_a}\frac{\lambda_{2n}}{\lambda_n}.
+\]
+The eigenfunction of $\lambda_j$ is denoted $y_j$; it is normalized
+arbitrarily, and we always take $y_j'(-1/2)\neq 0$ (true up to rescaling).
+For measurable densities the equation holds almost everywhere and
+$y_j\in W^{2,\infty}(I)\subset C^1(I)$. In particular both $y_j$ and
+$y_j'$ match across every interface. The variational bounds
+$(j\pi)^2\le\lambda_j\le(j\pi)^2/a$ show that all fixed-index extrema
+in the display are finite.
+
+\begin{proposition}[density classes and spectral continuity]\label{prop:density}
+ If $\rho_l,\rho\in\mathcal Q_a$ and $\|\rho_l-\rho\|_1\to0$, then
+ $\lambda_j(\rho_l)\to\lambda_j(\rho)$ for every fixed $j$.
+ Each fixed-index ratio has the same supremum and infimum over
+ $\mathcal P_a$, $\mathcal{PC}_a$ and $\mathcal Q_a$.
+\end{proposition}
+
+\begin{proof}
+ On $H=H^1_0(I)$ with inner product $\int u'v'$, define the compact
+ positive self-adjoint operator $(T_\rho u,v)_H=\int\rho uv$.
+ Since $|I|=1$, $\|u\|_\infty\le\|u'\|_2$, so
+ $\|T_{\rho_l}-T_\rho\|\le\|\rho_l-\rho\|_1$.
+ Its positive eigenvalues are $1/\lambda_j(\rho)$; the compact
+ self-adjoint min--max principle proves fixed-index continuity.
+ Approximate $\rho$ by its averages on dyadic interval partitions.
+ These finite step densities preserve $[a,1]$ and converge in $L^1$.
+ Indeed, interval averaging is an $L^1$ contraction and converges for
+ continuous functions, which are dense in $L^1$.
+ The asserted equalities follow from continuity and the inclusions
+ $\mathcal P_a\subset\mathcal{PC}_a\subset\mathcal Q_a$.
+ This argument does not assert uniform convergence in the eigenvalue index.
+\end{proof}
+
+\medskip
+\noindent\textbf{Preliminary facts.}  We shall use the following classical
+results; proofs are sketched only where the formulation is non-standard.
+
+\begin{proposition}[affine invariance of ratios]\label{prop:affine}
+	Let $L(x)=cx+d$ with $c\neq 0$ map $[x_0,x_1]$ onto $[-1/2,1/2]$.
+ For every index $j$, the Dirichlet eigenvalue on $[x_0,x_1]$ with
+ density $\rho\circ L$ is $c^2\lambda_j(\rho)$.
+ All eigenvalue ratios are invariant, including when $c<0$.
+\end{proposition}
+
+\begin{proof}
+ If $v=y\circ L$, then $-v''=c^2\lambda(\rho\circ L)v$.
+ Composition with $L$ is a bijection between Dirichlet solutions and
+ preserves the number of interior zeros; this identifies the index.
+ The same statement applies between any two finite nondegenerate intervals.
+\end{proof}
+
+\begin{proposition}[Sturm oscillation]\label{prop:osc}
+	The $j$-th eigenfunction $y_j$ of \eqref{eq:main} has exactly $j-1$
+	(interior) zeros in $(-1/2,1/2)$, all simple.
+\end{proposition}
+
+\begin{proposition}[Sturm interlacing]\label{prop:interl}
+	If $j<k$ and $z_1<\cdots<z_{j-1}$ are the zeros of $y_j$, then $y_k$ has
+	at least one zero in each of the $j$ intervals
+	$(-1/2,z_1),(z_1,z_2),\ldots,(z_{j-1},1/2)$.
+\end{proposition}
+
+The backbone of the truncation argument is the following elementary
+monotonicity of the zeros of an initial-value problem (IVP).
+
+\begin{proposition}[zero motion]\label{prop:zeromotion}
+	Fix $c\neq 0$ and let $y(\cdot;\lambda)$ be the solution of
+	\begin{equation*}
+		y''+\lambda\rho(x)y=0,\qquad y(-1/2;\lambda)=0,\quad
+		y'(-1/2;\lambda)=c.
+	\end{equation*}
+	For $j\ge 1$ let $z_j(\lambda)$ be the $j$-th zero of $y(\cdot;\lambda)$
+	to the right of $-1/2$, whenever it exists.  Then each $z_j$ is
+	continuous and \emph{strictly decreasing} in $\lambda$.  The analogous
+	statement holds for the IVP posed at $x=1/2$: the $j$-th zero to the
+	left of $1/2$ is strictly increasing in $\lambda$.
+\end{proposition}
+
+\begin{proof}
+ Put $\ell=-1/2$. The Volterra equation
+ \[
+ y(x;\lambda)=c(x-\ell)-\lambda\int_\ell^x(x-t)\rho(t)y(t;\lambda)\,dt
+ \]
+ gives continuously differentiable parameter dependence, also for
+ bounded measurable $\rho$. Write $v=\partial_\lambda y$; then
+ $v''+\lambda\rho v=-\rho y$ and $v(\ell)=v'(\ell)=0$.
+ The absolutely continuous Wronskian satisfies
+ \[
+ (y'v-yv')'=\rho y^2\quad\text{a.e.},\qquad
+ y'(z_j)v(z_j)=\int_\ell^{z_j}\rho y^2.
+ \]
+ Every zero is simple by uniqueness of the IVP. The implicit function
+ theorem therefore gives
+ \begin{equation}\label{eq:zero-motion}
+ \frac{dz_j}{d\lambda}
+ =-\frac{v(z_j)}{y'(z_j)}
+ =-\frac{\int_{-1/2}^{z_j}\rho(x)y(x;\lambda)^2\,dx}
+ {y'(z_j;\lambda)^2}<0.
+ \end{equation}
+ Simplicity prevents collisions, so the local branches preserve their
+ ordered indices. At an endpoint one may extend $\rho$ by any positive
+ bounded density to interpret the crossing. From an IVP fixed at $1/2$,
+ the same identity integrated backwards gives instead
+ \[
+ \frac{dz_j}{d\lambda}
+ =\frac{\int_{z_j}^{1/2}\rho(x)y(x;\lambda)^2\,dx}
+ {y'(z_j;\lambda)^2}>0.
+ \]
+ All identities are integrated identities for absolutely continuous
+ functions, so there are no missing density-interface terms.
+\end{proof}
+
+\noindent An equivalent formulation, used repeatedly below, is:
+
+\begin{corollary}\label{cor:crossing}
+	Let $\bar y(\cdot;\lambda)$ be an IVP solution as above and let
+	$x_*\in(-1/2,1/2)$ be a fixed point which is not a zero of
+	$\bar y(\cdot;\lambda_0)$.  As $\lambda$ increases (resp.\ decreases)
+	from $\lambda_0$, the value $\bar y(x_*;\lambda)$ changes sign exactly
+	when a zero of $\bar y$ crosses $x_*$; zeros cross one at a time, and
+	the count of zeros of $\bar y$ strictly inside a fixed interval whose
+	boundary is $x_*$ changes by $\pm 1$ at each crossing.
+\end{corollary}
+
+\begin{lemma}[shooting count on a truncated interval]\label{lem:count}
+ On an interval $J=(b,c)$, let $e_1<e_2<\cdots$ be its Dirichlet
+ eigenvalues with the restricted density. For a nonzero IVP solution
+ based at either endpoint at $\lambda>0$, let $N$ be the number of its
+ zeros strictly inside $J$. If it vanishes at the other endpoint, then
+ $\lambda=e_{N+1}$. Otherwise
+ \[
+ e_N<\lambda<e_{N+1},\qquad e_0:=0.
+ \]
+ In particular $\lambda\le e_{N+1}$ always, and $\lambda>e_N$ if $N\ge1$.
+\end{lemma}
+
+\begin{proof}
+ At $\lambda=0$ the IVP solution is a nonzero linear function with no
+ interior zero. The zero count is locally constant unless the opposite
+ endpoint is a zero: zeros are simple, cannot collide, and cannot pass
+ through the initial endpoint, whose derivative is fixed and nonzero.
+ Such endpoint zeros occur precisely at the Dirichlet eigenvalues.
+ By~\eqref{eq:zero-motion}, exactly one zero enters $J$ as $\lambda$
+ increases through each eigenvalue. At $e_j$, oscillation gives $j-1$
+ strictly interior zeros. These facts give the asserted intervals and
+ equality cases; reflection gives the opposite shooting direction.
+\end{proof}
+
+\section{Lemma 1: the cell extension}\label{sec:lemma1}
+
+\begin{lemma}[cell extension]\label{lem:cell}
+	For every $\rho_0\in\mathcal P_a$, every integer $n\ge 1$, and the
+	$1/n$-periodic density
+	\begin{equation*}
+		\rho_n(x):=\rho_0\bigl(n(x+\tfrac12)-\tfrac12\bigr),
+		\qquad -\tfrac12\le x\le -\tfrac12+\tfrac1n,
+		\quad\text{extended with period }1/n,
+	\end{equation*}
+	one has $\rho_n\in\mathcal P_a$ and
+	\begin{equation}
+		\frac{\lambda_{2n}(\rho_n)}{\lambda_n(\rho_n)}
+		=\frac{\lambda_2(\rho_0)}{\lambda_1(\rho_0)}.
+		\label{eq:cellidentity}
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+ Fix $\rho_0$ and let $y_1,y_2$ be its first two eigenfunctions.
+ Define the nonzero, signed transmission factors
+ \[
+ b_i:=\frac{y_i'(1/2)}{y_i'(-1/2)},\qquad i=1,2.
+ \]
+ Zero counts show $b_1<0$ and $b_2>0$: the second eigenfunction's
+ endpoint derivatives have the same sign. Their magnitudes need not
+ equal one or each other.
+
+	Set $x_j:=-1/2+j/n$ and, for $x\in[x_j,x_{j+1}]$,
+	$u_j(x):=n(x-x_j)-1/2\in[-1/2,1/2]$.  Define
+	\begin{equation*}
+  \widetilde y(x):=b_1^j y_1(u_j(x)),\qquad
+  \widetilde f(x):=b_2^j y_2(u_j(x)),
+		\qquad x\in[x_j,x_{j+1}],\ j=0,\ldots,n-1.
+	\end{equation*}
+	Both are $C^1$ across every cell boundary $x_{j+1}$: continuity holds
+	because $y_1(\pm 1/2)=y_2(\pm 1/2)=0$, and the slopes match because
+	\begin{equation*}
+  n b_i^j y_i'(1/2)=n b_i^{j+1}y_i'(-1/2),\qquad i=1,2.
+	\end{equation*}
+	On cell $j$ one has $\widetilde y''=-n^2\lambda_1\rho_n\widetilde y$ and
+	$\widetilde f''=-n^2\lambda_2\rho_n\widetilde f$, so both are
+	eigenfunctions of \eqref{eq:main} with $\rho=\rho_n$, of eigenvalues
+	$n^2\lambda_1$ and $n^2\lambda_2$.  Their boundary values at
+	$\pm 1/2$ vanish.
+
+	Zeros: $\widetilde y$ vanishes exactly at the cell boundaries, i.e.\ at
+	$n-1$ interior points, hence it is the $n$-th eigenfunction
+	(Proposition~\ref{prop:osc}) and
+	$\lambda_n(\rho_n)=n^2\lambda_1(\rho_0)$.  The function
+	$\widetilde f$ vanishes at the $n-1$ cell boundaries and at one point
+	inside each cell (the image of the interior zero of $y_2$), i.e.\ at
+	$2n-1$ interior points, hence it is the $2n$-th eigenfunction and
+	$\lambda_{2n}(\rho_n)=n^2\lambda_2(\rho_0)$.  Dividing gives
+	\eqref{eq:cellidentity}.
+\end{proof}
+
+\begin{corollary}\label{cor:lemma1}
+	$\mu_{2n,n}(a)\le\mu(a)$ and $\nu_{2n,n}(a)\ge\nu(a)$ for all $n\ge 1$.
+\end{corollary}
+
+\begin{proof}
+	For any $\rho_0$, \eqref{eq:cellidentity} says that the value
+	$\lambda_2(\rho_0)/\lambda_1(\rho_0)$ is attained by the ratio
+	$\lambda_{2n}/\lambda_n$ at $\rho_n\in\mathcal P_a$.  Taking the
+	supremum (resp.\ infimum) over $\rho_0$ gives
+	$\nu_{2n,n}(a)\ge\nu(a)$ (resp.\ $\mu_{2n,n}(a)\le\mu(a)$).
+\end{proof}
+
+\section{Lemma 2: the zero-truncation induction}\label{sec:lemma2}
+
+Let $k\ge1$, $m=k+1$, and $\rho\in\mathcal P_a$ be arbitrary. Write
+$z_0$ for the rightmost interior zero of $y_m$, and enumerate the interior
+zeros of $y_{2m}$ unambiguously as
+\[
+ z_1<z_2<\cdots<z_{2k+1}.
+\]
+Thus $z_{2k}$ is its second-from-right interior zero. Comparison gives at
+least $k$ zeros of $y_{2m}$ strictly inside $L=(-1/2,z_0)$ and at least
+one strictly inside $J=(z_0,1/2)$; in particular $z_0<z_{2k+1}$.
+Write $e_j^L,e_j^J$ for the spectra of these two restricted problems.
+Since $y_m$ has $k-1$ zeros inside $L$ and none inside $J$,
+\begin{equation}\label{eq:restriction-indices}
+ e_k^L=e_1^J=\lambda_m(\rho).
+\end{equation}
+Affine normalization preserves the density bounds and every ratio, so
+all extrema defined on the unit interval apply to these restricted spectra.
+
+\subsection{The maximum case}
+
+\begin{lemma}[truncation, max]\label{lem:max}
+ For every $\rho\in\mathcal P_a$ and $k\ge1$,
+ \[
+ \frac{\lambda_{2(k+1)}(\rho)}{\lambda_{k+1}(\rho)}
+ \le\max\{\nu_{2k,k}(a),\nu(a)\}.
+ \]
+\end{lemma}
+
+\begin{proof}
+ \emph{Case A: $z_0\le z_{2k}$.}
+ Let $j$ be the number of zeros of $y_{2m}$ strictly inside $L$.
+ Then $k\le j\le2k-1$. Apply Lemma~\ref{lem:count} to the left-based
+ solution at $\lambda_{2m}$, which is a nonzero multiple of $y_{2m}$.
+ It gives
+ \[
+ \lambda_{2m}\le e_{j+1}^L\le e_{2k}^L,
+ \qquad
+ \frac{\lambda_{2m}}{\lambda_m}
+ \le\frac{e_{2k}^L}{e_k^L}\le\nu_{2k,k}(a).
+ \]
+ This includes any common zero at $z_0$: in that event
+ $\lambda_{2m}=e_{j+1}^L$. In particular $z_0=z_{2k}$ gives
+ $j=2k-1$ and exact equality with $e_{2k}^L$.
+
+ \emph{Case B: $z_{2k}<z_0$.}
+ Here $z_{2k}<z_0<z_{2k+1}$, so $y_{2m}(z_0)\ne0$ and exactly one
+ zero lies inside $J$. Right-based shooting and Lemma~\ref{lem:count}
+ give $\lambda_{2m}<e_2^J$. Thus
+ \[
+ \frac{\lambda_{2m}}{\lambda_m}
+ \le\frac{e_2^J}{e_1^J}\le\nu(a).
+ \]
+ The two cases exhaust all positions of $z_0$.
+\end{proof}
+
+\begin{theorem}[max doubling identity]\label{thm:max}
+ $\nu_{2n,n}(a)=\nu(a)$ for every $n\ge1$.
+\end{theorem}
+
+\begin{proof}
+ The base case is $n=1$, namely $\nu_{2,1}=\nu$ by definition.
+ Assume the assertion for $n=k$. Lemma~\ref{lem:max}, for each
+ density separately, gives $\lambda_{2(k+1)}/\lambda_{k+1}\le\nu(a)$.
+ Taking the supremum proves the upper bound for $n=k+1$;
+ Corollary~\ref{cor:lemma1} supplies the reverse bound.
+\end{proof}
+
+\subsection{The minimum case}
+
+\begin{lemma}[truncation, min]\label{lem:min}
+ For every $\rho\in\mathcal P_a$ and $k\ge1$,
+ \[
+ \frac{\lambda_{2(k+1)}(\rho)}{\lambda_{k+1}(\rho)}
+ \ge\min\{\mu_{2k,k}(a),\mu(a)\}.
+ \]
+\end{lemma}
+
+\begin{proof}
+ There are three cases, including equality.
+
+ \emph{Case A: $z_0<z_{2k}$.}
+ The number $c_0$ of zeros of $y_{2m}$ strictly inside $J$ is at least
+ two. Lemma~\ref{lem:count} gives
+ $\lambda_{2m}>e_{c_0}^J\ge e_2^J$, whether or not $z_0$ itself is an
+ earlier zero of $y_{2m}$. Hence
+ \[
+ \frac{\lambda_{2m}}{\lambda_m}
+ \ge\frac{e_2^J}{e_1^J}\ge\mu(a).
+ \]
+
+ \emph{Case B: $z_0=z_{2k}$ (common zero).}
+ Restrict both eigenfunctions to $J$. The first has no interior zero
+ and the second has exactly one. They satisfy both Dirichlet boundary
+ conditions, so
+ \[
+ e_1^J=\lambda_m,\qquad e_2^J=\lambda_{2m},\qquad
+ \frac{\lambda_{2m}}{\lambda_m}=\frac{e_2^J}{e_1^J}\ge\mu(a).
+ \]
+ No shooting perturbation is needed. The same restrictions on $L$
+ also have indices $k$ and $2k$, respectively.
+
+ \emph{Case C: $z_{2k}<z_0$.}
+ Now all of $z_1,\ldots,z_{2k}$ lie inside $L$ and
+ $y_{2m}(z_0)\ne0$. Thus Lemma~\ref{lem:count} gives
+ $\lambda_{2m}>e_{2k}^L$, and
+ \[
+ \frac{\lambda_{2m}}{\lambda_m}
+ \ge\frac{e_{2k}^L}{e_k^L}\ge\mu_{2k,k}(a).
+ \]
+ These inequalities imply the claim.
+\end{proof}
+
+\begin{remark}[constant-density equality case]
+ For $\rho\equiv d\in[a,1]$ and every $m\ge2$, the rightmost zero of
+ $y_m$ is $z_0=1/2-1/m=z_{2m-2}=z_{2k}$ for $y_{2m}$.
+ The ratio is $4$; minimum Case B and maximum Case A both apply.
+ Thus $c_0=1$ does not imply $z_{2k}<z_0$.
+\end{remark}
+
+\begin{theorem}[min doubling identity]\label{thm:min}
+ $\mu_{2n,n}(a)=\mu(a)$ for every $n\ge1$.
+\end{theorem}
+
+\begin{proof}
+ The base case is $n=1$, namely $\mu_{2,1}=\mu$ by definition.
+ Assuming the assertion for $n=k$, apply Lemma~\ref{lem:min} and take
+ the infimum to obtain $\mu_{2(k+1),k+1}\ge\mu$.
+ Corollary~\ref{cor:lemma1} supplies the reverse bound.
+\end{proof}
+
+\begin{corollary}[extension to measurable densities]\label{cor:measurable}
+ Both doubling identities hold with the extrema taken over
+ $\mathcal{PC}_a$ or $\mathcal Q_a$ as well.
+\end{corollary}
+
+\begin{proof}
+ For each fixed $n$, Proposition~\ref{prop:density} identifies the
+ extrema over all three classes. There is no interchange of a limit
+ with an unbounded eigenvalue index.
+\end{proof}
+
+\section{Consequences}
+
+\begin{theorem}[MW Theorem 3]\label{thm:theorem3}
+	If $\rho_0$ extremizes $\lambda_2/\lambda_1$ in $\mathcal P_a$, then the
+	cell extension $\rho_n$ of Lemma~\ref{lem:cell} extremizes
+	$\lambda_{2n}/\lambda_n$.  Consequently
+	\begin{equation*}
+		\mu_{2n,n}(a)=\mu(a),\qquad
+		\nu_{2n,n}(a)=\nu(a)\qquad(n\ge 1).
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	If $\rho_0$ maximizes, then $\nu(a)=\lambda_2(\rho_0)/\lambda_1(\rho_0)
+	=\lambda_{2n}(\rho_n)/\lambda_n(\rho_n)\le\nu_{2n,n}(a)$ by definition,
+	and Theorem~\ref{thm:max} gives the reverse inequality; hence $\rho_n$
+	maximizes $\lambda_{2n}/\lambda_n$.  The minimum case is analogous with
+	Theorem~\ref{thm:min}.
+\end{proof}
+
+\begin{corollary}[reduction to the first pair]\label{cor:sup}
+ For each $0<a\le1$,
+ \[
+ \sup_{n\ge1}\sup_{\rho\in\mathcal Q_a}
+ \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}=\nu(a).
+ \]
+ Here $\nu(a)$ still means the first-pair supremum, not an assumed formula.
+\end{corollary}
+
+\begin{proof}
+ For each fixed $n$, $\lambda_{n+1}\le\lambda_{2n}$ and the measurable
+ doubling identity give $\lambda_{n+1}/\lambda_n\le\nu(a)$.
+ Conversely the outer supremum includes $n=1$, whose supremum is
+ $\nu(a)$ by definition. No extremizer or explicit first-pair value is
+ needed for this reduction.
+\end{proof}
+
+\begin{corollary}[closed value using the separate first-pair theorem]\label{cor:closed}
+ Let $0<\alpha\le A<\infty$, $R=A/\alpha$, and allow all measurable
+ densities $\alpha\le\rho\le A$ a.e. on a finite interval.
+ Using the first-pair variational structure theorem in
+ \texttt{SL\_ratio\_proof.tex}, one obtains
+ \[
+ \sup_{n\ge1}\sup_\rho\frac{\lambda_{n+1}}{\lambda_n}
+ =\nu(1/R)
+ =\left(\frac{\arccos(-\sqrt R/(\sqrt R+1))}
+ {\arccos(\sqrt R/(\sqrt R+1))}\right)^2.
+ \]
+ On a unit interval it is attained at $n=1$ by $[\alpha,A,\alpha]$
+ with relative widths $st,t,st$, $s=\sqrt R$, $t=1/(2s+1)$.
+\end{corollary}
+
+\begin{proof}
+ Divide the density by $A$ to obtain the normalization $[1/R,1]$,
+ and normalize the interval affinely. Both operations preserve ratios.
+ Corollary~\ref{cor:sup} gives the supremum as $\nu(1/R)$.
+ The companion's theorem entitled ``first-pair global extremal
+ structure'' proves global optimality by compactness, first variation,
+ a zero-energy identity, and interface matching; its balanced-phase
+ calculation then evaluates that optimizer. Neither of those two
+ first-pair steps uses a doubling identity or this corollary.
+ Thus this reference has one direction of dependence and supplies the
+ missing upper bound, not merely a candidate value.
+ The case $R=1$ is the constant-density spectrum and has value $4$.
+\end{proof}
+
+\section{Source locations and proof dependencies}
+
+The local primary sources are \texttt{papers/mw1976.pdf} and
+\texttt{papers/keller1976.pdf}, relative to the project root. Their text
+extractions serve only as search indexes; formulas and the cited
+statements must be checked on the PDF pages. In \cite{mw}, printed
+pp.~517--518 (PDF pp.~1--2) define the original class as piecewise
+continuous densities with a bounded number of jumps and
+$0<a\le\rho\le1$. Theorems 1--2 on p.~518 state the two-jump and symmetry
+properties, and Theorem 3 on pp.~519, 529 states the extremizer transfer.
+The cell construction is in Lemma 1, pp.~521--523, with the distinct
+factors $(-s)^j$ and $t^j$ in (5.3)--(5.4); Lemma 2, pp.~523--524, gives
+the reverse inequalities by truncation. Our signed $b_1,b_2$ convention
+makes these two signs explicit. The original only sketches the minimum
+case; the three-case proof above includes its common-zero branch.
+
+Keller's first-variation and switching formulas are on printed
+pp.~486--487, (3.1)--(3.9); his p.~488 explicitly attributes the two-jump
+symmetry result to Mahar--Willner. These locators distinguish the
+historical results from the proofs supplied here. The present doubling
+proof needs the stated classical spectral and Sturm facts, not the
+companion's first-pair extremal theorem. The latter enters only
+Corollary~\ref{cor:closed}. The extension to $\mathcal Q_a$ is justified
+by Proposition~\ref{prop:density}, not by silently enlarging the
+original papers' density class.
+
+No existence theorem for higher-index extremizers is used in the
+truncation inequalities: each is proved for an arbitrary density before
+taking its extremum. No assertion about fixed $n\ge2$ adjacent-ratio
+optimizers or any spectral-gap extremum follows from these lemmas.
+
+\section{Historical numerical records and current checking limits}
+
+The preceding version reported transfer-matrix checks of cell extension,
+truncation and zero motion, under the script names
+\path{op05_mw_lemma12_audit.py},
+\path{op05_mw_lemma2_audit.py},
+\path{op05_mw_mincase_audit2.py}, and
+\path{op05_mw_extra_checks.py}. Those historical runs have not been
+re-executed as part of this author revision and are not evidence for the
+new proofs. In particular, random strict-inequality cases cannot check
+the omitted equality case. Constant densities give that case for every
+$m\ge2$, as shown explicitly above. Current author checks and their
+precise limits are recorded in the external \texttt{ratio-author.md};
+independent acceptance and PDF builds are left to the coordinator.
+
+\begin{thebibliography}{9}
+\bibitem{mw} T.~J.~Mahar, B.~E.~Willner, \emph{An extremal eigenvalue
+	problem}, Comm. Pure Appl. Math. 29 (1976), no.~5, 517--529.
+	\url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{keller} J.~B.~Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), no.~3, 485--491.
+	\url{https://doi.org/10.1137/0131042}
+\end{thebibliography}
+
+\end{document}

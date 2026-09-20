@@ -1,0 +1,243 @@
+% 编译方式: xelatex SL_h3_research_summary.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+
+\title{第三左定空间完备性研究: 路线总结与经验教训}
+\author{研究总结文档 (项目: BVE research)}
+\date{2026-08-04}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文记录问题 1 推广 (第二左定空间 $H^2$ 解析完备性, 会话 9 已解决) 到第三左定
+空间 $H^3$ 的研究过程. 前段采用\emph{$L^2$-矩三阶递推}路线: 得到显式积分解、
+比值固定点、偏差收缩与最小解结构, 但证明未闭合. 后段的关键转折是改用
+\emph{$H^1$-矩} $M_k = (w, x^k)_1$, 正交条件直接化为与 $H^2$ 相同的二阶递推,
+配合增长引理与多项式界, 证明完整闭合 (见姊妹文档
+\texttt{SL\_h3\_completeness\_proof.pdf}). 本文如实记录失败路线、受阻原因、
+数值验证与经验教训, 遵守 ``不允许编造答案'' 的原则: 所有结论均标注验证状态.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题与目标}
+
+\subsection{任务}
+
+推进问题 1: 验证移位 Krein Laplacian $K_c$ 的\emph{第三左定空间} $H^3[-1,1]$
+中多项式基 $\{p_n\}$ (缺 2, 3 次) 的解析完备性. 会话 9 完成了 $H^2$ 情形;
+本会话目标是 $H^3$, 并在成功后推广到任意 $H^s$.
+
+\subsection{归约}
+
+由左定理论, $(f,g)_3 = (K_c f, K_c g)_1$ 且 $K_c: H^3 \to H^1$ 是等距同构
+($0 \notin \sigma(K_c)$), 故目标等价于:
+\begin{quote}
+	对 $w \in H^1$, 若 $(w, K_c p_n)_1 = 0$ 对所有可允许 $n$ 成立, 则 $w = 0$.
+\end{quote}
+
+\section{路线 A: $L^2$-矩三阶递推 (前段, 未闭合)}
+
+\subsection{推导}
+
+把正交条件写成 $L^2$-矩 $\mu_k = \int w x^k$ 的递推: 内积
+$(w, x^k)_1 = c\mu_k + k\!\int w' x^{k-1} - \tfrac12 \Delta w\, \Delta(x^k)$
+使边界项进入, 得到\emph{三阶}递推 (偶次, $D = w(1)+w(-1)$):
+\begin{equation}
+	c^2 \mu_{2j} = P_j \mu_{2j-2} - Q_j \mu_{2j-4} + R_j \mu_{2j-6} + T_j D,
+\end{equation}
+其中 $P_j = 8cj^2 - 4cj + c^2 j/(j-1)$, $Q_j = 4j(j-1)(2j-1)(2j-3)
++ 4cj(2j-3)$, $R_j = 4j(j-2)(2j-3)(2j-5)$, $T_j = 4j(4j-5)$; 奇次类似
+(源 $S = w(1)-w(-1)$). 自由参数: 偶族 $(\mu_2, D)$, 奇族 $(\mu_3, S)$.
+$L^2$ 有界性给出 $|\mu_k| \leq \|w\|_2 \sqrt{2/(2k+1)}$, 且由 $w \in H^1$ 还有
+改进界 $|(k+1)\mu_k - D| \leq C/\sqrt{k}$ (偶). $z$-尺度
+$z_j = \mu_j/(j!)^2 (4/c)^j$ 下, 齐次递推的系数趋于 $(2, -1, 0)$.
+
+\subsection{已获得的结构结果 (全部经符号或高精度验证)}
+
+\begin{enumerate}
+	\item \textbf{显式积分解} (偶): $E^{+}_j = \prod_{k=1}^{j}(1 + 1/(2k))$ 与
+		$E^{-}_j = \prod_{k=1}^{j}(1 - 1/(2k))$ 精确满足齐次递推
+		(符号级, 分母 $2(j-1)(j-2)(2j-1)(2j-3)$ 消去, $c$ 任意);
+		$E^{-}_j/E^{+}_j = 1/(2j+1)$ 精确成立. 奇: $\prod(1+3/(2k))$ 与
+		$\prod(1+1/(2k))$ 精确.
+	\item \textbf{比值固定点}: 偶 $e_j = 1 + 1/(2j)$, 奇 $e_j = 1 + 3/(2j)$
+		是比值映射 $F(\rho_{j-1}, \rho_{j-2})$ 的精确不动点 ($j = 3..60$
+		精确验证, $c \in \{1,3,10,100\}$).
+	\item \textbf{偏差收缩}: 对 $u$ (齐次解), $d_j = \rho_j - e_j \geq 0$ 且
+		单调递减到 $\sim 1/j^2$ ($j \leq 2\times10^6$, 全部 $c$ 与奇偶);
+		线性化收缩因子偶约 $1 - 2/j$, 奇约 $1 - \delta/j$ ($\delta$ 很小,
+		需更高精度确认).
+	\item \textbf{归纳不等式}: 若 $0 \leq d_{j-1} \leq \alpha/(j-1)$,
+		$0 \leq d_{j-2} \leq \alpha/(j-2)$, 则 $d_j \geq 0$ 的充分条件是
+		$\Delta(j, \alpha) \geq 0$, 其中 ($\beta = 1$ 偶, $3$ 奇)
+		\begin{equation}
+			\begin{aligned}
+				\Delta &= (-a_2)\,\frac{(j-1)(2\alpha - \beta)}
+					{(2j-2+\beta)(j-1+\alpha)} \\
+					&\quad + a_3 (j-1)(j-2)\Bigl[
+						\frac{1}{(j-1+\alpha)(j-2+\alpha)}
+						- \frac{4}{(2j-2+\beta)(2j-4+\beta)} \Bigr].
+			\end{aligned}
+		\end{equation}
+		对 $\alpha = 2 + 5c/12$ (偶), $4 + 7c/20$ (奇), $\Delta \geq 0$ 精确
+		验证 $j \leq 60$, 浮点验证到 $j = 2\times10^6$ (最坏值 $\sim 1/j$).
+	\item \textbf{基始与源上界}: $u$ 的 $\rho_2, \rho_3$ 与 $v$ (源解) 的
+		$\sigma_3, \sigma_4$ 落在 $[e_j, 1 + \alpha/j]$ (精确验证); $v$ 的
+		上界需用 $v_{j-1} \geq v_2 \sigma_3$ (粗界 $v_{j-1} \geq v_2$ 在
+		$c = 100$ 时失败于 $j = 4$).
+	\item \textbf{最小解}: 向后迭代给出最小解 $h^*$, $h^*_0 \neq 0$ (偶
+		$h^*_1/h^*_0 \approx 29.64$, $h^*_2/h^*_0 \approx 586.45$; 奇
+		$25.70$, $386.13$; $c=3$), 故 $h^*$ 不满足 $\mu_0 = 0$.
+\end{enumerate}
+
+\subsection{为什么未闭合}
+
+比值陷阱的严格化需要在 ``$d_{j-1} = 0$ 而 $d_{j-2} > 0$'' 这一盒内退化情形
+处理 $d_j = -a_3 d_{j-2}/(\cdots) < 0$ 的可能性: 盒 $[e, 1+\alpha/j]$ 允许
+实际动力学不会出现的配置, 单边归纳条件不足; 自洽陷阱在
+$(j=100, c=3, C=2)$ 处出现 $2.000612\, j^2$ 对 $2.000000\, j^2$ 的微过冲,
+需要更大的常数或依赖单调性的双向证明. 最小解排除法 (路线 A2) 虽证明
+$h^*_0 \neq 0$ 且可借 Poincar\'e--Perron 型定理完成, 但依赖更重的渐近理论,
+且三阶系统的自由参数 (源 $D$, $S$) 使论证冗长.
+
+\section{路线 B: $H^1$-矩二阶递推 (成功)}
+
+\subsection{转折观察}
+
+三阶递推的来源是 $L^2$-矩把边界项 $(D, S)$ 拖入. 若对\emph{与正交条件同源的
+内积}取矩, 即 $M_k := (w, x^k)_1$, 则
+\begin{equation}
+	(w, K_c p_{2m})_1 = c M_{2m} - A_m M_{2m-2} + B_m M_{2m-4} = 0
+	\qquad (m \geq 2),
+\end{equation}
+其中 $A_m, B_m$ 与 $H^2$ 情形\emph{完全相同}; 边界项被 $M_k$ 定义中的
+$-\tfrac12 \Delta w\, \Delta(x^k)$ 吸收. 递推阶数三阶 $\to$ 二阶.
+
+\subsection{证明结构 (五步)}
+
+\begin{enumerate}
+	\item 等距同构: 归结为 $\{K_c p_n\}$ 在 $H^1$ 中完备;
+	\item $H^1$-矩递推: $M_0 = M_1 = 0$, 二阶跳变递推 (偶/奇);
+	\item 增长引理 (会话 9): $M_{2m} = M_2 u_m$, $u_m \geq (4/c)^{m-1} m!$;
+	\item 多项式界: $M_{2m} = 2m \int w' x^{2m-1} + c \mu_{2m}$,
+		$|M_{2m}| \leq C\sqrt m$ (Cauchy-Schwarz, $w \in H^1$);
+	\item 矛盾 $\Rightarrow$ $M_2 = 0$ 与 $M_3 = 0$ $\Rightarrow$ 全部
+		$H^1$-矩为零 $\Rightarrow$ $w = 0$ (多项式在 $H^1$ 稠密).
+\end{enumerate}
+
+\subsection{推广}
+
+同一论证对任意整数 $s \geq 1$ 成立: 完备性等价于 $\{K_c^{s/2} p_n\}$ 在 $L^2$
+中完备; 取矩 $M_k = (w, K_c^{s/2} x^k)$, 递推同为二阶, 而上界
+$|M_k| \leq \|w\|_2 \|x^k\|_s \leq C_s k^s$ 是多项式增长, 与超阶乘增长矛盾.
+因此 $\{p_n\}$ 在\emph{一切}左定空间 $H^s$ ($s \geq 1$) 中解析完备.
+
+\section{数值验证}
+
+\begin{itemize}
+	\item 恒等式 (2) 对 $w \in \{x^2, x^3, x^2+x^4, 1+x+x^5\}$ ($c=3$)
+		精确有理数逐项成立 (脚本 \path{scripts/h3_v69b_h1moments.py});
+	\item 增长引理 $u_m \geq (4/c)^{m-1} m!$ 精确验证到 $m=30$,
+		$c \in \{1,3,10,50\}$;
+	\item 矛盾量级: $c=3$, $m=20$ 时 $(4/c)^{m-1}m!/(C\sqrt m) \approx
+		8\times10^{19}$;
+	\item $H^1$ 投影: $x^2, x^3$ 到 $\operatorname{span}\{K_c p_n\}$ 的 $H^1$
+		残差在次数 $\leq 26$ 时达机器精度;
+	\item 路线 A 的结构结果全部独立保存于脚本
+		\path{scripts/h3_v53c_symbolic.py}, \path{scripts/h3_v56_odd_explicit.py},
+		\path{scripts/h3_v67b_trap_fast.py}, \path{scripts/h3_v68_bases_min.py} 等.
+\end{itemize}
+
+\section{失败与受阻路线 (如实登记)}
+
+\begin{description}
+	\item[$L^2$-矩三阶递推 + 比值陷阱 (路线 A)] 得到全部结构结果 (显式解,
+		固定点, 收缩, 自洽不等式), 但盒式归纳无法排除退化配置; 未宣称证明.
+		教训: 三阶系统的自由参数与边界源使``盒''必须携带实际动力学约束.
+	\item[最小解排除法 (路线 A2)] $h^*_0 \neq 0$ 已数值证实, 但严格证明需要
+		Poincar\'e--Perron 型渐近分类, 且对源解 $v$ 的适用需另证; 被路线 B
+		取代.
+	\item[改进界 $|(k+1)\mu_k - D| \leq C/\sqrt{k}$] 把边界值 $D$ 与矩耦合,
+		理论上可消去源, 但 $\eta_j = (k+1)\mu_k - D$ 的递推系数放大到
+		$O(j^2)$, 未比路线 A 更简单.
+	\item[例程教训] 早期探索中 ``$1+\alpha/j$'' 与 ``$1+\alpha/(2j-1)$'' 的
+		奇数显式解搜索失败, 正确的奇解形式是 $1 + 3/(2j)$; 这提醒形式
+		猜测必须系统化.
+\end{description}
+
+\section{经验教训}
+
+\begin{enumerate}
+	\item \textbf{换基优先于硬算}: 三阶递推的复杂性来自选择了错误的矩 ($L^2$-矩
+		而非与正交条件同源的内积矩). 对 $(w, K_c p)_1 = 0$ 这类条件, 取
+		$M_k = (w, x^k)_1$ 使边界项自动消失, 递推回到二阶. ``矩跳跃''
+		方法的关键自由度在于\emph{选哪个内积取矩}.
+	\item \textbf{递推阶数 = 单项式跨度 $-$ 内积复杂度}: $K_c p_n$ 是 3 个
+		单项式的组合; $L^2$-矩使 $(w, x^k)_1$ 展开为 $\mu_k, \mu_{k-2}, D$,
+		得三阶; $H^1$-矩使展开恰为 $M_k, M_{k-2}$, 得二阶. 一般 $H^s$ 同理.
+	\item \textbf{上界与增长必须同尺度}: 会话 9 用 $|\mu_k| \leq C/\sqrt k$
+		与阶乘增长矛盾; 本文 $H^1$-矩的上界是 $C\sqrt m$ (多项式), 仍远小于
+		超阶乘. 关键是上界是\emph{多项式}的, 具体幂次不重要.
+	\item \textbf{验证脚本分层}: 精确有理数 (小 $j$) + 浮点 (大 $j$) 双层验证
+		能区分 ``恒等式'' 与 ``渐近现象''; 路线 A 的 $\Delta(j,\alpha) \geq 0$
+		与基始情形均按此验证.
+	\item \textbf{诚实记录}: 路线 A 的发现 (显式解, 固定点, 最小解) 本身是
+		三阶整函数递推理论的实例, 即便最终证明未使用, 也登记为工具库条目
+		供后续使用.
+\end{enumerate}
+
+\section{后续开放问题}
+
+\begin{enumerate}
+	\item $H^s$ 中 $\{p_n\}$ 的\emph{显式正交化}: 把 $\{K_c^{s/2} p_n\}$
+		Gram-Schmidt 化为显式正交系 (偶/奇分别);
+	\item 一般 (非 Krein) 边界条件约束空间中多项式稠密的充要条件
+		([4, Section 6] 更大开放问题的框架);
+	\item 矩跳跃机制的稳定性: 系数扰动下 $A_j - B_j \geq c$ 型下界的保持;
+	\item 三阶递推 (路线 A) 的一般理论: 比值固定点为精确不动点的整函数系
+		的分类与最小解显式构造.
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定空间族] $H^s = D(K_c^{s/2})$, 内积 $(f,g)_s$; 等距同构
+		$K_c: H^{s+2} \to H^s$.
+	\item[H 矩跳跃] 与正交条件同源内积的矩; 边界项吸收; 递推降阶.
+	\item[三阶线性递推理论] 显式积分解, 比值映射固定点, 最小解 (向后迭代),
+		偏差线性化收缩 — 路线 A 的副产品, 见工具库.
+	\item[Cauchy-Schwarz] 矩的多项式上界; 与增长引理 (二阶递推支配解) 配合.
+	\item[Weierstrass / Sobolev 稠密性] 多项式在 $H^1$ 稠密, 矩全零
+		$\Rightarrow$ 函数为零.
+\end{description}
+
+\begingroup\sloppy
+\begin{thebibliography}{6}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\bibitem{h2proof} 项目文档, \emph{$H^2$ 解析完备性: 证明文档} (会话 9).
+	路径 \path{docs/SL_h2_completeness_proof.pdf}.
+\bibitem{h3proof} 项目文档, \emph{$H^3$ 解析完备性: 证明文档} (会话 10).
+	路径 \path{docs/SL_h3_completeness_proof.pdf}.
+\bibitem{fg} C. Fischbacher et al., \emph{Abstract left-definite theory: a model
+	operator approach}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\end{thebibliography}
+
+\end{document}

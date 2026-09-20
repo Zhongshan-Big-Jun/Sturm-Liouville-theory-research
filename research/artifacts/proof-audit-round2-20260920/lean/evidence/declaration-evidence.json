@@ -1,0 +1,236 @@
+{
+  "role": "author verification only",
+  "source_sha256": "5a8708c3a756e1bb86974fb887b30458290498ad0cde0fd452bdcaf250b2f050",
+  "theorem_count": 25,
+  "allowed_foundational_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "all_target_closures_within_policy": true,
+  "basis": "Lean #print and #print axioms from successful inspection 14, not a source-string estimate",
+  "declarations": [
+    {
+      "declaration": "SL.AuditRound2.terminal_difference",
+      "printed_declaration": "theorem SL.AuditRound2.terminal_difference.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {v : ℕ → K} {N : ℕ},\n  Eq.{u_1 + 1} (v N) 0 →\n    Eq.{u_1 + 1} (v (HSub.hSub.{0, 0, 0} N 1)) 0 →\n      Eq.{u_1 + 1} (SL.AuditRound2.second_difference.{u_1} v N) (v (HSub.hSub.{0, 0, 0} N 2)) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.difference_step_iff",
+      "printed_declaration": "theorem SL.AuditRound2.difference_step_iff.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (c a b d e : K),\n  Eq.{u_1 + 1} a\n      (HAdd.hAdd.{u_1, u_1, u_1}\n        (HSub.hSub.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (HAdd.hAdd.{u_1, u_1, u_1} 2 c) b)\n          (HMul.hMul.{u_1, u_1, u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 c)) d))\n        (HMul.hMul.{u_1, u_1, u_1} c e)) ↔\n    Eq.{u_1 + 1} (HAdd.hAdd.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} a (HMul.hMul.{u_1, u_1, u_1} 2 b)) d)\n      (HMul.hMul.{u_1, u_1, u_1} c\n        (HAdd.hAdd.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} b (HMul.hMul.{u_1, u_1, u_1} 2 d)) e)) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.solution_difference_step",
+      "printed_declaration": "theorem SL.AuditRound2.solution_difference_step.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {c v : ℕ → K},\n  SL.AuditRound2.third_order_solution.{u_1} (fun j => HAdd.hAdd.{u_1, u_1, u_1} 2 (c j))\n      (fun j => Neg.neg.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 (c j)))) c v →\n    ∀ (n : ℕ),\n      Eq.{u_1 + 1} (SL.AuditRound2.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 3))\n        (HMul.hMul.{u_1, u_1, u_1} (c (HAdd.hAdd.{0, 0, 0} n 3))\n          (SL.AuditRound2.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 2))) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.factorial_shift_four",
+      "printed_declaration": "theorem SL.AuditRound2.factorial_shift_four : ∀ (n : ℕ),\n  Eq.{1} (↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)\n    (HMul.hMul.{0, 0, 0}\n      (HMul.hMul.{0, 0, 0}\n        (HMul.hMul.{0, 0, 0}\n          (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 6)\n            (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 5))\n          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 4))\n        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 3))\n      ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 1)).factorial) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.k1_terminal_value",
+      "printed_declaration": "theorem SL.AuditRound2.k1_terminal_value : ∀ (mu : ℕ → ℚ) (n : ℕ),\n  Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 4)) 1 →\n    Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 3)) 0 →\n      Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 2)) 0 →\n        Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 4))\n            (HAdd.hAdd.{0, 0, 0}\n              (HSub.hSub.{0, 0, 0}\n                (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_p (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 3)))\n                (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_q (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 2))))\n              (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_r (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 1)))) →\n          Eq.{1} (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled mu) (HAdd.hAdd.{0, 0, 0} n 3))\n            (HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 3)\n              (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 4)\n                ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.k1_terminal_formula_pos",
+      "printed_declaration": "theorem SL.AuditRound2.k1_terminal_formula_pos : ∀ (n : ℕ),\n  LT.lt.{0} 0\n    (HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 3)\n      (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 4)\n        ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.k1_n3_last_equation",
+      "printed_declaration": "theorem SL.AuditRound2.k1_n3_last_equation : Eq.{1} (SL.AuditRound2.k1_n3_segment 4)\n  (HAdd.hAdd.{0, 0, 0}\n    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_p 4) (SL.AuditRound2.k1_n3_segment 3))\n      (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_q 4) (SL.AuditRound2.k1_n3_segment 2)))\n    (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_r 4) (SL.AuditRound2.k1_n3_segment 1))) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.k1_n3_difference",
+      "printed_declaration": "theorem SL.AuditRound2.k1_n3_difference : Eq.{1}\n  (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled SL.AuditRound2.k1_n3_segment) 3) (1 / 960) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.k1_n3_difference_ne_zero",
+      "printed_declaration": "theorem SL.AuditRound2.k1_n3_difference_ne_zero : Ne.{1}\n  (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled SL.AuditRound2.k1_n3_segment) 3) 0 :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_signed_slope_matching",
+      "printed_declaration": "theorem SL.AuditRound2.mw_signed_slope_matching : ∀ (Left Right Scale : ℝ) (j : ℕ),\n  Ne.{1} Left 0 →\n    Eq.{1}\n      (HMul.hMul.{0, 0, 0}\n        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (SL.AuditRound2.signed_transmission Left Right) j) Scale) Right)\n      (HMul.hMul.{0, 0, 0}\n        (HMul.hMul.{0, 0, 0}\n          (HPow.hPow.{0, 0, 0} (SL.AuditRound2.signed_transmission Left Right) (HAdd.hAdd.{0, 0, 0} j 1)) Scale)\n        Left) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_transmission_ne_zero",
+      "printed_declaration": "theorem SL.AuditRound2.mw_transmission_ne_zero : ∀ {Left Right : ℝ},\n  Ne.{1} Left 0 → Ne.{1} Right 0 → Ne.{1} (SL.AuditRound2.signed_transmission Left Right) 0 :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_affine_has_deriv",
+      "printed_declaration": "theorem SL.AuditRound2.mw_affine_has_deriv : ∀ {y : ℝ → ℝ} {dy A c d x : ℝ},\n  HasDerivAt.{0, 0} y dy (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d) →\n    HasDerivAt.{0, 0} (fun z => HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c z) d)))\n      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} A c) dy) x :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.cell_branch_has_deriv",
+      "printed_declaration": "theorem SL.AuditRound2.cell_branch_has_deriv : ∀ {y : ℝ → ℝ} {Scale Start Factor x DY : ℝ} {j : ℕ},\n  HasDerivAt.{0, 0} y DY (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} Scale (HSub.hSub.{0, 0, 0} x Start)) (1 / 2)) →\n    HasDerivAt.{0, 0} (SL.AuditRound2.cell_branch y Scale Start Factor j)\n      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} Factor j) Scale) DY) x :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_cell_interface",
+      "printed_declaration": "theorem SL.AuditRound2.mw_cell_interface : ∀ {y : ℝ → ℝ} {Scale Start Left Right : ℝ},\n  Ne.{1} Scale 0 →\n    Ne.{1} Left 0 →\n      Eq.{1} (y (-1 / 2)) 0 →\n        Eq.{1} (y (1 / 2)) 0 →\n          HasDerivAt.{0, 0} y Left (-1 / 2) →\n            HasDerivAt.{0, 0} y Right (1 / 2) →\n              ∀ (j : ℕ),\n                have Factor := SL.AuditRound2.signed_transmission Left Right;\n                have Join := HAdd.hAdd.{0, 0, 0} Start (HDiv.hDiv.{0, 0, 0} 1 Scale);\n                Eq.{1} (SL.AuditRound2.cell_branch y Scale Start Factor j Join)\n                    (SL.AuditRound2.cell_branch y Scale Join Factor (HAdd.hAdd.{0, 0, 0} j 1) Join) ∧\n                  Eq.{1} (deriv.{0, 0} (SL.AuditRound2.cell_branch y Scale Start Factor j) Join)\n                    (deriv.{0, 0} (SL.AuditRound2.cell_branch y Scale Join Factor (HAdd.hAdd.{0, 0, 0} j 1)) Join) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_affine_ode",
+      "printed_declaration": "theorem SL.AuditRound2.mw_affine_ode : ∀ {y dy ddy rho : ℝ → ℝ} {A c d lam : ℝ},\n  (∀ (x : ℝ), HasDerivAt.{0, 0} y (dy x) x) →\n    (∀ (x : ℝ), HasDerivAt.{0, 0} dy (ddy x) x) →\n      (∀ (x : ℝ), Eq.{1} (Neg.neg.{0} (ddy x)) (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} lam (rho x)) (y x))) →\n        ∀ (x : ℝ),\n          Eq.{1}\n            (Neg.neg.{0}\n              (deriv.{0, 0}\n                (deriv.{0, 0} fun z => HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c z) d))) x))\n            (HMul.hMul.{0, 0, 0}\n              (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lam)\n                (rho (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d)))\n              (HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d)))) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.mw_scaled_ratio",
+      "printed_declaration": "theorem SL.AuditRound2.mw_scaled_ratio : ∀ (c lamOne lamTwo : ℝ),\n  Ne.{1} c 0 →\n    Eq.{1}\n      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lamTwo)\n        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lamOne))\n      (HDiv.hDiv.{0, 0, 0} lamTwo lamOne) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.second_sine_mode_has_deriv",
+      "printed_declaration": "theorem SL.AuditRound2.second_sine_mode_has_deriv : ∀ (x : ℝ),\n  HasDerivAt.{0, 0} SL.AuditRound2.second_sine_mode\n    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 Real.pi)\n      (Real.cos (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 Real.pi) (HAdd.hAdd.{0, 0, 0} x (1 / 2)))))\n    x :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.second_sine_mode_endpoint_slopes",
+      "printed_declaration": "theorem SL.AuditRound2.second_sine_mode_endpoint_slopes : Eq.{1} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2))\n    (HMul.hMul.{0, 0, 0} 2 Real.pi) ∧\n  Eq.{1} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)) (HMul.hMul.{0, 0, 0} 2 Real.pi) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.second_sine_mode_transmission",
+      "printed_declaration": "theorem SL.AuditRound2.second_sine_mode_transmission : Eq.{1}\n    (SL.AuditRound2.signed_transmission (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2))\n      (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)))\n    1 ∧\n  Eq.{1}\n    (HDiv.hDiv.{0, 0, 0} (Neg.neg.{0} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)))\n      (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2)))\n    (-1) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.attained_le_sup",
+      "printed_declaration": "theorem SL.AuditRound2.attained_le_sup : ∀ {S : Set.{0} ℝ} {C : ℝ},\n  BddAbove.{0} S → Membership.mem.{0, 0} S C → LE.le.{0} C (sSup.{0} S) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.attained_sup_eq_iff_upper_bound",
+      "printed_declaration": "theorem SL.AuditRound2.attained_sup_eq_iff_upper_bound : ∀ {S : Set.{0} ℝ} {C : ℝ},\n  BddAbove.{0} S →\n    Membership.mem.{0, 0} S C → (Eq.{1} (sSup.{0} S) C ↔ ∀ (x : ℝ), Membership.mem.{0, 0} S x → LE.le.{0} x C) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.balanced_candidate_le_sup",
+      "printed_declaration": "theorem SL.AuditRound2.balanced_candidate_le_sup : ∀ {s : ℝ},\n  LT.lt.{0} 0 s →\n    ∀ {S : Set.{0} ℝ},\n      BddAbove.{0} S →\n        Membership.mem.{0, 0} S\n            (HDiv.hDiv.{0, 0, 0}\n              (HPow.hPow.{0, 0, 0}\n                (HDiv.hDiv.{0, 0, 0}\n                  (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 s) 1)\n                    (HSub.hSub.{0, 0, 0} Real.pi (SL.AuditRound2.candidate_theta s)))\n                  s)\n                2)\n              (HPow.hPow.{0, 0, 0}\n                (HDiv.hDiv.{0, 0, 0}\n                  (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 s) 1)\n                    (SL.AuditRound2.candidate_theta s))\n                  s)\n                2)) →\n          LE.le.{0} (SL.AuditRound2.balanced_candidate s) (sSup.{0} S) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.adjacent_ratio_le_of_doubled",
+      "printed_declaration": "theorem SL.AuditRound2.adjacent_ratio_le_of_doubled : ∀ {lam : ℕ → ℝ} {n : ℕ} {nu : ℝ},\n  Monotone.{0, 0} lam →\n    LE.le.{0} 1 n →\n      LT.lt.{0} 0 (lam n) →\n        LE.le.{0} (HDiv.hDiv.{0, 0, 0} (lam (HMul.hMul.{0, 0, 0} 2 n)) (lam n)) nu →\n          LE.le.{0} (HDiv.hDiv.{0, 0, 0} (lam (HAdd.hAdd.{0, 0, 0} n 1)) (lam n)) nu :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.attainment_doubling_countermodel",
+      "printed_declaration": "theorem SL.AuditRound2.attainment_doubling_countermodel : ∀ (C U : ℝ),\n  ∃ S D,\n    BddAbove.{0} S ∧\n      Membership.mem.{0, 0} S C ∧\n        (∀ (n : ℕ), Eq.{1} (D n) S) ∧ (∀ (n : ℕ), Eq.{1} (sSup.{0} (D n)) (sSup.{0} S)) ∧ LT.lt.{0} U (sSup.{0} S) :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "SL.AuditRound2.no_candidate_upper_bound_from_doubling",
+      "printed_declaration": "theorem SL.AuditRound2.no_candidate_upper_bound_from_doubling : ∀ (C : ℝ),\n  ¬∀ (S : Set.{0} ℝ) (D : ℕ → Set.{0} ℝ),\n      BddAbove.{0} S →\n        Membership.mem.{0, 0} S C → (∀ (n : ℕ), Eq.{1} (sSup.{0} (D n)) (sSup.{0} S)) → LE.le.{0} (sSup.{0} S) C :=\n⋯",
+      "transitive_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ]
+}

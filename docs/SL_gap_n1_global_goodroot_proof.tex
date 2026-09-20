@@ -23,7 +23,7 @@
 \title{缺口 (d) 闭合: INF 全局极小元必为 sign-consistent good root\\[-2mm]
 \large 相邻间距 $D=\lambda_2-\lambda_1$ 的 INF 侧对全部 $R>1$ 完全闭合}
 \author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
-\date{2026-08-12}
+\date{2026-08-12; 2026-09-20 revision}
 
 \begin{document}
 \maketitle
@@ -40,7 +40,7 @@ $D\ge3\pi^2/R$ (两块界 O3b 严格不等式 + $\rho\equiv R$ 的精确值), �
 临界值 $D(v^*)<3\pi^2/R$ (缺口 (a') 的 KEY LEMMA 全 $R$ 版), 故极小元在内部;
 (ii) \emph{临界点 $\Rightarrow$ good root}: 内部极小元满足 $\partial_aD=\partial_bD=0$,
 由 Feynman--Hellmann 得 $f(a)=f(b)=0$; 结构引理 (Wronskian 单调性) 给出
-$f$ 至多两个零点、$\{f>0\}$ 为包含 $y_2$ 唯一零点 $z_0$ 的单区间, 故
+$-f_{a,b}$ 至多两个零点, 且其正集为包含 $y_2$ 唯一零点 $z_0$ 的单区间, 故
 $a<z_0<b$, 符号一致性 $y_2(a)/y_1(a)>0$, $y_2(b)/y_1(b)<0$ 自动成立;
 (iii) \emph{刚性}: 一切 sign-consistent good root 满足 $a+b=1$ (全 $R$
 阱族刚性, 2026-08-10), 故极小元在对称线上, 由对称线 1D 分析唯一临界点
@@ -156,30 +156,30 @@ $W:=y_1y_2'-y_1'y_2$. 则 $W<0$ 于 $(0,1)$, 且 $v:=y_2/y_1$ 严格递减. \STR
 \end{proof}
 
 \begin{lemma}[$f$ 的零点结构]\label{lem:struct}
-设 $f:=\lambda_1\hat y_1^2-\lambda_2\hat y_2^2$ (归一化), $z_0$ 为 $y_2$ 的唯一零点.
-则 $f/\hat y_1^2$ 于 $(0,z_0)$ 严格递增、于 $(z_0,1)$ 严格递减; $f$ 在
-$(0,z_0)$ 恰有一个零点 $\alpha$, 在 $(z_0,1)$ 至多一个零点 $\beta$ (若存在则
-$\alpha<z_0<\beta$); $\{f>0\}$ 是包含 $z_0$ 的单区间, 即
-$(\alpha,\beta)$ (若 $\beta$ 存在) 或 $(\alpha,1)$ (若否).
-特别地: 若 $0<a<b<1$ 且 $f(a)=f(b)=0$, 则 $a=\alpha$, $b=\beta$,
-从而 $a<z_0<b$. \STRICT{}
+设 $f:=\lambda_1\hat y_1^2-\lambda_2\hat y_2^2$, $z_0$ 为 $y_2$ 的唯一零点.
+则 $f/\hat y_1^2$ 于 $(0,z_0)$ 严格递增, 于 $(z_0,1)$ 严格递减,
+且在 $z_0$ 处等于 $\lambda_1>0$. 因而两侧各至多一个零点,
+$\{f>0\}$ 是包含 $z_0$ 的单区间 (端点可为 $0$ 或 $1$).
+若 $0<a<b<1$ 且 $f(a)=f(b)=0$, 则 $a<z_0<b$,
+并且 $f>0$ 于 $(a,b)$, $f<0$ 于 $(0,a)\cup(b,1)$. \STRICT{}
 \end{lemma}
 
 \begin{proof}
-	比值 $v=\hat y_2/\hat y_1=y_2/y_1$ 与归一化无关, 由引理 \ref{lem:mono} 严格
-	递减. 于是 $f/\hat y_1^2=\lambda_1-\lambda_2v^2$: 于 $(0,z_0)$ 上
-	$v>0$ 递减, 故 $v^2$ 递减, $f/\hat y_1^2$ 严格递增; 于 $(z_0,1)$ 上
-	$v<0$ 递减, 故 $v^2$ 递增, $f/\hat y_1^2$ 严格递减.
-	在 $(0,z_0)$ 上: $v(0^+)=1$ (斜率归一化下 $y_1,y_2\sim x$), 故
-	$(f/\hat y_1^2)(0^+)=\lambda_1-\lambda_2<0$; 而
-	$(f/\hat y_1^2)(z_0)=\lambda_1>0$ ($\hat y_2(z_0)=0$). 严格递增函数
-	由负到正穿零恰一次, 得唯一零点 $\alpha\in(0,z_0)$.
-	在 $(z_0,1)$ 上: $(f/\hat y_1^2)(z_0)=\lambda_1>0$, 严格递减, 故至多一个
-	零点 $\beta\in(z_0,1)$ (若 $x\to1^-$ 时极限为负); 若 $\beta$ 不存在则
-	$f>0$ 于整个 $(z_0,1)$.
-	若 $f(a)=f(b)=0$, $a<b$: $a$ 是 $(0,z_0)$ 内唯一的零点故 $a=\alpha$;
-	$b$ 必须是 $(z_0,1)$ 内的零点 (否则与 $a\ne b$ 矛盾), 故 $b=\beta$,
-	$z_0\in(a,b)$. \qed
+	正确的归一化商为
+	\[
+		v=\frac{\hat y_2}{\hat y_1}
+		=\sqrt{\frac{n_1}{n_2}}\,\frac{y_2}{y_1},\qquad
+		v(0^+)=\sqrt{\frac{n_1}{n_2}}.
+	\]
+	固定密度后, $n_1,n_2>0$ 不随空间变量变化, 故引理 \ref{lem:mono}
+	仍给出 $v$ 严格递减. 由 $f/\hat y_1^2=\lambda_1-\lambda_2v^2$,
+	$v>0$ 于左侧, $v<0$ 于右侧, 得所述严格增减性.
+	在节点处 $v=0$, 所以 $f/\hat y_1^2=\lambda_1>0$.
+	两侧各至多一次穿零, 正集为含 $z_0$ 的单区间.
+	若已有两个不同的内部零点 $a<b$, 则它们不可能同处一侧,
+	也不能等于 $z_0$; 必有 $a<z_0<b$. 两侧严格单调性继而给出全部符号.
+	左端值为 $\lambda_1-\lambda_2n_1/n_2$, 本证明不假定其符号,
+	也不需要任意配置均有左侧零点. \qed
 \end{proof}
 
 \begin{corollary}[内部临界点 $\Rightarrow$ sign-consistent good root]\label{cor:goodroot}

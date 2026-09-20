@@ -24,7 +24,7 @@
 \large KEY LEMMA 全 $R$ 版与张力比不等式 (INF 侧全 $R$ 闭合推论)}
 {缺口 (a') 闭合: 对称线 1D 分析对全部 R>1; KEY LEMMA 全 R 版与张力比不等式 (INF 侧全 R 闭合推论)}}
 \author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
-\date{2026-08-12}
+\date{2026-08-12; 2026-09-20 revision}
 
 \begin{document}
 \maketitle
@@ -524,9 +524,12 @@ $\varphi(\gamma)=\tan\gamma-\frac23(\pi-\gamma)$ 严格递增.
 	\sin x\le x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\frac{x^9}{9!}
 	-\frac{x^{11}}{11!}+\frac{x^{13}}{13!},
 	\qquad
-	\cos x\ge1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!},
+	\cos x\ge1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!}-\frac{x^{10}}{10!}>0,
 \end{equation*}
-以及 $\tan x=\sin x/\cos x$, 得 ($x=961/1000$)
+这里余弦下界取到负项 $-x^{10}/10!$ (2026-09-20 修订).
+旧八次截断是上界, 不能用作分母下界. 交错余项和分母正性分别保证
+$S_{13}\ge\sin x$ 与 $0<C_{10}\le\cos x$; 有理数相等检查仅核对常数抄录,
+不代替包络证明. 由 $\tan x=\sin x/\cos x$, 得 ($x=961/1000$)
 \begin{equation*}
 	\tan x\le\frac{\sin_{\text{up}}(x)}{\cos_{\text{lo}}(x)}=:R_1
 	<1.4315<1.4472<\frac{2(223/71-0.961)}3,
@@ -540,8 +543,8 @@ $\varphi(\gamma)=\tan\gamma-\frac23(\pi-\gamma)$ 严格递增.
 $y_0\in(\pi-0.97,\pi-0.961)\subset(2.1708,2.1819)$. 精确比值
 \begin{equation*}
 	R_1=\frac{5104691704723563842653351044859938032346287993281}
-	{3566219119511749539487170630605640000000000000000}
-	\approx1.4314015863,
+	{3566217966719202085941974656584935652684000000000}
+	\approx1.4314020490,
 \end{equation*}
 \begin{equation*}
 	R_2=\frac{329267980378932303644934573247}
@@ -579,7 +582,7 @@ $\cos2w_0\ge1-(2w_0)^2/2\ge0.252$:
 \end{equation*}
 
 \textbf{C5 ($F(\gamma_0^*)>0$).} $F(\gamma_0^*)>0\iff
-16y_0^4-4\pi^2y_0^2-15\pi^2>0$; 左端关于 $y_0>1$ 递增、关于 $\pi$ 递减,
+16y_0^4-4\pi^2y_0^2-15\pi^2>0$; 左端关于 $y_0\ge223/71-0.97>2$ 递增、关于 $\pi$ 递减,
 故
 \begin{equation*}
 	16y_0^4-4\pi^2y_0^2-15\pi^2

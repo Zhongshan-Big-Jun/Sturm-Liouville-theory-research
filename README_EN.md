@@ -2,6 +2,8 @@
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
+The 2026-09-20 second audit repairs spectral/domain claims, the first-pair global extremum argument and K1 terminal conditions, and connects external findings to versioned library corrections. See the [audit report](reports/proof-audit-round2-20260920/REPORT.md) for independent reviews, local Lean evidence and remaining gaps.
+
 This is a research output repository using the [rigorous-open-math-research plugin](https://github.com/xsoc1/rigorous-open-math-research) for long-term mathematics research. It preserves proofs, counterexamples, successful and unsuccessful routes, reusable tools, and partial Lean formalizations from human-agent collaboration.
 
 The mathematics includes prior literature, collaborators' contributions, and project derivations. The plugin supports retrieval, organization, research continuity, and verification work. Attribution and evidence belong to the original sources and individual research packages.

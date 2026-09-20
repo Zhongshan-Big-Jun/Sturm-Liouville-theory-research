@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+    m.main()
+    ~~~~~~^^
+  File "/mnt/f/LaTeX/BVE research/scripts/op10_fractional_window.py", line 151, in main
+    self_check()
+    ~~~~~~~~~~^^
+  File "/mnt/f/LaTeX/BVE research/scripts/op10_fractional_window.py", line 128, in self_check
+    _, NormSq = sin_normsq(3, Mu)
+                ~~~~~~~~~~^^^^^^^
+  File "/mnt/f/LaTeX/BVE research/scripts/op10_fractional_window.py", line 68, in sin_normsq
+    Val = quad(lambda x: x**k * math.sin(Mu * x), -1, 1,
+          ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    	epsabs=1e-11, epsrel=1e-11, limit=200)[0]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: quadrature at import

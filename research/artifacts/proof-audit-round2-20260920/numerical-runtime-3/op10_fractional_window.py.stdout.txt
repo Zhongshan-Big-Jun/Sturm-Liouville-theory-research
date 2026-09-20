@@ -1,0 +1,41 @@
+AUTHOR_SELF_CHECKS: low/high roots, precision rejection, sine norm, linear mode, domain boundaries
+(a) PARTIAL_SUM: negative-order projections, including odd modes
+Analytically, the full squared norm is <= c^t * ||x^k||_0^2 for t < 0.
+  t=-0.50, k=0: partial squared norm=1.154700538, analytic full upper bound=1.154700538
+  t=-0.50, k=1: partial squared norm=0.3849001795, analytic full upper bound=0.3849001795
+  t=-0.50, k=2: partial squared norm=0.1759544107, analytic full upper bound=0.2309401077
+  t=-0.50, k=3: partial squared norm=0.1474332763, analytic full upper bound=0.1649572198
+  t=-0.50, k=4: partial squared norm=0.07991288252, analytic full upper bound=0.1283000598
+  t=-0.50, k=8: partial squared norm=0.03187210828, analytic full upper bound=0.06792356108
+  t=-0.25, k=0: partial squared norm=1.519671371, analytic full upper bound=1.519671371
+  t=-0.25, k=1: partial squared norm=0.5065571238, analytic full upper bound=0.5065571238
+  t=-0.25, k=2: partial squared norm=0.260563083, analytic full upper bound=0.3039342743
+  t=-0.25, k=3: partial squared norm=0.2023842991, analytic full upper bound=0.2170959102
+  t=-0.25, k=4: partial squared norm=0.1291330689, analytic full upper bound=0.1688523746
+  t=-0.25, k=8: partial squared norm=0.05801837533, analytic full upper bound=0.08939243361
+  t=-0.10, k=0: partial squared norm=1.79191692, analytic full upper bound=1.79191692
+  t=-0.10, k=1: partial squared norm=0.5973056399, analytic full upper bound=0.5973056399
+  t=-0.10, k=2: partial squared norm=0.3353791228, analytic full upper bound=0.3583833839
+  t=-0.10, k=3: partial squared norm=0.2478343093, analytic full upper bound=0.2559881314
+  t=-0.10, k=4: partial squared norm=0.1773607926, analytic full upper bound=0.19910188
+  t=-0.10, k=8: partial squared norm=0.08740742324, analytic full upper bound=0.1054068776
+(b) ANALYTIC_DOMAIN: old monomial interpolation claim withdrawn
+  t=1.5, k=2: DIVERGENT; no finite full norm
+  t=1.5, k=4: DIVERGENT; no finite full norm
+  t=1.5, k=8: DIVERGENT; no finite full norm
+  t=1.5, k=16: DIVERGENT; no finite full norm
+  t=1.75, k=2: DIVERGENT; no finite full norm
+  t=1.75, k=4: DIVERGENT; no finite full norm
+  t=1.75, k=8: DIVERGENT; no finite full norm
+  t=1.75, k=16: DIVERGENT; no finite full norm
+Divergent x^2 squared-norm partial sums (illustration, not the divergence proof):
+  t=1.5, N=40: 25.9105928900
+  t=1.5, N=160: 32.9240969649
+  t=1.5, N=640: 39.9725573325
+  t=1.5, N=2560: 47.0299160067
+  t=1.75, N=40: 110.2266695996
+  t=1.75, N=160: 224.0659341852
+  t=1.75, N=640: 452.2569481126
+  t=1.75, N=2560: 908.9037087466
+UNSUPPORTED_QUADRATURE: failed or inaccurate estimators raise ArithmeticError; x^2 uses exact coefficients
+UNCOVERED: infinite-dimensional density; outward-rounded numerical certificates; independent acceptance

@@ -1,0 +1,271 @@
+def SL.AuditRound2.second_difference.{u_1} : {K : Type u_1} → [Field.{u_1} K] → (ℕ → K) → ℕ → K :=
+fun {K} [Field.{u_1} K] v j =>
+  HAdd.hAdd.{u_1, u_1, u_1}
+    (HSub.hSub.{u_1, u_1, u_1} (v j) (HMul.hMul.{u_1, u_1, u_1} 2 (v (HSub.hSub.{0, 0, 0} j 1))))
+    (v (HSub.hSub.{0, 0, 0} j 2))
+def SL.AuditRound2.third_order_solution.{u_1} : {K : Type u_1} →
+  [Field.{u_1} K] → (ℕ → K) → (ℕ → K) → (ℕ → K) → (ℕ → K) → Prop :=
+fun {K} [Field.{u_1} K] a1 a2 a3 v =>
+  ∀ (n : ℕ),
+    Eq.{u_1 + 1} (v (HAdd.hAdd.{0, 0, 0} n 3))
+      (HAdd.hAdd.{u_1, u_1, u_1}
+        (HAdd.hAdd.{u_1, u_1, u_1}
+          (HMul.hMul.{u_1, u_1, u_1} (a1 (HAdd.hAdd.{0, 0, 0} n 3)) (v (HAdd.hAdd.{0, 0, 0} n 2)))
+          (HMul.hMul.{u_1, u_1, u_1} (a2 (HAdd.hAdd.{0, 0, 0} n 3)) (v (HAdd.hAdd.{0, 0, 0} n 1))))
+        (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (v n)))
+def SL.AuditRound2.k1_p : ℕ → ℚ :=
+fun j =>
+  HAdd.hAdd.{0, 0, 0}
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 8 (HPow.hPow.{0, 0, 0} (↑j) 2)) (HMul.hMul.{0, 0, 0} 4 ↑j))
+    (HDiv.hDiv.{0, 0, 0} (↑j) (HSub.hSub.{0, 0, 0} (↑j) 1))
+def SL.AuditRound2.k1_q : ℕ → ℚ :=
+fun j =>
+  HAdd.hAdd.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑j) (HSub.hSub.{0, 0, 0} (↑j) 1))
+        (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 1))
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑j) (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+def SL.AuditRound2.k1_r : ℕ → ℚ :=
+fun j =>
+  HMul.hMul.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑j) (HSub.hSub.{0, 0, 0} (↑j) 2))
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 5)
+def SL.AuditRound2.k1_scaled : (ℕ → ℚ) → ℕ → ℚ :=
+fun mu j => HDiv.hDiv.{0, 0, 0} (mu j) ↑(HMul.hMul.{0, 0, 0} 2 j).factorial
+def SL.AuditRound2.k1_n3_segment : ℕ → ℚ :=
+fun j => ite.{1} (Eq.{1} j 1) (1 / 480) (ite.{1} (Eq.{1} j 4) 1 0)
+def SL.AuditRound2.signed_transmission : ℝ → ℝ → ℝ :=
+fun Left Right => HDiv.hDiv.{0, 0, 0} Right Left
+def SL.AuditRound2.cell_branch : (ℝ → ℝ) → ℝ → ℝ → ℝ → ℕ → ℝ → ℝ :=
+fun y Scale Start Factor j x =>
+  HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} Factor j)
+    (y (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} Scale (HSub.hSub.{0, 0, 0} x Start)) (1 / 2)))
+def SL.AuditRound2.second_sine_mode : ℝ → ℝ :=
+fun x => Real.sin (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 Real.pi) (HAdd.hAdd.{0, 0, 0} x (1 / 2)))
+def SL.AuditRound2.candidate_theta : ℝ → ℝ :=
+fun s => Real.arccos (HDiv.hDiv.{0, 0, 0} s (HAdd.hAdd.{0, 0, 0} s 1))
+def SL.AuditRound2.balanced_candidate : ℝ → ℝ :=
+fun s =>
+  HPow.hPow.{0, 0, 0}
+    (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} Real.pi (SL.AuditRound2.candidate_theta s))
+      (SL.AuditRound2.candidate_theta s))
+    2
+theorem SL.AuditRound2.terminal_difference.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {v : ℕ → K} {N : ℕ},
+  Eq.{u_1 + 1} (v N) 0 →
+    Eq.{u_1 + 1} (v (HSub.hSub.{0, 0, 0} N 1)) 0 →
+      Eq.{u_1 + 1} (SL.AuditRound2.second_difference.{u_1} v N) (v (HSub.hSub.{0, 0, 0} N 2)) :=
+⋯
+'SL.AuditRound2.terminal_difference' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound2.difference_step_iff.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] (c a b d e : K),
+  Eq.{u_1 + 1} a
+      (HAdd.hAdd.{u_1, u_1, u_1}
+        (HSub.hSub.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (HAdd.hAdd.{u_1, u_1, u_1} 2 c) b)
+          (HMul.hMul.{u_1, u_1, u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 c)) d))
+        (HMul.hMul.{u_1, u_1, u_1} c e)) ↔
+    Eq.{u_1 + 1} (HAdd.hAdd.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} a (HMul.hMul.{u_1, u_1, u_1} 2 b)) d)
+      (HMul.hMul.{u_1, u_1, u_1} c
+        (HAdd.hAdd.{u_1, u_1, u_1} (HSub.hSub.{u_1, u_1, u_1} b (HMul.hMul.{u_1, u_1, u_1} 2 d)) e)) :=
+⋯
+'SL.AuditRound2.difference_step_iff' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound2.solution_difference_step.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K] {c v : ℕ → K},
+  SL.AuditRound2.third_order_solution.{u_1} (fun j => HAdd.hAdd.{u_1, u_1, u_1} 2 (c j))
+      (fun j => Neg.neg.{u_1} (HAdd.hAdd.{u_1, u_1, u_1} 1 (HMul.hMul.{u_1, u_1, u_1} 2 (c j)))) c v →
+    ∀ (n : ℕ),
+      Eq.{u_1 + 1} (SL.AuditRound2.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 3))
+        (HMul.hMul.{u_1, u_1, u_1} (c (HAdd.hAdd.{0, 0, 0} n 3))
+          (SL.AuditRound2.second_difference.{u_1} v (HAdd.hAdd.{0, 0, 0} n 2))) :=
+⋯
+'SL.AuditRound2.solution_difference_step' depends on axioms: [propext, Quot.sound.{u}]
+theorem SL.AuditRound2.factorial_shift_four : ∀ (n : ℕ),
+  Eq.{1} (↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0}
+        (HMul.hMul.{0, 0, 0}
+          (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 6)
+            (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 5))
+          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 4))
+        (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 3))
+      ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 1)).factorial) :=
+⋯
+'SL.AuditRound2.factorial_shift_four' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.k1_terminal_value : ∀ (mu : ℕ → ℚ) (n : ℕ),
+  Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 4)) 1 →
+    Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 3)) 0 →
+      Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 2)) 0 →
+        Eq.{1} (mu (HAdd.hAdd.{0, 0, 0} n 4))
+            (HAdd.hAdd.{0, 0, 0}
+              (HSub.hSub.{0, 0, 0}
+                (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_p (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 3)))
+                (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_q (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 2))))
+              (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_r (HAdd.hAdd.{0, 0, 0} n 4)) (mu (HAdd.hAdd.{0, 0, 0} n 1)))) →
+          Eq.{1} (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled mu) (HAdd.hAdd.{0, 0, 0} n 3))
+            (HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 3)
+              (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 4)
+                ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)) :=
+⋯
+'SL.AuditRound2.k1_terminal_value' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.k1_terminal_formula_pos : ∀ (n : ℕ),
+  LT.lt.{0} 0
+    (HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 3)
+      (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 4)
+        ↑(HMul.hMul.{0, 0, 0} 2 (HAdd.hAdd.{0, 0, 0} n 3)).factorial)) :=
+⋯
+'SL.AuditRound2.k1_terminal_formula_pos' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.k1_n3_last_equation : Eq.{1} (SL.AuditRound2.k1_n3_segment 4)
+  (HAdd.hAdd.{0, 0, 0}
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_p 4) (SL.AuditRound2.k1_n3_segment 3))
+      (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_q 4) (SL.AuditRound2.k1_n3_segment 2)))
+    (HMul.hMul.{0, 0, 0} (SL.AuditRound2.k1_r 4) (SL.AuditRound2.k1_n3_segment 1))) :=
+⋯
+'SL.AuditRound2.k1_n3_last_equation' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.k1_n3_difference : Eq.{1}
+  (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled SL.AuditRound2.k1_n3_segment) 3) (1 / 960) :=
+⋯
+'SL.AuditRound2.k1_n3_difference' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.k1_n3_difference_ne_zero : Ne.{1}
+  (SL.AuditRound2.second_difference.{0} (SL.AuditRound2.k1_scaled SL.AuditRound2.k1_n3_segment) 3) 0 :=
+⋯
+'SL.AuditRound2.k1_n3_difference_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_signed_slope_matching : ∀ (Left Right Scale : ℝ) (j : ℕ),
+  Ne.{1} Left 0 →
+    Eq.{1}
+      (HMul.hMul.{0, 0, 0}
+        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (SL.AuditRound2.signed_transmission Left Right) j) Scale) Right)
+      (HMul.hMul.{0, 0, 0}
+        (HMul.hMul.{0, 0, 0}
+          (HPow.hPow.{0, 0, 0} (SL.AuditRound2.signed_transmission Left Right) (HAdd.hAdd.{0, 0, 0} j 1)) Scale)
+        Left) :=
+⋯
+'SL.AuditRound2.mw_signed_slope_matching' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_transmission_ne_zero : ∀ {Left Right : ℝ},
+  Ne.{1} Left 0 → Ne.{1} Right 0 → Ne.{1} (SL.AuditRound2.signed_transmission Left Right) 0 :=
+⋯
+'SL.AuditRound2.mw_transmission_ne_zero' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_affine_has_deriv : ∀ {y : ℝ → ℝ} {dy A c d x : ℝ},
+  HasDerivAt.{0, 0} y dy (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d) →
+    HasDerivAt.{0, 0} (fun z => HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c z) d)))
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} A c) dy) x :=
+⋯
+'SL.AuditRound2.mw_affine_has_deriv' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.cell_branch_has_deriv : ∀ {y : ℝ → ℝ} {Scale Start Factor x DY : ℝ} {j : ℕ},
+  HasDerivAt.{0, 0} y DY (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} Scale (HSub.hSub.{0, 0, 0} x Start)) (1 / 2)) →
+    HasDerivAt.{0, 0} (SL.AuditRound2.cell_branch y Scale Start Factor j)
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} Factor j) Scale) DY) x :=
+⋯
+'SL.AuditRound2.cell_branch_has_deriv' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_cell_interface : ∀ {y : ℝ → ℝ} {Scale Start Left Right : ℝ},
+  Ne.{1} Scale 0 →
+    Ne.{1} Left 0 →
+      Eq.{1} (y (-1 / 2)) 0 →
+        Eq.{1} (y (1 / 2)) 0 →
+          HasDerivAt.{0, 0} y Left (-1 / 2) →
+            HasDerivAt.{0, 0} y Right (1 / 2) →
+              ∀ (j : ℕ),
+                have Factor := SL.AuditRound2.signed_transmission Left Right;
+                have Join := HAdd.hAdd.{0, 0, 0} Start (HDiv.hDiv.{0, 0, 0} 1 Scale);
+                Eq.{1} (SL.AuditRound2.cell_branch y Scale Start Factor j Join)
+                    (SL.AuditRound2.cell_branch y Scale Join Factor (HAdd.hAdd.{0, 0, 0} j 1) Join) ∧
+                  Eq.{1} (deriv.{0, 0} (SL.AuditRound2.cell_branch y Scale Start Factor j) Join)
+                    (deriv.{0, 0} (SL.AuditRound2.cell_branch y Scale Join Factor (HAdd.hAdd.{0, 0, 0} j 1)) Join) :=
+⋯
+'SL.AuditRound2.mw_cell_interface' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_affine_ode : ∀ {y dy ddy rho : ℝ → ℝ} {A c d lam : ℝ},
+  (∀ (x : ℝ), HasDerivAt.{0, 0} y (dy x) x) →
+    (∀ (x : ℝ), HasDerivAt.{0, 0} dy (ddy x) x) →
+      (∀ (x : ℝ), Eq.{1} (Neg.neg.{0} (ddy x)) (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} lam (rho x)) (y x))) →
+        ∀ (x : ℝ),
+          Eq.{1}
+            (Neg.neg.{0}
+              (deriv.{0, 0}
+                (deriv.{0, 0} fun z => HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c z) d))) x))
+            (HMul.hMul.{0, 0, 0}
+              (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lam)
+                (rho (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d)))
+              (HMul.hMul.{0, 0, 0} A (y (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} c x) d)))) :=
+⋯
+'SL.AuditRound2.mw_affine_ode' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.mw_scaled_ratio : ∀ (c lamOne lamTwo : ℝ),
+  Ne.{1} c 0 →
+    Eq.{1}
+      (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lamTwo)
+        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) lamOne))
+      (HDiv.hDiv.{0, 0, 0} lamTwo lamOne) :=
+⋯
+'SL.AuditRound2.mw_scaled_ratio' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.second_sine_mode_has_deriv : ∀ (x : ℝ),
+  HasDerivAt.{0, 0} SL.AuditRound2.second_sine_mode
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 Real.pi)
+      (Real.cos (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 Real.pi) (HAdd.hAdd.{0, 0, 0} x (1 / 2)))))
+    x :=
+⋯
+'SL.AuditRound2.second_sine_mode_has_deriv' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.second_sine_mode_endpoint_slopes : Eq.{1} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2))
+    (HMul.hMul.{0, 0, 0} 2 Real.pi) ∧
+  Eq.{1} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)) (HMul.hMul.{0, 0, 0} 2 Real.pi) :=
+⋯
+'SL.AuditRound2.second_sine_mode_endpoint_slopes' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.second_sine_mode_transmission : Eq.{1}
+    (SL.AuditRound2.signed_transmission (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2))
+      (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)))
+    1 ∧
+  Eq.{1}
+    (HDiv.hDiv.{0, 0, 0} (Neg.neg.{0} (deriv.{0, 0} SL.AuditRound2.second_sine_mode (1 / 2)))
+      (deriv.{0, 0} SL.AuditRound2.second_sine_mode (-1 / 2)))
+    (-1) :=
+⋯
+'SL.AuditRound2.second_sine_mode_transmission' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.attained_le_sup : ∀ {S : Set.{0} ℝ} {C : ℝ},
+  BddAbove.{0} S → Membership.mem.{0, 0} S C → LE.le.{0} C (sSup.{0} S) :=
+⋯
+'SL.AuditRound2.attained_le_sup' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.attained_sup_eq_iff_upper_bound : ∀ {S : Set.{0} ℝ} {C : ℝ},
+  BddAbove.{0} S →
+    Membership.mem.{0, 0} S C → (Eq.{1} (sSup.{0} S) C ↔ ∀ (x : ℝ), Membership.mem.{0, 0} S x → LE.le.{0} x C) :=
+⋯
+'SL.AuditRound2.attained_sup_eq_iff_upper_bound' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.balanced_candidate_le_sup : ∀ {s : ℝ},
+  LT.lt.{0} 0 s →
+    ∀ {S : Set.{0} ℝ},
+      BddAbove.{0} S →
+        Membership.mem.{0, 0} S
+            (HDiv.hDiv.{0, 0, 0}
+              (HPow.hPow.{0, 0, 0}
+                (HDiv.hDiv.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 s) 1)
+                    (HSub.hSub.{0, 0, 0} Real.pi (SL.AuditRound2.candidate_theta s)))
+                  s)
+                2)
+              (HPow.hPow.{0, 0, 0}
+                (HDiv.hDiv.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 s) 1)
+                    (SL.AuditRound2.candidate_theta s))
+                  s)
+                2)) →
+          LE.le.{0} (SL.AuditRound2.balanced_candidate s) (sSup.{0} S) :=
+⋯
+'SL.AuditRound2.balanced_candidate_le_sup' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.adjacent_ratio_le_of_doubled : ∀ {lam : ℕ → ℝ} {n : ℕ} {nu : ℝ},
+  Monotone.{0, 0} lam →
+    LE.le.{0} 1 n →
+      LT.lt.{0} 0 (lam n) →
+        LE.le.{0} (HDiv.hDiv.{0, 0, 0} (lam (HMul.hMul.{0, 0, 0} 2 n)) (lam n)) nu →
+          LE.le.{0} (HDiv.hDiv.{0, 0, 0} (lam (HAdd.hAdd.{0, 0, 0} n 1)) (lam n)) nu :=
+⋯
+'SL.AuditRound2.adjacent_ratio_le_of_doubled' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.attainment_doubling_countermodel : ∀ (C U : ℝ),
+  ∃ S D,
+    BddAbove.{0} S ∧
+      Membership.mem.{0, 0} S C ∧
+        (∀ (n : ℕ), Eq.{1} (D n) S) ∧ (∀ (n : ℕ), Eq.{1} (sSup.{0} (D n)) (sSup.{0} S)) ∧ LT.lt.{0} U (sSup.{0} S) :=
+⋯
+'SL.AuditRound2.attainment_doubling_countermodel' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem SL.AuditRound2.no_candidate_upper_bound_from_doubling : ∀ (C : ℝ),
+  ¬∀ (S : Set.{0} ℝ) (D : ℕ → Set.{0} ℝ),
+      BddAbove.{0} S →
+        Membership.mem.{0, 0} S C → (∀ (n : ℕ), Eq.{1} (sSup.{0} (D n)) (sSup.{0} S)) → LE.le.{0} (sSup.{0} S) C :=
+⋯
+'SL.AuditRound2.no_candidate_upper_bound_from_doubling' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]

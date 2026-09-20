@@ -1,0 +1,331 @@
+﻿% 编译方式: xelatex SL_ratio_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{example}[theorem]{例}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{相邻特征值比值 \texorpdfstring{$\lambda_{n+1}/\lambda_n$}{lambda_{n+1}/lambda_n} 的上确界定理: 证明文档}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-01}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文证明弦振动 Sturm-Liouville 问题 $-y'' = \lambda\rho y$ (Dirichlet 边界,
+$1 \leq \rho \leq R$) 的相邻特征值比值全序列上确界定理:
+\[
+	\sup_{n\geq 1}\sup_{\rho} \frac{\lambda_{n+1}}{\lambda_n} = \nu(R),
+\]
+其中
+\[
+	\nu(R) = \Bigl( \frac{\arccos(-\sqrt{R}/(\sqrt{R}+1))}{\arccos(\sqrt{R}/(\sqrt{R}+1))} \Bigr)^2 .
+\]
+证明由三步组成: (i) 平凡不等式 $\lambda_{n+1} \leq \lambda_{2n}$;
+(ii) Mahar-Willner Lemma 2 给出的恒等式 $\sup_\rho \lambda_{2n}/\lambda_n = \nu(R)$
+(文献引理, 数值复现见第 5 节);
+(iii) 平衡相位方法推导闭式 $\nu(R)$ 与达到配置 $[1,R,1]$.
+同时给出 Keller 下确界 $\inf_\rho \lambda_2/\lambda_1 = \mu(R)$ 的闭式推导与数值验证.
+固定 $n$ 的上确界猜想与全序列下确界问题均如实标注为开放, 不作为定理.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+设 $\rho \in PC[0,1]$, $1 \leq \rho(x) \leq R$, 考虑
+\begin{equation}
+	-y''(x) = \lambda \rho(x) y(x), \qquad y(0) = y(1) = 0 .
+\end{equation}
+记 $\lambda_1(\rho) < \lambda_2(\rho) < \cdots$ 为特征值
+(正则 SL 问题, 简单谱, 第 $m$ 个特征函数恰有 $m-1$ 个内零点).\footnote{Sturm 振荡理论: 特征值严格递增且简单, 特征函数节点数随指标递增.}
+定义
+\begin{equation}
+	\nu(R) := \sup_{\rho} \frac{\lambda_2(\rho)}{\lambda_1(\rho)},
+	\qquad
+	\mu(R) := \inf_{\rho} \frac{\lambda_2(\rho)}{\lambda_1(\rho)} .
+\end{equation}
+
+\subsection{转移矩阵与 secular 方程}
+
+在每块 $\rho \equiv c$ (宽度 $w$) 上, 相位为 $q = \sqrt{\lambda c}\,w$, 传播矩阵为
+\begin{equation}
+	T(q; \lambda, c) =
+	\begin{pmatrix}
+		\cos q & \sin q / \sqrt{\lambda c} \\
+		-\sqrt{\lambda c}\,\sin q & \cos q
+	\end{pmatrix},
+\end{equation}
+它把块左端的 $(y, y')$ 映射到块右端. 整体转移矩阵为各块矩阵按顺序之积;
+Dirichlet 条件 $y(1) = 0$ 等价于总矩阵的 $(0,1)$ 元素为零 (secular 方程).
+本项目所有数值结果均用该方程定位特征值, 对每个特征值局部二分加密.\footnote{数值代码见 \texttt{scripts/} 目录下的 \texttt{num\_*.py}; 例如 \texttt{num\_formula.py} 实现 $\nu, \mu$ 闭式与数值对比.}
+
+\subsection{缩放}
+
+$\rho \mapsto \rho/a$, $\lambda \mapsto a\lambda$ 保持方程与特征值比值不变,
+故不妨设 $a = 1$, $A = R \geq 1$; 一般情形把 $R$ 换成 $A/a$.\footnote{一般 $0 < a \leq \rho \leq A$ 的比值问题与 $1 \leq \rho \leq A/a$ 等价.}
+
+\section{主要定理}
+
+\begin{theorem}[相邻比值上确界]
+对 $R \geq 1$,
+\begin{equation}
+	\boxed{\; \sup_{n \geq 1}\, \sup_{1 \leq \rho \leq R} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}
+	= \nu(R) = \left( \frac{\arccos\!\bigl(-\sqrt{R}/(\sqrt{R}+1)\bigr)}
+	{\arccos\!\bigl(\sqrt{R}/(\sqrt{R}+1)\bigr)} \right)^2 . \;}
+\end{equation}
+上确界在 $n = 1$ 处由 $\rho_* = [1, R, 1]$ 达到, 即
+\[
+	\rho_*(x) =
+	\begin{cases}
+		1, & x \in [0, st] \cup [st + t, 1], \\
+		R, & x \in (st, st + t),
+	\end{cases}
+	\qquad s = \sqrt{R}, \quad t = \frac{1}{2\sqrt{R}+1}.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{第一步: 平凡不等式.} 对固定的 $\rho$, 特征值序列严格递增, 而 $n + 1 \leq 2n$
+对一切 $n \geq 1$ 成立, 故 $\lambda_{n+1}(\rho) \leq \lambda_{2n}(\rho)$, 从而
+\begin{equation}
+	\frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)} \leq \frac{\lambda_{2n}(\rho)}{\lambda_n(\rho)} .
+\end{equation}
+
+\textbf{第二步: 倍指标恒等式 (Mahar-Willner).} 由 Mahar-Willner [1] Lemma 2,
+对每个 $n \geq 1$,
+\begin{equation}
+	\sup_{\rho} \frac{\lambda_{2n}(\rho)}{\lambda_n(\rho)} = \nu(R),
+	\qquad
+	\inf_{\rho} \frac{\lambda_{2n}(\rho)}{\lambda_n(\rho)} = \mu(R).
+\end{equation}
+该恒等式的证明 (MW 原文 Section 5) 基于周期延拓与零点截断归纳: 对极值化
+$\lambda_2/\lambda_1$ 的 $\phi_0$ 定义 $\phi_n(x) = \phi_0\bigl(n(x+1/2)-1/2\bigr)$
+并以周期 $1/n$ 延拓到 $[-1/2, 1/2]$, 经仿射坐标变换得
+$\lambda_{2n}(\phi_n)/\lambda_n(\phi_n) = \lambda_2(\phi_0)/\lambda_1(\phi_0)$ (Lemma 1);
+归纳的零点截断 (Lemma 2) 把任意配置的 $\lambda_{2n}/\lambda_n$ 压回 $\nu(R)$ 或抬回
+$\mu(R)$.\footnote{本项目已独立重证 MW Lemma 1--2 (会话 12, \texttt{SL\_mw\_lemma\_reproof.pdf}), 故本定理完全自足; 另在第 5 节用周期延拓数值复现 (精度 1e-8).}
+
+由 (2.1) 与 (2.2) 得
+\begin{equation}
+	\sup_{n \geq 1} \sup_{\rho} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}
+	\leq \sup_{n \geq 1} \sup_{\rho} \frac{\lambda_{2n}(\rho)}{\lambda_n(\rho)}
+	= \nu(R).
+\end{equation}
+
+\textbf{第三步: 达到.} 对配置 $\rho_* = [1, R, 1]$ 计算 $\lambda_2/\lambda_1 = \nu(R)$
+(第 3 节), 取 $n = 1$ 即得上确界 $\nu(R)$ 被达到. 定理证毕.
+\end{proof}
+
+\begin{remark}[适用范围与依赖]
+平凡不等式是自足的; MW Lemma 2 已在本项目内独立重证 (会话 12,
+\texttt{SL\_mw\_lemma\_reproof.pdf}), 上确界定理完全自足.
+定理不声称 $n \geq 2$ 时 $\lambda_{n+1}/\lambda_n$ 的极值, 那里只有数值猜想的
+$\Lambda_n^{\sup}(R)$ (第 6 节), 属开放问题. 特别地, 本定理不蕴含任何
+关于 $\inf \lambda_{n+1}/\lambda_n$ 的结论.
+\end{remark}
+
+\section{闭式推导: 平衡相位方法}
+
+本节推导 $\nu(R)$ 的闭式与达到配置, 方法为平衡相位: 在对称两跳配置中, 要求三个块
+在特征值处承载相同相位 $p = \sqrt{\lambda\rho}\cdot\text{块宽}$, 把 secular 方程化为
+纯三角方程, 得到特征值的显式表达式.
+
+\subsection{上确界配置 \texorpdfstring{$[1,R,1]$}{[1,R,1]}}
+
+设块宽 $w_1, w_2, w_3$ (权重 $1, R, 1$). 平衡条件 $q_1 = q_2 = q_3 =: p$ 即
+$\sqrt{\lambda}\,w_1 = \sqrt{\lambda R}\,w_2 = \sqrt{\lambda}\,w_3$, 故 $w_1 = w_3 = s w_2$,
+$s = \sqrt{R}$. 总宽 $(2s+1)w_2 = 1$ 给出 $w_2 = t = 1/(2s+1)$, $w_1 = w_3 = st$:
+恰为 $\rho_*$. 此时 $\lambda = (p/(st))^2$.
+
+\begin{lemma}[平衡相位 secular 方程, 上确界配置]
+对 $[1,R,1]$ (块宽 $st, t, st$, 权重 $1, R, 1$), 平衡相位 $p$ 下 Dirichlet 条件等价于
+\begin{equation}
+	\sin p \cdot \Bigl( (2s+1)\cos^2 p - s^2 \sin^2 p \Bigr) = 0 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+直接乘转移矩阵. 记 $a = \cos p$, $b = \sin p$, $\ell = \sqrt{\lambda} = p/(st)$.
+各块矩阵为 $M_1 = M_3 = \begin{pmatrix} a & bst/p \\ -bp/(st) & a \end{pmatrix}$,
+$M_2 = \begin{pmatrix} a & bt/p \\ -bp/t & a \end{pmatrix}$.
+先乘 $M_2 M_1$: 左上元 $a^2 - b^2/s$, 右上元 $ab\,t(s+1)/p$,
+左下元 $-ab\,p(s+1)/(st)$, 右下元 $a^2 - b^2 s$. 再乘 $M_1 (M_2 M_1)$ 并取 $(0,1)$ 元:
+\begin{equation}
+	y(1) = \frac{b t}{p}\Bigl( (2s+1)a^2 - s^2 b^2 \Bigr),
+\end{equation}
+即 (3.1). 数值核对: 对 $R = 2, 3, 4, 10$ 与任意 $p$,
+上式与转移矩阵直接乘积一致到机器精度, 根恰为 $p = \theta$ 与 $p = \pi - \theta$. \qed
+\end{proof}
+
+解 (3.1) 的非平凡根: $(2s+1)\cos^2 p = s^2 \sin^2 p$, 即
+\begin{equation}
+	\cos^2 p = \frac{s^2}{(s+1)^2}
+	\quad\Longleftrightarrow\quad
+	\cos p = \pm \frac{s}{s+1} .
+\end{equation}
+于是前两个特征值对应相位
+\begin{equation}
+	p_1 = \theta := \arccos\!\Bigl( \frac{s}{s+1} \Bigr) \in (0, \pi/2),
+	\qquad
+	p_2 = \pi - \theta ,
+\end{equation}
+(在 $(0, \pi)$ 内 $\cos^2 p = (s/(s+1))^2$ 恰有两个根 $\theta, \pi-\theta$;
+$\sin p = 0$ 的根 $p = \pi$ 对应更高特征值). 因此
+\begin{equation}
+	\lambda_1 = \Bigl( \frac{(2s+1)\theta}{s} \Bigr)^2,
+	\qquad
+	\lambda_2 = \Bigl( \frac{(2s+1)(\pi-\theta)}{s} \Bigr)^2,
+\end{equation}
+\begin{equation}
+	\frac{\lambda_2}{\lambda_1} = \Bigl( \frac{\pi - \theta}{\theta} \Bigr)^2
+	= \Bigl( \frac{\arccos(-s/(s+1))}{\arccos(s/(s+1))} \Bigr)^2 = \nu(R).
+\end{equation}
+这同时验证了恒等式 $\sqrt{\lambda_1}\,st = \theta$ 与 $\sqrt{\lambda_1} = (2s+1)\theta/s$.
+
+\subsection{Keller 下确界配置 \texorpdfstring{$[R,1,R]$}{[R,1,R]}}
+
+对权重 $R, 1, R$ 与块宽 $c, sc, c$, 平衡条件给出 $c = 1/(s+2)$,
+$\lambda = (p/(sc))^2$. 同理计算转移矩阵, 得
+\begin{equation}
+	y(1) = \frac{\sin p}{\ell s^2}\Bigl( s(s+2)\cos^2 p - \sin^2 p \Bigr) = 0
+	\quad\Longleftrightarrow\quad
+	\tan^2 p = s(s+2) = R + 2\sqrt{R} .
+\end{equation}
+取 $\varphi := \arccos(1/(s+1))$, 则 $\tan^2\varphi = (s+1)^2 - 1 = s^2 + 2s = s(s+2)$,
+故前两个特征值对应 $p = \varphi$ 与 $p = \pi - \varphi$:
+\begin{equation}
+	\frac{\lambda_2}{\lambda_1} = \Bigl( \frac{\pi - \varphi}{\varphi} \Bigr)^2
+	= \Bigl( \frac{\arccos(-1/(s+1))}{\arccos(1/(s+1))} \Bigr)^2 = \mu(R),
+\end{equation}
+与 Keller 定理的数值刻画一致 (第 5 节); 同时 $\sqrt{\lambda_1} = \varphi(s+2)/s$.
+
+\begin{remark}[与数值的对照]
+转移矩阵数值对 $R = 1.5, 2, 3, 4, 10, 100$ 复现 $\nu(R), \mu(R)$ 闭式至 8 位小数;
+角度恒等式 $\sqrt{\lambda_1}\,st = \theta$, $\sqrt{\lambda_2}\,st = \pi-\theta$,
+$\sqrt{\lambda_1}\,sc = \varphi$, $\sqrt{\lambda_2}\,sc = \pi-\varphi$ 对 $R = 2, 4, 10$
+验证到 $10^{-15}$ 量级. 注意交接摘要中曾出现 $\sqrt{\lambda_1} = 2(s+1)\varphi/s$ 的笔误
+(仅 $R = 4$ 时与正确式 $(s+2)\varphi/s$ 巧合), 本文一律使用已核验的恒等式.
+\end{remark}
+
+\section{Keller 下确界定理的陈述}
+
+\begin{theorem}[Keller, 闭式形式]
+对问题 (1.1), $\inf_{\rho} \lambda_2/\lambda_1 = \mu(R)$,
+极小化配置为 $[R, 1, R]$ (块宽 $c, sc, c$, $c = 1/(\sqrt{R}+2)$).
+\end{theorem}
+
+Keller 原文 [2] 给出极小值与极小化函数的数值刻画 (增函数 $\mu(a/A)$, 从 1 到 4) 及
+变分条件; 上节的平衡相位推导给出 $\mu(R)$ 的闭式并经验证. 本项目的贡献是把 Keller 的
+变分刻画与平衡相位闭式对接, 并非对 Keller 定理本身的新证明.\footnote{Keller 定理的正确归属: 极小值存在性与极小化函数结构由 Keller 1976 证明; 闭式公式的显式三角形式是本项目推导.}
+
+\section{周期延拓构造与数值复现}
+
+\subsection{胞元与合并构造}
+
+设胞元为 $\phi_0 = [1, R, 1]$ 限制在 $[-1/2, 1/2]$ 上的缩放 (块宽 $st, t, st$,
+总宽 $1$). 周期延拓 $\phi_n(x) = \phi_0\bigl(n(x+1/2)-1/2\bigr)$ 在 $[0,1]$ 上给出
+$n$ 个胞元的周期重复. 由于每个胞元以权重 $1$ 收尾、以下一胞元的权重 $1$ 开头,
+相邻胞元的两个 $1$-块必须合并成一个宽度 $2st/n$ 的块; 不合并会在胞界 $1|1$ 处产生
+伪跳点.\footnote{早期数值脚本因未合并胞界而错误地否定了周期延拓等式; 合并后
+$\lambda_{2n}/\lambda_n = \nu(R)$ 对 $n = 1,\dots,6$ 全部成立 (1e-8).}
+
+合并后的配置: 共 $2n+1$ 块, 模式 $[1, R, 1, R, \dots, 1]$,
+其中 $n$ 个 $R$-块宽 $t/n$, 两个端 $1$-块宽 $st/n$, 其余 $n-1$ 个内部 $1$-块宽 $2st/n$.
+
+\subsection{平方律}
+
+对上述配置, 数值验证 (R=4):
+\begin{equation}
+	\lambda_n = n^2 \lambda_1^{(\text{cell})}, \qquad
+	\lambda_{2n} = n^2 \lambda_2^{(\text{cell})}, \qquad
+	\frac{\lambda_{2n}}{\lambda_n} = \frac{\lambda_2}{\lambda_1} = \nu(4) = 7.48153339,
+\end{equation}
+对 $n = 1, \dots, 6$ 成立 (1e-8). 平方律对一般倍数 $k \geq 3$ 不成立
+($\lambda_{kn} \neq k^2 \lambda_n$), 不可外推.
+
+\section{开放问题 (不作为定理)}
+
+\begin{conjecture}[固定 $n$ 上确界]
+对每个 $n \geq 1$, $\sup_{\rho} \lambda_{n+1}/\lambda_n$ 由交替 bang-bang 配置
+$[1, R, 1, R, \dots, 1]$ ($2n+1$ 块, $w_1/w_R = \sqrt{R}$, $w_R = 1/((n+1)\sqrt{R}+n)$) 达到.
+\end{conjecture}
+
+该猜想未证明. 数值支持 (R=4): $c_1 = 7.48153$, $c_2 = 4.28466$, $c_3 = 3.45388$,
+$c_4 = 3.09118$, $c_5 = 2.89443$, $c_6 = 2.77394$, $c_8 = 2.63833$, $c_{10} = 2.56698$,
+$c_{12} = 2.52461$, $c_{16} = 2.47873$, $c_{20} = 2.45566$, $c_{24} = 2.44243$;
+Keller 变分条件 (跳点处 $|y_n| = |y_{n+1}|$ 型匹配) 对 $n = 1,\dots,8$ 符号级验证 (1e-11).
+能带极限 $c_{\infty}(R) = ((\pi-\varphi_1)/\varphi_1)^2$,
+$\varphi_1 = \arccos((\sqrt{R}-1)/(\sqrt{R}+1))$; $c_{\infty}(4) = \mu(4) = 2.40916855$
+系 $R = 4$ 巧合 ($c_{\infty}(2) = 1.55403629 \neq \mu(2)$).
+
+\begin{remark}[下确界开放]
+$\inf_{n\geq 1}\inf_{\rho}\lambda_{n+1}/\lambda_n$ 是开放问题.
+已证: $n=1$ 时为 $\mu(R)$ (Keller); 一切 $n$ 下比值 $> 1$ (简单谱).
+数值: $R=4$ 时交替族给出 $\lambda_5/\lambda_4 = 1.08380983 < \mu(4)$, 且随 $n$ 递减.
+能否趋于 $1$ 未知.
+\end{remark}
+
+\section{数值验证表}
+
+\begin{center}
+\begin{tabular}{cccccc}
+	\toprule
+	$R$ & $\nu(R)$ 闭式 & $\nu(R)$ 数值 & $\mu(R)$ 闭式 & $\mu(R)$ 数值 \\
+	\midrule
+	1.5 & 4.75382078 & 4.75382078 & 3.40068243 & 3.40068243 \\
+	2.0 & 5.40388487 & 5.40388487 & 3.05139810 & 3.05139810 \\
+	3.0 & 6.51973823 & 6.51973823 & 2.64587239 & 2.64587239 \\
+	4.0 & 7.48153339 & 7.48153339 & 2.40916855 & 2.40916855 \\
+	10.0 & 11.82037283 & 11.82037283 & 1.86419353 & 1.86419353 \\
+	100.0 & 39.83043629 & 39.83043629 & 1.26121838 & 1.26121838 \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
+反例 (R=4, 交替 $[R,1,R,1,\dots,R]$, 宽度 $w_R = 1/(3n+1)$, $w_1 = 2w_R$):
+$n=2$: $\lambda_3/\lambda_2 = 1.4242433972$; $n=3$: $\lambda_4/\lambda_3 = 1.1791885971$
+($\lambda_3 = 56.70885901$, $\lambda_4 = 66.87043990$);
+$n=4$: $\lambda_5/\lambda_4 = 1.0838098314$
+($\lambda_4 = 100.09539937$, $\lambda_5 = 108.48437791$). 均小于 $\mu(4) = 2.40916855$.
+
+\begin{thebibliography}{99}
+
+\bibitem{mw} T. J. Mahar, B. E. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	DOI: \url{https://doi.org/10.1002/cpa.3160290505}
+
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491.
+	DOI: \url{https://doi.org/10.1137/0131042}
+
+\end{thebibliography}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[转移矩阵与 secular 方程] 每块上的解由 $2\times 2$ 传播矩阵推进,
+		Dirichlet 条件化为总矩阵元的零点方程; 全部数值基于此.
+	\item[Sturm 振荡理论] 第 $m$ 个特征函数恰有 $m-1$ 个内零点; 简单谱.
+	\item[Pr\"ufer 相位] 极坐标变换把特征值问题化为相位单调方程, 是平衡相位方法的背景.
+	\item[谱单调性] $n+1 \leq 2n$ 推出 $\lambda_{n+1} \leq \lambda_{2n}$, 平凡但关键.
+	\item[Keller 变分条件] 极值配置跳点处的匹配条件 (权重归一化 $\int \rho y^2 = 1$).
+	\item[bang-bang 原理] 逐点夹逼类 $[1,R]$ 的极值配置逐点取端点值.
+	\item[周期延拓与平方律] $\phi_n$ 周期化后 $\lambda_n = n^2\lambda_1^{(\text{cell})}$,
+		$\lambda_{2n} = n^2\lambda_2^{(\text{cell})}$; 胞界同值块必须合并.
+	\item[Bloch 能带] 周期介质谱为能带, 带内比值 $\to 1$, 带边给出 $c_{\infty}(R)$.
+	\item[零点截断归纳] MW Lemma 2 的核心技巧, 用于传递极值常数.
+	\item[Liouville 变换与 Feynman-Hellmann] 一般 SL 标准化与一阶变分工具, 供后续推广.
+\end{description}
+
+\end{document}

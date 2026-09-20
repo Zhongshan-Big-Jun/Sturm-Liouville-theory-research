@@ -1,0 +1,1873 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -31,6 +31,9 @@
+ 
+ ## 当前数学边界
+ 
++- n=1 SUP/INF: 历史 STRICT/CLOSED 范围为归一化盒类 1<=rho<=R, 全部 R>1. 2026-09-20 修正 C1 包络、O1 自伴化、归一化证书接口和 good-root 引理; 本轮局部验证不等于重跑整条证明或 Lean. 详见 [审计修订报告](reports/proof-audit-20260920/REPORT.md).
++- 原始稀疏多项式族: H2/H3 主证明保留, H3 加谱截断给出 0<=s<=3 稠密. 任意阶推广已撤回, p4 不属于 H4, 因而 s>=4 原同族断言为假; 3<s<4 的精确范围本轮未判定.
++
+ - M3: n=2 对称 INF large-R 有限非零内部 chart 内 STRICT 闭合, canonical 接收与独立复现已保存. 旧 staged D-side mass 的 odd/log 障碍已 SUPERSEDED.
+ - KP-DET: sequence-26 的完整 0<c<=2/3 分支与 P20-P21 求积约化经审计 PASS. P1-P4 的 pivot/phase 部分已 canonical 接收; 后续 run 包与 canonical 分开登记. 本地主 run 的 Q9 仍 OPEN.
+ - 插件公开 benchmark 另有三份 Q9 完整证明及匿名外审 PASS, 尚未接入本 canonical 或 Lean. 不据此宣称全局 G1', KO-DET 或完整 n>=2 极值问题已解决.
+@@ -44,3 +47,5 @@
+ - 2026-09-09: 按用户 2.0 落地任务并行整理成果仓库. 重写中英文首页, 归档旧首页与长 AGENTS, 新建研究导航, 项目理解和脚本导航. 删除 10 个无引用的过时维护程序与 115 个可再生 TeX 中间物; 4,392 个原文件字节不变, 61 份文档 PDF 解析通过, canonical gateway 校验通过. 具体哈希, 原 68 项工作树保护和验证见 [清理报告](reports/repository-cleanup-20260909/REPORT.md). 未 commit/push.
+ - 2026-09-10: 核查插件版本并落地 2.0. 本机 checkout 原为 1.5.0, 云端 `origin/main` 为 2.0.0, 快进 `d1ca3ee` -> `4f75026` (16 提交); `validate_all.py` 51 项通过, `dsh-doctor.py` 需显式 `--python /usr/bin/python3`. 本项目 gateway `ensure` 返回 `ALREADY_READY`, canonical validate 为 11 nodes/13 edges/4 inventory rows, pipeline 为 `DATA_CHECKS_PASSED`. 深度理解插件与数学项目, 并核查封存 checkpoint: sequence-26 在保留 workspace 根下为 `READY` 且 5 项 minimal read set hash 全部匹配, 按当前项目根运行报 `STALE` 属 v1 路径绑定与 v2.2 布局差异, 工件字节完好. 未改数学或 canonical, 未 commit/push. 详见 [会话日志](state/AGENTS_SESSION_LOG.md).
+ - 2026-09-20: 按用户核查同步 `PROJECT.md` 两处旧状态: n=1 间距 SUP/INF 在归一化盒类 `1<=rho<=R` 内对全部 `R>1` 为 STRICT/CLOSED, 以 `220785e` 的闭合记录及研究导航中的证明链为据; 移除综述开放问题清单的无条件权威表述. n>=2 完整问题及形式化另计, B4 保持 PARTIAL. 本轮仅做状态溯源与文档同步, 未重做证明审计或修改 canonical, 未 commit/push. 具体对话与核查见 [会话日志](state/AGENTS_SESSION_LOG.md).
++
++- 2026-09-20: 用户授权核查并修复所附证明审计后, 修正 F01-F08 及增长引理遗漏假设, 追踪高阶错误推广到分数阶文档、综述、工具卡与 A1/A2; B4 保持 PARTIAL. 新建 35 项精确检查全部通过, C1-C5 程序 PASS, 11 份 PDF 重建并同步. 修订前 36 文件按字节归档, 原封存证明包、canonical 和既有未提交工作保留; 未 stage/commit/push. 详见 [报告](reports/proof-audit-20260920/REPORT.md) 与会话日志.
+--- before/PROJECT.md
++++ after/PROJECT.md
+@@ -15,6 +15,7 @@
+ 
+ ## Key files
+ - Status/proof navigation: `docs/research-guide.md`; overview: `docs/SL_spectral_topics_summary.tex`. Resolve status differences using the relevant proof chain and dated closure/audit records.
++- 2026-09-20 proof errata and validation: `reports/proof-audit-20260920/REPORT.md` (local repairs; historical full interval audits and Lean are separate).
+ - Gap extremals report: `docs/SL_gap_extremals.tex`.
+ - Tools: `tools/` (legacy) + `knowledge/tools/` (new index).
+ - Recovery entry: `state/RESUME.md`.
+--- before/docs/PROJECT_UNDERSTANDING.md
++++ after/docs/PROJECT_UNDERSTANDING.md
+@@ -2,7 +2,7 @@
+ 
+ [首页](../README.md) | [证明导航](research-guide.md) | [问题关系图](../research_map.md) | [工具库](../tools/README.md)
+ 
+-更新于 2026-09-10. 这是人和 agent 可以直接修改的研究入口. 正式证明, 文献与状态继续留在原来的工具卡, run 和 Blueprint 中; 本页解释它们为什么有用, 以及接下来值得讨论什么.
++更新于 2026-09-20. 这是人和 agent 可以直接修改的研究入口. 正式证明, 文献与状态继续留在原来的工具卡, run 和 Blueprint 中; 本页解释它们为什么有用, 以及接下来值得讨论什么.
+ 
+ ## 目前怎样理解这个项目
+ 
+@@ -23,6 +23,10 @@
+ | KP-DET 的 mass-defective witness | 放宽质量约束能产生坏符号配置. 它限定了某类简化方法的适用范围 | 新论证证明放宽条件与完整条件之间的桥接, 或明确只研究放宽后的问题时 |
+ | [Q9 三份 benchmark 证明][q9] | 外审通过的三条路线给出不同的必要界和正性区域, 可比较其实际使用的假设 | 先核对题面和参数字典. 若复用更强中间命题, 单独核对其定义域; 暂未接入本项目 canonical |
+ | Route 11 的 NO_RETURN | 两项任务没有有效工件; 一个遭遇额度限制, 另一个原因未知 | 恢复时先核对已有工件与任务状态. 无返回不构成数学失败证据 |
++
++## 2026-09-20 审计带来的范围修正
++
++[修订报告](../reports/proof-audit-20260920/REPORT.md) 给出两项可复用的教训. 同一稀疏族的 H3 稠密性可以通过谱截断向低阶传递, 不能越过幂域成员性向任意高阶推广; p4 不属于 H4 是明确反例. 精确有理数程序则必须先证明超越函数包络的方向, 再检查有理数链; 两个相同分数比较成功不证明包络成立. 本轮以 C10 修复 C1, 以归一化对象修复证书接口, 保留已有原始证明包供追溯.
+ 
+ ## 下一步有价值的研究动作
+ 
+--- before/docs/SL_denseness_criteria.tex
++++ after/docs/SL_denseness_criteria.tex
+@@ -16,7 +16,7 @@
+ 
+ \title{边界约束 Hilbert 空间中多项式稠密的一般准则: 充分条件, 矩刻画与临界指数}
+ \author{研究证明文档 (项目: BVE research)}
+-\date{2026-08-05}
++\date{2026-08-05; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -27,26 +27,26 @@
+ $p_0 = 1$, $p_1 = x$, $p_{2m} = x^{2m} - \frac{m}{m-1}x^{2m-2}$,
+ $p_{2m+1} = x^{2m+1} - \frac{m}{m-1}x^{2m-1}$ ($m \geq 2$, 缺 2, 3 次). 三个结果:
+ \begin{enumerate}
+-	\item \emph{一阶矩准则} (定理 3): 若 $\|x^k\|_H \leq C k^\beta$ 且
++	\item \emph{一阶矩准则} (定理 \ref{thm:first}): 若 $\|x^k\|_H \leq C k^\beta$ 且
+ 		$\beta < 1$, 则 $\{p_n\}$ 在 $H$ 中完备. 证明: 正交条件化为矩的
+ 		一阶递推 $M_{2m} = mM_2$, 与 $\beta < 1$ 的矩界矛盾.
+-	\item \emph{跳变矩准则} (定理 5): 若 $\{q_n\} \subset \Pi$ 满足三系数跳变
++	\item \emph{跳变矩准则} (定理 \ref{thm:jump}): 若 $\{q_n\} \subset \Pi$ 满足三系数跳变
+ 		$q_{2m} = c_0 x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}$ ($c_0 > 0$,
+ 		$B_m \geq 0$, 增长引理假设), 且 $\|x^k\|_H \leq Ck^\beta$ (任意多项式阶),
+ 		则 $\{q_n\}$ 在 $H$ 中完备.
+-	\item \emph{矩刻画} (定理 2): $\{p_n\}$ 在 $H$ 中完备当且仅当不存在
++	\item \emph{矩刻画} (定理 \ref{thm:moments}): $\{p_n\}$ 在 $H$ 中完备当且仅当不存在
+ 		非零 $w \in H$ 使矩 $M_k = (w, x^k)_H$ 满足 $M_0 = M_1 = 0$,
+ 		$M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 完备性被归结为一个矩量问题.
+ \end{enumerate}
+-应用到移位 Krein Laplacian 的左定空间族 $H^s$: 因 $\|x^k\|_{H^s} \leq C_s k^s$
+-且 $\{K_c p_n\}$ 满足跳变结构, 配合等距传输 $K_c: H^{t} \to H^{t-2}$,
+-得到 $\{p_n\}$ 在\emph{一切整数} $H^s$ 中完备 (修正会话 10 推论 6.2 的证明:
+-原证明中恒等式 $K_c^{s/2}p_{2m} = cK_c^{s/2}x^{2m} - A_mK_c^{s/2}x^{2m-2}
+-+ B_mK_c^{s/2}x^{2m-4}$ 对 $s \geq 4$ 不成立; 正确的机制是 $K_c p_{2m}$ 的
+-多项式跳变在任意 $H^s$-矩下成立, 再加两步等距传输). 临界性: 对角空间
++应用到移位 Krein Laplacian 时, 跳变矩只在单项式与相关像都属于内积空间的
++前提下使用. H2/H3 主证明分别在 $L^2$ 与 $H^1$ 中满足此前提.
++结合谱截断, 同一稀疏族在 $0\le s\le3$ 的真正幂域 $H^s=D(K_c^{s/2})$
++中稠密. 2026-09-20 撤回旧版所有整数阶与任意阶结论:
++$p_4\notin H^4$, 对所有 $s\ge4$ 原命题为假; $3<s<4$ 本次不判定.
++临界性: 对角空间
+ $H_\beta$ (内积 $(x^j, x^k) = \delta_{jk}(k+1)^{2\beta}$) 中 $\{p_n\}$
+ 完备当且仅当 $\beta \leq 3/2$; $\beta > 3/2$ 时显式 $w \neq 0$ 与
+-$\{p_n\}$ 正交. 故``单幂范数多项式增长''是充分条件而非充分必要:
++$\{p_n\}$ 正交. 单幂范数多项式增长本身并非充分条件; 一阶准则的 $\beta<1$ 是充分非必要条件:
+ 对角族给出精确临界指数 $3/2$, 而 Cauchy-Schwarz 矩界只给出充分条件
+ $\beta < 1$ (一阶) 与任意多项式阶 (跳变).
+ \end{abstract}
+@@ -68,19 +68,28 @@
+ 	p_{2m+1} = x^{2m+1} - \frac{m}{m-1} x^{2m-1} \quad (m \geq 2).
+ \end{equation}
+ 允许指标 $n \in \{0,1\} \cup \{4,5,\dots\}$ (缺 2, 3). 注意 $\{p_n\}$
+-是 $\Pi$ 的三角基 (每项首系数 $1$), 故 $\operatorname{span}\{p_n\} = \Pi$;
+-``$\{p_n\}$ 在 $H$ 中完备'' 即 $\Pi$ 在 $H$ 中稠密. 问题的实质是:
+-哪些 $H$ 中 $\Pi$ 稠密, 边界约束如何影响它.
++虽各有首系数 $1$, 却缺少次数 $2,3$. 其代数线性包为
++\[
++ \mathcal P_K:=\operatorname{span}\{p_n\}=\Pi\cap D(K_c)\ne\Pi,
++ \qquad \operatorname{codim}_{\Pi}\mathcal P_K=2.
++\]
++每个 $p_n$ 满足 Krein 边界条件, 故线性包包含于右侧.
++反过来, 用首项消去把任一 $p\in\Pi\cap D(K_c)$ 化为
++$a+bx+dx^2+ex^3$. 两个边界残差在 $x^2,x^3$ 上分别为
++$(2,-2)$ 和 $(2,2)$, 线性无关, 所以 $d=e=0$.
++因此等号与余维断言成立. 要证明的是 $\mathcal P_K$ 在 $H$ 中的闭包等于 $H$,
++不能由全体多项式的稠密性直接替代.
+ 
+ \begin{remark}[两个不同的稠密性]
+-	(H1) 中``多项式稠密'' 是假设, 完备性结论 (定理 3, 5) 的输入; 输出是
+-	``$\{p_n\}$ (甚至 $\{q_n\}$) 也稠密''. 对左定空间 $H^s$, 多项式稠密是
+-	标准结论; 本项目的贡献在于证明带缺次数 2, 3 的稀疏子族仍稠密.
++	(H1) 中``多项式稠密'' 是假设, 完备性结论 (定理 \ref{thm:first}, 5) 的输入; 输出是
++	``$\{p_n\}$ (甚至 $\{q_n\}$) 也稠密''. 应用时必须先验证
++	$\Pi\subset H$. 真正幂域 $H^2=D(K_c)$ 已不含 $x^2$,
++	不能把本节 (H1) 无条件代入所有左定空间.
+ \end{remark}
+ 
+ \section{矩刻画 (充要条件)}
+ 
+-\begin{theorem}[矩刻画]
++\begin{theorem}[矩刻画]\label{thm:moments}
+ 	$\{p_n\}$ 在 $H$ 中完备当且仅当: 对任意 $w \in H$, 若
+ 	$M_0 = M_1 = 0$ 且
+ 	\begin{equation}
+@@ -103,20 +112,20 @@
+ \end{proof}
+ 
+ \begin{remark}[矩量问题的视角]
+-	定理 2 把稠密性归结为: 序列 $(\mu_{2m}) = (mM_2)$, $(\mu_{2m+1}) = (mM_3)$
++	定理 \ref{thm:moments} 把稠密性归结为: 序列 $(\mu_{2m}) = (mM_2)$, $(\mu_{2m+1}) = (mM_3)$
+ 	何时是某个 $w \in H$ 的矩. 对一般的 $H$ 这是经典矩量问题; 对角空间
+ 	$H_\beta$ (第 5 节) 中可表示性显式可判, 给出精确临界指数.
+ \end{remark}
+ 
+ \section{一阶矩准则 (充分条件)}
+ 
+-\begin{theorem}[一阶矩准则]
++\begin{theorem}[一阶矩准则]\label{thm:first}
+ 	设 $H$ 满足 (H1)(H2) 且 $\|x^k\|_H \leq C k^\beta$ ($\beta < 1$).
+ 	则 $\{p_n\}$ 在 $H$ 中完备.
+ \end{theorem}
+ 
+ \begin{proof}
+-	设 $w \in H$, $(w, p_n)_H = 0$ 对一切允许 $n$. 由定理 2,
++	设 $w \in H$, $(w, p_n)_H = 0$ 对一切允许 $n$. 由定理 \ref{thm:moments},
+ 	$M_{2m} = mM_2$. 由 (H2) 与范数假设:
+ 	\[
+ 		m\,|M_2| = |M_{2m}| \leq \|w\|_H \|x^{2m}\|_H \leq C\|w\|_H (2m)^\beta .
+@@ -127,25 +136,28 @@
+ 	$\|w\|_H^2 = (w, w)_H = \lim (w, p_N)_H = 0$, $w = 0$. \qed
+ \end{proof}
+ 
+-\begin{corollary}[左定空间 $0 \leq s < 3/2$]
+-	对移位 Krein Laplacian 的左定空间 $H^s$, $\|x^k\|_{H^s} \leq C_s k^{s-1/2}$
+-	(整 $s$ 由直接估计, 分数 $s$ 由插值), 故 $0 \leq s < 3/2$ 时
+-	$\{p_n\}$ 在 $H^s$ 中完备. 特别地 $s = 0$ (即 $L^2$) 与 $s = 1$ 成立,
+-	且证明比跳变方法更简单 (一阶递推).
++\begin{corollary}[左定空间 $0\le s\le1$]
++对 $0\le s\le1$, 一阶矩准则给出 $\{p_n\}$ 在 $H^s$ 中完备.
+ \end{corollary}
+-
+-\begin{proof}
+-	$s = 0$: $\|x^k\|_{L^2} = \sqrt{2/(2k+1)} \leq C k^{-1/2}$, $\beta = -1/2 < 1$.
+-	$s = 1$: $\|x^k\|_1^2 = 2k^2/(2k-1) + 2c/(2k+1) \leq Ck$, $\beta = 1/2 < 1$.
+-	一般 $s \in (0,1)$: 插值于 $L^2$ 与 $H^1$ 得 $\beta = s/2 < 1/2$.
+-	$s \in (1, 3/2)$: 插值于 $H^1$ 与 $H^2$ 得 $\beta = s - 1/2 < 1$. \qed
++\begin{proof}
++对 $k\ge1$, $\|x^k\|_0^2=2/(2k+1)$, 且
++\[
++ \|x^k\|_1^2=\frac{2k^2}{2k-1}+\frac{2c}{2k+1}
++ -\tfrac12\bigl(1-(-1)^k\bigr)^2\le C(k+1).
++\]
++谱 Holder 不等式给出
++$\|x^k\|_s\le\|x^k\|_0^{1-s}\|x^k\|_1^s
++\le C_s(k+1)^{s-1/2}$, 指数不超过 $1/2<1$.
++全体多项式在 $H^1$ 中稠密, 谱截断与连续嵌入再给出其在 $H^s$ 中稠密.
++不能向 $H^2$ 插值单项式, 因为 $x^2\notin H^2$.
++更大的安全范围 $0\le s\le3$ 见第 \ref{sec:left-scale} 节. \qed
+ \end{proof}
+ 
+ \section{跳变矩准则 (充分条件, 任意多项式阶)}
+ 
+-\begin{lemma}[增长引理, 会话 9]
++\begin{lemma}[增长引理, 会话 9]\label{lem:growth}
+ 	设 $c_0 > 0$, $u_0 = 0$, $u_1 = 1$, $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$
+-	($j \geq 2$), 且 $A_j - B_j \geq c_0$ 对一切 $j \geq 2$. 则 $u_j > 0$
++	($j \geq 2$), 且 $B_j\ge0$, $A_j - B_j \geq c_0$ 对一切 $j \geq 2$. 则 $u_j > 0$
+ 	且单调不减, 且
+ 	\[
+ 		u_m \geq \prod_{j=2}^{m} \frac{A_j - B_j}{c_0} .
+@@ -161,14 +173,14 @@
+ 	\geq (A_j - B_j)/c_0$. 连乘即得. \qed
+ \end{proof}
+ 
+-\begin{theorem}[跳变矩准则]
++\begin{theorem}[跳变矩准则]\label{thm:jump}
+ 	设 $H$ 满足 (H1)(H2), $\|x^k\|_H \leq C k^\beta$ (任意 $\beta$).
+ 	设 $\{q_n\} \subset \Pi$, $q_0 = c_0$, $q_1 = c_0 x$, 且对 $m \geq 2$:
+ 	\begin{equation}
+ 		q_{2m} = c_0 x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}, \qquad
+ 		q_{2m+1} = c_0 x^{2m+1} - A'_m x^{2m-1} + B'_m x^{2m-3},
+ 	\end{equation}
+-	其中 $c_0 > 0$, $B_m, B'_m \geq 0$, 且两族系数都满足增长引理 4 的超多项式
++	其中 $c_0 > 0$, $B_m, B'_m \geq 0$, 且两族系数都满足增长引理 \ref{lem:growth} 的超多项式
+ 	假设. 则 $\{q_n\}$ 在 $H$ 中完备.
+ \end{theorem}
+ 
+@@ -178,107 +190,60 @@
+ 	\[
+ 		0 = (w, q_{2m})_H = c_0 M_{2m} - A_m M_{2m-2} + B_m M_{2m-4},
+ 	\]
+-	即 $M_{2m} = M_2 u_m$ ($u_m$ 为增长引理的解). 若 $M_2 \neq 0$, 由引理 4,
++	即 $M_{2m} = M_2 u_m$ ($u_m$ 为增长引理的解). 若 $M_2 \neq 0$, 由引理 \ref{lem:growth},
+ 	$|M_{2m}| = |M_2| u_m = \omega(m^\beta)$, 与 (H2) 的
+ 	$|M_{2m}| \leq \|w\|_H C (2m)^\beta$ 矛盾. 故 $M_2 = 0$, 全部偶矩为零;
+ 	奇矩同理 ($M_3 = 0$). 于是 $(w, p)_H = 0$ 对一切多项式 $p$, 多项式稠密
+ 	给出 $w = 0$. \qed
+ \end{proof}
+ 
+-\section{左定标度: 一切整数 \texorpdfstring{$H^s$}{Hs} 中完备}
+-
+-\subsection{等距传输}
+-
+-\begin{lemma}[两步等距传输]
+-	对 $t \geq 2$: $K_c: (H^t, (\cdot,\cdot)_t) \to (H^{t-2}, (\cdot,\cdot)_{t-2})$
+-	是等距线性同构, 且
+-	\[
+-		\overline{\operatorname{span}\{p_n\}}^{H^t} = H^t
+-		\iff
+-		\overline{\operatorname{span}\{K_c p_n\}}^{H^{t-2}} = H^{t-2}.
+-	\]
++\section{左定标度: 幂域前提与可保留范围}\label{sec:left-scale}
++
++\begin{lemma}[带成员条件的两步等距传输]
++对 $t\ge2$, $K_c:H^t\to H^{t-2}$ 是等距同构.
++对任一族 $\{h_n\}\subset H^t$, 有
++\[
++ \overline{\operatorname{span}\{h_n\}}^{H^t}=H^t
++ \iff \overline{\operatorname{span}\{K_ch_n\}}^{H^{t-2}}=H^{t-2}.
++\]
+ \end{lemma}
+-
+-\begin{proof}
+-	$(K_c f, K_c g)_{t-2} = (K_c^{(t-2)/2}K_c f, K_c^{(t-2)/2}K_c g)_{L^2}
+-	= (K_c^{t/2}f, K_c^{t/2}g)_{L^2} = (f,g)_t$ (泛函演算交换).
+-	满射由 $K_c^{-1}: H^{t-2} \to H^t$ (泛函演算, $0 \notin \sigma$). \qed
+-\end{proof}
+-
+-\subsection{关键跳变在任意 \texorpdfstring{$H^s$}{Hs} 中成立}
+-
+-\begin{lemma}[多项式跳变是 $s$-无关的]
+-	作为多项式 (与 $s$ 无关):
+-	\begin{equation}
+-		K_c p_{2m} = c\, x^{2m} - A_m x^{2m-2} + B_m x^{2m-4},
+-		\qquad A_m = 2m(2m-1) + \frac{cm}{m-1}, \quad B_m = 2m(2m-3),
+-	\end{equation}
+-	奇次类似 ($A'_m = 2m(2m+1) + cm/(m-1)$, $B'_m = 2m(2m-1)$).
+-	因此对\emph{任意} $s \geq 0$, $H^s$-矩 $N_k := (w, x^k)_s$ 满足跳变递推
+-	\begin{equation}
+-		c\, N_{2m} = A_m N_{2m-2} - B_m N_{2m-4} \qquad (m \geq 2),
+-	\end{equation}
+-	与奇次对应式. 注意这里矩的内积取 $(\cdot,\cdot)_s$, 无需 $K_c^{s/2}p_n$
+-	有任何跳变结构.
+-\end{lemma}
+-
+-\begin{proof}
+-	(7) 是会话 9 的多项式计算, 与 $s$ 无关. 由内积对第二变元的线性:
+-	$0 = (w, K_c p_{2m})_s = cN_{2m} - A_m N_{2m-2} + B_m N_{2m-4}$. \qed
+-\end{proof}
+-
+-\begin{remark}[更正会话 10 推论 6.2 的证明]
+-	原证明思路声称 $K_c^{s/2}p_{2m} = cK_c^{s/2}x^{2m} - A_mK_c^{s/2}x^{2m-2}
+-	+ B_mK_c^{s/2}x^{2m-4}$. 该恒等式对 $s \geq 4$ \emph{不}成立: 例如
+-	$s=4$ 时 $K_c^2 p_{2m}$ 有四项 (数值核验: $K_c^2 p_6$ 非零项数 $= 4$),
+-	对 $s=6$ 有五项. 正确的机制: 对 $\{K_c p_n\}$ 取 $H^s$-矩 (引理 7),
+-	跳变递推在任意 $s$ 下成立, 再配合引理 6 的两步传输. 结论 (一切整数
+-	$H^s$ 完备) 不变, 证明被修正.
+-\end{remark}
+-
+-\subsection{主定理}
+-
+-\begin{theorem}[Krein 标度上的一切整数阶]
+-	对每个整数 $s \geq 0$ 与 $c > 0$, $\{p_n\}$ 在 $(H^s, (\cdot,\cdot)_s)$
+-	中完备. 更强的中间结论: $\{K_c^r p_n\}$ 在 $H^s$ 中完备, 对一切
+-	$r \geq 0$ 与 $s \in \{0,1,2,3\}$.
+-\end{theorem}
+-
+-\begin{proof}
+-	分三步.
+-	\emph{(i) 基底 $\{K_c p_n\}$ 在一切 $H^s$ 中完备}: 由引理 7,
+-	$H^s$-矩 $N_k$ 满足跳变递推; 由范数界 $\|x^k\|_{H^s} \leq C_s k^s$
+-	(引理 9) 与 (H2) 型界 $|N_k| \leq \|w\|_s \|x^k\|_s$, 增长引理 4
+-	(超阶乘) 与多项式界的矛盾迫使 $N_2 = N_3 = 0$, 全部矩为零,
+-	$w = 0$ (多项式在 $H^s$ 中稠密).
+-	\emph{(ii) 两步传输}: 引理 6 给出 $\{p_n\}$ 在 $H^t$ 中完备
+-	$\iff$ $\{K_c p_n\}$ 在 $H^{t-2}$ 中完备 ($t \geq 2$). 迭代: $\{p_n\}$
+-	在 $H^{s+2r}$ 中完备 $\iff$ $\{K_c^r p_n\}$ 在 $H^s$ 中完备.
+-	\emph{(iii) 基始}: $s = 0, 1$ 由推论 3 的一阶矩准则; $s = 2, 3$
+-	由 (i) 取 $r=1$ 或直接跳变 (会话 9, 10). 结合 (i)(ii)(iii):
+-	对任意整数 $s \geq 0$, 取 $s' \in \{0,1,2,3\}$ 与 $r \geq 0$ 使
+-	$s = s' + 2r$, 则 $\{p_n\}$ 在 $H^s$ 中完备. \qed
+-\end{proof}
+-
+-\begin{lemma}[单幂范数的多项式界]
+-	对整数 $s \geq 0$, 存在 $C_s$ 使 $\|x^k\|_{H^s} \leq C_s k^s$
+-	(更精确地 $\sim k^{s-1/2}$, 数值验证见第 7 节).
+-\end{lemma}
+-
+-\begin{proof}
+-	归纳. $s=0$: $\sqrt{2/(2k+1)} \leq C$. $s=1$: 直接计算.
+-	偶 $s = 2r$: 由二项展开, $K_c^r x^k$ 为有限和, 每项
+-	$L^2$ 模 $\leq k^{2j}\sqrt{2}$, 故 $\|x^k\|_{2r} \leq C_r k^{2r}$.
+-	奇 $s = 2r+1$: $\|x^k\|_s = \|K_c^r x^k\|_1 \leq C_r k^{2r+1}$ (用
+-	$\|p\|_1 \leq \|p'\|_{L^2} + \sqrt c \|p\|_{L^2}$ 与上式). \qed
+-\end{proof}
+-
+-\begin{corollary}[分数阶]
+-	对分数 $s \geq 0$: $0 \leq s < 3/2$ 由推论 3; $s \geq 2$ 由定理 8 的
+-	同一机制 ($H^{s-2} \geq 0$, 矩界用插值 $\|x^k\|_{H^{s-2}}
+-	\leq C k^{s-2}$). 窗口 $3/2 \leq s < 2$ 本方法未闭合, 留作开放
+-	(见第 8 节).
+-\end{corollary}
++\begin{proof}
++泛函演算给出 $\|K_cf\|_{t-2}=\|f\|_t$,
++且 $K_c^{-1}:H^{t-2}\to H^t$ 满射. 同构保持闭包.
++应用于 $p_n$ 之前必须验证 $p_n\in H^t$, 不能从代数公式推断这一点. \qed
++\end{proof}
++
++\begin{theorem}[同一稀疏族在 $0\le s\le3$ 中稠密]\label{thm:low-order}
++对 $c>0$ 和实数 $0\le s\le3$, $\{p_n\}\subset H^s$ 且在其中稠密.
++\end{theorem}
++\begin{proof}
++$K_cp_n$ 为多项式, 属于 $H^1$; $p_n\in D(K_c)$, 所以 $p_n\in H^3$.
++H3 主证明 \cite{h3proof} 在 $H^1$ 中用矩跳跃和增长引理证明稠密性;
++H2 主证明 \cite{h2proof} 在 $L^2$ 中给出对应结论.
++对 $g\in H^3$, 谱下界 $K_c\ge cI$ 给出
++\[
++ \|g\|_{H^s}\le c^{(s-3)/2}\|g\|_{H^3}.
++\]
++对任意 $f\in H^s$, 谱截断 $E([c,N])f\in H^3$ 在 $H^s$ 中趋于 $f$.
++再用 H3 中的稀疏族逼近和上述不等式传输误差, 即得结论. \qed
++\end{proof}
++
++\begin{proposition}[高阶原陈述撤回]
++$p_4=x^4-2x^2\notin H^4$, 因此对任何 $s\ge4$, 该族不是 $H^s$ 内的完备族.
++\end{proposition}
++\begin{proof}
++$p_4\in D(K_c)$, 但
++\[
++ K_cp_4=cx^4-(2c+12)x^2+4,\qquad (K_cp_4)'(\pm1)=\mp24.
++\]
++$K_cp_4$ 为偶函数, 不满足两端导数为零的 Krein 边界条件.
++故 $p_4\notin D(K_c^2)$, 再用 $H^s\subset H^4$ ($s\ge4$). \qed
++\end{proof}
++
++2026-09-20 撤回旧版本节的任意阶跳变矩论证、单幂范数高阶界及全范围分数阶推论.
++$x^2\notin H^2$ 已说明 $(w,x^k)_t$ 并非任意阶都有定义.
++微分表达式 $(c-D^2)^r$ 的有限代数展开不等于带域条件的算子幂.
++只有 $t=0,1$ 的单项式范数界在这里直接使用; $3<s<4$ 的精确范围另计.
+ 
+ \section{临界性: 对角空间 \texorpdfstring{$H_\beta$}{H beta}}
+ 
+@@ -289,32 +254,31 @@
+ 	< \infty$; 矩为 $M_k = (w, x^k)_\beta = w_k (k+1)^{2\beta}$.
+ \end{definition}
+ 
+-\begin{theorem}[临界指数 $3/2$]
++\begin{theorem}[临界指数 $3/2$]\label{thm:diagonal}
+ 	在 $H_\beta$ 中 $\{p_n\}$ 完备当且仅当 $\beta \leq 3/2$.
+ \end{theorem}
+ 
+ \begin{proof}
+-	由定理 2, $w \perp \operatorname{span}\{p_n\}$ 当且仅当 $w_0 = w_1 = 0$
++	由定理 \ref{thm:moments}, $w \perp \operatorname{span}\{p_n\}$ 当且仅当 $w_0 = w_1 = 0$
+ 	且 $M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 代入表示性:
+ 	$w_{2m} = mM_2 (2m+1)^{-2\beta}$, 且
+ 	\[
+ 		\|w\|_\beta^2 = \sum_{m \geq 1} \frac{(mM_2)^2}{(2m+1)^{2\beta}}
+-			+ \sum_{m \geq 1} \frac{(mM_3)^2}{(2m+1)^{2\beta}} .
++			+ \sum_{m \geq 1} \frac{(mM_3)^2}{(2m+2)^{2\beta}} .
+ 	\]
+ 	级数 $\sum_m m^2 (2m)^{-2\beta} = \sum_m m^{2-2\beta}$ 收敛当且仅当
+ 	$2 - 2\beta < -1$, 即 $\beta > 3/2$. 故 $\beta > 3/2$ 时取 $M_2 = 1$
+ 	定义非零 $w \in H_\beta$, $w \perp \operatorname{span}\{p_n\}$,
+ 	不完备. $\beta \leq 3/2$ 时级数发散, $w \in H_\beta$ 迫使 $M_2 = M_3 = 0$,
+-	由定理 2 完备. \qed
++	由定理 \ref{thm:moments} 完备. \qed
+ \end{proof}
+ 
+ \begin{remark}[充分条件不是必要的]
+ 	一阶矩准则要求 $\beta < 1$ (充分); 对角族表明真实临界界为
+ 	$\beta \leq 3/2$ (充要). 因此``单幂范数多项式增长''本身不能保证完备性:
+ 	$1 < \beta \leq 3/2$ 时 $\|x^k\|_{H_\beta} \sim k^\beta$ 多项式增长但
+-	$\{p_n\}$ 仍完备, 而 $\beta > 3/2$ 时失败. 对左定空间 $H^s$,
+-	$\beta = s - 1/2$ 恒有限, 且跳变机制 (超阶乘) 远强于需要,
+-	这是 $H^s$ 全部整数阶完备的根源.
++	$\{p_n\}$ 仍完备, 而 $\beta > 3/2$ 时失败.
++	这与算子幂域成员关系是两项不同的前提; 范数增长估计不能替代后者.
+ \end{remark}
+ 
+ \begin{remark}[超多项式增长]
+@@ -322,10 +286,14 @@
+ 	m(2m+1)^{-2}...$ 型矩序列 $M_{2m} = m$ 可表示 ($\sum m^2/(2m)!^2
+ 	\cdot ((2m)!)^2 = \sum m^2 = \infty$? 否: $w_{2m} = mM_2/((2m)!)^2$,
+ 	$\|w\|^2 = \sum (mM_2)^2/((2m)!)^2 < \infty$), 故不完备. 这与
+-	定理 11 的 $\beta > 3/2$ 情形一致 (对角族中可表示性即临界判据).
++	定理 \ref{thm:diagonal} 的 $\beta > 3/2$ 情形一致 (对角族中可表示性即临界判据).
+ \end{remark}
+ 
+-\section{数值验证}
++\section{历史数值验证及其范围}
++2026-09-20 注: 下列涉及 $s>1$ 单项式范数或高阶微分展开的数据,
++只记录原脚本的形式微分计算; 不是真正自伴算子幂域中的范数或成员性证据.
++本次未重跑这些历史脚本. $H^0,H^1$ 与对角空间的计算应分别按其定义理解.
++
+ 
+ 脚本 \path{scripts/d2_criterion_verify.py} (精确有理数) 与
+ \path{scripts/d2_v4_float.py} (浮点):
+@@ -346,23 +314,24 @@
+ 		对 $s = 0..4$ 在 $N \geq 10$ 时达机器精度.
+ 	\item \textbf{跳变恒等式对 $s \geq 4$ 失效}: $K_c^s/2 p_{2m}$ 非零项数
+ 		$s=2: 3$; $s=4: 4$ ($m \geq 3$); $s=6: 5$ ($m \geq 4$),
+-		证实引理 7 的更正.
++		仅说明形式微分展开的项数, 不证明算子幂有定义.
+ \end{enumerate}
+ 
+ \section{对抗性审计与开放问题}
+ 
+ \begin{description}
+-	\item[逻辑闭环] 定理 2 (矩刻画) 与定理 3, 5 的证明独立于左定理论;
+-		左定应用 (定理 8) 只使用引理 6, 7, 9 (各为独立验证的引理).
++	\item[逻辑闭环] 定理 \ref{thm:moments} (矩刻画) 与定理 \ref{thm:first}, 5 的证明独立于左定理论;
++		左定应用见定理 \ref{thm:low-order}, 依赖 H3 主证明和谱截断.
+ 	\item[更正透明性] 会话 10 推论 6.2 的证明思路有误 (恒等式对 $s \geq 4$
+-		失效, 数值证实), 本文件给出正确证明, 结论不变.
++		失效). 2026-09-20 进一步确认其高阶结论本身被幂域反例否定, 已撤回.
+ 	\item[边界情形] $s = 0, 1$ 由一阶准则 ($\beta < 1$); $s = 2, 3$
+ 		为会话 9, 10; $t = 2$ 的传输取 $H^0 = L^2$, 自洽. $c > 0$ 本质.
+ 	\item[必要性的诚实边界] 对角族给出充要临界 $\beta^* = 3/2$, 但仅对
+-		对角 (正交单幂) 空间; 一般 $H$ 的完备性由定理 2 的矩量问题刻画,
++		对角 (正交单幂) 空间; 一般 $H$ 的完备性由定理 \ref{thm:moments} 的矩量问题刻画,
+ 		无一般闭式判据.
+-	\item[开放问题] (O1) 分数窗口 $3/2 \leq s < 2$ 的完备性 (猜测: 成立,
+-		需插值或更高阶矩机制); (O2) 一般 $H$ 中矩量问题可表示性的刻画;
++	\item[开放问题] (O1) 同一稀疏族在 $3<s<4$ 中的成员性与稠密性的精确范围;
++		旧窗口 $3/2\le s<2$ 已由定理 \ref{thm:low-order} 覆盖;
++		(O2) 一般 $H$ 中矩量问题可表示性的刻画;
+ 		(O3) 跳变准则对更宽系数族 ($A_m - B_m \sim m^\alpha$, $\alpha > 1$)
+ 		的精确增长与临界.
+ \end{description}
+@@ -373,9 +342,9 @@
+ 	\item[Hilbert 空间完备性] $\overline{\operatorname{span}} = H$
+ 		等价于正交补为 $\{0\}$ (Hahn-Banach 推论).
+ 	\item[矩量问题] 序列 $(M_k)$ 何时为某个 $w \in H$ 的矩; 对角空间中
+-		可表示性化为级数收敛 (定理 11).
++		可表示性化为级数收敛 (定理 \ref{thm:diagonal}).
+ 	\item[递推的增长理论] 二阶递推 $c_0 u_j = A_ju_{j-1} - B_ju_{j-2}$
+-		支配解由系数差 $A_j - B_j$ 控制 (引理 4); 连乘给出阶乘级增长.
++		支配解由系数差 $A_j - B_j$ 控制 (引理 \ref{lem:growth}); 连乘给出阶乘级增长.
+ 	\item[插值理论] 左定空间族 $H^s$ 在 $s$ 上插值 (Fischbacher--
+ 		Gesztesy--Hagelstein--Littlejohn), 用于分数阶矩界.
+ 	\item[等距传输] $K_c: H^t \to H^{t-2}$ 保内积双射, 稠密性问题在
+--- before/docs/SL_fractional_left_definite.tex
++++ after/docs/SL_fractional_left_definite.tex
+@@ -14,286 +14,87 @@
+ \newtheorem{remark}[theorem]{注}
+ \newtheorem{definition}[theorem]{定义}
+ 
+-\title{一切实数阶左定空间 $H^s[-1,1]$ 中稀疏多项式基的解析完备性: 等距传输 + 跳变矩准则}
++\title{稀疏多项式族的分数阶稠密性: $0\le s\le3$ 与高阶推广勘误}
+ \author{研究证明文档 (项目: BVE research)}
+-\date{2026-08-05}
++\date{2026-08-05; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+ 
+ \begin{abstract}
+-本文完全解决概述文档开放问题第 10 条 (分数左定阶窗口 $3/2 \le s < 2$),
+-并证明严格更强的结果. 设 $K_c$ 为移位 Krein Laplacian ($c > 0$,
+-边界 $f'(\pm1) = (f(1)-f(-1))/2$), $\{H^s\}_{s \in \mathbb R}$ 为其左定空间标度,
+-稀疏多项式基
+-\[
+-	p_0 = 1, \quad p_1 = x, \quad
+-	p_{2m} = x^{2m} - \frac{m}{m-1}x^{2m-2}, \quad
+-	p_{2m+1} = x^{2m+1} - \frac{m}{m-1}x^{2m-1} \quad (m \ge 2)
+-\]
+-(缺 2, 3 次). 则
+-\begin{equation}
+-	\{p_n\} \text{ 在 } H^s \text{ 中解析完备}, \qquad \forall\, s \ge 0.
+-\end{equation}
+-证明机制 (与整数阶情形不同, 不使用分数幂的多项式性):
+-\begin{enumerate}
+-	\item \emph{跳变矩准则在任意 $H^t$ 中成立} (定理 \ref{thm:jump}):
+-		$\{K_c p_n\} \subset \Pi$ 满足三系数跳变
+-		$K_c p_{2m} = c x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}$,
+-		$A_m - B_m = 4m + cm/(m-1) \ge c$, 且 $B_m \ge 0$;
+-		正交条件给出矩的钉住递推 (初值 $M_0 = M_1 = 0$ 由
+-		$K_c p_0 = c$, $K_c p_1 = cx$ 强制), 增长引理给出超阶乘增长,
+-		与多项式矩界 $\|x^k\|_t \le C_t k^{\beta_t}$ 矛盾.
+-	\item \emph{等距传输} (定理 \ref{thm:transport}): 对一切实数 $s$,
+-		$K_c: H^s \to H^{s-2}$ 是等距线性同构, 完备性在标度间传递.
+-	\item 对任意 $s \ge 0$: 先证 $\{K_c p_n\}$ 在 $H^{s-2}$ 中完备 (第 1 步,
+-		$t = s-2$ 可为负数, 此时 $H^t = L^2$ 等价范数), 再传输.
+-\end{enumerate}
+-数值验证见脚本 \path{scripts/op10_verify_mechanism.py} 与
+-\path{scripts/op10_fractional_window.py}. 对抗性要点: 矩递推存在衰减模
+-(Perron 分析 $\lambda_- \to 5/8$), 但初值 $M_0 = 0$ 把它排除, 钉住解是
+-支配模 (超阶乘), 故矛盾成立.
++2026-09-20 修订. 旧版声称同一稀疏多项式族在所有实数阶 $H^s$ 中完备,
++该全范围结论已撤回: $p_4=x^4-2x^2\notin D(K_c^2)=H^4$.
++本版仅保留由 H3 主定理、谱截断和连续嵌入严格推出的 $0\le s\le3$
++结论, 它覆盖原分数窗口 $3/2\le s<2$. $3<s<4$ 的精确范围本次不判定.
++原文与历史数值证据按修订前字节保存在本轮审计工件中; 它们不再作为高阶幂域证明.
+ \end{abstract}
+ 
+ \tableofcontents
+ 
+-\section{左定标度与算子事实}
++\section{对象与可用输入}
++固定 $c>0$, 令 $K_cf=-f''+cf$ 为 $L^2(-1,1)$ 中的移位 Krein Laplacian,
++\[
++ D(K_c)=\{f\in H^2_{\rm Sob}(-1,1):
++ f'(1)=f'(-1)=(f(1)-f(-1))/2\}.
++\]
++这里 $H^2_{\rm Sob}$ 表示通常 Sobolev 空间, 避免与左定记号混淆.
++对实数 $s\ge0$ 定义
++\[
++ H^s=D(K_c^{s/2}),\qquad \|f\|_{H^s}=\|K_c^{s/2}f\|_2.
++\]
++自伴性与 $K_c\ge cI$ 为既有左定设定. 稀疏族为
++\[
++ p_0=1,\quad p_1=x,\quad
++ p_{2m}=x^{2m}-\frac m{m-1}x^{2m-2},\quad
++ p_{2m+1}=x^{2m+1}-\frac m{m-1}x^{2m-1},\quad m\ge2.
++\]
++每个 $p_n$ 满足边界条件, 且 $K_cp_n$ 为光滑多项式, 属于
++$D(K_c^{1/2})=H^1_{\rm Sob}(-1,1)$, 所以 $p_n\in H^3$.
++本页使用修订后的 \texttt{SL\_h3\_completeness\_proof.pdf} 主定理:
++$\operatorname{span}\{p_n\}$ 在 $H^3$ 中稠密. 该输入仍由 H1 矩跳跃主链证明,
++不依赖已撤回的任意阶推广.
+ 
+-移位 Krein Laplacian \cite{axioms}: $K_c f = -f'' + cf$, 定义域
++\section{谱截断传输的严格证明}
++\begin{theorem}[低阶和分数窗口]\label{thm:main}
++对每个 $c>0$ 和实数 $0\le s\le3$, $\{p_n\}$ 在 $H^s$ 中稠密.
++\end{theorem}
++\begin{proof}
++设 $E$ 为 $K_c$ 的谱测度. 对 $g\in H^3$, 因谱包含于 $[c,\infty)$,
+ \[
+-	D(K_c) = \bigl\{f : f, f' \in AC[-1,1],\, f'' \in L^2,\,
+-	f'(1) = f'(-1) = \tfrac{f(1)-f(-1)}{2}\bigr\}.
++ \|g\|_{H^s}^2=\int\lambda^s\,d\|E_\lambda g\|^2
++ \le c^{s-3}\int\lambda^3\,d\|E_\lambda g\|^2
++ =c^{s-3}\|g\|_{H^3}^2.
+ \]
+-$K_c$ 在 $L^2(-1,1)$ 中自伴且有界下界 $cI$; 谱
+-\[
+-	\sigma(K_c) = \{c\} \cup \{(n\pi)^2 + c : n \ge 1\}
+-	\cup \{\mu_n^2 + c : n \ge 1\}, \qquad \tan\mu_n = \mu_n,
+-\]
+-相应特征函数 $1$, $\cos n\pi x$, $\sin \mu_n x$ (完备正交系).
+-
+-左定标度 \cite{lw1,fg}: 对实数 $s$,
+-\[
+-	H^s = D\bigl(K_c^{s/2}\bigr), \qquad
+-	(f,g)_s = \bigl(K_c^{s/2}f,\, K_c^{s/2}g\bigr)_{L^2},
+-\]
+-其中 $s < 0$ 时 $K_c^{s/2}$ 有界, $H^s = L^2$ (等价范数);
+-$s \ge 0$ 时为分数 Sobolev 型空间. 多项式在一切 $H^s$ 中稠密
+-(左定理论标准结论 \cite{lw1}, 且 $s < 0$ 时由 $L^2$ 稠密性直接得到).
+-$0 \notin \sigma(K_c)$ ($c > 0$), 故分数幂由泛函演算良定.
+-
+-\begin{lemma}[稀疏基在算子定义域内]\label{lem:domain}
+-	对一切允许指标 $n \in \{0,1\} \cup \{4,5,\dots\}$,
+-	$p_n \in D(K_c)$, 且
+-	\[
+-		K_c p_0 = c, \qquad K_c p_1 = c x,
+-	\]
+-	\[
+-		K_c p_{2m} = c\,x^{2m} - A_m x^{2m-2} + B_m x^{2m-4},
+-		\quad
+-		K_c p_{2m+1} = c\,x^{2m+1} - A'_m x^{2m-1} + B'_m x^{2m-3},
+-	\]
+-	其中
+-	\[
+-		A_m = 2m(2m-1) + \frac{cm}{m-1}, \quad B_m = 2m(2m-3),
+-	\]
+-	\[
+-		A'_m = 2m(2m+1) + \frac{cm}{m-1}, \quad B'_m = 2m(2m-1),
+-	\]
+-	且 $A_m - B_m = A'_m - B'_m = 4m + cm/(m-1) \ge 4m + c$,
+-	$B_m, B'_m \ge 0$ 对一切 $m \ge 2$.
+-\end{lemma}
+-
+-\begin{proof}
+-	直接代入 $K_c = -d^2/dx^2 + c$:
+-	$K_c x^k = c x^k - k(k-1)x^{k-2}$, 展开 $p_n$ 的两项即得公式.
+-	边界条件: $p_{2m}'(x) = 2mx^{2m-1} - 2m x^{2m-3}$,
+-	$p_{2m}'(\pm1) = 0$; $p_{2m}(1) - p_{2m}(-1) = 0$, 成立.
+-	$p_{2m+1}'(x) = (2m+1)x^{2m} - \frac{m(2m-1)}{m-1}x^{2m-2}$,
+-	$p_{2m+1}'(\pm1) = (2m+1) - \frac{m(2m-1)}{m-1} = -\frac{1}{m-1}$;
+-	$p_{2m+1}(1) - p_{2m+1}(-1) = 2\bigl(1 - \frac{m}{m-1}\bigr)
+-	= -\frac{2}{m-1}$, 一半为 $-\frac{1}{m-1}$, 成立. \qed
++取 $f\in H^s$ 及 $\varepsilon>0$. 截断 $f_N=E([c,N])f$ 属于 $H^3$,
++因为谱支集有界. 由积分尾部收敛,
++$\|f-f_N\|_{H^s}^2=\int_{(N,\infty)}\lambda^s\,d\|E_\lambda f\|^2\to0$.
++先取 $N$ 使此误差范数小于 $\varepsilon/2$, 再由 H3 主定理取有限线性组合
++$p\in\operatorname{span}\{p_n\}$ 使
++$\|f_N-p\|_{H^3}<\varepsilon/(2c^{(s-3)/2})$.
++三角不等式和连续嵌入给出 $\|f-p\|_{H^s}<\varepsilon$. \qed
+ \end{proof}
+ 
+-\section{跳变矩准则}
+-
+-\begin{lemma}[增长引理, 钉住解]\label{lem:growth}
+-	设 $c_0 > 0$, 序列 $u_j$ ($j \ge 0$) 满足
+-	$u_0 = 0$, $u_1 = 1$ 且 $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$
+-	($j \ge 2$), 其中 $B_j \ge 0$, $A_j - B_j \ge c_0$.
+-	则 $u_j > 0$, $u_j$ 单调不减, 且
+-	\[
+-		u_j \ge \Bigl(\frac{A_j - B_j}{c_0}\Bigr) \cdots
+-		\Bigl(\frac{A_2 - B_2}{c_0}\Bigr)
+-		= \prod_{k=2}^j \frac{A_k - B_k}{c_0}.
+-	\]
+-	特别地对 Krein 系数 ($c_0 = c$, $A_k - B_k \ge 4k + c$):
+-	$u_j \ge (4/c)^{j-1} j!$, 超阶乘增长, 故对一切 $\beta$,
+-	$u_j = \omega(j^\beta)$.
+-\end{lemma}
+-
++\section{反例与撤回的证明机制}
++\begin{proposition}[所有 $s\ge4$ 的原同族陈述为假]
++$p_4\notin H^4$, 因而 $s\ge4$ 时该族甚至不是 $H^s$ 的子集.
++\end{proposition}
+ \begin{proof}
+-	单调性归纳: 设 $0 \le u_{j-2} \le u_{j-1}$. 则
+-	\[
+-		c_0 u_j = (A_j - B_j)u_{j-1} + B_j(u_{j-1} - u_{j-2})
+-		\ge (A_j - B_j)u_{j-1} \ge c_0 u_{j-1},
+-	\]
+-	故 $u_j \ge u_{j-1} \ge 0$. 比值:
+-	\[
+-		\frac{u_j}{u_{j-1}} \ge \frac{A_j - B_j}{c_0} + B_j\frac{u_{j-1}-u_{j-2}}{c_0u_{j-1}}
+-		\ge \frac{A_j - B_j}{c_0},
+-	\]
+-	连乘即得. \qed
++$p_4\in D(K_c)$, 但
++\[
++ K_cp_4=cx^4-(2c+12)x^2+4,\qquad (K_cp_4)'(1)=-24,\quad
++ (K_cp_4)'(-1)=24.
++\]
++偶函数 $K_cp_4$ 的边界值差为零, 两端导数却不为零, 所以不属于 $D(K_c)$.
++按算子乘积域定义 $p_4\notin D(K_c^2)$. 再用 $H^s\subset H^4$ 即得. \qed
+ \end{proof}
+ 
+-\begin{remark}[衰减模的排除]\label{rem:decay}
+-	二阶递推 $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$ 有两个线性无关解;
+-	对 Krein 系数, Perron 型分析给出特征根
+-	$\lambda_+ \sim 4j^2/c_0$ (支配) 与 $\lambda_- \to 5/8$ (衰减).
+-	因此``一般初值''的矩序列确有可能被衰减模支配而保持有界.
+-	但正交条件强制 $M_0 = (w, K_c p_0)_t / c = 0$, 即递推的``零次初值''
+-	为零, 于是矩序列 $v_j = M_{2j}$ 是钉住解 ($v_0 = 0$), 只能沿支配模
+-	演化, 增长引理适用. 这是本证明的对抗性关键点.
+-\end{remark}
+-
+-\begin{theorem}[跳变矩准则, 任意 $H^t$]\label{thm:jump}
+-	对任意实数 $t$, $\{K_c p_n\}$ 在 $H^t$ 中解析完备:
+-	若 $w \in H^t$ 满足 $(w, K_c p_n)_t = 0$ 对一切允许 $n$, 则 $w = 0$.
+-\end{theorem}
+-
+-\begin{proof}
+-	设矩 $M_k = (w, x^k)_t$. 由引理 \ref{lem:domain},
+-	$K_c p_0 = c$ 与 $K_c p_1 = cx$ 给出 $M_0 = M_1 = 0$.
+-	对 $m \ge 2$, 正交条件与双线性性:
+-	\[
+-		0 = (w, K_c p_{2m})_t
+-		= c\, M_{2m} - A_m M_{2m-2} + B_m M_{2m-4}.
+-	\]
+-	令 $v_j := M_{2j}$, 则 $c v_j = A_j v_{j-1} - B_j v_{j-2}$
+-	($j \ge 2$), $v_0 = M_0 = 0$, $v_1 = M_2$ 自由. 于是
+-	$v_j = M_2\, u_j$, 其中 $u$ 为引理 \ref{lem:growth} 的钉住解.
+-	若 $M_2 \ne 0$, 由 Cauchy--Schwarz 与范数界 (命题 \ref{prop:norm}),
+-	\[
+-		|M_2|\, u_j = |v_j| = |M_{2j}| \le \|w\|_t\, \|x^{2j}\|_t
+-		\le C_t \|w\|_t (2j)^{\beta_t},
+-	\]
+-	与 $u_j = \omega(j^\beta)$ 对一切 $\beta$ 矛盾. 故 $M_2 = 0$,
+-	递推给出全部偶矩为零. 奇矩同理 ($M_1 = 0$, $M_3$ 自由, 排除):
+-	$M_k = 0$ 对一切 $k$. 多项式在 $H^t$ 中稠密, 故
+-	$\|w\|_t^2 = \lim_N (w, \Pi_N)_t = 0$, $w = 0$. \qed
+-\end{proof}
+-
+-\begin{proposition}[多项式矩界]\label{prop:norm}
+-	对每个实数 $t$ 存在 $C_t, \beta_t$ 使
+-	\[
+-		\|x^k\|_t \le C_t\, k^{\beta_t} \quad (k \ge 1),
+-	\]
+-	其中 $t < 0$ 时取 $\beta_t = -1/2$; $t \ge 0$ 时取
+-	$\beta_t = \lceil t \rceil - 1/2$.
+-\end{proposition}
+-
+-\begin{proof}
+-	$t < 0$: $H^t = L^2$ 等价范数, $\|x^k\|_t^2
+-	= (K_c^t x^k, x^k) \le c^t \|x^k\|_0^2 = c^t \cdot \frac{2}{2k+1}$,
+-	故 $\|x^k\|_t \le C k^{-1/2}$.
+-	$t \ge 0$: 取偶整数 $2r \ge t$ (即 $r = \lceil t/2 \rceil$). 因
+-	$\lambda_j \ge c$: $\lambda_j^t = \lambda_j^{2r}\lambda_j^{t-2r}
+-	\le c^{t-2r}\lambda_j^{2r}$, 故 $\|f\|_t \le c^{(t-2r)/2}\|f\|_{2r}$.
+-	而 $\|x^k\|_{2r} = \|K_c^r x^k\|_0$; $K_c^r x^k$ 是次数 $\le k$ 的
+-	多项式, 系数绝对值 $\le (1+c)^r k^{2r}$ (每次 $K_c$ 作用把次数降 2、
+-	系数至多乘 $k^2$), 故
+-	$\|K_c^r x^k\|_0 \le (r+1)(1+c)^r k^{2r}\|x^k\|_0
+-	\le C_r k^{2r-1/2}$. 取 $\beta_t = 2r - 1/2 = \lceil t\rceil - 1/2$ (当
+-	$t$ 恰为偶数时取 $\beta_t = t - 1/2$, 更强). \qed
+-\end{proof}
+-
+-\section{等距传输与主定理}
+-
+-\begin{theorem}[等距传输]\label{thm:transport}
+-	对一切实数 $s$, $K_c: (H^s, (\cdot,\cdot)_s) \to
+-	(H^{s-2}, (\cdot,\cdot)_{s-2})$ 是等距线性同构, 且
+-	\[
+-		\overline{\operatorname{span}\{p_n\}}^{H^s} = H^s
+-		\iff
+-		\overline{\operatorname{span}\{K_c p_n\}}^{H^{s-2}} = H^{s-2}.
+-	\]
+-\end{theorem}
+-
+-\begin{proof}
+-	对 $f \in H^s$, $K_c^{(s-2)/2}(K_c f) = K_c^{s/2}f$ (泛函演算,
+-	$K_c^{(s-2)/2}$ 与 $K_c$ 交换), 故
+-	$\|K_c f\|_{s-2} = \|K_c^{s/2}f\|_0 = \|f\|_s$: 等距嵌入.
+-	满射: $g \in H^{s-2} \Rightarrow K_c^{-1}g \in H^s$
+-	($K_c^{s/2}K_c^{-1}g = K_c^{(s-2)/2}g \in L^2$), $0 \notin \sigma$.
+-	完备性由等距同构保持. \qed
+-\end{proof}
+-
+-\begin{theorem}[主定理: 一切实数阶完备]\label{thm:main}
+-	设 $c > 0$. 对每个实数 $s \ge 0$, 稀疏多项式基
+-	$\{p_n\}$ 在左定空间 $H^s$ 中解析完备.
+-	特别地, 分数窗口 $3/2 \le s < 2$ (概述文档开放问题第 10 条) 成立,
+-	且结论对一切 $s \ge 0$ 成立.
+-\end{theorem}
+-
+-\begin{proof}
+-	由定理 \ref{thm:jump}, $\{K_c p_n\}$ 在 $H^{s-2}$ 中完备
+-	(命题 \ref{prop:norm} 保证矩界, $t = s-2$ 为任意实数, 负数时
+-	$H^t = L^2$ 等价范数). 由定理 \ref{thm:transport} 的等价性,
+-	$\{p_n\}$ 在 $H^s$ 中完备. \qed
+-\end{proof}
+-
+-\begin{remark}[与以往结果的关系]
+-	整数阶 $s = 0,1,2,3,\dots$ 的完备性在会话 9--11 已证 (矩方法 +
+-	整数幂多项式性); 本文方法统一处理一切实数 $s \ge 0$, 不依赖
+-	$K_c^{s/2}p_n$ 的多项式性 (分数阶时它不是多项式), 而是把跳变
+-	结构放在 $\{K_c p_n\}$ (多项式) 上, 再传输到负阶空间.
+-	$0 \le s < 3/2$ 的简单情形也可由一阶矩准则 (概述文档) 处理.
+-\end{remark}
+-
+-\begin{remark}[完备正交系]
+-	$H^s$ 中 $\{p_n\}$ 的显式完备正交系 (Legendre/Krein--Sobolev 的
+-	$K_c^{-r}$ 传输) 见文档 \texttt{SL\_hs\_orthogonal\_systems\_proof.pdf};
+-	本定理与它互补: 那篇给出正交化后的基, 本文证明稀疏原基即完备
+-	(正交化前的稠密性).
+-\end{remark}
+-
+-\section{数值验证}
+-
+-脚本 \path{scripts/op10_verify_mechanism.py} (谱分解, 40 个 cos 模 + 40 个
+-sin 模, 分数幂经 $\lambda_j^t$ 作用):
+-\begin{enumerate}
+-	\item \textbf{传输等距} (命题): 对 $t \in \{0.5, 1.5, 1.75, 2.5, 3.0\}$,
+-		$n \in \{0,1,4,5,6,7\}$: $\|K_c p_n\|_{t-2} = \|p_n\|_t$
+-		相对误差 $< 10^{-6}$, 全部通过. (修正: 根求解区间为
+-		$(k\pi, k\pi+\pi/2)$; 错误区间曾在高阶根漂移, 导致奇数模
+-		谱系数错误.)
+-	\item \textbf{跳变恒等式}: 混合奇偶 $w$, $t \in \{0, 0.75, 1.5, 1.75\}$,
+-		$m \in \{2,3,5,8\}$: $(w, K_c p_{2m})_t = cM_{2m} - A_mM_{2m-2}
+-		+ B_mM_{2m-4}$ 精度 $10^{-7}$, 全部通过.
+-	\item \textbf{多项式矩界}: $\|x^k\|_t / k^{\lceil t\rceil-1/2}$
+-		对 $t \in \{0.75, 1.5, 1.75, 2.5\}$ 有界 (小 $k$ 常数, 大 $k$ 递减),
+-		支持命题 \ref{prop:norm}.
+-	\item \textbf{钉住解超阶乘}: $v_j \ge (4/c)^{j-1}j!$ 对 $j \le 30$
+-		全部成立 ($v_{30} \approx 9.6 \times 10^{67}$), 引理
+-		\ref{lem:growth} 数值确认.
+-\end{enumerate}
+-
+-脚本 \path{scripts/op10_fractional_window.py} 另验证负阶界
+-$\|x^k\|_t \le c^{t/2}\|x^k\|_0$ 与 $\|x^k\|_s$ 的数值指数趋近 $s-1/2$.
+-
+-\section{涉及到的数学知识}
+-
+-\begin{description}
+-	\item[左定理论] 正算子 $A \ge \gamma I$ 的分数幂给出 Hilbert 标度
+-		$H^s = D(A^{s/2})$, 内积 $(f,g)_s = (A^{s/2}f, A^{s/2}g)$ \cite{lw1,fg}.
+-	\item[泛函演算] $K_c^\alpha K_c^\beta = K_c^{\alpha+\beta}$, 自伴算子
+-		的分数幂交换性; $0 \notin \sigma$ 保证负幂有界.
+-	\item[二阶线性递推的增长理论] 支配解/衰减解 (Perron 型);
+-		钉住初值排除衰减模 (注 \ref{rem:decay}).
+-	\item[矩方法与 Cauchy--Schwarz] 完备性 $\iff$ 正交补为零;
+-		矩界 $|M_k| \le \|w\|\|x^k\|$ 与超阶乘增长矛盾.
+-	\item[双线性性] 跳变恒等式 $(w, q_{2m})_t = cM_{2m} - A_mM_{2m-2}
+-		+ B_mM_{2m-4}$ 对内积的线性性, 不依赖 $t$ 的多项式结构.
+-\end{description}
++旧版的 $N_k=(w,x^k)_t$ 任意阶取矩不成立: $x^2\notin D(K_c)$,
++所以高阶内积可能未定义. 同样, $(c-D^2)^r$ 的形式多项式展开不证明
++真正算子幂存在. 稠密性传输只可应用于已经属于源空间的族.
++旧版负阶空间与 $L^2$ 范数等价的说法也不保留: 无界正算子的负幂通常
++给出较弱范数, 完整负阶标度需作相应完备化. 本证明完全不使用负阶空间.
++历史脚本的投影残差或形式范数增长不是幂域成员关系的证书.
++$3<s<4$ 的精确成员性和稠密性留作单独问题.
+ 
+ \begin{thebibliography}{9}
+ \bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+--- before/docs/SL_gap_n1_global_goodroot_proof.tex
++++ after/docs/SL_gap_n1_global_goodroot_proof.tex
+@@ -23,7 +23,7 @@
+ \title{缺口 (d) 闭合: INF 全局极小元必为 sign-consistent good root\\[-2mm]
+ \large 相邻间距 $D=\lambda_2-\lambda_1$ 的 INF 侧对全部 $R>1$ 完全闭合}
+ \author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
+-\date{2026-08-12}
++\date{2026-08-12; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -40,7 +40,7 @@
+ 临界值 $D(v^*)<3\pi^2/R$ (缺口 (a') 的 KEY LEMMA 全 $R$ 版), 故极小元在内部;
+ (ii) \emph{临界点 $\Rightarrow$ good root}: 内部极小元满足 $\partial_aD=\partial_bD=0$,
+ 由 Feynman--Hellmann 得 $f(a)=f(b)=0$; 结构引理 (Wronskian 单调性) 给出
+-$f$ 至多两个零点、$\{f>0\}$ 为包含 $y_2$ 唯一零点 $z_0$ 的单区间, 故
++$-f_{a,b}$ 至多两个零点, 且其正集为包含 $y_2$ 唯一零点 $z_0$ 的单区间, 故
+ $a<z_0<b$, 符号一致性 $y_2(a)/y_1(a)>0$, $y_2(b)/y_1(b)<0$ 自动成立;
+ (iii) \emph{刚性}: 一切 sign-consistent good root 满足 $a+b=1$ (全 $R$
+ 阱族刚性, 2026-08-10), 故极小元在对称线上, 由对称线 1D 分析唯一临界点
+@@ -156,30 +156,30 @@
+ \end{proof}
+ 
+ \begin{lemma}[$f$ 的零点结构]\label{lem:struct}
+-设 $f:=\lambda_1\hat y_1^2-\lambda_2\hat y_2^2$ (归一化), $z_0$ 为 $y_2$ 的唯一零点.
+-则 $f/\hat y_1^2$ 于 $(0,z_0)$ 严格递增、于 $(z_0,1)$ 严格递减; $f$ 在
+-$(0,z_0)$ 恰有一个零点 $\alpha$, 在 $(z_0,1)$ 至多一个零点 $\beta$ (若存在则
+-$\alpha<z_0<\beta$); $\{f>0\}$ 是包含 $z_0$ 的单区间, 即
+-$(\alpha,\beta)$ (若 $\beta$ 存在) 或 $(\alpha,1)$ (若否).
+-特别地: 若 $0<a<b<1$ 且 $f(a)=f(b)=0$, 则 $a=\alpha$, $b=\beta$,
+-从而 $a<z_0<b$. \STRICT{}
++设 $f:=\lambda_1\hat y_1^2-\lambda_2\hat y_2^2$, $z_0$ 为 $y_2$ 的唯一零点.
++则 $f/\hat y_1^2$ 于 $(0,z_0)$ 严格递增, 于 $(z_0,1)$ 严格递减,
++且在 $z_0$ 处等于 $\lambda_1>0$. 因而两侧各至多一个零点,
++$\{f>0\}$ 是包含 $z_0$ 的单区间 (端点可为 $0$ 或 $1$).
++若 $0<a<b<1$ 且 $f(a)=f(b)=0$, 则 $a<z_0<b$,
++并且 $f>0$ 于 $(a,b)$, $f<0$ 于 $(0,a)\cup(b,1)$. \STRICT{}
+ \end{lemma}
+ 
+ \begin{proof}
+-	比值 $v=\hat y_2/\hat y_1=y_2/y_1$ 与归一化无关, 由引理 \ref{lem:mono} 严格
+-	递减. 于是 $f/\hat y_1^2=\lambda_1-\lambda_2v^2$: 于 $(0,z_0)$ 上
+-	$v>0$ 递减, 故 $v^2$ 递减, $f/\hat y_1^2$ 严格递增; 于 $(z_0,1)$ 上
+-	$v<0$ 递减, 故 $v^2$ 递增, $f/\hat y_1^2$ 严格递减.
+-	在 $(0,z_0)$ 上: $v(0^+)=1$ (斜率归一化下 $y_1,y_2\sim x$), 故
+-	$(f/\hat y_1^2)(0^+)=\lambda_1-\lambda_2<0$; 而
+-	$(f/\hat y_1^2)(z_0)=\lambda_1>0$ ($\hat y_2(z_0)=0$). 严格递增函数
+-	由负到正穿零恰一次, 得唯一零点 $\alpha\in(0,z_0)$.
+-	在 $(z_0,1)$ 上: $(f/\hat y_1^2)(z_0)=\lambda_1>0$, 严格递减, 故至多一个
+-	零点 $\beta\in(z_0,1)$ (若 $x\to1^-$ 时极限为负); 若 $\beta$ 不存在则
+-	$f>0$ 于整个 $(z_0,1)$.
+-	若 $f(a)=f(b)=0$, $a<b$: $a$ 是 $(0,z_0)$ 内唯一的零点故 $a=\alpha$;
+-	$b$ 必须是 $(z_0,1)$ 内的零点 (否则与 $a\ne b$ 矛盾), 故 $b=\beta$,
+-	$z_0\in(a,b)$. \qed
++	正确的归一化商为
++	\[
++		v=\frac{\hat y_2}{\hat y_1}
++		=\sqrt{\frac{n_1}{n_2}}\,\frac{y_2}{y_1},\qquad
++		v(0^+)=\sqrt{\frac{n_1}{n_2}}.
++	\]
++	固定密度后, $n_1,n_2>0$ 不随空间变量变化, 故引理 \ref{lem:mono}
++	仍给出 $v$ 严格递减. 由 $f/\hat y_1^2=\lambda_1-\lambda_2v^2$,
++	$v>0$ 于左侧, $v<0$ 于右侧, 得所述严格增减性.
++	在节点处 $v=0$, 所以 $f/\hat y_1^2=\lambda_1>0$.
++	两侧各至多一次穿零, 正集为含 $z_0$ 的单区间.
++	若已有两个不同的内部零点 $a<b$, 则它们不可能同处一侧,
++	也不能等于 $z_0$; 必有 $a<z_0<b$. 两侧严格单调性继而给出全部符号.
++	左端值为 $\lambda_1-\lambda_2n_1/n_2$, 本证明不假定其符号,
++	也不需要任意配置均有左侧零点. \qed
+ \end{proof}
+ 
+ \begin{corollary}[内部临界点 $\Rightarrow$ sign-consistent good root]\label{cor:goodroot}
+--- before/docs/SL_gap_n1_proof.tex
++++ after/docs/SL_gap_n1_proof.tex
+@@ -7,6 +7,7 @@
+ \usepackage[hyphens]{url}
+ \usepackage[hidelinks]{hyperref}
+ \usepackage{booktabs}
++\usepackage{graphicx}
+ \usepackage{enumitem}
+ \emergencystretch 3em
+ 
+@@ -19,7 +20,7 @@
+ 
+ \title{相邻特征值间距 ($n=1$) 极端值定理: 严格证明}
+ \author{研究项目 (来源: BVE research, run 系列 2026-08-05 -- 2026-08-06)}
+-\date{2026-08-06}
++\date{2026-08-06; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -39,6 +40,13 @@
+ 本文如实标注每一条义务的状态, 数值证据与精确剩余缺口; 数值部分一律标注精度且不构成证明.
+ \end{abstract}
+ 
++\noindent\textbf{2026-09-20 修订说明.}
++本次修正 O1 自伴化与核估计, O2 的归一化证书接口、B4 及奇模相位分支.
++文中早期 INF 状态段落和下表按原日期保留, 不覆盖后续闭合记录.
++当前 $n=1$, $1\le\rho\le R$, 全部 $R>1$ 的 SUP/INF 完整证明链见
++\texttt{state/RESUME.md} 与 \texttt{docs/research-guide.md}.
++本次未重跑历史全部区间证书, 不作全链新审计.
++
+ \tableofcontents
+ 
+ \section{问题设置与主定理}
+@@ -88,10 +96,10 @@
+ $\approx6.7856$ 于 $(a,b)\approx(0.3867,0.6133)$, 均不构成证明.
+ \end{conjecture}
+ 
+-\begin{remark}[义务状态表]
++\begin{remark}[历史义务状态表, 2026-08-10]
+ \begin{center}
+ \footnotesize
+-\begin{tabular}{@{}lll@{}}
++\resizebox{\textwidth}{!}{\begin{tabular}{@{}lll@{}}
+ \toprule
+ 义务 & 内容 & 状态 \\
+ \midrule
+@@ -104,7 +112,7 @@
+ O3a-INF & 阱族刚性 & \textbf{CLOSED for $1<R\le3/2$} (2026-08-10: 小 R 刚性 + 缺口 (a) 闭合); \textbf{OPEN} for $R>3/2$ \\
+ TA & 对称阱族 $R\to\infty$ 极限 & CANDIDATE \\
+ \bottomrule
+-\end{tabular}
++\end{tabular}}
+ \end{center}
+ 本文第 2--4 节为已闭合部分, 第 5 节为剩余缺口与结构归约.
+ \end{remark}
+@@ -128,24 +136,25 @@
+ 设 $G(x,t)=\min(x,t)(1-\max(x,t))$ 为 $[0,1]$ 上 Dirichlet Green 函数,
+ $T_0 f=\int_0^1 G(x,t)f(t)\,dt$, $T_\rho=T_0\circ M_\rho$ ($M_\rho$ 为乘法算子).
+ 
+-\emph{第 1 步 (L$^1$ 连续性, O1a).} 对 $\rho,\sigma\in\mathcal K$ 记
+-$\Delta\rho=\rho-\sigma$, $A=T_\rho-T_\sigma=T_0M_{\Delta\rho}$. $T_0$ 是 $L^2$ 上
+-Hilbert--Schmidt 算子 (核 $G\in L^2$), 故 $A$ 是 Hilbert--Schmidt 的且
+-$\|A\|_{HS}^2=\int\!\!\int G(x,t)^2(\Delta\rho(t))^2\,dxdt\le
+-\|G\|_{L^2}^2\|\Delta\rho\|_\infty^2$. 然而 $T_\rho$ 在 $L^2$ 上不一定自伴, 自伴化
+-采用对称算子 $S_\rho:=M_{\sqrt\rho}\,T_0\,M_{\sqrt\rho}$ (Hilbert--Schmidt 自伴).
+-由 Weyl 不等式 ($|\mu_k(S_\rho)-\mu_k(S_\sigma)|\le\|S_\rho-S_\sigma\|$, $\mu_k$ 为第
+-$k$ 个特征值), 及
+-\begin{equation}
+-	\|S_\rho-S_\sigma\|_{HS}^2\le
+-	\frac{R}{32}\Bigl(\|A\|_2^2+\|A\|_1^2\Bigr)\le\frac{R^2}{16}\|\Delta\rho\|_1,
+-\end{equation}
+-(常数链为 F-001 修复后的形式, 独立复审 \texttt{VERIFIED}; 推导: 把
+-$\sqrt\rho-\sqrt\sigma=(\rho-\sigma)/(\sqrt\rho+\sqrt\sigma)$ 代入并估计
+-$\|\sqrt\rho-\sqrt\sigma\|_2^2\le\|\Delta\rho\|_1$, 结合 $\|A\|_2\le R\|G\|_2\|\Delta\rho\|_2$
+-等) 得到 $\|S_\rho-S_\sigma\|\to 0$ 当 $\|\Delta\rho\|_1\to0$. 又 $\lambda_k(\rho)^{-1}$
+-是 $S_\rho$ 的第 $k$ 个特征值 (相似性: $S_\rho$ 与 $T_\rho$ 等谱, 见注 \ref{rem:srho}),
+-故 $\lambda_k$ 关于 $L^1$ 连续. \qed
++\emph{第 1 步 (L$^1$ 连续性, O1a).} 对 $\rho,\sigma\in\mathcal K$,
++使用 $L^2$ 上的自伴紧算子 $S_\rho=M_{\sqrt\rho}T_0M_{\sqrt\rho}$.
++令 $a(x)=\sqrt{\rho(x)}-\sqrt{\sigma(x)}$. 核的差可分解为
++\[
++ G(x,t)\bigl(a(x)\sqrt{\rho(t)}+\sqrt{\sigma(x)}a(t)\bigr).
++\]
++直接积分得 $\int_0^1G(x,t)^2\,dt=x^2(1-x)^2/3\le1/48$.
++由 $(u+v)^2\le2u^2+2v^2$ 及核对称性,
++\begin{equation}
++ \|S_\rho-S_\sigma\|_{HS}^2
++ \le4R\sup_x\int_0^1G(x,t)^2\,dt\,\|a\|_2^2
++ \le\frac R{12}\|\sqrt\rho-\sqrt\sigma\|_2^2
++ \le\frac R{12}\|\rho-\sigma\|_1.
++\end{equation}
++最后一步使用 $|\sqrt u-\sqrt v|^2\le|u-v|$.
++故 $L^1$ 收敛蕴含 $S_\rho$ 的算子范数收敛. Weyl 不等式给出
++$|\mu_k(S_\rho)-\mu_k(S_\sigma)|\le\|S_\rho-S_\sigma\|$.
++由注 \ref{rem:srho} 的相似变换, $\mu_k(S_\rho)=\lambda_k(\rho)^{-1}>0$,
++其中 $\mu_k$ 按递减顺序排列; 对每个固定 $k$ 取倒数, 得 $\lambda_k$ 关于 $L^1$ 连续. \qed
+ 
+ \emph{第 2 步 (紧性).} 两块族 $\{D^{bar}(a,b):0\le a\le b\le1\}$ 是紧参数集的连续像
+ (第 1 步), 故最大值存在; 同理两块阱族.
+@@ -191,9 +200,14 @@
+ \end{proof}
+ 
+ \begin{remark}[自伴化 \label{rem:srho}]
+-$S_\rho=M_{\sqrt\rho}T_0M_{\sqrt\rho}$ 与 $T_\rho=T_0M_\rho$ 等谱: 若
+-$T_\rho f=\mu f$, 令 $g=\sqrt\rho f$, 则 $S_\rho g=\mu g$ (直接代入, 利用 $T_0$ 与乘法
+-可换性). 故 $\lambda_k(\rho)^{-1}=\mu_k(S_\rho)$, Weyl 不等式适用.
++$1\le\rho\le R$ 使 $M_{\sqrt\rho}$ 有界可逆, 逆为 $M_{1/\sqrt\rho}$.
++直接结合乘法算子可得
++\[
++ S_\rho=M_{\sqrt\rho}\,T_\rho\,M_{1/\sqrt\rho},\qquad
++ T_\rho=T_0M_\rho.
++\]
++这是相似变换, 因而二者等谱, $\lambda_k(\rho)^{-1}=\mu_k(S_\rho)$.
++此处不交换 $T_0$ 与乘法算子; 它们一般不交换.
+ \end{remark}
+ 
+ \begin{remark}[文献关系]
+@@ -354,10 +368,19 @@
+ 令 $\beta_k:=s_k qv$, 则 $c:=\beta_k/\alpha_k=qv/u$, 即 $u=q/(2(c+q))$, $c\in(0,\infty)$.
+ 偶模条件写为 $\mathcal E(\alpha_1)=c\alpha_1$, 奇模为 $\mathcal O(\alpha_2)=c\alpha_2$, 其中
+ \begin{equation}
+-	\mathcal E(\alpha):=\arctan\frac1{q\tan\alpha}\ (0,\pi/2),\qquad
+-	\mathcal O(\alpha):=\pi-\arctan(q\tan\alpha)\ (0,\pi),\qquad
+-	\mathcal E'=\mathcal O'=-\frac{q}{\Phi(\alpha)},
+-\end{equation}
++ \mathcal E(\alpha):=\arctan\frac1{q\tan\alpha},\qquad 0<\alpha<\pi/2,
++\end{equation}
++\begin{equation}
++ \mathcal O(\alpha):=
++ \begin{cases}
++ \pi-\arctan(q\tan\alpha),&0<\alpha<\pi/2,\\
++ \pi/2,&\alpha=\pi/2,\\
++ -\arctan(q\tan\alpha),&\pi/2<\alpha<\pi,
++ \end{cases}
++ \qquad \mathcal E'=\mathcal O'=-\frac q{\Phi(\alpha)}.
++\end{equation}
++这里 $\arctan$ 取主支, $\mathcal O$ 在 $\pi/2$ 连续延拓,
++与原始 KEY LEMMA 包的分支相同.
+ $\Phi(\alpha):=\cos^2\alpha+q^2\sin^2\alpha>0$. $\mathcal E,\mathcal O$ 严格递减, 与直线
+ $\beta=c\alpha$ 各交一次, 定义 $\alpha_1(c)\in(0,\pi/2)$, $\alpha_2(c)\in(0,\pi)$, 均随
+ $c$ 严格递减, 且
+@@ -373,6 +396,12 @@
+ \begin{equation}
+ 	M(\alpha;c):=\frac{q(q^2-1)\alpha^2\sin^2\alpha}{q+c\Phi(\alpha)},\qquad
+ 	M_k(c):=M(\alpha_k(c);c),\qquad F(c):=M_1(c)-M_2(c).
++\end{equation}
++为与原始 KEY LEMMA 证书一致, 另记
++\begin{equation}
++ \widetilde M(\alpha;c):=\frac{\alpha^2\sin^2\alpha}{q+c\Phi(\alpha)},\qquad
++ \widetilde F:=\widetilde M_1-\widetilde M_2,\qquad
++ F=q(q^2-1)\widetilde F.
+ \end{equation}
+ 由隐式微分 (即 \eqref{eq:alphaprime}) 直接计算得
+ \begin{equation}
+@@ -483,40 +512,47 @@
+ 	\text{R2:}\quad G_2\ge0\ \forall q>1,\ c\in(0,0.4].
+ \end{equation}
+ 则区域 $\mathbf B:=\{G_2<0\}\subset(1,2)\times(0.4,1/2)\subset
+-\mathsf{Box}:=(1,2]\times[0.4,0.5]$.
++\mathsf{Box}:=[1,2]\times[0.4,0.5]$.
+ \end{lemma}
+ \begin{proof}
+ $(q,c)\notin(1,2)\times(0.4,1/2)$ 蕴含 $q\ge2$ 或 $c\le0.4$, 由 R1 或 R2 得 $G_2\ge0$. \qed
+ \end{proof}
+ 
+-\begin{lemma}[L4box 与 L5box]
+-\label{lem:box}
+-在闭盒 $\mathsf{Box}=[1,2]\times[0.4,0.5]$ 上,
+-\begin{equation}
+-	H'=\frac{dG_2}{dc}-\frac{dG_1}{dc}<0,\qquad
+-	F''=M_1J_1-M_2J_2>0,\qquad J_k:=G_k^2+\frac{dG_k}{dc}
+-\end{equation}
+-(后者即 $F''>0$; 恒等式 $F''=\frac{dF'}{dc}$ 精确成立, 因 $M'=MG$ 且两 $G^2$ 项相消).
+-\end{lemma}
+-\begin{proof}[证明 (区间算术证书)]
+-L4box: 128 叶向外舍入区间算术证书, 最坏上界 $-4.8416$ (两独立引擎一致);
+-L5box: 128 叶, 最坏下界 $+8.3794$. 铺片精确 (90 位 Decimal 下总面积恰为 $0.1$),
+-符号条件零失败, 闭盒是开盒的超集. 引擎与证书见
+-runs/\allowbreak rigorous-open-math-research/\allowbreak R-20260806T070000Z-keylemma2b-0A6D8F/
+-与独立审计 run R-20260806T140000Z-keylemmaaudit-2F83B1/. \qed
++\begin{lemma}[L4box 与 L5box]\label{lem:box}
++在闭盒 $\mathsf{Box}=[1,2]\times[0.4,0.5]$ 上, 使用归一化对象
++$\widetilde M_k,\widetilde F$ 及 $G_k=(\log\widetilde M_k)'$, 有
++\begin{equation}
++ H'=G_2'-G_1'<0,\qquad
++ \widetilde F''=\widetilde M_1J_1-\widetilde M_2J_2>0,\qquad
++ J_k:=G_k^2+G_k'.
++\end{equation}
++这是 $\widetilde M_k'=\widetilde M_kG_k$ 的再次求导.
++仅对 $q>1$ 乘回正常数得
++$F''=q(q^2-1)\widetilde F''>0$; $q=1$ 时 $F\equiv0$.
++\end{lemma}
++\begin{proof}[证书接口核对]
++原始 run R-20260806T070000Z-keylemma2b-0A6D8F 的定义与第 2.4 节,
++及独立审计 run R-20260806T140000Z-keylemmaaudit-2F83B1,
++均对 $\widetilde F$ 陈述 L5box. 历史 128 叶证书记载
++$H'\le-4.8416$, $\widetilde F''\ge8.3793$ (原审计下界 $8.3793828$ 向下截断),
++因此未归一化量的下界为 $8.3793q(q^2-1)$, 不是与 $q$ 无关的正数.
++2026-09-20 修订仅校正此接口, 不把本次核对表述为重新运行全部区间引擎. \qed
+ \end{proof}
+ 
+ \begin{lemma}[B4 与 B5]
+ \label{lem:b45}
+ 对一切 $q>1$:
+ \begin{equation}
+-	\text{B4:}\quad F'(q,1/2)=\frac{2\pi(\cos x-1)^3P(x)}{\sin^3x}<0,\qquad
++	\text{B4:}\quad \widetilde F'(q,1/2)=\frac{2\pi(\cos x-1)^3P(x)}{\sin^3x}<0,\qquad
+ 	x=\arccos\frac q{q+1},
+ \end{equation}
+-($P$ 为显式多项式, 父 run 第 3.1 节; $P(x)>(\pi-3x)^2$ 保证负号),
++其中 $P(x)=3x^2+6x\sin x-3\pi x-3\pi\sin x+\pi^2$.
++因 $x\in(0,\pi/3)$ 且 $P(x)-(\pi-3x)^2=3(x-\sin x)(\pi-2x)>0$,
++右侧为负. 再由 $F'=q(q^2-1)\widetilde F'$ 得 $F'(q,1/2)<0$.
++另有
+ \begin{equation}
+ 	\text{B5:}\quad H(q,1/2)=\frac{2\pi q(q+1)}{(2q+1)^{3/2}}>0,\qquad
+-	\min_{q>1}=\frac{4\pi}{3\sqrt3}>0.
++	\inf_{q>1}H(q,1/2)=\frac{4\pi}{3\sqrt3}>0.
+ \end{equation}
+ \end{lemma}
+ 
+@@ -689,7 +725,7 @@
+ 第二独立实体从零审计 (状态 \texttt{INDEPENDENTLY\_AUDITED\_PROOF}): 全部符号恒等式
+ 符号级 diff=0 (含 $\mathrm{IN}=A\cdot K(v)$ 经 $\arctan(\tan v)=v$ 化简归零, 解除产出
+ run 的 caveat), 五份区间证书用独立 80 位定向 Decimal 引擎全部复验, 20 万随机点零违例,
+-Region B 800 万点 $H$ 最小 $2.4185$, $F'$ 最大 $-0.456$. 已知 caveat:
++Region B 800 万点 $H$ 最小 $2.4185$, $\widetilde F'$ 最大 $-0.456$. 已知 caveat:
+ riarith.\texttt{iv\_sqrt} 非严格向外舍入 (审计引擎独立, 不承重); 区间引擎未在证明助手
+ 中形式化 (可复现性注记, 非开放证明义务).
+ \end{remark}
+--- before/docs/SL_gap_n1_symline_allR_proof.tex
++++ after/docs/SL_gap_n1_symline_allR_proof.tex
+@@ -24,7 +24,7 @@
+ \large KEY LEMMA 全 $R$ 版与张力比不等式 (INF 侧全 $R$ 闭合推论)}
+ {缺口 (a') 闭合: 对称线 1D 分析对全部 R>1; KEY LEMMA 全 R 版与张力比不等式 (INF 侧全 R 闭合推论)}}
+ \author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
+-\date{2026-08-12}
++\date{2026-08-12; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -524,9 +524,12 @@
+ 	\sin x\le x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\frac{x^9}{9!}
+ 	-\frac{x^{11}}{11!}+\frac{x^{13}}{13!},
+ 	\qquad
+-	\cos x\ge1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!},
+-\end{equation*}
+-以及 $\tan x=\sin x/\cos x$, 得 ($x=961/1000$)
++	\cos x\ge1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!}-\frac{x^{10}}{10!}>0,
++\end{equation*}
++这里余弦下界取到负项 $-x^{10}/10!$ (2026-09-20 修订).
++旧八次截断是上界, 不能用作分母下界. 交错余项和分母正性分别保证
++$S_{13}\ge\sin x$ 与 $0<C_{10}\le\cos x$; 有理数相等检查仅核对常数抄录,
++不代替包络证明. 由 $\tan x=\sin x/\cos x$, 得 ($x=961/1000$)
+ \begin{equation*}
+ 	\tan x\le\frac{\sin_{\text{up}}(x)}{\cos_{\text{lo}}(x)}=:R_1
+ 	<1.4315<1.4472<\frac{2(223/71-0.961)}3,
+@@ -540,8 +543,8 @@
+ $y_0\in(\pi-0.97,\pi-0.961)\subset(2.1708,2.1819)$. 精确比值
+ \begin{equation*}
+ 	R_1=\frac{5104691704723563842653351044859938032346287993281}
+-	{3566219119511749539487170630605640000000000000000}
+-	\approx1.4314015863,
++	{3566217966719202085941974656584935652684000000000}
++	\approx1.4314020490,
+ \end{equation*}
+ \begin{equation*}
+ 	R_2=\frac{329267980378932303644934573247}
+@@ -579,7 +582,7 @@
+ \end{equation*}
+ 
+ \textbf{C5 ($F(\gamma_0^*)>0$).} $F(\gamma_0^*)>0\iff
+-16y_0^4-4\pi^2y_0^2-15\pi^2>0$; 左端关于 $y_0>1$ 递增、关于 $\pi$ 递减,
++16y_0^4-4\pi^2y_0^2-15\pi^2>0$; 左端关于 $y_0\ge223/71-0.97>2$ 递增、关于 $\pi$ 递减,
+ 故
+ \begin{equation*}
+ 	16y_0^4-4\pi^2y_0^2-15\pi^2
+--- before/docs/SL_gap_n1_well_rigidity_allR_proof.tex
++++ after/docs/SL_gap_n1_well_rigidity_allR_proof.tex
+@@ -26,7 +26,7 @@
+ \title{阱族全 $R$ 相位刚性: 一切 $R>1$ 下任意 sign-consistent good root 必为对称根\\[-2mm]
+ \large 附: 对 INF 侧 $\lambda_2-\lambda_1$ 极值问题的推论与剩余缺口}
+ \author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
+-\date{2026-08-10}
++\date{2026-08-10; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -251,7 +251,7 @@
+ 	0 失败 (\EVID).
+ \end{remark}
+ 
+-\section{频率比上界 (τ<2)}\label{sec:tau}
++\section{频率比上界 \texorpdfstring{$\tau<2$}{tau<2}}\label{sec:tau}
+ 
+ 本节给出新的初等引理: 在 sign-consistent good root 处必有 $\tau<2$.
+ 它是后面所有区间性引理的前提 (区域 II $=(x_{mid},\pi/\tau)$ 在 $\tau<2$ 时才越过
+@@ -474,7 +474,7 @@
+ 	联立 \eqref{eq:R1r}--\eqref{eq:R2r} 即得 \eqref{eq:rtaueq}. \qed
+ \end{proof}
+ 
+-\section{相位比函数 rτ 的精确结构}\label{sec:structure}
++\section{相位比函数 \texorpdfstring{$r_\tau$}{r-tau} 的精确结构}\label{sec:structure}
+ 
+ 本节固定 $1<\tau<2$ (good root 处由引理 \ref{lem:taubound} 保证), 记
+ \begin{equation}
+@@ -520,7 +520,7 @@
+ \begin{proof}
+ 	先证辅助不等式 $\sin(\tau x)>\sin x$ 于 $0<x<x_{mid}$. 若 $\tau x\le\pi/2$,
+ 	由 $\sin$ 在 $(0,\pi/2)$ 严格递增与 $\tau x>x$ 即得; 若 $\tau x>\pi/2$, 则
+-	$\sin(\tau x)=\sin(\pi-\tau x)$, 且 $\pi-\tau x\in(0,x)$ (等价于 $x<x_{mid}$),
++	$\sin(\tau x)=\sin(\pi-\tau x)$, 且 $x<\pi-\tau x<\pi/2$ (用 $x<x_{mid}$ 及 $\tau x>\pi/2$),
+ 	仍由单调性得 $\sin(\pi-\tau x)>\sin x$.
+ 
+ 	于是 $W(\tau x)=m^2-q\sin^2(\tau x)<m^2-q\sin^2x=W(x)$ (即
+@@ -779,7 +779,7 @@
+ 	\item \emph{引理 \ref{lem:decr} (中间区递减)}: 多 $R\times\tau<2$, 3000 点,
+ 		0 违反; 注意 $\tau\ge2$ 时 (非本定理情形) 失败, 与证明的前提一致
+ 		(\texttt{\_s55\_full\_verify.py}).
+-	\item \emph{危险区引理 \ref{lem:danger}}: 8 个 R 值、4 个 τ 值, 约
++	\item \emph{危险区引理 \ref{lem:danger}}: 8 个 $R$ 值, 4 个 $\tau$ 值, 约
+ 		124 万样本, 0 违反 (\texttt{\_s55\_danger\_zone.py},
+ 		\texttt{\_s55\_danger\_zone2.py}); 严格证明见正文.
+ 	\item \emph{引理 \ref{lem:Bprime}}: 45 个 $(R,\tau)$ 配置 (含 $\tau<2$)
+--- before/docs/SL_gap_nge2_exact_2n_switches_proof.tex
++++ after/docs/SL_gap_nge2_exact_2n_switches_proof.tex
+@@ -1,7 +1,7 @@
+ % 用法: xelatex SL_gap_nge2_exact_2n_switches_proof.tex (两遍, -output-directory=build)
+ % 主题: 相邻谱隙极值子的精确 2n 开关定理 (一维加权 Dirichlet, n >= 2)
+ % 来源: 用户提供 SL_gap_nge2_exact_2n_switches_proof_zh.pdf (2026-08), 本文为忠实转录,
+-%       不超出 PDF 内容, 保留原文"不声称首创"及文献优先级边界声明.
++%       原忠实转录于 2026-09-20 修订两条能量公式; 保留原文"不声称首创"及文献优先级边界声明.
+ %       冻结英文证明: runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md,
+ %       SHA-256 9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9;
+ %       独立综合审计: routes/synthesis_audit/independent_audit.md,
+@@ -36,7 +36,7 @@
+ 
+ \title{相邻谱隙极值子的精确 $2n$ 开关定理\\ 一维加权 Dirichlet Sturm--Liouville 问题的完整证明}
+ \author{BVE research 项目 (Blueprint v2.2 数学研究证明包的中文自洽展开)}
+-\date{2026 年 8 月 (项目集成转录 2026-08-10)}
++\date{2026 年 8 月 (项目集成转录 2026-08-10); 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -476,7 +476,8 @@
+ 首先, 在常密度块内, 对任一 $k=n,n+1$ 有
+ \begin{equation}
+ 	\frac{d}{dx}\left(u_k'^2+\lambda_k r u_k^2\right)
+-		=2u'_ku''_k+\lambda_k r u_k^2=0\quad\text{a.e.}
++		=2u'_ku''_k+2\lambda_k r u_ku'_k
++		=2u'_k(u''_k+\lambda_k r u_k)=0\quad\text{a.e.}
+ 	\label{eq:blockconst}
+ \end{equation}
+ 因此 \eqref{eq:kdef} 在每个块内为常数.
+@@ -501,7 +502,7 @@
+ \end{equation}
+ 又有
+ \begin{equation}
+-	\int_0^1\rho u_n^2\,dx=a,\qquad \int_0^1\rho u_{n+1}^2\,dx=b .
++	\int_0^1a\rho u_n^2\,dx=a,\qquad \int_0^1b\rho u_{n+1}^2\,dx=b .
+ 	\label{eq:potential}
+ \end{equation}
+ 于是
+--- before/docs/SL_h3_completeness_proof.tex
++++ after/docs/SL_h3_completeness_proof.tex
+@@ -15,7 +15,7 @@
+ 
+ \title{第三左定空间 \texorpdfstring{$H^3[-1,1]$}{H3} 中多项式基的解析完备性: 证明文档}
+ \author{研究证明文档 (项目: BVE research)}
+-\date{2026-08-04}
++\date{2026-08-04; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -36,8 +36,10 @@
+ $c M_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$, 边界项 $w(1)\pm w(-1)$ 被完全吸收;
+ 再利用已有的增长引理 ($M_{2m}$ 超阶乘增长) 与新的多项式增长上界
+ $|M_{2m}| \leq C\sqrt{m}$ (由 $w \in H^1$ 的 Cauchy-Schwarz 估计给出) 相矛盾,
+-迫使全部 $H^1$-矩为零, 从而 $w = 0$. 同一论证对一切整数 $s \geq 1$ 的左定空间
+-$H^s$ 成立 (推论 6.2). 文档末尾附对抗性审计清单与精确有理数数值验证.
++迫使全部 $H^1$-矩为零, 从而 $w = 0$. 由谱截断与连续嵌入, 同一族在
++$0\le s\le3$ 的 $H^s=D(K_c^{s/2})$ 中也稠密.
++2026-09-20 撤回旧版的任意阶推广: $p_4\notin H^4$, 因而所有 $s\ge4$
++的原全范围陈述为假. $3<s<4$ 的精确范围本次不判定.
+ \end{abstract}
+ 
+ \tableofcontents
+@@ -58,6 +60,9 @@
+ 	(f, g)_s := \bigl( K_c^{s/2} f,\ K_c^{s/2} g \bigr)_{L^2}.
+ \end{equation}
+ 特别地 $H^0 = L^2$, $H^1 = D(K_c^{1/2})$, $H^2 = D(K_c)$, $H^3 = D(K_c^{3/2})$.
++每个 $p_n$ 满足 Krein 边界条件, 所以 $p_n\in D(K_c)$.
++又 $K_cp_n$ 为多项式, 属于 $H^1=D(K_c^{1/2})$, 故
++$p_n\in D(K_c^{3/2})=H^3$. 这一步只断言三阶幂域成员关系.
+ 第三左定空间的内积可改写为
+ \begin{equation}
+ 	(f, g)_3 = (K_c f, K_c g)_1 \qquad (f, g \in H^3),
+@@ -154,7 +159,7 @@
+ $L^2$-矩 $\mu_k = \int w x^k$ 满足三阶递推, 并携带边界项
+ $D = w(1)+w(-1)$ 与 $S = w(1)-w(-1)$ (会话 10 前段探索). 改用 $H^1$-矩后,
+ 内积定义中的 $- \tfrac12 \Delta w\, \Delta(x^k)$ 项与分部积分边界项精确抵消,
+-递推降回二阶. 这是``矩跳跃''方法适用于任意左定空间的一般机制 (推论 6.2).
++递推降回二阶. 这里取矩的单项式属于 $H^1$, 所有内积良定; 推广时必须先核对这一前提.
+ \end{remark}
+ 
+ \section{增长引理与多项式上界}
+@@ -237,48 +242,44 @@
+ 在 $H^3$ 中稠密. \qed
+ \end{proof}
+ 
+-\section{推广: 一切左定空间中的完备性}
+-
+-\begin{corollary}[任意阶左定空间]
+-对每个整数 $s \geq 1$, 多项式基 $\{p_n\}$ 在 $(H^s, (\cdot,\cdot)_s)$ 中解析完备.
++\section{可保留范围与高阶推广撤回 (2026-09-20)}\label{sec:corrected-scope}
++
++\begin{corollary}[$0\le s\le3$ 的稠密性]\label{cor:low-order}
++对每个 $c>0$ 和实数 $0\le s\le3$, 本文同一族 $\{p_n\}$ 在 $H^s$ 中稠密.
+ \end{corollary}
+-
+-\begin{proof}[证明思路; 更正见 \texttt{SL\_denseness\_criteria.pdf} 定理 8]
+-原思路中恒等式
+-\[
+-	K_c^{s/2}p_{2m} = cK_c^{s/2}x^{2m} - A_mK_c^{s/2}x^{2m-2}
+-		+ B_mK_c^{s/2}x^{2m-4}
+-\]
+-对 $s \geq 4$ 不成立 (会话 11 数值证实: $K_c^2p_{2m}$ 有四项),
+-故下列证明是修正版.
+-第一步: 对任意整数 $t \geq 0$, $\{K_c p_n\}$ 在 $H^t$ 中完备. 设
+-$w \in H^t$ 且 $(w, K_c p_n)_t = 0$ 对一切允许 $n$ 成立, 记 $H^t$-矩
+-$N_k = (w, x^k)_t$. 由 $K_c p_{2m} = cx^{2m} - A_mx^{2m-2} + B_mx^{2m-4}$
+-(多项式恒等式, 与 $t$ 无关), 跳变递推 $cN_{2m} = A_mN_{2m-2} - B_mN_{2m-4}$
+-成立; 由 $\|x^k\|_t \leq C_t k^t$ 与 Cauchy-Schwarz, $|N_k| \leq Ck^t$
+-多项式增长, 与增长引理 5 的超阶乘增长矛盾, 故 $N_2 = N_3 = 0$, 全部
+-$H^t$-矩为零, $w = 0$.
+-第二步 (等距传输): $(f,g)_s = (K_c f, K_c g)_{s-2}$ 且 $K_c: H^s \to H^{s-2}$
+-等距同构 ($s \geq 2$), 故 $\{p_n\}$ 在 $H^s$ 中完备当且仅当 $\{K_c p_n\}$
+-在 $H^{s-2}$ 中完备. 迭代得 $\{p_n\}$ 在 $H^s$ 中完备当且仅当
+-$\{K_c^r p_n\}$ 在 $H^{s-2r}$ 中完备 ($0 \leq 2r \leq s$).
+-第三步 (基始): $H^0 = L^2$ 与 $H^1$ 由一阶矩准则
+-($\|x^k\|_{H^s} \leq Ck^{s-1/2}$, $s = 0, 1$ 时指数 $< 1$); $H^2, H^3$
+-由第一步 ($t = 0, 1$, 即会话 9 与本文主定理). 综合三步, 一切整数
+-$s \geq 0$ 成立. \qed
+-\end{proof}
+-
+-
+-
+-
+-
+-\begin{remark}
+-$s = 1$ 即本文主定理 ($H^1$-矩路线); $s = 2$ 即会话 9 的 $H^2$ 结论
+-($L^2$-矩路线); 二者同构于同一矩跳跃机制. 对非整数 $s \geq 0$, 由
+-$H^s$ 的插值理论 (Fischbacher--Gesztesy--Hagelstein--Littlejohn [7]) 与
+-$\|x^k\|_s \leq C_s k^s$ 的相同估计, 结论对一切 $s \geq 1$ 亦成立
+-(实数情形本文不再展开).
+-\end{remark}
++\begin{proof}
++谱下界 $K_c\ge cI$ 给出, 对 $g\in H^3$,
++\[
++ \|g\|_{H^s}^2=\int_{[c,\infty)}\lambda^s\,d\|E_\lambda g\|^2
++ \le c^{s-3}\|g\|_{H^3}^2.
++\]
++对 $f\in H^s$, 谱截断 $f_N=E([c,N])f\in H^3$ 且
++$\|f-f_N\|_{H^s}\to0$. 再由 H3 主定理用 $\operatorname{span}\{p_n\}$
++在 $H^3$ 中逼近每个 $f_N$, 上述连续嵌入将逼近传到 $H^s$.
++先选截断再选多项式, 即得稠密性. \qed
++\end{proof}
++
++\begin{proposition}[高阶原命题的显式反例]\label{prop:domain-obstruction}
++对所有 $c>0$, $p_4=x^4-2x^2\notin D(K_c^2)=H^4$,
++因此对所有实数 $s\ge4$, 该原始多项式族不是 $H^s$ 内的族.
++\end{proposition}
++\begin{proof}
++$p_4'(\pm1)=0$ 且 $p_4(1)=p_4(-1)$, 故 $p_4\in D(K_c)$.
++但
++\[
++ K_cp_4=cx^4-(2c+12)x^2+4,\qquad
++ (K_cp_4)'(1)=-24,\quad (K_cp_4)'(-1)=24.
++\]
++$K_cp_4$ 是偶函数, 其 Krein 边界条件要求两端导数为零, 所以
++$K_cp_4\notin D(K_c)$, 即 $p_4\notin D(K_c^2)$.
++幂域嵌套给出 $H^s\subset H^4$ ($s\ge4$). \qed
++\end{proof}
++
++旧版以 $(w,x^k)_t$ 作为任意阶矩, 并把微分表达式
++$(c-D^2)^r x^k$ 的有限代数展开当成真正算子幂, 忽略定义域.
++例如 $x^2\notin D(K_c)$, 所以这种高阶取矩并不良定.
++本次保留 H2/H3 各自主证明及上述低阶推论, 撤回任意整数阶和任意实数阶的推广.
++对 $3<s<4$ 不作新结论. 代数多项式逆和抽象完备化也不与自伴幂域混同.
+ 
+ \section{数值验证}
+ 
+--- before/docs/SL_h3_research_summary.tex
++++ after/docs/SL_h3_research_summary.tex
+@@ -13,7 +13,7 @@
+ 
+ \title{第三左定空间完备性研究: 路线总结与经验教训}
+ \author{研究总结文档 (项目: BVE research)}
+-\date{2026-08-04}
++\date{2026-08-04; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -36,7 +36,7 @@
+ 
+ 推进问题 1: 验证移位 Krein Laplacian $K_c$ 的\emph{第三左定空间} $H^3[-1,1]$
+ 中多项式基 $\{p_n\}$ (缺 2, 3 次) 的解析完备性. 会话 9 完成了 $H^2$ 情形;
+-本会话目标是 $H^3$, 并在成功后推广到任意 $H^s$.
++原会话目标为 $H^3$ 及更高阶推广; 2026-09-20 核对后仅保留 $0\le s\le3$ 的同族稠密性.
+ 
+ \subsection{归约}
+ 
+@@ -46,7 +46,7 @@
+ 	对 $w \in H^1$, 若 $(w, K_c p_n)_1 = 0$ 对所有可允许 $n$ 成立, 则 $w = 0$.
+ \end{quote}
+ 
+-\section{路线 A: $L^2$-矩三阶递推 (前段, 未闭合)}
++\section{路线 A: \texorpdfstring{$L^2$}{L2}-矩三阶递推 (前段, 未闭合)}
+ 
+ \subsection{推导}
+ 
+@@ -111,7 +111,7 @@
+ $h^*_0 \neq 0$ 且可借 Poincar\'e--Perron 型定理完成, 但依赖更重的渐近理论,
+ 且三阶系统的自由参数 (源 $D$, $S$) 使论证冗长.
+ 
+-\section{路线 B: $H^1$-矩二阶递推 (成功)}
++\section{路线 B: \texorpdfstring{$H^1$}{H1}-矩二阶递推 (成功)}
+ 
+ \subsection{转折观察}
+ 
+@@ -136,12 +136,14 @@
+ 		$H^1$-矩为零 $\Rightarrow$ $w = 0$ (多项式在 $H^1$ 稠密).
+ \end{enumerate}
+ 
+-\subsection{推广}
+-
+-同一论证对任意整数 $s \geq 1$ 成立: 完备性等价于 $\{K_c^{s/2} p_n\}$ 在 $L^2$
+-中完备; 取矩 $M_k = (w, K_c^{s/2} x^k)$, 递推同为二阶, 而上界
+-$|M_k| \leq \|w\|_2 \|x^k\|_s \leq C_s k^s$ 是多项式增长, 与超阶乘增长矛盾.
+-因此 $\{p_n\}$ 在\emph{一切}左定空间 $H^s$ ($s \geq 1$) 中解析完备.
++\subsection{推广范围修正 (2026-09-20)}
++原任意阶推广忽略了算子幂的定义域, 已撤回.
++$p_4=x^4-2x^2\in D(K_c)$, 但 $(K_cp_4)'(\pm1)=\mp24$,
++所以 $p_4\notin D(K_c^2)=H^4$. 微分表达式的代数展开不能解决成员性问题.
++H3 主证明保留. 谱截断及
++$\|g\|_{H^s}\le c^{(s-3)/2}\|g\|_{H^3}$ ($0\le s\le3$)
++把同族稠密性传至全部低阶空间; $s\ge4$ 原同族陈述为假,
++$3<s<4$ 本次不判定. 详见修订后的 H3 证明第 6 节.
+ 
+ \section{数值验证}
+ 
+--- before/docs/SL_spectral_topics_summary.tex
++++ after/docs/SL_spectral_topics_summary.tex
+@@ -15,7 +15,7 @@
+ 
+ \title{SL 边值问题的谱分析: 正交函数系完备性与特征值间距的最优界}
+ \author{研究总结文档 (项目: BVE research)}
+-\date{2026-08-10}
++\date{2026-08-10; 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -25,9 +25,9 @@
+ 在多大的空间中能等价于该空间内的所有正交函数系, 基准论文为 Littlejohn 与
+ Quintero-Roba 的 Krein-Sobolev 正交多项式一文 (OPSFA-16 会议论文集, Springer 2025).
+ 主题二研究 SL 边值问题相邻特征值间距与比值的最优界, 检索时间截至 2026 年 7 月.
+-文档同时总结各结果背后的证明技术, 并列出开放问题与后续研究方向. 本版 (2026-08-05, 会话 13) 更新: 主题二新增相邻特征值间距 $\lambda_{n+1}-\lambda_n$ 的极端值数值刻画 (变分机制 + $R=4$ 全表 + 极限, 见 \texttt{SL\_gap\_extremals.pdf}); 全序列比值下确界 (=1, Weyl) 已严格证明 (Weyl 渐近), 固定 $n$ 上确界仅反射对称结构严格, 其全局极值性仍为数值支持的猜想; 主题一开放问题已解决至一切整数左定空间 $H^s$ (会话 7/10/11, 显式正交系与稠密性一般准则).
++文档同时总结各结果背后的证明技术, 并列出开放问题与后续研究方向. 本版 (2026-08-05, 会话 13) 更新: 主题二新增相邻特征值间距 $\lambda_{n+1}-\lambda_n$ 的极端值数值刻画 (变分机制 + $R=4$ 全表 + 极限, 见 \texttt{SL\_gap\_extremals.pdf}); 全序列比值下确界 (=1, Weyl) 已严格证明 (Weyl 渐近), 固定 $n$ 上确界仅反射对称结构严格, 其全局极值性仍为数值支持的猜想; 主题一的同族完备性范围于 2026-09-20 更正为 $0\le s\le3$; $p_4\notin H^4$ 否定旧任意阶推广, 显式代数传输与真正幂域分别处理.
+ 本版 (2026-08-04, 会话 10) 进一步把主题一的完备性结论推广到第三左定空间
+-$H^3[-1,1]$ 与一切整数 $s \geq 1$ 的左定空间 $H^s$, 见
++$H^3[-1,1]$; 由谱截断可推至 $0\le s\le3$, 旧任意阶推广已撤回. 见
+ \texttt{SL\_h3\_completeness\_proof.pdf} 与 \texttt{SL\_h3\_research\_summary.pdf}.
+ 
+ 本版 (2026-08-09, 会话 34/35/40) 更新: 相邻间距极端值严格化的最后一块硬义务 O3a/C1
+@@ -284,8 +284,9 @@
+ 矛盾, 迫使 $\mu_2 = \mu_3 = 0$, 全部矩为零, Weierstrass 稠密性给出零
+ annihilator. 例外正交多项式 (exceptional orthogonal polynomials) 理论提供
+ 代数不完备但解析完备的类比; 本文给出左定 Sobolev 空间中的严格实例.
+-2026-08-04 (会话 10) 把上述结论推广到第三左定空间 $H^3[-1,1]$ 与一切整数
+-$s \geq 1$ 的左定空间 $H^s$: 关键观察是取 $H^1$-矩 $M_k = (w, x^k)_1$ 而非
++2026-08-04 (会话 10) 把上述结论推广到第三左定空间 $H^3[-1,1]$.
++2026-09-20 修订保留 $0\le s\le3$ 的推论并撤回原任意阶结论.
++H3 的关键观察是取 $H^1$-矩 $M_k = (w, x^k)_1$ 而非
+ $L^2$-矩, 则正交条件 $(w, K_c p_n)_1 = 0$ 给出与 $H^2$ 情形\emph{完全相同}的
+ 二阶递推 $cM_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$ (边界项 $w(1)\pm w(-1)$
+ 被 $H^1$-矩定义中的边界项吸收), 配合增长引理 $u_m \geq (4/c)^{m-1}m!$ 与
+@@ -781,8 +782,8 @@
+ 		$\underline r_{i,m}$ 的位置); Neumann 间距与最大间距的极值测度
+ 		结构及其与节点界的统一仍待整合.
+ 	\item \textbf{受边界条件约束空间中多项式稠密的充要条件}
+-		([4] 更大开放问题的框架). $\{p_n\}$ 在一切整数 $H^s[-1,1]$ 中
+-		解析完备已证 (会话 7/10/11). 进展 (2026-08-14 会话 106, 运行
++		([4] 更大开放问题的框架). $\{p_n\}$ 在 $0\le s\le3$ 的真正幂域中
++		稠密; $s\ge4$ 原同族陈述被 $p_4$ 反例否定 (2026-09-20 修订). 进展 (2026-08-14 会话 106, 运行
+ 		R-20260814T070000Z-densbc, 协调者审计): 一般框架定理 A--H STRICT
+ 		(主判据 $V\cap Q^\perp=\{0\}$; 约束矩刻画; 约束恢复稠密性修正版:
+ 		全部 $p_n\in V$ 且 $x^2,x^3\in V^\perp$ 时任意 $\beta$ 稠密;
+@@ -794,7 +795,7 @@
+ 		游程). 审计发现并更正 F-densbc-01 (游程内矩比值公式应为
+ 		$M_k=(\lfloor k/2\rfloor/\lfloor L/2\rfloor)M_L$). 开放核:
+ 		O1 一般非对角 $H$ 的精确判据, O2 一般 $L_j$ 展开杀自由参数,
+-		O3 分数窗 $3/2\le s<2$ (继承).
++		O3 原 Krein 分数窗 $3/2\le s<2$ 已由 H3 谱截断推论覆盖; 此修正不替代一般受约束空间的判据.
+ 	\item \textbf{p-Laplacian 等非线性问题的推广}: Wen-Zhou [7] 的奇异
+ 		测度技巧在非线性情形的适用范围未定.
+ 	\item \textbf{矩量问题可表示性的一般刻画} (会话 11, 方向 2, O2).
+--- before/docs/SL_stability_moment_jump.tex
++++ after/docs/SL_stability_moment_jump.tex
+@@ -16,7 +16,7 @@
+ 
+ \title{矩跳跃机制的稳定性: 系数扰动下增长引理与完备性的保持}
+ \author{研究证明文档 (项目: BVE research)}
+-\date{2026-08-11 (修订版; 首版 2026-08-05)}
++\date{2026-08-11 (修订版; 首版 2026-08-05); 2026-09-20 revision}
+ 
+ \begin{document}
+ \maketitle
+@@ -59,7 +59,9 @@
+ \section{背景: 矩跳跃机制的输入与门槛}
+ 
+ 会话 9--11 证明移位 Krein Laplacian $K_c$ 的稀疏基 $\{p_n\}$ (缺 2, 3 次)
+-在一切整数左定空间 $H^s$ 中解析完备. 论证的核心是\emph{矩跳跃}: 对
++在 $H^2,H^3$ 中解析完备, 并由谱截断得到 $0\le s\le3$ 的结论.
++2026-09-20 已撤回原任意整数阶推广, 因 $p_4\notin H^4$. 下述矩必须在所用空间中良定.
++论证的核心是\emph{矩跳跃}: 对
+ $w \perp \{K_c p_n\}$, 取与正交条件同源内积的矩 $M_k$, 正交条件化为二阶跳变递推
+ \begin{equation}
+ 	c M_{2m} = A_m M_{2m-2} - B_m M_{2m-4},
+--- before/docs/research-guide.md
++++ after/docs/research-guide.md
+@@ -2,7 +2,7 @@
+ 
+ [中文首页](../README.md) | [English overview](../README_EN.md) | [项目理解](PROJECT_UNDERSTANDING.md) | [目录与复现](repository-guide.md)
+ 
+-本页按问题寻找证明, 工具和剩余缺口. 状态核对日期为 2026-09-09. `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 本次导航整理没有重新审计数学证明.
++本页按问题寻找证明, 工具和剩余缺口. 导航基线日期为 2026-09-09; 2026-09-20 的局部证明修订与范围变更见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md). `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 本次导航整理没有重新审计数学证明.
+ 
+ ## 特征值比值与间距
+ 
+@@ -34,10 +34,10 @@
+ | 问题 | 入口 | 使用时需要保留的区别 |
+ | --- | --- | --- |
+ | H2 完备性 | [完整证明](SL_h2_completeness_proof.tex), [研究总结](SL_h2_research_summary.tex) | 矩递推, 增长引理与湮灭步骤有各自前提 |
+-| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 代数多项式逆, 抽象完备化与自伴算子幂域分别处理 |
++| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 同一原始族在 0<=s<=3 中稠密; p4 不属于 H4, 旧全阶推广已撤回; 3<s<4 本次未判定 |
+ | 幂域障碍 A7 | [工具与精确定理](../tools/krein-power-domain-polynomial-obstruction.md), [pilot v6 证明与审计](../runs/three-arm-pilot-v2/pilot-v6-hs-domain/RESULTS.md) | 对 c>0, 整数 s>=4, 指定的代数传输多项式属于真正幂域当且仅当 n=0,1; 这不否定经边界修正的真正算子逆 |
+ | 受约束空间稠密性 | [早期判据](SL_denseness_criteria.tex), [项目问题图](../research_map.md), [非对角子类对比](../reports/plugin-performance-o1p-ab.md) | 对角及若干带状/加权移位子类已有结果; 一般非对角 O1' 与 O1'LD 仍开放 |
+-| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 3/2<=s<2 的剩余窗, 门槛线系数族和变系数推广依来源分别标记 |
++| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 原 Krein 窗口 3/2<=s<2 已由 H3 谱截断覆盖; 门槛线系数族和变系数推广另计 |
+ | 三阶递推 | [递推理论](SL_third_order_recurrence_theory.tex), [K(1)=e/4 证明](SL_third_order_K1_proof.tex) | 偶次 c=1 锚点 STRICT; 一般 K(c), 源项控制与一般系数族仍开放 |
+ | Krein c->0 | [退化极限](SL_krein_c0_limit.tex) | 多项式级结论与商空间级结论分别核对 |
+ 
+--- before/research_map.md
++++ after/research_map.md
+@@ -32,8 +32,8 @@
+ 
+ | Id | Problem | Status | Key result / pointer | Notes |
+ | --- | --- | --- | --- | --- |
+-| A1 | `{p_n}` analytic completeness in H^s [-1,1], all integer s >= 1 (Krein-Sobolev) | SOLVED | docs/SL_h2_completeness_proof, SL_h3_completeness_proof, SL_hs_orthogonal_systems | moment-jump + growth lemma + Weierstrass |
+-| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | OPEN | docs/SL_fractional_left_definite | inherits DensBC O3 window |
++| A1 | `{p_n}` density in genuine H^s, 0 <= s <= 3 (Krein-Sobolev) | SOLVED | docs/SL_h2_completeness_proof, SL_h3_completeness_proof | H3 + spectral truncation; all-order claim withdrawn 2026-09-20: p4 not in H4; 3<s<4 not determined |
++| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
+ | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
+ | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
+ | A5 | Stability / threshold-line classification (moment-jump) | PARTIAL | docs/SL_stability_moment_jump | threshold line family ~ log m not fully classified |
+@@ -56,12 +56,12 @@
+ ```text
+ Line A:
+ A1 (H^s completeness, solved)
+-  |-- extends --> A2 (fractional window 3/2<=s<2, open)
++  |-- extends --> A2 (fractional window 3/2<=s<2, solved via H3)
+   |-- uses moment-jump/growth-lemma --> A5 (stability, partial), A6 (3rd-order, partial)
+ A3 (constrained density, open)
+   |-- reduces_to --> A4 (O1' moment-realizability, partial)
+   A4 --uses--> run R-20260816T000000Z-densbc-o1 structure theorems
+-  A3 --inherits O3--> A2 (fractional window)
++  A3 --historical O3--> A2 (Krein window now solved; general constraints separate)
+ A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
+ 
+ Line B:
+@@ -86,7 +86,7 @@
+ ```mermaid
+ flowchart LR
+   A1["A1 H^s completeness (SOLVED)"]
+-  A2["A2 fractional H^s (OPEN)"]
++  A2["A2 fractional H^s window (SOLVED)"]
+   A3["A3 constrained density (OPEN)"]
+   A4["A4 O1' moment step (PARTIAL)"]
+   A5["A5 stability/threshold (PARTIAL)"]
+--- before/scripts/_symline_allR_certificates.py
++++ after/scripts/_symline_allR_certificates.py
+@@ -3,6 +3,7 @@
+ # 对应 docs/SL_gap_n1_symline_allR_proof.tex 附录 A 的 C1-C5 与 G''(0) 正性.
+ # 全部用 fractions.Fraction 精确算术; 每个断言输出 PASS/FAIL 与余量.
+ from fractions import Fraction as F
++from math import factorial
+ 
+ ok = True
+ def check(name, cond, margin):
+@@ -13,34 +14,35 @@
+ PI_LO, PI_HI = F(223, 71), F(22, 7)          # 223/71 < pi < 22/7
+ 
+ # ---------- 预备: 交错级数精确夹逼 sin/cos ----------
+-def sin_up(x, n=7):
+-    # 部分和到 x^(2n-1) 且最后一项符号为正 (x < 1 时项单调减 => 上界)
+-    s = F(0)
+-    for k in range(n):
+-        s += (-1)**k * x**(2*k+1) / F(__import__("math").factorial(2*k+1))
+-    return s
++def taylor_bound(X, N, Parity, Sine):
++	# On [0, 1], term magnitudes decrease. An odd term count ends positive
++	# (upper bound); an even count ends negative (lower bound).
++	if not isinstance(N, int) or N < 1 or N % 2 != Parity:
++		raise ValueError("term-count parity does not certify the requested bound")
++	if not F(0) <= X <= F(1):
++		raise ValueError("Taylor bound is certified only on [0, 1]")
++	Total = F(0)
++	for K in range(N):
++		Degree = 2*K + int(Sine)
++		Total += (-1)**K * X**Degree / factorial(Degree)
++	return Total
+ 
+-def sin_lo(x, n=6):
+-    # 部分和到 x^(2n-1) 且最后一项符号为负 (下界)
+-    s = F(0)
+-    for k in range(n):
+-        s += (-1)**k * x**(2*k+1) / F(__import__("math").factorial(2*k+1))
+-    return s
++def sin_up(X, N=7):
++	return taylor_bound(X, N, 1, True)
+ 
+-def cos_lo(x, n=5):
+-    s = F(0)
+-    for k in range(n):
+-        s += (-1)**k * x**(2*k) / F(__import__("math").factorial(2*k))
+-    return s
++def sin_lo(X, N=6):
++	return taylor_bound(X, N, 0, True)
+ 
+-def cos_up(x, n=4):
+-    s = F(0)
+-    for k in range(n+1):
+-        s += (-1)**k * x**(2*k) / F(__import__("math").factorial(2*k))
+-    return s
++def cos_lo(X, N=6):
++	# C10 ends with -X**10/10!, hence is a lower bound.
++	return taylor_bound(X, N, 0, False)
++
++def cos_up(X, N=5):
++	return taylor_bound(X, N, 1, False)
+ 
+ x1 = F(961, 1000); x2 = F(97, 100)
+ sin1_up = sin_up(x1); cos1_lo = cos_lo(x1)
++assert cos1_lo > 0  # Positive denominator is part of the quotient certificate.
+ tan1_up = sin1_up / cos1_lo
+ sin2_lo = sin_lo(x2); cos2_up = cos_up(x2)
+ tan2_lo = sin2_lo / cos2_up
+@@ -52,9 +54,9 @@
+ # 修正后的链 (2026-08-12 复核): 分数取交错级数精确比值; 十进制常数与 pi 界方向改正.
+ #   phi(0.961) < 0: tan <= R1 < 14315/10000 < 14472/10000 < 2(223/71-0.961)/3  (用 pi > 223/71)
+ #   phi(0.97)  > 0: tan >= R2 > 14591/10000 > 14546/10000 > 2(22/7-0.97)/3     (用 pi < 22/7)
+-R1 = F(5104691704723563842653351044859938032346287993281, 3566219119511749539487170630605640000000000000000)
++R1 = F(5104691704723563842653351044859938032346287993281, 3566217966719202085941974656584935652684000000000)  # S13/C10, corrected 2026-09-20
+ R2 = F(329267980378932303644934573247, 225649563795645795591390000000)
+-check("C1a: tan(0.961) <= R1 (= sin_up/cos_lo 精确比值)", tan1_up <= R1, R1 - tan1_up)
++check("C1a: R1 equals S13/C10 (envelope follows from alternating remainder)", tan1_up == R1, R1 - tan1_up)
+ check("C1b: R1 < 14315/10000 < 14472/10000", R1 < F(14315, 10000) < F(14472, 10000), F(14472, 10000) - R1)
+ check("C1c: 14472/10000 < 2(223/71-0.961)/3 (pi > 223/71)",
+       F(14472, 10000) < 2*(PI_LO - x1)/3, 2*(PI_LO - x1)/3 - F(14472, 10000))
+@@ -107,7 +109,7 @@
+       gpp_ub < -F(13), -F(13) - gpp_ub)
+ 
+ # ---------- C5: F(gamma0*) > 0 等价 16 y0^4 - 4 pi^2 y0^2 - 15 pi^2 > 0 ----------
+-# h(y0) 在 y0>1 递增 (h' = 64 y0^3 - 8 pi^2 y0 > 0 for y0^2 > pi^2/8), 在 pi 递减
++# h(y0) 在本证书区间 y0>=y0min>2 递增 (y0^2 > pi^2/8), 在 pi 递减
+ c5 = 16*y0min**4 - 4*F(22, 7)**2*y0max**2 - 15*F(22, 7)**2
+ # 修正: 该下界实际约 19.081, 不能取 3817/200 = 19.085
+ check("C5a: 16 y0min^4 - 4(22/7)^2 y0max^2 - 15(22/7)^2 > 19", c5 > F(19), c5 - F(19))
+@@ -115,3 +117,4 @@
+ 
+ print()
+ print("ALL PASS" if ok else "SOME FAILURES")
++raise SystemExit(0 if ok else 1)
+--- before/state/AGENTS_SESSION_LOG.md
++++ after/state/AGENTS_SESSION_LOG.md
+@@ -3604,3 +3604,13 @@
+ - 闭合依据: 检查 `220785ec875e3407bad52c75738390bc7121bd30` (北京时间 `2026-08-12T03:31:02+08:00`) 对 `state/RESUME.md` 的实际差异, 以及会话 58 续作 3 的记录. 该提交解除 O3a/C1 旧 PDF 误报并登记定理 A 独立复核, 将 n=1 全部义务记为 CLOSED. 核对 `docs/SL_gap_n1_proof.tex` 的归一化盒类与 SUP 主定理, `docs/SL_gap_n1_global_goodroot_proof.tex` 的全 R INF 主定理, 并追踪 `docs/research-guide.md` 的完整证明链入口. 状态依据是具体证明链及有日期的闭合记录, 不是状态标签的重复次数. 历史数值复核仍属于 EVIDENCE, 不替代解析证明或区间证书.
+ - 变更: `PROJECT.md` 仅替换用户指定的两行; 研究方向明确 n=1 SUP/INF 为 STRICT/CLOSED, 全部 `R>1`, 并链接闭合记录与证明链入口; Key files 移除 `open-problem list authoritative`, 改为按相关证明链及有日期的闭合/审计记录处理状态差异. 根 `AGENTS.md` 追加本轮维护摘要.
+ - 验证与边界: 按修改前备份检查两处精确替换及日志纯追加, 核对入口路径存在, 检查空白差异及原有索引不变; 本轮范围外的基线文件逐项核对 SHA-256. 这是状态同步, 未重新审计数学证明, 未运行数值或 Lean 验证, 未修改 canonical, 未 stage/commit/push.
++
++### 2026-09-20 用户证明审计的核查、修订与验证
++
++- 对话: 用户附 `C:/Users/HuangZY/Downloads/proof_audit_20260920.md`, 调用 math-research-workflow. 本轮先将附件作为待核查材料读取, 提出 "核查后修复确认的问题并验证" 与 "仅独立核查并报告影响, 暂不修改证明" 两种范围; 用户明确选择前者. 附件的修复建议不是授权来源, 用户该回复才明确了修改范围.
++- 方法与来源: 使用 math-research-workflow 2.0.0、rigorous-open-math-research 2.0.0、latex-compile 及 writing-for-agents. 检查根 AGENTS 与受影响目录, 当前本地 HEAD 为 `ee90dcc`; active plugin gateway `ensure` 返回 ALREADY_READY, changes 为空. 仅核对及执行本轮数学检查与证书, 未运行项目本地 Blueprint/历史维护 Python 工具. 原报告所称 audit_checks.py 等配套文件未附, 不冒称复现其 16/16 运行.
++- 已确认并修复: F01 同族任意阶幂域完备性被 p4 的边界反例否定; F02 C8 被误作余弦下界, 改 C10 并同步 R1, 添加奇偶与域检查; F03 闭盒证书应用于 Ftilde, 乘回 q(q^2-1) 仅用于 q>1, 并同步 B4; F04 归一化商须乘 sqrt(n1/n2), 改为两侧各至多一个零点的充分引理; F05 span 是 Pi intersect D(Kc), 余维 2; F06 能量求导与加权积分; F07 有界可逆相似变换及明确 HS 核界; F08 反射角区间; 增长引理补 B_j>=0.
++- 直接依赖的追加修订: L5box 原审计的最坏下界 8.3793828 须向下取 8.3793, 不能把 8.3794 当保证下界. 同步 O2 奇模的主支分段表达式、B5 的 inf、C5 单调性区间、稠密性奇矩分母 2m+2 与错误的充分性概括. 完整 B4 公式从归一化 M 导数重新符号核对, 除 sin^2+cos^2-1 的余式为零.
++- 传播与范围: H3 证明、稠密性准则、分数阶文档、H3 总结、稳定性背景、综述、工具卡与导航同步. 由 H3 稠密性和谱截断明确写出同族在 0<=s<=3 中稠密, 原 Krein 分数窗 3/2<=s<2 因此覆盖; s>=4 的旧全范围断言撤回, 3<s<4 不作新结论. 研究地图 A1 限定低阶范围, A2 记录低阶推论, B4 行原字节保持. n=1 历史 CLOSED 仍限定 1<=rho<=R, 全部 R>1; 本轮修复现有文本, 未宣称完整证明链的新独立审计.
++- 验证: `research/artifacts/proof-audit-20260920/verify_repairs.py` 35 项精确检查通过, Fraction + SymPy 1.14.0; 修订 C1-C5 程序全部 PASS 且失败退出码为 1. 使用插件编译 11 份 TeX, 全部 PDF 可解析并同步回 docs; 核看 C1、H3 反例与 good-root 页的实际渲染. 首轮缺 seqsplit, 在现有 TinyTeX 中安装该小包后成功. 修正缺失 tau 字符与过宽旧表格; 最终无缺字、未定义引用和溢出版面, 部分文档仍有中文粗斜体字体替代提示.
++- 保存: 修订前 36 个文件按原字节保存在 `research/artifacts/proof-audit-20260920/before/`, 基线哈希覆盖 222 文件 (含原始 KEY LEMMA 三个 run). 本轮记录与旧日志纯追加; 未改原封存 run、canonical 或 Git 索引, 既有未提交工作按基线核对. 当前差异与逐文件哈希见同目录 changes-this-session.patch、integrity-results.json、after-hashes.json. [修订报告](../reports/proof-audit-20260920/REPORT.md) 为当前入口. 未 stage/commit/push, 未运行完整旧区间证书或 Lean.
+--- before/state/RESUME.md
++++ after/state/RESUME.md
+@@ -1,4 +1,9 @@
+-# RESUME
++# RESUME
++
++## 2026-09-20 proof errata and local verification
++
++See `reports/proof-audit-20260920/REPORT.md`. Repaired the C1 Taylor envelope, SUP normalized certificate interface and B4, good-root eigenfunction normalization, O1 similarity/kernel bound, exact-2n energy formulas, and the well-family reflected interval. The n=1 historical closure scope remains the normalized box class 1<=rho<=R for all R>1; this is not a new full-chain audit or Lean verification. The same original polynomial family is dense for 0<=s<=3 by H3 plus spectral truncation; its old all-order claim is withdrawn because p4 is not in H4. The 3<s<4 range is not determined here. See the dated proof revisions for these corrections; historical sections below retain their original dates and scope.
++
+ 
+ ## Current objective
+ Prove (n=1): over 1<=rho<=R, SUP(lambda_2-lambda_1) attained by symmetric 3-block [1,R,1] at u*(R);
+--- before/tools/README.md
++++ after/tools/README.md
+@@ -4,7 +4,9 @@
+ created: 2026-08-04
+ ---
+ 
+-# 数学工具库索引
++# 数学工具库索引
++
++2026-09-20 勘误: 同一稀疏族的任意阶幂域完备性已撤回, 当前可保留范围为 0<=s<=3, p4 不属于 H4. 下方 2026-08-05 等维护条目为历史记录, 不覆盖本次修订. 稠密性、矩工具卡及 n=1 证书接口的变化见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md).
+ 
+ 本目录存放项目研究过程中从论文学到的与自研发现的数学工具/方法.
+ 每个工具一个 Markdown 文件, 含**解析** (数学表述) 与**适用范围** (适用条件, 边界情形, 不适用情形), 以及验证状态.
+--- before/tools/constrained-denseness-runs.md
++++ after/tools/constrained-denseness-runs.md
+@@ -45,7 +45,7 @@
+ - 适用: 闭子空间 V (泛函约束形式 V=∩ker L_j 或任意闭子空间) 的多项式/稀疏
+   族稠密性判定; 对角空间的完整分类; 矩刻画归约.
+ - 边界/不适用: 一般非对角 H 的精确"低位矩存活"判据 (O1) 开放; 一般 L_j
+-  展开杀掉全部 β 自由参数的判据 (O2) 开放; 分数窗 3/2<=s<2 (O3) 继承开放.
++  展开杀掉全部 β 自由参数的判据 (O2) 开放. 原 run 将 Krein 分数窗 3/2<=s<2 (O3) 记为开放; 2026-09-20 的 H3 谱截断推论已覆盖此特定窗口, 不改变一般受约束空间的开放核.
+ - 注意: 有限约束度产生"有限游程"是稠密性破坏的独立机制; 稀疏族 vs 单项式
+   族的稠密性行为不同 (对角空间内单项式恒稠密).
+ 
+--- before/tools/denseness-criteria.md
++++ after/tools/denseness-criteria.md
+@@ -32,15 +32,15 @@
+ 中 $\{p_n\}$ 完备 $\iff \beta \leq 3/2$. $\beta > 3/2$ 时显式反例
+ $w = \sum_{m \geq 1} m(2m+1)^{-2\beta} x^{2m}$ 满足矩条件
+ ($M_{2m} = mM_2$, $M_2 = 1$; $\|w\|^2 = \sum m^2/(2m+1)^{2\beta} < \infty$
+-当且仅当 $\beta > 3/2$). 故``单幂范数多项式增长''是充分非必要.
++当且仅当 $\beta > 3/2$). 范数多项式增长本身不充分; 一阶准则的 $\beta<1$ 是充分非必要条件.
+ 
+-**左定应用 (定理 8, 修正版)**: 移位 Krein Laplacian 的左定空间族 $H^s$
+-中, $\|x^k\|_s \sim k^{s-1/2}$ (故 $s < 3/2$ 时一阶准则直接适用);
+-$s \geq 2$ 时用 $K_c p_{2m}$ 的跳变 ($s$-无关的多项式恒等式) +
+-等距传输 $K_c: H^t \to H^{t-2}$ 取 $H^{s-2}$-矩. 结论: $\{p_n\}$ 在
+-**一切整数** $s \geq 0$ 的 $H^s$ 中完备. 此证明更正会话 10 推论 6.2:
+-$K_c^{s/2}p_{2m}$ 的三单项式结构对 $s \geq 4$ 不成立 ($K_c^2 p_{2m}$ 4 项,
+-$K_c^3 p_{2m}$ 5 项), 正确机制见 [[left-definite-moment-recurrence]] 第 3 步.
++**左定应用 (2026-09-20 修订)**: 对真正幂域 $H^s=D(K_c^{s/2})$,
++H2/H3 的矩跳跃分别在 $L^2,H^1$ 内使用, 这些空间包含取矩单项式.
++由 H3 稠密性, 谱截断及 $\|g\|_{H^s}\le c^{(s-3)/2}\|g\|_{H^3}$,
++同一稀疏族在 $0\le s\le3$ 中稠密. 原任意整数阶推广已撤回:
++$p_4=x^4-2x^2\notin H^4$, 因 $(K_cp_4)'(\pm1)=\mp24$ 不满足边界条件.
++$s\ge4$ 的原陈述为假, $3<s<4$ 的精确范围本次不判定.
++代数线性包为 $\operatorname{span}\{p_n\}=\Pi\cap D(K_c)$, 在 $\Pi$ 中余维 2.
+ 
+ ## 适用范围
+ 
+@@ -48,12 +48,15 @@
+   判据只依赖矩的增长界与跳变结构, 不依赖具体边界条件.
+ - 边界情形: $\beta < 1$ (一阶); 任意多项式 $\beta$ (跳变 + 超阶乘);
+   对角族临界 $\beta = 3/2$ 精确且可达; $s = 0, 1$ (L^2, H^1) 由一阶准则,
+-  $s \geq 2$ 由跳变 + 传输, 覆盖全部整数 $s$.
++  $s=2,3$ 用跳变矩; $0\le s\le3$ 用谱截断传输.
+ - 不适用: 需要 Schauder/Riesz 基等强于稠密性的结论; 无跳变结构且
+   $\beta \geq 1$ 的范数增长 (一般 $H$ 由定理 2 的矩量问题刻画, 无闭式判据);
+-  分数阶 $3/2 \leq s < 2$ 的窗口 (开放问题 O1, 猜测完备, 需插值或高阶矩机制).
++  未验证幂域成员关系的高阶取矩. 旧分数窗口 $3/2\le s<2$ 已由低阶推论覆盖.
+ 
+ ## 验证与备注
++
++2026-09-20: 下列历史计算中的高阶单项式范数与投影, 只作形式微分数据; 不能证明真正幂域的成员关系或稠密性. 本轮未重跑这些旧脚本.
++
+ 
+ - 精确有理数: `scripts/d2_criterion_verify.py` - 跳变恒等式对 $s = 0..5$,
+   $w \in \{x^2, x^3, 1+x+x^5, x^2+x^4\}$ 逐项精确 (240 项);
+--- before/tools/gap-n1-reduction.md
++++ after/tools/gap-n1-reduction.md
+@@ -44,6 +44,9 @@
+ - 注意: 归约只给出族上的极值, 不给出块内极值点的对称性/唯一性 (那是 O2/O3a 的义务).
+ 
+ ## 验证与备注
++
++2026-09-20 修订: 当前 O1a 使用明确的核估计 `||S_rho-S_sigma||_HS^2 <= (R/12)||rho-sigma||_1`. 等谱由 `S_rho=M_sqrt(rho) T_rho M_1/sqrt(rho)` 的有界可逆相似变换给出. 下列旧审计记载的含混 `A` 范数链已被此估计替代, 不使用 Green 算子与乘法算子的可交换性.
++
+ - 来源: run R-20260805T000000Z-gapn1-a1b2c3 的 O1_reduction_draft.md (PROVED 草稿,
+   各步均为初等论证; O1c Wronskian 一步与 AEH arXiv:2407.02459 Lemma 2.2 独立重导).
+ - 数值佐证: 对 $R\in\{1.05,\dots,1000\}$ 全景观测 SUP/INF 唯一临界点均在对称点, 无反例.
+--- before/tools/left-definite-moment-recurrence.md
++++ after/tools/left-definite-moment-recurrence.md
+@@ -10,51 +10,29 @@
+ 
+ ## 解析
+ 
+-对正自伴算子 $K_c$ 的左定空间族 $H^s = D(K_c^{s/2})$ (见 [[left-definite-theory]]),
+-判定多项式基 $\{p_n\}$ 在 $H^s$ 中的解析完备性. 关键步骤:
++对移位 Krein Laplacian $K_c$ 的真正左定空间 $H^s=D(K_c^{s/2})$,
++本工具直接适用于 $s=2,3$. 先验证 $p_n\in H^s$ 及取矩单项式在 $H^{s-2}$ 中.
+ 
+-1. 等距同构: $K_c^{s/2}: H^s \to L^2$ (或 $K_c: H^{s+2} \to H^s$), 完备性等价于
+-   $\{K_c^{s/2} p_n\}$ 在 $L^2$ (或 $\{K_c p_n\}$ 在 $H^s$) 中完备.
+-2. **多项式跳变与 $s$ 无关**: $K_c p_{2m} = c x^{2m} - A_m x^{2m-2}
+-   + B_m x^{2m-4}$ ($m \geq 2$; $A_m = 2m(2m-1)+\frac{cm}{m-1},
+-   B_m = 2m(2m-3)$, 奇次同理) 是**多项式恒等式**, 与所在空间 $H^s$ 无关.
+-   (更正: 会话 10 初版称 $K_c^{s/2} p_{2m}$ 也是三单项式结构; 该命题对
+-   $s \geq 4$ 不成立: $K_c^2 p_{2m}$ 有 4 项, $K_c^3 p_{2m}$ 有 5 项,
+-   数值证实. 正确机制是下面第 3 步的等距传输, 而非对 $K_c^{s/2}$ 取矩.)
+-3. **等距传输取矩**: 对 $w \in H^s$, 等距同构 $K_c: H^s \to H^{s-2}$
+-   给出 $(w, p_{2m})_s = (K_c w, K_c p_{2m})_{s-2}$. 置
+-   $v = K_c w \in H^{s-2}$, $M_k := (v, x^k)_{s-2}$ (取矩的内积与
+-   正交条件同源), 则正交条件化为与 $H^2$ 情形**完全相同**的二阶跳变递推
+-   $$c M_{2m} = A_m M_{2m-2} - B_m M_{2m-4}.$$
+-   边界项 (如 $w(1)\pm w(-1)$) 被 $M_k$ 定义中内积自带的边界项吸收,
+-   这是递推降阶 (三阶 $\to$ 二阶) 的机制.
+-4. 增长引理: $M_{2m} = M_2 u_m$, $u_m \geq (4/c)^{m-1} m!$ (见 [[moment-jump-completeness]]).
+-5. 矩上界: $|M_k| \leq \|v\|_{s-2}\,\|x^k\|_{s-2} \leq C_s k^{s-3/2}$
+-   (Cauchy-Schwarz; $\|x^k\|_t$ 多项式增长 $\sim k^{t-1/2}$),
+-   与超阶乘增长矛盾, 迫使 $M_2 = M_3 = 0$, 全部矩为零, $w = 0$,
+-   完备性得证.
+-6. 基始: $m=1$ 时 $M_2, M_3$ 为自由参数 (对应缺次数 2, 3), 恰为矛盾论证起点;
+-   $c > 0$ 本质 ($0 \notin \sigma(K_c)$), $B_m \geq 0$ 与
+-   $A_m - B_m \geq c$ 必须成立.
++1. 等距同构 $K_c:H^s\to H^{s-2}$ 将正交条件变为
++   $(K_cw,K_cp_n)_{s-2}=0$.
++2. 多项式恒等式 $K_cp_{2m}=cx^{2m}-A_mx^{2m-2}+B_mx^{2m-4}$,
++   $A_m=2m(2m-1)+cm/(m-1)$, $B_m=2m(2m-3)$, 给出良定的矩递推
++   $cM_{2m}=A_mM_{2m-2}-B_mM_{2m-4}$, 奇次同理.
++3. $B_m\ge0$ 和 $A_m-B_m\ge c$ 使钉住解具有阶乘下界;
++   $L^2$ 或 $H^1$ 矩的多项式上界迫使自由参数 $M_2,M_3$ 为零.
++4. 多项式在取矩空间中稠密, 所以湮灭元为零.
++
+ ## 适用范围
+ 
+-- 适用: 边界条件约束 Hilbert 空间 (左定空间 $H^s$, $s \geq 1$ 整数) 中的多项式基;
+-  $K_c p_n$ 为三系数跳变结构的算子 (Krein 型); $0 \notin \sigma(K_c)$;
+-  等距传输 $K_c: H^t \to H^{t-2}$ 可用 (左定理论标准结论).
+-- 边界情形: $m=1$ 时 $M_2, M_3$ 为自由参数 (对应缺次数 2, 3), 恰为矛盾论证起点;
+-  $c > 0$ 本质; $B_m \geq 0$ 与 $A_m - B_m \geq c$ 必须成立;
+-  $s = 2$ 时 $t = s-2 = 0$ (即 $L^2$), 与 [[moment-jump-completeness]] 一致.
+-- 不适用: 无等距结构; $K_c p_n$ 非三系数; 需要 Schauder/Riesz 基等强于稠密性的结论;
+-  对 $K_c^{s/2} p_{2m}$ 直接取矩 (其单项式数随 $s$ 增长, $s \geq 4$ 失效).
+-- 与 [[moment-jump-completeness]] 的关系: 后者是 $s=2$ ($L^2$-矩) 的特例;
+-  本文把方法推广到一切整数 $s \geq 1$, 且指出``取矩的内积''是自由选择,
+-  应取与正交条件同源者以吸收边界项.
++- H2/H3 主证明可用. 谱截断与连续嵌入进一步给出同一族在 $0\le s\le3$ 中稠密.
++- 原任意整数阶推广于 2026-09-20 撤回. $p_4\notin H^4$, 所以所有 $s\ge4$ 的原同族断言为假.
++- $3<s<4$ 的精确范围本次不判定. 形式微分展开、代数多项式逆和自伴算子幂域必须分开.
++- 方法推广必须先核对所有成员关系, 不能把未定义的 $(w,x^k)_t$ 当作矩.
++- 本方法给出稠密性, 不自动给出 Schauder/Riesz 基性质.
+ 
+ ## 验证与备注
+ 
+-- 应用: 移位 Krein Laplacian 左定空间族 $H^s$ (一切整数 $s \geq 0$):
+-  结论解析完备 (是), 用 $H^{s-2}$-矩 + 等距传输路线 (本页第 3 步),
+-  取代会话 10 对 $K_c^{s/2}$ 直接取矩的错误思路.
++- 应用: H2 的 L2 矩与 H3 的 H1 矩主链. 旧全阶推广被算子域反例否定.
+ - 推广: 一般的``多项式稠密 Hilbert 空间 + 矩刻画''理论见 [[denseness-criteria]].
+ - 精确有理数验证: 恒等式 $c M_{2m} - A_m M_{2m-2} + B_m M_{2m-4}
+   = (w, K_c p_{2m})_1$ 对 $w \in \{x^2, x^3, x^2+x^4, 1+x+x^5\}$, $c=3$ 逐项
+--- before/tools/moment-jump-completeness.md
++++ after/tools/moment-jump-completeness.md
+@@ -42,9 +42,8 @@
+ - 不适用: 无等距结构的空间; $T p_n$ 系数稠密 (非三系数) 的基; 需要正交性
+   (Schauder 基 / Riesz 基) 的更强结论 (本判据只给稠密性).
+ - 局限: 只判解析完备 (密度), 不构造显式正交系, 不给收敛速率.
+-- 推广: 对任意整数 $s \geq 1$ 的左定空间 $H^s$, 取矩内积改为与正交条件同源的
+-  $(\cdot,\cdot)_s$, 递推系数不变, 上界为多项式增长, 结论同样成立 (会话 10).
+-  见 [[left-definite-moment-recurrence]].
++- 推广范围 (2026-09-20): H3 用良定的 H1 矩, 再由谱截断得到同一族在 $0\le s\le3$ 中稠密.
++  $p_4\notin H^4$ 撤回旧任意阶推广. 见 [[left-definite-moment-recurrence]].
+ 
+ ## 验证与备注
+ 

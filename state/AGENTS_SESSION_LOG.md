@@ -3512,3 +3512,139 @@
 - 修正: docs/history/.gitattributes 只匹配两个 README.pre-v2.*.txt 的精确文件名, state/.gitattributes 只匹配 AGENTS_SESSION_LOG.md, 均用 -text. 原根属性的 dirty 字节完全保留, 两份旧 README 不改字节; 本日志仅追加本条, 追加前的完整前缀不变.
 - 验证方法: 独立临时对象目录中实际执行 hash-object -w --path, 然后 show --no-ext-diff --no-textconv 读取 clean blob 全文. 对默认及 autocrlf=true/input/false 核对三份完整归档, 并与原生 Windows Git 的 blob ID 对照. 新属性随归档加入精确协调器集合, 路径总数从 155 增至 157, 原历史检查可辨识.
 - 交付边界: 过滤前后 SHA256, 原生 Git 配置, 精确属性作用域, 更新后的文档哈希和协调器前提记入 publication-dependencies.json. 完整日志验证包含本条新增内容. 旧数学审计限制保持原状, HEAD/index 不变, 未 stage/commit/push.
+
+
+### 2026-09-10 插件 2.0 落地, 双项目深度理解与运行层核查
+
+- 用户任务: 检查云端插件仓库 xsoc1/math-research-dsh 的版本, 版本不为 2.0 时不更新; 然后进入并深度理解插件仓库与数学项目 Zhongshan-Big-Jun/Sturm-Liouville-theory-research 的内容.
+- 版本门禁与更新: 本机 checkout 原为 1.5.0 (`d1ca3ee`), 云端 `origin/main` 为 2.0.0 (`4f75026`, package.json version 2.0.0, upstream.lock upstream_commit `72a1cc17`). 条件成立, 执行 `git pull --ff-only` 快进 16 个提交 (130 files, +20002/-5479). 回退点为 `d1ca3ee`.
+- 更新后验证: `scripts/validate_all.py .` 51 项全部通过 (4 个 bundle, manage MANIFEST, upstream.lock 140 文件, UTF-8/LF, py_compile 67, JSON 31, YAML 2, README 索引, version-bump 门禁); `dsh-doctor.py` 在显式 `--python /usr/bin/python3` 下 0 problem, 其默认解释器探测只尝试 `python` 与 `py -3`, 因此在 WSL 下先报一个假 FAIL; 四个 skill 仍由 `$DSH_HOME/skills` 下的符号链接指向该 checkout; 插件工作树干净.
+- 2.0 相对 1.5.0 的工程变化: 四个 SKILL.md 压缩为 54-77 行的按需指导, 不再要求固定阶段序列; 旧 1.x 阶段/角色/额度协议加历史横幅, 只在 `--legacy-v1` 或封存工件兼容路径下适用; `validate_pipeline.py` 由 818 行拆为 66 行现状检查, 旧契约移入 `legacy_pipeline.py`; 新增插件级 `skills/manage-math-research-program/runtime/blueprintctl.py` 网关 (version/ensure/validate/query/validate-submission/integrate); 新增 v2 文献与工具卡库 `research_library.py`, v2 续接 `research_state.py` 与 `recovery_status.py`, Stage C 交接 `formalization_handoff.py`, Lean v2 验证与性能指标脚本; changelog 移入各 bundle 的 `references/changelog.md`; 同步父仓库只有 xsoc1/rigorous-open-math-research 一个, 本地 canonical 父克隆 `~/.dsh/_math-research-upstream/rigorous-open-math-research` 当前不存在, 故本轮无法运行 `sync-from-parent.py --check`.
+- 本项目运行层核查 (未改数学, 未改 canonical): gateway `ensure` 返回 `ALREADY_READY` (2026-09-08T11:51:18Z 的绑定与当前 runtime/layout/config 指纹一致, changes 为空); `validate` 通过: 11 nodes, 13 edges, acyclic, 4 inventory rows, 5 claims, 4 proved inferences, 0 open inferences; `validate_pipeline.py --project .` 返回 `DATA_CHECKS_PASSED` (errors/warnings 空, mathematical_verdict NOT_ASSESSED); `research_state.py inspect` 解析进度页为 `state/RESUME.md`, 无在途 job.
+- 封存 checkpoint 的布局绑定: KP-DET sequence-26 checkpoint 记录的 state 路径是 v1 布局的 `runs/rigorous-open-math-research/<id>/interruption_state-26.json`, 在当前 v2.2 项目根下解析为不存在, 因此 `recovery_status.py inspect --project .` 报 `STALE`; 该文件实际位于 `research/runs/<id>/workspace/runs/...`, 与记录 sha256 `46c9ceee...` 逐字节一致. 以保留的 workspace 根作为 project 运行同一命令得到 `READY`: checkpoint_id `sha256:192a9e92...`, 48 bound artifacts, `first_action=DISPATCH-PSI-QUAD-WAVE-09` (target `PHI-SIGN-CGT2D3`), 预算上限 2 次响应, 27 条 do-not-repeat action, `pending_drafts` 空, `receipt_exists=false`; minimal read set 的 5 个文件 hash 全部匹配. 结论: 工件完好, `STALE` 是路径解析差异而不是工件损坏; 恢复时从保留的 workspace 根运行, 不重写封存字节.
+- 插件侧理解: 2.0 的工作单位是具体数学问题与项目已有材料; 检索记录与批注只是检索辅助, 不能当作已接受的数学前提; canonical 变更只经 gateway 的提案, 独立评审与确定性整合; Lean 通过只表示内核接受, 不等于源问题成立.
+- 数学侧理解 (当前边界, 按既有标签转述): Line A 左定空间/正交系/矩方法: H^2 完备性已证并形式化, 整数 s>=1 与实 s>=0 完备性, H^s 显式正交系, 稠密性准则与门槛线分类, A7 幂域障碍 `Q_n^(s) in D(K_c^(s/2)) iff n in {0,1}`; 一般 O1'/O1'LD 与三阶递推一般 K(c) 仍开放. Line B 谱极值: 全序列比值上下确界已解; n=1 间距 SUP/INF 对全 R>1 闭合; n>=2 有限块约化与精确 2n 开关已证; (G2) 与 M3 large-R 有限非零内部 chart 已闭合; KP-DET 在完整约束 `0<c<=2/3` 已严格闭合, `c>2/3` 的 Q9/PHI-SIGN 是唯一 load-bearing 缺口, 因此 KP-DET, KO-DET, 非对称根与全局 (G1') 全部保持 OPEN.
+- 形式化侧理解: `lean-proof/` 有 42 个 `SL/*.lean`; 主验证证据 `verification.json` 为 `FORMALLY_VERIFIED` (scope = StabilityGrowth/MomentRecurrence/MomentBound/Completeness, Lean 4.31.0, build_passed true, sorry/axiom 命中 0, 24 项义务 FAITHFUL 或 MINOR_PARAPHRASE), 其独立性说明为单 agent 自审计; STATUS.md 另有多个 `-- SCAFFOLD` 文件保留预期 `sorry` (DensBC O1, O1'LD, HsOperatorDomain, MinDirection, B3, A6, KpOddFirstZero, KpDetCommonBeta 等); KP-DET 的 `KpDetPhaseReduction_Scaffold.lean` 位于 run 自己的 workspace lean-proof 内, 不在项目根 lean-proof, sha256 与 checkpoint 绑定值一致.
+- 待处理 (本轮只记录, 未执行): `state/RESUME.md` 与 `state/current.json` 仍未登记 KP-DET 与 Q9; `index/runs.json`, `index/artifacts.json`, `index/task-packets.json` 缺 `R-20260831T020156Z-g1p-kpdet` 与 `Q-20260831-g1p-kpdet`; `index/open-problems.json` 缺 DensBC 问题 id; `state/stage-summaries/` 为空; 32 项未跟踪文件包含最新 sequence-26 恢复包, `docs/build/SL_hs_orthogonal_systems_proof.pdf` 与两个根 scratch 脚本; `state/RESUME.md` 的 Validation command 仍指向旧 Windows Codex 路径.
+- 边界: 未重跑数学证明, 审计或 Lean build; 未改 canonical 图; 未 stage/commit/push; 未进入 `_xsoc1_work/`; 数学状态均按项目既有标签转述, 本轮未独立复核.
+
+
+### 2026-09-10 历史 benchmark 调研与 DSH vs GPT-5.6-sol 对照方案
+
+- 用户任务: 调研数学研究库中过去 gpt-5.6-sol 的 benchmark 记录, 并拟一份评测 DSH 与 sol 数学研究性能对比的新方案.
+- 调研范围: `runs/plugin-benchmark-20260824-calibration/` (五臂 DSH 校准 + `codex-qed-replication/` 真实三臂), `runs/plugin-benchmark-20260824-ood-mixing/`, `runs/plugin-benchmark-20260824-ood-batchelor/`, `runs/three-arm-pilot-v2/` (pilot v3-v6 与 v17 回归), `_xsoc1_work/benchmarks/codex-20260906-l1/`, `_xsoc1_work/benchmarks/codex-20260908-q9/`, `_xsoc1_work/docs/codex-performance-optimization-plan-2026-09-05.md`, 以及 `reports/plugin-performance-*.md`.
+- 关键发现: (1) 2026-08-24 的五臂校准预注册模型是 `gpt-5.6-sol` xhigh, 但 DSH 侧实际运行为 `deepseek-v4-flash-vision-exp` high, 已登记为协议偏差; 该题 B3 O3 同时被标为污染回归校准, 单题单次. (2) 同题的 Codex 三臂 (sol xhigh, CLI 0.149.0-alpha.4.3) 三组数学质量全 PASS, 空白组成本最低 (A 1132.77 s / uncached 222,773 / USD 3.8347; B 253.95 s / 9,397 / 0.2432; C 283.72 s / 37,355 / 0.3992). (3) 后续 L1 (gpt-6-astra max, CLI 0.153.4) 六次外审全 100/100, 空白组成本最低, 新插件未达预注册成本目标; Q9 三臂三份完整证明均 PASS 100/100. (4) 已固化方法学: 六轴评分 (40/20/15/10/10/5), PASS/REPAIRABLE_GAP/FATAL_GAP 标签, 预注册与冻结哈希, 中立 ID 盲审, 隔离 gate, 成本字段分列且缺失记 null, 质量优先于成本的决策规则. (5) 反复出现的协议缺陷: 模型别名未核实, 同一比较内评分口径不一致 (v6 A 用 5 轴重算), v4 自审, 题面歧义导致 WRONG_PROBLEM, 原始 session 落在仓库外, 以及多种 INFRA_INVALID.
+- 新方案: 写入 [_xsoc1_work/docs/dsh-vs-gpt56sol-math-benchmark-plan-2026-09-10.md](../_xsoc1_work/docs/dsh-vs-gpt56sol-math-benchmark-plan-2026-09-10.md). 含 arm 定义 (D DSH deepseek-flash max + 插件 2.0 / S Codex gpt-5.6-sol xhigh / 空白对照 D0,S0 / 可选 Lean 臂), R/B/F/H 四类题型与选题规则, 冻结与泄漏控制, 对称工具面, 预算与顺序, 六轴盲审加跨模型互审, 五组指标 schema, L0-L3 实施阶段, 预注册决策句式, 风险表与交付目录. 明确本方案测的是系统级性能 (harness + 模型 + 插件 + 工具面), 不可分离归因.
+- 三个必须先解决的现实: (a) 本次调研会话已读 B3 O3/U2/Q9 答案, 由本会话执行的同题对照无效, DSH 臂须在新会话且只用项目外新题; (b) 本会话 DSH 文件读写编辑工具后端故障 (wsl-fs), 与 Codex 工具面不对等, 修复并验证前不得计分启动; (c) `gpt-5.6-sol` 当前是否可调用未知 (CLI pin 已前移, 现运行时为 0.153.4 / gpt-6-astra), 若不可用则退化为实时对照加历史参考值.
+- 工程可行性已核实: DSH session 记录在 `~/.dsh/sessions/<cwd-slug>/<session-id>/session.jsonl.zstd`, `zstd -dc` 可解压, 每条 `assistant/chunk` 的 `data.chunk.usage` 携带 `inputTokens` / `outputTokens` / `cacheReadTokens` / `reasoningTokens`, 另有 `step/start`, `tool/call`, `turn/start`, `turn/end` 可计数, 因此两侧统一 metrics 抽取器可实现.
+- 边界: 未执行任何模型调用, 未改 benchmark 原件, 未续跑 L1/Q9, 未创建 campaign 目录; 只在 `_xsoc1_work` 新增该方案文档并在其 AGENTS.md 追加一条摘要, 运行 `_xsoc1_work` 81 项校验全部通过; 未 commit/push.
+
+### 2026-09-10 DSH vs GPT-5.6-sol 四臂校准波 (DSSOL-20260910)
+
+- 用户决定: 5.6sol 使用本地 codex cli; 四臂 = DS 原生 / DS+插件 / GPT 原生 / GPT+插件; 其余权限交协调器.
+- 可行性探针: DSH headless (`node /home/huangzy/tools/deepseek-harness/apps/cli/lib/bin.js --profile headless`) 可用且文件工具正常 (仅 `/mnt/f` 工作区触发 wsl-fs 故障, Linux 路径工作区无此问题); `gpt-5.6-sol` 经本地 codex-cli 0.153.4 + Windows 账号凭据可用 (探针返回 PONG). 历史上 2026-09-06 的 benchmark 凭据已 revoke, 因此 Codex 臂改用 live 账号的 arm-local auth.json 副本, 记录为协议偏差.
+- 冻结: 预注册 (sha256 `b496ec77...`), manifest, 题型 cal-01 (三个截断级数不等式, 其中 (C) 为假, sealed gold 已先封), 计分题 q9 复用 2026-09-08 冻结题面 (sha256 `c7133b97...`), 四臂各自隔离 home 与 runner.
+- 结果 (每臂一次, 盲化后按 gold 判定): 四臂全部 3/3 命中 (A TRUE, B TRUE, C FALSE). 墙钟 ds-native 83.11 s / ds-plugin 96.64 s / gpt-native 160.35 s / gpt-plugin 165.09 s; 非缓存输入 10,036 / 11,062 / 41,661 / 38,662; 输出 18,371 / 23,173 / 4,128 / 4,519; DSH 观测模型 `deepseek-official/deepseek-flash`, Codex 臂经冻结 catalog 运行 `gpt-5.6-sol`. 描述性: DSH 两臂墙钟快 1.7-1.9 倍, 非缓存输入少 3.5-4.2 倍, 输出多 4.1-5.6 倍; 插件效应在两侧不同号且单样本不可归因.
+- 过程中定位并修复三处基础设施缺陷, 三次无效尝试全部成本保留并单列: (1) 生成配置缺少 `[windows] sandbox = "elevated"` 导致 codex 沙箱拒绝一切写文件; (2) 对 DrvFs 上 auth.json 的文件级 deny 使 `bwrap` 无法创建屏蔽文件; (3) 配置级 `[plugins."X@math-research"] enabled = true` 不等于安装, 该臂实际退化为第二个原生臂, 已改用 `codex plugin add` 并在事后核对 `installed, enabled`.
+- 交付: campaign 控制件与结果写入 `_xsoc1_work/benchmarks/dsh-vs-sol-20260910/` (预注册, manifest, runner, 两个题面, 四臂答案, metrics, comparison.json, RESULTS.md); 方案文档状态更新. `_xsoc1_work` 81 项校验通过.
+- 边界: 计分波 q9 已冻结但未启动 (四臂 x 3600 s 上限, 预计 2-4 小时墙钟); cal-01 太易, 质量未区分四臂, 因此本轮不产生任何优劣结论; 未改项目数学, canonical 或既有 benchmark 原件; 未 commit/push.
+
+### 2026-09-11 四臂计分波 q9 结果 (DSSOL-20260910)
+
+- 执行: 四臂各一次计分尝试于冻结题面 `tasks/q9/TASK.md` (与 2026-09-08 题面逐字节相同, sha256 `c7133b97...`), 上限 3600 s. Codex 臂用本地 codex-cli 0.153.4 + `gpt-5.6-sol` xhigh; DSH 臂用 headless profile + `deepseek-flash` max. 答案先盲化为中立 candidate ID, 再做交叉模型审计 (DSH 候选由 gpt-5.6-sol 审, Codex 候选由 deepseek-flash 审), 六轴评分.
+- 结果: `gpt-native` (无插件) 审计 `PASS` 99/100, `root_closed=true`, 审计者仅凭正文重建精确 Bernstein 证书 (78,214 项, 坐标次数 (55,31,19,4), 根盒 173 个负系数而所引四个叶子各 0 个), 无承重错误, 唯一扣分为可复现性 (被引脚本未随答案提交; 协调器另行运行该脚本, 输出 `CERTIFIED: the four leaves cover the unit box`). 该臂触 3600 s 上限后才被终止, 但已写完整 7,662 字节答案. `gpt-plugin` `PARTIAL` 84 (无承重错误, 自述为局部结果并定位缺口). `ds-plugin` `PARTIAL` 69 (审计指出五条问题: 两条桥接不等式自认未证, 子域非空性仅由数值分支断言, 所谓等价改写不等价, 所引符号对无法反驳目标蕴含, 分支覆盖依赖未认证浮点延拓). `ds-native` `FATAL_GAP` 48 (两处承重错误: 定理 A 需要 `1-r>=k e cos^2 B` 而所给条件只有较弱的 `1-r>=k e cos^2 B sin^2 B`; `R_quad` 展开第二项漏因子 `r`, 使定理 B 的消去失效).
+- 成本 (墙钟 s / 非缓存输入 / 缓存输入 / 输出): ds-native 2080.6 / 75,182 / 9,360,384 / 215,996; ds-plugin 2023.8 / 112,440 / 31,339,904 / 271,240; gpt-native 3609.0 / 148,872 / 5,809,536 / 85,885; gpt-plugin 1512.6 / 110,119 / 716,288 / 43,594.
+- 基础设施记录: 首轮两个 DSH 臂并发运行时在同一瞬间被 SIGKILL (1342 s, 无答案), 定位为 harness 后台任务回收而非内存问题 (13 GiB 空闲, kern.log 无 OOM); 改用 `setsid` 分离后长跑正常. 另有一次 nohup-未-setsid 的立即退出, 一次审计脚本 `str.format` 与 JSON 花括号冲突, 以及 ds-native 审计两次撞 1200 s 上限未产出工件. 全部无效尝试成本保留并单列.
+- 边界与后续: 本题只支持描述性结论 - 在 Q9 上插件未帮助任一系统闭合, 原生 GPT 臂闭合. `gpt-native` 的证明与 2026-09-08 三份 gpt-6-astra 证明方向一致, 但这是模型审计而非人工或 Lean 验证, **尚未**进入本项目验收链 (submission 复核, canonical receiver, 可选 Lean), 因此本轮未改 canonical 图, 未改任何数学状态, 未 commit/push. 若用户决定接收, 下一步是把该答案作为提案走 gateway 的 validate-submission 与独立评审.
+
+### 2026-09-11 按用户要求用 1.x 插件重做四臂对照 (DSSOL1x-20260911)
+
+- 用户决定: 不用 2.0, 改用早一点的版本; 两道题都重跑. 经核对选定最后一个 1.x: DSH `math-research-dsh` **1.15.1** (checkout `1110a75`, 父提交 `6d6d739`), Codex 侧 marketplace 快照同样取自 `_xsoc1_work` 的 `6d6d739` (rigorous 1.12.0 / workflow 1.15.0 / manage 1.8.1 / lean-verify 1.6.0). 该父提交正是 2026-09-08 Q9 实验 B 臂所用快照, 因此与历史数字可作描述性对照.
+- 执行: DSH checkout 用 `git reset --hard` 从 `4f75026`(2.0.0) 退到 `1110a75`; 四个部署 skill 仍为符号链接, 验证解析到 1.x bundle (388/549/533/207 行, 对比 2.0 的 54-77 行). 新 campaign `DSSOL1x-20260911`, 题面与上一轮逐字节相同 (cal-01 `8169825e...`, q9 `c7133b97...`).
+- 结果 (cal-01, 上限 900 s): 四臂全部 3/3 命中. 墙钟 41.98 / 63.12 / 130.92 / 84.63 s; 非缓存输入 9,282 / 8,831 / 75,687 / 38,411.
+- 结果 (q9, 上限 3600 s, 交叉模型盲审): **四臂全部 PARTIAL, 无一闭环**. 六轴总分 gpt-native 88 > gpt-plugin 76 = ds-plugin 76 > ds-native 70; 墙钟 1121.2 / 1381.8 / 2307.2 / 1593.8 s; 非缓存输入 46,512 / 63,933 / 137,080 / 85,780; 输出 146,330 / 142,662 / 71,775 / 50,990. 审计给出的承重错误包括: ds-native 的非空性与全域覆盖只由浮点延拓推出; ds-plugin 把更强的 `Delta>0` 说成与 Q9 等价; gpt-plugin 有一条显示恒等式为假 (两侧相差 `c^2(c^2-1)sin^2B`); gpt-native 零承重错误.
+- 本波内干净的对照: DSH 侧插件略高 (76 vs 70) 但各项成本更高, Codex 侧插件略低 (76 vs 88) 成本更低, 方向相反且单次尝试. 插件未在本波任何一侧产生闭环.
+- 混杂声明 (重要): 两波之间同时变了 (1) 插件内容 2.0.0 -> 1.15.1; (2) DSH 模型与 effort `deepseek-flash`/max -> `deepseek-v4-flash-vision-exp`/high, 后者既影响 DSH 求解臂也影响 Codex 候选的审计者; (3) 运行间波动, 证据是两波都无插件的 `gpt-native` 从 PASS 99 (闭环) 变为 PARTIAL 88 (未闭环). 因此跨波差异**不得**归于插件版本, 报告中只作描述性记录. runner 首版把 DSH effort 硬编码为 max, 已改为从臂的 settings.yaml 读取并回填.
+- 过程记录: 自动接续 gpt-plugin 的 watcher 因 `pgrep` 模式自匹配自己的命令行而空转, 一次 `pkill -f` 同样自匹配把执行它的 shell 一起杀掉; 均改用显式 PID 与无自匹配模式处理, 未影响任何计分结果. 未改 canonical 图或数学状态, 未 commit/push.
+
+### 2026-09-11 编排消融实验 (DSSOL-ORCH-20260911)
+
+- 动机: sol 数据差异分析指出, 历史插件臂的质量胜绩(pilot v6 A 99 PASS vs B 94 REPAIRABLE_GAP; ood-mixing A PASS vs B PARTIAL)都伴随 2-7 个子 agent 与 82-307 次响应, 而我的所有臂始终 0 个子 agent. 前置检查确认协作工具在臂内已声明可用(系统文本给出 `to=functions.collaboration.spawn_agent`), 因此是模型选择不用, 不是工具缺失.
+- 设计: 在既有 prompt 上**只增加一段**显式允许派发的文字(spawn_agent/followup_task/send_message/wait_agent/list_agents, 最多 3 并发, 子 agent 同等能力共享工具, 结果自负并须验证), 题面(q9, sha256 `c7133b97...`)、模型、插件(1.x, 父提交 `6d6d739`)、上限 3600 s、盲化与交叉模型审计协议全部不变; 四臂各一次. 用量改为**跨全部会话聚合**(含子会话), 避免编排臂被算得虚假便宜.
+- 操纵检验: 生效且只作用于插件臂. ds-plugin 3 个会话/319 请求(2 个子 agent), gpt-plugin 4 个会话/272 请求(3 个子 agent); ds-native 与 gpt-native 均仍为 1 会话/0 子 agent.
+- 结果: **仍无任何臂闭环 Q9**. 六轴 gpt-plugin 83(0 承重错误) > ds-plugin 66(5) > ds-native 49(5) > gpt-native 44(1). 开编排后插件臂在两个 harness 上都高于各自原生臂(83 vs 44; 66 vs 49). gpt-native 这次写"# Q9 is true"并以一条 Lemma 1 收尾, 审计认定该非初等引理只被断言未被证明, 判 REPAIRABLE_GAP 44; ds-native 声称全域真但自认桥接 `Q>0 => S>0` 未证, 且把有限浮点网格称作"exhaustive numerical certification".
+- 用量(含子会话): 非缓存 53,375 / 242,720 / 124,824 / 588,207; 缓存 6,780,544 / 46,462,976 / 3,666,944 / 15,520,256; 输出 160,120 / 486,809 / 77,177 / 255,818; 墙钟 1321 / 2744 / 2172 / 1742 s. gpt-plugin 的非缓存 588,207 落在历史插件臂区间(215,462-1,108,074)内, 支持"历史量级由编排造成"这一解读.
+- 关键保留: **同一无插件配置**(gpt-native, 同题同模型同 CLI 同日)在普通 prompt 下 88 分、在编排 prompt 下 44 分, 且性质从"诚实局部"变为"对未证引理的完整证明声明". 44 分摆幅说明单次差异由噪声主导, 因此 83-vs-44 不能被当作插件效应, 必须先重复. 已把"重复 gpt-native 与 gpt-plugin 各三次"列为下一步.
+- 边界: 未改 canonical 图或数学状态, 未 commit/push; 临时溢出文件与备份已清理; `_xsoc1_work` 81 项校验通过.
+
+### 2026-09-12 编排消融的重复实验与完整结论 (DSSOL-ORCH-R-20260911)
+
+- 目的: 第一波得到一个"83 vs 44"的插件优势, 但同配置的无插件臂在普通 prompt 下曾拿到 88 分, 已知单次摆幅达 44 分, 因此按预注册必须先重复才能解读. 本轮对两个决定性格子各做三次附加运行, 交替顺序(原生, 插件, 原生, 插件, 原生, 插件), 加上第一波各一次, 每格 4 次观测; 六份答案盲化后由交叉模型审计(Codex 候选交 DSH 审). 执行 00:14-03:46, 六次运行全部 exit 0 并写出答案.
+- 单次结果(审计总分/判定): 无插件 44(REPAIRABLE_GAP), 91, 80, 77(均 PARTIAL); 插件 83, 80, 89, 92(均 PARTIAL). 两格各 4 次**都没有闭环 Q9**.
+- 预注册判定规则是"区间不重叠才算处理效应", 结论: (1) **插件可靠引发编排** - 插件臂 4/4 次 4 会话(3 个子 agent, 171-282 请求), 原生臂 4/4 次 1 会话(43-78 请求), 区间完全不重叠; (2) **插件可靠贵 3.2-3.9 倍非缓存输入** - 391,049-588,207 vs 123,816-149,106, 不重叠, 且落在历史插件臂区间 215k-1,108k 内, 直接支持"历史量级由编排造成"; (3) **质量无可分辨差异** - 原生中位 78.5(极差 47) vs 插件中位 86(极差 12), 区间 80-91 重叠, 第一波的"83 vs 44"被证明是一次抽样; (4) 次要: 插件 4/4 次零承重错误, 原生 2/4 次有承重错误(含一次把未证引理当作完整证明), 属 n=4 方向性提示.
+- 由此得到的结论: 在这道题与这套配置下, 编排是插件**可靠增加的行为与成本**(3.5 倍左右非缓存输入换来 3 个持续工作的子 agent), 而**不是结果**; 历史插件臂的质量胜绩不能由"委派"单独解释, 若要归因只能指向题目、更早的插件内容或模型快照 - 这三项本消融都没有变动.
+- 边界: 未改 canonical 图或数学状态, 未 commit/push. 该题上的实验线到此收束(8 次尝试零闭环); 下一步若要继续, 值得重复的是历史上出现过分歧的两类题(一次性作答即可成功的 B3 O3 型, 与一次性作答带承重缺口的 pilot v6 型). 详见 [RESULTS-repeats.md](../_xsoc1_work/benchmarks/dsh-vs-sol-orch-r-20260911/RESULTS-repeats.md).
+
+### 2026-09-12 DSH 侧对照补测与 2x2 完整结论 (DSSOL-ORCH-R-DS-20260912)
+
+- 补测动机: 用户要求补上 DSH 侧的对照, 使四格各有 4 次观测. 预注册在首次调用前冻结; 任务(q9, `c7133b97...`)、编排 prompt(与前三波逐字节相同)、上限 3600 s、交叉模型盲审、跨会话用量聚合全部沿用; DSH 身份经核对仍为 `deepseek-official/deepseek-v4-flash-vision-exp` / high, 插件仍为 1.15.1(父提交 `6d6d739`).
+- 执行: 三轮, 每轮 ds-native 与 ds-plugin **并行**(共享机器条件, 配对对照不受漂移干扰), 09:54-11:48 完成; 随后自动聚合用量、盲化六份答案、由 gpt-5.6-sol 串行完成六次审计(11:48-12:17).
+- 结果(每格 4 次, 顺序 r0/r1/r2/r3): Codex 原生 44/77/80/91(中位 78.5), Codex 插件 80/83/89/92(中位 86); DSH 原生 44/49/50/55(中位 49.5), DSH 插件 45/66/77/80(中位 71.5). **16 次 q9 编排题尝试, 零闭环**.
+- 决定性发现 - **插件的行为/成本效应依赖 harness**: Codex 侧完全确定(插件 4/4 次派 3 个子 agent, 原生 0/4; 非缓存 391k-588k vs 124k-149k, 区间不重叠, 3.2-3.9 倍); DSH 侧**没有分离** - 原生臂自己也会派(delegationDepth 核实: r2 为 d0+d1, r3 为 d0+d1+d2+d1+d1+d2, 即 1 个和 5 个子 agent 含二级), 插件臂在 r2 反而没派, 成本区间重叠(48,677-242,720 vs 53,375-245,497, 比值 0.91/2.80/2.14/0.99). 质量在两侧均不分离. 依预注册"不重叠才算处理效应"规则, 只有 Codex 侧的委派与成本构成处理效应.
+- 结论: **委派本身不是历史插件臂质量胜绩的机制**. 在唯一把委派变确定且充沛的地方(Codex+插件, 每次 3 个子 agent, 3.2-3.9 倍成本), 审计结果既未闭环也未与对照分离. 若历史胜绩属实, 只能归因于题目(H^s/U2/mixing)、更早的插件内容(rigorous 1.6/1.7)或 8 月的模型快照 - 这三项本实验一个都没动.
+- 次要观察(n=4 提示): 插件格的承重错误更少 - Codex 插件 0/0/0/0 vs 原生 1/0/0/1; DSH 插件 5/2/2/3 vs 原生 5/5/7/6.
+- 附带核对: 用户问的 "1.17" 版本在 DSH 适配仓库与父插件仓库的**全历史(含远端所有 refs)中均不存在**; 2.0 之前最后一版为 DSH 1.15.1, 父侧为 rigorous 1.12.0 / workflow 1.15.0 / manage 1.8.1 / lean-verify 1.6.0.
+- 边界: 未改 canonical 或数学状态, 未 commit/push; `_xsoc1_work` 81 项校验通过; 会话日志纯追加(前缀哈希不变, 3412 个历史 CRLF 保持). 详见 [RESULTS-2x2.md](../_xsoc1_work/benchmarks/dsh-vs-sol-orch-r-ds-20260912/RESULTS-2x2.md).
+
+### 2026-09-20 n=1 SUP/INF 闭合状态溯源与 PROJECT.md 最小同步
+
+- 用户要求: 当前状态应以 n=1 的 SUP/INF 严格证明已闭合为准, 范围限定为归一化盒类 `1<=rho<=R` 和全部 `R>1`. `PROJECT.md` 的进行中状态是旧记录. 按用户提供的两段替换文字更新 Research directions 第 1 项及 Key files 的综述入口; `README.md` 和 `research_map.md` 的 n=1 表述无需修改, B4 整体保持 PARTIAL, n>=2 完整问题与 n=1 certificate-kernel 形式化另计.
+- 方法: 使用用户指定的 math-research-workflow 2.0.0 技能, 并按 writing-for-agents 技能维护 AGENTS. 先读项目规则, 比较现有未提交修改, 将本轮涉及的 3 个文件按原字节备份至 `/tmp/bve-n1-status-20260920-7pr8isai/`; 同时保存修改前差异, 索引清单和 73 个相关文件的 SHA-256, 后续与该基线比较. 历史日志采用纯追加, 保留既有混合换行及全部原始字节.
+- 版本核查: 本地 `main` HEAD 与本次 `git ls-remote --heads origin main` 均为 `ee90dcc2390eed8586888c07eaaabced37e3226d` (提交时间 `2026-09-09T16:28:17+08:00`). `git log -- PROJECT.md` 只有初始导入 `6c71825` (2026-08-10). GitHub 网页读取未成功, 本轮依据本地 Git 对象及实时远端 ref 核查.
+- 闭合依据: 检查 `220785ec875e3407bad52c75738390bc7121bd30` (北京时间 `2026-08-12T03:31:02+08:00`) 对 `state/RESUME.md` 的实际差异, 以及会话 58 续作 3 的记录. 该提交解除 O3a/C1 旧 PDF 误报并登记定理 A 独立复核, 将 n=1 全部义务记为 CLOSED. 核对 `docs/SL_gap_n1_proof.tex` 的归一化盒类与 SUP 主定理, `docs/SL_gap_n1_global_goodroot_proof.tex` 的全 R INF 主定理, 并追踪 `docs/research-guide.md` 的完整证明链入口. 状态依据是具体证明链及有日期的闭合记录, 不是状态标签的重复次数. 历史数值复核仍属于 EVIDENCE, 不替代解析证明或区间证书.
+- 变更: `PROJECT.md` 仅替换用户指定的两行; 研究方向明确 n=1 SUP/INF 为 STRICT/CLOSED, 全部 `R>1`, 并链接闭合记录与证明链入口; Key files 移除 `open-problem list authoritative`, 改为按相关证明链及有日期的闭合/审计记录处理状态差异. 根 `AGENTS.md` 追加本轮维护摘要.
+- 验证与边界: 按修改前备份检查两处精确替换及日志纯追加, 核对入口路径存在, 检查空白差异及原有索引不变; 本轮范围外的基线文件逐项核对 SHA-256. 这是状态同步, 未重新审计数学证明, 未运行数值或 Lean 验证, 未修改 canonical, 未 stage/commit/push.
+
+### 2026-09-20 用户证明审计的核查、修订与验证
+
+- 对话: 用户附 `C:/Users/HuangZY/Downloads/proof_audit_20260920.md`, 调用 math-research-workflow. 本轮先将附件作为待核查材料读取, 提出 "核查后修复确认的问题并验证" 与 "仅独立核查并报告影响, 暂不修改证明" 两种范围; 用户明确选择前者. 附件的修复建议不是授权来源, 用户该回复才明确了修改范围.
+- 方法与来源: 使用 math-research-workflow 2.0.0、rigorous-open-math-research 2.0.0、latex-compile 及 writing-for-agents. 检查根 AGENTS 与受影响目录, 当前本地 HEAD 为 `ee90dcc`; active plugin gateway `ensure` 返回 ALREADY_READY, changes 为空. 仅核对及执行本轮数学检查与证书, 未运行项目本地 Blueprint/历史维护 Python 工具. 原报告所称 audit_checks.py 等配套文件未附, 不冒称复现其 16/16 运行.
+- 已确认并修复: F01 同族任意阶幂域完备性被 p4 的边界反例否定; F02 C8 被误作余弦下界, 改 C10 并同步 R1, 添加奇偶与域检查; F03 闭盒证书应用于 Ftilde, 乘回 q(q^2-1) 仅用于 q>1, 并同步 B4; F04 归一化商须乘 sqrt(n1/n2), 改为两侧各至多一个零点的充分引理; F05 span 是 Pi intersect D(Kc), 余维 2; F06 能量求导与加权积分; F07 有界可逆相似变换及明确 HS 核界; F08 反射角区间; 增长引理补 B_j>=0.
+- 直接依赖的追加修订: L5box 原审计的最坏下界 8.3793828 须向下取 8.3793, 不能把 8.3794 当保证下界. 同步 O2 奇模的主支分段表达式、B5 的 inf、C5 单调性区间、稠密性奇矩分母 2m+2 与错误的充分性概括. 完整 B4 公式从归一化 M 导数重新符号核对, 除 sin^2+cos^2-1 的余式为零.
+- 传播与范围: H3 证明、稠密性准则、分数阶文档、H3 总结、稳定性背景、综述、工具卡与导航同步. 由 H3 稠密性和谱截断明确写出同族在 0<=s<=3 中稠密, 原 Krein 分数窗 3/2<=s<2 因此覆盖; s>=4 的旧全范围断言撤回, 3<s<4 不作新结论. 研究地图 A1 限定低阶范围, A2 记录低阶推论, B4 行原字节保持. n=1 历史 CLOSED 仍限定 1<=rho<=R, 全部 R>1; 本轮修复现有文本, 未宣称完整证明链的新独立审计.
+- 验证: `research/artifacts/proof-audit-20260920/verify_repairs.py` 35 项精确检查通过, Fraction + SymPy 1.14.0; 修订 C1-C5 程序全部 PASS 且失败退出码为 1. 使用插件编译 11 份 TeX, 全部 PDF 可解析并同步回 docs; 核看 C1、H3 反例与 good-root 页的实际渲染. 首轮缺 seqsplit, 在现有 TinyTeX 中安装该小包后成功. 修正缺失 tau 字符与过宽旧表格; 最终无缺字、未定义引用和溢出版面, 部分文档仍有中文粗斜体字体替代提示.
+- 保存: 修订前 36 个文件按原字节保存在 `research/artifacts/proof-audit-20260920/before/`, 基线哈希覆盖 222 文件 (含原始 KEY LEMMA 三个 run). 本轮记录与旧日志纯追加; 未改原封存 run、canonical 或 Git 索引, 既有未提交工作按基线核对. 当前差异与逐文件哈希见同目录 changes-this-session.patch、integrity-results.json、after-hashes.json. [修订报告](../reports/proof-audit-20260920/REPORT.md) 为当前入口. 未 stage/commit/push, 未运行完整旧区间证书或 Lean.
+
+
+## 2026-09-20 第二轮审计与检验/纠错工作流
+
+用户提供 `C:/Users/HuangZY/Downloads/proof_audit_round2_20260920.md`, 要求“修缮的同时提出两个工作流修改目标”:
+增强检验 agent, 将形式化验证融入研究, 参考 Prove2Me/Fuse; 建立接收内部或外部检验结果后纠正工具库的模块,
+并明确“检验一定要由无状态的隔离子agent完成”. 附件是证据, 其中建议不升级为用户指令.
+
+方法: 先保存两仓库当前跟踪文件 SHA256 与选择性原字节归档, 不回滚第一轮和其它未提交变更.
+数学作者、Lean 作者、程序作者与验收角色分开; 验收实际显式 `fork_context:false`, 保存原生调度/完成记录.
+首次数学检验又指出 K1 卡片范围、数值积分/探针、secular 漏分支、零点计数端点范围和旧下确界状态错误;
+修订后换新会话, 不覆盖否决. 盲回译因两个隐藏类型不足返回 INCOMPLETE, 补实际类型输出后由新 agent 回译.
+
+已修源证明、两个 op10 程序、相关卡片与导航; 八份 PDF 经源身份核对重建同步.
+九张修订卡与四组问题已登记, 当前等待最后的独立复核后按精确版本恢复.
+插件工作树为 2.0.1, 实现过程内形式化引导、隔离检验包与纠错生命周期. 独立软件复核发现的日志完整性与中断恢复问题继续修补.
+工具旧索引原字节归档, hash 绑定证据加局部 -text 属性并检查 Git clean 后 blob 一致.
+当前阶段没有 stage/commit/push/安装, canonical 未修改. 收尾结果见 `reports/proof-audit-round2-20260920/REPORT.md`.
+
+
+### 2026-09-20 第二轮审计与工作流修补: 最终验收
+
+用户要求增强检验、把形式化融入研究并建立外部审计驱动的纠错模块, 且正式检验必须由无状态隔离子 agent 完成. 本轮按该要求实施: 作者与检验会话分离, 每次修订后的重审使用新的 fork_context:false 会话, 真实调度与完成结果冻结保存; 未把自测或合成回执当作独立证明.
+
+B01-B08 对应的谱基、范数、空间成员性、负阶完备化、求根、首对全局极值、MW 缩放/有符号匹配及 K1 终端条件均修缮. 独立复核额外发现的卡片归一化、弱探针、高频积分、摘要和递推算术问题均修复并另行复核. 软件 CL1-CL7 包括日志截短、格式损坏旁路、中断登记、别名冲突、手工修复边界、下游误放行和依赖版本覆盖; 当前范围获独立批准.
+
+实际结果: 九张修订卡按依赖顺序恢复并逐张查询, 指针78可用/1隔离, 92个历史版本保留, 三条版本绑定纠错经验批注加入. 原始错误正文与否决回执未删除. 84项行为测试在Linux与原生Windows均通过, 另有7项库兼容、12项Lean便携及81项仓库检查. 25个局部Lean目标与五个缓存旧定义桥接经新检验实际重放; 完整主定理尚非全形式化, 3<s<7/2同族稠密性仍开放. 八份PDF与当前TeX源码绑定.
+
+边界: 现有回执绑定原始WSL调度路径, 原生Windows跨路径消费会被拒绝, 未改写回执绕过检查. canonical图与证据清单未修改. 改动是2.0.1本地工作树修补, 没有stage/commit/push/安装. 详情见 reports/proof-audit-round2-20260920/REPORT.md 与插件 docs/v2.0.1-verification-corrections.md.
+
+
+### 2026-09-20 云端仓库同步
+
+用户请求: 同步 https://github.com/xsoc1/rigorous-open-math-research 与 https://github.com/Zhongshan-Big-Jun/Sturm-Liouville-theory-research. 本次明确授权提交与推送. 核对两仓库 origin/main 与 fork/main 均仍位于本地基线, 按完成的两轮审计修缮及证据依赖建立暂存清单, 将未关联的 benchmark、scratch 和研究续接草稿保留在本地. 冻结回执、旧版卡片、原始否决和 canonical 保持身份. 使用 Git 实际提交 blob 检查换行转换和绑定哈希; 插件具体候选在 CI 中执行发布检查. 每个仓库先同步 origin, 再核对 fork, 最终以远端 main 的完整 SHA 为准. 本次不修改数学结论, 不安装插件或迁移 DSH.

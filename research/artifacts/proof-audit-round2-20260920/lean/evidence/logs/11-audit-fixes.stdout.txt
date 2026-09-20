@@ -1,0 +1,13 @@
+SL/AuditRound2.lean:216:2: error: Type mismatch: After simplification, term
+  HasDerivAt.sin (HasDerivAt.const_mul (2 * Real.pi) (HasDerivAt.add_const (1 / 2) (hasDerivAt_id x)))
+ has type
+  HasDerivAt (fun x => Real.sin ((x + 1 / 2) * (Real.pi * 2)))
+    (1 * (Real.pi * 2) * Real.cos ((x + 1 / 2) * (Real.pi * 2))) x
+but is expected to have type
+  HasDerivAt (fun x => Real.sin ((x + 1 / 2) * (Real.pi * 2))) (Real.pi * 2 * Real.cos ((x + 1 / 2) * (Real.pi * 2))) x
+SL/AuditRound2.lean:223:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SL/AuditRound2.lean:224:63: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

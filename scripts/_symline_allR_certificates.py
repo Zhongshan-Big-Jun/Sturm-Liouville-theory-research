@@ -3,6 +3,7 @@
 # 对应 docs/SL_gap_n1_symline_allR_proof.tex 附录 A 的 C1-C5 与 G''(0) 正性.
 # 全部用 fractions.Fraction 精确算术; 每个断言输出 PASS/FAIL 与余量.
 from fractions import Fraction as F
+from math import factorial
 
 ok = True
 def check(name, cond, margin):
@@ -13,34 +14,35 @@ def check(name, cond, margin):
 PI_LO, PI_HI = F(223, 71), F(22, 7)          # 223/71 < pi < 22/7
 
 # ---------- 预备: 交错级数精确夹逼 sin/cos ----------
-def sin_up(x, n=7):
-    # 部分和到 x^(2n-1) 且最后一项符号为正 (x < 1 时项单调减 => 上界)
-    s = F(0)
-    for k in range(n):
-        s += (-1)**k * x**(2*k+1) / F(__import__("math").factorial(2*k+1))
-    return s
+def taylor_bound(X, N, Parity, Sine):
+	# On [0, 1], term magnitudes decrease. An odd term count ends positive
+	# (upper bound); an even count ends negative (lower bound).
+	if not isinstance(N, int) or N < 1 or N % 2 != Parity:
+		raise ValueError("term-count parity does not certify the requested bound")
+	if not F(0) <= X <= F(1):
+		raise ValueError("Taylor bound is certified only on [0, 1]")
+	Total = F(0)
+	for K in range(N):
+		Degree = 2*K + int(Sine)
+		Total += (-1)**K * X**Degree / factorial(Degree)
+	return Total
 
-def sin_lo(x, n=6):
-    # 部分和到 x^(2n-1) 且最后一项符号为负 (下界)
-    s = F(0)
-    for k in range(n):
-        s += (-1)**k * x**(2*k+1) / F(__import__("math").factorial(2*k+1))
-    return s
+def sin_up(X, N=7):
+	return taylor_bound(X, N, 1, True)
 
-def cos_lo(x, n=5):
-    s = F(0)
-    for k in range(n):
-        s += (-1)**k * x**(2*k) / F(__import__("math").factorial(2*k))
-    return s
+def sin_lo(X, N=6):
+	return taylor_bound(X, N, 0, True)
 
-def cos_up(x, n=4):
-    s = F(0)
-    for k in range(n+1):
-        s += (-1)**k * x**(2*k) / F(__import__("math").factorial(2*k))
-    return s
+def cos_lo(X, N=6):
+	# C10 ends with -X**10/10!, hence is a lower bound.
+	return taylor_bound(X, N, 0, False)
+
+def cos_up(X, N=5):
+	return taylor_bound(X, N, 1, False)
 
 x1 = F(961, 1000); x2 = F(97, 100)
 sin1_up = sin_up(x1); cos1_lo = cos_lo(x1)
+assert cos1_lo > 0  # Positive denominator is part of the quotient certificate.
 tan1_up = sin1_up / cos1_lo
 sin2_lo = sin_lo(x2); cos2_up = cos_up(x2)
 tan2_lo = sin2_lo / cos2_up
@@ -52,9 +54,9 @@ print("tan(0.97)  >= %s = %.12f" % (tan2_lo, float(tan2_lo)))
 # 修正后的链 (2026-08-12 复核): 分数取交错级数精确比值; 十进制常数与 pi 界方向改正.
 #   phi(0.961) < 0: tan <= R1 < 14315/10000 < 14472/10000 < 2(223/71-0.961)/3  (用 pi > 223/71)
 #   phi(0.97)  > 0: tan >= R2 > 14591/10000 > 14546/10000 > 2(22/7-0.97)/3     (用 pi < 22/7)
-R1 = F(5104691704723563842653351044859938032346287993281, 3566219119511749539487170630605640000000000000000)
+R1 = F(5104691704723563842653351044859938032346287993281, 3566217966719202085941974656584935652684000000000)  # S13/C10, corrected 2026-09-20
 R2 = F(329267980378932303644934573247, 225649563795645795591390000000)
-check("C1a: tan(0.961) <= R1 (= sin_up/cos_lo 精确比值)", tan1_up <= R1, R1 - tan1_up)
+check("C1a: R1 equals S13/C10 (envelope follows from alternating remainder)", tan1_up == R1, R1 - tan1_up)
 check("C1b: R1 < 14315/10000 < 14472/10000", R1 < F(14315, 10000) < F(14472, 10000), F(14472, 10000) - R1)
 check("C1c: 14472/10000 < 2(223/71-0.961)/3 (pi > 223/71)",
       F(14472, 10000) < 2*(PI_LO - x1)/3, 2*(PI_LO - x1)/3 - F(14472, 10000))
@@ -107,7 +109,7 @@ check("C4c: G''(w0) <= 6 y0max - 12 y0min^2(93/200) - 2 y0min^3(63/250) + 2(22/7
       gpp_ub < -F(13), -F(13) - gpp_ub)
 
 # ---------- C5: F(gamma0*) > 0 等价 16 y0^4 - 4 pi^2 y0^2 - 15 pi^2 > 0 ----------
-# h(y0) 在 y0>1 递增 (h' = 64 y0^3 - 8 pi^2 y0 > 0 for y0^2 > pi^2/8), 在 pi 递减
+# h(y0) 在本证书区间 y0>=y0min>2 递增 (y0^2 > pi^2/8), 在 pi 递减
 c5 = 16*y0min**4 - 4*F(22, 7)**2*y0max**2 - 15*F(22, 7)**2
 # 修正: 该下界实际约 19.081, 不能取 3817/200 = 19.085
 check("C5a: 16 y0min^4 - 4(22/7)^2 y0max^2 - 15(22/7)^2 > 19", c5 > F(19), c5 - F(19))
@@ -115,3 +117,4 @@ check("C5b: 19 > 0", F(19) > F(0), F(19))
 
 print()
 print("ALL PASS" if ok else "SOME FAILURES")
+raise SystemExit(0 if ok else 1)

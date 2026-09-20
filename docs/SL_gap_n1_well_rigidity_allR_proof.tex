@@ -26,7 +26,7 @@
 \title{阱族全 $R$ 相位刚性: 一切 $R>1$ 下任意 sign-consistent good root 必为对称根\\[-2mm]
 \large 附: 对 INF 侧 $\lambda_2-\lambda_1$ 极值问题的推论与剩余缺口}
 \author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
-\date{2026-08-10}
+\date{2026-08-10; 2026-09-20 revision}
 
 \begin{document}
 \maketitle
@@ -251,7 +251,7 @@ $n_k:=\int_0^1\rho_{a,b}\,y_k^2\,dx$, $\hat y_k:=y_k/\sqrt{n_k}$. 定义
 	0 失败 (\EVID).
 \end{remark}
 
-\section{频率比上界 (τ<2)}\label{sec:tau}
+\section{频率比上界 \texorpdfstring{$\tau<2$}{tau<2}}\label{sec:tau}
 
 本节给出新的初等引理: 在 sign-consistent good root 处必有 $\tau<2$.
 它是后面所有区间性引理的前提 (区域 II $=(x_{mid},\pi/\tau)$ 在 $\tau<2$ 时才越过
@@ -474,7 +474,7 @@ $\pi/2$).
 	联立 \eqref{eq:R1r}--\eqref{eq:R2r} 即得 \eqref{eq:rtaueq}. \qed
 \end{proof}
 
-\section{相位比函数 rτ 的精确结构}\label{sec:structure}
+\section{相位比函数 \texorpdfstring{$r_\tau$}{r-tau} 的精确结构}\label{sec:structure}
 
 本节固定 $1<\tau<2$ (good root 处由引理 \ref{lem:taubound} 保证), 记
 \begin{equation}
@@ -520,7 +520,7 @@ $\mathrm{II}:=(x_{mid},\pi/\tau)$ (区域 II).
 \begin{proof}
 	先证辅助不等式 $\sin(\tau x)>\sin x$ 于 $0<x<x_{mid}$. 若 $\tau x\le\pi/2$,
 	由 $\sin$ 在 $(0,\pi/2)$ 严格递增与 $\tau x>x$ 即得; 若 $\tau x>\pi/2$, 则
-	$\sin(\tau x)=\sin(\pi-\tau x)$, 且 $\pi-\tau x\in(0,x)$ (等价于 $x<x_{mid}$),
+	$\sin(\tau x)=\sin(\pi-\tau x)$, 且 $x<\pi-\tau x<\pi/2$ (用 $x<x_{mid}$ 及 $\tau x>\pi/2$),
 	仍由单调性得 $\sin(\pi-\tau x)>\sin x$.
 
 	于是 $W(\tau x)=m^2-q\sin^2(\tau x)<m^2-q\sin^2x=W(x)$ (即
@@ -779,7 +779,7 @@ $\mathrm{II}:=(x_{mid},\pi/\tau)$ (区域 II).
 	\item \emph{引理 \ref{lem:decr} (中间区递减)}: 多 $R\times\tau<2$, 3000 点,
 		0 违反; 注意 $\tau\ge2$ 时 (非本定理情形) 失败, 与证明的前提一致
 		(\texttt{\_s55\_full\_verify.py}).
-	\item \emph{危险区引理 \ref{lem:danger}}: 8 个 R 值、4 个 τ 值, 约
+	\item \emph{危险区引理 \ref{lem:danger}}: 8 个 $R$ 值, 4 个 $\tau$ 值, 约
 		124 万样本, 0 违反 (\texttt{\_s55\_danger\_zone.py},
 		\texttt{\_s55\_danger\_zone2.py}); 严格证明见正文.
 	\item \emph{引理 \ref{lem:Bprime}}: 45 个 $(R,\tau)$ 配置 (含 $\tau<2$)

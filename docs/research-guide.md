@@ -2,7 +2,7 @@
 
 [中文首页](../README.md) | [English overview](../README_EN.md) | [项目理解](PROJECT_UNDERSTANDING.md) | [目录与复现](repository-guide.md)
 
-本页按问题寻找证明, 工具和剩余缺口. 状态核对日期为 2026-09-09. `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 本次导航整理没有重新审计数学证明.
+本页按问题寻找证明, 工具和剩余缺口. 导航基线日期为 2026-09-09; 2026-09-20 的局部证明修订与范围变更见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md). `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 本次导航整理没有重新审计数学证明.
 
 ## 特征值比值与间距
 
@@ -11,7 +11,7 @@
 | 问题 | 证明与研究入口 | 当前可使用的范围 |
 | --- | --- | --- |
 | 全序列相邻比值上确界 | [比值证明](SL_ratio_proof.tex), [PDF](SL_ratio_proof.pdf), [Mahar-Willner 引理重证](SL_mw_lemma_reproof.tex) | 文档所述权重类内的平衡相位闭式; 固定 n 的最优问题另列 |
-| 全序列相邻比值下确界 | [下确界证明](SL_inf_ratio_proof.tex) | 下确界为 1, 不达到; 通过 Weyl 渐近处理高指标 |
+| 全序列相邻比值下确界 | [下确界证明](SL_inf_ratio_proof.tex) | 下确界为 1, 有限指标不取等; 全序列结论用常密度高频序列即足够, 一般 Weyl 渐近是更强背景 |
 | n=1 间距极值 | [主证明](SL_gap_n1_proof.tex), [相位刚性](SL_gap_n1_O3a_phase_rigidity_proof.tex), [全 R 阱族刚性](SL_gap_n1_well_rigidity_allR_proof.tex), [对称线](SL_gap_n1_symline_allR_proof.tex), [全局 good-root](SL_gap_n1_global_goodroot_proof.tex), [INF 极限](SL_gap_n1_inf_limit_proof.tex) | SUP/INF 的完整证明链分别核对; 早期单篇文档的待办不代表整条路线的最终状态 |
 | n>=2 间距结构 | [有限块约化](SL_gap_nge2_finite_reduction_proof.tex), [精确 2n 开关](SL_gap_nge2_exact_2n_switches_proof.tex), [局部对称性](SL_gap_nge2_symmetry_local_proof.tex) | 有限维结构及弱反差局部结果; 全局唯一性与完整分类仍有缺口 |
 | 最小化方向的合作者结果 | [研究进展](SL_gap_nge2_min_direction_progress.tex), [可读 PDF](SL_gap_nge2_min_direction_progress.pdf), [审计](../runs/rigorous-open-math-research/R-20260816T174722Z-min-direction-audit/), [核验包](../collaborator_min_direction_verification/) | 按原文的 n, mu, 弱反差条件区分 Trusted, Reviewed 与 Open |
@@ -34,10 +34,10 @@
 | 问题 | 入口 | 使用时需要保留的区别 |
 | --- | --- | --- |
 | H2 完备性 | [完整证明](SL_h2_completeness_proof.tex), [研究总结](SL_h2_research_summary.tex) | 矩递推, 增长引理与湮灭步骤有各自前提 |
-| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 代数多项式逆, 抽象完备化与自伴算子幂域分别处理 |
+| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 同一原始族在 0<=s<=3 中稠密; p4 在非负 Hs 中当且仅当 s<7/2; 旧全阶推广已撤回; 3<s<7/2 的同族稠密性未判定 |
 | 幂域障碍 A7 | [工具与精确定理](../tools/krein-power-domain-polynomial-obstruction.md), [pilot v6 证明与审计](../runs/three-arm-pilot-v2/pilot-v6-hs-domain/RESULTS.md) | 对 c>0, 整数 s>=4, 指定的代数传输多项式属于真正幂域当且仅当 n=0,1; 这不否定经边界修正的真正算子逆 |
 | 受约束空间稠密性 | [早期判据](SL_denseness_criteria.tex), [项目问题图](../research_map.md), [非对角子类对比](../reports/plugin-performance-o1p-ab.md) | 对角及若干带状/加权移位子类已有结果; 一般非对角 O1' 与 O1'LD 仍开放 |
-| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 3/2<=s<2 的剩余窗, 门槛线系数族和变系数推广依来源分别标记 |
+| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 原 Krein 窗口 3/2<=s<2 已由 H3 谱截断覆盖; 门槛线系数族和变系数推广另计 |
 | 三阶递推 | [递推理论](SL_third_order_recurrence_theory.tex), [K(1)=e/4 证明](SL_third_order_K1_proof.tex) | 偶次 c=1 锚点 STRICT; 一般 K(c), 源项控制与一般系数族仍开放 |
 | Krein c->0 | [退化极限](SL_krein_c0_limit.tex) | 多项式级结论与商空间级结论分别核对 |
 

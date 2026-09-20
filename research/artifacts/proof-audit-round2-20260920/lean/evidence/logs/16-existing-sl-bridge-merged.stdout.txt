@@ -1,0 +1,53 @@
+def SL.ThirdOrder.IsSolution.{u_1} : {K : Type u_1} → [Field.{u_1} K] → (ℕ → K) → (ℕ → K) → (ℕ → K) → (ℕ → K) → Prop :=
+fun {K} [Field.{u_1} K] a1 a2 a3 z =>
+  ∀ (n : ℕ),
+    Eq.{u_1 + 1} (z (HAdd.hAdd.{0, 0, 0} n 3))
+      (HAdd.hAdd.{u_1, u_1, u_1}
+        (HAdd.hAdd.{u_1, u_1, u_1}
+          (HMul.hMul.{u_1, u_1, u_1} (a1 (HAdd.hAdd.{0, 0, 0} n 3)) (z (HAdd.hAdd.{0, 0, 0} n 2)))
+          (HMul.hMul.{u_1, u_1, u_1} (a2 (HAdd.hAdd.{0, 0, 0} n 3)) (z (HAdd.hAdd.{0, 0, 0} n 1))))
+        (HMul.hMul.{u_1, u_1, u_1} (a3 (HAdd.hAdd.{0, 0, 0} n 3)) (z n)))
+def SL.ThirdOrderClosedForms.PEven : ℚ → ℕ → ℚ :=
+fun c j =>
+  HAdd.hAdd.{0, 0, 0}
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 8 c) (HPow.hPow.{0, 0, 0} (↑j) 2))
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 c) ↑j))
+    (HDiv.hDiv.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c 2) ↑j) (HSub.hSub.{0, 0, 0} (↑j) 1))
+def SL.ThirdOrderClosedForms.QEven : ℚ → ℕ → ℚ :=
+fun c j =>
+  HAdd.hAdd.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑j) (HSub.hSub.{0, 0, 0} (↑j) 1))
+        (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 1))
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 c) ↑j)
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+def SL.ThirdOrderClosedForms.REven : ℚ → ℕ → ℚ :=
+fun _c j =>
+  HMul.hMul.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 ↑j) (HSub.hSub.{0, 0, 0} (↑j) 2))
+      (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 3))
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑j) 5)
+def SL.BalancedPhase.theta : ℝ → ℝ :=
+fun s => Real.arccos (HDiv.hDiv.{0, 0, 0} s (HAdd.hAdd.{0, 0, 0} s 1))
+@[defeq] theorem AuditRound2SourceBridge.recurrence_interface.{u_1} : ∀ {K : Type u_1} [inst : Field.{u_1} K]
+  (a1 a2 a3 v : ℕ → K),
+  Eq.{1} (SL.AuditRound2.third_order_solution.{u_1} a1 a2 a3 v) (SL.ThirdOrder.IsSolution.{u_1} a1 a2 a3 v) :=
+⋯
+'AuditRound2SourceBridge.recurrence_interface' depends on axioms: [propext, Quot.sound.{u}]
+theorem AuditRound2SourceBridge.p_at_one : ∀ (j : ℕ),
+  Eq.{1} (SL.AuditRound2.k1_p j) (SL.ThirdOrderClosedForms.PEven 1 j) :=
+⋯
+'AuditRound2SourceBridge.p_at_one' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+theorem AuditRound2SourceBridge.q_at_one : ∀ (j : ℕ),
+  Eq.{1} (SL.AuditRound2.k1_q j) (SL.ThirdOrderClosedForms.QEven 1 j) :=
+⋯
+'AuditRound2SourceBridge.q_at_one' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+@[defeq] theorem AuditRound2SourceBridge.r_at_one : ∀ (j : ℕ),
+  Eq.{1} (SL.AuditRound2.k1_r j) (SL.ThirdOrderClosedForms.REven 1 j) :=
+⋯
+'AuditRound2SourceBridge.r_at_one' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+@[defeq] theorem AuditRound2SourceBridge.theta_identity : ∀ (s : ℝ),
+  Eq.{1} (SL.AuditRound2.candidate_theta s) (SL.BalancedPhase.theta s) :=
+⋯
+'AuditRound2SourceBridge.theta_identity' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]

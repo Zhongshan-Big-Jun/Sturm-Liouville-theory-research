@@ -1,0 +1,145 @@
+{
+  "packet_sha256": "b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948",
+  "verdict": "APPROVED",
+  "checked_paths": [
+    "research/artifacts/proof-audit-round2-20260920/lean/14-print-types-axioms.stdout.txt",
+    "research/artifacts/proof-audit-round2-20260920/lean/explicit-types.stdout.txt",
+    "research/artifacts/proof-audit-round2-20260920/lean/runtime-evidence.json"
+  ],
+  "claim_results": [
+    {
+      "id": "SL.AuditRound2.terminal_difference",
+      "verdict": "APPROVED",
+      "reason": "Both zero hypotheses eliminate the first two terms of the defined second difference over any field. Natural subtraction is truncated; the statement remains valid for N=0 and N=1 without an additional lower bound."
+    },
+    {
+      "id": "SL.AuditRound2.difference_step_iff",
+      "verdict": "APPROVED",
+      "reason": "Expanding c*(b-2*d+e) and rearranging gives exactly the displayed recurrence. All five scalar arguments are arbitrary elements of the quantified field; no division or characteristic restriction is needed."
+    },
+    {
+      "id": "SL.AuditRound2.solution_difference_step",
+      "verdict": "APPROVED",
+      "reason": "The universally quantified recurrence supplies the preceding algebraic identity at each index n+3. For every n in ℕ, the second differences use precisely indices n through n+3, including the valid boundary n=0."
+    },
+    {
+      "id": "SL.AuditRound2.factorial_shift_four",
+      "verdict": "APPROVED",
+      "reason": "The explicit output identifies the equality as rational-valued. Four successive factorial factors connect (2*n+2)! to (2*n+6)!, and the identity includes n=0."
+    },
+    {
+      "id": "SL.AuditRound2.k1_terminal_value",
+      "verdict": "APPROVED",
+      "reason": "The single assumed recurrence and three terminal values give mu(n+1)=1/k1_r(n+4). Here k1_r(n+4)=4*(n+4)*(n+2)*(2*n+5)*(2*n+3), which is nonzero for every natural n. Scaling and the factorial identity yield the stated rational formula. The required polynomial identity was also checked exactly."
+    },
+    {
+      "id": "SL.AuditRound2.k1_terminal_formula_pos",
+      "verdict": "APPROVED",
+      "reason": "The explicit type is an inequality in ℚ. For every natural n, the numerator n+3, factor n+4, and factorial are strictly positive. At n=0 the value is 1/960."
+    },
+    {
+      "id": "SL.AuditRound2.k1_n3_last_equation",
+      "verdict": "APPROVED",
+      "reason": "The definition gives segment values 1, 0, 0 and 1/480 at indices 4, 3, 2 and 1 respectively. Exact arithmetic gives k1_r(4)=480, so the displayed equation is 1=480*(1/480). Its scope is this single equation."
+    },
+    {
+      "id": "SL.AuditRound2.k1_n3_difference",
+      "verdict": "APPROVED",
+      "reason": "At index 3, both leading scaled values vanish, while the remaining value is (1/480)/2!=1/960. This was checked using exact rational arithmetic."
+    },
+    {
+      "id": "SL.AuditRound2.k1_n3_difference_ne_zero",
+      "verdict": "APPROVED",
+      "reason": "The defined rational second difference is exactly 1/960, hence nonzero. The declaration has no universally quantified sequence or additional recurrence hypothesis."
+    },
+    {
+      "id": "SL.AuditRound2.mw_signed_slope_matching",
+      "verdict": "APPROVED",
+      "reason": "Left≠0 gives (Right/Left)*Left=Right, and the successor-power identity supplies the equality for every natural j. Right=0, Scale=0, negative transmission factors and j=0 are all permitted."
+    },
+    {
+      "id": "SL.AuditRound2.mw_transmission_ne_zero",
+      "verdict": "APPROVED",
+      "reason": "Both real arguments are explicitly assumed nonzero, so their quotient is nonzero. No positivity hypothesis is present or needed."
+    },
+    {
+      "id": "SL.AuditRound2.mw_affine_has_deriv",
+      "verdict": "APPROVED",
+      "reason": "The full derivative hypothesis at c*x+d gives derivative A*c*dy by the chain rule and constant multiplication. All scalar binders are real, and A=0 or c=0 is allowed."
+    },
+    {
+      "id": "SL.AuditRound2.cell_branch_has_deriv",
+      "verdict": "APPROVED",
+      "reason": "The affine inner argument has derivative Scale, while Factor^j is constant in x. The stated derivative is therefore Factor^j*Scale*DY, including zero scales or factors and j=0."
+    },
+    {
+      "id": "SL.AuditRound2.mw_cell_interface",
+      "verdict": "APPROVED",
+      "reason": "Scale≠0 sends Join to 1/2 in the first branch and -1/2 in the second. The endpoint values make both branch values zero; the supplied full endpoint derivatives and Left≠0 give matching derivatives. Scale may be negative and Right may be zero. The conclusion concerns the two branch functions at Join."
+    },
+    {
+      "id": "SL.AuditRound2.mw_affine_ode",
+      "verdict": "APPROVED",
+      "reason": "The two derivative hypotheses hold at every real point, allowing two applications of the chain rule. The transformed second derivative is A*c^2*ddy(c*x+d), which gives the displayed equation. No regularity or positivity of rho is required; A=0 and c=0 are included."
+    },
+    {
+      "id": "SL.AuditRound2.mw_scaled_ratio",
+      "verdict": "APPROVED",
+      "reason": "The hypothesis c≠0 makes c^2 cancellable. lamOne has no nonzero hypothesis: when lamOne=0, both sides equal zero under Lean's total real division."
+    },
+    {
+      "id": "SL.AuditRound2.second_sine_mode_has_deriv",
+      "verdict": "APPROVED",
+      "reason": "Differentiating the defined sine composition gives 2*pi*cos(2*pi*(x+1/2)) at every real x. There is no interval restriction."
+    },
+    {
+      "id": "SL.AuditRound2.second_sine_mode_endpoint_slopes",
+      "verdict": "APPROVED",
+      "reason": "The cosine arguments at -1/2 and 1/2 are respectively 0 and 2*pi. Both derivatives are therefore 2*pi, with the same sign."
+    },
+    {
+      "id": "SL.AuditRound2.second_sine_mode_transmission",
+      "verdict": "APPROVED",
+      "reason": "Both endpoint derivatives equal the nonzero number 2*pi. Consequently the defined signed transmission is 1, and the separately displayed quotient with a negated numerator is -1."
+    },
+    {
+      "id": "SL.AuditRound2.attained_le_sup",
+      "verdict": "APPROVED",
+      "reason": "Membership supplies nonemptiness, and boundedness above makes the real supremum an upper bound. These hypotheses imply C≤sSup(S) for arbitrary real C."
+    },
+    {
+      "id": "SL.AuditRound2.attained_sup_eq_iff_upper_bound",
+      "verdict": "APPROVED",
+      "reason": "Under the stated boundedness and membership hypotheses, equality of the supremum with C implies the displayed upper-bound property. Conversely that property gives sSup(S)≤C, while membership gives the reverse inequality."
+    },
+    {
+      "id": "SL.AuditRound2.balanced_candidate_le_sup",
+      "verdict": "APPROVED",
+      "reason": "For s>0, the common scale (2*s+1)/s is nonzero and cancels from the quotient of squares, yielding balanced_candidate(s). Membership of that quotient and boundedness of S then give the lower bound on sSup(S). Membership is an explicit hypothesis."
+    },
+    {
+      "id": "SL.AuditRound2.adjacent_ratio_le_of_doubled",
+      "verdict": "APPROVED",
+      "reason": "The natural-number hypothesis n≥1 gives n+1≤2*n. Monotonicity compares the numerators, and lam(n)>0 preserves the inequality on division. The boundary n=1 is included; n=0 is excluded."
+    },
+    {
+      "id": "SL.AuditRound2.attainment_doubling_countermodel",
+      "verdict": "APPROVED",
+      "reason": "For arbitrary real C and U, choose B=max(C,U)+1, S={C,B}, and D(n)=S for every natural n. Then S is bounded above, contains C, all required set and supremum equalities hold, and sSup(S)=B>U. D is an arbitrary family of real sets."
+    },
+    {
+      "id": "SL.AuditRound2.no_candidate_upper_bound_from_doubling",
+      "verdict": "APPROVED",
+      "reason": "For each real C, the witnesses S={C,C+1} and D(n)=S satisfy every antecedent of the negated universal implication, while sSup(S)=C+1>C. No additional structural condition on D occurs in the declaration."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "APPROVED applies to the formal readback of the supplied declarations and definitions. It does not certify complete formalization or comparison with an intended theorem.",
+    "All three input hashes match the packet, and all 25 requested declarations and their printed axiom reports are present. Proof bodies are elided. Lean source files, compiled declarations and imported dependency sources are not supplied, so compilation, kernel checking and independent reconstruction of proof dependencies were unavailable.",
+    "The printed axiom reports list propext and Quot.sound for the first three claims, and additionally Classical.choice for the remaining claims. No sorryAx or custom axiom appears in those reports, but the reports were inspected rather than independently regenerated.",
+    "The runtime snapshot records versions, file hashes and dependency revisions. The referenced external files and live environment were not inspected; their recorded state and correspondence to the printed declarations were not independently verified.",
+    "Imported mathematical primitives are interpreted according to their standard Lean/mathlib meanings. Their implementations are outside the supplied snapshots. Exact arithmetic and polynomial checks supplement the mathematical reasoning; sampled numerical success was not used to infer any universal statement."
+  ],
+  "readback": "Conventions: All declaration names below belong to SL.AuditRound2. Implicit arguments are included in the quantification. For field-polymorphic declarations, u is an arbitrary universe, K : Type u is arbitrary, and a Field K instance is quantified without a characteristic restriction. Natural numbers include zero. Index subtraction j⊖k denotes truncated natural subtraction. In rational coefficient formulas, j and n are cast to ℚ before scalar arithmetic; factorials are computed in ℕ and then cast to ℚ. Division in the fields and in ℝ is total, with a/0=0. Natural powers include a^0=1. HasDerivAt f a x asserts existence of the full real derivative with value a at x. deriv is Lean's derivative operator. BddAbove S means that some real M bounds every member of S above. Monotone lam means that lam(a)≤lam(b) whenever natural a≤b. sSup denotes the real supremum operator.\n\nDefinitions:\nsecond_difference: For every u, K : Type u, Field K instance, v : ℕ→K and j : ℕ, second_difference(v,j)=v(j)-2*v(j⊖1)+v(j⊖2).\nthird_order_solution: For every u, K : Type u, Field K instance and a1,a2,a3,v : ℕ→K, third_order_solution(a1,a2,a3,v) means ∀n : ℕ, v(n+3)=a1(n+3)*v(n+2)+a2(n+3)*v(n+1)+a3(n+3)*v(n).\nk1_p: For every j : ℕ, k1_p(j)=8*j^2-4*j+j/(j-1) in ℚ. Here j-1 is rational subtraction after casting, not truncated index subtraction.\nk1_q: For every j : ℕ, k1_q(j)=4*j*(j-1)*(2*j-1)*(2*j-3)+4*j*(2*j-3) in ℚ, with subtraction after casting.\nk1_r: For every j : ℕ, k1_r(j)=4*j*(j-2)*(2*j-3)*(2*j-5) in ℚ, with subtraction after casting.\nk1_scaled: For every mu : ℕ→ℚ and j : ℕ, k1_scaled(mu,j)=mu(j)/(2*j)!.\nk1_n3_segment: For every j : ℕ, k1_n3_segment(j) is 1/480 if j=1, is 1 if j=4, and is 0 otherwise; its values lie in ℚ.\nsigned_transmission: For every Left,Right : ℝ, signed_transmission(Left,Right)=Right/Left.\ncell_branch: For every y : ℝ→ℝ, Scale,Start,Factor : ℝ, j : ℕ and x : ℝ, cell_branch(y,Scale,Start,Factor,j,x)=Factor^j*y(Scale*(x-Start)-1/2).\nsecond_sine_mode: For every x : ℝ, second_sine_mode(x)=sin(2*pi*(x+1/2)).\ncandidate_theta: For every s : ℝ, candidate_theta(s)=Real.arccos(s/(s+1)). This definition has no positivity premise.\nbalanced_candidate: For every s : ℝ, balanced_candidate(s)=((pi-candidate_theta(s))/candidate_theta(s))^2. This definition also has no positivity premise.\n\nTheorems:\nterminal_difference: For every u, K : Type u, Field K instance, v : ℕ→K and N : ℕ, if v(N)=0 and v(N⊖1)=0, then second_difference(v,N)=v(N⊖2).\n\ndifference_step_iff: For every u, K : Type u, Field K instance and c,a,b,d,e : K, the equality a=(2+c)*b-(1+2*c)*d+c*e holds if and only if a-2*b+d=c*(b-2*d+e).\n\nsolution_difference_step: For every u, K : Type u, Field K instance and c,v : ℕ→K, if third_order_solution(j↦2+c(j), j↦-(1+2*c(j)), c, v), then ∀n : ℕ, second_difference(v,n+3)=c(n+3)*second_difference(v,n+2). The hypothesis quantifies the defining recurrence over every natural index.\n\nfactorial_shift_four: For every n : ℕ, the following equality holds in ℚ: (2*(n+3))!=(2*n+6)*(2*n+5)*(2*n+4)*(2*n+3)*(2*(n+1))!.\n\nk1_terminal_value: For every mu : ℕ→ℚ and n : ℕ, assume mu(n+4)=1, mu(n+3)=0, mu(n+2)=0, and mu(n+4)=k1_p(n+4)*mu(n+3)-k1_q(n+4)*mu(n+2)+k1_r(n+4)*mu(n+1). Then second_difference(k1_scaled(mu),n+3)=(n+3)/((n+4)*(2*(n+3))!) in ℚ. Only the displayed single recurrence equation is assumed.\n\nk1_terminal_formula_pos: For every n : ℕ, 0<(n+3)/((n+4)*(2*(n+3))!) in ℚ.\n\nk1_n3_last_equation: With no parameters or hypotheses, k1_n3_segment(4)=k1_p(4)*k1_n3_segment(3)-k1_q(4)*k1_n3_segment(2)+k1_r(4)*k1_n3_segment(1).\n\nk1_n3_difference: With no parameters or hypotheses, second_difference(k1_scaled(k1_n3_segment),3)=1/960 in ℚ.\n\nk1_n3_difference_ne_zero: With no parameters or hypotheses, second_difference(k1_scaled(k1_n3_segment),3)≠0 in ℚ.\n\nmw_signed_slope_matching: For every Left,Right,Scale : ℝ and j : ℕ, if Left≠0, then signed_transmission(Left,Right)^j*Scale*Right=signed_transmission(Left,Right)^(j+1)*Scale*Left.\n\nmw_transmission_ne_zero: For every Left,Right : ℝ, if Left≠0 and Right≠0, then signed_transmission(Left,Right)≠0.\n\nmw_affine_has_deriv: For every y : ℝ→ℝ and dy,A,c,d,x : ℝ, if HasDerivAt y dy (c*x+d), then HasDerivAt (z↦A*y(c*z+d)) (A*c*dy) x.\n\ncell_branch_has_deriv: For every y : ℝ→ℝ, Scale,Start,Factor,x,DY : ℝ and j : ℕ, if HasDerivAt y DY (Scale*(x-Start)-1/2), then HasDerivAt (cell_branch(y,Scale,Start,Factor,j)) (Factor^j*Scale*DY) x.\n\nmw_cell_interface: For every y : ℝ→ℝ and Scale,Start,Left,Right : ℝ, assume Scale≠0, Left≠0, y(-1/2)=0, y(1/2)=0, HasDerivAt y Left (-1/2), and HasDerivAt y Right (1/2). Then for every j : ℕ, let Factor=signed_transmission(Left,Right) and Join=Start+1/Scale. Both of the following hold: cell_branch(y,Scale,Start,Factor,j,Join)=cell_branch(y,Scale,Join,Factor,j+1,Join); and deriv(cell_branch(y,Scale,Start,Factor,j))(Join)=deriv(cell_branch(y,Scale,Join,Factor,j+1))(Join).\n\nmw_affine_ode: For every y,dy,ddy,rho : ℝ→ℝ and A,c,d,lam : ℝ, assume (∀t : ℝ, HasDerivAt y (dy(t)) t), (∀t : ℝ, HasDerivAt dy (ddy(t)) t), and (∀t : ℝ, -ddy(t)=lam*rho(t)*y(t)). Then for every x : ℝ, writing f(z)=A*y(c*z+d), -deriv(deriv(f))(x)=c^2*lam*rho(c*x+d)*(A*y(c*x+d)).\n\nmw_scaled_ratio: For every c,lamOne,lamTwo : ℝ, if c≠0, then (c^2*lamTwo)/(c^2*lamOne)=lamTwo/lamOne. There is no hypothesis that lamOne is nonzero.\n\nsecond_sine_mode_has_deriv: For every x : ℝ, HasDerivAt second_sine_mode (2*pi*cos(2*pi*(x+1/2))) x.\n\nsecond_sine_mode_endpoint_slopes: With no parameters or hypotheses, deriv(second_sine_mode)(-1/2)=2*pi and deriv(second_sine_mode)(1/2)=2*pi.\n\nsecond_sine_mode_transmission: With no parameters or hypotheses, signed_transmission(deriv(second_sine_mode)(-1/2),deriv(second_sine_mode)(1/2))=1 and (-deriv(second_sine_mode)(1/2))/deriv(second_sine_mode)(-1/2)=-1.\n\nattained_le_sup: For every S : Set ℝ and C : ℝ, if BddAbove S and C∈S, then C≤sSup(S).\n\nattained_sup_eq_iff_upper_bound: For every S : Set ℝ and C : ℝ, if BddAbove S and C∈S, then sSup(S)=C if and only if ∀x : ℝ, x∈S implies x≤C.\n\nbalanced_candidate_le_sup: For every s : ℝ with 0<s and every S : Set ℝ, assume BddAbove S and (((2*s+1)*(pi-candidate_theta(s))/s)^2)/(((2*s+1)*candidate_theta(s)/s)^2)∈S. Then balanced_candidate(s)≤sSup(S).\n\nadjacent_ratio_le_of_doubled: For every lam : ℕ→ℝ, n : ℕ and nu : ℝ, if Monotone lam, 1≤n, 0<lam(n), and lam(2*n)/lam(n)≤nu, then lam(n+1)/lam(n)≤nu.\n\nattainment_doubling_countermodel: For every C,U : ℝ, there exist S : Set ℝ and D : ℕ→Set ℝ such that BddAbove S, C∈S, (∀n : ℕ, D(n)=S), (∀n : ℕ, sSup(D(n))=sSup(S)), and U<sSup(S).\n\nno_candidate_upper_bound_from_doubling: For every C : ℝ, it is false that for every S : Set ℝ and D : ℕ→Set ℝ, BddAbove S implies that C∈S implies that (∀n : ℕ, sSup(D(n))=sSup(S)) implies sSup(S)≤C."
+}

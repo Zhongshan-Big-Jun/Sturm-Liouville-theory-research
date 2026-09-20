@@ -1,0 +1,488 @@
+﻿\documentclass[11pt]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+% hidden links (hidelinks)
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Independent Reproof of the Mahar--Willner Doubling Lemmas\\ \large (Cell Extension and Zero-Truncation Induction, with the Boundary-Slope Transmission Coefficients)}
+\author{BVE research project --- session 12}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a fully self-contained proof of the two structural lemmas used by
+Mahar--Willner \cite{mw} in their solution of the extremal problem for
+$\lambda_2/\lambda_1$ of $-y''=\lambda\rho y$ (Dirichlet, $a\le\rho\le 1$):
+Lemma 1 (the \emph{cell-extension} identity
+$\lambda_{2n}(\rho_n)/\lambda_n(\rho_n)=\lambda_2(\rho_0)/\lambda_1(\rho_0)$
+for the $1/n$-periodic ``blow-up'' $\rho_n$ of an arbitrary $\rho_0$) and
+Lemma 2 (the \emph{zero-truncation} induction establishing
+$\mu_{2n,n}(a)=\mu(a)$, $\nu_{2n,n}(a)=\nu(a)$).  The only external facts used
+are the classical Sturm oscillation and comparison theorems.  In the minimum
+case we give a variant of the truncation argument which is cleaner than the
+``similarly'' remark in \cite{mw}: the side on which one truncates and the
+direction of the shooting are dictated by the position of $z_0$ relative to
+$z_{2k}$, and the induction hypothesis is needed only in one of the two cases.
+The proof makes the sup-ratio theorem
+$\sup_{n,\rho}\lambda_{n+1}/\lambda_n=\nu(R)$ of the accompanying report
+\emph{fully self-contained}.
+\end{abstract}
+
+\section{Setting and notation}
+
+Throughout, $\rho$ denotes a piecewise constant density on
+$[-1/2,1/2]$ with $a\le\rho\le 1$ pointwise ($0<a<1$), and
+$\mathcal P_a$ is the class of such densities.  Consider
+\begin{equation}
+	-y''=\lambda\rho(x)\,y,\qquad y(-1/2)=y(1/2)=0,
+	\label{eq:main}
+\end{equation}
+with eigenvalues $0<\lambda_1(\rho)<\lambda_2(\rho)<\cdots$ (simplicity and
+discreteness are classical).  Write
+\[
+	\mu(a):=\inf_{\rho\in\mathcal P_a}\frac{\lambda_2}{\lambda_1},\qquad
+	\nu(a):=\sup_{\rho\in\mathcal P_a}\frac{\lambda_2}{\lambda_1},
+	\qquad
+	\mu_{2n,n}(a):=\inf_{\rho\in\mathcal P_a}\frac{\lambda_{2n}}{\lambda_n},
+	\qquad
+	\nu_{2n,n}(a):=\sup_{\rho\in\mathcal P_a}\frac{\lambda_{2n}}{\lambda_n}.
+\]
+The eigenfunction of $\lambda_j$ is denoted $y_j$; it is normalized
+arbitrarily, and we always take $y_j'(-1/2)\neq 0$ (true up to rescaling).
+
+\medskip
+\noindent\textbf{Preliminary facts.}  We shall use the following classical
+results; proofs are sketched only where the formulation is non-standard.
+
+\begin{proposition}[affine invariance of ratios]\label{prop:affine}
+	Let $L(x)=cx+d$ with $c\neq 0$ map $[x_0,x_1]$ onto $[-1/2,1/2]$.
+	If $\lambda_1<\lambda_2$ are the first two Dirichlet eigenvalues of
+	\eqref{eq:main} on $[L(x_0),L(x_1)]$ with density $\rho$, then the first
+	two Dirichlet eigenvalues of $y''+\lambda\rho(L(x))y=0$ on $[x_0,x_1]$
+	are $\lambda_1/c^2$, $\lambda_2/c^2$.  In particular the ratio
+	$\lambda_2/\lambda_1$ is invariant.
+\end{proposition}
+
+\begin{proposition}[Sturm oscillation]\label{prop:osc}
+	The $j$-th eigenfunction $y_j$ of \eqref{eq:main} has exactly $j-1$
+	(interior) zeros in $(-1/2,1/2)$, all simple.
+\end{proposition}
+
+\begin{proposition}[Sturm interlacing]\label{prop:interl}
+	If $j<k$ and $z_1<\cdots<z_{j-1}$ are the zeros of $y_j$, then $y_k$ has
+	at least one zero in each of the $j$ intervals
+	$(-1/2,z_1),(z_1,z_2),\ldots,(z_{j-1},1/2)$.
+\end{proposition}
+
+The backbone of the truncation argument is the following elementary
+monotonicity of the zeros of an initial-value problem (IVP).
+
+\begin{proposition}[zero motion]\label{prop:zeromotion}
+	Fix $c\neq 0$ and let $y(\cdot;\lambda)$ be the solution of
+	\begin{equation*}
+		y''+\lambda\rho(x)y=0,\qquad y(-1/2;\lambda)=0,\quad
+		y'(-1/2;\lambda)=c.
+	\end{equation*}
+	For $j\ge 1$ let $z_j(\lambda)$ be the $j$-th zero of $y(\cdot;\lambda)$
+	to the right of $-1/2$, whenever it exists.  Then each $z_j$ is
+	continuous and \emph{strictly decreasing} in $\lambda$.  The analogous
+	statement holds for the IVP posed at $x=1/2$: the $j$-th zero to the
+	left of $1/2$ is strictly increasing in $\lambda$.
+\end{proposition}
+
+\begin{proof}
+	Continuity is standard (smooth dependence on the parameter $\lambda$
+	for ODEs with simple zeros).  For the monotonicity, use the Prufer
+	representation $y=r\sin\theta$, $y'=\sqrt{\lambda\rho}\,r\cos\theta$,
+	$\theta(-1/2)=0$.  Then $\theta$ satisfies
+	$\theta'=\sqrt{\lambda\rho}\cos^2\theta+\frac{(\sqrt{\lambda\rho})'}{}
+	\cdot$ (the exact form is immaterial); the comparison theorem for the
+	Prufer angle gives $\theta(x;\lambda_1)<\theta(x;\lambda_2)$ for
+	$\lambda_1<\lambda_2$ and every fixed $x$ (strictly, since
+	$\sqrt{\lambda_2\rho}-\sqrt{\lambda_1\rho}>0$ a.e.).  The zeros of
+	$y(\cdot;\lambda)$ are the solutions of $\theta(x;\lambda)=j\pi$, so
+	$z_j(\lambda_2)<z_j(\lambda_1)$.  The statement at $x=1/2$ follows by
+	the reflection $x\mapsto 1/2-x$.
+\end{proof}
+
+\noindent An equivalent formulation, used repeatedly below, is:
+
+\begin{corollary}\label{cor:crossing}
+	Let $\bar y(\cdot;\lambda)$ be an IVP solution as above and let
+	$x_*\in(-1/2,1/2)$ be a fixed point which is not a zero of
+	$\bar y(\cdot;\lambda_0)$.  As $\lambda$ increases (resp.\ decreases)
+	from $\lambda_0$, the value $\bar y(x_*;\lambda)$ changes sign exactly
+	when a zero of $\bar y$ crosses $x_*$; zeros cross one at a time, and
+	the count of zeros of $\bar y$ strictly inside a fixed interval whose
+	boundary is $x_*$ changes by $\pm 1$ at each crossing.
+\end{corollary}
+
+\section{Lemma 1: the cell extension}\label{sec:lemma1}
+
+\begin{lemma}[cell extension]\label{lem:cell}
+	For every $\rho_0\in\mathcal P_a$, every integer $n\ge 1$, and the
+	$1/n$-periodic density
+	\begin{equation*}
+		\rho_n(x):=\rho_0\bigl(n(x+\tfrac12)-\tfrac12\bigr),
+		\qquad -\tfrac12\le x\le -\tfrac12+\tfrac1n,
+		\quad\text{extended with period }1/n,
+	\end{equation*}
+	one has $\rho_n\in\mathcal P_a$ and
+	\begin{equation}
+		\frac{\lambda_{2n}(\rho_n)}{\lambda_n(\rho_n)}
+		=\frac{\lambda_2(\rho_0)}{\lambda_1(\rho_0)}.
+		\label{eq:cellidentity}
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	Fix $\rho_0$ and write $y_1,y_2$ for its first two eigenfunctions, with
+	eigenvalues $\lambda_1,\lambda_2$.  Since $y_1>0$ on $(-1/2,1/2)$,
+	$y_1(\pm 1/2)=0$, we have $y_1'(-1/2)>0>y_1'(1/2)$; define the
+	transmission coefficient
+	\begin{equation*}
+		s:=-\frac{y_1'(1/2)}{y_1'(-1/2)}>0.
+	\end{equation*}
+	Similarly $y_2$ has exactly one interior zero, so its boundary slopes
+	have opposite signs and
+	$t:=-y_2'(1/2)/y_2'(-1/2)>0$ satisfies
+	$y_2'(1/2)=-t\,y_2'(-1/2)$.
+
+	Set $x_j:=-1/2+j/n$ and, for $x\in[x_j,x_{j+1}]$,
+	$u_j(x):=n(x-x_j)-1/2\in[-1/2,1/2]$.  Define
+	\begin{equation*}
+		\widetilde y(x):=(-s)^j\,y_1(u_j(x)),\qquad
+		\widetilde f(x):=(-t)^j\,y_2(u_j(x)),
+		\qquad x\in[x_j,x_{j+1}],\ j=0,\ldots,n-1.
+	\end{equation*}
+	Both are $C^1$ across every cell boundary $x_{j+1}$: continuity holds
+	because $y_1(\pm 1/2)=y_2(\pm 1/2)=0$, and the slopes match because
+	\begin{equation*}
+		(-s)^j y_1'(1/2)=(-s)^{j+1}y_1'(-1/2),\qquad
+		(-t)^j y_2'(1/2)=(-t)^{j+1}y_2'(-1/2).
+	\end{equation*}
+	On cell $j$ one has $\widetilde y''=-n^2\lambda_1\rho_n\widetilde y$ and
+	$\widetilde f''=-n^2\lambda_2\rho_n\widetilde f$, so both are
+	eigenfunctions of \eqref{eq:main} with $\rho=\rho_n$, of eigenvalues
+	$n^2\lambda_1$ and $n^2\lambda_2$.  Their boundary values at
+	$\pm 1/2$ vanish.
+
+	Zeros: $\widetilde y$ vanishes exactly at the cell boundaries, i.e.\ at
+	$n-1$ interior points, hence it is the $n$-th eigenfunction
+	(Proposition~\ref{prop:osc}) and
+	$\lambda_n(\rho_n)=n^2\lambda_1(\rho_0)$.  The function
+	$\widetilde f$ vanishes at the $n-1$ cell boundaries and at one point
+	inside each cell (the image of the interior zero of $y_2$), i.e.\ at
+	$2n-1$ interior points, hence it is the $2n$-th eigenfunction and
+	$\lambda_{2n}(\rho_n)=n^2\lambda_2(\rho_0)$.  Dividing gives
+	\eqref{eq:cellidentity}.
+\end{proof}
+
+\begin{corollary}\label{cor:lemma1}
+	$\mu_{2n,n}(a)\le\mu(a)$ and $\nu_{2n,n}(a)\ge\nu(a)$ for all $n\ge 1$.
+\end{corollary}
+
+\begin{proof}
+	For any $\rho_0$, \eqref{eq:cellidentity} says that the value
+	$\lambda_2(\rho_0)/\lambda_1(\rho_0)$ is attained by the ratio
+	$\lambda_{2n}/\lambda_n$ at $\rho_n\in\mathcal P_a$.  Taking the
+	supremum (resp.\ infimum) over $\rho_0$ gives
+	$\nu_{2n,n}(a)\ge\nu(a)$ (resp.\ $\mu_{2n,n}(a)\le\mu(a)$).
+\end{proof}
+
+\section{Lemma 2: the zero-truncation induction}\label{sec:lemma2}
+
+Throughout this section, $k\ge 1$, $m:=k+1$, and $\rho$ is an arbitrary
+element of $\mathcal P_a$.  We write
+\begin{equation*}
+	z_0:=\text{rightmost interior zero of }y_{m},\qquad
+	z_1:=\text{second-from-right interior zero of }y_{2m},
+\end{equation*}
+and $z_1<z_2<\cdots<z_{2k+1}$ for all interior zeros of $y_{2m}$ (so
+$z_{2k}=z_1$).  By Proposition~\ref{prop:interl}, $y_{2m}$ has at least one
+zero in each of the $k$ intervals between consecutive zeros of $y_m$ inside
+$(-1/2,z_0]$; in particular at least $k$ zeros of $y_{2m}$ lie strictly
+inside $(-1/2,z_0)$ and at least one lies in $(z_0,1/2)$.
+
+\subsection{The maximum case}
+
+\begin{lemma}[truncation, max]\label{lem:max}
+	For every $\rho\in\mathcal P_a$ and every $k\ge 1$,
+	\begin{equation*}
+		\frac{\lambda_{2(k+1)}(\rho)}{\lambda_{k+1}(\rho)}
+		\le\max\bigl\{\nu_{2k,k}(a),\,\nu(a)\bigr\}.
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	We fix $\rho$ and suppress it from the notation.
+	\emph{Case A: $z_0\le z_1$ (i.e.\ $z_0\le z_{2k}$).}
+	Let $\bar y(\cdot;\lambda)$ be the IVP solution
+	$y''+\lambda\rho y=0$, $y(-1/2;\lambda)=0$, $y'(-1/2;\lambda)=1$, and let
+	$j$ be the number of zeros of $y_{2m}$ strictly inside $(-1/2,z_0)$.
+	Since $z_{2k}\ge z_0$, we have $j\le 2k-1$.  By
+	Proposition~\ref{prop:zeromotion} and Corollary~\ref{cor:crossing},
+	there is a smallest $\bar\lambda\ge\lambda_{2m}$ with
+	$\bar y(z_0;\bar\lambda)=0$; at this value the zero of $\bar y$ lying
+	just to the right of $z_0$ at $\lambda=\lambda_{2m}$ has moved to $z_0$,
+	so $\bar y(\cdot;\bar\lambda)$ has exactly $j\le 2k-1$ zeros strictly
+	inside $(-1/2,z_0)$.
+
+	Consider the truncated problem
+	$y''+\lambda\rho y=0$ on $(-1/2,z_0)$ with
+	$y(-1/2)=y(z_0)=0$.  Its $k$-th eigenfunction is $y_m$ restricted
+	($k-1$ zeros inside), with eigenvalue $\lambda_{k+1}$; its
+	$(j+1)$-st eigenfunction is $\bar y(\cdot;\bar\lambda)$ ($j$ zeros
+	inside), with eigenvalue $\bar\lambda$.  Since $j\ge k$
+	(Proposition~\ref{prop:interl}), $k<j+1\le 2k$, and
+	$\lambda_{j+1}\le\lambda_{2k}$ pointwise, the affine
+	normalization (Proposition~\ref{prop:affine}) gives
+	\begin{equation*}
+		\frac{\bar\lambda}{\lambda_{k+1}}
+		\le\sup_{\rho'\in\mathcal P_a}\frac{\lambda_{j+1}(\rho')}
+		{\lambda_k(\rho')}
+		\le\sup_{\rho'\in\mathcal P_a}\frac{\lambda_{2k}(\rho')}
+		{\lambda_k(\rho')}
+		=\nu_{2k,k}(a).
+	\end{equation*}
+	Since $\lambda_{2m}\le\bar\lambda$, we obtain
+	$\lambda_{2m}/\lambda_{k+1}\le\nu_{2k,k}(a)$.
+
+	\emph{Case B: $z_1<z_0$ (i.e.\ $z_{2k}<z_0$).}
+	Now $y_{2m}$ has exactly one zero, $z_{2k+1}$, strictly inside
+	$(z_0,1/2)$.  Let $\bar y(\cdot;\lambda)$ be the IVP solution posed at
+	$x=1/2$: $y(1/2;\lambda)=0$, $y'(1/2;\lambda)=1$.  As $\lambda$
+	increases, its zeros move toward $1/2$; there is a smallest
+	$\bar\lambda\ge\lambda_{2m}$ with $\bar y(z_0;\bar\lambda)=0$, and at
+	this value $\bar y$ has exactly one zero strictly inside $(z_0,1/2)$
+	(namely the image of $z_{2k+1}$).  Hence $\bar\lambda$ is the second
+	eigenvalue of the truncated problem on $(z_0,1/2)$ whose first
+	eigenfunction is $y_m$ restricted (no zeros inside), of eigenvalue
+	$\lambda_{k+1}$.  Normalizing affinely,
+	\begin{equation*}
+		\frac{\bar\lambda}{\lambda_{k+1}}\le\nu(a),
+		\qquad\text{so}\qquad
+		\frac{\lambda_{2m}}{\lambda_{k+1}}\le\nu(a).
+	\end{equation*}
+	In both cases $\lambda_{2m}/\lambda_{k+1}\le
+	\max\{\nu_{2k,k}(a),\nu(a)\}$, as claimed.
+\end{proof}
+
+\begin{theorem}[MW Lemma 2, max]\label{thm:max}
+	$\nu_{2n,n}(a)=\nu(a)$ for all $n\ge 1$.
+\end{theorem}
+
+\begin{proof}
+	Induction on $k$ with $n=k+1$.  The case $k=1$ is
+	$\nu_{2,1}(a)=\nu(a)$ by definition.  If
+	$\nu_{2k,k}(a)\le\nu(a)$ (indeed equality holds by
+	Corollary~\ref{cor:lemma1} and the induction hypothesis), then
+	Lemma~\ref{lem:max} applied to an arbitrary $\rho$ gives
+	$\lambda_{2(k+1)}/\lambda_{k+1}\le\nu(a)$; taking the supremum over
+	$\rho$ yields $\nu_{2(k+1),(k+1)}(a)\le\nu(a)$.  The reverse inequality
+	is Corollary~\ref{cor:lemma1}.
+\end{proof}
+
+\subsection{The minimum case}
+
+For the minimum we use the following variant, which is the precise form of
+the ``minimization following similarly'' in \cite{mw}.  Let
+$c_0$ be the number of zeros of $y_{2m}$ strictly inside $(z_0,1/2)$.
+By interlacing $c_0\ge 1$.
+
+\begin{lemma}[truncation, min]\label{lem:min}
+	For every $\rho\in\mathcal P_a$ and every $k\ge 1$,
+	\begin{equation*}
+		\frac{\lambda_{2(k+1)}(\rho)}{\lambda_{k+1}(\rho)}
+		\ge\min\bigl\{\mu_{2k,k}(a),\,\mu(a)\bigr\}.
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	Fix $\rho$.
+	\emph{Case A: $c_0\ge 2$ (i.e.\ $z_0<z_{2k}$).}
+	Consider the truncated problem on $(z_0,1/2)$; its first eigenfunction
+	is $y_m$ restricted, of eigenvalue $\lambda_{k+1}$.  Let
+	$\bar y(\cdot;\lambda)$ be the IVP solution posed at $1/2$ with initial
+	slope $1$.  As $\lambda$ decreases from $\lambda_{2m}$, the zeros of
+	$\bar y$ move to the left (Proposition~\ref{prop:zeromotion}) and exit
+	the interval $(z_0,1/2)$ through $z_0$ one at a time
+	(Corollary~\ref{cor:crossing}); the count strictly inside
+	$(z_0,1/2)$ starts at $c_0\ge 2$ and decreases by $1$ at each crossing.
+	Let $\bar\lambda$ be the value at which the count drops from $2$ to $1$,
+	i.e.\ the largest $\lambda\le\lambda_{2m}$ with $\bar y(z_0;\lambda)=0$
+	after exactly $c_0-2$ crossings.  Then $\bar\lambda\le\lambda_{2m}$,
+	$\bar y(\cdot;\bar\lambda)$ has exactly one zero strictly inside
+	$(z_0,1/2)$, and it is an eigenfunction of the truncated problem; hence
+	$\bar\lambda$ is its \emph{second} eigenvalue.  Normalizing affinely and
+	using the definition of $\mu$,
+	\begin{equation*}
+		\frac{\bar\lambda}{\lambda_{k+1}}\ge\mu(a),
+		\qquad\text{so}\qquad
+		\frac{\lambda_{2m}}{\lambda_{k+1}}\ge\mu(a).
+	\end{equation*}
+
+	\emph{Case B: $c_0=1$ (i.e.\ $z_{2k}<z_0$).}
+	Then all $2k$ zeros $z_1,\ldots,z_{2k}$ of $y_{2m}$ lie strictly inside
+	$(-1/2,z_0)$.  Let $\bar y(\cdot;\lambda)$ be the IVP solution posed at
+	$-1/2$ with initial slope $1$.  As $\lambda$ decreases, zeros move to
+	the right; let $\bar\lambda$ be the largest $\lambda\le\lambda_{2m}$
+	such that $\bar y(z_0;\lambda)=0$ (the first crossing).  Then
+	$\bar y(\cdot;\bar\lambda)$ has exactly $2k-1$ zeros strictly inside
+	$(-1/2,z_0)$, so it is the $2k$-th eigenfunction of the truncated
+	problem on $(-1/2,z_0)$, while $y_m$ restricted is its $k$-th
+	eigenfunction with eigenvalue $\lambda_{k+1}$.  Hence, after affine
+	normalization,
+	\begin{equation*}
+		\frac{\bar\lambda}{\lambda_{k+1}}\ge\mu_{2k,k}(a),
+		\qquad\text{so}\qquad
+		\frac{\lambda_{2m}}{\lambda_{k+1}}\ge\mu_{2k,k}(a).
+	\end{equation*}
+	In both cases the desired lower bound holds.
+\end{proof}
+
+\begin{theorem}[MW Lemma 2, min]\label{thm:min}
+	$\mu_{2n,n}(a)=\mu(a)$ for all $n\ge 1$.
+\end{theorem}
+
+\begin{proof}
+	Induction on $k$ with $n=k+1$.  Base case $k=1$:
+	$\mu_{2,1}(a)=\mu(a)$ by definition.  If
+	$\mu_{2k,k}(a)\ge\mu(a)$, then Lemma~\ref{lem:min} applied to an
+	arbitrary $\rho$ gives $\lambda_{2(k+1)}/\lambda_{k+1}\ge\mu(a)$;
+	taking the infimum yields
+	$\mu_{2(k+1),(k+1)}(a)\ge\mu(a)$.  The reverse inequality is
+	Corollary~\ref{cor:lemma1}.
+\end{proof}
+
+\section{Consequences}
+
+\begin{theorem}[MW Theorem 3]\label{thm:theorem3}
+	If $\rho_0$ extremizes $\lambda_2/\lambda_1$ in $\mathcal P_a$, then the
+	cell extension $\rho_n$ of Lemma~\ref{lem:cell} extremizes
+	$\lambda_{2n}/\lambda_n$.  Consequently
+	\begin{equation*}
+		\mu_{2n,n}(a)=\mu(a),\qquad
+		\nu_{2n,n}(a)=\nu(a)\qquad(n\ge 1).
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	If $\rho_0$ maximizes, then $\nu(a)=\lambda_2(\rho_0)/\lambda_1(\rho_0)
+	=\lambda_{2n}(\rho_n)/\lambda_n(\rho_n)\le\nu_{2n,n}(a)$ by definition,
+	and Theorem~\ref{thm:max} gives the reverse inequality; hence $\rho_n$
+	maximizes $\lambda_{2n}/\lambda_n$.  The minimum case is analogous with
+	Theorem~\ref{thm:min}.
+\end{proof}
+
+\begin{corollary}[self-contained sup-ratio theorem]\label{cor:sup}
+	Let $R>1$ and $0<a\le\rho\le A=aR$.  For the problem
+	$-y''=\lambda\rho y$ (Dirichlet on $[-1/2,1/2]$),
+	\begin{equation*}
+		\sup_{n\ge 1}\sup_{\rho}\frac{\lambda_{n+1}}{\lambda_n}
+		=\nu(R)=\Bigl(\frac{\arccos(-\sqrt{R}/(\sqrt{R}+1))}
+		{\arccos(\sqrt{R}/(\sqrt{R}+1))}\Bigr)^2,
+	\end{equation*}
+	attained at $n=1$ and the symmetric two-jump configuration
+	$[a,A,a]$.
+\end{corollary}
+
+\begin{proof}
+	By scaling $\rho\mapsto\rho/a$ we may assume $a=1$, $A=R$.
+	The upper bound: $\lambda_{n+1}\le\lambda_{2n}$ and
+	Theorem~\ref{thm:max} give
+	$\lambda_{n+1}/\lambda_n\le\nu_{2n,n}(R)=\nu(R)$.
+	The lower bound and the closed formula for $\nu(R)$, together with the
+	explicit extremizer $[1,R,1]$ with block widths
+	$s t,t,s t$, $s=\sqrt R$, $t=1/(2s+1)$, are established in the
+	accompanying report \texttt{SL\_ratio\_proof.pdf} (balanced-phase
+	computation).  This proves the claim without appealing to
+	\cite[Lemmas 1--2]{mw}.
+\end{proof}
+
+\section{Numerical audit}
+
+All computations use exact piecewise-constant transfer-matrix propagation
+(double precision) with bisection for eigenvalues and zero locations.
+
+\begin{enumerate}[leftmargin=1.6em]
+	\item \emph{Lemma~\ref{lem:cell}.}  For 8 random densities
+	$\rho_0$ with 2--4 jumps and $1\le\rho_0\le 4$, the identity
+	\eqref{eq:cellidentity} was verified for $n=2,3$ to relative error
+	$\le 4.5\times10^{-16}$.  Additionally the identities
+	$\lambda_n(\rho_n)=n^2\lambda_1(\rho_0)$,
+	$\lambda_{2n}(\rho_n)=n^2\lambda_2(\rho_0)$ were checked to 6 digits,
+	confirming the $C^1$ pasting structure.  (Script
+	\texttt{op05\_mw\_lemma12\_audit.py}.)
+	\item \emph{Lemma~\ref{lem:max}.}  For 24 random configurations
+	(10 case A, 14 case B, $k=1,2,3$), the shooting value
+	$\bar\lambda$ was computed by sign-change bisection and verified to
+	satisfy: case A --- $\bar\lambda$ is the $(j+1)$-st eigenvalue of the
+	truncated problem with $j\le 2k-1$ zeros, $j\ge k$, and
+	$\bar\lambda\ge\lambda_{2m}$; case B --- $\bar\lambda$ is the second
+	eigenvalue of the $(z_0,1/2)$-problem, with exactly one interior zero,
+	and $\bar\lambda\ge\lambda_{2m}$.  All checks passed to relative error
+	$<10^{-4}$ (limited by the zero-location precision of $z_0$).
+	(Script \texttt{op05\_mw\_lemma2\_audit.py}.)
+	\item \emph{Lemma~\ref{lem:min}.}  For 20 random configurations
+	(14 case A, 6 case B, $k=1,2,3$), case A: the shooting value equals
+	the second eigenvalue of $(z_0,1/2)$ and $\bar\lambda\le\lambda_{2m}$
+	(with ratios $e_2/\lambda_m\in[3.65,4.18]$);
+	case B: $\bar\lambda$ equals the $(2k)$-th eigenvalue of
+	$(-1/2,z_0)$ and $\bar\lambda\le\lambda_{2m}$.  All checks passed.
+	(Scripts \texttt{op05\_mw\_mincase\_audit2.py}.)
+	\item \emph{Zero motion (Proposition~\ref{prop:zeromotion}).}
+	For 5 random densities, the ordered zero positions of the IVP solution
+	at $\lambda$ and $1.05\lambda$ are strictly ordered as predicted.
+	(Script \texttt{op05\_mw\_extra\_checks.py}.)
+\end{enumerate}
+
+\section{Audit notes}
+
+\begin{itemize}
+	\item The case split in Lemma~\ref{lem:max} is exhaustive:
+	$z_0\le z_1$ or $z_1<z_0$.  The degenerate case $z_0=z_1$ is covered by
+	case A with $j\le 2k-1$ (then $z_{2k}=z_0$ and $\bar\lambda=\lambda_{2m}$
+	is admissible).
+	\item The identity $j\ge k$ in case A of Lemma~\ref{lem:max} follows
+	from interlacing: each of the $k$ intervals between $-1/2$ and the
+	successive zeros of $y_m$ contains a zero of $y_{2m}$ strictly inside
+	$(-1/2,z_0)$.
+	\item In case A of Lemma~\ref{lem:min} the ``count drops from 2 to 1''
+	uses the monotonicity of the zero count in $\lambda$; the value
+	$\bar\lambda$ is obtained after exactly $c_0-2$ crossings, all of which
+	occur at $\lambda<\lambda_{2m}$, so $\bar\lambda\le\lambda_{2m}$.
+	\item We do not need the existence of extremizers for the inequalities
+	$\nu_{2n,n}\le\nu$ and $\mu_{2n,n}\ge\mu$: Lemma~\ref{lem:max}
+	(resp.\ Lemma~\ref{lem:min}) is proved for an \emph{arbitrary}
+	$\rho\in\mathcal P_a$, and only the final supremum (resp.\ infimum) is
+	taken.  This removes the compactness question entirely.
+	\item The transmission coefficients $s,t$ are only used in
+	Lemma~\ref{lem:cell}; the equality $s=t$ is \emph{not} required for the
+	doubling identities (it is used in \cite{mw} only to prove the
+	symmetry of the extremizer, Theorem 2 there).
+	\item All external facts (oscillation, interlacing, Prufer comparison)
+	are classical; the remaining steps are elementary.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{mw} T.~J.~Mahar, B.~E.~Willner, \emph{An extremal eigenvalue
+	problem}, Comm. Pure Appl. Math. 29 (1976), no.~5, 517--529.
+	\url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{keller} J.~B.~Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), no.~3, 485--491.
+	\url{https://doi.org/10.1137/0131042}
+\end{thebibliography}
+
+\end{document}
+

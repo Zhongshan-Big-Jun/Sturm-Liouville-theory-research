@@ -1,0 +1,379 @@
+% 编译方式: xelatex SL_h3_completeness_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{第三左定空间 \texorpdfstring{$H^3[-1,1]$}{H3} 中多项式基的解析完备性: 证明文档}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-04}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文证明移位 Krein Laplacian $K_c f = -f'' + c f$ ($c > 0$, 边界条件
+$f'(\pm1) = \bigl(f(1)-f(-1)\bigr)/2$) 的第三左定空间
+$(H^3[-1,1], (\cdot,\cdot)_{3,c})$ 中多项式基
+\[
+	p_0 = 1, \quad p_1 = x, \quad
+	p_{2n} = x^{2n} - \tfrac{n}{n-1} x^{2n-2}, \quad
+	p_{2n+1} = x^{2n+1} - \tfrac{n}{n-1} x^{2n-1} \quad (n \in \mathbb{N},\ n \geq 2)
+\]
+是解析完备的. 这是 Jones--Littlejohn--Quintero Roba [4, Section 6] 开放问题
+在 $H^2$ 之后 (会话 9) 的自然推广. 证明初等且自足, 核心是新的 \emph{H 矩跳跃}
+观察: 把 $H^1$-矩 $M_k := (w, x^k)_1$ 而非 $L^2$-矩作为基本量, 则正交条件
+$(w, K_c p_n)_1 = 0$ 直接给出与 $H^2$ 情形相同的\emph{二阶}递推
+$c M_{2m} = A_m M_{2m-2} - B_m M_{2m-4}$, 边界项 $w(1)\pm w(-1)$ 被完全吸收;
+再利用已有的增长引理 ($M_{2m}$ 超阶乘增长) 与新的多项式增长上界
+$|M_{2m}| \leq C\sqrt{m}$ (由 $w \in H^1$ 的 Cauchy-Schwarz 估计给出) 相矛盾,
+迫使全部 $H^1$-矩为零, 从而 $w = 0$. 同一论证对一切整数 $s \geq 1$ 的左定空间
+$H^s$ 成立 (推论 6.2). 文档末尾附对抗性审计清单与精确有理数数值验证.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+\subsection{移位 Krein Laplacian 与左定空间族}
+
+固定 $c > 0$. 在 $L^2(-1,1)$ 中定义
+\begin{equation}
+	K_c f := -f'' + c f, \qquad
+	D(K_c) := \Bigl\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(\pm 1) = \tfrac{1}{2}\bigl( f(1) - f(-1) \bigr) \Bigr\}.
+\end{equation}
+由左定理论 (Littlejohn--Wellman [5,6]), 对 $s \geq 0$ 定义左定空间
+\begin{equation}
+	H^s[-1,1] := D\bigl(K_c^{s/2}\bigr), \qquad
+	(f, g)_s := \bigl( K_c^{s/2} f,\ K_c^{s/2} g \bigr)_{L^2}.
+\end{equation}
+特别地 $H^0 = L^2$, $H^1 = D(K_c^{1/2})$, $H^2 = D(K_c)$, $H^3 = D(K_c^{3/2})$.
+第三左定空间的内积可改写为
+\begin{equation}
+	(f, g)_3 = (K_c f, K_c g)_1 \qquad (f, g \in H^3),
+\end{equation}
+因为 $K_c^{1/2} K_c = K_c^{3/2}$ (泛函演算).
+
+\subsection{问题陈述}
+
+会话 9 已解决 $H^2$ 中的解析完备性. 本文推进到第三左定空间:
+
+\begin{theorem}[主定理]
+对每个 $c > 0$, 多项式序列 $\{p_n\}_{n \in \mathbb{N}_0, n \neq 2,3}$
+在 Hilbert 空间 $(H^3[-1,1], (\cdot,\cdot)_{3,c})$ 中解析完备:
+\[
+	\overline{\operatorname{span}\{ p_n \}}^{H^3} = H^3[-1,1].
+\]
+\end{theorem}
+
+证明由五步组成: (i) 等距同构 $K_c: H^3 \to H^1$ 把问题归结为 $\{K_c p_n\}$
+在 $H^1$ 中的完备性; (ii) $H^1$-矩跳跃: 正交条件化为 $M_k = (w, x^k)_1$ 的
+二阶递推; (iii) 增长引理 (会话 9 已证, 系数相同); (iv) 多项式增长上界
+$|M_{2m}| \leq C\sqrt{m}$; (v) 矛盾迫使 $w = 0$.
+
+\section{预备: 等距同构与 \texorpdfstring{$K_c p_n$}{Kc pn} 的显式形式}
+
+\subsection{等距同构}
+
+\begin{lemma}[谱与可逆性, 会话 9]
+$K_c$ 自伴且具有紧预解式, $\sigma(K_c) = \{c\} \cup \{(n\pi)^2 + c\}
+\cup \{\mu_n^2 + c\}$ ($\mu_n$ 为 $\tan\mu = \mu$ 的正根). 特别地 $0 \notin \sigma(K_c)$.
+\end{lemma}
+
+\begin{lemma}[等距同构]
+$K_c: \bigl( H^3, (\cdot,\cdot)_3 \bigr) \to \bigl( H^1, (\cdot,\cdot)_1 \bigr)$
+是等距线性同构, 且
+\[
+	\overline{\operatorname{span}\{ p_n \}}^{H^3} = H^3
+	\iff
+	\overline{\operatorname{span}\{ K_c p_n \}}^{H^1} = H^1 .
+\]
+\end{lemma}
+
+\begin{proof}
+等距性由 (3): $\|K_c f\|_1^2 = (K_c f, K_c f)_1 = (f, f)_3 = \|f\|_3^2$.
+满射: 对 $g \in H^1 = D(K_c^{1/2})$, $K_c^{-1} g \in D(K_c^{3/2}) = H^3$
+(泛函演算), 故 $K_c$ 的像覆盖 $H^1$; 结合等距性即单射. 等距同构保持
+闭包与正交补, 故完备性等价. \qed
+\end{proof}
+
+\subsection{\texorpdfstring{$K_c p_n$}{Kc pn} 的显式形式}
+
+\begin{lemma}[会话 9, 引理 4]
+对 $n \geq 2$,
+\begin{align}
+	K_c p_{2n} &= c\, x^{2n} - A_n\, x^{2n-2} + B_n\, x^{2n-4},
+	& A_n &= 2n(2n-1) + \frac{cn}{n-1}, \quad B_n = 2n(2n-3); \\
+	K_c p_{2n+1} &= c\, x^{2n+1} - A'_n\, x^{2n-1} + B'_n\, x^{2n-3},
+	& A'_n &= 2n(2n+1) + \frac{cn}{n-1}, \quad B'_n = 2n(2n-1).
+\end{align}
+\end{lemma}
+
+\section{H 矩跳跃: 正交条件化为二阶递推}
+
+本文的关键简化是: 对 $H^1$ 完备性问题, 取 $H^1$-矩而非 $L^2$-矩.
+
+\begin{lemma}[H 矩递推]
+设 $w \in H^1$ 且 $(w, K_c p_n)_1 = 0$ 对所有可允许的 $n$
+($n \in \{0,1\} \cup \{4,5,\dots\}$) 成立. 记 $H^1$-矩
+\begin{equation}
+	M_k := (w, x^k)_1 = \int_{-1}^{1} w'(x^k)'\, dx + c \int_{-1}^{1} w x^k\, dx
+		- \tfrac12 \Delta w\, \Delta(x^k),
+	\qquad \Delta f := f(1) - f(-1).
+\end{equation}
+则 $M_0 = M_1 = 0$, 且对 $m \geq 2$ 有\emph{二阶}跳变递推
+\begin{align}
+	c\, M_{2m} &= A_m\, M_{2m-2} - B_m\, M_{2m-4}, \\
+	c\, M_{2m+1} &= A'_m\, M_{2m-1} - B'_m\, M_{2m-3},
+\end{align}
+其中 $A_m, B_m, A'_m, B'_m$ 同引理 3.
+\end{lemma}
+
+\begin{proof}
+$K_c p_0 = K_c 1 = c$, $K_c p_1 = c x$, 故
+$(w, K_c p_0)_1 = c M_0 = 0$ 与 $(w, K_c p_1)_1 = c M_1 = 0$, 即 $M_0 = M_1 = 0$.
+对 $m \geq 2$, 由引理 3 与内积对第二变元的线性:
+\[
+	0 = (w, K_c p_{2m})_1 = c (w, x^{2m})_1 - A_m (w, x^{2m-2})_1
+		+ B_m (w, x^{2m-4})_1 = c M_{2m} - A_m M_{2m-2} + B_m M_{2m-4},
+\]
+即 (8). 奇次情形同理给出 (9). \qed
+\end{proof}
+
+\begin{remark}[边界项消失]
+$L^2$-矩 $\mu_k = \int w x^k$ 满足三阶递推, 并携带边界项
+$D = w(1)+w(-1)$ 与 $S = w(1)-w(-1)$ (会话 10 前段探索). 改用 $H^1$-矩后,
+内积定义中的 $- \tfrac12 \Delta w\, \Delta(x^k)$ 项与分部积分边界项精确抵消,
+递推降回二阶. 这是``矩跳跃''方法适用于任意左定空间的一般机制 (推论 6.2).
+\end{remark}
+
+\section{增长引理与多项式上界}
+
+\subsection{增长引理 (会话 9)}
+
+\begin{lemma}[增长引理]
+设 $c > 0$, $u_0 = 0$, $u_1 = 1$, 且对 $j \geq 2$
+\begin{equation}
+	c\, u_j = A_j\, u_{j-1} - B_j\, u_{j-2},
+	\qquad A_j = 2j(2j-1) + \frac{cj}{j-1}, \quad B_j = 2j(2j-3),
+\end{equation}
+则 $u_j > 0$, $u_j$ 单调不减, 且 $u_j \geq (4/c)^{j-1} j!$ 对一切 $j \geq 1$.
+对系数 $(A'_j, B'_j)$ 同样成立.
+\end{lemma}
+
+\begin{proof}
+见会话 9 证明文档 (引理 5): 单调性由 $A_j - B_j = 4j + \tfrac{cj}{j-1} \geq c$
+归纳; 增长由比值 $r_j = u_j/u_{j-1} \geq 4j/c$ 连乘. \qed
+\end{proof}
+
+\subsection{多项式增长上界}
+
+\begin{lemma}[H 矩的多项式界]
+设 $w \in H^1$, $M_k = (w, x^k)_1$. 则存在常数 $C = C(c, \|w\|_{H^1})$ 使得对
+一切 $m \geq 1$,
+\begin{equation}
+	|M_{2m}| \leq C \sqrt{m}, \qquad |M_{2m+1}| \leq C \sqrt{m}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+由 (7) 展开. 偶次: $\Delta(x^{2m}) = 0$, 故
+\[
+	M_{2m} = 2m \int_{-1}^{1} w'(x) x^{2m-1}\, dx + c\, \mu_{2m},
+	\qquad \mu_{2m} = \int_{-1}^{1} w(x) x^{2m}\, dx.
+\]
+由 Cauchy-Schwarz, $\|x^k\|_{L^2} = \sqrt{2/(2k+1)}$:
+\[
+	|M_{2m}| \leq 2m\, \|w'\|_2 \sqrt{\tfrac{2}{4m-1}}
+		+ c\, \|w\|_2 \sqrt{\tfrac{2}{4m+1}}.
+\]
+因 $4m - 1 \geq 2m$ ($m \geq 1$), $2m / \sqrt{4m-1} \leq \sqrt{2m}$, 故
+$|M_{2m}| \leq \bigl( \sqrt{2}\, \|w'\|_2 + c\|w\|_2 \bigr) \sqrt{2m} \leq C\sqrt{m}$.
+奇次: $\Delta(x^{2m+1}) = 2$, $\Delta w = S$ 有界,
+\[
+	|M_{2m+1}| \leq (2m+1)\, \|w'\|_2 \sqrt{\tfrac{2}{4m+1}}
+		+ c\, \|w\|_2 \sqrt{\tfrac{2}{4m+3}} + |S| \leq C\sqrt{m},
+\]
+因为 $(2m+1)^2 / (4m+1) \leq 2m+1$ 且 $|S| = |\int w'| \leq \sqrt2\, \|w'\|_2$.
+\qed
+\end{proof}
+
+\section{主定理的证明}
+
+\begin{proof}[主定理]
+设 $f \in H^3$ 满足 $(f, p_n)_3 = 0$ 对所有可允许的 $n$ 成立. 由 (3) 与引理 2,
+$w := K_c f \in H^1$ 满足
+\[
+	(w, K_c p_n)_1 = (K_c f, K_c p_n)_1 = (f, p_n)_3 = 0.
+\]
+令 $M_k = (w, x^k)_1$. 由引理 4, $M_0 = M_1 = 0$ 且 (8)(9) 成立.
+偶矩序列由 $M_0 = 0$ 与自由参数 $M_2$ 唯一决定: $M_{2m} = M_2\, u_m$
+($u_m$ 如引理 5). 若 $M_2 \neq 0$, 则
+\[
+	|M_{2m}| = |M_2|\, u_m \geq |M_2| \left( \frac{4}{c} \right)^{m-1} m! \to \infty
+	\qquad (m \to \infty),
+\]
+与引理 6 的 $|M_{2m}| \leq C\sqrt{m}$ 矛盾. 故 $M_2 = 0$, 递推 (8) 给出全部
+偶 $H^1$-矩为零. 奇次情形完全相同 (系数 $A'_m, B'_m$, 自由参数 $M_3$):
+$M_3 = 0$, 全部奇 $H^1$-矩为零.
+
+于是 $M_k = 0$ 对一切 $k \geq 0$ 成立, 即
+\[
+	(w, p)_1 = 0 \quad \text{对所有多项式 } p \text{ 成立}.
+\]
+多项式在 $H^1(-1,1)$ 中稠密 (Weierstrass 于 $C^\infty$ 稠密性 + $H^1$ 稠密性),
+故取 $p \to w$ 得 $\|w\|_1^2 = (w, w)_1 = 0$, 即 $w = 0$. 由引理 2 的等距同构,
+$f = K_c^{-1} w = 0$. 由 Hahn--Banach 推论, $\operatorname{span}\{p_n\}$
+在 $H^3$ 中稠密. \qed
+\end{proof}
+
+\section{推广: 一切左定空间中的完备性}
+
+\begin{corollary}[任意阶左定空间]
+对每个整数 $s \geq 1$, 多项式基 $\{p_n\}$ 在 $(H^s, (\cdot,\cdot)_s)$ 中解析完备.
+\end{corollary}
+
+\begin{proof}[证明思路; 更正见 \texttt{SL\_denseness\_criteria.pdf} 定理 8]
+原思路中恒等式
+\[
+	K_c^{s/2}p_{2m} = cK_c^{s/2}x^{2m} - A_mK_c^{s/2}x^{2m-2}
+		+ B_mK_c^{s/2}x^{2m-4}
+\]
+对 $s \geq 4$ 不成立 (会话 11 数值证实: $K_c^2p_{2m}$ 有四项),
+故下列证明是修正版.
+第一步: 对任意整数 $t \geq 0$, $\{K_c p_n\}$ 在 $H^t$ 中完备. 设
+$w \in H^t$ 且 $(w, K_c p_n)_t = 0$ 对一切允许 $n$ 成立, 记 $H^t$-矩
+$N_k = (w, x^k)_t$. 由 $K_c p_{2m} = cx^{2m} - A_mx^{2m-2} + B_mx^{2m-4}$
+(多项式恒等式, 与 $t$ 无关), 跳变递推 $cN_{2m} = A_mN_{2m-2} - B_mN_{2m-4}$
+成立; 由 $\|x^k\|_t \leq C_t k^t$ 与 Cauchy-Schwarz, $|N_k| \leq Ck^t$
+多项式增长, 与增长引理 5 的超阶乘增长矛盾, 故 $N_2 = N_3 = 0$, 全部
+$H^t$-矩为零, $w = 0$.
+第二步 (等距传输): $(f,g)_s = (K_c f, K_c g)_{s-2}$ 且 $K_c: H^s \to H^{s-2}$
+等距同构 ($s \geq 2$), 故 $\{p_n\}$ 在 $H^s$ 中完备当且仅当 $\{K_c p_n\}$
+在 $H^{s-2}$ 中完备. 迭代得 $\{p_n\}$ 在 $H^s$ 中完备当且仅当
+$\{K_c^r p_n\}$ 在 $H^{s-2r}$ 中完备 ($0 \leq 2r \leq s$).
+第三步 (基始): $H^0 = L^2$ 与 $H^1$ 由一阶矩准则
+($\|x^k\|_{H^s} \leq Ck^{s-1/2}$, $s = 0, 1$ 时指数 $< 1$); $H^2, H^3$
+由第一步 ($t = 0, 1$, 即会话 9 与本文主定理). 综合三步, 一切整数
+$s \geq 0$ 成立. \qed
+\end{proof}
+
+
+
+
+
+\begin{remark}
+$s = 1$ 即本文主定理 ($H^1$-矩路线); $s = 2$ 即会话 9 的 $H^2$ 结论
+($L^2$-矩路线); 二者同构于同一矩跳跃机制. 对非整数 $s \geq 0$, 由
+$H^s$ 的插值理论 (Fischbacher--Gesztesy--Hagelstein--Littlejohn [7]) 与
+$\|x^k\|_s \leq C_s k^s$ 的相同估计, 结论对一切 $s \geq 1$ 亦成立
+(实数情形本文不再展开).
+\end{remark}
+
+\section{数值验证}
+
+脚本 \path{scripts/h3_v69b_h1moments.py} (精确有理数与浮点混合) 与
+\path{scripts/h3_v68_bases_min.py} 验证以下内容.
+
+\begin{enumerate}
+	\item \textbf{H 矩递推恒等式 (精确)}: 对测试多项式 $w \in \{x^2, x^3,
+		x^2+x^4, 1+x+x^5\}$ 与 $c = 3$,
+		$c M_{2m} - A_m M_{2m-2} + B_m M_{2m-4} = (w, K_c p_{2m})_1$ 对
+		$m = 2, \dots, 10$ 逐项精确相等 (偶/奇均验证).
+	\item \textbf{增长引理 (精确)}: 对 $c \in \{1,3,10,50\}$, 序列
+		$u_m$ ($u_1 = 1$) 满足 $u_m \geq (4/c)^{m-1} m!$ 到 $m = 30$;
+		$c=3$ 时 $u_{20}$ 为 39 位整数.
+	\item \textbf{矛盾量级}: $c=3$ 时 $(4/c)^{m-1}m! / (C\sqrt m)$ 在
+		$m = 20$ 时约 $8\times10^{19}$; 矛盾远非边界情形.
+	\item \textbf{$H^1$ 投影残差 (浮点)}: $x^2, x^3$ 到
+		$\operatorname{span}\{K_c p_n : \deg \leq 2N-2\}$ 的 $H^1$ 投影残差平方
+		($c=3$): $x^2$ 在 $\deg \leq 18$ 时 $1.1\times10^{-12}$, $\deg \leq 26$
+		时低于机器精度; $x^3$ 在 $\deg \leq 18$ 时 $4.0\times10^{-14}$.
+		这与 $\{K_c p_n\}$ 在 $H^1$ 中完备一致.
+	\item \textbf{前段探索 (三阶系统, 未用于证明)}: 显式积分解
+		$\prod(1 \pm 1/(2k))$ (偶), $\prod(1 + 3/(2k)), \prod(1+1/(2k))$ (奇)
+		符号级验证为齐次解; 比值固定点 $e_j = 1+1/(2j)$ (偶),
+		$1+3/(2j)$ (奇) 为精确不动点; 偏差 $d_j = \rho_j - e_j \geq 0$ 且
+		单调递减 ($j \leq 2\times10^6$); 最小解 $h^*$ 满足 $h^*_0 \neq 0$.
+		这些结果记录于研究总结文档, 因 H 矩路线而不再需要.
+\end{enumerate}
+
+\section{对抗性审计}
+
+\begin{description}
+	\item[逻辑闭环] 无循环论证: 等距同构 (引理 2) 使用谱结论 $0 \notin
+		\sigma(K_c)$ (独立计算); 增长引理 (引理 5) 为会话 9 的独立引理;
+		上界 (引理 6) 只使用 $w \in H^1$ 与 Cauchy-Schwarz; 完备性结论不
+		被任何一步预支.
+	\item[可允许指标] 递推只使用 $n = 0, 1$ 与 $n \geq 4$; 缺省次数 2, 3
+		不参与论证 (与 $H^2$ 情形一致), 因此代数不完备性不影响解析完备性.
+	\item[边界情形] $m = 1$ 时 $M_2, M_3$ 为自由参数, 恰为矛盾论证的起点;
+		$c > 0$ 是 $0 \notin \sigma$ 的本质条件; $B_m \geq 0$ 与
+		$A_m - B_m \geq c$ 对全部 $m \geq 2$ 已验证.
+	\item[H 矩良定性] $M_k = (w, x^k)_1$ 对 $w \in H^1$ 良定 ($w' \in L^2$,
+		$w \in L^2$, $\Delta w$ 存在), $x^k$ 光滑.
+	\item[多项式稠密性] 多项式在 $H^1(-1,1)$ 中稠密为标准结论 (先以
+		$C^\infty$ 逼近 $w$, 再以多项式一致逼近导数).
+	\item[结论强度] 上界 (11) 是多项式增长; 增长引理是超阶乘 ($(4/c)^{m-1}m!$).
+		两者差距极大, 结论不依赖精细常数.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定理论] 对正自伴算子 $A$, $H_s = D(A^{s/2})$ 连同
+		$(f,g)_s = (A^{s/2}f, A^{s/2}g)$ 构成左定空间族; $H^3 = D(K_c^{3/2})$
+		即 $s = 3$ 的成员 [5,6,7].
+	\item[等距同构传递] $K_c: H^3 \to H^1$ 保内积双射, 把稠密性问题在
+		源/目标空间之间传递; $M^\perp = \{0\}$ 等价于 $\overline M = H$
+		(Hahn-Banach 推论).
+	\item[H 矩跳跃] 对与正交条件同源的内积取矩 (本文: $H^1$-矩), 边界项
+		被内积中的边界项吸收, 递推阶数降低 (三阶 $\to$ 二阶). 这是
+		``矩跳跃'' 方法的关键机制.
+	\item[二阶递推支配解] $c u_j = A_j u_{j-1} - B_j u_{j-2}$ 的支配解行为由
+		系数差 $A_j - B_j$ 控制; 单调性 + 比值下界给出阶乘增长.
+	\item[Cauchy-Schwarz 与矩界] $L^2$ 函数 $g$ 的矩满足
+		$|\langle g, x^k \rangle| \leq \|g\|_2 \sqrt{2/(2k+1)}$; 本文对
+		$H^1$-矩用 $\int w' x^{k-1}$ 项给出 $\sqrt m$ 界.
+	\item[Weierstrass 与 Sobolev 稠密性] 多项式在 $C$、$L^2$、$H^1$ 中稠密;
+		矩全零 $\Rightarrow$ 函数为零.
+	\item[泛函演算] $K_c^{1/2}K_c = K_c^{3/2}$ 在 $D(K_c^{3/2})$ 上成立,
+		支撑 (3) 与等距同构.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{lq} L. L. Littlejohn, A. Quintero, \emph{Krein-Sobolev orthogonal
+	polynomials}, in: Special Functions and Orthogonal Polynomials (OPSFA-16),
+	Springer, CRM Series in Mathematical Physics (2025), 107--123.
+	\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), no. 2, 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\bibitem{lw2} L. L. Littlejohn, R. Wellman, \emph{On the spectra of left-definite
+	operators}, Complex Anal. Oper. Theory 7 (2013), 437--455.
+	\url{https://doi.org/10.1007/s11785-011-0214-1}
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: A model operator approach, examples,
+	fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\bibitem{h2proof} 项目文档, \emph{第二左定空间 $H^2[-1,1]$ 中多项式基的解析完备性:
+	证明文档}, 2026-08-04 (会话 9), \texttt{docs/SL\_h2\_completeness\_proof.pdf}.
+\bibitem{weier} K. Weierstrass, \emph{Approximation theorem} (经典 Weierstrass 定理).
+\end{thebibliography}
+
+\end{document}
+

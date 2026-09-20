@@ -10,6 +10,18 @@
 
 # 项目维护
 
+## 2026-09-20 云端同步
+
+用户明确要求同步插件与本成果仓库. 本次提交两轮审计的活动修缮及其直接证据依赖, 包括证明/PDF、局部 Lean、工具卡与纠错历史, 并维护导航. 先核对主仓库与 fork 基线, 再逐文件暂存和核对提交 blob, 按主仓库后 fork 顺序推送. 不改 canonical、旧封存证明包或本轮独立检验输入; 其它实验草稿保留原字节. 插件的候选提交单独执行 CI, 不将同步或 CI 成功当作全仓库数学认证. 具体对话与方法记录在会话日志.
+
+## 2026-09-20 第二轮审计修订 (本轮完成)
+
+用户提供 `proof_audit_round2_20260920.md`, 要求修缮并增强工作流: 过程内形式化、无状态隔离检验子 agent、外部发现驱动的工具库纠错. 原报告的建议是待核查材料. 本轮保留第一轮及其它未提交变更, 原字节和基线保存在 `F:/tools/math-audit-round2-20260920/`. 数学作者与验收 agent 分开; 验收明确 `fork_context:false`, 仅给冻结证据包. Lean 片段通过不等于整项研究形式化.
+
+谱域/K1、首对/MW 与局部 Lean 已分别获得新隔离会话的范围明确的批准. 中间否决发现的归一化、索引域、积分收敛、弱探针、摘要和递推算术问题均已修订, 原始否决保留. 软件的日志、恢复、下游误放行和依赖版本覆盖问题也经新会话验收关闭. 九卡已按依赖顺序恢复并逐张查询; 当前 78 张可用、1 张隔离, 92 个历史版本和三条新经验批注保留. Linux/Windows 各 84 项行为测试通过; 25 个局部 Lean 目标及五个缓存旧定义桥接已验证, 完整主定理未全部形式化. 原始 WSL 回执需在原调度路径消费. 详情见 `reports/proof-audit-round2-20260920/REPORT.md` 与会话日志. 维护不要改写旧封存审计或以历史 PASS 替代当前复核.
+
+本轮将用户的程序修缮请求理解为包含必要的实际行为验证: 协调器可运行本轮修改的 `scripts/op10_verify_mechanism.py`、`scripts/op10_fractional_window.py` 及新 Lean 目标, 日志保存至项目外, 禁止写 canonical. 这项限定范围测试不使用项目旧 Blueprint 维护程序; canonical 操作继续走插件 gateway.
+
 ## 目标与入口
 
 - 维护 Sturm-Liouville 边值问题的长期研究: 正交系/左定空间, 相邻特征值比值与间距极值.
@@ -31,6 +43,9 @@
 
 ## 当前数学边界
 
+- n=1 SUP/INF: 历史 STRICT/CLOSED 范围为归一化盒类 1<=rho<=R, 全部 R>1. 2026-09-20 修正 C1 包络、O1 自伴化、归一化证书接口和 good-root 引理; 本轮局部验证不等于重跑整条证明或 Lean. 详见 [审计修订报告](reports/proof-audit-20260920/REPORT.md).
+- 原始稀疏多项式族: H2/H3 主证明保留, H3 加谱截断给出 0<=s<=3 稠密. 任意阶推广已撤回, p4 在非负阶 Hs 中当且仅当 s<7/2, 因而 s>=7/2 原同族断言为假; 3<s<7/2 的同族稠密性未判定. 第二轮报告另列实际复核范围.
+
 - M3: n=2 对称 INF large-R 有限非零内部 chart 内 STRICT 闭合, canonical 接收与独立复现已保存. 旧 staged D-side mass 的 odd/log 障碍已 SUPERSEDED.
 - KP-DET: sequence-26 的完整 0<c<=2/3 分支与 P20-P21 求积约化经审计 PASS. P1-P4 的 pivot/phase 部分已 canonical 接收; 后续 run 包与 canonical 分开登记. 本地主 run 的 Q9 仍 OPEN.
 - 插件公开 benchmark 另有三份 Q9 完整证明及匿名外审 PASS, 尚未接入本 canonical 或 Lean. 不据此宣称全局 G1', KO-DET 或完整 n>=2 极值问题已解决.
@@ -42,3 +57,7 @@
 - 2026-09-09: 补查归档的 Git clean 转换. Windows Git 的 autocrlf=true 会改写两份旧 README 和完整会话日志; 在 docs/history 与 state 新增只匹配这 3 个归档文件的 -text 属性. 原根 .gitattributes 保持不变. 通过独立对象目录的 hash-object/show 核对实际提交字节, 精确暂存集更新为 157 个路径, 未 stage/commit/push.
 - 2026-09-09: 中断后续接导航发布依赖检查. [发布依赖清单](reports/repository-cleanup-20260909/publication-dependencies.json) 列出 12 个需按原字节纳入版本的既有 KP-DET 证据, 递归绑定检查, 历史绑定限制和协调器精确暂存范围. 只更新文档与报告, 未 stage/commit/push 或接收 canonical.
 - 2026-09-09: 按用户 2.0 落地任务并行整理成果仓库. 重写中英文首页, 归档旧首页与长 AGENTS, 新建研究导航, 项目理解和脚本导航. 删除 10 个无引用的过时维护程序与 115 个可再生 TeX 中间物; 4,392 个原文件字节不变, 61 份文档 PDF 解析通过, canonical gateway 校验通过. 具体哈希, 原 68 项工作树保护和验证见 [清理报告](reports/repository-cleanup-20260909/REPORT.md). 未 commit/push.
+- 2026-09-10: 核查插件版本并落地 2.0. 本机 checkout 原为 1.5.0, 云端 `origin/main` 为 2.0.0, 快进 `d1ca3ee` -> `4f75026` (16 提交); `validate_all.py` 51 项通过, `dsh-doctor.py` 需显式 `--python /usr/bin/python3`. 本项目 gateway `ensure` 返回 `ALREADY_READY`, canonical validate 为 11 nodes/13 edges/4 inventory rows, pipeline 为 `DATA_CHECKS_PASSED`. 深度理解插件与数学项目, 并核查封存 checkpoint: sequence-26 在保留 workspace 根下为 `READY` 且 5 项 minimal read set hash 全部匹配, 按当前项目根运行报 `STALE` 属 v1 路径绑定与 v2.2 布局差异, 工件字节完好. 未改数学或 canonical, 未 commit/push. 详见 [会话日志](state/AGENTS_SESSION_LOG.md).
+- 2026-09-20: 按用户核查同步 `PROJECT.md` 两处旧状态: n=1 间距 SUP/INF 在归一化盒类 `1<=rho<=R` 内对全部 `R>1` 为 STRICT/CLOSED, 以 `220785e` 的闭合记录及研究导航中的证明链为据; 移除综述开放问题清单的无条件权威表述. n>=2 完整问题及形式化另计, B4 保持 PARTIAL. 本轮仅做状态溯源与文档同步, 未重做证明审计或修改 canonical, 未 commit/push. 具体对话与核查见 [会话日志](state/AGENTS_SESSION_LOG.md).
+
+- 2026-09-20: 用户授权核查并修复所附证明审计后, 修正 F01-F08 及增长引理遗漏假设, 追踪高阶错误推广到分数阶文档、综述、工具卡与 A1/A2; B4 保持 PARTIAL. 新建 35 项精确检查全部通过, C1-C5 程序 PASS, 11 份 PDF 重建并同步. 修订前 36 文件按字节归档, 原封存证明包、canonical 和既有未提交工作保留; 未 stage/commit/push. 详见 [报告](reports/proof-audit-20260920/REPORT.md) 与会话日志.

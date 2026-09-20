@@ -1,0 +1,663 @@
+% 用法: xelatex SL_gap_n1_symline_allR_proof.tex (两遍, -output-directory=build)
+% 主题: 缺口 (a') 闭合 - 对称线 1D 分析对全部 R>1 (KEY LEMMA 全 R 版)
+% 会话: 2026-08-12 续作 (会话 58); 证据分层: E1 = 严格解析证明 (STRICT), E3 = 数值交叉检验 (EVIDENCE, 不构成证明)
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+
+\title{\texorpdfstring{缺口 (a') 闭合: 对称线 1D 分析对全部 $R>1$\\
+\large KEY LEMMA 全 $R$ 版与张力比不等式 (INF 侧全 $R$ 闭合推论)}
+{缺口 (a') 闭合: 对称线 1D 分析对全部 R>1; KEY LEMMA 全 R 版与张力比不等式 (INF 侧全 R 闭合推论)}}
+\author{BVE research 项目 (INF 侧相邻间距极端值, 会话续作 2026-08-12)}
+\date{2026-08-12}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文闭合 \texttt{SL\_gap\_n1\_symline\_proof} 中登记的剩余缺口 (a'): 把
+KEY LEMMA (阱族对称线 $\rho_v=R\cdot\mathbf1_{[0,v)\cup(1-v,1]}+\mathbf1_{[v,1-v]}$
+上 $\widetilde F_e$ 在 $(0,1/2)$ 内唯一零点, 先正后负) 从 $1<R\le3/2$
+($\tilde q\in[\sqrt{2/3},1)$) 推广到全部 $R>1$ ($\tilde q\in(0,1)$). 小 $R$
+证明的唯一障碍是 P2 ($G_2>-4/3$, 依赖 $W_0$ 引理在 $[\tilde q_0,1)$ 的证书);
+本文用新的几何量---\emph{张力比}
+\begin{equation*}
+	\rho(\tilde q,\gamma):=\frac{c(1-\tilde q^2)s_1^2s_2^2(y^2-\alpha_1^2)}
+	{(\tilde q+c)(y^2s_2^2-\alpha_1^2s_1^2)},\qquad
+	y:=\pi-\gamma,\ s_1:=\sin\alpha_1,\ s_2:=\sin\gamma,
+\end{equation*}
+---给出全 $R$ 的替代论证. 关键定理 (Claim A, 定理 \ref{thm:claimA}): 对
+$\tilde q\in(0,1)$, $\gamma\in[\gamma_0^*,\gamma_0(\tilde q)]$ ($\gamma_0^*$ 为
+$W_0(\gamma)=3-2(\pi-\gamma)\cot\gamma$ 在 $(0,\pi/2)$ 的唯一零点) 有 $\rho<1$.
+证明分两步, 全部初等: (i) \emph{张力比链} $\rho\le\rho_0(\gamma)$
+($\rho_0$ 为 $\tilde q\to0^+$ 极限), 由两个纯代数引理构成---P1:
+$c/(\tilde q+c)\le\tan\gamma/(y+\tan\gamma)$ (来自 $u<\tan u$), 以及 P2:
+$s_1^2(1-\tilde q^2)(y^2-\alpha_1^2)/(y^2s_2^2-\alpha_1^2s_1^2)\le
+s_2^2(y^2-\pi^2/4)/(y^2s_2^2-\pi^2/4)$, 其差化简为三项非负分解
+$E_0=y^2[\cos^2\gamma(\pi^2/4-\alpha_1^2)+\cos^2\alpha_1(y^2s_2^2-\pi^2/4)
++\cos^2\alpha_1\,\alpha_1^2\cos^2\gamma]\ge0$ (仅用 $\alpha_1<\pi/2$ 与
+$(y\sin\gamma)^2\ge\pi^2/4$); (ii) \emph{一维不等式} $\rho_0(\gamma)<1$, 等价于
+$(\pi-\gamma)^3\sin^2\gamma>(\pi^2/4)(\pi-\gamma+\sin\gamma\cos\gamma)$, 用
+$G$-论证闭合: $G(w):=(\pi/2+w)^3\cos^2w-\frac{\pi^2}{4}(\frac\pi2+w)
+-\frac{\pi^2}{8}\sin2w$, $G'''<0$ (显式界), $G'(0)=\pi^2/4>0$,
+$G'(w_0)=-\sin^2\gamma_0^*\cdot\pi^2/2<0$, $G(w_0)=F(\gamma_0^*)>0$
+(有理证书) 给出 $G$ 单峰且 $\min G=0$. 全部证书为精确有理不等式
+(附录 \ref{app:cert}), 数值交叉检验单列 (附录 \ref{app:evid}, \EVID{}).
+推论 (定理 \ref{thm:main}): KEY LEMMA 对全部 $R>1$ 成立; 结合会话 56 的
+阱族刚性全 $R$ 定理 (任意 sign-consistent good root 满足 $a+b=1$)、O1-INF
+归约与 O3b 边界排除, INF 侧对全部 $R>1$ 闭合 (模缺口 (c) Theorem A 独立复核
+与 (d) good-root 全局论证残差, 见 \S\ref{sec:cor}).
+\end{abstract}
+
+\tableofcontents
+
+\section{问题与主定理}\label{sec:main}
+
+\subsection{设置与记号}
+
+固定 $R>1$, $m:=\sqrt R$, $\tilde q:=1/m=R^{-1/2}\in(0,1)$. 阱族对称线
+$\rho_v:=R\cdot\mathbf1_{[0,v)\cup(1-v,1]}+\mathbf1_{[v,1-v]}$, $v\in(0,1/2)$;
+Dirichlet 问题 $-y''=\lambda\rho_v y$ 的相邻特征值差 $D(v):=\lambda_2-\lambda_1$,
+$f(v):=\lambda_2\hat y_2(v)^2-\lambda_1\hat y_1(v)^2$ (记号同
+\texttt{SL\_gap\_n1\_symline\_proof}, 下文简称 [S]).
+
+相位参数 $c:=(1-2v)/(2mv)\in(0,\infty)$, 偶/奇相位分支
+$\alpha_1\in(0,\pi/2)$, $\alpha_2\in(\pi/2,\pi)$ 满足
+\begin{equation}
+	\tan\alpha_1\tan(c\alpha_1)=1/\tilde q,
+	\qquad \tilde q\tan\alpha_2+\tan(c\alpha_2)=0,
+	\label{eq:secular}
+\end{equation}
+且 $\alpha_k'(c)=-\alpha_k\Phi(\alpha_k)/(\tilde q+c\Phi(\alpha_k))<0$,
+$\Phi(x):=\cos^2x+\tilde q^2\sin^2x$. 记
+\begin{equation}
+	M_f(x;c):=\frac{x^2\sin^2x}{\tilde q+c\Phi(x)},\qquad
+	\widetilde F_e(c):=M_f(\alpha_1(c);c)-M_f(\alpha_2(c);c),
+	\label{eq:Fe}
+\end{equation}
+及 $\gamma:=\pi-\alpha_2\in(0,\gamma_0(\tilde q)]$, $\gamma_0(\tilde q):=
+\arccos(\tilde q/(1+\tilde q))$.
+
+\textbf{降维恒等式} ([S, 引理 3.3], 对一切 $R>1$ 成立, \STRICT):
+\begin{equation}
+	S_R(\xi)=-8\tilde q^2(c+\tilde q)^3\widetilde F_e(c),
+	\qquad
+	D_c(c)=-8(c+\tilde q)\tilde q(1-\tilde q^2)\widetilde F_e(c),
+	\label{eq:dimred}
+\end{equation}
+其中 $\xi$ 为对称参数 $a=\xi$, $b=1-\xi$, $S_R(\xi):=R_1(\xi,1-\xi)=R_2(\xi,1-\xi)=f(\xi)$.
+故 $\operatorname{sign} f=-\operatorname{sign}\widetilde F_e$, 且 $f$ 的零点与
+$\widetilde F_e$ 的零点一一对应.
+
+\subsection{主定理}
+
+\begin{theorem}[KEY LEMMA, 全部 $R>1$]\label{thm:main}
+对 $\tilde q\in(0,1)$ (即 $R>1$), $\widetilde F_e$ 在 $(0,1/2)$ 内恰有一个零点
+$c^*(\tilde q)$, 且 $\widetilde F_e>0$ 于 $(0,c^*)$, $\widetilde F_e<0$ 于
+$(c^*,1/2)$. 特别地 $c^*\in(0,c_0(\tilde q))$, 其中
+\begin{equation}
+	c_0(\tilde q):=\frac{\arctan(\tilde q\tan\gamma_0^*)}{\pi-\gamma_0^*}\in(0,1/2).
+	\label{eq:c0}
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[INF 侧闭合, 全部 $R>1$]\label{cor:inf}
+设 $I(R):=\inf\{D(\rho):1\le\rho\le R\ \text{a.e.}\}$. 在 O1-INF 归约
+($I(R)=\min_{0\le a\le b\le1}D^{well}(a,b)$, 已独立审计)、阱族刚性全 $R$
+定理 (任意 sign-consistent good root 满足 $a+b=1$, \texttt{SL\_gap\_n1\_well\_\allowbreak rigidity\_allR\_proof.pdf},
+STRICT) 与 O3b 两块边界排除之下, 定理 \ref{thm:main} 给出: 对全部 $R>1$,
+INF 下确界 $I(R)$ 在对称阱 $[R,1,R]$ 达到,
+\begin{equation}
+	I(R)=D\bigl(\rho_{v^*(R)}\bigr)<\frac{3\pi^2}{R},
+\end{equation}
+其中 $v^*(R)=v(c^*(\tilde q))$ 为对称线上唯一临界点. 剩余未闭合项仅为:
+(c) Theorem A 的独立复核 (状态 CANDIDATE\_\allowbreak COMPLETE\_\allowbreak PROOF) 与 (d) good-root
+全局论证的边界残差; 二者与本文无关 (见 \S\ref{sec:cor} 的诚实登记).
+\end{corollary}
+
+\subsection{证明结构: 归约到张力比不等式 (Claim A)}
+
+\begin{lemma}[等价性]\label{lem:equiv}
+设 $\gamma\in(0,\pi/2)$, $y=\pi-\gamma$, $s_2=\sin\gamma$,
+$A:=\alpha_1$, $s_1=\sin A$, $c=\arctan(\tilde q\tan\gamma)/y$, 且
+$\Delta:=y^2s_2^2-A^2s_1^2>0$. 则
+\begin{equation}
+	\widetilde F_e(c)<0
+	\iff
+	\rho(\tilde q,\gamma):=
+	\frac{c(1-\tilde q^2)s_1^2s_2^2(y^2-A^2)}{(\tilde q+c)\Delta}<1.
+	\label{eq:rho}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+由 $M_2=M_f(\pi-\gamma;c)=y^2s_2^2/(\tilde q+c\Phi(\gamma))$ 与
+$M_1=A^2s_1^2/(\tilde q+c\Phi(A))$,
+\begin{equation*}
+	\widetilde F_e<0
+	\iff A^2s_1^2\bigl(\tilde q+c\Phi(\gamma)\bigr)<y^2s_2^2\bigl(\tilde q+c\Phi(A)\bigr),
+\end{equation*}
+其中 $\Phi(x)=1-(1-\tilde q^2)\sin^2x$. 代入并消去公因子
+$c(1-\tilde q^2)s_1^2s_2^2(y^2-A^2)$:
+\begin{equation*}
+	\widetilde F_e<0
+	\iff (\tilde q+c)(A^2s_1^2-y^2s_2^2)+c(1-\tilde q^2)s_1^2s_2^2(y^2-A^2)<0
+	\iff \rho<1.
+	\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{lemma}[Claim A 推出 KEY LEMMA]\label{lem:claimAtoKL}
+设对一切 $\tilde q\in(0,1)$, $\gamma\in[\gamma_0^*,\gamma_0(\tilde q)]$ 有
+$\rho(\tilde q,\gamma)<1$. 则定理 \ref{thm:main} 成立.
+\end{lemma}
+
+\begin{proof}
+先引三件对一切 $\tilde q\in(0,1)$ 成立的事实:
+\begin{enumerate}
+	\item[(i)] \emph{端点:} $\widetilde F_e(0^+)=\pi^2/(4\tilde q)>0$ (因
+		$\alpha_1\to\pi/2$, $\alpha_2\to\pi$, $M_1\to\pi^2/(4\tilde q)$, $M_2\to0$),
+		且 $\widetilde F_e(1/2)<0$ ([S, 引理 2.1] ``易区 $c\ge1/2$'', 证明与
+		$\tilde q$ 无关, \STRICT);
+	\item[(ii)] \emph{P1 (全 $R$):} 对 $c\in(0,1/2)$,
+		\begin{equation}
+			G_1\le-\frac{3}{\tilde q^{-1}+1/2}=-\frac{6\tilde q}{2+\tilde q}<0,
+			\label{eq:G1allR}
+		\end{equation}
+		其中 $G_k:=G(\alpha_k;c)$, $G(x;c):=-\Phi(x)(3+2x\cot x)/(\tilde q+c\Phi(x))
+		+2cx\Phi(x)(\tilde q^2-1)\sin x\cos x/(\tilde q+c\Phi(x))^2$
+		(推导同 [S, \S4.2], 只用 $\Phi(\alpha_1)\ge\tilde q^2$ 与 $c<1/2$);
+	\item[(iii)] \emph{$W_0$ 引理 (全 $R$):} $W_0(\gamma):=3-2(\pi-\gamma)\cot\gamma$
+		在 $(0,\pi/2)$ 严格递增 ($W_0'=2\cot\gamma+2(\pi-\gamma)\csc^2\gamma>0$),
+		故在 $(0,\pi/2)$ 有唯一零点 $\gamma_0^*$; 由
+		$W_0(\gamma)=0\iff\tan\gamma=2(\pi-\gamma)/3$ 记 $y_0:=\pi-\gamma_0^*$,
+		有 $\tan\gamma_0^*=2y_0/3$.
+\end{enumerate}
+由 $\gamma(c)=\pi-\alpha_2(c)$ 严格递增 ($\alpha_2'<0$), $\gamma(c_0(\tilde q))
+=\gamma_0^*$, $\gamma(1/2)=\gamma_0(\tilde q)$: $c\in[c_0(\tilde q),1/2]
+\iff\gamma\in[\gamma_0^*,\gamma_0(\tilde q)]$. 引理 \ref{lem:equiv} 与假设给出
+Claim A: $\widetilde F_e(c)<0$ 于 $[c_0(\tilde q),1/2]$.
+
+其次, 在 $(0,c_0(\tilde q))$ 上 $\gamma<\gamma_0^*$, 故 $W_0(\gamma)<0$. 由
+[S, (4.13)] ($G_2=-\Phi(\gamma)W_0(\gamma)/(\tilde q+c\Phi(\gamma))+P$,
+$P\ge0$ 对一切 $\tilde q$ 成立, 因 $\gamma\in(0,\pi/2)$):
+$G_2>0>G_1$. 在集合 $Z:=\{c\in(0,1/2):\widetilde F_e(c)\ge0\}\subseteq(0,c_0(\tilde q))$
+上, 分解
+\begin{equation}
+	\widetilde F_e'=(M_1-M_2)G_1+M_2(G_1-G_2)
+	\label{eq:Fep}
+\end{equation}
+给出 $\widetilde F_e'<0$ ($M_1\ge M_2$ 且 $G_1<0$; $M_2>0$ 且 $G_1-G_2<0$).
+故 $Z$ 上严格递减, 特别地 $\widetilde F_e$ 的每个零点都是横截的 (由正到负).
+端点 (i) 保证零点存在; 若有两个零点 $c_1<c_2$, 则第二个零点 $c_2$ 必由负到正
+穿过, 与横截性矛盾. 故唯一零点 $c^*$, 且 $c^*\in(0,c_0(\tilde q))\subset(0,1/2)$,
+$\widetilde F_e>0$ 于 $(0,c^*)$, $<0$ 于 $(c^*,1/2)$. \qed
+\end{proof}
+
+\begin{remark}[Claim A 的强度]\label{rem:stronger}
+以下将证明更强的结论: 对一切 $\tilde q\in(0,1)$ 与一切
+$\gamma\in[\gamma_0^*,\pi/2)$ 有 $\rho(\tilde q,\gamma)<1$ (超出
+$[\gamma_0^*,\gamma_0(\tilde q)]$ 的区域也可用, 无妨). 证明路径:
+$\rho\le\rho_0(\gamma):=\lim_{\tilde q\to0^+}\rho(\tilde q,\gamma)<1$.
+\end{remark}
+
+\section{预备: 初等事实}\label{sec:elem}
+
+\begin{lemma}[$\gamma_0^*$ 的定位]\label{lem:gstar}
+$\gamma_0^*\in(0.961,\,0.97)$, 即 $y_0=\pi-\gamma_0^*\in(2.1708,\,2.1819)$.
+\end{lemma}
+
+\begin{proof}
+$\gamma_0^*$ 满足 $\tan\gamma_0^*=2y_0/3=2(\pi-\gamma_0^*)/3$. 定义
+$\varphi(\gamma):=\tan\gamma-\frac23(\pi-\gamma)$;
+$\varphi'(\gamma)=\sec^2\gamma+\frac23>0$, 故 $\varphi$ 严格递增,
+$\gamma_0^*\in(a,b)$ 当且仅当 $\varphi(a)<0<\varphi(b)$. 取
+$a=0.961$, $b=0.97$: 需要
+\begin{equation*}
+	\tan0.961<\frac{2(\pi-0.961)}{3},\qquad
+	\tan0.97>\frac{2(\pi-0.97)}{3}.
+\end{equation*}
+用 $\pi\in(223/71,\,22/7)$ 与 $\tan x$ 的交替级数上下界 (见附录
+\ref{app:cert}, 证书 C1):
+\begin{equation*}
+	\tan0.961<1.4472<\frac{2(223/71-0.961)}{3},
+	\qquad
+	\tan0.97>1.4546>\frac{2(22/7-0.97)}{3}.
+	\qedhere
+\end{equation*}
+(第一、三个不等式来自证书 C1: $\tan0.961\le R_1<1.4315$ 与
+$\tan0.97\ge R_2>1.4591$; 第二、四个分别用 $\pi>223/71$ 与 $\pi<22/7$.)
+\end{proof}
+
+\begin{lemma}[$(y\sin\gamma)^2\ge\pi^2/4$]\label{lem:ys2}
+对 $\gamma\in[\gamma_0^*,\pi/2)$, 记 $y:=\pi-\gamma$. 则
+\begin{equation}
+	y^2\sin^2\gamma\ge\frac{\pi^2}{4},
+	\label{eq:ys2}
+\end{equation}
+等号当且仅当 $\gamma=\pi/2$.
+\end{lemma}
+
+\begin{proof}
+令 $f(\gamma):=(\pi-\gamma)\sin\gamma$. $f'(\gamma)=(\pi-\gamma)\cos\gamma-\sin\gamma
+\ge0\iff\tan\gamma\le\pi-\gamma$. 函数 $g(\gamma):=\tan\gamma-(\pi-\gamma)$ 严格递增
+($g'=\sec^2\gamma+1>0$). 由 $\gamma_0^*<0.97<\pi/3$ 与
+$\tan(\pi/3)=\sqrt3<2\pi/3=\pi-\pi/3$: $g(\pi/3)<0$, 且 $g(\pi/2^-)=+\infty$,
+故存在唯一 $\gamma_1\in(\pi/3,\pi/2)$ 使 $g(\gamma_1)=0$, $f'<0$ 于
+$(\gamma_1,\pi/2)$, $f'>0$ 于 $(\gamma_0^*,\gamma_1)$ (因
+$\tan\gamma\le\tan(\pi/3)<\pi-\gamma$ 于 $[\gamma_0^*,\pi/3]$).
+故 $f\ge\min\{f(\gamma_0^*),\,f(\pi/2)\}$ 于 $[\gamma_0^*,\pi/2]$.
+$f(\pi/2)=\pi/2$. 而
+\begin{equation}
+	f(\gamma_0^*)=y_0\sin\gamma_0^*=\frac{2y_0^2}{\sqrt{9+4y_0^2}},
+\end{equation}
+用 $\gamma_0^*\in(0.961,0.97)$ (引理 \ref{lem:gstar}) 与
+$\pi\in(223/71,22/7)$ 得证书 (附录 \ref{app:cert}, 证书 C2):
+\begin{equation*}
+	\frac{2y_0^2}{\sqrt{9+4y_0^2}}\ge\frac{2(\pi-0.97)^2}
+	{\sqrt{9+4(\pi-0.961)^2}}>1.779>\frac\pi2.
+	\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{remark}
+引理 \ref{lem:ys2} 的数值区间: 直接扫描显示 $y^2\sin^2\gamma-\pi^2/4$ 在
+$[\gamma_0^*,\pi/2)$ 非负且在 $\gamma=\pi/2$ 处取 0 (该处 $y^2s_2^2=p$),
+与引理一致; 该数值仅为 \EVID{} 交叉检验, 不是证明依据.
+\end{remark}
+
+\section{\texorpdfstring{张力比链: $\rho\le\rho_0$}{张力比链: rho <= rho0}}\label{sec:chain}
+
+固定 $\tilde q\in(0,1)$, $\gamma\in[\gamma_0^*,\pi/2)$, 记 $t:=\tan\gamma$,
+$y:=\pi-\gamma$, $s_2:=\sin\gamma$, $p:=\pi^2/4$, $A:=\alpha_1$,
+$s_1:=\sin A$, $c=\arctan(\tilde q t)/y$, $T:=y^2-A^2$,
+$\Delta:=y^2s_2^2-A^2s_1^2$.
+
+\begin{lemma}[P1]\label{lem:P1}
+\begin{equation}
+	\frac{c}{\tilde q+c}\le\frac{t}{y+t},
+	\label{eq:P1}
+\end{equation}
+且 $t/(y+t)\le1$.
+\end{lemma}
+
+\begin{proof}
+$c=u/y$ 其中 $u:=cy=\arctan(\tilde q t)\in(0,\pi/2)$
+($c<1/2$, $y<\pi$ 给出 $u<\pi/2$). 则
+\begin{equation*}
+	\frac{c}{\tilde q+c}=\frac{u}{y\tilde q+u}\le\frac{t}{y+t}
+	\iff uy\le y\tilde q t\iff u\le\tan u,
+\end{equation*}
+因 $\tan(\tilde q t)=q\tilde q t$ 且 $\tan u=\tilde q t$. 末不等式 $u<\tan u$
+于 $(0,\pi/2)$ 恒真. \qed
+\end{proof}
+
+\begin{lemma}[P2]\label{lem:P2}
+\begin{equation}
+	\frac{s_1^2s_2^2T}{\Delta}\,(1-\tilde q^2)\le
+	\frac{s_2^2(y^2-p)}{y^2s_2^2-p}=:Q_0(\gamma),
+	\label{eq:P2}
+\end{equation}
+其中 $Q_0(\gamma)\ge0$.
+\end{lemma}
+
+\begin{proof}
+由引理 \ref{lem:ys2}: $y^2s_2^2>p$ (严格, 因 $\gamma<\pi/2$), 且
+$\Delta=y^2s_2^2-A^2s_1^2>y^2s_2^2-A^2>y^2s_2^2-p>0$. 交叉相乘, \eqref{eq:P2}
+等价于
+\begin{equation}
+	E:=(y^2-p)\Delta-s_1^2(1-\tilde q^2)T(y^2s_2^2-p)\ge0.
+	\label{eq:E}
+\end{equation}
+展开第一项并把 $s_1^2$ 提出:
+\begin{equation}
+	E=C_0-s_1^2W,
+	\qquad
+	C_0:=(y^2-p)y^2s_2^2,\quad
+	W:=(y^2-p)A^2+(1-\tilde q^2)T(y^2s_2^2-p).
+\end{equation}
+因 $0<1-\tilde q^2\le1$, $W\le W_0:=(y^2-p)A^2+T(y^2s_2^2-p)$, 故
+$E\ge E_0:=C_0-s_1^2W_0$. 现在展开 $E_0$: 先
+\begin{equation*}
+	W_0=y^2(y^2s_2^2-p+A^2\cos^2\gamma),
+\end{equation*}
+于是 (用 $s_1^2=1-\cos^2A$)
+\begin{align}
+	E_0/y^2&=(y^2-p)s_2^2-s_1^2(y^2s_2^2-p+A^2\cos^2\gamma)
+	\notag\\
+	&=\cos^2\gamma(p-A^2)+\cos^2A\,(y^2s_2^2-p)
+	+\cos^2A\,A^2\cos^2\gamma.
+	\label{eq:E0}
+\end{align}
+三项非负: $\cos^2\gamma\ge0$, $p-A^2>0$ ($A<\pi/2$), $\cos^2A\ge0$,
+$y^2s_2^2-p\ge0$ (引理 \ref{lem:ys2}), $\cos^2A\,A^2\cos^2\gamma\ge0$.
+故 $E_0\ge0$, 从而 $E\ge0$, 即 \eqref{eq:P2} 成立. \qed
+\end{proof}
+
+\begin{theorem}[张力比链]\label{thm:chain}
+对一切 $\tilde q\in(0,1)$, $\gamma\in[\gamma_0^*,\pi/2)$:
+\begin{equation}
+	\rho(\tilde q,\gamma)\le\rho_0(\gamma):=
+	\frac{t}{y+t}\cdot\frac{s_2^2(y^2-p)}{y^2s_2^2-p}.
+	\label{eq:rho0}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+由 \eqref{eq:rho}, 引理 \ref{lem:P1} 与 \ref{lem:P2}:
+\begin{equation*}
+	\rho=\frac{c}{\tilde q+c}\cdot\frac{s_1^2s_2^2T}{\Delta}(1-\tilde q^2)
+	\le\frac{t}{y+t}\cdot Q_0(\gamma)=\rho_0(\gamma).
+	\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{remark}
+$\rho_0(\gamma)$ 正是 $\tilde q\to0^+$ 时 $\rho(\tilde q,\gamma)$ 的极限
+($c\sim\tilde q t/y$, $A\to\pi/2$, $s_1\to1$), 故 \eqref{eq:rho0} 可看作
+``在 $\tilde q=0$ 处取最大'' 的严格化. \EVID{}: 37500 个网格点上
+$\rho\le\rho_0$ 零违例 (附录 \ref{app:evid}).
+\end{remark}
+
+\section{\texorpdfstring{一维不等式: $\rho_0(\gamma)<1$}{一维不等式: rho0(gamma)<1}}\label{sec:rho0}
+
+\begin{theorem}\label{thm:rho0}
+对 $\gamma\in[\gamma_0^*,\pi/2)$: $\rho_0(\gamma)<1$. 等价地,
+\begin{equation}
+	F(\gamma):=y^3\sin^2\gamma-p\,(y+\sin\gamma\cos\gamma)>0,
+	\qquad y:=\pi-\gamma,\ p:=\pi^2/4.
+	\label{eq:F}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[等价性]
+$\rho_0<1$ 交叉相乘 (分母 $y+t>0$, $y^2s_2^2-p>0$ 由引理 \ref{lem:ys2}):
+\begin{equation*}
+	ts_2^2(y^2-p)<(y+t)(y^2s_2^2-p)
+	\iff y^3s_2^2-p(y+t-ts_2^2)>0
+	\iff y^3s_2^2-p(y+\sin\gamma\cos\gamma)>0,
+\end{equation*}
+因 $t(1-s_2^2)=t\cos^2\gamma=\sin\gamma\cos\gamma$. \qed
+
+\emph{$F>0$ 的证明 ($G$-论证).} 换元 $w:=\pi/2-\gamma\in[0,w_0]$, $w_0:=y_0-\pi/2$,
+$y=\pi/2+w$, $\sin\gamma=\cos w$, $\cos\gamma=\sin w$, $\sin\gamma\cos\gamma
+=\cos w\sin w$. 定义
+\begin{equation}
+	G(w):=F(\pi/2-w)=\Bigl(\frac\pi2+w\Bigr)^3\cos^2w
+	-p\Bigl(\frac\pi2+w\Bigr)-\frac p2\sin2w.
+	\label{eq:G}
+\end{equation}
+$G(0)=0$. 直接计算:
+\begin{align}
+	G'(w)&=3y^2\cos^2w-2y^3\cos w\sin w-p(1+\cos2w),
+	\label{eq:Gp}\\
+	G''(w)&=6y\cos^2w-12y^2\cos w\sin w-2y^3\cos2w+2p\sin2w,
+	\label{eq:Gpp}\\
+	G'''(w)&=6\cos^2w+(\pi^2-18y^2)\cos2w+4y(2y^2-9)\cos w\sin w,
+	\label{eq:Gppp}
+\end{align}
+其中 $y=\pi/2+w$. 我们有
+\begin{enumerate}
+	\item[\textbf{(a)}] $G'(0)=3p-p-p=\pi^2/4>0$;
+	\item[\textbf{(b)}] $G'(w_0)=-F'(\gamma_0^*)=-s_2(\gamma_0^*)^2\cdot H(\gamma_0^*)$,
+		其中 $F'=\sin^2\gamma\cdot H$, $H(\gamma):=2y^3\cot\gamma+2p-3y^2$;
+		在 $\gamma_0^*$ 处 $\cot\gamma_0^*=1/\tan\gamma_0^*=3/(2y_0)$, 故
+		$H(\gamma_0^*)=3y_0^2+2p-3y_0^2=2p=\pi^2/2$, 从而
+		\begin{equation}
+			G'(w_0)=-\sin^2\gamma_0^*\cdot\frac{\pi^2}{2}<0;
+			\label{eq:Gpw0}
+		\end{equation}
+	\item[\textbf{(c)}] $G''(0)=3\pi-\pi^3/4=\pi(3-\pi^2/4)>0$ (因
+		$\pi^2<12$, 经 $\pi<22/7$); 由引理 \ref{lem:gstar}
+		($w_0\in(0.5994,0.6115)$, $y_0\in(2.1708,2.1819)$) 与证书 C4:
+		\begin{equation}
+			G''(w_0)<-13<0;
+			\label{eq:Gppw0}
+		\end{equation}
+	\item[\textbf{(d)}] 在 $[0,w_0]$ 上 $G'''<0$: 由 \eqref{eq:Gppp},
+		$2w\le2w_0<1.224<\pi/2$ 给出 $\cos2w\ge\cos2w_0>0$,
+		$y\ge\pi/2$ 给出 $\pi^2-18y^2\le-3.5\pi^2$; 又
+		$4y(2y^2-9)\cos w\sin w\le2y_0(2y_0^2-9)$: 若 $2y^2-9\le0$ 则左端
+		$\le0\le2y_0(2y_0^2-9)$ ($y_0>2.17$ 给出 $2y_0^2-9>0$); 若
+		$2y^2-9>0$ 则 $\cos w\sin w\le1/2$ 且 $4y(2y^2-9)$ 在
+		$y\ge\pi/2$ 递增, 左端 $\le2y(2y^2-9)\le2y_0(2y_0^2-9)$. 故
+		\begin{equation}
+			G'''\le6-3.5\pi^2\cos2w+2y_0(2y_0^2-9)
+			\le6-3.5\pi^2\cos2w_0+2y_0(2y_0^2-9)
+			<-0.43<0
+			\label{eq:Gpppb}
+		\end{equation}
+		(证书 C3).
+\end{enumerate}
+由 (d): $G''$ 在 $[0,w_0]$ 严格递减; 由 (c): $G''$ 恰有一个零点, 故 $G'$
+先增后减 (单峰). 由 (a)(b): $G'$ 在 $(0,w_0)$ 恰有一个零点, 记为 $w^*$;
+$G$ 在 $[0,w^*]$ 严格递增、在 $[w^*,w_0]$ 严格递减. 故
+\begin{equation}
+	\min_{[0,w_0]}G=\min\{G(0),G(w_0)\}=\min\{0,F(\gamma_0^*)\}.
+\end{equation}
+$F(\gamma_0^*)=G(w_0)>0$: 由 $\tan\gamma_0^*=2y_0/3$,
+\begin{equation}
+	F(\gamma_0^*)=
+	\frac{4y_0^5-\frac{\pi^2}{4}y_0(15+4y_0^2)}{9+4y_0^2}
+	=\frac{y_0(16y_0^4-4\pi^2y_0^2-15\pi^2)}{4(9+4y_0^2)},
+	\label{eq:F0}
+\end{equation}
+证书 C5 给出 $16y_0^4-4\pi^2y_0^2-15\pi^2>19>0$. 故 $\min G=0$, 且因
+$G'(0)>0$, $G>0$ 于 $(0,w_0]$, 即 $F>0$ 于 $[\gamma_0^*,\pi/2)$. \qed
+\end{proof}
+
+\begin{remark}
+$F(\pi/2)=0$ 且 $F'(\pi/2)=-\pi^2/4<0$, 故 $F$ 在 $\pi/2$ 处从上方以线性速率
+趋于 0; 这正对应角点 $\tilde q\to0^+$, $\gamma\to\pi/2^-$ 处 $1-\rho\asymp\tilde q$
+(数值: $1-\rho\approx K(t)\tilde q$, $K(t)\ge1.97$; \EVID{}, 见附录
+\ref{app:evid}).
+\end{remark}
+
+\section{\texorpdfstring{KEY LEMMA 全 $R$ 的证明}{KEY LEMMA 全 R 的证明}}\label{sec:proof}
+
+\begin{theorem}[Claim A]\label{thm:claimA}
+对 $\tilde q\in(0,1)$ 与 $\gamma\in[\gamma_0^*,\gamma_0(\tilde q)]$ 有
+$\rho(\tilde q,\gamma)<1$.
+\end{theorem}
+
+\begin{proof}
+由定理 \ref{thm:chain} ($\rho\le\rho_0$, 需要
+$\gamma\in[\gamma_0^*,\pi/2)$; $\gamma_0(\tilde q)\le\pi/2$ 且对 $\tilde q>0$ 严格小于 $\pi/2$) 与定理
+\ref{thm:rho0} ($\rho_0<1$ 于 $[\gamma_0^*,\pi/2)$). \qed
+\end{proof}
+
+
+
+\begin{proof}[定理 \ref{thm:main}]
+引理 \ref{lem:claimAtoKL} 把定理归约到 Claim A: 对一切 $\tilde q\in(0,1)$,
+$\gamma\in[\gamma_0^*,\gamma_0(\tilde q)]$ 有 $\rho<1$. 由定理
+\ref{thm:chain} ($\rho\le\rho_0$, 需 $\gamma\in[\gamma_0^*,\pi/2)$, 而
+$\gamma_0(\tilde q)\le\pi/2$ 且对 $\tilde q>0$ 严格小于 $\pi/2$) 与定理
+\ref{thm:rho0} ($\rho_0<1$), Claim A 成立. 引理 \ref{lem:claimAtoKL} 的
+(i)(ii)(iii) 与 (4.1) 分解给出唯一零点 $c^*$ 与先正后负. \qed
+\end{proof}
+
+\section{\texorpdfstring{推论: INF 侧全 $R$ 闭合}{推论: INF 侧全 R 闭合}}\label{sec:cor}
+
+\begin{proof}[推论 \ref{cor:inf} 的说明]
+沿用 [S, \S6] 的论证框架, 唯一区别是把其中 KEY LEMMA 的适用范围
+$\tilde q\in[\sqrt{2/3},1)$ 换成 $(0,1)$ (本定理), 把阱族刚性定理的适用范围
+换成全 $R$ 版本 (\texttt{SL\_gap\_n1\_well\_\allowbreak rigidity\_allR\_proof.pdf},
+STRICT): INF 内部临界点全在对称线上; 对称线上 $f$ 唯一零点、$D$ 单峰
+(降维恒等式 \eqref{eq:dimred} 与定理 \ref{thm:main}); O3b 两块边界排除;
+故 $I(R)$ 在对称阱 $[R,1,R]$ 达到且 $I(R)=D(v^*)<3\pi^2/R$. \qed
+\end{proof}
+
+\begin{remark}[诚实登记: 未闭合项]
+\begin{enumerate}
+	\item[(c)] INF-limit Theorem A 的独立复核仍为 CANDIDATE\_\allowbreak COMPLETE\_\allowbreak PROOF
+		(技能政策要求独立验证者); 与本文结论正交.
+	\item[(d)] good-root 全局论证的边界残差 (极值元存在性/边界情形) 未在本文处理.
+	\item 本文全部结论为 \STRICT{}; 附录 \ref{app:evid} 的数值仅作交叉检验.
+\end{enumerate}
+\end{remark}
+
+\section{附录 A: 精确有理证书}\label{app:cert}
+
+所有证书使用 $\pi\in(223/71,\,22/7)$ (经典界) 与
+$\gamma_0^*\in(0.961,\,0.97)$ (证书 C1). 全部不等式为精确有理不等式.
+
+\textbf{C1 ($\varphi(0.961)<0<\varphi(0.97)$).}
+$\varphi(\gamma)=\tan\gamma-\frac23(\pi-\gamma)$ 严格递增.
+用 $\sin$ 的交替级数上下界 ($0<x<1$ 时项单调递减)
+\begin{equation*}
+	\sin x\le x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\frac{x^9}{9!}
+	-\frac{x^{11}}{11!}+\frac{x^{13}}{13!},
+	\qquad
+	\cos x\ge1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!},
+\end{equation*}
+以及 $\tan x=\sin x/\cos x$, 得 ($x=961/1000$)
+\begin{equation*}
+	\tan x\le\frac{\sin_{\text{up}}(x)}{\cos_{\text{lo}}(x)}=:R_1
+	<1.4315<1.4472<\frac{2(223/71-0.961)}3,
+\end{equation*}
+(末步用 $\pi>223/71$) 故 $\varphi(0.961)<0$. 又 ($x=97/100$)
+\begin{equation*}
+	\tan x\ge\frac{\sin_{\text{lo}}(x)}{\cos_{\text{up}}(x)}=:R_2
+	>1.4591>1.4546>\frac{2(22/7-0.97)}3,
+\end{equation*}
+(末步用 $\pi<22/7$) 故 $\varphi(0.97)>0$. 于是 $\gamma_0^*\in(0.961,0.97)$,
+$y_0\in(\pi-0.97,\pi-0.961)\subset(2.1708,2.1819)$. 精确比值
+\begin{equation*}
+	R_1=\frac{5104691704723563842653351044859938032346287993281}
+	{3566219119511749539487170630605640000000000000000}
+	\approx1.4314015863,
+\end{equation*}
+\begin{equation*}
+	R_2=\frac{329267980378932303644934573247}
+	{225649563795645795591390000000}\approx1.4592006066.
+\end{equation*}
+
+\textbf{C2 (引理 \ref{lem:ys2} 的端点).}
+\begin{equation*}
+	f(\gamma_0^*)=\frac{2y_0^2}{\sqrt{9+4y_0^2}}
+	\ge\frac{2(223/71-0.97)^2}{\sqrt{9+4(22/7-0.961)^2}}
+	>\frac{1\,623}{912}>\frac\pi2.
+\end{equation*}
+
+\textbf{C3 ($G'''<-56/129$).} 由 \eqref{eq:Gpppb}: 用精化有理界
+$y_0^{\max}:=\frac{15273}{7000}$ ($=22/7-0.961$) 与
+$w_0^{\max}:=y_0^{\max}-\frac{223}{142}$ ($\pi/2>223/142$),
+再由 $\cos2w_0\ge1-(2w_0)^2/2\ge1-2(w_0^{\max})^2$ 与
+$\pi^2>(223/71)^2$:
+\begin{equation*}
+	G'''\le6-\frac{7}{2}\Bigl(\frac{223}{71}\Bigr)^2
+	\Bigl(1-2(w_0^{\max})^2\Bigr)+2y_0^{\max}
+	\bigl(2(y_0^{\max})^2-9\bigr)
+	<-\frac{56}{129}<0.
+\end{equation*}
+(若用粗略界 $w_0<0.6115$, $y_0<2.1819$, 左端只能压到约 $-0.4303$, 不足以推出
+$<-56/129$; 精化有理界是关键.)
+
+\textbf{C4 ($G''(w_0)<-13$).} 用 $\sin w_0\cos w_0=\frac12\sin2w_0
+\ge\frac12\sin(2w_0^{\min})\ge0.4650$ ($w_0^{\min}=y_0^{\min}-\pi/2
+>0.5994$, $\sin$ 于 $(0,\pi/2)$ 递增, 交替级数下界) 与
+$\cos2w_0\ge1-(2w_0)^2/2\ge0.252$:
+\begin{equation*}
+	G''(w_0)\le6y_0-12y_0^2\cdot0.4650-2y_0^3\cdot0.252+2p
+	<-13.
+\end{equation*}
+
+\textbf{C5 ($F(\gamma_0^*)>0$).} $F(\gamma_0^*)>0\iff
+16y_0^4-4\pi^2y_0^2-15\pi^2>0$; 左端关于 $y_0>1$ 递增、关于 $\pi$ 递减,
+故
+\begin{equation*}
+	16y_0^4-4\pi^2y_0^2-15\pi^2
+	\ge16(223/71-0.97)^4-4(22/7)^2(22/7-0.961)^2
+	-15(22/7)^2
+	>19.
+\end{equation*}
+(该下界精确值约 $19.081$; 取 19 即可.)
+
+\begin{remark}
+证书中出现的所有有理数均由精确分数计算 (Python \texttt{fractions.Fraction},
+脚本 \texttt{scripts/\_symline\_allR\_certificates.py}, 全部断言 PASS);
+此处列出的分数即脚本输出. 界余量 (绝对值): C1 中 $1.4472$ 距
+$2(223/71-0.961)/3$ 约 $3.0\times10^{-5}$, $1.4546$ 距
+$2(22/7-0.97)/3$ 约 $2.9\times10^{-5}$ (分数链余量约 $9.8\times10^{-5}$
+与 $1.0\times10^{-4}$); C2 约 $8.7\times10^{-4}$; C3 约
+$3.4\times10^{-3}$; C4 约 $0.42$; C5 约 $0.081$ (下界取 19).
+\end{remark}
+
+\section{附录 B: 数值交叉检验 (EVIDENCE, 不构成证明)}\label{app:evid}
+
+脚本: \texttt{scripts/\_symline\_allR\_check.py} (本会话, scipy 双精度网格
++ mpmath 50 位复核), \texttt{scripts/\_explore\_a1\_allR*.py} (探索过程),
+全部为 \EVID{}:
+
+\begin{enumerate}
+	\item 张力比链: 网格 $\tilde q\in[10^{-13},1-10^{-13})$,
+		$\gamma\in[\gamma_0^*,\pi/2-10^{-8})$ 共 37500 点,
+		$\rho\le\rho_0$ 零违例 (双精度); 最小余量点在角点附近
+		$(\tilde q=1.5\times10^{-13},\ \gamma=\pi/2-10^{-8})$,
+		双精度余量为 $-1.1\times10^{-16}$ (噪声), mpmath 50 位复核该点
+		余量 $+2.9\times10^{-18}>0$; 沿 $\gamma=\pi/2-\varepsilon$,
+		$\tilde q=\varepsilon$ 的角点方向余量 $\approx1.215\,\varepsilon$
+		(mpmath 复核 4 点);
+	\item $\rho_0<1$: 200000 点扫描, $\min(1-\rho_0)=7.9\times10^{-13}$
+		在 $\gamma=\pi/2-10^{-12}$, 即 $\to0$ 仅当 $\gamma\to\pi/2$
+		(mpmath 复核 $7.86\times10^{-13}$);
+	\item 等价性 $\widetilde F_e<0\iff\rho<1$: 19901 点 (Claim A 域)
+		零违例;
+	\item 端点: $\widetilde F_e(10^{-12})\approx\pi^2/(4\tilde q)$
+		(7 个 $\tilde q$ 值到 6 位), $\widetilde F_e(1/2^-)<0$,
+		$\widetilde F_e(c_0(\tilde q))<0$ 对
+		$\tilde q\in\{0.001,0.01,0.1,0.3,0.5,0.7,0.9\}$ (mpmath 50 位);
+	\item 角点渐近: $1-\rho\approx K(t)\tilde q$
+		($\gamma=\pi/2-t\tilde q$, $\tilde q=10^{-10}$), 实测
+		$K(0.25)=4.13$, $K(0.5)=2.60$, $K(1)=2.00$, $K(2)=2.21$,
+		$K(5)=4.19$, $K(10)=7.98$, $K(20)=15.77$, 故 $K(t)\ge1.97$,
+		$K(1)=2$;
+	\item 引理 \ref{lem:ys2}: $y^2s_2^2-\pi^2/4\ge0$ 于 $[\gamma_0^*,\pi/2)$,
+		50000 点扫描最小 $3.1\times10^{-12}$ (在 $\gamma\to\pi/2$),
+		与 ``等号仅 $\gamma=\pi/2$'' 一致.
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{itemize}
+	\item Sturm--Liouville 相位分支与隐函数定理 ($\alpha_k'(c)$ 的符号);
+	\item Feynman--Hellmann 型公式与精确降维恒等式 (变分导数 $\to$ 标量函数);
+	\item 交替级数 (Leibniz) 界与经典 $\pi$ 界 $223/71<\pi<22/7$;
+	\item 单变量函数形态分析: 严格递减二阶导/单峰性与唯一零点;
+	\item 不等式代数: 三项平方分解型非负判别式 ($E_0$ 分解);
+	\item 极限比较: $\tilde q\to0^+$ 的退化极限 $\rho_0$ (``中心质量钉扎''
+		谱极限的 1D 投影).
+\end{itemize}
+
+\begin{thebibliography}{99}
+	\item Littlejohn, L., Quintero, N., Roba, R.: \emph{Krein-Sobolev Orthogonal
+		Polynomials}. OPSFA-16, Springer 2025, pp.~107--123.
+		\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+	\item Keller, J.B.: \emph{The minimum ratio of two eigenvalues}.
+		SIAM J. Appl. Math. 31(3) (1976) 485--491.
+		\url{https://doi.org/10.1137/0131042}
+	\item Mahar, T.J., Willner, B.E.: \emph{An extremal eigenvalue problem}.
+		Comm. Pure Appl. Math. 29 (1976) 517--529.
+		\url{https://doi.org/10.1002/cpa.3160290505}
+	\item 本会话前置文档: \texttt{SL\_gap\_n1\_symline\_proof.tex} (小 $R$
+		KEY LEMMA 与降维恒等式), \texttt{SL\_gap\_n1\_well\_rigidity\_allR\_proof.tex}
+		(阱族刚性全 $R$), \texttt{SL\_gap\_n1\_proof.tex} (O1/O2/O3b).
+\end{thebibliography}
+
+\end{document}

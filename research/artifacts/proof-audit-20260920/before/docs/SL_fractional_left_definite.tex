@@ -1,0 +1,315 @@
+﻿% 编译方式: xelatex SL_fractional_left_definite.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{一切实数阶左定空间 $H^s[-1,1]$ 中稀疏多项式基的解析完备性: 等距传输 + 跳变矩准则}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文完全解决概述文档开放问题第 10 条 (分数左定阶窗口 $3/2 \le s < 2$),
+并证明严格更强的结果. 设 $K_c$ 为移位 Krein Laplacian ($c > 0$,
+边界 $f'(\pm1) = (f(1)-f(-1))/2$), $\{H^s\}_{s \in \mathbb R}$ 为其左定空间标度,
+稀疏多项式基
+\[
+	p_0 = 1, \quad p_1 = x, \quad
+	p_{2m} = x^{2m} - \frac{m}{m-1}x^{2m-2}, \quad
+	p_{2m+1} = x^{2m+1} - \frac{m}{m-1}x^{2m-1} \quad (m \ge 2)
+\]
+(缺 2, 3 次). 则
+\begin{equation}
+	\{p_n\} \text{ 在 } H^s \text{ 中解析完备}, \qquad \forall\, s \ge 0.
+\end{equation}
+证明机制 (与整数阶情形不同, 不使用分数幂的多项式性):
+\begin{enumerate}
+	\item \emph{跳变矩准则在任意 $H^t$ 中成立} (定理 \ref{thm:jump}):
+		$\{K_c p_n\} \subset \Pi$ 满足三系数跳变
+		$K_c p_{2m} = c x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}$,
+		$A_m - B_m = 4m + cm/(m-1) \ge c$, 且 $B_m \ge 0$;
+		正交条件给出矩的钉住递推 (初值 $M_0 = M_1 = 0$ 由
+		$K_c p_0 = c$, $K_c p_1 = cx$ 强制), 增长引理给出超阶乘增长,
+		与多项式矩界 $\|x^k\|_t \le C_t k^{\beta_t}$ 矛盾.
+	\item \emph{等距传输} (定理 \ref{thm:transport}): 对一切实数 $s$,
+		$K_c: H^s \to H^{s-2}$ 是等距线性同构, 完备性在标度间传递.
+	\item 对任意 $s \ge 0$: 先证 $\{K_c p_n\}$ 在 $H^{s-2}$ 中完备 (第 1 步,
+		$t = s-2$ 可为负数, 此时 $H^t = L^2$ 等价范数), 再传输.
+\end{enumerate}
+数值验证见脚本 \path{scripts/op10_verify_mechanism.py} 与
+\path{scripts/op10_fractional_window.py}. 对抗性要点: 矩递推存在衰减模
+(Perron 分析 $\lambda_- \to 5/8$), 但初值 $M_0 = 0$ 把它排除, 钉住解是
+支配模 (超阶乘), 故矛盾成立.
+\end{abstract}
+
+\tableofcontents
+
+\section{左定标度与算子事实}
+
+移位 Krein Laplacian \cite{axioms}: $K_c f = -f'' + cf$, 定义域
+\[
+	D(K_c) = \bigl\{f : f, f' \in AC[-1,1],\, f'' \in L^2,\,
+	f'(1) = f'(-1) = \tfrac{f(1)-f(-1)}{2}\bigr\}.
+\]
+$K_c$ 在 $L^2(-1,1)$ 中自伴且有界下界 $cI$; 谱
+\[
+	\sigma(K_c) = \{c\} \cup \{(n\pi)^2 + c : n \ge 1\}
+	\cup \{\mu_n^2 + c : n \ge 1\}, \qquad \tan\mu_n = \mu_n,
+\]
+相应特征函数 $1$, $\cos n\pi x$, $\sin \mu_n x$ (完备正交系).
+
+左定标度 \cite{lw1,fg}: 对实数 $s$,
+\[
+	H^s = D\bigl(K_c^{s/2}\bigr), \qquad
+	(f,g)_s = \bigl(K_c^{s/2}f,\, K_c^{s/2}g\bigr)_{L^2},
+\]
+其中 $s < 0$ 时 $K_c^{s/2}$ 有界, $H^s = L^2$ (等价范数);
+$s \ge 0$ 时为分数 Sobolev 型空间. 多项式在一切 $H^s$ 中稠密
+(左定理论标准结论 \cite{lw1}, 且 $s < 0$ 时由 $L^2$ 稠密性直接得到).
+$0 \notin \sigma(K_c)$ ($c > 0$), 故分数幂由泛函演算良定.
+
+\begin{lemma}[稀疏基在算子定义域内]\label{lem:domain}
+	对一切允许指标 $n \in \{0,1\} \cup \{4,5,\dots\}$,
+	$p_n \in D(K_c)$, 且
+	\[
+		K_c p_0 = c, \qquad K_c p_1 = c x,
+	\]
+	\[
+		K_c p_{2m} = c\,x^{2m} - A_m x^{2m-2} + B_m x^{2m-4},
+		\quad
+		K_c p_{2m+1} = c\,x^{2m+1} - A'_m x^{2m-1} + B'_m x^{2m-3},
+	\]
+	其中
+	\[
+		A_m = 2m(2m-1) + \frac{cm}{m-1}, \quad B_m = 2m(2m-3),
+	\]
+	\[
+		A'_m = 2m(2m+1) + \frac{cm}{m-1}, \quad B'_m = 2m(2m-1),
+	\]
+	且 $A_m - B_m = A'_m - B'_m = 4m + cm/(m-1) \ge 4m + c$,
+	$B_m, B'_m \ge 0$ 对一切 $m \ge 2$.
+\end{lemma}
+
+\begin{proof}
+	直接代入 $K_c = -d^2/dx^2 + c$:
+	$K_c x^k = c x^k - k(k-1)x^{k-2}$, 展开 $p_n$ 的两项即得公式.
+	边界条件: $p_{2m}'(x) = 2mx^{2m-1} - 2m x^{2m-3}$,
+	$p_{2m}'(\pm1) = 0$; $p_{2m}(1) - p_{2m}(-1) = 0$, 成立.
+	$p_{2m+1}'(x) = (2m+1)x^{2m} - \frac{m(2m-1)}{m-1}x^{2m-2}$,
+	$p_{2m+1}'(\pm1) = (2m+1) - \frac{m(2m-1)}{m-1} = -\frac{1}{m-1}$;
+	$p_{2m+1}(1) - p_{2m+1}(-1) = 2\bigl(1 - \frac{m}{m-1}\bigr)
+	= -\frac{2}{m-1}$, 一半为 $-\frac{1}{m-1}$, 成立. \qed
+\end{proof}
+
+\section{跳变矩准则}
+
+\begin{lemma}[增长引理, 钉住解]\label{lem:growth}
+	设 $c_0 > 0$, 序列 $u_j$ ($j \ge 0$) 满足
+	$u_0 = 0$, $u_1 = 1$ 且 $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$
+	($j \ge 2$), 其中 $B_j \ge 0$, $A_j - B_j \ge c_0$.
+	则 $u_j > 0$, $u_j$ 单调不减, 且
+	\[
+		u_j \ge \Bigl(\frac{A_j - B_j}{c_0}\Bigr) \cdots
+		\Bigl(\frac{A_2 - B_2}{c_0}\Bigr)
+		= \prod_{k=2}^j \frac{A_k - B_k}{c_0}.
+	\]
+	特别地对 Krein 系数 ($c_0 = c$, $A_k - B_k \ge 4k + c$):
+	$u_j \ge (4/c)^{j-1} j!$, 超阶乘增长, 故对一切 $\beta$,
+	$u_j = \omega(j^\beta)$.
+\end{lemma}
+
+\begin{proof}
+	单调性归纳: 设 $0 \le u_{j-2} \le u_{j-1}$. 则
+	\[
+		c_0 u_j = (A_j - B_j)u_{j-1} + B_j(u_{j-1} - u_{j-2})
+		\ge (A_j - B_j)u_{j-1} \ge c_0 u_{j-1},
+	\]
+	故 $u_j \ge u_{j-1} \ge 0$. 比值:
+	\[
+		\frac{u_j}{u_{j-1}} \ge \frac{A_j - B_j}{c_0} + B_j\frac{u_{j-1}-u_{j-2}}{c_0u_{j-1}}
+		\ge \frac{A_j - B_j}{c_0},
+	\]
+	连乘即得. \qed
+\end{proof}
+
+\begin{remark}[衰减模的排除]\label{rem:decay}
+	二阶递推 $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$ 有两个线性无关解;
+	对 Krein 系数, Perron 型分析给出特征根
+	$\lambda_+ \sim 4j^2/c_0$ (支配) 与 $\lambda_- \to 5/8$ (衰减).
+	因此``一般初值''的矩序列确有可能被衰减模支配而保持有界.
+	但正交条件强制 $M_0 = (w, K_c p_0)_t / c = 0$, 即递推的``零次初值''
+	为零, 于是矩序列 $v_j = M_{2j}$ 是钉住解 ($v_0 = 0$), 只能沿支配模
+	演化, 增长引理适用. 这是本证明的对抗性关键点.
+\end{remark}
+
+\begin{theorem}[跳变矩准则, 任意 $H^t$]\label{thm:jump}
+	对任意实数 $t$, $\{K_c p_n\}$ 在 $H^t$ 中解析完备:
+	若 $w \in H^t$ 满足 $(w, K_c p_n)_t = 0$ 对一切允许 $n$, 则 $w = 0$.
+\end{theorem}
+
+\begin{proof}
+	设矩 $M_k = (w, x^k)_t$. 由引理 \ref{lem:domain},
+	$K_c p_0 = c$ 与 $K_c p_1 = cx$ 给出 $M_0 = M_1 = 0$.
+	对 $m \ge 2$, 正交条件与双线性性:
+	\[
+		0 = (w, K_c p_{2m})_t
+		= c\, M_{2m} - A_m M_{2m-2} + B_m M_{2m-4}.
+	\]
+	令 $v_j := M_{2j}$, 则 $c v_j = A_j v_{j-1} - B_j v_{j-2}$
+	($j \ge 2$), $v_0 = M_0 = 0$, $v_1 = M_2$ 自由. 于是
+	$v_j = M_2\, u_j$, 其中 $u$ 为引理 \ref{lem:growth} 的钉住解.
+	若 $M_2 \ne 0$, 由 Cauchy--Schwarz 与范数界 (命题 \ref{prop:norm}),
+	\[
+		|M_2|\, u_j = |v_j| = |M_{2j}| \le \|w\|_t\, \|x^{2j}\|_t
+		\le C_t \|w\|_t (2j)^{\beta_t},
+	\]
+	与 $u_j = \omega(j^\beta)$ 对一切 $\beta$ 矛盾. 故 $M_2 = 0$,
+	递推给出全部偶矩为零. 奇矩同理 ($M_1 = 0$, $M_3$ 自由, 排除):
+	$M_k = 0$ 对一切 $k$. 多项式在 $H^t$ 中稠密, 故
+	$\|w\|_t^2 = \lim_N (w, \Pi_N)_t = 0$, $w = 0$. \qed
+\end{proof}
+
+\begin{proposition}[多项式矩界]\label{prop:norm}
+	对每个实数 $t$ 存在 $C_t, \beta_t$ 使
+	\[
+		\|x^k\|_t \le C_t\, k^{\beta_t} \quad (k \ge 1),
+	\]
+	其中 $t < 0$ 时取 $\beta_t = -1/2$; $t \ge 0$ 时取
+	$\beta_t = \lceil t \rceil - 1/2$.
+\end{proposition}
+
+\begin{proof}
+	$t < 0$: $H^t = L^2$ 等价范数, $\|x^k\|_t^2
+	= (K_c^t x^k, x^k) \le c^t \|x^k\|_0^2 = c^t \cdot \frac{2}{2k+1}$,
+	故 $\|x^k\|_t \le C k^{-1/2}$.
+	$t \ge 0$: 取偶整数 $2r \ge t$ (即 $r = \lceil t/2 \rceil$). 因
+	$\lambda_j \ge c$: $\lambda_j^t = \lambda_j^{2r}\lambda_j^{t-2r}
+	\le c^{t-2r}\lambda_j^{2r}$, 故 $\|f\|_t \le c^{(t-2r)/2}\|f\|_{2r}$.
+	而 $\|x^k\|_{2r} = \|K_c^r x^k\|_0$; $K_c^r x^k$ 是次数 $\le k$ 的
+	多项式, 系数绝对值 $\le (1+c)^r k^{2r}$ (每次 $K_c$ 作用把次数降 2、
+	系数至多乘 $k^2$), 故
+	$\|K_c^r x^k\|_0 \le (r+1)(1+c)^r k^{2r}\|x^k\|_0
+	\le C_r k^{2r-1/2}$. 取 $\beta_t = 2r - 1/2 = \lceil t\rceil - 1/2$ (当
+	$t$ 恰为偶数时取 $\beta_t = t - 1/2$, 更强). \qed
+\end{proof}
+
+\section{等距传输与主定理}
+
+\begin{theorem}[等距传输]\label{thm:transport}
+	对一切实数 $s$, $K_c: (H^s, (\cdot,\cdot)_s) \to
+	(H^{s-2}, (\cdot,\cdot)_{s-2})$ 是等距线性同构, 且
+	\[
+		\overline{\operatorname{span}\{p_n\}}^{H^s} = H^s
+		\iff
+		\overline{\operatorname{span}\{K_c p_n\}}^{H^{s-2}} = H^{s-2}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	对 $f \in H^s$, $K_c^{(s-2)/2}(K_c f) = K_c^{s/2}f$ (泛函演算,
+	$K_c^{(s-2)/2}$ 与 $K_c$ 交换), 故
+	$\|K_c f\|_{s-2} = \|K_c^{s/2}f\|_0 = \|f\|_s$: 等距嵌入.
+	满射: $g \in H^{s-2} \Rightarrow K_c^{-1}g \in H^s$
+	($K_c^{s/2}K_c^{-1}g = K_c^{(s-2)/2}g \in L^2$), $0 \notin \sigma$.
+	完备性由等距同构保持. \qed
+\end{proof}
+
+\begin{theorem}[主定理: 一切实数阶完备]\label{thm:main}
+	设 $c > 0$. 对每个实数 $s \ge 0$, 稀疏多项式基
+	$\{p_n\}$ 在左定空间 $H^s$ 中解析完备.
+	特别地, 分数窗口 $3/2 \le s < 2$ (概述文档开放问题第 10 条) 成立,
+	且结论对一切 $s \ge 0$ 成立.
+\end{theorem}
+
+\begin{proof}
+	由定理 \ref{thm:jump}, $\{K_c p_n\}$ 在 $H^{s-2}$ 中完备
+	(命题 \ref{prop:norm} 保证矩界, $t = s-2$ 为任意实数, 负数时
+	$H^t = L^2$ 等价范数). 由定理 \ref{thm:transport} 的等价性,
+	$\{p_n\}$ 在 $H^s$ 中完备. \qed
+\end{proof}
+
+\begin{remark}[与以往结果的关系]
+	整数阶 $s = 0,1,2,3,\dots$ 的完备性在会话 9--11 已证 (矩方法 +
+	整数幂多项式性); 本文方法统一处理一切实数 $s \ge 0$, 不依赖
+	$K_c^{s/2}p_n$ 的多项式性 (分数阶时它不是多项式), 而是把跳变
+	结构放在 $\{K_c p_n\}$ (多项式) 上, 再传输到负阶空间.
+	$0 \le s < 3/2$ 的简单情形也可由一阶矩准则 (概述文档) 处理.
+\end{remark}
+
+\begin{remark}[完备正交系]
+	$H^s$ 中 $\{p_n\}$ 的显式完备正交系 (Legendre/Krein--Sobolev 的
+	$K_c^{-r}$ 传输) 见文档 \texttt{SL\_hs\_orthogonal\_systems\_proof.pdf};
+	本定理与它互补: 那篇给出正交化后的基, 本文证明稀疏原基即完备
+	(正交化前的稠密性).
+\end{remark}
+
+\section{数值验证}
+
+脚本 \path{scripts/op10_verify_mechanism.py} (谱分解, 40 个 cos 模 + 40 个
+sin 模, 分数幂经 $\lambda_j^t$ 作用):
+\begin{enumerate}
+	\item \textbf{传输等距} (命题): 对 $t \in \{0.5, 1.5, 1.75, 2.5, 3.0\}$,
+		$n \in \{0,1,4,5,6,7\}$: $\|K_c p_n\|_{t-2} = \|p_n\|_t$
+		相对误差 $< 10^{-6}$, 全部通过. (修正: 根求解区间为
+		$(k\pi, k\pi+\pi/2)$; 错误区间曾在高阶根漂移, 导致奇数模
+		谱系数错误.)
+	\item \textbf{跳变恒等式}: 混合奇偶 $w$, $t \in \{0, 0.75, 1.5, 1.75\}$,
+		$m \in \{2,3,5,8\}$: $(w, K_c p_{2m})_t = cM_{2m} - A_mM_{2m-2}
+		+ B_mM_{2m-4}$ 精度 $10^{-7}$, 全部通过.
+	\item \textbf{多项式矩界}: $\|x^k\|_t / k^{\lceil t\rceil-1/2}$
+		对 $t \in \{0.75, 1.5, 1.75, 2.5\}$ 有界 (小 $k$ 常数, 大 $k$ 递减),
+		支持命题 \ref{prop:norm}.
+	\item \textbf{钉住解超阶乘}: $v_j \ge (4/c)^{j-1}j!$ 对 $j \le 30$
+		全部成立 ($v_{30} \approx 9.6 \times 10^{67}$), 引理
+		\ref{lem:growth} 数值确认.
+\end{enumerate}
+
+脚本 \path{scripts/op10_fractional_window.py} 另验证负阶界
+$\|x^k\|_t \le c^{t/2}\|x^k\|_0$ 与 $\|x^k\|_s$ 的数值指数趋近 $s-1/2$.
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定理论] 正算子 $A \ge \gamma I$ 的分数幂给出 Hilbert 标度
+		$H^s = D(A^{s/2})$, 内积 $(f,g)_s = (A^{s/2}f, A^{s/2}g)$ \cite{lw1,fg}.
+	\item[泛函演算] $K_c^\alpha K_c^\beta = K_c^{\alpha+\beta}$, 自伴算子
+		的分数幂交换性; $0 \notin \sigma$ 保证负幂有界.
+	\item[二阶线性递推的增长理论] 支配解/衰减解 (Perron 型);
+		钉住初值排除衰减模 (注 \ref{rem:decay}).
+	\item[矩方法与 Cauchy--Schwarz] 完备性 $\iff$ 正交补为零;
+		矩界 $|M_k| \le \|w\|\|x^k\|$ 与超阶乘增长矛盾.
+	\item[双线性性] 跳变恒等式 $(w, q_{2m})_t = cM_{2m} - A_mM_{2m-2}
+		+ B_mM_{2m-4}$ 对内积的线性性, 不依赖 $t$ 的多项式结构.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: a model operator approach, examples,
+	fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\bibitem{hs} 项目文档, \emph{左定空间 $H^s[-1,1]$ 中显式完备正交多项式系: 证明文档},
+	2026-08-05.
+\bibitem{dc} 项目文档, \emph{边界约束 Hilbert 空间中多项式稠密的一般准则},
+	2026-08-05.
+\end{thebibliography}
+
+\end{document}

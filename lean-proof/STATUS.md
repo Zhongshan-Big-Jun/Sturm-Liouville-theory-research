@@ -1,5 +1,18 @@
 # lean-proof 形式化状态总表
 
+## 2026-09-20 第二轮审计的局部形式化
+
+新增 `SL/AuditRound2.lean`: 25 个局部定理, 实际 Lean 4.31.0 编译与逐声明传递公理检查;
+另有 5 个外部桥检查既有 SL 定义. 主目标的协调器重放退出 0, 旧 K1 终端差分为零的负对照退出 1.
+无状态盲回译曾因两个隐藏载体类型缺失返回 INCOMPLETE; 补出实际显式类型后交由另一新会话复核.
+准确命题、原生回执、语义对照及信任范围见 [第二轮报告](../reports/proof-audit-round2-20260920/REPORT.md)
+与 [局部形式化目标](../research/artifacts/proof-audit-round2-20260920/lean/contract.md).
+
+这些片段覆盖 K1 终端代数、有符号导数接口、仿射 c² 缩放以及候选达到与全局界的逻辑区别.
+它们没有形式化 K(1)=e/4 的极限、完整 MW 谱论链、首对全局变分最优性或整个项目.
+下面的旧构建计数与单 agent 自审记录属于历史证据, 不等于本轮重新检查全部历史 Lean 代码.
+
+
 > 结论先行: **没有全部形式化**. 截至目前 (2026-08-13, 会话 102) 已形式化 28 个文件, 覆盖
 > H^2 完备性证明线 (矩跳跃 + 增长引理 + K_c 恒等式 + 缩放 + 矩上界 + 湮灭 + Weierstrass 收尾),
 > H^3 线代数核心、解析 H1 矩上界与 FTC 胶水 (H1 内积识别/正定核心), 比值上确界证明线的核心三角闭式,
@@ -56,16 +69,16 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 
 | 源文档 | 主要结果 | 源状态 | 形式化状态 |
 | --- | --- | --- | --- |
-| SL_h2_completeness_proof.tex | {p_n} 在 H^2[-1,1] 解析完备 (等距 K_c + 矩跳跃 + 增长引理 + Weierstrass) | 已证 | 完整 (形式化线): 增长引理 (MomentGrowth/StabilityGrowth) + K_c 恒等式 (KcPolynomial) + 矩递推/缩放 (MomentRecurrence) + 矩上界 (MomentBound) + 湮灭/Weierstrass 收尾 (Completeness); 等距同构 K_c: H^2->L^2 与 L2 稠密扩展未形式化 (O16 记录缺口) |
-| SL_h3_completeness_proof.tex | H^3 (及一切整数 s>=1) 完备性 | 已证 | 部分: 矩跳变+缩放+超阶乘增长+湮灭代数核心 (H3Completeness) + 解析 H1 矩上界 (H3MomentBound, Cauchy-Schwarz, 已接入 all_moments_zero_of_orthogonal 的 hbdE/hbdO) + FTC 胶水与 H1 内积识别 (H1Isometry: ftc_delta, h1Inner_eq_h1MomentFunctional, 正交传输, 正定核心); 剩余: 算符级等距同构 K_c: H^3->H^1 (双射/谱) 与多项式在 H^1 稠密性未形式化 |
-| SL_hs_orthogonal_systems_proof.tex | 整数阶 H^s 显式完备正交多项式系 + 闭式系数 (传输算子 K_c^{-1}) | 已证 | 部分: 传输算子闭式与 K_c^{-1} 迭代 (TransferOperator) + 传输约化机制与组装 (HsOrthogonalSystems: Q_n=K_c^{-r} P_n / Q_n=K_c^{-r} K_n 的正交与次数约化, Legendre 闭式 deg P_n=n, aSeq 递推; Legendre/Krein-Sobolev 正交性以 LegendreFacts/KreinSobolevFacts 假设接入); 算符级等距与 H^s 完备性未形式化 |
-| SL_fractional_left_definite.tex | 实数阶 H^s (含分数窗 3/2<=s<2) 稀疏基解析完备 | 已证 | 未开始 |
+| SL_h2_completeness_proof.tex | {p_n} 在 H^2[-1,1] 解析完备 (等距 K_c + 矩跳跃 + 增长引理 + Weierstrass) | 已证 | 部分 (代数形式化线): 增长引理 (MomentGrowth/StabilityGrowth) + K_c 恒等式 (KcPolynomial) + 矩递推/缩放 (MomentRecurrence) + 矩上界 (MomentBound) + 湮灭/Weierstrass 收尾 (Completeness); 等距同构 K_c: H^2->L^2 与 L2 稠密扩展未形式化 (O16 记录缺口) |
+| SL_h3_completeness_proof.tex | H3 主结论及 0<=s<=3 的条件传输; 任意阶推广已撤回 | 已证 | 部分: 矩跳变+缩放+超阶乘增长+湮灭代数核心 (H3Completeness) + 解析 H1 矩上界 (H3MomentBound, Cauchy-Schwarz, 已接入 all_moments_zero_of_orthogonal 的 hbdE/hbdO) + FTC 胶水与 H1 内积识别 (H1Isometry: ftc_delta, h1Inner_eq_h1MomentFunctional, 正交传输, 正定核心); 剩余: 算符级等距同构 K_c: H^3->H^1 (双射/谱) 与多项式在 H^1 稠密性未形式化 |
+| SL_hs_orthogonal_systems_proof.tex | 抽象多项式传输公式; 真正算子幂域的全阶多项式基解释已撤回 | 旧解释 SUPERSEDED | 部分: 传输算子闭式与 K_c^{-1} 迭代 (TransferOperator) + 传输约化机制与组装 (HsOrthogonalSystems: Q_n=K_c^{-r} P_n / Q_n=K_c^{-r} K_n 的正交与次数约化, Legendre 闭式 deg P_n=n, aSeq 递推; Legendre/Krein-Sobolev 正交性以 LegendreFacts/KreinSobolevFacts 假设接入); 算符级等距与 H^s 完备性未形式化 |
+| SL_fractional_left_definite.tex | 完整谱系与精确成员阈值; H3 前提下 0<=s<=3 稠密, 3<s<7/2 开放 | 已证 | 未开始 |
 | SL_denseness_criteria.tex | 一般稠密性准则: 一阶矩准则 + 临界指数 | 已证 | 部分: 稀疏基矩刻画 iff (DensenessCriteria); 一阶矩/临界指数定理的 Hilbert 空间与稠密性收尾未形式化 |
 | SL_stability_moment_jump.tex | 矩跳跃稳定性: 定量增长引理 (一般系数, B_m>=0 且 A_m-B_m>=c_0), 稳定性定理 (发散对数和 ω(log m) => 完备), 尖锐性 (C/k 族) | 已证 | 部分: 定量增长引理 + eps 形式 (StabilityGrowth); Thm 2.2 泛函核心 + Thm 2.3 尖锐性级数 (Stability); 未形式化: 完备性收尾 w=0 (稠密性, 同 O16 缺口) 与 §4 后门槛分类 (S-门槛/门槛线/Krein 余量) |
 | SL_third_order_recurrence_theory.tex | 三阶递推一般理论: 积分解分类/精确降阶/最小解 | 已证 | 部分: 一般框架 + Lemma 1 固定点等价 + Theorem 3 前向降阶 (ThirdOrder); Theorem 2 闭式 + 固定点轨迹充分方向 + 比值恒等式 (ThirdOrderClosedForms); 分类方向 (Theorem 1 反向, ThirdOrderClassification); 变差常数/第三解代数核心 + 定理 3 反向 (ThirdOrderMinimal); 剩余: 三解 Casoratian 非零 (源数值) 与最小解唯一性/渐近 (源数值/符号计算) 未形式化 |
 | SL_krein_c0_limit.tex | 移位 Krein 算子 c->0 退化极限的结构稳定性 | 已证 | 部分: 多项式级 radical (c=0 配对 radical = span{1,x}) + 低模范数闭式 (K_0..K_4) + ||K_4||^2 -> atTop + span 分解 (KreinDegenerateLimit) + n>=4 一般 Θ 增长与 ||K_n||^2 -> +infinity (KreinHighGrowth); 商空间级 (H^1/W ≅ L^2_0, quotient/unit, complete (b)-(d)) 未形式化 |
 | SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心) + TransferMatrix (三段转移矩阵乘积/secular 方程/平凡不等式); 转移矩阵到特征值的谱论连接与 MW 引理重证仍未形式化 |
-| SL_inf_ratio_proof.tex | inf_{n,rho} lambda_{n+1}/lambda_n = 1 (Weyl 渐近) | 已证 | 未开始 (需 Weyl 渐近, 解析重) |
+| SL_inf_ratio_proof.tex | inf_{n,rho} lambda_{n+1}/lambda_n = 1 (常密度高频序列已足够) | 已证 | 未开始; 无需为这个全序列结论先形式化一般 Weyl 渐近 |
 | SL_mw_lemma_reproof.tex | Mahar-Willner 引理 1-2 独立重证 (周期延拓 + 零点截断) | 已证 | 未开始 |
 | SL_fixed_n_supremum.tex | 固定 n 上确界: 交替配置平衡相位结构, n=1,2 闭式 | 部分 (全局极值未证) | 部分: ReflectionSymmetry (J-共轭反射对称 F_n(pi-y)=F_n(y), 固定 ω 参数); 平衡定理的 2n-根计数/闭式仍依赖数值证据, 未形式化 |
 | SL_gap_extremals.tex | 相邻间距极端值 (SUP/INF 配置表) | 数值强猜想 (n>=2 未严格) | 未开始 (源未严格证明, 不宣称形式化) |

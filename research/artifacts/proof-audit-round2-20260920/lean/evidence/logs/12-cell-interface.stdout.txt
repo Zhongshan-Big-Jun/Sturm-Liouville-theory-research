@@ -1,0 +1,13 @@
+SL/AuditRound2.lean:201:2: error: Type mismatch: After simplification, term
+  HasDerivAt.const_mul (Factor ^ j) (HasDerivAt.comp x hy hMap)
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedCommRing.toAddCommGroup
+    (NormedAlgebra.toNormedSpace ℝ).toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯
+    (fun y_1 => Factor ^ j * y (Scale * (y_1 - Start) - 1 / 2)) (Scale * (DY * Factor ^ j)) x
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (cell_branch y Scale Start Factor j)
+    (Scale * (DY * Factor ^ j)) x
+SL/AuditRound2.lean:220:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

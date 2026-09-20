@@ -1,0 +1,50 @@
+{
+	"checked_paths": [
+		"lean-proof/SL/AuditRound2.lean",
+		"lean-proof/SL/BalancedPhase.lean",
+		"lean-proof/SL/ThirdOrder.lean",
+		"lean-proof/SL/ThirdOrderClosedForms.lean",
+		"research/artifacts/proof-audit-round2-20260920/lean/14-print-types-axioms.stdout.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/contract.md",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/BridgeToExistingSL.lean",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/InspectAuditRound2.lean",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/NegativeK1.lean",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/bridge-evidence.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/declaration-evidence.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/existing-sl-cache-copies.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/imported-artifact-hashes.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/13-interface-fix.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/14-print-types-axioms.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/16-existing-sl-bridge-merged.stdout.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-negative-k1.stdout.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stderr.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/evidence/logs/coordinator-source-replay.stdout.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/explicit-types.stdout.txt",
+		"research/artifacts/proof-audit-round2-20260920/lean/readback-completion.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/readback-report.json",
+		"research/artifacts/proof-audit-round2-20260920/lean/runtime-evidence.json",
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/dispatch.json",
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/receipt.json",
+		"research/library/reviews/runs/b56176e003f23d8cc4b639e96a654a150ee6eae32bbca418b6f04f33e7fab948-01a0be75-24dd-7151-90ea-86eed19fcbf9/spawn.json"
+	],
+	"claim_results": [
+		{
+			"id": "semantic-and-kernel",
+			"reason": "All 29 snapshot hashes match. Independently checked all 25 theorem statements, their proof bodies, 12 supporting definitions, and the supplied blind readback against the local contract. The generic difference identities preserve arbitrary field instances and truncated natural subtraction, including N=0 and N=1 where applicable. For K1, N=n+3 covers every N>=3: the terminal equation gives mu(N-2)=1/[4(N+1)(N-1)(2N-1)(2N-3)], and factorial scaling gives d_N=N/((N+1)(2N)!)>0. The N=3 segment satisfies the stated last equation and gives d_3=1/960; no full recurrence solution is inferred from that segment. The MW statements correctly retain signed transmission, full endpoint derivative hypotheses, nonzero Left and interface Scale, and all permitted zero-amplitude, zero-Right, negative-scale and j=0 cases. The affine ODE assumes both derivative relations and the ODE on the whole real line. Ratio cancellation includes lamOne=0 under total division and does not establish spectral denominator positivity. The supremum lemmas retain boundedness and membership; candidate attainment is assumed. Adjacent-ratio reduction retains monotonicity, n>=1, positive denominator and the doubled-index bound. The countermodel is an arbitrary bounded real set, not a Sturm-Liouville construction.\nFresh compilation of the frozen source in disposable space with the recorded native Lean 4.31.0 exited 0 with empty stdout and stderr. Its compiled artifact is byte-identical to the recorded artifact. Regenerated output for all 25 declarations and transitive axiom reports is byte-identical to the frozen output; the axiom union is exactly propext, Quot.sound and Classical.choice, with no sorryAx or custom axiom. Explicit rational types agree, with only a binder-display difference. All 11,217 recorded external dependency artifacts match their hashes, and the replay resolves the same 3,739 external modules. The frozen negative control independently exits 1 with an unsolved False goal, corroborating the proved nonzero value. All five source bridges agree with the supplied legacy definitions and reproduce the frozen bridge output exactly in the recorded complete cache environment. These are checks against cached legacy declarations, not rebuilt historical proofs. No remaining discrepancy was found within the requested local scope.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval covers the requested local targets only. It does not establish a complete finite K1 solution, an infinite limit, minimality, K(1)=e/4, global piecewise regularity, Sturm oscillation, a spectral doubling theorem, candidate spectral attainment, or a global variational optimum.",
+		"The replay trusts the recorded Lean executable and compiled dependencies. Mathlib and historical SL proofs were not rebuilt from source. Bridge replay additionally uses cached dependencies including SL.Basic, whose source snapshot and complete bridge dependency inventory were not supplied.",
+		"Historical blind-review isolation is supported by the supplied coordinator-attested dispatch, spawn and completion records; it was not independently reconstructed. The completion contains the supplied readback, and receipt hashes agree after the corresponding JSON serialization.",
+		"The TeX documents referenced in source comments were not supplied and were not consulted. The source project was not modified."
+	],
+	"packet_sha256": "aae57097035de474fd1e1a52d3a52b2a8b165e00ff69a03f1105c8cb3910a3c4",
+	"readback": "The supplied blind readback faithfully represents all 25 theorems and 12 supporting definitions, including implicit universes and field instances, all hypotheses and quantified domains, truncated index subtraction, rational casts, total division, full real derivatives, and the distinction between assumed attainment and a proved upper bound.",
+	"verdict": "APPROVED"
+}

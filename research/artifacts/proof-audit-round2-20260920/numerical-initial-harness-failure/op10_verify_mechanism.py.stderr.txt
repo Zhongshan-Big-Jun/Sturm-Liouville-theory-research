@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+    m.main()
+    ~~~~~~^^
+  File "/mnt/f/LaTeX/BVE research/scripts/op10_verify_mechanism.py", line 209, in main
+    self_check()
+    ~~~~~~~~~~^^
+  File "/mnt/f/LaTeX/BVE research/scripts/op10_verify_mechanism.py", line 180, in self_check
+    Gram = quad(lambda x: Fn(x) * Other(x), -1, 1)[0] / math.sqrt(NormSq * OtherNorm)
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: quadrature at import

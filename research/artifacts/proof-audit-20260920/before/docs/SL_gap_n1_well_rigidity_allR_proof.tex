@@ -1,0 +1,889 @@
+﻿% 用法: xelatex SL_gap_n1_well_rigidity_allR_proof.tex (两遍, -output-directory=build)
+% 主题: 阱族全 R 相位刚性 - 一切 R>1 时任意 sign-consistent good root 必为对称根 a+b=1
+% 会话: 2026-08-10 续作 (承接 R32 文档与会话 55 证明链; 补全新严格引理)
+% 证据分层: STRICT = 严格解析证明; EVIDENCE = 数值交叉检验 (不构成证明)
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 6em
+\hbadness=10000
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{[严格证明/STRICT]}}
+\newcommand{\EVID}{\textbf{[数值证据/EVIDENCE]}}
+\newcommand{\OPEN}{\textbf{[开放]}}
+
+\title{阱族全 $R$ 相位刚性: 一切 $R>1$ 下任意 sign-consistent good root 必为对称根\\[-2mm]
+\large 附: 对 INF 侧 $\lambda_2-\lambda_1$ 极值问题的推论与剩余缺口}
+\author{BVE research 项目 (INF 侧阱族刚性, 会话续作 2026-08-10)}
+\date{2026-08-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+对 Dirichlet 加权弦 $-y''=\lambda\rho y$, $1\le\rho\le R$ a.e., 阱族
+$\rho_{a,b}=R\cdot\mathbf 1_{[0,a]\cup[b,1]}+\mathbf 1_{(a,b)}$ 是 INF 侧 $D=\lambda_2-\lambda_1$
+极值问题的归约族 (O1-INF, 已独立审计). 本文把阱族相位刚性从小 $R$ ($1<R\le3/2$,
+\url{SL\_gap\_n1\_well\_rigidity\_R32.pdf}) 推广到\emph{一切} $R>1$:
+阱族的任意 sign-consistent good root $(a,b)$ 必为对称根 $a+b=1$.
+证明链完全初等, 分五步:
+(1) 频率比上界 $\tau=s_2/s_1<2$ (新的 $\alpha$-凸性引理 $D(x)=\alpha(2x)-2\alpha(x)\ge0$ 于
+$(0,\pi/2)$, 结合 sign-consistency 给出的相位范围 $\tau A,\tau B<\pi$);
+(2) 残差消元: good root 的 $R_1=R_2=0$ 通过范数闭式 (三段积分 + 相位恒等式) 化为
+$r_\tau(A)=r_\tau(B)$, 其中 $r_\tau(x)=J(\tau x)/J(x)$, $J(x)=\sin^2x/(\sin^2x+m^2\cos^2x)$;
+(3) $r_\tau$ 的精确结构: 精确因子分解
+$r_\tau(x)-1=\frac{m^2\sin((\tau-1)x)\sin((\tau+1)x)}{J(x)W(x)W(\tau x)}$ 给出左区 $r>1$ 与右区 $r<1$,
+$L_0$ 型下界 $1,u_x<\tau^2r_\tau(x)$ 于 $(0,\pi/(1+\tau))$;
+(4) 右区 (区域 II) 的核心引理 B$'$: 一切等值对 $(x,y)$ ($x\ne y$, $r_\tau(x)=r_\tau(y)$) 满足
+$x+y>\pi$, 其关键部分是危险区引理 $r_\tau(y)<r_\tau(x)$ (对
+$x_{mid}<x<\pi/2<y\le\pi-x$), 由 $J$ 在 $(0,\pi/2)$ 的严格单调性、对称性
+$J(\pi-u)=J(u)$ 与对数导数 $\Psi=(\log J)'$ 在 $(0,\pi/2)$ 的正性一次证毕;
+(5) 相位反射引理 $\alpha(x)+\alpha(\pi-x)=\pi$ 与 $P$-和通道
+$P_\tau(x)+P_\tau(y)<(2-\tau)\pi$ (当 $x+y>\pi$) 排除区域 II 的一切离轴点.
+剩余缺口 (诚实登记, 开放): 对称线 1D 分析仅完成 $1<R\le3/2$ 段 (缺口 (a) 已闭合),
+$R>3/2$ 段的对称线分析、定理 A 的独立复核 (缺口 (c)) 与全局 good-root 论证 (缺口 (d))
+仍开放; 本文不宣称 INF 侧 $R>3/2$ 完全闭合.
+\end{abstract}
+
+\tableofcontents
+
+\section{问题、定义与主结论}\label{sec:setup}
+
+\subsection{阱族与相位变量}
+
+固定 $R>1$ 与 $0<a<b<1$, 定义阱族密度
+\begin{equation}
+	\rho_{a,b}(x):=
+	\begin{cases}
+		R, & x\in[0,a)\cup(b,1],\\
+		1, & x\in[a,b].
+	\end{cases}
+	\label{eq:well}
+\end{equation}
+考虑 Dirichlet 边值问题
+\begin{equation}
+	-y''=\lambda\rho_{a,b}\,y,\qquad y(0)=y(1)=0,
+\end{equation}
+其简单特征值 $0<\lambda_1<\lambda_2<\cdots$. 记
+\begin{equation}
+	m:=\sqrt R>1,\qquad s_k:=\sqrt{\lambda_k},\qquad
+	\tau:=\frac{s_2}{s_1}>1,\qquad q:=m^2-1=R-1.
+	\label{eq:params}
+\end{equation}
+对任意波数 $s>0$ 与阱族配置 $(a,b)$, 定义三个相位
+\begin{equation}
+	A(s):=msa,\qquad \psi(s):=s(b-a),\qquad B(s):=ms(1-b),
+	\label{eq:phases}
+\end{equation}
+并记第一、二模态的相位为
+\begin{equation}
+	A:=A(s_1),\quad \psi:=\psi(s_1),\quad B:=B(s_1);
+	\qquad \tau A,\ \tau\psi,\ \tau B \quad\text{(第二模态)}.
+\end{equation}
+几何恒等式 $A+m\psi+B=ms_1$ 恒成立.
+
+\subsection{残差与 sign-consistent good root}
+
+设 $y_k$ 为斜率归一化 ($y_k(0)=0$, $y_k'(0)=1$) 的第 $k$ 个特征函数,
+$n_k:=\int_0^1\rho_{a,b}\,y_k^2\,dx$, $\hat y_k:=y_k/\sqrt{n_k}$. 定义
+\begin{equation}
+	f_{a,b}(x):=\lambda_2\hat y_2(x)^2-\lambda_1\hat y_1(x)^2,
+	\qquad R_1(a,b):=f_{a,b}(a),\quad R_2(a,b):=f_{a,b}(b).
+	\label{eq:resid}
+\end{equation}
+\begin{definition}[sign-consistent good root (阱族)]
+	若 $(a,b)$ 满足
+	\begin{equation}
+		R_1(a,b)=R_2(a,b)=0,\qquad
+		\frac{y_2(a)}{y_1(a)}>0,\qquad \frac{y_2(b)}{y_1(b)}<0,
+		\label{eq:goodroot}
+	\end{equation}
+	则称其为阱族的一个 sign-consistent good root.
+\end{definition}
+
+\begin{remark}[残差的变分来源]\label{rem:fh}
+	对阱族, $D(a,b)=\lambda_2-\lambda_1$ 沿边界参数的变分为
+	$\partial_aD=-(R-1)f_{a,b}(a)$, $\partial_bD=+(R-1)f_{a,b}(b)$
+	(Feynman--Hellmann; 单特征值恒等式 $d\lambda_k/da=-\lambda_k(R-1)\hat y_k(a)^2$),
+	故 $R_1=R_2=0$ 恰为阱族内部临界点条件. 但"极值点必为 sign-consistent good root"
+	的全局论证仍属开放缺口 (d), 见第 \ref{sec:gaps} 节.
+\end{remark}
+
+\subsection{主定理}
+
+\begin{theorem}[阱族全 $R$ 相位刚性]\label{thm:main}
+	设 $R>1$. 阱族 $\rho_{a,b}$ 的任意 sign-consistent good root $(a,b)$ 必满足
+	\begin{equation}
+		a+b=1.
+		\label{eq:sym}
+	\end{equation}
+	换言之, 对\emph{一切} $R>1$, 阱族的所有 good root 都落在反射固定线
+	$a+b=1$ 上. \STRICT{} (证明见第 \ref{sec:proof} 节.)
+\end{theorem}
+
+\begin{remark}[与 R32 文档的关系]
+	文献 \url{SL\_gap\_n1\_well\_rigidity\_R32.pdf} 证明的是 $1<R\le3/2$
+	情形, 机制为 $r_\tau$ 在 $(0,\pi/\tau)$ 上的整体严格单调
+	($\widetilde\Psi'<0$, 需 $q\le1/2$). 对 $R>3/2$, $r_\tau$ 失去整体单调性,
+	出现离轴 $E=0$ 分支 (数值, \EVID), 该机制失效. 本文给出完全不依赖
+	$r_\tau$ 整体单调性的新证明, 只使用 $r_\tau$ 的精确结构与若干区间性引理.
+\end{remark}
+
+\section{证据标注约定}\label{sec:evidence}
+
+\begin{remark}[STRICT / EVIDENCE / OPEN]\label{rem:evidence}
+	按项目纪律, 全文证据分三层:
+	\begin{enumerate}
+		\item[(E1)] \emph{严格解析证明} (\STRICT): 闭式恒等式、初等不等式、单调性,
+			构成定理成立的依据. 本文定理 \ref{thm:main} 的全部断言只依赖 (E1).
+		\item[(E3)] \emph{普通数值扫描} (\EVID): 高精度浮点采样, 仅用于交叉检验
+			与探索, 不构成任何定理的结论依据. 所有 (E3) 断言均显式标注并登记于
+			\texttt{misc/\_well\_explore\_log.md} 第 16 节.
+		\item[(E2)] \emph{开放} (\OPEN): 尚未闭合的义务, 一律不称为"已解决".
+	\end{enumerate}
+\end{remark}
+
+\section{前两模态的符号与零点}\label{sec:modes}
+
+\begin{lemma}[前两模态的符号与零点]\label{lem:modes}
+	在斜率归一化下, 阱族 $\rho_{a,b}$ 的前两模态满足:
+	\begin{enumerate}
+		\item[(i)] $y_1(x)>0$ 于 $0<x<1$, 且 $y_1'(1)<0$;
+		\item[(ii)] $y_2$ 在 $(0,1)$ 中恰有一个简单零点 $z$, 并且
+			$y_2>0$ 于 $(0,z)$, $y_2<0$ 于 $(z,1)$.
+	\end{enumerate}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	这是正则分段系数 Sturm--Liouville 问题的标准振荡理论 (同 R32 文档引理
+	\ref*{lem:modes} 的论证): 特征值简单且严格递增; 第一特征函数可取严格正;
+	第二特征函数与正的第一特征函数关于权 $\rho_{a,b}$ 正交故必变号, 若至少两个
+	内部零点则按结区间截断得到三个不相交支集的 Rayleigh 商均等于 $\lambda_2$,
+	与 $\lambda_3\le\lambda_2$ 和简单性矛盾; 零点简单性由初值问题唯一性得到.
+	\qed
+\end{proof}
+
+\section{外侧相位范围与模态恒等式}\label{sec:phases}
+
+\begin{lemma}[外侧相位范围]\label{lem:phases}
+	在任意 good root 处,
+	\begin{equation}
+		0<\tau A=ms_2a<\pi,\qquad 0<\tau B=ms_2(1-b)<\pi.
+		\label{eq:phasesrange}
+	\end{equation}
+	等价地 $A,B\in(0,\pi/\tau)$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由 good-root 符号条件与引理 \ref{lem:modes}(ii), $y_2(a)>0$, $y_2(b)<0$, 唯一零点
+	$z$ 满足 $a<z<b$. 左侧阱区斜率归一化解为 $y_2(x)=\sin(ms_2x)/(ms_2)$
+	($0\le x\le a$). 若 $ms_2a\ge\pi$, 则 $x_0=\pi/(ms_2)\le a$ 是 $y_2$ 在 $(0,z)$
+	内的零点, 矛盾. 故 $\tau A=ms_2a<\pi$. 右侧同理, 得 $\tau B<\pi$. \qed
+\end{proof}
+
+\begin{lemma}[模态恒等式]\label{lem:modal}
+	对任意特征值波数 $s_k$ 与相位 $A_k=ms_ka$, $\psi_k=s_k(b-a)$, $B_k=ms_k(1-b)$,
+	\begin{equation}
+		\alpha(A_k)+\psi_k+\alpha(B_k)=k\pi,
+		\qquad \alpha(x):=\arctan2\Bigl(\frac{\sin x}{m},\cos x\Bigr)\in(0,\pi),
+		\label{eq:modal}
+	\end{equation}
+	其中 $\alpha$ 取连续分支, $\alpha(0)=0$. 特别地, 模态 1 与 2 给出
+	\begin{equation}
+		\alpha(A)+\psi+\alpha(B)=\pi,\qquad
+		\alpha(\tau A)+\tau\psi+\alpha(\tau B)=2\pi.
+		\label{eq:modal12}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	记 $U(x):=(sy(x),y'(x))$, $\theta(x):=\arg U(x)$ 取连续分支 $\theta(0)=\pi/2$.
+	在 $[0,a]$ 上 $U(x)=(\sin(msx)/m,\cos(msx))$, 其辐角为
+	$\theta(x)=\pi/2-\alpha(msx)$ (逐点验证: 该点内积与 $\alpha$ 定义一致, 且连续).
+	在 $[a,b]$ 上 $U(x)=P(s(x-a))U(a)$, $P(t)$ 为旋转
+	$\begin{pmatrix}\cos t&\sin t\\-\sin t&\cos t\end{pmatrix}$, 故
+	$\theta(x)=\theta(a)-s(x-a)$.
+	在 $[b,1]$ 上 $y=C\sin(ms(1-x))/(ms)$, $U(x)=C(\sin(ms(1-x))/m,-\cos(ms(1-x)))$,
+	其辐角为 $\alpha(ms(1-x))-\pi/2$ 或该值加 $\pi$, 视 $C<0$ 而定 (模态 1 中
+	$C=C_1>0$ 因 $y_1>0$; 模态 2 中 sign-consistency 给 $C_2<0$).
+	在 $x=b$ 处辐角连续 (模 $2\pi$):
+	\begin{align}
+		\pi/2-\alpha(A_k)-\psi_k &\equiv \alpha(B_k)-\pi/2
+		\quad(C_k>0\text{ 时}),\label{eq:pr1}\\
+		\pi/2-\alpha(A_k)-\psi_k &\equiv \alpha(B_k)+\pi/2
+		\quad(C_k<0\text{ 时}).\label{eq:pr2}
+	\end{align}
+	由标准 Pr\"ufer 理论, 第 $k$ 个特征函数在 $(0,1)$ 内恰有 $k-1$ 个零点, 且辐角
+	在 $(0,1)$ 上的总回转满足 $\theta(1)=\theta(0)-k\pi$, 于是 \eqref{eq:pr1}
+	在 $k$ 为奇数、\eqref{eq:pr2} 在 $k$ 为偶数时给出 $\alpha(A_k)+\psi_k+\alpha(B_k)=k\pi$
+	(无模 $2\pi$ 歧义; 两分支在 $0<\alpha< \pi$, $\psi_k>0$ 下取值于合适区间).
+	对 $k=1,2$ 即 \eqref{eq:modal12}. \qed
+\end{proof}
+
+\begin{remark}[直接验证]
+	模态恒等式 \eqref{eq:modal12} 亦可由纯代数直接验证: 特征值条件 $y(1)=0$ 等价于
+	(乘 $m^2$ 后)
+	\begin{equation}
+		m\cos B(\cos\psi\sin A+m\sin\psi\cos A)+\sin B(-\sin\psi\sin A+m\cos\psi\cos A)=0,
+	\end{equation}
+	在非退化位置 ($\cos A\cos B\cos\psi\ne0$) 除以 $\cos A\cos B\cos\psi$ 得
+	\begin{equation}
+		\tan\psi=\frac{m(\tan A+\tan B)}{\tan A\tan B-m^2},
+		\label{eq:tanpsi}
+	\end{equation}
+	它恰等价于 $\tan(\alpha(A)+\psi)=-\tan\alpha(B)$ (因 $\tan\alpha(x)=\tan x/m$),
+	即 $\alpha(A)+\psi+\alpha(B)\equiv0\pmod\pi$; 结合 $\Psi$-数 (模态序号) 得
+	\eqref{eq:modal12}. 退化位置按连续性处理. \STRICT{} 附注: 该直接验证与
+	\eqref{eq:pr1}--\eqref{eq:pr2} 的 Pr\"ufer 论证互补, 数值上 171 个配置
+	0 失败 (\EVID).
+\end{remark}
+
+\section{频率比上界 (τ<2)}\label{sec:tau}
+
+本节给出新的初等引理: 在 sign-consistent good root 处必有 $\tau<2$.
+它是后面所有区间性引理的前提 (区域 II $=(x_{mid},\pi/\tau)$ 在 $\tau<2$ 时才越过
+$\pi/2$).
+
+\begin{lemma}[$\alpha$ 的凸性不等式]\label{lem:alpha2}
+	对 $0<x<\pi/2$,
+	\begin{equation}
+		D(x):=\alpha(2x)-2\alpha(x)>0.
+		\label{eq:Dpos}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	$\alpha'(x)=m/W(x)$, $W(x):=\sin^2x+m^2\cos^2x$ (直接微分
+	$\tan\alpha(x)=\tan x/m$). 于是
+	\begin{equation}
+		D'(x)=2\alpha'(2x)-2\alpha'(x)=2m\Bigl(\frac1{W(2x)}-\frac1{W(x)}\Bigr).
+	\end{equation}
+	利用 $W(x)=m^2-q\sin^2x$ ($q=m^2-1>0$) 得
+	\begin{equation}
+		D'(x)=\frac{2mq\sin^2x\,(4\cos^2x-1)}{W(x)W(2x)}.
+		\label{eq:Dprime}
+	\end{equation}
+	因此 $D'>0$ 于 $(0,\pi/3)$, $D'<0$ 于 $(\pi/3,\pi/2)$. 又
+	$D(0)=0$, $D(\pi/2)=\alpha(\pi)-2\alpha(\pi/2)=\pi-\pi=0$, 故
+	$D(x)>0$ 于 $(0,\pi/2)$. \qed
+\end{proof}
+
+\begin{lemma}[$\tau<2$]\label{lem:taubound}
+	在任意 good root 处,
+	\begin{equation}
+		\tau=\frac{s_2}{s_1}<2.
+		\label{eq:tault2}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	定义总相位 $\Phi(s):=\alpha(msa)+s(b-a)+\alpha(ms(1-b))$. 由引理
+	\ref{lem:modal}, $\Phi(s_1)=\pi$, $\Phi(s_2)=2\pi$, 且 $\Phi$ 严格递增
+	($\alpha$ 严格递增, $s(b-a)$ 严格递增), 故 $s_k$ 由 $\Phi(s)=k\pi$ 唯一确定.
+
+	反设 $\tau\ge2$. 由引理 \ref{lem:phases}, $A=ms_1a<\pi/\tau\le\pi/2$,
+	同理 $B<\pi/2$. 由引理 \ref{lem:alpha2} 与模态 1 恒等式
+	$\alpha(A)+\psi+\alpha(B)=\pi$,
+	\begin{equation}
+		\Phi(2s_1)=\alpha(2A)+2\psi+\alpha(2B)
+		>2\alpha(A)+2\psi+2\alpha(B)=2\pi=\Phi(s_2).
+	\end{equation}
+	由 $\Phi$ 严格递增, $2s_1>s_2$, 即 $\tau<2$, 矛盾于反设. 故
+	$\tau<2$. \qed
+\end{proof}
+
+\begin{remark}[数值上界]\label{rem:taunum}
+	sign-consistent 配置网格扫描 (12 个 $R$ 值 $\times$ 190 组 $(a,b)$) 中
+	$\max\tau=1.99995184$ (于 $R=1.01$, $a=0.05$, $b=0.95$), 且 $R\to1^+$ 时
+	$\tau\to2^-$ (\EVID). 注意对一般 (非 sign-consistent) 阱族配置 $\tau$ 可远超 2
+	(如 $R=10^4$, $a=0.05$, $b=0.85$ 时 $\tau\approx4.70$, \EVID), 故引理
+	\ref{lem:taubound} 必须依赖 sign-consistency.
+\end{remark}
+
+\section{传输、范数闭式与残差消元}\label{sec:elim}
+
+\subsection{传输恒等式}
+
+\begin{lemma}[传输能量守恒]\label{lem:energy}
+	对任意波数 $s>0$ 与阱族配置 $(a,b)$, 记 $A=msa$, $B=ms(1-b)$,
+	\begin{equation}
+		W(x):=\sin^2x+m^2\cos^2x,\qquad
+		J(x):=\frac{\sin^2x}{W(x)}.
+	\end{equation}
+	则每个模态满足
+	\begin{equation}
+		\frac{y(b)^2}{y(a)^2}=\frac{J(B)}{J(A)}.
+		\label{eq:ratio}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	同 R32 文档引理 \ref*{lem:energy}: 中间低密度区 $[a,b]$ 上 $U(x)=(sy(x),y'(x))$
+	满足 $U(b)=P(\psi)U(a)$, $P(\psi)$ 是旋转, 保持 $Q(X,Y)=X^2+Y^2$; 左阱面上
+	$U(a)=(\sin A/m,\cos A)$, 右阱面上 $U(b)=C(\sin B/m,-\cos B)$, 守恒律给出
+	$y(b)^2/y(a)^2=J(B)/J(A)$. \qed
+\end{proof}
+
+\subsection{右阱系数 C 与范数闭式}
+
+\begin{lemma}[右阱系数平方]\label{lem:C}
+	在特征值波数 $s_k$ 处, 右阱系数 $C_k$ (即 $y_k(x)=C_k\sin(ms_k(1-x))/(ms_k)$ 于
+	$[b,1]$) 满足
+	\begin{equation}
+		C_k^2=\frac{W(A_k)}{W(B_k)},\qquad
+		A_k:=\tau^{k-1}A,\ B_k:=\tau^{k-1}B.
+		\label{eq:C}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由模态恒等式 \eqref{eq:modal}, $\alpha(A_k)+\psi_k+\alpha(B_k)=k\pi$, 故
+	$\sin(\alpha(A_k)+\psi_k)=\sin(k\pi-\alpha(B_k))=(-1)^{k+1}\sin\alpha(B_k)$,
+	其平方与 $k$ 无关. 展开:
+	\begin{equation}
+		\Bigl(\frac{\sin\alpha(A_k)\cos\psi_k+\cos\alpha(A_k)\sin\psi_k}{\sin\alpha(B_k)}\Bigr)^2=1.
+	\end{equation}
+	代入 $\sin\alpha(x)=\sin x/\sqrt{W(x)}$, $\cos\alpha(x)=m\cos x/\sqrt{W(x)}$ 得
+	\begin{equation}
+		\frac{(\cos\psi_k\sin A_k+m\sin\psi_k\cos A_k)^2}{W(A_k)}
+		=\frac{\sin^2B_k}{W(B_k)}.
+		\label{eq:Cmid}
+	\end{equation}
+	另一方面 $ms_ky_k(b)=ms_k\cdot C_k\sin B_k/(ms_k)=C_k\sin B_k$, 而由传输
+	$ms_ky_k(b)=m(\cos\psi_k\sin A_k/m+\sin\psi_k\cos A_k)
+	=\cos\psi_k\sin A_k+m\sin\psi_k\cos A_k$. 代入 \eqref{eq:Cmid} 得
+	$C_k^2=W(A_k)/W(B_k)$. \qed
+\end{proof}
+
+\begin{lemma}[范数闭式]\label{lem:norm}
+	设 $s$ 是特征值波数, 相位 $A,\psi,B$ 满足模态恒等式 $\alpha(A)+\psi+\alpha(B)=\pi$.
+	则斜率归一化解的范数满足
+	\begin{equation}
+		n(s):=\int_0^1\rho_{a,b}\,y^2\,dx=\frac{\Phi(A,\psi,B)}{s^3},
+		\label{eq:norm}
+	\end{equation}
+	其中
+	\begin{equation}
+		\Phi(A,\psi,B):=\frac{W(A)}{2m^2}
+		\Bigl[\psi+\frac{mA}{W(A)}+\frac{mB}{W(B)}\Bigr].
+		\label{eq:Phi}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	三段积分. 左阱 $[0,a]$ ($\rho=m^2$, $y=\sin(msx)/(ms)$):
+	\begin{equation}
+		I_L=\int_0^a m^2\frac{\sin^2(msx)}{m^2s^2}dx
+		=\frac{A-\sin A\cos A}{2ms^3}.
+	\end{equation}
+	中段 $[a,b]$ ($\rho=1$, $y=\alpha\cos(s(x-a))+\beta\sin(s(x-a))/s$,
+	$\alpha=\sin A/(ms)$, $\beta=\cos A$): 代入 $\psi=s(b-a)$ 得
+	\begin{equation}
+		I_M=\frac{\sin^2A(\psi+\sin\psi\cos\psi)}{2m^2s^3}
+		+\frac{\cos^2A(\psi-\sin\psi\cos\psi)}{2s^3}
+		+\frac{\sin A\cos A\sin^2\psi}{ms^3}.
+	\end{equation}
+	右阱 $[b,1]$ ($y=C\sin(ms(1-x))/(ms)$, 引理 \ref{lem:C} 给
+	$C^2=W(A)/W(B)$):
+	\begin{equation}
+		I_R=\frac{W(A)(B-\sin B\cos B)}{2mW(B)s^3}.
+	\end{equation}
+	求和 $I_L+I_M+I_R$, 用模态恒等式的切形式
+	\eqref{eq:tanpsi} (即 $\tan\psi=m(\tan A+\tan B)/(\tan A\tan B-m^2)$, 等价于
+	$\sin(\alpha(A)+\psi)/\sin\alpha(B)=\pm1$ 及 $\cos$ 版配对) 化简, 所有
+	$\sin A\cos A$, $\sin\psi\cos\psi$ 交叉项精确抵消, 得 \eqref{eq:Phi}.
+	(该化简可用符号代数验证, 见附录 \ref{app:verify}; 数值直接积分对照到
+	$10^{-40}$.) \qed
+\end{proof}
+
+\subsection{残差消元}
+
+\begin{lemma}[残差消元]\label{lem:elim}
+	在任意 good root 处, 对
+	\begin{equation}
+		r_\tau(x):=\frac{J(\tau x)}{J(x)},\qquad 0<x<\frac\pi\tau,
+	\end{equation}
+	有
+	\begin{equation}
+		r_\tau(A)=r_\tau(B).
+		\label{eq:rtaueq}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	\emph{第一法 (传输恒等式, 同 R32).} 由 $R_1=R_2=0$ 与定义 \eqref{eq:resid},
+	\begin{equation}
+		\frac{y_1(b)^2}{y_1(a)^2}=\frac{y_2(b)^2}{y_2(a)^2},
+	\end{equation}
+	两侧分别对模态 1 (相位 $A,B$) 与模态 2 (相位 $\tau A,\tau B$) 应用
+	\eqref{eq:ratio}, 即得 $J(B)/J(A)=J(\tau B)/J(\tau A)$, 亦即
+	$r_\tau(A)=r_\tau(B)$.
+
+	\emph{第二法 (范数闭式, 用于第 \ref{sec:excl} 节的 $L_3$ 论证).}
+	由 $R_1=0$: $\lambda_2y_2(a)^2/n_2=\lambda_1y_1(a)^2/n_1$, 而
+	$y_k(a)=\sin A_k/(ms_k)$, 故
+	\begin{equation}
+		\frac{n_2}{n_1}=\frac{\sin^2(\tau A)}{\sin^2A}.
+		\label{eq:R1cond}
+	\end{equation}
+	由范数闭式 \eqref{eq:norm}, 记
+	\begin{equation}
+		\Sigma_k:=\psi+\frac{mA}{W(\tau^{k-1}A)}+\frac{mB}{W(\tau^{k-1}B)},
+		\label{eq:Sigma}
+	\end{equation}
+	则 $\Phi(A,\psi,B)=\frac{W(A)}{2m^2}\Sigma_1$,
+	$\Phi(\tau A,\tau\psi,\tau B)=\frac{W(\tau A)}{2m^2}\cdot\tau\Sigma_2$, 于是
+	\begin{equation}
+		\frac{n_2}{n_1}
+		=\frac{\Phi(\tau A,\tau\psi,\tau B)/s_2^3}{\Phi(A,\psi,B)/s_1^3}
+		=\frac1{\tau^2}\frac{W(\tau A)}{W(A)}\frac{\Sigma_2}{\Sigma_1}.
+		\label{eq:nratio}
+	\end{equation}
+	联立 \eqref{eq:R1cond} 与 \eqref{eq:nratio}, 用 $J(x)=\sin^2x/W(x)$:
+	\begin{equation}
+		\frac{\Sigma_2}{\Sigma_1}
+		=\tau^2\frac{W(A)}{W(\tau A)}\frac{\sin^2(\tau A)}{\sin^2A}
+		=\tau^2\frac{J(\tau A)}{J(A)}=\tau^2r_\tau(A).
+		\label{eq:R1r}
+	\end{equation}
+	同理, 由 $R_2=0$ 与引理 \ref{lem:C} 的
+	$y_k(b)^2=\frac{W(A_k)}{W(B_k)}\frac{\sin^2B_k}{m^2s_k^2}$, 得
+	\begin{equation}
+		\frac{\Sigma_2}{\Sigma_1}=\tau^2r_\tau(B).
+		\label{eq:R2r}
+	\end{equation}
+	联立 \eqref{eq:R1r}--\eqref{eq:R2r} 即得 \eqref{eq:rtaueq}. \qed
+\end{proof}
+
+\section{相位比函数 rτ 的精确结构}\label{sec:structure}
+
+本节固定 $1<\tau<2$ (good root 处由引理 \ref{lem:taubound} 保证), 记
+\begin{equation}
+	x_{mid}:=\frac\pi{1+\tau},
+\end{equation}
+并把 $(0,\pi/\tau)$ 分为左区 $I:=(0,x_{mid}]$ 与右区
+$\mathrm{II}:=(x_{mid},\pi/\tau)$ (区域 II).
+
+\begin{lemma}[精确因子分解与左/右区符号]\label{lem:factor}
+	对 $0<x<\pi/\tau$,
+	\begin{equation}
+		r_\tau(x)-1
+		=\frac{m^2\sin((\tau-1)x)\sin((\tau+1)x)}{J(x)W(x)W(\tau x)}.
+		\label{eq:factor}
+	\end{equation}
+	因而 $r_\tau(x)>1$ 于 $x\in(0,x_{mid})$, $r_\tau(x_{mid})=1$,
+	$r_\tau(x)<1$ 于 $x\in(x_{mid},\pi/\tau)$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	\begin{equation}
+		\sin^2(\tau x)W(x)-\sin^2x\,W(\tau x)
+		=m^2(\sin^2(\tau x)\cos^2x-\sin^2x\cos^2(\tau x))
+		=m^2\sin((\tau-1)x)\sin((\tau+1)x),
+	\end{equation}
+	其中用到 $\sin u\cos v\pm\cos u\sin v=\sin(u\pm v)$ 的差积公式. 除以
+	$J(x)W(x)W(\tau x)$ 得 \eqref{eq:factor}. 符号: 于 $I$ 上
+	$(\tau-1)x\in(0,\pi)$, $(\tau+1)x\in(0,\pi)$, 两正弦均正; 于 II 上
+	$(\tau-1)x>0$ 且 $(\tau+1)x\in(\pi,\pi(\tau+1)/\tau)\subset(\pi,2\pi)$
+	(因 $\tau>1$), 故 $\sin((\tau+1)x)<0$. \qed
+\end{proof}
+
+\begin{lemma}[$L_0$ 型下界]\label{lem:L0}
+	对 $0<x\le x_{mid}$,
+	\begin{equation}
+		1<\tau^2r_\tau(x),\qquad
+		\frac{W(x)}{W(\tau x)}<\tau^2r_\tau(x).
+		\label{eq:L0}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	先证辅助不等式 $\sin(\tau x)>\sin x$ 于 $0<x<x_{mid}$. 若 $\tau x\le\pi/2$,
+	由 $\sin$ 在 $(0,\pi/2)$ 严格递增与 $\tau x>x$ 即得; 若 $\tau x>\pi/2$, 则
+	$\sin(\tau x)=\sin(\pi-\tau x)$, 且 $\pi-\tau x\in(0,x)$ (等价于 $x<x_{mid}$),
+	仍由单调性得 $\sin(\pi-\tau x)>\sin x$.
+
+	于是 $W(\tau x)=m^2-q\sin^2(\tau x)<m^2-q\sin^2x=W(x)$ (即
+	$W(\tau x)<W(x)$), 且
+	\begin{equation}
+		\tau^2r_\tau(x)=\Bigl(\frac{\tau\sin(\tau x)}{\sin x}\Bigr)^2
+		\frac{W(x)}{W(\tau x)}>\tau^2>1,
+	\end{equation}
+	给出第一式. 第二式:
+	\begin{equation}
+		\frac{\tau^2r_\tau(x)}{W(x)/W(\tau x)}
+		=\Bigl(\frac{\tau\sin(\tau x)}{\sin x}\Bigr)^2>1.
+	\end{equation}
+	端点 $x=x_{mid}$ 处 $\tau x_{mid}=\pi-x_{mid}$, $W(\pi-x_{mid})=W(x_{mid})$,
+	$\sin(\tau x_{mid})=\sin x_{mid}$, 直接代入亦成立 (严格). \qed
+\end{proof}
+
+\begin{lemma}[中间区严格递减]\label{lem:decr}
+	$r_\tau$ 在 $(x_{mid},\pi/2]$ 上严格递减. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	记 $\Psi(x):=(\log J)'(x)=2\cot x+\dfrac{2q\sin x\cos x}{W(x)}$. 则
+	\begin{equation}
+		\frac{d}{dx}\log r_\tau(x)=\tau\Psi(\tau x)-\Psi(x).
+	\end{equation}
+	对 $x\in(x_{mid},\pi/2)$: $\tau x>\tau x_{mid}=\pi-x_{mid}>\pi/2$ 且
+	$\tau x<\tau\pi/2<\pi$ (因 $\tau<2$), 故 $\tau x\in(\pi/2,\pi)$, 其上
+	$\cot<0$ 且 $\sin\cos<0$, 得 $\Psi(\tau x)<0$; 而 $x\in(0,\pi/2)$, 其上
+	$\Psi(x)>0$. 故对数导数 $<0$. 端点 $x=\pi/2$ 处
+	$\Psi(\pi/2)=0$, $\Psi(\tau\pi/2)<0$, 同样为负. \qed
+\end{proof}
+
+\begin{lemma}[危险区引理]\label{lem:danger}
+	若
+	\begin{equation}
+		x_{mid}<x<\frac\pi2<y\le\pi-x,\qquad y<\frac\pi\tau,
+	\end{equation}
+	则 $r_\tau(y)<r_\tau(x)$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由 $J(\pi-u)=J(u)$ 与 $y<\pi/\tau$ (从而 $\tau y\in(\pi/2,\pi)$),
+	\begin{equation}
+		r_\tau(y)=\frac{J(\pi-\tau y)}{J(\pi-y)}.
+	\end{equation}
+	记 $a:=\pi-y$, 则 $x\le a<\pi/2$, 且 $y<\pi/\tau$ 等价于
+	$u(a):=\tau a-(\tau-1)\pi>0$; 又 $a<\pi/2$ 给 $u(a)<\pi-\tau\pi/2=(2-\tau)\pi/2<\pi/2$.
+	故 $u(a)\in(0,\pi/2)$, 且
+	\begin{equation}
+		r_\tau(y)=\frac{J(u(a))}{J(a)}=:f(a).
+	\end{equation}
+	另一方面 $\tau x\in(\pi/2,\pi)$ (因 $x>x_{mid}$ 且 $\tau<2$),
+	\begin{equation}
+		r_\tau(x)=\frac{J(\pi-\tau x)}{J(x)}=:g(x),\qquad
+		v(x):=\pi-\tau x\in\Bigl(\frac{(2-\tau)\pi}2,x_{mid}\Bigr)\subset(0,\pi/2).
+	\end{equation}
+
+	\emph{断言 1: $g$ 在 $(x_{mid},\pi/2)$ 严格递减.} 对
+	$u\in(x_{mid},\pi/2)$, $\pi-\tau u\in((2-\tau)\pi/2,x_{mid})\subset(0,\pi/2)$,
+	故
+	\begin{equation}
+		\frac{d}{du}\log g(u)=-\tau\Psi(\pi-\tau u)-\Psi(u)<0,
+	\end{equation}
+	因 $\Psi>0$ 于 $(0,\pi/2)$ (两项: $2\cot u>0$, $2q\sin u\cos u/W(u)>0$).
+
+	\emph{断言 2: $f(a)<g(a)$.} 比较两分子: $u(a)-v(a)=\tau(2a-\pi)<0$,
+	而 $u(a),v(a)\in(0,\pi/2)$, $J$ 在 $(0,\pi/2)$ 严格递增
+	($J(x)=\tan^2x/(\tan^2x+m^2)$, $\tan$ 递增), 故
+	$J(u(a))<J(v(a))$, 即 $f(a)<g(a)$.
+
+	由 $x\le a$ 与断言 1: $g(a)\le g(x)$. 故
+	$r_\tau(y)=f(a)<g(a)\le g(x)=r_\tau(x)$. \qed
+\end{proof}
+
+\begin{lemma}[区域 II 等值对的反射分离]\label{lem:Bprime}
+	若 $x\ne y$ 且 $x,y\in(x_{mid},\pi/\tau)$ 满足 $r_\tau(x)=r_\tau(y)$, 则
+	\begin{equation}
+		x+y>\pi.
+		\label{eq:xypi}
+	\end{equation}
+	\STRICT{}
+\end{lemma}
+
+\begin{proof}
+	设 $x<y$ (对称). 分三种情形:
+	\begin{itemize}
+		\item $y\le\pi/2$: 由引理 \ref{lem:decr}, $r_\tau$ 在 $(x_{mid},\pi/2]$
+			严格递减, $r_\tau(x)=r_\tau(y)$ 与 $x\ne y$ 矛盾.
+		\item $x\ge\pi/2$: 则 $x+y>2x\ge\pi$, 且 $x\ne y$ 排除 $x=y=\pi/2$,
+			故严格成立.
+		\item $x<\pi/2<y$: 若 $y\le\pi-x$, 引理 \ref{lem:danger} 给
+			$r_\tau(y)<r_\tau(x)$, 矛盾于等值. 故 $y>\pi-x$, 即
+			$x+y>\pi$.
+	\end{itemize}
+	\qed
+\end{proof}
+
+\section{离轴 good root 的排除}\label{sec:excl}
+
+\begin{lemma}[左区排除]\label{lem:L3}
+	good root 不可能满足 $A,B\in(0,x_{mid}]$ 且 $A\ne B$.
+	更一般地, 若 $A,B\in(0,x_{mid}]$, 则 $R_1=0$ 与 $r_\tau(A)=r_\tau(B)$
+	不能同时成立. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由引理 \ref{lem:elim} 第二法, $R_1=0$ 给出
+	\begin{equation}
+		\frac{\Sigma_2}{\Sigma_1}=\tau^2r_\tau(A).
+		\label{eq:R1r2}
+	\end{equation}
+	另一方面由 \eqref{eq:Sigma} 直接分解:
+	\begin{equation}
+		\frac{\Sigma_2}{\Sigma_1}
+		=\frac{\psi}{\Sigma_1}\cdot 1
+		+\frac{mA/W(A)}{\Sigma_1}\cdot\frac{W(A)}{W(\tau A)}
+		+\frac{mB/W(B)}{\Sigma_1}\cdot\frac{W(B)}{W(\tau B)}
+		\in\operatorname{conv}\Bigl\{1,\frac{W(A)}{W(\tau A)},\frac{W(B)}{W(\tau B)}\Bigr\}.
+		\label{eq:conv}
+	\end{equation}
+	由引理 \ref{lem:L0} (应用于 $x=A$ 与 $x=B$):
+	$1<\tau^2r_\tau(A)$, $W(A)/W(\tau A)<\tau^2r_\tau(A)$,
+	$W(B)/W(\tau B)<\tau^2r_\tau(B)=\tau^2r_\tau(A)$ (末步用 $r_\tau(A)=r_\tau(B)$).
+	故三个顶点均 $<\tau^2r_\tau(A)$, 凸包亦然:
+	\begin{equation}
+		\frac{\Sigma_2}{\Sigma_1}<\tau^2r_\tau(A),
+	\end{equation}
+	与 \eqref{eq:R1r2} 矛盾. \qed
+\end{proof}
+
+\begin{lemma}[跨区排除]\label{lem:cross}
+	good root 不可能满足一个相位在 $I=(0,x_{mid}]$ 而另一个在
+	$\mathrm{II}=(x_{mid},\pi/\tau)$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	由引理 \ref{lem:factor}, $r_\tau\ge1$ 于 $I$ (等号仅在 $x_{mid}$) 而
+	$r_\tau<1$ 于 II. 故 $r_\tau(A)=r_\tau(B)$ 不可能跨区. \qed
+\end{proof}
+
+\begin{lemma}[区域 II 排除 (P-和通道)]\label{lem:psum}
+	good root 不可能满足 $A\ne B$ 且 $A,B\in\mathrm{II}$. \STRICT{}
+\end{lemma}
+
+\begin{proof}
+	记 $P_\tau(x):=\alpha(\tau x)-\tau\alpha(x)$. 由模态恒等式
+	\eqref{eq:modal12} 相减 ($2\pi-\tau\pi$):
+	\begin{equation}
+		P_\tau(A)+P_\tau(B)=(2-\tau)\pi.
+		\label{eq:psum}
+	\end{equation}
+	引理 \ref{lem:Bprime} 给 $A+B>\pi$.
+
+	\emph{相位反射引理:} $\alpha(x)+\alpha(\pi-x)=\pi$ 于 $0<x<\pi$. 证明:
+	由 $\alpha'(x)=m/W(x)$ 与 $W(\pi-x)=W(x)$,
+	\begin{equation}
+		\alpha(\pi-x)=\int_0^{\pi-x}\frac{m\,dt}{W(t)}
+		=\int_x^\pi\frac{m\,dt}{W(t)}=\pi-\alpha(x),
+	\end{equation}
+	其中第二步是代换 $t\mapsto\pi-t$ (注意 $\alpha(\pi)=\pi$). 因 $\alpha$ 严格递增,
+	由 $A+B>\pi$ 得 $\alpha(A)+\alpha(B)>\pi$.
+
+	于是, 利用 $\alpha(\tau A),\alpha(\tau B)\in(0,\pi)$ (因 $\tau A,\tau B<\pi$,
+	引理 \ref{lem:phases}),
+	\begin{equation}
+		P_\tau(A)+P_\tau(B)
+		=\alpha(\tau A)+\alpha(\tau B)-\tau(\alpha(A)+\alpha(B))
+		<2\pi-\tau(\alpha(A)+\alpha(B))<2\pi-\tau\pi=(2-\tau)\pi,
+	\end{equation}
+	与 \eqref{eq:psum} 矛盾. \qed
+\end{proof}
+
+\section{主定理的证明}\label{sec:proof}
+
+\begin{proof}[定理 \ref{thm:main} 的证明]
+	设 $(a,b)$ 是 sign-consistent good root. 由引理 \ref{lem:elim},
+	$r_\tau(A)=r_\tau(B)$. 由引理 \ref{lem:phases}, $A,B\in(0,\pi/\tau)$;
+	由引理 \ref{lem:taubound}, $\tau<2$, 使第 \ref{sec:structure} 节全部引理适用.
+
+	若 $A\ne B$, 分三情形, 均导出矛盾:
+	\begin{itemize}
+		\item $A,B\in I=(0,x_{mid}]$: 引理 \ref{lem:L3}.
+		\item 一个在 $I$, 另一个在 II: 引理 \ref{lem:cross}.
+		\item $A,B\in\mathrm{II}$: 引理 \ref{lem:psum}.
+	\end{itemize}
+	故 $A=B$, 即 $ms_1a=ms_1(1-b)$, 得 $a+b=1$. \qed
+\end{proof}
+
+\begin{remark}[证明链独立性]
+	定理 \ref{thm:main} 的证明不依赖任何数值结果. 所用引理全部为初等实分析
+	(正弦单调性与差积公式, 初等微积分, 标准 Sturm--Pr\"ufer 理论), 无超越函数
+	不等式超越 $\sin,\cos,\tan,\arctan$ 的初等性质. 数值内容全部仅作交叉检验
+	(\EVID, 第 \ref{sec:numerics} 节).
+\end{remark}
+
+\section{对 INF 问题的推论与剩余缺口}\label{sec:gaps}
+
+\subsection{已确立的推论 (STRICT 链)}
+
+\begin{corollary}[good root 分类]\label{cor:class}
+	对一切 $R>1$, 阱族的 sign-consistent good root 集合为
+	$\{(a,1-a):a\in(0,1/2)\}$ 的子集 (即全在反射固定线上). \STRICT{}
+\end{corollary}
+
+\begin{corollary}[INF 侧归约强化]\label{cor:reduction}
+	在 O1-INF 归约 (已独立审计, \url{SL\_gap\_n1\_proof.pdf}) 下, INF 极值问题
+	$I(R):=\inf_{1\le\rho\le R}(\lambda_2-\lambda_1)$ 的内部临界点全部落在对称阱族
+	$\rho_v=R\cdot\mathbf1_{[0,v)\cup(1-v,1]}+\mathbf1_{[v,1-v]}$ 上.
+	\STRICT{} (推论 \ref{cor:class} + O1-INF.)
+\end{corollary}
+
+\subsection{剩余缺口 (开放, 诚实登记)}\label{sec:gaps-open}
+
+\begin{itemize}
+	\item[(a$'$)] \OPEN{} 对称线 1D 分析 ($f(v)$ 零点唯一性, $D(v)$ 单峰) 仅完成
+		$1<R\le3/2$ 段 (2026-08-10, \url{SL\_gap\_n1\_symline\_proof.pdf});
+		$R>3/2$ 段未闭合. 定理 \ref{thm:main} 把 INF 问题归约到对称线后,
+		尚需该段的 1D 分析才能闭合 INF 侧 $R>3/2$.
+	\item[(c)] \OPEN{} 定理 A (INF $R\to\infty$ 极限, 对称阱) 独立复核仍为
+		CANDIDATE 状态.
+	\item[(d)] \OPEN{} 全局 good-root 论证 (极值点存在性、边界情形、good root 的
+		变分充分性) 未闭合; 推论 \ref{cor:reduction} 只覆盖内部临界点.
+	\item[其他] \OPEN{} 见概述文档 \url{SL\_spectral\_topics\_summary.pdf} 第 5.5 节
+		清单.
+\end{itemize}
+
+\begin{remark}[不夸大声明]
+	本文\emph{不}宣称"INF 侧 $R>3/2$ 已解决". 已解决的是缺口 (b):
+	阱族 good root 对一切 $R>1$ 的对称性. INF 侧 $R>3/2$ 的完全闭合仍依赖
+	(a$'$),(c),(d).
+\end{remark}
+
+\section{数值证据登记}\label{sec:numerics}
+
+本节全部为 \EVID, 不构成定理依据. 脚本位于 \texttt{scripts/\_gapb\_s55/};
+精度约定: mpmath 30--50 位; 特征值求根 bisect xtol $10^{-12}$; 恒等式对照
+直接积分或闭式至 $10^{-30}$--$10^{-40}$.
+
+\begin{enumerate}
+	\item \emph{模态恒等式} \eqref{eq:modal12}: $R=4$ 网格 171 个 sign-consistent
+		配置, 模态 1/2 恒等式失败数 0/0 (脚本 \texttt{\_s55\_verify\_identities.py},
+		\texttt{\_s55\_verify\_chain.py}).
+	\item \emph{P-和恒等式} \eqref{eq:psum}: 对称 good root 处到 $1.4\times10^{-40}$
+		(\texttt{\_s55\_verify\_chain.py}).
+	\item \emph{范数闭式} \eqref{eq:norm}: 多配置、模态 1/2, 直接三段积分 vs
+		闭式到 $10^{-40}$; sympy 在切形式 \eqref{eq:tanpsi} 下符号化简差为精确 0
+		(本会话复核).
+	\item \emph{$C^2=W(A)/W(B)$} \eqref{eq:C}: 多配置、模态 1/2 到 $10^{-40}$
+		(本会话复核).
+	\item \emph{$\tau<2$}: sign-consistent 网格 (12 个 $R\times190$ 配置)
+		$\max\tau=1.99995184$; 一般配置反例 $\tau\approx4.70$ (本会话复核;
+		\texttt{\_s55\_tau\_scan.py}).
+	\item \emph{引理 \ref{lem:alpha2} 的 $D(x)\ge0$}: 6 个 $R$, 2000 点,
+		min $D\approx9.7\times10^{-13}>0$ (端点精度内; 本会话复核).
+	\item \emph{引理 \ref{lem:decr} (中间区递减)}: 多 $R\times\tau<2$, 3000 点,
+		0 违反; 注意 $\tau\ge2$ 时 (非本定理情形) 失败, 与证明的前提一致
+		(\texttt{\_s55\_full\_verify.py}).
+	\item \emph{危险区引理 \ref{lem:danger}}: 8 个 R 值、4 个 τ 值, 约
+		124 万样本, 0 违反 (\texttt{\_s55\_danger\_zone.py},
+		\texttt{\_s55\_danger\_zone2.py}); 严格证明见正文.
+	\item \emph{引理 \ref{lem:Bprime}}: 45 个 $(R,\tau)$ 配置 (含 $\tau<2$)
+		有区域 II 等值对, 全局最小 $x+y=3.1421822>\pi$, 最小余量
+		$\approx5.9\times10^{-4}$ (于 $R=10^4$, $\tau=1.4$)
+		(\texttt{\_s55\_bprime\_grid.py}, \texttt{\_s55\_minpair\_precise.py},
+		本会话复核).
+	\item \emph{$\alpha$-反射引理}: 199$\times$199 网格仅精确边界
+		($x+y=\pi$) 处 1-ulp 伪影取等, 严格不等式侧 0 违反
+		(\texttt{\_s55\_full\_verify.py}).
+	\item \emph{good root 相位定位}: $R=4$ 细化对称 good root
+		$v^*=0.3825982567998447\ldots$: $A=B=1.45756580\in(x_{mid},\pi/\tau)$,
+		$|R_1|<10^{-50}$, $\Sigma_2/\Sigma_1=\tau^2r(A)=\tau^2r(B)$ 到 $10^{-51}$
+		(本会话复核).
+	\item \emph{反例 (非 good root 的离轴 $r$-等值对)}: $R=100$, $\tau=1.22$ 有
+		867 个区域 II 等值对, 最小和 $3.2159>\pi$ (与引理 \ref{lem:Bprime} 一致).
+	\item \emph{早期失败断言 (勿重犯)}: 交接摘要的 "$(0,\pi/\tau)$ 全域
+		$\tau\sin(\tau x)>\sin x$" 不对 (仅 $(0,x_{mid})$); "$r(y)>r(\pi-y)$"
+		是假的 ($R=100$, $\tau=1.22$, $y=1.64159$ 实测 $r=0.0675<0.1871$);
+		"$r_\tau$ 于 $(0,x_{mid})$ 单调" 是假的 (大 $R$ 有鼓包, 但 L3 论证
+		不依赖单调性).
+\end{enumerate}
+
+\section{涉及到的数学知识}\label{sec:math}
+
+\begin{itemize}
+	\item \emph{Sturm--Liouville 振荡理论}: 特征值简单性, 第 $k$ 特征函数恰有
+		$k-1$ 个内部零点 (引理 \ref{lem:modes}, Pr\"ufer 理论).
+	\item \emph{传输矩阵 (transfer matrix)}: 常系数段上的显式解与旋转矩阵
+		$P(\psi)$, 二次型守恒 (引理 \ref{lem:energy}); 阱段传输矩阵
+		$\begin{pmatrix}\cos B&\sin B/m\\-m\sin B&\cos B\end{pmatrix}$
+		(模态恒等式的代数验证).
+	\item \emph{Pr\"ufer 角}: $U=(sy,y')$ 的辐角 $\theta$, 每过一个特征函数零点
+		辐角回转为 $\pi$, 给出模态恒等式 \eqref{eq:modal}.
+	\item \emph{相位函数} $\alpha(x)=\arctan2(\sin x/m,\cos x)$: 压缩角,
+		严格递增, $\alpha'=m/W$, 反射对称 $\alpha(\pi-x)=\pi-\alpha(x)$,
+		凸性 $D(x)=\alpha(2x)-2\alpha(x)\ge0$ (引理 \ref{lem:alpha2}).
+	\item \emph{Feynman--Hellmann}: 单特征值对参数的变分公式
+		$\partial_a\lambda_k=-\lambda_k(R-1)\hat y_k(a)^2$, 用于残差定义
+		\eqref{eq:resid} 的动机 (注 \ref{rem:fh}).
+	\item \emph{凸组合 (Carath\'eodory) 估计}: \eqref{eq:conv} 把 $\Sigma_2/\Sigma_1$
+		夹在三个显式量的凸包中, 配合点态上界 (引理 \ref{lem:L3}).
+	\item \emph{对称性/反射技巧}: $J(\pi-u)=J(u)$, $W(\pi-u)=W(u)$,
+		$\alpha(\pi-x)=\pi-\alpha(x)$ 的连锁使用 (危险区引理与 P-和通道).
+	\item \emph{三角恒等式}: $\sin^2u\cos^2v-\sin^2v\cos^2u
+		=\sin(u-v)\sin(u+v)$ (精确因子分解 \eqref{eq:factor});
+		差化积 $\sin a-\sin b=2\cos\frac{a+b}2\sin\frac{a-b}2$.
+\end{itemize}
+
+\section{附录: 符号恒等式与数值探针清单}\label{app:verify}
+
+\subsection{符号恒等式 (E1 辅助核验)}
+
+\begin{enumerate}
+	\item $J(\pi-u)=J(u)$, $W(\pi-u)=W(u)$, $\alpha(\pi-u)=\pi-\alpha(u)$.
+	\item $r_\tau(x)-1=\dfrac{m^2\sin((\tau-1)x)\sin((\tau+1)x)}{J(x)W(x)W(\tau x)}$.
+	\item $\alpha'(x)=m/W(x)$; $D'(x)=2mq\sin^2x(4\cos^2x-1)/(W(x)W(2x))$.
+	\item $\Phi(A,\psi,B)=\frac{W(A)}{2m^2}\Sigma_1$, 且
+		$\Phi(\tau A,\tau\psi,\tau B)=\frac{W(\tau A)}{2m^2}\tau\Sigma_2$
+		(范数闭式, sympy 在 \eqref{eq:tanpsi} 下精确验证差为 0).
+	\item $C_k^2=W(A_k)/W(B_k)$.
+\end{enumerate}
+
+\subsection{数值探针 (E3, 仅交叉检验)}
+
+\begin{itemize}
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_verify\_identities.py}: 模态恒等式,
+		相位分支 vs secular.
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_full\_verify.py}: L0/BETA/引理
+		A/$\alpha$-反射/中间区递减/危险区/B$'$ 抽查/范数闭式.
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_structure.py},
+		\texttt{\_s55\_minpair\_precise.py}, \texttt{\_s55\_bprime\_grid.py},
+		\texttt{\_s55\_minxy\_fast.py}: 区域 II 结构与最小 $x+y$.
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_danger\_zone.py},
+		\texttt{\_s55\_danger\_zone2.py}: 危险区 0 违反.
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_tau\_scan.py}: $\tau$ 上界扫描.
+	\item \texttt{scripts/\_gapb\_s55/\_s55\_norm\_ratio.py},
+		\texttt{\_s55\_norm\_derive*.py}: $R_1=0$ 条件与范数闭式.
+	\item 本会话新复核脚本: 内联 mpmath/sympy 检验 (范数闭式符号验证,
+		$\tau<2$ sign-consistent 扫描, $D(x)\ge0$, 危险区, B$'$ 全局最小值,
+		$C^2$ 恒等式, good root 相位定位) --- 全部通过; 命令与输出登记于
+		\texttt{misc/\_well\_explore\_log.md} 第 16 节.
+\end{itemize}
+
+\begin{thebibliography}{9}\sloppy
+	\bibitem{keller} J.\ B.\ Keller, \emph{The minimum ratio of two eigenvalues},
+		SIAM J.\ Appl.\ Math.\ 31 (1976) 485--491, \url{https://doi.org/10.1137/0131042}.
+	\bibitem{mw} T.\ J.\ Mahar, B.\ Willner, \emph{An extremal eigenvalue problem},
+		Comm.\ Pure Appl.\ Math.\ 29 (1976) 517--529, \url{https://doi.org/10.1002/cpa.3160290505}.
+	\bibitem{hedhly} S.\ Hedhly, \emph{Sharp upper bounds for the eigenvalues of the
+		ratio of two vibrating strings}, \texttt{arXiv:2111.01728}.
+	\bibitem{r32} BVE research 项目, \emph{阱族小 $R$ 相位刚性: $1<R\le3/2$ 时任意
+		sign-consistent good root 必为对称根}, 2026-08-10,
+		\texttt{SL\_gap\_n1\_well\_rigidity\_R32.pdf}.
+	\bibitem{symline} BVE research 项目, \emph{对称线 1D 分析 (缺口 (a))},
+		2026-08-10, \texttt{SL\_gap\_n1\_symline\_proof.pdf}.
+	\bibitem{o1} BVE research 项目, \emph{INF 侧 O1 归约}, 2026-08-10,
+		\texttt{SL\_gap\_n1\_proof.pdf}.
+	\bibitem{gap} BVE research 项目, \emph{相邻间距极端值: 变分机制与数值解决},
+		2026-08-05, \texttt{SL\_gap\_extremals.pdf} (数值解决, \EVID{} 为主;
+		本文为其 n=1 INF 侧严格化的组成部分).
+\end{thebibliography}
+
+\end{document}
+
+
+

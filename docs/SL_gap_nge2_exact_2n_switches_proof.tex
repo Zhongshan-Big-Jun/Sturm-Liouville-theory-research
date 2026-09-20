@@ -1,7 +1,7 @@
 % 用法: xelatex SL_gap_nge2_exact_2n_switches_proof.tex (两遍, -output-directory=build)
 % 主题: 相邻谱隙极值子的精确 2n 开关定理 (一维加权 Dirichlet, n >= 2)
 % 来源: 用户提供 SL_gap_nge2_exact_2n_switches_proof_zh.pdf (2026-08), 本文为忠实转录,
-%       不超出 PDF 内容, 保留原文"不声称首创"及文献优先级边界声明.
+%       原忠实转录于 2026-09-20 修订两条能量公式; 保留原文"不声称首创"及文献优先级边界声明.
 %       冻结英文证明: runs/R-20260809T125847Z-exact2n-switch/artifacts/full_proof.md,
 %       SHA-256 9d4d8de8c18064717c8c7e2c913cdc1b914d086845a87cc55f34facdc0e0e5a9;
 %       独立综合审计: routes/synthesis_audit/independent_audit.md,
@@ -36,7 +36,7 @@
 
 \title{相邻谱隙极值子的精确 $2n$ 开关定理\\ 一维加权 Dirichlet Sturm--Liouville 问题的完整证明}
 \author{BVE research 项目 (Blueprint v2.2 数学研究证明包的中文自洽展开)}
-\date{2026 年 8 月 (项目集成转录 2026-08-10)}
+\date{2026 年 8 月 (项目集成转录 2026-08-10); 2026-09-20 revision}
 
 \begin{document}
 \maketitle
@@ -476,7 +476,8 @@ $r\in\{1,R\}$ 的一个开块上, 定义
 首先, 在常密度块内, 对任一 $k=n,n+1$ 有
 \begin{equation}
 	\frac{d}{dx}\left(u_k'^2+\lambda_k r u_k^2\right)
-		=2u'_ku''_k+\lambda_k r u_k^2=0\quad\text{a.e.}
+		=2u'_ku''_k+2\lambda_k r u_ku'_k
+		=2u'_k(u''_k+\lambda_k r u_k)=0\quad\text{a.e.}
 	\label{eq:blockconst}
 \end{equation}
 因此 \eqref{eq:kdef} 在每个块内为常数.
@@ -501,7 +502,7 @@ $r\in\{1,R\}$ 的一个开块上, 定义
 \end{equation}
 又有
 \begin{equation}
-	\int_0^1\rho u_n^2\,dx=a,\qquad \int_0^1\rho u_{n+1}^2\,dx=b .
+	\int_0^1a\rho u_n^2\,dx=a,\qquad \int_0^1b\rho u_{n+1}^2\,dx=b .
 	\label{eq:potential}
 \end{equation}
 于是
