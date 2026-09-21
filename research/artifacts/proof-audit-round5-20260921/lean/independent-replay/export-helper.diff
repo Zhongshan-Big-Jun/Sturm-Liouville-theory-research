@@ -1,0 +1,11 @@
+--- frozen/InspectAuditRound5.lean
++++ InspectAuditRound5.lean
+@@ -364,7 +364,7 @@
+   for N in Env.header.moduleNames do
+     let File ← findOLean N
+     Modules := Modules.push (Json.mkObj [("module", toJson N.toString), ("olean", toJson File.toString)])
+-  let Base := "F:/tools/math-audit-round5-20260921/lean-author/final/"
++  let Base := "F:/tools/math-audit-round5-20260921/independent-lean-replay/final/"
+   IO.FS.writeFile (Base ++ "declarations.json")
+     ((Json.mkObj [("declarations", Json.arr Results), ("dependencies", Json.arr Nodes), ("semantic_dependencies", names_json SemanticUsed.toArray)]).compress ++ "\n")
+   IO.FS.writeFile (Base ++ "loaded-modules.json")

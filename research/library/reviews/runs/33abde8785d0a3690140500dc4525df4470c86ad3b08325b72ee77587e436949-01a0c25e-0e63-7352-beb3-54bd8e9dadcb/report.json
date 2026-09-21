@@ -1,0 +1,39 @@
+{
+	"checked_paths": [
+		"docs/SL_cofinite_left_definite.tex",
+		"docs/SL_fractional_left_definite.tex",
+		"docs/SL_h2_completeness_proof.tex",
+		"research/library/card-versions/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.md",
+		"research/library/card-versions/f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430.md",
+		"research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin",
+		"research/library/corrections/requests/3b094d8bbeb828cac175af3ee6f7184078ade4aa7d5c560ffd7e8d8196ae843e.json",
+		"research/library/corrections/requests/f8f6b5028e65eb59b92e2301f24cefb1f8aa3e146d56e0b155f2af2dd6786f5f.json",
+		"research/library/reviews/runs/3db1fcd55afc57b0c7dec5a81f7af4e740957fdf21e3b0282b61e35396d99493-01a0c24d-4fc1-7322-bc39-33469b10668f/report.json",
+		"tools/left-definite-theory.md",
+		"tools/leftdef-o1pld-l2-structural.md",
+		"tools/spectral-domain-checks.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:f8f6b5028e65eb59b92e2301f24cefb1f8aa3e146d56e0b155f2af2dd6786f5f",
+			"reason": "The mathematical examination supports this repair, but the required stateless verification was compromised by the external access disclosed below. All 12 supplied input hashes match, including both card versions and the revision-to-issue binding. The current proof establishes the cofinite classification directly: leading-term elimination leaves a boundary correction matrix with determinant 2L^2 for every even L>=2; cutoff errors tend to zero through the local norm of f''; Sobolev polynomial approximation followed by boundary correction proves complete-tail density in the two-zero-trace subspace. Every cofinite set contains such a tail, so its closure depends exactly on retention of p0 and p1. The Green identities provide counterexamples to unconditional tail rigidity and unconditional cofinite density. Complex conjugation conventions and the formula u=cM0*g0,c+cM1*g1,c are consistent. The finite-deletion monomial argument also holds, including the empty deletion set. No remaining mathematical defect was identified in these current claims; an uncontaminated review is still required for approval.",
+			"verdict": "INCOMPLETE"
+		},
+		{
+			"id": "R5-inherited-spectrum-obligation",
+			"reason": "The mathematical dependency application checks out, subject to the same review-isolation failure. The card explicitly binds left-definite-theory at d944d1dd15e9e10af7d0e0d1a2a5ed3df0664a00e8f60963a728161dffd47945, which binds spectral-domain-checks at 8deeec4e940472b96a502a78ea8a600bb9570547c9819b378199d006233625d4; both match the supplied bytes. The actual domain is Sobolev H2 restricted by f'(1)=f'(-1)=(f(1)-f(-1))/2. Integration by parts gives Kc>=cI, and the derivative estimates make ||Kc f|| equivalent to both the operator graph norm and the restricted Sobolev norm. The explicit homogeneous correction has determinant 2a*sinh(a)*(a*cosh(a)-sinh(a))>0, proving surjectivity; symmetry and surjectivity establish self-adjointness. Thus Kc is an onto isometry from the specified left-definite space to L2. Both low modes 1 and x occur at eigenvalue c, with squared L2 norms 2 and 2/3. The positive sine modes have squared norm mu^2/(1+mu^2). The Green kernels have the required interface jumps and endpoint cancellation; their use requires only L2 membership. Fourier coefficients confirm the strict 3/2 and 7/2 membership thresholds, including endpoint divergence. Negative orders use completion, but the current cofinite proof needs neither that construction nor H3 density, discarded all-order density, numerical root computations, or a non-cofinite classification. The supplied previous approval was treated only as provenance.",
+			"verdict": "INCOMPLETE"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"The requested input isolation was not preserved: preliminary tooling accessed the external MEMORY.md index and the rigorous-open-math-research SKILL.md. Their contents were excluded from the mathematical argument, but the memory exposure prevents this run from qualifying as a fresh, stateless verification. This is why the verdict is INCOMPLETE despite finding no mathematical defect in the requested claims.",
+		"The historical candidate proof referenced by the card was not supplied. Its exact historical wording, the historical parity/mu4 branches, and other unsupplied sources were not independently certified.",
+		"The H3 proof, historical numerical programs and certificates, and Lean sources or execution records were not supplied or rerun. Their broader claims remain outside this assessment.",
+		"Nineteen supplementary symbolic identity checks passed. The infinite-dimensional closure assessment rests on the analytic approximation argument, not those checks.",
+		"The mathematical conclusions assessed concern fixed real c>0, complex scalars, the specified Krein domain, and cofinite index sets. They establish no uniform c-to-zero result, s=3 classification, or general non-cofinite classification.",
+		"No source-project files were modified."
+	],
+	"packet_sha256": "33abde8785d0a3690140500dc4525df4470c86ad3b08325b72ee77587e436949",
+	"verdict": "INCOMPLETE"
+}

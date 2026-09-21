@@ -1,0 +1,68 @@
+def endpoint_matrix (L : ℕ) : Matrix (Fin 2) (Fin 2) ℝ :=
+  !![(L : ℝ), (L : ℝ); -(L : ℝ), (L : ℝ)]
+
+def correction_matrix (L : ℕ) : Matrix (Fin 2) (Fin 2) ℝ :=
+  !![1 / (2 * (L : ℝ)), -1 / (2 * (L : ℝ));
+     1 / (2 * (L : ℝ)), 1 / (2 * (L : ℝ))]
+
+theorem endpoint_matrix_det (L : ℕ) :
+    (endpoint_matrix L).det = 2 * (L : ℝ) ^ 2 := by
+  simp [endpoint_matrix, Matrix.det_fin_two]
+  ring
+
+theorem endpoint_matrix_det_ne_zero (L : ℕ) (hL : 0 < L) :
+    (endpoint_matrix L).det ≠ 0 := by
+  rw [endpoint_matrix_det]
+  exact mul_ne_zero (by norm_num) (pow_ne_zero _ (by exact_mod_cast Nat.ne_of_gt hL))
+
+theorem endpoint_matrix_inverse (L : ℕ) (hL : 0 < L) :
+    endpoint_matrix L * correction_matrix L = 1 ∧
+      correction_matrix L * endpoint_matrix L = 1 := by
+  have h : (L : ℝ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hL
+  constructor <;> ext i j <;> fin_cases i <;> fin_cases j <;>
+    simp [endpoint_matrix, correction_matrix, Matrix.mul_apply, Fin.sum_univ_two] <;>
+    field_simp <;> ring
+
+theorem endpoint_monomial_columns (L : ℕ) (hL : 0 < L) (he : Even L) :
+    residues (X ^ L) = ((L : ℝ), -(L : ℝ)) ∧
+      residues (X ^ (L + 1)) = ((L : ℝ), (L : ℝ)) := by
+  obtain ⟨k, hk⟩ := he
+  obtain ⟨j, hj⟩ : ∃ j : ℕ, k = j + 1 := ⟨k - 1, by omega⟩
+  have h : L = 2 * j + 2 := by omega
+  subst L
+  simpa only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat, Nat.add_assoc] using
+    And.intro (monomial_even_residues j) (monomial_odd_residues j)
+
+def correction_alpha (L : ℕ) (r : ℝ × ℝ) : ℝ :=
+  (r.1 - r.2) / (2 * (L : ℝ))
+
+def correction_beta (L : ℕ) (r : ℝ × ℝ) : ℝ :=
+  (r.1 + r.2) / (2 * (L : ℝ))
+
+theorem correction_solves_residues (L : ℕ) (hL : 0 < L) (r : ℝ × ℝ) :
+    ((L : ℝ) * correction_alpha L r + (L : ℝ) * correction_beta L r,
+      -(L : ℝ) * correction_alpha L r + (L : ℝ) * correction_beta L r) = r := by
+  have h : (L : ℝ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hL
+  ext <;> dsimp [correction_alpha, correction_beta] <;> field_simp <;> ring
+
+def correct_endpoints (L : ℕ) (p : Polynomial ℝ) : Polynomial ℝ :=
+  p - C (correction_alpha L (residues p)) * X ^ L -
+    C (correction_beta L (residues p)) * X ^ (L + 1)
+
+theorem corrected_residues_zero (L : ℕ) (hL : 0 < L) (he : Even L)
+    (p : Polynomial ℝ) : residues (correct_endpoints L p) = 0 := by
+  obtain ⟨h₁, h₂⟩ := endpoint_monomial_columns L hL he
+  have h := correction_solves_residues L hL (residues p)
+  rw [correct_endpoints, map_sub, map_sub, residues_C_mul, residues_C_mul, h₁, h₂]
+  have hp := congrArg Prod.fst h
+  have hm := congrArg Prod.snd h
+  ext <;> dsimp at * <;> linarith
+
+theorem correction_preserves_divisibility (L : ℕ) (p : Polynomial ℝ)
+    (hp : (X : Polynomial ℝ) ^ L ∣ p) :
+    (X : Polynomial ℝ) ^ L ∣ correct_endpoints L p := by
+  apply dvd_sub
+  · exact dvd_sub hp (dvd_mul_left _ _)
+  · rw [pow_succ]
+    exact dvd_mul_of_dvd_right (dvd_mul_right _ _) _
+

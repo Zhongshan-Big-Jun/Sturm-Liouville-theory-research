@@ -1,0 +1,715 @@
+% !TEX program = xelatex
+% Author submission only. Compile a copy outside the repository.
+\documentclass[UTF8,fontset=fandol,11pt,a4paper]{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{例}
+\newtheorem{remark}[theorem]{注}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Hs}{H^2_{\mathrm{Sob}}(-1,1)}
+\newcommand{\Hc}{\mathcal H_c^2}
+\newcommand{\LL}{L^2(-1,1)}
+\newcommand{\spn}{\operatorname{span}_{\C}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle_2}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\Bc}{\mathcal B}
+\title{第二左定空间中余有限稀疏子族的精确闭包\\
+\large 第五轮审计修缮: 解析作者稿}
+\author{数学证明作者稿, 待另行独立复核}
+\date{2026-09-21}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+固定 $c>0$, 在复 Hilbert 空间 $\Hc=D(K_c)$ 中研究
+$K_cf=-f''+cf$ 及 Krein 边界条件. 本文证明: 对原稀疏多项式族的任意
+余有限指标集, 闭包只由是否保留 $1,x$ 决定, 分别对应零点值迹和导数迹.
+证明包括正性能量界, 显式满射构造, 两个 Green 代表元, 高阶尾部多项式的
+代数刻画, 局部零迹截断估计, Sobolev 多项式逼近及两维端点修正.
+进而完整分类实际保留集余有限的闭子空间, 给出保留族在其中稠密的充要条件.
+原候选 Claim 4, Theorem 5, Corollary 6 按其原量词被明确反证;
+这不表示已经验收的 $H^2/H^3$ 主结论被推翻.
+本文是作者提交, 不声称独立审批或全实分析 Lean 形式化.
+\end{abstract}
+\tableofcontents
+
+\section{问题合同, 记号和来源边界}
+\label{sec:contract}
+
+所有函数和线性空间均取复数域, 所有线性包均指有限复线性组合.
+内积约定为第一变量线性:
+\[
+\ip{u}{v}=\int_{-1}^1u(x)\overline{v(x)}\,dx,
+\qquad
+\langle z,w\rangle_{\C^2}=z_0\overline{w_0}+z_1\overline{w_1}.
+\]
+普通 Sobolev 空间 $\Hs$ 使用范数
+$\norm{f}_{\mathrm{Sob},2}^2=\norm{f}_2^2+\norm{f'}_2^2+\norm{f''}_2^2$.
+一维 Sobolev 函数取其 $f,f'$ 绝对连续的代表, 因此下列迹有意义.
+记 $\Delta f=f(1)-f(-1)$, 并定义
+\begin{equation}\label{eq:domain}
+\begin{split}
+K_cf&=-f''+cf,\\
+\Hc=D(K_c)&=\{f\in\Hs:f'(1)=f'(-1)=\Delta f/2\},\\
+(f,g)_{2,c}&=\ip{K_cf}{K_cg},\qquad
+\norm{f}_{2,c}=\norm{K_cf}_2.
+\end{split}
+\end{equation}
+$\Hc$ 是带指定边界条件的第二左定空间, 不等于整个 $\Hs$.
+它对应 $s=2$ 的 $D(K_c^{s/2})$, 不是 $s=3$ 的空间.
+本文全部闭包, 连续性和稠密性结论都限定在明确标出的拓扑中.
+
+原稀疏指标集和多项式为
+\begin{equation}\label{eq:family}
+\begin{gathered}
+\mathcal D=\{0,1\}\cup\{4,5,6,\ldots\},\qquad p_0=1,\quad p_1=x,\quad q_n=K_cp_n,\\
+p_{2m}=x^{2m}-\frac{m}{m-1}x^{2m-2},\qquad
+p_{2m+1}=x^{2m+1}-\frac{m}{m-1}x^{2m-1},\quad m\ge2.
+\end{gathered}
+\end{equation}
+直接代入可见全部 $p_n\in D(K_c)$: 偶项在两端的导数均为 $0$;
+奇项在两端的导数和 $\Delta p_{2m+1}/2$ 均为 $-1/(m-1)$.
+
+算子设定与基线文稿 \cite[第1节, 第2.2--2.3节]{priorh2} 一致.
+审查基线为
+\begin{center}\small\texttt{c0b36b90004cffb0552c9fa9f229e1f7cec8a706}.\end{center}
+所供第五轮报告和替代证明 \cite{audit,appendix} 在这里是待核查的论证来源,
+不构成验收. 第\ref{sec:refute}节精确处理旧候选 \cite{oldrun} 中
+Claim 4, Theorem 5, Corollary 6; 它们在该快照的状态均为
+\texttt{NOT-YET-STRICT}, 当前引用卡为 \cite{card}.
+本文不使用这些假命题作为前提, 也不依赖原 $H^2$ 完备性证明来证明自身的尾部闭包.
+
+\section{正性, 范数等价和满射性}
+\label{sec:operator}
+
+\begin{proposition}[R5-OP: 算子与拓扑]\label{prop:operator}
+算子 \eqref{eq:domain} 在 $\LL$ 中稠密定义且自伴, 并满足
+\begin{equation}\label{eq:energy}
+\ip{K_cf}{f}=\norm{f'}_2^2-\frac12|\Delta f|^2+c\norm{f}_2^2
+\ge c\norm{f}_2^2,\qquad f\in D(K_c).
+\end{equation}
+存在仅依赖 $c$ 的常数 $C_c<\infty$, 使
+\begin{equation}\label{eq:normequi}
+\norm{f}_{\mathrm{Sob},2}\le C_c\norm{K_cf}_2,
+\qquad
+\norm{K_cf}_2\le(1+c)\norm{f}_{\mathrm{Sob},2}.
+\end{equation}
+$K_c:(\Hc,(\cdot,\cdot)_{2,c})\longrightarrow\LL$ 是等距线性满射,
+且 $\Hc$ 是 Hilbert 空间. 进一步,
+\begin{equation}\label{eq:ldinner}
+(f,g)_{2,c}=\int_{-1}^1
+\bigl(f''\overline{g''}+2cf'\overline{g'}+c^2f\overline g\bigr)\,dx
+-c\Delta f\,\overline{\Delta g}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+分部积分的边界项为
+$[f'\overline f]_{-1}^1=|\Delta f|^2/2$.
+又由 $\Delta f=\int_{-1}^1f'$ 和 Cauchy--Schwarz 不等式,
+$|\Delta f|^2\le2\norm{f'}_2^2$, 得到 \eqref{eq:energy}.
+因此
+\begin{equation}\label{eq:basicbounds}
+\norm{f}_2\le c^{-1}\norm{K_cf}_2,\qquad
+\norm{f''}_2\le\norm{K_cf}_2+c\norm{f}_2\le2\norm{K_cf}_2.
+\end{equation}
+为明确补足一阶导数控制, 对任意 $f\in\Hs$ 写
+\[
+f(x)=A+Bx+r(x),\quad A=f(0),\quad B=f'(0),\quad
+r(x)=\int_0^x(x-t)f''(t)\,dt.
+\]
+负 $x$ 时积分取通常的有向积分. 在两半区间分别用 Cauchy--Schwarz 并积分,
+\[
+\norm{r}_2\le\frac1{\sqrt{12}}\norm{f''}_2,\qquad
+\norm{r'}_2\le\frac1{\sqrt2}\norm{f''}_2.
+\]
+由 $\norm{A+Bx}_2^2=2|A|^2+(2/3)|B|^2$,
+\begin{equation}\label{eq:interp}
+\norm{f'}_2\le\sqrt3\norm{f}_2+
+\left(\frac12+\frac1{\sqrt2}\right)\norm{f''}_2.
+\end{equation}
+结合 \eqref{eq:basicbounds} 得到第一条范数界; 第二条直接来自三角不等式.
+此外, 对 $u\in H^1(-1,1)$, 将 $u(t)$ 与其平均值比较给出
+\begin{equation}\label{eq:tracebound}
+|u(t)|\le2^{-1/2}\norm{u}_2+\sqrt2\norm{u'}_2,
+\qquad -1\le t\le1.
+\end{equation}
+故 $f(0),f'(0)$ 及两端的值迹, 导数迹在 $\Hs$ 和 $\Hc$ 上均连续.
+
+下面直接证明满射, 不预设特征函数展开. 令 $a=\sqrt c>0$,
+$d_a=a\cosh a-\sinh a$. 由于 $d_0=0$ 且
+$d_a'=a\sinh a>0$, 有 $d_a>0$.
+给定任意 $h\in\LL$, 定义
+\[
+v_h(x)=-\frac1a\int_0^x\sinh(a(x-t))h(t)\,dt.
+\]
+有界积分核及其一阶导数保证 $v_h,v_h'$ 绝对连续,
+$v_h''=cv_h-h\in L^2$, 因而 $v_h\in\Hs$ 且 $K_cv_h=h$.
+定义端点残差算子
+\begin{equation}\label{eq:boundary}
+\Bc(f)=\begin{pmatrix}f'(1)-\Delta f/2\\ f'(-1)-\Delta f/2\end{pmatrix}.
+\end{equation}
+对两个齐次解,
+\[
+\begin{pmatrix}\Bc(\cosh(ax))&\Bc(\sinh(ax))\end{pmatrix}
+=\begin{pmatrix}a\sinh a&d_a\\-a\sinh a&d_a\end{pmatrix},
+\qquad \det=2a\sinh a\,d_a>0.
+\]
+故存在唯一 $A_h,B_h\in\C$, 使
+$f=v_h+A_h\cosh(ax)+B_h\sinh(ax)$ 满足 $\Bc(f)=0$.
+这给出 $f\in D(K_c)$ 且 $K_cf=h$. 单射性由 \eqref{eq:energy} 给出.
+
+稠密定义性来自 $C_c^\infty(-1,1)\subset D(K_c)$.
+边界条件使
+$[-f'\overline g+f\overline{g'}]_{-1}^1=0$, 因此 $K_c$ 对称.
+若 $u\in D(K_c^*)$, 取 $v=K_c^{-1}K_c^*u\in D(K_c)$, 则任意
+$f\in D(K_c)$ 满足
+\[
+\ip{K_cf}{u-v}=\ip{f}{K_c^*u-K_cv}=0.
+\]
+因 $\Ran K_c=\LL$, 有 $u=v$, 从而 $K_c^*=K_c$.
+
+最后展开 $\ip{K_cf}{K_cg}$ 并分部积分. 两个交叉边界项为
+\[
+-c[f'\overline g]_{-1}^1-c[f\overline{g'}]_{-1}^1
+=-c\Delta f\,\overline{\Delta g},
+\]
+故得 \eqref{eq:ldinner}. 等距性由定义, 满射性已证明, 因而
+$\Hc$ 从 $\LL$ 继承完备性. 所有常数均针对固定 $c>0$;
+这里没有 $c\downarrow0$ 的一致范数等价断言.
+\end{proof}
+
+\section{两个 Green 代表元和原候选的明确反证}
+\label{sec:refute}
+
+\begin{proposition}[R5-GREEN: 值迹和导数迹的代表元]\label{prop:green}
+置 $a=\sqrt c$, $d_a=a\cosh a-\sinh a>0$, 并定义
+\begin{align}
+g_{0,c}(x)&=\frac{\cosh(a(1-|x|))}{2a\sinh a},\label{eq:g0}\\
+g_{1,c}(x)&=\frac{\sgn(x)\,[a\cosh(a(1-|x|))-\sinh(a(1-|x|))]}{2d_a}.
+\label{eq:g1}
+\end{align}
+$g_{1,c}(0)$ 任取. 二者是非零实值 $L^2$ 函数, 分别为偶函数和奇函数.
+对所有复值 $f\in D(K_c)$,
+\begin{equation}\label{eq:representers}
+\boxed{\ip{K_cf}{g_{0,c}}=f(0),\qquad
+\ip{K_cf}{g_{1,c}}=f'(0).}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+两式在每个开半区间满足 $-g''+cg=0$.
+记 $[g]_0=g(0+)-g(0-)$, $[g']_0=g'(0+)-g'(0-)$.
+逐项微分得
+\begin{equation}\label{eq:kerneldata}
+\begin{array}{c|ccccc}
+&g(0-)&g(0+)&g'(0-)&g'(0+)&([g]_0,[g']_0)\\ \hline
+g_{0,c}&\dfrac{\cosh a}{2a\sinh a}&\dfrac{\cosh a}{2a\sinh a}
+&\dfrac12&-\dfrac12&(0,-1)\\[6pt]
+g_{1,c}&-\dfrac12&\dfrac12&t_a&t_a&(1,0)
+\end{array}
+\end{equation}
+其中 $t_a=(a\cosh a-a^2\sinh a)/(2d_a)$.
+在两端, 令 $b_0=(2a\sinh a)^{-1}$, $b_1=a/(2d_a)$, 则
+\[
+g_{0,c}(-1)=g_{0,c}(1)=b_0,\qquad g_{0,c}'(-1)=g_{0,c}'(1)=0,
+\]
+\[
+g_{1,c}(-1)=-b_1,\quad g_{1,c}(1)=b_1,\quad
+g_{1,c}'(-1)=g_{1,c}'(1)=b_1.
+\]
+所以二者的端点数据都满足 $g'(\pm1)=\Delta g/2$.
+这只是在端点成立的关系, 不表示 $g_{j,c}\in D(K_c)$:
+$g_{0,c}'$ 有跳跃, 而 $g_{1,c}$ 本身有跳跃.
+
+对任一这样的分段光滑 $g$, 在 $[-1,0]$ 和 $[0,1]$ 分别分部积分,
+保留两侧极限, 得
+\begin{align}
+\ip{K_cf}{g}
+&=E(f,g)+f'(0)\overline{[g]_0}-f(0)\overline{[g']_0},\label{eq:interface}\\
+E(f,g)&=-f'(1)\overline{g(1)}+f(1)\overline{g'(1)}
+ +f'(-1)\overline{g(-1)}-f(-1)\overline{g'(-1)}\notag\\
+&=-\frac{\Delta f}{2}\overline{\Delta g}
+ +\Delta f\,\frac{\overline{\Delta g}}2=0.\notag
+\end{align}
+在 \eqref{eq:interface} 中代入 \eqref{eq:kerneldata}, 得到两个代表式.
+特别地, 对复数 $\alpha,\beta$,
+\begin{equation}\label{eq:complexrep}
+\ip{K_cf}{\alpha g_{0,c}+\beta g_{1,c}}
+=\overline\alpha f(0)+\overline\beta f'(0).
+\end{equation}
+这明确固定了复内积下的共轭位置.
+\end{proof}
+
+\begin{proposition}[R5-REFUTE: 三条原量词候选均为 REFUTED]\label{prop:refute}
+旧稿 \cite{oldrun} 的 Claim 4, Theorem 5, Corollary 6 按其原陈述均为假.
+这里的判定对象是三条原候选, 不是已验收的 $H^2/H^3$ 主定理.
+\end{proposition}
+
+\begin{proof}
+先完整列出矩递推系数. 从 \eqref{eq:family} 微分,
+\begin{align*}
+q_{2m}&=cx^{2m}-A_mx^{2m-2}+B_mx^{2m-4},&
+A_m&=2m(2m-1)+\frac{cm}{m-1},& B_m&=2m(2m-3),\\
+q_{2m+1}&=cx^{2m+1}-A'_mx^{2m-1}+B'_mx^{2m-3},&
+A'_m&=2m(2m+1)+\frac{cm}{m-1},& B'_m&=2m(2m-1),
+\end{align*}
+其中 $m\ge2$, 且 $q_0=c,q_1=cx$.
+原 Claim 4 声称: 若某 $u\in L^2$ 的矩 $M_k=\ip{u}{x^k}$
+从某个 $m_0\ge2$ 起满足偶, 奇两条递推
+\begin{equation}\label{eq:momentrec}
+cM_{2m}=A_mM_{2m-2}-B_mM_{2m-4},\qquad
+cM_{2m+1}=A'_mM_{2m-1}-B'_mM_{2m-3},
+\end{equation}
+则全部矩为零.
+
+取 $u=g_{0,c}$. 因为 $p_0(0)=1$ 而其他允许指标都满足 $p_n(0)=0$,
+命题\ref{prop:green}给出
+\begin{equation}\label{eq:annihilator}
+\ip{q_0}{g_{0,c}}=1,\qquad
+\ip{q_n}{g_{0,c}}=0\quad(n\in\mathcal D\setminus\{0\}).
+\end{equation}
+取共轭即可得到 $\ip{g_{0,c}}{q_n}=0$; 系数均为实数, 所以
+\eqref{eq:momentrec} 对每个 $m\ge2$ 都成立. 然而
+\begin{equation}\label{eq:mzero}
+M_0=2\int_0^1\frac{\cosh(a(1-x))}{2a\sinh a}\,dx
+=\frac1{a^2}=\frac1c\ne0.
+\end{equation}
+奇矩全为零, 偶矩为非零 $L^2$ 函数的实际矩. 因此 Claim 4 为假.
+这不是有限范围的递推实验; \eqref{eq:annihilator} 证明了全部指标的等式.
+
+原 Theorem 5 声称任意余有限 $N\subset\mathcal D$ 都使
+$\spn\{q_n:n\in N\}$ 在 $L^2$ 中稠密.
+取 $N=\mathcal D\setminus\{0\}$, \eqref{eq:annihilator} 中非零的
+$g_{0,c}$ 就是其正交障碍, 故 Theorem 5 为假.
+
+原 Corollary 6 声称每个真闭 $V\subset\Hc$ 都排除无穷多个 $p_n$.
+取 $V=\{f\in\Hc:f(0)=0\}$, 由迹连续性知它是闭子空间;
+因为 $1\notin V$, 它是真子空间. 它恰好只排除 $p_0$, 故 Corollary 6 为假.
+
+上述 $g_{0,c}$ 不满足 $\ip{g_{0,c}}{q_0}=0$.
+原全族 $H^2$ 证明用 $q_0,q_1$ 的正交性固定初始矩;
+此反例没有这些假设. 本文也未论证任何 $H^3$ 反例.
+\end{proof}
+
+\section{完整尾部的代数等式和逼近证明}
+\label{sec:tail}
+
+记连续满射
+\begin{equation}\label{eq:trace}
+\Gamma:\Hc\longrightarrow\C^2,\quad
+\Gamma f=(f(0),f'(0)),\qquad V_*:=\ker\Gamma.
+\end{equation}
+满射性来自 $\Gamma1=(1,0)$, $\Gamma x=(0,1)$.
+特别地,
+\begin{equation}\label{eq:split}
+\Hc=V_*\mathbin{\dotplus}\spn\{1,x\},\qquad
+f=\bigl(f-f(0)-f'(0)x\bigr)+f(0)+f'(0)x.
+\end{equation}
+这是拓扑直和, 不宣称是左定内积下的正交直和.
+
+\begin{lemma}[R5-ALG: 高阶尾部的精确代数等式]\label{lem:algebra}
+固定任意整数 $m_0\ge2$, 令 $L=2m_0-2$, 并定义
+\[
+\mathcal T_{m_0}=\spn\{p_{2m},p_{2m+1}:m\ge m_0\}.
+\]
+则
+\begin{equation}\label{eq:algebra}
+\mathcal T_{m_0}=\C[x]\cap D(K_c)\cap x^L\C[x].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+每个尾部生成元满足边界条件且被 $x^L$ 整除, 给出一侧包含.
+反过来, 对右侧多项式 $b$, 若最高次数 $n\ge L+2$, 则
+$n=2m$ 或 $2m+1$ 且 $m\ge m_0$.
+减去首项系数乘 $p_n$, 保持边界条件和 $x^L$ 整除性, 严格降低次数.
+有限次后余式为 $\alpha x^L+\beta x^{L+1}$.
+因为 $L$ 是正偶数,
+\begin{equation}\label{eq:polymatrix}
+\Bc(x^L)=\binom L{-L},\quad \Bc(x^{L+1})=\binom LL,\quad
+M_L:=\begin{pmatrix}L&L\\-L&L\end{pmatrix},\quad \det M_L=2L^2>0.
+\end{equation}
+余式的边界条件强迫 $M_L(\alpha,\beta)^{\mathsf T}=0$,
+故余式为零. 这证明全部 $m_0$ 的等式, 无次数上界.
+\end{proof}
+
+\begin{lemma}[R5-CUT: 局部零迹截断]\label{lem:cutoff}
+对每个 $f\in V_*$, 存在 $f_\delta\in D(K_c)$,
+在 $|x|\le\delta$ 上为零且在两端邻域等于 $f$, 使
+$f_\delta\to f$ 于 $\Hs$, 从而也于 $\Hc$.
+\end{lemma}
+
+\begin{proof}
+取固定光滑偶函数 $\eta:\mathbb R\to[0,1]$, 在 $|x|\le1$ 为零,
+在 $|x|\ge2$ 为一. 令 $0<\delta<1/4$,
+$\eta_\delta(x)=\eta(x/\delta)$, $f_\delta=\eta_\delta f$.
+乘积仍在 $H^2$, 且端点附近 $\eta_\delta=1$, 所以边界条件不变.
+
+以下取 $0<r\le1$, 所有小区间范数明确限制于 $I_r=(-r,r)$.
+由两个零迹,
+\[
+f'(x)=\int_0^x f''(t)\,dt,\qquad
+f(x)=\int_0^x(x-t)f''(t)\,dt.
+\]
+例如 $0<x<r$ 时
+$|f'(x)|^2\le x\norm{f''}_{L^2(0,x)}^2$,
+$|f(x)|^2\le(x^3/3)\norm{f''}_{L^2(0,x)}^2$;
+负半区间以 $|x|$ 同样估计. 两侧积分得到
+\begin{equation}\label{eq:localest}
+\norm{f'}_{L^2(I_r)}\le\frac r{\sqrt2}\norm{f''}_{L^2(I_r)},\qquad
+\norm f_{L^2(I_r)}\le\frac{r^2}{\sqrt{12}}\norm{f''}_{L^2(I_r)}.
+\end{equation}
+令 $E_\delta=\norm{f''}_{L^2(I_{2\delta})}$,
+$w_\delta=f_\delta-f$. 注意 $w_\delta$ 及其弱导数支撑在
+$\overline I_{2\delta}$ 中, 并且
+\[
+w_\delta'=(\eta_\delta-1)f'+\eta_\delta'f,
+\qquad
+w_\delta''=(\eta_\delta-1)f''+2\eta_\delta'f'+\eta_\delta''f.
+\]
+因 $\norm{\eta_\delta^{(k)}}_\infty\le C_k\delta^{-k}$,
+\eqref{eq:localest} 给出常数独立于 $f,\delta$ 的估计
+\begin{equation}\label{eq:cutbound}
+\norm{w_\delta}_2\le C\delta^2E_\delta,\qquad
+\norm{w_\delta'}_2\le C\delta E_\delta,\qquad
+\norm{w_\delta''}_2\le CE_\delta.
+\end{equation}
+由 $|f''|^2$ 的积分绝对连续性, $E_\delta\to0$.
+故整个 Sobolev 范数趋零. 这里必须使用局部范数 $E_\delta$;
+若仅写全区间的 $\norm{f''}_2$, 得到的常数上界不能推出收敛.
+\end{proof}
+
+\begin{lemma}[R5-POLY: Sobolev 多项式逼近]\label{lem:polyapprox}
+$\C[x]$ 在普通 $\Hs$ 中稠密.
+\end{lemma}
+
+\begin{proof}
+给定 $h\in\Hs$, 由连续函数在 $L^2$ 中稠密及 Weierstrass 定理,
+可取复多项式 $s_j\to h''$ 于 $L^2$. 置
+\[
+r_j(x)=h(-1)+(x+1)h'(-1)+\int_{-1}^x(x-t)s_j(t)\,dt.
+\]
+这是多项式. 对 $e_j=r_j-h$, 有 $e_j(-1)=e_j'(-1)=0$,
+$e_j''=s_j-h''$. 与上面的积分估计相同,
+\[
+\norm{e_j'}_2\le\sqrt2\norm{e_j''}_2,\qquad
+\norm{e_j}_2\le\frac2{\sqrt3}\norm{e_j''}_2.
+\]
+所以 $r_j\to h$ 于 $H^2$. 该步骤只在普通 Sobolev 空间中进行;
+尚未要求 $r_j$ 满足 Krein 边界条件.
+\end{proof}
+
+\begin{theorem}[R5-TAIL: 每个完整高阶尾部的闭包]\label{thm:tail}
+对每个整数 $m_0\ge2$,
+\begin{equation}\label{eq:tailclosure}
+\boxed{\overline{\mathcal T_{m_0}}^{\Hc}=V_*.}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+尾部的每个 $p_n$ 被 $x^2$ 整除, 因而两个零点迹为零.
+迹连续性给出 $\overline{\mathcal T_{m_0}}\subset V_*$.
+
+反向取 $f\in V_*$, 固定 $L=2m_0-2$.
+引理\ref{lem:cutoff}给出 $f_\delta\to f$.
+对每个固定的 $\delta$, 令 $h_\delta=f_\delta/x^L$,
+并在 $|x|\le\delta$ 延拓为零. 则 $h_\delta\in H^2$:
+可以把 $x^{-L}$ 在 $|x|\le\delta/2$ 附近光滑修改, 使之成为全区间光滑乘子,
+并在 $|x|\ge\delta$ 与原函数一致, 再乘以 $f_\delta$.
+
+取引理\ref{lem:polyapprox}中的多项式 $r_j\to h_\delta$ 于 $H^2$.
+由于乘以固定多项式 $x^L$ 是 $H^2$ 上的有界运算,
+$b_j=x^Lr_j\to f_\delta$ 于 $H^2$.
+这些 $b_j$ 可能不满足边界条件, 不能直接宣称它们在尾部线性包中.
+写 $\Bc(b_j)=(u_j,v_j)^{\mathsf T}$.
+由 \eqref{eq:tracebound} 和 $\Bc(f_\delta)=0$, 有 $u_j,v_j\to0$.
+利用同一个固定矩阵 \eqref{eq:polymatrix}, 令
+\begin{equation}\label{eq:correction}
+\alpha_j=\frac{u_j-v_j}{2L},\qquad
+\beta_j=\frac{u_j+v_j}{2L},\qquad
+\widetilde b_j=b_j-\alpha_jx^L-\beta_jx^{L+1}.
+\end{equation}
+于是 $\Bc(\widetilde b_j)=0$, 仍有 $x^L\mid\widetilde b_j$,
+且 $\widetilde b_j\to f_\delta$ 于 $H^2$.
+引理\ref{lem:algebra}保证 $\widetilde b_j\in\mathcal T_{m_0}$.
+
+给定 $\varepsilon>0$, 先取 $\delta$ 使 $\norm{f_\delta-f}_{2,c}<\varepsilon/2$,
+然后在该固定 $\delta$ 下取 $j$, 使
+$\norm{\widetilde b_j-f_\delta}_{2,c}<\varepsilon/2$.
+范数等价和三角不等式给出所需逼近.
+允许 $h_\delta$ 的范数或乘子常数随 $\delta\downarrow0$ 增大;
+这里没有交换两个极限, 也不需要其关于 $\delta$ 一致.
+\end{proof}
+
+\section{余有限闭包和全部正交障碍}
+\label{sec:cofinite}
+
+\begin{theorem}[R5-COFINITE: 任意余有限指标集]\label{thm:cofinite}
+令 $N\subset\mathcal D$ 且 $\mathcal D\setminus N$ 有限. 则
+\begin{equation}\label{eq:mainclosure}
+\boxed{\begin{aligned}
+\overline{\spn\{p_n:n\in N\}}^{\Hc}
+&=V_*\mathbin{\dotplus}\spn\{p_j:j\in N\cap\{0,1\}\}\\
+&=\{f\in\Hc:0\notin N\Rightarrow f(0)=0,\ 
+1\notin N\Rightarrow f'(0)=0\}.
+\end{aligned}}
+\end{equation}
+其在 $\Hc$ 中的余维是 $|\{0,1\}\setminus N|$.
+\end{theorem}
+
+\begin{proof}
+余有限性保证 $N$ 包含某个完整尾部, 定理\ref{thm:tail}使闭包包含 $V_*$.
+而每个 $n\ge4$ 的 $p_n$ 已属于 $V_*$.
+因此唯有 $p_0,p_1$ 是否被保留能增加迹方向.
+由 \eqref{eq:split} 及 $\Gamma p_0=(1,0),\Gamma p_1=(0,1)$,
+\eqref{eq:mainclosure} 右侧是闭空间, 包含且只包含允许的这两个迹方向,
+两侧相等. 余维结论由 $\Gamma$ 满射及 $\dim\C^2=2$ 得到.
+\end{proof}
+
+\begin{corollary}[R5-OBSTRUCTION: $L^2$ 像族的精确正交补]\label{cor:obstruction}
+同上, 令 $W_N=\overline{\spn\{q_n:n\in N\}}^{L^2}$.
+以 $E^\perp=\{h:\ip{h}{e}=0\ \forall e\in E\}$ 约定正交补, 有
+\begin{equation}\label{eq:obstructions}
+\boxed{W_N^\perp=\spn\bigl(\{g_{0,c}:0\notin N\}
+\cup\{g_{1,c}:1\notin N\}\bigr).}
+\end{equation}
+特别地,
+\begin{equation}\label{eq:densecriterion}
+W_N=L^2\quad\Longleftrightarrow\quad 0,1\in N.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+等距满射 $K_c$ 保持闭包, 因而 $W_N$ 是 \eqref{eq:mainclosure} 的像.
+由 \eqref{eq:representers}, 它恰是所有缺失低阶迹对应的
+$g_{j,c}^{\perp}$ 的交. 有限多个闭超平面的交的正交补等于对应代表元的线性包:
+这是恒等式 $(E^\perp)^\perp=\overline E$ 的应用, 而有限维 $E$ 已闭.
+两个代表元一偶一奇且均非零, 线性独立, 从而得到充要条件.
+\end{proof}
+
+\begin{corollary}[R5-TAIL-MOMENT: 真正的尾部矩结论]\label{cor:tailmoment}
+对任意 $u\in L^2$ 和任意 $m_0\ge2$, 以下等价:
+\begin{enumerate}
+\item $M_k=\ip{u}{x^k}$ 在全部 $m\ge m_0$ 上满足 \eqref{eq:momentrec}.
+\item $u\in\spn\{g_{0,c},g_{1,c}\}$.
+\end{enumerate}
+在这些等价条件下, 有精确归一化
+\begin{equation}\label{eq:normalizedtail}
+\boxed{u=cM_0g_{0,c}+cM_1g_{1,c}.}
+\end{equation}
+因此存在某个 $m_0$ 使两条尾部递推成立的全部复 $L^2$ 函数,
+恰好构成这个两维空间. 若再有 $M_0=M_1=0$, 则 $u=0$.
+若两条递推各有不同的起始阈值, 取二者的最大值即可.
+\end{corollary}
+
+\begin{proof}
+递推恰是 $\ip{u}{q_{2m}}=\ip{u}{q_{2m+1}}=0$.
+对尾部指标集应用推论\ref{cor:obstruction}, 即得前两项等价.
+为核对归一化, 对 $f=1,x$ 应用 \eqref{eq:representers}, 再取共轭, 得
+\begin{equation}\label{eq:lowmoments}
+\ip{g_{0,c}}1=\frac1c,\quad \ip{g_{0,c}}x=0,\quad
+\ip{g_{1,c}}1=0,\quad \ip{g_{1,c}}x=\frac1c.
+\end{equation}
+最后一个等式也可独立从显式公式积分核对:
+\begin{align*}
+\int_{-1}^1xg_{1,c}(x)\,dx
+&=\frac1{d_a}\int_0^1(1-y)\bigl(a\cosh(ay)-\sinh(ay)\bigr)\,dy\\
+&=\frac1{d_a}\left(\frac{\cosh a}{a}-\frac{\sinh a}{a^2}\right)
+=\frac1{a^2}=\frac1c.
+\end{align*}
+这里用了 $y=1-x$; 两个交叉矩则由奇偶性为零.
+若 $u=\alpha g_{0,c}+\beta g_{1,c}$, 第一变量线性给出
+\[
+M_0=\frac\alpha c,\qquad M_1=\frac\beta c.
+\]
+故得 \eqref{eq:normalizedtail}, 系数无需取共轭.
+两个初始矩为零恰好消除两个实际存在的障碍.
+这里没有在缺失的低阶递推方程处擅自反向传播.
+\end{proof}
+
+\section{实际保留集余有限的闭子空间}
+\label{sec:subspace}
+
+\begin{theorem}[R5-SUBSPACE: 二维迹分类和内部稠密判据]\label{thm:subspace}
+设 $V$ 是 $\Hc$ 的复闭线性子空间, 定义实际保留集
+\[
+N_V=\{n\in\mathcal D:p_n\in V\}.
+\]
+则下列条件等价:
+\begin{enumerate}
+\item $N_V$ 余有限.
+\item $V_*\subset V$.
+\item 存在唯一复线性子空间 $S\subset\C^2$, 使 $V=\Gamma^{-1}(S)$.
+\end{enumerate}
+此时 $S=\Gamma V$, 且有拓扑直和
+\begin{equation}\label{eq:vs}
+V=V_*\mathbin{\dotplus}\{z_0+z_1x:(z_0,z_1)\in S\}.
+\end{equation}
+令 $e_0=(1,0)$, $e_1=(0,1)$,
+$R_S=\spn\{e_j:j\in\{0,1\},\ e_j\in S\}$. 则
+\begin{align}
+N_V&=\{n\ge4\}\cup\{j\in\{0,1\}:e_j\in S\},\label{eq:actualN}\\
+\overline{\spn\{p_n:n\in N_V\}}^{\Hc}&=\Gamma^{-1}(R_S),\label{eq:actualclosure}\\
+\overline{\spn\{p_n:n\in N_V\}}^{\Hc}=V
+&\quad\Longleftrightarrow\quad S=R_S.\label{eq:internaldensity}
+\end{align}
+因而内部稠密恰好对应四个坐标子空间
+$S=\{0\},\C e_0,\C e_1,\C^2$.
+一般地, 保留族闭包在 $V$ 中的余维为 $\dim S-\dim R_S$.
+\end{theorem}
+
+\begin{proof}
+若 $N_V$ 余有限, $V$ 包含某个完整尾部; 由 $V$ 闭和定理\ref{thm:tail},
+有 $V_*\subset V$. 反之若 $V_*\subset V$, 则每个 $n\ge4$ 的 $p_n\in V$,
+故实际保留集自动余有限.
+
+若 $V_*\subset V$, 取 $S=\Gamma V$.
+这是 $\C^2$ 中的复线性子空间, 所以自动闭.
+显然 $V\subset\Gamma^{-1}(S)$.
+若 $\Gamma f\in S$, 可选 $v\in V$ 使 $\Gamma v=\Gamma f$;
+于是 $f-v\in V_*\subset V$, 故 $f\in V$. 反向包含成立.
+由于 $\Gamma$ 满射, $S$ 唯一, 且 \eqref{eq:split} 给出 \eqref{eq:vs}.
+反过来, 任意复线性 $S\subset\C^2$ 的原像是包含 $V_*$ 的闭子空间.
+
+式 \eqref{eq:actualN} 来自各 $p_n$ 的迹.
+将此实际指标集代入定理\ref{thm:cofinite}, 得 \eqref{eq:actualclosure}.
+由 $\Gamma$ 满射, 两原像相等当且仅当 $S=R_S$.
+$R_S$ 只能是四个坐标子空间之一, 给出完整分类.
+商空间 $V/\Gamma^{-1}(R_S)$ 与 $S/R_S$ 同构, 给出余维公式.
+\end{proof}
+
+\begin{remark}[任意所选 $N$ 与实际 $N_V$ 的区别]
+定理\ref{thm:cofinite}允许从任意高阶位置再删去有限项, 其闭包不变.
+但若某个闭 $V$ 的实际保留集余有限, 则 \eqref{eq:actualN} 表明它不能
+实际排除任何 $n\ge4$ 的 $p_n$. 把任意所选指标集等同于实际保留集,
+会错误地扩大闭子空间分类.
+\end{remark}
+
+\begin{example}[R5-OBLIQUE: 非坐标迹条件]\label{ex:oblique}
+取
+\[
+V=\{f\in\Hc:f(0)=f'(0)\}=\Gamma^{-1}(\C(1,1)).
+\]
+它是闭余维一子空间, $N_V=\mathcal D\setminus\{0,1\}$.
+但其保留族闭包只有 $V_*$, 而
+$1+x\in V\setminus V_*$, 所以保留族在 $V$ 中不稠密.
+事实上 $V=V_*\mathbin{\dotplus}\C(1+x)$.
+映到 $L^2$ 后,
+\[
+K_cV=(g_{0,c}-g_{1,c})^\perp,\qquad
+\overline{\spn\{q_n:n\in N_V\}}=g_{0,c}^\perp\cap g_{1,c}^\perp.
+\]
+这明确区分了余有限像族在整个 $L^2$ 中稠密, 与实际保留族在给定 $K_cV$ 中稠密.
+更一般的复直线 $\C(a,b)$, $ab\ne0$, 都有相同的一维内部缺陷;
+这不需要奇偶不变性.
+\end{example}
+
+\begin{remark}[一般迹约束的复正交障碍]
+对定理\ref{thm:subspace}中的 $S$, 有
+\[
+(K_c\Gamma^{-1}(S))^\perp
+=\{z_0g_{0,c}+z_1g_{1,c}:(z_0,z_1)\in S^\perp\}.
+\]
+事实上式 \eqref{eq:complexrep} 等于 $\langle\Gamma f,z\rangle_{\C^2}$.
+这些代表元给出的正交补具有维数 $2-\dim S$, 等于
+$K_c\Gamma^{-1}(S)$ 的余维, 故没有额外障碍.
+\end{remark}
+
+\section{单项式有限删除引理的修复}
+\label{sec:monomials}
+
+\begin{lemma}[R5-MONOMIAL: 删除有限单项式仍稠密]\label{lem:monomials}
+若 $F\subset\N_0$ 有限, 则 $\spn\{x^k:k\notin F\}$ 在 $\LL$ 中稠密.
+等价地, $L^2$ 函数的矩序列若仅有有限个非零项, 则该函数为零.
+\end{lemma}
+
+\begin{proof}
+设 $u\in L^2$ 正交于全部保留单项式. 若 $F=\varnothing$, 取 $M=0$;
+否则取整数 $M>\max F$. 因 $|x^M|\le1$, 有 $x^Mu\in L^2$.
+对任意 $j\ge0$,
+\[
+\ip{x^Mu}{x^j}=\ip{u}{x^{M+j}}=0.
+\]
+复线性扩展时, 对第二变量系数取共轭, 故 $x^Mu$ 正交于全部复多项式.
+由 $L^2$ 中的多项式稠密性, $x^Mu=0$ 几乎处处.
+由于 $x^M$ 的零集至多为测度零的单点, 有 $u=0$ 几乎处处.
+稠密性由正交补为零得到; 矩的推论取 $F$ 为非零矩的有限支撑即可.
+\end{proof}
+
+\begin{remark}[R5-ODD-FACTOR: 正确的奇部换元系数]
+对奇函数 $f_o(x)=xh_o(x^2)$, 令 $y=x^2$, 则
+\begin{equation}\label{eq:oddfactor}
+\begin{split}
+\int_{-1}^1|f_o(x)|^2\,dx
+&=2\int_0^1x^2|h_o(x^2)|^2\,dx\\
+&=\int_0^1|h_o(y)|^2y^{1/2}\,dy
+=\int_0^1|y^{1/4}h_o(y)|^2\,dy.
+\end{split}
+\end{equation}
+正确系数是 $1$, 因为两半区间的因子 $2$ 抵消 Jacobian 的 $1/2$.
+例如 $f_o=x$, 左侧为 $2/3$, 原旧引理中的额外 $1/2$ 会误给 $1/3$.
+引理\ref{lem:monomials}修复了旧 Lemma 1 的证明, 且不需要 Müntz--Szász 定理.
+它适用于 $x^k$ 的有限删除, 不能转用于 $q_n=K_cp_n$ 的有限删除;
+两者的结论差别已由命题\ref{prop:refute}和推论\ref{cor:obstruction}严格刻画.
+\end{remark}
+
+\section{提交范围和未声称的结论}
+\label{sec:boundaries}
+
+本文给出固定 $c>0$, 复 $\Hc=D(K_c)$ 中全部余有限所选指标集的闭包,
+以及实际保留集余有限的全部闭子空间分类. 证明链是
+R5-OP 提供算子和拓扑基础, R5-ALG, R5-CUT, R5-POLY 共同给出 R5-TAIL,
+后者推出 R5-COFINITE 和 R5-SUBSPACE.
+R5-GREEN 给出明确反例及全部余有限正交障碍, R5-MONOMIAL 修复另一独立引理.
+附件替代证明的主结论在上述重新推导中得到支持; 原先略写的满射性,
+完整界面符号, 局部范数收敛及实际闭子空间的必要充分条件在这里显式补齐.
+
+本文不解决一般非余有限实际保留集的 O1'LD, 不推出 $s=3$ 或其他阶数的
+同类分类, 不处理 $c=0$ 的退化空间, 也不对高阶旧文稿作统一认证.
+全族情形 $N=\mathcal D$ 在本证明中得到 $H^2$ 稠密性, 但这不等于重新
+审查所有旧证明的每项附带断言. 数值或符号检查仅验证所执行的有限实例或恒等式,
+不能替代 R5-TAIL 中的全指标解析论证.
+
+这是第五轮的解析作者提交. 独立验收应在另一个新会话完成;
+本文没有独立批准声明, 没有全实分析 Lean 声明, 也不承担协调器的发布操作.
+输入版本, 作者检查和源文件 SHA256 由外部作者目录中的清单绑定.
+
+\begin{thebibliography}{9}
+\bibitem{priorh2} 项目既有证明.
+\emph{第二左定空间 $H^2[-1,1]$ 中多项式基的解析完备性: 证明文档}.
+\path{docs/SL_h2_completeness_proof.tex}.
+本文引用其第1节的定义和第2.2--2.3节的算子设定;
+所需能量界与满射性已在 R5-OP 另证.
+
+\bibitem{oldrun} 原封存候选证明.
+\emph{Candidate Proof --- O1'LD attack: $L^2$ descent of the left-definite density problem}.
+\path{runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md}.
+精确目标为 Lemma 1, Claim 4, Theorem 5, Corollary 6; 原字节保留.
+
+\bibitem{card} 基线当前工具卡.
+\path{tools/leftdef-o1pld-l2-structural.md}.
+本文只核对与上述四项对应的声明, 不重新验收其余独立结果.
+
+\bibitem{audit} 所供第五轮审计报告.
+\path{research/artifacts/proof-audit-round5-20260921/submitted/proof_audit_round5_20260921.md}.
+定位: 第3节 R5-F01, 第4节 R5-F02.
+
+\bibitem{appendix} 所供替代证明.
+\emph{第二左定空间中余有限稀疏子族的精确闭包}.
+\path{research/artifacts/proof-audit-round5-20260921/submitted/cofinite_replacement_proof.md}.
+定位: 第2--6节. 本文是在核对后补足细节的作者稿, 不将附件视作独立验收.
+\end{thebibliography}
+\end{document}

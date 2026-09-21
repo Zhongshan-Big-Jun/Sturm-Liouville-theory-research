@@ -1,0 +1,127 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359",
+		"01a0c22b-f107-7520-9d75-33258752765c"
+	],
+	"claims": [
+		{
+			"id": "correction:02cd041654d5131c1165f6a5d116cfaa571de790b2c2260f1d64f29c717b8dc1",
+			"statement": "Independently check the repaired card tools/leftdef-o1pld-l2-structural.md at sha256 f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430, its scope and dependencies, against the original issue 4cee9d48c13aced90306b7c99b912316fc0748fe8556ecb861436af83713f870 and old version 1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R5-F01-refutations",
+			"statement": "Independently verify the explicit nonzero g0,c, its Green identity for all complex functions in the precise Krein Hc2 domain, M0=1/c and all-tail recurrence consequence. Check V=ker evaluation is proper closed and excludes exactly p0. These refute old NOT-YET-STRICT Claim4/Theorem5/Corollary6, without refuting accepted full H2/H3 completeness or confusing a plausible candidate with a previously certified theorem.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R5-cofinite-closure",
+			"statement": "Verify the all-cofinite theorem, not merely samples: self-adjoint positive Kc and onto isometry assumptions, equivalence to ordinary Sobolev H2 norm on its domain, continuity of both central traces, algebraic tail span by leading-term elimination for every even L>=2, the zero-trace cutoff estimates with local L2 norms and uniform-in-delta constants, polynomial approximation and exact endpoint residual correction. Check complex scalars, first-linear inner product, all c>0, cofinite N, both missing-low-index cases, and no s=3 or non-cofinite generalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R5-Green-and-actual-subspace",
+			"statement": "Check g1,c normalization, positivity of its denominator, endpoint/interface signs and its L2-only domain. Verify the exact orthogonal complement, two-dimensional tail-moment obstruction (if stated) and initial-moment normalization. For closed V with actual cofinite retained set, check V contains V*, V=Gamma^-1(S), retained closure corresponds exactly to included coordinate axes, and the oblique 1+x example. Verify any stated full classification of such S.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R5-F02-monomial-repair",
+			"statement": "Verify the odd norm coefficient is1 rather than1/2 and the direct finite-deletion monomial density proof via x^M f for arbitrary complex L2 f. Check the bounded multiplication, polynomial orthogonality, density premise and almost-everywhere zero conclusion, including an empty deleted set. This true monomial result cannot be transferred to q_n merely by analogy.",
+			"verification": "analytic"
+		},
+		{
+			"id": "R5-checks-and-boundaries",
+			"statement": "Inspect and, in disposable external space if possible, rerun the24 coordinator checks. Treat symbolic identities and exact counterexamples separately from Sobolev/closure proofs. Inspect the preserved CAS removable-singularity test repair rather than treating it as a mathematical defect. Check the new card states its sources and the limits of old parity/mu4 branches and local Lean honestly; this packet makes no full Lean or global repository certification.",
+			"verification": "exact-computation"
+		}
+	],
+	"inputs": {
+		"docs/SL_cofinite_left_definite.tex": {
+			"role": "analytic-proof",
+			"sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+			"snapshot": "inputs/docs/SL_cofinite_left_definite.tex"
+		},
+		"docs/SL_h2_completeness_proof.tex": {
+			"role": "unchanged-operator-setting",
+			"sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+			"snapshot": "inputs/docs/SL_h2_completeness_proof.tex"
+		},
+		"research/artifacts/proof-audit-round5-20260921/coordinator-checks/check_counterexamples.py": {
+			"role": "coordinator-check-source",
+			"sha256": "f896b8c04a7bac372ddb2220fdeb0f6912aed10bdf8905edd0058cbe39c8c64c",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/coordinator-checks/check_counterexamples.py"
+		},
+		"research/artifacts/proof-audit-round5-20260921/coordinator-checks/execution.json": {
+			"role": "actual-execution",
+			"sha256": "15faa6bae02197ad30073e20f260f60ee94ed3718b2b09c48dde15eb5a31eb37",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/coordinator-checks/execution.json"
+		},
+		"research/artifacts/proof-audit-round5-20260921/coordinator-checks/results.json": {
+			"role": "scoped-symbolic-results",
+			"sha256": "246ae6fd9d3afcfa484949759cb72a4bc65e5826443a91fb64c43b81cfb65c43",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/coordinator-checks/results.json"
+		},
+		"research/artifacts/proof-audit-round5-20260921/coordinator-checks/test-repair.json": {
+			"role": "preserved-test-representation-correction",
+			"sha256": "a712aa22a1fb54b6f1e7407c4c6040d9c5c74f4a2a719200b8b23a6006139ba2",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/coordinator-checks/test-repair.json"
+		},
+		"research/artifacts/proof-audit-round5-20260921/submitted/cofinite_replacement_proof.md": {
+			"role": "external-proposed-proof-not-approval",
+			"sha256": "85fba7148883c260049079f486f309e00fa6f682ab794a1aa5ef44cc3492c4cd",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/submitted/cofinite_replacement_proof.md"
+		},
+		"research/artifacts/proof-audit-round5-20260921/submitted/proof_audit_round5_20260921.md": {
+			"role": "external-findings",
+			"sha256": "734c6b6076e62c765c3944acd80ca58a2e17effad113f59703d21ee82ce3eae4",
+			"snapshot": "inputs/research/artifacts/proof-audit-round5-20260921/submitted/proof_audit_round5_20260921.md"
+		},
+		"research/library/card-versions/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.md": {
+			"role": "correction-review-input",
+			"sha256": "1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5",
+			"snapshot": "inputs/research/library/card-versions/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.md"
+		},
+		"research/library/card-versions/f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430.md": {
+			"role": "correction-review-input",
+			"sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430",
+			"snapshot": "inputs/research/library/card-versions/f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430.md"
+		},
+		"research/library/corrections/evidence/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.bin": {
+			"role": "correction-review-input",
+			"sha256": "1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5",
+			"snapshot": "inputs/research/library/corrections/evidence/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.bin"
+		},
+		"research/library/corrections/evidence/734c6b6076e62c765c3944acd80ca58a2e17effad113f59703d21ee82ce3eae4.bin": {
+			"role": "correction-review-input",
+			"sha256": "734c6b6076e62c765c3944acd80ca58a2e17effad113f59703d21ee82ce3eae4",
+			"snapshot": "inputs/research/library/corrections/evidence/734c6b6076e62c765c3944acd80ca58a2e17effad113f59703d21ee82ce3eae4.bin"
+		},
+		"research/library/corrections/evidence/cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c.bin": {
+			"role": "correction-review-input",
+			"sha256": "cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c",
+			"snapshot": "inputs/research/library/corrections/evidence/cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c.bin"
+		},
+		"research/library/corrections/requests/02cd041654d5131c1165f6a5d116cfaa571de790b2c2260f1d64f29c717b8dc1.json": {
+			"role": "correction-review-input",
+			"sha256": "02cd041654d5131c1165f6a5d116cfaa571de790b2c2260f1d64f29c717b8dc1",
+			"snapshot": "inputs/research/library/corrections/requests/02cd041654d5131c1165f6a5d116cfaa571de790b2c2260f1d64f29c717b8dc1.json"
+		},
+		"research/library/corrections/requests/4cee9d48c13aced90306b7c99b912316fc0748fe8556ecb861436af83713f870.json": {
+			"role": "correction-review-input",
+			"sha256": "4cee9d48c13aced90306b7c99b912316fc0748fe8556ecb861436af83713f870",
+			"snapshot": "inputs/research/library/corrections/requests/4cee9d48c13aced90306b7c99b912316fc0748fe8556ecb861436af83713f870.json"
+		},
+		"tools/left-definite-theory.md": {
+			"role": "correction-review-input",
+			"sha256": "d944d1dd15e9e10af7d0e0d1a2a5ed3df0664a00e8f60963a728161dffd47945",
+			"snapshot": "inputs/tools/left-definite-theory.md"
+		},
+		"tools/leftdef-o1pld-l2-structural.md": {
+			"role": "correction-review-input",
+			"sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430",
+			"snapshot": "inputs/tools/leftdef-o1pld-l2-structural.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

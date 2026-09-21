@@ -1,0 +1,318 @@
+{
+  "schema": "independent-lean-execution-review/v1",
+  "verdict": "PASS",
+  "completed_at": "2026-09-21T05:28:07.601087+00:00",
+  "agent": {
+    "native_agent_id": "01a0c260-fa2c-71f1-aa9a-8ccfdf5befc5",
+    "identity_source": "CODEX_THREAD_ID",
+    "role": "independent execution verifier; not an author",
+    "distinct_from_frozen_authors": true,
+    "spawned_agents": false,
+    "read_memory_or_author_conversations": false
+  },
+  "packet": {
+    "path": "/mnt/f/LaTeX/BVE research/research/library/reviews/packets/98b6920270e96b30b58dd75e49271e97ed00e0a8ea60e116f88c17dba9dd8140/packet.json",
+    "sha256": "98b6920270e96b30b58dd75e49271e97ed00e0a8ea60e116f88c17dba9dd8140",
+    "snapshot_count": 104,
+    "all_snapshot_hashes_verified_before_and_after": true
+  },
+  "target": {
+    "declaration": "SL.AuditRound5.local_algebra_root",
+    "source_sha256": "035043c154c215e995a210b798f80cf131414eee5529ad54396a5af3d669ae45",
+    "source_copy": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay/SL/AuditRound5.lean",
+    "fresh_root_object": {
+      "path": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay/build/SL/AuditRound5.olean",
+      "sha256": "59448f94c4791e647b2ec7a541519415390458d1a95e164fc802fa07499eb59e",
+      "bytes": 1132136
+    },
+    "expected_type_source": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay/ContractCheck.lean",
+    "expected_contract_json": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay/frozen/positive-contract.json",
+    "typed_contract_byte_identity_verified": true,
+    "typed_contract_compiler_exit_code": 0,
+    "conjunct_count": 8,
+    "no_outer_assumptions": true,
+    "type_expression_sha256": "09731717f7d4c0d578413d1b15d257f6e0fc8d4d465c0a019d4eedfdc5e2a982",
+    "fully_explicit_type_sha256_utf8": "ada2fe4a77343a1511e8c7a1ea87c0be872c2e4135524cb922c6a1c01a81c99e",
+    "conjuncts": [
+      {
+        "index": 1,
+        "description": "low value/derivative traces"
+      },
+      {
+        "index": 2,
+        "description": "low endpoint residues"
+      },
+      {
+        "index": 3,
+        "description": "all m >= 2 high polynomial traces and residues"
+      },
+      {
+        "index": 4,
+        "description": "all-index high-span inclusion and strictness"
+      },
+      {
+        "index": 5,
+        "description": "1+X witness with 1 and X exclusions"
+      },
+      {
+        "index": 6,
+        "description": "positive-L determinant and two-sided inverse"
+      },
+      {
+        "index": 7,
+        "description": "positive-even-L correction and preserved divisibility"
+      },
+      {
+        "index": 8,
+        "description": "trace-lift membership with explicit kernel inclusion"
+      }
+    ]
+  },
+  "execution": {
+    "performed_by_this_agent": true,
+    "checks_passed": 196,
+    "compiler": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+    "compiler_sha256": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f",
+    "actual_version": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)",
+    "format": "Windows PE; MZ signature checked after declared SHA-256 identity",
+    "fresh_root_compilation_exit_code": 0,
+    "exporter_exit_code": 0,
+    "commands": [
+      {
+        "receipt": "logs/01-version.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--version"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 0.10297771000477951
+      },
+      {
+        "receipt": "logs/02-root-compile.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+          "-o",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\SL\\AuditRound5.olean",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\SL\\AuditRound5.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 18.50811851400067
+      },
+      {
+        "receipt": "logs/03-import-resolution-before.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--deps",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 0.11425499200413469
+      },
+      {
+        "receipt": "logs/04-export.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 51.18998807499884
+      },
+      {
+        "receipt": "logs/05-positive-controls.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+          "-o",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\PositiveControls.olean",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\PositiveControls.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 14.775376752993907
+      },
+      {
+        "receipt": "logs/06-false-high-span-equality.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\FalseHighSpanEquality.lean"
+        ],
+        "exit_code": 1,
+        "expected_exit_code": 1,
+        "duration_seconds": 14.765636216994608
+      },
+      {
+        "receipt": "logs/07-exact-root-contract.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+          "-o",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\ContractCheck.olean",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\ContractCheck.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 14.466603856009897
+      },
+      {
+        "receipt": "logs/08-import-resolution-after.json",
+        "argv": [
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+          "--deps",
+          "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+        ],
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "duration_seconds": 0.10595596399798524
+      }
+    ],
+    "compiler_commands_count": 8,
+    "raw_stdout_stderr_and_exit_codes_preserved": true,
+    "original_source_pins_controls_unchanged": true,
+    "warning": "One linter.unnecessarySeqFocus warning at source line 119; retained, not repaired."
+  },
+  "runtime_and_import_identity": {
+    "runtime_files_rehashed": 11,
+    "manifest_modules": 3712,
+    "manifest_artifacts_rehashed": 14845,
+    "manifest_module_artifact_bytes": 3028880240,
+    "before_and_after_all_declared_hashes_match": true,
+    "all_nonlocal_imports_resolve_to_manifest_paths": true,
+    "local_root_resolution": {
+      "path": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay/build/SL/AuditRound5.olean",
+      "sha256": "59448f94c4791e647b2ec7a541519415390458d1a95e164fc802fa07499eb59e",
+      "bytes": 1132136
+    },
+    "root_path_and_hash_confirmed_before_after_all_probes": true,
+    "only_resolved_module_path_change": "SL.AuditRound5",
+    "frozen_author_root_hashed_but_not_imported": {
+      "path": "/mnt/f/tools/math-audit-round5-20260921/lean-author/build/SL/AuditRound5.olean",
+      "sha256": "75a9eedebebb71504b663c4c49b8abc1109ff7aa108cabc371b86b53281c2c90",
+      "bytes": 1132112,
+      "mtime_ns": 1789964687664243500,
+      "ctime_ns": 1789964687666240500
+    },
+    "fresh_object_equals_frozen_object_bytes": false,
+    "binary_identity_note": "The fresh object has its own recorded hash. Physical source/root path changed; exact elaborated exports match byte for byte. Binary equality with the author object is not asserted.",
+    "LEAN_PATH": "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean",
+    "WSLENV": "PATHEXT/l:COMSPEC/p:SYSTEMROOT/p:SYSTEMDRIVE:USERNAME:USERDOMAIN:USERPROFILE/p:PROGRAMFILES/p:PROGRAMFILES(X86)/p:PROGRAMW6432/p:PROGRAMDATA/p:LOCALAPPDATA/p:APPDATA/p:POWERSHELL:PWSH:HTTP_PROXY:HTTPS_PROXY:NO_PROXY:NODE_TLS_REJECT_UNAUTHORIZED:CODEX_APP_SERVER_LOGIN_ISSUER:CODEX_APP_SERVER_LOGIN_CLIENT_ID:CODEX_REFRESH_TOKEN_URL_OVERRIDE:CODEX_REVOKE_TOKEN_URL_OVERRIDE:CODEX_HOME/p:LOG_FORMAT:RUST_LOG:CODEX_INTERNAL_ORIGINATOR_OVERRIDE:CODEX_APP_TOOLS_PIPE_PATH:LEAN_PATH:TMP:TEMP",
+    "existing_project_SL_olean_lookup_excluded": true,
+    "receipt_files": [
+      "artifact-rehash-before.json",
+      "artifact-rehash-after.json",
+      "checks/import-identity.json"
+    ]
+  },
+  "declaration_identity": {
+    "count": 59,
+    "theorems": 37,
+    "definitions": 22,
+    "all_export_bytes_equal_to_both_frozen_author_and_coordinator_exports": true,
+    "exports": [
+      {
+        "baseline": "frozen/final/declarations.json",
+        "actual_sha256": "25f9c31d72e2bca5cfcde5bc278ec8e4fcdfe363b042c18f46c48721fc5693aa",
+        "baseline_sha256": "25f9c31d72e2bca5cfcde5bc278ec8e4fcdfe363b042c18f46c48721fc5693aa",
+        "byte_equal": true
+      },
+      {
+        "baseline": "frozen/coordinator-replay/final/declarations.json",
+        "actual_sha256": "25f9c31d72e2bca5cfcde5bc278ec8e4fcdfe363b042c18f46c48721fc5693aa",
+        "baseline_sha256": "25f9c31d72e2bca5cfcde5bc278ec8e4fcdfe363b042c18f46c48721fc5693aa",
+        "byte_equal": true
+      }
+    ],
+    "fully_explicit_types_and_definition_bodies_equal": true,
+    "union_dependency_nodes": 12604,
+    "root_dependency_nodes": 12601,
+    "union_semantic_nodes": 2347,
+    "independent_graph_recomputation_matches_lean_axiom_and_dependency_exports_for_all59": true,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "root_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sorryAx": false,
+    "unknown_dependencies": [],
+    "unsafe_dependencies": [],
+    "comparison_policy": "Strict byte equality of union-of-all-59 exports; no root-only versus union field relaxation used in this replay.",
+    "scope_of_unsafe_check": "All 12604 nodes in the mathematical declaration dependency union; the Lean runtime and exporter are execution infrastructure."
+  },
+  "controls": {
+    "positive": {
+      "exit_code": 0,
+      "object_emitted": true,
+      "explicit_1_plus_X_witness": true,
+      "explicit_all_index_false_equality_negation": true,
+      "other_checks": "m=2 even/odd polynomials, concrete correction coefficients, matrix inverse, general trace formulas"
+    },
+    "negative": {
+      "exit_code": 1,
+      "expected": true,
+      "failure_reason": "Strict inclusion versus equality type mismatch",
+      "actual_type": "high_span 2 < oblique ⊓ krein_polynomials",
+      "requested_false_type": "high_span 2 = oblique ⊓ krein_polynomials",
+      "not_a_failed_proof_of_False": true
+    },
+    "typed_eight_conjunct_root_contract": {
+      "exit_code": 0,
+      "object_emitted": true
+    }
+  },
+  "export_helper": {
+    "old_sha256": "2394b30680706f100f9a8a293462a7628c48e68ca45a333477ccaa446d4f5fd3",
+    "new_sha256": "2b591eb9506efba9e17b9c524cc21f1b1ad864ffb08e2f99f832c56c8bfca0f3",
+    "old_literal": "F:/tools/math-audit-round5-20260921/lean-author/final/",
+    "new_literal": "F:/tools/math-audit-round5-20260921/independent-lean-replay/final/",
+    "replacement_count": 1,
+    "only_output_folder_changed": true
+  },
+  "semantic": {
+    "status": "not_reviewed_by_this_execution_verifier",
+    "relationship": "Complements the separately approved semantic comparison described by the user; no new analytic certification."
+  },
+  "optional_maintained_verifier": {
+    "status": "not_replayed",
+    "blocking": false,
+    "reason": "Implementation not included in the frozen packet; no permission to read the installed verifier implementation.",
+    "historical_author_and_coordinator_verdicts_not_substituted_for_current_execution": true
+  },
+  "read_write_scope": {
+    "sole_write_area": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay",
+    "project_source_or_dependency_modified": false,
+    "source_read_from_frozen_snapshot_only": true,
+    "live_module_runtime_reads_limited_to_declared_manifest_paths": true,
+    "no_library_dependency_integration_attempted": true,
+    "frozen_snapshots_and_declared_runtime_import_bytes_unchanged_after_execution": true,
+    "changed_path_inventory": "changed-paths.json",
+    "scope_verification_note": "Audit-owned write destinations and unchanged allowed input bytes were checked; unrelated working-tree files and history were not read or scanned."
+  },
+  "limitations": [
+    "The maintained verifier implementation is absent from the frozen packet and was not replayed or read outside the allowed inputs.",
+    "This verdict covers independent execution, exact local target identity, imported artifact identity and axiom closure. It does not replace the separate semantic comparison or analytic mathematics review.",
+    "Formal carrier is Polynomial Real. No complex or Sobolev theory, topological closure/density, cutoff approximation, Green integration, leading-term tail equality or full cofinite classification was formalized here.",
+    "Installed pinned imports were byte-verified before and after execution, not rebuilt. No package installation, download or full Lake build was run.",
+    "This is an installed Windows PE Lean runtime invoked through WSL, not a native Linux runtime or offline self-contained toolchain distribution.",
+    "The first two bootstrap tool outputs were displayed with transport truncation. Their command text and deterministic reconstructed stdout are saved with explicit provenance; every Lean command has raw, separate stdout/stderr and exit-code receipts."
+  ],
+  "artifacts": {
+    "report_markdown": "REPORT.md",
+    "hash_inventory": "hash-inventory.json",
+    "sha256_sums": "SHA256SUMS",
+    "changed_paths": "changed-paths.json",
+    "raw_compiler_receipts": "logs/",
+    "shell_and_bootstrap_receipts": "receipts/",
+    "declaration_comparison": "checks/declaration-comparison.json",
+    "root_contract": "checks/root-identity.json",
+    "import_identity": "checks/import-identity.json"
+  }
+}

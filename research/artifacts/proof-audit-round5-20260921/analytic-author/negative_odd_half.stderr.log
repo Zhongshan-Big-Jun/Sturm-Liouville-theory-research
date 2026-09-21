@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 262, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 245, in main
+    negative_control(Args.negative_control)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 234, in negative_control
+    record_check('negative_control_old_odd_half_factor', sp.Rational(2, 3) == sp.Rational(1, 2) * sp.Rational(2, 3))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 31, in record_check
+    raise RuntimeError('FAILED: ' + Name + ' ' + str(Detail or ''))
+RuntimeError: FAILED: negative_control_old_odd_half_factor 

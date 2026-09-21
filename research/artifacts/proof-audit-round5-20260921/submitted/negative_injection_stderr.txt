@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import d4_third_order_theory as m; original=m.even_form2; m.even_form2=lambda j,c: original(j,c)+1; m.main()
+                                                                                                        ~~~~~~^^
+  File "/mnt/data/sl_audit_round5/d4_third_order_theory.py", line 193, in main
+    require(Passed, f"closed form {Form.__name__}, c={C}, failed at j={FirstFailure}")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/sl_audit_round5/d4_third_order_theory.py", line 184, in require
+    raise ArithmeticError(Message)
+ArithmeticError: closed form <lambda>, c=1/4, failed at j=3

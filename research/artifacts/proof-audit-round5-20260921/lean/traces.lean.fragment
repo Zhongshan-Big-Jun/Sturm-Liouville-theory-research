@@ -1,0 +1,41 @@
+def trace_lift (r : ℝ × ℝ) : Polynomial ℝ := C r.1 + C r.2 * X
+
+theorem traces_trace_lift (r : ℝ × ℝ) : traces (trace_lift r) = r := by
+  ext <;> simp [traces_apply, trace_lift]
+
+theorem trace_lift_krein (r : ℝ × ℝ) : residues (trace_lift r) = 0 := by
+  ext <;> simp [residues_apply, trace_lift] <;> ring
+
+theorem traces_surjective : Function.Surjective traces := by
+  intro r
+  exact ⟨trace_lift r, traces_trace_lift r⟩
+
+theorem subtract_trace_lift (p : Polynomial ℝ) :
+    p - trace_lift (traces p) ∈ zero_traces := by
+  change traces (p - trace_lift (traces p)) = 0
+  rw [map_sub, traces_trace_lift, sub_self]
+
+/- The kernel-inclusion hypothesis below is algebraic and explicit. Deriving
++it from a cofinite family in a Sobolev space is not formalized here. -/
+theorem trace_membership_iff (W : Submodule ℝ (Polynomial ℝ))
+    (hW : zero_traces ≤ W) (p : Polynomial ℝ) :
+    p ∈ W ↔ trace_lift (traces p) ∈ W := by
+  have hr := hW (subtract_trace_lift p)
+  constructor
+  · intro hp
+    have h := W.sub_mem hp hr
+    simpa using h
+  · intro ht
+    have h := W.add_mem hr ht
+    simpa using h
+
+theorem oblique_with_krein_witness :
+    (1 + X : Polynomial ℝ) ∈ oblique ⊓ krein_polynomials ∧
+    (1 : Polynomial ℝ) ∉ oblique ⊓ krein_polynomials ∧
+    (X : Polynomial ℝ) ∉ oblique ⊓ krein_polynomials := by
+  refine ⟨⟨one_add_X_mem_oblique, ?_⟩, ?_, ?_⟩
+  · change residues (1 + X : Polynomial ℝ) = 0
+    simpa [trace_lift] using trace_lift_krein (1, 1)
+  · exact fun h => one_not_mem_oblique h.1
+  · exact fun h => X_not_mem_oblique h.1
+

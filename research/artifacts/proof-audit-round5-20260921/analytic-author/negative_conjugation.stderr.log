@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 262, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 245, in main
+    negative_control(Args.negative_control)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 237, in negative_control
+    check_zero('negative_control_missing_conjugation', Wrong - 8 * sp.I)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 36, in check_zero
+    record_check(Name, Reduced == 0, str(Reduced))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 31, in record_check
+    raise RuntimeError('FAILED: ' + Name + ' ' + str(Detail or ''))
+RuntimeError: FAILED: negative_control_missing_conjugation 2 + 8*I

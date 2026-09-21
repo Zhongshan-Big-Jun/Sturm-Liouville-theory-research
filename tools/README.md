@@ -16,6 +16,10 @@
 命令入口随已加载插件版本确定; 本轮开发实现位于插件源码仓库 `_xsoc1_work/`,
 是否已发布和安装见对应版本报告, 不从目录存在推断安装成功.
 
+## 第五轮修订 (2026-09-21)
+
+[余有限稀疏族与两条迹](leftdef-o1pld-l2-structural.md)撤回原Claim4/Theorem5/Corollary6的错误候选, 给出s=2的完整余有限闭包、两个Green障碍及实际闭子空间分类. 单项式有限删除引理的换元系数和证明同时修复. 原封存run保持不变, 当前复用以新版精确回执为准; 一般非余有限O1'LD与s=3的对应分类仍开放. [第五轮报告](../reports/proof-audit-round5-20260921/REPORT.md)区分解析证明、37个局部Lean定理、四份隔离审查回执与额外的独立编译检查.
+
 ## 第四轮修订 (2026-09-21)
 
 [三阶递推](third-order-recurrence.md)给出指定双奇偶系数族的正项尾解、一般c常数和全部有理比值分类; [K1锚点](third-order-minimal-K1.md)保留独立有限终端约定. [Krein-Sobolev](krein-sobolev-polynomials.md)区分普通函数代表与商类极限. [稳定性](jump-stability.md)及四张未改正文的卡片完成精确审计绑定续接. 原错误版本、退回记录和批注仍可溯源, 默认检索只按当前纠错状态复用. 证明、程序与局部Lean的不同范围见 [第四轮报告](../reports/proof-audit-round4-20260921/REPORT.md).
@@ -88,7 +92,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | largeR-level-cascade | [card](<largeR-level-cascade.md>) | 0 |
 | left-definite-moment-recurrence | [card](<left-definite-moment-recurrence.md>) | 0 |
 | left-definite-theory | [card](<left-definite-theory.md>) | 0 |
-| leftdef-o1pld-l2-structural | [card](<leftdef-o1pld-l2-structural.md>) | 0 |
+| leftdef-o1pld-l2-structural | [card](<leftdef-o1pld-l2-structural.md>) | 1 |
 | lemma-A-doubleprime | [card](<lemma-A-doubleprime.md>) | 0 |
 | liouville-transform | [card](<liouville-transform.md>) | 0 |
 | m3-largeR-closure | [card](<m3-largeR-closure.md>) | 0 |

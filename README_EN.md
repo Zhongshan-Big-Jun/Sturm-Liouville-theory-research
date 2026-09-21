@@ -2,6 +2,8 @@
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
+Fifth-round audit (2026-09-21): the old O1'LD tail-rigidity, unconditional cofinite-density and proper-subspace candidates are refuted. The monomial finite-deletion lemma retains its conclusion with a corrected proof. The two-trace classification at s=2 has passed independent review, and its revised tool card is available for reuse; see the [fifth-round report](reports/proof-audit-round5-20260921/REPORT.md).
+
 The fourth revision on 2026-09-21 separates ordinary-function and quotient limits, repairs the third-order program, reduction assumptions and parameter table, and proves general-c minimal solutions for the specified even/odd coefficient family. See the [fourth-audit report](reports/proof-audit-round4-20260921/REPORT.md) for analytic, independent-review and local-Lean scopes.
 
 The third audit on 2026-09-20 corrects the general recurrence versus product-model distinction, false basis-perturbation stability claims, and a quotient-completeness proof gap. Updated cards, programs, local Lean checks, independent reviews and their limits are documented in the [third-audit report](reports/proof-audit-round3-20260920/REPORT.md).

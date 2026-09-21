@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 262, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 245, in main
+    negative_control(Args.negative_control)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 232, in negative_control
+    check_close('negative_control_flipped_g1_first_moment', integral(lambda Value: -Value * G1(Value)), 1)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 148, in check_close
+    record_check(Name, Error <= Tolerance * max(1, abs(Expected)), {'absolute_error': mp.nstr(Error, 8), 'expected': mp.nstr(Expected, 16)})
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 31, in record_check
+    raise RuntimeError('FAILED: ' + Name + ' ' + str(Detail or ''))
+RuntimeError: FAILED: negative_control_flipped_g1_first_moment {'absolute_error': '2.0', 'expected': '1'}

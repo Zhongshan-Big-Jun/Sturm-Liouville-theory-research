@@ -1,0 +1,329 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "06c163ba00e904b6ca0419b76e6cde5afa3134af289a7fc73ebf57bf53eeb37d",
+  "reviewer_id": "01a0c246-80d6-7bc0-9b35-f521375754d1",
+  "bindings": {
+    "research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements-fully-explicit.txt": "d230413cc43ec28970896d52c896ec0a8ef35480d8d4af18ca0025e1c01b672b",
+    "research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements.txt": "e1035b7986afda60613400694668f77ea518c7c7b6808c4496bddd7bb5eda533",
+    "research/artifacts/proof-audit-round5-20260921/lean/final/local-definition-closure.txt": "e65e773017eab77c4c826e33d7ebaffa69efb746216a7fe96a48e25fa55cd29f",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lakefile.lean": "159fdc8ea408eb69ce540b5ec802ed19cce7692654d1045b7b5806100ae5ed12",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+  },
+  "claims": [
+    {
+      "id": "SL.AuditRound5.p_zero",
+      "reason": "The declaration is a real polynomial defined as the constant 1; its name does not denote the zero polynomial.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.p_one",
+      "reason": "The declaration is the polynomial indeterminate X, with no parameters or hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.p_even",
+      "reason": "The definition accepts every natural m. The coefficient uses real subtraction and division, while the exponent 2m−2 uses truncated natural subtraction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.p_odd",
+      "reason": "The definition accepts every natural m. Its lower exponent uses truncated natural subtraction; the coefficient denominator is the real number m−1.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.eval_linear",
+      "reason": "For each real x, this is an ℝ-linear map on real polynomials whose underlying function evaluates at x.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.value_trace",
+      "reason": "This is evaluation at 0 on real polynomials, with no additional domain restriction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.derivative_trace",
+      "reason": "Composition order gives evaluation at 0 after formal polynomial differentiation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.traces",
+      "reason": "The codomain is ℝ×ℝ, ordered as value at 0 followed by derivative at 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.zero_traces",
+      "reason": "This is the kernel of the paired trace map, an algebraic real submodule of real polynomials.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.oblique",
+      "reason": "The kernel is taken of value_trace minus derivative_trace, expressing equality of the two traces.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_plus",
+      "reason": "The functional subtracts half the endpoint value difference from p′(1); differentiation is formal polynomial differentiation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_minus",
+      "reason": "The functional uses p′(−1) and subtracts the same endpoint difference p(1)−p(−1), with the same sign.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.residues",
+      "reason": "The paired functional orders endpoint_plus first and endpoint_minus second.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.krein_polynomials",
+      "reason": "The definition denotes precisely the polynomial kernel of residues; no additional function-space domain is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_generators",
+      "reason": "For every natural cutoff m₀, generator membership requires an existential natural m satisfying both 2≤m and m₀≤m.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_span",
+      "reason": "This is the real algebraic span of high_generators for every natural cutoff, including 0 and 1; no closure operation occurs.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.traces_apply",
+      "reason": "The sole binder is an arbitrary real polynomial; the conclusion identifies both ordered trace coordinates.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.residues_apply",
+      "reason": "The identity quantifies over every real polynomial and retains the common subtraction term in both endpoint coordinates.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.mem_zero_traces",
+      "reason": "For every polynomial, membership is equivalent to the conjunction of two separate zero equalities.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.mem_oblique",
+      "reason": "For every polynomial, membership is equivalent to equality of its value and derivative at 0, without requiring either to vanish.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.low_traces",
+      "reason": "This closed conjunction specifies traces of 1 and X as (1,0) and (0,1), respectively.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.low_residues",
+      "reason": "This closed conjunction states that both low polynomials have zero residues; zero belongs to ℝ×ℝ.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.even_traces",
+      "reason": "The explicit binders are m:ℕ and hm:2≤m. The conclusion is a zero pair, and no conclusion for m<2 is asserted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.odd_traces",
+      "reason": "The statement retains m:ℕ and hm:2≤m; the lower exponent is at least 3 throughout this stated range.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.monomial_even_residues",
+      "reason": "The universal natural parameter includes k=0. The exponent is 2k+2, and the second residue is the negative of the first.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.monomial_odd_residues",
+      "reason": "The universal natural parameter includes k=0. The exponent is 2k+3, while both residue coordinates are 2k+2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.residues_C_mul",
+      "reason": "Both a:ℝ and p:ℝ[X] are unrestricted. Multiplication by the constant polynomial C(a) corresponds to scalar multiplication of the residue pair.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.even_residues",
+      "reason": "The hypothesis 2≤m is explicit and places the coefficient denominator m−1 away from zero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.odd_residues",
+      "reason": "The hypothesis 2≤m is explicit; the assertion concerns the zero residue pair for that range only.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_span_zero_traces",
+      "reason": "For every natural cutoff, the assertion is submodule inclusion in zero_traces; it does not assert equality.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_span_krein",
+      "reason": "For every natural cutoff, the assertion is inclusion in the polynomial residue kernel.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.span_member_has_zero_traces",
+      "reason": "The binders include the cutoff, polynomial, and its membership hypothesis; both trace vanishings follow within that stated implication.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.one_add_X_mem_oblique",
+      "reason": "This is a closed membership statement about 1+X, whose two traces are both 1.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.one_not_mem_oblique",
+      "reason": "This is a closed nonmembership statement about the constant polynomial 1, whose traces differ.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.X_not_mem_oblique",
+      "reason": "This is a closed nonmembership statement about X, whose traces differ.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.one_add_X_not_mem_high_span",
+      "reason": "The nonmembership assertion quantifies over every natural cutoff, without requiring the cutoff itself to be at least 2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.zero_traces_le_oblique",
+      "reason": "The order relation is inclusion of real polynomial submodules; simultaneous zero traces imply equal traces.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_span_lt_oblique",
+      "reason": "The strict order denotes proper submodule inclusion for every natural cutoff; no topological density assertion is involved.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_matrix",
+      "reason": "For every natural L, the real 2×2 matrix has rows (L,L) and (−L,L), using real casts of L.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correction_matrix",
+      "reason": "The definition is total for all natural L. At L=0 its entries are zero under Lean's total real division.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_matrix_det",
+      "reason": "The determinant identity quantifies over all natural L, including L=0; its right side is a real number.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_matrix_det_ne_zero",
+      "reason": "The binders explicitly include hL:0<L. No parity assumption is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_matrix_inverse",
+      "reason": "Under 0<L, both multiplication orders equal the 2×2 identity matrix; parity is unrestricted.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.endpoint_monomial_columns",
+      "reason": "Both hypotheses, positivity and Even L, are explicit. The conclusions concern X^L and X^(L+1), in that order.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correction_alpha",
+      "reason": "The binders are an arbitrary natural L and arbitrary real pair r; no positivity hypothesis belongs to this definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correction_beta",
+      "reason": "The numerator is the sum of the two residue coordinates. The definition remains total at L=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correction_solves_residues",
+      "reason": "The statement quantifies over L, a proof of 0<L, and every real pair r; it requires neither parity nor a polynomial witness for r.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correct_endpoints",
+      "reason": "For every natural L and polynomial p, two terms are subtracted using residues of the original p in both coefficients.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.corrected_residues_zero",
+      "reason": "The explicit binders retain 0<L, Even L, and an arbitrary polynomial p. No divisibility hypothesis is required.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.correction_preserves_divisibility",
+      "reason": "The only hypothesis is X^L dividing p. This statement covers all natural L, including zero and odd values.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.trace_lift",
+      "reason": "This is a function from every real pair to the affine polynomial C(r₁)+C(r₂)X; its declared type is not a packaged linear map.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.traces_trace_lift",
+      "reason": "The right-inverse identity quantifies over all of ℝ×ℝ, with no relation imposed between the coordinates.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.trace_lift_krein",
+      "reason": "Every real pair is allowed, and the conclusion is vanishing of the lifted polynomial's residues.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.traces_surjective",
+      "reason": "Expanding Surjective gives every real pair a polynomial preimage; the declared source is all real polynomials.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.subtract_trace_lift",
+      "reason": "For every polynomial, subtracting the affine lift of its own traces yields membership in zero_traces.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.trace_membership_iff",
+      "reason": "All three binders are retained: a real polynomial submodule W, the hypothesis zero_traces≤W, and an arbitrary polynomial p.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.oblique_with_krein_witness",
+      "reason": "The closed conjunction places 1+X in the intersection and excludes each of 1 and X from that same intersection.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.high_span_lt_krein_oblique",
+      "reason": "The assertion is proper inclusion in oblique∩krein_polynomials for every natural cutoff, with no closure or equality claim.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "SL.AuditRound5.local_algebra_root",
+      "reason": "The fully explicit statement contains eight grouped conjuncts. Their natural, polynomial, submodule, positivity, parity, and containment binders are preserved separately in the readback.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements-fully-explicit.txt",
+    "research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements.txt",
+    "research/artifacts/proof-audit-round5-20260921/lean/final/local-definition-closure.txt",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lake-manifest.json",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lakefile.lean",
+    "research/artifacts/proof-audit-round5-20260921/lean/pins/lean-toolchain"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/06c163ba00e904b6ca0419b76e6cde5afa3134af289a7fc73ebf57bf53eeb37d-01a0c246-80d6-7bc0-9b35-f521375754d1",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval is limited to formal readback of the supplied declarations and definitions. All six input hashes matched, both statement snapshots listed the same 59 declarations, and all 22 closure definitions matched their fully explicit counterparts.",
+    "The supplied statement snapshots do not contain theorem proof bodies, compiled modules, a kernel-check transcript, or a transitive axiom report. Compilation, proof validity, extraction provenance, and absence of additional axioms were not independently verified.",
+    "Separate declarations and proof bodies were not supplied for eval_linear._proof_1, eval_linear._proof_2, derivative_trace._proof_1, endpoint_plus._proof_1, and endpoint_plus._proof_2. Their uses in the printed definitions were inspected, but the helpers themselves were not audited.",
+    "The environment snapshots specify Lean v4.31.0 and mathlib revision fabf563a7c95a166b8d7b6efca11c8b4dc9d911f. The installed environment and external dependency sources were not accessed or verified.",
+    "The readback concerns algebraic real polynomials and algebraic spans. It does not establish claims about completed function spaces or complete formalization."
+  ]
+}

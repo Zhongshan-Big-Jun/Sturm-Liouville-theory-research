@@ -1376,20 +1376,43 @@
 		},
 		{
 			"aliases": [],
-			"annotations": [],
+			"annotations": [
+				{
+					"author": "coordinator-20260921-round5",
+					"kind": "research-experience",
+					"locator": "R5-TAIL-MOMENT and cofinite two-trace classification",
+					"path": "research/library/annotations/e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86.json",
+					"sha256": "e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86",
+					"source_id": null,
+					"state": "CURRENT",
+					"tool_sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430"
+				}
+			],
 			"applicability": [],
-			"conditions": "UNSPECIFIED",
+			"conditions": "Both central traces are continuous in the equivalent left-definite and Sobolev H2 norms. Complete sufficiently high tails are used for the closure argument.",
 			"correction_state": {
 				"issues": [],
 				"reuse_allowed": true,
 				"status": "clear"
 			},
-			"dependencies": [],
+			"dependencies": [
+				{
+					"location": "tools/left-definite-theory.md",
+					"sha256": "d944d1dd15e9e10af7d0e0d1a2a5ed3df0664a00e8f60963a728161dffd47945"
+				}
+			],
 			"dependencies_known": true,
 			"evidence": [],
-			"evidence_status": "UNKNOWN",
+			"evidence_status": "ANALYTIC_PROOF_SCOPED; HISTORICAL_BRANCHES_NOT_REAUDITED",
 			"experience": {},
-			"inherited_metadata": [],
+			"inherited_metadata": [
+				"applicability",
+				"lifecycle",
+				"evidence",
+				"resources",
+				"lean",
+				"experience"
+			],
 			"kind": "tool",
 			"lean": [],
 			"lifecycle": "unclassified",
@@ -1399,14 +1422,30 @@
 			"pointer_state": "CURRENT",
 			"resources": [],
 			"reuse_allowed": true,
-			"scope": "UNSPECIFIED",
-			"sha256": "1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5",
-			"sources": [],
+			"scope": "Fixed real c>0; complex Hc2=D(Kc) with specified Krein boundary conditions; cofinite subsets of D={0,1} union {4,5,...}. No general non-cofinite or s=3 conclusion.",
+			"sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430",
+			"sources": [
+				{
+					"locator": "Fifth-round Green kernels, cofinite closure and monomial correction",
+					"path": "docs/SL_cofinite_left_definite.tex",
+					"sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb"
+				},
+				{
+					"locator": "Section2, positive self-adjoint shifted Krein operator and isometry",
+					"path": "docs/SL_h2_completeness_proof.tex",
+					"sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d"
+				},
+				{
+					"locator": "Historical Lemma1 and refuted Claim4/Theorem5/Corollary6; unchanged branches scoped separately",
+					"path": "runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md",
+					"sha256": "cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c"
+				}
+			],
 			"summary": "# 左定 O1'LD 的 L^2 降维结构定理 ## 解析 设 s=2, 等距同构 K_c : H^2 -> L^2, q_n = K_c p_n. - **有限支撑 L^2 矩刚性 (STRICT)**: L^2(-1,1) 中若有 f 的矩 (f,x^k) 只对有限个 k 非零, 则 f=0. 证明用 Müntz-Szász 的 L^p 形式 **在 Lebesgue 测度上的 L^2(0,1)**: - 偶部 h(y)=y^{-1/4} f_e(√y) ∈ L^2(0,1), 矩化归为 ∫ h(y)y^{m-1/4}dy; - 奇部 t(y)=y^{1/4} h_o(y) ∈ L^2(0,1), 矩化归为 ∫ t(y)y^{m+1/4}dy; 两个指数集都是删去有限点后仍发散倒数和的, 故相应单项式族稠密. - **Cauchy-Schwarz 矩界 (STRICT)**: |(f,x^k)| <= ||f||_2 sqrt(2/(2k+1)). **但不再把 DensBC O1 的两项游程代数用于 L^2/H^1 降维**; 实际 q_n 矩满足 三项递推 c M_{2m}=A",
-			"title": "左定 O1'LD 的 L^2 降维结构定理 (有限支撑矩刚性/奇偶分解/μ_4 非稠密例)",
+			"title": "第二左定空间的余有限稀疏族: 两条迹与L2障碍",
 			"tool_id": "leftdef-o1pld-l2-structural",
 			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
-			"version": "research/library/card-versions/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.md"
+			"version": "research/library/card-versions/f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430.md"
 		},
 		{
 			"aliases": [],
@@ -2978,5 +3017,5 @@
 	"tool_roots": [
 		"tools"
 	],
-	"updated_at": "2026-09-20T18:05:55.775544Z"
+	"updated_at": "2026-09-21T05:24:29.142328Z"
 }

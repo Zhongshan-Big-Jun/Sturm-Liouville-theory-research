@@ -1,0 +1,44 @@
+{
+  "script_sha256": "6f196e316f967e6bf3a415a3c95f9dfba14cc8b9d7da7990911c1aa25d384f87",
+  "checks": [
+    {
+      "name": "g1_sign",
+      "command": [
+        "/usr/bin/python3",
+        "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py",
+        "--negative-control",
+        "g1_sign"
+      ],
+      "exit_code": 1,
+      "expected_nonzero": true,
+      "passed": true,
+      "diagnostic": "RuntimeError: FAILED: negative_control_flipped_g1_first_moment {'absolute_error': '2.0', 'expected': '1'}"
+    },
+    {
+      "name": "odd_half",
+      "command": [
+        "/usr/bin/python3",
+        "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py",
+        "--negative-control",
+        "odd_half"
+      ],
+      "exit_code": 1,
+      "expected_nonzero": true,
+      "passed": true,
+      "diagnostic": "RuntimeError: FAILED: negative_control_old_odd_half_factor "
+    },
+    {
+      "name": "conjugation",
+      "command": [
+        "/usr/bin/python3",
+        "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py",
+        "--negative-control",
+        "conjugation"
+      ],
+      "exit_code": 1,
+      "expected_nonzero": true,
+      "passed": true,
+      "diagnostic": "RuntimeError: FAILED: negative_control_missing_conjugation 2 + 8*I"
+    }
+  ]
+}

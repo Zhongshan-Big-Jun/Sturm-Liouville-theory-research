@@ -1,0 +1,93 @@
+[
+  {
+    "receipt": "logs/01-version.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--version"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 0.10297771000477951
+  },
+  {
+    "receipt": "logs/02-root-compile.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+      "-o",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\SL\\AuditRound5.olean",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\SL\\AuditRound5.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 18.50811851400067
+  },
+  {
+    "receipt": "logs/03-import-resolution-before.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--deps",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 0.11425499200413469
+  },
+  {
+    "receipt": "logs/04-export.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 51.18998807499884
+  },
+  {
+    "receipt": "logs/05-positive-controls.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+      "-o",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\PositiveControls.olean",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\PositiveControls.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 14.775376752993907
+  },
+  {
+    "receipt": "logs/06-false-high-span-equality.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\FalseHighSpanEquality.lean"
+    ],
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "duration_seconds": 14.765636216994608
+  },
+  {
+    "receipt": "logs/07-exact-root-contract.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--root=F:\\tools\\math-audit-round5-20260921\\independent-lean-replay",
+      "-o",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\build\\ContractCheck.olean",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\ContractCheck.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 14.466603856009897
+  },
+  {
+    "receipt": "logs/08-import-resolution-after.json",
+    "argv": [
+      "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "--deps",
+      "F:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\InspectAuditRound5.lean"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "duration_seconds": 0.10595596399798524
+  }
+]

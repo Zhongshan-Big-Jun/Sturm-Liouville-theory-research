@@ -1,0 +1,34 @@
+{
+  "cmd": "python3 -u audit_runner.py execute",
+  "workdir": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay",
+  "chunks": [
+    {
+      "chunk_id": "9b913a",
+      "wall_time_seconds": 1.00098075,
+      "session_id": 84601,
+      "original_token_count": 37,
+      "output": "01-version exit 0 expected 0 seconds 0.1\nLean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n"
+    },
+    {
+      "chunk_id": "3383c4",
+      "wall_time_seconds": 5.000767485,
+      "session_id": 84601,
+      "original_token_count": 87,
+      "output": "02-root-compile exit 0 expected 0 seconds 18.51\nF:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\SL\\AuditRound5.lean:119:30: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n03-import-resolution-before exit 0 expected 0 seconds 0.11\n"
+    },
+    {
+      "chunk_id": "f9152c",
+      "wall_time_seconds": 5.000982294,
+      "session_id": 84601,
+      "original_token_count": 108,
+      "output": "04-export exit 0 expected 0 seconds 51.19\n05-positive-controls exit 0 expected 0 seconds 14.78\n06-false-high-span-equality exit 1 expected 1 seconds 14.77\nF:\\tools\\math-audit-round5-20260921\\independent-lean-replay\\FalseHighSpanEquality.lean:5:2: error: Type mismatch\n  high_span_lt_krein_oblique 2\nhas type\n  high_span 2 < oblique ⊓ krein_polynomials\nbut is expected to have type\n  high_span 2 = oblique ⊓ krein_polynomials\n"
+    },
+    {
+      "chunk_id": "ad5fdd",
+      "wall_time_seconds": 0.000013834,
+      "exit_code": 0,
+      "original_token_count": 29,
+      "output": "07-exact-root-contract exit 0 expected 0 seconds 14.47\n08-import-resolution-after exit 0 expected 0 seconds 0.11\n"
+    }
+  ]
+}

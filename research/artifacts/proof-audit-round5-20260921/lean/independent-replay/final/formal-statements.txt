@@ -1,0 +1,339 @@
+definition SL.AuditRound5.p_zero :
+Polynomial.{0} ℝ
+:=
+1
+
+definition SL.AuditRound5.p_one :
+Polynomial.{0} ℝ
+:=
+Polynomial.X.{0}
+
+definition SL.AuditRound5.p_even :
+ℕ → Polynomial.{0} ℝ
+:=
+fun m =>
+  HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HMul.hMul.{0, 0, 0} 2 m))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (HDiv.hDiv.{0, 0, 0} (↑m) (HSub.hSub.{0, 0, 0} (↑m) 1)))
+      (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 2)))
+
+definition SL.AuditRound5.p_odd :
+ℕ → Polynomial.{0} ℝ
+:=
+fun m =>
+  HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (HDiv.hDiv.{0, 0, 0} (↑m) (HSub.hSub.{0, 0, 0} (↑m) 1)))
+      (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1)))
+
+definition SL.AuditRound5.eval_linear :
+ℝ → LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+fun x => LinearMap.mk.{0, 0, 0, 0} (AddHom.mk.{0, 0} (fun p => Polynomial.eval.{0} x p) ⋯) ⋯
+
+definition SL.AuditRound5.value_trace :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+SL.AuditRound5.eval_linear 0
+
+definition SL.AuditRound5.derivative_trace :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+SL.AuditRound5.eval_linear 0 ∘ₗ Polynomial.derivative.{0}
+
+definition SL.AuditRound5.traces :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) (Prod.{0, 0} ℝ ℝ)
+:=
+LinearMap.prod.{0, 0, 0, 0} SL.AuditRound5.value_trace SL.AuditRound5.derivative_trace
+
+definition SL.AuditRound5.zero_traces :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+LinearMap.ker.{0, 0, 0, 0} SL.AuditRound5.traces
+
+definition SL.AuditRound5.oblique :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+LinearMap.ker.{0, 0, 0, 0} (HSub.hSub.{0, 0, 0} SL.AuditRound5.value_trace SL.AuditRound5.derivative_trace)
+
+definition SL.AuditRound5.endpoint_plus :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1 ∘ₗ Polynomial.derivative.{0})
+  (HSMul.hSMul.{0, 0, 0} (1 / 2) (HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1) (SL.AuditRound5.eval_linear (-1))))
+
+definition SL.AuditRound5.endpoint_minus :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear (-1) ∘ₗ Polynomial.derivative.{0})
+  (HSMul.hSMul.{0, 0, 0} (1 / 2) (HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1) (SL.AuditRound5.eval_linear (-1))))
+
+definition SL.AuditRound5.residues :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) (Prod.{0, 0} ℝ ℝ)
+:=
+LinearMap.prod.{0, 0, 0, 0} SL.AuditRound5.endpoint_plus SL.AuditRound5.endpoint_minus
+
+definition SL.AuditRound5.krein_polynomials :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+LinearMap.ker.{0, 0, 0, 0} SL.AuditRound5.residues
+
+definition SL.AuditRound5.high_generators :
+ℕ → Set.{0} (Polynomial.{0} ℝ)
+:=
+fun m₀ =>
+  setOf.{0} fun p =>
+    ∃ m, LE.le.{0} 2 m ∧ LE.le.{0} m₀ m ∧ (Eq.{1} p (SL.AuditRound5.p_even m) ∨ Eq.{1} p (SL.AuditRound5.p_odd m))
+
+definition SL.AuditRound5.high_span :
+ℕ → Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+fun m₀ => Submodule.span.{0, 0} ℝ (SL.AuditRound5.high_generators m₀)
+
+theorem SL.AuditRound5.traces_apply :
+∀ (p : Polynomial.{0} ℝ),
+  Eq.{1} (SL.AuditRound5.traces p)
+    (Prod.mk.{0, 0} (Polynomial.eval.{0} 0 p) (Polynomial.eval.{0} 0 (Polynomial.derivative.{0} p)))
+
+theorem SL.AuditRound5.residues_apply :
+∀ (p : Polynomial.{0} ℝ),
+  Eq.{1} (SL.AuditRound5.residues p)
+    (Prod.mk.{0, 0}
+      (HSub.hSub.{0, 0, 0} (Polynomial.eval.{0} 1 (Polynomial.derivative.{0} p))
+        (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (Polynomial.eval.{0} 1 p) (Polynomial.eval.{0} (-1) p)) 2))
+      (HSub.hSub.{0, 0, 0} (Polynomial.eval.{0} (-1) (Polynomial.derivative.{0} p))
+        (HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} (Polynomial.eval.{0} 1 p) (Polynomial.eval.{0} (-1) p)) 2)))
+
+theorem SL.AuditRound5.mem_zero_traces :
+∀ (p : Polynomial.{0} ℝ),
+  Membership.mem.{0, 0} SL.AuditRound5.zero_traces p ↔
+    Eq.{1} (Polynomial.eval.{0} 0 p) 0 ∧ Eq.{1} (Polynomial.eval.{0} 0 (Polynomial.derivative.{0} p)) 0
+
+theorem SL.AuditRound5.mem_oblique :
+∀ (p : Polynomial.{0} ℝ),
+  Membership.mem.{0, 0} SL.AuditRound5.oblique p ↔
+    Eq.{1} (Polynomial.eval.{0} 0 p) (Polynomial.eval.{0} 0 (Polynomial.derivative.{0} p))
+
+theorem SL.AuditRound5.low_traces :
+Eq.{1} (SL.AuditRound5.traces SL.AuditRound5.p_zero) (Prod.mk.{0, 0} 1 0) ∧
+  Eq.{1} (SL.AuditRound5.traces SL.AuditRound5.p_one) (Prod.mk.{0, 0} 0 1)
+
+theorem SL.AuditRound5.low_residues :
+Eq.{1} (SL.AuditRound5.residues SL.AuditRound5.p_zero) 0 ∧ Eq.{1} (SL.AuditRound5.residues SL.AuditRound5.p_one) 0
+
+theorem SL.AuditRound5.even_traces :
+∀ (m : ℕ), LE.le.{0} 2 m → Eq.{1} (SL.AuditRound5.traces (SL.AuditRound5.p_even m)) 0
+
+theorem SL.AuditRound5.odd_traces :
+∀ (m : ℕ), LE.le.{0} 2 m → Eq.{1} (SL.AuditRound5.traces (SL.AuditRound5.p_odd m)) 0
+
+theorem SL.AuditRound5.monomial_even_residues :
+∀ (k : ℕ),
+  Eq.{1}
+    (SL.AuditRound5.residues (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 k) 2)))
+    (Prod.mk.{0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑k) 2)
+      (Neg.neg.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑k) 2)))
+
+theorem SL.AuditRound5.monomial_odd_residues :
+∀ (k : ℕ),
+  Eq.{1}
+    (SL.AuditRound5.residues (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 k) 3)))
+    (Prod.mk.{0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑k) 2)
+      (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑k) 2))
+
+theorem SL.AuditRound5.residues_C_mul :
+∀ (a : ℝ) (p : Polynomial.{0} ℝ),
+  Eq.{1} (SL.AuditRound5.residues (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} a) p))
+    (HSMul.hSMul.{0, 0, 0} a (SL.AuditRound5.residues p))
+
+theorem SL.AuditRound5.even_residues :
+∀ (m : ℕ), LE.le.{0} 2 m → Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.p_even m)) 0
+
+theorem SL.AuditRound5.odd_residues :
+∀ (m : ℕ), LE.le.{0} 2 m → Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.p_odd m)) 0
+
+theorem SL.AuditRound5.high_span_zero_traces :
+∀ (m₀ : ℕ), LE.le.{0} (SL.AuditRound5.high_span m₀) SL.AuditRound5.zero_traces
+
+theorem SL.AuditRound5.high_span_krein :
+∀ (m₀ : ℕ), LE.le.{0} (SL.AuditRound5.high_span m₀) SL.AuditRound5.krein_polynomials
+
+theorem SL.AuditRound5.span_member_has_zero_traces :
+∀ (m₀ : ℕ) (p : Polynomial.{0} ℝ),
+  Membership.mem.{0, 0} (SL.AuditRound5.high_span m₀) p →
+    Eq.{1} (Polynomial.eval.{0} 0 p) 0 ∧ Eq.{1} (Polynomial.eval.{0} 0 (Polynomial.derivative.{0} p)) 0
+
+theorem SL.AuditRound5.one_add_X_mem_oblique :
+Membership.mem.{0, 0} SL.AuditRound5.oblique (HAdd.hAdd.{0, 0, 0} 1 Polynomial.X.{0})
+
+theorem SL.AuditRound5.one_not_mem_oblique :
+1 ∉ SL.AuditRound5.oblique
+
+theorem SL.AuditRound5.X_not_mem_oblique :
+Polynomial.X.{0} ∉ SL.AuditRound5.oblique
+
+theorem SL.AuditRound5.one_add_X_not_mem_high_span :
+∀ (m₀ : ℕ), HAdd.hAdd.{0, 0, 0} 1 Polynomial.X.{0} ∉ SL.AuditRound5.high_span m₀
+
+theorem SL.AuditRound5.zero_traces_le_oblique :
+LE.le.{0} SL.AuditRound5.zero_traces SL.AuditRound5.oblique
+
+theorem SL.AuditRound5.high_span_lt_oblique :
+∀ (m₀ : ℕ), LT.lt.{0} (SL.AuditRound5.high_span m₀) SL.AuditRound5.oblique
+
+definition SL.AuditRound5.endpoint_matrix :
+ℕ → Matrix.{0, 0, 0} (Fin 2) (Fin 2) ℝ
+:=
+fun L =>
+  Matrix.of.{0, 0, 0}
+    (Matrix.vecCons.{0} (Matrix.vecCons.{0} (↑L) (Matrix.vecCons.{0} (↑L) Matrix.vecEmpty.{0}))
+      (Matrix.vecCons.{0} (Matrix.vecCons.{0} (Neg.neg.{0} ↑L) (Matrix.vecCons.{0} (↑L) Matrix.vecEmpty.{0}))
+        Matrix.vecEmpty.{0}))
+
+definition SL.AuditRound5.correction_matrix :
+ℕ → Matrix.{0, 0, 0} (Fin 2) (Fin 2) ℝ
+:=
+fun L =>
+  Matrix.of.{0, 0, 0}
+    (Matrix.vecCons.{0}
+      (Matrix.vecCons.{0} (HDiv.hDiv.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 ↑L))
+        (Matrix.vecCons.{0} (HDiv.hDiv.{0, 0, 0} (-1) (HMul.hMul.{0, 0, 0} 2 ↑L)) Matrix.vecEmpty.{0}))
+      (Matrix.vecCons.{0}
+        (Matrix.vecCons.{0} (HDiv.hDiv.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 ↑L))
+          (Matrix.vecCons.{0} (HDiv.hDiv.{0, 0, 0} 1 (HMul.hMul.{0, 0, 0} 2 ↑L)) Matrix.vecEmpty.{0}))
+        Matrix.vecEmpty.{0}))
+
+theorem SL.AuditRound5.endpoint_matrix_det :
+∀ (L : ℕ),
+  Eq.{1} (Matrix.det.{0, 0} (SL.AuditRound5.endpoint_matrix L)) (HMul.hMul.{0, 0, 0} 2 (HPow.hPow.{0, 0, 0} (↑L) 2))
+
+theorem SL.AuditRound5.endpoint_matrix_det_ne_zero :
+∀ (L : ℕ), LT.lt.{0} 0 L → Ne.{1} (Matrix.det.{0, 0} (SL.AuditRound5.endpoint_matrix L)) 0
+
+theorem SL.AuditRound5.endpoint_matrix_inverse :
+∀ (L : ℕ),
+  LT.lt.{0} 0 L →
+    Eq.{1} (HMul.hMul.{0, 0, 0} (SL.AuditRound5.endpoint_matrix L) (SL.AuditRound5.correction_matrix L)) 1 ∧
+      Eq.{1} (HMul.hMul.{0, 0, 0} (SL.AuditRound5.correction_matrix L) (SL.AuditRound5.endpoint_matrix L)) 1
+
+theorem SL.AuditRound5.endpoint_monomial_columns :
+∀ (L : ℕ),
+  LT.lt.{0} 0 L →
+    Even.{0} L →
+      Eq.{1} (SL.AuditRound5.residues (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L)) (Prod.mk.{0, 0} (↑L) (Neg.neg.{0} ↑L)) ∧
+        Eq.{1} (SL.AuditRound5.residues (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} L 1)))
+          (Prod.mk.{0, 0} ↑L ↑L)
+
+definition SL.AuditRound5.correction_alpha :
+ℕ → Prod.{0, 0} ℝ ℝ → ℝ
+:=
+fun L r => HDiv.hDiv.{0, 0, 0} (HSub.hSub.{0, 0, 0} r.1 r.2) (HMul.hMul.{0, 0, 0} 2 ↑L)
+
+definition SL.AuditRound5.correction_beta :
+ℕ → Prod.{0, 0} ℝ ℝ → ℝ
+:=
+fun L r => HDiv.hDiv.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} r.1 r.2) (HMul.hMul.{0, 0, 0} 2 ↑L)
+
+theorem SL.AuditRound5.correction_solves_residues :
+∀ (L : ℕ),
+  LT.lt.{0} 0 L →
+    ∀ (r : Prod.{0, 0} ℝ ℝ),
+      Eq.{1}
+        (Prod.mk.{0, 0}
+          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑L) (SL.AuditRound5.correction_alpha L r))
+            (HMul.hMul.{0, 0, 0} (↑L) (SL.AuditRound5.correction_beta L r)))
+          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Neg.neg.{0} ↑L) (SL.AuditRound5.correction_alpha L r))
+            (HMul.hMul.{0, 0, 0} (↑L) (SL.AuditRound5.correction_beta L r))))
+        r
+
+definition SL.AuditRound5.correct_endpoints :
+ℕ → Polynomial.{0} ℝ → Polynomial.{0} ℝ
+:=
+fun L p =>
+  HSub.hSub.{0, 0, 0}
+    (HSub.hSub.{0, 0, 0} p
+      (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (SL.AuditRound5.correction_alpha L (SL.AuditRound5.residues p)))
+        (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L)))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (SL.AuditRound5.correction_beta L (SL.AuditRound5.residues p)))
+      (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} L 1)))
+
+theorem SL.AuditRound5.corrected_residues_zero :
+∀ (L : ℕ),
+  LT.lt.{0} 0 L →
+    Even.{0} L → ∀ (p : Polynomial.{0} ℝ), Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.correct_endpoints L p)) 0
+
+theorem SL.AuditRound5.correction_preserves_divisibility :
+∀ (L : ℕ) (p : Polynomial.{0} ℝ),
+  Dvd.dvd.{0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L) p →
+    Dvd.dvd.{0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L) (SL.AuditRound5.correct_endpoints L p)
+
+definition SL.AuditRound5.trace_lift :
+Prod.{0, 0} ℝ ℝ → Polynomial.{0} ℝ
+:=
+fun r => HAdd.hAdd.{0, 0, 0} (Polynomial.C.{0} r.1) (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} r.2) Polynomial.X.{0})
+
+theorem SL.AuditRound5.traces_trace_lift :
+∀ (r : Prod.{0, 0} ℝ ℝ), Eq.{1} (SL.AuditRound5.traces (SL.AuditRound5.trace_lift r)) r
+
+theorem SL.AuditRound5.trace_lift_krein :
+∀ (r : Prod.{0, 0} ℝ ℝ), Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.trace_lift r)) 0
+
+theorem SL.AuditRound5.traces_surjective :
+Function.Surjective.{1, 1} ⇑SL.AuditRound5.traces
+
+theorem SL.AuditRound5.subtract_trace_lift :
+∀ (p : Polynomial.{0} ℝ),
+  Membership.mem.{0, 0} SL.AuditRound5.zero_traces
+    (HSub.hSub.{0, 0, 0} p (SL.AuditRound5.trace_lift (SL.AuditRound5.traces p)))
+
+theorem SL.AuditRound5.trace_membership_iff :
+∀ (W : Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)),
+  LE.le.{0} SL.AuditRound5.zero_traces W →
+    ∀ (p : Polynomial.{0} ℝ),
+      Membership.mem.{0, 0} W p ↔ Membership.mem.{0, 0} W (SL.AuditRound5.trace_lift (SL.AuditRound5.traces p))
+
+theorem SL.AuditRound5.oblique_with_krein_witness :
+Membership.mem.{0, 0} (SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials)
+    (HAdd.hAdd.{0, 0, 0} 1 Polynomial.X.{0}) ∧
+  1 ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials ∧
+    Polynomial.X.{0} ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials
+
+theorem SL.AuditRound5.high_span_lt_krein_oblique :
+∀ (m₀ : ℕ), LT.lt.{0} (SL.AuditRound5.high_span m₀) (SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials)
+
+theorem SL.AuditRound5.local_algebra_root :
+(Eq.{1} (SL.AuditRound5.traces SL.AuditRound5.p_zero) (Prod.mk.{0, 0} 1 0) ∧
+    Eq.{1} (SL.AuditRound5.traces SL.AuditRound5.p_one) (Prod.mk.{0, 0} 0 1)) ∧
+  (Eq.{1} (SL.AuditRound5.residues SL.AuditRound5.p_zero) 0 ∧ Eq.{1} (SL.AuditRound5.residues SL.AuditRound5.p_one) 0) ∧
+    (∀ (m : ℕ),
+        LE.le.{0} 2 m →
+          Eq.{1} (SL.AuditRound5.traces (SL.AuditRound5.p_even m)) 0 ∧
+            Eq.{1} (SL.AuditRound5.traces (SL.AuditRound5.p_odd m)) 0 ∧
+              Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.p_even m)) 0 ∧
+                Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.p_odd m)) 0) ∧
+      (∀ (m₀ : ℕ),
+          LE.le.{0} (SL.AuditRound5.high_span m₀) SL.AuditRound5.zero_traces ∧
+            LT.lt.{0} (SL.AuditRound5.high_span m₀) (SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials)) ∧
+        (Membership.mem.{0, 0} (SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials)
+              (HAdd.hAdd.{0, 0, 0} 1 Polynomial.X.{0}) ∧
+            1 ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials ∧
+              Polynomial.X.{0} ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials) ∧
+          (∀ (L : ℕ),
+              LT.lt.{0} 0 L →
+                Ne.{1} (Matrix.det.{0, 0} (SL.AuditRound5.endpoint_matrix L)) 0 ∧
+                  Eq.{1} (HMul.hMul.{0, 0, 0} (SL.AuditRound5.endpoint_matrix L) (SL.AuditRound5.correction_matrix L))
+                      1 ∧
+                    Eq.{1} (HMul.hMul.{0, 0, 0} (SL.AuditRound5.correction_matrix L) (SL.AuditRound5.endpoint_matrix L))
+                      1) ∧
+            (∀ (L : ℕ),
+                LT.lt.{0} 0 L →
+                  Even.{0} L →
+                    ∀ (p : Polynomial.{0} ℝ),
+                      Eq.{1} (SL.AuditRound5.residues (SL.AuditRound5.correct_endpoints L p)) 0 ∧
+                        (Dvd.dvd.{0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L) p →
+                          Dvd.dvd.{0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} L)
+                            (SL.AuditRound5.correct_endpoints L p))) ∧
+              ∀ (W : Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)),
+                LE.le.{0} SL.AuditRound5.zero_traces W →
+                  ∀ (p : Polynomial.{0} ℝ),
+                    Membership.mem.{0, 0} W p ↔
+                      Membership.mem.{0, 0} W (SL.AuditRound5.trace_lift (SL.AuditRound5.traces p))
+

@@ -1,0 +1,910 @@
+{
+  "native_agent_id": "01a0c260-fa2c-71f1-aa9a-8ccfdf5befc5",
+  "packet_sha256": "98b6920270e96b30b58dd75e49271e97ed00e0a8ea60e116f88c17dba9dd8140",
+  "snapshot_count": 104,
+  "all_match": true,
+  "write_area": "/mnt/f/tools/math-audit-round5-20260921/independent-lean-replay"
+}
+
+FILE environment.json 7919 bytes
+{
+  "compiler": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+  "version_log": "logs/01-version.stdout.txt",
+  "platform": "x86_64-w64-windows-gnu (Windows PE runtime, invoked from WSL)",
+  "runtime_files": [
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libInit_shared.dll",
+      "sha256": "05c276249845a9d39e202180fb175936cda1cf6e0502550388dabbcaf961fb26",
+      "bytes": 27662336
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libLLVM-22.dll",
+      "sha256": "beaba61b3176e06fc0c4bf87e8bfae094a2405d01fa8e03d78029471555445d2",
+      "bytes": 90563584
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libLake_shared.dll",
+      "sha256": "f2910e72d74919a27ae2dbeb59e3ece4bfb4c9bb6e8cc8c915ac8a0b20b688a4",
+      "bytes": 10568192
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libc++.dll",
+      "sha256": "8a9deaac6d2f4d2de468a544d1f35cd0dd4bcde03cda3cfb76fb9674749828d4",
+      "bytes": 1659392
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libclang-cpp.dll",
+      "sha256": "1b32dd58335db4a984237e1fd1993cfd0f0fa413b5d10957290703eb03377ca4",
+      "bytes": 71108608
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libleanshared.dll",
+      "sha256": "d5d3bc9156fe3088487fd5d3b4057d1451ad89459d20af7912c7c8ee7e8fa114",
+      "bytes": 71577600
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libleanshared_1.dll",
+      "sha256": "19a6aa7a1ab088b678d843e7fe0a9f0c19a4b4937b8f825f348abc3b04366bbd",
+      "bytes": 51748352
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/libleanshared_2.dll",
+      "sha256": "802312bf16252a12602f6f02eabcba39c109b8906ca46e86cbb28a95d480e863",
+      "bytes": 52523520
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/zlib1.dll",
+      "sha256": "94dd0a72d4da79e25294a91d1edf902d76eade7512d9218609a5fe43e3a7397a",
+      "bytes": 131072
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+      "sha256": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f",
+      "bytes": 83456
+    },
+    {
+      "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lake.exe",
+      "sha256": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "bytes": 87552
+    }
+  ],
+  "configurations": [
+    {
+      "path": "/mnt/f/LaTeX/BVE research/lean-proof/lean-toolchain",
+      "sha256": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+    },
+    {
+      "path": "/mnt/f/LaTeX/BVE research/lean-proof/lakefile.lean",
+      "sha256": "159fdc8ea408eb69ce540b5ec802ed19cce7692654d1045b7b5806100ae5ed12"
+    },
+    {
+      "path": "/mnt/f/LaTeX/BVE research/lean-proof/lake-manifest.json",
+      "sha256": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041"
+    }
+  ],
+  "LEAN_PATH": "F:\\tools\\math-audit-round5-20260921\\lean-author\\build;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;F:\\LaTeX\\BVE research\\lean-proof\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean",
+  "package_manifest": {
+    "version": "1.2.0",
+    "packagesDir": ".lake/packages",
+    "packages": [
+      {
+        "url": "https://github.com/leanprover-community/mathlib4.git",
+        "type": "git",
+        "subDir": null,
+        "scope": "",
+        "rev": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+        "name": "mathlib",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "v4.31.0",
+        "inherited": false,
+        "configFile": "lakefile.lean"
+      },
+      {
+        "url": "https://github.com/leanprover-community/plausible",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "63045536fe95024e6c18fc7b48e03f506701c5bc",
+        "name": "plausible",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/LeanSearchClient",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+        "name": "LeanSearchClient",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/import-graph",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "5c7542ed018c78194f1e2b903eaf6a792b74c03d",
+        "name": "importGraph",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/ProofWidgets4",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "24b0d9dc081c5423f8eec7e866c441e5184f29d9",
+        "name": "proofwidgets",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.lean"
+      },
+      {
+        "url": "https://github.com/leanprover-community/aesop",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "e3cb2f741431ce31bf73549fb52316a57368b06f",
+        "name": "aesop",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "master",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/quote4",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "f46324995fca5f0483b742e4eb4daec7f4ee50d2",
+        "name": "Qq",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "master",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/batteries",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "fa08db58b30eb033edcdab331bba000827f9f785",
+        "name": "batteries",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover/lean4-cli",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover",
+        "rev": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c",
+        "name": "Cli",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "v4.31.0",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      }
+    ],
+    "name": "LeanProof",
+    "lakeDir": ".lake",
+    "fixedToolchain": false
+  },
+  "scope": "Fresh author root, existing pinned package artifacts; excludes old project build objects; no full Lake build or downloads"
+}
+
+
+FILE final/module-artifact-hashes.json 6073524 bytes
+shape: dict
+scope Actual inspection loaded modules; olean and available private/server/IR companions
+utc 2026-09-21T04:28:14.135467+00:00
+duration_seconds 33.03693709499203
+module_count 3712
+artifact_count 14845
+bytes 3028880240
+modules len=3712
+[
+  {
+    "module": "Init.Prelude",
+    "resolved_olean": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Prelude.olean",
+    "artifacts": [
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Prelude.olean",
+        "sha256": "51d68d1ba78622120c4d1d649ca5113c4a3122dd4b152fad5c7d3f6f75009cb9",
+        "bytes": 3352552,
+        "mtime_ns": 1781466798000000000,
+        "ctime_ns": 1783741570612298400
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Prelude.olean.private",
+        "sha256": "ca8fe0697f917e6ff15e7506b3dbdd43b6798eed2b179a0079b5ab53c983fb2e",
+        "bytes": 1015608,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741570626005100
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Prelude.olean.server",
+        "sha256": "772dbe66d9485770a4b1bcfd4633339792b97cffaad5591c6022ad12dc15782d",
+        "bytes": 368632,
+        "mtime_ns": 1781466798000000000,
+        "ctime_ns": 1783741570636344000
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Prelude.ir",
+        "sha256": "bd0c0a2829635e5d05e2726ec27993fe83177612d2a0b6bdfd8bc8e97a1d6712",
+        "bytes": 388024,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741570587624600
+      }
+    ]
+  },
+  {
+    "module": "Init.Coe",
+    "resolved_olean": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Coe.olean",
+    "artifacts": [
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Coe.olean",
+        "sha256": "e58acd79c51c14ca32383487ebd5dfc7fc14865937aecc9a68ee721621a86ba9",
+        "bytes": 277296,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741545491319600
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Coe.olean.private",
+        "sha256": "ccd418eb6480098397cfbed0384c8e21b189f26510bab424a706a34c3cc4fd92",
+        "bytes": 31688,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741545499078600
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Coe.olean.server",
+        "sha256": "37332c14693a1d10a43f18aa6af6d04e9eec9ab5e6c21d01d1dd6e69fdaf4cf9",
+        "bytes": 22256,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741545508515500
+      },
+      {
+        "path": "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean/Init/Coe.ir",
+        "sha256": "f9712177782ca46b77ef5c24dde3264ffbb212cb447a09c8fa3093c4188bc30a",
+        "bytes": 22256,
+        "mtime_ns": 1781466800000000000,
+        "ctime_ns": 1783741545480504800
+      }
+    ]
+  }
+]
+
+FILE InspectAuditRound5.lean 16071 bytes
+import SL.AuditRound5
+import Lean
+
+open Lean Elab Command Meta
+
+namespace AuthorInspection
+
+def names_json (Names : Array Name) : Json :=
+  toJson (Names.qsort Name.lt |>.map Name.toString)
+
+partial def expr_json (Term : Expr) : Json :=
+  match Term with
+  | .bvar Index => toJson ("bvar", Index)
+  | .fvar Id => toJson ("fvar", Id.name.toString)
+  | .mvar Id => toJson ("mvar", Id.name.toString)
+  | .sort Level => toJson ("sort", reprStr Level)
+  | .const Name Levels => toJson ("const", Name.toString, Levels.map reprStr)
+  | .app Function Argument => Json.arr #[toJson "app", expr_json Function, expr_json Argument]
+  | .lam _ TermType Body Binder => Json.arr #[toJson "lam", toJson (reprStr Binder), expr_json TermType, expr_json Body]
+  | .forallE _ TermType Body Binder => Json.arr #[toJson "forall", toJson (reprStr Binder), expr_json TermType, expr_json Body]
+  | .letE _ TermType Value Body NonDependent => Json.arr #[toJson "let", expr_json TermType, expr_json Value, expr_json Body, toJson NonDependent]
+  | .lit Literal => toJson ("literal", reprStr Literal)
+  | .mdata _ Body => expr_json Body
+  | .proj Name Index Body => Json.arr #[toJson "projection", toJson Name.toString, toJson Index, expr_json Body]
+
+def kind_name (Info : ConstantInfo) : String :=
+  match Info with
+  | .axiomInfo _ => "axiom"
+  | .thmInfo _ => "theorem"
+  | .defnInfo _ => "definition"
+  | .opaqueInfo _ => "opaque"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "constructor"
+  | .recInfo _ => "recursor"
+  | .quotInfo _ => "quotient_primitive"
+
+def body_dependencies (Info : ConstantInfo) : Array Name :=
+  let Body := Info.value? (allowOpaque := true) |>.map Expr.getUsedConstants |>.getD #[]
+  match Info with
+  | .inductInfo Value => Body ++ Value.ctors.toArray
+  | _ => Body
+
+partial def dependency_closure (Environment : Environment) (Pending : List Name)
+  (Seen : NameSet := {}) : NameSet :=
+  match Pending with
+  | [] => Seen
+  | Name :: Rest =>
+    if Seen.contains Name then dependency_closure Environment Rest Seen
+    else
+      let Seen := Seen.insert Name
+      match Environment.checked.get.find? Name with
+      | none => dependency_closure Environment Rest Seen
+      | some Info => dependency_closure Environment
+        (Info.type.getUsedConstants.toList ++ (body_dependencies Info).toList ++ Rest) Seen
+
+partial def semantic_closure (Environment : Environment) (Pending : List Name)
+  (Seen : NameSet := {}) : NameSet :=
+  match Pending with
+  | [] => Seen
+  | Name :: Rest =>
+    if Seen.contains Name then semantic_closure Environment Rest Seen
+    else
+      let Seen := Seen.insert Name
+      match Environment.checked.get.find? Name with
+      | none => semantic_closure Environment Rest Seen
+      | some Info =>
+        let Body := if Info.isTheorem then #[] else body_dependencies Info
+        semantic_closure Environment (Info.type.getUsedConstants.toList ++ Body.toList ++ Rest) Seen
+
+def node_json (Environment : Environment) (Name : Name) (Semantic : Bool) : Json := Id.run do
+  let some Info := Environment.checked.get.find? Name
+    | return Json.mkObj [("name", toJson Name.toString), ("missing", toJson true)]
+  let mut Fields := [
+    ("name", toJson Name.toString),
+    ("kind", toJson (kind_name Info)),
+    ("universes", toJson (Info.levelParams.map Lean.Name.toString)),
+    ("unsafe", toJson Info.isUnsafe),
+    ("type_dependencies", names_json Info.type.getUsedConstants),
+    ("body_dependencies", names_json (body_dependencies Info))]
+  if Semantic then
+    Fields := Fields ++ [("type_expression", expr_json Info.type)]
+    if !Info.isTheorem then
+      if let some Value := Info.value? (allowOpaque := true) then
+        Fields := Fields ++ [("value_expression", expr_json Value)]
+  return Json.mkObj Fields
+
+partial def binder_kinds (TermType : Expr) : List String :=
+  match TermType with
+  | .forallE _ _ Body Binder => reprStr Binder :: binder_kinds Body
+  | _ => []
+
+def modules_for_names (Environment : Environment) (Names : NameSet) : NameSet := Id.run do
+  let mut Modules : NameSet := {}
+  for Name in Names.toArray do
+    if let some Index := Environment.getModuleIdxFor? Name then
+      if let some ModuleName := Environment.header.moduleNames[Index.toNat]? then
+        Modules := Modules.insert ModuleName
+  return Modules
+
+
+end AuthorInspection
+
+set_option maxRecDepth 8192
+set_option maxHeartbeats 0
+set_option pp.universes true
+set_option pp.explicit true
+set_option pp.fullNames true
+set_option pp.proofs false
+
+#print SL.AuditRound5.p_zero
+#print axioms SL.AuditRound5.p_zero
+
+#print SL.AuditRound5.p_one
+#print axioms SL.AuditRound5.p_one
+
+#print SL.AuditRound5.p_even
+#print axioms SL.AuditRound5.p_even
+
+#print SL.AuditRound5.p_odd
+#print axioms SL.AuditRound5.p_odd
+
+#print SL.AuditRound5.eval_linear
+#print axioms SL.AuditRound5.eval_linear
+
+#print SL.AuditRound5.value_trace
+#print axioms SL.AuditRound5.value_trace
+
+#print SL.AuditRound5.derivative_trace
+#print axioms SL.AuditRound5.derivative_trace
+
+#print SL.AuditRound5.traces
+#print axioms SL.AuditRound5.traces
+
+#print SL.AuditRound5.zero_traces
+#print axioms SL.AuditRound5.zero_traces
+
+#print SL.AuditRound5.oblique
+#print axioms SL.AuditRound5.oblique
+
+#print SL.AuditRound5.endpoint_plus
+#print axioms SL.AuditRound5.endpoint_plus
+
+#print SL.AuditRound5.endpoint_minus
+#print axioms SL.AuditRound5.endpoint_minus
+
+#print SL.AuditRound5.residues
+#print axioms SL.AuditRound5.residues
+
+#print SL.AuditRound5.krein_polynomials
+#print axioms SL.AuditRound5.krein_polynomials
+
+#print SL.AuditRound5.high_generators
+#print axioms SL.AuditRound5.high_generators
+
+#print SL.AuditRound5.high_span
+#print axioms SL.AuditRound5.high_span
+
+#print SL.AuditRound5.traces_apply
+#print axioms SL.AuditRound5.traces_apply
+
+#print SL.AuditRound5.residues_apply
+#print axioms SL.AuditRound5.residues_apply
+
+#print SL.AuditRound5.mem_zero_traces
+#print axioms SL.AuditRound5.mem_zero_traces
+
+#print SL.AuditRound5.mem_oblique
+#print axioms SL.AuditRound5.mem_oblique
+
+#print SL.AuditRound5.low_traces
+#print axioms SL.AuditRound5.low_traces
+
+#print SL.AuditRound5.low_residues
+#print axioms SL.AuditRound5.low_residues
+
+#print SL.AuditRound5.even_traces
+#print axioms SL.AuditRound5.even_traces
+
+#print SL.AuditRound5.odd_traces
+#print axioms SL.AuditRound5.odd_traces
+
+#print SL.AuditRound5.monomial_even_residues
+#print axioms SL.AuditRound5.monomial_even_residues
+
+#print SL.AuditRound5.monomial_odd_residues
+#print axioms SL.AuditRound5.monomial_odd_residues
+
+#print SL.AuditRound5.residues_C_mul
+#print axioms SL.AuditRound5.residues_C_mul
+
+#print SL.AuditRound5.even_residues
+#print axioms SL.AuditRound5.even_residues
+
+#print SL.AuditRound5.odd_residues
+#print axioms SL.AuditRound5.odd_residues
+
+#print SL.AuditRound5.high_span_zero_traces
+#print axioms SL.AuditRound5.high_span_zero_traces
+
+#print SL.AuditRound5.high_span_krein
+#print axioms SL.AuditRound5.high_span_krein
+
+#print SL.AuditRound5.span_member_has_zero_traces
+#print axioms SL.AuditRound5.span_member_has_zero_traces
+
+#print SL.AuditRound5.one_add_X_mem_oblique
+#print axioms SL.AuditRound5.one_add_X_mem_oblique
+
+#print SL.AuditRound5.one_not_mem_oblique
+#print axioms SL.AuditRound5.one_not_mem_oblique
+
+#print SL.AuditRound5.X_not_mem_oblique
+#print axioms SL.AuditRound5.X_not_mem_oblique
+
+#print SL.AuditRound5.one_add_X_not_mem_high_span
+#print axioms SL.AuditRound5.one_add_X_not_mem_high_span
+
+#print SL.AuditRound5.zero_traces_le_oblique
+#print axioms SL.AuditRound5.zero_traces_le_oblique
+
+#print SL.AuditRound5.high_span_lt_oblique
+#print axioms SL.AuditRound5.high_span_lt_oblique
+
+#print SL.AuditRound5.endpoint_matrix
+#print axioms SL.AuditRound5.endpoint_matrix
+
+#print SL.AuditRound5.correction_matrix
+#print axioms SL.AuditRound5.correction_matrix
+
+#print SL.AuditRound5.endpoint_matrix_det
+#print axioms SL.AuditRound5.endpoint_matrix_det
+
+#print SL.AuditRound5.endpoint_matrix_det_ne_zero
+#print axioms SL.AuditRound5.endpoint_matrix_det_ne_zero
+
+#print SL.AuditRound5.endpoint_matrix_inverse
+#print axioms SL.AuditRound5.endpoint_matrix_inverse
+
+#print SL.AuditRound5.endpoint_monomial_columns
+#print axioms SL.AuditRound5.endpoint_monomial_columns
+
+#print SL.AuditRound5.correction_alpha
+#print axioms SL.AuditRound5.correction_alpha
+
+#print SL.AuditRound5.correction_beta
+#print axioms SL.AuditRound5.correction_beta
+
+#print SL.AuditRound5.correction_solves_residues
+#print axioms SL.AuditRound5.correction_solves_residues
+
+#print SL.AuditRound5.correct_endpoints
+#print axioms SL.AuditRound5.correct_endpoints
+
+#print SL.AuditRound5.corrected_residues_zero
+#print axioms SL.AuditRound5.corrected_residues_zero
+
+#print SL.AuditRound5.correction_preserves_divisibility
+#print axioms SL.AuditRound5.correction_preserves_divisibility
+
+#print SL.AuditRound5.trace_lift
+#print axioms SL.AuditRound5.trace_lift
+
+#print SL.AuditRound5.traces_trace_lift
+#print axioms SL.AuditRound5.traces_trace_lift
+
+#print SL.AuditRound5.trace_lift_krein
+#print axioms SL.AuditRound5.trace_lift_krein
+
+#print SL.AuditRound5.traces_surjective
+#print axioms SL.AuditRound5.traces_surjective
+
+#print SL.AuditRound5.subtract_trace_lift
+#print axioms SL.AuditRound5.subtract_trace_lift
+
+#print SL.AuditRound5.trace_membership_iff
+#print axioms SL.AuditRound5.trace_membership_iff
+
+#print SL.AuditRound5.oblique_with_krein_witness
+#print axioms SL.AuditRound5.oblique_with_krein_witness
+
+#print SL.AuditRound5.high_span_lt_krein_oblique
+#print axioms SL.AuditRound5.high_span_lt_krein_oblique
+
+#print SL.AuditRound5.local_algebra_root
+#print axioms SL.AuditRound5.local_algebra_root
+
+open Lean Elab Command Meta AuthorInspection in
+run_cmd do
+  let Targets : Array Name := #[`SL.AuditRound5.p_zero, `SL.AuditRound5.p_one, `SL.AuditRound5.p_even, `SL.AuditRound5.p_odd, `SL.AuditRound5.eval_linear, `SL.AuditRound5.value_trace, `SL.AuditRound5.derivative_trace, `SL.AuditRound5.traces, `SL.AuditRound5.zero_traces, `SL.AuditRound5.oblique, `SL.AuditRound5.endpoint_plus, `SL.AuditRound5.endpoint_minus, `SL.AuditRound5.residues, `SL.AuditRound5.krein_polynomials, `SL.AuditRound5.high_generators, `SL.AuditRound5.high_span, `SL.AuditRound5.traces_apply, `SL.AuditRound5.residues_apply, `SL.AuditRound5.mem_zero_traces, `SL.AuditRound5.mem_oblique, `SL.AuditRound5.low_traces, `SL.AuditRound5.low_residues, `SL.AuditRound5.even_traces, `SL.AuditRound5.odd_traces, `SL.AuditRound5.monomial_even_residues, `SL.AuditRound5.monomial_odd_residues, `SL.AuditRound5.residues_C_mul, `SL.AuditRound5.even_residues, `SL.AuditRound5.odd_residues, `SL.AuditRound5.high_span_zero_traces, `SL.AuditRound5.high_span_krein, `SL.AuditRound5.span_member_has_zero_traces, `SL.AuditRound5.one_add_X_mem_oblique, `SL.AuditRound5.one_not_mem_oblique, `SL.AuditRound5.X_not_mem_oblique, `SL.AuditRound5.one_add_X_not_mem_high_span, `SL.AuditRound5.zero_traces_le_oblique, `SL.AuditRound5.high_span_lt_oblique, `SL.AuditRound5.endpoint_matrix, `SL.AuditRound5.correction_matrix, `SL.AuditRound5.endpoint_matrix_det, `SL.AuditRound5.endpoint_matrix_det_ne_zero, `SL.AuditRound5.endpoint_matrix_inverse, `SL.AuditRound5.endpoint_monomial_columns, `SL.AuditRound5.correction_alpha, `SL.AuditRound5.correction_beta, `SL.AuditRound5.correction_solves_residues, `SL.AuditRound5.correct_endpoints, `SL.AuditRound5.corrected_residues_zero, `SL.AuditRound5.correction_preserves_divisibility, `SL.AuditRound5.trace_lift, `SL.AuditRound5.traces_trace_lift, `SL.AuditRound5.trace_lift_krein, `SL.AuditRound5.traces_surjective, `SL.AuditRound5.subtract_trace_lift, `SL.AuditRound5.trace_membership_iff, `SL.AuditRound5.oblique_with_krein_witness, `SL.AuditRound5.high_span_lt_krein_oblique, `SL.AuditRound5.local_algebra_root]
+  let Env := (← getEnv).setExporting false
+  let mut Results : Array Json := #[]
+  let mut Readable : String := ""
+  let mut Explicit : String := ""
+  for Target in Targets do
+    let some Info := Env.checked.get.find? Target
+      | throwError "Missing declaration: {Target}"
+    let Axioms ← collectAxioms Target
+    let ActualType ← liftTermElabM <| withOptions
+      (fun O => O.setBool `pp.explicit false) do
+        return (← ppExpr Info.type).pretty
+    let FullType ← liftTermElabM <| withOptions
+      (fun O => O.setBool `pp.all true |>.setBool `pp.proofs true) do
+        return (← ppExpr Info.type).pretty
+    let mut Fields := [
+      ("declaration", toJson Target.toString), ("kind", toJson (kind_name Info)),
+      ("actual_type", toJson ActualType), ("fully_explicit_type", toJson FullType),
+      ("type_expression", expr_json Info.type),
+      ("universes", toJson (Info.levelParams.map Name.toString)),
+      ("binder_kinds", toJson (binder_kinds Info.type)),
+      ("transitive_axioms", names_json Axioms),
+      ("type_dependencies", names_json Info.type.getUsedConstants),
+      ("body_dependencies", names_json (body_dependencies Info)),
+      ("transitive_dependencies", names_json (dependency_closure Env [Target]).toArray),
+      ("semantic_dependencies", names_json (semantic_closure Env Info.type.getUsedConstants.toList).toArray)]
+    Readable := Readable ++ kind_name Info ++ " " ++ Target.toString ++ " :
+" ++ ActualType
+    Explicit := Explicit ++ kind_name Info ++ " " ++ Target.toString ++ " :
+" ++ FullType
+    if !Info.isTheorem then
+      if let some Value := Info.value? (allowOpaque := true) then
+        let Body ← liftTermElabM <| withOptions
+          (fun O => O.setBool `pp.explicit false) do
+            return (← ppExpr Value).pretty
+        let FullBody ← liftTermElabM <| withOptions
+          (fun O => O.setBool `pp.all true |>.setBool `pp.proofs true) do
+            return (← ppExpr Value).pretty
+        Fields := Fields ++ [("definition_body", toJson Body),
+          ("fully_explicit_definition_body", toJson FullBody), ("value_expression", expr_json Value)]
+        Readable := Readable ++ "
+:=
+" ++ Body
+        Explicit := Explicit ++ "
+:=
+" ++ FullBody
+    Readable := Readable ++ "
+
+"
+    Explicit := Explicit ++ "
+
+"
+    Results := Results.push (Json.mkObj Fields)
+  let Used := dependency_closure Env Targets.toList
+  let mut SemanticUsed : NameSet := {}
+  for Target in Targets do
+    if let some Info := Env.checked.get.find? Target then
+      let Seeds := if Info.isTheorem then Info.type.getUsedConstants.toList else [Target]
+      SemanticUsed := semantic_closure Env Seeds SemanticUsed
+  let Nodes := Used.toArray.qsort Name.lt |>.map fun N =>
+    node_json Env N (SemanticUsed.contains N)
+  let mut LocalDefinitions : String := ""
+  for N in Used.toArray.qsort Name.lt do
+    if N.toString.startsWith "SL." then
+      if let some Info := Env.checked.get.find? N then
+        if !Info.isTheorem then
+          if let some Value := Info.value? (allowOpaque := true) then
+            let T ← liftTermElabM <| withOptions
+              (fun O => O.setBool `pp.all true |>.setBool `pp.proofs true) do
+                return (← ppExpr Info.type).pretty
+            let V ← liftTermElabM <| withOptions
+              (fun O => O.setBool `pp.all true |>.setBool `pp.proofs true) do
+                return (← ppExpr Value).pretty
+            LocalDefinitions := LocalDefinitions ++ N.toString ++ " :\n" ++ T ++ "\n:=\n" ++ V ++ "\n\n"
+  let mut Modules : Array Json := #[]
+  for N in Env.header.moduleNames do
+    let File ← findOLean N
+    Modules := Modules.push (Json.mkObj [("module", toJson N.toString), ("olean", toJson File.toString)])
+  let Base := "F:/tools/math-audit-round5-20260921/lean-author/final/"
+  IO.FS.writeFile (Base ++ "declarations.json")
+    ((Json.mkObj [("declarations", Json.arr Results), ("dependencies", Json.arr Nodes), ("semantic_dependencies", names_json SemanticUsed.toArray)]).compress ++ "\n")
+  IO.FS.writeFile (Base ++ "loaded-modules.json")
+    ((Json.mkObj [("module_count", toJson Env.header.moduleNames.size), ("modules", Json.arr Modules)]).compress ++ "\n")
+  IO.FS.writeFile (Base ++ "formal-statements.txt") Readable
+  IO.FS.writeFile (Base ++ "formal-statements-fully-explicit.txt") Explicit
+  IO.FS.writeFile (Base ++ "local-definition-closure.txt") LocalDefinitions
+
+
+FILE coordinator-replay/ContractCheck.lean 1779 bytes
+import SL.AuditRound5
+example : (SL.AuditRound5.traces SL.AuditRound5.p_zero = (1, 0) ∧ SL.AuditRound5.traces SL.AuditRound5.p_one = (0, 1)) ∧
+    (SL.AuditRound5.residues SL.AuditRound5.p_zero = 0 ∧ SL.AuditRound5.residues SL.AuditRound5.p_one = 0) ∧
+    (∀ m : ℕ, 2 ≤ m →
+      SL.AuditRound5.traces (SL.AuditRound5.p_even m) = 0 ∧ SL.AuditRound5.traces (SL.AuditRound5.p_odd m) = 0 ∧
+      SL.AuditRound5.residues (SL.AuditRound5.p_even m) = 0 ∧ SL.AuditRound5.residues (SL.AuditRound5.p_odd m) = 0) ∧
+    (∀ m₀ : ℕ, SL.AuditRound5.high_span m₀ ≤ SL.AuditRound5.zero_traces ∧
+      SL.AuditRound5.high_span m₀ < SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials) ∧
+    ((1 + Polynomial.X : Polynomial ℝ) ∈ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials ∧
+      (1 : Polynomial ℝ) ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials ∧
+      (Polynomial.X : Polynomial ℝ) ∉ SL.AuditRound5.oblique ⊓ SL.AuditRound5.krein_polynomials) ∧
+    (∀ L : ℕ, 0 < L → (SL.AuditRound5.endpoint_matrix L).det ≠ 0 ∧
+      SL.AuditRound5.endpoint_matrix L * SL.AuditRound5.correction_matrix L = 1 ∧
+      SL.AuditRound5.correction_matrix L * SL.AuditRound5.endpoint_matrix L = 1) ∧
+    (∀ L : ℕ, 0 < L → Even L → ∀ p : Polynomial ℝ,
+      SL.AuditRound5.residues (SL.AuditRound5.correct_endpoints L p) = 0 ∧
+      ((Polynomial.X : Polynomial ℝ) ^ L ∣ p →
+        (Polynomial.X : Polynomial ℝ) ^ L ∣ SL.AuditRound5.correct_endpoints L p)) ∧
+    (∀ W : Submodule ℝ (Polynomial ℝ), SL.AuditRound5.zero_traces ≤ W →
+      ∀ p : Polynomial ℝ, p ∈ W ↔ SL.AuditRound5.trace_lift (SL.AuditRound5.traces p) ∈ W) := SL.AuditRound5.local_algebra_root
+
+
+FILE controls/PositiveControls.lean 1001 bytes
+import SL.AuditRound5
+open Polynomial SL.AuditRound5
+example : p_even 2 = (X ^ 4 - C 2 * X ^ 2 : Polynomial ℝ) := by
+  norm_num [p_even]
+example : p_odd 2 = (X ^ 5 - C 2 * X ^ 3 : Polynomial ℝ) := by
+  norm_num [p_odd]
+example : correction_alpha 2 (3, 1) = 1 / 2 ∧ correction_beta 2 (3, 1) = 1 := by
+  norm_num [correction_alpha, correction_beta]
+example : endpoint_matrix 2 * correction_matrix 2 = 1 :=
+  (endpoint_matrix_inverse 2 (by norm_num)).1
+example (m₀ : ℕ) : (1 + X : Polynomial ℝ) ∈ oblique ⊓ krein_polynomials ∧
+    (1 + X : Polynomial ℝ) ∉ high_span m₀ :=
+  ⟨oblique_with_krein_witness.1, one_add_X_not_mem_high_span m₀⟩
+example (m₀ : ℕ) : high_span m₀ ≠ oblique ⊓ krein_polynomials :=
+  (high_span_lt_krein_oblique m₀).ne
+example (m : ℕ) (hm : 2 ≤ m) : (p_even m).eval 0 = 0 ∧
+    (p_odd m).derivative.eval 0 = 0 := by
+  have he := congrArg Prod.fst (even_traces m hm)
+  have ho := congrArg Prod.snd (odd_traces m hm)
+  exact ⟨he, ho⟩
+
+
+FILE controls/FalseHighSpanEquality.lean 220 bytes
+import SL.AuditRound5
+open SL.AuditRound5
+-- Deliberately false claim: rejected using the actual strict-inclusion theorem.
+example : high_span 2 = oblique ⊓ krein_polynomials := by
+  exact high_span_lt_krein_oblique 2
+
+
+FILE pins/lakefile.lean 271 bytes
+import Lake
+open Lake DSL
+
+package LeanProof where
+  -- Formalizations for the Sturm-Liouville theory research project.
+
+require mathlib from git
+  "https://github.com/leanprover-community/mathlib4.git" @ "v4.31.0"
+
+@[default_target]
+lean_lib SL where
+  globs := #[`SL.+]
+
+FILE pins/lean-toolchain 24 bytes
+leanprover/lean4:v4.31.0
+
+FILE CONTRACT.md 10423 bytes
+# Fifth-round Lean author contract
+
+Role: mathematical formalization author, not an independent reviewer. This contract describes local real-polynomial algebra and does not certify the supplied analytic proof. Independent blind readback and correspondence review are pending coordinator dispatch.
+
+## Informal sources and scope
+
+The supplied `cofinite_replacement_proof.md`, sections 1, 3 (algebra in Lemma A), and 5 provide the intended local formulas and witnesses. The original `R-20260823T030000Z-leftdef-o1pld/candidate_proof.md` is the historical informal scope: its Claim 4, Theorem 5 and Corollary 6 are original candidates, not assumptions or imported formal results. Both source byte snapshots and hashes are in `input-hashes.json` and `source-snapshot/`.
+
+The formal carrier is exactly `Polynomial ℝ`, with real scalar linear submodules. The supplied analytic proof permits complex functions, but complex coefficients are NOT covered by this file. Natural-number parameters are unbounded. `p_even m` and `p_odd m` are total definitions for every natural number, while their sparse-family assertions require `2 ≤ m`; the invalid low parameters are not silently included.
+
+Definitions are p_zero = 1, p_one = X; p_even(m) = X^(2m) - C(m/(m-1))*X^(2m-2), p_odd(m) = X^(2m+1) - C(m/(m-1))*X^(2m-1). The coefficient division is real division, and the subtraction in exponent indices is natural subtraction. `traces p` is (p.eval 0, p.derivative.eval 0) using Mathlib's actual polynomial derivative. `residues p` is (p.derivative.eval 1 - (p.eval 1-p.eval (-1))/2, p.derivative.eval (-1) - (p.eval 1-p.eval (-1))/2). `krein_polynomials` is the kernel of these two algebraic residues. The file contains no Sobolev domain disguised as this polynomial kernel.
+
+## Exact assertions
+
+- Low traces are (1,0) and (0,1); both low polynomials have zero residues.
+- For every natural m >= 2, both high polynomials have zero value and derivative traces and zero endpoint residues.
+- For every natural m0, `high_span m0` is the REAL ALGEBRAIC span of the set of both parity polynomials at m >= max(2,m0). It is contained in `zero_traces` and in `krein_polynomials`.
+- `oblique` is the polynomial submodule p.eval 0 = p.derivative.eval 0. The polynomial 1+X belongs to its intersection with `krein_polynomials`, while neither 1 nor X belongs. For every m0, 1+X is absent from `high_span m0`, which is therefore strictly smaller than that intersection. This is an algebraic witness, not a theorem about topological closure.
+- For each positive EVEN natural L, residue columns of X^L and X^(L+1) are (L,-L) and (L,L). Actual `Matrix (Fin 2) (Fin 2) ℝ` definitions give [[L,L],[-L,L]], determinant 2*L^2, and the explicit two-sided inverse (1/(2L))*[[1,-1],[1,1]]. Matrix determinant and inverse assertions require L > 0; the column identification additionally requires Even L.
+- For every real residue pair (r_plus,r_minus), alpha=(r_plus-r_minus)/(2L), beta=(r_plus+r_minus)/(2L) solve the correction system for L > 0. For even positive L and every polynomial p, subtracting C(alpha)X^L+C(beta)X^(L+1) leaves zero residues. If X^L divides p, it still divides the corrected polynomial; this separate divisibility lemma requires no parity or positivity assumption.
+- The lift (a,b) -> C(a)+C(b)X is a right inverse of `traces`, always satisfies the polynomial Krein constraints, and gives p - trace_lift(traces p) in the trace kernel. The submodule membership reduction assumes explicitly `zero_traces ≤ W`; under this hypothesis p in W iff trace_lift(traces p) in W. Deriving that kernel-inclusion hypothesis from a cofinite family is NOT proved.
+
+The representative root is `SL.AuditRound5.local_algebra_root`, an explicit conjunction of these nontrivial conclusions, without an opaque True target or an assumption of the conclusion. `positive-contract.json` contains its fully named intended type; the actual elaborated type and every local definition are exported separately.
+
+## Not formalized
+
+No Sobolev spaces, left-definite norm equivalence, trace continuity, topological closedness/density, cutoff approximation, leading-term span equality for divisible Krein polynomials, polynomial H2 approximation, Green function/integration identity, L2 obstacle or moment recursion, K_c isomorphism, complex extension, cofinite closure classification, non-cofinite classification, s=3 claim, or odd change-of-variable integration is formalized. Those remain analytic obligations outside this contract. The old Lean scaffold is neither imported nor edited.
+
+## Execution and evidence policy
+
+All Lean commands use the installed, pinned Lean 4.31.0 executable and pre-existing Mathlib cache, with no full Lake build, package download or modification. Existing project `.olean` objects are excluded from the author LEAN_PATH. Author compilation runs from the external directory against the live root source, with output only under the external directory. The maintained plugin compiles an identical external source snapshot into its own fresh output; the snapshot binding is explicit. No semantic review input is supplied to the verifier.
+
+Actual fourth-round run metadata, current `--version`, and PATH resolution identify a WINDOWS PE executable (x86_64-w64-windows-gnu), launched from WSL. This corrects the request's assumed Linux runtime: no Linux ELF Lean runtime was found in the inspected standard locations. We do not label the run Linux-native.
+
+The write whitelist contains only the new project Lean file and this external directory. The root AGENTS.md requirement to maintain project logs is delegated to the coordinator by the later explicit scope restriction. All earlier Lean sources and project configuration, prior compiled project objects, canonical/cards/Git and prior evidence are preserved. No agents are spawned. Discovery diagnostics, failed elaboration attempts and all actual build logs are retained.
+
+## Frozen identity and executable commands
+
+- Live source SHA-256: `035043c154c215e995a210b798f80cf131414eee5529ad54396a5af3d669ae45`.
+- Actual author-inspected root object SHA-256: `75a9eedebebb71504b663c4c49b8abc1109ff7aa108cabc371b86b53281c2c90`.
+- Representative declaration: `SL.AuditRound5.local_algebra_root`.
+- Exact elaborated type SHA-256 (maintained verifier): `878d27c34882eb5d80e23ec875dadfb00c4f18b9fe6202ce114869132f524ab4`.
+- Verifier semantic identity (NOT a review verdict): `f8caebe147896795f65408aff465b0d3d13cd19dfc00414c879722b277a73062`.
+- Mathlib manifest revision: `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` (v4.31.0).
+- Actual platform/version log: `logs/01-version.stdout.txt`.
+
+Run the following from `/mnt/f/tools/math-audit-round5-20260921/lean-author`. Each runner refuses to overwrite an existing command receipt. Use new receipt/output names for additional replays. Original argument vectors, effective LEAN_PATH and exact external working directory are saved in logs/*.json; the compiler always receives absolute paths.
+
+```bash
+python3 run_lean.py replay-version version
+python3 run_lean.py replay-live-root build
+python3 run_lean.py replay-positive probe controls/PositiveControls.lean
+python3 run_lean.py replay-false-claim probe controls/FalseHighSpanEquality.lean
+PYTHONDONTWRITEBYTECODE=1 python3 verify_contract.py replay-positive-verifier positive-contract.json replay-positive-verifier
+PYTHONDONTWRITEBYTECODE=1 python3 verify_contract.py replay-negative-verifier false-expected-contract.json replay-negative-verifier
+```
+
+The false-claim compiler command and negative-verifier command are EXPECTED to exit 1. Other listed commands must exit 0. The original run names are in `command-index.json`. Replaying `build` regenerates only this author's NEW external root object and saves its previous bytes; it never touches pre-existing project objects. An external coordinator should prefer its own fresh output directory. The verifier project is a byte-identical source snapshot; `snapshot-binding.json` and `root-object-bindings.json` bind it to the live root. Do not silently reuse these identities if the live source changes.
+
+## Completed evidence
+
+37 theorems and 22 definitions were actually elaborated. Every public theorem and definition has a Lean transitive axiom export, with union {propext, Classical.choice, Quot.sound} and no sorryAx, unknown or unsafe dependency. A separate author graph recomputation matches all 59 exports. Actual module inventory: 3712 loaded modules, 14845 available olean/private/server/IR artifacts. Artifact bytes were freshly SHA-256 hashed; before/after metadata consistency was also checked. Runtime executable/DLL and project configuration hashes are in `environment.json`.
+
+The maintained positive verifier reports `machine_verification_passed=true`, `exact_root_passed=true`, `root_closure=closed`, and `semantic.status=not_reviewed`. Its second fresh compilation uses the exact saved source. The negative expected equality reports `target_mismatch` with machine execution successful and exact-root pass false. The direct compiler negative fails on the false equality while the positive source compiles the explicit counterexample and its negation. All failed commands remain under logs/ and attempts/. One style-only linter.unnecessarySeqFocus warning at source line 119 is retained. The initial finalizer incorrectly demanded warning-free logs; its failed script/traceback are preserved and the corrected packaging records this warning without changing proofs.
+
+The author root and verifier root have distinct binary object hashes, both recorded; no binary identity is claimed. Their root expression, axiom set, dependency set and every field exported for the 12,601 common root dependency nodes match exactly. The first comparison diagnostic is preserved: the union-of-59 author export has one extra type_expression field for Nat.instAtLeastTwoHAddOfNat that the root-only export omits. The corrected comparison checks all root-exported fields and retains this explicit difference.
+
+`final/READBACK_INPUTS.json` selects only actual compiler statements and definitions without informal intent or proof scripts. `SEMANTIC_REVIEW_INPUTS.json` selects this contract, source, informal sources and evidence for the separate reviewer. Neither review has been performed by this author. This is not semantic certification, independent proof review, a full project build, nor verification of analytic cofinite classification.
+
+
+INPUT_KEYS
+docs/SL_cofinite_left_definite.tex
+lean-proof/SL/AuditRound5.lean
+research/artifacts/proof-audit-round5-20260921/lean/CONTRACT.md
+research/artifacts/proof-audit-round5-20260921/lean/FINAL_CHECKS.json
+research/artifacts/proof-audit-round5-20260921/lean/InspectAuditRound5.lean
+research/artifacts/proof-audit-round5-20260921/lean/author-verifier-binding-checked.json
+research/artifacts/proof-audit-round5-20260921/lean/author-verifier-binding.json
+research/artifacts/proof-audit-round5-20260921/lean/closure-consistency.json
+research/artifacts/proof-audit-round5-20260921/lean/command-index.json
+research/artifacts/proof-audit-round5-20260921/lean/controls-result.json
+research/artifacts/proof-audit-round5-20260921/lean/controls/FalseHighSpanEquality.lean
+research/artifacts/proof-audit-round5-20260921/lean/controls/PositiveControls.lean
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/ContractCheck.lean
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/FalseHighSpanEquality.lean
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/InspectAuditRound5.lean
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/PositiveControls.lean
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/RESULT.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/artifact-rehash.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/final/declarations.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/final/loaded-modules.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/01-version.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/01-version.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/01-version.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/02-fresh-root.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/02-fresh-root.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/02-fresh-root.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/03-object-inspection.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/03-object-inspection.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/03-object-inspection.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/04-resolved-imports.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/04-resolved-imports.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/04-resolved-imports.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/05-positive.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/05-positive.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/05-positive.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/06-negative.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/06-negative.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/06-negative.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/07-contract.json
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/07-contract.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/logs/07-contract.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/replay_lean.py
+research/artifacts/proof-audit-round5-20260921/lean/coordinator-replay/root-AuditRound5.olean.bin
+research/artifacts/proof-audit-round5-20260921/lean/environment.json
+research/artifacts/proof-audit-round5-20260921/lean/false-expected-contract.json
+research/artifacts/proof-audit-round5-20260921/lean/final/AuditRound5.lean
+research/artifacts/proof-audit-round5-20260921/lean/final/declarations.json
+research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements-fully-explicit.txt
+research/artifacts/proof-audit-round5-20260921/lean/final/formal-statements.txt
+research/artifacts/proof-audit-round5-20260921/lean/final/loaded-modules.json
+research/artifacts/proof-audit-round5-20260921/lean/final/local-definition-closure.txt
+research/artifacts/proof-audit-round5-20260921/lean/final/module-artifact-hashes.json
+research/artifacts/proof-audit-round5-20260921/lean/final/public-theorem-axioms.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/01-version.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/01-version.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/01-version.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/02-initial-polynomials.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/02-initial-polynomials.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/02-initial-polynomials.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/03-expanded-local-algebra.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/03-expanded-local-algebra.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/03-expanded-local-algebra.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/04-residue-normalization.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/04-residue-normalization.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/04-residue-normalization.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/05-complete-root.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/05-complete-root.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/05-complete-root.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/06-all-declarations.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/06-all-declarations.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/06-all-declarations.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/07-maintained-verifier-positive.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/07-maintained-verifier-positive.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/07-maintained-verifier-positive.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/08-positive-controls.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/08-positive-controls.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/08-positive-controls.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/09-module-hashing.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/09-module-hashing.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/09-module-hashing.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/10-false-high-span-equality.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/10-false-high-span-equality.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/10-false-high-span-equality.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/11-resolved-imports.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/11-resolved-imports.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/11-resolved-imports.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/12-maintained-verifier-false-expected.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/12-maintained-verifier-false-expected.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/12-maintained-verifier-false-expected.stdout.txt
+research/artifacts/proof-audit-round5-20260921/lean/logs/13-finalize-v1.json
+research/artifacts/proof-audit-round5-20260921/lean/logs/13-finalize-v1.stderr.txt
+research/artifacts/proof-audit-round5-20260921/lean/pins/lake-manifest.json
+research/artifacts/proof-audit-round5-20260921/lean/pins/lakefile.lean
+research/artifacts/proof-audit-round5-20260921/lean/pins/lean-toolchain
+research/artifacts/proof-audit-round5-20260921/lean/positive-contract.json
+research/artifacts/proof-audit-round5-20260921/lean/protection-check.json
+research/artifacts/proof-audit-round5-20260921/lean/root-object-bindings.json
+research/artifacts/proof-audit-round5-20260921/lean/run_lean.py
+research/artifacts/proof-audit-round5-20260921/lean/snapshot-binding.json
+research/artifacts/proof-audit-round5-20260921/lean/source-snapshot/01-cofinite_replacement_proof.md
+research/artifacts/proof-audit-round5-20260921/lean/source-snapshot/02-candidate_proof.md
+research/artifacts/proof-audit-round5-20260921/lean/verifier-false-expected/run-manifest.json
+research/artifacts/proof-audit-round5-20260921/lean/verifier-positive/run-manifest.json
+research/library/reviews/runs/06c163ba00e904b6ca0419b76e6cde5afa3134af289a7fc73ebf57bf53eeb37d-01a0c246-80d6-7bc0-9b35-f521375754d1/report.json

@@ -1,0 +1,10 @@
+{
+  "cmd": "python3 - <<'PY'\nimport os, pathlib, hashlib\np=pathlib.Path('/mnt/f/LaTeX/BVE research/research/library/reviews/packets/98b6920270e96b30b58dd75e49271e97ed00e0a8ea60e116f88c17dba9dd8140/packet.json')\nb=p.read_bytes()\nprint('CODEX_THREAD_ID='+str(os.environ.get('CODEX_THREAD_ID')))\nprint('PACKET_PATH='+str(p))\nprint('PACKET_BYTES_SHA256='+hashlib.sha256(b).hexdigest())\nprint(b.decode())\nPY",
+  "cwd": "/mnt/f",
+  "exit_code": 0,
+  "exit_evidence": "Original exec_command returned exit_code=0",
+  "stdout_provenance": "Deterministic reconstruction of print-only bootstrap output from byte-verified frozen inputs; original tool displayed a truncated result.",
+  "stderr_provenance": "No stderr reported; reconstructed empty stream. The bootstrap tool provides a merged stream.",
+  "stdout_sha256": "e94cdd76874e0e851ecdb33ba4abe810ca05fd92acb2a8a83eb947165bbda8d5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

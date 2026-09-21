@@ -1,0 +1,40 @@
+theorem high_span_lt_krein_oblique (m₀ : ℕ) :
+    high_span m₀ < oblique ⊓ krein_polynomials := by
+  refine lt_of_le_of_ne
+    (le_inf ((high_span_zero_traces m₀).trans zero_traces_le_oblique)
+      (high_span_krein m₀)) ?_
+  intro h
+  exact one_add_X_not_mem_high_span m₀ (h ▸ oblique_with_krein_witness.1)
+
+/-- A concrete conjunction of the local results. It has no analytic hypotheses. -/
+theorem local_algebra_root :
+    (traces p_zero = (1, 0) ∧ traces p_one = (0, 1)) ∧
+    (residues p_zero = 0 ∧ residues p_one = 0) ∧
+    (∀ m : ℕ, 2 ≤ m →
+      traces (p_even m) = 0 ∧ traces (p_odd m) = 0 ∧
+      residues (p_even m) = 0 ∧ residues (p_odd m) = 0) ∧
+    (∀ m₀ : ℕ, high_span m₀ ≤ zero_traces ∧
+      high_span m₀ < oblique ⊓ krein_polynomials) ∧
+    ((1 + X : Polynomial ℝ) ∈ oblique ⊓ krein_polynomials ∧
+      (1 : Polynomial ℝ) ∉ oblique ⊓ krein_polynomials ∧
+      (X : Polynomial ℝ) ∉ oblique ⊓ krein_polynomials) ∧
+    (∀ L : ℕ, 0 < L → (endpoint_matrix L).det ≠ 0 ∧
+      endpoint_matrix L * correction_matrix L = 1 ∧
+      correction_matrix L * endpoint_matrix L = 1) ∧
+    (∀ L : ℕ, 0 < L → Even L → ∀ p : Polynomial ℝ,
+      residues (correct_endpoints L p) = 0 ∧
+      ((X : Polynomial ℝ) ^ L ∣ p →
+        (X : Polynomial ℝ) ^ L ∣ correct_endpoints L p)) ∧
+    (∀ W : Submodule ℝ (Polynomial ℝ), zero_traces ≤ W →
+      ∀ p : Polynomial ℝ, p ∈ W ↔ trace_lift (traces p) ∈ W) := by
+  refine ⟨low_traces, low_residues, ?_, ?_, oblique_with_krein_witness, ?_, ?_, ?_⟩
+  · intro m hm
+    exact ⟨even_traces m hm, odd_traces m hm, even_residues m hm, odd_residues m hm⟩
+  · intro m₀
+    exact ⟨high_span_zero_traces m₀, high_span_lt_krein_oblique m₀⟩
+  · intro L hL
+    exact ⟨endpoint_matrix_det_ne_zero L hL, endpoint_matrix_inverse L hL⟩
+  · intro L hL he p
+    exact ⟨corrected_residues_zero L hL he p, correction_preserves_divisibility L p⟩
+  · exact trace_membership_iff
+

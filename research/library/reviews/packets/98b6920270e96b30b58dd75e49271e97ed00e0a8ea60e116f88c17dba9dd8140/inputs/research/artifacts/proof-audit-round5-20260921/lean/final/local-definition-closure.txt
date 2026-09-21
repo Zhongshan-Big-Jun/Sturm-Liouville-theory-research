@@ -1,0 +1,868 @@
+SL.AuditRound5.correct_endpoints :
+(L : Nat) → (p : @Polynomial.{0} Real Real.semiring) → @Polynomial.{0} Real Real.semiring
+:=
+fun (L : Nat) (p : @Polynomial.{0} Real Real.semiring) =>
+  @HSub.hSub.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring)
+    (@instHSub.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instSub.{0} Real Real.instRing))
+    (@HSub.hSub.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+      (@Polynomial.{0} Real Real.semiring)
+      (@instHSub.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instSub.{0} Real Real.instRing)) p
+      (@HMul.hMul.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+        (@Polynomial.{0} Real Real.semiring)
+        (@instHMul.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instMul.{0} Real Real.semiring))
+        (@DFunLike.coe.{1, 1, 1}
+          (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+            (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring)))
+          Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+          (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+            (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring)))
+          (@Polynomial.C.{0} Real Real.semiring)
+          (SL.AuditRound5.correction_alpha L
+            (@DFunLike.coe.{1, 1, 1}
+              (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+                (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+                (@Polynomial.{0} Real Real.semiring) (Prod.{0, 0} Real Real)
+                (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+                  (@Polynomial.semiring.{0} Real Real.semiring))
+                (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+                (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring
+                  (@Semiring.toModule.{0} Real Real.semiring))
+                (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+                  (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring)))
+              (@Polynomial.{0} Real Real.semiring)
+              (fun (x : @Polynomial.{0} Real Real.semiring) => Prod.{0, 0} Real Real)
+              (@LinearMap.instFunLike.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring)
+                (Prod.{0, 0} Real Real) Real.semiring Real.semiring
+                (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+                  (@Polynomial.semiring.{0} Real Real.semiring))
+                (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+                (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring
+                  (@Semiring.toModule.{0} Real Real.semiring))
+                (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+                  (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+                (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)))
+              SL.AuditRound5.residues p)))
+        (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+          (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+            (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+                (@Polynomial.semiring.{0} Real Real.semiring))))
+          (@Polynomial.X.{0} Real Real.semiring) L)))
+    (@HMul.hMul.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+      (@Polynomial.{0} Real Real.semiring)
+      (@instHMul.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instMul.{0} Real Real.semiring))
+      (@DFunLike.coe.{1, 1, 1}
+        (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring) (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+        (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        (@Polynomial.C.{0} Real Real.semiring)
+        (SL.AuditRound5.correction_beta L
+          (@DFunLike.coe.{1, 1, 1}
+            (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+              (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+              (@Polynomial.{0} Real Real.semiring) (Prod.{0, 0} Real Real)
+              (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+                (@Polynomial.semiring.{0} Real Real.semiring))
+              (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+              (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring
+                (@Semiring.toModule.{0} Real Real.semiring))
+              (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+                (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring)))
+            (@Polynomial.{0} Real Real.semiring) (fun (x : @Polynomial.{0} Real Real.semiring) => Prod.{0, 0} Real Real)
+            (@LinearMap.instFunLike.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) (Prod.{0, 0} Real Real)
+              Real.semiring Real.semiring
+              (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+                (@Polynomial.semiring.{0} Real Real.semiring))
+              (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+              (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring
+                (@Semiring.toModule.{0} Real Real.semiring))
+              (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+                (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+              (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)))
+            SL.AuditRound5.residues p)))
+      (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+        (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+          (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring))))
+        (@Polynomial.X.{0} Real Real.semiring)
+        (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat) L
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+
+SL.AuditRound5.correction_alpha :
+(L : Nat) → (r : Prod.{0, 0} Real Real) → Real
+:=
+fun (L : Nat) (r : Prod.{0, 0} Real Real) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (@Prod.fst.{0, 0} Real Real r)
+      (@Prod.snd.{0, 0} Real Real r))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+      (@Nat.cast.{0} Real Real.instNatCast L))
+
+SL.AuditRound5.correction_beta :
+(L : Nat) → (r : Prod.{0, 0} Real Real) → Real
+:=
+fun (L : Nat) (r : Prod.{0, 0} Real Real) =>
+  @HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+    (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd) (@Prod.fst.{0, 0} Real Real r)
+      (@Prod.snd.{0, 0} Real Real r))
+    (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+      (@Nat.cast.{0} Real Real.instNatCast L))
+
+SL.AuditRound5.correction_matrix :
+(L : Nat) →
+  Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real
+:=
+fun (L : Nat) =>
+  @DFunLike.coe.{1, 1, 1}
+    (Equiv.{1, 1}
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+        Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real))
+    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+      Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+    (fun
+        (x :
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+            Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real) =>
+      Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+    (@EquivLike.toFunLike.{1, 1, 1}
+      (Equiv.{1, 1}
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+          (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real))
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+        Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+      (@Equiv.instEquivLike.{1, 1}
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+          (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)))
+    (@Matrix.of.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+    (@Matrix.vecCons.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+      (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+          (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+          (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+            (@OfNat.ofNat.{0} Real (nat_lit 2)
+              (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+            (@Nat.cast.{0} Real Real.instNatCast L)))
+        (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+          (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+            (@Neg.neg.{0} Real Real.instNeg (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (@OfNat.ofNat.{0} Real (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+              (@Nat.cast.{0} Real Real.instNatCast L)))
+          (@Matrix.vecEmpty.{0} Real)))
+      (@Matrix.vecCons.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+        (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+          (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+            (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+            (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+              (@OfNat.ofNat.{0} Real (nat_lit 2)
+                (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+              (@Nat.cast.{0} Real Real.instNatCast L)))
+          (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+            (@HDiv.hDiv.{0, 0, 0} Real Real Real
+              (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+              (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+              (@HMul.hMul.{0, 0, 0} Real Real Real (@instHMul.{0} Real Real.instMul)
+                (@OfNat.ofNat.{0} Real (nat_lit 2)
+                  (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2))
+                (@Nat.cast.{0} Real Real.instNatCast L)))
+            (@Matrix.vecEmpty.{0} Real)))
+        (@Matrix.vecEmpty.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real))))
+
+SL.AuditRound5.derivative_trace :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring) Real
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+:=
+@LinearMap.comp.{0, 0, 0, 0, 0, 0} Real Real Real (@Polynomial.{0} Real Real.semiring)
+  (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) SL.AuditRound5.derivative_trace._proof_1
+  (SL.AuditRound5.eval_linear (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)))
+  (@Polynomial.derivative.{0} Real Real.semiring)
+
+SL.AuditRound5.endpoint_matrix :
+(L : Nat) →
+  Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real
+:=
+fun (L : Nat) =>
+  @DFunLike.coe.{1, 1, 1}
+    (Equiv.{1, 1}
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+        Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real))
+    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+      Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+    (fun
+        (x :
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+            Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real) =>
+      Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+    (@EquivLike.toFunLike.{1, 1, 1}
+      (Equiv.{1, 1}
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+          (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real))
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+        Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+      (@Equiv.instEquivLike.{1, 1}
+        (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+          Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (Matrix.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+          (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)))
+    (@Matrix.of.{0, 0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real)
+    (@Matrix.vecCons.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+      (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+      (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+        (@Nat.cast.{0} Real Real.instNatCast L)
+        (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+          (@Nat.cast.{0} Real Real.instNatCast L) (@Matrix.vecEmpty.{0} Real)))
+      (@Matrix.vecCons.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real)
+        (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+        (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+          (@Neg.neg.{0} Real Real.instNeg (@Nat.cast.{0} Real Real.instNatCast L))
+          (@Matrix.vecCons.{0} Real (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))
+            (@Nat.cast.{0} Real Real.instNatCast L) (@Matrix.vecEmpty.{0} Real)))
+        (@Matrix.vecEmpty.{0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) → Real))))
+
+SL.AuditRound5.endpoint_minus :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring) Real
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+:=
+@HSub.hSub.{0, 0, 0}
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@instHSub.{0}
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.instSub.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommGroup
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring)
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))))
+  (@LinearMap.comp.{0, 0, 0, 0, 0, 0} Real Real Real (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring Real.semiring
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring)
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    SL.AuditRound5.derivative_trace._proof_1
+    (SL.AuditRound5.eval_linear
+      (@Neg.neg.{0} Real Real.instNeg (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))
+    (@Polynomial.derivative.{0} Real Real.semiring))
+  (@HSMul.hSMul.{0, 0, 0} Real
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@instHSMul.{0, 0} Real
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.instSMul.{0, 0, 0, 0, 0} Real Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring
+        Real.semiring
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring)
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@NonUnitalNonAssocSemiring.toDistribSMul.{0} Real
+          (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+            (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+              (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing)))))
+        SL.AuditRound5.endpoint_plus._proof_1))
+    (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+      (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2)))
+    (@HSub.hSub.{0, 0, 0}
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@instHSub.{0}
+        (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+          (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+          (@Polynomial.{0} Real Real.semiring) Real
+          (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring))
+          Real.instAddCommMonoid
+          (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+          (@Semiring.toModule.{0} Real Real.semiring))
+        (@LinearMap.instSub.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+          (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring))
+          Real.instAddCommGroup
+          (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+          (@Semiring.toModule.{0} Real Real.semiring)
+          (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))))
+      (SL.AuditRound5.eval_linear (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+      (SL.AuditRound5.eval_linear
+        (@Neg.neg.{0} Real Real.instNeg (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))))
+
+SL.AuditRound5.endpoint_plus :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring) Real
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+:=
+@HSub.hSub.{0, 0, 0}
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring))
+  (@instHSub.{0}
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.instSub.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommGroup
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring)
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))))
+  (@LinearMap.comp.{0, 0, 0, 0, 0, 0} Real Real Real (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring Real.semiring
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring)
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+    SL.AuditRound5.derivative_trace._proof_1
+    (SL.AuditRound5.eval_linear (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+    (@Polynomial.derivative.{0} Real Real.semiring))
+  (@HSMul.hSMul.{0, 0, 0} Real
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@instHSMul.{0, 0} Real
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.instSMul.{0, 0, 0, 0, 0} Real Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring
+        Real.semiring
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring)
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@NonUnitalNonAssocSemiring.toDistribSMul.{0} Real
+          (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+            (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+              (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing)))))
+        SL.AuditRound5.endpoint_plus._proof_1))
+    (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+      (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))
+      (@OfNat.ofNat.{0} Real (nat_lit 2)
+        (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast SL.AuditRound5.endpoint_plus._proof_2)))
+    (@HSub.hSub.{0, 0, 0}
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@instHSub.{0}
+        (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+          (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+          (@Polynomial.{0} Real Real.semiring) Real
+          (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring))
+          Real.instAddCommMonoid
+          (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+          (@Semiring.toModule.{0} Real Real.semiring))
+        (@LinearMap.instSub.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+          (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring))
+          Real.instAddCommGroup
+          (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+          (@Semiring.toModule.{0} Real Real.semiring)
+          (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))))
+      (SL.AuditRound5.eval_linear (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))
+      (SL.AuditRound5.eval_linear
+        (@Neg.neg.{0} Real Real.instNeg (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne))))))
+
+SL.AuditRound5.eval_linear :
+(x : Real) →
+  @LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring)
+:=
+fun (x : Real) =>
+  @LinearMap.mk.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+    (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+    Real
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    Real.instAddCommMonoid
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (@Semiring.toModule.{0} Real Real.semiring)
+    (@AddHom.mk.{0, 0} (@Polynomial.{0} Real Real.semiring) Real
+      (@AddCommMagma.toAdd.{0} (@Polynomial.{0} Real Real.semiring)
+        (@AddCommSemigroup.toAddCommMagma.{0} (@Polynomial.{0} Real Real.semiring)
+          (@AddCommMonoid.toAddCommSemigroup.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring)))))
+      (@AddCommMagma.toAdd.{0} Real
+        (@AddCommSemigroup.toAddCommMagma.{0} Real (@AddCommMonoid.toAddCommSemigroup.{0} Real Real.instAddCommMonoid)))
+      (fun (p : @Polynomial.{0} Real Real.semiring) => @Polynomial.eval.{0} Real Real.semiring x p)
+      (SL.AuditRound5.eval_linear._proof_1 x))
+    (SL.AuditRound5.eval_linear._proof_2 x)
+
+SL.AuditRound5.high_generators :
+(m₀ : Nat) → Set.{0} (@Polynomial.{0} Real Real.semiring)
+:=
+fun (m₀ : Nat) =>
+  @setOf.{0} (@Polynomial.{0} Real Real.semiring) fun (p : @Polynomial.{0} Real Real.semiring) =>
+    @Exists.{1} Nat fun (m : Nat) =>
+      And (@LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) m)
+        (And (@LE.le.{0} Nat instLENat m₀ m)
+          (Or (@Eq.{1} (@Polynomial.{0} Real Real.semiring) p (SL.AuditRound5.p_even m))
+            (@Eq.{1} (@Polynomial.{0} Real Real.semiring) p (SL.AuditRound5.p_odd m))))
+
+SL.AuditRound5.high_span :
+(m₀ : Nat) →
+  @Submodule.{0, 0} Real (@Polynomial.{0} Real Real.semiring) Real.semiring
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+:=
+fun (m₀ : Nat) =>
+  @Submodule.span.{0, 0} Real (@Polynomial.{0} Real Real.semiring) Real.semiring
+    (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+    (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+    (SL.AuditRound5.high_generators m₀)
+
+SL.AuditRound5.krein_polynomials :
+@Submodule.{0, 0} Real (@Polynomial.{0} Real Real.semiring) Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+:=
+@LinearMap.ker.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) (Prod.{0, 0} Real Real) Real.semiring
+  Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+    (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) SL.AuditRound5.residues
+
+SL.AuditRound5.oblique :
+@Submodule.{0, 0} Real (@Polynomial.{0} Real Real.semiring) Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+:=
+@LinearMap.ker.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+  (@HSub.hSub.{0, 0, 0}
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+      (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+      Real
+      (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+      Real.instAddCommMonoid
+      (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+      (@Semiring.toModule.{0} Real Real.semiring))
+    (@instHSub.{0}
+      (@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))
+        (@Polynomial.{0} Real Real.semiring) Real
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommMonoid
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring))
+      (@LinearMap.instSub.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) Real Real.semiring Real.semiring
+        (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring))
+        Real.instAddCommGroup
+        (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+        (@Semiring.toModule.{0} Real Real.semiring)
+        (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring))))
+    SL.AuditRound5.value_trace SL.AuditRound5.derivative_trace)
+
+SL.AuditRound5.p_even :
+(m : Nat) → @Polynomial.{0} Real Real.semiring
+:=
+fun (m : Nat) =>
+  @HSub.hSub.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring)
+    (@instHSub.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instSub.{0} Real Real.instRing))
+    (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+      (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+        (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))))
+      (@Polynomial.X.{0} Real Real.semiring)
+      (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) m))
+    (@HMul.hMul.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+      (@Polynomial.{0} Real Real.semiring)
+      (@instHMul.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instMul.{0} Real Real.semiring))
+      (@DFunLike.coe.{1, 1, 1}
+        (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring) (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+        (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        (@Polynomial.C.{0} Real Real.semiring)
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+          (@Nat.cast.{0} Real Real.instNatCast m)
+          (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (@Nat.cast.{0} Real Real.instNatCast m)
+            (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))))
+      (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+        (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+          (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring))))
+        (@Polynomial.X.{0} Real Real.semiring)
+        (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat)
+          (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+            (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) m)
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))))
+
+SL.AuditRound5.p_odd :
+(m : Nat) → @Polynomial.{0} Real Real.semiring
+:=
+fun (m : Nat) =>
+  @HSub.hSub.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring)
+    (@instHSub.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instSub.{0} Real Real.instRing))
+    (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+      (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+        (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))))
+      (@Polynomial.X.{0} Real Real.semiring)
+      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+        (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+          (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) m)
+        (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))
+    (@HMul.hMul.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+      (@Polynomial.{0} Real Real.semiring)
+      (@instHMul.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instMul.{0} Real Real.semiring))
+      (@DFunLike.coe.{1, 1, 1}
+        (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring) (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+        (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        (@Polynomial.C.{0} Real Real.semiring)
+        (@HDiv.hDiv.{0, 0, 0} Real Real Real (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+          (@Nat.cast.{0} Real Real.instNatCast m)
+          (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) (@Nat.cast.{0} Real Real.instNatCast m)
+            (@OfNat.ofNat.{0} Real (nat_lit 1) (@One.toOfNat1.{0} Real Real.instOne)))))
+      (@HPow.hPow.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) Nat (@Polynomial.{0} Real Real.semiring)
+        (@instHPow.{0, 0} (@Polynomial.{0} Real Real.semiring) Nat
+          (@Monoid.toPow.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Semiring.toMonoid.{0} (@Polynomial.{0} Real Real.semiring)
+              (@Polynomial.semiring.{0} Real Real.semiring))))
+        (@Polynomial.X.{0} Real Real.semiring)
+        (@HSub.hSub.{0, 0, 0} Nat Nat Nat (@instHSub.{0} Nat instSubNat)
+          (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+            (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) m)
+          (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))))
+
+SL.AuditRound5.p_one :
+@Polynomial.{0} Real Real.semiring
+:=
+@Polynomial.X.{0} Real Real.semiring
+
+SL.AuditRound5.p_zero :
+@Polynomial.{0} Real Real.semiring
+:=
+@OfNat.ofNat.{0} (@Polynomial.{0} Real Real.semiring) (nat_lit 1)
+  (@One.toOfNat1.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instOne.{0} Real Real.semiring))
+
+SL.AuditRound5.residues :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+  (Prod.{0, 0} Real Real)
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+    (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+:=
+@LinearMap.prod.{0, 0, 0, 0} Real (@Polynomial.{0} Real Real.semiring) Real Real Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring) SL.AuditRound5.endpoint_plus
+  SL.AuditRound5.endpoint_minus
+
+SL.AuditRound5.trace_lift :
+(r : Prod.{0, 0} Real Real) → @Polynomial.{0} Real Real.semiring
+:=
+fun (r : Prod.{0, 0} Real Real) =>
+  @HAdd.hAdd.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+    (@Polynomial.{0} Real Real.semiring)
+    (@instHAdd.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instAdd.{0} Real Real.semiring))
+    (@DFunLike.coe.{1, 1, 1}
+      (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring) (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+        (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring)))
+      Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+      (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+        (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+        (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+          (@Polynomial.semiring.{0} Real Real.semiring)))
+      (@Polynomial.C.{0} Real Real.semiring) (@Prod.fst.{0, 0} Real Real r))
+    (@HMul.hMul.{0, 0, 0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.{0} Real Real.semiring)
+      (@Polynomial.{0} Real Real.semiring)
+      (@instHMul.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.instMul.{0} Real Real.semiring))
+      (@DFunLike.coe.{1, 1, 1}
+        (@RingHom.{0, 0} Real (@Polynomial.{0} Real Real.semiring) (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        Real (fun (x : Real) => @Polynomial.{0} Real Real.semiring)
+        (@RingHom.instFunLike.{0, 0} Real (@Polynomial.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)
+          (@Semiring.toNonAssocSemiring.{0} (@Polynomial.{0} Real Real.semiring)
+            (@Polynomial.semiring.{0} Real Real.semiring)))
+        (@Polynomial.C.{0} Real Real.semiring) (@Prod.snd.{0, 0} Real Real r))
+      (@Polynomial.X.{0} Real Real.semiring))
+
+SL.AuditRound5.traces :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring)
+  (Prod.{0, 0} Real Real)
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+    (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+:=
+@LinearMap.prod.{0, 0, 0, 0} Real (@Polynomial.{0} Real Real.semiring) Real Real Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring) SL.AuditRound5.value_trace
+  SL.AuditRound5.derivative_trace
+
+SL.AuditRound5.value_trace :
+@LinearMap.{0, 0, 0, 0} Real Real Real.semiring Real.semiring
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) (@Polynomial.{0} Real Real.semiring) Real
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  Real.instAddCommMonoid
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Semiring.toModule.{0} Real Real.semiring)
+:=
+SL.AuditRound5.eval_linear (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+
+SL.AuditRound5.zero_traces :
+@Submodule.{0, 0} Real (@Polynomial.{0} Real Real.semiring) Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+:=
+@LinearMap.ker.{0, 0, 0, 0} Real Real (@Polynomial.{0} Real Real.semiring) (Prod.{0, 0} Real Real) Real.semiring
+  Real.semiring
+  (@Semiring.toAddCommMonoid.{0} (@Polynomial.{0} Real Real.semiring) (@Polynomial.semiring.{0} Real Real.semiring))
+  (@Prod.instAddCommMonoid.{0, 0} Real Real Real.instAddCommMonoid Real.instAddCommMonoid)
+  (@Polynomial.module.{0, 0} Real Real.semiring Real Real.semiring (@Semiring.toModule.{0} Real Real.semiring))
+  (@Prod.instModule.{0, 0, 0} Real Real Real Real.semiring Real.instAddCommMonoid Real.instAddCommMonoid
+    (@Semiring.toModule.{0} Real Real.semiring) (@Semiring.toModule.{0} Real Real.semiring))
+  (@RingHom.id.{0} Real (@Semiring.toNonAssocSemiring.{0} Real Real.semiring)) SL.AuditRound5.traces
+

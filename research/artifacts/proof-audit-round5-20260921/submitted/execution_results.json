@@ -1,0 +1,18 @@
+{
+  "optimized": {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "-O",
+      "d4_third_order_theory.py"
+    ],
+    "returncode": 0
+  },
+  "negative_injection": {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "-c",
+      "import d4_third_order_theory as m; original=m.even_form2; m.even_form2=lambda j,c: original(j,c)+1; m.main()"
+    ],
+    "returncode": 1
+  }
+}

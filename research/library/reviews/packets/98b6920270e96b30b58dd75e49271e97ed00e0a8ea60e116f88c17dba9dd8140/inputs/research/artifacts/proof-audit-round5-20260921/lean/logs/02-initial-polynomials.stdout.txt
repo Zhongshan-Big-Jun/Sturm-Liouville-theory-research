@@ -1,0 +1,130 @@
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:41:41: error: Type mismatch
+  value_trace.prod ?m.17
+has type
+  ℝ[X] →ₙ+ ℝ × ?m.13
+but is expected to have type
+  ℝ[X] →ₗ[ℝ] ℝ × ℝ
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:56:43: error: Type mismatch
+  endpoint_plus.prod ?m.17
+has type
+  ℝ[X] →ₙ+ ℝ × ?m.13
+but is expected to have type
+  ℝ[X] →ₗ[ℝ] ℝ × ℝ
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:66:0: error: Not a definitional equality: the left-hand side
+  traces p
+is not definitionally equal to the right-hand side
+  (eval 0 p, eval 0 (derivative p))
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:67:50: error: Type mismatch
+  rfl
+has type
+  ?m.18 = ?m.18
+but is expected to have type
+  traces p = (eval 0 p, eval 0 (derivative p))
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:71:64: error: unsolved goals
+p : ℝ[X]
+⊢ sorry p =
+    (eval 1 (derivative p) - 2⁻¹ * (eval 1 p - eval (-1) p), eval (-1) (derivative p) - 2⁻¹ * (eval 1 p - eval (-1) p))
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:72:8: warning: declaration uses `sorry`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:72:18: warning: This simp argument is unused:
+  endpoint_plus
+
+Hint: Omit it from the simp argument list.
+  simp [residues, endpoint_p̵l̵u̵s̵,̵ ̵e̵n̵d̵p̵o̵i̵n̵t̵_̵minus, eval_linear, div_eq_mul_inv, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:72:33: warning: This simp argument is unused:
+  endpoint_minus
+
+Hint: Omit it from the simp argument list.
+  simp [residues, endpoint_plus, en̵d̵p̵o̵i̵n̵t̵_̵m̵i̵n̵u̵s̵,̵ ̵e̵val_linear, div_eq_mul_inv, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:72:49: warning: This simp argument is unused:
+  eval_linear
+
+Hint: Omit it from the simp argument list.
+  simp [residues, endpoint_plus, endpoint_minus, e̵v̵a̵l̵_̵l̵i̵n̵e̵a̵r̵,̵ ̵div_eq_mul_inv, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:95:66: error: unsolved goals
+m : ℕ
+hm : 2 ≤ m
+h0 : 2 * m + 1 ≠ 0
+h1 : 2 * m - 1 ≠ 0
+h2 : 2 * m + 1 - 1 ≠ 0
+h3 : 2 * m - 1 - 1 ≠ 0
+⊢ 2 * ↑m + 1 = 0 ∨ ¬m = 0
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:100:47: warning: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  simp [traces_apply, p_odd, derivative_X_pow, h0̵,̵ ̵h̵1, h2, h3]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:100:55: warning: This simp argument is unused:
+  h2
+
+Hint: Omit it from the simp argument list.
+  simp [traces_apply, p_odd, derivative_X_pow, h0, h1, h2̵,̵ ̵h̵3]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:103:72: error: unsolved goals
+k : ℕ
+he : 2 * k + 2 - 1 = 2 * k + 1
+⊢ 2 + eval 1 (derivative (X ^ (k * 2))) = 2 + ↑k * 2 ∧ -2 + eval (-1) (derivative (X ^ (k * 2))) = -2 - ↑k * 2
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:105:24: warning: This simp argument is unused:
+  derivative_X_pow
+
+Hint: Omit it from the simp argument list.
+  simp [residues_apply, d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵_̵X̵_̵p̵o̵w̵,̵ ̵he, pow_add, pow_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:105:42: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  simp [residues_apply, derivative_X_pow, h̵e̵,̵ ̵pow_add, pow_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:109:71: error: unsolved goals
+case left
+k : ℕ
+he : 2 * k + 3 - 1 = 2 * k + 2
+⊢ 2 + eval 1 (derivative (X ^ (k * 2))) = 2 + ↑k * 2
+
+case right
+k : ℕ
+he : 2 * k + 3 - 1 = 2 * k + 2
+⊢ 2 - eval (-1) (derivative (X ^ (k * 2))) = 2 + ↑k * 2
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:111:24: warning: This simp argument is unused:
+  derivative_X_pow
+
+Hint: Omit it from the simp argument list.
+  simp [residues_apply, d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵_̵X̵_̵p̵o̵w̵,̵ ̵he, pow_add, pow_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound5.lean:111:42: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  simp [residues_apply, derivative_X_pow, h̵e̵,̵ ̵pow_add, pow_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

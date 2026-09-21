@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 259, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 244, in main
+    symbolic_checks()
+    ~~~~~~~~~~~~~~~^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 83, in symbolic_checks
+    check_zero(f'kernel_{Index}_moment_{Degree}', Moment - Expected)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 36, in check_zero
+    record_check(Name, Reduced == 0, str(Reduced))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round5-20260921/analytic-author/check_author_math.py", line 31, in record_check
+    raise RuntimeError('FAILED: ' + Name + ' ' + str(Detail or ''))
+RuntimeError: FAILED: kernel_1_moment_1 Piecewise((0, Ne(a**6*(a**4*exp(8*a) + 4*a**4*exp(6*a) + 6*a**4*exp(4*a) + 4*a**4*exp(2*a) + a**4 - 4*a**3*exp(8*a) - 8*a**3*exp(6*a) + 8*a**3*exp(2*a) + 4*a**3 + 6*a**2*exp(8*a) - 12*a**2*exp(4*a) + 6*a**2 - 4*a*exp(8*a) + 8*a*exp(6*a) - 8*a*exp(2*a) + 4*a + exp(8*a) - 4*exp(6*a) + 6*exp(4*a) - 4*exp(2*a) + 1), 0)), ((a**3*exp(a) - a*exp(2*a) - a + exp(2*a) - 1)/(a**2*(a*exp(2*a) + a - exp(2*a) + 1)), True))

@@ -1,0 +1,38 @@
+{
+	"checked_paths": [
+		"docs/SL_cofinite_left_definite.tex",
+		"docs/SL_fractional_left_definite.tex",
+		"docs/SL_h2_completeness_proof.tex",
+		"research/library/card-versions/1e8977c0137179a8a5009e8de9e5c3055a0596e1454d4e3ee3f9a6c0ec80f0d5.md",
+		"research/library/card-versions/f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430.md",
+		"research/library/corrections/evidence/f916fae93916291a6238447e66ee42a8e8e8488b8c77d537a33e4bd110541264.bin",
+		"research/library/corrections/requests/3b094d8bbeb828cac175af3ee6f7184078ade4aa7d5c560ffd7e8d8196ae843e.json",
+		"research/library/corrections/requests/f8f6b5028e65eb59b92e2301f24cefb1f8aa3e146d56e0b155f2af2dd6786f5f.json",
+		"research/library/reviews/runs/3db1fcd55afc57b0c7dec5a81f7af4e740957fdf21e3b0282b61e35396d99493-01a0c24d-4fc1-7322-bc39-33469b10668f/report.json",
+		"tools/left-definite-theory.md",
+		"tools/leftdef-o1pld-l2-structural.md",
+		"tools/spectral-domain-checks.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:f8f6b5028e65eb59b92e2301f24cefb1f8aa3e146d56e0b155f2af2dd6786f5f",
+			"reason": "All 12 input hashes match. The current card matches the specified f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430 version, and the revision identifies the supplied old version and original round2-spectrum issue. Its explicit dependency on left-definite-theory matches actual hash d944d1dd15e9e10af7d0e0d1a2a5ed3df0664a00e8f60963a728161dffd47945; that dependency's spectral-domain-checks binding matches actual hash 8deeec4e940472b96a502a78ea8a600bb9570547c9819b378199d006233625d4. Independently checking the supplied mathematics resolves the inherited issue for this card: both low eigenmodes and correct normalization are present, the operator domain and topology are explicit, and the replacement s=2 proof does not use the discarded all-order density argument. The spectral coefficients give the stated strict thresholds x^2 in H^t iff t<3/2 and p4 in H^s iff s<7/2 for nonnegative orders, including divergence at equality. Negative orders are correctly defined by completion. The repaired growth lemma requires pinned initial data and an additional quantitative coefficient bound for factorial growth; it is not applied to arbitrary tail solutions. Historical root-finding outputs and the earlier approval are unnecessary to the current analytic argument. Approval concerns this card's inherited obligation only.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R5-inherited-spectrum-obligation",
+			"reason": "For fixed real c>0, the exact domain is {f in Sobolev H2(-1,1): f'(1)=f'(-1)=(f(1)-f(-1))/2}. Integration by parts gives <Kc f,f>=||f'||^2-|Delta f|^2/2+c||f||^2>=c||f||^2. Consequently ||Kc f|| is equivalent to the conventional graph norm; the supplied integral-remainder estimates also establish equivalence to the restricted Sobolev H2 norm and continuity of both central traces. The Volterra construction solves Kc f=h for arbitrary h in L2, since its endpoint matrix has determinant 2a sinh(a)(a cosh(a)-sinh(a))>0 for a=sqrt(c)>0. Dense definition, symmetry and surjectivity then establish self-adjointness and the onto isometry. Parity reduction accounts for the complete spectrum, including 1 and x at eigenvalue c with squared L2 norms 2 and 2/3; the positive sine modes have squared norm mu^2/(1+mu^2). For every integer m0>=2, leading-term elimination and the endpoint correction matrix of determinant 2L^2, L=2m0-2, establish the tail's algebraic description. The cutoff estimates use the vanishing local norm of f'' and both zero traces; polynomial approximation and endpoint correction, with the cutoff fixed first, prove that every complete tail has closure ker Gamma. This yields all four cofinite low-mode cases and the stated classification of complex closed subspaces. The Green kernels satisfy the endpoint relations and have interface jumps (0,-1) and (1,0), respectively, giving the value and derivative trace identities. Their low moments yield u=cM0 g0,c+cM1 g1,c with the stated conjugation convention. Neither kernel is required to lie in D(Kc). These arguments neither discard realizable decaying moments nor invoke negative-order completion, numerical convergence, an s=3 classification or a general non-cofinite theorem.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval is restricted to the two listed obligations for the exact frozen card and dependencies. It does not certify other cards, the whole project or complete formalization.",
+		"The historical candidate_proof.md, H3 proof, linked REPORT.md files, numerical programs and Lean artifacts are not supplied inputs. Their detailed claims and executions were not verified. The supplied prior review was treated only as provenance.",
+		"The H3-dependent density statement for 0<=s<=3 was checked only as a conditional transfer argument; its H3 prerequisite was not certified here and is unnecessary for the current s=2 proof.",
+		"The result assumes fixed c>0 and cofinite index sets in the specified complex operator domain. It establishes no c=0 result, uniform c-downarrow-zero estimate, s=3 tail classification or general non-cofinite classification.",
+		"Verification consisted of analytical review and SHA256 checks. No historical numerical certificate suite or Lean build was run. Only the listed frozen inputs were consulted, and the source project was not modified."
+	],
+	"packet_sha256": "33abde8785d0a3690140500dc4525df4470c86ad3b08325b72ee77587e436949",
+	"verdict": "APPROVED"
+}
