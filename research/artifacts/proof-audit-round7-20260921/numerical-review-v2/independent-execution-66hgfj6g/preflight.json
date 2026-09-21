@@ -1,0 +1,259 @@
+{
+  "manifest_supplied": true,
+  "snapshot_count": 4,
+  "all_snapshots_supplied_and_bound": true,
+  "snapshots": [
+    {
+      "snapshot": "inputs/gap-band-extremals.md",
+      "listed_in_packet": true,
+      "manifest_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "manifest_bytes": 3045,
+      "actual_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "actual_bytes": 3045,
+      "packet_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "verified": true
+    },
+    {
+      "snapshot": "inputs/SL_gap_nge2_symmetry_local_proof.tex",
+      "listed_in_packet": true,
+      "manifest_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "manifest_bytes": 40877,
+      "actual_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "actual_bytes": 40877,
+      "packet_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "verified": true
+    },
+    {
+      "snapshot": "inputs/proof_audit_round7_20260921.md",
+      "listed_in_packet": true,
+      "manifest_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "manifest_bytes": 9912,
+      "actual_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "actual_bytes": 9912,
+      "packet_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "verified": true
+    },
+    {
+      "snapshot": "inputs/feynman-hellmann.md",
+      "listed_in_packet": true,
+      "manifest_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "manifest_bytes": 960,
+      "actual_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "actual_bytes": 960,
+      "packet_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "verified": true
+    }
+  ],
+  "original_paths_and_git_commit_claims_not_followed_or_verified": true,
+  "static_inspection": {
+    "checks.py": {
+      "assert_count": 0,
+      "imports": [
+        "import argparse",
+        "import ast",
+        "import hashlib",
+        "import json",
+        "import platform",
+        "import sys",
+        "import time",
+        "import traceback",
+        "from functools import lru_cache",
+        "from pathlib import Path",
+        "import mpmath as mp",
+        "import sympy as sp"
+      ],
+      "groups": [
+        {
+          "name": "W_product_to_sum_general",
+          "kind": "symbolic_identity",
+          "function": "w_product_to_sum",
+          "line": 63,
+          "end_line": 68
+        },
+        {
+          "name": "W_sum_squares_general_recurrence",
+          "kind": "symbolic_identity",
+          "function": "w_recurrence",
+          "line": 72,
+          "end_line": 78
+        },
+        {
+          "name": "W_finite_exact_Chebyshev_certificates",
+          "kind": "finite_exact",
+          "function": "w_chebyshev",
+          "line": 82,
+          "end_line": 91
+        },
+        {
+          "name": "W_n2_half_counterexample",
+          "kind": "exact_counterexample",
+          "function": "w_counterexample",
+          "line": 95,
+          "end_line": 102
+        },
+        {
+          "name": "Taylor_pi4_general",
+          "kind": "symbolic_identity",
+          "function": "taylor_coefficient",
+          "line": 106,
+          "end_line": 116
+        },
+        {
+          "name": "n2_exact_roots_and_reduction",
+          "kind": "finite_exact",
+          "function": "n2_roots",
+          "line": 127,
+          "end_line": 134
+        },
+        {
+          "name": "n2_normalized_determinant_exact",
+          "kind": "finite_exact",
+          "function": "n2_determinant",
+          "line": 138,
+          "end_line": 146
+        },
+        {
+          "name": "n2_four_root_order_signs_numeric",
+          "kind": "high_precision_finite",
+          "function": "n2_root_locations",
+          "line": 150,
+          "end_line": 166
+        },
+        {
+          "name": "piecewise_L2rho_antiderivative_identity",
+          "kind": "symbolic_identity",
+          "function": "integral_identity",
+          "line": 241,
+          "end_line": 246
+        },
+        {
+          "name": "nonstationary_shooting_index_and_residual",
+          "kind": "high_precision_finite",
+          "function": "shooting_check",
+          "line": 250,
+          "end_line": 254
+        },
+        {
+          "name": "exact_segment_normalization_vs_quadrature",
+          "kind": "high_precision_finite",
+          "function": "normalization_check",
+          "line": 258,
+          "end_line": 269
+        },
+        {
+          "name": "symmetric_FH_vs_independent_central_difference",
+          "kind": "high_precision_finite",
+          "function": "symmetric_fh_check",
+          "line": 273,
+          "end_line": 291
+        },
+        {
+          "name": "legacy_symmetric_formula_is_half",
+          "kind": "high_precision_counterexample",
+          "function": "half_formula_check",
+          "line": 295,
+          "end_line": 302
+        },
+        {
+          "name": "one_interface_parameter_has_no_mirror_factor",
+          "kind": "high_precision_finite",
+          "function": "one_interface_check",
+          "line": 306,
+          "end_line": 315
+        },
+        {
+          "name": "u_second_derivative_true_nonzero_jump",
+          "kind": "high_precision_counterexample",
+          "function": "second_derivative_jump",
+          "line": 319,
+          "end_line": 333
+        },
+        {
+          "name": "trial_plateau_Gram_integrals_general",
+          "kind": "symbolic_identity",
+          "function": "plateau_integrals",
+          "line": 337,
+          "end_line": 344
+        },
+        {
+          "name": "trial_plateau_bound_finite_exact_instances",
+          "kind": "finite_exact",
+          "function": "plateau_bound",
+          "line": 348,
+          "end_line": 360
+        },
+        {
+          "name": "center_vanishing_subspace_finite_Gram_bounds",
+          "kind": "finite_exact",
+          "function": "vanishing_gram",
+          "line": 364,
+          "end_line": 393
+        },
+        {
+          "name": "thin_density_spectral_bound_samples",
+          "kind": "high_precision_finite",
+          "function": "thin_spectra",
+          "line": 409,
+          "end_line": 421
+        },
+        {
+          "name": "thin_density_scalar_limits_general_n",
+          "kind": "symbolic_identity",
+          "function": "scalar_limits",
+          "line": 425,
+          "end_line": 433
+        },
+        {
+          "name": "constant_density_refutes_general_4pi2",
+          "kind": "symbolic_counterexample",
+          "function": "constant_density_gap",
+          "line": 437,
+          "end_line": 443
+        },
+        {
+          "name": "R7_P01_rho2_Schrodinger_counterexample",
+          "kind": "exact_counterexample",
+          "function": "schrodinger_counterexample",
+          "line": 447,
+          "end_line": 461
+        },
+        {
+          "name": "R7_P01_generalized_FH_two_exact_models",
+          "kind": "finite_exact",
+          "function": "generalized_fh_check",
+          "line": 465,
+          "end_line": 474
+        },
+        {
+          "name": "R7_P02_direct_matrix_and_switch_scaling",
+          "kind": "finite_exact_counterexamples",
+          "function": "direct_matrix_and_switch_scaling",
+          "line": 478,
+          "end_line": 501
+        },
+        {
+          "name": "execution_contract_explicit_raise_and_input_identity",
+          "kind": "execution_integrity",
+          "function": "execution_contract",
+          "line": 505,
+          "end_line": 519
+        }
+      ],
+      "group_count": 25,
+      "unique_group_names": 25
+    },
+    "run_checks.py": {
+      "assert_count": 0,
+      "imports": [
+        "import datetime",
+        "import hashlib",
+        "import json",
+        "import os",
+        "from pathlib import Path",
+        "import subprocess",
+        "import sys",
+        "import time"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1432 @@
+{
+  "schema": "independent-software-review-round7-v1",
+  "created_utc": "2026-09-21T12:40:07.460649+00:00",
+  "verdict": "CHANGES_REQUIRED",
+  "verdict_reason": "All ten candidate patches pass the inspected local calculus contracts and bounded executed numerical regressions. Approval is withheld for a reproducible defect in the submitted runtime import-isolation gate: it filters away exactly the external modules it claims to reject. Fix the gate or explicitly narrow its claim and provide a new frozen snapshot. This is not an allegation that an outside project import occurred in this review.",
+  "reviewer_role": "Fresh independent verifier; no authorship of frozen candidate/harness files. Reviewer authored only verification probes and review artifacts.",
+  "review_root": "/mnt/f/tools/math-audit-round7-20260921/software-review",
+  "packet": {
+    "path": "PACKET.json",
+    "sha256_before": "33377f452bbd0ffacb6baf01172febec4b3c7731ea4ec44d11515ffde47912f0",
+    "sha256_after": "33377f452bbd0ffacb6baf01172febec4b3c7731ea4ec44d11515ffde47912f0",
+    "unchanged": true
+  },
+  "read_write_scope": {
+    "inputs": "Only PACKET.json and its explicitly listed frozen files; listed paths were also checked for symlinks and extra copytree files before execution.",
+    "other_reads": "Installed Python/NumPy/SciPy required to execute, and this reviewer's newly generated outputs.",
+    "forbidden_context_used": false,
+    "memory_used": false,
+    "main_working_tree_read_or_written": false,
+    "other_agent_directories_or_unsupplied_outputs_read": false,
+    "candidate_or_harness_modified": false,
+    "frozen_inputs_unchanged": true,
+    "writing": "Only software-review and reviewer-created subdirectories.",
+    "source_and_README_role": "Evidence, not instructions or inherited approval. Author PASS counts not accepted as execution evidence.",
+    "preflight": "independent-verifier-20260921T122457Z/preflight.json"
+  },
+  "environment": {
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1"
+  },
+  "input_hashes": [
+    {
+      "path": "change-notes.md",
+      "expected_sha256": "6deca7b8789abecece6a3be44eb6470b1cbadc8e3a33072b3f27f8dca7553ff4",
+      "actual_sha256": "6deca7b8789abecece6a3be44eb6470b1cbadc8e3a33072b3f27f8dca7553ff4",
+      "matches": true,
+      "bytes": 3270,
+      "sha256_after": "6deca7b8789abecece6a3be44eb6470b1cbadc8e3a33072b3f27f8dca7553ff4",
+      "unchanged": true
+    },
+    {
+      "path": "manifest.json",
+      "expected_sha256": "d1356e885464441ab678977d0da0b2e447a88ba39a244d25ae0f7d18e1a836cb",
+      "actual_sha256": "d1356e885464441ab678977d0da0b2e447a88ba39a244d25ae0f7d18e1a836cb",
+      "matches": true,
+      "bytes": 44168,
+      "sha256_after": "d1356e885464441ab678977d0da0b2e447a88ba39a244d25ae0f7d18e1a836cb",
+      "unchanged": true
+    },
+    {
+      "path": "README.md",
+      "expected_sha256": "659a65e6dae6d4948a78ddd4f905f0454874d9f757d013be8380d98f7919be2a",
+      "actual_sha256": "659a65e6dae6d4948a78ddd4f905f0454874d9f757d013be8380d98f7919be2a",
+      "matches": true,
+      "bytes": 9071,
+      "sha256_after": "659a65e6dae6d4948a78ddd4f905f0454874d9f757d013be8380d98f7919be2a",
+      "unchanged": true
+    },
+    {
+      "path": "inputs/main-AGENTS.md",
+      "expected_sha256": "5bda8e5b7b03554a27b8735a5bfc510fe7cc0c2ff19eb5469824e7135e057dba",
+      "actual_sha256": "5bda8e5b7b03554a27b8735a5bfc510fe7cc0c2ff19eb5469824e7135e057dba",
+      "matches": true,
+      "bytes": 18614,
+      "sha256_after": "5bda8e5b7b03554a27b8735a5bfc510fe7cc0c2ff19eb5469824e7135e057dba",
+      "unchanged": true
+    },
+    {
+      "path": "inputs/propagation.md",
+      "expected_sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+      "actual_sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+      "matches": true,
+      "bytes": 13000,
+      "sha256_after": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+      "unchanged": true
+    },
+    {
+      "path": "inputs/snapshot-manifest.json",
+      "expected_sha256": "126d0b4e123eb7f34d99f4f791c17ea852e24fd5b9530d974cc7e66f99cea352",
+      "actual_sha256": "126d0b4e123eb7f34d99f4f791c17ea852e24fd5b9530d974cc7e66f99cea352",
+      "matches": true,
+      "bytes": 4680,
+      "sha256_after": "126d0b4e123eb7f34d99f4f791c17ea852e24fd5b9530d974cc7e66f99cea352",
+      "unchanged": true
+    },
+    {
+      "path": "inputs/tools-AGENTS.md",
+      "expected_sha256": "eb1f310fc0c5f478c7c023ac7ff9340cdbfe91d3cabed2d7c6e893ae49e877c9",
+      "actual_sha256": "eb1f310fc0c5f478c7c023ac7ff9340cdbfe91d3cabed2d7c6e893ae49e877c9",
+      "matches": true,
+      "bytes": 332948,
+      "sha256_after": "eb1f310fc0c5f478c7c023ac7ff9340cdbfe91d3cabed2d7c6e893ae49e877c9",
+      "unchanged": true
+    },
+    {
+      "path": "regression/backend_probe.py",
+      "expected_sha256": "1bcfe1cd93a217378b0ba9b468e3a5708c824d148e6a90363b4a16b68b895a29",
+      "actual_sha256": "1bcfe1cd93a217378b0ba9b468e3a5708c824d148e6a90363b4a16b68b895a29",
+      "matches": true,
+      "bytes": 2344,
+      "sha256_after": "1bcfe1cd93a217378b0ba9b468e3a5708c824d148e6a90363b4a16b68b895a29",
+      "unchanged": true
+    },
+    {
+      "path": "regression/capture_run.py",
+      "expected_sha256": "61597e90d5b081e63d21e85197e8e91626bba59e4878bd109c938e38a393d074",
+      "actual_sha256": "61597e90d5b081e63d21e85197e8e91626bba59e4878bd109c938e38a393d074",
+      "matches": true,
+      "bytes": 2384,
+      "sha256_after": "61597e90d5b081e63d21e85197e8e91626bba59e4878bd109c938e38a393d074",
+      "unchanged": true
+    },
+    {
+      "path": "regression/regression.py",
+      "expected_sha256": "abe7ac6883179adfcacfc4af8acd0479970ce18cfad723fc568f539d270c5b3d",
+      "actual_sha256": "abe7ac6883179adfcacfc4af8acd0479970ce18cfad723fc568f539d270c5b3d",
+      "matches": true,
+      "bytes": 14767,
+      "sha256_after": "abe7ac6883179adfcacfc4af8acd0479970ce18cfad723fc568f539d270c5b3d",
+      "unchanged": true
+    },
+    {
+      "path": "regression/replay.py",
+      "expected_sha256": "eda54652b377fd8cf376fe079fcf2ed2ceb9c8cc0200e212963f74ed731df531",
+      "actual_sha256": "eda54652b377fd8cf376fe079fcf2ed2ceb9c8cc0200e212963f74ed731df531",
+      "matches": true,
+      "bytes": 5405,
+      "sha256_after": "eda54652b377fd8cf376fe079fcf2ed2ceb9c8cc0200e212963f74ed731df531",
+      "unchanged": true
+    },
+    {
+      "path": "regression/verify_package.py",
+      "expected_sha256": "ba4722617928590901c54f356748126d0c3c1d5c02f6cb8f9452ad481ad9a74a",
+      "actual_sha256": "ba4722617928590901c54f356748126d0c3c1d5c02f6cb8f9452ad481ad9a74a",
+      "matches": true,
+      "bytes": 988,
+      "sha256_after": "ba4722617928590901c54f356748126d0c3c1d5c02f6cb8f9452ad481ad9a74a",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/gap_lib.py",
+      "expected_sha256": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "actual_sha256": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "matches": true,
+      "bytes": 3959,
+      "sha256_after": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/gap_n1_grad.py",
+      "expected_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "actual_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "matches": true,
+      "bytes": 1484,
+      "sha256_after": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/op03_gap_fh.py",
+      "expected_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "actual_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "matches": true,
+      "bytes": 656,
+      "sha256_after": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/op03_gap_fixed.py",
+      "expected_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "actual_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "matches": true,
+      "bytes": 3968,
+      "sha256_after": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/op03_gap_precise.py",
+      "expected_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "actual_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "matches": true,
+      "bytes": 3957,
+      "sha256_after": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/op03_gap_table.json",
+      "expected_sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "actual_sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "matches": true,
+      "bytes": 11319,
+      "sha256_after": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/tmp_fh_test.py",
+      "expected_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "actual_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "matches": true,
+      "bytes": 1444,
+      "sha256_after": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/tmp_verify_endpoints.py",
+      "expected_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "actual_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "matches": true,
+      "bytes": 1442,
+      "sha256_after": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_hess_sign_and_bigR.py",
+      "expected_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "actual_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "matches": true,
+      "bytes": 4261,
+      "sha256_after": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_hess_verify.py",
+      "expected_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "actual_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "matches": true,
+      "bytes": 3098,
+      "sha256_after": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_hp_scan.py",
+      "expected_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "actual_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "matches": true,
+      "bytes": 3694,
+      "sha256_after": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_jacobian_analytic.py",
+      "expected_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "actual_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "matches": true,
+      "bytes": 13500,
+      "sha256_after": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_jacobian_probe.py",
+      "expected_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "actual_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "matches": true,
+      "bytes": 3858,
+      "sha256_after": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_jacobian_spectral.py",
+      "expected_sha256": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "actual_sha256": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "matches": true,
+      "bytes": 4209,
+      "sha256_after": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_o3_scan.py",
+      "expected_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "actual_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "matches": true,
+      "bytes": 3766,
+      "sha256_after": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_second_variation_probe.py",
+      "expected_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "actual_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "matches": true,
+      "bytes": 9229,
+      "sha256_after": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_gapn2_symmetry_recon.py",
+      "expected_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "actual_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "matches": true,
+      "bytes": 11577,
+      "sha256_after": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "unchanged": true
+    },
+    {
+      "path": "originals/scripts/_tmp_fh_paradox.py",
+      "expected_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "actual_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "matches": true,
+      "bytes": 1091,
+      "sha256_after": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/gap_lib.py",
+      "expected_sha256": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "actual_sha256": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "matches": true,
+      "bytes": 3959,
+      "sha256_after": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/gap_n1_grad.py",
+      "expected_sha256": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+      "actual_sha256": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+      "matches": true,
+      "bytes": 1586,
+      "sha256_after": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/op03_gap_fh.py",
+      "expected_sha256": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+      "actual_sha256": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+      "matches": true,
+      "bytes": 747,
+      "sha256_after": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/op03_gap_fixed.py",
+      "expected_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "actual_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "matches": true,
+      "bytes": 3968,
+      "sha256_after": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/op03_gap_precise.py",
+      "expected_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "actual_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "matches": true,
+      "bytes": 3957,
+      "sha256_after": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/op03_gap_table.json",
+      "expected_sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "actual_sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "matches": true,
+      "bytes": 11319,
+      "sha256_after": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/tmp_fh_test.py",
+      "expected_sha256": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+      "actual_sha256": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+      "matches": true,
+      "bytes": 1447,
+      "sha256_after": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/tmp_verify_endpoints.py",
+      "expected_sha256": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+      "actual_sha256": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+      "matches": true,
+      "bytes": 1441,
+      "sha256_after": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_hess_sign_and_bigR.py",
+      "expected_sha256": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+      "actual_sha256": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+      "matches": true,
+      "bytes": 4394,
+      "sha256_after": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_hess_verify.py",
+      "expected_sha256": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+      "actual_sha256": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+      "matches": true,
+      "bytes": 3203,
+      "sha256_after": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_hp_scan.py",
+      "expected_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "actual_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "matches": true,
+      "bytes": 3694,
+      "sha256_after": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_jacobian_analytic.py",
+      "expected_sha256": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+      "actual_sha256": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+      "matches": true,
+      "bytes": 13524,
+      "sha256_after": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_jacobian_probe.py",
+      "expected_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "actual_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "matches": true,
+      "bytes": 3858,
+      "sha256_after": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_jacobian_spectral.py",
+      "expected_sha256": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "actual_sha256": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "matches": true,
+      "bytes": 4209,
+      "sha256_after": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_o3_scan.py",
+      "expected_sha256": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+      "actual_sha256": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+      "matches": true,
+      "bytes": 3858,
+      "sha256_after": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_second_variation_probe.py",
+      "expected_sha256": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+      "actual_sha256": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+      "matches": true,
+      "bytes": 9313,
+      "sha256_after": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_gapn2_symmetry_recon.py",
+      "expected_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "actual_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "matches": true,
+      "bytes": 11577,
+      "sha256_after": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "unchanged": true
+    },
+    {
+      "path": "candidates/scripts/_tmp_fh_paradox.py",
+      "expected_sha256": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+      "actual_sha256": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+      "matches": true,
+      "bytes": 1193,
+      "sha256_after": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+      "unchanged": true
+    }
+  ],
+  "independent_derivation": "independent-verifier-20260921T122457Z/derivation.md",
+  "ten_patch_results": [
+    {
+      "path": "scripts/op03_gap_fh.py",
+      "original_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "candidate_sha256": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+      "inspected_candidate_lines": [
+        2,
+        5,
+        23
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Correct paired SUP factor and select the byte-identical fixed backend. Both called signatures are compatible for the actual positional calls.",
+      "actual_execution_scope": "Actual Df_at plus print AST; actual four-point CLI in both modes; fixed backend IVP/norm reference.",
+      "negative_control": {
+        "test": "op03_gap_fh paired SUP u=0.3",
+        "original_failed": true,
+        "original_max_abs_error": 47.773498098226156,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 1.3333453807717888e-07,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/gap_n1_grad.py",
+      "original_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "candidate_sha256": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+      "inspected_candidate_lines": [
+        43,
+        44
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Retain the correct SUP width gradient and reverse both components for INF.",
+      "actual_execution_scope": "Actual make_blocks, D_of, f_vals, num_grad and actual gFH AST at nonstationary asymmetric widths.",
+      "negative_control": {
+        "test": "gap_n1_grad INF/width chain rule",
+        "original_failed": true,
+        "original_max_abs_error": 106.76034824489733,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 5.758769319186285e-07,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_tmp_fh_paradox.py",
+      "original_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "candidate_sha256": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+      "inspected_candidate_lines": [
+        26,
+        27,
+        28
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Add oriented left/right contributions, reverse sign for INF, apply factor two only under symmetry.",
+      "actual_execution_scope": "Actual D_and_f and actual fh/fh2 AST at nonstationary SUP/INF.",
+      "negative_control": {
+        "test": "_tmp_fh_paradox SUP/fh",
+        "original_failed": true,
+        "original_max_abs_error": 89.29071095601421,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 5.430432366893001e-06,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/tmp_fh_test.py",
+      "original_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "candidate_sha256": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+      "inspected_candidate_lines": [
+        26,
+        27,
+        30
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "INF paired eigenvalue derivatives are negative; gap derivative has +2(R-1)f.",
+      "actual_execution_scope": "Actual lam_of/y_at/norm2 and actual fh1/fh2/gap-print AST; two individual eigenvalues and gap.",
+      "negative_control": {
+        "test": "tmp_fh_test INF/fh1",
+        "original_failed": true,
+        "original_max_abs_error": 53.16010227038171,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 3.923680367279303e-07,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/tmp_verify_endpoints.py",
+      "original_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "candidate_sha256": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+      "inspected_candidate_lines": [
+        30,
+        31
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Correct paired SUP/INF signs.",
+      "actual_execution_scope": "Actual D_and_f plus fh AST; endpoint scan and root-reporting loop not executed.",
+      "negative_control": {
+        "test": "tmp_verify_endpoints SUP/paired",
+        "original_failed": true,
+        "original_max_abs_error": 178.58142734238254,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 5.4305105834373535e-06,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_gapn2_hess_verify.py",
+      "original_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "candidate_sha256": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+      "inspected_candidate_lines": [
+        4,
+        5,
+        6,
+        7,
+        40,
+        46,
+        60,
+        61
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Use lambda_n for u_n squared, -s*f for gradients, and stationary -lambda_h diag(s)@J (or transpose) for Hessians.",
+      "actual_execution_scope": "Actual eigen_data and D_edges; f/gradient/H1/H2 AST. Nonstationary gradient and stationary full Hessian compared to gap finite differences.",
+      "negative_control": {
+        "test": "hess_verify sup/lower eigenvalue in f",
+        "original_failed": true,
+        "original_max_abs_error": 9.866863168538277,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 3.552713678800501e-15,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_gapn2_hess_sign_and_bigR.py",
+      "original_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "candidate_sha256": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+      "inspected_candidate_lines": [
+        6,
+        7,
+        61
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Use matrix multiplication for both sign controls; minus is the stationary physical Hessian.",
+      "actual_execution_scope": "Actual hess_fd width-to-interface coordinate transform; H AST with real finite-difference J. Extended-R scan not executed.",
+      "negative_control": {
+        "test": "_gapn2_hess_sign_and_bigR n=2 sup/H actual matrix",
+        "original_failed": true,
+        "original_max_abs_error": 1949.1322653664156,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 0.005725286907363625,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_gapn2_jacobian_analytic.py",
+      "original_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "candidate_sha256": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+      "inspected_candidate_lines": [
+        31,
+        32,
+        285,
+        289
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Preserve offdiagonals in the stationary Hessian and correct adjacent sign/premise commentary.",
+      "actual_execution_scope": "Actual eigen_data and H AST with actual jac_fd Jfd; historical analytic/Green calculations and full main not certified.",
+      "negative_control": {
+        "test": "_gapn2_jacobian_analytic n=2 sup/H actual matrix",
+        "original_failed": true,
+        "original_max_abs_error": 1949.1322653664156,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 0.005725286907363625,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_gapn2_o3_scan.py",
+      "original_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "candidate_sha256": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+      "inspected_candidate_lines": [
+        65,
+        73,
+        74
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Take eigvalsh of the full stationary matrix product; retain the separate lambda scaling of K.",
+      "actual_execution_scope": "evH AST with real stationary J; full spectrum compared to gap finite differences. Its analytic spectral J and O-3 scan not executed.",
+      "negative_control": {
+        "test": "_gapn2_o3_scan n=2 sup/evH",
+        "original_failed": true,
+        "original_max_abs_error": 2454.6635732794048,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 0.007923322980786907,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    },
+    {
+      "path": "scripts/_gapn2_second_variation_probe.py",
+      "original_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "candidate_sha256": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+      "inspected_candidate_lines": [
+        211,
+        212,
+        213
+      ],
+      "assessment": "PASS_BOUNDED",
+      "description": "Preserve full stationary Hessian in P3 comparison.",
+      "actual_execution_scope": "Hess AST with real jac_fd and full matrix/spectrum comparison; P1/P2/P3 density-variation claims not re-audited.",
+      "negative_control": {
+        "test": "_gapn2_second_variation_probe n=2 sup/Hess actual matrix",
+        "original_failed": true,
+        "original_max_abs_error": 1949.1322653664156,
+        "candidate_passed": true,
+        "candidate_max_abs_error": 0.005725286907363625,
+        "complete_values": "independent-verifier-20260921T122457Z/replay-audit.json#/negative_control_per_target"
+      },
+      "scope_note": "This evaluates the listed edit and bounded behavior, not historical main-program outputs or global mathematical claims."
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "scripts/gap_lib.py",
+      "sha256": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/op03_gap_fixed.py",
+      "sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/op03_gap_precise.py",
+      "sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/op03_gap_table.json",
+      "sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/_gapn2_hp_scan.py",
+      "sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/_gapn2_jacobian_probe.py",
+      "sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/_gapn2_jacobian_spectral.py",
+      "sha256": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    },
+    {
+      "path": "scripts/_gapn2_symmetry_recon.py",
+      "sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "original_candidate_byte_equal": true,
+      "assessment": "Inspected as a frozen dependency; copied unchanged, not an additional patch."
+    }
+  ],
+  "executions": [
+    {
+      "id": "required-replay",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/replay.py",
+        "--label",
+        "independent-review"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review",
+      "started_utc": "2026-09-21T12:28:12.105727+00:00",
+      "finished_utc": "2026-09-21T12:28:20.088127+00:00",
+      "seconds": 7.959085253998637,
+      "exit_code": 1,
+      "timed_out": false,
+      "stdout": "independent-verifier-20260921T122457Z/required-replay/stdout.txt",
+      "stderr": "independent-verifier-20260921T122457Z/required-replay/stderr.txt",
+      "stdout_sha256": "fe32b89be7035df4621f1b59838de40562a7258ca1138c1f9e0cc61f12bf86d1",
+      "stderr_sha256": "b912f0038fed091b2efe4f373f59218b1e41f045a52491696bda0acd1daeeb06",
+      "receipt": "independent-verifier-20260921T122457Z/required-replay/receipt.json",
+      "receipt_sha256": "9b25c86b1b2a9479696aee9fea1af7cb058a18541e58bcf0080d2cebad2e7fa7",
+      "input_bindings": "Full before/after SHA-256 map in receipt; includes PACKET and all 48 listed inputs.",
+      "inputs_unchanged": true,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONUTF8": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "TMPDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "MPLCONFIGDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp"
+      },
+      "interpretation": "Reviewer-induced missing NumPy before all tests; retained as failed execution, not a candidate numerical failure."
+    },
+    {
+      "id": "required-replay-with-installed-packages",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/replay.py",
+        "--label",
+        "independent-review"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review",
+      "started_utc": "2026-09-21T12:29:30.079538+00:00",
+      "finished_utc": "2026-09-21T12:30:06.188863+00:00",
+      "seconds": 36.08633312600432,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "independent-verifier-20260921T122457Z/required-replay-with-installed-packages/stdout.txt",
+      "stderr": "independent-verifier-20260921T122457Z/required-replay-with-installed-packages/stderr.txt",
+      "stdout_sha256": "9ef0665982cfaeb3f4be4d968aee2f3f93f3ad25ae0e2d8067c7f2028cfcbf16",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt": "independent-verifier-20260921T122457Z/required-replay-with-installed-packages/receipt.json",
+      "receipt_sha256": "ccac46282cd7d6c5b414a191036b89ede85011009817d8afde0f53a081f6c106",
+      "input_bindings": "Full before/after SHA-256 map in receipt; includes PACKET and all 48 listed inputs.",
+      "inputs_unchanged": true,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONUTF8": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "TMPDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "MPLCONFIGDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "PYTHONPATH": "/home/huangzy/.local/lib/python3.14/site-packages"
+      },
+      "interpretation": "Actual successful run; inspect detailed numerical and scope results separately."
+    },
+    {
+      "id": "audit-replay",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "independent-verifier-20260921T122457Z/audit_replay.py"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review",
+      "started_utc": "2026-09-21T12:32:27.318566+00:00",
+      "finished_utc": "2026-09-21T12:32:30.011113+00:00",
+      "seconds": 2.6786017099948367,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "independent-verifier-20260921T122457Z/audit-replay/stdout.txt",
+      "stderr": "independent-verifier-20260921T122457Z/audit-replay/stderr.txt",
+      "stdout_sha256": "ea41f59f39bb2dde421b931819c170215d1755726cb8dbe37ecbeff9dbd71252",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt": "independent-verifier-20260921T122457Z/audit-replay/receipt.json",
+      "receipt_sha256": "fafa9767c2ab889065ae7c48320a7e9ef2220d19df6531cf1b8670de63386f02",
+      "input_bindings": "Full before/after SHA-256 map in receipt; includes PACKET and all 48 listed inputs.",
+      "inputs_unchanged": true,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONUTF8": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "TMPDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "MPLCONFIGDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "PYTHONPATH": "/home/huangzy/.local/lib/python3.14/site-packages"
+      },
+      "interpretation": "Actual successful run; inspect detailed numerical and scope results separately."
+    },
+    {
+      "id": "reviewer-checks-execution",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "independent-verifier-20260921T122457Z/reviewer_checks.py"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review",
+      "started_utc": "2026-09-21T12:34:59.051654+00:00",
+      "finished_utc": "2026-09-21T12:35:02.446944+00:00",
+      "seconds": 3.380719799999497,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": "independent-verifier-20260921T122457Z/reviewer-checks-execution/stdout.txt",
+      "stderr": "independent-verifier-20260921T122457Z/reviewer-checks-execution/stderr.txt",
+      "stdout_sha256": "0d365a07cc9f0709ca725d256607e2123f537a4aed2ac4c5fed30b832dac0064",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt": "independent-verifier-20260921T122457Z/reviewer-checks-execution/receipt.json",
+      "receipt_sha256": "f2dfb39b0efaed9b02af25ea31c036bd364d3e78b9be4f300d4d1f47d6e7580e",
+      "input_bindings": "Full before/after SHA-256 map in receipt; includes PACKET and all 48 listed inputs.",
+      "inputs_unchanged": true,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONUTF8": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "TMPDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "MPLCONFIGDIR": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/runtime-tmp",
+        "PYTHONPATH": "/home/huangzy/.local/lib/python3.14/site-packages"
+      },
+      "interpretation": "Actual successful run; inspect detailed numerical and scope results separately."
+    }
+  ],
+  "replay_child_executions": [
+    {
+      "name": "originals-normal",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/regression/regression.py",
+        "--tree",
+        "originals",
+        "--output",
+        "results/originals-normal.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 6.039846163010225,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/originals-normal/receipt.json",
+      "receipt_sha256": "f101bb44aff2517626e8d39abc479fe8f9760bc7600aa7843ebe1c1166af772e",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/originals-normal/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/originals-normal/stderr.txt",
+      "stdout_sha256": "179520a0b6228bbb9faa46313a4e71578bc3643dfe489c4368a01f576409c6d3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "work/replay-20260921T122930Z-e64f7d/results/originals-normal.json",
+      "tests": 117,
+      "passed_checks": 38,
+      "failed_checks": 79,
+      "cli_pairs": null,
+      "meaning": "Original source behavior fails as expected, not a successful original program."
+    },
+    {
+      "name": "candidates-normal",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/regression/regression.py",
+        "--tree",
+        "candidates",
+        "--output",
+        "results/candidates-normal.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 5.588309630998992,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-normal/receipt.json",
+      "receipt_sha256": "286dc9dd84770b173f1af858010fe9b1bce0af0ad71d932d4bf8f9564ec9d392",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-normal/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-normal/stderr.txt",
+      "stdout_sha256": "80180ad823d6930b4a373be877150c0a2ceb9bdd5d32a4d1ca7cbd22ef823e6b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "work/replay-20260921T122930Z-e64f7d/results/candidates-normal.json",
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "cli_pairs": null,
+      "meaning": "Candidate check/CLI actually executed successfully."
+    },
+    {
+      "name": "op03-cli-normal",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "scripts/op03_gap_fh.py"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/candidates",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 1.323959727989859,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-normal/receipt.json",
+      "receipt_sha256": "f08f12ace457dd5685948d6fc926e4df92e8bf9230ec37f0f14d41a3f0b37327",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-normal/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-normal/stderr.txt",
+      "stdout_sha256": "5df568e6d5bde767b5fa09e2f28b460a548ee7b22182b08ac675dcb3d485dc7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": null,
+      "tests": null,
+      "passed_checks": null,
+      "failed_checks": null,
+      "cli_pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "meaning": "Candidate check/CLI actually executed successfully."
+    },
+    {
+      "name": "originals-optimized",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/regression/regression.py",
+        "--tree",
+        "originals",
+        "--output",
+        "results/originals-optimized.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 5.687043432000792,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/originals-optimized/receipt.json",
+      "receipt_sha256": "08e4c1f35f9ddda1576505c81ca52c7378c1f8bdf73cd101f5673a2236dfa9a2",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/originals-optimized/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/originals-optimized/stderr.txt",
+      "stdout_sha256": "795eecf3244d4cff23035a05f97c8410bc60f88c9e5c0f1ea239d625f747117d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "work/replay-20260921T122930Z-e64f7d/results/originals-optimized.json",
+      "tests": 117,
+      "passed_checks": 38,
+      "failed_checks": 79,
+      "cli_pairs": null,
+      "meaning": "Original source behavior fails as expected, not a successful original program."
+    },
+    {
+      "name": "candidates-optimized",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/regression/regression.py",
+        "--tree",
+        "candidates",
+        "--output",
+        "results/candidates-optimized.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 6.088354064995656,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-optimized/receipt.json",
+      "receipt_sha256": "00fecfb54d2eb6b7153e44340b0cb8ef1659a23f6a56a5b0d918d91389ad32a1",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-optimized/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/candidates-optimized/stderr.txt",
+      "stdout_sha256": "a0685923bd33b4b0cb86f0927b91b7f660e3176f2531ec1b183eb7ed074ac804",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "work/replay-20260921T122930Z-e64f7d/results/candidates-optimized.json",
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "cli_pairs": null,
+      "meaning": "Candidate check/CLI actually executed successfully."
+    },
+    {
+      "name": "op03-cli-optimized",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "scripts/op03_gap_fh.py"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d/candidates",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 1.6257169399905251,
+      "timed_out": false,
+      "receipt": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-optimized/receipt.json",
+      "receipt_sha256": "9818b912cb689d708aaa34955dd9db80d5e3c96621b4fb47165b38db4e1bee4b",
+      "stdout": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-optimized/stdout.txt",
+      "stderr": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-optimized/stderr.txt",
+      "stdout_sha256": "5df568e6d5bde767b5fa09e2f28b460a548ee7b22182b08ac675dcb3d485dc7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": null,
+      "tests": null,
+      "passed_checks": null,
+      "failed_checks": null,
+      "cli_pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "meaning": "Candidate check/CLI actually executed successfully."
+    }
+  ],
+  "successful_replay_directory": "work/replay-20260921T122930Z-e64f7d",
+  "failed_initial_replay_directory": "work/replay-20260921T122812Z-ea7225",
+  "actual_replay_audit": "independent-verifier-20260921T122457Z/replay-audit.json",
+  "reviewer_supplemental": {
+    "script": "independent-verifier-20260921T122457Z/reviewer_checks.py",
+    "results": "independent-verifier-20260921T122457Z/reviewer-checks.json",
+    "tests": 47,
+    "passed": 47,
+    "failed": 0,
+    "import_provenance": "independent-verifier-20260921T122457Z/supplemental-import-provenance.json",
+    "scope": "Independent augmented-IVP backend oracle plus n=2 asymmetric nonstationary gradients, Jacobian coordinate conversion, full/rank-one Hessians and mirror projections. Passing defect-detection controls do not certify legacy backend correctness."
+  },
+  "findings": [
+    {
+      "id": "R7-SW-001",
+      "severity": "P2",
+      "blocking": true,
+      "kind": "scope-validation defect",
+      "title": "External project imports are filtered out before the isolation gate checks them",
+      "locations": [
+        {
+          "path": "regression/regression.py",
+          "line": 295
+        },
+        {
+          "path": "regression/replay.py",
+          "line": 80
+        },
+        {
+          "path": "README.md",
+          "line": 28
+        }
+      ],
+      "evidence": {
+        "collector": "{K: str(getattr(V, '__file__', '')) for K, V in sys.modules.items() if getattr(V, '__file__', None) and Path(V.__file__).resolve().is_relative_to(Base)}",
+        "explanation": "In the copied regression process Base is the replay Run. The collector retains only module files already under Base. replay subsequently tests those same retained files against Run. Every outside file is omitted, so this check cannot detect an outside project import. The subsequent gate also lacks a required-name check.",
+        "reproduction": "independent-verifier-20260921T122457Z/replay-audit.json#/scope_gate_counterexample",
+        "actual_ast_counterexample": {
+          "kind": "real harness logic defect demonstrated on synthetic module metadata, no external read",
+          "collector_line": 295,
+          "collector_ast_sha256": "dd2a4a5ae91464eb9b7f1e7b3ed1cecd553e1a3594c5d5184aed77f5bbe37833",
+          "collector_expression": "{K: str(getattr(V, '__file__', '')) for K, V in sys.modules.items() if getattr(V, '__file__', None) and Path(V.__file__).resolve().is_relative_to(Base)}",
+          "gate_line": 80,
+          "input_module_file": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/outside/gap_lib.py",
+          "isolated_base": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/run",
+          "reported_bindings": {},
+          "reported_outside": [],
+          "outside_module_was_omitted": true,
+          "impact": "An outside project import is discarded before replay validates module paths, so the empty external_project_modules output is not evidence of isolation. This does not demonstrate an outside import occurred in the actual replay."
+        }
+      },
+      "impact": "The reported empty external_project_modules list is not a valid runtime isolation certificate. No actual external project import was observed or alleged; all displayed expected bindings were local. The defect concerns the submitted scope guarantee, not the successful finite numerical comparisons.",
+      "fix_request": "Collect project-module provenance before any is_relative_to(Base) filter (or record the complete file-backed module map and classify installed Python/NumPy/SciPy separately). Require each expected project module to be present at its selected originals/candidates path under Run and verify its bound source digest. Add an outside-path/missing-module negative control using synthetic metadata or a locally owned fixture, and rerun normal/-O. Alternatively explicitly withdraw the runtime isolation claim and mark the filtered map as local-bindings-only; do not continue presenting external_project_modules=[] as a checked guarantee. Keep the ten numerical patches unchanged unless separate evidence warrants a change.",
+      "resolution_required_for_approval": "A new frozen harness or truthful narrowed scope statement must be reviewed; the current snapshot is not approved."
+    },
+    {
+      "id": "R7-SW-002",
+      "severity": "P2",
+      "blocking": false,
+      "kind": "confirmed pre-existing excluded backend defect",
+      "title": "Unmodified op03_gap_precise still returns incorrectly weighted-normalized eigenfunctions",
+      "locations": [
+        {
+          "path": "candidates/scripts/op03_gap_precise.py",
+          "line": 46
+        },
+        {
+          "path": "candidates/scripts/op03_gap_precise.py",
+          "line": 51
+        },
+        {
+          "path": "candidates/scripts/op03_gap_precise.py",
+          "line": 69
+        }
+      ],
+      "evidence": {
+        "symmetric_SUP_mass": [
+          0.9487027167964235,
+          0.9313558734964229
+        ],
+        "asymmetric_SUP_mass": [
+          0.8961441360190511,
+          0.9367525853806721
+        ],
+        "asymmetric_INF_mass": [
+          1.433434243729506,
+          0.22353320047302397
+        ],
+        "coefficient_and_backend_separation": {
+          "name": "op03 independent separation of two original defects",
+          "passed": true,
+          "true_paired_derivative": 89.2907163863287,
+          "correct_norm_but_old_half_factor": 44.64535819316435,
+          "correct_paired_factor_but_legacy_norm": 83.03443684287416,
+          "actual_old_two_fault_prediction": 41.51721842143708
+        },
+        "output": "independent-verifier-20260921T122457Z/reviewer-checks.json"
+      },
+      "impact": "Using actual returned functions in FH gives wrong values even after repairing the paired factor. The tested low roots still agree with IVP shooting; they are not declared faulty solely from reverse multiplication. Local values agree after independent weighted renormalization, isolating the demonstrated normalization failure. op03_gap_fh now correctly imports fixed, so this legacy defect does not invalidate that patch.",
+      "fix_request": "Retain an explicit exclusion for the legacy backend. Any future separately authorized repair should consistently use P_block @ M for cumulative and point propagation, recompute the norm from the resulting correct block-start state, and verify actual weighted masses and values on asymmetric SUP/INF as well as symmetric cases. Do not silently repair this eleventh file in the present frozen ten-patch review."
+    }
+  ],
+  "substantive_claim_results": [
+    {
+      "claim": "Frozen identities and ten-patch scope",
+      "result": "PASS",
+      "evidence": {
+        "listed_inputs": 48,
+        "packet_sha256": "33377f452bbd0ffacb6baf01172febec4b3c7731ea4ec44d11515ffde47912f0",
+        "changed_scripts": 10,
+        "unchanged_dependencies": 8,
+        "inputs_unchanged": true,
+        "diff": "independent-verifier-20260921T122457Z/inspected-diff.patch"
+      }
+    },
+    {
+      "claim": "Weighted FH signs, SUP/INF, paired and unpaired nonstationary gradients",
+      "result": "PASS_BOUNDED",
+      "derivation": "lambda_k,x_i=lambda_k*s_i*u_k(x_i)^2; D_x_i=-s_i*f_i; paired SUP=-(R-1)(f_left+f_right), INF=+(R-1)(f_left+f_right).",
+      "evidence": [
+        "regression single-interface n1 R4 SUP/INF, two finite-difference steps",
+        "actual n1 asymmetric width and symmetric paired diagnostics",
+        "independent-verifier-20260921T122457Z/reviewer-checks.json n2 asymmetric SUP/INF paired/unpaired gradients"
+      ],
+      "nonstationary_supplemental_max_gradient_error": 1.1149054444103967e-06
+    },
+    {
+      "claim": "Width-to-interface chain rules",
+      "result": "PASS_BOUNDED",
+      "derivation": "x=Lw, J_x=J_w L^-1, H_x=L^-T H_w L^-1; (a,b)->(a,a+b) implies g_width=(g1+g2,g2); mirror reduction uses B^T g and B^T H B.",
+      "evidence": "independent-verifier-20260921T122457Z/reviewer-checks.json",
+      "supplemental_J_error_SUP": 1.27675647831893e-09,
+      "supplemental_J_error_INF": 1.1185498749455292e-08
+    },
+    {
+      "claim": "Correct distinct lambda_n/lambda_np1 weights",
+      "result": "PASS_BOUNDED",
+      "evidence": {
+        "candidate_n1_sup_error": 3.552713678800501e-15,
+        "actual_original_n1_sup_error": 9.866863168538277,
+        "n2_supplemental": "Actual old and candidate f AST evaluated at nonstationary points and compared against independently normalized IVP eigenfunctions."
+      }
+    },
+    {
+      "claim": "Full stationary Hessian including all offdiagonals",
+      "result": "PASS_BOUNDED",
+      "derivation": "At F=0, H=-lambda_h diag(s)@J, and H^T=-lambda_h J^T@diag(s). Elementwise multiplication is incorrect.",
+      "evidence": {
+        "n1_n2_SUP_INF": true,
+        "max_stationary_residual": 2.3299524457324216e-13,
+        "max_candidate_full_matrix_error": 0.005725286907363625,
+        "n2_SUP_FD_max_offdiag": 1949.1322653664156,
+        "source_expressions_bound": "independent-verifier-20260921T122457Z/replay-audit.json",
+        "FD_convergence": "Compared two finite-difference steps and actual width-coordinate hess_fd; full matrices plus spectra, not diagonals or determinant alone."
+      }
+    },
+    {
+      "claim": "Stationary-only versus nonstationary rank-one term",
+      "result": "PASS_BOUNDED",
+      "derivation": "H=-diag(s)[lambda_h J+outer(F,grad lambda_h)] with J the total interface derivative.",
+      "evidence": {
+        "n1_SUP_omission_error": 136.5921205738032,
+        "n1_INF_omission_error": 146.92441333330703,
+        "n2_SUP_omission_error": 382.1229011404031,
+        "n2_INF_omission_error": 90.84161277484395,
+        "n2_SUP_full_error": 0.0004915995350529556,
+        "n2_INF_full_error": 0.0005175266558126168
+      },
+      "limit": "The patched H expressions remain stationary-only. The general product rule is tested by the harness and reviewer probes; it is not asserted to have been implemented as a general replacement in every script."
+    },
+    {
+      "claim": "Actual original-source negative controls and substantive candidates",
+      "result": "PASS",
+      "evidence": {
+        "each_tree_run_tests": 117,
+        "candidate_passed_each_mode": 117,
+        "original_failed_each_mode": 79,
+        "failed_original_example_for_every_changed_file": true,
+        "actual_source_AST_evaluations_per_run": 75,
+        "unique_actual_source_expressions_per_run": 16,
+        "all_AST_hashes_matched_frozen_source": true,
+        "checks_recalculated_from_saved_values": true,
+        "normal_vs_optimized_note": "Two executions of the same finite tests, not 234 independent mathematical claims."
+      }
+    },
+    {
+      "claim": "AST loading and numerical injection are honestly bounded",
+      "result": "PASS_WITH_EXPLICIT_LIMIT",
+      "evidence": {
+        "loader_modules": [
+          "op03_gap_fh",
+          "gap_n1_grad",
+          "_tmp_fh_paradox",
+          "tmp_fh_test",
+          "tmp_verify_endpoints"
+        ],
+        "removed_nodes": [
+          {
+            "module": "op03_gap_fh",
+            "sha256": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+            "removed": [
+              {
+                "kind": "For",
+                "line": 17,
+                "end": 23
+              }
+            ]
+          },
+          {
+            "module": "gap_n1_grad",
+            "sha256": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+            "removed": [
+              {
+                "kind": "For",
+                "line": 37,
+                "end": 45
+              }
+            ]
+          },
+          {
+            "module": "_tmp_fh_paradox",
+            "sha256": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+            "removed": [
+              {
+                "kind": "For",
+                "line": 18,
+                "end": 29
+              }
+            ]
+          },
+          {
+            "module": "tmp_fh_test",
+            "sha256": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+            "removed": [
+              {
+                "kind": "For",
+                "line": 13,
+                "end": 31
+              }
+            ]
+          },
+          {
+            "module": "tmp_verify_endpoints",
+            "sha256": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+            "removed": [
+              {
+                "kind": "For",
+                "line": 19,
+                "end": 39
+              }
+            ]
+          }
+        ],
+        "method": "Only five module-level For loops were removed; no function body was rewritten. Expressions from main/print were compiled unchanged from frozen AST with original hashes and line bindings. Other guarded modules were normally imported.",
+        "injected_J": "Real _gapn2_jacobian_probe.jac_fd at re-solved stationary points; not the unrun main programs analytic_jacobian_hp/spectral backend.",
+        "direct_cli_only": "op03_gap_fh; normal and -O.",
+        "unrun": "Other top-level scans, full mains, Green/spectral-tail calculations and P1/P2/P3."
+      }
+    },
+    {
+      "claim": "Candidate op03 actual CLI",
+      "result": "PASS",
+      "evidence": {
+        "normal_exit": 0,
+        "optimized_exit": 0,
+        "points": [
+          0.4,
+          0.43,
+          0.45,
+          0.458
+        ],
+        "printed_FD_FH_pairs": [
+          [
+            143.28,
+            143.28
+          ],
+          [
+            66.064,
+            66.064
+          ],
+          [
+            4.3047,
+            4.3047
+          ],
+          [
+            -18.238,
+            -18.238
+          ]
+        ],
+        "normal_stdout": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-normal/stdout.txt",
+        "optimized_stdout": "work/replay-20260921T122930Z-e64f7d/receipts/op03-cli-optimized/stdout.txt",
+        "not_injected": true
+      },
+      "limit": "CLI comparison uses its printed precision; separate unrounded Df_at checks also passed."
+    },
+    {
+      "claim": "Fixed backend local validity",
+      "result": "PASS_BOUNDED",
+      "evidence": {
+        "unchanged_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+        "independent_reference": "Augmented IVP integrates y,yprime and integral rho*y^2; brentq independently refines low roots in local brackets; quadrature checks actual returned weighted masses.",
+        "profiles": [
+          "symmetric SUP widths .3,.4,.3",
+          "asymmetric SUP widths .23,.36,.41",
+          "asymmetric INF widths .23,.36,.41"
+        ],
+        "R": 4,
+        "modes": "first two",
+        "max_independent_value_error": 2.834066314960637e-12,
+        "result": "independent-verifier-20260921T122457Z/reviewer-checks.json"
+      },
+      "limit": "Actual positional calls are compatible; precise s0 and fixed smax_scale options are not a general interchangeable API. No all-R, high-mode, near-degenerate, extreme-width or cross-platform certification."
+    },
+    {
+      "claim": "Submitted runtime import-scope gate",
+      "result": "FAIL",
+      "finding": "R7-SW-001",
+      "evidence": "independent-verifier-20260921T122457Z/replay-audit.json#/scope_gate_counterexample"
+    },
+    {
+      "claim": "Legacy precise backend remains faulty",
+      "result": "CONFIRMED_EXCLUDED_DEFECT",
+      "finding": "R7-SW-002",
+      "evidence": "independent-verifier-20260921T122457Z/reviewer-checks.json"
+    }
+  ],
+  "limitations": [
+    "Approval, when granted after R7-SW-001 is addressed, is limited to these ten patches, their bounded behavioral regressions and truthful scope.",
+    "No historical Green/resolvent or spectral-summation Jacobian correctness or infinite tail estimates are certified. Their modules can be imported without their routines being executed.",
+    "No all-R or full-n scans, branch continuation, global extremum, simple-zero or other global mathematical theorem is certified.",
+    "No P1/P2/P3 density-variation derivation, historical proof/certificate, Lean verification or canonical knowledge base was reviewed.",
+    "AST expression evaluation with a supplied jac_fd argument is not an end-to-end test of an original main using analytic_jacobian_hp or analytic_jacobian_spectral.",
+    "Only op03_gap_fh was run as an actual candidate CLI. Other scripts were exercised via stated functions and exact source AST; historical top-level scans were excluded.",
+    "Finite differences are floating point with declared steps and tolerances. Small residuals and agreement are local numerical evidence, not exact analytic zero/regularity proofs.",
+    "Only this installed Linux/WSL Python/NumPy/SciPy environment was executed; no Windows/native or full-platform robustness claim.",
+    "The first failed required command was caused by reviewer isolation hiding user-site NumPy/SciPy. It was preserved, then the same required argv succeeded with the permitted installed package path explicitly enabled.",
+    "The supplied filtered module map cannot certify the absence of additional outside modules. Known recorded module paths were local, and reviewer supplemental full provenance is process-specific; it is not retroactive full provenance for replay.",
+    "PACKET is the identity boundary. No live main-tree comparison was performed; author assertions that snapshots match a current main tree are not independently certified.",
+    "regression/verify_package.py was inspected but not run because it reads manifest.sha256 and manifest entries not supplied by PACKET. Packet allowlist hashes were independently verified instead."
+  ],
+  "required_fix_ids": [
+    "R7-SW-001"
+  ],
+  "output_hash_manifest": "independent-verifier-20260921T122457Z/artifact-hashes.json",
+  "output_hash_manifest_note": "Final manifest binds REVIEW.json, README-review.md, own probe sources/outputs, and only the two replay directories produced by this reviewer; it excludes itself and REVIEW.sha256 to avoid circular hashes."
+}

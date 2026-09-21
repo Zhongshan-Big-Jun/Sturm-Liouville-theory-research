@@ -1,0 +1,71 @@
+01-version exit 0 seconds 0.25
+Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+02-exact-root exit 0 seconds 526.8
+03-positive-control exit 0 seconds 11.16
+04-all-declarations exit 0 seconds 11.03
+05-import-resolution exit 0 seconds 0.12
+06-wrong-target exit 1 seconds 10.15
+F:\tools\math-audit-round7-20260921\independent-execution-v2\lean-package\controls\WrongWronskianTarget.lean:5:2: error: Type mismatch
+  SL.AuditRound7.wronskian_two_half
+has type
+  SL.AuditRound7.wronskian 2 (1 / 2) = -4 * Real.pi
+but is expected to have type
+  SL.AuditRound7.wronskian 2 (1 / 2) = -6 * Real.pi
+07-old-mirror-factor exit 1 seconds 10.29
+F:\tools\math-audit-round7-20260921\independent-execution-v2\lean-package\controls\WrongMirrorFactor.lean:11:2: error: Type mismatch
+  mirrored_pair_from_single_interface eigenvalue jump leftValue rightValue leftContribution rightContribution hLeft
+    hRight hMirror
+has type
+  leftContribution + rightContribution = -2 * eigenvalue * jump * leftValue ^ 2
+but is expected to have type
+  leftContribution + rightContribution = -eigenvalue * jump * leftValue ^ 2
+{
+  "status": "author_machine_checks_passed",
+  "role": "local_lean_author",
+  "independent_execution": "not_performed_by_this_runner",
+  "positive_reused_for_author_recovery": false,
+  "external_import_hash_inventory_scope": "fresh exact-positive execution",
+  "independent_semantic_review": "pending",
+  "source_sha256": "c1b464f60cc7cef7a1052a0cf97cde4cacd01b36f69a83ac94056128a7fb8af6",
+  "declaration": "SL.AuditRound7.local_algebra_root",
+  "exact_root_passed": true,
+  "root_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "public_declarations": 27,
+  "public_theorems": 20,
+  "public_definitions": 7,
+  "wrong_target_rejected": true,
+  "wrong_target_exit_code": 1,
+  "wrong_mirror_factor_exit_code": 1,
+  "positive_control_exit_code": 0,
+  "inputs_unchanged": true,
+  "environment_sha256": "716f292c1fd34c942e6e3f69177bc59a9928a19a9ccb4e0504f314371a968725",
+  "semantic_sha256": "e45e8d291d75b354d39b2c374e962c4b61da4325bfb72d8ccde7d7549c803376",
+  "loaded_module_count": 4365,
+  "import_artifact_count": 13089,
+  "positive_manifest": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution-v2/lean-package/fresh-independent-20260921T122826Z-27cdbba98232/positive/run-manifest.json",
+    "sha256": "0dc0c85da2523662736e7224584cc4f779ad72c86e40a8230372a5c741c285c9"
+  },
+  "negative_controls": [
+    {
+      "kind": "old_wronskian_target",
+      "log": "/mnt/f/tools/math-audit-round7-20260921/independent-execution-v2/lean-package/fresh-independent-20260921T122826Z-27cdbba98232/logs/06-wrong-target.json",
+      "exit_code": 1
+    },
+    {
+      "kind": "old_mirror_factor",
+      "log": "/mnt/f/tools/math-audit-round7-20260921/independent-execution-v2/lean-package/fresh-independent-20260921T122826Z-27cdbba98232/logs/07-old-mirror-factor.json",
+      "exit_code": 1
+    }
+  ],
+  "unformalized": [
+    "infinite-dimensional Volterra estimates",
+    "Taylor expansion and remainder",
+    "spectral differentiability/Feynman-Hellmann premises",
+    "spectral limits and min-max analysis"
+  ]
+}

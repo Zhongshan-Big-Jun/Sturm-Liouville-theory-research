@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-08-29T01:00:00Z
+Last updated: 2026-09-21 (round7 scoped repairs; older runs retain their original dates)
 
 
 
@@ -47,7 +47,8 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
 | B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Constant-density high modes suffice; inf not attained |
 | B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
-| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 SOLVED; n>=2 local symmetry STRICT; (G2) STRICT CLOSED 2026-08-13; M3 large-R finite-interior chart STRICT CLOSED 2026-08-29; n=2 symmetric INF odd-sector pivot and exact Phi reduction STRICT, complete 0<c<=1/2 KP-DET STRICT 2026-09-01; arbitrary finite c acute branch, KO-DET, and global (G1') remain OPEN |
+| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; docs/SL_gap_nge2_symmetry_local_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 all-R chain retained; n>=2 small-contrast uniqueness repaired in round7; general SUP limit is solved as B4-SUP-LIMIT below. M3/KP retain their explicit chart scopes; historical G2 labels still require statement alignment; finite-R global uniqueness remains OPEN |
+| B4-SUP-LIMIT | lim_(R->infinity) sup_(1<=rho<=R) D_n, fixed n>=1 | SOLVED | docs/SL_gap_nge2_symmetry_local_proof.tex, round7 thin-heavy-interval theorem | Limit=(n+1)^2*pi^2 for measurable box and unrestricted finite-piecewise classes; 4*pi^2 only at n=1. Does not identify finite-R maximizing interfaces or prove every self-consistent branch reaches that limit |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
 
@@ -70,7 +71,8 @@ B1 (sup ratio, solved)
   |-- informs --> B4 (gap extremals, partial)
 B2 (inf ratio, solved) --informs--> B4
 B3 --uses--> Fixed-n configuration tools
-B4 --depends on--> (G1'); (G2) and the M3 large-R finite-interior chart are CLOSED
+B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
+B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
 B5 (MDE unify) <--unifies--> B1,B2,B3,B4
 B6 (p-Laplacian) <--generalizes--> B4
 
@@ -95,6 +97,7 @@ flowchart LR
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
   B4["B4 gap extremals (PARTIAL)"]
+  B4L["B4-SUP-LIMIT (SOLVED): (n+1)^2*pi^2"]
   B5["B5 MDE unify (OPEN)"]
   B6["B6 p-Laplacian (OPEN)"]
 
@@ -106,6 +109,7 @@ flowchart LR
   B1 -->|extends| B3
   B1 -->|informs| B4
   B2 -->|informs| B4
+  B4 -->|solved asymptotic subproblem| B4L
   B5 -->|unifies| B1
   B5 -->|unifies| B2
   B5 -->|unifies| B3

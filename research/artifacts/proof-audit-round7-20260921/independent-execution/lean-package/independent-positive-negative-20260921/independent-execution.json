@@ -1,0 +1,371 @@
+{
+  "schema": "independent-execution/1",
+  "generated_at_utc": "2026-09-21T12:48:51.851612+00:00",
+  "status": "INCOMPLETE",
+  "execution_role": "independent executor of the supplied isolated packet; no final semantic review verdict issued",
+  "run_directory": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921",
+  "blockers": [
+    {
+      "id": "LEAN_RUNNER_INSPECTION_SYNTAX",
+      "returncode": 1,
+      "location": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/replay/Inspection.lean:75:8",
+      "actual_error": "unsupported pattern in syntax match: Type",
+      "effect": "Supplied replay stops at step 4 of 7; public-declarations.json, original resolution and original negative steps are not completed. The input replay.py is unchanged.",
+      "evidence_keys": [
+        "executor-logs/lean-replay.json",
+        "executor-logs/lean-replay.stderr.log",
+        "replay/logs/04-all-declarations.stdout.txt",
+        "replay/Inspection.lean"
+      ]
+    },
+    {
+      "id": "NUMERICAL_MISSING_MANIFEST",
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/inputs/manifest.json",
+      "actual_error": "FileNotFoundError",
+      "effect": "normal and -O each log 24 PASS and 1 FAIL, then payload construction fails again; no original normal/optimized outputs.json and no successful execution-summary.json. No inputs fabricated.",
+      "evidence_keys": [
+        "numerical-crosscheck.json",
+        "numeric-observation-normal.json",
+        "numeric-observation-optimized.json"
+      ]
+    }
+  ],
+  "verified_execution_observations": {
+    "source_recompiled": true,
+    "candidate_source_recompilations": 2,
+    "positive_exact_target": true,
+    "positive_target_root_status": "closed",
+    "new_olean_import_verified": "Independent import/findOLean and supplemental --deps both resolve to the fresh positive object, with matching SHA256.",
+    "source_named_public_declarations": 27,
+    "source_named_theorems": 20,
+    "source_named_definitions": 7,
+    "all_module_constants_exported": 32,
+    "all_definition_bodies_exported": 7,
+    "transitive_axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "wrong_target": {
+      "verifier_exit": 1,
+      "machine_compilation_passed": true,
+      "exact_root_passed": false,
+      "root_status": "target_mismatch",
+      "native_lean_exit": 1,
+      "actual_and_requested": "-4*pi versus -6*pi"
+    },
+    "wrong_mirror_factor": {
+      "exit": 1,
+      "failure": "Type mismatch: factor 2 versus requested factor 1"
+    },
+    "numeric": {
+      "normal": {
+        "returncode": 1,
+        "passed": 24,
+        "failed": 1,
+        "total": 25
+      },
+      "optimized": {
+        "returncode": 1,
+        "passed": 24,
+        "failed": 1,
+        "total": 25
+      }
+    },
+    "numeric_24_completed_details_identical": true,
+    "numeric_negative_controls": [
+      {
+        "mode": "normal",
+        "returncode": 1,
+        "error_magnitude": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259",
+        "expected_formula_failure": true,
+        "receipt": {
+          "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/numerical-old-fh-normal.json",
+          "sha256": "3d1272134845944715ad833dc8cce3edb75caadcf9a8343f51bb2bbd5eddab80",
+          "bytes": 1628
+        }
+      },
+      {
+        "mode": "optimized",
+        "returncode": 1,
+        "error_magnitude": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259",
+        "expected_formula_failure": true,
+        "receipt": {
+          "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/numerical-old-fh-optimized.json",
+          "sha256": "a2d3e96e4cec405099d52a2d0b88ee1a2c76d280a4b0fafee612efabaae724f9",
+          "bytes": 1647
+        }
+      }
+    ],
+    "important_caveat": "Successful supplemental observations do not convert either original runner failure into success; total packet execution remains INCOMPLETE."
+  },
+  "counts": {
+    "frozen_input_hashes_checked_before_and_after": 27,
+    "prehashed_runtime_artifacts": 32891,
+    "posthashed_actual_external_import_artifacts": 13089,
+    "positive_loaded_modules": 4365,
+    "negative_loaded_modules": 4365,
+    "actual_lean_lake_executable_processes": 24,
+    "original_lean_runner_steps_executed": 4,
+    "original_lean_runner_steps_succeeded": 3,
+    "original_lean_runner_steps_failed": 1,
+    "original_lean_runner_steps_planned": 7,
+    "candidate_recompilations": 2,
+    "verifier_helper_compilations": 2,
+    "numeric_checks_script_executions": {
+      "prescribed_normal": 1,
+      "supplemental_optimized": 1,
+      "old_fh_negative": 2,
+      "passive_observer_normal_and_optimized": 2,
+      "total": 6
+    },
+    "direct_group_invocations": 50,
+    "direct_group_passes": 48,
+    "direct_group_failures": 2,
+    "additional_observer_group_invocations": 50,
+    "additional_observer_group_passes": 48,
+    "additional_observer_group_failures": 2,
+    "independent_evidence_consistency_checks": {
+      "total": 109,
+      "passed": 109,
+      "failed": 0
+    }
+  },
+  "frozen_inputs_unchanged": true,
+  "loaded_external_artifacts_unchanged": true,
+  "read_write_scope": {
+    "input_packet": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/PACKET.json",
+      "sha256": "1c2a3e0b785b7aef5296d12bd795d80bbdfe18dc16acab8a2e7fd22cb9012708",
+      "bytes": 2886
+    },
+    "read": "PACKET, freeze-listed Lean files/run scripts, the two numerical scripts, permitted existing execution runtimes and listed external file hashes, and outputs created by this execution. No prior author output/README, project AGENTS, memory, other task history, or manuscript parsing.",
+    "writes": "/mnt/f/tools/math-audit-round7-20260921/independent-execution",
+    "original_inputs_modified": false,
+    "source_project_or_external_runtime_modified_by_intended_commands": false,
+    "commit_performed": false,
+    "limitation": "Not a system-wide filesystem syscall audit; external runtime byte and metadata checks cover the stated inventories."
+  },
+  "trust_boundaries": [
+    "Lean 4.31.0 compiler/kernel, existing imported Lean/mathlib compiled artifacts, system libraries, WSL/Windows/Linux, filesystem and hardware are trusted. No independent second kernel or full mathlib rebuild.",
+    "4365 loaded modules in verifier include the candidate and its inspection helper. External .olean/.server/.private artifacts are hash-bound and compared before/after, not rebuilt from dependency sources.",
+    "Unused prehashed runtime objects were restatted at the end; byte hashes were rechecked for actual imported artifacts. Metadata-preserving edits to unused objects are outside the end-of-run byte check.",
+    "Exact target means the supplied Lean expected_type in the recorded environment. It does not establish fidelity to an unreviewed manuscript or a global mathematical theorem.",
+    "The FH interface formulas are explicit scalar hypotheses. Spectral differentiability/general Feynman-Hellmann hypotheses were not formalized here. No infinite-dimensional Volterra estimates, uniform Taylor remainder, min-max proof or general spectral limit was certified in Lean.",
+    "The numerical scripts use SymPy and mpmath (90 decimal digits). Symbolic and finite high-precision checks are not interval certificates or proofs of infinite-dimensional/general operator claims. Python executable is frozen; library versions and observed module file hashes are recorded, but the full OS/native/bytecode loading chain is not independently attested.",
+    "The input integrity group is incomplete because its manifest is absent. Original runners did not complete; this report leaves both failures visible.",
+    "No final semantic review verdict is issued. Supplemental scripts are executor-authored and their scope is observed compilation, rejection, export, hashing and comparison."
+  ],
+  "unformalized": [
+    "spectral differentiability and general FH premises",
+    "infinite-dimensional Volterra estimates",
+    "uniform Taylor remainders",
+    "min-max and full variational arguments",
+    "general spectral limit/branch classification"
+  ],
+  "semantic_review_verdict": "not_issued",
+  "executor_audit_attempts": {
+    "first": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/independent-evidence-audit.json",
+      "sha256": "d950e0b4a5075e2e119fd3ebe2ae68be1b76189a8615d5dc5c376c31ac74fd13",
+      "bytes": 1645
+    },
+    "first_exit_code": -15,
+    "final": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/independent-evidence-audit-fast.json",
+      "sha256": "2c2fc516ffec52f22b477395fdeaf66a0ed7172ba8fc01ee1c701f23306a813b",
+      "bytes": 1664
+    },
+    "final_exit_code": 0,
+    "reason": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/audit-retry-reason.json",
+      "sha256": "ac3ba23cd2bb14bd5ac1aee86f482534b41ae1d526866e245e14d66f73b9950b",
+      "bytes": 1275
+    }
+  },
+  "programs": [
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/assemble_report.py",
+      "sha256": "64e84849500976e88df1cede2b817d83eb7074446f1956985119734dd8732381",
+      "bytes": 17586
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/audit_results.py",
+      "sha256": "1cf719c344cf1d02319246b8efe2e6654a31fe1592f5658b2e569ab6988047ee",
+      "bytes": 22173
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/audit_results_fast.py",
+      "sha256": "8d1bb96f275c6e572e1631e24f7d2255dec29b323efaef1e3fdb3e8b30180aea",
+      "bytes": 22223
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/check_import_resolution.py",
+      "sha256": "49f18aead20692a5729b25b3c6f158b09b408239f9b4b8d740551bdb54d70f45",
+      "bytes": 1403
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor.py",
+      "sha256": "bf07e2cc10eee130c979b5d073fc97cced9e8fa878e3bcf5f7629b481541bbd4",
+      "bytes": 7455
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/observe_numerical.py",
+      "sha256": "aeda607d59494aa46343bd1186af60b317100d4b4dcab8ca624f8a2f8e0b2a65",
+      "bytes": 2672
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/observe_replay.py",
+      "sha256": "1328ac897b0c1701c9f42bfd6bf08035a0d92a05296294f9a47f92b34438ec16",
+      "bytes": 3785
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/preserve_inputs.py",
+      "sha256": "8e229d6f50e73f95e0c48c0ef5c0e1830d2f0f8f07bfabc30c31e1f560ea47fb",
+      "bytes": 1185
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/probe_environment.py",
+      "sha256": "9c8e381cbb3d4f472ac8c5741d64a10ad9cc2c7f0dd10e2410a3f55973d0961d",
+      "bytes": 4306
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/seal_delivery.py",
+      "sha256": "f3f43ad559f73356abd065779f0f826bffccc6dd3e74c63c6370d122079b879e",
+      "bytes": 2196
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/supplemental_controls.py",
+      "sha256": "113b2d79fe928c10216142108cf9ae69c399e0395b16277727192afceb590424",
+      "bytes": 5019
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/AllModuleDeclarations.lean",
+      "sha256": "fc9430e33c0425ba7fca8bdcefb319e83ccfbb6cd27f4e6e9f4e3a0f805cb053",
+      "bytes": 3621
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/ProbeAPI.lean",
+      "sha256": "69506f8eb9f2b6140c4feb270bf77cec6a6b63c61f8b7c41cfd90270a41bfcb1",
+      "bytes": 197
+    },
+    {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/WrongTargetExact.lean",
+      "sha256": "8bb082fb87431f8b0316b79d7d6ed17ca8dd2c501faff1b9a10c6a93477863ef",
+      "bytes": 119
+    }
+  ],
+  "evidence": {
+    "preflight.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/preflight.json",
+      "sha256": "7856c1f5d9590176403a842aeddd020a654f68f2cc6241254a29cd5c644c35a8",
+      "bytes": 11078
+    },
+    "runner-review.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/runner-review.json",
+      "sha256": "7cf9e39d4ada63a061a55a5249beb00ade023a051f6f5b2b7ca7aa78f0d2eae0",
+      "bytes": 6533
+    },
+    "runtime-before.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/runtime-before.json",
+      "sha256": "566bb7a5f2939c3e1829270ea9d0fc6b79157855e2ae6a4c1ef1cee21fc1502c",
+      "bytes": 11008702
+    },
+    "runtime-after-imports.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/runtime-after-imports.json",
+      "sha256": "219aed51e52ff6897cb1037d8c0cd91aab5660b74282b1a9b4b720d61e5b63bf",
+      "bytes": 6442401
+    },
+    "runtime-stability.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/runtime-stability.json",
+      "sha256": "b5f7f64bb5382fdd4a76dd55d6f51c7906b5d7e025a2230bcf64c814bec3649e",
+      "bytes": 347
+    },
+    "final-input-identity.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/final-input-identity.json",
+      "sha256": "100748494927e971404586d8878e23c034329617c304d9aa929e38c3a652bf68",
+      "bytes": 8758
+    },
+    "executor-logs/lean-replay.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/lean-replay.json",
+      "sha256": "f70d9161448cb0cfb2db2b74ed4940775f79924bbf8c525959f17c195eadb8fc",
+      "bytes": 2817
+    },
+    "executor-logs/lean-replay.stderr.log": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/lean-replay.stderr.log",
+      "sha256": "34f3d64b80652ffb0c038818c1f8732ec27961452da204047fd008f488b013b4",
+      "bytes": 663
+    },
+    "replay/logs/04-all-declarations.stdout.txt": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/replay/logs/04-all-declarations.stdout.txt",
+      "sha256": "0b1c3ec7f748b70eae8fb424d7df4013cccadf56914bedb109d3a6a654f55ca3",
+      "bytes": 15626
+    },
+    "replay/Inspection.lean": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/replay/Inspection.lean",
+      "sha256": "22577b45942dc986e8a3b19abed5473c1eacdfca5aba5139e542b1489c5113f7",
+      "bytes": 5027
+    },
+    "replay/positive/run-manifest.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/replay/positive/run-manifest.json",
+      "sha256": "a74f8c85a0c623301f1e31c28a0555ceea81295a6acf48dc9e74baaff6ac0409",
+      "bytes": 97394410
+    },
+    "supplemental-negative/run-manifest.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/supplemental-negative/run-manifest.json",
+      "sha256": "11d405fede70c31acbd62699dc545986424a9ceb169238e0b687618a3ce96773",
+      "bytes": 56338582
+    },
+    "all-module-declarations.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/all-module-declarations.json",
+      "sha256": "d801b93963c2d100fe4008fcd646b8ebb74f8191b28cb62b723c47b4de35305a",
+      "bytes": 543023
+    },
+    "all-module-declarations.execution.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/all-module-declarations.execution.json",
+      "sha256": "d943420248f91f9403fcedf7fea0eca5446910dc6231ac32f4dbd49bf7027002",
+      "bytes": 4702
+    },
+    "independent-root-artifact.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/independent-root-artifact.json",
+      "sha256": "9f13680056ddfbf842868a49a61d566765d3bf6a3b773d3a78985670de0e870d",
+      "bytes": 3490
+    },
+    "lean-crosscheck.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/lean-crosscheck.json",
+      "sha256": "86838c5c1ce478020b7837dee244505b747483d819cb87f75692047ea8c847c8",
+      "bytes": 3559
+    },
+    "numerical-crosscheck.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/numerical-crosscheck.json",
+      "sha256": "5b652d83fc263c390c07495341daafd0df92a1492bb09da8f8eb3f2519109721",
+      "bytes": 6625
+    },
+    "numeric-observation-normal.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/numeric-observation-normal.json",
+      "sha256": "e2ff85c343510ad0a82921418aa3d19b027825239a79752981550ea7b297950d",
+      "bytes": 23409
+    },
+    "numeric-observation-optimized.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/numeric-observation-optimized.json",
+      "sha256": "6f4237ad8516dbe9570dff3aa6b6e7802ab73e7e2bffe5f326d7b6695be02163",
+      "bytes": 23415
+    },
+    "command-inventory.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/command-inventory.json",
+      "sha256": "b7580970f447d3348bfe1453ef5dc5c3d67ff91a7a901b6b11e86a7cf2e7a6c6",
+      "bytes": 18518
+    },
+    "independent-checks.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/independent-checks.json",
+      "sha256": "6d8febdfc85b31db3140948bce4acbfec63dcb7257eefc1d4287efb26ca9a4be",
+      "bytes": 13150
+    },
+    "evidence-index.json": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/evidence-index.json",
+      "sha256": "d25b019d9751fdccc88a38a220aac05df50048ef9b137fd1f1b158755d891ab8",
+      "bytes": 80565
+    }
+  },
+  "large_evidence_policy": "Large generated manifests and inventories remain at their original paths and bytes. Read this small report or README for retrieval."
+}

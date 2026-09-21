@@ -1,0 +1,226 @@
+{
+  "status": "INCOMPLETE",
+  "reason": "numerical/inputs/manifest.json absent; not supplied or hash-bound by PACKET",
+  "prescribed_runner_returncode": 1,
+  "direct_modes": {
+    "normal": {
+      "returncode": 1,
+      "passed": 24,
+      "failed": 1,
+      "total": 25
+    },
+    "optimized": {
+      "returncode": 1,
+      "passed": 24,
+      "failed": 1,
+      "total": 25
+    }
+  },
+  "direct_statuses": [
+    [
+      "PASS",
+      "W_product_to_sum_general"
+    ],
+    [
+      "PASS",
+      "W_sum_squares_general_recurrence"
+    ],
+    [
+      "PASS",
+      "W_finite_exact_Chebyshev_certificates"
+    ],
+    [
+      "PASS",
+      "W_n2_half_counterexample"
+    ],
+    [
+      "PASS",
+      "Taylor_pi4_general"
+    ],
+    [
+      "PASS",
+      "n2_exact_roots_and_reduction"
+    ],
+    [
+      "PASS",
+      "n2_normalized_determinant_exact"
+    ],
+    [
+      "PASS",
+      "n2_four_root_order_signs_numeric"
+    ],
+    [
+      "PASS",
+      "piecewise_L2rho_antiderivative_identity"
+    ],
+    [
+      "PASS",
+      "nonstationary_shooting_index_and_residual"
+    ],
+    [
+      "PASS",
+      "exact_segment_normalization_vs_quadrature"
+    ],
+    [
+      "PASS",
+      "symmetric_FH_vs_independent_central_difference"
+    ],
+    [
+      "PASS",
+      "legacy_symmetric_formula_is_half"
+    ],
+    [
+      "PASS",
+      "one_interface_parameter_has_no_mirror_factor"
+    ],
+    [
+      "PASS",
+      "u_second_derivative_true_nonzero_jump"
+    ],
+    [
+      "PASS",
+      "trial_plateau_Gram_integrals_general"
+    ],
+    [
+      "PASS",
+      "trial_plateau_bound_finite_exact_instances"
+    ],
+    [
+      "PASS",
+      "center_vanishing_subspace_finite_Gram_bounds"
+    ],
+    [
+      "PASS",
+      "thin_density_spectral_bound_samples"
+    ],
+    [
+      "PASS",
+      "thin_density_scalar_limits_general_n"
+    ],
+    [
+      "PASS",
+      "constant_density_refutes_general_4pi2"
+    ],
+    [
+      "PASS",
+      "R7_P01_rho2_Schrodinger_counterexample"
+    ],
+    [
+      "PASS",
+      "R7_P01_generalized_FH_two_exact_models"
+    ],
+    [
+      "PASS",
+      "R7_P02_direct_matrix_and_switch_scaling"
+    ],
+    [
+      "FAIL",
+      "execution_contract_explicit_raise_and_input_identity"
+    ]
+  ],
+  "captured_detail_comparison": {
+    "same_completed_24_groups": true,
+    "method": "Additional original-script executions via runpy; capture traceback locals only after original exception; both remain exit 1. No bypass or replacement input."
+  },
+  "negative_controls": [
+    {
+      "mode": "normal",
+      "returncode": 1,
+      "error_magnitude": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259",
+      "expected_formula_failure": true,
+      "receipt": {
+        "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/numerical-old-fh-normal.json",
+        "sha256": "3d1272134845944715ad833dc8cce3edb75caadcf9a8343f51bb2bbd5eddab80",
+        "bytes": 1628
+      }
+    },
+    {
+      "mode": "optimized",
+      "returncode": 1,
+      "error_magnitude": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259",
+      "expected_formula_failure": true,
+      "receipt": {
+        "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/numerical-old-fh-optimized.json",
+        "sha256": "a2d3e96e4cec405099d52a2d0b88ee1a2c76d280a4b0fafee612efabaae724f9",
+        "bytes": 1647
+      }
+    }
+  ],
+  "check_script_executions": {
+    "prescribed_normal": 1,
+    "supplemental_optimized": 1,
+    "old_fh_negative": 2,
+    "passive_observer_normal_and_optimized": 2,
+    "total": 6
+  },
+  "absent_paths": {
+    "inputs/manifest.json": true,
+    "outputs.json": true,
+    "outputs.optimized.json": true,
+    "receipts/execution-summary.json": true
+  },
+  "selected_observed_results": {
+    "W_n2_half_counterexample": {
+      "n": 2,
+      "x": "1/2",
+      "actual": "-4*pi",
+      "old": "-6*pi"
+    },
+    "Taylor_pi4_general": {
+      "x2_coefficient": "-2*pi**4*(2*n + 1)*(2*n**2 + 2*n + 1)",
+      "scope": "fixed n Taylor expansion; not a uniform-in-n remainder bound"
+    },
+    "n2_normalized_determinant_exact": {
+      "det_DxF": "7030400000*pi**4/4782969",
+      "numeric": "143179.86873957383682542582127015090713113231934249",
+      "normalization": "F_j=f(x_j)/(lambda_3), lambda_3=9*pi^2; four independent full-interval interfaces"
+    },
+    "symmetric_FH_vs_independent_central_difference": {
+      "FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+      "differences": [
+        {
+          "h": "1e-5",
+          "central_difference": "53.880972252549452756442688925925777454278415328697286576435166647",
+          "error": "0.000000092308881232747445938436558136225442072605118633628733821011382492"
+        },
+        {
+          "h": "1e-8",
+          "central_difference": "53.880972160240663832576447622838434123019936423632131340287003626",
+          "error": "0.000000000000092308881204635349214804966963167539963397480570800524587669104379"
+        },
+        {
+          "h": "1e-11",
+          "central_difference": "53.880972160240571523787551868693854639155681194182753581093634023",
+          "error": "0.000000000000000000092308881204635321102707938090585638287201197188608431125580881747"
+        }
+      ],
+      "h_changes": "left a+h and right 1-a-h; both lengths move; new shooting roots for each perturbation"
+    },
+    "legacy_symmetric_formula_is_half": {
+      "old": "26.940486080120285761847621493744609659026486628046083971403216413",
+      "correct": "53.880972160240571523695242987489219318052973256092167942806432826",
+      "FD_over_old": "2.0000000000000000000034263999888536225687006608867238405471156771"
+    },
+    "R7_P01_rho2_Schrodinger_counterexample": {
+      "rho": 2,
+      "H": "-d2/dx2+2*tau on fixed L2(0,1)",
+      "u": "sin(pi*x)",
+      "weighted_norm_squared": "1",
+      "ordinary_norm_squared": "1/2",
+      "old_prediction": "1",
+      "true_derivative": "2"
+    }
+  },
+  "input_scripts": {
+    "checks.py": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py",
+      "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "bytes": 27026
+    },
+    "run_checks.py": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/run_checks.py",
+      "sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "bytes": 3768
+    }
+  }
+}

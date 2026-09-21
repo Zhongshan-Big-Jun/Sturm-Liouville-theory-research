@@ -2,7 +2,7 @@
 
 [中文首页](../README.md) | [English overview](../README_EN.md) | [项目理解](PROJECT_UNDERSTANDING.md) | [目录与复现](repository-guide.md)
 
-本页按问题寻找证明, 工具和剩余缺口. 导航基线日期为 2026-09-09; 2026-09-20 的局部证明修订与范围变更见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md). `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 本次导航整理没有重新审计数学证明.
+本页按问题寻找证明, 工具和剩余缺口. 导航基线日期为 2026-09-09; 2026-09-20 的局部证明修订与范围变更见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md). `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 初次导航整理没有重新审计数学证明; 第七轮针对谱隙公式、端点引理、局部唯一性与一般SUP极限的当前修订和独立复核见 [报告](../reports/proof-audit-round7-20260921/REPORT.md).
 
 ## 特征值比值与间距
 
@@ -13,7 +13,7 @@
 | 全序列相邻比值上确界 | [比值证明](SL_ratio_proof.tex), [PDF](SL_ratio_proof.pdf), [Mahar-Willner 引理重证](SL_mw_lemma_reproof.tex) | 文档所述权重类内的平衡相位闭式; 固定 n 的最优问题另列 |
 | 全序列相邻比值下确界 | [下确界证明](SL_inf_ratio_proof.tex) | 下确界为 1, 有限指标不取等; 全序列结论用常密度高频序列即足够, 一般 Weyl 渐近是更强背景 |
 | n=1 间距极值 | [主证明](SL_gap_n1_proof.tex), [相位刚性](SL_gap_n1_O3a_phase_rigidity_proof.tex), [全 R 阱族刚性](SL_gap_n1_well_rigidity_allR_proof.tex), [对称线](SL_gap_n1_symline_allR_proof.tex), [全局 good-root](SL_gap_n1_global_goodroot_proof.tex), [INF 极限](SL_gap_n1_inf_limit_proof.tex) | SUP/INF 的完整证明链分别核对; 早期单篇文档的待办不代表整条路线的最终状态 |
-| n>=2 间距结构 | [有限块约化](SL_gap_nge2_finite_reduction_proof.tex), [精确 2n 开关](SL_gap_nge2_exact_2n_switches_proof.tex), [局部对称性](SL_gap_nge2_symmetry_local_proof.tex) | 有限维结构及弱反差局部结果; 全局唯一性与完整分类仍有缺口 |
+| n>=2 间距结构 | [有限块约化](SL_gap_nge2_finite_reduction_proof.tex), [精确 2n 开关](SL_gap_nge2_exact_2n_switches_proof.tex), [局部对称性](SL_gap_nge2_symmetry_local_proof.tex) | 第七轮以统一Volterra估计修复弱反差局部唯一性; 固定n>=1的SUP极限为(n+1)²pi²; 有限R全局唯一性与完整分类仍有缺口 |
 | 最小化方向的合作者结果 | [研究进展](SL_gap_nge2_min_direction_progress.tex), [可读 PDF](SL_gap_nge2_min_direction_progress.pdf), [审计](../runs/rigorous-open-math-research/R-20260816T174722Z-min-direction-audit/), [核验包](../collaborator_min_direction_verification/) | 按原文的 n, mu, 弱反差条件区分 Trusted, Reviewed 与 Open |
 | 固定 n 比值上确界 B3 | [早期相位文档](SL_fixed_n_supremum.tex), [后续研究对比](../reports/plugin-performance-b3-ab.md), [一般交替 Chebyshev 表示](../reports/plugin-performance-b3-o1o2-current.md) | 极大子的精确 2n 开关结构及平衡世俗函数的 2n 简单根计数已有后续 STRICT 结果; 全局最优值及其余单调性问题仍开放 |
 | B4/P1 M3 | [工具说明](../tools/m3-largeR-closure.md), [证明工件](../research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/), [接收记录](../blueprint/submissions/SUB-20260825-B4M3-FINAL-003/) | n=2 对称 INF, large-R, 有限非零内部 chart; 存在有限 R0, 对 R>R0 得到规定的渐近与符号结论 |
@@ -49,7 +49,7 @@
 
 ## 形式化与历史首页
 
-Lean 的 [状态表](../lean-proof/STATUS.md), [义务审计](../lean-proof/audit_report.md), [脚手架登记](../lean-proof/formalization_progress.md) 记录不同时间与范围的工作. 阅读时核对所声称的根定理, 实际假设及依赖, 并使用其绑定的代码版本. 本次整理没有重跑 Lean, 也没有赋予新的形式化结论.
+Lean 的 [状态表](../lean-proof/STATUS.md), [义务审计](../lean-proof/audit_report.md), [脚手架登记](../lean-proof/formalization_progress.md) 记录不同时间与范围的工作. 阅读时核对所声称的根定理, 实际假设及依赖, 并使用其绑定的代码版本. 初次整理没有重跑Lean; 后续各轮的局部编译、陈述与公理核对另有绑定记录. 第七轮局部检查不覆盖完整Volterra或min-max分析证明.
 
 旧首页的完整文字按原字节保存在 [中文快照](history/README.pre-v2.zh.txt) 与 [英文快照](history/README.pre-v2.en.txt). 其中路径按原仓库根解释, 旧状态只作历史索引. 本页保留了研究文档入口, 并显式说明了固定 n 根计数, KP-DET 分支和形式化范围的后续变化.
 

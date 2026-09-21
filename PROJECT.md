@@ -9,7 +9,7 @@ Sturm-Liouville spectral optimization: eigenvalue ratios, gaps, extremal configu
 - Protected upstream filenames (`problem_contract.md` etc.) only under run roots.
 
 ## Research directions
-1. **SL gap extremals** (active for n>=2): SUP/INF of lambda_{n+1}-lambda_n over box class 1<=rho<=R. For n=1, both SUP and INF are STRICT/CLOSED for all R>1 (2026-08-12, session 58 continuation 3; commit 220785e). See `state/RESUME.md` for the closure record and `docs/research-guide.md` for the proof chain. The n>=2 global problem remains open; n=1 certificate-kernel formalization is a separate follow-up.
+1. **SL gap extremals** (active for n>=2): SUP/INF of lambda_{n+1}-lambda_n over box class 1<=rho<=R. For n=1, both SUP and INF are STRICT/CLOSED for all R>1 (2026-08-12, session 58 continuation 3; commit 220785e). See `state/RESUME.md` for the closure record and `docs/research-guide.md` for the proof chain. Round7 repairs the small-contrast endpoint/local-symmetry proof and establishes the fixed-n>=1 supremum limit (n+1)^2*pi^2 for measurable and finite-piecewise box classes. The n>=2 finite-R global problem remains open; n=1 certificate-kernel formalization is a separate follow-up.
 2. **SL ratio extremals**: sup lambda_{n+1}/lambda_n = nu(R) proved (session 5); fixed-n and inf problems open.
 3. **Left-definite theory / orthogonal systems**: H^2 polynomial completeness proved (session 9).
 

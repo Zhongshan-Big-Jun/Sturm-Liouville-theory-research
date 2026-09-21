@@ -1,0 +1,2123 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "disposition": "COMPLETE",
+  "execution_role": "fresh stateless independent finite-check verifier",
+  "completed_at_utc": "2026-09-21T13:08:00.315614+00:00",
+  "scope": "Frozen packet finite/symbolic/real-numeric verification and execution integrity only",
+  "scope_complete": true,
+  "failures": [],
+  "requested_outer_command": "/usr/bin/python3 -B run_checks.py",
+  "outer_process": {
+    "execution_role": "fresh independent finite-check verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "run_checks.py"
+    ],
+    "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+    "pid": 537939,
+    "started_at_utc": "2026-09-21T12:55:10.819483+00:00",
+    "start_time_ns": 1789995310819475242,
+    "environment_override": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "created_receipts_output_directory": false,
+    "preexisting_output_mtime_ns": {
+      "outputs.json": null,
+      "outputs.optimized.json": null,
+      "receipts/execution-summary.json": null,
+      "receipts/normal.stdout.log": null,
+      "receipts/normal.stderr.log": null,
+      "receipts/normal.execution.json": null,
+      "receipts/optimized.stdout.log": null,
+      "receipts/optimized.stderr.log": null,
+      "receipts/optimized.execution.json": null,
+      "receipts/negative-normal-old-fh.stdout.log": null,
+      "receipts/negative-normal-old-fh.stderr.log": null,
+      "receipts/negative-normal-old-fh.execution.json": null,
+      "receipts/negative-optimized-old-fh.stdout.log": null,
+      "receipts/negative-optimized-old-fh.stderr.log": null,
+      "receipts/negative-optimized-old-fh.execution.json": null
+    },
+    "ended_at_utc": "2026-09-21T12:55:27.951110+00:00",
+    "elapsed_seconds": 17.239731566005503,
+    "returncode": 0,
+    "outer_timeout": false,
+    "stdout_path": "independent-execution-66hgfj6g/outer.stdout.log",
+    "stderr_path": "independent-execution-66hgfj6g/outer.stderr.log",
+    "stdout": "normal: exit=0, seconds=6.796039\noptimized: exit=0, seconds=7.975391\nnegative-normal-old-fh: exit=1, seconds=0.821516\nnegative-optimized-old-fh: exit=1, seconds=1.277627\n25/25 in both modes; details identical; both wrong-formula processes rejected.\n",
+    "stderr": "",
+    "stdout_sha256": "4e8625f1d498d8d5c6b5c5e7e197aae6764e2f1f63d3f994107acd7526bdc439",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "generated_outputs": [
+      {
+        "path": "outputs.json",
+        "size_bytes": 21742,
+        "sha256": "d5b5ed3b270096c6f635c64f2703a4a45c133cb88ced69349d5806c6dd80cb53",
+        "mtime_ns": 1789995317346284000
+      },
+      {
+        "path": "outputs.optimized.json",
+        "size_bytes": 21746,
+        "sha256": "b1b80e51f7e10586849fc9c7285435246d156c7fab6380263d01d860c2321b51",
+        "mtime_ns": 1789995325363097700
+      },
+      {
+        "path": "receipts/execution-summary.json",
+        "size_bytes": 554,
+        "sha256": "6b6a0ee61ac1e5cc978e7314e945b14e177af3723c65510207208809acc9c844",
+        "mtime_ns": 1789995327899649100
+      },
+      {
+        "path": "receipts/normal.stdout.log",
+        "size_bytes": 1085,
+        "sha256": "e9b57b3d8f1e93ce0bfea9ac353d70ab97e4b0c02035c377571e6997c78a3a42",
+        "mtime_ns": 1789995317683267300
+      },
+      {
+        "path": "receipts/normal.stderr.log",
+        "size_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mtime_ns": 1789995317691302600
+      },
+      {
+        "path": "receipts/normal.execution.json",
+        "size_bytes": 1006,
+        "sha256": "dfc5bdf2856e6b153247a3ecb39847dab6f0ba985beec366102fe53d02f6a8c9",
+        "mtime_ns": 1789995317734986500
+      },
+      {
+        "path": "receipts/optimized.stdout.log",
+        "size_bytes": 1085,
+        "sha256": "df97f9b369e2a0c0a59c63e8df4faaa0ae2d5b91868a4cd4d2803a2733d9b48a",
+        "mtime_ns": 1789995325706981400
+      },
+      {
+        "path": "receipts/optimized.stderr.log",
+        "size_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mtime_ns": 1789995325711609200
+      },
+      {
+        "path": "receipts/optimized.execution.json",
+        "size_bytes": 1045,
+        "sha256": "7fd57bb6a1804f7026e6cdaac7f72cc4bd3988f4dd119a90a7cc419fb51421be",
+        "mtime_ns": 1789995325745631500
+      },
+      {
+        "path": "receipts/negative-normal-old-fh.stdout.log",
+        "size_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mtime_ns": 1789995326559150200
+      },
+      {
+        "path": "receipts/negative-normal-old-fh.stderr.log",
+        "size_bytes": 1005,
+        "sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+        "mtime_ns": 1789995326568794200
+      },
+      {
+        "path": "receipts/negative-normal-old-fh.execution.json",
+        "size_bytes": 986,
+        "sha256": "0d2c50f957e1e14ae4897ae00b781035c06c03760af52aadc0ec8410b167ae8d",
+        "mtime_ns": 1789995326590718200
+      },
+      {
+        "path": "receipts/negative-optimized-old-fh.stdout.log",
+        "size_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mtime_ns": 1789995327865294400
+      },
+      {
+        "path": "receipts/negative-optimized-old-fh.stderr.log",
+        "size_bytes": 1005,
+        "sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+        "mtime_ns": 1789995327870789200
+      },
+      {
+        "path": "receipts/negative-optimized-old-fh.execution.json",
+        "size_bytes": 1005,
+        "sha256": "fe1e6722f23808745c7c73ad2559424d6b8bd516c371193effa2cc28e472c536",
+        "mtime_ns": 1789995327884753900
+      }
+    ],
+    "expected_outputs_not_observed_as_fresh": []
+  },
+  "child_processes": [
+    {
+      "name": "normal",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--output",
+        "outputs.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:10.901141+00:00",
+      "ended_at_utc": "2026-09-21T12:55:17.697160+00:00",
+      "elapsed_seconds": 6.796039,
+      "returncode": 0,
+      "expected_exitcode": 0,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/normal.stdout.log",
+      "stderr_path": "receipts/normal.stderr.log",
+      "stdout_sha256": "e9b57b3d8f1e93ce0bfea9ac353d70ab97e4b0c02035c377571e6997c78a3a42",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_path": "outputs.json",
+      "output_sha256": "d5b5ed3b270096c6f635c64f2703a4a45c133cb88ced69349d5806c6dd80cb53",
+      "stdout": "PASS W_product_to_sum_general\nPASS W_sum_squares_general_recurrence\nPASS W_finite_exact_Chebyshev_certificates\nPASS W_n2_half_counterexample\nPASS Taylor_pi4_general\nPASS n2_exact_roots_and_reduction\nPASS n2_normalized_determinant_exact\nPASS n2_four_root_order_signs_numeric\nPASS piecewise_L2rho_antiderivative_identity\nPASS nonstationary_shooting_index_and_residual\nPASS exact_segment_normalization_vs_quadrature\nPASS symmetric_FH_vs_independent_central_difference\nPASS legacy_symmetric_formula_is_half\nPASS one_interface_parameter_has_no_mirror_factor\nPASS u_second_derivative_true_nonzero_jump\nPASS trial_plateau_Gram_integrals_general\nPASS trial_plateau_bound_finite_exact_instances\nPASS center_vanishing_subspace_finite_Gram_bounds\nPASS thin_density_spectral_bound_samples\nPASS thin_density_scalar_limits_general_n\nPASS constant_density_refutes_general_4pi2\nPASS R7_P01_rho2_Schrodinger_counterexample\nPASS R7_P01_generalized_FH_two_exact_models\nPASS R7_P02_direct_matrix_and_switch_scaling\nPASS execution_contract_explicit_raise_and_input_identity\n25/25 groups passed; optimize=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "optimized",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--output",
+        "outputs.optimized.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:17.740717+00:00",
+      "ended_at_utc": "2026-09-21T12:55:25.716111+00:00",
+      "elapsed_seconds": 7.975391,
+      "returncode": 0,
+      "expected_exitcode": 0,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/optimized.stdout.log",
+      "stderr_path": "receipts/optimized.stderr.log",
+      "stdout_sha256": "df97f9b369e2a0c0a59c63e8df4faaa0ae2d5b91868a4cd4d2803a2733d9b48a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_path": "outputs.optimized.json",
+      "output_sha256": "b1b80e51f7e10586849fc9c7285435246d156c7fab6380263d01d860c2321b51",
+      "stdout": "PASS W_product_to_sum_general\nPASS W_sum_squares_general_recurrence\nPASS W_finite_exact_Chebyshev_certificates\nPASS W_n2_half_counterexample\nPASS Taylor_pi4_general\nPASS n2_exact_roots_and_reduction\nPASS n2_normalized_determinant_exact\nPASS n2_four_root_order_signs_numeric\nPASS piecewise_L2rho_antiderivative_identity\nPASS nonstationary_shooting_index_and_residual\nPASS exact_segment_normalization_vs_quadrature\nPASS symmetric_FH_vs_independent_central_difference\nPASS legacy_symmetric_formula_is_half\nPASS one_interface_parameter_has_no_mirror_factor\nPASS u_second_derivative_true_nonzero_jump\nPASS trial_plateau_Gram_integrals_general\nPASS trial_plateau_bound_finite_exact_instances\nPASS center_vanishing_subspace_finite_Gram_bounds\nPASS thin_density_spectral_bound_samples\nPASS thin_density_scalar_limits_general_n\nPASS constant_density_refutes_general_4pi2\nPASS R7_P01_rho2_Schrodinger_counterexample\nPASS R7_P01_generalized_FH_two_exact_models\nPASS R7_P02_direct_matrix_and_switch_scaling\nPASS execution_contract_explicit_raise_and_input_identity\n25/25 groups passed; optimize=1\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-normal-old-fh",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--negative-control",
+        "old-fh"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:25.749730+00:00",
+      "ended_at_utc": "2026-09-21T12:55:26.571235+00:00",
+      "elapsed_seconds": 0.821516,
+      "returncode": 1,
+      "expected_exitcode": 1,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/negative-normal-old-fh.stdout.log",
+      "stderr_path": "receipts/negative-normal-old-fh.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+      "output_path": null,
+      "output_sha256": null,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 556, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 530, in main\n    close((gap(a + h) - gap(a - h)) / (2 * h), (1 - 4) * f, '1e-18', 'intentional old FH formula rejection')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 38, in close\n    require(Error <= mp.mpf(Tolerance), Message + ': error=' + str(Error))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 28, in require\n    raise RuntimeError(Message)\nRuntimeError: intentional old FH formula rejection: error=26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259\n",
+      "observed_old_formula_absolute_error": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259"
+    },
+    {
+      "name": "negative-optimized-old-fh",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--negative-control",
+        "old-fh"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:26.595004+00:00",
+      "ended_at_utc": "2026-09-21T12:55:27.872629+00:00",
+      "elapsed_seconds": 1.277627,
+      "returncode": 1,
+      "expected_exitcode": 1,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/negative-optimized-old-fh.stdout.log",
+      "stderr_path": "receipts/negative-optimized-old-fh.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+      "output_path": null,
+      "output_sha256": null,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 556, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 530, in main\n    close((gap(a + h) - gap(a - h)) / (2 * h), (1 - 4) * f, '1e-18', 'intentional old FH formula rejection')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 38, in close\n    require(Error <= mp.mpf(Tolerance), Message + ': error=' + str(Error))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 28, in require\n    raise RuntimeError(Message)\nRuntimeError: intentional old FH formula rejection: error=26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259\n",
+      "observed_old_formula_absolute_error": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259"
+    }
+  ],
+  "supplemental_verification_process": {
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/independent-execution-66hgfj6g/verify_evidence.py"
+    ],
+    "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+    "started_at_utc": "2026-09-21T12:59:45.704569+00:00",
+    "ended_at_utc": "2026-09-21T12:59:46.585505+00:00",
+    "elapsed_seconds": 0.8809260659909341,
+    "returncode": 0,
+    "stdout": "{\n  \"verdict\": \"PASS\",\n  \"passed_verification_gates\": 143,\n  \"failed_verification_gates\": [],\n  \"category_counts\": {\n    \"symbolic_or_exact_mathematics\": 16,\n    \"high_precision_real_numeric\": 8,\n    \"execution_bookkeeping\": 1\n  },\n  \"independent_exact_samples\": {\n    \"wronskian_n2_half\": \"-4*pi\",\n    \"n2_x2_coefficient\": \"-130*pi**4\",\n    \"n2_four_interface_determinant\": \"7030400000*pi**4/4782969\",\n    \"determinant_method\": \"resultant of P(t)=144t^2-88t+9 and t(1-t)^3 P'(t)^2, using product over both roots; normalized F=f/(9*pi^2)\"\n  },\n  \"independent_nonstationary_mirror_sample\": {\n    \"model\": \"-u''=lambda*rho*u; Dirichlet endpoints; rho=(1,4,1) at a=1/4,1-a=3/4; both interfaces move\",\n    \"method\": \"Independent half-domain characteristic roots with Neumann first mode and Dirichlet second mode; weighted normalization by quadrature; implicit derivative and separately perturbed root finite difference. No checker import.\",\n    \"closed_form_sqrt_lambdas\": [\n      \"4*acos(sqrt(5/6))\",\n      \"4*acos(1/sqrt(3))\"\n    ],\n    \"lambda_values\": [\n      \"2.829586034443622360319952907625266808931102261713490619161302899884472542202079\",\n      \"14.602077453837591825051791909922411553085684218708438233366129366394298410802994\"\n    ],\n    \"weighted_masses\": [\n      \"0.22088036638295498829029685861791522288871308830159004084624997923501177747140486\",\n      \"0.068483406088028155243408946215990099250815270077271430130642127079885013217205245\"\n    ],\n    \"normalized_u_a_squared\": [\n      \"0.26666666666666666666666666666666666666666666666666666666666666666666666666666667\",\n      \"0.66666666666666666666666666666666666666666666666666666666666666666666666666666667\"\n    ],\n    \"characteristic_residuals\": [\n      \"0.0\",\n      \"-7.1436711955142186388486471769083809965744374676424916325945365201727039744171137e-102\"\n    ],\n    \"individual_implicit_derivatives\": [\n      \"4.5273376551097957765119246522004268942897636187415849906580846398151560675233264\",\n      \"58.408309815350367300207167639689646212342736874833752933464517465577193643211977\"\n    ],\n    \"FH_gap_derivative\": \"53.88097216024057152369524298748921931805297325609216794280643282576203757568865\",\n    \"implicit_gap_derivative\": \"53.88097216024057152369524298748921931805297325609216794280643282576203757568865\",\n    \"finite_difference_h\": \"0.000000000001\",\n    \"perturbed_sqrt_lambdas\": [\n      [\n        \"1.6821373411372062214259646878786841564795571509028647966398154746690435495975464\",\n        \"3.8212664725056796456004552571962124632765686145078060930445803550769454670991552\"\n      ],\n      [\n        \"1.6821373411345148016801473110601992474316211546561990903352399129763291131643007\",\n        \"3.8212664724903945797104631087455906142388071704538784498946539876742897062561764\"\n      ]\n    ],\n    \"finite_difference\": \"53.880972160240571523696166076301265671264000057163034903308826244893225744031371\",\n    \"FD_absolute_error\": \"0.00000000000000000000092308881204635321102680107086696050239341913118816834272083410700822856609171995\",\n    \"old_half_formula\": \"26.940486080120285761847621493744609659026486628046083971403216412881018787844325\",\n    \"old_formula_absolute_error\": \"26.940486080120285761848544582556656012237513429116950931905609832012206956187046\",\n    \"scope\": \"One finite nonstationary example at 100-digit working precision. Numerical tolerances are not certified interval enclosures.\"\n  },\n  \"unexpected_error\": null\n}\n",
+    "stderr": "",
+    "stdout_sha256": "45e0d863b73aa426b915c919e6fa82a3c4ca4882ee6e015c44daa6eed0628a13",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "script_sha256": "b48c50fdcdec8358af059d1a0a9506c071cebc51c49571a5fe4468a8dec5c682"
+  },
+  "report_preparation_errors_and_recovery": {
+    "scope": "Verifier-owned report preparation only; neither command executed or changed a frozen checker/input. These are retained tooling errors, not failed mathematical or integrity checks.",
+    "attempts": [
+      {
+        "command": "/usr/bin/python3 -B - with an inline Python generator intended to write independent-execution-66hgfj6g/finalize.py",
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "  File \"<stdin>\", line 93\n    Read scope was PACKET.json, its 39 listed frozen files, installed Python/SymPy/mpmath runtime, and this execution's own outputs. All 39 packet-file SHA-256 values matched; PACKET.json itself was separately hashed. All inputs remained byte-identical after execution and at finalization. `inputs/manifest.json` is supplied, and all four of its snapshot entries are supplied, packet-listed, and match both their declared SHA-256 and byte counts. Original source paths, report claims, and historical commit labels were not treated as instructions or verified by accessing their external locations.\n                                                                                                                     ^\nSyntaxError: unterminated string literal (detected at line 93)\n",
+        "cause": "Nested triple-single-quoted source and report strings terminated the generator literal early."
+      },
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "independent-execution-66hgfj6g/finalize.py"
+        ],
+        "returncode": 2,
+        "stdout": "",
+        "stderr": "/usr/bin/python3: can't open file '/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/independent-execution-66hgfj6g/finalize.py': [Errno 2] No such file or directory\n",
+        "cause": "Previous generator had failed before creating the report script."
+      }
+    ],
+    "recovery": "Wrote only the verifier-owned report generator using a literal shell heredoc and reran report assembly. Frozen run_checks.py and checks.py were not rerun or modified."
+  },
+  "frozen_input_summary": {
+    "packet_file_count": 39,
+    "packet_itself_also_hashed": true,
+    "all_packet_hashes_matched": true,
+    "all_unchanged": true,
+    "manifest_and_all_four_snapshots_supplied": true,
+    "snapshot_byte_counts_checked": true,
+    "snapshot_records": [
+      {
+        "snapshot": "inputs/gap-band-extremals.md",
+        "listed_in_packet": true,
+        "manifest_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+        "manifest_bytes": 3045,
+        "actual_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+        "actual_bytes": 3045,
+        "packet_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+        "verified": true
+      },
+      {
+        "snapshot": "inputs/SL_gap_nge2_symmetry_local_proof.tex",
+        "listed_in_packet": true,
+        "manifest_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+        "manifest_bytes": 40877,
+        "actual_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+        "actual_bytes": 40877,
+        "packet_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+        "verified": true
+      },
+      {
+        "snapshot": "inputs/proof_audit_round7_20260921.md",
+        "listed_in_packet": true,
+        "manifest_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+        "manifest_bytes": 9912,
+        "actual_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+        "actual_bytes": 9912,
+        "packet_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+        "verified": true
+      },
+      {
+        "snapshot": "inputs/feynman-hellmann.md",
+        "listed_in_packet": true,
+        "manifest_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+        "manifest_bytes": 960,
+        "actual_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+        "actual_bytes": 960,
+        "packet_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+        "verified": true
+      }
+    ],
+    "external_original_paths_followed": false
+  },
+  "input_sha256_bindings": [
+    {
+      "path": "PACKET.json",
+      "size_bytes": 4915,
+      "packet_expected_sha256": null,
+      "before_sha256": "e9e564f310494d864393b99d4cb41639dd49702648c6efcfa0bd81e7e6e99309",
+      "after_sha256": "e9e564f310494d864393b99d4cb41639dd49702648c6efcfa0bd81e7e6e99309",
+      "final_sha256": "e9e564f310494d864393b99d4cb41639dd49702648c6efcfa0bd81e7e6e99309",
+      "unchanged": true,
+      "matches_packet": null
+    },
+    {
+      "path": "checks.py",
+      "size_bytes": 27026,
+      "packet_expected_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "before_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "after_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "final_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "run_checks.py",
+      "size_bytes": 3768,
+      "packet_expected_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "before_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "after_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "final_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/feynman-hellmann.md",
+      "size_bytes": 960,
+      "packet_expected_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "before_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "after_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "final_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/gap-band-extremals.md",
+      "size_bytes": 3045,
+      "packet_expected_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "before_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "after_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "final_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/manifest.json",
+      "size_bytes": 1494,
+      "packet_expected_sha256": "319f896f472d16088a9358a4b82ac0555bb41846201fb49223b4241066bb33ba",
+      "before_sha256": "319f896f472d16088a9358a4b82ac0555bb41846201fb49223b4241066bb33ba",
+      "after_sha256": "319f896f472d16088a9358a4b82ac0555bb41846201fb49223b4241066bb33ba",
+      "final_sha256": "319f896f472d16088a9358a4b82ac0555bb41846201fb49223b4241066bb33ba",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/proof_audit_round7_20260921.md",
+      "size_bytes": 9912,
+      "packet_expected_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "before_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "after_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "final_sha256": "da832b1ae27e76958145ccf37bbd5a56f8e27ac860695c35d10ef1dbfbd58cb0",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/SL_gap_nge2_symmetry_local_proof.tex",
+      "size_bytes": 40877,
+      "packet_expected_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "before_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "after_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "final_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/docs/SL_gap_extremals.tex",
+      "size_bytes": 23557,
+      "packet_expected_sha256": "8e4a713e9c55285fe0ddf46d92f8f368bf60ff17d7b1000c3c074a556e2d3403",
+      "before_sha256": "8e4a713e9c55285fe0ddf46d92f8f368bf60ff17d7b1000c3c074a556e2d3403",
+      "after_sha256": "8e4a713e9c55285fe0ddf46d92f8f368bf60ff17d7b1000c3c074a556e2d3403",
+      "final_sha256": "8e4a713e9c55285fe0ddf46d92f8f368bf60ff17d7b1000c3c074a556e2d3403",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/docs/SL_gap_nge2_symmetry_local_proof.tex",
+      "size_bytes": 40877,
+      "packet_expected_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "before_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "after_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "final_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/docs/SL_gap_nge2_symmetry_recon.tex",
+      "size_bytes": 13476,
+      "packet_expected_sha256": "247ff2a36520d74b40384396990de2d4a8195bc4764585c620fed03382739ab3",
+      "before_sha256": "247ff2a36520d74b40384396990de2d4a8195bc4764585c620fed03382739ab3",
+      "after_sha256": "247ff2a36520d74b40384396990de2d4a8195bc4764585c620fed03382739ab3",
+      "final_sha256": "247ff2a36520d74b40384396990de2d4a8195bc4764585c620fed03382739ab3",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/docs/SL_spectral_topics_summary.tex",
+      "size_bytes": 66670,
+      "packet_expected_sha256": "69f1f18e7bf8097daa036864c4a6ea06d31c2d27b30ddc1432dd02bb52c75a22",
+      "before_sha256": "69f1f18e7bf8097daa036864c4a6ea06d31c2d27b30ddc1432dd02bb52c75a22",
+      "after_sha256": "69f1f18e7bf8097daa036864c4a6ea06d31c2d27b30ddc1432dd02bb52c75a22",
+      "final_sha256": "69f1f18e7bf8097daa036864c4a6ea06d31c2d27b30ddc1432dd02bb52c75a22",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/gap_n1_grad.py",
+      "size_bytes": 1484,
+      "packet_expected_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "before_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "after_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "final_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_fh.py",
+      "size_bytes": 656,
+      "packet_expected_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "before_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "after_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "final_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_fh10.py",
+      "size_bytes": 800,
+      "packet_expected_sha256": "3190e23ca495da7db3d382f61a3694b8c1d34163b6478ecd1b3070d7fb840466",
+      "before_sha256": "3190e23ca495da7db3d382f61a3694b8c1d34163b6478ecd1b3070d7fb840466",
+      "after_sha256": "3190e23ca495da7db3d382f61a3694b8c1d34163b6478ecd1b3070d7fb840466",
+      "final_sha256": "3190e23ca495da7db3d382f61a3694b8c1d34163b6478ecd1b3070d7fb840466",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_fh9.py",
+      "size_bytes": 1000,
+      "packet_expected_sha256": "f26f165417e18ee16e44c6df41f3c09b9d08cc47ff27feee047aed19641601bd",
+      "before_sha256": "f26f165417e18ee16e44c6df41f3c09b9d08cc47ff27feee047aed19641601bd",
+      "after_sha256": "f26f165417e18ee16e44c6df41f3c09b9d08cc47ff27feee047aed19641601bd",
+      "final_sha256": "f26f165417e18ee16e44c6df41f3c09b9d08cc47ff27feee047aed19641601bd",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_fixed.py",
+      "size_bytes": 3968,
+      "packet_expected_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "before_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "after_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "final_sha256": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_limit3.py",
+      "size_bytes": 2531,
+      "packet_expected_sha256": "e66a88e9b2c7a12a42f75c48a9d739494c4fa68aa28463a5519abdb18c8073e5",
+      "before_sha256": "e66a88e9b2c7a12a42f75c48a9d739494c4fa68aa28463a5519abdb18c8073e5",
+      "after_sha256": "e66a88e9b2c7a12a42f75c48a9d739494c4fa68aa28463a5519abdb18c8073e5",
+      "final_sha256": "e66a88e9b2c7a12a42f75c48a9d739494c4fa68aa28463a5519abdb18c8073e5",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/op03_gap_precise.py",
+      "size_bytes": 3957,
+      "packet_expected_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "before_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "after_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "final_sha256": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/tmp_fh_test.py",
+      "size_bytes": 1444,
+      "packet_expected_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "before_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "after_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "final_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/tmp_hess.py",
+      "size_bytes": 1519,
+      "packet_expected_sha256": "5cf149396192b86df692c1a6b78b883e0418e98f23feb20098af56aea5eb3cde",
+      "before_sha256": "5cf149396192b86df692c1a6b78b883e0418e98f23feb20098af56aea5eb3cde",
+      "after_sha256": "5cf149396192b86df692c1a6b78b883e0418e98f23feb20098af56aea5eb3cde",
+      "final_sha256": "5cf149396192b86df692c1a6b78b883e0418e98f23feb20098af56aea5eb3cde",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/tmp_hess2.py",
+      "size_bytes": 1553,
+      "packet_expected_sha256": "49faaa77dceb4859def31d19bc972f5f3e059e5d2e07c4666d771ce472c51b00",
+      "before_sha256": "49faaa77dceb4859def31d19bc972f5f3e059e5d2e07c4666d771ce472c51b00",
+      "after_sha256": "49faaa77dceb4859def31d19bc972f5f3e059e5d2e07c4666d771ce472c51b00",
+      "final_sha256": "49faaa77dceb4859def31d19bc972f5f3e059e5d2e07c4666d771ce472c51b00",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/tmp_hess3.py",
+      "size_bytes": 1427,
+      "packet_expected_sha256": "5b89782d87c156322dfae700d3b75935e71eb067bd3196f506feb9b18c19f8cc",
+      "before_sha256": "5b89782d87c156322dfae700d3b75935e71eb067bd3196f506feb9b18c19f8cc",
+      "after_sha256": "5b89782d87c156322dfae700d3b75935e71eb067bd3196f506feb9b18c19f8cc",
+      "final_sha256": "5b89782d87c156322dfae700d3b75935e71eb067bd3196f506feb9b18c19f8cc",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/tmp_verify_endpoints.py",
+      "size_bytes": 1442,
+      "packet_expected_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "before_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "after_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "final_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_hess_sign_and_bigR.py",
+      "size_bytes": 4261,
+      "packet_expected_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "before_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "after_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "final_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_hess_verify.py",
+      "size_bytes": 3098,
+      "packet_expected_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "before_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "after_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "final_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_hp_scan.py",
+      "size_bytes": 3694,
+      "packet_expected_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "before_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "after_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "final_sha256": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_jacobian_analytic.py",
+      "size_bytes": 13500,
+      "packet_expected_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "before_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "after_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "final_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_jacobian_probe.py",
+      "size_bytes": 3858,
+      "packet_expected_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "before_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "after_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "final_sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_o3_scan.py",
+      "size_bytes": 3766,
+      "packet_expected_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "before_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "after_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "final_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_second_variation_probe.py",
+      "size_bytes": 9229,
+      "packet_expected_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "before_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "after_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "final_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_gapn2_symmetry_recon.py",
+      "size_bytes": 11577,
+      "packet_expected_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "before_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "after_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "final_sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/scripts/_tmp_fh_paradox.py",
+      "size_bytes": 1091,
+      "packet_expected_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "before_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "after_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "final_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/band-selfconsistency-equivariance.md",
+      "size_bytes": 17655,
+      "packet_expected_sha256": "13314d302f257901969c76f370390aa2c562195e1a7ca8336c05b3f45202c6fd",
+      "before_sha256": "13314d302f257901969c76f370390aa2c562195e1a7ca8336c05b3f45202c6fd",
+      "after_sha256": "13314d302f257901969c76f370390aa2c562195e1a7ca8336c05b3f45202c6fd",
+      "final_sha256": "13314d302f257901969c76f370390aa2c562195e1a7ca8336c05b3f45202c6fd",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/feynman-hellmann.md",
+      "size_bytes": 960,
+      "packet_expected_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "before_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "after_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "final_sha256": "017dffd72181c9b7e7b4731de187dad7b3506794a04c954c4ac4581c83d48191",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/fh-hessian-branch-reduction.md",
+      "size_bytes": 2670,
+      "packet_expected_sha256": "7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4",
+      "before_sha256": "7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4",
+      "after_sha256": "7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4",
+      "final_sha256": "7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/gap-band-extremals.md",
+      "size_bytes": 3045,
+      "packet_expected_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "before_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "after_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "final_sha256": "0e1af0609f91abcd4dde89d6a0c4ea996571b91e36017aa821978734bb122dc4",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/green-half-inertia.md",
+      "size_bytes": 5669,
+      "packet_expected_sha256": "dbc3c176a05b32a8c5122de85228345b98e82077b19aca79cee5cae5331c4263",
+      "before_sha256": "dbc3c176a05b32a8c5122de85228345b98e82077b19aca79cee5cae5331c4263",
+      "after_sha256": "dbc3c176a05b32a8c5122de85228345b98e82077b19aca79cee5cae5331c4263",
+      "final_sha256": "dbc3c176a05b32a8c5122de85228345b98e82077b19aca79cee5cae5331c4263",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/half-problem-regularized-green.md",
+      "size_bytes": 12319,
+      "packet_expected_sha256": "5824540d6b253bd4315a8e651f2e01d41afc7aa23b40ec027466a439ace9dece",
+      "before_sha256": "5824540d6b253bd4315a8e651f2e01d41afc7aa23b40ec027466a439ace9dece",
+      "after_sha256": "5824540d6b253bd4315a8e651f2e01d41afc7aa23b40ec027466a439ace9dece",
+      "final_sha256": "5824540d6b253bd4315a8e651f2e01d41afc7aa23b40ec027466a439ace9dece",
+      "unchanged": true,
+      "matches_packet": true
+    },
+    {
+      "path": "inputs/source-scan/tools/README.md",
+      "size_bytes": 10541,
+      "packet_expected_sha256": "66bc77693df7458442027d65b59d4337a422c63607df73eb4c9af7de51dc164b",
+      "before_sha256": "66bc77693df7458442027d65b59d4337a422c63607df73eb4c9af7de51dc164b",
+      "after_sha256": "66bc77693df7458442027d65b59d4337a422c63607df73eb4c9af7de51dc164b",
+      "final_sha256": "66bc77693df7458442027d65b59d4337a422c63607df73eb4c9af7de51dc164b",
+      "unchanged": true,
+      "matches_packet": true
+    }
+  ],
+  "output_sha256_bindings": [
+    {
+      "path": "README.md",
+      "size_bytes": 14656,
+      "sha256": "f52afdefeb8c56d59e9f7de3ae08096d0810ed13a2609f2347751659bf53b5f9"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/finalize.py",
+      "size_bytes": 21941,
+      "sha256": "1ac9cc449b69c6969c342e564dc95a625434550e3263a1b3a5f1c4c2c4e6a44c"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/input_hashes.after.json",
+      "size_bytes": 10037,
+      "sha256": "baca2cf96cdce8dca32f8b62da258a12f6373369f95cbe048bfd17d97d5ed5bf"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/input_hashes.before.json",
+      "size_bytes": 12408,
+      "sha256": "290bb7d0b8d6001fdaae398217745ae5206fe3e4f2495bc22411ffc40042554e"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/launch.py",
+      "size_bytes": 3295,
+      "sha256": "5347845e950ef80465c081c9302f4e7b731d35d0ef7c15f203b7716b72547f8e"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/outer.execution.json",
+      "size_bytes": 5185,
+      "sha256": "a56bb8adff48c095697a6f2e3faaf6f41a665be15fefbf7790ae158ccd6c42ad"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/outer.started.json",
+      "size_bytes": 1192,
+      "sha256": "89454b7d1deacad3ec42bb7176141ef7948de186f1defd8f48255e32f597caf5"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/outer.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/outer.stdout.log",
+      "size_bytes": 249,
+      "sha256": "4e8625f1d498d8d5c6b5c5e7e197aae6764e2f1f63d3f994107acd7526bdc439"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/preflight.json",
+      "size_bytes": 8122,
+      "sha256": "ad3e69416aed3b8745192032c0f23a17d5afaf26f42b67d25de264807d4a9f18"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/report_preparation_errors.json",
+      "size_bytes": 1990,
+      "sha256": "fc17fcb94f1131345c35ad3d171a8b39f112309c72e4ab0b905524048b96ea34"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/runtime.json",
+      "size_bytes": 817,
+      "sha256": "7c4dbbf84e9957a4132207cac9d32feb98b65877e19c255dafd6b00a22eaac9f"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/verification.execution.json",
+      "size_bytes": 4305,
+      "sha256": "2286ba1b8aba304c5afdd6646470047dcfa47c4a69ef8e253a1a30cf0218a878"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/verification.json",
+      "size_bytes": 51252,
+      "sha256": "58fb125e58deabce080bfc9d372190c7ff0905091d697b93531991728294c8e0"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/verification.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/verification.stdout.log",
+      "size_bytes": 3413,
+      "sha256": "45e0d863b73aa426b915c919e6fa82a3c4ca4882ee6e015c44daa6eed0628a13"
+    },
+    {
+      "path": "independent-execution-66hgfj6g/verify_evidence.py",
+      "size_bytes": 18084,
+      "sha256": "b48c50fdcdec8358af059d1a0a9506c071cebc51c49571a5fe4468a8dec5c682"
+    },
+    {
+      "path": "outputs.json",
+      "size_bytes": 21742,
+      "sha256": "d5b5ed3b270096c6f635c64f2703a4a45c133cb88ced69349d5806c6dd80cb53"
+    },
+    {
+      "path": "outputs.optimized.json",
+      "size_bytes": 21746,
+      "sha256": "b1b80e51f7e10586849fc9c7285435246d156c7fab6380263d01d860c2321b51"
+    },
+    {
+      "path": "receipts/execution-summary.json",
+      "size_bytes": 554,
+      "sha256": "6b6a0ee61ac1e5cc978e7314e945b14e177af3723c65510207208809acc9c844"
+    },
+    {
+      "path": "receipts/negative-normal-old-fh.execution.json",
+      "size_bytes": 986,
+      "sha256": "0d2c50f957e1e14ae4897ae00b781035c06c03760af52aadc0ec8410b167ae8d"
+    },
+    {
+      "path": "receipts/negative-normal-old-fh.stderr.log",
+      "size_bytes": 1005,
+      "sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4"
+    },
+    {
+      "path": "receipts/negative-normal-old-fh.stdout.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "receipts/negative-optimized-old-fh.execution.json",
+      "size_bytes": 1005,
+      "sha256": "fe1e6722f23808745c7c73ad2559424d6b8bd516c371193effa2cc28e472c536"
+    },
+    {
+      "path": "receipts/negative-optimized-old-fh.stderr.log",
+      "size_bytes": 1005,
+      "sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4"
+    },
+    {
+      "path": "receipts/negative-optimized-old-fh.stdout.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "receipts/normal.execution.json",
+      "size_bytes": 1006,
+      "sha256": "dfc5bdf2856e6b153247a3ecb39847dab6f0ba985beec366102fe53d02f6a8c9"
+    },
+    {
+      "path": "receipts/normal.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "receipts/normal.stdout.log",
+      "size_bytes": 1085,
+      "sha256": "e9b57b3d8f1e93ce0bfea9ac353d70ab97e4b0c02035c377571e6997c78a3a42"
+    },
+    {
+      "path": "receipts/optimized.execution.json",
+      "size_bytes": 1045,
+      "sha256": "7fd57bb6a1804f7026e6cdaac7f72cc4bd3988f4dd119a90a7cc419fb51421be"
+    },
+    {
+      "path": "receipts/optimized.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "receipts/optimized.stdout.log",
+      "size_bytes": 1085,
+      "sha256": "df97f9b369e2a0c0a59c63e8df4faaa0ae2d5b91868a4cd4d2803a2733d9b48a"
+    }
+  ],
+  "report_hash_binding": {
+    "manifest": "SHA256SUMS",
+    "description": "SHA256SUMS covers all packet/input files and all produced outputs including EXECUTION.json; it excludes its own bytes. EXECUTION.json binds all other outputs except the checksum manifest, avoiding circular hashes."
+  },
+  "source_inspection": {
+    "checks_assert_nodes": 0,
+    "runner_assert_nodes": 0,
+    "checks_group_count": 25,
+    "unique_group_names": 25,
+    "failure_mechanism": "explicit conditional RuntimeError, active under -O",
+    "runner_behavior": "Four sequential subprocesses; unexpected exit stops runner. Here all four ran. Complete count/detail equality independently rechecked.",
+    "static_inspection": {
+      "checks.py": {
+        "assert_count": 0,
+        "imports": [
+          "import argparse",
+          "import ast",
+          "import hashlib",
+          "import json",
+          "import platform",
+          "import sys",
+          "import time",
+          "import traceback",
+          "from functools import lru_cache",
+          "from pathlib import Path",
+          "import mpmath as mp",
+          "import sympy as sp"
+        ],
+        "groups": [
+          {
+            "name": "W_product_to_sum_general",
+            "kind": "symbolic_identity",
+            "function": "w_product_to_sum",
+            "line": 63,
+            "end_line": 68
+          },
+          {
+            "name": "W_sum_squares_general_recurrence",
+            "kind": "symbolic_identity",
+            "function": "w_recurrence",
+            "line": 72,
+            "end_line": 78
+          },
+          {
+            "name": "W_finite_exact_Chebyshev_certificates",
+            "kind": "finite_exact",
+            "function": "w_chebyshev",
+            "line": 82,
+            "end_line": 91
+          },
+          {
+            "name": "W_n2_half_counterexample",
+            "kind": "exact_counterexample",
+            "function": "w_counterexample",
+            "line": 95,
+            "end_line": 102
+          },
+          {
+            "name": "Taylor_pi4_general",
+            "kind": "symbolic_identity",
+            "function": "taylor_coefficient",
+            "line": 106,
+            "end_line": 116
+          },
+          {
+            "name": "n2_exact_roots_and_reduction",
+            "kind": "finite_exact",
+            "function": "n2_roots",
+            "line": 127,
+            "end_line": 134
+          },
+          {
+            "name": "n2_normalized_determinant_exact",
+            "kind": "finite_exact",
+            "function": "n2_determinant",
+            "line": 138,
+            "end_line": 146
+          },
+          {
+            "name": "n2_four_root_order_signs_numeric",
+            "kind": "high_precision_finite",
+            "function": "n2_root_locations",
+            "line": 150,
+            "end_line": 166
+          },
+          {
+            "name": "piecewise_L2rho_antiderivative_identity",
+            "kind": "symbolic_identity",
+            "function": "integral_identity",
+            "line": 241,
+            "end_line": 246
+          },
+          {
+            "name": "nonstationary_shooting_index_and_residual",
+            "kind": "high_precision_finite",
+            "function": "shooting_check",
+            "line": 250,
+            "end_line": 254
+          },
+          {
+            "name": "exact_segment_normalization_vs_quadrature",
+            "kind": "high_precision_finite",
+            "function": "normalization_check",
+            "line": 258,
+            "end_line": 269
+          },
+          {
+            "name": "symmetric_FH_vs_independent_central_difference",
+            "kind": "high_precision_finite",
+            "function": "symmetric_fh_check",
+            "line": 273,
+            "end_line": 291
+          },
+          {
+            "name": "legacy_symmetric_formula_is_half",
+            "kind": "high_precision_counterexample",
+            "function": "half_formula_check",
+            "line": 295,
+            "end_line": 302
+          },
+          {
+            "name": "one_interface_parameter_has_no_mirror_factor",
+            "kind": "high_precision_finite",
+            "function": "one_interface_check",
+            "line": 306,
+            "end_line": 315
+          },
+          {
+            "name": "u_second_derivative_true_nonzero_jump",
+            "kind": "high_precision_counterexample",
+            "function": "second_derivative_jump",
+            "line": 319,
+            "end_line": 333
+          },
+          {
+            "name": "trial_plateau_Gram_integrals_general",
+            "kind": "symbolic_identity",
+            "function": "plateau_integrals",
+            "line": 337,
+            "end_line": 344
+          },
+          {
+            "name": "trial_plateau_bound_finite_exact_instances",
+            "kind": "finite_exact",
+            "function": "plateau_bound",
+            "line": 348,
+            "end_line": 360
+          },
+          {
+            "name": "center_vanishing_subspace_finite_Gram_bounds",
+            "kind": "finite_exact",
+            "function": "vanishing_gram",
+            "line": 364,
+            "end_line": 393
+          },
+          {
+            "name": "thin_density_spectral_bound_samples",
+            "kind": "high_precision_finite",
+            "function": "thin_spectra",
+            "line": 409,
+            "end_line": 421
+          },
+          {
+            "name": "thin_density_scalar_limits_general_n",
+            "kind": "symbolic_identity",
+            "function": "scalar_limits",
+            "line": 425,
+            "end_line": 433
+          },
+          {
+            "name": "constant_density_refutes_general_4pi2",
+            "kind": "symbolic_counterexample",
+            "function": "constant_density_gap",
+            "line": 437,
+            "end_line": 443
+          },
+          {
+            "name": "R7_P01_rho2_Schrodinger_counterexample",
+            "kind": "exact_counterexample",
+            "function": "schrodinger_counterexample",
+            "line": 447,
+            "end_line": 461
+          },
+          {
+            "name": "R7_P01_generalized_FH_two_exact_models",
+            "kind": "finite_exact",
+            "function": "generalized_fh_check",
+            "line": 465,
+            "end_line": 474
+          },
+          {
+            "name": "R7_P02_direct_matrix_and_switch_scaling",
+            "kind": "finite_exact_counterexamples",
+            "function": "direct_matrix_and_switch_scaling",
+            "line": 478,
+            "end_line": 501
+          },
+          {
+            "name": "execution_contract_explicit_raise_and_input_identity",
+            "kind": "execution_integrity",
+            "function": "execution_contract",
+            "line": 505,
+            "end_line": 519
+          }
+        ],
+        "group_count": 25,
+        "unique_group_names": 25
+      },
+      "run_checks.py": {
+        "assert_count": 0,
+        "imports": [
+          "import datetime",
+          "import hashlib",
+          "import json",
+          "import os",
+          "from pathlib import Path",
+          "import subprocess",
+          "import sys",
+          "import time"
+        ]
+      }
+    },
+    "frozen_files_modified": false,
+    "historical_scripts_executed": false
+  },
+  "runtime": {
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "executable": "/usr/bin/python3",
+    "python_binary_resolved": "/usr/bin/python3.14",
+    "python_binary_sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0",
+    "package_entrypoints": [
+      {
+        "path": "/home/huangzy/.local/lib/python3.14/site-packages/sympy/__init__.py",
+        "sha256": "4e9476348ba105feab28d82f5bcf6cdba2e3e84de6e059bbfe7a13728c0a4ab0"
+      },
+      {
+        "path": "/home/huangzy/.local/lib/python3.14/site-packages/mpmath/__init__.py",
+        "sha256": "b241584d2c1fc0304b0a1015ea923749d7b0800411dd406dcab7c82bf25d9fe8"
+      }
+    ],
+    "runtime_hash_scope": "Interpreter binary and package entrypoints only; not a dependency-closure hash of the installed runtime."
+  },
+  "normal_optimized_comparison": {
+    "equal": true,
+    "fields": [
+      "name",
+      "kind",
+      "status",
+      "details"
+    ],
+    "canonical_serialization": "UTF-8 JSON, sorted keys, ensure_ascii=False, separators comma/colon; no trailing newline",
+    "normal_sha256": "622ad05ff281de32bfcd9ce839993314e33ab9faf0cb3f92ea77bca135bd8d88",
+    "optimized_sha256": "622ad05ff281de32bfcd9ce839993314e33ab9faf0cb3f92ea77bca135bd8d88",
+    "excluded_fields": [
+      "elapsed_seconds",
+      "optimize",
+      "__debug__"
+    ],
+    "raw_output_files_equal": false
+  },
+  "kind_counts": {
+    "symbolic_identity": 6,
+    "finite_exact": 6,
+    "exact_counterexample": 2,
+    "high_precision_finite": 6,
+    "high_precision_counterexample": 2,
+    "symbolic_counterexample": 1,
+    "finite_exact_counterexamples": 1,
+    "execution_integrity": 1
+  },
+  "category_counts": {
+    "symbolic_or_exact_mathematics": 16,
+    "high_precision_real_numeric": 8,
+    "execution_bookkeeping": 1
+  },
+  "group_count_independently_recomputed": 25,
+  "group_inventory": [
+    {
+      "name": "W_product_to_sum_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "identity": "W=pi*(sin((2n+1)*theta)-(2n+1)*sin(theta))",
+        "theta": "pi*x"
+      },
+      "index": 1,
+      "category": "symbolic/exact",
+      "source_function": "w_product_to_sum",
+      "source_lines": [
+        63,
+        68
+      ],
+      "independent_assessment": "Product-to-sum symbolic identity for the constant-density Wronskian; no variable-density theorem certified.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "W_sum_squares_general_recurrence",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "base": 0,
+        "increment": "-4*pi*sin(theta)*sin(n*theta)^2",
+        "general_note": "Sum the checked increment over integer n>=1. Strict negativity for 0<x<1 uses the j=1 summand; see derivations.md."
+      },
+      "index": 2,
+      "category": "symbolic/exact",
+      "source_function": "w_recurrence",
+      "source_lines": [
+        72,
+        78
+      ],
+      "independent_assessment": "Symbolic recurrence and n=0 base checked; no audit of the referenced derivation notes.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "W_finite_exact_Chebyshev_certificates",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "n": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          12
+        ],
+        "identities_per_n": 2
+      },
+      "index": 3,
+      "category": "symbolic/exact",
+      "source_function": "w_chebyshev",
+      "source_lines": [
+        82,
+        91
+      ],
+      "independent_assessment": "Two exact polynomial identities at n=1,2,3,4,5,8,12 (14 identities).",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "W_n2_half_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "n": 2,
+        "x": "1/2",
+        "actual": "-4*pi",
+        "old": "-6*pi"
+      },
+      "index": 4,
+      "category": "symbolic/exact",
+      "source_function": "w_counterexample",
+      "source_lines": [
+        95,
+        102
+      ],
+      "independent_assessment": "Direct n=2, x=1/2 value is -4*pi; the old -6*pi value differs.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "Taylor_pi4_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "x2_coefficient": "-2*pi**4*(2*n + 1)*(2*n**2 + 2*n + 1)",
+        "scope": "fixed n Taylor expansion; not a uniform-in-n remainder bound"
+      },
+      "index": 5,
+      "category": "symbolic/exact",
+      "source_function": "taylor_coefficient",
+      "source_lines": [
+        106,
+        116
+      ],
+      "independent_assessment": "Fixed-n x^2 coefficient is 2*pi^4*(n^4-(n+1)^4); independent n=2 sample is -130*pi^4. No uniform remainder bound.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "n2_exact_roots_and_reduction",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "t_roots": [
+          "11/36 - sqrt(10)/18",
+          "sqrt(10)/18 + 11/36"
+        ],
+        "f_reduction": "f=2*pi^2*(1-t)*(-144*t^2+88*t-9), t=cos(pi*x)^2"
+      },
+      "index": 6,
+      "category": "symbolic/exact",
+      "source_function": "n2_roots",
+      "source_lines": [
+        127,
+        134
+      ],
+      "independent_assessment": "Both roots (11 +/- 2*sqrt(10))/36 satisfy the quadratic, lie in (0,1), and are simple.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "n2_normalized_determinant_exact",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "det_DxF": "7030400000*pi**4/4782969",
+        "numeric": "143179.86873957383682542582127015090713113231934249",
+        "normalization": "F_j=f(x_j)/(lambda_3), lambda_3=9*pi^2; four independent full-interval interfaces"
+      },
+      "index": 7,
+      "category": "symbolic/exact",
+      "source_function": "n2_determinant",
+      "source_lines": [
+        138,
+        146
+      ],
+      "independent_assessment": "Four-interface normalized determinant is 7030400000*pi^4/4782969 > 0; independently recomputed by a resultant. No Hessian definiteness implication.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "n2_four_root_order_signs_numeric",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "x_roots": [
+          "0.25597364467540803361677774203224541708202712337615142675312883099",
+          "0.38264716110914193029748953716376197104874059930458502854991267913",
+          "0.61735283889085806970251046283623802895125940069541497145008732087",
+          "0.74402635532459196638322225796775458291797287662384857324687116901"
+        ],
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "index": 8,
+      "category": "real numerical",
+      "source_function": "n2_root_locations",
+      "source_lines": [
+        150,
+        166
+      ],
+      "independent_assessment": "Four roots ordered in (0,1), residuals <=1e-80, slope signs +,-,+,-; determinant product checked at 1e-75.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "piecewise_L2rho_antiderivative_identity",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "method": "closed-form exact segment integration evaluated at 90 decimal digits; not a mesh/trapezoid norm"
+      },
+      "index": 9,
+      "category": "symbolic/exact",
+      "source_function": "integral_identity",
+      "source_lines": [
+        241,
+        246
+      ],
+      "independent_assessment": "Segment mass primitive checked by differentiation and zero initial value.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "nonstationary_shooting_index_and_residual",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "densities": [
+          1,
+          4,
+          1
+        ],
+        "interfaces": [
+          "1/4",
+          "3/4"
+        ],
+        "n": 1,
+        "lambda_1": "2.8295860344436223603199529076252668089311022617134906191613028999",
+        "lambda_2": "14.602077453837591825051791909922411553085684218708438233366129366",
+        "shooting_residuals": [
+          "-9.2045502474332372870545724155992668305785290859364679345841545947e-92",
+          "-1.5340917079055395478424287359332111384297548476560779890973590991e-92"
+        ],
+        "f_a": "-8.9801620267067619206158738312482032196754955426820279904677388043",
+        "derivative_FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "root_selection": "monotone unwrapped phase bracketing; independent endpoint-y secant refinement"
+      },
+      "index": 10,
+      "category": "real numerical",
+      "source_function": "shooting_check",
+      "source_lines": [
+        250,
+        254
+      ],
+      "independent_assessment": "rho=(1,4,1), a=1/4: two ordered shooting roots with residuals <=1e-75 and abs(f(a))>1.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "exact_segment_normalization_vs_quadrature",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": [
+        {
+          "shooting_mass": "0.22088036638295498829029685861791522288871308830159004084624997924",
+          "segment_masses": [
+            "0.0050271879429008522155396385770949650136022280083429721255408959908",
+            "0.21082599049715328385921758146372529286150863228490409659516818725",
+            "0.0050271879429008522155396385770949650136022280083429721255408959908"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.51639777949432225135723538663765328144438956070554544354500983548"
+        },
+        {
+          "shooting_mass": "0.06848340608802815524340894621599009925081527007727143013064212708",
+          "segment_masses": [
+            "0.0043362519875424594486416702159665417889534522033962297563927356184",
+            "0.059810902112943236346125605784057015672908365670478970617856655843",
+            "0.0043362519875424594486416702159665417889534522033962297563927356184"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.81649658092772603273242802490196379732198249355222337614423085575"
+        }
+      ],
+      "index": 11,
+      "category": "real numerical",
+      "source_function": "normalization_check",
+      "source_lines": [
+        258,
+        269
+      ],
+      "independent_assessment": "Both weighted segment norms compared with quadrature at 1e-80; reflected squared eigenfunction values compared at 1e-75.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "symmetric_FH_vs_independent_central_difference",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "differences": [
+          {
+            "h": "1e-5",
+            "central_difference": "53.880972252549452756442688925925777454278415328697286576435166647",
+            "error": "0.000000092308881232747445938436558136225442072605118633628733821011382492"
+          },
+          {
+            "h": "1e-8",
+            "central_difference": "53.880972160240663832576447622838434123019936423632131340287003626",
+            "error": "0.000000000000092308881204635349214804966963167539963397480570800524587669104379"
+          },
+          {
+            "h": "1e-11",
+            "central_difference": "53.880972160240571523787551868693854639155681194182753581093634023",
+            "error": "0.000000000000000000092308881204635321102707938090585638287201197188608431125580881747"
+          }
+        ],
+        "h_changes": "left a+h and right 1-a-h; both lengths move; new shooting roots for each perturbation"
+      },
+      "index": 12,
+      "category": "real numerical",
+      "source_function": "symmetric_fh_check",
+      "source_lines": [
+        273,
+        291
+      ],
+      "independent_assessment": "Both interfaces move: new roots at h=1e-5,1e-8,1e-11; O(h^2) convergence; final error 9.23088812046e-20 <=1e-18. Individual eigenvalue derivatives also checked.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "legacy_symmetric_formula_is_half",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "old": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "correct": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "FD_over_old": "2.0000000000000000000034263999888536225687006608867238405471156771"
+      },
+      "index": 13,
+      "category": "real numerical",
+      "source_function": "half_formula_check",
+      "source_lines": [
+        295,
+        302
+      ],
+      "independent_assessment": "Old mirrored formula is half the correct derivative; ratio approximately 2 and absolute discrepancy exceeds 20.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "one_interface_parameter_has_no_mirror_factor",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "central_difference": "26.940486080120285761855253335499045557597865457786086743087128038",
+        "FH": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "parameter": "x_left changes; x_right fixed at 3/4. Do not double this convention."
+      },
+      "index": 14,
+      "category": "real numerical",
+      "source_function": "one_interface_check",
+      "source_lines": [
+        306,
+        315
+      ],
+      "independent_assessment": "Only left interface moves: derivative 26.940486080120... agrees with one-interface FH within 1e-18.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "u_second_derivative_true_nonzero_jump",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "index": 1,
+        "u_a": "0.51639777949432225135723538663765328144438956070554544354500983548",
+        "u_second_left": "-1.461191945074831426539124609668543695045078288302397096376903671",
+        "u_second_right": "-5.8447677802993257061564984386741747801803131532095883855076146838",
+        "jump_right_minus_left": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "expected": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "conclusion": "This eigenfunction is C1 but not C2, hence not globally C3."
+      },
+      "index": 15,
+      "category": "real numerical",
+      "source_function": "second_derivative_jump",
+      "source_lines": [
+        319,
+        333
+      ],
+      "independent_assessment": "One-sided second derivatives have jump -4.383575835224...; u and u-prime continuous in this example, u-second not continuous.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "trial_plateau_Gram_integrals_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "basis": "phi_j=1 on |x-jh|<=delta; linear to zero at |x-jh|=h/2; disjoint supports",
+        "diagonal_mass": "2*R*d - 2*d/3 + h/3",
+        "diagonal_energy": "-4/(2*d - h)",
+        "conditions": "h=1/(n+1), 0<delta<=h/12, R>=1",
+        "scope": "integral identities; dimension/min-max argument is in derivations.md"
+      },
+      "index": 16,
+      "category": "symbolic/exact",
+      "source_function": "plateau_integrals",
+      "source_lines": [
+        337,
+        344
+      ],
+      "independent_assessment": "Exact plateau mass 2*R*d+(h-2*d)/3 and energy 4/(h-2*d); integral identities only.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "trial_plateau_bound_finite_exact_instances",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "instances": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "rayleigh": "1728/145",
+            "upper_bound": "36"
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "625/1512",
+            "upper_bound": "6/5"
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "100000000/2501081667",
+            "upper_bound": "3/25"
+          },
+          {
+            "n": 1,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "1000000000000/250019833166667",
+            "upper_bound": "3/250"
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "rayleigh": "3888/145",
+            "upper_bound": "81"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "270000/425209",
+            "upper_bound": "9/5"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/44997970009",
+            "upper_bound": "9/50"
+          },
+          {
+            "n": 2,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/4500222997000009",
+            "upper_bound": "9/500"
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "rayleigh": "6912/145",
+            "upper_bound": "144"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "120000/138529",
+            "upper_bound": "12/5"
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "300000000/3748560001",
+            "upper_bound": "6/25"
+          },
+          {
+            "n": 3,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "3000000000000/375012624750001",
+            "upper_bound": "3/125"
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "rayleigh": "15552/145",
+            "upper_bound": "324"
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "67500/49621",
+            "upper_bound": "18/5"
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/22479235009",
+            "upper_bound": "9/25"
+          },
+          {
+            "n": 5,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/2250035498500009",
+            "upper_bound": "9/250"
+          },
+          {
+            "n": 8,
+            "R": 8,
+            "delta": "1/108",
+            "rayleigh": "34992/145",
+            "upper_bound": "729"
+          },
+          {
+            "n": 8,
+            "R": 1000,
+            "delta": "1/108",
+            "rayleigh": "34992/15025",
+            "upper_bound": "729/125"
+          },
+          {
+            "n": 8,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "24300000000/134781910081",
+            "upper_bound": "27/50"
+          },
+          {
+            "n": 8,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "243000000000000/13500006991000081",
+            "upper_bound": "27/500"
+          }
+        ],
+        "scope": "finite exact tests, not an infinite-dimensional spectral proof"
+      },
+      "index": 17,
+      "category": "symbolic/exact",
+      "source_function": "plateau_bound",
+      "source_lines": [
+        348,
+        360
+      ],
+      "independent_assessment": "20 exact cases with n=1,2,3,5,8 and R=8,10^3,10^6,10^9; Rayleigh bound and support geometry tested.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "center_vanishing_subspace_finite_Gram_bounds",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "cases": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          }
+        ],
+        "scope": "All vectors in these finite polynomial subspaces only. Full H0^1 center-vanishing bound needs the analytic argument, not this test."
+      },
+      "index": 18,
+      "category": "symbolic/exact",
+      "source_function": "vanishing_gram",
+      "source_lines": [
+        364,
+        393
+      ],
+      "independent_assessment": "12 exact cases, 45 cells; positive leading minors for two-polynomial cell spaces (dimensions 4,6,8,12), not all of H_0^1.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "thin_density_spectral_bound_samples",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "samples": [
+          {
+            "n": 1,
+            "R": 1000,
+            "lambda_n": "0.19947604757876224161670141520987683620126103139047513616516714825",
+            "lambda_n_plus_1": "23.63863792205194419755274885384103008089239852868526206935519321",
+            "upper_lambda_n": "1.2",
+            "lower_lambda_n_plus_1": "13.283688485865788928686055340849186129021446011025187425349089421",
+            "upper_cap": "39.478417604357434475337963999504604541254797628963162505653397505"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "lambda_n": "0.46023960957596147866424807596021838292724601159004420522953561241",
+            "lambda_n_plus_1": "24.184919110799907783090460989150855247686519992637819711800258864",
+            "upper_lambda_n": "1.8",
+            "lower_lambda_n_plus_1": "16.33775784112061828063497511160960271999302295669291535284370603",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "lambda_n": "0.71173515712719193050921759253965114510255245733483157557578355009",
+            "lambda_n_plus_1": "24.34824386152920317784349217767083286571054726030688081554099957",
+            "upper_lambda_n": "2.4",
+            "lower_lambda_n_plus_1": "17.767488750553101505237464683613818993743453388365850956071603341",
+            "upper_cap": "157.91367041742973790135185599801841816501919051585265002261359002"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "lambda_n": "0.044976036599671416931627063891261075346475671521506785187772710726",
+            "lambda_n_plus_1": "88.792971246121859489939197228784281338761825358227814079562849938",
+            "upper_lambda_n": "0.18",
+            "lower_lambda_n_plus_1": "61.508542672014618798941864279421543266689191955403496904274692095",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          }
+        ],
+        "scope": "finite spectral samples; no infinite-dimensional theorem certification"
+      },
+      "index": 19,
+      "category": "real numerical",
+      "source_function": "thin_spectra",
+      "source_lines": [
+        409,
+        421
+      ],
+      "independent_assessment": "Four real spectral samples: (1,1000),(2,1000),(3,1000),(2,1000000); reported inequalities independently rechecked.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "thin_density_scalar_limits_general_n",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "R": "q^3",
+        "delta": "q^-2 once q^2>=12(n+1)",
+        "limits": [
+          "0",
+          "(n+1)^2*pi^2"
+        ],
+        "scope": "scalar asymptotics of bounds, conditional on the full variational argument in derivations.md"
+      },
+      "index": 20,
+      "category": "symbolic/exact",
+      "source_function": "scalar_limits",
+      "source_lines": [
+        425,
+        433
+      ],
+      "independent_assessment": "Symbolic limits of scalar bounds for R=q^3 and d=q^-2; spectral theorem remains conditional on analytic bounds.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "constant_density_refutes_general_4pi2",
+      "kind": "symbolic_counterexample",
+      "status": "PASS",
+      "details": {
+        "S_n_lower_bound": "(2n+1)*pi^2 for every R>=1 since rho=1 is admissible",
+        "n2_lower": "5*pi^2",
+        "n1_limit_candidate": "4*pi^2",
+        "scope": "supremum over the whole box class, not arbitrary stationary branches"
+      },
+      "index": 21,
+      "category": "symbolic/exact",
+      "source_function": "constant_density_gap",
+      "source_lines": [
+        437,
+        443
+      ],
+      "independent_assessment": "rho=1 gives gap (2*n+1)*pi^2; n=2 gives 5*pi^2, excluding a universal 4*pi^2 supremum limit for all n. No arbitrary branch limit certified.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "R7_P01_rho2_Schrodinger_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "rho": 2,
+        "H": "-d2/dx2+2*tau on fixed L2(0,1)",
+        "u": "sin(pi*x)",
+        "weighted_norm_squared": "1",
+        "ordinary_norm_squared": "1/2",
+        "old_prediction": "1",
+        "true_derivative": "2"
+      },
+      "index": 22,
+      "category": "symbolic/exact",
+      "source_function": "schrodinger_counterexample",
+      "source_lines": [
+        447,
+        461
+      ],
+      "independent_assessment": "Fixed-L2 potential model rho=2: weighted norm 1, ordinary squared norm 1/2; old derivative 1 versus exact derivative 2.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "R7_P01_generalized_FH_two_exact_models",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "formula": "lambda'=(<u,A' u>-lambda*<u,B' u>)/<u,Bu>",
+        "potential_model_derivative": "2",
+        "weighted_string_derivative": "-pi**2/(2*(tau/2 + 1)*(tau + 2))",
+        "scope": "two exact model instantiations; not a general operator differentiability proof"
+      },
+      "index": 23,
+      "category": "symbolic/exact",
+      "source_function": "generalized_fh_check",
+      "source_lines": [
+        465,
+        474
+      ],
+      "independent_assessment": "Generalized FH instantiated in two elementary models; no general operator differentiability proof.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "R7_P02_direct_matrix_and_switch_scaling",
+      "kind": "finite_exact_counterexamples",
+      "status": "PASS",
+      "details": {
+        "K": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1]])",
+        "det_K": "1",
+        "Hessian_diagonal": [
+          "-81",
+          "-81",
+          "81",
+          "81"
+        ],
+        "fprime_over_s": "8",
+        "fprime_over_s_lambda": "8/9",
+        "old_missing_lambda_expression": "8/9",
+        "n3_detJ_sign_when_K_identity": -1,
+        "matrix_product_H": "Matrix([[-27, -54], [-54, -27]])",
+        "elementwise_product_H": "Matrix([[-27, 0], [0, -27]])",
+        "scope": "Finite algebra refutes a general matrix implication and distinguishes normalization/array semantics. Does not refute a particular spectral branch or certify G2."
+      },
+      "index": 24,
+      "category": "symbolic/exact",
+      "source_function": "direct_matrix_and_switch_scaling",
+      "source_lines": [
+        478,
+        501
+      ],
+      "independent_assessment": "Finite counterexamples: determinant/definiteness, missing eigenvalue scaling (8 versus 8/9), n=3 determinant sign, and matrix versus elementwise products. No historical NumPy scripts run.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    },
+    {
+      "name": "execution_contract_explicit_raise_and_input_identity",
+      "kind": "execution_integrity",
+      "status": "PASS",
+      "details": {
+        "assert_nodes": 0,
+        "explicit_raise_negative_control_caught": true,
+        "input_snapshots_verified": 4
+      },
+      "index": 25,
+      "category": "bookkeeping",
+      "source_function": "execution_contract",
+      "source_lines": [
+        505,
+        519
+      ],
+      "independent_assessment": "Bookkeeping only: zero assert AST nodes, intentional RuntimeError caught, four manifest snapshots hash-checked.",
+      "normal_status": "PASS",
+      "optimized_status": "PASS"
+    }
+  ],
+  "independent_verification_gates": {
+    "passed": 143,
+    "failed": [],
+    "evidence_file": "independent-execution-66hgfj6g/verification.json"
+  },
+  "independent_exact_samples": {
+    "wronskian_n2_half": "-4*pi",
+    "n2_x2_coefficient": "-130*pi**4",
+    "n2_four_interface_determinant": "7030400000*pi**4/4782969",
+    "determinant_method": "resultant of P(t)=144t^2-88t+9 and t(1-t)^3 P'(t)^2, using product over both roots; normalized F=f/(9*pi^2)"
+  },
+  "independent_nonstationary_mirror_sample": {
+    "model": "-u''=lambda*rho*u; Dirichlet endpoints; rho=(1,4,1) at a=1/4,1-a=3/4; both interfaces move",
+    "method": "Independent half-domain characteristic roots with Neumann first mode and Dirichlet second mode; weighted normalization by quadrature; implicit derivative and separately perturbed root finite difference. No checker import.",
+    "closed_form_sqrt_lambdas": [
+      "4*acos(sqrt(5/6))",
+      "4*acos(1/sqrt(3))"
+    ],
+    "lambda_values": [
+      "2.829586034443622360319952907625266808931102261713490619161302899884472542202079",
+      "14.602077453837591825051791909922411553085684218708438233366129366394298410802994"
+    ],
+    "weighted_masses": [
+      "0.22088036638295498829029685861791522288871308830159004084624997923501177747140486",
+      "0.068483406088028155243408946215990099250815270077271430130642127079885013217205245"
+    ],
+    "normalized_u_a_squared": [
+      "0.26666666666666666666666666666666666666666666666666666666666666666666666666666667",
+      "0.66666666666666666666666666666666666666666666666666666666666666666666666666666667"
+    ],
+    "characteristic_residuals": [
+      "0.0",
+      "-7.1436711955142186388486471769083809965744374676424916325945365201727039744171137e-102"
+    ],
+    "individual_implicit_derivatives": [
+      "4.5273376551097957765119246522004268942897636187415849906580846398151560675233264",
+      "58.408309815350367300207167639689646212342736874833752933464517465577193643211977"
+    ],
+    "FH_gap_derivative": "53.88097216024057152369524298748921931805297325609216794280643282576203757568865",
+    "implicit_gap_derivative": "53.88097216024057152369524298748921931805297325609216794280643282576203757568865",
+    "finite_difference_h": "0.000000000001",
+    "perturbed_sqrt_lambdas": [
+      [
+        "1.6821373411372062214259646878786841564795571509028647966398154746690435495975464",
+        "3.8212664725056796456004552571962124632765686145078060930445803550769454670991552"
+      ],
+      [
+        "1.6821373411345148016801473110601992474316211546561990903352399129763291131643007",
+        "3.8212664724903945797104631087455906142388071704538784498946539876742897062561764"
+      ]
+    ],
+    "finite_difference": "53.880972160240571523696166076301265671264000057163034903308826244893225744031371",
+    "FD_absolute_error": "0.00000000000000000000092308881204635321102680107086696050239341913118816834272083410700822856609171995",
+    "old_half_formula": "26.940486080120285761847621493744609659026486628046083971403216412881018787844325",
+    "old_formula_absolute_error": "26.940486080120285761848544582556656012237513429116950931905609832012206956187046",
+    "scope": "One finite nonstationary example at 100-digit working precision. Numerical tolerances are not certified interval enclosures."
+  },
+  "provenance_label_interpretation": {
+    "frozen_checker_payload_role": "independent executable-check author, not final reviewer",
+    "frozen_runner_summary_role": "author execution evidence, not independent final review",
+    "interpretation": "These unchanged author strings describe code provenance. This execution and its verification were performed by the fresh independent verifier."
+  },
+  "frozen_source_notes": {
+    "inputs/gap-band-extremals.md": "Lines 24-27 evidence the mirror convention and old gap formula missing its factor; historical numerical claims were not adopted as independent evidence.",
+    "inputs/feynman-hellmann.md": "Lines 12-18 evidence the weighted-normalization wording; group 22 checks a fixed-L2 counterexample."
+  },
+  "limits": [
+    "This verdict covers only this packet's explicit symbolic identities, finite exact cases, real high-precision samples, and execution/input integrity.",
+    "No whole analytic theorem certification: no Volterra, full variational/min-max argument, full H_0^1 bound, arbitrary spectral branch, global extremality, or general operator differentiability certification.",
+    "mpmath results use floating-point working precision, not rigorous interval arithmetic. Residuals and tolerances are numerical evidence, not certified error enclosures.",
+    "General symbolic checks establish the displayed algebraic identities or scalar limits only, subject to their parameter domains. They do not validate untested analytic hypotheses or uniform Taylor remainders.",
+    "Matrix counterexamples and the normalized determinant are finite algebra; they do not certify G2 or refute a specific spectral branch.",
+    "Frozen source-scan files were hashed as data. No historical scripts, missing appendices, referenced derivations.md, repository originals, old certificates, Lean, or mathlib were run or consulted.",
+    "No memory, authors' conversations or prior execution results, other agents' directories, or main project working tree were read. Source paths appearing inside documents were not followed.",
+    "Manifest commit/provenance labels and matches_report_base claims were not verified against Git or original locations. SHA bindings establish identity to the supplied packet, not authenticity or current working-tree identity.",
+    "Runtime versions, interpreter hash, and SymPy/mpmath entrypoint hashes were recorded; the entire installed runtime dependency closure was not hashed.",
+    "Outer process capture and rechecked child receipts provide execution evidence; no separate kernel-level process or filesystem trace was collected."
+  ]
+}

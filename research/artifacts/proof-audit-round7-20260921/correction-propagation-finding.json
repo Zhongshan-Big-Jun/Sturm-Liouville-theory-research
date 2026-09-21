@@ -1,0 +1,54 @@
+{
+  "id": "R7-P04",
+  "kind": "coordinator-obligation-omission",
+  "explanation": "Three downstream cards were reviewed/released against round7-inertia-and-propagation but also inherit a separate round7-gap-spectral obligation from their FH dependency. An upstream release intentionally does not erase downstream review duties. The first three STILL_BLOCKED results are preserved; exact additional revisions and a fresh isolated review are required before default retrieval may recover.",
+  "current_blocked": [
+    {
+      "location": "tools/band-selfconsistency-equivariance.md",
+      "sha256": "4328725971dd14adf1ad0774635100392bb235fd166bb82390ddb50acd67e331",
+      "correction_state": {
+        "issues": [
+          "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c"
+        ],
+        "reuse_allowed": false,
+        "status": "needs_review"
+      }
+    },
+    {
+      "location": "tools/green-half-inertia.md",
+      "sha256": "8db06474e9d3fa790e6b62eacf8043cbd16237322cfebe1fe21d9bc775ce33b2",
+      "correction_state": {
+        "issues": [
+          "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c"
+        ],
+        "reuse_allowed": false,
+        "status": "needs_review"
+      }
+    },
+    {
+      "location": "tools/half-problem-regularized-green.md",
+      "sha256": "171764c0b23512ca48a7d3dfe410e506a9131ace5ce163aa3c65b1472012ea15",
+      "correction_state": {
+        "issues": [
+          "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c"
+        ],
+        "reuse_allowed": false,
+        "status": "needs_review"
+      }
+    },
+    {
+      "location": "tools/left-definite-orthogonal-systems.md",
+      "sha256": "d2939f6cd92da0a969835d31ab2ca762ca0f4a64fb62ff1c05feb41f8881f37d",
+      "correction_state": {
+        "issues": [
+          "8e1b8059e0926bf9b5c423e4c67b3ce349784bd1847e1c49901aa90cb997f615"
+        ],
+        "reuse_allowed": false,
+        "status": "retracted"
+      }
+    }
+  ],
+  "remedy": "Use existing propose_revision, review_requirements, native stateless review and release APIs; do not change card bytes, omit an issue, edit journal history or bypass the correction gate.",
+  "mathematical_change": false,
+  "plugin_source_change": false
+}

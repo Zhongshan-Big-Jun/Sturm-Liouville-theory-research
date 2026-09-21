@@ -1,0 +1,64 @@
+{
+  "replay_directory": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+  "audit_problems": [],
+  "all_numerical_and_identity_audits_passed": true,
+  "runs": [
+    {
+      "label": "originals-normal",
+      "exit_code": 1,
+      "recomputed_tests": 117,
+      "recomputed_passed": 38,
+      "recomputed_failed": 79,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "candidates-normal",
+      "exit_code": 0,
+      "recomputed_tests": 117,
+      "recomputed_passed": 117,
+      "recomputed_failed": 0,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "originals-optimized",
+      "exit_code": 1,
+      "recomputed_tests": 117,
+      "recomputed_passed": 38,
+      "recomputed_failed": 79,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "candidates-optimized",
+      "exit_code": 0,
+      "recomputed_tests": 117,
+      "recomputed_passed": 117,
+      "recomputed_failed": 0,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    }
+  ],
+  "scope_gate_counterexample": {
+    "kind": "real harness logic defect demonstrated on synthetic module metadata, no external read",
+    "collector_line": 295,
+    "collector_ast_sha256": "dd2a4a5ae91464eb9b7f1e7b3ed1cecd553e1a3594c5d5184aed77f5bbe37833",
+    "collector_expression": "{K: str(getattr(V, '__file__', '')) for K, V in sys.modules.items() if getattr(V, '__file__', None) and Path(V.__file__).resolve().is_relative_to(Base)}",
+    "gate_line": 80,
+    "input_module_file": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/outside/gap_lib.py",
+    "isolated_base": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/run",
+    "reported_bindings": {},
+    "reported_outside": [],
+    "outside_module_was_omitted": true,
+    "impact": "An outside project import is discarded before replay validates module paths, so the empty external_project_modules output is not evidence of isolation. This does not demonstrate an outside import occurred in the actual replay."
+  },
+  "candidate_stationary_residual_max": 2.3299524457324216e-13,
+  "candidate_full_matrix_max_abs_error": 0.005725286907363625,
+  "copied_input_count": 45,
+  "output_digests_rechecked": 34
+}

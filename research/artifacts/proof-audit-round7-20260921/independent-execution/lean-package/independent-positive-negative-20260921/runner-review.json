@@ -1,0 +1,178 @@
+{
+  "review_kind": "independent static execution review before runner launch",
+  "lean_runner": [
+    "Output must be a new child of lean-package; all run/helper writes remain under that directory, including tmp.",
+    "replay verifies 10 local freeze entries and 14 external inputs, but PACKET freeze/numeric bindings require this executor preflight.",
+    "Uses direct compiler verifier contract route; no Lake build/cache download and no build guard acquisition in this invocation.",
+    "compile_local_tree invokes lean -R snapshot -o NEW_RUN/lib/SL/AuditRound7.olean snapshot/SL/AuditRound7.lean.",
+    "Exact comparison elaborates expected type in a probe and checks definitional equality, universe count, binder kinds. Temporary expected axiom is not a premise of the candidate theorem.",
+    "Fresh import path is prepended; --deps resolution is checked. This executor will additionally query findOLean and environment-owned constants.",
+    "Runner lists source def/theorem/lemma with a regex. This executor will enumerate the imported environment independently to check coverage and definitions.",
+    "Wrong-target contract expects -6*pi while actual theorem has -4*pi; correct failure is target_mismatch after successful compilation.",
+    "WrongMirrorFactor exact application requests factor 1 using a theorem with factor 2; correct failure is a Lean type mismatch, not syntax/import failure.",
+    "author_machine_checks_passed is a runner label and is not evidence of executor independence."
+  ],
+  "numerical_runner": [
+    "Runs normal, -O, old-FH normal, old-FH -O sequentially and stops on first unexpected exit.",
+    "checks.py contains 25 registered groups and explicit RuntimeError gates; it has no ast.Assert nodes.",
+    "Last integrity group reads numerical/inputs/manifest.json, absent from this packet and not bound in PACKET.",
+    "Even after logging all groups, payload construction unconditionally reads the absent manifest again, so outputs.json will not be written.",
+    "Do not copy or fabricate missing inputs. Preserve prescribed runner failure, then run original checks.py under -O and both old-FH negative modes directly for diagnostic evidence."
+  ],
+  "numeric_groups": [
+    {
+      "name": "W_product_to_sum_general",
+      "kind": "symbolic_identity",
+      "function": "w_product_to_sum",
+      "line": 63
+    },
+    {
+      "name": "W_sum_squares_general_recurrence",
+      "kind": "symbolic_identity",
+      "function": "w_recurrence",
+      "line": 72
+    },
+    {
+      "name": "W_finite_exact_Chebyshev_certificates",
+      "kind": "finite_exact",
+      "function": "w_chebyshev",
+      "line": 82
+    },
+    {
+      "name": "W_n2_half_counterexample",
+      "kind": "exact_counterexample",
+      "function": "w_counterexample",
+      "line": 95
+    },
+    {
+      "name": "Taylor_pi4_general",
+      "kind": "symbolic_identity",
+      "function": "taylor_coefficient",
+      "line": 106
+    },
+    {
+      "name": "n2_exact_roots_and_reduction",
+      "kind": "finite_exact",
+      "function": "n2_roots",
+      "line": 127
+    },
+    {
+      "name": "n2_normalized_determinant_exact",
+      "kind": "finite_exact",
+      "function": "n2_determinant",
+      "line": 138
+    },
+    {
+      "name": "n2_four_root_order_signs_numeric",
+      "kind": "high_precision_finite",
+      "function": "n2_root_locations",
+      "line": 150
+    },
+    {
+      "name": "piecewise_L2rho_antiderivative_identity",
+      "kind": "symbolic_identity",
+      "function": "integral_identity",
+      "line": 241
+    },
+    {
+      "name": "nonstationary_shooting_index_and_residual",
+      "kind": "high_precision_finite",
+      "function": "shooting_check",
+      "line": 250
+    },
+    {
+      "name": "exact_segment_normalization_vs_quadrature",
+      "kind": "high_precision_finite",
+      "function": "normalization_check",
+      "line": 258
+    },
+    {
+      "name": "symmetric_FH_vs_independent_central_difference",
+      "kind": "high_precision_finite",
+      "function": "symmetric_fh_check",
+      "line": 273
+    },
+    {
+      "name": "legacy_symmetric_formula_is_half",
+      "kind": "high_precision_counterexample",
+      "function": "half_formula_check",
+      "line": 295
+    },
+    {
+      "name": "one_interface_parameter_has_no_mirror_factor",
+      "kind": "high_precision_finite",
+      "function": "one_interface_check",
+      "line": 306
+    },
+    {
+      "name": "u_second_derivative_true_nonzero_jump",
+      "kind": "high_precision_counterexample",
+      "function": "second_derivative_jump",
+      "line": 319
+    },
+    {
+      "name": "trial_plateau_Gram_integrals_general",
+      "kind": "symbolic_identity",
+      "function": "plateau_integrals",
+      "line": 337
+    },
+    {
+      "name": "trial_plateau_bound_finite_exact_instances",
+      "kind": "finite_exact",
+      "function": "plateau_bound",
+      "line": 348
+    },
+    {
+      "name": "center_vanishing_subspace_finite_Gram_bounds",
+      "kind": "finite_exact",
+      "function": "vanishing_gram",
+      "line": 364
+    },
+    {
+      "name": "thin_density_spectral_bound_samples",
+      "kind": "high_precision_finite",
+      "function": "thin_spectra",
+      "line": 409
+    },
+    {
+      "name": "thin_density_scalar_limits_general_n",
+      "kind": "symbolic_identity",
+      "function": "scalar_limits",
+      "line": 425
+    },
+    {
+      "name": "constant_density_refutes_general_4pi2",
+      "kind": "symbolic_counterexample",
+      "function": "constant_density_gap",
+      "line": 437
+    },
+    {
+      "name": "R7_P01_rho2_Schrodinger_counterexample",
+      "kind": "exact_counterexample",
+      "function": "schrodinger_counterexample",
+      "line": 447
+    },
+    {
+      "name": "R7_P01_generalized_FH_two_exact_models",
+      "kind": "finite_exact",
+      "function": "generalized_fh_check",
+      "line": 465
+    },
+    {
+      "name": "R7_P02_direct_matrix_and_switch_scaling",
+      "kind": "finite_exact_counterexamples",
+      "function": "direct_matrix_and_switch_scaling",
+      "line": 478
+    },
+    {
+      "name": "execution_contract_explicit_raise_and_input_identity",
+      "kind": "execution_integrity",
+      "function": "execution_contract",
+      "line": 505
+    }
+  ],
+  "assert_count": 0,
+  "read_scope": "Only allowed supplied inputs and explicit existing execution environments. External report hash only; no semantic manuscript review.",
+  "write_scope": "/mnt/f/tools/math-audit-round7-20260921/independent-execution",
+  "semantic_review_verdict": "not_issued"
+}

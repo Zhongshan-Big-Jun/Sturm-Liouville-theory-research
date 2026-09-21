@@ -1,0 +1,8 @@
+{
+  "scope": "Only observation-time Base filtering reintroduced; all expected-binding checks retained. The unchanged negative-control suite must return failure.",
+  "original_sha256": "4ff4d829dfd699f473260c6b9ae3103cfb73c3616485f642871e66e9c591233e",
+  "mutant_sha256": "300ff0d4b827d0781095da41d86a398f58322917c7c7f7552af30c9a08f50090",
+  "before": "    module_files = collect_modules()\n",
+  "after": "    module_files = {name: path for name, path in collect_modules().items()\n                    if Path(path).resolve().is_relative_to(base.resolve())}\n",
+  "expected_suite_exit": 1
+}

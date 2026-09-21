@@ -1,0 +1,23 @@
+{
+	"run_id": "88fa8bbd41f549c08bcb415d2ec245e7",
+	"inputs": {
+		"lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+		"lakefile.lean": "159fdc8ea408eb69ce540b5ec802ed19cce7692654d1045b7b5806100ae5ed12",
+		"lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263",
+		"SL/AuditRound7.lean": "c1b464f60cc7cef7a1052a0cf97cde4cacd01b36f69a83ac94056128a7fb8af6"
+	},
+	"tool_hashes": {
+		"verify_lean_project.py": "ccbdb79a8264a103006768636a5bb8a501c4bc4420eab0c783f08fbe5212592d",
+		"lean_runtime.py": "cb8de8974c1ed6598d3c81ebab40331944198da8feb6f80b20196362af5a6086",
+		"lean_evidence.py": "acfc329ae136d491293020dc0b1001f27b2b43200466962c07c83d960e991be1",
+		"LeanVerifyProbe.lean.template": "4299cc51119b911992511b2ce05e114dfdcbe5d698b4639838585e74c62a7a7f",
+		"lake_build_guard.py": "ad8107677112126a6ff9c2f6ed4ed7019960f8357306f4b69e98047ff2d0c4f0",
+		"run_manifest.schema.json": "0ba7f0afad04a704a7004cc98dd5ee7509a780eb719e45300edd1e6e477aef6c"
+	},
+	"contract": {
+		"file": "SL/AuditRound7.lean",
+		"declaration": "SL.AuditRound7.local_algebra_root",
+		"expected_type": "(∀ (n : ℕ) (x : ℝ), HasDerivAt (SL.AuditRound7.normalized_mode n) (SL.AuditRound7.normalized_mode_slope n x) x) ∧\n    (∀ (n : ℕ) (x : ℝ), SL.AuditRound7.wronskian n x = Real.pi *\n      (Real.sin ((2 * (n : ℝ) + 1) * (Real.pi * x)) -\n        (2 * (n : ℝ) + 1) * Real.sin (Real.pi * x))) ∧\n    (∀ (n : ℕ) (t : ℝ), Real.sin ((2 * (n : ℝ) + 1) * t) -\n      (2 * (n : ℝ) + 1) * Real.sin t = -4 * Real.sin t * SL.AuditRound7.sin_square_sum n t) ∧\n    (∀ (n : ℕ), 0 < n → ∀ (x : ℝ), 0 < x → x < 1 → SL.AuditRound7.wronskian n x < 0) ∧\n    (SL.AuditRound7.wronskian 2 (1 / 2) = -4 * Real.pi) ∧\n    (SL.AuditRound7.wronskian 2 (1 / 2) ≠ -2 * ((2 : ℝ) + 1) * Real.pi * Real.sin (Real.pi * (1 / 2))) ∧\n    (∀ (n : ℕ), ((n : ℝ) * Real.pi) ^ 2 * (Real.sqrt 2 * ((n : ℝ) * Real.pi)) ^ 2 -\n      (((n : ℝ) + 1) * Real.pi) ^ 2 * (Real.sqrt 2 * (((n : ℝ) + 1) * Real.pi)) ^ 2 =\n        SL.AuditRound7.endpoint_coefficient n) ∧\n    (∀ (n : ℕ), SL.AuditRound7.endpoint_coefficient n < 0) ∧\n    (∀ (lower upper jump lowerLeft lowerRight upperLeft upperRight\n        lowerDL lowerDR upperDL upperDR : ℝ),\n      lowerDL = SL.AuditRound7.fh_term lower jump lowerLeft 1 →\n      lowerDR = SL.AuditRound7.fh_term lower (-jump) lowerRight (-1) →\n      upperDL = SL.AuditRound7.fh_term upper jump upperLeft 1 →\n      upperDR = SL.AuditRound7.fh_term upper (-jump) upperRight (-1) →\n      lowerRight ^ 2 = lowerLeft ^ 2 → upperRight ^ 2 = upperLeft ^ 2 →\n      (upperDL + upperDR) - (lowerDL + lowerDR) =\n        2 * jump * SL.AuditRound7.gap_switch lower upper lowerLeft upperLeft) ∧\n    (∀ (jump f : ℝ), jump ≠ 0 → (2 * jump * f = 0 ↔ f = 0))",
+		"universes": []
+	}
+}

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py", line 556, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py", line 530, in main
+    close((gap(a + h) - gap(a - h)) / (2 * h), (1 - 4) * f, '1e-18', 'intentional old FH formula rejection')
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py", line 38, in close
+    require(Error <= mp.mpf(Tolerance), Message + ': error=' + str(Error))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py", line 28, in require
+    raise RuntimeError(Message)
+RuntimeError: intentional old FH formula rejection: error=26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259

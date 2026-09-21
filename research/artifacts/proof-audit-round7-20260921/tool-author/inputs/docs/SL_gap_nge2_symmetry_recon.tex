@@ -1,0 +1,241 @@
+% 用法: xelatex SL_gap_nge2_symmetry_recon.tex (两遍, -output-directory=build)
+% 主题: n>=2 相邻谱隙极值子反射对称性 - 侦察总结 (EVIDENCE + STRICT 分工)
+% 日期: 2026-08-12
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\STRICT}{\textbf{严格证明}}
+\newcommand{\EVIDENCE}{\textbf{数值证据}}
+
+\title{相邻谱隙极值子的反射对称性 ($n\ge2$):\\ 侦察总结、失败路线与开放条件}
+\author{BVE research 项目}
+\date{2026 年 8 月 12 日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本报告总结对 $n\ge2$ 相邻谱隙 $D_n=\lambda_{n+1}-\lambda_n$ 在
+$1\le\rho\le R$ 盒类内 bang--bang 极值子反射对称性的侦察: 尝试方法
+(随机侦察、反对称扰动、反对称平面系统网格、Jacobian 探针、对称化不等式),
+失败路线如实登记, 以及严格结果与开放条件的现状. 严格结果 (结构定理、
+$R=1$ 一般 $n$ 显式分析、$R\to1$ 局部存在唯一与对称性、全局分类框架
+(G1$'$)+(G2) $\Rightarrow$ 猜想) 见
+\url{SL_gap_nge2_symmetry_local_proof.pdf}; 本文只给出摘要与数值证据.
+全部数值均为 \EVIDENCE, 不构成证明.
+\end{abstract}
+
+\section{任务与结论}
+
+\textbf{任务.} 设 $R>1$, $n\ge2$, 考虑 Dirichlet 加权弦 $-u''=\lambda\rho u$,
+$u(0)=u(1)=0$, 权 $\rho\in\{1,R\}$ 逐块常值, 恰有 $2n$ 个开关, 交替图案 SUP
+(首末块 $1$) 或 INF (首末块 $R$). 带自洽驻点 (定义见证明文档\url{SL_gap_nge2_symmetry_local_proof.pdf}) 是
+$D_n$ 在该图案族内极值子的必要特征; 问题: 带自洽驻点是否 (i) 唯一, (ii) 反射
+对称? 若然, 则 $D_n$ 的全局极大化子 (SUP) 与极小化子 (INF) 唯一且对称.
+
+\textbf{结论.}
+\begin{itemize}
+	\item (\STRICT) 局部定理: 对 $R-1$ 充分小, 每个图案在升序区域 $U$ 内恰有
+	一个带自洽驻点, 反射对称, 解析依赖 $R$ (证明: $R=1$ 闭式分析 + 隐函数
+	定理 + 等变性; 边界排除用两个新引理: 零点一致远离端点、简单零点隔离).
+	\item (\STRICT) 分类框架: 条件 (G1$'$) ($\det D_xF$ 非退化且定号 $(-1)^n$
+	于整个解簇 $\Sigma_\sigma$) 与 (G2) (块宽在紧 $R$ 区间上一致正) 蕴含全局
+	唯一性与对称性 (证明: 拓扑度同伦不变 + 等变性 + 已有有限块约化).
+	\item (\EVIDENCE) 数值侦察 ($n=2..5$, $R\in\{2,4,10\}$, 两图案): 每个图案
+	恰有一个带自洽驻点, 反射对称到 $10^{-11}$ 量级; 其余驻点全部为零宽块退化
+	伪根. (G1$'$) 沿对称分支成立 ($n=2$, $\det J>0$, $R\in[1.05,100]$);
+	(G2) 无边界聚点.
+	\item 开放: (G1$'$)、(G2) 的严格证明 (见第~\ref{sec:open} 节).
+\end{itemize}
+
+\section{侦察方法}\label{sec:methods}
+
+全部实现基于转移矩阵谱引擎 (\texttt{scripts/\_gapn2\_symmetry\_recon.py}):
+对给定块配置求 Dirichlet 特征值的平方根 $s$ ($M_{01}(s)=0$ 网格扫描 + 精化),
+再求归一化特征函数 (解析积分的 $L^2(\rho)$ 归一化), 计算切换函数
+$f=\lambda_nu_n^2-\lambda_{n+1}u_{n+1}^2$ 与残差 $F_j=f(x_j)/\lambda_{n+1}$.
+
+\subsection{随机侦察 (n=2..5, R=2,4,10)}
+
+\begin{itemize}
+	\item 参数化: softmax 映射 $z\mapsto$ 正块宽 (和为 $1$), 保证可行性;
+	每图案每 $(n,R)$ 约 80--200 个 Dirichlet 均匀种子, 用
+	\texttt{least\_squares} 求解 $F=0$ (阈值 $10^{-12}$), 残差 $<10^{-7}$
+	才接受.
+	\item 去重: 按开关位置聚类 (容忍度 $10^{-6}$).
+	\item 带匹配检验: 对每个驻点检查块中点 $f$ 的符号是否与图案一致
+	(SUP: $f>0$ 于 $\rho=R$ 块; INF 反之), 并要求块中点
+	$|f|/\lambda_{n+1}>10^{-6}$ -- 这排除重合开关 (零宽块) 的退化伪根.
+	\item 结果: 全部 $n,R,\sigma$ 组合中恰有一个带匹配的驻点, 其反射不对称度
+	$\max_j|x_j+x_{2n+1-j}-1|<10^{-11}$; 其余驻点全部带匹配失败
+	(块中点 $|f|/\lambda_{n+1}\lesssim10^{-9}$).
+\end{itemize}
+
+\subsection{反对称扰动}
+
+以已知对称解为中心, 施加反对称扰动
+($\delta x_j=-\delta x_{2n+1-j}$, 幅值 $10^{-5}$ 至 $2\times10^{-1}$,
+每幅值 16 个随机方向) 与对称扰动 (幅值 $10^{-4}$ 至 $5\times10^{-2}$,
+8 个方向). 全部收敛回对称解 (或零宽伪根), 未发现对称解的反对称邻域内有其他
+解 -- 与对称点处反对称方向 Jacobian 块非退化一致.
+
+\subsection{反对称平面系统网格 (n=2, R=4)}
+
+把初值限制在反对称平面 $(\delta_1,\delta_2,-\delta_2,-\delta_1)$ 上做网格
+(17 点/轴), SUP 238 个起点、INF 221 个起点, 每个起点独立求解. 全部收敛到
+对称解或零宽块伪根; \textbf{无非对称内部带自洽解}. 记录:
+\texttt{scripts/\_gapn2\_antigrid\_log.txt}.
+
+\subsection{Jacobian 探针 (n=2)}
+
+沿 $R$ 续延的对称分支计算边坐标有限差分 Jacobian $J$ (步长 $10^{-6}$),
+并做对称/反对称块分解:
+\begin{itemize}
+	\item $R=1$ 闭式核对: $J(1,x^*)=\operatorname{diag}(f_1'(x_j^*)/\lambda_3)$,
+	$\det J(1,x^*)\approx1.43180\times10^5$; $R=1.05$ 数值
+	$1.3765\times10^5$ (相对差 $4\%$, 未到极限).
+	\item 沿分支 $R\in[1.05,100]$ (SUP) 与 $[1.05,50]$ (INF):
+	$\det J>0$ 全程, 未见零点; SUP 从 $1.38\times10^5$ 单调降至 $330$,
+	INF 从 $1.22\times10^5$ 降至 $0.123$.
+	\item 等变性检查: 对称点处 $F(R,\bar x)=PF(R,x)$ 数值误差 $\sim10^{-16}$;
+	相应反对合 $J=-PJP$ 成立; 曲线切线反对称 ($\delta x_j=-\delta x_{2n+1-j}$);
+	$J\cdot x'=-F_R$ 吻合 (相对误差 $\sim10^{-2}$, 有限差分量级).
+\end{itemize}
+
+\subsection{对称化不等式检验 (失败路线)}
+
+\begin{itemize}
+	\item (\STRICT) 边缘反射协变性: 配置 $x$ 与其反射 $\bar x_j=1-x_{2n+1-j}$
+	满足 $\rho_{\bar x}(y)=\rho_x(1-y)$ (图案回文), 故谱完全相同:
+	$D(\bar x)\equiv D(x)$. 因此 $D(x)$ 与 $D(\bar x)$ 的逐点比较是恒等式,
+	不可能给出任何方向的不等式.
+	\item (\EVIDENCE) 密度平均对称化: $\bar\rho=(\rho_x+\rho_{\bar x})/2$
+	(取值 $\{1,(1+R)/2,R\}$, 对称非 bang--bang). n=2, R=4, 每图案 200 个
+	随机配置: $D(\bar\rho)-D(x)<0$ 于 SUP 118 例、INF 116 例, $>0$ 于其余;
+	$\max|D(\bar\rho)-D(x)|\approx29.6$ (SUP) 与 $30.4$ (INF). 两个方向都大量
+	出现, 无单调不等式.
+	\item 诚实登记: 交接记录中的反例数字 (SUP 33/200, 最差 $-12.1$; INF
+	57/200, 最差 $+11.4$) 出自未保留的脚本变体, 本会话无法复现; 定性结论
+	(对称化无单调性) 一致.
+\end{itemize}
+
+\section{失败路线登记}\label{sec:failures}
+
+\begin{enumerate}
+	\item \textbf{对称化不等式} (见上): 边缘反射是恒等式; 密度平均无单调性.
+	结论: 对称化不能作为全局证明工具; 对称性必须来自 (局部唯一性 + 等变性)
+	或 (唯一性 + 反射共轭).
+	\item \textbf{Jacobian 简单块分解的符号归约}: 曾试图把对称点处的
+	$\det J$ 归约为两个小块行列式乘积并逐块控制符号. 但 $J=-PJP$ 的反对合
+	结构使 $J$ 把对称方向映到反对称方向 (非块对角), $\det J$ 是交叉块乘积
+	$\det J=(-1)^n\det A\det B$; 简单符号归约不成立, 必须分别证明两个
+	$n\times n$ 块行列式恒非零. 现状: 数值上沿分支 $>0$ (n=2), 分析未闭合.
+	\item \textbf{早期谱引擎 bug}: 转移矩阵传播顺序曾写成
+	$M_{\text{new}}=P\cdot M_{\text{old}}$ 而非 $M_{\text{old}}\cdot P$,
+	产生伪解 (对称性被错误否定). 修复后周期延拓/续延结果全部一致.
+	\item \textbf{零宽块伪根}: 求解器在重合开关处找到大量退化驻点
+	($f(x_j)=0$ 但两块合并且中点符号错误); 必须用块中点符号 + 宽度阈值
+	($>10^{-6}$) 过滤, 否则会把伪根误认为非对称解.
+	\item \textbf{交接数字不可复现}: 对称化反例统计 (33/200 等) 无法复现,
+	已如实登记并重新生成可复现版本 (见~\ref{sec:methods} 末).
+	\item \textbf{§4 初稿边界排除论证有漏洞} (本会话修复): 初稿以
+	"极限配置在 $\partial U$ 则 $f_1$ 零点重合, 与结构定理 (c) 矛盾" 排除
+	边界极限. 但结构定理 (c) 只对内部配置成立, 且 $f_1$ 在 $0,1$ 有二重零点
+	($f_1(0)=f_1(1)=0$), $F(1,\cdot)=0$ 在 $\partial U$ 上确有解 (如
+	$x=(0,x_2^*,\dots)$). 正确论证: 引理 (零点一致远离端点) 排除零点逼近
+	$0,1$; 引理 (简单零点隔离) 排除零点在简单零点处合并; 两者 + 紧性给出
+	极限只能是唯一内部解 $x^*$.
+\end{enumerate}
+
+\section{严格结果摘要}\label{sec:strict}
+
+\begin{itemize}
+	\item 结构定理 (STRICT): 带自洽配置的 $W<0$, 端点斜率比
+	$q_0>1>c$, $q_1<-1<-c$, $f$ 恰 $2n$ 个简单零点即开关, $K\equiv-2D<0$,
+	胞腔结构. 注: (c) 的计数依赖 (b) (首末胞腔的 $|Q|$ 从有限值 $q_0,|q_1|$
+	出发); 一般密度的精确零点计数
+	$\#Z=2n-2+\mathbf1_{\{q_0>c\}}+\mathbf1_{\{q_1<-c\}}$ 见
+	\url{SL_gap_nge2_exact_2n_switches_proof.pdf}.
+	\item $R=1$ 显式分析 (STRICT, 一般 $n$): $f_1$ 恰 $2n$ 个简单零点,
+	反射对称, 区间符号 $(-,+,-,\dots,-)$, $\operatorname{sgn}\det
+	D_xF(1,x^*)=(-1)^n$; $n=2$ 闭式 $t=(11\pm2\sqrt{10})/36$,
+	$\det J\approx1.43\times10^5$.
+	\item 局部定理 (STRICT): $R\to1$ 时每个图案在 $U$ 内恰有一个解, 带自洽、
+	对称、解析.
+	\item 分类框架 (STRICT): (G1$'$)+(G2) $\Rightarrow$ 猜想 (唯一 + 对称 +
+	全局极值子唯一对称); 证明用拓扑度.
+\end{itemize}
+
+\section{开放条件现状}\label{sec:open}
+
+\begin{enumerate}
+	\item[(G1$'$)] $\det D_xF_\sigma(R,x)\neq0$ 且符号 $(-1)^n$ 于整个解簇.
+	已有: $R=1$ 处的闭式值 (符号 $(-1)^n$); 对称分支上的数值 ($n=2$,
+	$\det J>0$ 至 $R=100$). 缺失: 非对称解的排除 (若存在, 需控制其行列式
+	符号). 可能路线: (a) 对称/反对称块分解 + 逐块非退化; (b) 利用
+	$J=-PJP$ 与 Sturm 型比较定理; (c) 证明 $F_\sigma(R,\cdot)$ 的全局
+	单射性 (反函数定理的全局形式, 需边界行为).
+	\item[(G2)] 块宽一致正 (无边界聚点). 已有: 全部数值侦察 (约 2000 次
+	求解) 无边界聚点; $R=1$ 处局部解远离边界 (零点远离端点引理).
+	缺失: 沿解簇的全局块宽下界. 可能路线: (a) 退化配置 (重合开关) 处残差
+	系统的横截可解性分析 -- 证明边界上 $F$ 的零点只能以非横截方式出现;
+	(b) 用 $K\equiv-2D<0$ 与端点斜率比排除重合开关 (重合开关处 $f$ 的零点
+	有重数, 与简单性矛盾 -- 需要边界版本的零点计数).
+	\item 对称分支的 $R\to\infty$: SUP 分支 $R$ 块宽 $\to0$ ($D\to4\pi^2$,
+	中心质量钉扎), INF 分支 $D\to0$; 与 (G2) 不矛盾 (只要求有限 $R$).
+\end{enumerate}
+
+\section{经验教训}
+
+\begin{enumerate}
+	\item 数值侦察的四个陷阱: (i) 参数化必须保证可行性 (softmax);
+	(ii) 必须过滤零宽块伪根 (块中点符号 + 宽度阈值); (iii) 必须聚类去重;
+	(iv) 谱引擎的传播顺序 bug 曾直接造成伪结论 -- 任何"否定性"数值结果都要
+	独立复算.
+	\item 等变性是局部对称性的廉价工具: 只要 (a) 系统在反射下等变、
+	(b) $R=1$ 处解唯一对称、(c) 隐函数定理局部唯一, 分支自动对称. 全局化
+	需要唯一性, 拓扑度 (定号 Jacobian) 是标准通道.
+	\item 边界排除不能引用内部定理: $f_1$ 在端点有二重零点, $F(1,\cdot)$
+	在 $\partial U$ 有解; 必须用专门的引理 (远离端点 + 简单零点隔离).
+	一般 $n$ 的 $R=1$ 零点计数用 Wronskian/商函数胞腔单调性, 无需闭式.
+	\item 反对合结构 $J=-PJP$ 说明对称性不把对称子空间保持住, 而是把它映到
+	反对称子空间; $\det J$ 的符号控制因此是"交叉"的, 没有廉价归约.
+	\item 交接的数字与结论要区分: 无法复现的记录要如实标注, 用新生成的
+	可复现数据代替, 定性结论不变.
+	\item 数值永远是 \EVIDENCE; 只有写出的证明链 (\STRICT) 才算数.
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{itemize}
+	\item Sturm 振荡与严格交错, Wronskian 符号分析 ($W'=(\lambda_n-\lambda_{n+1})\rho u_nu_{n+1}$);
+	\item 商函数 $Q=u_{n+1}/u_n$ 的胞腔单调性与水平集计数 ($|Q|=c$);
+	\item Feynman--Hellmann 公式与饱和律 ($\delta D=\int\delta\rho\,f\,dx$);
+	\item 简单谱的解析扰动理论与隐函数定理 (转移矩阵方法);
+	\item 反射等变性与伪反自伴 Jacobi 结构 ($J=-PJP$);
+	\item 拓扑度与同伦不变性 (局部唯一性全局化的标准框架);
+	\item 谱的连续性与 $C^1$ 特征函数收敛 (Arzel\`a--Ascoli);
+	\item 闭式三角方程 ($\sin3\theta/\sin2\theta$ 恒等式, $144t^2-88t+9=0$).
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{proof} 证明文档: \url{SL_gap_nge2_symmetry_local_proof.pdf}, 2026-08-12.
+\bibitem{nge2} 有限块约化与恰 $2n$ 开关定理:
+\url{SL_gap_nge2_finite_reduction_proof.pdf}, \url{SL_gap_nge2_exact_2n_switches_proof.pdf}, 2026-08-10.
+\bibitem{n1} n=1 全部 $R$ 证明: \url{SL_gap_n1_symline_allR_proof.pdf},
+\url{SL_gap_n1_well_rigidity_allR_proof.pdf}, \url{SL_gap_n1_O3a_phase_rigidity_proof.pdf}.
+\end{thebibliography}
+
+\end{document}

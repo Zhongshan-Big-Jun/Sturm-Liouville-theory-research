@@ -1,0 +1,667 @@
+{
+  "status": "INCOMPLETE",
+  "utc": "2026-09-21T12:14:49.244044+00:00",
+  "observation_method": "runpy executes original bytes; after the unchanged exception escapes, read main Results from traceback locals. No supplied functions, gates, inputs, or results were replaced.",
+  "source": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py",
+    "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+    "bytes": 27026
+  },
+  "observer": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/observe_numerical.py",
+    "sha256": "aeda607d59494aa46343bd1186af60b317100d4b4dcab8ca624f8a2f8e0b2a65",
+    "bytes": 2672
+  },
+  "python": {
+    "path": "/usr/bin/python3.14",
+    "sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+    "bytes": 7477160
+  },
+  "optimize": 0,
+  "__debug__": true,
+  "exception": {
+    "type": "FileNotFoundError",
+    "message": "[Errno 2] No such file or directory: '/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/inputs/manifest.json'"
+  },
+  "groups": [
+    {
+      "name": "W_product_to_sum_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "identity": "W=pi*(sin((2n+1)*theta)-(2n+1)*sin(theta))",
+        "theta": "pi*x"
+      },
+      "elapsed_seconds": 0.03901
+    },
+    {
+      "name": "W_sum_squares_general_recurrence",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "base": 0,
+        "increment": "-4*pi*sin(theta)*sin(n*theta)^2",
+        "general_note": "Sum the checked increment over integer n>=1. Strict negativity for 0<x<1 uses the j=1 summand; see derivations.md."
+      },
+      "elapsed_seconds": 0.010693
+    },
+    {
+      "name": "W_finite_exact_Chebyshev_certificates",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "n": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          12
+        ],
+        "identities_per_n": 2
+      },
+      "elapsed_seconds": 0.078749
+    },
+    {
+      "name": "W_n2_half_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "n": 2,
+        "x": "1/2",
+        "actual": "-4*pi",
+        "old": "-6*pi"
+      },
+      "elapsed_seconds": 0.073012
+    },
+    {
+      "name": "Taylor_pi4_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "x2_coefficient": "-2*pi**4*(2*n + 1)*(2*n**2 + 2*n + 1)",
+        "scope": "fixed n Taylor expansion; not a uniform-in-n remainder bound"
+      },
+      "elapsed_seconds": 0.05603
+    },
+    {
+      "name": "n2_exact_roots_and_reduction",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "t_roots": [
+          "11/36 - sqrt(10)/18",
+          "sqrt(10)/18 + 11/36"
+        ],
+        "f_reduction": "f=2*pi^2*(1-t)*(-144*t^2+88*t-9), t=cos(pi*x)^2"
+      },
+      "elapsed_seconds": 0.01088
+    },
+    {
+      "name": "n2_normalized_determinant_exact",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "det_DxF": "7030400000*pi**4/4782969",
+        "numeric": "143179.86873957383682542582127015090713113231934249",
+        "normalization": "F_j=f(x_j)/(lambda_3), lambda_3=9*pi^2; four independent full-interval interfaces"
+      },
+      "elapsed_seconds": 0.045053
+    },
+    {
+      "name": "n2_four_root_order_signs_numeric",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "x_roots": [
+          "0.25597364467540803361677774203224541708202712337615142675312883099",
+          "0.38264716110914193029748953716376197104874059930458502854991267913",
+          "0.61735283889085806970251046283623802895125940069541497145008732087",
+          "0.74402635532459196638322225796775458291797287662384857324687116901"
+        ],
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "elapsed_seconds": 0.001573
+    },
+    {
+      "name": "piecewise_L2rho_antiderivative_identity",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "method": "closed-form exact segment integration evaluated at 90 decimal digits; not a mesh/trapezoid norm"
+      },
+      "elapsed_seconds": 0.025801
+    },
+    {
+      "name": "nonstationary_shooting_index_and_residual",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "densities": [
+          1,
+          4,
+          1
+        ],
+        "interfaces": [
+          "1/4",
+          "3/4"
+        ],
+        "n": 1,
+        "lambda_1": "2.8295860344436223603199529076252668089311022617134906191613028999",
+        "lambda_2": "14.602077453837591825051791909922411553085684218708438233366129366",
+        "shooting_residuals": [
+          "-9.2045502474332372870545724155992668305785290859364679345841545947e-92",
+          "-1.5340917079055395478424287359332111384297548476560779890973590991e-92"
+        ],
+        "f_a": "-8.9801620267067619206158738312482032196754955426820279904677388043",
+        "derivative_FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "root_selection": "monotone unwrapped phase bracketing; independent endpoint-y secant refinement"
+      },
+      "elapsed_seconds": 0.067677
+    },
+    {
+      "name": "exact_segment_normalization_vs_quadrature",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": [
+        {
+          "shooting_mass": "0.22088036638295498829029685861791522288871308830159004084624997924",
+          "segment_masses": [
+            "0.0050271879429008522155396385770949650136022280083429721255408959908",
+            "0.21082599049715328385921758146372529286150863228490409659516818725",
+            "0.0050271879429008522155396385770949650136022280083429721255408959908"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.51639777949432225135723538663765328144438956070554544354500983548"
+        },
+        {
+          "shooting_mass": "0.06848340608802815524340894621599009925081527007727143013064212708",
+          "segment_masses": [
+            "0.0043362519875424594486416702159665417889534522033962297563927356184",
+            "0.059810902112943236346125605784057015672908365670478970617856655843",
+            "0.0043362519875424594486416702159665417889534522033962297563927356184"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.81649658092772603273242802490196379732198249355222337614423085575"
+        }
+      ],
+      "elapsed_seconds": 0.077314
+    },
+    {
+      "name": "symmetric_FH_vs_independent_central_difference",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "differences": [
+          {
+            "h": "1e-5",
+            "central_difference": "53.880972252549452756442688925925777454278415328697286576435166647",
+            "error": "0.000000092308881232747445938436558136225442072605118633628733821011382492"
+          },
+          {
+            "h": "1e-8",
+            "central_difference": "53.880972160240663832576447622838434123019936423632131340287003626",
+            "error": "0.000000000000092308881204635349214804966963167539963397480570800524587669104379"
+          },
+          {
+            "h": "1e-11",
+            "central_difference": "53.880972160240571523787551868693854639155681194182753581093634023",
+            "error": "0.000000000000000000092308881204635321102707938090585638287201197188608431125580881747"
+          }
+        ],
+        "h_changes": "left a+h and right 1-a-h; both lengths move; new shooting roots for each perturbation"
+      },
+      "elapsed_seconds": 0.390081
+    },
+    {
+      "name": "legacy_symmetric_formula_is_half",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "old": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "correct": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "FD_over_old": "2.0000000000000000000034263999888536225687006608867238405471156771"
+      },
+      "elapsed_seconds": 0.000298
+    },
+    {
+      "name": "one_interface_parameter_has_no_mirror_factor",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "central_difference": "26.940486080120285761855253335499045557597865457786086743087128038",
+        "FH": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "parameter": "x_left changes; x_right fixed at 3/4. Do not double this convention."
+      },
+      "elapsed_seconds": 0.122022
+    },
+    {
+      "name": "u_second_derivative_true_nonzero_jump",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "index": 1,
+        "u_a": "0.51639777949432225135723538663765328144438956070554544354500983548",
+        "u_second_left": "-1.461191945074831426539124609668543695045078288302397096376903671",
+        "u_second_right": "-5.8447677802993257061564984386741747801803131532095883855076146838",
+        "jump_right_minus_left": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "expected": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "conclusion": "This eigenfunction is C1 but not C2, hence not globally C3."
+      },
+      "elapsed_seconds": 0.001043
+    },
+    {
+      "name": "trial_plateau_Gram_integrals_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "basis": "phi_j=1 on |x-jh|<=delta; linear to zero at |x-jh|=h/2; disjoint supports",
+        "diagonal_mass": "2*R*d - 2*d/3 + h/3",
+        "diagonal_energy": "-4/(2*d - h)",
+        "conditions": "h=1/(n+1), 0<delta<=h/12, R>=1",
+        "scope": "integral identities; dimension/min-max argument is in derivations.md"
+      },
+      "elapsed_seconds": 0.123656
+    },
+    {
+      "name": "trial_plateau_bound_finite_exact_instances",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "instances": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "rayleigh": "1728/145",
+            "upper_bound": "36"
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "625/1512",
+            "upper_bound": "6/5"
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "100000000/2501081667",
+            "upper_bound": "3/25"
+          },
+          {
+            "n": 1,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "1000000000000/250019833166667",
+            "upper_bound": "3/250"
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "rayleigh": "3888/145",
+            "upper_bound": "81"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "270000/425209",
+            "upper_bound": "9/5"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/44997970009",
+            "upper_bound": "9/50"
+          },
+          {
+            "n": 2,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/4500222997000009",
+            "upper_bound": "9/500"
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "rayleigh": "6912/145",
+            "upper_bound": "144"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "120000/138529",
+            "upper_bound": "12/5"
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "300000000/3748560001",
+            "upper_bound": "6/25"
+          },
+          {
+            "n": 3,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "3000000000000/375012624750001",
+            "upper_bound": "3/125"
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "rayleigh": "15552/145",
+            "upper_bound": "324"
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "67500/49621",
+            "upper_bound": "18/5"
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/22479235009",
+            "upper_bound": "9/25"
+          },
+          {
+            "n": 5,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/2250035498500009",
+            "upper_bound": "9/250"
+          },
+          {
+            "n": 8,
+            "R": 8,
+            "delta": "1/108",
+            "rayleigh": "34992/145",
+            "upper_bound": "729"
+          },
+          {
+            "n": 8,
+            "R": 1000,
+            "delta": "1/108",
+            "rayleigh": "34992/15025",
+            "upper_bound": "729/125"
+          },
+          {
+            "n": 8,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "24300000000/134781910081",
+            "upper_bound": "27/50"
+          },
+          {
+            "n": 8,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "243000000000000/13500006991000081",
+            "upper_bound": "27/500"
+          }
+        ],
+        "scope": "finite exact tests, not an infinite-dimensional spectral proof"
+      },
+      "elapsed_seconds": 0.002952
+    },
+    {
+      "name": "center_vanishing_subspace_finite_Gram_bounds",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "cases": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          }
+        ],
+        "scope": "All vectors in these finite polynomial subspaces only. Full H0^1 center-vanishing bound needs the analytic argument, not this test."
+      },
+      "elapsed_seconds": 3.280814
+    },
+    {
+      "name": "thin_density_spectral_bound_samples",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "samples": [
+          {
+            "n": 1,
+            "R": 1000,
+            "lambda_n": "0.19947604757876224161670141520987683620126103139047513616516714825",
+            "lambda_n_plus_1": "23.63863792205194419755274885384103008089239852868526206935519321",
+            "upper_lambda_n": "1.2",
+            "lower_lambda_n_plus_1": "13.283688485865788928686055340849186129021446011025187425349089421",
+            "upper_cap": "39.478417604357434475337963999504604541254797628963162505653397505"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "lambda_n": "0.46023960957596147866424807596021838292724601159004420522953561241",
+            "lambda_n_plus_1": "24.184919110799907783090460989150855247686519992637819711800258864",
+            "upper_lambda_n": "1.8",
+            "lower_lambda_n_plus_1": "16.33775784112061828063497511160960271999302295669291535284370603",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "lambda_n": "0.71173515712719193050921759253965114510255245733483157557578355009",
+            "lambda_n_plus_1": "24.34824386152920317784349217767083286571054726030688081554099957",
+            "upper_lambda_n": "2.4",
+            "lower_lambda_n_plus_1": "17.767488750553101505237464683613818993743453388365850956071603341",
+            "upper_cap": "157.91367041742973790135185599801841816501919051585265002261359002"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "lambda_n": "0.044976036599671416931627063891261075346475671521506785187772710726",
+            "lambda_n_plus_1": "88.792971246121859489939197228784281338761825358227814079562849938",
+            "upper_lambda_n": "0.18",
+            "lower_lambda_n_plus_1": "61.508542672014618798941864279421543266689191955403496904274692095",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          }
+        ],
+        "scope": "finite spectral samples; no infinite-dimensional theorem certification"
+      },
+      "elapsed_seconds": 0.477519
+    },
+    {
+      "name": "thin_density_scalar_limits_general_n",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "R": "q^3",
+        "delta": "q^-2 once q^2>=12(n+1)",
+        "limits": [
+          "0",
+          "(n+1)^2*pi^2"
+        ],
+        "scope": "scalar asymptotics of bounds, conditional on the full variational argument in derivations.md"
+      },
+      "elapsed_seconds": 0.015162
+    },
+    {
+      "name": "constant_density_refutes_general_4pi2",
+      "kind": "symbolic_counterexample",
+      "status": "PASS",
+      "details": {
+        "S_n_lower_bound": "(2n+1)*pi^2 for every R>=1 since rho=1 is admissible",
+        "n2_lower": "5*pi^2",
+        "n1_limit_candidate": "4*pi^2",
+        "scope": "supremum over the whole box class, not arbitrary stationary branches"
+      },
+      "elapsed_seconds": 0.001605
+    },
+    {
+      "name": "R7_P01_rho2_Schrodinger_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "rho": 2,
+        "H": "-d2/dx2+2*tau on fixed L2(0,1)",
+        "u": "sin(pi*x)",
+        "weighted_norm_squared": "1",
+        "ordinary_norm_squared": "1/2",
+        "old_prediction": "1",
+        "true_derivative": "2"
+      },
+      "elapsed_seconds": 0.022845
+    },
+    {
+      "name": "R7_P01_generalized_FH_two_exact_models",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "formula": "lambda'=(<u,A' u>-lambda*<u,B' u>)/<u,Bu>",
+        "potential_model_derivative": "2",
+        "weighted_string_derivative": "-pi**2/(2*(tau/2 + 1)*(tau + 2))",
+        "scope": "two exact model instantiations; not a general operator differentiability proof"
+      },
+      "elapsed_seconds": 0.019147
+    },
+    {
+      "name": "R7_P02_direct_matrix_and_switch_scaling",
+      "kind": "finite_exact_counterexamples",
+      "status": "PASS",
+      "details": {
+        "K": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1]])",
+        "det_K": "1",
+        "Hessian_diagonal": [
+          "-81",
+          "-81",
+          "81",
+          "81"
+        ],
+        "fprime_over_s": "8",
+        "fprime_over_s_lambda": "8/9",
+        "old_missing_lambda_expression": "8/9",
+        "n3_detJ_sign_when_K_identity": -1,
+        "matrix_product_H": "Matrix([[-27, -54], [-54, -27]])",
+        "elementwise_product_H": "Matrix([[-27, 0], [0, -27]])",
+        "scope": "Finite algebra refutes a general matrix implication and distinguishes normalization/array semantics. Does not refute a particular spectral branch or certify G2."
+      },
+      "elapsed_seconds": 0.001124
+    },
+    {
+      "name": "execution_contract_explicit_raise_and_input_identity",
+      "kind": "execution_integrity",
+      "status": "FAIL",
+      "error": "[Errno 2] No such file or directory: '/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/inputs/manifest.json'",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py\", line 541, in main\n    Details = Function()\n  File \"/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py\", line 515, in execution_contract\n    Manifest = json.loads((ROOT / 'inputs/manifest.json').read_text())\n                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 788, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 772, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/inputs/manifest.json'\n",
+      "elapsed_seconds": 0.071474
+    }
+  ],
+  "counts": {
+    "total": 25,
+    "passed": 24,
+    "failed": 1
+  },
+  "runtime": {
+    "mpmath": "1.3.0",
+    "sympy": "1.14.0",
+    "decimal_precision": 90,
+    "module_files": {
+      "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/python-loaded-files-normal.json",
+      "sha256": "fb4d54a35dc0e391db96512e0caeb905035d603395e97bfb1c4a02690a1b3de6",
+      "bytes": 129097
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "tool": "multi_agent_v1__spawn_agent",
+  "arguments": {
+    "fork_context": false,
+    "message": "你是全新、无状态的独立执行检验者, 没有参与作者工作. 自包含输入包 /mnt/f/tools/math-audit-round7-20260921/independent-execution/PACKET.json. 仅阅读该JSON、lean-package下freeze列出的文件与run scripts、numerical下两个脚本; 为实际执行可以读取freeze/runtime-config明确的现有Lean/mathlib环境和已列外部文件. 不读取作者输出/README、项目AGENTS/记忆/其它任务历史或解析新稿; 这是自包含隔离执行任务, 无需项目历史. 所有写入仅在independent-execution目录, 不修改输入脚本/原项目/外部runtime, 不commit. 先独立检查runner实际行为和输入hash, 再实际运行: python3 -B lean-package/replay.py <该包内新目录例如independent-positive-negative>; python3 -B numerical/run_checks.py. 确认源代码重新编译、exact target通过、实际import使用新olean、全部公开声明类型/定义/传递公理均实际导出, 错误target与错误镜像因子负对照真实失败且原因正确; 数值normal及-O以及旧公式负对照真实结果核对. 不把runner的author_machine_checks_passed当独立性证明; 以你自己的实际命令和runtime观察形成independent-execution.json/README. 输出中所有程序/证据均需SHA指针. 可以新增自己的外部核查脚本, 不需要全面重编译mathlib, 不把代数FH前提或Volterra/minmax说成已形式化. 提供实际执行和检查数量、剩余信任边界, 不预写最终语义review verdict. 如果freeze不可用或输入/环境变动, 报告INCOMPLETE并保留实际失败, 不自行替换输入继续通过. 最后给完整新运行目录和小型可检索摘要; 将大型清单保持原字节, 不用巨大JSON刷屏. 内置工具的当前cwd错误, 任何shell须显式workdir到此目录."
+  },
+  "result": {
+    "agent_id": "01a0c3dc-6870-7bf1-8d15-c9aa933f77e8",
+    "nickname": "Ramanujan"
+  }
+}

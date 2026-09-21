@@ -1,0 +1,6 @@
+Lean.Environment.constants (env : Lean.Environment) : Lean.ConstMap
+Lean.SMap.toList.{u, v} {α : Type u} {β : Type v} [BEq α] [Hashable α] (m : Lean.SMap α β) : List (α × β)
+Lean.Environment.getModuleIdxFor? (env : Lean.Environment) (declName : Lean.Name) : Option Lean.ModuleIdx
+Lean.ConstantInfo.value? (info : Lean.ConstantInfo) (allowOpaque : Bool := false) : Option Lean.Expr
+Lean.collectAxioms {m : Type → Type} [Monad m] [Lean.MonadEnv m] (constName : Lean.Name) : m (Array Lean.Name)
+Lean.Name.isInternal : Lean.Name → Bool

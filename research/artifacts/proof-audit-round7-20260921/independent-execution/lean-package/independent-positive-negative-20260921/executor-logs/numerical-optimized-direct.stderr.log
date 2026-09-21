@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py", line 556, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/checks.py", line 548, in main
+    Payload = {'role': 'independent executable-check author, not final reviewer', 'provenance': 'new implementation; missing appendix and external checks.py were not supplied or replayed', 'python': sys.version, 'executable': sys.executable, 'platform': platform.platform(), 'optimize': sys.flags.optimize, '__debug__': __debug__, 'mpmath': mp.__version__, 'sympy': sp.__version__, 'decimal_precision': mp.mp.dps, 'checks_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'input_manifest_sha256': hashlib.sha256((ROOT / 'inputs/manifest.json').read_bytes()).hexdigest(), 'total_groups': len(Results), 'passed_groups': Passed, 'failed_groups': len(Results) - Passed, 'elapsed_seconds': round(time.monotonic() - Start, 6), 'groups': Results, 'limits': ['Finite exact and high-precision tests are not infinite-dimensional proofs.', 'General derivation notes are authored support, not independent final approval.', 'No repository programs, old Blueprint tools, Lean, or historical certificate suites executed.']}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 778, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 772, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/f/tools/math-audit-round7-20260921/independent-execution/numerical/inputs/manifest.json'

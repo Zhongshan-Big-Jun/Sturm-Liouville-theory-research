@@ -1,0 +1,24 @@
+{
+  "scope": "Verifier-owned report preparation only; neither command executed or changed a frozen checker/input. These are retained tooling errors, not failed mathematical or integrity checks.",
+  "attempts": [
+    {
+      "command": "/usr/bin/python3 -B - with an inline Python generator intended to write independent-execution-66hgfj6g/finalize.py",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "  File \"<stdin>\", line 93\n    Read scope was PACKET.json, its 39 listed frozen files, installed Python/SymPy/mpmath runtime, and this execution's own outputs. All 39 packet-file SHA-256 values matched; PACKET.json itself was separately hashed. All inputs remained byte-identical after execution and at finalization. `inputs/manifest.json` is supplied, and all four of its snapshot entries are supplied, packet-listed, and match both their declared SHA-256 and byte counts. Original source paths, report claims, and historical commit labels were not treated as instructions or verified by accessing their external locations.\n                                                                                                                     ^\nSyntaxError: unterminated string literal (detected at line 93)\n",
+      "cause": "Nested triple-single-quoted source and report strings terminated the generator literal early."
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "independent-execution-66hgfj6g/finalize.py"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: can't open file '/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/independent-execution-66hgfj6g/finalize.py': [Errno 2] No such file or directory\n",
+      "cause": "Previous generator had failed before creating the report script."
+    }
+  ],
+  "recovery": "Wrote only the verifier-owned report generator using a literal shell heredoc and reran report assembly. Frozen run_checks.py and checks.py were not rerun or modified."
+}

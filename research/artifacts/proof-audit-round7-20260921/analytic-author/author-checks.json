@@ -1,0 +1,149 @@
+{
+  "scope": "Author algebra and artifact checks; not independent review, all-density executable validation, or formal proof.",
+  "python": "3.14.4",
+  "sympy": "1.14.0",
+  "mpmath": "1.3.0",
+  "source_sha256": "151c7ec65a67789a043b01a46f6c87c40e6827e9994be9fb4be88a45da0c0aaa",
+  "candidate_sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+  "passed": 20,
+  "checks": [
+    {
+      "name": "wronskian_product_to_sum",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Identity with arbitrary phase a=n*theta and symbolic n; missing overall pi is restored in TeX."
+    },
+    {
+      "name": "finite_sum_telescoping_step",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Telescope with a=2*j*theta to obtain the stated finite sine-square sum."
+    },
+    {
+      "name": "n2_midpoint_exact_counterexample",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Correct W=-4*pi; old -6*pi differs by -2*pi."
+    },
+    {
+      "name": "endpoint_pi4_coefficient",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Symbolic n, exact coefficient of x^2."
+    },
+    {
+      "name": "n2_polynomial_roots_and_derivatives",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Both roots exact and P prime equals plus/minus 16*sqrt(10)."
+    },
+    {
+      "name": "n2_root_products",
+      "passed": true,
+      "kind": "exact",
+      "detail": "t_plus*t_minus=1/16; complementary product=65/144."
+    },
+    {
+      "name": "n2_exact_determinant",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Coefficient of pi^4 is 7030400000/4782969."
+    },
+    {
+      "name": "volterra_remainder_constants",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Kernel integrals for |y|<=C*x, independent of density interfaces."
+    },
+    {
+      "name": "halfwidth_mass_bound_constant",
+      "passed": true,
+      "kind": "exact",
+      "detail": "Delta is halfwidth; each half-interval contributes delta^2/2 times its derivative energy."
+    },
+    {
+      "name": "platform_energy_squares",
+      "passed": true,
+      "kind": "exact_finite_cases",
+      "detail": "Exact finite algebra for n=1..8 of 4*sum(c^2)-sum(diff^2)=sum(adjacent sums squared); general inequality is proved in TeX."
+    },
+    {
+      "name": "plateau_constant_and_scale",
+      "passed": true,
+      "kind": "exact",
+      "detail": "12/5 is valid for halfwidth<=h/12; R*delta diverges and R*delta^2 vanishes for delta=R^(-2/3)."
+    },
+    {
+      "name": "general_inference_diagnostics",
+      "passed": true,
+      "kind": "exact",
+      "detail": "General linear algebra only: positive determinant does not imply definiteness. No realizability claim for this SL K family. Matching data across different ODEs does not imply uniqueness."
+    },
+    {
+      "name": "n2_high_precision_crosscheck",
+      "passed": true,
+      "kind": "numerical_crosscheck",
+      "detail": {
+        "positions": [
+          "0.255973644675408033616778",
+          "0.38264716110914193029749",
+          "0.61735283889085806970251",
+          "0.744026355324591966383222"
+        ],
+        "determinant": "143179.86873957383682542582127",
+        "derivatives": [
+          "1626.5299552494318270669",
+          "-1835.53818520181435803519",
+          "1835.53818520181435803519",
+          "-1626.5299552494318270669"
+        ]
+      }
+    },
+    {
+      "name": "unedited_tail_sections_byte_identity",
+      "passed": true,
+      "kind": "artifact",
+      "detail": "First-order variation proposition and Wronskian D bound retained byte-for-byte; this is not their recertification."
+    },
+    {
+      "name": "simple_zero_wronskian_identity",
+      "passed": true,
+      "kind": "exact",
+      "detail": "At v=sign*c*u and lambda_n=lambda_(n+1)*c^2: f prime=-2*lambda_(n+1)*sign*c*W, both signs exact."
+    },
+    {
+      "name": "requested_tail_claim_repairs",
+      "passed": true,
+      "kind": "artifact",
+      "detail": "Known false assertions removed or qualified at their original locations; historical whole-G2 status explicitly unrecertified."
+    },
+    {
+      "name": "publication_neutral_version_wording",
+      "passed": true,
+      "kind": "artifact",
+      "detail": "Date and abstract do not anticipate independent acceptance."
+    },
+    {
+      "name": "main_source_unchanged",
+      "passed": true,
+      "kind": "artifact",
+      "detail": "Original source hash unchanged."
+    },
+    {
+      "name": "tex_labels_and_references",
+      "passed": true,
+      "kind": "artifact",
+      "detail": {
+        "labels": 45,
+        "references": 65,
+        "all_original_labels_retained": true
+      }
+    },
+    {
+      "name": "no_internal_tab_corruption",
+      "passed": true,
+      "kind": "artifact",
+      "detail": "No tabs inserted into TeX commands; ordinary indentation retained."
+    }
+  ]
+}

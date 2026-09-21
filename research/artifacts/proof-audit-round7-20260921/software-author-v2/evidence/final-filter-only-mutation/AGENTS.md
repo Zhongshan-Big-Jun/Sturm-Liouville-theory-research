@@ -1,0 +1,11 @@
+# Bounded software author v2
+
+All reads and writes for this repair stay in this supplied directory, except installed Python/NumPy/SciPy needed to run the copied software. No memory, main tree, other author/reviewer directories, Git, canonical knowledge, plugin changes or external messages.
+
+Work method: retain a before-hash inventory and unchanged historical copies; fix only replay provenance and related controls/documentation; preserve all ten candidate scripts and eight dependencies byte for byte. Use explicit conditionals under normal Python and -O, real imported-module controls, raw stdout/stderr and process/hash receipts. Final input freeze contains no generated replay outputs and omits unsupplied private inputs/tools-AGENTS.md. Preserve every actual failed execution. Author evidence is not independent approval.
+
+Conversation record (2026-09-21): user requested a bounded R7-SW-001 repair for unfiltered provenance, explicit runtime versus fresh-input policy, rejection in numerical processes and actual op03 CLI, real outside import control in normal/-O, unchanged numerical bytes, retained prior rejection, self-contained immutable input freeze. User further required expected selected-tree module names/paths/frozen digests, a missing-module control, preservation of unrelated first failures, and an explicit runnable package verifier with its manifest.sha256 supplied.
+
+Initial maintenance: no local AGENTS.md was supplied. Created this file; saved 47 supplied-file baseline hashes and historical harness/docs under evidence/before. prior-review.json remains CHANGES_REQUIRED; only its supplied records of older failures are available, not their raw files.
+
+Repair maintenance: added unfiltered collection, explicit stdlib/NumPy/SciPy versus frozen-input classification, required bindings/digests, real outside and missing-binding controls, actual four-point CLI instrumentation and parent revalidation. First v2 execution 01 exited 1 because the strict gate observed three site startup hooks; raw results and inputs are retained unchanged. The first filter-only mutant 02 exited 1 as required: all four outside controls incorrectly exited 0 when the old filter was restored. Disabled site startup in replay children with -S and supplied only discovered installed NumPy/SciPy search directories. No additional runtime roots were approved.

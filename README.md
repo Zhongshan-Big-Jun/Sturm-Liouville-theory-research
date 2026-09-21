@@ -6,6 +6,8 @@
 
 数学内容包括既有文献, 合作者工作与项目中的推导. 插件帮助检索, 整理思路, 记录研究与组织验证; 具体归属和证据以原文及各研究包为准.
 
+2026-09-21 第七轮修订: 修正谱隙文稿的常密度公式, 用统一 Volterra 估计补齐端点引理及局部唯一性证明. 一般指标的上确界极限为 $\lim_{R\to\infty}S_n(R)=(n+1)^2\pi^2$; $4\pi^2$ 限于 $n=1$. 五张工具卡同步修正镜像导数、归一化及行列式/惯性边界, 十个诊断脚本修复直接传播问题, 解析与局部 Lean 的隔离检验见 [第七轮报告](reports/proof-audit-round7-20260921/REPORT.md).
+
 2026-09-21 第六轮修订: 修复稀疏投影、有限矩检验与约束表示元的三类问题, 并补齐原完整稀疏族在真正左定空间中的精确非负稠密范围 $0\le s<7/2$. 两份解析证明和工具库传播经新的隔离审查通过; 局部 Lean 的覆盖范围见 [第六轮报告](reports/proof-audit-round6-20260921/REPORT.md).
 
 2026-09-21 第五轮核查: O1'LD 的尾部刚性、无条件余有限稠密性和真闭子空间排除推论已被反证; 单项式有限删除引理的公式已核实修正. s=2 的两条迹替代分类已获独立审查通过, 新工具卡已恢复检索, 详见 [第五轮报告](reports/proof-audit-round5-20260921/REPORT.md).
@@ -33,13 +35,13 @@
 
 ## 主要成果与范围
 
-下表保留2026-09-09整理的总体导航, 左定空间条目已按第六轮修订更新. `STRICT` 只适用于来源给出的陈述与假设, 不表示整个项目已经解决或全部形式化.
+下表保留2026-09-09整理的总体导航, 左定空间条目已按第六轮修订更新, 谱隙条目按第七轮修订更新. `STRICT` 只适用于来源给出的陈述与假设, 不表示整个项目已经解决或全部形式化.
 
 | 研究线 | 已有成果 | 范围与证据 |
 | --- | --- | --- |
 | 全序列相邻比值 | 上确界的平衡相位闭式, 下确界为 1 且不达到 | [上确界](docs/SL_ratio_proof.tex), [下确界](docs/SL_inf_ratio_proof.tex); 按原文权重类使用 |
 | n=1 相邻间距 | SUP/INF 的归约, 刚性, 对称线与极值证明链 | [证明导航](docs/research-guide.md); 归一化盒类的全 R>1 结果 |
-| n>=2 间距结构 | 有限块约化与精确 2n 开关定理 | [有限块](docs/SL_gap_nge2_finite_reduction_proof.tex), [开关定理](docs/SL_gap_nge2_exact_2n_switches_proof.tex); 全局唯一性仍开放 |
+| n>=2 间距结构 | 有限块结构, 弱反差局部对称性; 固定 n>=1 的 SUP 极限为 (n+1)²pi² | [当前局部证明与上确界极限](docs/SL_gap_nge2_symmetry_local_proof.tex); 可测盒类和有限分块类; 有限 R 全局唯一性仍开放 |
 | 左定空间与算子域 | 原完整稀疏族在0<=s<7/2稠密, s=2余有限分类, 以及算子幂域障碍 | [完整窗口](docs/SL_fractional_left_definite.tex), [s=2余有限分类](docs/SL_cofinite_left_definite.tex), [幂域障碍](tools/krein-power-domain-polynomial-obstruction.md) |
 | B4/P1 M3 | STRICT 渐近与两个扇区行列式符号 | [工具与证明链](tools/m3-largeR-closure.md); n=2 对称 INF, large-R, 有限非零内部 chart |
 | KP-DET | 完整约束下 0<c<=2/3 的分支闭合, P20-P21 精确求积约化 | [sequence-26][kp-whiteboard]; 经审计的部分结果, 本地主 run 的 Q9 仍为 OPEN |

@@ -1,0 +1,18 @@
+{
+  "utc": "2026-09-21T12:40:55.940791+00:00",
+  "terminated_owned_pid": 524530,
+  "reason": "Avoid repeated Path.resolve filesystem metadata walks for each already-absolute import artifact path. Keep exact path matching to pre-run inventory plus all before/after byte hashes and all other checks. No supplied source, input script, runtime or mathematical result changed.",
+  "original_program": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/audit_results.py",
+    "sha256": "1cf719c344cf1d02319246b8efe2e6654a31fe1592f5658b2e569ab6988047ee"
+  },
+  "replacement_executor_program": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/audit_results_fast.py",
+    "sha256": "8d1bb96f275c6e572e1631e24f7d2255dec29b323efaef1e3fdb3e8b30180aea"
+  },
+  "only_code_change": {
+    "old": "p=str(Path(item['path']).resolve())",
+    "new": "p=str(Path(item['path']))  # exact absolute paths must match the before-run inventory"
+  },
+  "original_attempt_receipt": "/mnt/f/tools/math-audit-round7-20260921/independent-execution/lean-package/independent-positive-negative-20260921/executor-logs/independent-evidence-audit.json"
+}

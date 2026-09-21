@@ -1,0 +1,204 @@
+{
+  "schema": "r7-software-author-v2-evidence-v1",
+  "created_utc": "2026-09-21T13:00:32.474724+00:00",
+  "role": "bounded software repair author, not independent reviewer",
+  "status": "AUTHOR_BOUNDED_CHECKS_PASSED",
+  "prior_review_verdict": "CHANGES_REQUIRED",
+  "independent_review": "Pending; a new agent must review the final freeze",
+  "scope": "Observed file-backed runtime module provenance and replay acceptance only; no OS sandbox or malicious sys.modules evasion guarantee",
+  "supplied_ten_candidates_and_eight_dependencies_unchanged": true,
+  "original_tree_unchanged": true,
+  "source_integrity": "evidence/source-integrity.json",
+  "source_integrity_sha256": "f72a7e706c92b382e60966b5261e37534a2bf8b22bd7487ce297e36516130bda",
+  "final_freeze": {
+    "directory": "final-inputs",
+    "archive": "final-inputs.tar",
+    "files": 52,
+    "manifest_sha256": "7b4bece27bec07a835bc16ac038658742fbd29d7b456038487757574b92b7603",
+    "archive_sha256": "e9bff58c1b5c3cf15296a1c6481e8bbc9259104dc28c37ae4d2973160aebde04",
+    "unchanged_after_execution": true,
+    "input_only": true
+  },
+  "package_verifier": "Unchanged regression/verify_package.py, now runnable with supplied manifest.json and manifest.sha256; execution 05 exit 0",
+  "executions": [
+    {
+      "name": "01-repaired-normal",
+      "receipt": "evidence/executions/01-repaired-normal/receipt.json",
+      "receipt_sha256": "68080ed73c942553053061f03a1899c08b01ce6a2e1465c8eb272bd15b81307b",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/replay.py",
+        "--label",
+        "author-v2-normal"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2",
+      "pid": 534902,
+      "exit_code": 1,
+      "seconds": 89.35530094600108,
+      "inputs_unchanged": true,
+      "replay_summary": "work/replay-20260921T125201Z-328aa0/replay-summary.json",
+      "replay_summary_sha256": "febc5b84e423e9c618b2e4b67c4d2483e29490368a809fa472f62717794f711a",
+      "child_processes": 14,
+      "accepted_child_cases": 0
+    },
+    {
+      "name": "02-filter-only-mutation",
+      "receipt": "evidence/executions/02-filter-only-mutation/receipt.json",
+      "receipt_sha256": "7130213ccd6ffc6019fb39c7cf4b50f373c7fb6406b6c0d9de222d550f2a7f04",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/replay.py",
+        "--controls-only",
+        "--label",
+        "filter-only-mutation-must-fail"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/filter-only-mutation",
+      "pid": 535952,
+      "exit_code": 1,
+      "seconds": 50.27312568099296,
+      "inputs_unchanged": true,
+      "replay_summary": "evidence/filter-only-mutation/work/replay-20260921T125244Z-5d67f0/replay-summary.json",
+      "replay_summary_sha256": "e367113781fb8ee28ea92e5e0987613d9484519b8df37f3d336b6e62daab5746",
+      "child_processes": 8,
+      "accepted_child_cases": 4
+    },
+    {
+      "name": "03-repaired-normal-clean-startup",
+      "receipt": "evidence/executions/03-repaired-normal-clean-startup/receipt.json",
+      "receipt_sha256": "aebe5b4b375fe303bcde0fa17f15aa1265250c6cd00b8efbc44e0862028cf184",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/replay.py",
+        "--label",
+        "author-v2-normal-clean-startup"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2",
+      "pid": 537479,
+      "exit_code": 0,
+      "seconds": 86.12839457699738,
+      "inputs_unchanged": true,
+      "replay_summary": "work/replay-20260921T125440Z-63e944/replay-summary.json",
+      "replay_summary_sha256": "cc28045b411b3010763938dbbb141eb913e2f1efb252c56ad3ee88efcdf002cc",
+      "child_processes": 14,
+      "accepted_child_cases": 14
+    },
+    {
+      "name": "04-final-filter-only-mutation",
+      "receipt": "evidence/executions/04-final-filter-only-mutation/receipt.json",
+      "receipt_sha256": "16d4c00f05103bc8f824e824bc243ba5fae039d65b7482bd82066acaadae0618",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "regression/replay.py",
+        "--controls-only",
+        "--label",
+        "final-filter-only-mutation-must-fail"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation",
+      "pid": 538221,
+      "exit_code": 1,
+      "seconds": 53.690322770999046,
+      "inputs_unchanged": true,
+      "replay_summary": "evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/replay-summary.json",
+      "replay_summary_sha256": "9e61ab9d75bba699697275bed84033f90916bb22b91aa0afee2b126b5446c5d5",
+      "child_processes": 8,
+      "accepted_child_cases": 4
+    },
+    {
+      "name": "05-final-package-verifier",
+      "receipt": "evidence/executions/05-final-package-verifier/receipt.json",
+      "receipt_sha256": "45c0ccdc762480bda65afcc9246a8a005e1f30314f7a1f28fe7cc29f5e2c5365",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "regression/verify_package.py"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/portable-final-copy",
+      "pid": 540680,
+      "exit_code": 0,
+      "seconds": 0.37075315200490877,
+      "inputs_unchanged": true
+    },
+    {
+      "name": "06-final-portable-optimized",
+      "receipt": "evidence/executions/06-final-portable-optimized/receipt.json",
+      "receipt_sha256": "d74a2b2176c4125d4db04f8034efb0430b25c04007602961faf16d57c835fef1",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "regression/replay.py",
+        "--label",
+        "final-immutable-inputs-optimized"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/portable-final-copy",
+      "pid": 540681,
+      "exit_code": 0,
+      "seconds": 60.488968371995725,
+      "inputs_unchanged": true,
+      "replay_summary": "evidence/portable-final-copy/work/replay-20260921T125840Z-31f13c/replay-summary.json",
+      "replay_summary_sha256": "018c1c0c8b4c09b5e15828f515d4b781425c97ec9c36a72a0cc5ba55ef7a5bb9",
+      "child_processes": 14,
+      "accepted_child_cases": 14
+    }
+  ],
+  "final_clean_observations": {
+    "candidates-normal": {
+      "file_backed_modules": 666,
+      "required_bindings": 17,
+      "categories": {
+        "standard-library": 147,
+        "fresh-input": 17,
+        "installed-package": 502
+      },
+      "accepted": true
+    },
+    "candidates-optimized": {
+      "file_backed_modules": 666,
+      "required_bindings": 17,
+      "categories": {
+        "standard-library": 147,
+        "fresh-input": 17,
+        "installed-package": 502
+      },
+      "accepted": true
+    },
+    "op03-cli-normal": {
+      "file_backed_modules": 179,
+      "required_bindings": 3,
+      "categories": {
+        "fresh-input": 3,
+        "standard-library": 92,
+        "installed-package": 84
+      },
+      "accepted": true
+    },
+    "op03-cli-optimized": {
+      "file_backed_modules": 179,
+      "required_bindings": 3,
+      "categories": {
+        "fresh-input": 3,
+        "standard-library": 92,
+        "installed-package": 84
+      },
+      "accepted": true
+    }
+  },
+  "negative_controls": {
+    "repaired": "Eight real outside/missing controls per replay refused with exit 86 in normal and -O numerical/CLI processes",
+    "filter_only_mutant": "Four real outside children incorrectly exit 0; unchanged suite fails with exit 1; four missing controls still refuse"
+  },
+  "first_failures_retained": {
+    "v2": "Execution 01 and its full fresh run retained, exit 1 due to three site startup hooks; corrected with controlled -S startup",
+    "mutation": "Both executions 02 and 04 retained with expected suite exit 1",
+    "earlier": "Unchanged supplied prior-review.json and evidence/before/README.md retain older failure records; raw older directories were not supplied or accessed"
+  },
+  "omitted_private_context": "inputs/tools-AGENTS.md deliberately not supplied; unrelated non-executable private workspace context; historical source-manifest references retained",
+  "extra_mathematical_scans": false,
+  "memory_used": false,
+  "main_tree_or_other_author_directories_accessed": false
+}

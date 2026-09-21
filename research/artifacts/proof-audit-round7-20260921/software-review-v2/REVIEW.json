@@ -1,0 +1,2200 @@
+{
+  "schema": "independent-software-review-round7-v2",
+  "created_utc": "2026-09-21T13:22:26.069292+00:00",
+  "verdict": "APPROVED",
+  "verdict_reason": "No substantive blocking discrepancy in the ten local source deltas or v2 provenance acceptance gate. Own normal/-O outer verifiers and fresh replays passed; all required actual controls refused for the intended reason. Separate old-filter mutants were detected. Approval is limited to this frozen packet, observed provenance and finite function/AST/CLI scope.",
+  "reviewer_role": "Fresh independent software reviewer; did not author any frozen input. Authored only own review work, explicit separate mutant and output evidence.",
+  "packet_sha256": "a22df2037cfdfa602da9db061f4b15a2f24bfbf1c33d37a1e019b267122c747c",
+  "checked_paths": [
+    "AGENTS.md",
+    "change-notes.md",
+    "manifest.json",
+    "manifest.sha256",
+    "prior-review.json",
+    "README.md",
+    "control-fixtures/outside_probe.py",
+    "inputs/main-AGENTS.md",
+    "inputs/propagation.md",
+    "inputs/snapshot-manifest.json",
+    "regression/backend_probe.py",
+    "regression/capture_run.py",
+    "regression/provenance.py",
+    "regression/regression.py",
+    "regression/replay.py",
+    "regression/verify_package.py",
+    "originals/scripts/gap_lib.py",
+    "originals/scripts/gap_n1_grad.py",
+    "originals/scripts/op03_gap_fh.py",
+    "originals/scripts/op03_gap_fixed.py",
+    "originals/scripts/op03_gap_precise.py",
+    "originals/scripts/op03_gap_table.json",
+    "originals/scripts/tmp_fh_test.py",
+    "originals/scripts/tmp_verify_endpoints.py",
+    "originals/scripts/_gapn2_hess_sign_and_bigR.py",
+    "originals/scripts/_gapn2_hess_verify.py",
+    "originals/scripts/_gapn2_hp_scan.py",
+    "originals/scripts/_gapn2_jacobian_analytic.py",
+    "originals/scripts/_gapn2_jacobian_probe.py",
+    "originals/scripts/_gapn2_jacobian_spectral.py",
+    "originals/scripts/_gapn2_o3_scan.py",
+    "originals/scripts/_gapn2_second_variation_probe.py",
+    "originals/scripts/_gapn2_symmetry_recon.py",
+    "originals/scripts/_tmp_fh_paradox.py",
+    "candidates/scripts/gap_lib.py",
+    "candidates/scripts/gap_n1_grad.py",
+    "candidates/scripts/op03_gap_fh.py",
+    "candidates/scripts/op03_gap_fixed.py",
+    "candidates/scripts/op03_gap_precise.py",
+    "candidates/scripts/op03_gap_table.json",
+    "candidates/scripts/tmp_fh_test.py",
+    "candidates/scripts/tmp_verify_endpoints.py",
+    "candidates/scripts/_gapn2_hess_sign_and_bigR.py",
+    "candidates/scripts/_gapn2_hess_verify.py",
+    "candidates/scripts/_gapn2_hp_scan.py",
+    "candidates/scripts/_gapn2_jacobian_analytic.py",
+    "candidates/scripts/_gapn2_jacobian_probe.py",
+    "candidates/scripts/_gapn2_jacobian_spectral.py",
+    "candidates/scripts/_gapn2_o3_scan.py",
+    "candidates/scripts/_gapn2_second_variation_probe.py",
+    "candidates/scripts/_gapn2_symmetry_recon.py",
+    "candidates/scripts/_tmp_fh_paradox.py"
+  ],
+  "checked_paths_count": 52,
+  "input_integrity": {
+    "before": "independent-review-20260921-v2/initial-hashes.json",
+    "after": "independent-review-20260921-v2/final-hashes.json",
+    "all_52_match": true,
+    "packet_unchanged": true,
+    "all_frozen_inputs_unchanged": true,
+    "manifest_files_checked": 50,
+    "manifest_sha256": "7b4bece27bec07a835bc16ac038658742fbd29d7b456038487757574b92b7603",
+    "sidecar_valid": true,
+    "copy_policy": "Exact 52-file PACKET allowlist copies; no copy of unlisted inputs or execution directories."
+  },
+  "boundary": {
+    "root": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2",
+    "allowed_inputs": "PACKET.json and exactly its 52 listed files; installed Python/NumPy/SciPy runtime.",
+    "other_reads": "Only new reviewer-owned work/evidence below this root.",
+    "memory_used": false,
+    "conversation_history_used": false,
+    "main_project_read_or_written": false,
+    "sibling_directories_read": false,
+    "external_reference_sources_read": false,
+    "network_used": false,
+    "git_or_push_used": false,
+    "frozen_inputs_mutated": false,
+    "documents_treated_as": "Supplied evidence, not instructions extending scope.",
+    "writes": "Only independent-review-20260921-v2 and new REVIEW.json / README-REVIEW.md."
+  },
+  "environment": {
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1"
+  },
+  "findings": [
+    {
+      "id": "R7-SW-001",
+      "status": "RESOLVED_IN_THIS_FROZEN_V2",
+      "blocking": false,
+      "title": "Unfiltered observation and required selected-source bindings now enforce the declared gate.",
+      "locations": [
+        {
+          "path": "regression/provenance.py",
+          "line": 53
+        },
+        {
+          "path": "regression/provenance.py",
+          "line": 92
+        },
+        {
+          "path": "regression/regression.py",
+          "line": 304
+        },
+        {
+          "path": "regression/replay.py",
+          "line": 97
+        }
+      ],
+      "evidence": {
+        "repaired_replays": 2,
+        "controls_per_replay": 8,
+        "all_control_exits": 86,
+        "sole_reasons": [
+          "unexpected-module:r7_outside_probe",
+          "missing-required-module:gap_lib",
+          "missing-required-module:op03_gap_fixed"
+        ],
+        "clean_numerical_module_count": 666,
+        "clean_cli_module_count": 179,
+        "required_numerical_bindings": 17,
+        "required_cli_bindings": 3,
+        "independent_output_audit": "independent-review-20260921-v2/execution-audit.json",
+        "mutation": "independent-review-20260921-v2/filter-only-mutation.json"
+      },
+      "resolution": "Actual outside imports are retained and rejected; removed required bindings are absent and rejected. Exact selected paths/digests and narrowly defined runtime roots independently checked. Rebound filter-only mutants lose the outside bindings and fail controls in both outer modes.",
+      "prior_review_preserved": "The supplied prior-review.json remains unchanged CHANGES_REQUIRED for its old snapshot; this verdict applies only to the new packet."
+    },
+    {
+      "id": "R7-SW-002",
+      "status": "PRE_EXISTING_EXCLUDED_REOBSERVED",
+      "blocking": false,
+      "title": "Unchanged op03_gap_precise normalization defect persists outside the selected candidate path.",
+      "locations": [
+        {
+          "path": "candidates/scripts/op03_gap_precise.py",
+          "line": 46
+        },
+        {
+          "path": "candidates/scripts/op03_gap_precise.py",
+          "line": 69
+        }
+      ],
+      "evidence": {
+        "own_original_result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/originals-normal.json",
+        "symmetric_weighted_mass": [
+          0.9487027167964235,
+          0.9313558734964229
+        ],
+        "asymmetric_weighted_mass": [
+          0.8961441360190511,
+          0.9367525853806721
+        ]
+      },
+      "disposition": "Retain explicit exclusion. Candidate op03_gap_fh selects fixed; no separately unauthorized repair or global backend certification."
+    }
+  ],
+  "new_blocking_findings": [],
+  "ten_source_delta_results": [
+    {
+      "path": "candidates/scripts/op03_gap_fh.py",
+      "original_path": "originals/scripts/op03_gap_fh.py",
+      "original_sha256": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+      "candidate_sha256": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+      "changed_lines": [
+        5,
+        23
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "backend switch and paired factor",
+      "executed_scope": "Actual Df_at/backend functions, source-formatted expression, and complete instrumented CLI."
+    },
+    {
+      "path": "candidates/scripts/gap_n1_grad.py",
+      "original_path": "originals/scripts/gap_n1_grad.py",
+      "original_sha256": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+      "candidate_sha256": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+      "changed_lines": [
+        44
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "INF width-gradient signs",
+      "executed_scope": "Actual spectral/gradient functions and exact gFH AST; original outer loop omitted."
+    },
+    {
+      "path": "candidates/scripts/_tmp_fh_paradox.py",
+      "original_path": "originals/scripts/_tmp_fh_paradox.py",
+      "original_sha256": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+      "candidate_sha256": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+      "changed_lines": [
+        27,
+        28
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "paired sum and SUP/INF signs",
+      "executed_scope": "Actual D_and_f and exact fh/fh2 AST; original outer loops omitted."
+    },
+    {
+      "path": "candidates/scripts/tmp_fh_test.py",
+      "original_path": "originals/scripts/tmp_fh_test.py",
+      "original_sha256": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+      "candidate_sha256": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+      "changed_lines": [
+        26,
+        27,
+        30
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "INF eigenvalue and gap signs",
+      "executed_scope": "Actual lam_of and exact fh1/fh2/formatted-gap AST; original outer loop omitted."
+    },
+    {
+      "path": "candidates/scripts/tmp_verify_endpoints.py",
+      "original_path": "originals/scripts/tmp_verify_endpoints.py",
+      "original_sha256": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+      "candidate_sha256": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+      "changed_lines": [
+        30
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "paired derivative signs",
+      "executed_scope": "Actual D_and_f and exact fh AST; endpoint scan and brentq search omitted."
+    },
+    {
+      "path": "candidates/scripts/_gapn2_hess_verify.py",
+      "original_path": "originals/scripts/_gapn2_hess_verify.py",
+      "original_sha256": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+      "candidate_sha256": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+      "changed_lines": [
+        40,
+        46,
+        47,
+        60,
+        61
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "lower eigenvalue, gradient and stationary Hessian signs",
+      "executed_scope": "Actual D_edges, f/printed-gradient/H1/H2 AST; J supplied by jac_fd; main and analytic_jacobian_hp not exercised."
+    },
+    {
+      "path": "candidates/scripts/_gapn2_hess_sign_and_bigR.py",
+      "original_path": "originals/scripts/_gapn2_hess_sign_and_bigR.py",
+      "original_sha256": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+      "candidate_sha256": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+      "changed_lines": [
+        61
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "matrix product preserving off-diagonal entries",
+      "executed_scope": "Actual hess_fd and H AST with both signs, jac_fd input; main and large-R scan not exercised."
+    },
+    {
+      "path": "candidates/scripts/_gapn2_jacobian_analytic.py",
+      "original_path": "originals/scripts/_gapn2_jacobian_analytic.py",
+      "original_sha256": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+      "candidate_sha256": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+      "changed_lines": [
+        289
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "stationary Hessian matrix product",
+      "executed_scope": "Actual eigen_data and H AST with Jfd; old analytic Jacobian and continuation not certified."
+    },
+    {
+      "path": "candidates/scripts/_gapn2_o3_scan.py",
+      "original_path": "originals/scripts/_gapn2_o3_scan.py",
+      "original_sha256": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+      "candidate_sha256": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+      "changed_lines": [
+        74
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "stationary Hessian spectrum matrix product",
+      "executed_scope": "evH AST only with jac_fd input; module/main/spectral Jacobian scan not executed."
+    },
+    {
+      "path": "candidates/scripts/_gapn2_second_variation_probe.py",
+      "original_path": "originals/scripts/_gapn2_second_variation_probe.py",
+      "original_sha256": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+      "candidate_sha256": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+      "changed_lines": [
+        213
+      ],
+      "assessment": "PASS within stated local contract",
+      "change": "stationary Hessian matrix product",
+      "executed_scope": "Hess AST only; module/main and P1/P2/P3 density-path probes not executed."
+    }
+  ],
+  "unchanged_dependencies": [
+    "candidates/scripts/gap_lib.py",
+    "candidates/scripts/op03_gap_fixed.py",
+    "candidates/scripts/op03_gap_precise.py",
+    "candidates/scripts/op03_gap_table.json",
+    "candidates/scripts/_gapn2_hp_scan.py",
+    "candidates/scripts/_gapn2_jacobian_probe.py",
+    "candidates/scripts/_gapn2_jacobian_spectral.py",
+    "candidates/scripts/_gapn2_symmetry_recon.py"
+  ],
+  "source_review": "independent-review-20260921-v2/source-review.md",
+  "complete_source_diff": "independent-review-20260921-v2/ten-deltas.diff",
+  "all_36_source_data_copies_match_supplied_prior_hash_record": true,
+  "own_execution_evidence": {
+    "author_results_counted_as_own": false,
+    "executions": [
+      {
+        "name": "verify-normal",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/regression/verify_package.py"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal",
+        "pid": 549005,
+        "started_utc": "2026-09-21T13:10:53.989351+00:00",
+        "seconds": 0.3830414900003234,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/verify-normal/receipt.json",
+        "receipt_sha256": "fdc5ddb2a87d16355dc7f89646cc95f591c74986c4895dcb9e0edddf8d26b671",
+        "stdout": "independent-review-20260921-v2/executions/verify-normal/stdout.txt",
+        "stdout_sha256": "95b637d8fc023352863b800cc8a9fd05efe40d6a668be26e008d7c5695c3d958",
+        "stderr": "independent-review-20260921-v2/executions/verify-normal/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "replay-normal",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/regression/replay.py",
+          "--label",
+          "independent-review-normal"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal",
+        "pid": 549026,
+        "started_utc": "2026-09-21T13:10:55.254652+00:00",
+        "seconds": 67.45279539701005,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/replay-normal/receipt.json",
+        "receipt_sha256": "b47a6905528906113b5a4525f0f3eb3d376e7f6469d4d302af7604b9e9311baa",
+        "stdout": "independent-review-20260921-v2/executions/replay-normal/stdout.txt",
+        "stdout_sha256": "5e2d20638a27b85ec718999b79531f28d3a28eef013bd64f89f067846788ecee",
+        "stderr": "independent-review-20260921-v2/executions/replay-normal/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "verify-optimized",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "-O",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/regression/verify_package.py"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized",
+        "pid": 550108,
+        "started_utc": "2026-09-21T13:12:54.949799+00:00",
+        "seconds": 0.36646639100217726,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/verify-optimized/receipt.json",
+        "receipt_sha256": "278363453c2c877568ceae1f44c80234f456f8d3bd705fe5a9d7d0b630ba8aef",
+        "stdout": "independent-review-20260921-v2/executions/verify-optimized/stdout.txt",
+        "stdout_sha256": "95b637d8fc023352863b800cc8a9fd05efe40d6a668be26e008d7c5695c3d958",
+        "stderr": "independent-review-20260921-v2/executions/verify-optimized/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "replay-optimized",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "-O",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/regression/replay.py",
+          "--label",
+          "independent-review-optimized"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized",
+        "pid": 550115,
+        "started_utc": "2026-09-21T13:12:56.118013+00:00",
+        "seconds": 62.530552396012354,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/replay-optimized/receipt.json",
+        "receipt_sha256": "78d0fbd66d2c4d274f0fbaa61ce6ba5254505581a7ce642c09988a394a079be7",
+        "stdout": "independent-review-20260921-v2/executions/replay-optimized/stdout.txt",
+        "stdout_sha256": "e61635112920120ddcaee569aed76db76458eaca45f66f29d993c04458fd6f5b",
+        "stderr": "independent-review-20260921-v2/executions/replay-optimized/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "mutant-verify-normal",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/regression/verify_package.py"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only",
+        "pid": 550987,
+        "started_utc": "2026-09-21T13:15:55.629390+00:00",
+        "seconds": 0.3200681589951273,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/mutant-verify-normal/receipt.json",
+        "receipt_sha256": "87f2fcc30c3ee9164188debb26201246cb8dc73693ef2814790a1dadb7344a53",
+        "stdout": "independent-review-20260921-v2/executions/mutant-verify-normal/stdout.txt",
+        "stdout_sha256": "95b637d8fc023352863b800cc8a9fd05efe40d6a668be26e008d7c5695c3d958",
+        "stderr": "independent-review-20260921-v2/executions/mutant-verify-normal/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "mutant-replay-normal",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/regression/replay.py",
+          "--controls-only",
+          "--label",
+          "independent-filter-only-mutant-normal"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only",
+        "pid": 551000,
+        "started_utc": "2026-09-21T13:15:56.724640+00:00",
+        "seconds": 44.43724290700629,
+        "exit_code": 1,
+        "expected_exit": 1,
+        "receipt": "independent-review-20260921-v2/executions/mutant-replay-normal/receipt.json",
+        "receipt_sha256": "59f94e05d67467709dc561837d6fee8fa14226cf065b2b1afb494714c4fd6d15",
+        "stdout": "independent-review-20260921-v2/executions/mutant-replay-normal/stdout.txt",
+        "stdout_sha256": "62b990cd1dbbcd8325cbe6014a45a682925efa48bc0e3ed1292997f1fc31f741",
+        "stderr": "independent-review-20260921-v2/executions/mutant-replay-normal/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "mutant-verify-optimized",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "-O",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/regression/verify_package.py"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only",
+        "pid": 551172,
+        "started_utc": "2026-09-21T13:16:42.813799+00:00",
+        "seconds": 0.3446755360055249,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/mutant-verify-optimized/receipt.json",
+        "receipt_sha256": "3b858f39a05a92ec78eedd536ae52e99748c53756fa35deb1d941314ff6c9c64",
+        "stdout": "independent-review-20260921-v2/executions/mutant-verify-optimized/stdout.txt",
+        "stdout_sha256": "95b637d8fc023352863b800cc8a9fd05efe40d6a668be26e008d7c5695c3d958",
+        "stderr": "independent-review-20260921-v2/executions/mutant-verify-optimized/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "mutant-replay-optimized",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "-O",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/regression/replay.py",
+          "--controls-only",
+          "--label",
+          "independent-filter-only-mutant-optimized"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only",
+        "pid": 551173,
+        "started_utc": "2026-09-21T13:16:44.745595+00:00",
+        "seconds": 47.046036237006774,
+        "exit_code": 1,
+        "expected_exit": 1,
+        "receipt": "independent-review-20260921-v2/executions/mutant-replay-optimized/receipt.json",
+        "receipt_sha256": "af3ce64b9ae9b100e25d79f01113bcfdbdfa98539ca7573462fac2c15c4bbf46",
+        "stdout": "independent-review-20260921-v2/executions/mutant-replay-optimized/stdout.txt",
+        "stdout_sha256": "01459055c8d2a85835588b27d4e1c5471062d31185f998e2a1474dfe27162529",
+        "stderr": "independent-review-20260921-v2/executions/mutant-replay-optimized/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      },
+      {
+        "name": "independent-output-audit",
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/audit_evidence.py"
+        ],
+        "cwd": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2",
+        "pid": 551588,
+        "started_utc": "2026-09-21T13:17:49.917372+00:00",
+        "seconds": 12.338229644999956,
+        "exit_code": 0,
+        "expected_exit": 0,
+        "receipt": "independent-review-20260921-v2/executions/independent-output-audit/receipt.json",
+        "receipt_sha256": "323ee141e23e51918ac3fd2d9c41da3ad72b22c2a1c0b6073cc26264ebadabee",
+        "stdout": "independent-review-20260921-v2/executions/independent-output-audit/stdout.txt",
+        "stdout_sha256": "c60c244840651a40c64c392f88deb629c60ca3fd76ade9fb26b140710fc44e02",
+        "stderr": "independent-review-20260921-v2/executions/independent-output-audit/stderr.txt",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "frozen_unchanged": true
+      }
+    ],
+    "child_executions": [
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "originals-normal",
+        "pid": 549045,
+        "exit_code": 1,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 38,
+          "failed": 79
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/originals-normal.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-normal",
+        "pid": 549119,
+        "exit_code": 0,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-normal.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-normal",
+        "pid": 549264,
+        "exit_code": 0,
+        "module_count": 179,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-normal.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-normal-outside",
+        "pid": 549294,
+        "exit_code": 86,
+        "module_count": 667,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502,
+          "unexpected": 1
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-normal-outside",
+        "pid": 549453,
+        "exit_code": 86,
+        "module_count": 180,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84,
+          "unexpected": 1
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-normal-missing",
+        "pid": 549471,
+        "exit_code": 86,
+        "module_count": 665,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 16,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-normal-missing",
+        "pid": 549584,
+        "exit_code": 86,
+        "module_count": 178,
+        "module_categories": {
+          "fresh-input": 2,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "originals-optimized",
+        "pid": 549648,
+        "exit_code": 1,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 38,
+          "failed": 79
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/originals-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/originals-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-optimized",
+        "pid": 549652,
+        "exit_code": 0,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-optimized",
+        "pid": 549657,
+        "exit_code": 0,
+        "module_count": 179,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-optimized-outside",
+        "pid": 549659,
+        "exit_code": 86,
+        "module_count": 667,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502,
+          "unexpected": 1
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-optimized-outside",
+        "pid": 549733,
+        "exit_code": 86,
+        "module_count": 180,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84,
+          "unexpected": 1
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "candidates-optimized-missing",
+        "pid": 549769,
+        "exit_code": 86,
+        "module_count": 665,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 16,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/candidates-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/candidates-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819",
+        "mutant": false,
+        "outer_optimize": 0,
+        "name": "op03-cli-optimized-missing",
+        "pid": 549960,
+        "exit_code": 86,
+        "module_count": 178,
+        "module_categories": {
+          "fresh-input": 2,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/results/op03-cli-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-normal/work/replay-20260921T131055Z-962819/receipts/op03-cli-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "originals-normal",
+        "pid": 550117,
+        "exit_code": 1,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 38,
+          "failed": 79
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/originals-normal.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-normal",
+        "pid": 550154,
+        "exit_code": 0,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-normal.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-normal",
+        "pid": 550157,
+        "exit_code": 0,
+        "module_count": 179,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-normal.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-normal-outside",
+        "pid": 550159,
+        "exit_code": 86,
+        "module_count": 667,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502,
+          "unexpected": 1
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-normal-outside",
+        "pid": 550162,
+        "exit_code": 86,
+        "module_count": 180,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84,
+          "unexpected": 1
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-normal-missing",
+        "pid": 550173,
+        "exit_code": 86,
+        "module_count": 665,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 16,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-normal-missing",
+        "pid": 550176,
+        "exit_code": 86,
+        "module_count": 178,
+        "module_categories": {
+          "fresh-input": 2,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "originals-optimized",
+        "pid": 550186,
+        "exit_code": 1,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 38,
+          "failed": 79
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/originals-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/originals-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-optimized",
+        "pid": 550227,
+        "exit_code": 0,
+        "module_count": 666,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-optimized",
+        "pid": 550230,
+        "exit_code": 0,
+        "module_count": 179,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-optimized.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-optimized-outside",
+        "pid": 550232,
+        "exit_code": 86,
+        "module_count": 667,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 17,
+          "installed-package": 502,
+          "unexpected": 1
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-optimized-outside",
+        "pid": 550235,
+        "exit_code": 86,
+        "module_count": 180,
+        "module_categories": {
+          "fresh-input": 3,
+          "standard-library": 92,
+          "installed-package": 84,
+          "unexpected": 1
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "unexpected-module",
+            "module": "r7_outside_probe",
+            "path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/control-fixtures/outside_probe.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "candidates-optimized-missing",
+        "pid": 550237,
+        "exit_code": 86,
+        "module_count": 665,
+        "module_categories": {
+          "standard-library": 147,
+          "fresh-input": 16,
+          "installed-package": 502
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/candidates-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/candidates-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f",
+        "mutant": false,
+        "outer_optimize": 1,
+        "name": "op03-cli-optimized-missing",
+        "pid": 550248,
+        "exit_code": 86,
+        "module_count": 178,
+        "module_categories": {
+          "fresh-input": 2,
+          "standard-library": 92,
+          "installed-package": 84
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/results/op03-cli-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/package-optimized/work/replay-20260921T131256Z-a1eb6f/receipts/op03-cli-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "candidates-normal-outside",
+        "pid": 551019,
+        "exit_code": 0,
+        "module_count": 17,
+        "module_categories": {
+          "fresh-input": 17
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/candidates-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "op03-cli-normal-outside",
+        "pid": 551056,
+        "exit_code": 0,
+        "module_count": 3,
+        "module_categories": {
+          "fresh-input": 3
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/op03-cli-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "candidates-normal-missing",
+        "pid": 551058,
+        "exit_code": 86,
+        "module_count": 16,
+        "module_categories": {
+          "fresh-input": 16
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/candidates-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "op03-cli-normal-missing",
+        "pid": 551063,
+        "exit_code": 86,
+        "module_count": 2,
+        "module_categories": {
+          "fresh-input": 2
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/op03-cli-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "candidates-optimized-outside",
+        "pid": 551092,
+        "exit_code": 0,
+        "module_count": 17,
+        "module_categories": {
+          "fresh-input": 17
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/candidates-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "op03-cli-optimized-outside",
+        "pid": 551128,
+        "exit_code": 0,
+        "module_count": 3,
+        "module_categories": {
+          "fresh-input": 3
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/op03-cli-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "candidates-optimized-missing",
+        "pid": 551134,
+        "exit_code": 86,
+        "module_count": 16,
+        "module_categories": {
+          "fresh-input": 16
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/candidates-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/candidates-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc",
+        "mutant": true,
+        "outer_optimize": 0,
+        "name": "op03-cli-optimized-missing",
+        "pid": 551171,
+        "exit_code": 86,
+        "module_count": 2,
+        "module_categories": {
+          "fresh-input": 2
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/results/op03-cli-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131557Z-136ffc/receipts/op03-cli-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "candidates-normal-outside",
+        "pid": 551175,
+        "exit_code": 0,
+        "module_count": 17,
+        "module_categories": {
+          "fresh-input": 17
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/candidates-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "op03-cli-normal-outside",
+        "pid": 551222,
+        "exit_code": 0,
+        "module_count": 3,
+        "module_categories": {
+          "fresh-input": 3
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/op03-cli-normal-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "candidates-normal-missing",
+        "pid": 551231,
+        "exit_code": 86,
+        "module_count": 16,
+        "module_categories": {
+          "fresh-input": 16
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/candidates-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "op03-cli-normal-missing",
+        "pid": 551272,
+        "exit_code": 86,
+        "module_count": 2,
+        "module_categories": {
+          "fresh-input": 2
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/op03-cli-normal-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-normal-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "candidates-optimized-outside",
+        "pid": 551358,
+        "exit_code": 0,
+        "module_count": 17,
+        "module_categories": {
+          "fresh-input": 17
+        },
+        "required_bindings": 17,
+        "provenance_problems": [],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/candidates-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "op03-cli-optimized-outside",
+        "pid": 551437,
+        "exit_code": 0,
+        "module_count": 3,
+        "module_categories": {
+          "fresh-input": 3
+        },
+        "required_bindings": 3,
+        "provenance_problems": [],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/op03-cli-optimized-outside.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-outside/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-outside/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-outside/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "candidates-optimized-missing",
+        "pid": 551448,
+        "exit_code": 86,
+        "module_count": 16,
+        "module_categories": {
+          "fresh-input": 16
+        },
+        "required_bindings": 17,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "gap_lib",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/candidates/scripts/gap_lib.py"
+          }
+        ],
+        "numerical": {
+          "tests": 117,
+          "passed": 117,
+          "failed": 0
+        },
+        "cli_cases": null,
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/candidates-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/candidates-optimized-missing/stderr.txt"
+      },
+      {
+        "replay": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c",
+        "mutant": true,
+        "outer_optimize": 1,
+        "name": "op03-cli-optimized-missing",
+        "pid": 551455,
+        "exit_code": 86,
+        "module_count": 2,
+        "module_categories": {
+          "fresh-input": 2
+        },
+        "required_bindings": 3,
+        "provenance_problems": [
+          {
+            "code": "missing-required-module",
+            "module": "op03_gap_fixed",
+            "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-review-v2/independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/candidates/scripts/op03_gap_fixed.py"
+          }
+        ],
+        "numerical": null,
+        "cli_cases": [
+          {
+            "u": 0.4,
+            "fd": 143.28,
+            "fh": 143.28
+          },
+          {
+            "u": 0.43,
+            "fd": 66.064,
+            "fh": 66.064
+          },
+          {
+            "u": 0.45,
+            "fd": 4.3047,
+            "fh": 4.3047
+          },
+          {
+            "u": 0.458,
+            "fd": -18.238,
+            "fh": -18.238
+          }
+        ],
+        "result": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/results/op03-cli-optimized-missing.json",
+        "receipt": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-missing/receipt.json",
+        "stdout": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-missing/stdout.txt",
+        "stderr": "independent-review-20260921-v2/mutant-filter-only/work/replay-20260921T131645Z-0fa79c/receipts/op03-cli-optimized-missing/stderr.txt"
+      }
+    ],
+    "independent_audit": "independent-review-20260921-v2/execution-audit.json",
+    "independent_audit_source": "independent-review-20260921-v2/audit_evidence.py",
+    "repaired_replay_count": 2,
+    "repaired_child_count": 28,
+    "repaired_controls": 16,
+    "all_repaired_controls_refuse_intended_reason": true,
+    "numerical": {
+      "per_process_tests": 117,
+      "clean_candidate_passed": 117,
+      "original_passed": 38,
+      "original_failed": 79,
+      "normal_optimized_names_and_statuses_agree": true,
+      "independently_recomputed_from_saved_values": true
+    },
+    "actual_cli": {
+      "points": [
+        0.4,
+        0.43,
+        0.45,
+        0.458
+      ],
+      "four_clean_processes_across_outer_and_inner_modes": true,
+      "all_control_cli_processes_also_execute_four_points": true
+    },
+    "mutation": {
+      "separate_rebound": true,
+      "changed_files": [
+        "regression/provenance.py",
+        "manifest.json",
+        "manifest.sha256"
+      ],
+      "outer_modes": [
+        "normal",
+        "optimized"
+      ],
+      "each_replay_exit": 1,
+      "each_four_outside_controls_incorrectly_exit": 0,
+      "each_four_missing_controls_exit": 86,
+      "record": "independent-review-20260921-v2/filter-only-mutation.json",
+      "diff": "independent-review-20260921-v2/filter-only-mutation.diff"
+    },
+    "bootstrap_failure": "independent-review-20260921-v2/bootstrap-failure.json",
+    "all_new_failures_retained": true
+  },
+  "historical_context": {
+    "private_missing_file": "inputs/tools-AGENTS.md",
+    "not_supplied": true,
+    "not_read": true,
+    "not_executable_dependency": true,
+    "not_permission_to_follow_references": true,
+    "unchanged_context_manifest": "inputs/snapshot-manifest.json",
+    "historical_failures": "Prior missing-NumPy/backend/selector failures and author v2 startup-hook/mutant failures are supplied documentary evidence only; their unsupplied raw historical directories were not read or counted as own runs."
+  },
+  "mathematical_limitations": [
+    "Local interface formulas assume positive ordered block densities, simple Dirichlet eigenvalues, weighted eigenfunctions normalized by integral rho*u_k^2=1, and the stated edge orientation.",
+    "Finite floating-point checks at R=4, nonstationary n=1 fixtures, and stationary n=1,2 SUP/INF fixtures; no interval enclosure or exact-zero certificate.",
+    "The simplified Hessian requires F=f/lambda_{n+1}=0. Away from stationarity the outer(F,grad lambda) term is necessary; finite residuals do not prove exact stationarity.",
+    "Sixteen distinct recorded source AST expressions span all ten patches. AST substitution with jac_fd verifies those local expressions, not the original callers using analytic_jacobian_hp or analytic_jacobian_spectral.",
+    "No full old analytic/Green/resolvent/spectral-summation Jacobian audit, infinite-tail estimate, all-R/all-n continuation or global scan is claimed.",
+    "No global extremum, branch uniqueness, root simplicity theorem, historical certificate/proof audit, Lean verification, or P1/P2/P3 density-path derivation is certified.",
+    "Only op03_gap_fh receives a complete actual four-point instrumented CLI execution; other changed scripts have the precisely documented function/AST scope.",
+    "The unchanged op03_gap_precise normalization defect remains excluded; the selected candidate op03_gap_fh imports op03_gap_fixed. No eleventh source was repaired."
+  ],
+  "runtime_limitations": [
+    "This is acceptance of the observed end-of-execution file-backed sys.modules snapshot, not OS/process isolation or import prevention. The benign outside module executes before refusal.",
+    "No continuous import trace, transient/unloaded-module guarantee, malicious sys.modules metadata/evasion resistance, arbitrary-file-read trace, or shared-library provenance certification.",
+    "File hashes establish recorded source identity at observation and before/after execution; they do not prove execution of every line or exclude transient mid-run changes.",
+    "Built-in/namespace modules with no __file__ are excluded by the explicitly stated file-backed contract. The instrumented CLI changes launch machinery while executing the complete unchanged target source.",
+    "Executed only installed Linux/WSL Python 3.14.4, NumPy 2.5.2, SciPy 1.18.1. No native Windows or other-platform claim.",
+    "Installed runtime roots are discovered and documented, not supply-chain certified. Allowed roots are exact NumPy/SciPy directories plus stdlib excluding site/dist-packages; their search-directory parents are not blanket provenance allowances.",
+    "PACKET is the sole frozen identity boundary. No live/main-tree or author/sibling-directory comparison was performed. Matching historical hashes means matching supplied records only.",
+    "The initial python command failed before per-stream capture existed; the exact tool-combined output, command, status and hashes are preserved. All substantive test subprocesses have separate raw stdout/stderr receipts."
+  ],
+  "artifact_hash_inventory": "independent-review-20260921-v2/artifact-index.json",
+  "artifact_hash_inventory_note": "Created after the review; lists all reviewer-owned files and the two final reports, excluding itself to avoid self-hashing."
+}

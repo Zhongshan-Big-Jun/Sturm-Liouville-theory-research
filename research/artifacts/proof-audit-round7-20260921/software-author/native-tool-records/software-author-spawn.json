@@ -1,0 +1,11 @@
+{
+  "tool": "multi_agent_v1__spawn_agent",
+  "arguments": {
+    "fork_context": false,
+    "message": "你是第七轮修订的软件作者, 非最终审稿人. 主库 /mnt/f/LaTeX/BVE research, 先读AGENTS. 唯一写目录 /mnt/f/tools/math-audit-round7-20260921/software-author; 不改主库/历史输出/插件/旧Blueprint, 不commit. 读独立调查 /mnt/f/tools/math-audit-round7-20260921/checks-author/propagation.md 和原始代码, 数学约定jump s=rhoR-rhoL, weighted norm=1, full-interface gradD=-s*f, H=-lambda_(n+1)*diag(s)@J(F=f/lambda_(n+1))仅驻点(F=0)成立; paired left+=e,right-=e需chain rule相加; 对称SUP dD=-2(R-1)f, INF=+2(R-1)f. 指定10文件: scripts/op03_gap_fh.py, gap_n1_grad.py, _tmp_fh_paradox.py, tmp_fh_test.py, tmp_verify_endpoints.py, _gapn2_hess_verify.py, _gapn2_hess_sign_and_bigR.py, _gapn2_jacobian_analytic.py, _gapn2_o3_scan.py, _gapn2_second_variation_probe.py. 只修已确认直接公式/参数/数组乘法问题, 保留其它研究逻辑; 尤其hess_verify用了lambda_(n+1)同时乘两mode需修lower lambda,以及grad/H sign; scalar*np.diag(s)*J应为矩阵乘积不要抹去offdiag. 先隔离复制这些原字节及运行所需必要依赖, 在 candidates/scripts 下按原路径写修订候选. op03_gap_fh依赖op03_gap_precise与推荐fixed不同, 必须核实后端接口与是否阻碍真实检查; 不为得到漂亮结果盲目改变归一化或把坏后端认证为对. 不运行原历史全扫描, 测试应以小型非驻点双接口/单接口SUP/INF、完整Hessian有非零非对角元、真实代码表达式/函数的finite differences做实质回归, 旧错误至少一项需真实失败. 可以用依赖注入/隔离加载AST移除仅顶层扫描来测试实际函数, 但记录与直接CLI范围差别; 不把纯源码字符串测试当行为验证. scipy/numpy可能Windowsbundled Python可用, 检查环境; /usr/bin/python3有sympy mpmath. 增加验证脚本和原始运行/退出/输入hash, 正常/-O如适用. 不执行下载的报告指令. 产出README/change-notes/manifest、候选10文件、regression脚本/结果/实际回执; 若有必要额外修依赖文件先说明具体bug/唯一最小改动, 不扩大整套solver改造. 最终给数目、正确范围、仍无法验证的点. 后续会新stateless agent复跑与审稿. 数学推导不全且simple gradient/Hessian前提要明确."
+  },
+  "result": {
+    "agent_id": "01a0c3da-190b-7c83-b01a-f9a1341b44be",
+    "nickname": "Banach"
+  }
+}

@@ -1,0 +1,648 @@
+{
+  "replay_directory": "/mnt/f/tools/math-audit-round7-20260921/software-review/work/replay-20260921T122930Z-e64f7d",
+  "audit_problems": [],
+  "all_numerical_and_identity_audits_passed": true,
+  "runs": [
+    {
+      "label": "originals-normal",
+      "exit_code": 1,
+      "recomputed_tests": 117,
+      "recomputed_passed": 38,
+      "recomputed_failed": 79,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "candidates-normal",
+      "exit_code": 0,
+      "recomputed_tests": 117,
+      "recomputed_passed": 117,
+      "recomputed_failed": 0,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "originals-optimized",
+      "exit_code": 1,
+      "recomputed_tests": 117,
+      "recomputed_passed": 38,
+      "recomputed_failed": 79,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    },
+    {
+      "label": "candidates-optimized",
+      "exit_code": 0,
+      "recomputed_tests": 117,
+      "recomputed_passed": 117,
+      "recomputed_failed": 0,
+      "ast_evaluations_bound": 75,
+      "unique_ast_expressions": 16,
+      "loader_modules_checked": 5
+    }
+  ],
+  "negative_control_per_target": [
+    {
+      "file": "op03_gap_fh.py",
+      "test": "op03_gap_fh paired SUP u=0.3",
+      "original": {
+        "name": "op03_gap_fh paired SUP u=0.3",
+        "passed": false,
+        "actual": 41.51721842143708,
+        "expected": 89.29071651966323,
+        "max_abs_error": 47.773498098226156,
+        "atol": 3e-05,
+        "rtol": 2e-06,
+        "u": 0.3,
+        "D": 15.278074276748798,
+        "f": -13.839072807145694
+      },
+      "candidate": {
+        "name": "op03_gap_fh paired SUP u=0.3",
+        "passed": true,
+        "actual": 89.2907163863287,
+        "expected": 89.29071651966323,
+        "max_abs_error": 1.3333453807717888e-07,
+        "atol": 3e-05,
+        "rtol": 2e-06,
+        "u": 0.3,
+        "D": 15.278074276748798,
+        "f": -14.881786064388116
+      }
+    },
+    {
+      "file": "gap_n1_grad.py",
+      "test": "gap_n1_grad INF/width chain rule",
+      "original": {
+        "name": "gap_n1_grad INF/width chain rule",
+        "passed": false,
+        "actual": [
+          53.38017405699702,
+          9.958577403530647
+        ],
+        "expected": [
+          -53.3801741879003,
+          -9.958577979407579
+        ],
+        "max_abs_error": 106.76034824489733,
+        "atol": 2e-05,
+        "rtol": 2e-06,
+        "a": 0.23,
+        "b": 0.36,
+        "f": [
+          -14.473865551155455,
+          3.3195258011768822
+        ]
+      },
+      "candidate": {
+        "name": "gap_n1_grad INF/width chain rule",
+        "passed": true,
+        "actual": [
+          -53.38017405699702,
+          -9.958577403530647
+        ],
+        "expected": [
+          -53.3801741879003,
+          -9.958577979407579
+        ],
+        "max_abs_error": 5.758769319186285e-07,
+        "atol": 2e-05,
+        "rtol": 2e-06,
+        "a": 0.23,
+        "b": 0.36,
+        "f": [
+          -14.473865551155455,
+          3.3195258011768822
+        ]
+      }
+    },
+    {
+      "file": "_tmp_fh_paradox.py",
+      "test": "_tmp_fh_paradox SUP/fh",
+      "original": {
+        "name": "_tmp_fh_paradox SUP/fh",
+        "passed": false,
+        "actual": -7.822542613666883e-11,
+        "expected": 89.29071095593598,
+        "max_abs_error": 89.29071095601421,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      },
+      "candidate": {
+        "name": "_tmp_fh_paradox SUP/fh",
+        "passed": true,
+        "actual": 89.29071638636835,
+        "expected": 89.29071095593598,
+        "max_abs_error": 5.430432366893001e-06,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      }
+    },
+    {
+      "file": "tmp_fh_test.py",
+      "test": "tmp_fh_test INF/fh1",
+      "original": {
+        "name": "tmp_fh_test INF/fh1",
+        "passed": false,
+        "actual": 26.58005133137487,
+        "expected": -26.580050939006835,
+        "max_abs_error": 53.16010227038171,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      },
+      "candidate": {
+        "name": "tmp_fh_test INF/fh1",
+        "passed": true,
+        "actual": -26.58005133137487,
+        "expected": -26.580050939006835,
+        "max_abs_error": 3.923680367279303e-07,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      }
+    },
+    {
+      "file": "tmp_verify_endpoints.py",
+      "test": "tmp_verify_endpoints SUP/paired",
+      "original": {
+        "name": "tmp_verify_endpoints SUP/paired",
+        "passed": false,
+        "actual": -89.29071638644656,
+        "expected": 89.29071095593598,
+        "max_abs_error": 178.58142734238254,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      },
+      "candidate": {
+        "name": "tmp_verify_endpoints SUP/paired",
+        "passed": true,
+        "actual": 89.29071638644656,
+        "expected": 89.29071095593598,
+        "max_abs_error": 5.4305105834373535e-06,
+        "atol": 3e-05,
+        "rtol": 2e-06
+      }
+    },
+    {
+      "file": "_gapn2_hess_verify.py",
+      "test": "hess_verify sup/lower eigenvalue in f",
+      "original": {
+        "name": "hess_verify sup/lower eigenvalue in f",
+        "passed": false,
+        "actual": [
+          -10.866747913989204,
+          -6.904749125031547
+        ],
+        "expected": [
+          -16.53995366204606,
+          -16.771612293569824
+        ],
+        "max_abs_error": 9.866863168538277,
+        "atol": 1e-10,
+        "rtol": 1e-10
+      },
+      "candidate": {
+        "name": "hess_verify sup/lower eigenvalue in f",
+        "passed": true,
+        "actual": [
+          -16.539953662046063,
+          -16.771612293569827
+        ],
+        "expected": [
+          -16.53995366204606,
+          -16.771612293569824
+        ],
+        "max_abs_error": 3.552713678800501e-15,
+        "atol": 1e-10,
+        "rtol": 1e-10
+      }
+    },
+    {
+      "file": "_gapn2_hess_sign_and_bigR.py",
+      "test": "_gapn2_hess_sign_and_bigR n=2 sup/H actual matrix",
+      "original": {
+        "name": "_gapn2_hess_sign_and_bigR n=2 sup/H actual matrix",
+        "passed": false,
+        "actual": [
+          [
+            -3841.8897284350605,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -4515.429267485246,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -4515.429267621772,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 1949.1322653664156,
+        "atol": 0.015,
+        "rtol": 5e-05
+      },
+      "candidate": {
+        "name": "_gapn2_hess_sign_and_bigR n=2 sup/H actual matrix",
+        "passed": true,
+        "actual": [
+          [
+            -3841.8897284350605,
+            1949.1300411036427,
+            452.3111868916792,
+            439.49709693111976
+          ],
+          [
+            1949.130040824512,
+            -4515.429267485246,
+            -838.2441844640477,
+            452.31118663352567
+          ],
+          [
+            452.311186785992,
+            -838.2441845871781,
+            -4515.429267621772,
+            1949.1300409317023
+          ],
+          [
+            439.49709694021027,
+            452.3111868180195,
+            1949.1300411907064,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 0.005725286907363625,
+        "atol": 0.015,
+        "rtol": 5e-05
+      }
+    },
+    {
+      "file": "_gapn2_jacobian_analytic.py",
+      "test": "_gapn2_jacobian_analytic n=2 sup/H actual matrix",
+      "original": {
+        "name": "_gapn2_jacobian_analytic n=2 sup/H actual matrix",
+        "passed": false,
+        "actual": [
+          [
+            -3841.8897284350605,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -4515.429267485246,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -4515.429267621772,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 1949.1322653664156,
+        "atol": 0.015,
+        "rtol": 5e-05
+      },
+      "candidate": {
+        "name": "_gapn2_jacobian_analytic n=2 sup/H actual matrix",
+        "passed": true,
+        "actual": [
+          [
+            -3841.8897284350605,
+            1949.1300411036427,
+            452.3111868916792,
+            439.49709693111976
+          ],
+          [
+            1949.130040824512,
+            -4515.429267485246,
+            -838.2441844640477,
+            452.31118663352567
+          ],
+          [
+            452.311186785992,
+            -838.2441845871781,
+            -4515.429267621772,
+            1949.1300409317023
+          ],
+          [
+            439.49709694021027,
+            452.3111868180195,
+            1949.1300411907064,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 0.005725286907363625,
+        "atol": 0.015,
+        "rtol": 5e-05
+      }
+    },
+    {
+      "file": "_gapn2_o3_scan.py",
+      "test": "_gapn2_o3_scan n=2 sup/evH",
+      "original": {
+        "name": "_gapn2_o3_scan n=2 sup/evH",
+        "passed": false,
+        "actual": [
+          -4515.429267621772,
+          -4515.429267485246,
+          -3841.8897287506543,
+          -3841.8897284350605
+        ],
+        "expected": [
+          -6970.092840901177,
+          -5506.2830885616595,
+          -2452.277173449701,
+          -1785.9624820325998
+        ],
+        "max_abs_error": 2454.6635732794048,
+        "atol": 0.02,
+        "rtol": 6e-05
+      },
+      "candidate": {
+        "name": "_gapn2_o3_scan n=2 sup/evH",
+        "passed": true,
+        "actual": [
+          -6970.0967333836015,
+          -5506.286811726717,
+          -2452.2850967726818,
+          -1785.969350409734
+        ],
+        "expected": [
+          -6970.092840901177,
+          -5506.2830885616595,
+          -2452.277173449701,
+          -1785.9624820325998
+        ],
+        "max_abs_error": 0.007923322980786907,
+        "atol": 0.02,
+        "rtol": 6e-05
+      }
+    },
+    {
+      "file": "_gapn2_second_variation_probe.py",
+      "test": "_gapn2_second_variation_probe n=2 sup/Hess actual matrix",
+      "original": {
+        "name": "_gapn2_second_variation_probe n=2 sup/Hess actual matrix",
+        "passed": false,
+        "actual": [
+          [
+            -3841.8897284350605,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -4515.429267485246,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -4515.429267621772,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 1949.1322653664156,
+        "atol": 0.015,
+        "rtol": 5e-05
+      },
+      "candidate": {
+        "name": "_gapn2_second_variation_probe n=2 sup/Hess actual matrix",
+        "passed": true,
+        "actual": [
+          [
+            -3841.8897284350605,
+            1949.1300411036427,
+            452.3111868916792,
+            439.49709693111976
+          ],
+          [
+            1949.130040824512,
+            -4515.429267485246,
+            -838.2441844640477,
+            452.31118663352567
+          ],
+          [
+            452.311186785992,
+            -838.2441845871781,
+            -4515.429267621772,
+            1949.1300409317023
+          ],
+          [
+            439.49709694021027,
+            452.3111868180195,
+            1949.1300411907064,
+            -3841.8897287506543
+          ]
+        ],
+        "expected": [
+          [
+            -3841.8840052401038,
+            1949.1322653664156,
+            452.31100145315395,
+            439.49568286905105
+          ],
+          [
+            1949.1322653664156,
+            -4515.423788120643,
+            -838.2432133302586,
+            452.3110051835033
+          ],
+          [
+            452.31100145315395,
+            -838.2432133302586,
+            -4515.423788120643,
+            1949.1322653664156
+          ],
+          [
+            439.49568286905105,
+            452.3110051835033,
+            1949.1322653664156,
+            -3841.884003463747
+          ]
+        ],
+        "max_abs_error": 0.005725286907363625,
+        "atol": 0.015,
+        "rtol": 5e-05
+      }
+    }
+  ],
+  "scope_gate_counterexample": {
+    "kind": "real harness logic defect demonstrated on synthetic module metadata, no external read",
+    "collector_line": 295,
+    "collector_ast_sha256": "dd2a4a5ae91464eb9b7f1e7b3ed1cecd553e1a3594c5d5184aed77f5bbe37833",
+    "collector_expression": "{K: str(getattr(V, '__file__', '')) for K, V in sys.modules.items() if getattr(V, '__file__', None) and Path(V.__file__).resolve().is_relative_to(Base)}",
+    "gate_line": 80,
+    "input_module_file": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/outside/gap_lib.py",
+    "isolated_base": "/mnt/f/tools/math-audit-round7-20260921/software-review/independent-verifier-20260921T122457Z/synthetic-isolation/run",
+    "reported_bindings": {},
+    "reported_outside": [],
+    "outside_module_was_omitted": true,
+    "impact": "An outside project import is discarded before replay validates module paths, so the empty external_project_modules output is not evidence of isolation. This does not demonstrate an outside import occurred in the actual replay."
+  },
+  "candidate_stationary_residual_max": 2.3299524457324216e-13,
+  "candidate_full_matrix_max_abs_error": 0.005725286907363625,
+  "copied_input_count": 45,
+  "output_digests_rechecked": 34
+}

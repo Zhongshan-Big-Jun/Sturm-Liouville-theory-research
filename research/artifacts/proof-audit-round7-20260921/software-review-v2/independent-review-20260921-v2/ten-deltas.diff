@@ -1,0 +1,214 @@
+--- originals/scripts/gap_n1_grad.py
++++ candidates/scripts/gap_n1_grad.py
+@@ -40,6 +40,6 @@
+         bl = make_blocks(mode,R,a,b)
+         f = f_vals(bl, [a, a+b])
+         gnum = num_grad(mode,R,a,b)
+-        # FH prediction
+-        gFH = ((R-1)*(f[1]-f[0]), (R-1)*f[1])
++        # Widths (a,b) give edges (a,a+b); reverse both jumps for INF.
++        gFH = ((R-1)*(f[1]-f[0]), (R-1)*f[1]) if mode == "SUP" else ((R-1)*(f[0]-f[1]), -(R-1)*f[1])
+         print(f"  (a,b)=({a},{b}): grad_num=({gnum[0]:+.4f},{gnum[1]:+.4f}) grad_FH=({gFH[0]:+.4f},{gFH[1]:+.4f}) |f(a)|={abs(f[0]):.3e}")
+
+--- originals/scripts/op03_gap_fh.py
++++ candidates/scripts/op03_gap_fh.py
+@@ -1,7 +1,8 @@
+ ﻿# -*- coding: utf-8 -*-
+-"""Test dD/du = (1-R)*f(u) for [1,R,1] (SUP) numerically."""
++"""Test dD/du = 2*(1-R)*f(u) for [1,R,1] (SUP), with int rho*u_k^2 = 1."""
+ import numpy as np
+-from op03_gap_precise import lams_precise, eigfuns_precise
++# The legacy precise backend composes block propagators in the wrong order.
++from op03_gap_fixed import lams_precise, eigfuns_precise
+ 
+ R = 4.0
+ def Df_at(u):
+@@ -19,4 +20,4 @@
+     Dp, _ = Df_at(u+eps)
+     Dm, _ = Df_at(u-eps)
+     num = (Dp-Dm)/(2*eps)
+-    print(f"u={u:.4f}: D={D:.6f} f={f:+.4e}  dD/du_num={num:+.4e}  (1-R)f={ (1-R)*f:+.4e}")
++    print(f"u={u:.4f}: D={D:.6f} f={f:+.4e}  dD/du_num={num:+.4e}  2(1-R)f={ 2*(1-R)*f:+.4e}")
+
+--- originals/scripts/tmp_fh_test.py
++++ candidates/scripts/tmp_fh_test.py
+@@ -23,9 +23,9 @@
+     lam_m,_,_ = lam_of("INF", R, u-h)
+     d1 = (lam_p[0]-lam_m[0])/(2*h)
+     d2 = (lam_p[1]-lam_m[1])/(2*h)
+-    fh1 = lam[0]*(R-1)*(u1[0]**2 + u1[1]**2)
+-    fh2 = lam[1]*(R-1)*(u2[0]**2 + u2[1]**2)
+-    print(f"   d lam1/du = {d1:+.4f}  FH(lam1*(R-1)*sum u1^2) = {fh1:+.4f}")
+-    print(f"   d lam2/du = {d2:+.4f}  FH(lam2*(R-1)*sum u2^2) = {fh2:+.4f}")
+-    print(f"   dD/du = {d2-d1:+.4f}  FH(-2(R-1)f) = {-2*(R-1)*(lam[0]*u1[0]**2-lam[1]*u2[0]**2):+.4f}")
++    fh1 = -lam[0]*(R-1)*(u1[0]**2 + u1[1]**2)
++    fh2 = -lam[1]*(R-1)*(u2[0]**2 + u2[1]**2)
++    print(f"   d lam1/du = {d1:+.4f}  FH(-lam1*(R-1)*sum u1^2) = {fh1:+.4f}")
++    print(f"   d lam2/du = {d2:+.4f}  FH(-lam2*(R-1)*sum u2^2) = {fh2:+.4f}")
++    print(f"   dD/du = {d2-d1:+.4f}  FH(+2(R-1)f) = {2*(R-1)*(lam[0]*u1[0]**2-lam[1]*u2[0]**2):+.4f}")
+     print()
+
+--- originals/scripts/tmp_verify_endpoints.py
++++ candidates/scripts/tmp_verify_endpoints.py
+@@ -27,8 +27,8 @@
+             du = u-prev[0]
+             dDdu = (D-prev[1])/du
+         sign = np.sign(dDdu) if dDdu is not None else None
+-        fh = -2*(R-1)*f if mode=="INF" else 2*(R-1)*f
+-        print(f"  u={u:.4f}: D={D:10.6f} f={f:+10.4f} dD/du~{dDdu if dDdu is None else round(dDdu,4)}  FH-2(R-1)f={fh:+.4f}")
++        fh = 2*(R-1)*f if mode=="INF" else -2*(R-1)*f
++        print(f"  u={u:.4f}: D={D:10.6f} f={f:+10.4f} dD/du~{dDdu if dDdu is None else round(dDdu,4)}  FH_paired={fh:+.4f}")
+         prev=(u,D)
+     # find u* via brentq on f
+     from scipy.optimize import brentq
+
+--- originals/scripts/_gapn2_hess_sign_and_bigR.py
++++ candidates/scripts/_gapn2_hess_sign_and_bigR.py
+@@ -1,8 +1,10 @@
+ # -*- coding: utf-8 -*-
+-"""Probe: (1) verify Hess(D_n) = +/- diag(s) * lambda_{n+1} * J at band-consistent
++"""Probe: (1) compare +/- lambda_{n+1} * diag(s) @ J at stationary (F=0)
+ points against an FD Hessian (settles the sign convention of A3); (2) extended-R
+ margin scan R in {30, 100} for the K+-/K-- spectra (INF n=2..4, SUP n=2..3).
+ 
++The correct sign is minus for s=rho_right-rho_left, J=D_x(f/lambda_{n+1}),
++with weighted norms one. The simple Hessian formula requires F=0.
+ All output is EVIDENCE.
+ """
+ import sys
+@@ -56,7 +58,7 @@
+         s = np.array([rc.pat[i + 1] - rc.pat[i] for i in range(4)])
+         Hfd = hess_fd(rc, zs)
+         for sign, name in ((1.0, 'H = +diag(s) lam J'), (-1.0, 'H = -diag(s) lam J')):
+-            H = sign * np.diag(s) * lam * J
++            H = (sign * lam * np.diag(s)) @ J
+             print(f"[{mode}] {name}: err={np.max(np.abs(H - Hfd)):.2e}")
+         evH = np.linalg.eigvalsh(Hfd)
+         print(f"[{mode}] FD Hess eigenvalues: {np.round(evH, 4)}")
+
+--- originals/scripts/_gapn2_hess_verify.py
++++ candidates/scripts/_gapn2_hess_verify.py
+@@ -1,8 +1,10 @@
+ # -*- coding: utf-8 -*-
+ """Focused sign/structure checks (EVIDENCE):
+ 
+-(1) dD/dx_j = s_j * f(x_j) at band-consistent points (FD gradient in edge coords).
+-(2) Hess(D) vs lambda * diag(s) * J  (both orders: J and J^T) at h=1e-3.
++(1) dD/dx_j = -s_j * f(x_j) for independent right-moving edges.
++(2) At F=f/lambda_{n+1}=0 only: Hess(D) = -lambda * diag(s) @ J,
++    J=D_xF; the second Hessian expression is its transpose. Away from F=0,
++    add -diag(s) @ outer(F, grad(lambda_{n+1})). Weighted norms equal one.
+ (3) analytic J vs FD residual Jacobian jac_fd at N=400 (Richardson).
+ """
+ import sys
+@@ -35,15 +37,15 @@
+         ed = eigen_data(rc, zs)
+         lam = ed['lam_np1']
+         s = np.array([rc.pat[i + 1] - rc.pat[i] for i in range(4)])
+-        f = lam * ed['u_n'] ** 2 * 0 + (lam * ed['u_n'] ** 2 - lam * ed['u_np1'] ** 2)
++        f = ed['lam_n'] * ed['u_n'] ** 2 - lam * ed['u_np1'] ** 2
+         F = f / lam  # residual components at switches
+         # (1) FD gradient of D w.r.t. edges
+         h = 1e-6
+         g = np.array([(D_edges(rc, e + h * np.eye(4)[j]) - D_edges(rc, e - h * np.eye(4)[j])) / (2 * h)
+                       for j in range(4)])
+-        print(f"[{mode}] (1) dD/dx_j = {np.round(g, 6)} vs s_j f(x_j) = {np.round(s * f, 6)} "
+-              f"err={np.max(np.abs(g - s * f)):.2e}")
+-        # (2) FD Hessian (h=1e-3) vs lambda * diag(s) * J and J^T versions
++        print(f"[{mode}] (1) dD/dx_j = {np.round(g, 6)} vs -s_j f(x_j) = {np.round(-s * f, 6)} "
++              f"err={np.max(np.abs(g + s * f)):.2e}")
++        # (2) Stationary (F=0) Hessian (h=1e-3) vs -lambda * diag(s) @ J.
+         H = np.zeros((4, 4))
+         hh = 1e-3
+         for a in range(4):
+@@ -55,11 +57,11 @@
+                 H[a, b] = (D_edges(rc, vpp) - D_edges(rc, vpm) - D_edges(rc, vmp)
+                            + D_edges(rc, vmm)) / (4 * hh * hh)
+         J = analytic_jacobian_hp(rc, zs, N=400)
+-        H1 = lam * np.diag(s) @ J
+-        H2 = lam * J.T @ np.diag(s)
++        H1 = -lam * np.diag(s) @ J
++        H2 = -lam * J.T @ np.diag(s)
+         print(f"[{mode}] (2) FD Hess = {np.round(H, 3)}")
+-        print(f"[{mode}]     H - lam diag(s) J      err={np.max(np.abs(H - H1)):.3e}")
+-        print(f"[{mode}]     H - lam J^T diag(s)    err={np.max(np.abs(H - H2)):.3e}")
++        print(f"[{mode}]     H + lam diag(s) J      err={np.max(np.abs(H - H1)):.3e}")
++        print(f"[{mode}]     H + lam J^T diag(s)    err={np.max(np.abs(H - H2)):.3e}")
+         print(f"[{mode}]     eig(FD Hess) = {np.round(np.linalg.eigvalsh(H), 3)}")
+         # (3) analytic J vs jac_fd
+         Jfd = jac_fd(rc, zs)
+
+--- originals/scripts/_gapn2_jacobian_analytic.py
++++ candidates/scripts/_gapn2_jacobian_analytic.py
+@@ -29,7 +29,7 @@
+   (A2) f'(x_j) = -2 lambda_{n+1} eps_j c W(x_j),  eps_j = u_{n+1}(x_j)/u_n(x_j)/c,
+        c = sqrt(lambda_n/lambda_{n+1}), W = u_{n+1}' u_n - u_{n+1} u_n' < 0.
+   (A3) Hess(D_n) restricted to the family = -diag(s_i) * lambda_{n+1} * J at any
+-       critical point (verified 2026-08-12 vs FD Hessian, h=1e-4, err 4.6e-3 on
++       critical point F=0 (historically verified 2026-08-12 vs FD Hessian, h=1e-4, err 4.6e-3 on
+        entries O(1e3); dD/dx_i = -s_i f(x_i) also verified at non-critical points).
+        Hence with K := diag(1/s) J (symmetric, since all |s_i| = R-1):
+        Hess = -lambda_{n+1} (R-1)^2 K, det J = prod(s_i) det K, prod(s_i) = (R-1)^(2n) (-1)^n,
+@@ -282,11 +282,11 @@
+             wrel = np.max(np.abs(wj - wj2) / np.max(np.abs(wj)))
+             # f' identity
+             fprime_rel = np.max(np.abs(fprime - fprime_id)) / np.max(np.abs(fprime))
+-            # Hessian spectrum: Hess = diag(s) * lambda_{n+1} * J
++            # Stationary F=0 only: Hess = -lambda_{n+1} * diag(s) @ J.
+             pat = rcR.pat
+             s = np.array([pat[i + 1] - pat[i] for i in range(2 * n)])
+             lam_np1 = eigen_data(rcR, zs)['lam_np1']
+-            H = -np.diag(s) * lam_np1 * Jfd
++            H = (-lam_np1 * np.diag(s)) @ Jfd
+             ev = np.linalg.eigvalsh(H)
+             print(f"R={R:8.4g} |Jfd|max={np.max(np.abs(Jfd)):10.3e} "
+                   f"err={err:10.3e} rel={rel:10.3e} res={res:10.3e} "
+
+--- originals/scripts/_gapn2_o3_scan.py
++++ candidates/scripts/_gapn2_o3_scan.py
+@@ -70,7 +70,8 @@
+                 detB = np.linalg.det(B)
+                 detK = np.linalg.det(K)
+                 evK = np.linalg.eigvalsh(K)
+-                evH = np.linalg.eigvalsh(-np.diag(s) * lam_np1 * J)  # Hessian
++                # Stationary F=0 only; K above includes its separate lambda scaling.
++                evH = np.linalg.eigvalsh((-lam_np1 * np.diag(s)) @ J)  # full Hessian
+                 diagK = np.diag(K)
+                 sign_ok = (np.sign(detJ) == ((-1) ** n)) if abs(detJ) > 0 else False
+                 print(f"R={R:8.4g} D={ed['lam_np1']-ed['lam_n']:12.6f} "
+
+--- originals/scripts/_gapn2_second_variation_probe.py
++++ candidates/scripts/_gapn2_second_variation_probe.py
+@@ -209,7 +209,8 @@
+     print('  P3: bang-bang Q vs Hessian/K sector forms:')
+     s = np.array([rc.pat[i + 1] - rc.pat[i] for i in range(2 * n)])
+     Jfd = jac_fd(rc, zs)
+-    Hess = -np.diag(s) * lam_np1 * Jfd
++    # Stationary F=0 only; this repair does not re-audit the density-path probes.
++    Hess = (-lam_np1 * np.diag(s)) @ Jfd
+     edges = ed['edges']
+     w_bump = 5e-4
+ 
+
+--- originals/scripts/_tmp_fh_paradox.py
++++ candidates/scripts/_tmp_fh_paradox.py
+@@ -1,5 +1,5 @@
+ ﻿# -*- coding: utf-8 -*-
+-"""Check: for symmetric [1,R,1]_u family, is f(u)==f(1-u) and dD/du==0?"""
++"""Check paired interface chain rule for symmetric SUP/INF, weighted norm one."""
+ import numpy as np
+ from gap_lib import lams_fast, y_at, norm2
+ 
+@@ -23,6 +23,7 @@
+         eps = 1e-4
+         D1, _, _ = D_and_f(mode, R, u+eps)
+         num_deriv = (D1-D0)/eps
+-        fh = (R-1)*(f[0]-f[1])   # dD/du via FH with symmetric variation
+-        fh2 = -2*(R-1)*f[0]      # handoff formula
++        # Left moves right and right moves left: the two contributions add.
++        fh = -(R-1)*(f[0]+f[1]) if mode=="SUP" else (R-1)*(f[0]+f[1])
++        fh2 = -2*(R-1)*f[0] if mode=="SUP" else 2*(R-1)*f[0]  # symmetry
+         print(f"u={u}: D={D0:.6f}  num dD/du={(num_deriv):+.4f}  f(u)={f[0]:+.4f} f(1-u)={f[1]:+.4f}  FH_sym={(fh):+.4f}  FH_handoff={(fh2):+.4f}")
+
+CHANGED_PAIRS 10
+

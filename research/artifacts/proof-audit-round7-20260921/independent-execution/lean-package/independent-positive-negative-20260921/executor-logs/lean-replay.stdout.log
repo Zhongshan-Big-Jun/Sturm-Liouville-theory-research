@@ -1,0 +1,215 @@
+01-version exit 0 seconds 0.14
+Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+02-exact-root exit 0 seconds 491.03
+03-positive-control exit 0 seconds 9.7
+04-all-declarations exit 1 seconds 10.62
+SL.AuditRound7.normalized_mode (n : ℕ) (x : ℝ) : ℝ
+'SL.AuditRound7.normalized_mode' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.normalized_mode : ℕ → ℝ → ℝ :=
+fun n x => HMul.hMul.{0, 0, 0} (√2) (Real.sin (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑n) Real.pi) x))
+SL.AuditRound7.normalized_mode_slope (n : ℕ) (x : ℝ) : ℝ
+'SL.AuditRound7.normalized_mode_slope' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.normalized_mode_slope : ℕ → ℝ → ℝ :=
+fun n x =>
+  HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (√2) (HMul.hMul.{0, 0, 0} (↑n) Real.pi))
+    (Real.cos (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑n) Real.pi) x))
+SL.AuditRound7.normalized_mode_has_deriv (n : ℕ) (x : ℝ) :
+  HasDerivAt.{0, 0} (SL.AuditRound7.normalized_mode n) (SL.AuditRound7.normalized_mode_slope n x) x
+'SL.AuditRound7.normalized_mode_has_deriv' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.wronskian (n : ℕ) (x : ℝ) : ℝ
+'SL.AuditRound7.wronskian' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.wronskian : ℕ → ℝ → ℝ :=
+fun n x =>
+  HSub.hSub.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (SL.AuditRound7.normalized_mode n x)
+      (SL.AuditRound7.normalized_mode_slope (HAdd.hAdd.{0, 0, 0} n 1) x))
+    (HMul.hMul.{0, 0, 0} (SL.AuditRound7.normalized_mode_slope n x)
+      (SL.AuditRound7.normalized_mode (HAdd.hAdd.{0, 0, 0} n 1) x))
+SL.AuditRound7.wronskian_is_derivative_expression (n : ℕ) (x : ℝ) :
+  Eq.{1} (SL.AuditRound7.wronskian n x)
+    (HSub.hSub.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (SL.AuditRound7.normalized_mode n x)
+        (deriv.{0, 0} (SL.AuditRound7.normalized_mode (HAdd.hAdd.{0, 0, 0} n 1)) x))
+      (HMul.hMul.{0, 0, 0} (deriv.{0, 0} (SL.AuditRound7.normalized_mode n) x)
+        (SL.AuditRound7.normalized_mode (HAdd.hAdd.{0, 0, 0} n 1) x)))
+'SL.AuditRound7.wronskian_is_derivative_expression' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.trig_product_to_sum (a t : ℝ) :
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} 2
+      (HSub.hSub.{0, 0, 0}
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} a 1) (Real.sin (HMul.hMul.{0, 0, 0} a t)))
+          (Real.cos (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} a 1) t)))
+        (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} a (Real.cos (HMul.hMul.{0, 0, 0} a t)))
+          (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} a 1) t)))))
+    (HSub.hSub.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 a) 1) t))
+      (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 a) 1) (Real.sin t)))
+'SL.AuditRound7.trig_product_to_sum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.wronskian_product_to_sum (n : ℕ) (x : ℝ) :
+  Eq.{1} (SL.AuditRound7.wronskian n x)
+    (HMul.hMul.{0, 0, 0} Real.pi
+      (HSub.hSub.{0, 0, 0}
+        (Real.sin
+          (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1) (HMul.hMul.{0, 0, 0} Real.pi x)))
+        (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1)
+          (Real.sin (HMul.hMul.{0, 0, 0} Real.pi x)))))
+'SL.AuditRound7.wronskian_product_to_sum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.sin_square_sum (n : ℕ) (t : ℝ) : ℝ
+'SL.AuditRound7.sin_square_sum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.sin_square_sum : ℕ → ℝ → ℝ :=
+fun n t => ∑ j ∈ Finset.range n, HPow.hPow.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑j) 1) t)) 2
+SL.AuditRound7.sin_odd_step (a t : ℝ) :
+  Eq.{1}
+    (HSub.hSub.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 a) 1) t))
+      (Real.sin (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 a) 1) t)))
+    (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (Real.sin t))
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (Real.sin t))
+        (HPow.hPow.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} a t)) 2)))
+'SL.AuditRound7.sin_odd_step' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.finite_sin_square (n : ℕ) (t : ℝ) :
+  Eq.{1}
+    (HSub.hSub.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1) t))
+      (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1) (Real.sin t)))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-4) (Real.sin t)) (SL.AuditRound7.sin_square_sum n t))
+'SL.AuditRound7.finite_sin_square' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.wronskian_finite_sum (n : ℕ) (x : ℝ) :
+  Eq.{1} (SL.AuditRound7.wronskian n x)
+    (HMul.hMul.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-4) Real.pi) (Real.sin (HMul.hMul.{0, 0, 0} Real.pi x)))
+      (SL.AuditRound7.sin_square_sum n (HMul.hMul.{0, 0, 0} Real.pi x)))
+'SL.AuditRound7.wronskian_finite_sum' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.sin_square_sum_pos (n : ℕ) (hn : LT.lt.{0} 0 n) (t : ℝ) (ht : LT.lt.{0} 0 t)
+  (htpi : LT.lt.{0} t Real.pi) : LT.lt.{0} 0 (SL.AuditRound7.sin_square_sum n t)
+'SL.AuditRound7.sin_square_sum_pos' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.wronskian_neg (n : ℕ) (hn : LT.lt.{0} 0 n) (x : ℝ) (hx : LT.lt.{0} 0 x) (hx1 : LT.lt.{0} x 1) :
+  LT.lt.{0} (SL.AuditRound7.wronskian n x) 0
+'SL.AuditRound7.wronskian_neg' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.wronskian_two_half : Eq.{1} (SL.AuditRound7.wronskian 2 (1 / 2)) (HMul.hMul.{0, 0, 0} (-4) Real.pi)
+'SL.AuditRound7.wronskian_two_half' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.old_wronskian_two_half :
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-2) (HAdd.hAdd.{0, 0, 0} 2 1)) Real.pi)
+      (Real.sin (HMul.hMul.{0, 0, 0} Real.pi (1 / 2))))
+    (HMul.hMul.{0, 0, 0} (-6) Real.pi)
+'SL.AuditRound7.old_wronskian_two_half' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.old_wronskian_counterexample :
+  Ne.{1} (SL.AuditRound7.wronskian 2 (1 / 2))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-2) (HAdd.hAdd.{0, 0, 0} 2 1)) Real.pi)
+      (Real.sin (HMul.hMul.{0, 0, 0} Real.pi (1 / 2))))
+'SL.AuditRound7.old_wronskian_counterexample' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.endpoint_coefficient (n : ℕ) : ℝ
+'SL.AuditRound7.endpoint_coefficient' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.endpoint_coefficient : ℕ → ℝ :=
+fun n =>
+  HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (HPow.hPow.{0, 0, 0} Real.pi 4))
+    (HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} (↑n) 4) (HPow.hPow.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 1) 4))
+SL.AuditRound7.endpoint_coefficient_algebra (n : ℕ) :
+  Eq.{1}
+    (HSub.hSub.{0, 0, 0}
+      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑n) Real.pi) 2)
+        (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (√2) (HMul.hMul.{0, 0, 0} (↑n) Real.pi)) 2))
+      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 1) Real.pi) 2)
+        (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (√2) (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 1) Real.pi)) 2)))
+    (SL.AuditRound7.endpoint_coefficient n)
+'SL.AuditRound7.endpoint_coefficient_algebra' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.endpoint_coefficient_expanded (n : ℕ) :
+  Eq.{1} (SL.AuditRound7.endpoint_coefficient n)
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-2) (HPow.hPow.{0, 0, 0} Real.pi 4))
+      (HAdd.hAdd.{0, 0, 0}
+        (HAdd.hAdd.{0, 0, 0}
+          (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 4 (HPow.hPow.{0, 0, 0} (↑n) 3))
+            (HMul.hMul.{0, 0, 0} 6 (HPow.hPow.{0, 0, 0} (↑n) 2)))
+          (HMul.hMul.{0, 0, 0} 4 ↑n))
+        1))
+'SL.AuditRound7.endpoint_coefficient_expanded' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.endpoint_coefficient_neg (n : ℕ) : LT.lt.{0} (SL.AuditRound7.endpoint_coefficient n) 0
+'SL.AuditRound7.endpoint_coefficient_neg' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.fh_term (eigenvalue jump value velocity : ℝ) : ℝ
+'SL.AuditRound7.fh_term' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.fh_term : ℝ → ℝ → ℝ → ℝ → ℝ :=
+fun eigenvalue jump value velocity =>
+  HMul.hMul.{0, 0, 0}
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Neg.neg.{0} eigenvalue) jump) (HPow.hPow.{0, 0, 0} value 2)) velocity
+SL.AuditRound7.gap_switch (lower upper lowerValue upperValue : ℝ) : ℝ
+'SL.AuditRound7.gap_switch' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+def SL.AuditRound7.gap_switch : ℝ → ℝ → ℝ → ℝ → ℝ :=
+fun lower upper lowerValue upperValue =>
+  HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} lower (HPow.hPow.{0, 0, 0} lowerValue 2))
+    (HMul.hMul.{0, 0, 0} upper (HPow.hPow.{0, 0, 0} upperValue 2))
+SL.AuditRound7.mirrored_pair_from_single_interface
+  (eigenvalue jump leftValue rightValue leftContribution rightContribution : ℝ)
+  (hLeft : Eq.{1} leftContribution (SL.AuditRound7.fh_term eigenvalue jump leftValue 1))
+  (hRight : Eq.{1} rightContribution (SL.AuditRound7.fh_term eigenvalue (Neg.neg.{0} jump) rightValue (-1)))
+  (hMirror : Eq.{1} (HPow.hPow.{0, 0, 0} rightValue 2) (HPow.hPow.{0, 0, 0} leftValue 2)) :
+  Eq.{1} (HAdd.hAdd.{0, 0, 0} leftContribution rightContribution)
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-2) eigenvalue) jump)
+      (HPow.hPow.{0, 0, 0} leftValue 2))
+'SL.AuditRound7.mirrored_pair_from_single_interface' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.mirrored_gap_from_single_interface
+  (lower upper jump lowerLeft lowerRight upperLeft upperRight lowerDL lowerDR upperDL upperDR : ℝ)
+  (hLL : Eq.{1} lowerDL (SL.AuditRound7.fh_term lower jump lowerLeft 1))
+  (hLR : Eq.{1} lowerDR (SL.AuditRound7.fh_term lower (Neg.neg.{0} jump) lowerRight (-1)))
+  (hUL : Eq.{1} upperDL (SL.AuditRound7.fh_term upper jump upperLeft 1))
+  (hUR : Eq.{1} upperDR (SL.AuditRound7.fh_term upper (Neg.neg.{0} jump) upperRight (-1)))
+  (hLM : Eq.{1} (HPow.hPow.{0, 0, 0} lowerRight 2) (HPow.hPow.{0, 0, 0} lowerLeft 2))
+  (hUM : Eq.{1} (HPow.hPow.{0, 0, 0} upperRight 2) (HPow.hPow.{0, 0, 0} upperLeft 2)) :
+  Eq.{1} (HSub.hSub.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} upperDL upperDR) (HAdd.hAdd.{0, 0, 0} lowerDL lowerDR))
+    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 jump) (SL.AuditRound7.gap_switch lower upper lowerLeft upperLeft))
+'SL.AuditRound7.mirrored_gap_from_single_interface' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.mirrored_stationarity_iff (jump f : ℝ) (hJump : Ne.{1} jump 0) :
+  Eq.{1} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 jump) f) 0 ↔ Eq.{1} f 0
+'SL.AuditRound7.mirrored_stationarity_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.old_mirror_factor_counterexample :
+  Ne.{1} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (HSub.hSub.{0, 0, 0} 1 4)) (SL.AuditRound7.gap_switch 1 4 1 1))
+    (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} 1 4) (SL.AuditRound7.gap_switch 1 4 1 1))
+'SL.AuditRound7.old_mirror_factor_counterexample' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+SL.AuditRound7.local_algebra_root :
+  (∀ (n : ℕ) (x : ℝ),
+      HasDerivAt.{0, 0} (SL.AuditRound7.normalized_mode n) (SL.AuditRound7.normalized_mode_slope n x) x) ∧
+    (∀ (n : ℕ) (x : ℝ),
+        Eq.{1} (SL.AuditRound7.wronskian n x)
+          (HMul.hMul.{0, 0, 0} Real.pi
+            (HSub.hSub.{0, 0, 0}
+              (Real.sin
+                (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1)
+                  (HMul.hMul.{0, 0, 0} Real.pi x)))
+              (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1)
+                (Real.sin (HMul.hMul.{0, 0, 0} Real.pi x)))))) ∧
+      (∀ (n : ℕ) (t : ℝ),
+          Eq.{1}
+            (HSub.hSub.{0, 0, 0} (Real.sin (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1) t))
+              (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 ↑n) 1) (Real.sin t)))
+            (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-4) (Real.sin t)) (SL.AuditRound7.sin_square_sum n t))) ∧
+        (∀ (n : ℕ),
+            LT.lt.{0} 0 n → ∀ (x : ℝ), LT.lt.{0} 0 x → LT.lt.{0} x 1 → LT.lt.{0} (SL.AuditRound7.wronskian n x) 0) ∧
+          Eq.{1} (SL.AuditRound7.wronskian 2 (1 / 2)) (HMul.hMul.{0, 0, 0} (-4) Real.pi) ∧
+            Ne.{1} (SL.AuditRound7.wronskian 2 (1 / 2))
+                (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (-2) (HAdd.hAdd.{0, 0, 0} 2 1)) Real.pi)
+                  (Real.sin (HMul.hMul.{0, 0, 0} Real.pi (1 / 2)))) ∧
+              (∀ (n : ℕ),
+                  Eq.{1}
+                    (HSub.hSub.{0, 0, 0}
+                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑n) Real.pi) 2)
+                        (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (√2) (HMul.hMul.{0, 0, 0} (↑n) Real.pi)) 2))
+                      (HMul.hMul.{0, 0, 0}
+                        (HPow.hPow.{0, 0, 0} (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 1) Real.pi) 2)
+                        (HPow.hPow.{0, 0, 0}
+                          (HMul.hMul.{0, 0, 0} (√2) (HMul.hMul.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (↑n) 1) Real.pi)) 2)))
+                    (SL.AuditRound7.endpoint_coefficient n)) ∧
+                (∀ (n : ℕ), LT.lt.{0} (SL.AuditRound7.endpoint_coefficient n) 0) ∧
+                  (∀ (lower upper jump lowerLeft lowerRight upperLeft upperRight lowerDL lowerDR upperDL upperDR : ℝ),
+                      Eq.{1} lowerDL (SL.AuditRound7.fh_term lower jump lowerLeft 1) →
+                        Eq.{1} lowerDR (SL.AuditRound7.fh_term lower (Neg.neg.{0} jump) lowerRight (-1)) →
+                          Eq.{1} upperDL (SL.AuditRound7.fh_term upper jump upperLeft 1) →
+                            Eq.{1} upperDR (SL.AuditRound7.fh_term upper (Neg.neg.{0} jump) upperRight (-1)) →
+                              Eq.{1} (HPow.hPow.{0, 0, 0} lowerRight 2) (HPow.hPow.{0, 0, 0} lowerLeft 2) →
+                                Eq.{1} (HPow.hPow.{0, 0, 0} upperRight 2) (HPow.hPow.{0, 0, 0} upperLeft 2) →
+                                  Eq.{1}
+                                    (HSub.hSub.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} upperDL upperDR)
+                                      (HAdd.hAdd.{0, 0, 0} lowerDL lowerDR))
+                                    (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 jump)
+                                      (SL.AuditRound7.gap_switch lower upper lowerLeft upperLeft))) ∧
+                    ∀ (jump f : ℝ),
+                      Ne.{1} jump 0 → (Eq.{1} (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 jump) f) 0 ↔ Eq.{1} f 0)
+'SL.AuditRound7.local_algebra_root' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+F:\tools\math-audit-round7-20260921\independent-execution\lean-package\independent-positive-negative-20260921\replay\Inspection.lean:75:8: error: unsupported pattern in syntax match
+  Type

@@ -16,6 +16,10 @@
 命令入口随已加载插件版本确定; 本轮开发实现位于插件源码仓库 `_xsoc1_work/`,
 是否已发布和安装见对应版本报告, 不从目录存在推断安装成功.
 
+## 第七轮修订 (2026-09-21)
+
+[FH](feynman-hellmann.md)和[谱隙](gap-band-extremals.md)修正真实归一化与镜像成对导数. [等变性](band-selfconsistency-equivariance.md)、[半问题Green](half-problem-regularized-green.md)、[惯性](green-half-inertia.md)同步修正行列式与定性的逻辑边界、lambda因子和半隙坐标. 五张当前卡均由精确版本纠错回执控制, 原版本与失败路线保留; 历史Green推导没有因此整体重新获证. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)列出统一端点估计、一般SUP极限、软件回归和局部Lean的不同验收范围.
+
 ## 第六轮修订 (2026-09-21)
 
 [投影与有限矩准则](constrained-denseness-runs.md)修复三项问题, 采用实际尾部正交障碍上的有限检验; 原F的假设无实例, 一个表示元的非零检测不等于两个矩分别为零. [谱域工具](spectral-domain-checks.md)给出原完整命名族的精确非负稠密范围0<=s<7/2, 由四迹图核心补证. 九张相关卡和继承义务均按当前版本审查并释放; 旧源和批注保留. 第五轮s=2删除分类范围不扩大. [第六轮报告](../reports/proof-audit-round6-20260921/REPORT.md)区分解析验收、局部Lean和首次摘要退回.
@@ -72,10 +76,10 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | delta-bracketing | [card](<delta-bracketing.md>) | 0 |
 | denseness-criteria | [card](<denseness-criteria.md>) | 0 |
 | endpoint-collapse-reduction | [card](<endpoint-collapse-reduction.md>) | 0 |
-| feynman-hellmann | [card](<feynman-hellmann.md>) | 0 |
+| feynman-hellmann | [card](<feynman-hellmann.md>) | 1 |
 | fh-hessian-branch-reduction | [card](<fh-hessian-branch-reduction.md>) | 0 |
 | fp-arm-max-root | [card](<fp-arm-max-root.md>) | 0 |
-| gap-band-extremals | [card](<gap-band-extremals.md>) | 0 |
+| gap-band-extremals | [card](<gap-band-extremals.md>) | 1 |
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |

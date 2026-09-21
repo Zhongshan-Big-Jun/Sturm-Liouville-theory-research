@@ -1,0 +1,1465 @@
+{
+  "execution_role": "fresh independent finite-check verifier",
+  "supplemental_precision_digits": 100,
+  "child_processes": [
+    {
+      "name": "normal",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--output",
+        "outputs.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:10.901141+00:00",
+      "ended_at_utc": "2026-09-21T12:55:17.697160+00:00",
+      "elapsed_seconds": 6.796039,
+      "returncode": 0,
+      "expected_exitcode": 0,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/normal.stdout.log",
+      "stderr_path": "receipts/normal.stderr.log",
+      "stdout_sha256": "e9b57b3d8f1e93ce0bfea9ac353d70ab97e4b0c02035c377571e6997c78a3a42",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_path": "outputs.json",
+      "output_sha256": "d5b5ed3b270096c6f635c64f2703a4a45c133cb88ced69349d5806c6dd80cb53",
+      "stdout": "PASS W_product_to_sum_general\nPASS W_sum_squares_general_recurrence\nPASS W_finite_exact_Chebyshev_certificates\nPASS W_n2_half_counterexample\nPASS Taylor_pi4_general\nPASS n2_exact_roots_and_reduction\nPASS n2_normalized_determinant_exact\nPASS n2_four_root_order_signs_numeric\nPASS piecewise_L2rho_antiderivative_identity\nPASS nonstationary_shooting_index_and_residual\nPASS exact_segment_normalization_vs_quadrature\nPASS symmetric_FH_vs_independent_central_difference\nPASS legacy_symmetric_formula_is_half\nPASS one_interface_parameter_has_no_mirror_factor\nPASS u_second_derivative_true_nonzero_jump\nPASS trial_plateau_Gram_integrals_general\nPASS trial_plateau_bound_finite_exact_instances\nPASS center_vanishing_subspace_finite_Gram_bounds\nPASS thin_density_spectral_bound_samples\nPASS thin_density_scalar_limits_general_n\nPASS constant_density_refutes_general_4pi2\nPASS R7_P01_rho2_Schrodinger_counterexample\nPASS R7_P01_generalized_FH_two_exact_models\nPASS R7_P02_direct_matrix_and_switch_scaling\nPASS execution_contract_explicit_raise_and_input_identity\n25/25 groups passed; optimize=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "optimized",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--output",
+        "outputs.optimized.json"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:17.740717+00:00",
+      "ended_at_utc": "2026-09-21T12:55:25.716111+00:00",
+      "elapsed_seconds": 7.975391,
+      "returncode": 0,
+      "expected_exitcode": 0,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/optimized.stdout.log",
+      "stderr_path": "receipts/optimized.stderr.log",
+      "stdout_sha256": "df97f9b369e2a0c0a59c63e8df4faaa0ae2d5b91868a4cd4d2803a2733d9b48a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_path": "outputs.optimized.json",
+      "output_sha256": "b1b80e51f7e10586849fc9c7285435246d156c7fab6380263d01d860c2321b51",
+      "stdout": "PASS W_product_to_sum_general\nPASS W_sum_squares_general_recurrence\nPASS W_finite_exact_Chebyshev_certificates\nPASS W_n2_half_counterexample\nPASS Taylor_pi4_general\nPASS n2_exact_roots_and_reduction\nPASS n2_normalized_determinant_exact\nPASS n2_four_root_order_signs_numeric\nPASS piecewise_L2rho_antiderivative_identity\nPASS nonstationary_shooting_index_and_residual\nPASS exact_segment_normalization_vs_quadrature\nPASS symmetric_FH_vs_independent_central_difference\nPASS legacy_symmetric_formula_is_half\nPASS one_interface_parameter_has_no_mirror_factor\nPASS u_second_derivative_true_nonzero_jump\nPASS trial_plateau_Gram_integrals_general\nPASS trial_plateau_bound_finite_exact_instances\nPASS center_vanishing_subspace_finite_Gram_bounds\nPASS thin_density_spectral_bound_samples\nPASS thin_density_scalar_limits_general_n\nPASS constant_density_refutes_general_4pi2\nPASS R7_P01_rho2_Schrodinger_counterexample\nPASS R7_P01_generalized_FH_two_exact_models\nPASS R7_P02_direct_matrix_and_switch_scaling\nPASS execution_contract_explicit_raise_and_input_identity\n25/25 groups passed; optimize=1\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-normal-old-fh",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--negative-control",
+        "old-fh"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:25.749730+00:00",
+      "ended_at_utc": "2026-09-21T12:55:26.571235+00:00",
+      "elapsed_seconds": 0.821516,
+      "returncode": 1,
+      "expected_exitcode": 1,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/negative-normal-old-fh.stdout.log",
+      "stderr_path": "receipts/negative-normal-old-fh.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+      "output_path": null,
+      "output_sha256": null,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 556, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 530, in main\n    close((gap(a + h) - gap(a - h)) / (2 * h), (1 - 4) * f, '1e-18', 'intentional old FH formula rejection')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 38, in close\n    require(Error <= mp.mpf(Tolerance), Message + ': error=' + str(Error))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 28, in require\n    raise RuntimeError(Message)\nRuntimeError: intentional old FH formula rejection: error=26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259\n",
+      "observed_old_formula_absolute_error": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259"
+    },
+    {
+      "name": "negative-optimized-old-fh",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py",
+        "--negative-control",
+        "old-fh"
+      ],
+      "cwd": "/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2",
+      "started_at_utc": "2026-09-21T12:55:26.595004+00:00",
+      "ended_at_utc": "2026-09-21T12:55:27.872629+00:00",
+      "elapsed_seconds": 1.277627,
+      "returncode": 1,
+      "expected_exitcode": 1,
+      "checks_sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+      "runner_sha256": "c6ca4ef3095ed6b1869673b57001b72ed48d68afa86cfc237ee917dcae3baac6",
+      "stdout_path": "receipts/negative-optimized-old-fh.stdout.log",
+      "stderr_path": "receipts/negative-optimized-old-fh.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d7cfbc12af2bdbddd8fe5fb7433eb453060ac64671a30275152cc0e60e09cdd4",
+      "output_path": null,
+      "output_sha256": null,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 556, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 530, in main\n    close((gap(a + h) - gap(a - h)) / (2 * h), (1 - 4) * f, '1e-18', 'intentional old FH formula rejection')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 38, in close\n    require(Error <= mp.mpf(Tolerance), Message + ': error=' + str(Error))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round7-20260921/numerical-review-v2/checks.py\", line 28, in require\n    raise RuntimeError(Message)\nRuntimeError: intentional old FH formula rejection: error=26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259\n",
+      "observed_old_formula_absolute_error": "26.9404860801202857619399303749492449801291945661366696096904176100696272189699061222717259"
+    }
+  ],
+  "normal_optimized_equality": {
+    "equal": true,
+    "fields": [
+      "name",
+      "kind",
+      "status",
+      "details"
+    ],
+    "canonical_serialization": "UTF-8 JSON, sorted keys, ensure_ascii=False, separators comma/colon; no trailing newline",
+    "normal_sha256": "622ad05ff281de32bfcd9ce839993314e33ab9faf0cb3f92ea77bca135bd8d88",
+    "optimized_sha256": "622ad05ff281de32bfcd9ce839993314e33ab9faf0cb3f92ea77bca135bd8d88",
+    "excluded_fields": [
+      "elapsed_seconds",
+      "optimize",
+      "__debug__"
+    ],
+    "raw_output_files_equal": false
+  },
+  "kind_counts": {
+    "symbolic_identity": 6,
+    "finite_exact": 6,
+    "exact_counterexample": 2,
+    "high_precision_finite": 6,
+    "high_precision_counterexample": 2,
+    "symbolic_counterexample": 1,
+    "finite_exact_counterexamples": 1,
+    "execution_integrity": 1
+  },
+  "category_counts": {
+    "symbolic_or_exact_mathematics": 16,
+    "high_precision_real_numeric": 8,
+    "execution_bookkeeping": 1
+  },
+  "groups": [
+    {
+      "name": "W_product_to_sum_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "identity": "W=pi*(sin((2n+1)*theta)-(2n+1)*sin(theta))",
+        "theta": "pi*x"
+      }
+    },
+    {
+      "name": "W_sum_squares_general_recurrence",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "base": 0,
+        "increment": "-4*pi*sin(theta)*sin(n*theta)^2",
+        "general_note": "Sum the checked increment over integer n>=1. Strict negativity for 0<x<1 uses the j=1 summand; see derivations.md."
+      }
+    },
+    {
+      "name": "W_finite_exact_Chebyshev_certificates",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "n": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          12
+        ],
+        "identities_per_n": 2
+      }
+    },
+    {
+      "name": "W_n2_half_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "n": 2,
+        "x": "1/2",
+        "actual": "-4*pi",
+        "old": "-6*pi"
+      }
+    },
+    {
+      "name": "Taylor_pi4_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "x2_coefficient": "-2*pi**4*(2*n + 1)*(2*n**2 + 2*n + 1)",
+        "scope": "fixed n Taylor expansion; not a uniform-in-n remainder bound"
+      }
+    },
+    {
+      "name": "n2_exact_roots_and_reduction",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "t_roots": [
+          "11/36 - sqrt(10)/18",
+          "sqrt(10)/18 + 11/36"
+        ],
+        "f_reduction": "f=2*pi^2*(1-t)*(-144*t^2+88*t-9), t=cos(pi*x)^2"
+      }
+    },
+    {
+      "name": "n2_normalized_determinant_exact",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "det_DxF": "7030400000*pi**4/4782969",
+        "numeric": "143179.86873957383682542582127015090713113231934249",
+        "normalization": "F_j=f(x_j)/(lambda_3), lambda_3=9*pi^2; four independent full-interval interfaces"
+      }
+    },
+    {
+      "name": "n2_four_root_order_signs_numeric",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "x_roots": [
+          "0.25597364467540803361677774203224541708202712337615142675312883099",
+          "0.38264716110914193029748953716376197104874059930458502854991267913",
+          "0.61735283889085806970251046283623802895125940069541497145008732087",
+          "0.74402635532459196638322225796775458291797287662384857324687116901"
+        ],
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      }
+    },
+    {
+      "name": "piecewise_L2rho_antiderivative_identity",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "method": "closed-form exact segment integration evaluated at 90 decimal digits; not a mesh/trapezoid norm"
+      }
+    },
+    {
+      "name": "nonstationary_shooting_index_and_residual",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "densities": [
+          1,
+          4,
+          1
+        ],
+        "interfaces": [
+          "1/4",
+          "3/4"
+        ],
+        "n": 1,
+        "lambda_1": "2.8295860344436223603199529076252668089311022617134906191613028999",
+        "lambda_2": "14.602077453837591825051791909922411553085684218708438233366129366",
+        "shooting_residuals": [
+          "-9.2045502474332372870545724155992668305785290859364679345841545947e-92",
+          "-1.5340917079055395478424287359332111384297548476560779890973590991e-92"
+        ],
+        "f_a": "-8.9801620267067619206158738312482032196754955426820279904677388043",
+        "derivative_FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "root_selection": "monotone unwrapped phase bracketing; independent endpoint-y secant refinement"
+      }
+    },
+    {
+      "name": "exact_segment_normalization_vs_quadrature",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": [
+        {
+          "shooting_mass": "0.22088036638295498829029685861791522288871308830159004084624997924",
+          "segment_masses": [
+            "0.0050271879429008522155396385770949650136022280083429721255408959908",
+            "0.21082599049715328385921758146372529286150863228490409659516818725",
+            "0.0050271879429008522155396385770949650136022280083429721255408959908"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.51639777949432225135723538663765328144438956070554544354500983548"
+        },
+        {
+          "shooting_mass": "0.06848340608802815524340894621599009925081527007727143013064212708",
+          "segment_masses": [
+            "0.0043362519875424594486416702159665417889534522033962297563927356184",
+            "0.059810902112943236346125605784057015672908365670478970617856655843",
+            "0.0043362519875424594486416702159665417889534522033962297563927356184"
+          ],
+          "quadrature_error": "0.0",
+          "normalized_u_a": "0.81649658092772603273242802490196379732198249355222337614423085575"
+        }
+      ]
+    },
+    {
+      "name": "symmetric_FH_vs_independent_central_difference",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "FH": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "differences": [
+          {
+            "h": "1e-5",
+            "central_difference": "53.880972252549452756442688925925777454278415328697286576435166647",
+            "error": "0.000000092308881232747445938436558136225442072605118633628733821011382492"
+          },
+          {
+            "h": "1e-8",
+            "central_difference": "53.880972160240663832576447622838434123019936423632131340287003626",
+            "error": "0.000000000000092308881204635349214804966963167539963397480570800524587669104379"
+          },
+          {
+            "h": "1e-11",
+            "central_difference": "53.880972160240571523787551868693854639155681194182753581093634023",
+            "error": "0.000000000000000000092308881204635321102707938090585638287201197188608431125580881747"
+          }
+        ],
+        "h_changes": "left a+h and right 1-a-h; both lengths move; new shooting roots for each perturbation"
+      }
+    },
+    {
+      "name": "legacy_symmetric_formula_is_half",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "old": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "correct": "53.880972160240571523695242987489219318052973256092167942806432826",
+        "FD_over_old": "2.0000000000000000000034263999888536225687006608867238405471156771"
+      }
+    },
+    {
+      "name": "one_interface_parameter_has_no_mirror_factor",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "central_difference": "26.940486080120285761855253335499045557597865457786086743087128038",
+        "FH": "26.940486080120285761847621493744609659026486628046083971403216413",
+        "parameter": "x_left changes; x_right fixed at 3/4. Do not double this convention."
+      }
+    },
+    {
+      "name": "u_second_derivative_true_nonzero_jump",
+      "kind": "high_precision_counterexample",
+      "status": "PASS",
+      "details": {
+        "index": 1,
+        "u_a": "0.51639777949432225135723538663765328144438956070554544354500983548",
+        "u_second_left": "-1.461191945074831426539124609668543695045078288302397096376903671",
+        "u_second_right": "-5.8447677802993257061564984386741747801803131532095883855076146838",
+        "jump_right_minus_left": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "expected": "-4.3835758352244942796173738290056310851352348649071912891307110129",
+        "conclusion": "This eigenfunction is C1 but not C2, hence not globally C3."
+      }
+    },
+    {
+      "name": "trial_plateau_Gram_integrals_general",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "basis": "phi_j=1 on |x-jh|<=delta; linear to zero at |x-jh|=h/2; disjoint supports",
+        "diagonal_mass": "2*R*d - 2*d/3 + h/3",
+        "diagonal_energy": "-4/(2*d - h)",
+        "conditions": "h=1/(n+1), 0<delta<=h/12, R>=1",
+        "scope": "integral identities; dimension/min-max argument is in derivations.md"
+      }
+    },
+    {
+      "name": "trial_plateau_bound_finite_exact_instances",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "instances": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "rayleigh": "1728/145",
+            "upper_bound": "36"
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "625/1512",
+            "upper_bound": "6/5"
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "100000000/2501081667",
+            "upper_bound": "3/25"
+          },
+          {
+            "n": 1,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "1000000000000/250019833166667",
+            "upper_bound": "3/250"
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "rayleigh": "3888/145",
+            "upper_bound": "81"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "270000/425209",
+            "upper_bound": "9/5"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/44997970009",
+            "upper_bound": "9/50"
+          },
+          {
+            "n": 2,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/4500222997000009",
+            "upper_bound": "9/500"
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "rayleigh": "6912/145",
+            "upper_bound": "144"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "120000/138529",
+            "upper_bound": "12/5"
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "300000000/3748560001",
+            "upper_bound": "6/25"
+          },
+          {
+            "n": 3,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "3000000000000/375012624750001",
+            "upper_bound": "3/125"
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "rayleigh": "15552/145",
+            "upper_bound": "324"
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "rayleigh": "67500/49621",
+            "upper_bound": "18/5"
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "2700000000/22479235009",
+            "upper_bound": "9/25"
+          },
+          {
+            "n": 5,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "27000000000000/2250035498500009",
+            "upper_bound": "9/250"
+          },
+          {
+            "n": 8,
+            "R": 8,
+            "delta": "1/108",
+            "rayleigh": "34992/145",
+            "upper_bound": "729"
+          },
+          {
+            "n": 8,
+            "R": 1000,
+            "delta": "1/108",
+            "rayleigh": "34992/15025",
+            "upper_bound": "729/125"
+          },
+          {
+            "n": 8,
+            "R": 1000000,
+            "delta": "1/10000",
+            "rayleigh": "24300000000/134781910081",
+            "upper_bound": "27/50"
+          },
+          {
+            "n": 8,
+            "R": 1000000000,
+            "delta": "1/1000000",
+            "rayleigh": "243000000000000/13500006991000081",
+            "upper_bound": "27/500"
+          }
+        ],
+        "scope": "finite exact tests, not an infinite-dimensional spectral proof"
+      }
+    },
+    {
+      "name": "center_vanishing_subspace_finite_Gram_bounds",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "cases": [
+          {
+            "n": 1,
+            "R": 8,
+            "delta": "1/24",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 1,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 4,
+            "cells_checked": 2
+          },
+          {
+            "n": 2,
+            "R": 8,
+            "delta": "1/36",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 6,
+            "cells_checked": 3
+          },
+          {
+            "n": 3,
+            "R": 8,
+            "delta": "1/48",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 3,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 8,
+            "cells_checked": 4
+          },
+          {
+            "n": 5,
+            "R": 8,
+            "delta": "1/72",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000,
+            "delta": "1/100",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          },
+          {
+            "n": 5,
+            "R": 1000000,
+            "delta": "1/10000",
+            "tested_subspace_dimension": 12,
+            "cells_checked": 6
+          }
+        ],
+        "scope": "All vectors in these finite polynomial subspaces only. Full H0^1 center-vanishing bound needs the analytic argument, not this test."
+      }
+    },
+    {
+      "name": "thin_density_spectral_bound_samples",
+      "kind": "high_precision_finite",
+      "status": "PASS",
+      "details": {
+        "samples": [
+          {
+            "n": 1,
+            "R": 1000,
+            "lambda_n": "0.19947604757876224161670141520987683620126103139047513616516714825",
+            "lambda_n_plus_1": "23.63863792205194419755274885384103008089239852868526206935519321",
+            "upper_lambda_n": "1.2",
+            "lower_lambda_n_plus_1": "13.283688485865788928686055340849186129021446011025187425349089421",
+            "upper_cap": "39.478417604357434475337963999504604541254797628963162505653397505"
+          },
+          {
+            "n": 2,
+            "R": 1000,
+            "lambda_n": "0.46023960957596147866424807596021838292724601159004420522953561241",
+            "lambda_n_plus_1": "24.184919110799907783090460989150855247686519992637819711800258864",
+            "upper_lambda_n": "1.8",
+            "lower_lambda_n_plus_1": "16.33775784112061828063497511160960271999302295669291535284370603",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          },
+          {
+            "n": 3,
+            "R": 1000,
+            "lambda_n": "0.71173515712719193050921759253965114510255245733483157557578355009",
+            "lambda_n_plus_1": "24.34824386152920317784349217767083286571054726030688081554099957",
+            "upper_lambda_n": "2.4",
+            "lower_lambda_n_plus_1": "17.767488750553101505237464683613818993743453388365850956071603341",
+            "upper_cap": "157.91367041742973790135185599801841816501919051585265002261359002"
+          },
+          {
+            "n": 2,
+            "R": 1000000,
+            "lambda_n": "0.044976036599671416931627063891261075346475671521506785187772710726",
+            "lambda_n_plus_1": "88.792971246121859489939197228784281338761825358227814079562849938",
+            "upper_lambda_n": "0.18",
+            "lower_lambda_n_plus_1": "61.508542672014618798941864279421543266689191955403496904274692095",
+            "upper_cap": "88.826439609804227569510418998885360217823294665167115637720144386"
+          }
+        ],
+        "scope": "finite spectral samples; no infinite-dimensional theorem certification"
+      }
+    },
+    {
+      "name": "thin_density_scalar_limits_general_n",
+      "kind": "symbolic_identity",
+      "status": "PASS",
+      "details": {
+        "R": "q^3",
+        "delta": "q^-2 once q^2>=12(n+1)",
+        "limits": [
+          "0",
+          "(n+1)^2*pi^2"
+        ],
+        "scope": "scalar asymptotics of bounds, conditional on the full variational argument in derivations.md"
+      }
+    },
+    {
+      "name": "constant_density_refutes_general_4pi2",
+      "kind": "symbolic_counterexample",
+      "status": "PASS",
+      "details": {
+        "S_n_lower_bound": "(2n+1)*pi^2 for every R>=1 since rho=1 is admissible",
+        "n2_lower": "5*pi^2",
+        "n1_limit_candidate": "4*pi^2",
+        "scope": "supremum over the whole box class, not arbitrary stationary branches"
+      }
+    },
+    {
+      "name": "R7_P01_rho2_Schrodinger_counterexample",
+      "kind": "exact_counterexample",
+      "status": "PASS",
+      "details": {
+        "rho": 2,
+        "H": "-d2/dx2+2*tau on fixed L2(0,1)",
+        "u": "sin(pi*x)",
+        "weighted_norm_squared": "1",
+        "ordinary_norm_squared": "1/2",
+        "old_prediction": "1",
+        "true_derivative": "2"
+      }
+    },
+    {
+      "name": "R7_P01_generalized_FH_two_exact_models",
+      "kind": "finite_exact",
+      "status": "PASS",
+      "details": {
+        "formula": "lambda'=(<u,A' u>-lambda*<u,B' u>)/<u,Bu>",
+        "potential_model_derivative": "2",
+        "weighted_string_derivative": "-pi**2/(2*(tau/2 + 1)*(tau + 2))",
+        "scope": "two exact model instantiations; not a general operator differentiability proof"
+      }
+    },
+    {
+      "name": "R7_P02_direct_matrix_and_switch_scaling",
+      "kind": "finite_exact_counterexamples",
+      "status": "PASS",
+      "details": {
+        "K": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1]])",
+        "det_K": "1",
+        "Hessian_diagonal": [
+          "-81",
+          "-81",
+          "81",
+          "81"
+        ],
+        "fprime_over_s": "8",
+        "fprime_over_s_lambda": "8/9",
+        "old_missing_lambda_expression": "8/9",
+        "n3_detJ_sign_when_K_identity": -1,
+        "matrix_product_H": "Matrix([[-27, -54], [-54, -27]])",
+        "elementwise_product_H": "Matrix([[-27, 0], [0, -27]])",
+        "scope": "Finite algebra refutes a general matrix implication and distinguishes normalization/array semantics. Does not refute a particular spectral branch or certify G2."
+      }
+    },
+    {
+      "name": "execution_contract_explicit_raise_and_input_identity",
+      "kind": "execution_integrity",
+      "status": "PASS",
+      "details": {
+        "assert_nodes": 0,
+        "explicit_raise_negative_control_caught": true,
+        "input_snapshots_verified": 4
+      }
+    }
+  ],
+  "independent_exact_samples": {
+    "wronskian_n2_half": "-4*pi",
+    "n2_x2_coefficient": "-130*pi**4",
+    "n2_four_interface_determinant": "7030400000*pi**4/4782969",
+    "determinant_method": "resultant of P(t)=144t^2-88t+9 and t(1-t)^3 P'(t)^2, using product over both roots; normalized F=f/(9*pi^2)"
+  },
+  "independent_nonstationary_mirror_sample": {
+    "model": "-u''=lambda*rho*u; Dirichlet endpoints; rho=(1,4,1) at a=1/4,1-a=3/4; both interfaces move",
+    "method": "Independent half-domain characteristic roots with Neumann first mode and Dirichlet second mode; weighted normalization by quadrature; implicit derivative and separately perturbed root finite difference. No checker import.",
+    "closed_form_sqrt_lambdas": [
+      "4*acos(sqrt(5/6))",
+      "4*acos(1/sqrt(3))"
+    ],
+    "lambda_values": [
+      "2.829586034443622360319952907625266808931102261713490619161302899884472542202079",
+      "14.602077453837591825051791909922411553085684218708438233366129366394298410802994"
+    ],
+    "weighted_masses": [
+      "0.22088036638295498829029685861791522288871308830159004084624997923501177747140486",
+      "0.068483406088028155243408946215990099250815270077271430130642127079885013217205245"
+    ],
+    "normalized_u_a_squared": [
+      "0.26666666666666666666666666666666666666666666666666666666666666666666666666666667",
+      "0.66666666666666666666666666666666666666666666666666666666666666666666666666666667"
+    ],
+    "characteristic_residuals": [
+      "0.0",
+      "-7.1436711955142186388486471769083809965744374676424916325945365201727039744171137e-102"
+    ],
+    "individual_implicit_derivatives": [
+      "4.5273376551097957765119246522004268942897636187415849906580846398151560675233264",
+      "58.408309815350367300207167639689646212342736874833752933464517465577193643211977"
+    ],
+    "FH_gap_derivative": "53.88097216024057152369524298748921931805297325609216794280643282576203757568865",
+    "implicit_gap_derivative": "53.88097216024057152369524298748921931805297325609216794280643282576203757568865",
+    "finite_difference_h": "0.000000000001",
+    "perturbed_sqrt_lambdas": [
+      [
+        "1.6821373411372062214259646878786841564795571509028647966398154746690435495975464",
+        "3.8212664725056796456004552571962124632765686145078060930445803550769454670991552"
+      ],
+      [
+        "1.6821373411345148016801473110601992474316211546561990903352399129763291131643007",
+        "3.8212664724903945797104631087455906142388071704538784498946539876742897062561764"
+      ]
+    ],
+    "finite_difference": "53.880972160240571523696166076301265671264000057163034903308826244893225744031371",
+    "FD_absolute_error": "0.00000000000000000000092308881204635321102680107086696050239341913118816834272083410700822856609171995",
+    "old_half_formula": "26.940486080120285761847621493744609659026486628046083971403216412881018787844325",
+    "old_formula_absolute_error": "26.940486080120285761848544582556656012237513429116950931905609832012206956187046",
+    "scope": "One finite nonstationary example at 100-digit working precision. Numerical tolerances are not certified interval enclosures."
+  },
+  "provenance_labels": {
+    "frozen_checker_payload_role": "independent executable-check author, not final reviewer",
+    "frozen_runner_summary_role": "author execution evidence, not independent final review",
+    "interpretation": "These unchanged author strings describe code provenance. This execution and its verification were performed by the fresh independent verifier."
+  },
+  "verification_gates": [
+    {
+      "name": "input unchanged and bound: PACKET.json",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: checks.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: run_checks.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/feynman-hellmann.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/gap-band-extremals.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/manifest.json",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/proof_audit_round7_20260921.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/SL_gap_nge2_symmetry_local_proof.tex",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/docs/SL_gap_extremals.tex",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/docs/SL_gap_nge2_symmetry_local_proof.tex",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/docs/SL_gap_nge2_symmetry_recon.tex",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/docs/SL_spectral_topics_summary.tex",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/gap_n1_grad.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_fh.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_fh10.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_fh9.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_fixed.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_limit3.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/op03_gap_precise.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/tmp_fh_test.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/tmp_hess.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/tmp_hess2.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/tmp_hess3.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/tmp_verify_endpoints.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_hess_sign_and_bigR.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_hess_verify.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_hp_scan.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_jacobian_analytic.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_jacobian_probe.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_o3_scan.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_second_variation_probe.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_gapn2_symmetry_recon.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/scripts/_tmp_fh_paradox.py",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/band-selfconsistency-equivariance.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/feynman-hellmann.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/fh-hessian-branch-reduction.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/gap-band-extremals.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/green-half-inertia.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/half-problem-regularized-green.md",
+      "passed": true
+    },
+    {
+      "name": "input unchanged and bound: inputs/source-scan/tools/README.md",
+      "passed": true
+    },
+    {
+      "name": "manifest and all four snapshot entries supplied",
+      "passed": true
+    },
+    {
+      "name": "source has 25 unique named groups",
+      "passed": true
+    },
+    {
+      "name": "checks and runner contain no Python assert gates",
+      "passed": true
+    },
+    {
+      "name": "actual required outer argv and cwd",
+      "passed": true
+    },
+    {
+      "name": "outer exited zero without timeout",
+      "passed": true
+    },
+    {
+      "name": "all 15 runner outputs observed as fresh",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: outputs.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: outputs.optimized.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/execution-summary.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/normal.stdout.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/normal.stderr.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/normal.execution.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/optimized.stdout.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/optimized.stderr.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/optimized.execution.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-normal-old-fh.stdout.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-normal-old-fh.stderr.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-normal-old-fh.execution.json",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-optimized-old-fh.stdout.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-optimized-old-fh.stderr.log",
+      "passed": true
+    },
+    {
+      "name": "fresh output hash: receipts/negative-optimized-old-fh.execution.json",
+      "passed": true
+    },
+    {
+      "name": "outer stdout capture binding",
+      "passed": true
+    },
+    {
+      "name": "outer stderr capture binding",
+      "passed": true
+    },
+    {
+      "name": "normal process identity",
+      "passed": true
+    },
+    {
+      "name": "normal actual expected exit",
+      "passed": true
+    },
+    {
+      "name": "normal source hash bindings",
+      "passed": true
+    },
+    {
+      "name": "normal stdout binding",
+      "passed": true
+    },
+    {
+      "name": "normal stderr binding",
+      "passed": true
+    },
+    {
+      "name": "normal payload binding",
+      "passed": true
+    },
+    {
+      "name": "normal empty stderr",
+      "passed": true
+    },
+    {
+      "name": "optimized process identity",
+      "passed": true
+    },
+    {
+      "name": "optimized actual expected exit",
+      "passed": true
+    },
+    {
+      "name": "optimized source hash bindings",
+      "passed": true
+    },
+    {
+      "name": "optimized stdout binding",
+      "passed": true
+    },
+    {
+      "name": "optimized stderr binding",
+      "passed": true
+    },
+    {
+      "name": "optimized payload binding",
+      "passed": true
+    },
+    {
+      "name": "optimized empty stderr",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh process identity",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh actual expected exit",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh source hash bindings",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh stdout binding",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh stderr binding",
+      "passed": true
+    },
+    {
+      "name": "negative-normal-old-fh intentional formula failure, not unrelated crash",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh process identity",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh actual expected exit",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh source hash bindings",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh stdout binding",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh stderr binding",
+      "passed": true
+    },
+    {
+      "name": "negative-optimized-old-fh intentional formula failure, not unrelated crash",
+      "passed": true
+    },
+    {
+      "name": "normal counts independently recomputed",
+      "passed": true
+    },
+    {
+      "name": "normal exact source group names and order",
+      "passed": true
+    },
+    {
+      "name": "normal group kinds match source",
+      "passed": true
+    },
+    {
+      "name": "normal all groups have substantive detail records",
+      "passed": true
+    },
+    {
+      "name": "normal 25 distinct actual stdout PASS lines",
+      "passed": true
+    },
+    {
+      "name": "normal optimization and debug flags",
+      "passed": true
+    },
+    {
+      "name": "normal runtime and precision",
+      "passed": true
+    },
+    {
+      "name": "normal payload input identities",
+      "passed": true
+    },
+    {
+      "name": "optimized counts independently recomputed",
+      "passed": true
+    },
+    {
+      "name": "optimized exact source group names and order",
+      "passed": true
+    },
+    {
+      "name": "optimized group kinds match source",
+      "passed": true
+    },
+    {
+      "name": "optimized all groups have substantive detail records",
+      "passed": true
+    },
+    {
+      "name": "optimized 25 distinct actual stdout PASS lines",
+      "passed": true
+    },
+    {
+      "name": "optimized optimization and debug flags",
+      "passed": true
+    },
+    {
+      "name": "optimized runtime and precision",
+      "passed": true
+    },
+    {
+      "name": "optimized payload input identities",
+      "passed": true
+    },
+    {
+      "name": "normal/-O all named mathematical details equal",
+      "passed": true
+    },
+    {
+      "name": "Chebyshev exact sample set and two identities per n",
+      "passed": true
+    },
+    {
+      "name": "20 plateau cases",
+      "passed": true
+    },
+    {
+      "name": "12 finite polynomial Gram cases and 45 cells",
+      "passed": true
+    },
+    {
+      "name": "four spectral samples",
+      "passed": true
+    },
+    {
+      "name": "reported spectral inequalities (1, 1000)",
+      "passed": true
+    },
+    {
+      "name": "reported spectral inequalities (2, 1000)",
+      "passed": true
+    },
+    {
+      "name": "reported spectral inequalities (3, 1000)",
+      "passed": true
+    },
+    {
+      "name": "reported spectral inequalities (2, 1000000)",
+      "passed": true
+    },
+    {
+      "name": "nonstationary sample",
+      "passed": true
+    },
+    {
+      "name": "reported derivative is -6 f(a)",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.9999999999999999999999999999999999996770654348021771382851321216396992969794287e-64",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "three distinct central difference steps",
+      "passed": true
+    },
+    {
+      "name": "reported FD error 1e-5",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.1382491999999999999999999999999999860451984132045995793192108097269206921838087e-65",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "reported FD error 1e-8",
+      "passed": true,
+      "details": {
+        "absolute_error": "5.2458766910437899999999999999999999968710076393346560059181395689360719746794921e-64",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "reported FD error 1e-11",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.8860843112558088174699999999999999987292703512325429406988919360378709658107109e-64",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "second order convergence at each step",
+      "passed": true
+    },
+    {
+      "name": "mirrored derivative finite tolerance",
+      "passed": true
+    },
+    {
+      "name": "one interface differs by mirror factor two",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.0000000000000000000076318417544358985713788297400027716839116250000000000000000000000000000000000001",
+        "tolerance": "1e-18"
+      }
+    },
+    {
+      "name": "negative-normal-old-fh observed wrong-formula discrepancy",
+      "passed": true,
+      "details": {
+        "absolute_error": "6.9627218969906122271725899999999999841002108142030183530596571389407976020475842e-65",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "negative-optimized-old-fh observed wrong-formula discrepancy",
+      "passed": true,
+      "details": {
+        "absolute_error": "6.9627218969906122271725899999999999841002108142030183530596571389407976020475842e-65",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "independent W(1/2)=-4pi",
+      "passed": true
+    },
+    {
+      "name": "independent n2 coefficient=-130pi^4",
+      "passed": true
+    },
+    {
+      "name": "independent normalized determinant by resultant",
+      "passed": true
+    },
+    {
+      "name": "half-domain closed root residual 1",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.0",
+        "tolerance": "1e-95"
+      }
+    },
+    {
+      "name": "half-domain independently known eigenvalue 1",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.5527457797921013753341021966468521880821593725134576356355475279511917132871076e-65",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "half-domain eigenvalue derivative 1",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.0",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "half-domain closed root residual 2",
+      "passed": true,
+      "details": {
+        "absolute_error": "7.1436711955142186388486471769083809965744374676424916325945365201727039744171137e-102",
+        "tolerance": "1e-95"
+      }
+    },
+    {
+      "name": "half-domain independently known eigenvalue 2",
+      "passed": true,
+      "details": {
+        "absolute_error": "3.942984108029942147608234265953052689288222552557813089400009791629199692851379e-64",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "half-domain eigenvalue derivative 2",
+      "passed": true,
+      "details": {
+        "absolute_error": "9.1438991302581998577262683864427276756152799585823892897210067458210610872539056e-100",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "perturbed half-domain root residual 0.250000000001 mode=0",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.0",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "perturbed half-domain root residual 0.250000000001 mode=1",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.0",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "perturbed half-domain root residual 0.249999999999 mode=0",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.4287342391028437277697294353816761993148874935284983265189073040345407948834227e-101",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "perturbed half-domain root residual 0.249999999999 mode=1",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.7859177988785546597121617942270952491436093669106229081486341300431759936042784e-101",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "independent half-domain FH versus frozen output",
+      "passed": true,
+      "details": {
+        "absolute_error": "2.3796242431134951895136065847242928833822368991658841925131008775863347137485952e-64",
+        "tolerance": "1e-62"
+      }
+    },
+    {
+      "name": "independent implicit versus FH derivative",
+      "passed": true,
+      "details": {
+        "absolute_error": "1.3715848695387299786589402579664091513422919937873583934581510118731591630880858e-99",
+        "tolerance": "1e-90"
+      }
+    },
+    {
+      "name": "independent perturbed-root FD versus FH",
+      "passed": true,
+      "details": {
+        "absolute_error": "0.00000000000000000000092308881204635321102680107086696050239341913118816834272083410700822856609171995",
+        "tolerance": "1e-20"
+      }
+    },
+    {
+      "name": "independent old formula fails substantially",
+      "passed": true
+    },
+    {
+      "name": "runner summary agrees with independently inspected results",
+      "passed": true
+    }
+  ],
+  "passed_verification_gates": 143,
+  "failed_verification_gates": [],
+  "verdict": "PASS"
+}

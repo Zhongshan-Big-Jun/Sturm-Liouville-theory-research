@@ -1,0 +1,188 @@
+{
+  "reviewed_at_utc": "2026-09-21T12:29:59.293272+00:00",
+  "scope": "Frozen supplied source, contracts and runner plus the allowlisted verifier code only; this record is source inspection, not claimed execution.",
+  "freeze_file_map_consistent_with_packet": true,
+  "freeze_external_map_identical_to_packet": true,
+  "public_source_inventory": [
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.normalized_mode",
+      "line": 21
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.normalized_mode_slope",
+      "line": 24
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.normalized_mode_has_deriv",
+      "line": 27
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.wronskian",
+      "line": 33
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.wronskian_is_derivative_expression",
+      "line": 37
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.trig_product_to_sum",
+      "line": 44
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.wronskian_product_to_sum",
+      "line": 54
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.sin_square_sum",
+      "line": 67
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.sin_odd_step",
+      "line": 70
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.finite_sin_square",
+      "line": 78
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.wronskian_finite_sum",
+      "line": 90
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.sin_square_sum_pos",
+      "line": 96
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.wronskian_neg",
+      "line": 103
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.wronskian_two_half",
+      "line": 112
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.old_wronskian_two_half",
+      "line": 118
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.old_wronskian_counterexample",
+      "line": 123
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.endpoint_coefficient",
+      "line": 128
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.endpoint_coefficient_algebra",
+      "line": 131
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.endpoint_coefficient_expanded",
+      "line": 139
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.endpoint_coefficient_neg",
+      "line": 145
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.fh_term",
+      "line": 151
+    },
+    {
+      "kind": "def",
+      "declaration": "SL.AuditRound7.gap_switch",
+      "line": 154
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.mirrored_pair_from_single_interface",
+      "line": 157
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.mirrored_gap_from_single_interface",
+      "line": 168
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.mirrored_stationarity_iff",
+      "line": 186
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.old_mirror_factor_counterexample",
+      "line": 190
+    },
+    {
+      "kind": "theorem",
+      "declaration": "SL.AuditRound7.local_algebra_root",
+      "line": 196
+    }
+  ],
+  "counts": {
+    "declarations": 27,
+    "definitions": 7,
+    "theorems": 20
+  },
+  "imports": [
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv",
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic",
+    "Mathlib.Tactic.Ring",
+    "Mathlib.Tactic.Linarith",
+    "Mathlib.Tactic.Positivity",
+    "Mathlib.Tactic.NormNum"
+  ],
+  "source_inspection": [
+    "Only six Mathlib imports occur; no earlier SL project module is imported.",
+    "The seven definitions denote explicit real scalar expressions or a finite sum.",
+    "There is no additional source-level axiom, opaque declaration, namespace, private declaration, metaprogram, sorry, admit, or unsafe definition in the supplied target.",
+    "The exact root conjoins ten explicit statements, including conditional mirrored-interface algebra; the frozen contract names this root.",
+    "The generated inspection axiom is only a carrier for the expected type and is introduced after compiling the root; it is not supplied to root compilation.",
+    "The plugin compares types with Lean isDefEq at full transparency, universe parameter count and binder kinds; it also records actual expression trees and transitive axioms.",
+    "The runner appends its own fresh library before the dependency search path and subsequently checks Lean --deps for the root object.",
+    "The runner directly invokes Lean and the plugin without --build, --use-cache or --resume-positive. It does not run a full Lake build.",
+    "The runner hashes every exact path in freeze.external_inputs. Four entries are external provenance files: three main-project configuration files and the audit-report Markdown; their text was not inspected by this verifier. The helper reads the hash-bound lake-manifest.json only to enumerate dependency package directories.",
+    "Legacy runner role labels do not describe this verifier role. This attempt is an independently launched fresh execution; broader semantic review is not thereby certified."
+  ],
+  "out_of_scope": [
+    "Full Volterra bounds",
+    "Taylor remainder or full endpoint asymptotics",
+    "Min-max or spectral-limit claims",
+    "Existence of spectral derivatives or Feynman-Hellmann premises",
+    "Independent second-kernel verification"
+  ],
+  "negative_control_intent": [
+    {
+      "file": "lean-package/controls/WrongWronskianTarget.lean",
+      "claim": "Wrong target -6*pi is deliberately supplied to a proof whose type is -4*pi.",
+      "expected": "Actual Lean Type mismatch and nonzero exit."
+    },
+    {
+      "file": "lean-package/controls/WrongMirrorFactor.lean",
+      "claim": "The desired coefficient 1 is deliberately supplied to a proof with coefficient 2.",
+      "expected": "Actual Lean Type mismatch and nonzero exit."
+    }
+  ],
+  "wrong_target_contract_scope": "The separate wrong-target-contract.json is frozen but replay.py uses the direct WrongWronskianTarget.lean compiler control instead of invoking the verifier with that contract."
+}

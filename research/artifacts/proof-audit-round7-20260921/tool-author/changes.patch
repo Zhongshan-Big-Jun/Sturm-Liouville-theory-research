@@ -1,0 +1,594 @@
+--- a/tools/band-selfconsistency-equivariance.md
++++ b/tools/band-selfconsistency-equivariance.md
+@@ -2,20 +2,34 @@
+ canonical_key: band-selfconsistency-equivariance (n>=2 gap-extremal reflection symmetry)
+ title: "带状自洽等变性: F(R,x̄)=PF(R,x) 与反对合 Jacobi 结构 J=-PJP"
+ tags: [mathtool, self-developed, equivariance, jacobian, gap-extremals, nge2, reflection-symmetry]
+-source: 自研 (会话 58 续作 4b, 2026-08-12; 文档 docs/SL_gap_nge2_symmetry_local_proof.pdf 与 docs/SL_gap_nge2_symmetry_recon.pdf)
+-status: 等变恒等式与反对合结构为 STRICT; 以 (G1')(G2) 为充分条件的全局唯一性/对称性为已证框架定理, 两条件本身为开放 (数值 EVIDENCE 支持)
++source: 自研 (2026-08-12 历史记录; 第七轮修订入口 docs/SL_gap_nge2_symmetry_local_proof.tex 与 reports/proof-audit-round7-20260921/REPORT.md)
++status: 第七轮作者候选, 待独立审查; 保留反射等变和条件化唯一性框架; G1' 是行列式非退化且定号条件, 定性判据更强; 历史 Green 推导与全 R 分支未获本轮认证
+ created: 2026-08-12
+-updated: 2026-08-12
++updated: 2026-09-21
+ ---
+ 
+ # 带状自洽等变性 (反射等变 + 反对合 Jacobi 结构)
+ 
++## 第七轮修订范围
++
++本卡是直接传播修订候选, 不是最终审稿回执. 当前证明入口为
++[局部对称性与固定 n SUP 上确界证明](../docs/SL_gap_nge2_symmetry_local_proof.tex),
++修订及实际验收状态见 [第七轮 REPORT](../reports/proof-audit-round7-20260921/REPORT.md).
++两处链接均需协调器绑定最终版本, 链接存在不表示已验收.
++本轮更正行列式/惯性逻辑、未归一化导数的 lambda 因子、常密度 W 及 SUP 范围/符号.
++下文历史 Green 闭式、全局零点强化结论、M3/KP 链和数值扫描没有在此全盘重审;
++旧文稿后段的全局 (G2) 闭合不能作为本轮已验证前提.
++历史节标题中的 STRICT 仅记录原作者的等级, 不构成本轮重新认证.
++
+ ## 解析
+ 
+ 对 Dirichlet 弦 $-y''=\lambda\rho y$, 块密度 $\rho=\sum_{i=1}^{2n+1}R^{\sigma_i}\mathbf1_{[w_{i-1},w_i]}$
+-($\sigma_i\in\{0,1\}$ 记 $\{1,R\}$ 两种块, $w_0=0<w_1<\cdots<w_{2n}=1$),
++($\sigma_i\in\{0,1\}$ 记 $\{1,R\}$ 两种块, $w_0=0<w_1<\cdots<w_{2n+1}=1$),
+ 开关位置向量 $x=(x_1,\dots,x_{2n})$ ($x_i$ 为第 $i$ 个开关), 带自洽系统为
+ $F_\sigma(R,x)=0$, 其分量是 FH 跳点条件 $f(x_i)=0$ 的归一化残差.
++统一采用 $\int_0^1\rho u_k^2=1$, $f=\lambda_nu_n^2-\lambda_{n+1}u_{n+1}^2$,
++$F_i=f(x_i)/\lambda_{n+1}$, $s_i=\rho(x_i+)-\rho(x_i-)$.
++本卡的 $J=D_xF$ 与 $H_{\rm full}=\nabla_x^2D_n$ 使用 $2n$ 个独立右移接口坐标.
+ 
+ **等变恒等式 (STRICT)**: 设图案回文 $\sigma_i=\sigma_{2n+2-i}$, 边缘反射
+ $\bar x_i=1-x_{2n+1-i}$, $P$ 为反转置换矩阵, 则对一切 $(R,x)$
+@@ -44,15 +58,23 @@
+ 
+ **R=1 一般 $n$ 分析 (STRICT, 新工具内容)**: $R=1$ 时带自洽退化为
+ $f_1(x)=2\pi^2\big(n^2\sin^2(n\pi x)-(n+1)^2\sin^2((n+1)\pi x)\big)=0$.
+-直接 Wronskian 公式 $W=-2(n+1)\pi\sin(\pi x)<0$ 与商函数胞腔单调性给出:
++对 $u_k=\sqrt2\sin(k\pi x)$, 第七轮修正的 Wronskian 为
++\begin{equation*}
++ W=u_{n+1}'u_n-u_{n+1}u_n'
++ =\pi[\sin((2n+1)\pi x)-(2n+1)\sin(\pi x)]
++ =-4\pi\sin(\pi x)\sum_{j=1}^n\sin^2(j\pi x)<0.
++\end{equation*}
++它与商函数胞腔单调性给出:
+ $f_1$ 恰 $2n$ 个简单零点 $x_1^*<\cdots<x_{2n}^*$, 反射对称
+-($x_{2n+1-j}^*=1-x_j^*$), 每胞腔 $(w_{i-1},w_i)$ 恰 2 个,
++($x_{2n+1-j}^*=1-x_j^*$), 每个以 $u_n$ 节点分割的商函数胞腔内恰 2 个
++(这些节点不与密度块边界 $w_i$ 混用),
+ 区间符号 $(-,+,-,\dots,-)$ ($f_1(0+)=f_1(1-)=0$, 端点附近为负),
+ $\operatorname{sgn}f_1'(x_j^*)=(-1)^{j+1}$,
+ $\operatorname{sgn}\det D_xF(1,x^*)=(-1)^n$. 这是 (G1$'$) 与局部唯一性
+ (隐函数) 在 $R=1$ 处的初等基座. $n=2$ 闭式:
+ $t=(11\pm2\sqrt{10})/36$, 零点 $\approx(0.25597364,0.38264716,0.61735284,0.74402636)$,
+-$\det J\approx1.43180\times10^5$ (数值复算 $\prod f_1'(x_j^*)/(9\pi^2)^4=143179.8687$).
++$\det J=7030400000\pi^4/4782969\approx1.43180\times10^5>0$.
++根式与非退化性保留; 原近似值属于历史数值记录.
+ 
+ ## 适用范围
+ 
+@@ -60,9 +82,14 @@
+   与唯一性论证; 一般具有回文图案与边缘反射等变性的参数化边值问题;
+   把 "对称点 Jacobian 交叉块化" 用作降维工具 ($\det$ 化为两块乘积);
+   把 "R=1 唯一非退化解 + 拓扑度" 用作全局分支唯一性的充分性框架.
+-- **边界情形**: $R=1$ (等变平凡化, 退化为显式 $f_1$, 全部初等);
+-  $R\to\infty$ 极限 (SUP 中心质量钉扎 $D\to4\pi^2$, INF $D\to0$;
+-  与 (G2) 不矛盾, G2 只约束有限 $R$); 非回文图案无等变性, 本工具不适用.
++- **边界情形**: $R=1$ 退化为显式 $f_1$. 中心质量钉扎的
++  $D_1\to4\pi^2$ 是 $n=1$ 范围, 不可推广为 $n\ge2$ 的 SUP 趋势.
++  固定 $n\ge1$ 令 $S_n(R)=\sup_{1\le\rho\le R}(\lambda_{n+1}-\lambda_n)$,
++  第七轮新证明给出 $\lim_{R\to\infty}S_n(R)=(n+1)^2\pi^2$,
++  覆盖可测盒类及有限分块常值类; 证明及审查状态见本卡顶部入口.
++  这是盒类上确界的极限, 不证明某条自洽分支可延拓到全 $R$ 或始终达到上确界.
++  旧 INF $D\to0$ 分支趋势在此仅保留为历史研究背景, 本轮未核验其全 $R$ 前提.
++  (G2) 只要求有限紧 $R$ 区间的块宽下界. 非回文图案不满足本卡的反射等变前提.
+ - **不适用 / 注意**: (G1$'$) 与 (G2) 目前是开放条件, 未证时框架只给
+   充分性, 不得宣称全局唯一性/对称性已证; 等变性要求图案回文
+   ($\sigma_i=\sigma_{2n+2-i}$), 一般图案需另法; 对称化不等式路线
+@@ -71,6 +98,9 @@
+   (EVIDENCE, 见 recon 文档).
+ 
+ ## 验证与备注
++
++以下页数、数值与运行描述均来自 2026-08-12 历史记录, 本轮未重跑.
++当前修订以顶部 TeX/REPORT 的最终绑定版本为准, 不沿用旧 PDF 页数或旧 PASS 作验收.
+ 
+ - 来源: 自研 (会话 58 续作 4b, 2026-08-12); 主文档
+   docs/SL_gap_nge2_symmetry_local_proof.pdf (9 页, 零警告; §2 结构定理,
+@@ -94,7 +124,7 @@
+ 
+ ## 2026-08-12 复核增补: 首阶变分恒等式符号修正 + 对称分支余量表 (run R-20260812T090000Z-g1prime-g2)
+ 
+-### 符号审计 (STRICT, 全部经 FD 在 1e-4..1e-6 级验证; 部分旧记录符号有误, 以此为准)
++### 首阶公式与本轮矩阵边界 (旧 FD 数值未重跑)
+ 
+ 1. 几何约定: 开关 $x_i$ 右移 $dx_i$ 使 $[x_i, x_i+dx_i)$ 由 $\mathrm{pat}[i+1]$ 变为 $\mathrm{pat}[i]$, 故
+    $\delta\rho = (\mathrm{pat}[i]-\mathrm{pat}[i+1])\,\delta(x-x_i)\,dx_i = -s_i\,\delta(x-x_i)\,dx_i$.
+@@ -108,18 +138,41 @@
+ 5. Hess 公式 (A3 修正): 临界点处 $\mathrm{Hess}(D_n) = -\lambda_{n+1}\mathrm{diag}(s)\,J$ (FD 黑塞 h=1e-4 逐元素误差 4.6e-3, 量级 1e3).
+ 6. $K := \mathrm{diag}(1/s)\,J$ 对称 (因 $|s_i|\equiv R-1$; 数值 crossK ~1e-13); 
+    $\det J = (R-1)^{2n}(-1)^n\det K$, $\det K = \det K_+\det K_-$;
+-   **(G1') $\iff$ $\det K > 0$ $\iff$ 每个临界点处 Hess 正定**.
++   后一扇区乘积只在对称点使用.
++   **在同一量化解集上, (G1') $\iff$ 每点 $\det K>0$.**
++   这只保证非退化及行列式的指定符号, 不确定全部特征值的符号.
++   由 $H_{\rm full}=-\lambda_{n+1}(R-1)^2K$, SUP 的 $K\succ0$ 等价于
++   $H_{\rm full}\prec0$, INF 的 $K\prec0$ 等价于 $H_{\rm full}\succ0$.
++   这两种定性均为 (G1') 的更强充分条件, 不能由 bare determinant 反推.
+ 7. 数值警示: regularized_green (δ=1e-9 极点相减) 消去误差 O(1), 不可用于 Jacobian; 近简并大 R 区解析谱和 Jacobian 亦不可靠 (见下).
+ 
++一般实对称矩阵 $\operatorname{diag}(1,1,-1,-1)$ 的行列式为 $1$, 惯性为 $(2,2,0)$.
++它仅否定一般矩阵层面的 "正行列式推出定性" 推理, 不声称此矩阵可由实际 SL 带自洽点实现.
++
++若要用惯性不变性得到沿支的等价判据, 必须明确: (i) 某起点 $R_*>1$ 的惯性已知,
++(ii) 待比较点与该起点由同一解分支中的连续路径连接, $K$ 沿路径连续实对称,
++(iii) 路径上全程非退化. 这时惯性恒定, 可以继承起点的 SUP/INF 定性.
++单个终点的 $\det K>0$ 不能替代 (iii); 这一论证不证明分支存在于全部 $R>1$,
++也不自动覆盖其它连通分支. $K$ 在 $R=1$ 处未定义, 不能把未缩放的 $K(1)$ 当起点.
++
++镜像约束另用 $x(a)=(a_1,\ldots,a_n,1-a_n,\ldots,1-a_1)$,
++$(B_{\rm mir})_j=e_j-e_{2n+1-j}$. 这里 $B_{\rm mir}$ 为 $2n\times n$ 坐标矩阵,
++与前文 Jacobian 的交叉块 B 区分. 链式法则给
++$\nabla_aD_n=B_{\rm mir}^T\nabla_xD_n$, $H_{\rm red}=B_{\rm mir}^TH_{\rm full}B_{\rm mir}$.
++在对称点, $\partial_{a_j}D_n=-2s_jf(x_j)$; 这个 2 属于镜像成对坐标,
++不可统一乘进 full-interface 的 $J$ 或 Hessian.
++
+ ### 对称分支余量表 (EVIDENCE, FD 复核; evK 为 $K = \mathrm{diag}(1/s)J = -\mathrm{Hess}/(\lambda(R-1)^2)$ 的特征值)
+ 
+-- SUP $n=2..4$, $R\in[1.05,100]$: $\mathrm{sgn}\,\det J = (+1)^n$ 恒成立; evK 全正 (Hess 负定, 局部极大);
++- SUP $n=2..4$, $R\in[1.05,100]$: 历史扫描记 evK 全正 (Hess 负定, 局部极大).
++  与上式兼容的符号为 $\mathrm{sgn}\det J=(-1)^n$; 原记录的 $(+1)^n$
++  在奇数 $n$ 时矛盾, 此处作代数一致性更正, 不声称重新运行该扫描.
+   R=100 处最小 $|\mathrm{ev}K|$: n=2: 0.0156, n=3: 0.0185, n=4: 0.0214 (余量 ~1/R 缓降).
+ - INF $n=2$ (R≤100), $n=3$ (R≤75), $n=4$ (R≤40): $\mathrm{sgn}\,\det J = (-1)^n$ 恒成立; evK 全负 (Hess 正定, 局部极小);
+   最小 $|\mathrm{ev}K|$: n=2 R=100: 3.0e-4; n=3 R=75: 2.6e-5; n=4 R=40: ~1e-5 (指数衰减, 无一致下界).
+ - 伪影更正: 解析扫描在 INF n=3 R=75 报 detJ=+2.39e-7 (符号翻转) 系谱和截断误差 (|J-J_fd|/|J_fd|=1.0); FD 步长收敛检验给出 detJ = -1.0125e-5 (h=1e-5..1e-7 稳定), 无翻转.
+ - 近简并结构: INF 大 R 时 $(\lambda_n, \lambda_{n+1})$ 键合-反键合简并 (s-间隙 R=75 n=3 为 0.0098, 逼近 roots_of 网格 0.0092); (G2) 在 R→∞ 极限失效 (R 块宽度→0), 紧 R 区间上无碍.
+-- O-5 现状: det B (反称块) 数值非零且有上述余量; 严格证明仍开放. 候选路线 (符号已按 I3 修正, 见下节): K 对角部分符号每模式内恒定 (SUP: f'(x_j)/s_j = +2c|W(x_j)|/(R-1) > 0; INF: 负), 需控制 Green 核离对角部分.
++- O-5 历史现状: det B (反称块) 数值非零且有上述余量; 严格证明仍开放. 候选路线中未归一化的 SUP 导数为 f'(x_j)/s_j = +2λ_{n+1}c|W(x_j)|/(R-1) > 0; INF 取负. K 的空间导数对角贡献是再除以 λ_{n+1} 的量, 不重复补因子; Green 离对角控制未在本轮重审.
+ 
+ ### 验证与备注 (增补)
+ - 脚本: scripts/_gapn2_hp_scan_reduced.py (合并驱动), scripts/_gapn2_hess_verify.py, scripts/_gapn2_hess_sign_and_bigR.py;
+@@ -130,6 +183,9 @@
+ ## 2026-08-12 晚段增补: M~ 对角闭式 (STRICT) + 符号更正 + 死路登记 + Sylvester 主元 (run R-20260812T090000Z-g1prime-g2 续)
+ 
+ ### 新 STRICT 恒等式 (数值验证到 1e-13..1e-15, 见 scripts/_gapn2_mtilde_diag_identity.py)
++
++本节 I1/I2/I4 保留历史公式与推导记录, 未重跑旧验证. I3 仅补齐已确认的因子;
++近简并时的主导性判断不因修正这个因子而获得统一渐近估计.
+ 
+ 设 w_j = λ_n u_n(x_j)^2 = λ_{n+1} u_{n+1}(x_j)^2 (带自洽点), D = λ_{n+1}−λ_n,
+ G~_k 为正则化预解核 (谱和, 去掉极点).
+@@ -151,7 +207,8 @@
+ 
+ (I3) 符号更正 (STRICT): f'(x_j) = −2λ_{n+1} ε_j c W(x_j), W < 0, 且
+   ε_j = s_j/(R−1) (SUP), ε_j = −s_j/(R−1) (INF), 故
+-  f'(x_j)/s_j = +2c|W(x_j)|/(R−1) (SUP), −2c|W(x_j)|/(R−1) (INF).
++  f'(x_j)/s_j = +2λ_{n+1}c|W(x_j)|/(R−1) (SUP), −2λ_{n+1}c|W(x_j)|/(R−1) (INF).
++  因而 f'(x_j)/(s_jλ_{n+1}) = σ·2c|W(x_j)|/(R−1); I2 的 K 对角首项和后文 d_h 已归一化, 保持原式.
+   本 run 早段笔记与上一节 "O-5 候选路线" 中的统一 "f'(x_j)/s_j < 0" 仅对 INF 成立,
+   已更正; FD 验证 (n=2,3; R∈{1.2,2,4,10}; 两模式) 零违反.
+   对 O-5 候选路线, 重要的是 "每模式内符号恒定" (此性质成立), 不是具体正负.
+@@ -171,9 +228,11 @@
+ 
+ ### 新 EVIDENCE: Sylvester 主元符号模式
+ 
+-沿对称分支无换主元 LU 的 K 的主元: SUP 全正, INF 全负
+-(n=2,3; R∈{1.2,2,4,10}; 与 detK > 0 一致). 由 Sylvester 惯性律,
+-"主元符号恒定" ⟺ (G1'). 符号模式 (n=2 SUP R=4): 对角 +, 非对角 −,
++历史记录: 沿扫描的对称分支, K 的无换主元消元主元为 SUP 全正、INF 全负
++(n=2,3; R∈{1.2,2,4,10}; 本轮未重跑). 对实对称 K, 若存在所有主元非零的
++无置换 LDL^T 分解, 全正/全负主元分别等价于 K 正定/负定.
++该定性模式蕴含 (G1'), 但 (G1') 不推出该模式; 沿支反推须满足上列三项惯性前提.
++历史符号模式 (n=2 SUP R=4): 对角 +, 非对角 −,
+ 中央 2×2 块 [[+,+],[+,+]]; K+ 与 K− 均 [[+,−],[−,+]] 型 (INF 全负型).
+ 主元符号的严格证明仍开放, 是当前最有希望的结构手柄
+ (需控制 K 的 Green 离对角部分, (I2) 已把对角部分化为显式三项).
+@@ -185,9 +244,13 @@
+   scripts/_gapn2_pivots_bigR.py (大 R 主元扩展; n=3 SUP R≥30 阶梯续延伪根警告, 该点以
+   hp_scan fd_* 字段为准).
+ - 运行笔记: runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/run_notes_addendum_2026-08-12.md.
+-- 诚实登记: 以上不关闭 (G1')/(G2); (I1)-(I4) 为 STRICT; 其余为 EVIDENCE.
++- 诚实登记: 以上不关闭 (G1')/(G2); (I1)-(I4) 的 STRICT 是历史标记, 本轮仅修 I3 因子; 其余历史数值为 EVIDENCE.
+ 
+ ## 2026-08-12 深夜段增补: 非对角闭式 (C1)/(C2) + 镜像扇区分解 (STRICT) + 支配不等式扫描 (EVIDENCE)
++
++本段 Green 谱和、预解恒等式、支配估计及扫描结论保留为历史路线资料, 本轮未复核.
++尤其旧 "充分不等式"、极限量级和核组合不能只凭数值精度标记作为当前已证引理调用.
++本轮在此仅修正 (G1') 与定性判据的关系, 不认证全部闭式及其量词.
+ 
+ ### (C1)/(C2): M~ 非对角闭式 (STRICT, 机器精度验证 1e-13..1e-15)
+ 
+@@ -225,7 +288,9 @@
+   p_n = (−1)^{n−1} (u_n 奇偶), x̄_j = 1−x_j.
+ - 扇区核的模式展开: Σ' ± p_nΣ_+(·,x̄) = Σ_l (a_l ± p_np_l b_l)u_l u_l; 按奇偶类
+   拆分后化为同扇区/异扇区 (约化) 预解核 R_k^∥, R_k^⊥ 的组合 (Green 估计路线入口).
+-- (G1') SUP ⟺ K_e, K_o 正定; INF ⟺ K_e, K_o 负定 (K = K_e ⊕ K_o 为镜像块对角化).
++- 在对称点, K 与 K_e ⊕ K_o 正交相似. 因而 K 正定/负定分别等价于两扇区同为正定/负定.
++  SUP 的两扇区正定、INF 的两扇区负定是 (G1') 的更强充分条件;
++  bare (G1') 仅要求 det K_e det K_o > 0, 不是上述定性的无条件等价表述.
+ 
+ ### 证伪 (EVIDENCE)
+ 
+@@ -243,16 +308,18 @@
+   R=30: +0.0009): 负定性依赖非均匀对角; detK → 0⁺ (n=2 R=100 ~8e-11):
+   INF 无一致定量余量, 只能定性 (符号) 论证.
+ - D-缩放收缩范数 ||D^{-1/2}H_{e/o}D^{-1/2}|| 大 R 超 1 (至 3.4): H 单独非 D-收缩.
+-- Sherman–Morrison 化归 (精确): K_o = A_o − |c_o|(εw)(εw)^T 正定 ⟺ A_o = diag(d)+H_o
+-  正定且 |c_o|(εw)^T A_o^{-1}(εw) < 1; K_e 与 −K (INF) 同构. (G1') 化为预解二次型引理.
++- Sherman–Morrison 定性判据: 当 K_o = A_o − |c_o|(εw)(εw)^T 时,
++  K_o 正定 ⟺ A_o = diag(d)+H_o 正定且 |c_o|(εw)^T A_o^{-1}(εw) < 1.
++  此矩阵判据针对奇扇区正定性; 将其用于 K_e 或 −K (INF) 须另核对相应分解.
++  它是证明更强定性的路线, 不能将 bare (G1') 无条件改写成这个二次型条件.
+ - 扇区 Sylvester 主元: SUP 全 +, INF 全 − (闭式 K, 全部扫描点; 等价于扇区定性);
+   FD 直接续延在 R≥30 仍会落入伪根 (n=3 sup R=10 FD 探针 detK~1e-35 混合主元,
+   已按闭式续延真支撤销).
+ 
+ ### 诚实登记
+ 
+-- (G1') 仍开放. 本段新增 STRICT: (C1)/(C2), 扇区闭式, E 秩1结构, ε-奇偶代数,
+-  预解恒等式. 待证引理 (SUP): λmin(H_o − E_o) > −min d (奇扇区二次型界);
++- (G1') 仍开放. 本段原标记 STRICT 的 (C1)/(C2)、扇区闭式、E 秩1结构、ε-奇偶代数
++  与预解恒等式未在本轮重审. 历史待证路线 (SUP): λmin(H_o − E_o) > −min d (其与 K_o 的符号对应也未在本轮认证);
+   (INF): 非均匀对角下的 K_e 负定性. 两者化归为带自洽点处扇区核 R_k^∥, R_k^⊥
+   的 Green 函数估计, 尚未证明.
+ - 脚本: scripts/_gapn2_mtilde_offdiag_identity.py (C1/C2+预解), 
+--- a/tools/half-problem-regularized-green.md
++++ b/tools/half-problem-regularized-green.md
+@@ -2,13 +2,25 @@
+ canonical_key: half-problem-regularized-green (exact reduced resolvent without rho(y) factor + exact A1/A2 primitives + both mirror sectors of K)
+ title: "半问题约化 Green 闭式: 无 rho(y) 因子的约化预解核与 K 的两个镜扇区闭式"
+ tags: [mathtool, self-developed, green-function, reduced-resolvent, sector-decomposition, gap-extremals, nge2]
+-source: 自研 (R-207, 2026-08-13; 承接 R-205/R-206 的 (G1') 化归)
+-status: 闭式与扇区恒等式 STRICT (完整推导); C2/C3 交叉检验与 R 扫描为 EVIDENCE
++source: 自研 (R-207/R-208 历史记录; 第七轮修订入口 docs/SL_gap_nge2_symmetry_local_proof.tex 与 reports/proof-audit-round7-20260921/REPORT.md)
++status: 第七轮作者候选, 待独立审查; 行列式条件与更强扇区定性分开; 半隙 Hessian 使用镜像坐标拉回; 历史约化 Green 闭式与 M3/KP 未在本轮全盘重审
+ created: 2026-08-13
+-updated: 2026-08-13
++updated: 2026-09-21
+ ---
+ 
+ # 半问题约化 Green 闭式
++
++## 第七轮修订范围
++
++本卡是直接传播修订候选, 不是验收回执. 当前证明入口为
++[局部对称性证明](../docs/SL_gap_nge2_symmetry_local_proof.tex),
++实际修订及审查状态见 [第七轮 REPORT](../reports/proof-audit-round7-20260921/REPORT.md).
++最终版本及 exact hashes 由协调器绑定, 链接不表示已验收.
++本轮只修 (G1')/定性逻辑和 full-interface 与镜像独立坐标的关系.
++约化 Green、A1/A2、半问题展开、R-208 历史补证与 M3/KP 没有在此全盘重审;
++旧数值和标题中的 STRICT 是原记录, 不构成本轮认证.
++下文显式出现 $\mu_1^D,\mu_2^N$、两个左半开关的公式按 $n=2$ 阅读,
++不由旧 "n 偶" 标题将这些固定索引推广到所有偶数 $n$.
+ 
+ ## 解析
+ 
+@@ -78,7 +90,7 @@
+ $\operatorname{diag}(1,-1)Ke\,\operatorname{diag}(1,-1)=Ko$ 不成立
+ (应为 $=Kp_{\mathrm{odd}}$).
+ 
+-### K 的两个镜扇区精确半问题闭式 (STRICT, n 偶)
++### K 的两个镜扇区历史半问题闭式 (显式索引为 n=2, 原标记 STRICT)
+ 
+ $n$ 偶 ($\lambda_n=\mu_{n/2}^D$ 奇全模, $\lambda_{n+1}=\mu_{n/2+1}^N$ 偶全模),
+ $c^2=\lambda_n/\lambda_{n+1}$, $e=\varepsilon[:n]$, $u=(u_n(x_j))_{j<n}$
+@@ -146,16 +158,32 @@
+   -2\lambda_2\alpha_N\operatorname{diag}(u)w_1w_1^T\operatorname{diag}(u).
+ \end{equation*}
+ 
+-### 开放核 (G1')
+-
+-(G1') 在 n=2 对称点等价于对一切 $R>1$: (I1) $Kp_{\mathrm{odd}}$ 负定
+-(INF) / 正定 (SUP), (I2) $Ko$ 同定号. Cauchy/Binet 展开把两个行列式写成
+-显式带符号双重和; 其符号对 $R$ 一致严格是剩余证明义务. 计划路线:
+-(i) R→1+ 常数弦处 $(R-1)K$ 的有限极限 (对角占优, 严格定号); (ii) 沿对称
+-分支的行列式对 R 单调性 (FH 特征对导数 + 带系统开关导数); (iii) R→∞
+-键合-反键合渐近 (R-202). 路线 (i) 已在 R-208 完成 (见下), (ii)/(iii) 仍开放.
+-
+-### R→1+ 锚点定理 (STRICT, R-208, 路线 (i) 完成)
++### 行列式条件与更强的扇区定性
++
++(G1') 要求在指定解集上 $\det J\ne0$ 且 $\operatorname{sgn}\det J=(-1)^n$.
++在 $R>1$ 时, 由 $\det J=(-1)^n(R-1)^{2n}\det K$, 它等价于每点 $\det K>0$.
++在 $n=2$ 对称点, 上述块分解进一步给出
++$\det(Kp_{\mathrm{odd}})\det(Ko)>0$; 这是行列式的非退化与定号条件.
++
++另定义更强的定性判据: (I1) $Kp_{\mathrm{odd}}$ 负定 (INF) / 正定 (SUP),
++(I2) $Ko$ 同号定性. 因 $Kp_{\mathrm{odd}}$ 与 $Ke$ 合同, (I1)+(I2)
++等价于全矩阵 K 的相应定性, 从而蕴含 (G1'), 反向不无条件成立.
++一般矩阵 $\operatorname{diag}(1,1,-1,-1)$ 有正行列式而不定;
++这个例子只否定一般矩阵推理, 不声称是实际 SL 配置的实现.
++
++沿支继承定性必须另给: 已知起点惯性, 从起点到目标点的连续解分支,
++以及沿途矩阵连续实对称且全程非退化. 例如可取已核验的 $R_*>1$ 锚点;
++若使用 $R\to1+$ 的缩放极限, 须先证明该极限及邻近分支.
++在这些前提下惯性恒定; 仅知道终点 $\det K>0$ 不够, 也不能默认分支存在于全部 $R>1$.
++只在对称分支核查上述条件, 还不能覆盖可能存在的非对称解.
++
++历史计划包括 Cauchy/Binet 行列式展开、近 $R=1$ 锚点、沿支单调性和大 R 渐近.
++以下保留其记录和公式, 不把计划或旧数值提升为全 R 证明.
++
++### R→1+ 锚点记录 (R-208 原标记 STRICT, 本轮未重审该段证明)
++
++局部结论的当前修订依据应绑定顶部第七轮证明入口, 特别是端点一致估计与整个 U 的唯一性.
++这里保留 R-208 的论证与缩放式供溯源, 不以旧段落替代当前证明或独立审查.
+ 
+ 引理 A (一切 n>=1): 常数弦处 $W_0=(u_{n+1}^0)'u_n^0-u_{n+1}^0(u_n^0)'$ 在
+ $f_0$ 的每个零点处非零. 证明: 设 $t=\pi x$, $p=\cos^2((n+1)t)$,
+@@ -178,26 +206,40 @@
+ 且 n=2 时 (I1)/(I2) 在 $(1,1+\delta)$ 成立: $(R-1)Kp_{\mathrm{odd}}$ 与
+ $(R-1)Ko$ 均收敛到 $\operatorname{diag}(\sigma 2c_0|W_0(x_j)|)_{j<n}$.
+ 
+-### 半隙 Hessian 解释 (STRICT, R-208)
+-
+-对称点处全隙等于半隙 $g(x_1,x_2)=\mu_2^N-\mu_1^D$; 带方程 $f(x_j)=0$ 等价于
+-$\partial g/\partial x_j=-2s_jf(x_j)=0$. 再求导得 (用 $J=\operatorname{diag}(s)K$ 与 A3
+-$\operatorname{Hess}(D_n)=-\lambda_3\operatorname{diag}(s)J$):
+-
+-\begin{equation*}
+-  \nabla^2g=-2(R-1)^2K=+\frac{2}{\lambda_3}\operatorname{Hess}(D_n),
+-\end{equation*}
+-
+-故 (I1)+(I2) 等价于: 对称带自洽点是半隙 $g$ 的严格局部极小 (INF) / 严格局部
+-极大 (SUP). 注意: $g$ 在开关三角形上整体凸/凹为假 (EVIDENCE, R=4 网格扫描
+-Hessian 在临界点外不定, 违例 11/15 与 12/15), 定号性只成立于临界点.
+-
+-### 剩余开放核 (R-208 更新)
+-
+-(G1') 现只在 $[1+\delta,\infty)$ 开放. n=2 的 (I1)/(I2) 在 $[1+\delta,\infty)$ 归约到:
+-(M1) 沿对称分支 $\frac{d}{dR}\det Kp_{\mathrm{odd}}<0$ 与 $\frac{d}{dR}\det Ko<0$
+-(锚点 $+\infty$ 与 $R\to\infty$ 的 $0+$ 极限给出 $\det>0$); (M2) 迹符号
+-($\operatorname{tr}<0$ INF, $>0$ SUP); (M3) $R\to\infty$ 键合-反键合渐近匹配.
++### 半隙 Hessian 与完整接口 Hessian 的坐标关系 (第七轮更正)
++
++固定 $n=2$, 全接口为 $x=(x_1,x_2,x_3,x_4)$, 对称参数为 $a=(a_1,a_2)$,
++$x(a)=(a_1,a_2,1-a_2,1-a_1)$, $B=(e_1-e_4,e_2-e_3)=\sqrt2 Bo$.
++这里 $Bo$ 是正交归一的镜像奇扇区基. 采用全区间归一化 $\int_0^1\rho u_k^2=1$,
++$f=\lambda_2u_2^2-\lambda_3u_3^2$, $s_i=\rho(x_i+)-\rho(x_i-)$,
++$F_i=f(x_i)/\lambda_3$, $J=D_xF$, $K=\operatorname{diag}(1/s)J$.
++半隙函数 $g(a)=D_2(x(a))=\mu_2^N-\mu_1^D$ 满足
++$\partial_{a_j}g=-2s_jf(a_j)$. 在带自洽点,
++
++\begin{equation*}
++ H_{\rm full}=-\lambda_3\operatorname{diag}(s)J=-\lambda_3(R-1)^2K,
++ \qquad \nabla_a^2g=B^TH_{\rm full}B=-2\lambda_3(R-1)^2Ko.
++\end{equation*}
++
++full-interface 的 $H_{\rm full}$ 是 $4\times4$, $\nabla_a^2g$ 和 $Ko$ 是 $2\times2$.
++因此不能将完整 Hessian 统一乘 2 或把 $K$ 与 $Ko$ 混写.
++(I2) 等价于半隙 Hessian 的相应定性, 并充分保证半隙严格局部极值.
++(I1) 另控制被对称约束省去的扇区, 两条件合起来充分保证全接口的严格局部极值.
++半隙严格极值不反推 (I1), 无非退化前提的严格极值也不能反推 Hessian 定性.
++历史 R=4 网格记录临界点外 Hessian 不定 (违例 11/15 与 12/15), 本轮未重跑;
++本卡不声称全局凸/凹或全 R 临界点定性已证.
++
++### 历史后续路线与未核验边界
++
++当前局部证明的适用邻域之外, (G1') 仍未由本卡关闭. 历史 $n=2$ 定性路线为:
++(M1) 在实际存在且可微的对称分支上证明
++$\frac{d}{dR}\det Kp_{\mathrm{odd}}<0$ 与 $\frac{d}{dR}\det Ko<0$;
++(M2) 证明迹符号 ($\operatorname{tr}<0$ INF, $>0$ SUP);
++(M3) 建立所需的大 R 渐近与分支匹配. 对实对称 $2\times2$ 块,
++正行列式加相应迹符号确实等价于正定/负定; 仅有两块行列式的正乘积不够.
++若已另证分支延至任意大 R、每块行列式严格递减且趋于 0, 才可由该路线推出其正性.
++本轮不验证这些全 R 前提, 不将 M1-M3 视作 bare (G1') 的等价分解,
++也不重新评定其它 M3/KP 证明或有限 chart 的历史结论.
+ EVIDENCE: $\det$ 在 $[1.05,100]$ 严格递减 (双模式), 迹符号正确但非单调;
+ 链式法则
+ $\frac{d}{dR}M=\partial M/\partial R|_x+\sum_j(\partial M/\partial x_j)(dx_j/dR)$,
+@@ -205,8 +247,9 @@
+ 
+ ## 适用范围
+ 
+-- **适用**: 分段常数密度半问题 (D/N 边界) 的约化预解核精确求值; 全问题
+-  二阶变分矩阵 K 在对称带自洽点处的镜扇区化归; n 偶的 (I1)/(I2) 化归.
++- **适用**: 按历史来源核验后的分段常数半问题 (D/N 边界) 约化预解核公式;
++  对称带自洽点处的镜扇区定性研究. 本卡显式半问题展开按 n=2 的索引使用;
++  一般偶数 n 的完整表达式未在本轮核验.
+ - **边界情形**: 密度跳点处核连续 (6e-10), 对称性 1e-17; $R\to1+$ 时
+   $d_j=O(1/(R-1))$ 对角占优; $R\to\infty$ 时 INF 余量退化
+   ($\det K\to0+$), 闭式仍需键合-反键合渐近.
+@@ -214,10 +257,12 @@
+   $\lambda_{n+1}=\mu_{(n+1)/2}^D$); 非对称点镜恒等式不成立 (奇偶性需要
+   $\rho(1-x)=\rho(x)$, 即宽度对称); 数值符号检验仅是 EVIDENCE, 不构成
+   (I1)/(I2) 的证明; 本工具不提供全局极值性论证.
+-  锚点定理对一切 n>=1 有效 ((G1') 于 (1,1+delta)); n=2 的 (I1)/(I2)
+-  锚点同样成立; $[1+\delta,\infty)$ 仍需 (M1)-(M3).
++  近 R=1 的局部结果应读当前证明及其真实依赖; M1-M3 是历史定性证明路线,
++  不是已知的全 R 延拓或等价闭合结论.
+ 
+ ## 验证与备注
++
++以下实验数值及 R-208 状态是历史记录, 本轮未重跑, 不替代新的独立审查.
+ 
+ - 来源: 自研 (R-207 第 2 段, 2026-08-13); 运行笔记
+   runs/rigorous-open-math-research/R-20260812T090000Z-g1prime-g2/
+@@ -236,16 +281,16 @@
+   $\operatorname{diag}(1,-1)Ke_{fd}\operatorname{diag}(1,-1)$
+   2.3e-9 / 8.6e-10; R 扫描 n=2: Kp_odd 与 Ko 在 R∈[1.05,100] (INF) /
+   [1.05,10] (SUP) 全部定号, det J > 0.
+-- 诚实登记: 第 1-4 节恒等式为 STRICT 自足; 一切数值为 EVIDENCE; (I1)/(I2)
+-  证明未完成, (G1') 状态为 RIGOROUS_PARTIAL_RESULT.
++- 诚实登记: 第 1-4 节原标记 STRICT, 本轮保留而未重审; 一切历史数值仅为 EVIDENCE.
++  本轮没有完成 (I1)/(I2) 的全 R 证明或最终验收; (G1') 不能由本卡宣布闭合.
+ - R-208 验证 (EVIDENCE): n=2 R=1.00001 续延 (R-1)Kp_odd/Ko 与解析极限
+   对角差 1.2e-4 (线性于 R-1), 开关收敛到 f0 零点 (3e-7), D->5pi^2;
+   n=3 对角极限检查 3.8e-4/3.1e-3; det 单调递减双模式 [1.05,100];
+   链式法则 4-5 位 (R=1.5..10); 全局凸性否证 (11/15, 12/15 违例).
+   新脚本 scripts/_gapn2_r1_anchor_probe.py, _gapn2_r1_monotonicity_probe.py,
+   _gapn2_gap_convexity_probe.py, _gapn2_r1_det_derivative_probe.py.
+-- 状态 (R-208): (G1') STRICT 于 (1,1+delta) (一切 n), 开放核 [1+delta,inf);
+-  n=2 (I1)/(I2) STRICT 于 (1,1+delta), 归约到 (M1)-(M3) 于 [1+delta,inf).
++- 历史状态 (R-208): 原文将近 R=1 的 (G1') 与 n=2 的 (I1)/(I2) 标为 STRICT.
++  本轮以当前局部证明为新入口, 不沿用 "全 R 只剩 M1-M3" 作为已核验结论.
+ - 相关: [[green-half-inertia]] (半问题 Green 惯性与 (G1') 化归),
+   [[second-variation-weighted-eigenvalues]] (K 的全局恒等式),
+   [[gap-band-extremals]] (带自洽极值判据), [[switch-saturation-k-invariant]]
+--- a/tools/green-half-inertia.md
++++ b/tools/green-half-inertia.md
+@@ -1,14 +1,24 @@
+ ---
+ canonical_key: green-half-inertia (n>=2 gap Jacobian Green-kernel inertia reduction)
+-title: "半问题 Green 惯性: (G1') detK>0 的 Green 函数化归与奇偶性更正"
++title: "半问题 Green 与惯性: 对称支上的定性充分判据与奇偶性边界"
+ tags: [mathtool, self-developed, green-function, inertia, oscillation, gap-extremals, nge2]
+-source: 自研 (R-205, 2026-08-13; 依赖 docs/SL_gap_nge2_symmetry_local_proof.tex 的 (G1')/(G2) 框架)
+-status: 奇偶性更正为否证 (EVIDENCE); 全局 ε 交错与 Green 惯性为 STRICT; (G1') 本身仍开放
++source: 自研 (R-205 历史记录; 第七轮修订入口 docs/SL_gap_nge2_symmetry_local_proof.tex 与 reports/proof-audit-round7-20260921/REPORT.md)
++status: 第七轮作者候选, 待独立审查; Green 表达式服务于更强定性判据, 不与 bare G1' 等价; 有限点核惯性强化等式及历史全局结论未获本轮认证
+ created: 2026-08-13
+-updated: 2026-08-13
++updated: 2026-09-21
+ ---
+ 
+ # 半问题 Green 惯性 (K_o 的 Green 函数化归)
++
++## 第七轮修订范围
++
++本卡是直接传播修订候选. 当前证明入口为
++[局部对称性证明](../docs/SL_gap_nge2_symmetry_local_proof.tex),
++修订和实际审查状态见 [第七轮 REPORT](../reports/proof-audit-round7-20260921/REPORT.md).
++链接由协调器绑定最终版本, 不作验收凭据.
++本轮区分 (G1') 的行列式条件与更强的 Hessian/扇区定性;
++不全盘重审旧 Green、零点强化、M3/KP 或半问题表达式.
++以下数值、原 STRICT 标记及运行说明是历史记录, 本轮未重跑或重新认证.
+ 
+ ## 解析
+ 
+@@ -23,12 +33,12 @@
+ $H_e/H_o$ 的 Green 闭式**只在对称带自洽点成立**, 不能反过来证明对称性
+ (循环); 全局对称性结论仍走 (G1')+(G2) 的唯一性路线.
+ 
+-### 全局 ε 交错 (STRICT, 不依赖对称性)
++### 全局 ε 交错的历史输入 (原标记 STRICT, 本轮未重审)
+ 见 [[switch-saturation-k-invariant]] 的 R-205 更新: 在 $f$ 的 $2n$ 个有序
+ 简单零点处 $\varepsilon_j=(-1)^{j+1}$. 这是 $K$ 非对角闭式 (C1)/(C2) 在
+ 一切带自洽点成立的正确全局输入.
+ 
+-### 半问题谱交错与 Green 惯性 (STRICT, 经典 Gantmacher–Krein)
++### 半问题谱交错与有限点 Green 惯性边界
+ 在对称支上把 $[0,1]$ 于 $x=1/2$ 对半: 偶特征函数 ($u'(1/2)=0$) 对应
+ Neumann 半问题, 奇特征函数 ($u(1/2)=0$) 对应 Dirichlet 半问题. 设
+ $\mu_k^N<\mu_k^D<\mu_{k+1}^N$ 为两半问题特征值, 则
+@@ -43,18 +53,22 @@
+   R_{n+1}^\bot=\sum_{l:\ \mathrm{par}(l)\ne\mathrm{par}(n+1)}
+   \frac{u_l(x_i)u_l(x_j)}{\lambda_l-\lambda_{n+1}}.
+ \end{equation*}
+-由经典振荡定理 (Gantmacher–Krein): 预解核限制到有序点集的负指数等于谱参数
+-下方该奇偶类半问题特征值的个数, 故
++以下是历史记录声称的有限点核矩阵负指数等式, 本轮未核验:
+ \begin{equation*}
+   n\ \text{偶}:\ \operatorname{neg} R_n^\bot=\operatorname{neg} R_{n+1}^\bot
+   =\tfrac n2;\qquad
+   n\ \text{奇}:\ \operatorname{neg} R_n^\bot=\tfrac{n-1}{2},\
+   \operatorname{neg} R_{n+1}^\bot=\tfrac{n+1}{2}.
+ \end{equation*}
+-数值 (n=2: 各 1 负; n=3: $R_n^\bot$ 1 负, $R_{n+1}^\bot$ 2 负) 吻合.
++半问题算子的谱计数与其 Green 核在有限点集上的矩阵惯性是不同对象.
++要在本卡点集上使用上述等号, 仍须核对点集条件及实现该负指数的论证;
++仅引用 Gantmacher–Krein 名称或半问题谱交错不能在此替代这些义务.
++原数值 (n=2: 各 1 负; n=3: $R_n^\bot$ 1 负, $R_{n+1}^\bot$ 2 负)
++仅保留为历史 EVIDENCE, 不作为这些一般等式的认证.
+ 
+-### (G1') 化归 (STRICT, 机器 1e-13..1e-16)
+-对称带自洽点处括号恒等式与 $E_o$ 的精确抵消给出奇扇区
++### 奇扇区定性判据 (历史 Green 表达式保留)
++在对称带自洽点, 历史括号恒等式与 $E_o$ 抵消给出以下奇扇区表达式;
++本轮保留它的系数与归一化, 不以旧机器精度记录重新认证 Green 推导:
+ \begin{equation*}
+   K_o=\operatorname{diag}(d)+\frac{4\lambda_n}{\lambda_{n+1}}
+   \operatorname{diag}(u)\,M\,\operatorname{diag}(u),
+@@ -65,21 +79,45 @@
+   d_j=\sigma\,\frac{2c|W(x_j)|}{R-1},
+ \end{equation*}
+ $\sigma=+1$ (SUP) / $-1$ (INF), $u_j=u_n(x_j)\ne0$, $\varepsilon_j=(-1)^{j+1}$.
+-因 $\operatorname{diag}(u)$ 是合同变换, (G1') 的奇扇区部分等价于
+-$\operatorname{diag}(d/u^2)+\frac{4\lambda_n}{\lambda_{n+1}}M$ 的定号性.
++在该表达式成立且 $u_j\ne0$ 的前提下, 可逆对角合同给出:
++$K_o$ 的正定/负定等价于
++$\operatorname{diag}(d/u^2)+\frac{4\lambda_n}{\lambda_{n+1}}M$ 的正定/负定.
++这是奇扇区的定性判据, 不是 bare (G1') 的所谓 "奇扇区部分".
+ 数值 (n=2,3, R=4, 两模式): $M$ 惯性混合 (n=2: 1+/1-; n=3: 1+/2-), 而 $K_o$
+-SUP 正定 / INF 负定, 由非均匀对角 $d$ 补齐; 这就是 (G1') 剩余的精确障碍:
+-$\operatorname{diag}(d)$ 与 Green 组合 $M$ 的惯性比较 (两块约化预解核的负
+-方向数如上述奇偶分类).
++SUP 正定 / INF 负定; 这是历史观测. $\operatorname{diag}(d)$ 与 Green 组合 $M$
++的惯性比较是更强定性路线的一项义务, 另一镜像扇区也需控制.
++前节有限点核负指数等式不能在未核验时被当作已知输入.
++
++在完整 $2n$ 接口坐标下, 取 $s_i=\rho(x_i+)-\rho(x_i-)$,
++$F_i=f(x_i)/\lambda_{n+1}$, $J=D_xF$, $K=\operatorname{diag}(1/s)J$.
++带自洽点满足
++\begin{equation*}
++ \det J=(-1)^n(R-1)^{2n}\det K,\qquad
++ H_{\rm full}=-\lambda_{n+1}(R-1)^2K.
++\end{equation*}
++因此 (G1') 等价于在其所量化的解集上 $\det K>0$, 只保证非退化和行列式定号.
++对称点另有 $\det K=\det K_e\det K_o$.
++SUP 的 $K_e,K_o\succ0$ 或 INF 的 $K_e,K_o\prec0$ 是更强充分条件;
++只核查 $K_o$ 的定性不足以推出完整 (G1').
++一般矩阵 $\operatorname{diag}(1,1,-1,-1)$ 说明正行列式不能推出定性,
++但不声称它能实现为实际 SL 矩阵.
++
++若另知某起点 $R_*>1$ 的惯性, 待比较点经同一解分支的连续路径连接到该起点,
++并且矩阵沿途连续实对称、全程非退化, 才可用惯性不变性继承起点定性.
++单点 $\det K>0$ 不能替代沿途条件; 这些前提不自动建立全 R 分支或排除其它分支.
++镜像参数需另用 $B_j=e_j-e_{2n+1-j}$ 作 $H_{\rm red}=B^TH_{\rm full}B$,
++不能对 full-interface Hessian 统一乘 2. 上式 $d_j$ 已包含归一化除数,
++不会因修正未归一化 $f'/s$ 而再乘 $\lambda_{n+1}$.
+ 
+ ## 适用范围
+ 
+-- **适用**: 对称支上 $n\ge2$ 相邻谱隙极值问题的 Jacobian/Hessian 定号性分析;
+-  把 (G1') 从 $2n\times 2n$ 降为两个 $n\times n$ 半问题 Green 二次型;
+-  一般自伴 Sturm–Liouville 预解核在有序点集上的惯性计数 (振荡理论).
++- **适用**: 对称支上 $n\ge2$ 相邻谱隙问题的 Hessian 定性路线;
++  将更强的 K 定性分解成两个 $n\times n$ 镜像扇区判据.
++  使用历史 Green 闭式和有限点惯性计数前须核对各自前提及推导范围.
+ - **边界情形**: $x=1/2$ 处恰有一个相邻特征函数为零 (奇偶交错), $f(1/2)\ne0$;
+-  $R\to\infty$ 时 INF 近简并对使 detK 指数趋于 0, Green 惯性计数不变但无
+-  一致定量余量 (定性论证); $R=1$ 退化到常数密度, 半问题谱闭式.
++  旧 INF 大 R 近简并和 detK 衰减描述在本卡仅属历史趋势,
++  不证明全 R 分支或有限点惯性恒定; $R=1$ 为常数密度半问题,
++  含 $1/(R-1)$ 的 K 表达式需取另行证明的缩放极限.
+ - **不适用 / 注意**: 奇偶性与括号恒等式**不**适用于非对称点 (本工具不声称
+   全局奇偶性); 全局凹/凸性不成立 ($D_n$ 在随机 bang-bang 宽度处 Hess 惯性
+   混合, EVIDENCE), 不能用整体凸性捷径替代 (G1'); 镜像分解要求回文高度且
+@@ -94,9 +132,9 @@
+   scripts/_gapn2_green_inertia_probe.py (Green 惯性与 K_o 化归),
+   scripts/_gapn2_bracket_identity_audit.py (括号恒等式 1e-15, docstring
+   已限定为对称点).
+-- 诚实登记: (G1') 仍开放; Green 惯性引理为经典结果 (Gantmacher–Krein) 的
+-  本项目应用, 不声称首创; $\operatorname{diag}(d)$ 与 $M$ 的惯性比较是
+-  当前未证部分; 全局奇偶性为否证 (EVIDENCE).
++- 诚实登记: (G1') 未由本卡关闭; 有限点 Green 惯性等式、历史全局 ε 输入
++  和核组合推导未在本轮重审. 惯性比较是更强定性路线的一部分,
++  不能以本卡的经典理论名称或数值记录宣称整个路线已获认证.
+ - 相关: [[band-selfconsistency-equivariance]] (镜像扇区与 (G1')/(G2) 框架),
+   [[switch-saturation-k-invariant]] (ε 交错的胞腔来源),
+   [[gap-band-extremals]] (带自洽判据), [[transfer-matrix-secular]] (数值
+--- a/docs/SL_gap_nge2_symmetry_recon.tex
++++ b/docs/SL_gap_nge2_symmetry_recon.tex
+@@ -193,8 +193,20 @@
+ 	系统的横截可解性分析 -- 证明边界上 $F$ 的零点只能以非横截方式出现;
+ 	(b) 用 $K\equiv-2D<0$ 与端点斜率比排除重合开关 (重合开关处 $f$ 的零点
+ 	有重数, 与简单性矛盾 -- 需要边界版本的零点计数).
+-	\item 对称分支的 $R\to\infty$: SUP 分支 $R$ 块宽 $\to0$ ($D\to4\pi^2$,
+-	中心质量钉扎), INF 分支 $D\to0$; 与 (G2) 不矛盾 (只要求有限 $R$).
++	\item $R\to\infty$ 的范围更正 (第七轮, 2026-09-21): 原中心质量钉扎
++	$D\to4\pi^2$ 只对应 $n=1$, 不适用于本文的一般 $n\ge2$.
++	固定 $n\ge1$, 令 $S_n(R)=\sup_{1\le\rho\le R}
++	(\lambda_{n+1}(\rho)-\lambda_n(\rho))$. 第七轮新证明给出
++	\[
++	\lim_{R\to\infty}S_n(R)=(n+1)^2\pi^2.
++	\]
++	这里是可测盒类 (亦可取有限分块常值类) 的上确界极限,
++	不证明从 $R=1$ 出发的某条自洽分支可延拓至全 $R>1$ 或始终最优.
++	旧 INF 分支 $D\to0$ 的描述在此保留为未重审的历史趋势,
++	不作为全 $R$ 分支结论; (G2) 只约束有限紧 $R$ 区间.
++	当前证明见 \path{SL_gap_nge2_symmetry_local_proof.tex};
++	修订与实际验收状态见 \path{../reports/proof-audit-round7-20260921/REPORT.md}.
++	上述引用需绑定最终版本, 本项修订不是独立验收回执.
+ \end{enumerate}
+ 
+ \section{经验教训}

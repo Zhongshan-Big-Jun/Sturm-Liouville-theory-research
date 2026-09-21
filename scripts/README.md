@@ -2,6 +2,10 @@
 
 [研究导航](../docs/research-guide.md) | [工具库](../tools/README.md) | [目录与复现](../docs/repository-guide.md)
 
+第七轮的当前诊断入口是 `op03_gap_fh.py`、`gap_n1_grad.py` 及报告列出的八个接口/矩阵诊断程序. 修订针对镜像坐标、SUP/INF 符号、两特征值权重和完整 Hessian 的矩阵乘法. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)区分实际 CLI、函数/AST 小样本回归与未重跑的历史扫描; 不将有限点通过理解为全部解析 Jacobian 后端或全 R 研究已经认证.
+
+已确认的遗留问题: `op03_gap_precise.py` 的特征函数传播顺序会破坏权归一化, 不能作为新的特征函数/FH 验证依据. 当前 `op03_gap_fh.py` 使用现有 `op03_gap_fixed.py`, 并以独立分块 ODE 积分核对有限样例. 其它仍导入 precise 的旧 `op03_gap_fh2`-`fh10`、`dbg*`、`shoot*`、`scan*` 等程序保留历史原字节, 不因名称含 precise 而获得可靠性保证. 单接口的 FH 系数本身不应一律加倍; 复用旧程序前必须同时核对参数坐标和特征函数后端.
+
 本目录积累了不同阶段的数学程序. `num_*`, `h3_*`, `op*`, `_gapn2_*` 等名称是历史命名, 不表示统一 API 或严格性等级. 保留研究程序的输入条件, 精度, 输出与证明接口, 才能判断它能支持什么结论.
 
 | 需要做的事 | 先读什么 |

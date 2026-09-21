@@ -1,0 +1,13 @@
+# Independent Round7 v2 review work
+
+Scope: only the enclosing frozen PACKET.json and its 52 listed files, installed Python/NumPy/SciPy, and new reviewer-owned work here. Frozen AGENTS.md is evidence and remains unchanged. No external referenced paths or historical execution directories may be read.
+
+Method: hash all frozen inputs before and after; copy only the allowlist to new execution roots; capture exact argv, cwd, streams, statuses and input/output hashes; independently inspect ten deltas and harness acceptance; separate any rebound mutant from the submitted package. Use explicit checks in both optimization modes. Bound statements to finite numerical tests and observed end-of-execution file-backed module provenance.
+
+Conversation record (2026-09-21): user requested a fresh independent review of ten source deltas and the R7-SW-001 v2 repair; real verifier and replay in normal and -O outer modes, eight refusal controls per replay, four CLI cases, unfiltered module evidence and selected source digests, with REVIEW.json and README-REVIEW.md. No main-tree changes or push.
+
+Maintenance 1: verified all 52 supplied hashes and the packet identity; read frozen AGENTS.md, documentation, prior findings, ten source diffs and harness source. Created this reviewer-owned work directory and before-hash inventory. The initial shell command using `python` failed with exit 127; switched to installed `python3`. That failure is preserved separately.
+
+Maintenance 2: completed both normal and -O outer package verifiers and 14-case fresh replays from byte-identical 52-file copies. Each repaired replay produced 117 candidate passes, the expected 79 original failures, four CLI points per CLI process, and all eight intended exit-86 controls. Both separately rebound filter-only mutant replays returned expected exit 1; each lost all four outside imports and retained all four missing-binding refusals. Kept all raw streams, receipts and source copies. Reviewer-written output audit independently recomputed all checks, AST identities, paths/digests and intended refusal reasons across 44 children, with no errors. Added own local calculus/source assessment and preserved the bootstrap command-not-found failure. Preparing bounded APPROVED review and final integrity inventory; no frozen input was edited.
+
+Maintenance 3: issued REVIEW.json and README-REVIEW.md with bounded APPROVED verdict, resolved R7-SW-001, retained excluded R7-SW-002, exact execution references and mathematical/runtime limitations. Final packet and all 52 listed hashes match the initial inventory. Sealed the own artifact index after report creation. Frozen AGENTS.md and every other input remain unchanged.

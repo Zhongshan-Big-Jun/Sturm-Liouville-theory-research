@@ -1,0 +1,541 @@
+{
+  "role": "software repair author; independent review pending",
+  "label": "final-filter-only-mutation-must-fail",
+  "root": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3",
+  "python": "/usr/bin/python3",
+  "optimize": 1,
+  "controls_only": true,
+  "runs": [
+    {
+      "name": "candidates-normal-outside",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "candidates-normal-outside",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/regression.py",
+        "--output",
+        "results/candidates-normal-outside.json",
+        "--tree",
+        "candidates",
+        "--control-outside",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/control-fixtures/outside_probe.py"
+      ],
+      "exit_code": 0,
+      "expected_exit": 86,
+      "seconds": 7.559474131994648,
+      "accepted": false,
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "provenance_accepted": true,
+      "provenance_problems": [],
+      "pid": 538278
+    },
+    {
+      "name": "op03-cli-normal-outside",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "op03-cli-normal-outside",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/provenance.py",
+        "--output",
+        "results/op03-cli-normal-outside.json",
+        "--control-outside",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/control-fixtures/outside_probe.py"
+      ],
+      "exit_code": 0,
+      "expected_exit": 86,
+      "seconds": 3.1350504089932656,
+      "accepted": false,
+      "pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "provenance_accepted": true,
+      "provenance_problems": [],
+      "pid": 538513
+    },
+    {
+      "name": "candidates-normal-missing",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "candidates-normal-missing",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/regression.py",
+        "--output",
+        "results/candidates-normal-missing.json",
+        "--tree",
+        "candidates",
+        "--control-missing"
+      ],
+      "exit_code": 86,
+      "expected_exit": 86,
+      "seconds": 9.127796969012707,
+      "accepted": true,
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "provenance_accepted": false,
+      "provenance_problems": [
+        {
+          "code": "missing-required-module",
+          "module": "gap_lib",
+          "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/candidates/scripts/gap_lib.py"
+        }
+      ],
+      "pid": 538634
+    },
+    {
+      "name": "op03-cli-normal-missing",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "op03-cli-normal-missing",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/provenance.py",
+        "--output",
+        "results/op03-cli-normal-missing.json",
+        "--control-missing"
+      ],
+      "exit_code": 86,
+      "expected_exit": 86,
+      "seconds": 2.803089778011781,
+      "accepted": true,
+      "pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "provenance_accepted": false,
+      "provenance_problems": [
+        {
+          "code": "missing-required-module",
+          "module": "op03_gap_fixed",
+          "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/candidates/scripts/op03_gap_fixed.py"
+        }
+      ],
+      "pid": 538858
+    },
+    {
+      "name": "candidates-optimized-outside",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "candidates-optimized-outside",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/regression.py",
+        "--output",
+        "results/candidates-optimized-outside.json",
+        "--tree",
+        "candidates",
+        "--control-outside",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/control-fixtures/outside_probe.py"
+      ],
+      "exit_code": 0,
+      "expected_exit": 86,
+      "seconds": 9.39377390500158,
+      "accepted": false,
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "provenance_accepted": true,
+      "provenance_problems": [],
+      "pid": 539068
+    },
+    {
+      "name": "op03-cli-optimized-outside",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "op03-cli-optimized-outside",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/provenance.py",
+        "--output",
+        "results/op03-cli-optimized-outside.json",
+        "--control-outside",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/control-fixtures/outside_probe.py"
+      ],
+      "exit_code": 0,
+      "expected_exit": 86,
+      "seconds": 3.096536106997519,
+      "accepted": false,
+      "pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "provenance_accepted": true,
+      "provenance_problems": [],
+      "pid": 539307
+    },
+    {
+      "name": "candidates-optimized-missing",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "candidates-optimized-missing",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/regression.py",
+        "--output",
+        "results/candidates-optimized-missing.json",
+        "--tree",
+        "candidates",
+        "--control-missing"
+      ],
+      "exit_code": 86,
+      "expected_exit": 86,
+      "seconds": 7.02178593800636,
+      "accepted": true,
+      "tests": 117,
+      "passed_checks": 117,
+      "failed_checks": 0,
+      "provenance_accepted": false,
+      "provenance_problems": [
+        {
+          "code": "missing-required-module",
+          "module": "gap_lib",
+          "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/candidates/scripts/gap_lib.py"
+        }
+      ],
+      "pid": 539385
+    },
+    {
+      "name": "op03-cli-optimized-missing",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/capture_run.py",
+        "--name",
+        "op03-cli-optimized-missing",
+        "--timeout",
+        "180",
+        "--",
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "-O",
+        "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/regression/provenance.py",
+        "--output",
+        "results/op03-cli-optimized-missing.json",
+        "--control-missing"
+      ],
+      "exit_code": 86,
+      "expected_exit": 86,
+      "seconds": 2.1670525600056862,
+      "accepted": true,
+      "pairs": [
+        [
+          143.28,
+          143.28
+        ],
+        [
+          66.064,
+          66.064
+        ],
+        [
+          4.3047,
+          4.3047
+        ],
+        [
+          -18.238,
+          -18.238
+        ]
+      ],
+      "provenance_accepted": false,
+      "provenance_problems": [
+        {
+          "code": "missing-required-module",
+          "module": "op03_gap_fixed",
+          "expected_path": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3/candidates/scripts/op03_gap_fixed.py"
+        }
+      ],
+      "pid": 539447
+    }
+  ],
+  "compiled_python_files": 34,
+  "runtime_policy": {
+    "stdlib_roots": [
+      "/usr/lib/python3.14"
+    ],
+    "installed_package_roots": {
+      "numpy": "/home/huangzy/.local/lib/python3.14/site-packages/numpy",
+      "scipy": "/home/huangzy/.local/lib/python3.14/site-packages/scipy"
+    },
+    "stdlib_excluded_components": [
+      "site-packages",
+      "dist-packages"
+    ],
+    "fresh_input_root": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/work/replay-20260921T125524Z-e007b3"
+  },
+  "inherited_pythonpath": null,
+  "child_pythonpath": "/home/huangzy/.local/lib/python3.14/site-packages",
+  "child_site_startup_disabled": true,
+  "input_sha256_before": {
+    "AGENTS.md": "72d37599a09a4c77b2fbd9467a46dad1ace3c2f1e81c7fd84772ac20da194d7f",
+    "README.md": "659a65e6dae6d4948a78ddd4f905f0454874d9f757d013be8380d98f7919be2a",
+    "candidates/scripts/_gapn2_hess_sign_and_bigR.py": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+    "candidates/scripts/_gapn2_hess_verify.py": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+    "candidates/scripts/_gapn2_hp_scan.py": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+    "candidates/scripts/_gapn2_jacobian_analytic.py": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+    "candidates/scripts/_gapn2_jacobian_probe.py": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+    "candidates/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "candidates/scripts/_gapn2_o3_scan.py": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+    "candidates/scripts/_gapn2_second_variation_probe.py": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+    "candidates/scripts/_gapn2_symmetry_recon.py": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+    "candidates/scripts/_tmp_fh_paradox.py": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+    "candidates/scripts/gap_lib.py": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+    "candidates/scripts/gap_n1_grad.py": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+    "candidates/scripts/op03_gap_fh.py": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+    "candidates/scripts/op03_gap_fixed.py": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+    "candidates/scripts/op03_gap_precise.py": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+    "candidates/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "candidates/scripts/tmp_fh_test.py": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+    "candidates/scripts/tmp_verify_endpoints.py": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+    "change-notes.md": "6deca7b8789abecece6a3be44eb6470b1cbadc8e3a33072b3f27f8dca7553ff4",
+    "control-fixtures/outside_probe.py": "5158b922e9095220fa52a318d149707c6d40f6cc974a5edd3d662d5481ccd9b6",
+    "inputs/main-AGENTS.md": "5bda8e5b7b03554a27b8735a5bfc510fe7cc0c2ff19eb5469824e7135e057dba",
+    "inputs/propagation.md": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+    "inputs/snapshot-manifest.json": "126d0b4e123eb7f34d99f4f791c17ea852e24fd5b9530d974cc7e66f99cea352",
+    "originals/scripts/_gapn2_hess_sign_and_bigR.py": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+    "originals/scripts/_gapn2_hess_verify.py": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+    "originals/scripts/_gapn2_hp_scan.py": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+    "originals/scripts/_gapn2_jacobian_analytic.py": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+    "originals/scripts/_gapn2_jacobian_probe.py": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+    "originals/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "originals/scripts/_gapn2_o3_scan.py": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+    "originals/scripts/_gapn2_second_variation_probe.py": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+    "originals/scripts/_gapn2_symmetry_recon.py": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+    "originals/scripts/_tmp_fh_paradox.py": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+    "originals/scripts/gap_lib.py": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+    "originals/scripts/gap_n1_grad.py": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+    "originals/scripts/op03_gap_fh.py": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+    "originals/scripts/op03_gap_fixed.py": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+    "originals/scripts/op03_gap_precise.py": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+    "originals/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "originals/scripts/tmp_fh_test.py": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+    "originals/scripts/tmp_verify_endpoints.py": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+    "prior-review.json": "c0a4bb036e9a23b7bf6ccf14089345289c39b4cb336bf5471f50dc9ffe5a409d",
+    "regression/backend_probe.py": "1bcfe1cd93a217378b0ba9b468e3a5708c824d148e6a90363b4a16b68b895a29",
+    "regression/capture_run.py": "61597e90d5b081e63d21e85197e8e91626bba59e4878bd109c938e38a393d074",
+    "regression/provenance.py": "300ff0d4b827d0781095da41d86a398f58322917c7c7f7552af30c9a08f50090",
+    "regression/regression.py": "ac24394aae78fc458d12764af253859f66b03f01d194ec818955c5bf8f683a64",
+    "regression/replay.py": "35eaa4735514b65ab6c9c5e2b7f58bee1ce1d47163ef10c296e14a13af6540cd",
+    "regression/verify_package.py": "ba4722617928590901c54f356748126d0c3c1d5c02f6cb8f9452ad481ad9a74a",
+    "manifest.json": "d5df17485a74e074c236ca4afb5bcfd895a6a58d5d1ee61ebe1ac65207570109",
+    "manifest.sha256": "a62daacfaad7b7812036a617782b7668cc11582a02b405f7674ba4f5bed67e78"
+  },
+  "input_sha256_after": {
+    "AGENTS.md": "72d37599a09a4c77b2fbd9467a46dad1ace3c2f1e81c7fd84772ac20da194d7f",
+    "README.md": "659a65e6dae6d4948a78ddd4f905f0454874d9f757d013be8380d98f7919be2a",
+    "candidates/scripts/_gapn2_hess_sign_and_bigR.py": "a538136009b0957dec96636438feaddbb399b69c6595cb6f37ec25061bbfc157",
+    "candidates/scripts/_gapn2_hess_verify.py": "e4f1f95302070898b132f0755b00da71cb4292aa920ddd54783a4af1a8345b28",
+    "candidates/scripts/_gapn2_hp_scan.py": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+    "candidates/scripts/_gapn2_jacobian_analytic.py": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+    "candidates/scripts/_gapn2_jacobian_probe.py": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+    "candidates/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "candidates/scripts/_gapn2_o3_scan.py": "83b61a76e65fc75005d55a2b32014bad4132abf42066279c282ab7eeef1f3d83",
+    "candidates/scripts/_gapn2_second_variation_probe.py": "776ef7b4166d9d555b06397f76a1ba39df7b81f2700f67b047cf491b4342e185",
+    "candidates/scripts/_gapn2_symmetry_recon.py": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+    "candidates/scripts/_tmp_fh_paradox.py": "cedbfdd9e76c867eefb80447eccfe2a22751923a75d52937a0d24d578c42f5c9",
+    "candidates/scripts/gap_lib.py": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+    "candidates/scripts/gap_n1_grad.py": "8e4e81860605eb5b3bb85d7973f21603fd63b8744062b248246e48ee811641b9",
+    "candidates/scripts/op03_gap_fh.py": "801f1ba42d9002de4f6e2588c5f38bc838cc1bd0804d15a8b4f45ef7db7980e4",
+    "candidates/scripts/op03_gap_fixed.py": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+    "candidates/scripts/op03_gap_precise.py": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+    "candidates/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "candidates/scripts/tmp_fh_test.py": "de18ae60559ea36741690d243ad7a593bb1df9506bdfbb7d57dd31225befc64e",
+    "candidates/scripts/tmp_verify_endpoints.py": "9268cd85bd96b9d602762c730913f509d083128d40d1c13e42e35fdb2691c538",
+    "change-notes.md": "6deca7b8789abecece6a3be44eb6470b1cbadc8e3a33072b3f27f8dca7553ff4",
+    "control-fixtures/outside_probe.py": "5158b922e9095220fa52a318d149707c6d40f6cc974a5edd3d662d5481ccd9b6",
+    "inputs/main-AGENTS.md": "5bda8e5b7b03554a27b8735a5bfc510fe7cc0c2ff19eb5469824e7135e057dba",
+    "inputs/propagation.md": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+    "inputs/snapshot-manifest.json": "126d0b4e123eb7f34d99f4f791c17ea852e24fd5b9530d974cc7e66f99cea352",
+    "originals/scripts/_gapn2_hess_sign_and_bigR.py": "70e79dcac4f5d7b626e182021d37f218d7564bd613db75963d2a9b615fd85bb3",
+    "originals/scripts/_gapn2_hess_verify.py": "3596db26822de160b99b109e3917f3f63dbfdf8778573920d38bd441f98f727c",
+    "originals/scripts/_gapn2_hp_scan.py": "bbd0c037d3a5a6a6a805b97d4eda414ea7213f40d40abaa938dfdf9785c491b6",
+    "originals/scripts/_gapn2_jacobian_analytic.py": "a4b83dfd064f2e0335c5f16fd22391fcdc91b48fd272eaed5da4bbf33068d65a",
+    "originals/scripts/_gapn2_jacobian_probe.py": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+    "originals/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "originals/scripts/_gapn2_o3_scan.py": "985afd9a28fe1ac7793675cf6ae0543e6a1c42c74b43c7220eb56fcb74561ceb",
+    "originals/scripts/_gapn2_second_variation_probe.py": "9b482b956719bb4c6b990fc4d5b09d7bcf6e7067060c8b11dd3b3ff7881ac42a",
+    "originals/scripts/_gapn2_symmetry_recon.py": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+    "originals/scripts/_tmp_fh_paradox.py": "4ecd92a4383b3053c160cc864b4fab24deb3961b30f75b4463f9a505f763a607",
+    "originals/scripts/gap_lib.py": "cf48e653934d545034366348fe17ecb96f9ca2864850740389cbd5eefac3e484",
+    "originals/scripts/gap_n1_grad.py": "85185257e13c67a5749c2d93a61c30e3e145c686a366cc7a561bff9b1bb9e974",
+    "originals/scripts/op03_gap_fh.py": "ec72a62c380b6f92a5d2284f05499cbec49e6eff12dced04eea0bf728eba03c1",
+    "originals/scripts/op03_gap_fixed.py": "08218cc1367f195ff4115e77a4efcb929adb09ec2e4864760e2cfeb655a645f3",
+    "originals/scripts/op03_gap_precise.py": "267e4d4118e52715e242fb02de9698194462faa7c3dd8612fa6d4825a5883bd7",
+    "originals/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "originals/scripts/tmp_fh_test.py": "caccdc75cbcd299b7d379ffd2f031a87ba41a16e29e7fd481ca2a03668d33f4c",
+    "originals/scripts/tmp_verify_endpoints.py": "7678cfc0bf603b37dda31db32f83fd679eb4719835d61adb74b0b55da9f1546f",
+    "prior-review.json": "c0a4bb036e9a23b7bf6ccf14089345289c39b4cb336bf5471f50dc9ffe5a409d",
+    "regression/backend_probe.py": "1bcfe1cd93a217378b0ba9b468e3a5708c824d148e6a90363b4a16b68b895a29",
+    "regression/capture_run.py": "61597e90d5b081e63d21e85197e8e91626bba59e4878bd109c938e38a393d074",
+    "regression/provenance.py": "300ff0d4b827d0781095da41d86a398f58322917c7c7f7552af30c9a08f50090",
+    "regression/regression.py": "ac24394aae78fc458d12764af253859f66b03f01d194ec818955c5bf8f683a64",
+    "regression/replay.py": "35eaa4735514b65ab6c9c5e2b7f58bee1ce1d47163ef10c296e14a13af6540cd",
+    "regression/verify_package.py": "ba4722617928590901c54f356748126d0c3c1d5c02f6cb8f9452ad481ad9a74a",
+    "manifest.json": "d5df17485a74e074c236ca4afb5bcfd895a6a58d5d1ee61ebe1ac65207570109",
+    "manifest.sha256": "a62daacfaad7b7812036a617782b7668cc11582a02b405f7674ba4f5bed67e78"
+  },
+  "inputs_unchanged": true,
+  "outside_fixture": {
+    "path": "/mnt/f/tools/math-audit-round7-20260921/software-author-v2/evidence/final-filter-only-mutation/control-fixtures/outside_probe.py",
+    "sha256": "5158b922e9095220fa52a318d149707c6d40f6cc974a5edd3d662d5481ccd9b6"
+  },
+  "normal_optimized_names_agree": null,
+  "accepted": false,
+  "output_sha256": {
+    "results/candidates-normal-missing.json": "38a1442b25034f50557fb6fb0663ebf845a97380019d06f314b2d2e269dbe547",
+    "results/candidates-normal-outside.json": "a1bfbc15901a2c57680a98a89b54216f66cf6b66b2395d3af1990772f0462a7b",
+    "results/candidates-optimized-missing.json": "5b9a007cc5673def480038945298d2cb98190080121250c8bb815447cf9dc709",
+    "results/candidates-optimized-outside.json": "dff04b79a271d50350b0a2c0f8aac5566cdc903f9af0eac8344f73ce7e982537",
+    "results/op03-cli-normal-missing.json": "8a50e0e839921831b04c8b3029c8157ba7167567d744912d674e06838da6031d",
+    "results/op03-cli-normal-outside.json": "64489054449264a2de82ecb47cd8062c2bdb6cbe3ffa43fee405d240ec95c6fc",
+    "results/op03-cli-optimized-missing.json": "10478778c579979f42499aeecddb6528a017fe054dc417a8828f79720ea51b8d",
+    "results/op03-cli-optimized-outside.json": "dc15697e93f6e580c56550b6f4154c6fdf47fe75d299ff1a68843d3d3b236c95",
+    "receipts/candidates-normal-missing/receipt.json": "dd7b785d4c0ace292a2e0143434372f065954baef6c18c8ca6766fa53723900a",
+    "receipts/candidates-normal-missing/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/candidates-normal-missing/stdout.txt": "0323b098bf61db05c7bbeda4be38b80385ddb75144d68cc4c57d42637c2aa187",
+    "receipts/candidates-normal-missing-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/candidates-normal-missing-launcher.stdout": "1a7dd5908cd38a0e511bb809bd705802dc4b1f8e9713a33ac431c1be52e30651",
+    "receipts/candidates-normal-outside/receipt.json": "48365b309458ea5ddd3fc28da62df8c2dbf80ae3f8d50e8aa08f98b7fe9e60a7",
+    "receipts/candidates-normal-outside/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/candidates-normal-outside/stdout.txt": "c194c3484dc8fe048857475fbb101a2f656a9b1b1601dacd698fd356d2a00b56",
+    "receipts/candidates-normal-outside-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/candidates-normal-outside-launcher.stdout": "93e48a163cec0ddd7d88c28fc630a07cd31498efd10ea8052a76fd30de2ad657",
+    "receipts/candidates-optimized-missing/receipt.json": "1fc0f9242706232600669ffc3eaa093aed0a8db9b5518807d20b6df9d0556caf",
+    "receipts/candidates-optimized-missing/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/candidates-optimized-missing/stdout.txt": "1a4b5398f4c2090b29552eb421f971e2df683f86f25ebd5d01f7e02ec442026a",
+    "receipts/candidates-optimized-missing-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/candidates-optimized-missing-launcher.stdout": "579879f47fe773a94b35b16339deca9d6dc214174660215430ae0b7b795439b3",
+    "receipts/candidates-optimized-outside/receipt.json": "7ac71fd7b3a42caf137456e10cb681c799f56eb29127aca56f7a5941b3a0f29f",
+    "receipts/candidates-optimized-outside/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/candidates-optimized-outside/stdout.txt": "1386ebbbf489b11985696ac1fe058aa1c91b38fcb849042f04f026583f816120",
+    "receipts/candidates-optimized-outside-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/candidates-optimized-outside-launcher.stdout": "9ab0645a84cb37651e5b72c5b6cba9ea65ca2e6d30786a34c3b1b5b3ba10186e",
+    "receipts/op03-cli-normal-missing/receipt.json": "24427d5f3c6229dd82a2046dd2a93b6f915fd11c208a608cd686eac540e0b855",
+    "receipts/op03-cli-normal-missing/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/op03-cli-normal-missing/stdout.txt": "3fc0297f071a1a49e8807441573b6bbcffa2e59020931b6aebaa5f2bf773c679",
+    "receipts/op03-cli-normal-missing-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/op03-cli-normal-missing-launcher.stdout": "e412cf43c69e6f5723c930eb1bdd4cb0958e1b7231be387af5b5c92e5412265d",
+    "receipts/op03-cli-normal-outside/receipt.json": "2eca463f3700550e572e50eb2a12a6411f3555251d917ae542a7338183829b28",
+    "receipts/op03-cli-normal-outside/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/op03-cli-normal-outside/stdout.txt": "e6005fbd43e0c8c09341f80b0bf3257b4f98da64b14ca6fa34386d63679d94e7",
+    "receipts/op03-cli-normal-outside-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/op03-cli-normal-outside-launcher.stdout": "bb30e8e7d1edbb5d83a56bc4ef31dd5f4739c5efa88bd9cba9aa3da0a1f7abc2",
+    "receipts/op03-cli-optimized-missing/receipt.json": "9cb28243421ca574228be38ad31fde6cf1e9b8ff5584d551733b38ccc4312233",
+    "receipts/op03-cli-optimized-missing/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/op03-cli-optimized-missing/stdout.txt": "3fc0297f071a1a49e8807441573b6bbcffa2e59020931b6aebaa5f2bf773c679",
+    "receipts/op03-cli-optimized-missing-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/op03-cli-optimized-missing-launcher.stdout": "bd29675b1d3d3d5181a9419f0bbe2472250e973e6ae3764dc0339ef1e45efd13",
+    "receipts/op03-cli-optimized-outside/receipt.json": "e7898c0c887e13f49ee3891d96c7f2a300346f826eae9c4eb13c375e4b839b7f",
+    "receipts/op03-cli-optimized-outside/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipts/op03-cli-optimized-outside/stdout.txt": "e6005fbd43e0c8c09341f80b0bf3257b4f98da64b14ca6fa34386d63679d94e7",
+    "receipts/op03-cli-optimized-outside-launcher.stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "receipts/op03-cli-optimized-outside-launcher.stdout": "05a6632afbc7a397d0f032dc2618cc774c75fae4969aee683b08c90518b7bcb2"
+  }
+}
