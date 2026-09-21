@@ -1,0 +1,59 @@
+{
+	"checked_paths": [
+		"docs/SL_projection_moment_repairs.tex",
+		"research/artifacts/proof-audit-round6-20260921/submitted-replay/normal/execution.json",
+		"research/artifacts/proof-audit-round6-20260921/submitted-replay/normal/round6_results.json",
+		"research/artifacts/proof-audit-round6-20260921/submitted-replay/optimized/execution.json",
+		"research/artifacts/proof-audit-round6-20260921/submitted/check_round6.py",
+		"research/artifacts/proof-audit-round6-20260921/submitted/projection_and_moment_repairs.md",
+		"research/artifacts/proof-audit-round6-20260921/submitted/proof_audit_round6_20260921.md",
+		"research/library/card-versions/7f779730c24419f05bbe6a2adfa1ded1c17c3c017278d908f3a7801d147da954.md",
+		"research/library/card-versions/e3a840d5ed64bb6a1acc86e3ff75ab9f11a9fb67801ec801d78687f777ec71ec.md",
+		"research/library/corrections/evidence/0791031a89c9171abab1625b8f29fe0e6c67639e259c1f1153d52bc9a41a4efd.bin",
+		"research/library/corrections/evidence/7f779730c24419f05bbe6a2adfa1ded1c17c3c017278d908f3a7801d147da954.bin",
+		"research/library/corrections/requests/4f9ceb1105ce760281cece33c8c6ca61e9d5c22f9b54653a33977cb2c9215a94.json",
+		"research/library/corrections/requests/7be35929e9e87974862023073227d1495c793fd3c11d8b7c03ee9d063e5f8970.json",
+		"tools/constrained-denseness-runs.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:7be35929e9e87974862023073227d1495c793fd3c11d8b7c03ee9d063e5f8970",
+			"reason": "All 14 input hashes match, including the old/new card identities and correction-request bindings. The replacement proofs resolve the three mathematical issues as reproduced in the supplied evidence, and the card removes blanket A–H certification. However, current card line 20 incorrectly makes density of the sparse family in the entire H necessary for omitting the supplementary projected-monomial tests. The proof document correctly permits the weaker condition V ∩ M^perp = {0}. This remaining error in the exact repaired card is detailed in F1.",
+			"verdict": "CHANGES_REQUIRED"
+		},
+		{
+			"id": "R6-projection-exact-repair",
+			"reason": "The analytic replacement in the TeX document passes. Telescoping reconstruction and the two coefficient functionals establish Pi = S ⊕ span{x^2,x^3}, with algebraic codimension exactly two. Dense polynomial approximation followed by the bounded orthogonal projection proves totality of the augmented projected family. The identities V ∩ A_V^perp = V ∩ M^perp and A_V^perp = V^perp ⊕ (V ∩ M^perp) are correct. Splitting actual retained and excluded indices proves the augmented necessary-and-sufficient criterion, including zero-subspace and empty-family cases. In H_2, the witness has squared norm between 1/81 and (1/16) sum(m^-2), moments M_(2m)=m, and zero odd and constant moments. Weighted Cauchy–Schwarz gives an injective continuous-function realization on [-1,1]. V=ker M0 is closed of codimension one and excludes exactly p0. The correct full-polynomial projection theorem remains intact. F1 concerns the card's summary, not these replacement proofs.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-finite-obstacle-repair",
+			"reason": "For the original F premises reproduced in the packet, r+3 independent tail polynomials mapped into r+2 test coordinates necessarily have a nonzero joint kernel; this establishes inconsistent premises, not a counterexample to the implication. Both parity recurrences telescope to M_(2m)=m M_L/(m0-1) and M_(2m+1)=m M_(L+1)/(m0-1). The strict beta<1 bound forces both initial moments to vanish, proving the tail annihilator equals Z_L. Density makes its first L moments injective, hence dim Z_L≤L. Restricting actual low tests to V∩Z_L yields exactly the stated full-column-rank criterion, including zero-dimensional and empty-test cases. The H_0 examples check: ranks are 1 for ker M0, 2 for H_0, and 4 on the five-dimensional obstacle for ker M4, leaving the x^2 defect. For general q_n, nonzero leading coefficients at every degree n≥N give the algebraic decomposition by induction; conjugating all polynomial coefficients gives the correct moment recurrence. N=0 is valid. The geometric recurrence counterexample is realized by an actual H_0 element of squared norm 4/3. The document correctly requires actual moment realizability and does not claim an automatic algorithm or growth of every recurrence solution.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-representers-and-library-scope",
+			"reason": "For finitely many bounded linear constraints, V=(span{v_j})^perp and the representer span is closed. Consequently, M2 and M3 vanish identically on V exactly when span{x^2,x^3} is contained in that span. The equivalence with the functional span uses the correct conjugated coefficients and allows dependent representers and s=0. In H_0, v=x^2+x^3 and w=x^2-x^3 have pairing zero, ||w||^2=2, and moments (1,-1), so nonzero detection does not pin both moments. The card treats historical PASS records as history, avoids renewed blanket A–H certification, and excludes automatic application to general Krein/left-definite domains. Finite script groups and local Lean are not presented as complete proof. The separate projection-summary wording defect is recorded under the correction claim.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [
+		{
+			"counterexample": "Use the supplied H_2 and let M be the closed span of all p_n. The supplied nonzero annihilator proves M≠H_2. Set V=M∩ker M0. Since p0 is orthogonal to every other p_n, M=span{p0}⊕closure span{p_n:n≠0}; hence the retained family is dense in this V. Exactly p0 is excluded and P_V p0=0. Thus the excluded-only criterion works although the sparse family is not dense in H_2. Equivalently, V⊂M gives V∩M^perp={0}.",
+			"id": "F1",
+			"line": 20,
+			"path": "tools/constrained-denseness-runs.md",
+			"problem": "The statement '只有另证整个稀疏族在 H 中稠密时, 才可省去两个补充测试' turns a sufficient condition into a necessary one. It contradicts the weaker sufficient condition explicitly proved in docs/SL_projection_moment_repairs.tex, lines 193–207.",
+			"requested_change": "State that the supplementary tests may be omitted when V∩M^perp={0}, with M=H as a sufficient special case. Remove the assertion that density in the whole H is necessary."
+		}
+	],
+	"limitations": [
+		"Only the packet and its listed snapshots were read. No source-project files were modified.",
+		"The historical run sources, linked library cards, correction receipts, and external author manifests are not supplied. Their exact historical wording, byte-comparison claims, and downstream acceptance state could not be independently verified.",
+		"The submitted checker and replay records were inspected but not rerun. Separate in-memory exact arithmetic checks supplemented the analytic review; no finite computation was used to prove an infinite or universal assertion.",
+		"The fractional-window results, fifth-round two-trace classification, other historical A–H branches, and general non-diagonal or left-definite domains were not re-audited or retracted.",
+		"No Lean compilation, complete formalization audit, TeX compilation, or PDF inspection was performed."
+	],
+	"packet_sha256": "d9b6e034ae2da775210fe8fc63d7547d4ea4af670953f7d73f4f5fb62b8cbd6f",
+	"verdict": "CHANGES_REQUIRED"
+}

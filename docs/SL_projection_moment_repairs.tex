@@ -1,0 +1,686 @@
+% Author repair for R6-F01/F02/F03. No historical source is replaced.
+% Compilation and independent stateless review belong to the coordinator.
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\emergencystretch=3em
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{例}
+\newtheorem{remark}[theorem]{注}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\ip}[2]{\langle #1,#2\rangle_H}
+\newcommand{\clspan}[1]{\overline{\Span #1}^{\,H}}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\Hd}[1]{\mathsf H_{#1}^{\mathrm{diag}}}
+
+\title{投影稠密性与有限矩检验的修复证明\\
+\large 第六轮审计 R6-F01, R6-F02, R6-F03}
+\author{作者修订稿: 待协调器安排独立无状态审查}
+\date{2026-09-21}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+本文只修复两个 DensBC 原始运行中指定的投影命题, 有限矩准则和表示元解释.
+先证明稀疏族的代数线性包恰少两个方向, 再给出有非零有限约束且由实际 Hilbert
+空间元素实现的投影反例. 正确替代包括投影消去子恒等式, 补入两个缺失投影后的
+筛选判据, $\beta<1$ 时的有限维尾部障碍空间, 以及适用于一般三角尾部的有限检验.
+原 F 的问题是其假设无适用实例, 不是其条件蕴含存在反例.
+原 G 对 F 的交叉引用在本文被一个明确且自足的条件取代.
+全文规定复内积对第一变量线性, 并严格区分含全部单项式的抽象 Hilbert 空间与受
+边界条件约束的 Krein 图域. 本文是作者证明稿, 不援引旧 PASS 作为证明,
+不宣称完成独立验收, Lean 形式化或其他历史分支的认证.
+\end{abstract}
+
+\tableofcontents
+
+\section{契约, 来源与适用空间}\label{sec:contract}
+
+基线提交是
+\begin{center}
+\texttt{92d46e99e36cc0a74e8f7bb13430749c222ee54f}.
+\end{center}
+本文核对的原始运行记为 [D14] 和 [O16], 精确路径与行号见第
+\ref{sec:sources} 节. 其中 [O16] 第 1 节 Theorem 1, Corollary 1.1
+对应 R6-F01; [D14] 第 5 节 Theorem F, G 对应 R6-F02;
+[D14] 第 6 节 Theorem H 的解释段对应 R6-F03.
+提交的审计和修复附录仅作为待核查材料; 下文逐项给出证明或反例.
+
+除明确另作说明外, $H$ 是复 Hilbert 空间, $\Pi=\mathbb C[x]$ 作为向量空间
+\emph{单射地}嵌入 $H$, 所有单项式 $x^k$ ($k\in\mathbb N_0$) 均属于 $H$,
+且 $\overline\Pi^{\,H}=H$. 内积满足
+\[
+ \ip{a u+b v}{z}=a\ip{u}{z}+b\ip{v}{z},\qquad
+ \ip{z}{a u+b v}=\overline a\ip{z}{u}+\overline b\ip{z}{v}.
+\]
+置 $M_k(w)=\ip{w}{x^k}$. 这是关于 $w$ 的连续线性泛函, 且
+\begin{equation}\label{eq:cs}
+ |M_k(w)|\leq \|w\|_H\|x^k\|_H\qquad(w\in H,\ k\geq0).
+\end{equation}
+若 $M_k(w)=0$ 对所有 $k\geq0$ 成立, 则 $w=0$: 取 $f_j\in\Pi$ 趋于 $w$,
+有 $\|w\|_H^2=\lim_j\ip{w}{f_j}=0$.
+
+稀疏族只在以下指标上定义:
+\begin{equation}\label{eq:sparse}
+ \begin{gathered}
+ \D=\{0,1\}\cup\{4,5,6,\ldots\},\qquad p_0=1,\quad p_1=x,\\
+ p_{2m}=x^{2m}-\frac{m}{m-1}x^{2m-2},\qquad
+ p_{2m+1}=x^{2m+1}-\frac{m}{m-1}x^{2m-1}\quad(m\geq2).
+ \end{gathered}
+\end{equation}
+没有 $p_2,p_3$. 定义 $S=\Span\{p_n:n\in\D\}$, $M=\overline S^{\,H}$.
+对任意闭线性子空间 $V\subset H$, 记 $P_V$ 为正交投影, 并令
+\begin{equation}\label{eq:kept}
+ N(V)=\{n\in\D:p_n\in V\},\qquad
+ \Q_V=\{p_n:n\in N(V)\},\qquad C_V=\clspan{\Q_V}.
+\end{equation}
+这些定义不要求 $V$ 余维有限. 有限约束实例会另行给出.
+
+\paragraph{域的边界.}
+这里的 $H$ 不是自动等同于实际的 $D(K_c)$ 或其他 Krein 幂域.
+若某个受约束图域不含 $x^2$ 或 $x^3$, 则以该图域的内积书写 $M_2,M_3$
+本身就不满足本文契约; 单项式不属于空间不能被解释为其矩等于零.
+本文的对角权重参数 $\beta$ 也不是左定阶数.
+以下结论不认证任何分数窗口, 高阶域, 第五轮两迹分类, 全部对角/带状分类,
+或两个旧 run 的其他分支. 具体域中的投影结论须用其自己的成员与稠密性证明.
+
+\section{稀疏族的精确代数结构}\label{sec:algebra}
+
+\begin{proposition}[恰少两个代数方向]\label{prop:algebra}
+在多项式向量空间中有代数直和
+\begin{equation}\label{eq:direct}
+ \Pi=S\mathbin{\oplus}\Span\{x^2,x^3\}.
+\end{equation}
+特别地, $\Pi=\Span(\{p_n:n\in\D\}\cup\{x^2,x^3\})$,
+但 $S\ne\Pi$, 且 $\dim(\Pi/S)=2$.
+\end{proposition}
+
+\begin{proof}
+对每个整数 $m\geq1$, 空和按零处理, 有显式重构式
+\begin{equation}\label{eq:reconstruct}
+ \begin{aligned}
+ x^{2m}&=m x^2+\sum_{j=2}^{m}\frac{m}{j}p_{2j},\\
+ x^{2m+1}&=m x^3+\sum_{j=2}^{m}\frac{m}{j}p_{2j+1}.
+ \end{aligned}
+\end{equation}
+例如第一式的和展开为
+$\sum_{j=2}^m[(m/j)x^{2j}-(m/(j-1))x^{2j-2}]=x^{2m}-m x^2$;
+第二式同样逐项相消. 连同 $1=p_0,x=p_1$, 这证明等式右侧张成 $\Pi$.
+
+为证直和, 对有限多项式 $f=\sum_k a_kx^k$ 定义代数线性泛函
+\[
+ a_{\rm e}(f)=\sum_{m\geq1}m a_{2m},\qquad
+ a_{\rm o}(f)=\sum_{m\geq1}m a_{2m+1}.
+\]
+两个和在此均为有限和. 逐个代入 \eqref{eq:sparse}, 得
+$a_{\rm e}(p_n)=a_{\rm o}(p_n)=0$ 对所有 $n\in\D$ 成立.
+另一方面, 两个泛函在 $x^2,x^3$ 上的取值矩阵为 $I_2$.
+因此 $S\cap\Span\{x^2,x^3\}=\{0\}$.
+事实上重构式还给出 $S=\ker a_{\rm e}\cap\ker a_{\rm o}$ (仅在 $\Pi$ 中).
+\end{proof}
+
+\begin{remark}
+这是代数余维结论, 不是闭包余维必为二的结论.
+$a_{\rm e},a_{\rm o}$ 未必在 $H$ 上连续, 因而 $S$ 仍可能在 $H$ 中稠密.
+原稿的错误发生在把 $S$ 直接认作 $\Pi$, 不能靠改变闭包符号来保留该代数等式.
+\end{remark}
+
+\section{保留主判据, 修正投影与筛选判据}\label{sec:projection}
+
+\begin{lemma}[主判据]\label{lem:master}
+对任意复 Hilbert 空间 $H$, 闭子空间 $V\subset H$ 和任意族 $\Q\subset V$,
+\begin{equation}\label{eq:master}
+ \clspan{\Q}=V\quad\Longleftrightarrow\quad V\cap\Q^\perp=\{0\},
+ \qquad \Q^\perp=\{w\in H:\ip{w}{q}=0\ \forall q\in\Q\}.
+\end{equation}
+该命题不依赖多项式契约.
+\end{lemma}
+\begin{proof}
+置 $C=\clspan{\Q}\subset V$. 正交分解在 $V$ 内给出
+$V=C\oplus(V\cap C^\perp)$, 而 $C^\perp=\Q^\perp$.
+故 $C=V$ 当且仅当第二个直和分量为零.
+这也包括 $V=\{0\}$ 或 $\Q=\varnothing$ 的情形.
+\end{proof}
+
+\begin{theorem}[投影的精确恒等式]\label{thm:projection}
+在第 \ref{sec:contract} 节的契约下, 对每个闭子空间 $V$ 都有
+\begin{equation}\label{eq:allprojection}
+ \overline{P_V(\Pi)}^{\,H}=V.
+\end{equation}
+若 $A_V=\clspan{\{P_Vp_n:n\in\D\}}$, 则其在 $V$ 中的正交补为
+\begin{equation}\label{eq:projectedann}
+ V\cap A_V^\perp=V\cap M^\perp,
+ \qquad A_V=V\ \Longleftrightarrow\ V\cap M^\perp=\{0\}.
+\end{equation}
+若正交补取在整个 $H$ 中, 正确恒等式为
+\begin{equation}\label{eq:ambientann}
+ A_V^\perp=V^\perp\oplus(V\cap M^\perp).
+\end{equation}
+不附加稀疏族稠密假设时, 始终成立的增广结论是
+\begin{equation}\label{eq:augprojection}
+ \clspan{\bigl(\{P_Vp_n:n\in\D\}\cup\{P_Vx^2,P_Vx^3\}\bigr)}=V.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+给定 $v\in V$, 取 $f_j\in\Pi$ 使 $f_j\to v$.
+由 $P_Vv=v$ 和 $\|P_V\|\leq1$, 有
+$\|P_Vf_j-v\|_H\leq\|f_j-v\|_H\to0$, 证明 \eqref{eq:allprojection}.
+对 $w\in V$ 及每个 $n\in\D$, 正交性给出
+\begin{equation}\label{eq:pairprojection}
+ \ip{w}{P_Vp_n}=\ip{w}{p_n},
+\end{equation}
+因为 $p_n-P_Vp_n\in V^\perp$. 于是 $w\perp A_V$ 当且仅当 $w\perp M$,
+再用引理 \ref{lem:master} 得 \eqref{eq:projectedann}.
+任意 $z\in H$ 唯一写为 $z=P_Vz+(I-P_V)z$;
+后者已正交于 $A_V\subset V$, 前者正交于 $A_V$ 恰好等价于属于 $V\cap M^\perp$.
+这证明 \eqref{eq:ambientann}.
+最后, 将线性映射 $P_V$ 作用于 \eqref{eq:direct}, 得
+\[
+ P_V\Pi=\Span\bigl(\{P_Vp_n:n\in\D\}\cup\{P_Vx^2,P_Vx^3\}\bigr).
+\]
+由 \eqref{eq:allprojection} 得 \eqref{eq:augprojection}.
+\end{proof}
+
+\begin{corollary}[被排除项加两个补充投影的判据]\label{cor:excluded}
+采用实际保留集 \eqref{eq:kept}. 则 $C_V=V$ 当且仅当以下条件同时成立:
+\begin{align}
+ &P_Vp_n\in C_V\quad\text{对每个 }n\in\D\setminus N(V),\label{eq:excluded}\\
+ &P_Vx^2\in C_V,\qquad P_Vx^3\in C_V.\label{eq:extra}
+\end{align}
+若另行知道 $V\cap M^\perp=\{0\}$, 则可以只保留 \eqref{eq:excluded}.
+特别地, $M=H$ 是允许这种简化的一个充分条件.
+\end{corollary}
+\begin{proof}
+必要性由所有这些投影属于 $V$ 得到.
+反之, 对实际保留项 $n\in N(V)$, 有 $P_Vp_n=p_n\in C_V$.
+连同 \eqref{eq:excluded}--\eqref{eq:extra}, 闭空间 $C_V$ 包含
+\eqref{eq:augprojection} 左侧的全部生成元, 故包含 $V$, 从而 $C_V=V$.
+若 $V\cap M^\perp=\{0\}$, 用 $A_V=V$ 替代增广稠密结论即可.
+\end{proof}
+
+\begin{remark}
+$P_V\Pi$, $\Pi\cap V$ 和 $\Q_V$ 是不同的对象.
+一般的 $P_Vf$ 未必仍为多项式; \eqref{eq:allprojection} 只讨论全体多项式的投影.
+公式 \eqref{eq:projectedann} 讨论全部稀疏成员的投影;
+推论 \ref{cor:excluded} 才讨论未投影的实际筛选族.
+这三个陈述的输入族不可互换.
+\end{remark}
+
+\section{R6-F01: 具有真实非零障碍的有限约束反例}\label{sec:counterexample}
+
+对 $\beta\geq0$, 定义对角序列 Hilbert 空间
+\[
+ \Hd\beta=\left\{a=(a_k)_{k\geq0}:\sum_{k\geq0}|a_k|^2(k+1)^{2\beta}<\infty\right\},
+ \qquad \langle a,b\rangle_\beta=\sum_{k\geq0}a_k\overline{b_k}(k+1)^{2\beta}.
+\]
+将 $x^k$ 识别为第 $k$ 个坐标向量, 并以 $\sum a_kx^k$ 表示序列.
+映射 $a\mapsto((k+1)^\beta a_k)_{k\geq0}$ 是到 $\ell^2$ 的满等距映射,
+所以此空间完备, 恰为多项式按该内积的系数完备化.
+有限序列截断在此范数下收敛, 所以全部多项式属于该空间并稠密, 且
+\begin{equation}\label{eq:diagmoment}
+ \|x^k\|_\beta=(k+1)^\beta,\qquad M_k(a)=a_k(k+1)^{2\beta}.
+\end{equation}
+对每个 $0<r<1$, 有
+\[
+ \sum_{k\geq0}|a_k|r^k\leq\|a\|_\beta
+ \left(\sum_{k\geq0}\frac{r^{2k}}{(k+1)^{2\beta}}\right)^{1/2}<\infty.
+\]
+各阶导数在更小的紧区间上一致收敛, 因而这些系数单射地实现为 $(-1,1)$ 上的
+解析函数. 一般并不保证闭区间端点值: 例如 $\beta=0$ 时
+$a_k=1/(k+1)$ 属于 $\ell^2$, 但其幂级数在 $x=1$ 发散.
+下文涉及 $\Hd0$ 的各例只使用系数 Hilbert 空间及区间内部实现,
+不宣称其所有元素在 $[-1,1]$ 上连续. $\beta=2$ 的端点性质在下一证明中单独核实.
+
+\begin{proposition}[同时反证稀疏投影稠密性与仅检验被排除项的 iff]\label{prop:beta2}
+取 $H=\Hd2$ 和 $V=\ker M_0$. 则 $V$ 为余维一闭子空间,
+实际保留集为 $N(V)=\D\setminus\{0\}$, 但 $A_V\ne V$ 且 $C_V\ne V$.
+与此同时, \eqref{eq:excluded} 成立.
+\end{proposition}
+\begin{proof}
+先核对空间实现, 避免只写形式矩.
+对 $a\in\Hd2$, Cauchy--Schwarz 给出
+\[
+ \sum_{k\geq0}|a_k|\leq\|a\|_2
+ \left(\sum_{k\geq0}(k+1)^{-4}\right)^{1/2}<\infty.
+\]
+所以其幂级数在 $[-1,1]$ 上绝对且一致收敛为连续函数.
+在任意 $|x|\leq r<1$ 上逐次求导合法, 因为幂次 $r^k$ 控制每个固定次数的
+多项式因子; 若函数恒零, 在零点的各阶导数给出 $k!a_k=0$.
+因此这是单射的函数实现, 也满足原始函数空间表述.
+
+$M_0(a)=a_0=\langle a,1\rangle_2$ 是非零连续线性泛函.
+故 $V$ 闭且余维一, 约束表示元就是多项式 $1$,
+且 $P_Va=a-a_0x^0$.
+各 $p_n$ 中只有 $p_0$ 的常数系数非零, 因而
+\begin{equation}\label{eq:beta2projection}
+ P_Vp_0=0,\qquad P_Vp_n=p_n\quad(n\in\D\setminus\{0\}).
+\end{equation}
+
+现在定义实际序列
+\begin{equation}\label{eq:witness}
+ w=\sum_{m=1}^{\infty}\frac{m}{(2m+1)^4}x^{2m}.
+\end{equation}
+它的范数满足
+\[
+ \frac1{81}\leq\|w\|_2^2=\sum_{m=1}^{\infty}\frac{m^2}{(2m+1)^4}
+ \leq\frac1{16}\sum_{m=1}^{\infty}m^{-2}<\infty.
+\]
+这里 $m\geq1$ 时 $(2m+1)^4\geq16m^4$; 比较积分可得
+$\sum_{m\geq1}m^{-2}\leq2$.
+更明确地, 若 $w^{(K)}$ 为前 $K$ 项, 则
+\[
+ \|w-w^{(K)}\|_2^2\leq\frac1{16}\sum_{m>K}m^{-2}\leq\frac1{16K}
+ \qquad(K\geq1).
+\]
+所以 \eqref{eq:witness} 确实定义了 $H$ 中非零元素, 而非未证可表示的矩序列.
+由 \eqref{eq:diagmoment} 得
+\[
+ M_0(w)=M_1(w)=0,\qquad M_{2m}(w)=m\ (m\geq1),\qquad
+ M_{2m+1}(w)=0\ (m\geq0).
+\]
+于是 $w\in V\setminus\{0\}$, 并且对每个 $m\geq2$,
+\[
+ \ip{w}{p_{2m}}=m-\frac{m}{m-1}(m-1)=0,\qquad
+ \ip{w}{p_{2m+1}}=0.
+\]
+对 $p_0,p_1$ 的配对也均为零.
+由 \eqref{eq:pairprojection}, $w$ 正交于全部 $P_Vp_n$;
+但 $x^2\in V$ 且 $\ip{w}{x^2}=1$.
+这既证明 $A_V\ne V$, 也证明 $x^2\notin C_V$, 从而 $C_V\ne V$.
+
+最后, 被排除项集合恰为 $\{0\}$, 而 $P_Vp_0=0\in C_V$.
+故仅检查被排除项的条件 \eqref{eq:excluded} 全部成立, 稠密性却失败.
+补充条件 \eqref{eq:extra} 在此明确失败于 $P_Vx^2=x^2$.
+\end{proof}
+
+\section{R6-F02: 原 F 的无实例性与可用替代}\label{sec:firstmoment}
+
+\subsection{原假设的任意有限秩矛盾}
+
+\begin{proposition}[原 F 的假设不能同时满足]\label{prop:vacuous}
+设 $m_0\geq2$, 且闭子空间 $V$ 包含每个 $p_{2m},p_{2m+1}$ ($m\geq m_0$).
+给定任意有限整数 $r\geq0$ 和任意 $r$ 个固定测试向量 $t_1,\ldots,t_r\in H$,
+都存在 $0\ne w\in V$ 使
+\begin{equation}\label{eq:rankkernel}
+ \ip{w}{t_i}=0\quad(1\leq i\leq r),\qquad M_2(w)=M_3(w)=0.
+\end{equation}
+特别地, 测试向量取为原 F 中全部实际保留的低指标 $p_n$ 时,
+原 F 声明不存在这样的 $w$, 因而没有任何适用实例.
+\end{proposition}
+
+\begin{proof}
+取 $u_j=p_{2(m_0+j)}$, $j=0,\ldots,r+2$.
+这些向量属于 $V$, 次数两两不同, 首系数均为一.
+任意非平凡有限线性组合中最高次项不能抵消, 所以它们线性无关.
+令 $E=\Span\{u_0,\ldots,u_{r+2}\}\subset V$, 则 $\dim E=r+3$.
+映射
+\[
+ T:E\longrightarrow\mathbb C^{r+2},\qquad
+ T(w)=(\ip{w}{t_1},\ldots,\ip{w}{t_r},M_2(w),M_3(w))
+\]
+因第一变量线性而为复线性映射. 秩至多 $r+2$, 故
+$\dim\ker T\geq(r+3)-(r+2)=1$. 任取非零核向量即得 \eqref{eq:rankkernel}.
+此论证不需要测试独立, 不需要 $V$ 余维有限, 也不需要任何矩增长假设.
+\end{proof}
+
+因此原 F 作为逻辑蕴含不被一个满足假设而违反结论的对象反证;
+准确分类是\emph{前提无法同时成立的空洞条件定理}.
+其问题是不能作为有实例的充分准则复用.
+原 F 括号中的 $x^2,x^3\in V^\perp$ 也不能替代对特定 $w$ 的 $M_2=M_3=0$:
+前者量化整个 $V$, 后者只涉及一个元素.
+即使将前者作为更强的附加假设, 有限测试在无限维 $V$ 上仍不能单射.
+
+\subsection{完整稀疏尾部的精确消去子}
+
+\begin{theorem}[$\beta<1$ 的尾部消去子]\label{thm:tail}
+假设存在固定常数 $C>0$ 和实数 $\beta<1$, 使
+\begin{equation}\label{eq:sublinear}
+ \|x^k\|_H\leq C(k+1)^\beta\qquad\text{对每个整数 }k\geq0.
+\end{equation}
+对任意固定整数 $m_0\geq2$, 定义
+\begin{equation}\label{eq:ztail}
+ \begin{gathered}
+ L=2m_0-2,\qquad \mathcal T_{m_0}=\{p_{2m},p_{2m+1}:m\geq m_0\},\\
+ Z_L=\{w\in H:M_k(w)=0\ \text{对所有整数 }k\geq L\}.
+ \end{gathered}
+\end{equation}
+则
+\begin{equation}\label{eq:tailequality}
+ \mathcal T_{m_0}^{\perp}=Z_L,\qquad \dim Z_L\leq L.
+\end{equation}
+这里的正交补在整个 $H$ 中取得; $Z_L$ 是闭线性子空间.
+\end{theorem}
+
+\begin{proof}
+设 $w\perp\mathcal T_{m_0}$. 对每个 $m\geq m_0$,
+\[
+ M_{2m}=\frac{m}{m-1}M_{2m-2},\qquad
+ M_{2m+1}=\frac{m}{m-1}M_{2m-1}.
+\]
+连乘 $\prod_{j=m_0}^m j/(j-1)=m/(m_0-1)$, 得
+\begin{equation}\label{eq:tailrec}
+ M_{2m}=\frac{m}{m_0-1}M_L,\qquad
+ M_{2m+1}=\frac{m}{m_0-1}M_{L+1}\quad(m\geq m_0).
+\end{equation}
+所以递推的两个初值位于 $L$ 和 $L+1$, 不在 $2m_0$ 和 $2m_0+1$.
+由 \eqref{eq:cs} 和 \eqref{eq:sublinear},
+\[
+ \frac{|M_L|}{m_0-1}\leq C\|w\|_H\frac{(2m+1)^\beta}{m},\qquad
+ \frac{|M_{L+1}|}{m_0-1}\leq C\|w\|_H\frac{(2m+2)^\beta}{m}.
+\]
+因为 $\beta<1$, 两个右端均随 $m\to\infty$ 趋于零.
+故 $M_L=M_{L+1}=0$, 再由 \eqref{eq:tailrec} 得所有 $k\geq L$ 的矩为零.
+反过来, 若 $w\in Z_L$, 每个尾部多项式的两个次数都至少为 $L$,
+故 $\ip{w}{p_n}=0$ 对 $p_n\in\mathcal T_{m_0}$ 成立.
+这证明集合等式.
+
+$Z_L$ 是连续泛函 $M_k$ 的核的交, 所以闭.
+在 $Z_L$ 上考虑复线性映射
+\begin{equation}\label{eq:lowmap}
+ E_L:Z_L\longrightarrow\mathbb C^L,\qquad
+ E_L(w)=(M_0(w),\ldots,M_{L-1}(w)).
+\end{equation}
+其核向量的所有矩均为零, 故由多项式稠密性必为零.
+于是 $E_L$ 单射, $\dim Z_L\leq L$.
+\end{proof}
+
+\begin{remark}
+式 \eqref{eq:tailequality} 未声称 $\dim Z_L=L$, 也未声称
+$Z_L=\Span\{1,x,\ldots,x^{L-1}\}$; 后一个等式需要额外的对角结构.
+映射 \eqref{eq:lowmap} 一般只保证单射, 不保证每组低矩都能由 $H$ 中元素实现.
+增长证明使用严格条件 $\beta<1$, 本文不把它延伸至 $\beta=1$.
+\end{remark}
+
+\begin{corollary}[作用于实际尾部障碍的有限检验]\label{cor:finite}
+在定理 \ref{thm:tail} 的全部假设下, 再假设闭空间 $V$ 包含
+$\mathcal T_{m_0}$. 定义\emph{实际保留}的低指标集合
+\[
+ J=\{n\in\D:n<2m_0,\ p_n\in V\},\qquad W_L=V\cap Z_L.
+\]
+则
+\begin{equation}\label{eq:finitecriterion}
+ C_V=V\quad\Longleftrightarrow\quad
+ \left\{w\in W_L:\ip{w}{p_n}=0\ \text{对每个 }n\in J\right\}=\{0\}.
+\end{equation}
+若 $z_1,\ldots,z_d$ 为 $W_L$ 的一组基 ($0\leq d\leq L$),
+该条件等价于有限矩阵
+\begin{equation}\label{eq:finitematrix}
+ B=(\ip{z_j}{p_n})_{n\in J,\ 1\leq j\leq d}
+ \quad\text{满足}\quad\rank B=d.
+\end{equation}
+$d=0$ 时条件自动成立, $J=\varnothing$ 时它恰要求 $d=0$.
+\end{corollary}
+\begin{proof}
+尾部包含假设及实际保留集的定义给出精确分解
+$\Q_V=\mathcal T_{m_0}\cup\{p_n:n\in J\}$.
+因此
+\[
+ V\cap\Q_V^\perp=(V\cap Z_L)\cap\bigcap_{n\in J}\ker\ip{\,\cdot\,}{p_n}.
+\]
+由主判据得到 \eqref{eq:finitecriterion}.
+若 $w=\sum_{j=1}^d a_jz_j$, 则低测试向量恰为 $Ba$.
+因为 $z_j$ 是实际空间中的基, 核为零当且仅当 $\rank B=d$.
+\end{proof}
+
+正确有限测试的作用域是 $W_L=V\cap Z_L$, 不是整个 $V$, 也不是任意设想的
+$\mathbb C^L$ 矩向量空间. 计算该矩阵前仍须真实识别 $W_L$, 包括矩的可表示性
+和 $V$ 的成员条件. 因此本文未把一般无限数据的空间问题宣称为自动可计算的有限算法.
+
+\begin{example}[有非零约束且确有适用实例]\label{ex:usable}
+取 $H=\Hd0$, $V=\ker M_0$, $m_0=2$, 故 $C=1,\beta=0,L=2$.
+由坐标正交性, $Z_2=\Span\{1,x\}$, 从而 $W_2=\Span\{x\}$.
+完整尾部均属于 $V$, 而 $J=\{1\}$.
+唯一测试在基 $z_1=x$ 上给出 $B=(1)$, 所以 $C_V=V$.
+空间 $V$ 无限维, 约束非零, 障碍空间亦非零, 因而该实例不是零空间退化情形.
+若改取 $V=H$, 则 $J=\{0,1\}$, $B=I_2$, 同样得到稠密性.
+\end{example}
+
+\begin{example}[有限检验也能检出实际低指标缺陷]\label{ex:lowfailure}
+取 $H=\Hd0$, $V=\ker M_4$, $m_0=4$, $L=6$.
+尾部全部属于 $V$, 但低指标 $4,6$ 被排除, 实际 $J=\{0,1,5,7\}$.
+向量 $w=x^2$ 属于 $W_6=V\cap Z_6$, 且正交于 $p_0,p_1,p_5,p_7$.
+故 \eqref{eq:finitecriterion} 的核非零, $C_V\ne V$.
+这一例直接由各多项式的支撑可查, 无须引用旧对角分类.
+它说明完整尾部与 $\beta<1$ 并不自动消除有限低阶障碍.
+\end{example}
+
+\section{明确替换 G 的交叉引用: 一般三角尾部}\label{sec:triangular}
+
+原 G 以 ``低矩如 F 被钉住'' 作为前提, 但原 F 的前提没有实例.
+以下替代不使用任何增长引理, 直接给出量词明确的必要充分条件.
+
+\begin{theorem}[三角尾部的有限维消去子]\label{thm:triangular}
+设 $H$ 满足第 \ref{sec:contract} 节的多项式契约.
+给定整数 $N\geq0$. 对\emph{每个}整数 $n\geq N$ 给定
+\begin{equation}\label{eq:qn}
+ q_n=\sum_{k=0}^n c_{n,k}x^k,\qquad c_{n,n}\ne0.
+\end{equation}
+系数可为复数, 不要求统一范数界或增长条件. 置
+\[
+ S_{q,N}=\Span\{q_n:n\geq N\},\qquad
+ Z_{q,N}=\{w\in H:\ip{w}{q_n}=0\ \forall n\geq N\}.
+\]
+则有代数直和及维数界
+\begin{equation}\label{eq:qdecomp}
+ \Pi=\Span\{x^k:0\leq k<N\}\mathbin{\oplus}S_{q,N},\qquad
+ \dim Z_{q,N}\leq N.
+\end{equation}
+对 $N=0$, 第一线性包为零, 且 $Z_{q,0}=\{0\}$.
+\end{theorem}
+
+\begin{proof}
+对次数 $n$ 归纳重构单项式. 次数 $n<N$ 无须重构;
+对每个 $n\geq N$, 非零首系数给出
+\begin{equation}\label{eq:qmonomial}
+ x^n=\frac{1}{c_{n,n}}\left(q_n-\sum_{k=0}^{n-1}c_{n,k}x^k\right).
+\end{equation}
+右侧只有 $q_n$ 及更低次单项式, 故归纳得到全部 $\Pi$ 的张成结论.
+若有限非零线性组合 $\sum_{n\geq N}a_nq_n$ 落在次数小于 $N$ 的空间,
+取最大的 $n$ 使 $a_n\ne0$, 其最高次系数 $a_nc_{n,n}\ne0$, 矛盾.
+故该和为直和.
+
+$Z_{q,N}$ 是连续测试核的交, 故闭.
+其低矩映射 $w\mapsto(M_0(w),\ldots,M_{N-1}(w))$ 为单射:
+若这些矩为零且 $w\in Z_{q,N}$, 由已经证明的张成式可知 $w\perp\Pi$,
+从而 $w=0$. 所以维数至多 $N$, 也包含 $N=0$ 的情形.
+
+另作一次系数检查: 在第一变量线性的约定下, 尾部正交关系具体为
+\begin{equation}\label{eq:qmoment}
+ \overline{c_{n,n}}M_n(w)+\sum_{k=0}^{n-1}\overline{c_{n,k}}M_k(w)=0,
+ \qquad
+ M_n(w)=-\frac{\sum_{k<n}\overline{c_{n,k}}M_k(w)}{\overline{c_{n,n}}}.
+\end{equation}
+因此所有矩由前 $N$ 个矩递推决定; 若前 $N$ 个为零, 所有矩均为零.
+这与直接单项式重构的证明一致, 并明确了复共轭的位置.
+\end{proof}
+
+\begin{corollary}[G 的明确有限检验版本]\label{cor:g}
+设 $I\subset\mathbb N_0$ 含每个 $n\geq N$, 对每个 $n\in I$ 定义一个多项式 $q_n$,
+并在尾部 $n\geq N$ 满足 \eqref{eq:qn}.
+设 $V\subset H$ 闭, 且 $q_n\in V$ 对每个 $n\geq N$ 成立. 定义
+\[
+ J_q=\{n\in I:n<N,\ q_n\in V\},\qquad W_{q,N}=V\cap Z_{q,N},\qquad
+ \Q_{q,V}=\{q_n:n\in I,\ q_n\in V\}.
+\]
+则
+\begin{equation}\label{eq:gcriterion}
+ \clspan{\Q_{q,V}}=V\quad\Longleftrightarrow\quad
+ \left\{w\in W_{q,N}:\ip{w}{q_n}=0\ \forall n\in J_q\right\}=\{0\}.
+\end{equation}
+作用域维数至多 $N$. 在它的任意实际基上, 右侧等价于对应低测试矩阵满列秩.
+\end{corollary}
+\begin{proof}
+实际保留族精确分为完整尾部和 $J_q$ 中的低测试.
+故其在 $V$ 内的消去子为
+$(V\cap Z_{q,N})\cap\bigcap_{n\in J_q}\ker\ip{\,\cdot\,}{q_n}$.
+由主判据得结论; 维数界来自定理 \ref{thm:triangular}.
+矩阵等价的证明与 \eqref{eq:finitematrix} 相同.
+\end{proof}
+
+\paragraph{对原 G 三项族的具体替换.}
+例如对每个 $m\geq m_0\geq2$ 有
+\[
+ \begin{aligned}
+ q_{2m}&=c_0x^{2m}-A_mx^{2m-2}+B_mx^{2m-4},\\
+ q_{2m+1}&=c_0x^{2m+1}-A'_mx^{2m-1}+B'_mx^{2m-3},\qquad c_0\ne0,
+ \end{aligned}
+\]
+且这些向量均在 $V$ 中, 那么可取 $N=2m_0$.
+低测试必须是该族真正定义且真正留在 $V$ 中的全部 $n<N$ 项,
+它们须在 $V\cap Z_{q,N}$ 上共同具有零核.
+这便是原 ``如 F'' 的明确替代, 不附带对整个 $V$ 的不可能单射要求.
+若只给偶数尾部而没有每个奇数次数的首项, 则不满足定理的完整三角尾部假设.
+若首系数为零, 也不能直接使用重构式.
+即使原 G 另有多项式增长和符号条件, 这些条件在本替代中都不是必需前提;
+它们若用于进一步缩小 $Z_{q,N}$, 须另外证明该步的实际初值条件.
+
+\begin{example}[增长引理不能排除任意初值的解]\label{ex:growth}
+考虑实递推
+\begin{equation}\label{eq:decayrec}
+ y_m=\tfrac52 y_{m-1}-y_{m-2}\qquad(m\geq2).
+\end{equation}
+系数满足 $c_0=1$, $B_m=1\geq0$, $A_m-B_m=3/2\geq1$,
+且相应乘积为 $(3/2)^{m-1}$, 超过任意固定幂次.
+然而 $y_m=2^{-m}$ 是一组有界非零解, 其初值为 $y_0=1,y_1=1/2$.
+归一化初值 $u_0=0,u_1=1$ 则产生
+\[
+ u_m=\frac{2^m-2^{-m}}{3/2},
+\]
+它确实增长. 两种解均可直接代入 \eqref{eq:decayrec} 核对.
+
+这里的衰减解也能真实实现. 在 $H=\Hd0$ 中取
+\[
+ h=\sum_{m\geq0}2^{-m}x^{2m},\qquad \|h\|_0^2=\sum_{m\geq0}4^{-m}=\frac43.
+\]
+则 $M_{2m}(h)=2^{-m}$, 奇矩全零.
+对每个 $n\geq4$, 令 $q_n=x^n-\tfrac52x^{n-2}+x^{n-4}$,
+可得 $\ip{h}{q_n}=0$. 因而 $h\in Z_{q,4}\setminus\{0\}$.
+它没有满足归一化解所需的零初矩, 尤其 $M_0(h)=1$.
+此例不反证附带 $u_0=0,u_1=1$ 的增长引理, 也不反证加入有效低测试后的准则;
+它排除的是把增长引理无条件套在整个尾部解空间上的推断.
+本节的重构证明与有限检验完全避开了该不合法推断.
+\end{example}
+
+\section{R6-F03: 表示元包含条件与非零检测}\label{sec:representer}
+
+\begin{theorem}[同时钉零两个矩的准确等价]\label{thm:representer}
+设 $s\geq0$, $L_1,\ldots,L_s$ 为 $H$ 上有界复线性泛函,
+$L_j(w)=\ip{w}{v_j}$, 并设 $V=\bigcap_{j=1}^s\ker L_j$.
+表示元可以线性相关; $s=0$ 时约定 $V=H$.
+则 $V^\perp=\Span\{v_1,\ldots,v_s\}$, 且以下条件等价:
+\begin{align}
+ &\text{对每个 }w\in V,\quad M_2(w)=M_3(w)=0;\label{eq:pinned}\\
+ &\Span\{x^2,x^3\}\subset V^\perp=\Span\{v_1,\ldots,v_s\};\label{eq:inclusion}\\
+ &M_2,M_3\in\Span\{L_1,\ldots,L_s\}\quad\text{作为 }H\text{ 上的线性泛函}.
+ \label{eq:functionalspan}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+令 $W=\Span\{v_1,\ldots,v_s\}$.
+由表示公式 $V=W^\perp$; $W$ 有限维故闭, 从而 $V^\perp=W$.
+条件 \eqref{eq:pinned} 按正交补定义恰好说 $x^2,x^3\in V^\perp$,
+所以它与 \eqref{eq:inclusion} 等价.
+若 $x^k=\sum_{j=1}^s a_{kj}v_j$ ($k=2,3$), 第二变量共轭线性给出
+\begin{equation}\label{eq:conjugates}
+ M_k(w)=\sum_{j=1}^s\overline{a_{kj}}L_j(w)\qquad(w\in H).
+\end{equation}
+这证明 \eqref{eq:functionalspan}.
+反过来, 若 $M_k=\sum_j b_{kj}L_j$, 则
+\[
+ \ip{w}{x^k}=\ip{w}{\sum_j\overline{b_{kj}}v_j}\qquad(w\in H).
+\]
+将两个表示元之差代入 $w$, 得差的范数平方为零,
+所以 $x^k=\sum_j\overline{b_{kj}}v_j$.
+这证明反向包含, 无须假设表示元独立.
+\end{proof}
+
+\begin{example}[对两个单项式均非零仍不足够]\label{ex:representer}
+在 $H=\Hd0$ 中取 $v=x^2+x^3$, $L(w)=\langle w,v\rangle_0$, $V=\ker L$.
+该泛函非零且有界, $V$ 为余维一闭子空间.
+坐标正交性给出
+\[
+ L(x^2)=L(x^3)=1,\qquad
+ \langle v,x^2\rangle_0=\langle v,x^3\rangle_0=1.
+\]
+所以无论将 ``检测非零'' 写在哪个内积变量, 两个单项式都被非零检测.
+但取 $w=x^2-x^3$, 则
+\[
+ \|w\|_0^2=2,\qquad L(w)=1-1=0,\qquad
+ M_2(w)=1,\quad M_3(w)=-1.
+\]
+约束只给出 $M_2(w)+M_3(w)=0$, 并未分别给出两个矩为零.
+此外 $V^\perp=\Span\{x^2+x^3\}$ 只有一维,
+不可能包含二维空间 $\Span\{x^2,x^3\}$.
+这反证原 H 的非零检测解释, 而主判据 \eqref{eq:master} 仍完全成立.
+\end{example}
+
+在有限表示元情形中, 实际成员条件始终是
+$p_n\in V\Longleftrightarrow L_j(p_n)=0$ 对每个 $j$ 成立.
+由共轭对称性, 也等价于 $\ip{v_j}{p_n}=0$ 对每个 $j$ 成立.
+这与 ``某次配对不为零'' 无关, 更不能把一个低矩的检测和另一个低矩的检测合并
+为两个矩被独立钉零的结论.
+
+\section{原始材料定位与核验边界}\label{sec:sources}
+
+下列行号按本次实际读取的本地源字节计数. 原始材料只作为定位和比较对象,
+不作为下文结论的权威前提. 两份候选稿, 两份契约, 两份旧审计及增长引理所在
+TeX 的本地字节均已与基线 Git blob 比较一致.
+两份提交材料未在基线中跟踪, 单独保存输入 SHA256.
+完整九项输入清单位于作者工作区的 \path{input_manifest.json}.
+
+\begin{description}
+ \item[[D14]] \path{runs/rigorous-open-math-research/R-20260814T070000Z-densbc-3F8A2C/candidate_proof.md}.
+ 第 21--27 行: 族定义及错误三角基断言;
+ 第 42--63 行: 空间假设与主判据;
+ 第 250--272 行: F 的假设和证明;
+ 第 274--288 行: 域解释及 G 的交叉引用;
+ 第 293--301 行: H 的表示元解释.
+ \item[[C14]] 同 [D14] 目录的 \path{problem_contract.md}.
+ 第 8--11 行要求全部多项式属于函数 Hilbert 空间;
+ 第 28--41 行记录稀疏族与空间契约, 第 33 行重复错误代数断言.
+ \item[[R14]] 同 [D14] 目录的 \path{audit_report.md}.
+ 第 59--61 行和第 98--102 行有 F/G/H 的旧验收记录.
+ 本文不以这些记录替代重证.
+ \item[[O16]] \path{runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md}.
+ 第 11--16 行为设定; 第 25--33 行为投影命题及错误代数步骤;
+ 第 41--43 行为仅检查被排除投影的推论.
+ \item[[C16]] 同 [O16] 目录的 \path{problem_contract.md}.
+ 第 9--15 行为多项式假设及错误代数等式;
+ 第 58--67 行为旧投影 reformulation 与障碍系统.
+ \item[[R16]] 同 [O16] 目录的 \path{audit_report.md}.
+ 第 39--43 行仍记录投影 Theorem 1 为 PASS.
+ 本文的命题 \ref{prop:beta2} 区分其正确的全多项式部分与错误的稀疏部分.
+ \item[[A6]] \path{research/artifacts/proof-audit-round6-20260921/submitted/proof_audit_round6_20260921.md}.
+ 第 47--91 行为 R6-F01, 第 93--116 行为 R6-F02,
+ 第 118--129 行为 R6-F03. 其余审计分支不在本文核验范围.
+ \item[[P6]] \path{research/artifacts/proof-audit-round6-20260921/submitted/projection_and_moment_repairs.md}.
+ 第 8--101 行给出投影发现及建议, 第 103--164 行给出 F 与尾部修复建议,
+ 第 166--185 行给出 H 的反例建议.
+ 本文重证这些修复, 补足直和, 复共轭, 实际低测试矩阵和 G 的独立重构论证.
+ \item[[GL]] \path{docs/SL_denseness_criteria.tex}.
+ 第 158--173 行的增长引理明确要求 $u_0=0,u_1=1$;
+ 第 178--196 行通过特定低测试获得归一化矩递推.
+ 本文只读取这些初值和配对约定作为交叉核查, 不认证该文件的其他结论.
+\end{description}
+
+\paragraph{已经完成的作者工作与待办边界.}
+本文给出所有无限指标、无限维和收敛结论的解析证明.
+外部工作区 \path{/mnt/f/tools/math-audit-round6-20260921/projection-author/}
+保存作者说明、输入哈希以及针对递推索引、复共轭、有限秩实例与反例算术的精确检查.
+这些有限检查只核对其明确列出的恒等式或实例, 不代替上述解析证明,
+也不构成独立无状态验收.
+作者未改旧 run、旧审查包、canonical、工具库或导航, 未提交或推送;
+没有执行历史程序、Lean 编译或 PDF 构建.
+最终独立审查、冻结后的 TeX 编译及协调器负责的下游传播仍由协调器处理.
+
+\end{document}

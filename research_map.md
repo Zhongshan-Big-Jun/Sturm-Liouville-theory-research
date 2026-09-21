@@ -32,7 +32,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
-| A1 | `{p_n}` density in genuine H^s, 0 <= s <= 3 (Krein-Sobolev) | SOLVED | docs/SL_h2_completeness_proof, SL_h3_completeness_proof | H3 + spectral truncation; all-order claim withdrawn 2026-09-20: p4 in Hs iff s<7/2 for s>=0; same-family density for 3<s<7/2 remains undetermined |
+| A1 | `{p_n}` density in genuine H^s, 0 <= s < 7/2 (Krein-Sobolev) | SOLVED | docs/SL_fractional_left_definite; H2/H3 proofs retained | Round6 four-trace graph core + spectral cutoff proves the full window; every nonaffine named member has threshold7/2, affine modes survive all nonnegative orders. No deleted-family or arbitrary-V extension |
 | A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
@@ -60,7 +60,7 @@ A1 (H^s completeness, solved)
   |-- uses moment-jump/growth-lemma --> A5 (stability, partial), A6 (3rd-order, partial)
 A3 (constrained density, open)
   |-- reduces_to --> A4 (O1' moment-realizability, partial)
-  A4 --uses--> run R-20260816T000000Z-densbc-o1 structure theorems
+  A4 --uses--> round6 repaired projection/finite-obstacle criteria (docs/SL_projection_moment_repairs.tex); old run remains history
   A3 --historical O3--> A2 (Krein window now solved; general constraints separate)
 A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
 
@@ -113,9 +113,9 @@ flowchart LR
   B6 -->|generalizes| B4
 ```
 
-## Recent status (2026-08)
+## Historical status (2026-08; consult the 2026-09 corrections before reuse)
 
-- DensBC O1 (R-20260816T000000Z): STRICT structure theorems for O1
+- DensBC O1 (R-20260816T000000Z): historical structure inventory; sparse projection assertions superseded by round6
   (projection-density, obstruction system, run/first-obstruction, diagonal
   reduction, finite-rank structure); reduced core O1' (A4).
 - DensBC O1' (R-20260816T210000Z): A4 closed on H_beta + finite polynomial
@@ -189,3 +189,5 @@ flowchart LR
 ## Avoid list (dead ends)
 
 - do not claim general banded-O1' from H_lambda alone; realizability in general banded H needs moment-problem data
+
+Round6 (2026-09-21): A3/A4 must use the corrected sparse projection and finite-tail-obstacle criteria. The all-polynomial projection theorem remains true; the unqualified sparse corollary does not. A7 concerns a distinct inverse-family/domain construction; the new full original-family threshold does not overwrite its scoped result. See reports/proof-audit-round6-20260921/REPORT.md.

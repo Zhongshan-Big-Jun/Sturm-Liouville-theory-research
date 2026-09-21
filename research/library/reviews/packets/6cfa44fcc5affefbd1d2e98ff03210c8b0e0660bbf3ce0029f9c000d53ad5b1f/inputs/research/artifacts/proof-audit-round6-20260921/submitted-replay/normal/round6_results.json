@@ -1,0 +1,184 @@
+{
+  "commit": "92d46e99e36cc0a74e8f7bb13430749c222ee54f",
+  "python": "3.14.4",
+  "sympy": "1.14.0",
+  "groups_confirmed": 21,
+  "groups_failed": 0,
+  "checks": [
+    {
+      "name": "Green kernels solve the homogeneous ODE on the positive half",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "Green interface jumps: g0=(0,-1), g1=(1,0)",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": "Even extension of g0; odd extension of g1."
+    },
+    {
+      "name": "Green endpoint boundary conditions",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "Green low moments equal 1/c",
+      "kind": "symbolic integration",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "All checked original sparse polynomials satisfy Krein conditions",
+      "kind": "finite exact instances",
+      "confirmed": true,
+      "detail": {
+        "max_index": 40
+      }
+    },
+    {
+      "name": "Only p0,p1 detect the two traces at zero",
+      "kind": "finite exact instances",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "Tail endpoint correction determinant and inverse",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "Projected-sparse counterexample satisfies every even recurrence",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": "m>=2; odd moments, M0 and M1 are zero. M2=1."
+    },
+    {
+      "name": "Counterexample norm positive and finite-tail upper bound",
+      "kind": "finite rational bounds",
+      "confirmed": true,
+      "detail": {
+        "partial_1000": 0.036132343927916255,
+        "tail_upper_after_1000": "1/16000",
+        "analytic_term_bound": "m^2/(2m+1)^4 <= 1/(16*m^2)"
+      }
+    },
+    {
+      "name": "Counterexample not orthogonal to x2 while in V",
+      "kind": "exact moment test",
+      "confirmed": true,
+      "detail": {
+        "M0": 0,
+        "M1": 0,
+        "M2": 1,
+        "M3": 0,
+        "excluded_sparse_indices": [
+          0
+        ],
+        "projection_of_p0": 0
+      }
+    },
+    {
+      "name": "Sparse span misses two algebraic directions; adding x2,x3 repairs it",
+      "kind": "finite exact rank",
+      "confirmed": true,
+      "detail": {
+        "degree_cutoff": 14,
+        "sparse_rank": 13,
+        "augmented_rank": 15
+      }
+    },
+    {
+      "name": "Theorem F low tests do not annihilate an infinite-dimensional V",
+      "kind": "finite exact witness",
+      "confirmed": true,
+      "detail": "For V=H_0,m0=2, w=x4 is nonzero and passes p0,p1,x2,x3 zero tests. The accompanying rank argument handles every possible V containing a tail."
+    },
+    {
+      "name": "Nonzero detection of x2,x3 is not pinning both moments",
+      "kind": "finite exact witness",
+      "confirmed": true,
+      "detail": "Representer x2+x3 detects each monomial; w=x2-x3 lies in its kernel with moments (1,-1)."
+    },
+    {
+      "name": "Four-trace boundary correction has a polynomial right inverse",
+      "kind": "exact matrix identity",
+      "confirmed": true,
+      "detail": {
+        "matrix": "Matrix([[2, 2, 4, 4], [-2, 2, -4, 4], [0, 0, 24, 40], [0, 0, -24, 40]])",
+        "determinant": "15360"
+      }
+    },
+    {
+      "name": "H4-corrected polynomials remain in the original sparse span",
+      "kind": "finite exact instances",
+      "confirmed": true,
+      "detail": {
+        "max_degree": 16,
+        "examples": {
+          "6": "x**6 - 5*x**4 + 7*x**2",
+          "7": "x**7 - 21*x**5/5 + 27*x**3/5",
+          "8": "x**8 - 14*x**4 + 24*x**2"
+        }
+      }
+    },
+    {
+      "name": "Sixth-degree cancellation enters H4",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "General-index boundary derivative formulas for both parities",
+      "kind": "symbolic parameter identity",
+      "confirmed": true,
+      "detail": "Identities on the stated m>=2 domain; not inferred from sampling."
+    },
+    {
+      "name": "Exact p4 and p5 spectral coefficient formulas",
+      "kind": "symbolic identity",
+      "confirmed": true,
+      "detail": null
+    },
+    {
+      "name": "Nonzero fourth-order spectral tails for both sparse parities",
+      "kind": "finite exact instances",
+      "confirmed": true,
+      "detail": {
+        "m_range": [
+          2,
+          15
+        ],
+        "even_boundary_formula": "4m(4m-5)",
+        "odd_boundary_formula": "4m(4m-3)"
+      }
+    },
+    {
+      "name": "Spectral membership power count matches the strict 7/2 threshold",
+      "kind": "finite symbolic leading terms",
+      "confirmed": true,
+      "detail": {
+        "index_range": [
+          4,
+          24
+        ],
+        "summand_order": "k^(2s-8)",
+        "convergent_exactly_when": "s<7/2"
+      }
+    },
+    {
+      "name": "Coefficient formulas independently checked by symbolic integration",
+      "kind": "symbolic integration",
+      "confirmed": true,
+      "detail": null
+    }
+  ],
+  "limitations": [
+    "Finite checks do not prove infinite density or limits.",
+    "No original repository test suite executed.",
+    "No Lean compilation or PDF rendering.",
+    "Source content read through GitHub connector; no claim of local source-byte identity."
+  ]
+}

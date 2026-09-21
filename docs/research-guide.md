@@ -34,10 +34,10 @@
 | 问题 | 入口 | 使用时需要保留的区别 |
 | --- | --- | --- |
 | H2 完备性 | [完整证明](SL_h2_completeness_proof.tex), [研究总结](SL_h2_research_summary.tex) | 矩递推, 增长引理与湮灭步骤有各自前提 |
-| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 同一原始族在 0<=s<=3 中稠密; p4 在非负 Hs 中当且仅当 s<7/2; 旧全阶推广已撤回; 3<s<7/2 的同族稠密性未判定 |
+| H3 与高阶传输 | [H3 证明](SL_h3_completeness_proof.tex), [H3 总结](SL_h3_research_summary.tex), [Hs 正交系](SL_hs_orthogonal_systems_proof.tex) | 第六轮[完整窗口证明](SL_fractional_left_definite.tex): 原完整族在0<=s<7/2稠密, 每个非仿射命名成员在s>=7/2出域; H3保留为低阶路线, 四迹相容组合可形成高阶图核心 |
 | 幂域障碍 A7 | [工具与精确定理](../tools/krein-power-domain-polynomial-obstruction.md), [pilot v6 证明与审计](../runs/three-arm-pilot-v2/pilot-v6-hs-domain/RESULTS.md) | 对 c>0, 整数 s>=4, 指定的代数传输多项式属于真正幂域当且仅当 n=0,1; 这不否定经边界修正的真正算子逆 |
 | 受约束空间稠密性 | [早期判据](SL_denseness_criteria.tex), [第五轮余有限修缮](../reports/proof-audit-round5-20260921/REPORT.md), [项目问题图](../research_map.md), [非对角子类对比](../reports/plugin-performance-o1p-ab.md) | s=2余有限子族已有完整两迹分类; 对角及若干带状/加权移位子类已有结果; 一般非对角 O1' 与非余有限 O1'LD 仍开放 |
-| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 原 Krein 窗口 3/2<=s<2 已由 H3 谱截断覆盖; 一般递推只有乘积下界, B=0 模型有精确分类; 有界基扰动稳健性已否定 |
+| 分数阶与门槛 | [分数阶文档](SL_fractional_left_definite.tex), [矩跳跃稳定性](SL_stability_moment_jump.tex) | 原完整命名族的0<=s<7/2窗口已由第六轮四迹图核心补证; 一般递推只有乘积下界, B=0 模型有精确分类; 有界基扰动稳健性已否定 |
 | 三阶递推 | [递推理论](SL_third_order_recurrence_theory.tex), [K(1)=e/4 证明](SL_third_order_K1_proof.tex) | 指定偶/奇 P,Q,R、c>0 的正项尾解、K0/K1 与全有理比值分类见第四轮证明; 偶族 K0(1)=e/4; 非齐次源项控制与一般系数族另计 |
 | Krein c->0 | [退化极限](SL_krein_c0_limit.tex) | 多项式级结论与商空间级结论分别核对 |
 
@@ -57,3 +57,6 @@ Lean 的 [状态表](../lean-proof/STATUS.md), [义务审计](../lean-proof/audi
 [kp-branch]: ../research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-09-acute-threshold/accepted_package.md
 [kp-quadrature]: ../research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/route-10-psi-quadrature/accepted_package.md
 [q9]: https://github.com/xsoc1/rigorous-open-math-research/blob/f95627ca1b44aeb75692a5814e20050b0e6a40cb/benchmarks/codex-20260908-q9/CONCLUSIONS.md
+
+
+第六轮当前修订: [投影与有限矩证明](SL_projection_moment_repairs.tex)和[第六轮报告](../reports/proof-audit-round6-20260921/REPORT.md)替代旧投影run的过强推论及F/G/H解释. 原对角分类和其它冻结分支按原范围保留, 不使用A-H整组STRICT作为当前验收.

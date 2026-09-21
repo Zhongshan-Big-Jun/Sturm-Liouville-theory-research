@@ -1,0 +1,459 @@
+\section{对象, 问题合同与来源}
+全部空间取复数域, 内积 $\langle f,g\rangle_2=\int_{-1}^1f\overline g$
+对第一变量线性, 线性包只含有限线性组合. 固定 $c>0$, 记 $I=(-1,1)$,
+$\Delta f=f(1)-f(-1)$, 并定义
+\begin{equation}\label{eq:operator-domain}
+ K_cf=-f''+cf,\qquad
+ D(K_c)=\{f\in H^2_{\rm Sob}(I):\mathcal Bf=0\},\qquad
+ \mathcal Bf=\binom{f'(1)-\Delta f/2}{f'(-1)-\Delta f/2}.
+\end{equation}
+$H^r_{\rm Sob}$ 表示普通 Sobolev 空间. 左定空间记为
+$H_c^s=D(K_c^{s/2})$ ($s\ge0$), 范数为
+$\|f\|_{s,c}=\|K_c^{s/2}f\|_2$. 以下固定 $c$ 后也简写为 $H^s,\|f\|_s$.
+
+原族的指标集是 $\mathcal D=\{0,1\}\cup\{4,5,6,\ldots\}$, 其中
+\begin{equation}\label{eq:original-family}
+ \begin{gathered}
+ p_0=1,\quad p_1=x,\\
+ p_{2m}=x^{2m}-\frac m{m-1}x^{2m-2},\qquad
+ p_{2m+1}=x^{2m+1}-\frac m{m-1}x^{2m-1},\quad m\ge2.
+ \end{gathered}
+\end{equation}
+本文只证明这个\emph{完整原族}的非负阶成员性与稠密性. 各固定多项式的估计
+常数可以依赖它的次数, 嵌入常数可以依赖 $c$; 不断言 $c\downarrow0$ 时一致.
+
+修订基线为 \texttt{92d46e99e36cc0a74e8f7bb13430749c222ee54f}.
+所供 \cite{r6candidate} 是候选论证来源. 算子基础实际核对了
+\cite[第2节, R5-OP]{r5}, 代数消元实际核对了 \cite[第2.1节]{h2}
+及 \cite{dc}; 多项式逼近与迹修正还参照了 \cite[STEP7--STEP8]{a7} 的证明.
+下文重新给出本题所需的算子, 谱系和四阶图核心论证, 不以旧审计标签为前提,
+也不使用已经被反证的一般投影稀疏族命题. R5 原文及其他历史证明保持原字节.
+本文件的本轮修订前 TeX/PDF 保存在
+\path{research/artifacts/proof-audit-round6-20260921/before/docs/}.
+
+\section{算子基础, 完整谱系与标度}
+\subsection{正性, 满射, 自伴性与紧逆}
+\begin{proposition}[算子基础]\label{prop:operator}
+\eqref{eq:operator-domain} 定义稠密自伴算子, $K_c\ge cI$,
+且 $K_c^{-1}:L^2\to L^2$ 紧. 在 $D(K_c)$ 上有
+\begin{equation}\label{eq:h2-estimate}
+ \|f\|_{H^2_{\rm Sob}}\le C_c\|K_cf\|_2.
+\end{equation}
+\end{proposition}
+\begin{proof}
+由分部积分和 $\Delta f=\int_{-1}^1f'$,
+\[
+ \langle K_cf,f\rangle_2
+ =\|f'\|_2^2-\frac12|\Delta f|^2+c\|f\|_2^2
+ \ge c\|f\|_2^2.
+\]
+因此 $\|f\|_2\le c^{-1}\|K_cf\|_2$,
+$\|f''\|_2\le2\|K_cf\|_2$. 为补足一阶导数, 写
+$f(x)=A+Bx+r(x)$, 其中 $r(x)=\int_0^x(x-t)f''(t)\,dt$.
+两半区间上的 Cauchy--Schwarz 不等式给出
+\[
+ \|r\|_2\le\frac1{\sqrt{12}}\|f''\|_2,\quad
+ \|r'\|_2\le\frac1{\sqrt2}\|f''\|_2,\quad
+ \|f'\|_2\le\sqrt3\|f\|_2+
+ \left(\frac12+\frac1{\sqrt2}\right)\|f''\|_2.
+\]
+最后一式用到了 $\|A+Bx\|_2^2=2|A|^2+(2/3)|B|^2$.
+这证明 \eqref{eq:h2-estimate}.
+
+为直接证明满射, 令 $a=\sqrt c$, $d_a=a\cosh a-\sinh a$.
+因 $d_0=0$, $d_a'=a\sinh a>0$, 有 $d_a>0$. 对 $h\in L^2$, 置
+\[
+ v_h(x)=-\frac1a\int_0^x\sinh(a(x-t))h(t)\,dt.
+\]
+负 $x$ 时使用有向积分. 积分核与其一阶导数有界,
+$v_h''=cv_h-h\in L^2$, 故 $v_h\in H^2_{\rm Sob}$ 且 $K_cv_h=h$.
+两个齐次解的边界矩阵为
+\[
+ \begin{pmatrix}\mathcal B\cosh(ax)&\mathcal B\sinh(ax)\end{pmatrix}
+ =\begin{pmatrix}a\sinh a&d_a\\-a\sinh a&d_a\end{pmatrix},
+ \qquad\det=2a\sinh a\,d_a>0.
+\]
+所以唯一的线性组合修正 $v_h$ 的边界残差, 给出 $f\in D(K_c)$,
+$K_cf=h$. 单射性由正性得到.
+
+$C_c^\infty(I)\subset D(K_c)$ 给出稠密定义性;
+边界形式 $[-f'\overline g+f\overline{g'}]_{-1}^1$ 对域内 $f,g$ 为零,
+所以算子对称. 若 $u\in D(K_c^*)$, 取 $v=K_c^{-1}K_c^*u\in D(K_c)$.
+对所有 $f\in D(K_c)$,
+$\langle K_cf,u-v\rangle_2=\langle f,K_c^*u-K_cv\rangle_2=0$.
+满射性迫使 $u=v$, 故 $K_c^*=K_c$.
+由 \eqref{eq:h2-estimate}, $K_c^{-1}$ 将 $L^2$ 有界集送入 $H^2_{\rm Sob}$ 有界集.
+后一有界集的函数一致有界, 且
+$|f(x)-f(y)|\le\|f'\|_2|x-y|^{1/2}$.
+Arzelà--Ascoli 定理给出一致收敛子列, 因而也在 $L^2$ 收敛, 证明紧逆.
+这里用到的端点及一致界均可由
+\begin{equation}\label{eq:trace-bound}
+ |u(t)|\le2^{-1/2}\|u\|_2+\sqrt2\|u'\|_2,\qquad
+ u\in H^1_{\rm Sob}(I),\quad -1\le t\le1
+\end{equation}
+得到: 将 $u(t)$ 与平均值比较, 再积分 $u'$ 即可.
+\end{proof}
+
+\subsection{全部本征函数及归一化}
+紧正自伴逆的谱定理给出 $L^2$ 的完备正交本征系; 其零核为 $\{0\}$,
+所以没有遗漏的正交补. 下面解出所有本征函数, 而不是只列出若干本征对.
+正性排除 $\lambda<c$. 当 $\lambda=c$, 方程 $-f''=0$ 给出全部仿射函数,
+均满足边界条件, 故重数恰为二. 当 $\lambda>c$, 令 $\omega=\sqrt{\lambda-c}$.
+反射 $f(x)\mapsto f(-x)$ 保持算子域并与 $K_c$ 交换, 可分偶, 奇求解.
+偶部在 $[0,1]$ 满足 $f'(0)=f'(1)=0$, 故为 $\cos(k\pi x)$, $k\ge1$.
+奇部满足 $f(0)=0$, $f'(1)=f(1)$, 故为 $\sin(\mu x)$,
+$\mu\cos\mu=\sin\mu$. 极点不满足这个等式.
+在 $(k\pi,(k+1/2)\pi)$ 上, $\tan\mu-\mu$ 从 $-k\pi$ 严格增加到 $+\infty$,
+导数是 $\tan^2\mu>0$; 对 $k\ge1$ 恰有一根 $\mu_k$.
+在 $(0,\pi/2)$ 上它严格为正, 其余正半周期 $\tan\mu<0$,
+所以没有其他正根. 零频奇模态已经计入 $x$.
+于是完整谱表为
+\[
+\begin{array}{c|c|c}
+ \phi & \lambda & \|\phi\|_2^2\\ \hline
+ 1 & c & 2\\
+ x & c & 2/3\\
+ \cos(k\pi x),\ k\ge1 & (k\pi)^2+c & 1\\
+ \sin(\mu_kx),\ k\ge1 & \mu_k^2+c & \mu_k^2/(1+\mu_k^2)
+\end{array}
+\]
+不同特征值的正交性由自伴性给出, $1,x$ 由奇偶性正交.
+直接积分还核对了容易遗漏的低频奇模态和正弦范数:
+\[
+ \int_{-1}^1x\sin(\mu_kx)\,dx
+ =\frac{2(\sin\mu_k-\mu_k\cos\mu_k)}{\mu_k^2}=0,\qquad
+ \|\sin(\mu_kx)\|_2^2=1-\frac{\sin(2\mu_k)}{2\mu_k}
+ =\frac{\mu_k^2}{1+\mu_k^2}.
+\]
+明确的归一化为
+\begin{equation}\label{eq:normalized-modes}
+ e_0=\frac1{\sqrt2},\quad e_1=\sqrt{\frac32}x,\quad
+ e_k^{\rm e}=\cos(k\pi x),\quad
+ e_k^{\rm o}=\frac{\sqrt{1+\mu_k^2}}{\mu_k}\sin(\mu_kx),\quad k\ge1.
+\end{equation}
+记 $N_k=\mu_k/\sqrt{1+\mu_k^2}$, 则
+$\|\sin(\mu_kx)\|_2=N_k\ge N_1>0$,
+$\sin\mu_k=(-1)^kN_k$, $N_k\to1$.
+这组谱系与 \cite[第2节, 式(7)--(9)]{axioms} 的模型一致;
+本节已从定义域与紧逆独立推出完备性.
+
+\subsection{非负幂域和负阶完备化的区别}
+把 \eqref{eq:normalized-modes} 合并枚举为 $\{e_j\}$, 对 $s\ge0$,
+谱演算给出真正的幂域判据
+\begin{equation}\label{eq:spectral-norm}
+ f\in H^s\quad\Longleftrightarrow\quad
+ \sum_j\lambda_j^s|\langle f,e_j\rangle|^2<\infty,\qquad
+ \|f\|_{H^s}^2=\sum_j\lambda_j^s|\langle f,e_j\rangle|^2.
+\end{equation}
+若使用未归一化的 $\phi_j$, 每项必须除以 $\|\phi_j\|_2^2$.
+
+@@NEGATIVE@@
+
+\section{全部命名成员的精确阈值}
+\begin{lemma}[所有边界相容多项式的系数上界]\label{lem:coefficient-upper}
+对任意固定多项式 $g$, 两支高频谱系数均为 $O_g(k^{-2})$.
+若 $p\in\mathbb C[x]\cap D(K_c)$, 两支归一化系数均为 $O_{p,c}(k^{-4})$,
+从而 $p\in H_c^s$ 对所有 $0\le s<7/2$ 成立.
+\end{lemma}
+\begin{proof}
+记 $C_k(g)=\langle g,\cos(k\pi x)\rangle_2$,
+$S_k(g)=\langle g,\sin(\mu_kx)\rangle_2$, $a_k=k\pi$.
+分部积分两次, 得到精确恒等式
+\begin{align}
+ C_k(g)&=\frac{(-1)^k\bigl(g'(1)-g'(-1)\bigr)}{a_k^2}
+          -\frac{C_k(g'')}{a_k^2},\label{eq:cos-ibp}\\
+ S_k(g)&=-\frac{\Delta g\cos\mu_k}{\mu_k}
+ +\frac{(g'(1)+g'(-1))\sin\mu_k}{\mu_k^2}
+ -\frac{S_k(g'')}{\mu_k^2}\notag\\
+ &=\frac{\sin\mu_k}{\mu_k^2}
+ \bigl(g'(1)+g'(-1)-\Delta g\bigr)-\frac{S_k(g'')}{\mu_k^2}.
+ \label{eq:sin-ibp}
+\end{align}
+末项积分的绝对值不超过 $\|g''\|_{L^1}$, 且
+$k\pi<\mu_k<(k+1/2)\pi$, 所以两式均为 $O_g(k^{-2})$.
+这些等式使用的是 $L^2$ 配对, 不要求 $g\in D(K_c)$.
+
+若 $p\in D(K_c)$ 是多项式, 则 $K_cp$ 也是多项式.
+对任一高频本征函数 $\phi$ 及其特征值 $\lambda$,
+自伴性给出
+\[
+ \langle p,\phi\rangle_2=\lambda^{-1}\langle K_cp,\phi\rangle_2.
+\]
+由 $\lambda\asymp_c k^2$ 及前面的上界, 未归一化系数为 $O_{p,c}(k^{-4})$.
+除以 $N_k\ge N_1>0$ 仍保持该阶数. 低频只有两项,
+高频的谱范数平方受常数乘 $\sum_{k\ge1}k^{2s-8}$ 控制,
+故在 $s<7/2$ 收敛. 此处不要求 $K_cp\in D(K_c)$.
+\end{proof}
+
+\begin{theorem}[逐一成员阈值]\label{thm:all-thresholds}
+对每个固定 $c>0$ 和每个 $n\in\mathcal D\setminus\{0,1\}$,
+\[
+ p_n\in H_c^s\quad\Longleftrightarrow\quad 0\le s<7/2
+ \qquad(s\ge0).
+\]
+$p_0,p_1$ 属于全部非负幂域. 更精确地, 对每个整数 $m\ge2$,
+\begin{align}
+ \langle p_{2m},e_k^{\rm e}\rangle_2
+ &=-\frac{8m(4m-5)(-1)^k}{(k\pi)^4}+O_m(k^{-6}),\label{eq:even-leading}\\
+ \langle p_{2m+1},e_k^{\rm o}\rangle_2
+ &=-\frac{8m(4m-3)(-1)^k}{\mu_k^4}+O_m(k^{-6}).\label{eq:odd-leading}
+\end{align}
+相反奇偶的高频系数恒为零.
+\end{theorem}
+\begin{proof}
+直接求导得到
+\[
+ p_{2m}'(\pm1)=0,\quad\Delta p_{2m}=0,\qquad
+ p_{2m+1}'(\pm1)=p_{2m+1}(1)=-\frac1{m-1}
+ =\frac{\Delta p_{2m+1}}2.
+\]
+所以全部原成员属于 $D(K_c)$, 引理 \ref{lem:coefficient-upper} 已给出窗口内成员性.
+现在对所有 $m\ge2$ 计算不能相消的下一层边界数据:
+\begin{align}
+ p_{2m}'''(1)
+ &=2m(2m-1)(2m-2)
+ -\frac m{m-1}(2m-2)(2m-3)(2m-4)\notag\\
+ &=2m\bigl((2m-1)(2m-2)-(2m-3)(2m-4)\bigr)\notag\\
+ &=4m(4m-5)>0,\label{eq:even-boundary}\\
+ p_{2m+1}'''(1)-p_{2m+1}''(1)
+ &=(2m+1)(2m)(2m-2)
+ -\frac m{m-1}(2m-1)(2m-2)(2m-4)\notag\\
+ &=2m\bigl((2m+1)(2m-2)-(2m-1)(2m-4)\bigr)\notag\\
+ &=4m(4m-3)>0.\label{eq:odd-boundary}
+\end{align}
+这些是无次数上界的代数恒等式; $m=2$ 时相应低次单项式的高阶导数为零,
+上述乘积中的零因子正好覆盖此情况.
+
+由于第一层边界项为零, \eqref{eq:cos-ibp} 连用两次给出
+\[
+ C_k(p_{2m})
+ =-\frac{2(-1)^kp_{2m}'''(1)}{a_k^4}
+   +\frac{C_k(p_{2m}^{(4)})}{a_k^4}.
+\]
+对末项再用引理中的任意多项式估计, 得 $O_m(k^{-6})$,
+于是得到 \eqref{eq:even-leading}.
+同理, $p_{2m+1}''$ 为奇函数, 故
+\[
+ (p_{2m+1}'')'(1)+(p_{2m+1}'')'(-1)-\Delta p_{2m+1}''
+ =2\bigl(p_{2m+1}'''(1)-p_{2m+1}''(1)\bigr).
+\]
+由 \eqref{eq:sin-ibp} 连用两次,
+\[
+ S_k(p_{2m+1})
+ =-\frac{8m(4m-3)\sin\mu_k}{\mu_k^4}
+   +\frac{S_k(p_{2m+1}^{(4)})}{\mu_k^4}.
+\]
+除以 $N_k$, 使用 $\sin\mu_k/N_k=(-1)^k$ 及 $N_k\ge N_1>0$,
+便得 \eqref{eq:odd-leading}. 这明确处理了正弦归一化, 并非从 $p_4$ 外推.
+
+每个固定 $m$ 的首项常数均严格非零, 余项比首项小 $O_m(k^{-2})$.
+因此存在 $b_m>0,k_m$, 使相应归一化系数的绝对值对 $k\ge k_m$
+至少为 $b_m k^{-4}$. 结合特征值与 $k^2$ 可比, 谱范数平方尾部至少为
+正的常数乘 $\sum_{k\ge k_m}k^{2s-8}$.
+在 $s=7/2$ 这是调和级数, 在 $s>7/2$ 也发散.
+最后 $K_c(a+bx)=c(a+bx)$, 故仿射函数的谱只在特征值 $c$ 上,
+属于全部非负幂域.
+\end{proof}
+
+最低奇例也有精确式
+$\langle p_5,\sin(\mu_kx)\rangle_2=-80\sin\mu_k/\mu_k^4$,
+因为 $p_5^{(4)}=120x$ 与所有正频奇模态正交.
+这只是全指标证明的交叉核对, 不是替代证明.
+
+\section{四阶相容多项式图核心}
+\subsection{原族的代数包与第二层算子域}
+\begin{lemma}[精确的代数线性包]\label{lem:algebra}
+令 $\mathcal P_K=\operatorname{span}_{\mathbb C}\{p_n:n\in\mathcal D\}$, 则
+\[
+ \mathcal P_K=\mathbb C[x]\cap D(K_c).
+\]
+\end{lemma}
+\begin{proof}
+每个生成元满足边界条件, 给出一侧包含.
+反过来, 对右侧多项式按最高次数 $n\ge4$ 减去首项系数乘 $p_n$,
+边界条件保留且次数严格下降. 最后余式为 $A+Bx+Dx^2+Ex^3$.
+因为
+\[
+ \mathcal B1=\mathcal Bx=0,\quad
+ \mathcal Bx^2=\binom2{-2},\quad\mathcal Bx^3=\binom22,
+\]
+两个残差向量线性无关, 迫使 $D=E=0$, 完成有限消元.
+这里没有使用 $\mathcal P_K=\mathbb C[x]$ 这一错误等式.
+\end{proof}
+
+\begin{lemma}[真正的平方域]\label{lem:square-domain}
+\begin{equation}\label{eq:square-domain}
+ D(K_c^2)=\{f\in H^4_{\rm Sob}(I):\mathcal Bf=0,\ \mathcal B(f'')=0\},
+ \qquad K_c^2f=f^{(4)}-2cf''+c^2f.
+\end{equation}
+\end{lemma}
+\begin{proof}
+按乘积域定义, $f\in D(K_c^2)$ 当且仅当 $f,K_cf\in D(K_c)$.
+于是 $f''=cf-K_cf\in H^2_{\rm Sob}$, 故 $f\in H^4_{\rm Sob}$.
+由 $\mathcal B(K_cf)=c\mathcal Bf-\mathcal B(f'')$ 得两个迹条件.
+反向取右侧的 $f$, 则 $f\in D(K_c)$, $K_cf\in H^2_{\rm Sob}$
+且 $\mathcal B(K_cf)=0$, 故 $f\in D(K_c^2)$.
+只有在这一步确认乘积域后, 才使用显示的四阶微分表达式.
+\end{proof}
+
+\subsection{四迹修正的有界右逆}
+定义
+\[
+ T:H^4_{\rm Sob}(I)\longrightarrow\mathbb C^4,\qquad
+ Tf=(\mathcal Bf,\mathcal B(f''))^{\mathsf T},
+\]
+排列顺序为先 $f$ 的 $+$, $-$ 残差, 再 $f''$ 的 $+$, $-$ 残差.
+将 \eqref{eq:trace-bound} 用于 $f,f',f'',f'''$,
+得到 $\|Tf\|_{\mathbb C^4}\le C_T\|f\|_{H^4_{\rm Sob}}$.
+直接对 $x^2,x^3,x^4,x^5$ 求导, 矩阵为
+\begin{equation}\label{eq:four-trace-matrix}
+ B=\begin{pmatrix}
+ 2&2&4&4\\
+ -2&2&-4&4\\
+ 0&0&24&40\\
+ 0&0&-24&40
+ \end{pmatrix},\qquad
+ \det B=(8)(1920)=15360\ne0.
+\end{equation}
+对 $z\in\mathbb C^4$, 定义多项式右逆
+\[
+ Rz=(x^2,x^3,x^4,x^5)B^{-1}z.
+\]
+于是 $TR=I_{\mathbb C^4}$, 且
+\[
+ \|Rz\|_{H^4_{\rm Sob}}\le C_R\|z\|_{\mathbb C^4},\qquad
+ C_R=\left(\sum_{\ell=2}^5\|x^\ell\|_{H^4_{\rm Sob}}^2\right)^{1/2}
+          \|B^{-1}\|_{\mathbb C^4\to\mathbb C^4}<\infty.
+\]
+因此修正是固定的有界有限秩操作, 与待逼近函数及逼近序号无关.
+
+\subsection{普通四阶 Sobolev 逼近及图范数控制}
+\begin{lemma}[四次积分的多项式逼近]\label{lem:h4-approximation}
+多项式在 $H^4_{\rm Sob}(I)$ 中稠密.
+\end{lemma}
+\begin{proof}
+给定 $f\in H^4_{\rm Sob}$, 由连续函数在 $L^2$ 中稠密和 Weierstrass 定理,
+取复多项式 $h_j\to f^{(4)}$ 于 $L^2$. 令
+\[
+ r_j(x)=\sum_{\ell=0}^3\frac{f^{(\ell)}(-1)}{\ell!}(x+1)^\ell
+       +\int_{-1}^x\frac{(x-t)^3}{6}h_j(t)\,dt.
+\]
+这是多项式. $f^{(\ell)}$ ($0\le\ell\le3$) 均有绝对连续代表,
+所以反复用微积分基本定理, $f$ 有同样的式子, 将 $h_j$ 换成 $f^{(4)}$ 即可.
+设 $w_j=r_j-f$, 则 $w_j^{(4)}=h_j-f^{(4)}$, 低阶左端点迹均为零.
+对 $0\le r\le3$ 的积分核使用 Cauchy--Schwarz, 再积分三角区域, 得
+\[
+ \|w_j^{(r)}\|_2\le
+ \frac{2^{4-r}}{(3-r)!\sqrt{(7-2r)(8-2r)}}\,\|h_j-f^{(4)}\|_2.
+\]
+因为平方核积分恰为
+$2^{8-2r}/((3-r)!^2(7-2r)(8-2r))$.
+所有四个低阶导数及第四阶导数都收敛, 即 $r_j\to f$ 于 $H^4_{\rm Sob}$.
+\end{proof}
+
+\begin{proposition}[四阶多项式图核心]\label{prop:h4-core}
+令 $\mathcal C_4=\mathbb C[x]\cap D(K_c^2)$. 则
+\[
+ \mathcal C_4\subset\mathcal P_K,\qquad
+ \overline{\mathcal C_4}^{\,H_c^4}=H_c^4.
+\]
+它也在 $K_c^2$ 的通常图范数
+$(\|f\|_2^2+\|K_c^2f\|_2^2)^{1/2}$ 中为核心.
+\end{proposition}
+\begin{proof}
+包含关系由 $D(K_c^2)\subset D(K_c)$ 及引理 \ref{lem:algebra} 得到.
+对 $f\in D(K_c^2)$, 取引理 \ref{lem:h4-approximation} 的 $r_j$, 置
+\[
+ q_j=r_j-RT r_j.
+\]
+因 $Tf=0$, $TR=I$, 有 $Tq_j=0$. 由 \eqref{eq:square-domain},
+$q_j\in\mathcal C_4$, 并且
+\[
+ \|q_j-f\|_{H^4_{\rm Sob}}
+ \le(1+C_RC_T)\|r_j-f\|_{H^4_{\rm Sob}}\longrightarrow0.
+\]
+在已确认的域内, \eqref{eq:square-domain} 给出
+\[
+ \|K_c^2(q_j-f)\|_2
+ \le \|(q_j-f)^{(4)}\|_2+2c\|(q_j-f)''\|_2+c^2\|q_j-f\|_2
+ \le(1+2c+c^2)\|q_j-f\|_{H^4_{\rm Sob}}\longrightarrow0.
+\]
+这就是 $H_c^4$ 收敛. 此外谱下界给出
+$\|u\|_2\le c^{-2}\|K_c^2u\|_2$, 故该范数与通常图范数等价.
+整个论证只用了四阶域恒等式, 没有假定全部高阶或分数阶域的边界刻画.
+\end{proof}
+
+\begin{remark}[命名成员与相容组合的区别]\label{rem:cancellation}
+尽管 $p_4,p_6\notin H_c^4$, 其有限线性组合可以消去第二层边界残差:
+\[
+ q=p_6-\frac72p_4=x^6-5x^4+7x^2,\qquad
+ q'(1)=q'(-1)=q'''(1)=q'''(-1)=0.
+\]
+$q,q''$ 为偶函数, 所以两个值差也为零, 即 $Tq=0$,
+$q\in\mathcal C_4$. 例如 $p_6'''(1)=84$, $(7/2)p_4'''(1)=84$,
+相应 $k^{-4}$ 首项也正好抵消.
+表达式 $q$ 是在多项式空间中作代数相加后再检验域,
+不在 $H_c^4$ 中给域外的 $p_4,p_6$ 各自赋范数.
+因此 $\operatorname{span}\{p_n:p_n\in H_c^4\}=\operatorname{span}\{1,x\}$
+与 $\mathcal P_K\cap H_c^4=\mathcal C_4$ 是不同的空间;
+前者为二维闭空间, 后者是无限维空间 $H_c^4$ 的稠密子空间.
+\end{remark}
+
+\section{完整非负阶窗口与谱截断传输}
+\begin{theorem}[完整原族的非负阶稠密窗口]\label{thm:main}
+对每个固定 $c>0$ 和 $0\le s<7/2$,
+\[
+ \{p_n:n\in\mathcal D\}\subset H_c^s,\qquad
+ \overline{\operatorname{span}\{p_n:n\in\mathcal D\}}^{\,H_c^s}=H_c^s.
+\]
+对 $s\ge7/2$, 完整原族不是 $H_c^s$ 的子集.
+此时逐个筛选已经属于该空间的命名成员, 只剩 $1,x$, 其线性包不稠密.
+\end{theorem}
+\begin{proof}
+成员性及其障碍已经由定理 \ref{thm:all-thresholds} 证明.
+固定 $s\in[0,7/2)$, $f\in H_c^s$ 和 $\varepsilon>0$.
+令 $E$ 为 $K_c$ 的谱测度, $f_N=E([c,N])f$ ($N\ge c$).
+因谱支集有界, $f_N\in H_c^4$; 且
+\[
+ \|f-f_N\|_{s,c}^2
+ =\int_{(N,\infty)}\lambda^s\,d\|E_\lambda f\|^2\longrightarrow0.
+\]
+对任意 $u\in H_c^4$, 谱下界给出固定 $c$ 的连续嵌入
+\begin{equation}\label{eq:h4-embedding}
+ \|u\|_{s,c}^2
+ =\int_{[c,\infty)}\lambda^s\,d\|E_\lambda u\|^2
+ \le c^{s-4}\|u\|_{4,c}^2,\qquad 0\le s\le4.
+\end{equation}
+先选 $N$ 使截断误差小于 $\varepsilon/2$.
+再由命题 \ref{prop:h4-core} 取 $q\in\mathcal C_4\subset\mathcal P_K$, 使
+\[
+ \|f_N-q\|_{4,c}<\frac{\varepsilon}{2c^{(s-4)/2}}.
+\]
+则 $\|f-q\|_{s,c}<\varepsilon$. 由于每个命名成员确实属于当前 $H_c^s$,
+这就是目标空间内部完整原族的稠密性.
+当 $s\ge7/2$, 仅 $1,x$ 单独合格, 它们张成的二维空间是闭的;
+$H_c^s$ 含全部本征函数, 为无限维, 所以此筛选族不稠密.
+\end{proof}
+
+\begin{remark}[为何补齐窗口而不恢复全阶推广]
+核心的稠密性传输本身还给出
+$\overline{\mathcal C_4}^{\,H_c^s}=H_c^s$ ($0\le s\le4$).
+但在 $s\ge7/2$ 时, $\mathcal P_K$ 已不是 $H_c^s$ 内的线性子空间,
+不能把域交稠密性说成全部命名成员在该空间中构成稠密族.
+新结论同时需要全成员的 $s<7/2$ 上界和四阶图核心, 不是从
+$H^3$ 稠密性向更强的范数外推.
+
+旧稿由 \cite{h3} 的 $H^1$ 矩跳跃主链所得 $H_c^3$ 稠密性仍提供独立的低阶路线.
+其中 $D(K_c^{1/2})=H^1_{\rm Sob}$ 是该模型的形式域,
+$K_cp_n$ 为多项式, 所以 $p_n\in H_c^3$.
+对 $0\le s\le3$, 旧嵌入
+$\|u\|_{s,c}\le c^{(s-3)/2}\|u\|_{3,c}$
+配合先截断再逼近, 给出原来的低阶结论.
+当 $s>3$, 该方向的有界嵌入不再成立: 高频本征函数的范数比
+$\|e_j\|_{s,c}/\|e_j\|_{3,c}=\lambda_j^{(s-3)/2}\to\infty$.
+本轮上移至相容的四阶逼近, 才补上 $3<s<7/2$.
+
+本文不由此扩展到任意受约束子空间, 任意删项族或稳定数值基;
+$H_c^4$ 以上的其他域交结论和负阶稠密性也不在本次定理的量词内.
+\end{remark}
+

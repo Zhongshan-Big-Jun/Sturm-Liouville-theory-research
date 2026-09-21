@@ -1,0 +1,3 @@
+# Coordinator final-query recovery
+
+The first final query used limit=60, exceeding the public API maximum50. The actual native session ended with ValueError after19release results,2annotations and the index were already durable. The observed error is transcribed with its native response chunk in failure.json. The first helper source and actual index result are preserved. The resume helper only repeats the read-only query and final consistency checks with limit=50. It does not bypass the review gate or repeat releases/annotations. These archived scripts are evidence; execution took place from F:/tools/math-audit-round6-20260921.

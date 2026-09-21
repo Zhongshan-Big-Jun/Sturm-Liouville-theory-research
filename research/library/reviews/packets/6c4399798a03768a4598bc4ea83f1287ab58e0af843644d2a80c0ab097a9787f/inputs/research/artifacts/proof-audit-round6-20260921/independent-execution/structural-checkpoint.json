@@ -1,0 +1,336 @@
+{
+  "generated_at": "2026-09-21T08:19:52.157204+00:00",
+  "checks": [
+    {
+      "id": "real_native_session",
+      "status": "PASS",
+      "evidence": [
+        "native-session.json",
+        "replay-command.json"
+      ],
+      "details": {
+        "CODEX_THREAD_ID": "01a0c2fb-374c-7671-bdfb-cbacb59b1d9d"
+      }
+    },
+    {
+      "id": "requested_once_fresh_replay",
+      "status": "PASS",
+      "evidence": [
+        "replay-command.json",
+        "replay.stdout.txt",
+        "replay.stderr.txt"
+      ],
+      "details": {
+        "exit_code": 0,
+        "duration_seconds": 867.8979138779978
+      }
+    },
+    {
+      "id": "five_replay_stages_raw_logs",
+      "status": "PASS",
+      "evidence": [
+        "replay/command-logs"
+      ],
+      "details": [
+        {
+          "stage": "01-runtime-version",
+          "exit_code": 0,
+          "seconds": 0.10913749400060624
+        },
+        {
+          "stage": "02-maintained-positive",
+          "exit_code": 0,
+          "seconds": 781.6445668230008
+        },
+        {
+          "stage": "03-compiling-positive-control",
+          "exit_code": 0,
+          "seconds": 44.12822460199823
+        },
+        {
+          "stage": "04-public-inspection",
+          "exit_code": 0,
+          "seconds": 36.57858593200217
+        },
+        {
+          "stage": "05-root-resolution",
+          "exit_code": 0,
+          "seconds": 0.14185986400116235
+        }
+      ]
+    },
+    {
+      "id": "actual_lean_4_31_0",
+      "status": "PASS",
+      "evidence": [
+        "replay/command-logs/01-runtime-version.stdout.txt",
+        "replay/positive/run-manifest.json"
+      ],
+      "details": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)"
+    },
+    {
+      "id": "compiled_snapshot_bound_to_freeze",
+      "status": "PASS",
+      "evidence": [
+        "preflight.json",
+        "replay/positive/run-manifest.json"
+      ],
+      "details": {
+        "SL/AuditRound5.lean": true,
+        "SL/AuditRound6.lean": true,
+        "lake-manifest.json": true,
+        "lakefile.lean": true,
+        "lean-toolchain": true
+      }
+    },
+    {
+      "id": "round5_and_round6_fresh_source_compilation",
+      "status": "PASS",
+      "evidence": [
+        "local-build-checks.json"
+      ],
+      "details": [
+        {
+          "file": "SL/AuditRound5.lean",
+          "passed": true,
+          "object": "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/lib/SL/AuditRound5.olean",
+          "object_sha256": "b77317c319b5b8d45118c6cf852ce92d8410ebc54c0deef1a72ccb6a0330ae45",
+          "source_sha256": "035043c154c215e995a210b798f80cf131414eee5529ad54396a5af3d669ae45",
+          "command": [
+            "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+            "-R",
+            "F:\\tools\\math-audit-round6-20260921\\lean-author\\snapshot",
+            "-o",
+            "F:\\tools\\math-audit-round6-20260921\\independent-execution\\replay\\positive\\lean-verification-runs\\9f81447f8d0a4fb8bbfb0bcf4da92a5b\\lib\\SL\\AuditRound5.olean",
+            "F:\\tools\\math-audit-round6-20260921\\lean-author\\snapshot\\SL\\AuditRound5.lean"
+          ],
+          "job_record": "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/logs/1ab55ee3bb32456cb00f581f80c80764.job.json",
+          "elapsed_seconds": 19.254039
+        },
+        {
+          "file": "SL/AuditRound6.lean",
+          "passed": true,
+          "object": "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/lib/SL/AuditRound6.olean",
+          "object_sha256": "25a6b7cbec3320accd6e9215ccdf7f0e338e1056e971a65de18a132ef84f91be",
+          "source_sha256": "f765205b55ee454261a1a365e157ffa4f4f0202662c450b8a9c92328820a7c3e",
+          "command": [
+            "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe",
+            "-R",
+            "F:\\tools\\math-audit-round6-20260921\\lean-author\\snapshot",
+            "-o",
+            "F:\\tools\\math-audit-round6-20260921\\independent-execution\\replay\\positive\\lean-verification-runs\\9f81447f8d0a4fb8bbfb0bcf4da92a5b\\lib\\SL\\AuditRound6.olean",
+            "F:\\tools\\math-audit-round6-20260921\\lean-author\\snapshot\\SL\\AuditRound6.lean"
+          ],
+          "job_record": "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/logs/2e4382f38aee498ab1d6bfcbf014f14f.job.json",
+          "elapsed_seconds": 27.171299
+        }
+      ]
+    },
+    {
+      "id": "actual_loaded_import_inventory",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json",
+        "receipt.stdout.txt"
+      ],
+      "details": {
+        "loaded_modules": 4587,
+        "hashed_import_artifacts": 13753,
+        "local_objects": {
+          "SL.AuditRound5": "F:\\tools\\math-audit-round6-20260921\\independent-execution\\replay\\positive\\lean-verification-runs\\9f81447f8d0a4fb8bbfb0bcf4da92a5b\\lib\\SL\\AuditRound5.olean",
+          "SL.AuditRound6": "F:\\tools\\math-audit-round6-20260921\\independent-execution\\replay\\positive\\lean-verification-runs\\9f81447f8d0a4fb8bbfb0bcf4da92a5b\\lib\\SL\\AuditRound6.olean",
+          "LeanVerifyProbe": "F:\\tools\\math-audit-round6-20260921\\independent-execution\\replay\\positive\\lean-verification-runs\\9f81447f8d0a4fb8bbfb0bcf4da92a5b\\lib\\LeanVerifyProbe.olean"
+        }
+      }
+    },
+    {
+      "id": "no_old_project_object_resolution",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json",
+        "receipt.stdout.txt"
+      ],
+      "details": {
+        "objects_outside_allowed_roots": [],
+        "allowed_roots": [
+          "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/lib",
+          "/mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/mathlib/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/plausible/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/importGraph/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/proofwidgets/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/aesop/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/Qq/.lake/build/lib/lean",
+          "/mnt/f/LaTeX/BVE research/lean-proof/.lake/packages/batteries/.lake/build/lib/lean"
+        ]
+      }
+    },
+    {
+      "id": "exact_root_object_resolution_and_hash",
+      "status": "PASS",
+      "evidence": [
+        "replay/root-artifact.json",
+        "replay/command-logs/05-root-resolution.stdout.txt"
+      ],
+      "details": {
+        "source_sha256": "f765205b55ee454261a1a365e157ffa4f4f0202662c450b8a9c92328820a7c3e",
+        "source_path": "/mnt/f/tools/math-audit-round6-20260921/lean-author/snapshot/SL/AuditRound6.lean",
+        "declaration": "SL.AuditRound6.local_algebra_root",
+        "olean": "/mnt/f/tools/math-audit-round6-20260921/independent-execution/replay/positive/lean-verification-runs/9f81447f8d0a4fb8bbfb0bcf4da92a5b/lib/SL/AuditRound6.olean",
+        "olean_sha256": "25a6b7cbec3320accd6e9215ccdf7f0e338e1056e971a65de18a132ef84f91be",
+        "resolution_log": "command-logs/05-root-resolution.stdout.txt"
+      }
+    },
+    {
+      "id": "actual_expected_type_matching",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json",
+        "replay/PositiveControl.lean",
+        "replay/command-logs/03-compiling-positive-control.json"
+      ],
+      "details": {
+        "binder_kinds_match": true,
+        "definitionally_equal": true,
+        "expected_universes": [],
+        "status": "matched",
+        "universe_parameters_match": true
+      }
+    },
+    {
+      "id": "independently_compiled_positive_control",
+      "status": "PASS",
+      "evidence": [
+        "replay/PositiveControl.lean",
+        "replay/command-logs/03-compiling-positive-control.stdout.txt"
+      ],
+      "details": null
+    },
+    {
+      "id": "root_transitive_closure_recomputed",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json"
+      ],
+      "details": {
+        "nodes": 20642,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "unsafe": [],
+        "missing": []
+      }
+    },
+    {
+      "id": "expected_type_closure_recomputed",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json"
+      ],
+      "details": {
+        "nodes": 19642,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "synthetic_comparison_axiom_excluded": true
+      }
+    },
+    {
+      "id": "all_explicit_public_declarations_exported",
+      "status": "PASS",
+      "evidence": [
+        "replay/public-declarations.json",
+        "preflight.json"
+      ],
+      "details": {
+        "public_declarations": 36,
+        "theorems": 21,
+        "definitions": 15,
+        "scope": "Every explicit public definition/theorem in frozen AuditRound6; compiler-generated helpers participate through dependency closure."
+      }
+    },
+    {
+      "id": "every_public_type_and_axiom_closure_consistent",
+      "status": "PASS",
+      "evidence": [
+        "public-declaration-checks.json",
+        "replay/public-declarations.json",
+        "replay/shared-public-dependency-graph.json"
+      ],
+      "details": {
+        "checked": 36,
+        "failed": []
+      }
+    },
+    {
+      "id": "shared_graph_exact_public_union",
+      "status": "PASS",
+      "evidence": [
+        "replay/shared-public-dependency-graph.json",
+        "public-declaration-checks.json"
+      ],
+      "details": {
+        "nodes": 20644,
+        "duplicate_nodes": 0,
+        "extra_nodes": [],
+        "absent_nodes": []
+      }
+    },
+    {
+      "id": "root_matches_shared_export",
+      "status": "PASS",
+      "evidence": [
+        "replay/public-declarations.json",
+        "replay/shared-public-dependency-graph.json",
+        "replay/positive/run-manifest.json"
+      ],
+      "details": {
+        "node_mismatches": []
+      }
+    },
+    {
+      "id": "reachable_local_definitions_consistent",
+      "status": "PASS",
+      "evidence": [
+        "local-definition-checks.json",
+        "replay/local-definitions.json"
+      ],
+      "details": {
+        "count": 24,
+        "failed": [],
+        "missing": []
+      }
+    },
+    {
+      "id": "no_unproved_or_unsafe_root_dependencies",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json",
+        "replay/shared-public-dependency-graph.json"
+      ],
+      "details": {
+        "root_axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "source_scan_is_supplementary": true
+      }
+    },
+    {
+      "id": "machine_and_exact_root_closed",
+      "status": "PASS",
+      "evidence": [
+        "replay/positive/run-manifest.json"
+      ],
+      "details": null
+    }
+  ],
+  "receipt_recheck_pending": true,
+  "final_verdict": false
+}

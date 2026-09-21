@@ -1,0 +1,996 @@
+{
+  "verdict": "RETRIEVAL_ONLY",
+  "changed_paths": [],
+  "blocked": 1,
+  "hits": [
+    {
+      "score": 7,
+      "tool_id": "denseness-criteria",
+      "title": "稠密性准则 (denseness criteria)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/moment-jump-completeness.md",
+          "sha256": "5b1b3639ad05e608faf86866919e49f04065e32cb5a459d53981b60f289e6261"
+        },
+        {
+          "location": "tools/spectral-domain-checks.md",
+          "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/denseness-criteria.md",
+      "sha256": "4991c33cd33772f5f7bba8cd36359799cf51e227f711c65e662506953a411411",
+      "version": "research/library/card-versions/4991c33cd33772f5f7bba8cd36359799cf51e227f711c65e662506953a411411.md",
+      "summary": "# 稠密性准则 (Denseness Criteria) ## 解析 设 $H$ 为 $[-1,1]$ 上函数的 Hilbert 空间, 满足 (H1) 所有多项式 $\\Pi \\subset H$ 且 $\\Pi$ 在 $H$ 中稠密; (H2) 矩泛函良定 ($M_k = (w, x^k)_H$ 由 Cauchy-Schwarz 自动成立). 研究对象是稀疏基 $p_0 = 1$, $p_1 = x$, $p_{2m} = x^{2m} - \\frac{m}{m-1}x^{2m-2}$, $p_{2m+1} = x^{2m+1}$ - $\\frac{m}{m-1}x^{2m-1}$ ($m \\geq 2$, 缺 2, 3 次). 三个通用判据: 1. **矩刻画 (充要, 定理 2)**: $\\{p_n\\}$ 在 $H$ 中完备 $\\iff$ 不存在非零 $w \\in H$ 使矩满足 $M_0 = M_1 = 0$, $M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 完备性被归结为矩量问题的可表示性. 2. **一阶矩准则 (定理 3)**: 若 $\\|x^k\\|",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 6,
+      "tool_id": "constrained-denseness-runs",
+      "title": "受约束稀疏族: 投影、尾部障碍与矩条件",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/constrained-denseness-runs.md",
+      "sha256": "f39aae7d85030e73b8c88edb898640bc06d01f99b5253f7f7f7965fd7e707643",
+      "version": "research/library/card-versions/f39aae7d85030e73b8c88edb898640bc06d01f99b5253f7f7f7965fd7e707643.md",
+      "summary": "# 边界约束子空间多项式稠密性 ## 解析 设 H 为 [-1,1] (或 [0,1]) 上的 Hilbert 空间 (含全部多项式), V 为闭子空间 (\"一般边界条件\"), 候选族为保留单项式 {x^k : x^k in V} 或稀疏族 {p_n : p_n in V} (p_{2m}=x^{2m}-(m/(m-1))x^{2m-2}, p_{2m+1} 同理, m>=2). - 主判据 (定理 A, STRICT): closure(span Q) = V iff V ∩ Q^\\perp = {0}. - 约束矩刻画 (定理 B/C, STRICT): 稠密 iff V 中无非零 w 使矩在保留指标集上 全为零 (约束矩问题形式). - 约束恢复稠密性 (定理 D, STRICT, 修正版): 若 (i) 全部 p_n in V 且 (ii) x^2, x^3 in V^\\perp (即自由矩参数 M_2, M_3 被钉零), 则 Q_sp 对任意 beta 稠密. 证明: M_0=M_1=0, 递推 M_{2m}=(m/(m-1))M_{2m-2} 给出 M_{2m}=m·M_",
+      "conditions": "UNSPECIFIED",
+      "scope": "Complex Hilbert space with all polynomials included densely; exact projection and finite-tail-obstacle criteria. No arbitrary Krein-domain application or full historical branch recertification.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/81a6c84c25e4a41db0be1f08febb632cd6ff1567fdaa92a6c631aa6d9a031445.json",
+          "sha256": "81a6c84c25e4a41db0be1f08febb632cd6ff1567fdaa92a6c631aa6d9a031445",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round6",
+          "locator": "Sixth-round repaired proof and independent findings",
+          "source_id": null,
+          "tool_sha256": "f39aae7d85030e73b8c88edb898640bc06d01f99b5253f7f7f7965fd7e707643",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "All current projection, finite-tail-obstacle and representer repair proofs",
+          "path": "docs/SL_projection_moment_repairs.tex",
+          "sha256": "be31a3d595342bbc752db7e5b61a39790daf32b7707dd8f5142484a0a0b1b389",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical Theorem1 and Corollary1.1 corrected by round6",
+          "path": "runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md",
+          "sha256": "d87bbda0e455ee3dfc6b682aa41e1625a5bbdbbaa89d198e8cae4692202b62ea",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical F/G/H explanations corrected; other branches not globally reaudited",
+          "path": "runs/rigorous-open-math-research/R-20260814T070000Z-densbc-3F8A2C/candidate_proof.md",
+          "sha256": "c2b78e77b8f70bd1f3d67253fb813730f01d296023782f3c2faf0865ad669b31",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 5,
+      "tool_id": "leftdef-o1pld-l2-structural",
+      "title": "第二左定空间的余有限稀疏族: 两条迹与L2障碍",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/left-definite-theory.md",
+          "sha256": "d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/leftdef-o1pld-l2-structural.md",
+      "sha256": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+      "version": "research/library/card-versions/280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e.md",
+      "summary": "# 左定 O1'LD 的 L^2 降维结构定理 ## 解析 设 s=2, 等距同构 K_c : H^2 -> L^2, q_n = K_c p_n. - **有限支撑 L^2 矩刚性 (STRICT)**: L^2(-1,1) 中若有 f 的矩 (f,x^k) 只对有限个 k 非零, 则 f=0. 证明用 Müntz-Szász 的 L^p 形式 **在 Lebesgue 测度上的 L^2(0,1)**: - 偶部 h(y)=y^{-1/4} f_e(√y) ∈ L^2(0,1), 矩化归为 ∫ h(y)y^{m-1/4}dy; - 奇部 t(y)=y^{1/4} h_o(y) ∈ L^2(0,1), 矩化归为 ∫ t(y)y^{m+1/4}dy; 两个指数集都是删去有限点后仍发散倒数和的, 故相应单项式族稠密. - **Cauchy-Schwarz 矩界 (STRICT)**: |(f,x^k)| <= ||f||_2 sqrt(2/(2k+1)). **但不再把 DensBC O1 的两项游程代数用于 L^2/H^1 降维**; 实际 q_n 矩满足 三项递推 c M_{2m}=A",
+      "conditions": "Both central traces are continuous in the equivalent left-definite and Sobolev H2 norms. Complete sufficiently high tails are used for the closure argument.",
+      "scope": "Fixed real c>0; complex Hc2=D(Kc) with specified Krein boundary conditions; cofinite subsets of D={0,1} union {4,5,...}. No general non-cofinite or s=3 conclusion.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86.json",
+          "sha256": "e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round5",
+          "locator": "R5-TAIL-MOMENT and cofinite two-trace classification",
+          "source_id": null,
+          "tool_sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Fifth-round Green kernels, cofinite closure and monomial correction",
+          "path": "docs/SL_cofinite_left_definite.tex",
+          "sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Section2, positive self-adjoint shifted Krein operator and isometry",
+          "path": "docs/SL_h2_completeness_proof.tex",
+          "sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical Lemma1 and refuted Claim4/Theorem5/Corollary6; unchanged branches scoped separately",
+          "path": "runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md",
+          "sha256": "cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 4,
+      "tool_id": "moment-jump-completeness",
+      "title": "矩跳跃完备性判据 (moment-jump completeness)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/spectral-domain-checks.md",
+          "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/moment-jump-completeness.md",
+      "sha256": "5b1b3639ad05e608faf86866919e49f04065e32cb5a459d53981b60f289e6261",
+      "version": "research/library/card-versions/5b1b3639ad05e608faf86866919e49f04065e32cb5a459d53981b60f289e6261.md",
+      "summary": "# 矩跳跃完备性判据 (Moment-Jump Completeness) ## 解析 设 $(H, (\\cdot,\\cdot)_H)$ 为 Hilbert 空间, $T: H \\to L^2(-1,1)$ 为等距同构 (例如 $T = K_c$: 见 [[left-definite-theory]]). 给定代数不完备的多项式列 $\\{p_n\\}$ (缺若干次数 $d \\in D$), 若满足: 1. 所有 $p_n\\in H$. 低阶正交条件钉住 $\\mu_0=\\mu_1=0$; 偶、奇两条递推分别仅留下 $\\mu_2,\\mu_3$ 一个自由参数. $T p_n$ 的系数结构为 ``三阶跳变'': 对 $n \\geq4$, $$T p_n = c_0 x^n - A_n x^{n-2} + B_n x^{n-4},$$ 其中 $c_0>0$. 分别按每条奇偶递推的步数 $j\\ge2$ 重编号后, 要求 $B_j\\ge0$ 且 $A_j-B_j\\ge4j+c_0$. 2. 矩 $\\mu_k = \\langle g, x^k \\rangle$ 满足 Cauchy-Schwarz 上界 ",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "banded-shift-toeplitz-density",
+      "title": "稳定移位带 Toeplitz 空间的稀疏族稠密性有限秩判据",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/banded-shift-toeplitz-density.md",
+      "sha256": "202b7f818933873c7efecadee94329c4658269f4be88d49b2eceb548d796f9d7",
+      "version": "research/library/card-versions/202b7f818933873c7efecadee94329c4658269f4be88d49b2eceb548d796f9d7.md",
+      "summary": "# 稳定移位带 Toeplitz 空间的稀疏族稠密性有限秩判据 ## 解析 设 m >= 1, lambda = (lambda_1,...,lambda_m) in R^m. 在实 l^2(N_0) 中令 x^k = e_k + sum_{s=1}^m lambda_s e_{k+s}. 若 L(z) = 1 + sum_s lambda_s z^s 在闭单位圆盘无零点 (稳定假设), 则: - 矩映射 J: w -> (<w,x^k>)_k = I + sum_s lambda_s B^s 是有界可逆 Toeplitz 算子, 其中 B 为后移. 因此矩序列 M 可由某个 w in H 实现 iff M in l^2. - 对有限多项式 representer v_j = sum_i c_i x^i, 保留集 N 余有限: 所有 n > max_j d_j + m + 2 均保留. - 抽象版 (STRICT): 若 H 的单项式由有界可逆算子 A 生成且 Gram 带形, 则同一 判据成立 (Theorem 2.3): closure(span Q_sp)=V <=> ker(T",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "left-definite-moment-recurrence",
+      "title": "左定矩跳跃 (left-definite moment recurrence)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/spectral-domain-checks.md",
+          "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/left-definite-moment-recurrence.md",
+      "sha256": "c288a56fba31a2aaff8551b8e11439f3ff3a1d6637bae7f9b4bf8a5da0112612",
+      "version": "research/library/card-versions/c288a56fba31a2aaff8551b8e11439f3ff3a1d6637bae7f9b4bf8a5da0112612.md",
+      "summary": "# 左定矩跳跃 (Left-Definite Moment Recurrence) ## 解析 对移位 Krein Laplacian $K_c$ 的真正左定空间 $H^s=D(K_c^{s/2})$, 本工具直接适用于 $s=2,3$. 先验证 $p_n\\in H^s$ 及取矩单项式在 $H^{s-2}$ 中. 1. 等距同构 $K_c:H^s\\to H^{s-2}$ 将正交条件变为 $(K_cw,K_cp_n)_{s-2}=0$. 2. 多项式恒等式 $K_cp_{2m}=cx^{2m}-A_mx^{2m-2}+B_mx^{2m-4}$, $A_m=2m(2m-1)+cm/(m-1)$, $B_m=2m(2m-3)$, 给出良定的矩递推 $cM_{2m}=A_mM_{2m-2}-B_mM_{2m-4}$, 奇次同理. 3. $B_m\\ge0$ 和 $A_m-B_m\\ge c$ 先保证钉住解单调; 本例更强的 $A_m-B_m\\ge4m+c$ 才给出阶乘下界; $L^2$ 或 $H^1$ 矩的多项式上界迫使自由参数 $M_2,M_3$ 为零. 4. 多项式在取矩空间中稠密, 所以湮灭",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "left-definite-theory",
+      "title": "左定理论与 Hilbert 空间尺度",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/spectral-domain-checks.md",
+          "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/left-definite-theory.md",
+      "sha256": "d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91",
+      "version": "research/library/card-versions/d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91.md",
+      "summary": "# 左定理论与 Hilbert 空间尺度 ## 解析 设 $A$ 为自伴算子, $A\\ge kI$ ($k>0$). 对 $s>0$ 定义第 $s$ 个左定空间 $$H_s=(V_s,(\\cdot,\\cdot)_s),\\qquad V_s=D(A^{s/2}),\\quad (f,g)_s=(A^{s/2}f,A^{s/2}g).$$ 性质: (1) $A$ 无界时 $V_t\\subsetneq V_s$ ($0<s<t$), 内积两两不等价; (2) $H_s=A^{-s/2}H$; (3) $A^{(s-t)/2}:H_s\\to H_t$ 为等距同构. 左定算子 $A_s$ 与 $A$ 酉等价, 谱相同, 完备特征函数系保持. 负阶需要另作完备化: 对 s<0, 使用 H 在 ||A^(s/2)f|| 下的完备化 (或相应对偶尺度), 不能因为 A^(s/2) 有界就认为 H 集合上的弱范数已经完备. 幂运算在完整尺度上按谱乘子延拓. Krein 例子的完整谱系与精确成员阈值见 [[spectral-domain-checks]]. ## 适用范围 - 适用: 回答\"解在多大空间中仍",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "weighted-shift-beta-lambda-density",
+      "title": "加权移位族 H_{beta,lambda} 的稀疏族稠密性判据",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/weighted-shift-beta-lambda-density.md",
+      "sha256": "11212bae2909590463832879553dafcf09d480914574e16866cd1ced622f6af6",
+      "version": "research/library/card-versions/11212bae2909590463832879553dafcf09d480914574e16866cd1ced622f6af6.md",
+      "summary": "# 加权移位族 H_{beta,lambda} 的稀疏族稠密性判据 ## 解析 设 beta >= 0, |lambda| < 1, 实 l^2(N_0) 中 x^k = (k+1)^beta e_k + lambda e_{k+1}. 对有限多项式 representer, O1' 的判定为 closure(span Q_sp) = V <=> ker(T|B_adm) = {0}, 其中 B_adm 包含所有有限游程自由基, 并且当且仅当 beta > 3/2 时还包含无穷游程 自由基 (此时无穷游程矩向量可实现在 H_{beta,lambda} 中). ## 与已有子类的关系 - lambda = 0 回归对角 H_beta; beta > 3/2 的无穷游程可实现性门槛与 H_beta 已知结果一致. - beta = 0 回归 H_lambda (带宽 1); B_adm 退化为 B_fin. - 该族与稳定带 Toeplitz 族 H_shift(m,lambda) 互补: H_shift 拓宽移位带宽但在稳定 Toeplitz 可逆矩映射下工作; H_{beta,lamb",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "krein-sobolev-polynomials",
+      "title": "Krein-Sobolev 正交多项式",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-sobolev-polynomials.md",
+      "sha256": "01ec28bce0809fc96f5e8e9dbd9421f35d07cd4241c94e36fd75b0aacda8d52d",
+      "version": "research/library/card-versions/01ec28bce0809fc96f5e8e9dbd9421f35d07cd4241c94e36fd75b0aacda8d52d.md",
+      "summary": "# Krein-Sobolev 正交多项式 ## 解析 移位 Krein Laplacian $K_c$ (边界 $f''(\\pm1)=(f(1)-f(-1))/2$) 的第一左定空间为 $(H^1[-1,1],(\\cdot,\\cdot)_{1,c})$. 对其作 Gram-Schmidt 正交化得到 Krein-Sobolev 多项式 $\\{K_n\\}$: 在 $H^1$ 中完备正交, 根全实单且位于 $(-1,1)$; 偶次 $K_{2n}$ 与 Althammer (Sobolev-Legendre) 多项式重合; 显式系数由超几何求和给出; 对偶恒等式 $(f,g)_{1,c}=c\\langle f,g\\rangle_{1/c}$. ## 适用范围 - 适用: 左定空间中构造完备正交多项式基; 研究代数完备与解析完备的区别. - 边界情形: $H^2[-1,1]$ (边界约束) 中多项式基 $\\{p_n\\}$ 缺 2,3 次项, 代数不完备; 其解析完备性是开放问题. - 不适用: 不能直接用于特征值比值问题 (那是主题 2). ## 与完备性证明基 {p_n} 的区别 (重要",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Setting and thm:high/unit; ordinary representatives versus quotient classes",
+          "path": "docs/SL_krein_c0_limit.tex",
+          "sha256": "bf56125edd8bcc635893b6f9a1a81a232d82d22f6a9620171a4a4b9014e50b87",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sixth-round sharp 0<=s<7/2 range, distinct from the fixed-mode c-to-zero quotient proof",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Operator inverse versus algebraic polynomial inverse",
+          "path": "tools/krein-power-domain-polynomial-obstruction.md",
+          "sha256": "09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "third-order-minimal-K1",
+      "title": "Even minimal-solution anchor K(1)=e/4",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/third-order-recurrence.md",
+          "sha256": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/third-order-minimal-K1.md",
+      "sha256": "282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21",
+      "version": "research/library/card-versions/282760e65dc83822e7590bb846c51420282fbd2ea46ce71a21d1fc1bb6564a21.md",
+      "summary": "# Even minimal-solution anchor K(1)=e/4 ## Analytic statement For the even third-order recurrence at c=1, let `mu_j` be the positive minimal solution normalized by `mu_0=1`. For an integer `N>=3`, the unnormalized finite backward solution has terminal values `mu_(N+1)^(N)=1` and `mu_N^(N)=mu_(N-1)^(N)=0`. Its finite formula and normalized limit are ```text mu_j^(N) = (2j)!/(2N+2) * sum_{r=j+2}^N (r-j-1)/(2r-1)!, 0<=j<=N-1, mu_k^* = lim_{N -> infinity} mu_k^(N)/mu_0^(N), fixed integer k>=0, mu_k^",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "SCOPED_STATUS_AND_DEPENDENCY_UPDATE",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/f3374c445613626f52d15ea29363f1fd61ad201029bd5a10f52d14e7a4bc95f0.json",
+          "sha256": "f3374c445613626f52d15ea29363f1fd61ad201029bd5a10f52d14e7a4bc95f0",
+          "kind": "correction",
+          "author": "coordinator-20260920-round2",
+          "locator": "reports/proof-audit-round2-20260920/REPORT.md",
+          "source_id": null,
+          "tool_sha256": "d9efc2d0dc983fed203f9786c6138d14dfa94d64387408baa0e4be4bd8e6117b",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Existing c=1 finite terminal convention and normalized limit",
+          "path": "docs/SL_third_order_K1_proof.tex",
+          "sha256": "e6d81354b9f73985d7d7f21c278ebf90a5ba90990379095c3b7d7bd5b8e0cbc5",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Fourth-round explicit family general-c extension",
+          "path": "docs/SL_third_order_recurrence_theory.tex",
+          "sha256": "71f45bf0a48eb3b6b2007597e1209f7757b45bcbdccb770eaf39d5407887633e",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "third-order-recurrence",
+      "title": "固定系数三阶递推: 差分分解、最小解与有理比值",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/third-order-recurrence.md",
+      "sha256": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae",
+      "version": "research/library/card-versions/9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae.md",
+      "summary": "# 三阶递推积分解理论 (Third-Order Recurrence Theory) ## 解析 三阶线性递推 $z_j = a_1(j)z_{j-1} + a_2(j)z_{j-2} + a_3(j)z_{j-3}$ (Poincar\\'e 型, $a_i \\to (2,-1,0)$, 极限特征根 $0,1,1$) 的显式结构理论, 来源为会话 10 路线 A 的 $L^2$-矩三阶系统 ($z_j = \\mu_j/((j!)^2(4/c)^j)$, $c > 0$). 四个结果: 1. **积分解分类**: $E_j(\\beta) = \\prod_{k=1}^j(1+\\beta/(2k))$ 满足比值固定点 恒等式 (等价地解递推, $j \\geq 3$) 当且仅当偶次 $\\beta \\in \\{1,-1\\}$, 奇次 $\\beta \\in \\{3,1\\}$. 证明: 有理恒等式通分 $\\to$ $j$ 的多项式系数条件 $\\to$ $\\beta$ 方程组 (sympy 求解). 2. **$\\mu$-闭式**: 偶次 $\\mu_j^+ = (2j+1)!/c^j$, $\\mu_",
+      "conditions": "UNSPECIFIED",
+      "scope": "Specified even and odd P,Q,R only; c>0; finite/normalized terminal conventions and eventual nonzero ratio domains are explicit.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ANALYTIC_PROOF_SCOPED",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/4c16b23c207ed5c0b9f9c40c7a3b6e1624ed4ed0981ba14a4c7d8cdc388e9b6d.json",
+          "sha256": "4c16b23c207ed5c0b9f9c40c7a3b6e1624ed4ed0981ba14a4c7d8cdc388e9b6d",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round4",
+          "locator": "Exact factorial difference reduction and runtime checks",
+          "source_id": null,
+          "tool_sha256": "9982e1b1af8f41e9763bcfadf96217a1818241ae155d1ac29feb4cc6a92608ae",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Fourth-round exact-coefficient recurrence, all-index proofs and scope",
+          "path": "docs/SL_third_order_recurrence_theory.tex",
+          "sha256": "71f45bf0a48eb3b6b2007597e1209f7757b45bcbdccb770eaf39d5407887633e",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Existing frozen all-degree root-1 proof",
+          "path": "runs/plugin-perf-eval/R-20260822T000000Z-a6-reuse/candidate_proof.md",
+          "sha256": "37a2a5009d097fab438153089ce2284bd9f341a623a5a16a0edea2aafae7f703",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "jump-stability",
+      "title": "矩跳跃的条件稳定性: 实际递推与 B=0 模型",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/jump-stability.md",
+      "sha256": "34b3aac6095c47365ea310ab9e1f98883559b41e648bf2605059044cbf238556",
+      "version": "research/library/card-versions/34b3aac6095c47365ea310ab9e1f98883559b41e648bf2605059044cbf238556.md",
+      "summary": "# 跳变稳定性 (Jump Stability) ## 解析 矩跳跃完备性判据的稳定性理论. 对二阶跳变递推 $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ ($u_0=0$, $u_1=1$, $B_m \\geq 0$, $A_m - B_m \\geq c_0$), 增长引理 (定量形式): $u_m$ 单调且 $$u_m \\geq \\prod_{k=2}^m \\frac{A_k - B_k}{c_0} = \\prod_{k=2}^m (1+\\varepsilon_k), \\quad \\varepsilon_k = \\frac{A_k-B_k-c_0}{c_0} \\geq 0.$$ **稳定性定理**: 若 $\\sum_{k \\leq m} \\min(\\varepsilon_k, 1) = \\omega(\\log m)$, 则 $u_m$ 超多项式增长 ($u_m/m^\\beta \\to \\infty$, 一切 $\\beta$), 从而任意满足 (H1) 多项式稠密 + (H2) 矩良定 + 单幂范数界 $\\|x^k\\|_H \\leq C k^\\beta$",
+      "conditions": "UNSPECIFIED",
+      "scope": "Both parity recurrences; product equality only for B=Bprime=0; formal polynomial images distinguished from Krein domain.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/207469ecaecd987b78fb7a22cd0761bbdf18a0d29e02b26db76519c8232cf038.json",
+          "sha256": "207469ecaecd987b78fb7a22cd0761bbdf18a0d29e02b26db76519c8232cf038",
+          "kind": "failed-route-lesson",
+          "author": "coordinator-20260920-round3",
+          "locator": "general recurrence and all-index perturbation hypotheses",
+          "source_id": null,
+          "tool_sha256": "8646ea0c2cf8de7920cf5d8f8abcd9b272fe7131d25c7df4ec411d62aeafc97a",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Unchanged third-round general recurrence, exact model and perturbation proof",
+          "path": "docs/SL_stability_moment_jump.tex",
+          "sha256": "f77079f053c7d22a03ae5dffc38f092fb9b532c92345256582a96d2d41f03c45",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-power-domain-polynomial-obstruction",
+      "title": "Krein power-domain polynomial obstruction",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-power-domain-polynomial-obstruction.md",
+      "sha256": "09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55",
+      "version": "research/library/card-versions/09916637f07ca33bea8c4411842d95e05946bbd3749bc6817474a0f4c9d3aa55.md",
+      "summary": "# Krein power-domain polynomial obstruction ## Strict theorem Let `K_c=-D^2+c`, where `c>0`, on `[-1,1]` with Krein boundary conditions ```text f'(1)=f'(-1)=(f(1)-f(-1))/2. ``` Put `L=c-D^2`. For the algebraic polynomial inverse `L_poly^(-1)`, define ```text Q_n^(2r)=L_poly^(-r) P_n, Q_n^(2r+1)=L_poly^(-r) R_n, ``` where `P_n` is the degree `n` `L^2` orthogonal polynomial and `R_n` is the degree `n` Krein-form orthogonal polynomial. Then, for every integer `s>=4`, ```text Q_n^(s) in D(K_c^(s/2))",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "spectral-domain-checks",
+      "title": "Krein 谱系与幂域成员性检查",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/spectral-domain-checks.md",
+      "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+      "version": "research/library/card-versions/eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7.md",
+      "summary": "# Krein 谱系与幂域成员性检查 设 `c>0`, 在 `L2(-1,1)` 中取 `Kc f=-f''+cf`, 定义域为通常 Sobolev `H2` 中满足 `f'(1)=f'(-1)=(f(1)-f(-1))/2` 的函数. 对非负实数 s, 这里的 `Hs` 专指 `D(Kc^(s/2))`, 不直接指通常 Sobolev 空间. 完整正交谱系包含两个低模态: | 未归一化模态 | 特征值 | L2 范数平方 | | --- | --- | --- | | 1 | c | 2 | | x | c | 2/3 | | cos(n pi x), n>=1 | (n pi)^2+c | 1 | | sin(mu_n x), n>=1 | mu_n^2+c | mu_n^2/(1+mu_n^2) | `mu_n` 是 `(n*pi,(n+1/2)*pi)` 中 `tan(mu)=mu` 的唯一根. 偶、奇子空间 分别化为 `[0,1]` 上的 Neumann-Neumann 和 Dirichlet-Robin 问题, 后者 含零频模态 x. 有 `||x||_s^2=2*c^s/",
+      "conditions": "UNSPECIFIED",
+      "scope": "Fixed c>0; original complete named sparse family in genuine powers of the positive self-adjoint Krein operator; no uniform-c, arbitrary-subspace or stable-basis claim.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/2917524d7f6c21a2dc3114177cfad3e8ec41c5c3e13b630f8fbda3e04157bcdc.json",
+          "sha256": "2917524d7f6c21a2dc3114177cfad3e8ec41c5c3e13b630f8fbda3e04157bcdc",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round6",
+          "locator": "Sixth-round repaired proof and independent findings",
+          "source_id": null,
+          "tool_sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/ba233a3673ae441970c26daab99bfa1e1a2df7066730fbe1f947dbc82cf29d21.json",
+          "sha256": "ba233a3673ae441970c26daab99bfa1e1a2df7066730fbe1f947dbc82cf29d21",
+          "kind": "correction",
+          "author": "coordinator-20260920-round2",
+          "locator": "reports/proof-audit-round2-20260920/REPORT.md",
+          "source_id": null,
+          "tool_sha256": "8deeec4e940472b96a502a78ea8a600bb9570547c9819b378199d006233625d4",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Full spectrum, all-member threshold and four-trace graph-core proof",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    }
+  ],
+  "total_matches": 14,
+  "issues": [
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md",
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md"
+    },
+    {
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    }
+  ]
+}

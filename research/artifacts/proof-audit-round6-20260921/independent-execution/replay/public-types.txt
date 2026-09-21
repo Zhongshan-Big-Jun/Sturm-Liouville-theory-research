@@ -1,0 +1,156 @@
+definition SL.AuditRound6.sparse_generators :
+Set.{0} (Polynomial.{0} ℝ)
+
+definition SL.AuditRound6.sparse_span :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+
+definition SL.AuditRound6.augmented_generators :
+Set.{0} (Polynomial.{0} ℝ)
+
+definition SL.AuditRound6.augmented_span :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+
+theorem SL.AuditRound6.sparse_span_le_krein :
+LE.le.{0} SL.AuditRound6.sparse_span SL.AuditRound5.krein_polynomials
+
+theorem SL.AuditRound6.X_sq_not_mem_sparse_span :
+HPow.hPow.{0, 0, 0} Polynomial.X.{0} 2 ∉ SL.AuditRound6.sparse_span
+
+theorem SL.AuditRound6.even_power_mem_augmented :
+∀ (m : ℕ),
+  Membership.mem.{0, 0} SL.AuditRound6.augmented_span (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HMul.hMul.{0, 0, 0} 2 m))
+
+theorem SL.AuditRound6.odd_power_mem_augmented :
+∀ (m : ℕ),
+  Membership.mem.{0, 0} SL.AuditRound6.augmented_span
+    (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+
+theorem SL.AuditRound6.power_mem_augmented :
+∀ (n : ℕ), Membership.mem.{0, 0} SL.AuditRound6.augmented_span (HPow.hPow.{0, 0, 0} Polynomial.X.{0} n)
+
+theorem SL.AuditRound6.polynomial_mem_augmented :
+∀ (p : Polynomial.{0} ℝ), Membership.mem.{0, 0} SL.AuditRound6.augmented_span p
+
+theorem SL.AuditRound6.augmented_span_eq_top :
+Eq.{1} SL.AuditRound6.augmented_span Top.top.{0}
+
+definition SL.AuditRound6.four_traces :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) (Fin 4 → ℝ)
+
+theorem SL.AuditRound6.four_traces_apply :
+∀ (p : Polynomial.{0} ℝ),
+  Eq.{1} (SL.AuditRound6.four_traces p)
+    (Matrix.vecCons.{0} (SL.AuditRound5.residues p).1
+      (Matrix.vecCons.{0} (SL.AuditRound5.residues p).2
+        (Matrix.vecCons.{0} (SL.AuditRound5.residues (Polynomial.derivative.{0} (Polynomial.derivative.{0} p))).1
+          (Matrix.vecCons.{0} (SL.AuditRound5.residues (Polynomial.derivative.{0} (Polynomial.derivative.{0} p))).2
+            Matrix.vecEmpty.{0}))))
+
+definition SL.AuditRound6.trace_matrix :
+Matrix.{0, 0, 0} (Fin 4) (Fin 4) ℝ
+
+definition SL.AuditRound6.inverse_matrix :
+Matrix.{0, 0, 0} (Fin 4) (Fin 4) ℝ
+
+theorem SL.AuditRound6.four_trace_monomial_columns :
+∀ (i : Fin 4),
+  Eq.{1} (SL.AuditRound6.four_traces (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (↑i) 2))) fun j =>
+    SL.AuditRound6.trace_matrix j i
+
+theorem SL.AuditRound6.trace_matrix_det :
+Eq.{1} (Matrix.det.{0, 0} SL.AuditRound6.trace_matrix) 15360
+
+theorem SL.AuditRound6.trace_matrix_two_sided_inverse :
+Eq.{1} (HMul.hMul.{0, 0, 0} SL.AuditRound6.trace_matrix SL.AuditRound6.inverse_matrix) 1 ∧
+  Eq.{1} (HMul.hMul.{0, 0, 0} SL.AuditRound6.inverse_matrix SL.AuditRound6.trace_matrix) 1
+
+definition SL.AuditRound6.monomial_lift :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Fin 4 → ℝ) (Polynomial.{0} ℝ)
+
+theorem SL.AuditRound6.four_traces_monomial_lift :
+∀ (a : Fin 4 → ℝ),
+  Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound6.monomial_lift a))
+    (Matrix.mulVec.{0, 0, 0} SL.AuditRound6.trace_matrix a)
+
+definition SL.AuditRound6.four_trace_lift :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Fin 4 → ℝ) (Polynomial.{0} ℝ)
+
+theorem SL.AuditRound6.four_trace_right_inverse :
+∀ (r : Fin 4 → ℝ), Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound6.four_trace_lift r)) r
+
+definition SL.AuditRound6.correct_four_traces :
+Polynomial.{0} ℝ → Polynomial.{0} ℝ
+
+theorem SL.AuditRound6.corrected_four_traces_zero :
+∀ (p : Polynomial.{0} ℝ), Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound6.correct_four_traces p)) 0
+
+theorem SL.AuditRound6.correction_fixes_kernel :
+∀ (p : Polynomial.{0} ℝ), Eq.{1} (SL.AuditRound6.four_traces p) 0 → Eq.{1} (SL.AuditRound6.correct_four_traces p) p
+
+definition SL.AuditRound6.cancellation :
+Polynomial.{0} ℝ
+
+theorem SL.AuditRound6.cancellation_formula :
+Eq.{1} SL.AuditRound6.cancellation
+  (HAdd.hAdd.{0, 0, 0}
+    (HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 6)
+      (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} 5) (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 4)))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} 7) (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 2)))
+
+theorem SL.AuditRound6.cancellation_four_traces_zero :
+Eq.{1} (SL.AuditRound6.four_traces SL.AuditRound6.cancellation) 0
+
+theorem SL.AuditRound6.p_four_four_traces :
+Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound5.p_even 2))
+  (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 24 (Matrix.vecCons.{0} (-24) Matrix.vecEmpty.{0}))))
+
+theorem SL.AuditRound6.p_four_four_traces_ne_zero :
+Ne.{1} (SL.AuditRound6.four_traces (SL.AuditRound5.p_even 2)) 0
+
+definition SL.AuditRound6.detector :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+
+definition SL.AuditRound6.witness :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+
+definition SL.AuditRound6.coordinate_zero :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+
+definition SL.AuditRound6.coordinate_one :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+
+theorem SL.AuditRound6.coordinate_detection_counterexample :
+Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.coordinate_zero) 1 ∧
+  Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.coordinate_one) 1 ∧
+    Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.witness) 0 ∧
+      Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.witness SL.AuditRound6.coordinate_zero) 1 ∧
+        Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.witness SL.AuditRound6.coordinate_one) (-1)
+
+theorem SL.AuditRound6.local_algebra_root :
+Eq.{1} SL.AuditRound6.augmented_span Top.top.{0} ∧
+  HPow.hPow.{0, 0, 0} Polynomial.X.{0} 2 ∉ SL.AuditRound6.sparse_span ∧
+    (∀ (i : Fin 4),
+        Eq.{1} (SL.AuditRound6.four_traces (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (↑i) 2))) fun j =>
+          SL.AuditRound6.trace_matrix j i) ∧
+      Eq.{1} (Matrix.det.{0, 0} SL.AuditRound6.trace_matrix) 15360 ∧
+        Eq.{1} (HMul.hMul.{0, 0, 0} SL.AuditRound6.trace_matrix SL.AuditRound6.inverse_matrix) 1 ∧
+          Eq.{1} (HMul.hMul.{0, 0, 0} SL.AuditRound6.inverse_matrix SL.AuditRound6.trace_matrix) 1 ∧
+            (∀ (r : Fin 4 → ℝ), Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound6.four_trace_lift r)) r) ∧
+              (∀ (p : Polynomial.{0} ℝ), Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound6.correct_four_traces p)) 0) ∧
+                Eq.{1} SL.AuditRound6.cancellation
+                    (HAdd.hAdd.{0, 0, 0}
+                      (HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 6)
+                        (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} 5) (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 4)))
+                      (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} 7) (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 2))) ∧
+                  Eq.{1} (SL.AuditRound6.four_traces SL.AuditRound6.cancellation) 0 ∧
+                    Eq.{1} (SL.AuditRound6.four_traces (SL.AuditRound5.p_even 2))
+                        (Matrix.vecCons.{0} 0
+                          (Matrix.vecCons.{0} 0
+                            (Matrix.vecCons.{0} 24 (Matrix.vecCons.{0} (-24) Matrix.vecEmpty.{0})))) ∧
+                      Ne.{1} (SL.AuditRound6.four_traces (SL.AuditRound5.p_even 2)) 0 ∧
+                        Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.coordinate_zero) 1 ∧
+                          Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.coordinate_one) 1 ∧
+                            Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.detector SL.AuditRound6.witness) 0 ∧
+                              Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.witness SL.AuditRound6.coordinate_zero) 1 ∧
+                                Eq.{1} (Inner.inner.{0, 0} ℝ SL.AuditRound6.witness SL.AuditRound6.coordinate_one) (-1)
+

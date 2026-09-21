@@ -1,0 +1,226 @@
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:132:55: error: unsolved goals
+⊢ 2 *
+        (2 *
+            (Matrix.vecCons (![2, 2, 4, 4] 2)
+                  (fun i =>
+                    Matrix.vecCons (![-2, 2, -4, 4] 2)
+                      (fun i => Matrix.vecCons (![0, 0, 24, 40] 2) (fun i => ![0, 0, -24, 40] 2) i) i)
+                  2 *
+                Matrix.vecCons (![2, -4, 4] 2) (fun i => Matrix.vecCons (![0, 24, 40] 2) (fun i => ![0, -24, 40] 2) i)
+                  2 +
+              -(Matrix.vecCons (![2, 4, 4] 2)
+                    (fun i =>
+                      Matrix.vecCons (![2, -4, 4] 2)
+                        (fun i => Matrix.vecCons (![0, 24, 40] 2) (fun i => ![0, -24, 40] 2) i) i)
+                    2 *
+                  Matrix.vecCons (![-2, 2, -4, 4] 2)
+                    (fun i => Matrix.vecCons (![0, 0, 24, 40] 2) (fun i => ![0, 0, -24, 40] 2) i) 2)) +
+          (-(![-2, 2, -4, 4] 2 *
+                (Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                    Matrix.vecCons (![2, -4, 4] 2)
+                      (fun i => Matrix.vecCons (![0, 24, 40] 2) (fun i => ![0, -24, 40] 2) i) 2 +
+                  -(Matrix.vecCons (![2, 4, 4] 2)
+                        (fun i =>
+                          Matrix.vecCons (![2, -4, 4] 2)
+                            (fun i => Matrix.vecCons (![0, 24, 40] 2) (fun i => ![0, -24, 40] 2) i) i)
+                        2 *
+                      Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))) +
+            ![2, -4, 4] 2 *
+              (Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                  Matrix.vecCons (![-2, 2, -4, 4] 2)
+                    (fun i => Matrix.vecCons (![0, 0, 24, 40] 2) (fun i => ![0, 0, -24, 40] 2) i) 2 +
+                -(Matrix.vecCons (![2, 2, 4, 4] 2)
+                      (fun i =>
+                        Matrix.vecCons (![-2, 2, -4, 4] 2)
+                          (fun i => Matrix.vecCons (![0, 0, 24, 40] 2) (fun i => ![0, 0, -24, 40] 2) i) i)
+                      2 *
+                    Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2)))) +
+      (-(2 *
+            (-(2 *
+                  (Matrix.vecCons 4 (fun i => Matrix.vecCons (-4) (fun i => Matrix.vecCons 24 (fun i => -24) i) i) 2 *
+                      Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 1 2))
+                        (fun i =>
+                          Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 1 2))
+                            (fun i => ![0, 0, -24, 40] (Fin.succAbove 1 2)) i)
+                        2 +
+                    -(Matrix.vecCons (![2, 2, 4, 4] (Fin.succAbove 1 2))
+                          (fun i =>
+                            Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 1 2))
+                              (fun i =>
+                                Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 1 2))
+                                  (fun i => ![0, 0, -24, 40] (Fin.succAbove 1 2)) i)
+                              i)
+                          2 *
+                        Matrix.vecCons (-4) (fun i => Matrix.vecCons 24 (fun i => -24) i) 2))) +
+              (4 *
+                  (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                      Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 1 2))
+                        (fun i =>
+                          Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 1 2))
+                            (fun i => ![0, 0, -24, 40] (Fin.succAbove 1 2)) i)
+                        2 +
+                    -(Matrix.vecCons (![2, 2, 4, 4] (Fin.succAbove 1 2))
+                          (fun i =>
+                            Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 1 2))
+                              (fun i =>
+                                Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 1 2))
+                                  (fun i => ![0, 0, -24, 40] (Fin.succAbove 1 2)) i)
+                              i)
+                          2 *
+                        Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2)) +
+                ![-2, 2, -4, 4] (Fin.succAbove 1 2) *
+                  (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                      Matrix.vecCons (-4) (fun i => Matrix.vecCons 24 (fun i => -24) i) 2 +
+                    -(Matrix.vecCons 4 (fun i => Matrix.vecCons (-4) (fun i => Matrix.vecCons 24 (fun i => -24) i) i)
+                          2 *
+                        Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))))) +
+        (4 *
+            (-(2 *
+                  (Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                      Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 2 2))
+                        (fun i =>
+                          Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 2 2))
+                            (fun i => ![0, 0, -24, 40] (Fin.succAbove 2 2)) i)
+                        2 +
+                    -(Matrix.vecCons (![2, 2, 4, 4] (Fin.succAbove 2 2))
+                          (fun i =>
+                            Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 2 2))
+                              (fun i =>
+                                Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 2 2))
+                                  (fun i => ![0, 0, -24, 40] (Fin.succAbove 2 2)) i)
+                              i)
+                          2 *
+                        Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))) +
+              (-(2 *
+                    (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                        Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 2 2))
+                          (fun i =>
+                            Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 2 2))
+                              (fun i => ![0, 0, -24, 40] (Fin.succAbove 2 2)) i)
+                          2 +
+                      -(Matrix.vecCons (![2, 2, 4, 4] (Fin.succAbove 2 2))
+                            (fun i =>
+                              Matrix.vecCons (![-2, 2, -4, 4] (Fin.succAbove 2 2))
+                                (fun i =>
+                                  Matrix.vecCons (![0, 0, 24, 40] (Fin.succAbove 2 2))
+                                    (fun i => ![0, 0, -24, 40] (Fin.succAbove 2 2)) i)
+                                i)
+                            2 *
+                          Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))) +
+                ![-2, 2, -4, 4] (Fin.succAbove 2 2) *
+                  (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                      Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2 +
+                    -(Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                        Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2)))) +
+          -(4 *
+              (-(2 *
+                    (Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                        Matrix.vecCons (![-2, 2, -4, 4] (Fin.castSucc 2))
+                          (fun i =>
+                            Matrix.vecCons (![0, 0, 24, 40] (Fin.castSucc 2))
+                              (fun i => ![0, 0, -24, 40] (Fin.castSucc 2)) i)
+                          2 +
+                      -(Matrix.vecCons (![2, 2, 4, 4] (Fin.castSucc 2))
+                            (fun i =>
+                              Matrix.vecCons (![-2, 2, -4, 4] (Fin.castSucc 2))
+                                (fun i =>
+                                  Matrix.vecCons (![0, 0, 24, 40] (Fin.castSucc 2))
+                                    (fun i => ![0, 0, -24, 40] (Fin.castSucc 2)) i)
+                                i)
+                            2 *
+                          Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))) +
+                (-(2 *
+                      (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                          Matrix.vecCons (![-2, 2, -4, 4] (Fin.castSucc 2))
+                            (fun i =>
+                              Matrix.vecCons (![0, 0, 24, 40] (Fin.castSucc 2))
+                                (fun i => ![0, 0, -24, 40] (Fin.castSucc 2)) i)
+                            2 +
+                        -(Matrix.vecCons (![2, 2, 4, 4] (Fin.castSucc 2))
+                              (fun i =>
+                                Matrix.vecCons (![-2, 2, -4, 4] (Fin.castSucc 2))
+                                  (fun i =>
+                                    Matrix.vecCons (![0, 0, 24, 40] (Fin.castSucc 2))
+                                      (fun i => ![0, 0, -24, 40] (Fin.castSucc 2)) i)
+                                  i)
+                              2 *
+                            Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))) +
+                  ![-2, 2, -4, 4] (Fin.castSucc 2) *
+                    (Matrix.vecCons 2 (fun i => Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                        Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) 2 +
+                      -(Matrix.vecCons 2 (fun i => Matrix.vecCons 2 (fun i => Matrix.vecCons 0 (fun i => 0) i) i) 2 *
+                          Matrix.vecCons (-2) (fun i => Matrix.vecCons 0 (fun i => 0) i) 2))))))) =
+    15360
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:147:50: error: elaboration function for `Mathlib.Tactic.subscriptTerm` has not been implemented
+  ᵥ
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:147:57: error: unsolved goals
+a : Fin 4 → ℝ
+j : Fin 4
+⊢ ∑ x, a x * trace_matrix j x = (trace_matrix * sorry ()) j
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:149:61: warning: This simp argument is unused:
+  Matrix.mulVec
+
+Hint: Omit it from the simp argument list.
+  simp [monomial_lift, map_sum, four_trace_monomial_columns, M̵a̵t̵r̵i̵x̵.̵m̵u̵l̵V̵e̵c̵,̵
+  ̵ ̵ ̵ ̵ ̵dotProduct, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:150:4: warning: This simp argument is unused:
+  dotProduct
+
+Hint: Omit it from the simp argument list.
+  simp [monomial_lift, map_sum, four_trace_monomial_columns, Matrix.mulVec,
+  ̵  ̵ ̵ ̵d̵o̵t̵P̵r̵o̵d̵u̵c̵t̵,̵ ̵mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:150:16: warning: This simp argument is unused:
+  mul_comm
+
+Hint: Omit it from the simp argument list.
+  simp [monomial_lift, map_sum, four_trace_monomial_columns, Matrix.mulVec,
+  ̵  ̵ ̵ ̵dotProduct,̵ ̵m̵u̵l̵_̵c̵o̵m̵m̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:153:44: error: elaboration function for `Mathlib.Tactic.subscriptTerm` has not been implemented
+  ᵥ
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:154:18: error: unsolved goals
+a b : Fin 4 → ℝ
+⊢ monomial_lift (inverse_matrix * sorry ()) =
+    monomial_lift (inverse_matrix * sorry ()) + monomial_lift (inverse_matrix * sorry ())
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:155:19: error: unsolved goals
+a : ℝ
+b : Fin 4 → ℝ
+⊢ monomial_lift (inverse_matrix * sorry ()) = a • monomial_lift (inverse_matrix * sorry ())
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:154:27: warning: This simp argument is unused:
+  Matrix.mulVec_add
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵M̵a̵t̵r̵i̵x̵.̵m̵u̵l̵V̵e̵c̵_̵a̵d̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:155:28: warning: This simp argument is unused:
+  Matrix.mulVec_smul
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵M̵a̵t̵r̵i̵x̵.̵m̵u̵l̵V̵e̵c̵_̵s̵m̵u̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:159:53: error: elaboration function for `Mathlib.Tactic.subscriptTerm` has not been implemented
+  ᵥ
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:159:2: error: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:177:56: error: unsolved goals
+⊢ X ^ 2 * C (7 / 2) * C 2 - X ^ 4 * C (3 / 2) - X ^ 4 * C (7 / 2) + X ^ 6 = X ^ 2 * C 7 - X ^ 4 * C 5 + X ^ 6
+F:\LaTeX\BVE research\lean-proof\SL\AuditRound6.lean:190:67: error: unsolved goals
+h : ![0, 0, 24, -24] = 0
+h2 : ![0, 0, 24, -24] 2 = 0
+⊢ False

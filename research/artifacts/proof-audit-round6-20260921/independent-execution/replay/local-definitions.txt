@@ -1,0 +1,174 @@
+SL.AuditRound5.endpoint_minus :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear (-1) ∘ₗ Polynomial.derivative.{0})
+  (HSMul.hSMul.{0, 0, 0} (1 / 2) (HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1) (SL.AuditRound5.eval_linear (-1))))
+
+SL.AuditRound5.endpoint_plus :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1 ∘ₗ Polynomial.derivative.{0})
+  (HSMul.hSMul.{0, 0, 0} (1 / 2) (HSub.hSub.{0, 0, 0} (SL.AuditRound5.eval_linear 1) (SL.AuditRound5.eval_linear (-1))))
+
+SL.AuditRound5.eval_linear :
+ℝ → LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) ℝ
+:=
+fun x => LinearMap.mk.{0, 0, 0, 0} (AddHom.mk.{0, 0} (fun p => Polynomial.eval.{0} x p) ⋯) ⋯
+
+SL.AuditRound5.krein_polynomials :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+LinearMap.ker.{0, 0, 0, 0} SL.AuditRound5.residues
+
+SL.AuditRound5.p_even :
+ℕ → Polynomial.{0} ℝ
+:=
+fun m =>
+  HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HMul.hMul.{0, 0, 0} 2 m))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (HDiv.hDiv.{0, 0, 0} (↑m) (HSub.hSub.{0, 0, 0} (↑m) 1)))
+      (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 2)))
+
+SL.AuditRound5.p_odd :
+ℕ → Polynomial.{0} ℝ
+:=
+fun m =>
+  HSub.hSub.{0, 0, 0} (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1))
+    (HMul.hMul.{0, 0, 0} (Polynomial.C.{0} (HDiv.hDiv.{0, 0, 0} (↑m) (HSub.hSub.{0, 0, 0} (↑m) 1)))
+      (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 m) 1)))
+
+SL.AuditRound5.p_one :
+Polynomial.{0} ℝ
+:=
+Polynomial.X.{0}
+
+SL.AuditRound5.p_zero :
+Polynomial.{0} ℝ
+:=
+1
+
+SL.AuditRound5.residues :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) (Prod.{0, 0} ℝ ℝ)
+:=
+LinearMap.prod.{0, 0, 0, 0} SL.AuditRound5.endpoint_plus SL.AuditRound5.endpoint_minus
+
+SL.AuditRound6.augmented_generators :
+Set.{0} (Polynomial.{0} ℝ)
+:=
+setOf.{0} fun p =>
+  Membership.mem.{0, 0} SL.AuditRound6.sparse_generators p ∨
+    Eq.{1} p (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 2) ∨ Eq.{1} p (HPow.hPow.{0, 0, 0} Polynomial.X.{0} 3)
+
+SL.AuditRound6.augmented_span :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+Submodule.span.{0, 0} ℝ SL.AuditRound6.augmented_generators
+
+SL.AuditRound6.cancellation :
+Polynomial.{0} ℝ
+:=
+HSub.hSub.{0, 0, 0} (SL.AuditRound5.p_even 3) (HSMul.hSMul.{0, 0, 0} (7 / 2) (SL.AuditRound5.p_even 2))
+
+SL.AuditRound6.coordinate_one :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+:=
+WithLp.toLp.{0} 2 (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0}))
+
+SL.AuditRound6.coordinate_zero :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+:=
+WithLp.toLp.{0} 2 (Matrix.vecCons.{0} 1 (Matrix.vecCons.{0} 0 Matrix.vecEmpty.{0}))
+
+SL.AuditRound6.correct_four_traces :
+Polynomial.{0} ℝ → Polynomial.{0} ℝ
+:=
+fun p => HSub.hSub.{0, 0, 0} p (SL.AuditRound6.four_trace_lift (SL.AuditRound6.four_traces p))
+
+SL.AuditRound6.detector :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+:=
+WithLp.toLp.{0} 2 (Matrix.vecCons.{0} 1 (Matrix.vecCons.{0} 1 Matrix.vecEmpty.{0}))
+
+SL.AuditRound6.four_trace_lift :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Fin 4 → ℝ) (Polynomial.{0} ℝ)
+:=
+LinearMap.mk.{0, 0, 0, 0}
+  (AddHom.mk.{0, 0} (fun r => SL.AuditRound6.monomial_lift (Matrix.mulVec.{0, 0, 0} SL.AuditRound6.inverse_matrix r))
+    SL.AuditRound6.four_trace_lift._proof_1)
+  SL.AuditRound6.four_trace_lift._proof_2
+
+SL.AuditRound6.four_traces :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Polynomial.{0} ℝ) (Fin 4 → ℝ)
+:=
+LinearMap.mk.{0, 0, 0, 0}
+  (AddHom.mk.{0, 0}
+    (fun p =>
+      Matrix.vecCons.{0} (SL.AuditRound5.residues p).1
+        (Matrix.vecCons.{0} (SL.AuditRound5.residues p).2
+          (Matrix.vecCons.{0} (SL.AuditRound5.residues (Polynomial.derivative.{0} (Polynomial.derivative.{0} p))).1
+            (Matrix.vecCons.{0} (SL.AuditRound5.residues (Polynomial.derivative.{0} (Polynomial.derivative.{0} p))).2
+              Matrix.vecEmpty.{0}))))
+    SL.AuditRound6.four_traces._proof_1)
+  SL.AuditRound6.four_traces._proof_2
+
+SL.AuditRound6.inverse_matrix :
+Matrix.{0, 0, 0} (Fin 4) (Fin 4) ℝ
+:=
+Matrix.of.{0, 0, 0}
+  (Matrix.vecCons.{0}
+    (Matrix.vecCons.{0} (1 / 4)
+      (Matrix.vecCons.{0} (-1 / 4) (Matrix.vecCons.{0} (-1 / 24) (Matrix.vecCons.{0} (1 / 24) Matrix.vecEmpty.{0}))))
+    (Matrix.vecCons.{0}
+      (Matrix.vecCons.{0} (1 / 4)
+        (Matrix.vecCons.{0} (1 / 4) (Matrix.vecCons.{0} (-1 / 40) (Matrix.vecCons.{0} (-1 / 40) Matrix.vecEmpty.{0}))))
+      (Matrix.vecCons.{0}
+        (Matrix.vecCons.{0} 0
+          (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} (1 / 48) (Matrix.vecCons.{0} (-1 / 48) Matrix.vecEmpty.{0}))))
+        (Matrix.vecCons.{0}
+          (Matrix.vecCons.{0} 0
+            (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} (1 / 80) (Matrix.vecCons.{0} (1 / 80) Matrix.vecEmpty.{0}))))
+          Matrix.vecEmpty.{0}))))
+
+SL.AuditRound6.monomial_lift :
+LinearMap.{0, 0, 0, 0} (RingHom.id.{0} ℝ) (Fin 4 → ℝ) (Polynomial.{0} ℝ)
+:=
+LinearMap.mk.{0, 0, 0, 0}
+  (AddHom.mk.{0, 0}
+    (fun a => ∑ i, HSMul.hSMul.{0, 0, 0} (a i) (HPow.hPow.{0, 0, 0} Polynomial.X.{0} (HAdd.hAdd.{0, 0, 0} (↑i) 2)))
+    SL.AuditRound6.monomial_lift._proof_1)
+  SL.AuditRound6.monomial_lift._proof_2
+
+SL.AuditRound6.sparse_generators :
+Set.{0} (Polynomial.{0} ℝ)
+:=
+setOf.{0} fun p =>
+  Eq.{1} p SL.AuditRound5.p_zero ∨
+    Eq.{1} p SL.AuditRound5.p_one ∨
+      ∃ m, LE.le.{0} 2 m ∧ (Eq.{1} p (SL.AuditRound5.p_even m) ∨ Eq.{1} p (SL.AuditRound5.p_odd m))
+
+SL.AuditRound6.sparse_span :
+Submodule.{0, 0} ℝ (Polynomial.{0} ℝ)
+:=
+Submodule.span.{0, 0} ℝ SL.AuditRound6.sparse_generators
+
+SL.AuditRound6.trace_matrix :
+Matrix.{0, 0, 0} (Fin 4) (Fin 4) ℝ
+:=
+Matrix.of.{0, 0, 0}
+  (Matrix.vecCons.{0}
+    (Matrix.vecCons.{0} 2 (Matrix.vecCons.{0} 2 (Matrix.vecCons.{0} 4 (Matrix.vecCons.{0} 4 Matrix.vecEmpty.{0}))))
+    (Matrix.vecCons.{0}
+      (Matrix.vecCons.{0} (-2)
+        (Matrix.vecCons.{0} 2 (Matrix.vecCons.{0} (-4) (Matrix.vecCons.{0} 4 Matrix.vecEmpty.{0}))))
+      (Matrix.vecCons.{0}
+        (Matrix.vecCons.{0} 0
+          (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} 24 (Matrix.vecCons.{0} 40 Matrix.vecEmpty.{0}))))
+        (Matrix.vecCons.{0}
+          (Matrix.vecCons.{0} 0
+            (Matrix.vecCons.{0} 0 (Matrix.vecCons.{0} (-24) (Matrix.vecCons.{0} 40 Matrix.vecEmpty.{0}))))
+          Matrix.vecEmpty.{0}))))
+
+SL.AuditRound6.witness :
+EuclideanSpace.{0, 0} ℝ (Fin 2)
+:=
+WithLp.toLp.{0} 2 (Matrix.vecCons.{0} 1 (Matrix.vecCons.{0} (-1) Matrix.vecEmpty.{0}))
+

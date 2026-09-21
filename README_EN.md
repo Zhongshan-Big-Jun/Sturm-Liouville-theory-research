@@ -2,6 +2,8 @@
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
+Sixth-round repair (2026-09-21): corrected sparse-projection, finite-moment and constraint-representer claims. The complete original sparse family is now proved dense for exactly the nonnegative range $0\le s<7/2$ in the specified genuine left-definite spaces. Analytic proofs and library propagation passed fresh independent reviews. Local Lean coverage is stated separately in the [sixth-round report](reports/proof-audit-round6-20260921/REPORT.md).
+
 Fifth-round audit (2026-09-21): the old O1'LD tail-rigidity, unconditional cofinite-density and proper-subspace candidates are refuted. The monomial finite-deletion lemma retains its conclusion with a corrected proof. The two-trace classification at s=2 has passed independent review, and its revised tool card is available for reuse; see the [fifth-round report](reports/proof-audit-round5-20260921/REPORT.md).
 
 The fourth revision on 2026-09-21 separates ordinary-function and quotient limits, repairs the third-order program, reduction assumptions and parameter table, and proves general-c minimal solutions for the specified even/odd coefficient family. See the [fourth-audit report](reports/proof-audit-round4-20260921/REPORT.md) for analytic, independent-review and local-Lean scopes.
@@ -33,14 +35,14 @@ Most detailed research notes are currently in Chinese or mixed Chinese and Engli
 
 ## Selected results and their scope
 
-The entries below summarize existing proofs and audited packages, checked against repository records on 2026-09-09. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
+The overview retains the research lines compiled on 2026-09-09, with the left-definite entry updated for the sixth-round repair. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
 
 | Research line | Existing result | Scope and evidence |
 | --- | --- | --- |
 | Adjacent ratios over all indices | Balanced-phase supremum formula; infimum 1, not attained | [Supremum](docs/SL_ratio_proof.tex), [infimum](docs/SL_inf_ratio_proof.tex); retain the density class of each source |
 | n=1 adjacent gaps | Reduction, rigidity, symmetric-line analysis, and extremal proof chain | [Proof guide](docs/research-guide.md); all R>1 in the normalized box class |
 | n>=2 gap structure | Finite-block reduction and exactly 2n switches | [Reduction](docs/SL_gap_nge2_finite_reduction_proof.tex), [switch theorem](docs/SL_gap_nge2_exact_2n_switches_proof.tex); global uniqueness remains open |
-| Left-definite spaces and domains | Moment-based completeness proofs and an obstruction for algebraically transported polynomials | [H2 proof](docs/SL_h2_completeness_proof.tex), [exact power-domain statement](tools/krein-power-domain-polynomial-obstruction.md) |
+| Left-definite spaces and domains | Sharp 0<=s<7/2 density of the original complete sparse family, s=2 cofinite classification, and operator-domain obstructions | [Full window](docs/SL_fractional_left_definite.tex), [s=2 cofinite classification](docs/SL_cofinite_left_definite.tex), [power-domain obstruction](tools/krein-power-domain-polynomial-obstruction.md) |
 | B4/P1 M3 | STRICT asymptotics and signs of two sector determinants | [Tool and proof chain](tools/m3-largeR-closure.md); n=2 symmetric INF, large R, finite nonzero interior chart |
 | KP-DET | Complete-constraint branch closed for 0<c<=2/3; exact quadrature reduction P20-P21 | [Sequence 26][kp-whiteboard]; audited partial results, with Q9 still OPEN in the local main run |
 
@@ -50,7 +52,7 @@ The plugin repository separately contains [three complete Q9 benchmark proofs an
 
 - Global nondegeneracy, symmetry, uniqueness, and optimal values for n>=2 gap extremals.
 - Fixed-n ratio optima and remaining monotonicity questions. Later STRICT results already cover the 2n root count; see the [guide](docs/research-guide.md).
-- General non-diagonal density criteria O1'/O1'LD, the remaining fractional window, and threshold classification.
+- General non-diagonal density criteria O1'/O1'LD, deletion classifications at other orders, and constrained-space problems. The original complete family's nonnegative window 0<=s<7/2 is now proved.
 - Nonhomogeneous source-term control and broader coefficient families in the third-order recurrence. The [specified even/odd family](docs/SL_third_order_recurrence_theory.tex) now has minimal-solution constants for every c>0 and a rational-ratio classification. [K(1)=e/4](docs/SL_third_order_K1_proof.tex) remains the even-family anchor.
 
 The research map and early survey contain records from different dates. Follow the precise theorem, audit, scope, and relevant latest run when resuming. The guide identifies historical G2 status differences that still need statement-level reconciliation.

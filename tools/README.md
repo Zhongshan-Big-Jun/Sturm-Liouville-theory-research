@@ -16,6 +16,10 @@
 命令入口随已加载插件版本确定; 本轮开发实现位于插件源码仓库 `_xsoc1_work/`,
 是否已发布和安装见对应版本报告, 不从目录存在推断安装成功.
 
+## 第六轮修订 (2026-09-21)
+
+[投影与有限矩准则](constrained-denseness-runs.md)修复三项问题, 采用实际尾部正交障碍上的有限检验; 原F的假设无实例, 一个表示元的非零检测不等于两个矩分别为零. [谱域工具](spectral-domain-checks.md)给出原完整命名族的精确非负稠密范围0<=s<7/2, 由四迹图核心补证. 九张相关卡和继承义务均按当前版本审查并释放; 旧源和批注保留. 第五轮s=2删除分类范围不扩大. [第六轮报告](../reports/proof-audit-round6-20260921/REPORT.md)区分解析验收、局部Lean和首次摘要退回.
+
 ## 第五轮修订 (2026-09-21)
 
 [余有限稀疏族与两条迹](leftdef-o1pld-l2-structural.md)撤回原Claim4/Theorem5/Corollary6的错误候选, 给出s=2的完整余有限闭包、两个Green障碍及实际闭子空间分类. 单项式有限删除引理的换元系数和证明同时修复. 原封存run保持不变, 当前复用以新版精确回执为准; 一般非余有限O1'LD与s=3的对应分类仍开放. [第五轮报告](../reports/proof-audit-round5-20260921/REPORT.md)区分解析证明、37个局部Lean定理、四份隔离审查回执与额外的独立编译检查.
@@ -35,7 +39,7 @@
 | K1 终端条件、归一化与极限 | [最小解 K1](third-order-minimal-K1.md) |
 
 本轮精确结论: `x² in Ht iff t<3/2`, `p4 in Hs iff s<7/2` (非负阶).
-原稀疏族在 `s>=7/2` 时不全属于相应幂域; `3<s<7/2` 的同族稠密性仍开放.
+原稀疏族在 `s>=7/2` 时不全属于相应幂域; 第二轮当时保留的 `3<s<7/2` 问题已由第六轮四迹图核心补证关闭, 当前原完整族范围为 `0<=s<7/2`.
 原“全阶算子域多项式基”解释已经撤回, 见 [幂域障碍](krein-power-domain-polynomial-obstruction.md).
 首对全局最优性需要变分证明; 全序列相邻比值下确界为 1, 与固定指标问题分开.
 详细检验、纠错回执及 Lean 范围见 [第二轮报告](../reports/proof-audit-round2-20260920/REPORT.md).
@@ -63,7 +67,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | bang-bang | [card](<bang-bang.md>) | 0 |
 | bloch-band | [card](<bloch-band.md>) | 0 |
 | cell-merging | [card](<cell-merging.md>) | 0 |
-| constrained-denseness-runs | [card](<constrained-denseness-runs.md>) | 0 |
+| constrained-denseness-runs | [card](<constrained-denseness-runs.md>) | 1 |
 | cot-series-certificate | [card](<cot-series-certificate.md>) | 0 |
 | delta-bracketing | [card](<delta-bracketing.md>) | 0 |
 | denseness-criteria | [card](<denseness-criteria.md>) | 0 |
@@ -114,7 +118,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 0 |
 | secular-chebyshev-jacobi-rootcount | [card](<secular-chebyshev-jacobi-rootcount.md>) | 0 |
 | single-well-intersection | [card](<single-well-intersection.md>) | 0 |
-| spectral-domain-checks | [card](<spectral-domain-checks.md>) | 1 |
+| spectral-domain-checks | [card](<spectral-domain-checks.md>) | 2 |
 | spectral-monotonicity-reduction | [card](<spectral-monotonicity-reduction.md>) | 0 |
 | sturm-oscillation | [card](<sturm-oscillation.md>) | 0 |
 | switch-saturation-k-invariant | [card](<switch-saturation-k-invariant.md>) | 0 |

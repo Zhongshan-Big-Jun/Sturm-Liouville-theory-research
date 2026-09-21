@@ -1,0 +1,202 @@
+{
+	"checked_paths": [
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/lake-manifest.json",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/lakefile.lean",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/lean-toolchain",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/local-definitions.json",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/local-definitions.txt",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/public-declarations.json",
+		"research/artifacts/proof-audit-round6-20260921/lean-readback/public-types.txt"
+	],
+	"claim_results": [
+		{
+			"id": "SL.AuditRound6.sparse_generators",
+			"reason": "Defines a set of real polynomials containing 1, X and precisely the specified even/odd family elements indexed by a natural number m satisfying m≥2. The existential index and its restriction apply to both alternatives.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.sparse_span",
+			"reason": "Defines the algebraic real-linear span of sparse_generators in Polynomial ℝ. No topological closure is present.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.augmented_generators",
+			"reason": "Defines membership as membership in sparse_generators, or equality to X², or equality to X³.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.augmented_span",
+			"reason": "Defines the algebraic real-linear span of augmented_generators in Polynomial ℝ.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.sparse_span_le_krein",
+			"reason": "States an unconditional submodule inclusion into the kernel of the two endpoint residuals. The declaration asserts inclusion only.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.X_sq_not_mem_sparse_span",
+			"reason": "States that the fixed real polynomial X² does not belong to sparse_span, without additional hypotheses.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.even_power_mem_augmented",
+			"reason": "Universally quantifies over every m∈ℕ, including m=0 and m=1, and states X^(2m)∈augmented_span. There is no m≥2 hypothesis.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.odd_power_mem_augmented",
+			"reason": "Universally quantifies over every m∈ℕ, including m=0 and m=1, and states X^(2m+1)∈augmented_span.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.power_mem_augmented",
+			"reason": "States membership of X^n for every natural exponent n, including zero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.polynomial_mem_augmented",
+			"reason": "Quantifies over every real polynomial, with no degree bound or endpoint hypothesis, and states its membership in augmented_span.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.augmented_span_eq_top",
+			"reason": "States equality with the top submodule of Polynomial ℝ. Its ambient space consists of finite polynomials.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_traces",
+			"reason": "Defines a real-linear map on all real polynomials, ordered as the plus/minus residuals of p followed by the plus/minus residuals of its second formal derivative.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_traces_apply",
+			"reason": "For every real polynomial p, states equality with the four-coordinate vector specified by the definition, retaining both derivatives and the coordinate order.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.trace_matrix",
+			"reason": "Defines the explicit real 4×4 matrix reproduced in the readback. Both indices range over Fin 4.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.inverse_matrix",
+			"reason": "Defines the explicit real 4×4 matrix of rational entries reproduced in the readback. The definition itself is separate from the inverse identity theorem.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_trace_monomial_columns",
+			"reason": "For every i∈Fin 4, identifies four_traces(X^(i.val+2)) with the entire column j↦trace_matrix j i, where j also ranges over Fin 4.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.trace_matrix_det",
+			"reason": "States the exact real equality det(trace_matrix)=15360, without parameters or hypotheses.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.trace_matrix_two_sided_inverse",
+			"reason": "States both matrix-product identities. Multiplication is ordinary matrix multiplication and 1 denotes the 4×4 identity matrix.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.monomial_lift",
+			"reason": "Defines a real-linear map from Fin 4→ℝ to real polynomials, sending a to the finite sum of a(i) times X^(i.val+2).",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_traces_monomial_lift",
+			"reason": "For every coefficient vector a∈Fin 4→ℝ, states that tracing its monomial lift equals trace_matrix.mulVec a.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_trace_lift",
+			"reason": "Defines a real-linear map taking each r∈Fin 4→ℝ to monomial_lift(inverse_matrix.mulVec r).",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.four_trace_right_inverse",
+			"reason": "For every real four-coordinate vector r, states four_traces(four_trace_lift r)=r, without restrictions on r.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.correct_four_traces",
+			"reason": "Defines a function on real polynomials by p↦p−four_trace_lift(four_traces p). Its declared type is an ordinary function type.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.corrected_four_traces_zero",
+			"reason": "For every real polynomial p, states that its corrected polynomial has the zero vector of four traces.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.correction_fixes_kernel",
+			"reason": "Retains both binders: an arbitrary real polynomial p and a hypothesis four_traces p=0. Under that hypothesis, its correction equals p.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.cancellation",
+			"reason": "Defines the fixed polynomial p_even(3)−(7/2)·p_even(2), with real scalar multiplication.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.cancellation_formula",
+			"reason": "States the polynomial identity cancellation=X⁶−5X⁴+7X². The coefficients 5 and 7 are embedded as constant real polynomials.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.cancellation_four_traces_zero",
+			"reason": "States that the specific cancellation polynomial has all four traces zero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.p_four_four_traces",
+			"reason": "States four_traces(p_even(2))=(0,0,24,−24). The argument is the specific polynomial X⁴−2X².",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.p_four_four_traces_ne_zero",
+			"reason": "States that the four-trace vector of p_even(2) is unequal to the zero vector; it does not require every coordinate to be nonzero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.detector",
+			"reason": "Defines the fixed vector (1,1) in the real Euclidean space indexed by Fin 2.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.witness",
+			"reason": "Defines the fixed vector (1,−1) in the same real Euclidean space.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.coordinate_zero",
+			"reason": "Defines the coordinate vector (1,0), indexed at coordinate zero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.coordinate_one",
+			"reason": "Defines the coordinate vector (0,1), indexed at coordinate one.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.coordinate_detection_counterexample",
+			"reason": "States five exact real inner-product equalities for the four fixed vectors. No arbitrary detector, witness, dimension or basis is quantified.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "SL.AuditRound6.local_algebra_root",
+			"reason": "States the 17 conjuncts reproduced explicitly in the readback. Its internal quantifiers range over Fin 4, real four-coordinate vectors and real polynomials; it has no outer hypotheses.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval is limited to formal readback of the supplied declarations and definitions. All seven snapshot hashes matched; the text exports matched their JSON counterparts, and recorded outer binder kinds matched the supplied expression trees. No comparison with an author's intended theorem was performed.",
+		"Source-to-export fidelity, theorem proof correctness and Lean kernel acceptance were not independently checked. The packet does not supply the target source modules, compiled environment, theorem proof terms or all referenced proof auxiliaries needed for such checks.",
+		"The environment snapshots specify Lean v4.31.0 and mathlib revision fabf563a7c95a166b8d7b6efca11c8b4dc9d911f. Runtime installation and imported dependency contents were not inspected. Each declaration's supplied transitive_axioms field lists propext, Classical.choice and Quot.sound; those lists were not independently regenerated."
+	],
+	"packet_sha256": "c1987508542ce8e956138cf733ddf84e82517f204d31743fda4b986ee2566e1d",
+	"readback": "Notation and domains: Let P=ℝ[X], the real polynomial space, X its indeterminate, C(c) the constant polynomial associated with c∈ℝ, and D the formal derivative. Let V=Fin 4→ℝ, with coordinates indexed by 0,1,2,3. Matrix rows and columns use that same order. All spans below are algebraic real-linear spans, consisting of finite linear combinations. Matrix multiplication and matrix-vector multiplication use finite sums over Fin 4; I₄ denotes the identity matrix. The Euclidean vectors below belong to EuclideanSpace ℝ (Fin 2), with its real inner product. The exported declarations have no universe parameters or additional implicit hypotheses.\n\nSupplied dependency definitions in SL.AuditRound5: For every x∈ℝ and p∈P, eval_linear(x)(p)=p(x). For every p∈P, write B₊(p)=endpoint_plus(p)=p′(1)−(p(1)−p(−1))/2 and B₋(p)=endpoint_minus(p)=p′(−1)−(p(1)−p(−1))/2. These are real-linear maps. residues(p)=(B₊(p),B₋(p)), and krein_polynomials=ker(residues)={p∈P:B₊(p)=0 and B₋(p)=0}. The definitions p_zero and p_one are 1 and X, respectively.\n\nFor every m∈ℕ, let αₘ=(m:ℝ)/((m:ℝ)−1), Eₘ=p_even(m)=X^(2m)−C(αₘ)X^((2m)∸2), and Oₘ=p_odd(m)=X^(2m+1)−C(αₘ)X^((2m)∸1). Here ∸ is natural-number subtraction truncated at zero. The denominator subtraction is real subtraction, and real division is totalized with a/0=0. Thus these definitions include m=0 and m=1: E₀=1, O₀=X, E₁=X² and O₁=X³. The restriction m≥2 occurs in sparse_generators, not in these family definitions.\n\nDefinitions in SL.AuditRound6: sparse_generators is G={p∈P:p=1 or p=X or there exists m∈ℕ such that 2≤m and (p=Eₘ or p=Oₘ)}. sparse_span is S=spanℝ(G). augmented_generators is G⁺={p∈P:p∈G or p=X² or p=X³}, and augmented_span is A=spanℝ(G⁺).\n\nfour_traces is the real-linear map T:P→V given, for every p∈P, by T(p)=(B₊(p),B₋(p),B₊(D²p),B₋(D²p)). Expanded, its coordinates are p′(1)−(p(1)−p(−1))/2; p′(−1)−(p(1)−p(−1))/2; p‴(1)−(p″(1)−p″(−1))/2; and p‴(−1)−(p″(1)−p″(−1))/2, in that order.\n\ntrace_matrix is M=[[2,2,4,4],[-2,2,-4,4],[0,0,24,40],[0,0,-24,40]]. inverse_matrix is N=[[1/4,-1/4,-1/24,1/24],[1/4,1/4,-1/40,-1/40],[0,0,1/48,-1/48],[0,0,1/80,1/80]], with every entry interpreted in ℝ.\n\nmonomial_lift is the real-linear map U:V→P defined for every a∈V by U(a)=Σ(i∈Fin 4) a(i)·X^(i.val+2). four_trace_lift is the real-linear map L:V→P defined for every r∈V by L(r)=U(Nr). correct_four_traces is the function Q:P→P defined for every p∈P by Q(p)=p−L(T(p)). cancellation is the fixed polynomial c=E₃−(7/2)·E₂. detector is d=(1,1), witness is w=(1,−1), coordinate_zero is e₀=(1,0), and coordinate_one is e₁=(0,1).\n\nThe theorem declarations, with their quantifiers and hypotheses, read as follows:\n1. sparse_span_le_krein: S⊆ker(residues).\n2. X_sq_not_mem_sparse_span: X²∉S.\n3. even_power_mem_augmented: For every m∈ℕ, X^(2m)∈A.\n4. odd_power_mem_augmented: For every m∈ℕ, X^(2m+1)∈A.\n5. power_mem_augmented: For every n∈ℕ, X^n∈A.\n6. polynomial_mem_augmented: For every p∈P, p∈A.\n7. augmented_span_eq_top: A=⊤ as submodules of P.\n8. four_traces_apply: For every p∈P, T(p)=(residues(p).1,residues(p).2,residues(D²p).1,residues(D²p).2).\n9. four_trace_monomial_columns: For every i∈Fin 4, T(X^(i.val+2)) equals the vector j↦M[j,i], with j∈Fin 4.\n10. trace_matrix_det: det(M)=15360 in ℝ.\n11. trace_matrix_two_sided_inverse: MN=I₄ and NM=I₄.\n12. four_traces_monomial_lift: For every a∈V, T(U(a))=Ma.\n13. four_trace_right_inverse: For every r∈V, T(L(r))=r.\n14. corrected_four_traces_zero: For every p∈P, T(Q(p))=0 in V.\n15. correction_fixes_kernel: For every p∈P and every hypothesis h:T(p)=0, Q(p)=p.\n16. cancellation_formula: c=X⁶−C(5)X⁴+C(7)X².\n17. cancellation_four_traces_zero: T(c)=0 in V.\n18. p_four_four_traces: T(E₂)=(0,0,24,−24), where E₂=X⁴−2X².\n19. p_four_four_traces_ne_zero: T(E₂)≠0 in V.\n20. coordinate_detection_counterexample: ⟨d,e₀⟩=1 and ⟨d,e₁⟩=1 and ⟨d,w⟩=0 and ⟨w,e₀⟩=1 and ⟨w,e₁⟩=−1.\n21. local_algebra_root: The following 17 assertions hold jointly: A=⊤; X²∉S; for every i∈Fin 4, T(X^(i.val+2))=(j↦M[j,i]) with j∈Fin 4; det(M)=15360; MN=I₄; NM=I₄; for every r∈V, T(L(r))=r; for every p∈P, T(Q(p))=0; c=X⁶−C(5)X⁴+C(7)X²; T(c)=0; T(E₂)=(0,0,24,−24); T(E₂)≠0; ⟨d,e₀⟩=1; ⟨d,e₁⟩=1; ⟨d,w⟩=0; ⟨w,e₀⟩=1; and ⟨w,e₁⟩=−1.",
+	"verdict": "APPROVED"
+}

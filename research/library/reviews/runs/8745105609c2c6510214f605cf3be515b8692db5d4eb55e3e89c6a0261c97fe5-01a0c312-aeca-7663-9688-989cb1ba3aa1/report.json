@@ -1,0 +1,55 @@
+{
+	"checked_paths": [
+		"docs/SL_projection_moment_repairs.tex",
+		"research/artifacts/proof-audit-round6-20260921/projection-author/AUTHOR_NOTES.md",
+		"research/artifacts/proof-audit-round6-20260921/submitted/proof_audit_round6_20260921.md",
+		"research/library/card-versions/e3a840d5ed64bb6a1acc86e3ff75ab9f11a9fb67801ec801d78687f777ec71ec.md",
+		"research/library/card-versions/f39aae7d85030e73b8c88edb898640bc06d01f99b5253f7f7f7965fd7e707643.md",
+		"research/library/corrections/evidence/0791031a89c9171abab1625b8f29fe0e6c67639e259c1f1153d52bc9a41a4efd.bin",
+		"research/library/corrections/evidence/7f779730c24419f05bbe6a2adfa1ded1c17c3c017278d908f3a7801d147da954.bin",
+		"research/library/corrections/requests/4f9ceb1105ce760281cece33c8c6ca61e9d5c22f9b54653a33977cb2c9215a94.json",
+		"research/library/corrections/requests/dcac59e81faf1d771625dbdd75b8a707c61d7567253d63ad69affa36a708d8c0.json",
+		"research/library/reviews/runs/d9b6e034ae2da775210fe8fc63d7547d4ea4af670953f7d73f4f5fb62b8cbd6f-01a0c2e7-7571-7021-9efe-f1758f7dc25c/report.json",
+		"runs/rigorous-open-math-research/R-20260814T070000Z-densbc-3F8A2C/candidate_proof.md",
+		"runs/rigorous-open-math-research/R-20260816T000000Z-densbc-o1/candidate_proof.md",
+		"tools/constrained-denseness-runs.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:dcac59e81faf1d771625dbdd75b8a707c61d7567253d63ad69affa36a708d8c0",
+			"reason": "All 13 input snapshots match their declared SHA256 values. The current card is byte-identical to version f39aae7d85030e73b8c88edb898640bc06d01f99b5253f7f7f7965fd7e707643, and its three declared source hashes match the supplied snapshots. Comparison with e3a840d5ed64bb6a1acc86e3ff75ab9f11a9fb67801ec801d78687f777ec71ec shows only the projection-simplification sentence changed. Independent examination of the original candidate proofs confirms the three issues identified by the correction request. The current card resolves them through the augmented projection criterion, finite tests restricted to the actual tail obstruction, and representer-span inclusion. The remaining summary defect is also corrected. Historical evidence is retained without blanket recertification. Approval concerns this exact card and the listed obligations only.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-projection-exact-repair",
+			"reason": "The contract explicitly requires an injective, dense polynomial embedding and a complex inner product linear in its first variable. Telescoping gives x^(2m)=m*x^2+sum_{j=2}^m (m/j)*p_(2j), with the corresponding odd identity. The coefficient functionals a_e=sum m*a_(2m) and a_o=sum m*a_(2m+1) annihilate every defined p_n and separate x^2,x^3, proving algebraic codimension exactly two. Their endpoint expressions are 4*a_e=f'(1)-f'(-1) and 4*a_o=f'(1)+f'(-1)-f(1)+f(-1), supporting the card's polynomial boundary description. No closure-codimension equality is inferred. Bounded projection of polynomial approximants proves augmented totality. Orthogonality gives V intersect A_V^perp=V intersect M^perp and A_V^perp=V^perp direct-sum (V intersect M^perp). Splitting the actual retained and excluded indices proves the stated augmented iff, including V=0 and empty retained families. In H_2, the proposed witness has positive squared norm sum m^2/(2m+1)^4 bounded by (1/16)sum m^(-2). Weighted Cauchy–Schwarz supplies an injective continuous-function realization on [-1,1]. Its even moments equal m and its constant and odd moments vanish. V=ker M0 is closed of codimension one, excludes exactly p0, and has P_Vp0=0. The witness annihilates every projected sparse member but pairs nontrivially with x^2. Thus both historical overclaims are genuinely refuted while the full-polynomial dense-image theorem remains valid.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-finite-obstacle-repair",
+			"reason": "For every finite r, the r+3 selected tail polynomials are independent by their distinct leading degrees. The r low tests together with M2,M3 define a linear map into C^(r+2), necessarily leaving a nonzero kernel. This proves inconsistent original F premises, not a counterexample satisfying those premises. For L=2m0-2, both parity recurrences telescope for every m>=m0 to M_(2m)=m*M_L/(m0-1) and M_(2m+1)=m*M_(L+1)/(m0-1). The strict beta<1 bound forces both initial moments to zero. The reverse inclusion follows from polynomial supports, proving tail-perp=Z_L. Polynomial density makes the first L moments injective on Z_L, so dim Z_L<=L. Actual retained low tests therefore give exactly the stated full-column-rank criterion on V intersect Z_L; zero-dimensional obstacles and empty test sets are handled correctly. The H_0 examples yield ranks 1 for ker M0, 2 for H_0, and 4 on the five-dimensional obstacle for ker M4, whose remaining kernel is span{x^2}. For general q_n, a nonzero leading coefficient at every degree n>=N permits all-degree induction and the direct-sum decomposition. The moment recurrence correctly conjugates every coefficient. N=0 gives Z_(q,0)=0; a closed V containing that complete tail must then equal H. The decaying recurrence solution is realized by h=sum 2^(-m)x^(2m) in H_0, with squared norm 4/3, and annihilates all specified q_n. Its initial data differ from the normalized growing solution. Actual moment realizability remains required, and neither an automatic finite algorithm for arbitrary H nor growth of every recurrence solution is claimed.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-representers-and-library-scope",
+			"reason": "For finitely many bounded constraints, V=(span{v_j})^perp and the finite representer span is closed. Consequently M2 and M3 vanish identically on V exactly when span{x^2,x^3} is contained in that span. The equivalent functional-span statement uses conjugated coefficients correctly and accommodates dependent representers and s=0. In H_0, v=x^2+x^3 has pairings (1,1), whereas w=x^2-x^3 lies in v^perp, has squared norm 2, and has moments (1,-1). Thus nonzero detection does not separately annihilate the moments. The current card preserves the abstract orthogonal-complement criterion, labels historical PASS records as historical, and avoids certifying all A–H branches. It excludes automatic application to graph domains lacking the required monomials and distinguishes the diagonal parameter beta from left-definite order. Separately established Krein results are not retracted. Finite checks and local Lean are not presented as complete proof.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R6-card-F1-sufficient-versus-necessary",
+			"reason": "Current card line 20 agrees with the analytic source: V intersect M^perp={0} makes the complete projected sparse family total in V, so the excluded-projection tests alone suffice. M=H guarantees this condition but is not necessary. The prior reviewer's counterexample checks independently. In the supplied H_2, the nonzero annihilator establishes M!=H_2. Since p0 is orthogonal to every other sparse member, M=span{p0} direct-sum closure(span{p_n:n!=0}). Therefore V=M intersect ker M0 equals the closed span of the retained members. Exactly p0 is excluded, and its projection is zero. The simplified criterion succeeds although full-space sparse density fails. The revised wording states a sufficient condition without asserting necessity of full-space density. The unchanged analytic source supports the current card; the earlier negative receipt was used only to identify the historical objection.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Only the frozen packet and its listed snapshots were consulted. No source-project files were modified.",
+		"Historical contracts and audit files, Git objects, author manifests and checker outputs, the linked coordinator report, and other linked library cards were not supplied. Their provenance, execution claims, and downstream acceptance state were not independently verified.",
+		"Independent in-memory exact arithmetic checked finite matrices, examples, conjugation, and snapshot identities. Infinite and universal conclusions were assessed analytically, not inferred from finite computational success.",
+		"Other historical A–H branches, fractional-window theorems, cofinite Krein classifications, and general non-diagonal or left-definite domains were not re-audited.",
+		"No Lean compilation, complete formalization audit, TeX compilation, or PDF inspection was performed. APPROVED denotes passage of the requested review within its declared scope."
+	],
+	"packet_sha256": "8745105609c2c6510214f605cf3be515b8692db5d4eb55e3e89c6a0261c97fe5",
+	"readback": "Not applicable: this is a mathematics packet, not a formal-readback packet.",
+	"verdict": "APPROVED"
+}

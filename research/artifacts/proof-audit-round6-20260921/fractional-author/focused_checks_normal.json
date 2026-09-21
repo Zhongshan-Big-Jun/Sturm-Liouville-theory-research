@@ -1,0 +1,347 @@
+{
+  "status": "AUTHOR_CHECKS_FAILED",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "sympy": "1.14.0",
+  "optimization": 0,
+  "error": "RuntimeError('Failed check: protected input unchanged: docs/SL_denseness_criteria.tex')",
+  "checks": [
+    {
+      "name": "all-m even first boundary",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[0], [0]])",
+      "expected": "Matrix([[0], [0]])"
+    },
+    {
+      "name": "all-m odd first boundary",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[0], [0]])",
+      "expected": "Matrix([[0], [0]])"
+    },
+    {
+      "name": "all-m even third derivative",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "4*m*(2*m**2 - 2*(m - 1)**2 - 3)",
+      "expected": "4*m*(4*m - 5)"
+    },
+    {
+      "name": "all-m odd third-minus-second derivative",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "6*m - m*(2*m - 1)**3/(m - 1) + 4*m*(2*m - 1)**2/(m - 1) - 3*m*(2*m - 1)/(m - 1) + (2*m + 1)**3 - 4*(2*m + 1)**2 + 3",
+      "expected": "4*m*(4*m - 3)"
+    },
+    {
+      "name": "even leading constant positive for m=h+2",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true
+    },
+    {
+      "name": "odd leading constant positive for m=h+2",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true
+    },
+    {
+      "name": "all-m even second-layer traces",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[4*m*(4*m - 5)], [4*m*(5 - 4*m)]])",
+      "expected": "Matrix([[4*m*(4*m - 5)], [-4*m*(4*m - 5)]])"
+    },
+    {
+      "name": "all-m odd second-layer traces",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[4*m*(4*m - 3)], [4*m*(4*m - 3)]])",
+      "expected": "Matrix([[4*m*(4*m - 3)], [4*m*(4*m - 3)]])"
+    },
+    {
+      "name": "all-m actual even K image boundary",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[4*m*(5 - 4*m)], [4*m*(4*m - 5)]])",
+      "expected": "Matrix([[-4*m*(4*m - 5)], [4*m*(4*m - 5)]])"
+    },
+    {
+      "name": "all-m actual odd K image boundary",
+      "scope": "symbolic identity for every integer m >= 2; not a finite sample",
+      "passed": true,
+      "actual": "Matrix([[4*m*(3 - 4*m)], [4*m*(3 - 4*m)]])",
+      "expected": "Matrix([[-4*m*(4*m - 3)], [-4*m*(4*m - 3)]])"
+    },
+    {
+      "name": "four-trace matrix from actual differentiations",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "Matrix([[2, 2, 4, 4], [-2, 2, -4, 4], [0, 0, 24, 40], [0, 0, -24, 40]])",
+      "expected": "Matrix([[2, 2, 4, 4], [-2, 2, -4, 4], [0, 0, 24, 40], [0, 0, -24, 40]])"
+    },
+    {
+      "name": "four-trace determinant",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "15360",
+      "expected": "15360"
+    },
+    {
+      "name": "four-trace inverse",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])"
+    },
+    {
+      "name": "polynomial right inverse TR=I for general trace vector",
+      "scope": "symbolic identity for an arbitrary four-component trace vector",
+      "passed": true,
+      "actual": "Matrix([[z0], [z1], [z2], [z3]])",
+      "expected": "Matrix([[z0], [z1], [z2], [z3]])"
+    },
+    {
+      "name": "cancelling combination exact polynomial",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "x**6 - 5*x**4 + 7*x**2",
+      "expected": "x**6 - 5*x**4 + 7*x**2"
+    },
+    {
+      "name": "cancelling combination four traces",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "Matrix([[0], [0], [0], [0]])",
+      "expected": "Matrix([[0], [0], [0], [0]])"
+    },
+    {
+      "name": "cancelling combination K image boundary",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "Matrix([[0], [0]])",
+      "expected": "Matrix([[0], [0]])"
+    },
+    {
+      "name": "p4 and p6 individually fail four traces",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true
+    },
+    {
+      "name": "squared operator expression on verified compatible Q",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "c*(c*(x**6 - 5*x**4 + 7*x**2) - 2*(15*x**4 - 30*x**2 + 7)) - 2*(c*(15*x**4 - 30*x**2 + 7) - 180*x**2 + 60)",
+      "expected": "c**2*(x**6 - 5*x**4 + 7*x**2) - 4*c*(15*x**4 - 30*x**2 + 7) + 120*(3*x**2 - 1)"
+    },
+    {
+      "name": "p4 exact cosine coefficient",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "-48*epsilon/a**4",
+      "expected": "-48*epsilon/a**4"
+    },
+    {
+      "name": "x2 exact cosine coefficient",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "4*epsilon/a**2",
+      "expected": "4*epsilon/a**2"
+    },
+    {
+      "name": "p5 exact Krein sine coefficient",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "-80*sin(mu)/mu**4",
+      "expected": "-80*sin(mu)/mu**4"
+    },
+    {
+      "name": "x odd-mode orthogonality",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "0",
+      "expected": "0"
+    },
+    {
+      "name": "p4 constant-mode coefficient",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "-14/15",
+      "expected": "-14/15"
+    },
+    {
+      "name": "x2 constant-mode coefficient",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "2/3",
+      "expected": "2/3"
+    },
+    {
+      "name": "p4 normalized constant contribution",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "98/225",
+      "expected": "98/225"
+    },
+    {
+      "name": "x2 normalized constant contribution",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "2/9",
+      "expected": "2/9"
+    },
+    {
+      "name": "Krein sine norm with root relations",
+      "scope": "exact symbolic integral subject to mu*cos(mu)=sin(mu) and sin(mu)^2+cos(mu)^2=1",
+      "passed": true,
+      "actual": "1 - 1/(mu**2 + 1)",
+      "expected": "mu**2/(mu**2 + 1)"
+    },
+    {
+      "name": "signed endpoint after sine normalization",
+      "scope": "exact symbolic identity; branch sign justified analytically in TeX",
+      "passed": true,
+      "actual": "(-1)**k",
+      "expected": "(-1)**k"
+    },
+    {
+      "name": "cosine integration-by-parts sign on mixed polynomial",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "188*epsilon/(7*a**2) - 480*epsilon/a**4 + 2880*epsilon/a**6",
+      "expected": "(188*epsilon/7 - 480*epsilon/a**2 + 2880*epsilon/a**4)/a**2"
+    },
+    {
+      "name": "Krein sine integration-by-parts sign on mixed polynomial",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "336*(10 - mu**2)*sin(mu)/mu**6",
+      "expected": "336*(10 - mu**2)*sin(mu)/mu**6"
+    },
+    {
+      "name": "H4 integration-kernel constant order 0",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "8/63",
+      "expected": "8/63"
+    },
+    {
+      "name": "H4 integration-kernel constant order 1",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "8/15",
+      "expected": "8/15"
+    },
+    {
+      "name": "H4 integration-kernel constant order 2",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "4/3",
+      "expected": "4/3"
+    },
+    {
+      "name": "H4 integration-kernel constant order 3",
+      "scope": "exact finite polynomial check; not an infinite-dimensional proof",
+      "passed": true,
+      "actual": "2",
+      "expected": "2"
+    },
+    {
+      "name": "surjectivity correction determinant",
+      "scope": "symbolic identity for a>0; sign shown by differentiation in TeX",
+      "passed": true,
+      "actual": "2*a**2*sinh(a)*cosh(a) - 2*a*sinh(a)**2",
+      "expected": "2*a*(a*cosh(a) - sinh(a))*sinh(a)"
+    },
+    {
+      "name": "hyperbolic determinant positive factor derivative",
+      "scope": "symbolic identity for a>0",
+      "passed": true,
+      "actual": "a*sinh(a)",
+      "expected": "a*sinh(a)"
+    },
+    {
+      "name": "formal inverse of x2 fails boundary",
+      "scope": "symbolic identity for c>0",
+      "passed": true,
+      "actual": "Matrix([[2/c], [-2/c]])",
+      "expected": "Matrix([[2/c], [-2/c]])"
+    },
+    {
+      "name": "threshold exponent at s=7/2",
+      "scope": "exact arithmetic only; divergence proof in TeX",
+      "passed": true,
+      "actual": "-1",
+      "expected": "-1"
+    },
+    {
+      "name": "labels unique and references resolved statically",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "bibliography keys unique and citations resolved statically",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "TeX environments balanced statically",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "TeX braces balanced statically",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "conditional growth lemma and proof text preserved",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "p4/x2 exact diagnostic proof text preserved",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "numerical scope and limitations text preserved",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "negative completion mathematical content preserved",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "no unreceived approval or unresolved template marker",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "protected input unchanged: docs/SL_fractional_left_definite.pdf",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "protected input unchanged: docs/SL_cofinite_left_definite.tex",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "protected input unchanged: docs/SL_h2_completeness_proof.tex",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "protected input unchanged: docs/SL_h3_completeness_proof.tex",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": true
+    },
+    {
+      "name": "protected input unchanged: docs/SL_denseness_criteria.tex",
+      "scope": "static source/integrity check; not TeX compilation or mathematical certification",
+      "passed": false
+    }
+  ],
+  "captured_utc": "2026-09-21T07:33:35.814289+00:00"
+}
