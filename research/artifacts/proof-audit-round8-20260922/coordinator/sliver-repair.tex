@@ -1,0 +1,66 @@
+\subsection{整个薄层区域的解析下界}\label{sec:sliver}
+\begin{lemma}[连续相位速度给出的谱隙下界]\label{lem:r8-phase-speed}
+对任意 $R\ge1$, $0<u<1/2$, 令 $\varepsilon=R^{-1/2}$,
+$\ell=1/2-u$, $w=u/\varepsilon$. 则
+\begin{equation}
+ G(R,u)\ge\frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+ \label{eq:r8-global-gap-bound}
+\end{equation}
+本结论不要求第二个重层相位大于 $\pi/2$.
+\end{lemma}
+\begin{proof}
+对 $k=\sqrt\lambda>0$, 取 $y(0)=0$, $y'(0)=1$ 的射击解.
+接口向量为 $(y'(u),ky(u))=(\cos(wk),\varepsilon\sin(wk))$.
+经过轻层后, 它旋转了角 $\ell k$, 两分量即 \eqref{eq:polefree-even}--\eqref{eq:polefree-odd}.
+令 $A_\varepsilon$ 是向量 $\cos\theta+i\varepsilon\sin\theta$ 的连续展开辐角,
+$A_\varepsilon(0)=0$. 向量从不为零, 且
+\[
+ A_\varepsilon'(\theta)=\frac{\varepsilon}{\cos^2\theta+\varepsilon^2\sin^2\theta}>0,
+ \quad A_\varepsilon(\pi/2)=\pi/2,\quad A_\varepsilon(\pi)=\pi.
+\]
+半区间末端相位为
+\[
+ \Phi(k)=\ell k+A_\varepsilon(wk),\qquad
+ 0<\Phi'(k)\le\ell+w/\varepsilon.
+\]
+它从零严格增加到无穷. 第一 Neumann 根和第一 Dirichlet 根分别满足
+$\Phi(k_1)=\pi/2$, $\Phi(k_2)=\pi$.
+空间相位在两层中均严格递增, 故这两个半区间解内部为正.
+前者偶延拓没有内部零点, 后者奇延拓恰有中点这一个零点;
+由振荡定理, $k_1^2,k_2^2$ 确为全区间的前两个特征值.
+
+对这两个实际根积分相位导数, 得
+\[
+ k_2-k_1\ge\frac{\pi}{2(\ell+w/\varepsilon)}.
+\]
+又 $\Phi(\pi/(2w))>\pi/2$, 故 $wk_1<\pi/2$.
+在第一分支, 因 $0<\varepsilon\le1$,
+$A_\varepsilon(\theta)=\arctan(\varepsilon\tan\theta)\le\theta$,
+所以 $k_1\ge\pi/[2(\ell+w)]$.
+相乘即得
+\[
+ G=\varepsilon^{-2}(k_2-k_1)(k_2+k_1)
+ \ge\frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+\]
+以上分母均正, 没有使用任何全域奇相位分支假设.
+\end{proof}
+
+\begin{lemma}[薄层区域, 替代旧网格证书]\label{lem:sliver}
+对每个 $R\ge1500$ 及 $0<u\le2/\sqrt R$, 有
+\begin{equation}
+ G(R,u)>\frac{15\pi^2}{4}>25,\qquad G(R,u)>3\pi^2.
+ \label{eq:r8-sliver-margin}
+\end{equation}
+\end{lemma}
+\begin{proof}
+此时 $w\le2$, $\ell<1/2$; 由 $38^2<1500$ 得 $\varepsilon<1/38$.
+故 \eqref{eq:r8-global-gap-bound} 给出
+\[
+ G>\frac{\pi^2}{2(1/38)(5/2)(2+1/76)}
+ =\frac{2888}{765}\pi^2>\frac{15}{4}\pi^2.
+\]
+最后一项有理比较等价于 $11552>11475$.
+再用 $\pi>3$, 得 $15\pi^2/4>135/4>25$; 另有 $15/4>3$.
+这覆盖整个连续区域, 包括任意小的正 $w$, $w=1/2$, 两条旧曲边界及无穷大的 $R$ 尾部.
+\end{proof}
+

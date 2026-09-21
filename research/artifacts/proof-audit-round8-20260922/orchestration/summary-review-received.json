@@ -1,0 +1,47 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "463241e7fa5ffa8c76214f251048d3665d3f98c3d1361cefad2288abfa70abfd",
+  "reviewer_id": "01a0c527-4f90-7903-99db-da79a1fdd54c",
+  "bindings": {
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/candidate-index.json": "ce3ba7bee620cad4b6e3df2fe90317929dbe1e7d34b20a5922c508960ad4f4ea",
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/comparison.json": "0ce17833ac6de58e2e5bdc2fe54bda08ea228394ea6ae0c89a3b69c4dd51e308",
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/index-before.json": "4c06d5a0785a8f4f836b317d14939e563caade3663853c86d66f2f0158a30a4a",
+    "tools/denseness-criteria.md": "4991c33cd33772f5f7bba8cd36359799cf51e227f711c65e662506953a411411",
+    "tools/jump-stability.md": "34b3aac6095c47365ea310ab9e1f98883559b41e648bf2605059044cbf238556",
+    "tools/krein-sobolev-polynomials.md": "01ec28bce0809fc96f5e8e9dbd9421f35d07cd4241c94e36fd75b0aacda8d52d",
+    "tools/left-definite-moment-recurrence.md": "c288a56fba31a2aaff8551b8e11439f3ff3a1d6637bae7f9b4bf8a5da0112612",
+    "tools/left-definite-theory.md": "d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91",
+    "tools/leftdef-o1pld-l2-structural.md": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+    "tools/moment-jump-completeness.md": "5b1b3639ad05e608faf86866919e49f04065e32cb5a459d53981b60f289e6261",
+    "tools/spectral-domain-checks.md": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7"
+  },
+  "claims": [
+    {
+      "id": "R8-summary-recovery",
+      "reason": "All 11 input hashes match the packet. Independently removing each card's frontmatter, collapsing whitespace and taking the first 500 Unicode characters reproduces all eight candidate summaries exactly; none has an explicit summary override. Exhaustive structural comparison finds exactly four changes: the summaries for jump-stability, krein-sobolev-polynomials and leftdef-o1pld-l2-structural, plus updated_at. The other five target summaries already matched. The Krein summary now states f'(1)=f'(-1)=(f(1)-f(-1))/2 and records original-family H2/H3 completeness as proved, removing both obsolete statements. All card hashes and version pointers match the supplied snapshots in both indexes. Dependencies, correction states, reuse eligibility, all other row fields, membership and ordering remain identical. All 70 non-target active rows, the blocked row and global metadata, including all 35 issue records, are unchanged. All six declared dependency bindings match supplied card hashes. The comparison report's hashes, entries, change flags and counts agree with independent computation. This approves only the requested retrieval presentation repair.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/candidate-index.json",
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/comparison.json",
+    "research/artifacts/proof-audit-round8-20260922/summary-recovery/index-before.json",
+    "tools/denseness-criteria.md",
+    "tools/jump-stability.md",
+    "tools/krein-sobolev-polynomials.md",
+    "tools/left-definite-moment-recurrence.md",
+    "tools/left-definite-theory.md",
+    "tools/leftdef-o1pld-l2-structural.md",
+    "tools/moment-jump-completeness.md",
+    "tools/spectral-domain-checks.md"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/463241e7fa5ffa8c76214f251048d3665d3f98c3d1361cefad2288abfa70abfd-01a0c527-4f90-7903-99db-da79a1fdd54c",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Card preservation is established through the frozen snapshots and matching before/after hash and version pointers; live working-tree state was not inspected.",
+    "Underlying mathematical proofs, correction receipts and historical formal or numerical evidence were not re-audited. Preserved gate metadata and index counts do not establish theorem approval or complete formalization.",
+    "No query implementation or runtime output was supplied, so live retrieval behavior and deployment of the candidate index were not checked."
+  ]
+}

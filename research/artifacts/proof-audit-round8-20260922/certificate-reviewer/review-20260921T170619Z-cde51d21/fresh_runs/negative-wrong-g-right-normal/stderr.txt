@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/certificate.py", line 307, in run_negative
+    check_g_bracket(Interval(RootBracket.lo - Fraction(1, 10 ** 40), RootBracket.lo), PiBox)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/certificate.py", line 193, in check_g_bracket
+    require(RightValue.hi < 0, "G upper endpoint must have strictly negative G")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-wrong-g-right-normal/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: G upper endpoint must have strictly negative G

@@ -1,5 +1,10 @@
 # 研究脚本导航
 
+第八轮 INF 的当前精确入口为[certificate.py](../research/artifacts/proof-audit-round8-20260922/certificate/certificate.py), 证明算术仅用有理数, Machin/Taylor余项及显式守卫; 十进制仅负责向外显示. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)给出普通/-O/-S执行、反例对照和独立复核.
+
+原 INF run 的05/16/19以及本目录 `_theoremA_recheck_*` 的旧抽样保留溯源. 05的像端点与16/19超越函数包络不能继续作为当前认证; 16的域覆盖由新的解析相位下界替代. 17/18及其它未重跑扫描没有获得本轮认证. 复用工具时从当前卡及精确版本回执进入.
+
+
 [研究导航](../docs/research-guide.md) | [工具库](../tools/README.md) | [目录与复现](../docs/repository-guide.md)
 
 第七轮的当前诊断入口是 `op03_gap_fh.py`、`gap_n1_grad.py` 及报告列出的八个接口/矩阵诊断程序. 修订针对镜像坐标、SUP/INF 符号、两特征值权重和完整 Hessian 的矩阵乘法. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)区分实际 CLI、函数/AST 小样本回归与未重跑的历史扫描; 不将有限点通过理解为全部解析 Jacobian 后端或全 R 研究已经认证.

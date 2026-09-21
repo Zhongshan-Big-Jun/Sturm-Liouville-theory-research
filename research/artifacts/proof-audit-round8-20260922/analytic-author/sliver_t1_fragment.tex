@@ -1,0 +1,195 @@
+% Round 8 author contribution: replace the old lem:sliver and thm:T1 blocks.
+% Requires amsmath, amssymb, amsthm and the existing theorem/lemma environments.
+% Keep the repaired thm:lemAdp and the analytic thm:T2 in the target document.
+% Their directly necessary proofs are included in proof.md, Appendices A and B.
+% No old floating-point certificate or T3 numerical enclosure is used here.
+
+\subsection{A whole-region analytic bound for the deep sliver}
+
+\begin{lemma}[Pole-free phase-speed gap bound]\label{lem:r8-phase-speed}
+For every $R\ge1$ and $0<u<1/2$, put
+$\varepsilon=R^{-1/2}$, $\ell=1/2-u$, and $w=u/\varepsilon$.
+Then
+\begin{equation}
+ G(R,u)\ge
+ \frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+ \label{eq:r8-global-gap-bound}
+\end{equation}
+No restriction on the second heavy-layer phase is imposed in this statement.
+\end{lemma}
+
+\begin{proof}
+Let $k=\sqrt\lambda>0$ and normalize the left Dirichlet solution by
+$y(0)=0$, $y'(0)=1$. At the interface its vector is
+$(y'(u),ky(u))=(\cos(wk),\varepsilon\sin(wk))$.
+Propagation across the light interval gives
+\begin{align*}
+ y'(1/2)&=\cos(wk)\cos(\ell k)
+          -\varepsilon\sin(wk)\sin(\ell k),\\
+ ky(1/2)&=\varepsilon\sin(wk)\cos(\ell k)
+          +\cos(wk)\sin(\ell k).
+\end{align*}
+Define $A_\varepsilon$ to be the continuous real-valued argument of
+$\cos\theta+i\varepsilon\sin\theta$, starting at
+$A_\varepsilon(0)=0$. This vector is nonzero, and
+\[
+ A_\varepsilon'(\theta)=
+ \frac{\varepsilon}{\cos^2\theta+\varepsilon^2\sin^2\theta},
+ \qquad A_\varepsilon(\pi/2)=\pi/2,
+ \qquad A_\varepsilon(\pi)=\pi.
+\]
+The half-interval phase is
+\[
+ \Phi(k)=\ell k+A_\varepsilon(wk),\qquad
+ 0<\Phi'(k)\le\ell+w/\varepsilon.
+\]
+Its first Neumann and first Dirichlet roots satisfy, respectively,
+\[
+ \Phi(k_1)=\pi/2,\qquad \Phi(k_2)=\pi.
+\]
+They are the square roots of the first two full-interval eigenvalues.
+Indeed, the spatial phase increases in both layers; these two
+half-interval eigenfunctions are positive in their interiors.
+Even reflection of the Neumann solution has no interior zero, and
+odd reflection of the Dirichlet solution has exactly the midpoint zero.
+Sturm oscillation therefore identifies their full-interval indices as
+one and two.
+
+Integration of the phase derivative between these actual roots yields
+\[
+ k_2-k_1\ge\frac{\pi}{2(\ell+w/\varepsilon)}.
+\]
+Since $\Phi(\pi/(2w))>\pi/2$, one has $wk_1<\pi/2$.
+On this first branch,
+$A_\varepsilon(\theta)=\arctan(\varepsilon\tan\theta)\le\theta$,
+because $\varepsilon\le1$. Hence
+\[
+ k_1\ge\frac{\pi}{2(\ell+w)}.
+\]
+Multiplying these bounds gives
+\[
+ G=\varepsilon^{-2}(k_2-k_1)(k_2+k_1)
+ \ge\frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+\]
+Every division above has a positive denominator. In particular, this
+argument includes $w<1/2$ and does not assume $\theta_2>\pi/2$.
+\end{proof}
+
+\begin{lemma}[Deep sliver, analytic replacement]\label{lem:sliver}
+For every $R\ge1500$ and every $0<u\le2/\sqrt R$,
+\begin{equation}
+ G(R,u)>\frac{15\pi^2}{4}>25,
+ \qquad G(R,u)>3\pi^2.
+ \label{eq:r8-sliver-margin}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Here $w\le2$, $\ell<1/2$ and $\varepsilon<1/38$, since $38^2<1500$.
+Equation~\eqref{eq:r8-global-gap-bound} therefore implies
+\[
+ G>\frac{\pi^2}{2(1/38)(5/2)(2+1/76)}
+   =\frac{2888}{765}\pi^2>\frac{15}{4}\pi^2.
+\]
+The last rational comparison is $11552>11475$.
+Also $\pi>3$ gives $15\pi^2/4>135/4>25$, and $15/4>3$.
+This bound covers the entire continuous region, including arbitrarily
+small positive $w$, $w=1/2$, and the infinite $R$ tail.
+\end{proof}
+
+\subsection{T1: the infimum limit and convergence of near-minimizers}
+
+\begin{theorem}[T1, analytic replacement]\label{thm:T1}
+Let $u^*$ be the unique minimizer in Theorem~\ref{thm:T2}, and put
+$M=\bar D(u^*)$. Then
+\[
+ \lim_{R\to\infty} Rm_R=M.
+\]
+More generally, let $R_j\to\infty$, $0<u_j<1/2$, and $\eta_j\ge0$
+satisfy
+\[
+ D_{R_j}(u_j)\le m_{R_j}+\eta_j,
+ \qquad R_j\eta_j\longrightarrow0.
+\]
+Then $u_j\to u^*$. This includes $\eta_j=R_j^{-2}$.
+Moreover, $0\le Rm_R-M=O(R^{-1})$.
+\end{theorem}
+
+\begin{proof}
+The analytic structure in Theorem~\ref{thm:T2} gives
+\[
+ \bar D(u)\longrightarrow+\infty\quad(u\downarrow0),
+ \qquad
+ \bar D(u)\longrightarrow3\pi^2\quad(u\uparrow1/2).
+\]
+Strict increase to the right of $u^*$ implies $M<3\pi^2$.
+This inequality uses no numerical enclosure from T3.
+
+First fix any $u\in(0,1/2)$ and set $b=\ell/u$.
+For sufficiently large $R$ one has $R\ge1500$ and $w\ge2$.
+Use the repaired large-$w$ branch justification and
+Theorem~\ref{thm:lemAdp}, whose scope is precisely this region.
+Write $\theta_i=u\sqrt{R\lambda_i}$ and $a=a(u)$.
+On this branch, $0<\theta_1<\pi/2<\theta_2<\pi$ and
+$z_2=b\varepsilon\theta_2<\pi/4$.
+The odd matching relation gives
+\[
+ -\theta_2\cot\theta_2
+ =\varepsilon\theta_2\cot(b\varepsilon\theta_2)
+ \le 1/b=-a\cot a.
+\]
+Since $s\mapsto-s\cot s$ is strictly increasing on $(\pi/2,\pi)$,
+this proves $\theta_2\le a$. Define
+\[
+ d_1=\pi^2/4-\theta_1^2,
+ \qquad d_2=a^2-\theta_2^2.
+\]
+Theorem~\ref{thm:lemAdp} and the deficit identity yield
+$0\le d_2\le d_1$.
+The even matching equation, with $\delta_1=\pi/2-\theta_1$, gives
+\[
+ 0<\delta_1
+ =\arctan\bigl(\varepsilon\tan(b\varepsilon\theta_1)\bigr)
+ \le\varepsilon\tan(\tfrac\pi2 b\varepsilon).
+\]
+Consequently
+\begin{equation}
+ 0\le G(R,u)-\bar D(u)
+ =\frac{d_1-d_2}{u^2}
+ \le\frac{\pi\varepsilon}{u^2}
+       \tan(\tfrac\pi2 b\varepsilon)
+ =O_u(R^{-1}).
+ \label{eq:r8-fixed-u-bound}
+\end{equation}
+In particular $G(R,u^*)\to M$, so
+$\limsup_{R\to\infty}Rm_R\le M$.
+
+For every $R\ge1500$ and every $0<u<1/2$, either $w\le2$, when
+Lemma~\ref{lem:sliver} gives $G>15\pi^2/4>3\pi^2>M$, or $w\ge2$,
+when Theorem~\ref{thm:lemAdp} gives $G\ge\bar D(u)\ge M$.
+Taking the infimum proves $Rm_R\ge M$ and hence the asserted limit.
+Evaluating~\eqref{eq:r8-fixed-u-bound} at $u^*$ also proves
+$0\le Rm_R-M=O(R^{-1})$.
+
+For the stated near-minimizers,
+\[
+ R_jm_{R_j}\le G(R_j,u_j)
+ \le R_jm_{R_j}+R_j\eta_j\longrightarrow M.
+\]
+The strict sliver margin implies $w_j=u_j\sqrt{R_j}>2$ eventually.
+The large-$w$ lower bound then gives
+\[
+ M\le\bar D(u_j)\le G(R_j,u_j)\longrightarrow M.
+\]
+Any subsequential limit of $u_j$ in $[0,1/2]$ is interior:
+a limit of zero contradicts the infinite left endpoint limit of
+$\bar D$, while a limit of $1/2$ contradicts its right endpoint limit
+$3\pi^2>M$. For an interior limit, continuity and the uniqueness in
+Theorem~\ref{thm:T2} force that limit to be $u^*$.
+Thus the entire sequence converges to $u^*$.
+\end{proof}
+
+% Integration note: remove old claims that script 16 certifies this region.
+% Historical scripts remain immutable; their PASS labels are not used here.
+% This fragment proves the stated symmetric three-block-family result.
+% It does not extend the optimization to arbitrary densities or certify T3.

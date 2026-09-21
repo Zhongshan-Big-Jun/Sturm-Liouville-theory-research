@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/certificate.py", line 315, in run_negative
+    require_encloses(Interval(Fraction("24.9438661384324768"), Fraction("24.9438661384324769")), values["d_star"], name)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/certificate.py", line 202, in require_encloses
+    require(outer.lo <= inner.lo and inner.hi <= outer.hi, label + ": proposed enclosure does not contain certified enclosure")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/053-negative-wrong-value-enclosure-optimized/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: wrong-value-enclosure: proposed enclosure does not contain certified enclosure

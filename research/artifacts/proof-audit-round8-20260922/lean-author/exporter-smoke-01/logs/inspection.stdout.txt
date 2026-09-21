@@ -1,0 +1,13 @@
+F:\tools\math-audit-round8-20260922\lean-author\exporter-smoke-01\Inspection.lean:137:45: error: Application type mismatch: The argument
+  fun x => pure (ForInStep.yield PUnit.unit)
+has type
+  PUnit.{?u.72} → ReaderT Command.Context (StateRefT' IO.RealWorld Command.State (EIO Exception)) (ForInStep PUnit.{1})
+but is expected to have type
+  String → ReaderT Command.Context (StateRefT' IO.RealWorld Command.State (EIO Exception)) (ForInStep PUnit.{1})
+in the application
+  do
+    let _ ← pure "[proof term omitted; dependency closure and axioms exported]"
+    pure (ForInStep.yield PUnit.unit)
+F:\tools\math-audit-round8-20260922\lean-author\exporter-smoke-01\Inspection.lean:136:20: error: Missing cases:
+none
+F:\tools\math-audit-round8-20260922\lean-author\exporter-smoke-01\Inspection.lean:138:8: error: unexpected token 'else'; expected command

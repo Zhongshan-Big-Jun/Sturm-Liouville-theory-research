@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 309, in run_negative
+    monotone_root_image(Fraction(1, 3), Fraction(3, 8), Interval(2, Fraction(12, 5)), Interval(Fraction(12, 5), OldRootBracket.lo), PiBox)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 184, in monotone_root_image
+    check_root_bracket(UpperU, UpperRootBracket, PiBox)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 175, in check_root_bracket
+    require(RightValue.lo > 0, "Root upper endpoint must have strictly positive F")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/fresh_runs/negative-old-upper-endpoint-no-site/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: Root upper endpoint must have strictly positive F

@@ -2,6 +2,8 @@
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
+Eighth-round repair (2026-09-22): the symmetric-well INF limit now uses a continuous phase bound over the entire thin-layer region and elementary positive-margin comparison for large w. T1 no longer depends on the old grid or high-precision T3 values. For fixed interior u the leading correction is C(u)/R, and 0<=R*m_R-M=O(1/R). Four revised tool cards, exact rational certificates, scoped Lean and fresh independent reviews are recorded in the [eighth-round report](reports/proof-audit-round8-20260922/REPORT.md).
+
 Seventh-round repair (2026-09-21): corrected constant-density formulas and supplied a uniform Volterra endpoint argument for the local symmetry theorem. For every fixed n>=1, the gap supremum tends to (n+1)^2*pi^2; 4*pi^2 is the n=1 special case. Five tool cards and ten diagnostic scripts address the directly propagated derivative, normalization, sign and matrix-product errors; scoped independent reviews and replays are recorded. See the [seventh-round report](reports/proof-audit-round7-20260921/REPORT.md) for the distinct analytic and local Lean scopes.
 
 Sixth-round repair (2026-09-21): corrected sparse-projection, finite-moment and constraint-representer claims. The complete original sparse family is now proved dense for exactly the nonnegative range $0\le s<7/2$ in the specified genuine left-definite spaces. Analytic proofs and library propagation passed fresh independent reviews. Local Lean coverage is stated separately in the [sixth-round report](reports/proof-audit-round6-20260921/REPORT.md).
@@ -37,12 +39,13 @@ Most detailed research notes are currently in Chinese or mixed Chinese and Engli
 
 ## Selected results and their scope
 
-The overview retains the research lines compiled on 2026-09-09, with the left-definite entry updated in round6 and the gap entry in round7. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
+The overview retains the research lines compiled on 2026-09-09, with the left-definite entry updated in round6 and the gap entries in rounds7-8. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
 
 | Research line | Existing result | Scope and evidence |
 | --- | --- | --- |
 | Adjacent ratios over all indices | Balanced-phase supremum formula; infimum 1, not attained | [Supremum](docs/SL_ratio_proof.tex), [infimum](docs/SL_inf_ratio_proof.tex); retain the density class of each source |
 | n=1 adjacent gaps | Reduction, rigidity, symmetric-line analysis, and extremal proof chain | [Proof guide](docs/research-guide.md); all R>1 in the normalized box class |
+| Symmetric-well INF limit | R*m_R tends to M≈24.9438661384, with nonnegative O(1/R) error; near-minimizers converge when R*eta_R tends to zero | [Continuous proof](docs/SL_gap_n1_inf_limit_proof.tex); non-symmetric/all-box conclusions require their own evidence |
 | n>=2 gap structure | Finite-block structure, small-contrast local symmetry, and fixed-n>=1 gap supremum limit (n+1)^2*pi^2 | [Current proof](docs/SL_gap_nge2_symmetry_local_proof.tex); measurable box and finite-piecewise classes; finite-R global uniqueness remains open |
 | Left-definite spaces and domains | Sharp 0<=s<7/2 density of the original complete sparse family, s=2 cofinite classification, and operator-domain obstructions | [Full window](docs/SL_fractional_left_definite.tex), [s=2 cofinite classification](docs/SL_cofinite_left_definite.tex), [power-domain obstruction](tools/krein-power-domain-polynomial-obstruction.md) |
 | B4/P1 M3 | STRICT asymptotics and signs of two sector determinants | [Tool and proof chain](tools/m3-largeR-closure.md); n=2 symmetric INF, large R, finite nonzero interior chart |

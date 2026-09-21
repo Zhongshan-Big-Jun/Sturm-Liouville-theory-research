@@ -1,0 +1,258 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "51974b29d171062803bede6adb8ec112e0e63219d3f70c7b7b1084be247d9201",
+  "reviewer_id": "01a0c4ee-043e-7d81-8b9d-8cca7ae09cdf",
+  "bindings": {
+    "research/artifacts/proof-audit-round8-20260922/formal-blind/declarations.json": "cc9f5818cc7426399b1aee6750ec29f6ca184628ceff0c9ff057c08eb7c2a1bf"
+  },
+  "claims": [
+    {
+      "id": "AuditRound8.B_curved_counterexample",
+      "reason": "Read back six closed real inequalities at specified constants. There are no parameter binders or assertions over an interval.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.C",
+      "reason": "The definition has three explicit real arguments, in order a, b, u. Its two rational expressions impose no positivity or nonzero-denominator hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.D_curved_counterexample",
+      "reason": "Read back six closed real inequalities, including the position of 4995815/10000000 between the two specified wCap values.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.D_gap_signs",
+      "reason": "The statement consists of two strict comparisons with 25 at fixed real arguments; it has no quantified parameters.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.I2",
+      "reason": "Read back a total function of two real arguments defined by an explicit trigonometric expression. Its body contains no integration operator.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.S",
+      "reason": "Read back two explicit real arguments and dependencies on mubar1, mubar2 and I2, whose definition bodies are supplied. Division remains total.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.S_reduction",
+      "reason": "Retained all three real parameters and four explicit hypotheses: a>0, u>0, b>0 and the root equation. No additional interval restriction occurs.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.capGap",
+      "reason": "Read back the definition for arbitrary real R and w. In particular, w=0 is not excluded from its domain.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.cap_lt_of_gap_lt",
+      "reason": "Retained both real parameters, their strict positivity hypotheses and capGap(R,w)<25. The conclusion is wCap(R)<w.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.cap_square",
+      "reason": "For an explicit real R with R>0, the conclusion contains both strict positivity of wCap(R) and its squared-value identity.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.coefficient_identity",
+      "reason": "Retained a,b,u and all five hypotheses, including 0<u<1/2, b=ell(u)/u and the root equation. The endpoints are excluded.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.critical_rewrite",
+      "reason": "The rewrite is quantified over real R with the explicit hypothesis R>0; it does not state a rewrite at R=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.ell",
+      "reason": "Read back ell(u)=1/2-u for every real u, without a positivity or interval restriction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.integral_reduction",
+      "reason": "Retained a,b,u, their three positivity hypotheses and the root equation. The conclusion combines an identity for the defined I2 with its strict positivity.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.local_root",
+      "reason": "Its serialized type exactly matches the conjunction of the nine component propositions identified in the readback. Each component retains its own binders; there is no outer parameter or existential root assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.lt_cap_of_lt_gap",
+      "reason": "Retained R>0, w>0 and 25<capGap(R,w). The strict conclusion is w<wCap(R), with no assertion for equality at the threshold.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.mubar1",
+      "reason": "Read back a total real function u↦π²/(4u²); u=0 is not excluded by a binder.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.mubar2",
+      "reason": "Read back two explicit real arguments a,u and the total expression a²/u².",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.phase",
+      "reason": "The single argument lambda2 is an arbitrary real variable. The definition uses the total real square root and includes no nonnegativity hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.phase_bound",
+      "reason": "Retained the explicit real parameter and both inclusive bounds 0≤lambda2≤4π². The conclusion has three conjuncts, including π/20<π/2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction",
+      "reason": "The only hypothesis on real a,b is the root equation. Both trigonometric identities are retained; no positivity assumption excludes zero parameters.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.scalarRatio",
+      "reason": "The exported type is ℚ, with no arguments. All fractions in its supplied body are rational arithmetic.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.scalar_ratio_bound",
+      "reason": "The statement is a single closed strict inequality in ℚ, comparing scalarRatio with 8256/10000.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient",
+      "reason": "Retained all three parameters and six hypotheses, including S(a,u)=0. It conditionally asserts the coefficient identity and positivity, without asserting existence of such parameters.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.wCap",
+      "reason": "Read back a total real function with body (1/2)/sqrt(1+25/(π²R)). The definition itself does not restrict R to positive values.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.wCritical",
+      "reason": "Read back the total expression 1/(2(1+1/sqrt(R))) for every real R; positivity belongs to subsequent theorem hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.C._proof_1",
+      "reason": "A closed numeral-support proposition Nat.AtLeastTwo(2+1), with no binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.capGap.eq_1",
+      "reason": "The equation reproduces capGap's supplied body for every pair of real arguments, without denominator hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.ell._proof_1",
+      "reason": "A closed numeral-support proposition Nat.AtLeastTwo(1+1), with no binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.mubar1._proof_1",
+      "reason": "A closed numeral-support proposition Nat.AtLeastTwo(3+1), with no binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.phase._proof_1",
+      "reason": "A closed numeral-support proposition Nat.AtLeastTwo(1599+1), with no binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_1",
+      "reason": "Retained universe u_2, implicit α and the Zero, OfNat α 2 and NeZero instances. Its conclusion equates the proposition 2=0 with False.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_2",
+      "reason": "Retained universe u_2, implicit α and the Zero, OfNat α 3 and NeZero instances. Its conclusion equates the proposition 3=0 with False.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_3",
+      "reason": "Retained universe u_2, implicit α and the Zero, OfNat α 4 and NeZero instances. Its conclusion equates the proposition 4=0 with False.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_4",
+      "reason": "Retained universe u_1, implicit type and elements, three structure instances and both explicit nonzero hypotheses. No ring or commutativity assumption is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_5",
+      "reason": "Retained the MonoidWithZero and IsReduced instances, implicit a, explicit natural exponent n and a≠0. The exponent includes n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_6",
+      "reason": "Retained universe u_3, GroupWithZero, implicit a, explicit integer exponent n and a≠0. Negative and zero exponents remain included.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.root_trig_reduction._simp_1_7",
+      "reason": "Retained universe u_1, AddMonoidWithOne, CharZero and every natural n. The conclusion concerns the natural cast of n plus one.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.scalarRatio.eq_1",
+      "reason": "A closed equality in ℚ reproducing the supplied scalarRatio definition, with no parameters.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_1",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_1, including all three instance binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_2",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_2, including the nonzero assumption on the numeral 3.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_3",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_3, including the nonzero assumption on the numeral 4.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_4",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_4, preserving both implicit elements and both nonzero hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_5",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_5, including IsReduced and the unrestricted natural exponent.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_6",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_6, including the unrestricted integer exponent.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.stationary_coefficient._simp_1_7",
+      "reason": "Its complete serialized type and universe agree with root_trig_reduction._simp_1_7, including CharZero and the natural-cast expression.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound8.wCap._proof_1",
+      "reason": "A closed numeral-support proposition Nat.AtLeastTwo(24+1), with no binders.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round8-20260922/formal-blind/declarations.json"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/51974b29d171062803bede6adb8ec112e0e63219d3f70c7b7b1084be247d9201-01a0c4ee-043e-7d81-8b9d-8cca7ae09cdf",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval is confined to formal readback of the 47 exported declarations, including 11 supplied definition bodies. No comparison with an author's intended theorem was made.",
+    "All 36 theorem proof bodies are omitted. Kernel replay, proof-dependency verification and independent confirmation of the reported axiom lists were unavailable from the supplied snapshot.",
+    "Imported library implementations and an executable Lean environment were not supplied or inspected. Standard Lean constants and typeclasses retain their named meanings in the readback.",
+    "The packet and input hashes match, all claims have unique matching declarations, all serialized bound-variable references are closed, and binder metadata agrees with the serialized types. These checks establish internal snapshot consistency, not fidelity to an unsupplied source project or complete formalization."
+  ]
+}

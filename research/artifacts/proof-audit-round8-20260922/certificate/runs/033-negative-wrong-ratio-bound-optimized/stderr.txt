@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/certificate.py", line 338, in run_negative
+    require(values["ratio_upper"] < Fraction(825, 1000), "Proposed scalar upper bound 0.825 is not certified")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/033-negative-wrong-ratio-bound-optimized/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: Proposed scalar upper bound 0.825 is not certified

@@ -1,0 +1,55 @@
+run_cmd do
+  let env := (← getEnv).setExporting false
+  let names ← env.constants.foldM (init := (#[] : Array Name)) fun acc name _ => do
+    if name.toString.startsWith "AuditRound8." then return acc.push name
+    return acc
+  let names := names.qsort Name.lt
+  let mut publicDecls := #[]
+  for name in names do
+    let some info := env.checked.get.find? name | throwError "Missing {name}"
+    let actualType ← liftTermElabM <| withOptions
+      (fun o => o.setBool `pp.universes true |>.setBool `pp.fullNames true |>.setBool `pp.explicit true)
+      do return (← ppExpr info.type).pretty
+    let valueText ← match info.value? (allowOpaque := true) with
+      | some value =>
+        if info.isTheorem then
+          pure "[proof term omitted; dependency closure and axioms exported]"
+        else
+          liftTermElabM <| withOptions (fun o => o.setBool `pp.fullNames true)
+            do return (← ppExpr value).pretty
+      | none => pure "[no value]"
+    let axioms ← collectAxioms name
+    publicDecls := publicDecls.push <| Json.mkObj [
+      ("declaration", toJson name.toString), ("kind", toJson (kind_name info)),
+      ("actual_type", toJson actualType), ("value_readback", toJson valueText),
+      ("type_expression", expr_json info.type),
+      ("value_expression", if info.isTheorem then Json.null else
+        (info.value? (allowOpaque := true)).map expr_json |>.getD Json.null),
+      ("universes", toJson (info.levelParams.map Name.toString)),
+      ("binder_kinds", toJson (binder_kinds info.type)),
+      ("unsafe", toJson info.isUnsafe), ("axioms", names_json axioms)]
+  let some actual := env.checked.get.find? `AuditRound8.local_root | throwError "Missing root"
+  let some expected := env.checked.get.find? `Round8Exporter.positive_control | throwError "Missing contract"
+  let same ← liftTermElabM <| withTransparency .all <| isDefEq actual.type expected.type
+  unless same && actual.levelParams == expected.levelParams && binder_kinds actual.type == binder_kinds expected.type do
+    throwError "Complete root type does not match expected contract"
+  let used := dependency_closure env (names.toList ++ expected.type.getUsedConstants.toList)
+  let mut bad := #[]
+  let nodes := used.toArray.qsort Name.lt |>.map fun name => node_json env name false
+  for name in used.toArray do
+    match env.checked.get.find? name with
+    | none => bad := bad.push name.toString
+    | some info => if info.isUnsafe then bad := bad.push name.toString
+  unless bad.isEmpty do throwError "Unknown or unsafe dependencies: {bad}"
+  let mut modules := #[]
+  for name in env.header.moduleNames.qsort Name.lt do
+    let path ← findOLean name
+    modules := modules.push <| Json.mkObj [("module",toJson name.toString),("olean",toJson path.toString)]
+  let result := Json.mkObj [
+    ("public_declarations", Json.arr publicDecls),
+    ("expected_type_expression", expr_json expected.type),
+    ("expected_type_match", toJson same), ("dependencies", Json.arr nodes),
+    ("loaded_module_count", toJson env.header.moduleNames.size),
+    ("modules", Json.arr modules)]
+  IO.FS.writeFile "OUTPUT_PLACEHOLDER" (result.compress ++ "\n")
+end Round8Exporter

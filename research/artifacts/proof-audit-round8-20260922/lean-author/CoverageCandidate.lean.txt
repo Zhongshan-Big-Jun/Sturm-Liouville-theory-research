@@ -1,0 +1,106 @@
+/-- Original critical curve w_c(R)=1/(2(1+R^(-1/2))). -/
+def wCritical (R : ℝ) : ℝ := 1 / (2 * (1 + 1 / Real.sqrt R))
+
+theorem critical_rewrite (R : ℝ) (hR : 0 < R) :
+    wCritical R = Real.sqrt R / (2 * (Real.sqrt R + 1)) := by
+  have hs : 0 < Real.sqrt R := Real.sqrt_pos.mpr hR
+  unfold wCritical
+  field_simp
+  ring
+
+/-- A point in the first R-cell and real B region, above the checked rectangle's top. -/
+theorem B_curved_counterexample :
+    (1500 : ℝ) < 3015 / 2 ∧ (3015 / 2 : ℝ) < 1515 ∧
+    (19 / 100 : ℝ) < 48743 / 100000 ∧ (48743 / 100000 : ℝ) < 1 / 2 ∧
+    wCritical 1500 < 48743 / 100000 ∧
+    (48743 / 100000 : ℝ) < wCritical (3015 / 2) := by
+  have hs0 : 0 < Real.sqrt (1500 : ℝ) := Real.sqrt_pos.mpr (by norm_num)
+  have hs1 : 0 < Real.sqrt (3015 / 2 : ℝ) := Real.sqrt_pos.mpr (by norm_num)
+  have hupper : Real.sqrt (1500 : ℝ) < 48743 / 1257 := by
+    apply (Real.sqrt_lt' (by norm_num)).mpr
+    norm_num
+  have hlower : (48743 / 1257 : ℝ) < Real.sqrt (3015 / 2 : ℝ) := by
+    have hh := Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 3015 / 2)
+    nlinarith
+  refine ⟨by norm_num, by norm_num, by norm_num, by norm_num, ?_, ?_⟩
+  · rw [critical_rewrite 1500 (by norm_num)]
+    apply (div_lt_iff₀ (by positivity)).mpr
+    nlinarith only [hupper]
+  · rw [critical_rewrite (3015 / 2) (by norm_num)]
+    apply (lt_div_iff₀ (by positivity)).mpr
+    nlinarith only [hlower]
+
+/-- The true mathematical-pi cap curve, not a floating approximation. -/
+def wCap (R : ℝ) : ℝ := (1 / 2) / Real.sqrt (1 + 25 / (Real.pi ^ 2 * R))
+
+def capGap (R w : ℝ) : ℝ := Real.pi ^ 2 * R * (1 / (4 * w ^ 2) - 1)
+
+theorem cap_square (R : ℝ) (hR : 0 < R) :
+    0 < wCap R ∧ wCap R ^ 2 = Real.pi ^ 2 * R / (4 * (Real.pi ^ 2 * R + 25)) := by
+  have hpR : 0 < Real.pi ^ 2 * R := by positivity
+  have hx : 0 < 1 + 25 / (Real.pi ^ 2 * R) := by positivity
+  constructor
+  · unfold wCap
+    positivity
+  · unfold wCap
+    rw [div_pow, Real.sq_sqrt hx.le]
+    field_simp
+    ring
+
+theorem cap_lt_of_gap_lt (R w : ℝ) (hR : 0 < R) (hw : 0 < w)
+    (hgap : capGap R w < 25) : wCap R < w := by
+  have hd : 0 < 4 * w ^ 2 := by positivity
+  have hc : 0 < 4 * (Real.pi ^ 2 * R + 25) := by positivity
+  have hconvert : capGap R w = Real.pi ^ 2 * R / (4 * w ^ 2) - Real.pi ^ 2 * R := by
+    unfold capGap
+    ring
+  rw [hconvert] at hgap
+  have hm : Real.pi ^ 2 * R < (25 + Real.pi ^ 2 * R) * (4 * w ^ 2) := by
+    apply (div_lt_iff₀ hd).mp
+    linarith
+  have hs : wCap R ^ 2 < w ^ 2 := by
+    rw [(cap_square R hR).2]
+    apply (div_lt_iff₀ hc).mpr
+    nlinarith only [hm]
+  nlinarith [(cap_square R hR).1]
+
+theorem lt_cap_of_lt_gap (R w : ℝ) (hR : 0 < R) (hw : 0 < w)
+    (hgap : 25 < capGap R w) : w < wCap R := by
+  have hd : 0 < 4 * w ^ 2 := by positivity
+  have hc : 0 < 4 * (Real.pi ^ 2 * R + 25) := by positivity
+  have hconvert : capGap R w = Real.pi ^ 2 * R / (4 * w ^ 2) - Real.pi ^ 2 * R := by
+    unfold capGap
+    ring
+  rw [hconvert] at hgap
+  have hm : (25 + Real.pi ^ 2 * R) * (4 * w ^ 2) < Real.pi ^ 2 * R := by
+    apply (lt_div_iff₀ hd).mp
+    linarith
+  have hs : w ^ 2 < wCap R ^ 2 := by
+    rw [(cap_square R hR).2]
+    apply (lt_div_iff₀ hc).mpr
+    nlinarith only [hm]
+  nlinarith [(cap_square R hR).1]
+
+/-- Actual pi bounds from Mathlib suffice to certify both strict gap signs. -/
+theorem D_gap_signs :
+    capGap (3015 / 2) (4995815 / 10000000) < 25 ∧
+    25 < capGap 1515 (4995815 / 10000000) := by
+  have hpU : Real.pi ^ 2 < (31416 / 10000 : ℝ) ^ 2 := by
+    nlinarith [Real.pi_lt_d4, Real.pi_pos]
+  have hpL : (31415 / 10000 : ℝ) ^ 2 < Real.pi ^ 2 := by
+    nlinarith [Real.pi_gt_d4, Real.pi_pos]
+  constructor
+  · norm_num [capGap]
+    nlinarith only [hpU]
+  · norm_num [capGap]
+    nlinarith only [hpL]
+
+/-- A point in true D, below the first checked D rectangle, at the same interior R. -/
+theorem D_curved_counterexample :
+    (1500 : ℝ) < 3015 / 2 ∧ (3015 / 2 : ℝ) < 1515 ∧
+    (0 : ℝ) < 4995815 / 10000000 ∧ (4995815 / 10000000 : ℝ) < 1 / 2 ∧
+    wCap (3015 / 2) < 4995815 / 10000000 ∧
+    (4995815 / 10000000 : ℝ) < wCap 1515 := by
+  exact ⟨by norm_num, by norm_num, by norm_num, by norm_num,
+    cap_lt_of_gap_lt _ _ (by norm_num) (by norm_num) D_gap_signs.1,
+    lt_cap_of_lt_gap _ _ (by norm_num) (by norm_num) D_gap_signs.2⟩

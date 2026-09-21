@@ -1,0 +1,51 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "10a8bec28d19a7d77cfe96c73814e1faf51ebe754d590cebb6709145e980a042",
+  "reviewer_id": "01a0c4ec-efba-7e12-9990-bfd51c83af3a",
+  "bindings": {
+    "research/artifacts/proof-audit-round8-20260922/certificate-evidence.zip": "790cdb673310a7aff931e5ba3ac433c6a368d3dabff01df5b2bcc0b0390ce458",
+    "research/artifacts/proof-audit-round8-20260922/certificate/README.md": "a888148d115dd4774414462f761220afbf64cef6b2cabdcb3b52e1064c879489",
+    "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+    "research/artifacts/proof-audit-round8-20260922/certificate/results.json": "15723e490e332b4b979a1641f86fed216cc4232964fb2e5c0d3c5bd642cb7166",
+    "research/artifacts/proof-audit-round8-20260922/certificate/verification.json": "36f7fb2c292730da0e9727bedd9e5fc40702063b16d02b1f992c396f1af8536d",
+    "research/artifacts/proof-audit-round8-20260922/submitted/analytic_repairs.md": "de06a585cec0e3b2e2e283f589bbecc4ab90d18f84496ae774bc73cd75e11dbd",
+    "research/artifacts/proof-audit-round8-20260922/submitted/checks.py": "e590029a9d7b9e12eb3ed42883500189c32cf6f0e4f03703fee33ebae725d5c0"
+  },
+  "claims": [
+    {
+      "id": "certificate-soundness",
+      "reason": "Exact interval operations, division/domain guards, signed grid rounding, Machin branch and alternating bounds, and Taylor remainders are sound. Independently checked derivatives and endpoint limits justify root uniqueness and increasing endpoint propagation; the T3 enclosures and margins follow. The three-range analytic argument covers every t in (pi/2,pi), with upper bounds 8, 4380649/500000 and 4761/800, all below 9. The Cz enclosure and positive scalar denominators give Q=893460803/1082206710<0.8256 under the stated interface hypotheses. Decimal displays are outward and never reused as proof inputs.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "certificate-execution",
+      "reason": "Fresh copied executions passed all 22 supplied checks in ordinary and -O modes, and all 19 certificate groups in ordinary, -O, -S and -O -S modes. All 14 negative controls rejected at their intended guards in all four modes (56 preserved failures). Independent edge regressions passed 3950 assertions in each of -S and -O -S; 22 symbolic identity/endpoint checks also passed. Exact certificate outputs reproduce the frozen results. Raw argv, exit status, stdout/stderr, source hashes and the review manifest are saved under /mnt/f/tools/math-audit-round8-20260922/certificate-reviewer/review-20260921T170619Z-cde51d21/manifest.json.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "certificate-provenance",
+      "reason": "Verified all seven packet hashes, six duplicate snapshot identities, all 497 archive-manifest entries, 14 intake copies, and 65 archived author receipts (9 successes, 56 intended failures). The three supplied historical source files reproduce their reported Git blob IDs. Original success logs and the earlier symbolic failure log remain preserved. Fresh local execution reproduces the pinned legacy libm counterexample; its platform dependence is retained. Ordinary startup hooks were observed and absent in the -S inventories; no complete import or machine isolation is inferred. Final checks confirmed the frozen inputs remained unchanged.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round8-20260922/certificate-evidence.zip",
+    "research/artifacts/proof-audit-round8-20260922/certificate/README.md",
+    "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+    "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+    "research/artifacts/proof-audit-round8-20260922/certificate/verification.json",
+    "research/artifacts/proof-audit-round8-20260922/submitted/analytic_repairs.md",
+    "research/artifacts/proof-audit-round8-20260922/submitted/checks.py"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/10a8bec28d19a7d77cfe96c73814e1faf51ebe754d590cebb6709145e980a042-01a0c4ec-efba-7e12-9990-bfd51c83af3a",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval covers the requested certificate scope only, not complete formalization, T1, full sliver coverage, the INF-limit theorem, or upstream spectral-deficit and global phase-branch claims.",
+    "Numerical asymptotic and finite-index regression checks do not establish universal or limiting claims. Ancillary analytic-repair claims outside the certificate scope were not certified.",
+    "The original failed symbolic-check source revision and original exit-code receipt were unavailable; only the preserved failure log could be checked.",
+    "Git commit membership was not checked against unsupplied Git data. Historical source-level claims requiring the absent 16_certify_all_regions.py, SL_gap_nge2_symmetry_local_proof.tex or gap-band-extremals.md were not independently re-audited.",
+    "Executions used installed Python 3.14.4. Post-execution module inventories and -S runs do not provide complete process or full-machine isolation. No Lean execution was performed."
+  ]
+}

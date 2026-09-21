@@ -1,0 +1,56 @@
+{
+  "kind": "mathematics",
+  "author_ids": [
+    "01a06f46-dd03-7c83-9267-32048412c359",
+    "01a0c4c7-52f9-71e3-bc0b-ef3e30abb78e",
+    "01a0c4c7-595b-7a40-9740-ec99ceb721a6",
+    "01a0c4cc-45bc-77e1-8ce3-f79b2f3d31aa"
+  ],
+  "inputs": [
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/certificate-evidence.zip",
+      "role": "frozen author source and raw execution archive"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+      "role": "exact interval implementation"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/certificate/README.md",
+      "role": "mathematical contract and scope"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/certificate/verification.json",
+      "role": "author evidence inventory not independent approval"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+      "role": "author exact outputs"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/submitted/checks.py",
+      "role": "external audit regressions"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round8-20260922/submitted/analytic_repairs.md",
+      "role": "proposed analytic repairs to check"
+    }
+  ],
+  "claims": [
+    {
+      "id": "certificate-soundness",
+      "verification": "exact-computation",
+      "statement": "Independently audit Fraction-only interval arithmetic, Machin/Taylor error bounds, every domain/division guard, root sign and endpoint image direction, interval expression for T3, Cz and 0.8256 ratio. Verify the reported enclosures follow, and that Decimal outward display is not reused as unproved input. Audit the continuous B(t)<=9 argument in README (all t in (pi/2,pi)); finite samples alone do not prove it. The full sliver domain and T1 are explicitly excluded from this certificate."
+    },
+    {
+      "id": "certificate-execution",
+      "verification": "software",
+      "statement": "Perform fresh independent executions from copies of the frozen inputs. Authorized output directory only: /mnt/f/tools/math-audit-round8-20260922/certificate-reviewer. You may extract the supplied frozen zip there and execute its copied certificate and supplied checks with local Python; the source project remains read-only. Read OS Python/runtime files only as needed to execute. Do not seek memory, skills, authors or other project files. Run ordinary and -O, and fresh -S certificate positives/negative controls where supported. Check original 22 supplied checks, all 19 certificate groups, all14 declared negative controls and appropriate own edge cases. Save raw argv/exit/stdout/stderr/source-hash receipts and a manifest under this output directory; reject any counterexample rather than editing reviewed source. Do not claim process import isolation merely from stdlib source imports. No absolute full-machine isolation is asserted."
+    },
+    {
+      "id": "certificate-provenance",
+      "verification": "software",
+      "statement": "Verify the frozen zip manifest, original input identities and raw failed/successful execution receipts. Distinguish author evidence, your actual fresh executions, legacy platform-specific libm counterexamples and unproved spectral/continuous statements. Preserve failures. Report exact checked scopes and any actionable remaining defect."
+    }
+  ]
+}

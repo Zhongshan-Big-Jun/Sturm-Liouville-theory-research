@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=25mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\title{Round 8 sliver and T1 insertion: compilation harness}
+\author{Mathematical author candidate; independent review pending}
+\date{2026-09-22}
+\begin{document}
+\maketitle
+\noindent This harness checks the insertable fragment's typesetting.
+The following dependency statements are proved in Appendices A and B of
+\texttt{proof.md}; they are stated here only to resolve integration references.
+This PDF is not an independent review or a T3 certificate.
+\section{Notation and integration dependencies}
+On $(0,1)$ use Dirichlet boundary conditions and the symmetric weight
+$\rho_{R,u}=R$ in $(0,u)\cup(1-u,1)$ and $\rho_{R,u}=1$ elsewhere,
+where $R\ge1$ and $0<u<1/2$. Set
+$D_R(u)=\lambda_2(R,u)-\lambda_1(R,u)$,
+$G(R,u)=R D_R(u)$, $m_R=\inf_{0<u<1/2}D_R(u)$,
+$\ell=1/2-u$, $\varepsilon=R^{-1/2}$, and $w=u/\varepsilon$.
+For $a(u)\in(\pi/2,\pi)$ defined by $\tan a=-a\ell/u$, put
+$\bar D(u)=(a(u)^2-\pi^2/4)/u^2$.
+\begin{theorem}[Repaired large-$w$ input]\label{thm:lemAdp}
+If $R\ge1500$ and $w\ge2$, then $G(R,u)\ge\bar D(u)$.
+The second phase is in $(\pi/2,\pi)$ on this restricted region.
+\end{theorem}
+\begin{theorem}[Retained analytic T2]\label{thm:T2}
+The function $\bar D$ has exactly one critical point $u^*$.
+It strictly decreases on $(0,u^*)$ and strictly increases on $(u^*,1/2)$,
+with endpoint limits $+\infty$ and $3\pi^2$, respectively.
+\end{theorem}
+\section{Insertable contribution}
+\input{sliver_t1_fragment.tex}
+\end{document}

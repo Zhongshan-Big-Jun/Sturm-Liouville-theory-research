@@ -1,0 +1,68 @@
+{
+  "status": "CANDIDATE_EXACT_SUMMARY_REFRESH",
+  "before_sha256": "4c06d5a0785a8f4f836b317d14939e563caade3663853c86d66f2f0158a30a4a",
+  "candidate_sha256": "ce3ba7bee620cad4b6e3df2fe90317929dbe1e7d34b20a5922c508960ad4f4ea",
+  "cards": [
+    {
+      "location": "tools/denseness-criteria.md",
+      "sha256": "4991c33cd33772f5f7bba8cd36359799cf51e227f711c65e662506953a411411",
+      "before_summary": "# 稠密性准则 (Denseness Criteria) ## 解析 设 $H$ 为 $[-1,1]$ 上函数的 Hilbert 空间, 满足 (H1) 所有多项式 $\\Pi \\subset H$ 且 $\\Pi$ 在 $H$ 中稠密; (H2) 矩泛函良定 ($M_k = (w, x^k)_H$ 由 Cauchy-Schwarz 自动成立). 研究对象是稀疏基 $p_0 = 1$, $p_1 = x$, $p_{2m} = x^{2m} - \\frac{m}{m-1}x^{2m-2}$, $p_{2m+1} = x^{2m+1}$ - $\\frac{m}{m-1}x^{2m-1}$ ($m \\geq 2$, 缺 2, 3 次). 三个通用判据: 1. **矩刻画 (充要, 定理 2)**: $\\{p_n\\}$ 在 $H$ 中完备 $\\iff$ 不存在非零 $w \\in H$ 使矩满足 $M_0 = M_1 = 0$, $M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 完备性被归结为矩量问题的可表示性. 2. **一阶矩准则 (定理 3)**: 若 $\\|x^k\\|",
+      "after_summary": "# 稠密性准则 (Denseness Criteria) ## 解析 设 $H$ 为 $[-1,1]$ 上函数的 Hilbert 空间, 满足 (H1) 所有多项式 $\\Pi \\subset H$ 且 $\\Pi$ 在 $H$ 中稠密; (H2) 矩泛函良定 ($M_k = (w, x^k)_H$ 由 Cauchy-Schwarz 自动成立). 研究对象是稀疏基 $p_0 = 1$, $p_1 = x$, $p_{2m} = x^{2m} - \\frac{m}{m-1}x^{2m-2}$, $p_{2m+1} = x^{2m+1}$ - $\\frac{m}{m-1}x^{2m-1}$ ($m \\geq 2$, 缺 2, 3 次). 三个通用判据: 1. **矩刻画 (充要, 定理 2)**: $\\{p_n\\}$ 在 $H$ 中完备 $\\iff$ 不存在非零 $w \\in H$ 使矩满足 $M_0 = M_1 = 0$, $M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 完备性被归结为矩量问题的可表示性. 2. **一阶矩准则 (定理 3)**: 若 $\\|x^k\\|",
+      "changed": false
+    },
+    {
+      "location": "tools/jump-stability.md",
+      "sha256": "34b3aac6095c47365ea310ab9e1f98883559b41e648bf2605059044cbf238556",
+      "before_summary": "# 跳变稳定性 (Jump Stability) ## 解析 矩跳跃完备性判据的稳定性理论. 对二阶跳变递推 $c_0 u_m = A_m u_{m-1} - B_m u_{m-2}$ ($u_0=0$, $u_1=1$, $B_m \\geq 0$, $A_m - B_m \\geq c_0$), 增长引理 (定量形式): $u_m$ 单调且 $$u_m \\geq \\prod_{k=2}^m \\frac{A_k - B_k}{c_0} = \\prod_{k=2}^m (1+\\varepsilon_k), \\quad \\varepsilon_k = \\frac{A_k-B_k-c_0}{c_0} \\geq 0.$$ **稳定性定理**: 若 $\\sum_{k \\leq m} \\min(\\varepsilon_k, 1) = \\omega(\\log m)$, 则 $u_m$ 超多项式增长 ($u_m/m^\\beta \\to \\infty$, 一切 $\\beta$), 从而任意满足 (H1) 多项式稠密 + (H2) 矩良定 + 单幂范数界 $\\|x^k\\|_H \\leq C k^\\beta$",
+      "after_summary": "# 矩跳跃的条件稳定性 本卡区分一般二阶递推、实际解的完备性判据和 B=0 的精确模型. 第三轮修订撤回旧的一般增长分类及无条件有界基扰动稳健性. 独立复核与是否可复用以纠错记录及当前指针表为准; 本卡不承担全项目认证. ## 一般递推只给出下界 令 c0>0, u0=0, u1=1, c0*u_m=A_m*u_(m-1)-B_m*u_(m-2). 对每个 m>=2 要求 B_m>=0, A_m-B_m>=c0. 记 eps_m=(A_m-B_m-c0)/c0. 恒等式 ``` u_m=(1+eps_m)*u_(m-1)+(B_m/c0)*(u_(m-1)-u_(m-2)) ``` 给出单调性及 u_m>=prod_(k=2..m)(1+eps_k). 一般 B>0 不能把下界当等式, 也不能由 S(m)=sum log(1+eps_k)=O(log m) 推出实际解多项式有界. 反例 c0=1,A=3,B=2 给出 S=0 而 u_m=2^m-1. 对于包含 q0=c0,q1=c0*x、缺少指标2和3、偶奇侧均为上述三项跳变结构的族, 若实 Hilbert 空间中全部多项式稠密、矩取",
+      "changed": true
+    },
+    {
+      "location": "tools/krein-sobolev-polynomials.md",
+      "sha256": "01ec28bce0809fc96f5e8e9dbd9421f35d07cd4241c94e36fd75b0aacda8d52d",
+      "before_summary": "# Krein-Sobolev 正交多项式 ## 解析 移位 Krein Laplacian $K_c$ (边界 $f''(\\pm1)=(f(1)-f(-1))/2$) 的第一左定空间为 $(H^1[-1,1],(\\cdot,\\cdot)_{1,c})$. 对其作 Gram-Schmidt 正交化得到 Krein-Sobolev 多项式 $\\{K_n\\}$: 在 $H^1$ 中完备正交, 根全实单且位于 $(-1,1)$; 偶次 $K_{2n}$ 与 Althammer (Sobolev-Legendre) 多项式重合; 显式系数由超几何求和给出; 对偶恒等式 $(f,g)_{1,c}=c\\langle f,g\\rangle_{1/c}$. ## 适用范围 - 适用: 左定空间中构造完备正交多项式基; 研究代数完备与解析完备的区别. - 边界情形: $H^2[-1,1]$ (边界约束) 中多项式基 $\\{p_n\\}$ 缺 2,3 次项, 代数不完备; 其解析完备性是开放问题. - 不适用: 不能直接用于特征值比值问题 (那是主题 2). ## 与完备性证明基 {p_n} 的区别 (重要",
+      "after_summary": "# Krein-Sobolev 正交多项式 ## 解析 移位 Krein Laplacian $K_c$ (边界 $f'(1)=f'(-1)=(f(1)-f(-1))/2$) 的第一左定空间为 $(H^1[-1,1],(\\cdot,\\cdot)_{1,c})$. 对其作 Gram-Schmidt 正交化得到 Krein-Sobolev 多项式 $\\{K_n\\}$: 在 $H^1$ 中完备正交, 根全实单且位于 $(-1,1)$; 偶次 $K_{2n}$ 与 Althammer (Sobolev-Legendre) 多项式重合; 显式系数由超几何求和给出; 对偶恒等式 $(f,g)_{1,c}=c\\langle f,g\\rangle_{1/c}$. ## 适用范围 - 适用: 左定空间中构造完备正交多项式基; 研究代数完备与解析完备的区别. - 边界情形: $H^2[-1,1]$ (边界约束) 中多项式基 $\\{p_n\\}$ 缺 2,3 次项, 代数不完备; 其 H2/H3 解析完备性已有项目证明; 第六轮四迹图核证明给出原族在整个0<=s<7/2稠密, 每个非仿射成员在s>=7/2均不",
+      "changed": true
+    },
+    {
+      "location": "tools/left-definite-moment-recurrence.md",
+      "sha256": "c288a56fba31a2aaff8551b8e11439f3ff3a1d6637bae7f9b4bf8a5da0112612",
+      "before_summary": "# 左定矩跳跃 (Left-Definite Moment Recurrence) ## 解析 对移位 Krein Laplacian $K_c$ 的真正左定空间 $H^s=D(K_c^{s/2})$, 本工具直接适用于 $s=2,3$. 先验证 $p_n\\in H^s$ 及取矩单项式在 $H^{s-2}$ 中. 1. 等距同构 $K_c:H^s\\to H^{s-2}$ 将正交条件变为 $(K_cw,K_cp_n)_{s-2}=0$. 2. 多项式恒等式 $K_cp_{2m}=cx^{2m}-A_mx^{2m-2}+B_mx^{2m-4}$, $A_m=2m(2m-1)+cm/(m-1)$, $B_m=2m(2m-3)$, 给出良定的矩递推 $cM_{2m}=A_mM_{2m-2}-B_mM_{2m-4}$, 奇次同理. 3. $B_m\\ge0$ 和 $A_m-B_m\\ge c$ 先保证钉住解单调; 本例更强的 $A_m-B_m\\ge4m+c$ 才给出阶乘下界; $L^2$ 或 $H^1$ 矩的多项式上界迫使自由参数 $M_2,M_3$ 为零. 4. 多项式在取矩空间中稠密, 所以湮灭",
+      "after_summary": "# 左定矩跳跃 (Left-Definite Moment Recurrence) ## 解析 对移位 Krein Laplacian $K_c$ 的真正左定空间 $H^s=D(K_c^{s/2})$, 本工具直接适用于 $s=2,3$. 先验证 $p_n\\in H^s$ 及取矩单项式在 $H^{s-2}$ 中. 1. 等距同构 $K_c:H^s\\to H^{s-2}$ 将正交条件变为 $(K_cw,K_cp_n)_{s-2}=0$. 2. 多项式恒等式 $K_cp_{2m}=cx^{2m}-A_mx^{2m-2}+B_mx^{2m-4}$, $A_m=2m(2m-1)+cm/(m-1)$, $B_m=2m(2m-3)$, 给出良定的矩递推 $cM_{2m}=A_mM_{2m-2}-B_mM_{2m-4}$, 奇次同理. 3. $B_m\\ge0$ 和 $A_m-B_m\\ge c$ 先保证钉住解单调; 本例更强的 $A_m-B_m\\ge4m+c$ 才给出阶乘下界; $L^2$ 或 $H^1$ 矩的多项式上界迫使自由参数 $M_2,M_3$ 为零. 4. 多项式在取矩空间中稠密, 所以湮灭",
+      "changed": false
+    },
+    {
+      "location": "tools/left-definite-theory.md",
+      "sha256": "d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91",
+      "before_summary": "# 左定理论与 Hilbert 空间尺度 ## 解析 设 $A$ 为自伴算子, $A\\ge kI$ ($k>0$). 对 $s>0$ 定义第 $s$ 个左定空间 $$H_s=(V_s,(\\cdot,\\cdot)_s),\\qquad V_s=D(A^{s/2}),\\quad (f,g)_s=(A^{s/2}f,A^{s/2}g).$$ 性质: (1) $A$ 无界时 $V_t\\subsetneq V_s$ ($0<s<t$), 内积两两不等价; (2) $H_s=A^{-s/2}H$; (3) $A^{(s-t)/2}:H_s\\to H_t$ 为等距同构. 左定算子 $A_s$ 与 $A$ 酉等价, 谱相同, 完备特征函数系保持. 负阶需要另作完备化: 对 s<0, 使用 H 在 ||A^(s/2)f|| 下的完备化 (或相应对偶尺度), 不能因为 A^(s/2) 有界就认为 H 集合上的弱范数已经完备. 幂运算在完整尺度上按谱乘子延拓. Krein 例子的完整谱系与精确成员阈值见 [[spectral-domain-checks]]. ## 适用范围 - 适用: 回答\"解在多大空间中仍",
+      "after_summary": "# 左定理论与 Hilbert 空间尺度 ## 解析 设 $A$ 为自伴算子, $A\\ge kI$ ($k>0$). 对 $s>0$ 定义第 $s$ 个左定空间 $$H_s=(V_s,(\\cdot,\\cdot)_s),\\qquad V_s=D(A^{s/2}),\\quad (f,g)_s=(A^{s/2}f,A^{s/2}g).$$ 性质: (1) $A$ 无界时 $V_t\\subsetneq V_s$ ($0<s<t$), 内积两两不等价; (2) $H_s=A^{-s/2}H$; (3) $A^{(s-t)/2}:H_s\\to H_t$ 为等距同构. 左定算子 $A_s$ 与 $A$ 酉等价, 谱相同, 完备特征函数系保持. 负阶需要另作完备化: 对 s<0, 使用 H 在 ||A^(s/2)f|| 下的完备化 (或相应对偶尺度), 不能因为 A^(s/2) 有界就认为 H 集合上的弱范数已经完备. 幂运算在完整尺度上按谱乘子延拓. Krein 例子的完整谱系与精确成员阈值见 [[spectral-domain-checks]]. ## 适用范围 - 适用: 回答\"解在多大空间中仍",
+      "changed": false
+    },
+    {
+      "location": "tools/leftdef-o1pld-l2-structural.md",
+      "sha256": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+      "before_summary": "# 左定 O1'LD 的 L^2 降维结构定理 ## 解析 设 s=2, 等距同构 K_c : H^2 -> L^2, q_n = K_c p_n. - **有限支撑 L^2 矩刚性 (STRICT)**: L^2(-1,1) 中若有 f 的矩 (f,x^k) 只对有限个 k 非零, 则 f=0. 证明用 Müntz-Szász 的 L^p 形式 **在 Lebesgue 测度上的 L^2(0,1)**: - 偶部 h(y)=y^{-1/4} f_e(√y) ∈ L^2(0,1), 矩化归为 ∫ h(y)y^{m-1/4}dy; - 奇部 t(y)=y^{1/4} h_o(y) ∈ L^2(0,1), 矩化归为 ∫ t(y)y^{m+1/4}dy; 两个指数集都是删去有限点后仍发散倒数和的, 故相应单项式族稠密. - **Cauchy-Schwarz 矩界 (STRICT)**: |(f,x^k)| <= ||f||_2 sqrt(2/(2k+1)). **但不再把 DensBC O1 的两项游程代数用于 L^2/H^1 降维**; 实际 q_n 矩满足 三项递推 c M_{2m}=A",
+      "after_summary": "# 第二左定空间的余有限稀疏族: 两条迹与 L2 障碍 固定实数 c>0. 这里 Hc2 是满足 Krein 边界条件的 D(Kc), 范数为 ||Kc f||_2, Kc f=-f''+cf. 它不是全部普通 Sobolev H2. 函数和线性空间允许复数, 内积对第一变量线性. 指标 D={0,1}∪{4,5,...}, p0=1,p1=x, p_(2m)=x^(2m)-m/(m-1)x^(2m-2), p_(2m+1)=x^(2m+1)-m/(m-1)x^(2m-1), m>=2; q_n=Kc p_n. ## 被反证的旧候选声明 旧 run R-20260823T030000Z-leftdef-o1pld 的 Claim4、Theorem5、Corollary6 原状态均为 NOT-YET-STRICT. 以下按原量词均为 REFUTED: 尾部三项递推迫使全部 L2 矩为零; 任意余有限 q_n 子族在整个 L2 稠密; 任意真闭 V 必排除无穷多项. 旧 run 保留历史身份, 不能继续把这三条当作待证任务. 最短反例为 V={f∈Hc2:f(0)=0}. 求值连续, V ",
+      "changed": true
+    },
+    {
+      "location": "tools/moment-jump-completeness.md",
+      "sha256": "5b1b3639ad05e608faf86866919e49f04065e32cb5a459d53981b60f289e6261",
+      "before_summary": "# 矩跳跃完备性判据 (Moment-Jump Completeness) ## 解析 设 $(H, (\\cdot,\\cdot)_H)$ 为 Hilbert 空间, $T: H \\to L^2(-1,1)$ 为等距同构 (例如 $T = K_c$: 见 [[left-definite-theory]]). 给定代数不完备的多项式列 $\\{p_n\\}$ (缺若干次数 $d \\in D$), 若满足: 1. 所有 $p_n\\in H$. 低阶正交条件钉住 $\\mu_0=\\mu_1=0$; 偶、奇两条递推分别仅留下 $\\mu_2,\\mu_3$ 一个自由参数. $T p_n$ 的系数结构为 ``三阶跳变'': 对 $n \\geq4$, $$T p_n = c_0 x^n - A_n x^{n-2} + B_n x^{n-4},$$ 其中 $c_0>0$. 分别按每条奇偶递推的步数 $j\\ge2$ 重编号后, 要求 $B_j\\ge0$ 且 $A_j-B_j\\ge4j+c_0$. 2. 矩 $\\mu_k = \\langle g, x^k \\rangle$ 满足 Cauchy-Schwarz 上界 ",
+      "after_summary": "# 矩跳跃完备性判据 (Moment-Jump Completeness) ## 解析 设 $(H, (\\cdot,\\cdot)_H)$ 为 Hilbert 空间, $T: H \\to L^2(-1,1)$ 为等距同构 (例如 $T = K_c$: 见 [[left-definite-theory]]). 给定代数不完备的多项式列 $\\{p_n\\}$ (缺若干次数 $d \\in D$), 若满足: 1. 所有 $p_n\\in H$. 低阶正交条件钉住 $\\mu_0=\\mu_1=0$; 偶、奇两条递推分别仅留下 $\\mu_2,\\mu_3$ 一个自由参数. $T p_n$ 的系数结构为 ``三阶跳变'': 对 $n \\geq4$, $$T p_n = c_0 x^n - A_n x^{n-2} + B_n x^{n-4},$$ 其中 $c_0>0$. 分别按每条奇偶递推的步数 $j\\ge2$ 重编号后, 要求 $B_j\\ge0$ 且 $A_j-B_j\\ge4j+c_0$. 2. 矩 $\\mu_k = \\langle g, x^k \\rangle$ 满足 Cauchy-Schwarz 上界 ",
+      "changed": false
+    },
+    {
+      "location": "tools/spectral-domain-checks.md",
+      "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+      "before_summary": "# Krein 谱系与幂域成员性检查 设 `c>0`, 在 `L2(-1,1)` 中取 `Kc f=-f''+cf`, 定义域为通常 Sobolev `H2` 中满足 `f'(1)=f'(-1)=(f(1)-f(-1))/2` 的函数. 对非负实数 s, 这里的 `Hs` 专指 `D(Kc^(s/2))`, 不直接指通常 Sobolev 空间. 完整正交谱系包含两个低模态: | 未归一化模态 | 特征值 | L2 范数平方 | | --- | --- | --- | | 1 | c | 2 | | x | c | 2/3 | | cos(n pi x), n>=1 | (n pi)^2+c | 1 | | sin(mu_n x), n>=1 | mu_n^2+c | mu_n^2/(1+mu_n^2) | `mu_n` 是 `(n*pi,(n+1/2)*pi)` 中 `tan(mu)=mu` 的唯一根. 偶、奇子空间 分别化为 `[0,1]` 上的 Neumann-Neumann 和 Dirichlet-Robin 问题, 后者 含零频模态 x. 有 `||x||_s^2=2*c^s/",
+      "after_summary": "# Krein 谱系与幂域成员性检查 设 `c>0`, 在 `L2(-1,1)` 中取 `Kc f=-f''+cf`, 定义域为通常 Sobolev `H2` 中满足 `f'(1)=f'(-1)=(f(1)-f(-1))/2` 的函数. 对非负实数 s, 这里的 `Hs` 专指 `D(Kc^(s/2))`, 不直接指通常 Sobolev 空间. 完整正交谱系包含两个低模态: | 未归一化模态 | 特征值 | L2 范数平方 | | --- | --- | --- | | 1 | c | 2 | | x | c | 2/3 | | cos(n pi x), n>=1 | (n pi)^2+c | 1 | | sin(mu_n x), n>=1 | mu_n^2+c | mu_n^2/(1+mu_n^2) | `mu_n` 是 `(n*pi,(n+1/2)*pi)` 中 `tan(mu)=mu` 的唯一根. 偶、奇子空间 分别化为 `[0,1]` 上的 Neumann-Neumann 和 Dirichlet-Robin 问题, 后者 含零频模态 x. 有 `||x||_s^2=2*c^s/",
+      "changed": false
+    }
+  ],
+  "source_cards_unchanged": true,
+  "gate_fields_unchanged": true,
+  "non_target_rows_unchanged": true,
+  "available": 78,
+  "blocked": 1
+}

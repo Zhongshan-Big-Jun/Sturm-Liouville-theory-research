@@ -1,5 +1,8 @@
 # 研究导航
 
+第八轮当前入口: [INF 极限证明](SL_gap_n1_inf_limit_proof.tex)与[修订报告](../reports/proof-audit-round8-20260922/REPORT.md). 连续相位方法覆盖完整薄层域, 大 w 用初等正余量比较; T1 的解析收敛与 T3 的数值定位分开. 旧05/16/19证书不再承担当前证明. 固定内部参数误差为1/R, 不能据此推断最优参数收敛率.
+
+
 [中文首页](../README.md) | [English overview](../README_EN.md) | [项目理解](PROJECT_UNDERSTANDING.md) | [目录与复现](repository-guide.md)
 
 本页按问题寻找证明, 工具和剩余缺口. 导航基线日期为 2026-09-09; 2026-09-20 的局部证明修订与范围变更见 [审计修订报告](../reports/proof-audit-20260920/REPORT.md). `STRICT` 表示所引来源在明确范围内提供严格证明; 独立审计, canonical 接收和 Lean 验证分别查看对应记录. 初次导航整理没有重新审计数学证明; 第七轮针对谱隙公式、端点引理、局部唯一性与一般SUP极限的当前修订和独立复核见 [报告](../reports/proof-audit-round7-20260921/REPORT.md).

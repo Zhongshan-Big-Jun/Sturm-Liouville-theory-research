@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/mnt/data/sl_audit_round8/checks.py", line 274, in <module>
+    if __name__=='__main__': main()
+                             ~~~~^^
+  File "/mnt/data/sl_audit_round8/checks.py", line 254, in main
+    require(all(sp.trigsimp(sp.sin((2*n+1)*th)-(2*n+1)*sp.sin(th)+
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           4*sp.sin(th)*sum(sp.sin(j*th)**2 for j in range(1,n+1)))==0
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                for n in range(1,5)),
+                ^^^^^^^^^^^^^^^^^^^^^
+            'round7 Wronskian identity n=1..4 regression',
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'finite symbolic checks; universal proof read separately')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/sl_audit_round8/checks.py", line 27, in require
+    raise ArithmeticError(f"Check failed: {name}")
+ArithmeticError: Check failed: round7 Wronskian identity n=1..4 regression

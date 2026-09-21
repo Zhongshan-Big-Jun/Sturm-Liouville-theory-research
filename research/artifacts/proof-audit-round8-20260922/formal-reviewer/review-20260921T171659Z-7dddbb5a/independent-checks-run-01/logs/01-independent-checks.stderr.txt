@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/independent_checks.py", line 57, in <module>
+    refs=scan(p['type_expression'])
+  File "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/independent_checks.py", line 30, in scan
+    elif tag=='app': constants |= scan(e[1],depth)|scan(e[2],depth)
+                                  ~~~~^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/independent_checks.py", line 30, in scan
+    elif tag=='app': constants |= scan(e[1],depth)|scan(e[2],depth)
+                                  ~~~~^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/independent_checks.py", line 25, in scan
+    elif tag=='const': constants.add(e[1])
+                       ~~~~~~~~~~~~~^^^^^^
+TypeError: cannot use 'list' as a set element (unhashable type: 'list')

@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/certificate.py", line 333, in run_negative
+    trig_point(Fraction(1), -1)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/certificate.py", line 119, in trig_point
+    require(type(degree) is int and degree >= 1, "Taylor degree must be a positive integer")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/046-negative-invalid-taylor-degree-normal/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: Taylor degree must be a positive integer

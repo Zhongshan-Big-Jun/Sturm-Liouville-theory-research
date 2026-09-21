@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/certificate.py", line 322, in run_negative
+    check_sqrt_two(Interval(Fraction("1.41421356237309"), Fraction("1.414213562373095")))
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/certificate.py", line 198, in check_sqrt_two
+    require(0 < box.lo < box.hi and box.lo ** 2 < 2 < box.hi ** 2, "Invalid sqrt(2) enclosure")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/041-negative-wrong-sqrt-enclosure-normal/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: Invalid sqrt(2) enclosure

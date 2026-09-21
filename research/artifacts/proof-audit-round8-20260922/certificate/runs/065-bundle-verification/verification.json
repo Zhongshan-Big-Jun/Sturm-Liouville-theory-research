@@ -1,0 +1,1198 @@
+{
+  "status": "AUTHOR_EVIDENCE_VERIFIED_NOT_FINAL_REVIEW",
+  "certificate_sha256": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+  "preserved_input_count": 14,
+  "positive_certificate_runs": 4,
+  "negative_rejections": 56,
+  "rational_display_checks": 332,
+  "finite_interval_regressions": 10,
+  "style_paths": [
+    "certificate.py",
+    "continue_supplied.py",
+    "export_records.py",
+    "legacy_diagnostics.py",
+    "replay.py",
+    "trace_execution.py",
+    "verify_bundle.py"
+  ],
+  "certificate_direct_imports": [
+    "argparse",
+    "json",
+    "sys",
+    "dataclasses",
+    "decimal",
+    "fractions",
+    "pathlib"
+  ],
+  "runs": [
+    {
+      "run": "001-supplied-normal",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "checks.py",
+        "results.json"
+      ],
+      "record_sha256": "bd386c60bcd0f40328103200a47449768001db03f14d03764af19b63f01cc934"
+    },
+    {
+      "run": "002-supplied-optimized",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "checks.py",
+        "results.json"
+      ],
+      "record_sha256": "ac3e9ae2280dd9b08987a5c4a245e008960bd4dc301add16ef1e4857272ae3ec"
+    },
+    {
+      "run": "003-legacy-platform-diagnostics",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "legacy_diagnostics.py",
+        "observations.json"
+      ],
+      "record_sha256": "7a67bde5c1f5fd774f07311bf8795e9fed3aa132ec68d78487530840c9cf6d19",
+      "supplied_miss_reproduced_here": true
+    },
+    {
+      "run": "004-certificate-normal",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "60d462bfec622fe7e3e5b9fc11558b35a5ed831a3a9fb126212c0d89f12e2db1",
+      "external_modules_observed": [
+        {
+          "name": "_distutils_hack",
+          "file": "/usr/lib/python3/dist-packages/_distutils_hack/__init__.py",
+          "sha256": "df81e6bcba34ee3e3952f776551fb669143b9490fdd6c4caeb32609f97e985b4"
+        },
+        {
+          "name": "apport_python_hook",
+          "file": "/usr/lib/python3/dist-packages/apport_python_hook.py",
+          "sha256": "d48b4213025b71c4db81bd226977900a593a7baa4d81c3261ce9940ec188f450"
+        },
+        {
+          "name": "sitecustomize",
+          "file": "/usr/lib/python3.14/sitecustomize.py",
+          "sha256": "43d81125d92376b1a69d53a71126a041cc9a18d8080e92dea0a2ae23be138b1e"
+        }
+      ]
+    },
+    {
+      "run": "005-negative-wrong-g-right-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-g-right",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "de6f095e583cafd9fe258bfebabcd53aa535c5ce2acf22c719b5b4fd2b9204b6",
+      "intended_guard_verified": "ArithmeticError: G upper endpoint must have strictly negative G"
+    },
+    {
+      "run": "006-negative-old-upper-endpoint-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "old-upper-endpoint",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "6bc4353d6e69e7538f4bde9da73053a3b69c33772a798ba23b45c7d63428d2d2",
+      "intended_guard_verified": "ArithmeticError: Root upper endpoint must have strictly positive F"
+    },
+    {
+      "run": "007-negative-wrong-u-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-u-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "c14805ee691785271d9b3d65e6346e57af1aeabc88851d46b625361e20729a19",
+      "intended_guard_verified": "ArithmeticError: wrong-u-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "008-negative-wrong-value-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-value-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "268dbeedf8eccb68d5dd85fe961565e50e5235e91fa514cc83fb24896f09b3eb",
+      "intended_guard_verified": "ArithmeticError: wrong-value-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "009-negative-unsafe-cot-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "unsafe-cot-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "f70149bf1abc1e6d5224aff4b0afaeb12b46079ed98df679d417d9b29f0c1cbd",
+      "intended_guard_verified": "ArithmeticError: unsafe-cot-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "010-negative-binary-pi-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "binary-pi-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "0fa2e64a7bc8f0898224f94ebd5c2943db79cca84f12c890d7935ed7ed6dfd38",
+      "intended_guard_verified": "ArithmeticError: binary-pi-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "011-negative-wrong-sqrt-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-sqrt-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "179b2c3af7cf1abcd02e740b23db36b0217fe660d56c93b296bf1e0e968fb1a2",
+      "intended_guard_verified": "ArithmeticError: Invalid sqrt(2) enclosure"
+    },
+    {
+      "run": "012-negative-omitted-taylor-remainder-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "omitted-taylor-remainder",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "96b886f17b7d6fbcc97fe684097e97bd35e5e498a26ead50317ba0699c1d1c9b",
+      "intended_guard_verified": "ArithmeticError: omitted-taylor-remainder: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "013-negative-zero-divisor-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "zero-divisor",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "c6ef0a5650b7ef446486a6a7b0b3714462a5b73a41e8882559587b009e0c4854",
+      "intended_guard_verified": "ArithmeticError: Divisor interval contains zero"
+    },
+    {
+      "run": "014-negative-reversed-interval-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "reversed-interval",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "6204f87755c97ec67e4456baff58ad5c405de55d054a1aadb1cd13eb1dbc01b0",
+      "intended_guard_verified": "ArithmeticError: Reversed interval"
+    },
+    {
+      "run": "015-negative-float-input-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "float-input",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "0dfb855f113c92d7fc08c563aa8bc13dc832e26bf11ccf7671e7f05bafc5cef8",
+      "intended_guard_verified": "TypeError: Only exact int or Fraction inputs are accepted"
+    },
+    {
+      "run": "016-negative-invalid-taylor-degree-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-taylor-degree",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "54ff20a20238b7b07a81aa6b58120b032fe87a261f3f42924d6168c564900278",
+      "intended_guard_verified": "ArithmeticError: Taylor degree must be a positive integer"
+    },
+    {
+      "run": "017-negative-invalid-atan-domain-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-atan-domain",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "7d991c705e1b017288d3ec84085a26ab0532c61ec9a49e7c007f0a3b183b9881",
+      "intended_guard_verified": "ArithmeticError: Arctan series requires 0 < x < 1"
+    },
+    {
+      "run": "018-negative-wrong-ratio-bound-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-ratio-bound",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "8917c1977fd2d107351ae854183aa99482163679b8668264591c620008116fbf",
+      "intended_guard_verified": "ArithmeticError: Proposed scalar upper bound 0.825 is not certified"
+    },
+    {
+      "run": "019-certificate-optimized",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "8c5f10bc4962be02b1fef2fc1f6aca30fc35571b4e47b12cb58aef85df18c060",
+      "external_modules_observed": [
+        {
+          "name": "_distutils_hack",
+          "file": "/usr/lib/python3/dist-packages/_distutils_hack/__init__.py",
+          "sha256": "df81e6bcba34ee3e3952f776551fb669143b9490fdd6c4caeb32609f97e985b4"
+        },
+        {
+          "name": "apport_python_hook",
+          "file": "/usr/lib/python3/dist-packages/apport_python_hook.py",
+          "sha256": "d48b4213025b71c4db81bd226977900a593a7baa4d81c3261ce9940ec188f450"
+        },
+        {
+          "name": "sitecustomize",
+          "file": "/usr/lib/python3.14/sitecustomize.py",
+          "sha256": "43d81125d92376b1a69d53a71126a041cc9a18d8080e92dea0a2ae23be138b1e"
+        }
+      ]
+    },
+    {
+      "run": "020-negative-wrong-g-right-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-g-right",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "1ba28d115340a6eba684a8f56ffe258a12f7742d166a519e6384bf195ca4d1ba",
+      "intended_guard_verified": "ArithmeticError: G upper endpoint must have strictly negative G"
+    },
+    {
+      "run": "021-negative-old-upper-endpoint-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "old-upper-endpoint",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "f3c526ec2c5f090ae55ef3848fe46232c94257c492f9e0d8db8969b0fe104e4f",
+      "intended_guard_verified": "ArithmeticError: Root upper endpoint must have strictly positive F"
+    },
+    {
+      "run": "022-negative-wrong-u-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-u-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "bf33c07714e0c3663beecf1f91bb5983ed3fef000313b0bf3a877ee300b4f20b",
+      "intended_guard_verified": "ArithmeticError: wrong-u-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "023-negative-wrong-value-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-value-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "1de5d540d5b19b6a4cefbd60c525a6d4d54e37fb93e543c9f9d5815da15e42b2",
+      "intended_guard_verified": "ArithmeticError: wrong-value-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "024-negative-unsafe-cot-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "unsafe-cot-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "01b5a1d1f1578bb067285433cc03732be32e986b831bc9a28ca85915800dbe65",
+      "intended_guard_verified": "ArithmeticError: unsafe-cot-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "025-negative-binary-pi-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "binary-pi-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "9143e21ad06bebcb845fb94d2dcad57e0c0a294b241f754ca8e47498ff38a4f0",
+      "intended_guard_verified": "ArithmeticError: binary-pi-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "026-negative-wrong-sqrt-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-sqrt-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "7d239806f8a113baa02c58fc1d01489c62fe1f179b174489e1d78ed97c6e4958",
+      "intended_guard_verified": "ArithmeticError: Invalid sqrt(2) enclosure"
+    },
+    {
+      "run": "027-negative-omitted-taylor-remainder-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "omitted-taylor-remainder",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "380ff85b9670d4f116ef494c40a1f2b6e7515388f2e6ec3596611251a9128e44",
+      "intended_guard_verified": "ArithmeticError: omitted-taylor-remainder: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "028-negative-zero-divisor-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "zero-divisor",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "998ca039272e0f9c3303029192ca637c8c86edac4e6469ca9ec72445b3ff83fc",
+      "intended_guard_verified": "ArithmeticError: Divisor interval contains zero"
+    },
+    {
+      "run": "029-negative-reversed-interval-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "reversed-interval",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "5f67655812f7a91f638ec78c1985b39105def50b7dd5be87c8089851f6ee74c1",
+      "intended_guard_verified": "ArithmeticError: Reversed interval"
+    },
+    {
+      "run": "030-negative-float-input-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "float-input",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "648587c7b7f4f846c3a3a2ac938faedda7dc375cdd0bed7b6dbe4a0752442008",
+      "intended_guard_verified": "TypeError: Only exact int or Fraction inputs are accepted"
+    },
+    {
+      "run": "031-negative-invalid-taylor-degree-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-taylor-degree",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "e6e77d78ff2ef4f1c40d0688b2842ef366faf3dc411eaa8223c4b57928a0741e",
+      "intended_guard_verified": "ArithmeticError: Taylor degree must be a positive integer"
+    },
+    {
+      "run": "032-negative-invalid-atan-domain-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-atan-domain",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "ef07e6db5281c8a1e5ea411bfd908695f3290e6408cf25afba4a4b1ee6d02845",
+      "intended_guard_verified": "ArithmeticError: Arctan series requires 0 < x < 1"
+    },
+    {
+      "run": "033-negative-wrong-ratio-bound-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-ratio-bound",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "c53c54c8e5bda4ed86a74d8307075bb28f7924f0d3861ece9dbaff65380bf4be",
+      "intended_guard_verified": "ArithmeticError: Proposed scalar upper bound 0.825 is not certified"
+    },
+    {
+      "run": "034-certificate-normal",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "e2327e89722a5fdf7ddc4f331ec1a80768ae0eac9f04747b002b162cc5ea8807",
+      "external_modules_observed": []
+    },
+    {
+      "run": "035-negative-wrong-g-right-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-g-right",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "6d53a6f8b7601f2aa16df909914dbc2dfdcfb2665d17428a3949fc9a6c5b3056",
+      "intended_guard_verified": "ArithmeticError: G upper endpoint must have strictly negative G"
+    },
+    {
+      "run": "036-negative-old-upper-endpoint-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "old-upper-endpoint",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "e920c7937ceebc9a322ff83a309c393bbfbd2860b10d37cd715d775b7bb833aa",
+      "intended_guard_verified": "ArithmeticError: Root upper endpoint must have strictly positive F"
+    },
+    {
+      "run": "037-negative-wrong-u-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-u-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "49b59a6ca566463dcc528f920674a95d23ff8b1ec8522784f008d6b684f05890",
+      "intended_guard_verified": "ArithmeticError: wrong-u-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "038-negative-wrong-value-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-value-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "98273207485d2659e2467718566723a4cd5743b659b781992ad22ac036921d5c",
+      "intended_guard_verified": "ArithmeticError: wrong-value-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "039-negative-unsafe-cot-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "unsafe-cot-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "1c4741f5c3d4ddba802cbec0cc5e2518d871d9238a67ff75b29f23d2275ba68f",
+      "intended_guard_verified": "ArithmeticError: unsafe-cot-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "040-negative-binary-pi-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "binary-pi-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "29ab119a89dda60bdb5fe0460f93632c10248f319244cee80146e029e7644176",
+      "intended_guard_verified": "ArithmeticError: binary-pi-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "041-negative-wrong-sqrt-enclosure-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-sqrt-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "5535033c44b33fac5ec04c90c86d58fb9e1e62a8f603e8a9ed41bf5e21b4b892",
+      "intended_guard_verified": "ArithmeticError: Invalid sqrt(2) enclosure"
+    },
+    {
+      "run": "042-negative-omitted-taylor-remainder-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "omitted-taylor-remainder",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "09b961ce2778695c5741c838a4c19754e3774cdf8f6822b9864ba6939e2d0cc5",
+      "intended_guard_verified": "ArithmeticError: omitted-taylor-remainder: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "043-negative-zero-divisor-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "zero-divisor",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "e9a863d06b02eb2fffb89b2a72398dfc2d8374ac30f501d6c72f7dd314c09f18",
+      "intended_guard_verified": "ArithmeticError: Divisor interval contains zero"
+    },
+    {
+      "run": "044-negative-reversed-interval-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "reversed-interval",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "23ac5ed92fb906778cde90ba06be85f03f961831ef8982ab686b2a7c8bf09d7c",
+      "intended_guard_verified": "ArithmeticError: Reversed interval"
+    },
+    {
+      "run": "045-negative-float-input-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "float-input",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "e126f0fbb557f126990a234c6e51138d3e5013573e5b087fff25b62a238e9491",
+      "intended_guard_verified": "TypeError: Only exact int or Fraction inputs are accepted"
+    },
+    {
+      "run": "046-negative-invalid-taylor-degree-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-taylor-degree",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "049a3b8c837854923e0e7b2e9be5dc1653d3d346f3f3f41264d1b40084ae8c84",
+      "intended_guard_verified": "ArithmeticError: Taylor degree must be a positive integer"
+    },
+    {
+      "run": "047-negative-invalid-atan-domain-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-atan-domain",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "7137fab54b1873d52a1ddb3618d5fb7adbfdc6fa1d3aa766197791a312a530c9",
+      "intended_guard_verified": "ArithmeticError: Arctan series requires 0 < x < 1"
+    },
+    {
+      "run": "048-negative-wrong-ratio-bound-normal",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-ratio-bound",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "4e8fc849598fab16d3c9f48a93b8656e79fdcebbc80c5825c356fa5febdabf48",
+      "intended_guard_verified": "ArithmeticError: Proposed scalar upper bound 0.825 is not certified"
+    },
+    {
+      "run": "049-certificate-optimized",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "8c5c3768797a142f5e3c0a9cd197989eec7f9124e0a2b6dacba8cfb81c973081",
+      "external_modules_observed": []
+    },
+    {
+      "run": "050-negative-wrong-g-right-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-g-right",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "bb140a0d1c0ecdb7cd20ffcc949903384088c3b3bc5fdd87eb8ba400411c0263",
+      "intended_guard_verified": "ArithmeticError: G upper endpoint must have strictly negative G"
+    },
+    {
+      "run": "051-negative-old-upper-endpoint-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "old-upper-endpoint",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "766a2b38b39db780ac7339b40a6d920bf5eda12745bf4f4d20ff881589c0d7ff",
+      "intended_guard_verified": "ArithmeticError: Root upper endpoint must have strictly positive F"
+    },
+    {
+      "run": "052-negative-wrong-u-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-u-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "adf4388ffddb6f317e01fe8188ebdd37a4b723945f3bbea5dd4e2e24ddca9873",
+      "intended_guard_verified": "ArithmeticError: wrong-u-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "053-negative-wrong-value-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-value-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "b2ab389e1b9809efbf92c9afd892a90d21d56554211fbb23687b4fdfc54a8bc9",
+      "intended_guard_verified": "ArithmeticError: wrong-value-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "054-negative-unsafe-cot-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "unsafe-cot-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "b5904cdcbc55a9288f0bb18ffee703ce202f20e1b1709e38662997ef441ca315",
+      "intended_guard_verified": "ArithmeticError: unsafe-cot-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "055-negative-binary-pi-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "binary-pi-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "91490b3d2bff9760724d0ef9bd3c8959fa762cddf10dfbfe1cdbcb712d87e679",
+      "intended_guard_verified": "ArithmeticError: binary-pi-enclosure: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "056-negative-wrong-sqrt-enclosure-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-sqrt-enclosure",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "76836271639edbe58be7a8be78597a4629c081a544312b5bf2624519167426ee",
+      "intended_guard_verified": "ArithmeticError: Invalid sqrt(2) enclosure"
+    },
+    {
+      "run": "057-negative-omitted-taylor-remainder-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "omitted-taylor-remainder",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "be939a0947dbd278003e21d7c85a9882e68903b4e8191508481adbbb0fbe6c3b",
+      "intended_guard_verified": "ArithmeticError: omitted-taylor-remainder: proposed enclosure does not contain certified enclosure"
+    },
+    {
+      "run": "058-negative-zero-divisor-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "zero-divisor",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "67c16fbb6e745732670d536a0c284fb5e43ee61fd768e68b9b3cf3865845517b",
+      "intended_guard_verified": "ArithmeticError: Divisor interval contains zero"
+    },
+    {
+      "run": "059-negative-reversed-interval-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "reversed-interval",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "2ef7ecf2f8b75414ddedafac10453781e987daacaa5153554d2857650e559566",
+      "intended_guard_verified": "ArithmeticError: Reversed interval"
+    },
+    {
+      "run": "060-negative-float-input-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "float-input",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "6faf46e6ee6377de1f3eb3b665cba99628131a56bf47bca0c4bfb6883a4826d7",
+      "intended_guard_verified": "TypeError: Only exact int or Fraction inputs are accepted"
+    },
+    {
+      "run": "061-negative-invalid-taylor-degree-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-taylor-degree",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "3f87a2f3c0facd51b19c068b8e08b100c312bd5f163d2a8ed03d33af2aa57a62",
+      "intended_guard_verified": "ArithmeticError: Taylor degree must be a positive integer"
+    },
+    {
+      "run": "062-negative-invalid-atan-domain-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "invalid-atan-domain",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "cd4974c52f2febb4e40c1ac7a2782ce04b0e8eb0ee0ad5d8e41c359e1b28dbd4",
+      "intended_guard_verified": "ArithmeticError: Arctan series requires 0 < x < 1"
+    },
+    {
+      "run": "063-negative-wrong-ratio-bound-optimized",
+      "return_code": 1,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "certificate.py",
+        "--negative",
+        "wrong-ratio-bound",
+        "--output",
+        "results.json"
+      ],
+      "record_sha256": "744b22ad74d6cc7e1a671fd8ecee8fbe3e59528c964fccbf857dc64beed7efbb",
+      "intended_guard_verified": "ArithmeticError: Proposed scalar upper bound 0.825 is not certified"
+    },
+    {
+      "run": "064-bundle-verification",
+      "return_code": 0,
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-S",
+        "trace_execution.py",
+        "imports.json",
+        "verify_bundle.py",
+        "/mnt/f/tools/math-audit-round8-20260922/certificate-author",
+        "verification.json"
+      ],
+      "record_sha256": "b286fe8c36a1946dd26656149912b9952a5ef0d08f77e6d4920016f94a08176c"
+    }
+  ],
+  "current_run_pending_receipt": [
+    "065-bundle-verification"
+  ],
+  "limitations": [
+    "Author self-verification only",
+    "No full deep-sliver proof",
+    "No complete INF theorem audit",
+    "sys.modules is a post-execution inventory, not an import-event sandbox"
+  ]
+}

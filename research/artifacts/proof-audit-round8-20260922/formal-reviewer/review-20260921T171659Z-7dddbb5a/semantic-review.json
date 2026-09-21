@@ -1,0 +1,115 @@
+{
+  "packet_sha256": "02bb73b7d317455bfe1b191b4a0a4b66bae141336c65815df537fe1ba273347f",
+  "machine_execution": "APPROVED",
+  "semantic_correspondence": "APPROVED",
+  "scope_provenance": "APPROVED",
+  "scope": "Current frozen local Lean claims only. The entire informal spectral proof is not certified by this review.",
+  "actual_public_declarations": {
+    "authored_definitions": 11,
+    "authored_theorems": 15,
+    "compiler_generated_theorems": 21,
+    "total": 47,
+    "auxiliary_breakdown": {
+      "defining_equations": 2,
+      "numeral_support": 5,
+      "polymorphic_simplification": 14
+    }
+  },
+  "root_contract": {
+    "universe_parameters": [],
+    "outer_binders": [],
+    "independent_right_associated_conjuncts": [
+      "phase_bound",
+      "integral_reduction",
+      "S_reduction",
+      "coefficient_identity",
+      "stationary_coefficient",
+      "scalar_ratio_bound",
+      "B_curved_counterexample",
+      "D_gap_signs",
+      "D_curved_counterexample"
+    ],
+    "literal_exported_type_matches_components": true
+  },
+  "semantic_obligations": [
+    {
+      "topic": "phase",
+      "reason": "The actual definition is (1/1600)*sqrt(1600*lambda2), exactly u*sqrt(R*lambda2) at the stated R,u. The exported theorem retains both real hypotheses 0<=lambda2 and lambda2<=4*pi^2. Monotonicity of sqrt bounds sqrt(1600*lambda2) by 80*pi. At lambda2=0 the phase is zero; at 4*pi^2 its upper bound is attained. Positivity of pi gives pi/20<pi/2. No spectral eigenvalue or minmax theorem is formalized."
+    },
+    {
+      "topic": "trigonometric bridge",
+      "reason": "For arbitrary real a,b satisfying sin(a)+b*a*cos(a)=0, 1+b^2*a^2>0 and (1+b^2*a^2)*cos(a)^2=1; this proves the two root_trig_reduction formulas without division by cos(a). For a,u,b>0, substituting sin(2a) into the actual I2 expression gives I2=u*(1+b+b^2*a^2)/(2*(1+b^2*a^2))>0. Substitution into the actual S definition gives the exported S_reduction. This proves an identity for the trigonometric expression, not its integral identification."
+    },
+    {
+      "topic": "coefficient and stationarity",
+      "reason": "For a>0, 0<u<1/2, b=ell(u)/u and the root relation, ell>0, b>0, u!=0, a!=0 and H=1+b+b^2*a^2>0. Expanding the explicit C and S definitions gives C=4*mubar1(u)*ell(u)/(3*u)+(ell(u)/3)*S. Adding S=0 gives C=pi^2*ell(u)/(3*u^3)>0. No equation for C is a premise. The result is algebraically valid for all admitted roots a>0; choosing a in (pi/2,pi), existence of u*, and identifying C with a spectral expansion coefficient remain analytic obligations outside this formal file."
+    },
+    {
+      "topic": "boundaries",
+      "reason": "Strict a>0 is material: at a=0 the total I2 definition gives u/2, so the positive-b reduced formula cannot be extended there. u=0 and u=1/2 do not support the asserted coefficient positivity. All division and sqrt functions are total. At R=0, wCritical=wCap=1/2, so the positive-R rewriting and cap-square lemmas cannot be extended by totality. The cap comparison lemmas require both R>0 and w>0 and use strict gap signs; they assert nothing at equality 25."
+    },
+    {
+      "topic": "scalar",
+      "reason": "The exact rational scalar is 893460803/1082206710. Its positive margin below 8256/10000 is 1132097/135275838750; it exceeds 4/5 by 5539087/216441342. This is exact rational arithmetic only. Analytic bounds producing the input constants are excluded."
+    },
+    {
+      "topic": "B curve",
+      "reason": "For w=48743/100000, the positive threshold [2*w/(1-2*w)]^2 equals 2375880049/1580049 and lies strictly between 1500 and 3015/2. Positive sqrt/denominator comparisons therefore prove wCritical(1500)<w<wCritical(3015/2); the R cell and 0.19<w<0.5 constraints are exact. This witnesses the reported rectangle omission, conditional on the supplied description of the historical rectangle."
+    },
+    {
+      "topic": "D curve",
+      "reason": "For w=4995815/10000000, the factor 1/(4*w^2)-1 is positive. Actual mathematical-pi bounds 31415/10000<pi<31416/10000 yield a strictly positive rational margin below 25 at R=3015/2 and above 25 at R=1515. The proved cap-square identity and positive-denominator lemmas yield wCap(3015/2)<w<wCap(1515). This is a coverage witness, not a spectral example with G<25."
+    },
+    {
+      "topic": "blind readback",
+      "reason": "All 47 declared names and their binders, universes, types and 11 definition bodies agree with the actual fresh export. The complete exported public records match the supplied author export byte-for-byte as parsed data. The supplied blind readback preserves all explicit, implicit and instance binders, including the 14 polymorphic simplifier auxiliaries. Its prior APPROVED label was not used as proof. Its dispatch/spawn hashes, reviewer identity and fork_context=false are internally consistent; provenance is coordinator-attested."
+    },
+    {
+      "topic": "dependency semantics",
+      "reason": "The fresh export contains 16511 closed type/proof dependency records, with no missing or unsafe entries and only propext, Classical.choice and Quot.sound as axioms. Supplemental reflection exports actual compiled types and non-theorem bodies. Reachability from the original 47 declarations yields 1794 semantic nodes, all agreeing with the original dependency records. Real.pi is 2*Classical.choose(Real.exists_cos_eq_zero); Real.sqrt coerces NNReal.sqrt(x.toNNReal); real sin and cos come from real parts of their complex functions. Four additional eq_1 helpers were generated by the supplemental boundary tactics and are explicitly separated from the original public inventory."
+    },
+    {
+      "topic": "negative targets",
+      "reason": "WrongPhase and WrongStationaryFactor actually fail by type mismatch and WrongScalar fails with the goal False. Additional fresh Lean proofs establish the negations of the phase and stationary wrong conclusions under their unchanged premises and 4/5<scalarRatio. Thus import/name errors are not accepted as controls; the stationary result remains conditional and does not establish existence of its parameters."
+    }
+  ],
+  "preserved_current_failures": [
+    {
+      "kind": "expected_negative_control",
+      "paths": [
+        "replay-01/logs/08-WrongPhase.json",
+        "replay-01/logs/09-WrongStationaryFactor.json",
+        "replay-01/logs/10-WrongScalar.json"
+      ]
+    },
+    {
+      "kind": "reviewer_tooling_failure",
+      "path": "independent-checks-run-01/logs/01-independent-checks.json",
+      "cause": "The first independent AST parser treated Lean tuple serialization as flat; corrected nested const decoding."
+    },
+    {
+      "kind": "reviewer_tooling_failure",
+      "path": "independent-checks-run-02/logs/01-independent-checks.json",
+      "cause": "Exact dependency comparison initially included projection structure names that Expr.getUsedConstants omits; now the API comparison and stronger projection-closure check are separate."
+    },
+    {
+      "kind": "reviewer_tooling_failure",
+      "path": "independent-checks-run-03/logs/01-independent-checks.json",
+      "cause": "Supplemental norm_num unfolding generated four additional defining equations. Semantic reachability is now seeded by the original 47 declarations, and the four supplemental equations are retained separately."
+    }
+  ],
+  "final_independent_checker": {
+    "exit_code": 0,
+    "checks": 9102,
+    "receipt": "independent-checks-run-04/logs/01-independent-checks.json"
+  },
+  "limitations": [
+    "No full spectral minmax, I2 integral identification, analytic implicit-function expansion or remainder, spectral mode/root selection, existence/location of u*, T1/global sliver coverage, exchange of infimum and limit, or general minimizing-parameter convergence/rates is formalized or approved here.",
+    "No universal analytic estimate is inferred from finite or numerical success; the scalar and curve claims are exact local statements.",
+    "The supplied external audit contains superseded findings. Only the current local repair was evaluated; corrected historical errors are not remaining findings.",
+    "Historical author failure stdout/stderr and most raw process receipts are not supplied. Their ten nonzero summary entries and manifest identities were inspected, but the seven historical non-control failures were not replayed. Unsupplied historical programs and full scalar certificates were not inspected.",
+    "Pinned imported Lean/Mathlib compiled artifacts were hash-checked and used as dependencies, not rebuilt or independently re-proved. OS, Python and the Lean kernel remain the execution trust boundary.",
+    "The original replay scripts retain author-oriented status strings; this review separately bases machine and semantic conclusions on the actual independent run receipts.",
+    "No source project files, memory, skills or author conversations were consulted or changed. Source identity comparisons refer to the supplied frozen standalone snapshot, not an unsupplied live tree."
+  ]
+}

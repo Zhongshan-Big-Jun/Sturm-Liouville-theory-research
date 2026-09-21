@@ -1,5 +1,10 @@
 # 数学工具库
 
+## 第八轮修订 (2026-09-22)
+
+[INF极限](inf-limit-comparison.md)、[大w比较](lemma-A-doubleprime.md)、[相位括号](delta-bracketing.md)、[余切余项](cot-series-certificate.md)已按当前精确版本修订. 新连续相位覆盖替代旧薄层网格, 固定u误差改为1/R; 根像端点、Laurent幂次、局部一致收敛与arctan极限同步修正. 默认复用须通过当前纠错回执, 旧证据和批注按原版本保留. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)分别列明解析、精确证书和局部Lean范围.
+
+
 工具库保存可复用的数学方法、适用条件、来源、批注及成功或失败路线.
 它服务于研究, 每次使用仍要核对当前问题是否满足工具的假设.
 
@@ -72,7 +77,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | bloch-band | [card](<bloch-band.md>) | 0 |
 | cell-merging | [card](<cell-merging.md>) | 0 |
 | constrained-denseness-runs | [card](<constrained-denseness-runs.md>) | 1 |
-| cot-series-certificate | [card](<cot-series-certificate.md>) | 0 |
+| cot-series-certificate | [card](<cot-series-certificate.md>) | 1 |
 | delta-bracketing | [card](<delta-bracketing.md>) | 0 |
 | denseness-criteria | [card](<denseness-criteria.md>) | 0 |
 | endpoint-collapse-reduction | [card](<endpoint-collapse-reduction.md>) | 0 |
@@ -86,7 +91,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | green-half-inertia | [card](<green-half-inertia.md>) | 0 |
 | half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 0 |
 | helly-compactness | [card](<helly-compactness.md>) | 0 |
-| inf-limit-comparison | [card](<inf-limit-comparison.md>) | 0 |
+| inf-limit-comparison | [card](<inf-limit-comparison.md>) | 1 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |
 | interval-dec-directed-rounding | [card](<interval-dec-directed-rounding.md>) | 0 |
 | jump-stability | [card](<jump-stability.md>) | 1 |

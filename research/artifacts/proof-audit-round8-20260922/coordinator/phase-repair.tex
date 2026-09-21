@@ -1,0 +1,46 @@
+\subsection{全域匹配方程与有条件的相位分支}\label{sec:global-phase}
+令 $\varepsilon=R^{-1/2}$, $\ell=1/2-u$, $\theta_k=u\sqrt{R\lambda_k}$,
+$z_k=\ell\sqrt{\lambda_k}$, $c=\varepsilon\ell/u$.
+对称性、特征值单性及振荡定理说明第一模态为偶函数, 第二模态为奇函数.
+第二模态若为偶函数, 则其零点成对, 而中心同时满足函数值与导数为零又与唯一性矛盾;
+这与第二模态恰有一个内部零点不符. 两个模态限制到 $(0,1/2)$ 后均可取为正.
+重层解为 $A\sin(\sqrt{R\lambda}\,x)$; 轻层的偶、奇解分别为
+$B\cos(\sqrt\lambda(1/2-x))$ 与 $B\sin(\sqrt\lambda(1/2-x))$.
+在 $x=u$ 匹配函数和导数, 消去振幅, 得到全域无极点方程
+\begin{align}
+ E(\theta,z)&:=\cos\theta\cos z-\varepsilon\sin\theta\sin z=0
+ &&\text{(偶)},\label{eq:polefree-even}\\
+ O(\theta,z)&:=\varepsilon\sin\theta\cos z+\cos\theta\sin z=0
+ &&\text{(奇)}.\label{eq:polefree-odd}
+\end{align}
+这里尚未除以任何三角因子. 半区间基态正性给出
+$0<\theta_k<\pi$, $0<z_1<\pi/2$ 及 $0<z_2<\pi$.
+偶模在接口处的轻层导数为正, 所以 $\cos\theta_1>0$,
+进而 $0<\theta_1<\pi/2$ 对全部 $R>1$, $0<u<1/2$ 成立.
+奇模的 $\theta_2>\pi/2$ 则不能无条件使用.
+
+以下相位括号与引理 A$''$ 明确假设 $R\ge1500$, $w=u/\varepsilon\ge2$.
+此时 $0<c=1/(2w)-\varepsilon<1/4$, 故 $z_2=c\theta_2<\pi/4$.
+由 \eqref{eq:polefree-odd} 可知 $\cos\theta_2<0$, 即
+$\pi/2<\theta_2<\pi$. 相关分母均非零, 因而可在此范围写成
+\begin{equation}
+ \cot\theta_1=\varepsilon\tan z_1,\qquad
+ \tan\theta_2=-\varepsilon^{-1}\tan z_2.\label{eq:secular}
+\end{equation}
+令 $\delta_1=\pi/2-\theta_1$, $\delta_2=\theta_2-\pi/2$. 此范围内有
+\begin{equation}
+ \tan\delta_1=\varepsilon\tan z_1,\quad
+ z_1=(\pi/2-\delta_1)c;\qquad
+ \tan\delta_2=\varepsilon\cot z_2,\quad
+ z_2=(\pi/2+\delta_2)c.\label{eq:delta}
+\end{equation}
+从而
+\begin{equation}
+ \mu_1=\frac{(\pi/2-\delta_1)^2}{u^2},\quad
+ \mu_2=\frac{(\pi/2+\delta_2)^2}{u^2},\quad
+ G(R,u)=\frac{(\pi/2+\delta_2)^2-(\pi/2-\delta_1)^2}{u^2}.\label{eq:mu}
+\end{equation}
+例如 $R=1600$, $u=1/1600$ 时, $\rho\ge1$ 与 min-max 给出
+$\lambda_2\le4\pi^2$, 因此 $\theta_2\le\pi/20<\pi/2$.
+这个实例反驳全域奇相位分支的旧说法, 不反驳上述受限分支.
+

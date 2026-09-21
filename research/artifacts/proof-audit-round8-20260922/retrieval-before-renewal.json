@@ -1,0 +1,742 @@
+{
+  "verdict": "RETRIEVAL_ONLY",
+  "changed_paths": [],
+  "blocked": 9,
+  "hits": [
+    {
+      "score": 3,
+      "tool_id": "inf-limit-comparison",
+      "title": "对称阱族 INF 极限与连续相位比较",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/delta-bracketing.md",
+          "sha256": "a4b382f79d39c092c9e2be61f1f39174132a7ac77567b351121d84eb5e74f20b"
+        },
+        {
+          "location": "tools/lemma-A-doubleprime.md",
+          "sha256": "a9d4f744d0617717187e522c6d24a0a6bd019fe4d32e69515a456d7f8637e5a0"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/inf-limit-comparison.md",
+      "sha256": "0f6cf8a77d90dc510e3180f197ac3ce2f700b77fd4803d49641eb06432f64141",
+      "version": "research/library/card-versions/0f6cf8a77d90dc510e3180f197ac3ce2f700b77fd4803d49641eb06432f64141.md",
+      "summary": "对称阱族 R*m_R->M, 误差O(1/R), R*eta_R->0近极小化子趋于u*. 连续相位覆盖全部薄层; T1不依赖T3数值. 固定内部u首项C(u)/R.",
+      "conditions": [
+        "Dirichlet symmetric [R,1,R],0<u<1/2",
+        "Global lower bound for R>=1500; fixed-u expansions are uniform only on interior compact intervals"
+      ],
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND8_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "scope",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/2c8c430c3efc8a6c9d69703404717749e3fd48e8c60bfc423a4075377af79c3f.json",
+          "sha256": "2c8c430c3efc8a6c9d69703404717749e3fd48e8c60bfc423a4075377af79c3f",
+          "kind": "observation",
+          "author": "coordinator-20260922-round8",
+          "locator": "Round8 continuous phase proof, exact scalar certificate and isolated review",
+          "source_id": null,
+          "tool_sha256": "0f6cf8a77d90dc510e3180f197ac3ce2f700b77fd4803d49641eb06432f64141",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round8 corrected phases, A doubleprime, continuous sliver, T1/T2/T3 and fixed-u rate",
+          "path": "docs/SL_gap_n1_inf_limit_proof.tex",
+          "sha256": "a41e919dccd9d28f876a6d0cccf65a70a31fe4ba8b906f1ea46935bfc64a6b00",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "exact-computation",
+          "locator": "Fraction/Machin/Taylor scalar certificate, no full spectral formalization",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+          "sha256": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "author-execution",
+          "locator": "Exact scalar outputs; independent review receipt required",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+          "sha256": "15723e490e332b4b979a1641f86fed216cc4232964fb2e5c0d3c5bd642cb7166",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "lemma-A-doubleprime",
+      "title": "大 w 区域的 INF 比较引理 A''",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/cot-series-certificate.md",
+          "sha256": "d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90"
+        },
+        {
+          "location": "tools/delta-bracketing.md",
+          "sha256": "a4b382f79d39c092c9e2be61f1f39174132a7ac77567b351121d84eb5e74f20b"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/lemma-A-doubleprime.md",
+      "sha256": "a9d4f744d0617717187e522c6d24a0a6bd019fe4d32e69515a456d7f8637e5a0",
+      "version": "research/library/card-versions/a9d4f744d0617717187e522c6d24a0a6bd019fe4d32e69515a456d7f8637e5a0.md",
+      "summary": "R>=1500,w>=2 时 G>Dbar+ell/(R*u^3); 初等差量 d1>4alpha,d2<3alpha. 不覆盖薄层, 不依赖旧浮点证书.",
+      "conditions": [
+        "Dirichlet symmetric [R,1,R], R>=1500,0<u<1/2,w>=2"
+      ],
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND8_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "scope",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round8 corrected phases, A doubleprime, continuous sliver, T1/T2/T3 and fixed-u rate",
+          "path": "docs/SL_gap_n1_inf_limit_proof.tex",
+          "sha256": "a41e919dccd9d28f876a6d0cccf65a70a31fe4ba8b906f1ea46935bfc64a6b00",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "exact-computation",
+          "locator": "Fraction/Machin/Taylor scalar certificate, no full spectral formalization",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+          "sha256": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "author-execution",
+          "locator": "Exact scalar outputs; independent review receipt required",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+          "sha256": "15723e490e332b4b979a1641f86fed216cc4232964fb2e5c0d3c5bd642cb7166",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "delta-bracketing",
+      "title": "对称阱族的相位分支与括号",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/cot-series-certificate.md",
+          "sha256": "d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/delta-bracketing.md",
+      "sha256": "a4b382f79d39c092c9e2be61f1f39174132a7ac77567b351121d84eb5e74f20b",
+      "version": "research/library/card-versions/a4b382f79d39c092c9e2be61f1f39174132a7ac77567b351121d84eb5e74f20b.md",
+      "summary": "全域使用无极点匹配; 奇相位>pi/2和delta括号仅在R>=1500,w>=2应用. arctan上界趋于pi/2而不发散.",
+      "conditions": [
+        "Dirichlet symmetric [R,1,R], R>1, 0<u<1/2",
+        "Delta brackets require R>=1500,w=u*sqrt(R)>=2"
+      ],
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND8_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "scope",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round8 corrected phases, A doubleprime, continuous sliver, T1/T2/T3 and fixed-u rate",
+          "path": "docs/SL_gap_n1_inf_limit_proof.tex",
+          "sha256": "a41e919dccd9d28f876a6d0cccf65a70a31fe4ba8b906f1ea46935bfc64a6b00",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "exact-computation",
+          "locator": "Fraction/Machin/Taylor scalar certificate, no full spectral formalization",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+          "sha256": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "author-execution",
+          "locator": "Exact scalar outputs; independent review receipt required",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+          "sha256": "15723e490e332b4b979a1641f86fed216cc4232964fb2e5c0d3c5bd642cb7166",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "cot-series-certificate",
+      "title": "余切余项的部分分式与精确有理常数",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/cot-series-certificate.md",
+      "sha256": "d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90",
+      "version": "research/library/card-versions/d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90.md",
+      "summary": "0<z<pi 的正确 Laurent 幂次与局部一致收敛; 0<z<=pi/8 时余项<=Cz*z, Cz<0.337; 新精确证书替代旧 libm 区间.",
+      "conditions": [
+        "0<z<pi; uniform convergence only on compact subintervals",
+        "Cz bound only for 0<z<=pi/8"
+      ],
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND8_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "scope",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/e30a20359d645f91111999e7027840ca4656c85f352cc3c058ae4bf0202c8fe4.json",
+          "sha256": "e30a20359d645f91111999e7027840ca4656c85f352cc3c058ae4bf0202c8fe4",
+          "kind": "observation",
+          "author": "coordinator-20260922-round8",
+          "locator": "Round8 continuous phase proof, exact scalar certificate and isolated review",
+          "source_id": null,
+          "tool_sha256": "d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round8 corrected phases, A doubleprime, continuous sliver, T1/T2/T3 and fixed-u rate",
+          "path": "docs/SL_gap_n1_inf_limit_proof.tex",
+          "sha256": "a41e919dccd9d28f876a6d0cccf65a70a31fe4ba8b906f1ea46935bfc64a6b00",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Equation4.22.3 actually retrieved formula and pole exclusions",
+          "source_id": "bb729c250eb36b380f0ab4f7be158562340ba3b2bf505887681952e3aab405e6",
+          "url": "https://dlmf.nist.gov/4.22.E3",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "exact-computation",
+          "locator": "Fraction/Machin/Taylor scalar certificate, no full spectral formalization",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+          "sha256": "39cd4b13019fddfc7342e9c2d56131de01686504944b444af0e3bb92301833d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "author-execution",
+          "locator": "Exact scalar outputs; independent review receipt required",
+          "path": "research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+          "sha256": "15723e490e332b4b979a1641f86fed216cc4232964fb2e5c0d3c5bd642cb7166",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "interval-dec-directed-rounding",
+      "title": "十进制定向舍入区间引擎 (interval-dec-directed-rounding)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/interval-dec-directed-rounding.md",
+      "sha256": "c33238e68ebaa3e4b5c7642e23c7ab49e1fc697913915f95efac665aa7294526",
+      "version": "research/library/card-versions/c33238e68ebaa3e4b5c7642e23c7ab49e1fc697913915f95efac665aa7294526.md",
+      "summary": "# 十进制定向舍入区间引擎 (interval-dec-directed-rounding) ## 解析 本项目 E1 去证书化路线需要把单变量符号事实逐项严格化, 为此自建 十进制定向舍入区间运算引擎 `misc/rigid_dec.py`: 1. **区间类型**: 每个量表示为 `[lo, hi]` 的 Decimal 区间, 所有基本运算 (加减乘除, 幂, 开方) 分别以 ROUND_FLOOR (lo) 与 ROUND_CEILING (hi) 向外舍入, 保证真值始终被包含. 2. **超越函数**: `pi` 由 Machin 公式 `16 arctan(1/5) - 4 arctan(1/239)` 构造, 两个反正切项分别按区间处理; `sin/cos` 用带显式交错级数余项界的 Taylor 展开; `arctan` 用交错级数 (`x <= 1`) 或 `pi/2 - arctan(1/x)` (`x > 1`). 余项界保证区间端点严格包含真值. 3. **对偶数 D1**: 每个表达式可带导数通道 `(v, dv/dx)`, 区间传播导数, 用于导数符号判定",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "rational-envelope-certificates",
+      "title": "有理包络证书 (rational-envelope-certificates)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/rational-envelope-certificates.md",
+      "sha256": "02ff2ed995c7399ce071ad191d4603633c18b9f1f6002c511b8fefeacdd73c17",
+      "version": "research/library/card-versions/02ff2ed995c7399ce071ad191d4603633c18b9f1f6002c511b8fefeacdd73c17.md",
+      "summary": "# 有理包络证书 (rational-envelope-certificates) ## 解析 把单变量符号/单调性/端点界事实写成有限精确有理数不等式链的 E1 方法, 取代旧十进制区间引擎 (rigid_dec.py) 成为 55 项单变量事实的唯一权威: 1. **交错级数包络**: 对 sin/cos/arctan 用部分和交替夹逼 (余项显式界), pi 由 Machin 公式 `pi = 16 arctan(1/5) - 4 arctan(1/239)` 的两个反正切项包络组合得到有理界. 文档引理 lem:envseries (2026-08-09 F-209 修正后): sin/cos 用 12 项部分和 (m=11), 在 x <= 3/2 时余项分别 <= (3/2)^25/25! ~ 1.6e-21 与 (3/2)^24/24! ~ 2.7e-20 (均 < 1e-12); arctan 用 22 项 (m=21), 但直接级数仅用于参数 v <= 1 (余项 <= v^45/45 <= 1/45); pi 由 Machin 公式 (参数 1/5, 1/239, ",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    }
+  ],
+  "total_matches": 6,
+  "issues": [
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md",
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md"
+    },
+    {
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:17:35: warning: Variable name `h0` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:60:4: error: linarith failed to find a contradiction
+case left.h1
+a b : ℝ
+hroot : Real.sin a + b * a * Real.cos a = 0
+hd : 1 + b ^ 2 * a ^ 2 ≠ 0
+hs : Real.sin a = -(b * a * Real.cos a)
+hid : (-(b * a * Real.cos a)) ^ 2 + Real.cos a ^ 2 = 1
+a✝ : b ^ 2 * a ^ 2 * Real.cos a ^ 2 * (1 + b ^ 2 * a ^ 2) < b ^ 2 * a ^ 2
+⊢ False
+failed
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:63:4: error: linarith failed to find a contradiction
+case right.h1
+a b : ℝ
+hroot : Real.sin a + b * a * Real.cos a = 0
+hd : 1 + b ^ 2 * a ^ 2 ≠ 0
+hs : Real.sin a = -(b * a * Real.cos a)
+hid : (-(b * a * Real.cos a)) ^ 2 + Real.cos a ^ 2 = 1
+a✝ : -(b * a * Real.cos a ^ 2 * (1 + b ^ 2 * a ^ 2)) < -(b * a)
+⊢ False
+failed
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:74:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:88:30: error: Type mismatch
+  (div_eq_iff (ne_of_gt hu)).mp (Eq.symm hb)
+has type
+  ell u = b * u
+but is expected to have type
+  b * u = ell u
+F:\tools\math-audit-round8-20260922\lean-author\AuditRound8.lean:106:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

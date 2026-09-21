@@ -1,0 +1,34 @@
+\subsection{T1: 极限、近极小化子与最优值误差}\label{sec:T1}
+\begin{theorem}[T1, 解析修订]\label{thm:T1}
+设 $u^*$ 为 T2 的唯一极小点, $M=\bar D(u^*)$. 则
+\[
+ \lim_{R\to\infty}Rm_R=M,\qquad 0\le Rm_R-M=O(R^{-1}).
+\]
+更一般地, 若 $R_j\to\infty$, $0<u_j<1/2$, $\eta_j\ge0$,
+$D_{R_j}(u_j)\le m_{R_j}+\eta_j$ 且 $R_j\eta_j\to0$,
+则 $u_j\to u^*$. 原条件 $\eta_j=R_j^{-2}$ 是其中一个特例.
+\end{theorem}
+\begin{proof}
+T2 的严格单调结构及端点极限给出 $M<3\pi^2$.
+这一步不使用 T3 的高精度区间. 对每个 $R\ge1500$ 和 $0<u<1/2$,
+若 $w\le2$, 引理 \ref{lem:sliver} 给出 $G>15\pi^2/4>3\pi^2>M$;
+若 $w\ge2$, 引理 A$''$ 给出 $G\ge\bar D(u)\ge M$.
+故 $Rm_R=\inf_u G(R,u)\ge M$.
+
+另一方面, 在单个固定点 $u^*$, 命题 \ref{prop:fixed-u} 或其证明中的相位括号
+给出 $G(R,u^*)=M+O(R^{-1})$. 由 $Rm_R\le G(R,u^*)$, 得到极限与非负误差的 $O(R^{-1})$ 上界.
+这里用到了前一段的全域下界, 并非仅凭点态展开交换下确界与极限.
+本结论没有给出最优值误差的精确首项系数, 也没有给出极小化参数的收敛速度.
+
+对所述近极小化子,
+\[
+ R_jm_{R_j}\le G(R_j,u_j)\le R_jm_{R_j}+R_j\eta_j\longrightarrow M.
+\]
+薄层下界的严格余量迫使 $w_j=u_j\sqrt{R_j}>2$ 最终成立, 因而
+$M\le\bar D(u_j)\le G(R_j,u_j)\to M$.
+任取在 $[0,1/2]$ 中收敛的子列: 极限为零将导致 $\bar D(u_j)\to+\infty$,
+与有限极限 $M$ 矛盾; 极限为 $1/2$ 将导致 $\bar D(u_j)\to3\pi^2>M$, 也矛盾.
+所以聚点都在内部. 连续性及 T2 的唯一性给出该聚点必须为 $u^*$.
+因此整个序列收敛到 $u^*$.
+\end{proof}
+

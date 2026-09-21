@@ -1,0 +1,57 @@
+\subsection{固定内部参数的解析展开}\label{sec:fixed-u}
+\begin{proposition}\label{prop:fixed-u}
+固定 $0<u<1/2$, 令 $\ell=1/2-u$, $b=\ell/u$, $a=a(u)$.
+当 $R\to\infty$ 时,
+\begin{equation}
+ G(R,u)=\bar D(u)+\frac{C(u)}R+O_u(R^{-2}),\qquad
+ C(u)=\frac{\pi^2b}{2u^2}-\frac{2a^4b^3}{3u^2(1+b+b^2a^2)}.\label{eq:rate}
+\end{equation}
+余项在任意紧区间 $J\Subset(0,1/2)$ 上可取为 $O_J(R^{-2})$.
+在 T2 的极小点,
+\begin{equation}
+ C(u^*)=\frac{\pi^2(1/2-u^*)}{3(u^*)^3}>0.\label{eq:stationary-rate}
+\end{equation}
+\end{proposition}
+\begin{proof}
+令 $t=1/R$. 把无极点偶方程以及除以正数 $\sqrt t$ 的奇方程写成
+\begin{align*}
+ \mathcal E(\theta,t)&=\cos\theta\cos(b\theta\sqrt t)
+ -\sqrt t\sin\theta\sin(b\theta\sqrt t),\\
+ \mathcal O(\theta,t)&=\sin\theta\cos(b\theta\sqrt t)
+ +\cos\theta\frac{\sin(b\theta\sqrt t)}{\sqrt t}.
+\end{align*}
+其中 $\cos(b\theta\sqrt t)$, $\sqrt t\sin(b\theta\sqrt t)$,
+$\sin(b\theta\sqrt t)/\sqrt t$ 均用幂级数在 $t=0$ 解析延拓.
+令 $p=\pi/2$, $H=1+b+b^2a^2>0$. 在 $(p,0)$,
+$\mathcal E_\theta=-1$, $\mathcal E_t=-bp$;
+在 $(a,0)$, 由 $\sin a+ba\cos a=0$ 得
+\[
+ \mathcal O_\theta=\cos a\,H\ne0,\qquad
+ \mathcal O_t=\frac{b^3a^3\cos a}{3}.
+\]
+解析隐函数定理于是给出
+\[
+ \theta_1(t)=p-pbt+O_u(t^2),\qquad
+ \theta_2(t)=a-\frac{a^3b^3}{3H}t+O_u(t^2).
+\]
+对充分小的正 $t$, 相位分别处于 $(0,\pi/2)$ 和 $(\pi/2,\pi)$,
+轻层相位足够小, 拼接解在半区间无内部零点. 因此这些根确为所需的偶、奇基态.
+平方相减再除以 $u^2$ 得 \eqref{eq:rate}.
+在任意 $J\Subset(0,1/2)$ 上, 限制根的导数连续且非零;
+有限子覆盖及根的唯一性给出共同邻域和二阶导数界, 从而余项在 $J$ 上一致.
+
+又 $\tan a=-ba$ 给出
+\[
+ \frac{\sin^2a}{I_2(u)}=\frac{2a^2b^2}{u(1+b+b^2a^2)},\qquad
+ I_2(u)=\frac u2(1+b\cos^2a).
+\]
+代入 $S(u)=2\bar\mu_1/u-\bar\mu_2\sin^2a/I_2$ 可得
+\[
+ C(u)=\frac{4\bar\mu_1(u)\ell}{3u}+\frac\ell3S(u).
+\]
+最后用 $S(u^*)=0$ 和 $\bar\mu_1=\pi^2/(4u^2)$ 得 \eqref{eq:stationary-rate}.
+\end{proof}
+这里不声称 $u\to0$ 或 $u\to1/2$ 时的一致展开, 也不凭固定参数展开交换下确界与极限.
+特别地 $\sqrt R(G(R,u^*)-\bar D(u^*))\to0$;
+$R(G(R,u^*)-\bar D(u^*))\to C(u^*)$, 其数值约为 $15.5807908501$.
+

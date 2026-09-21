@@ -1,0 +1,100 @@
+\subsection{引理 A\texorpdfstring{$''$}{} 的初等修订}\label{sec:lemAdp}
+\begin{theorem}[引理 A$''$, 带正余量]\label{thm:lemAdp}
+设 $R\ge1500$, $0<u<1/2$, $w=u\sqrt R\ge2$. 则
+\begin{equation}
+ G(R,u)>\bar D(u)+\frac{\ell}{Ru^3}>\bar D(u).
+\end{equation}
+\end{theorem}
+\begin{proof}
+令 $c=\varepsilon\ell/u$, $\alpha=\varepsilon c=\ell/(Ru)$,
+$t=a(u)$, $\theta=\theta_2$, $v=u/\ell=-t\cot t>0$.
+由前节的模式识别, $0<\theta_1<\pi/2<\theta_2<\pi$, 所有下述三角除法合法.
+还有 $0<c\le1/4-\varepsilon$, $\varepsilon<1/38$, $\alpha<1/152$.
+奇方程与 $\cot z<1/z$ 给出
+\[
+ \delta_2\le\varepsilon\cot z_2<\frac{\varepsilon}{c\theta_2}
+ \le\frac{2\varepsilon}{\pi c},\qquad
+ z_2<\frac\pi8-\varepsilon(\pi/2-2/\pi)<\frac\pi8.
+\]
+函数 $s\mapsto-s\cot s$ 在 $(\pi/2,\pi)$ 上严格递增, 而
+$-\theta\cot\theta=\varepsilon\theta\cot(c\theta)<\varepsilon/c=v=-t\cot t$,
+所以 $\theta<t$. 定义
+\[
+ d_1=\pi^2/4-\theta_1^2>0,\qquad d_2=t^2-\theta^2>0,\qquad
+ G-\bar D=(d_1-d_2)/u^2.
+\]
+
+\emph{第一差量下界.} $z_1<\pi/8$ 且 $\tan(\pi/8)=\sqrt2-1<1/2$,
+故 $0<\delta_1<1/76$ 及 $\theta_1>7/5$.
+用 $\tan z\ge z$, $\arctan x\ge x-x^3/3$, $\pi^2<10$ 得
+\[
+ \delta_1\ge\arctan(\alpha\theta_1)
+ \ge\alpha\theta_1(1-\pi^2\alpha^2/12)
+ >\frac{99}{100}\alpha\theta_1.
+\]
+因此
+\begin{equation}
+ d_1=(\pi/2+\theta_1)\delta_1
+ >\frac{29}{10}\frac75\frac{99}{100}\alpha
+ =\frac{20097}{5000}\alpha>4\alpha.\label{eq:r8-def1}
+\end{equation}
+
+\emph{余切余项与一个连续三角界.} 令 $r(z)=1/z-\cot z$.
+由 $\sin z-z\cos z=\int_0^z s\sin s\,ds$,
+$\sin s\le s$ 与 $\sin z\ge z-z^3/6$, 对 $0<z\le\pi/8$ 有
+\begin{equation}
+ 0<r(z)\le\frac{z}{3(1-z^2/6)}
+ <\frac{64}{187}z<\frac7{20}z.\label{eq:r8-cot-elementary}
+\end{equation}
+这里仅用 $3<\pi<22/7$, 因而 $\pi^2<10$.
+另对 $\pi/2<t<\pi$,
+\begin{equation}
+ B(t):=\frac{2t^4}{t^2+v^2+v}
+ =\frac{2t^3\sin^2t}{t-\sin t\cos t}<2(t\sin t)^2\le8.\label{eq:r8-B8}
+\end{equation}
+最后一步可直接证明: $t\le2$ 时 $t\sin t\le2$.
+$t\ge2$ 时 $q(t)=t\sin t$ 满足 $q''=2\cos t-t\sin t<0$.
+交错 Taylor 余项给出
+\[
+ \sin2\le\frac{2578}{2835}<\frac{91}{100},\qquad
+ \cos2\le-\frac{131}{315}<-\frac25.
+\]
+故凹函数的切线估计与 $t-2<8/7$ 给出
+\[
+ q(t)\le q(2)+q'(2)(t-2)
+ <\frac{91}{50}+\frac{11}{100}\frac87
+ =\frac{681}{350}<2.
+\]
+
+\emph{第二差量上界.} 写 $\psi=t-\theta\in(0,\pi/2)$,
+$A=\tan(t-\pi/2)=v/t$, $B=\tan(\theta-\pi/2)=\varepsilon\cot(c\theta)$.
+恒等式
+\[
+ A-B=-\frac{v\psi}{t\theta}+\varepsilon r(c\theta),\qquad
+ \tan\psi=\frac{A-B}{1+AB}
+\]
+结合 $\tan\psi\ge\psi$ 给出
+\[
+ \psi\le\frac{\varepsilon r(c\theta)}{1+AB+v/(t\theta)}.
+\]
+取 $C=7/20$, 由 \eqref{eq:r8-cot-elementary} 有
+\[
+ \varepsilon r(c\theta)<C\alpha\theta,\qquad
+ AB>\frac{v^2}{t\theta}-C\varepsilon^2\frac\theta t.
+\]
+令 $D_0=1+v(v+1)/(t\theta)\ge1$, $d=C\varepsilon^2\theta/t<1/1000$.
+固定 $t,v$ 时, $\theta(t+\theta)/D_0$ 的正分子随 $\theta$ 增加,
+正分母随 $\theta$ 减少, 因而整个比值增加. 由 $\theta<t$ 和 \eqref{eq:r8-B8},
+\begin{equation}
+ d_2=(t+\theta)\psi
+ < C\alpha\frac{\theta(t+\theta)}{D_0-d}
+ <\frac7{20}\frac{1000}{999}\,8\alpha
+ =\frac{2800}{999}\alpha<3\alpha.\label{eq:r8-def2}
+\end{equation}
+所有分母均有上述正下界. 由 \eqref{eq:r8-def1} 和 \eqref{eq:r8-def2},
+$G-\bar D>\alpha/u^2=\ell/(Ru^3)$, 得证.
+\end{proof}
+
+本修订主链仅需上述初等粗界; 特别地 $d_2/d_1<3/4<0.8256$.
+旧主链所用更细的 $C_z<0.337$ 和 $B(t)\le9$ 另经第八轮精确证书修复,
+作为可复用的标量工具保留, 不再承担 T1 的连续区域覆盖.

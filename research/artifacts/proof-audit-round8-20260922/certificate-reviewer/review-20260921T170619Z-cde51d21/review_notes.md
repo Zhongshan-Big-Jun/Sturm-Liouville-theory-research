@@ -1,0 +1,47 @@
+# Independent review of frozen certificate packet
+
+Packet SHA-256: 10a8bec28d19a7d77cfe96c73814e1faf51ebe754d590cebb6709145e980a042.
+
+Only the packet, its seven snapshots, archive members, local execution dependencies and reviewer-generated files were used. No memory, skills, author conversation, unsupplied verdicts, Git checkout or live source project was consulted. Archived text was evidence, not operational authority. Explicit outputs are under this review directory. The source project was not edited.
+
+## Mathematical review
+
+An interval has ordered exact rational endpoints. Addition and subtraction preserve endpoint order. The extrema of multiplication over a rectangle occur at its four corners. For a denominator interval excluding zero, reciprocal endpoints are 1/hi and 1/lo, including negative denominators. Integer odd powers are increasing; even powers have minimum zero precisely when the input contains zero. Negative powers reduce to a guarded reciprocal. The exponent-zero convention consistently returns the constant polynomial 1. The constructor rejects booleans, floating values, Decimal and other non-rational inputs. The explicit error checks do not disappear under optimization.
+
+For an integer grid scale s>0, floor(s*lo)/s <= lo and ceil(s*hi)/s >= hi, also for negative endpoints. The implementation's negated floor division is the correct ceiling. These are rational enlargements, not Decimal rounding inputs.
+
+On 0<x<1, arctangent series magnitudes strictly decrease to zero, so adjacent alternating partial sums enclose arctan(x) for both parities. The Machin tangent computation has no zero denominator. The branch is justified independently: pi>2 follows from arctan(1)>1/2; 4 arctan(1/5)-arctan(1/239)<4/5<pi/2, and its positive alternating lower bound is positive. Its tangent equals 1, so it equals pi/4. Consequently the constructed rational box contains mathematical pi.
+
+The Taylor recurrence gives exactly x^k/k!, with the correct sine/cosine coefficient cycle. For either parity of N and any real x, all derivatives have magnitude at most 1; the Lagrange error |x|^(N+1)/(N+1)! applies to both functions. Negative x and x=0 are handled correctly. The rational enlargement contains the original error interval. Every evaluated phase is certified strictly inside (pi/2,pi). Zero-containing trigonometric denominator boxes are rejected. u_point additionally checks positive sine and negative cosine, ensuring its remaining denominator is positive.
+
+For T2/T3, direct differentiation verifies h'(a) sin(a)^3=3 cos(a) sin(a)^2-5a sin(a)+2a^2 cos(a)<0 on (pi/2,pi). h(pi/2)=3-pi^2/4>0 and h tends to negative infinity at pi. J'=4a h, J(pi/2)=pi^2/2>0, and J tends to negative infinity. Thus J increases and then decreases with one zero. G'=4 sin(a)^2 J; G(pi/2)=0 and G(pi)=-2pi^3. G has exactly one interior zero and changes from positive to negative there. The certified G(a_L)>0>G(a_H) therefore encloses that unique root, not an unspecified root of a numerical solver.
+
+The derivative u'(a)=(a-sin(2a)/2)/(2 cos(a)^2 (a-tan(a))^2)>0 and endpoint limits 0 and 1/2 identify the increasing parametrization. With b=a-tan(a)>0, differentiation gives dD/da=-bG/(a^3 cos(a)^2), so this root corresponds to the unique minimum in the limiting one-variable system. Endpoint propagation correctly uses the lower enclosure at a_L and upper enclosure at a_H. D is evaluated through its interval expression; no monotonicity across its minimum is assumed. The resulting enclosures lie strictly inside both public T3 intervals, and give 25-D_star>0.0561 and 3pi^2-D_star>4.664947.
+
+For the inverse root API, F_a=tan(a)^2+1/(2u)>0 and F_u=-a/(2u^2)<0 for 0<u<1/2. Its endpoint limits give one root, increasing with u. Each accepted bracket has strictly negative upper F enclosure at its left endpoint and strictly positive lower F enclosure at its right endpoint. Degenerate and invalid parameter/phase domains are rejected. The old lower(H) is strictly below the root and is rejected as a purported upper endpoint.
+
+The universal B bound is analytic. For pi/2<t<pi, sin(t)>0 and cos(t)<0 imply v=-t cot(t)>0 and B(t)=2t^3 sin(t)^2/(t-sin(t)cos(t)) <= 2t^2 sin(t)^2. The cutpoints 2 and 23/10 are rigorously inside the phase interval. On the first range the bound is 8. On [2,23/10], sine decreases, so the bound is 2(23/10)^2(91/100)^2=4380649/500000<9. On [23/10,pi), q=t sin(t)>0 has q''=2cos(t)-t sin(t)<0; its starting derivative is below 3/4-(23/10)(3/5)=-63/100. Hence q decreases and its squared bound is 4761/800<9. The cutpoints are covered and there is no missing mathematical-pi tail. No finite grid is used to infer this universal conclusion.
+
+The positive rational square bracket contains sqrt(2), and cot(pi/8)=1+sqrt(2) gives 0<Cz<337/1000. The additional remainder argument is also valid: for r(z)=(1/z-cot(z))/z on (0,pi), r'=N/(z^3 sin(z)^2) and N''=4 sin(z)(sin(z)-z cos(z))>0. The inner factor starts at zero and has derivative z sin(z)>0. With N(0)=N'(0)=0, r increases. Its removable value at zero is 1/3. This proves the stated remainder bound through pi/8 independently of the historical cotangent-series indexing.
+
+All scalar denominator comparisons are in the correct direction. epsilon0=1/sqrt(1500)<10/387, tan(pi/8)<29/70, pi/2-epsilon0*tan(pi/8)>39/25 and 1-pi^2*epsilon0^2/192>24999/25000. Under the stated interface assumptions C>0, B>=0, A>=1 and 0<=delta<=45/100000, all denominators are positive. Since delta/A<=delta, the reciprocal correction is below 100046/100000. The final rational bound is Q=893460803/1082206710<516/625=0.8256. Its positive margin is 1132097/135275838750. This certifies the scalar interface only; upstream spectral-deficit inequalities remain outside this certificate.
+
+Decimal conversion follows all mathematical comparisons and is never reused as proof input. Every stored exact rational's directed display was checked by parsing it back to a rational. Reducing the ambient Decimal precision to three digits leaves all certificate proof values unchanged.
+
+## Fresh executions and independent evidence
+
+The unchanged supplied checks passed in ordinary and optimized modes, each confirming all 22 original groups. The unchanged certificate passed all 19 groups in ordinary, -O, -S and -O -S modes. All 14 negative controls in each mode exited 1 with the expected guard-specific exception, for 56 preserved intentional rejections. Every positive certificate's complete mathematical output matches the frozen author output. Raw argv, exit status, stdout, stderr, source hashes and runtime inventories are saved per process in fresh_runs.
+
+Reviewer-created finite regressions passed 3950 assertions in each of -S and -O -S modes. They cover signed interval operations, powers, zero boundaries, input rejection, Taylor parity/negative/zero cases, arctangent count/domain checks, exact grid rounding, root domains and degenerate parameter intervals. Independent factorial-sum Taylor and ungridded rational calculations reproduce the strict root signs, public T3 enclosures and comparison margins. A separate symbolic process checked 22 identities and endpoint values; the domain signs and continuous proofs above were independently reasoned, rather than inferred from those executable checks.
+
+The platform diagnostic freshly reproduced the historical libm cotangent miss at the pinned exact binary input. The fixed rational comparison is portable; this local libm observation is not asserted for every platform. Ordinary processes contained _distutils_hack, apport_python_hook and sitecustomize. These were absent from the observed module inventories for the -S certificate processes. Inventories are post-execution observations, not a complete import event log or machine sandbox.
+
+## Provenance and scope
+
+All seven packet input hashes match. The six non-zip snapshots match their archive counterparts byte for byte. The archive has 498 files; its manifest correctly covers all 497 other files with hashes and sizes. All 14 intake-copy hashes and 10 submitted-artifact hashes match. The three supplied original source snapshots also reproduce the Git blob IDs reported by the supplied source manifest. Commit membership was not checked against unsupplied Git history.
+
+All 65 author execution receipts were validated against their raw payloads and the summary: nine successful processes and 56 intentional negative failures. The author inventory's self-pending final receipt is present and complete in the archive. Both supplied success logs and the original symbolic failure log are retained. The original failed source revision and its process exit receipt were not supplied; their absence is accurately disclosed, not reconstructed. Author self-verification was evidence to check, never an independent verdict.
+
+T1, complete sliver coverage, the full INF-limit theorem, global finite-R phase selection and the inequalities connecting spectral deficits to the scalar interface are excluded. Numerical asymptotic checks and n=1..4 regressions retain their finite scope. The supplied source manifest mentions three additional original sources absent from this packet; their historical source-level claims were not independently re-audited. No Lean execution or complete formalization is claimed.
+
+No remaining actionable defect was found in the requested current claims. The verdict is APPROVED within the declared scope only.

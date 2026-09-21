@@ -1,0 +1,93 @@
+import Lean
+import AuditRound8
+
+set_option maxRecDepth 100000
+set_option maxHeartbeats 0
+open Lean Elab Command Meta
+
+namespace Round8Exporter
+
+def names_json (Names : Array Name) : Json :=
+  toJson (Names.qsort Name.lt |>.map Name.toString)
+
+partial def expr_json (Term : Expr) : Json :=
+  match Term with
+  | .bvar Index => toJson ("bvar", Index)
+  | .fvar Id => toJson ("fvar", Id.name.toString)
+  | .mvar Id => toJson ("mvar", Id.name.toString)
+  | .sort Level => toJson ("sort", reprStr Level)
+  | .const Name Levels => toJson ("const", Name.toString, Levels.map reprStr)
+  | .app Function Argument => Json.arr #[toJson "app", expr_json Function, expr_json Argument]
+  | .lam _ TermType Body Binder => Json.arr #[toJson "lam", toJson (reprStr Binder), expr_json TermType, expr_json Body]
+  | .forallE _ TermType Body Binder => Json.arr #[toJson "forall", toJson (reprStr Binder), expr_json TermType, expr_json Body]
+  | .letE _ TermType Value Body NonDependent => Json.arr #[toJson "let", expr_json TermType, expr_json Value, expr_json Body, toJson NonDependent]
+  | .lit Literal => toJson ("literal", reprStr Literal)
+  | .mdata _ Body => expr_json Body
+  | .proj Name Index Body => Json.arr #[toJson "projection", toJson Name.toString, toJson Index, expr_json Body]
+
+def kind_name (Info : ConstantInfo) : String :=
+  match Info with
+  | .axiomInfo _ => "axiom"
+  | .thmInfo _ => "theorem"
+  | .defnInfo _ => "definition"
+  | .opaqueInfo _ => "opaque"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "constructor"
+  | .recInfo _ => "recursor"
+  | .quotInfo _ => "quotient_primitive"
+
+def body_dependencies (Info : ConstantInfo) : Array Name :=
+  let Body := Info.value? (allowOpaque := true) |>.map Expr.getUsedConstants |>.getD #[]
+  match Info with
+  | .inductInfo Value => Body ++ Value.ctors.toArray
+  | _ => Body
+
+partial def dependency_closure (Environment : Environment) (Pending : List Name)
+  (Seen : NameSet := {}) : NameSet :=
+  match Pending with
+  | [] => Seen
+  | Name :: Rest =>
+    if Seen.contains Name then dependency_closure Environment Rest Seen
+    else
+      let Seen := Seen.insert Name
+      match Environment.checked.get.find? Name with
+      | none => dependency_closure Environment Rest Seen
+      | some Info => dependency_closure Environment
+        (Info.type.getUsedConstants.toList ++ (body_dependencies Info).toList ++ Rest) Seen
+
+partial def semantic_closure (Environment : Environment) (Pending : List Name)
+  (Seen : NameSet := {}) : NameSet :=
+  match Pending with
+  | [] => Seen
+  | Name :: Rest =>
+    if Seen.contains Name then semantic_closure Environment Rest Seen
+    else
+      let Seen := Seen.insert Name
+      match Environment.checked.get.find? Name with
+      | none => semantic_closure Environment Rest Seen
+      | some Info =>
+        let Body := if Info.isTheorem then #[] else body_dependencies Info
+        semantic_closure Environment (Info.type.getUsedConstants.toList ++ Body.toList ++ Rest) Seen
+
+def node_json (Environment : Environment) (Name : Name) (Semantic : Bool) : Json := Id.run do
+  let some Info := Environment.checked.get.find? Name
+    | return Json.mkObj [("name", toJson Name.toString), ("missing", toJson true)]
+  let mut Fields := [
+    ("name", toJson Name.toString),
+    ("kind", toJson (kind_name Info)),
+    ("universes", toJson (Info.levelParams.map Lean.Name.toString)),
+    ("unsafe", toJson Info.isUnsafe),
+    ("type_dependencies", names_json Info.type.getUsedConstants),
+    ("body_dependencies", names_json (body_dependencies Info))]
+  if Semantic then
+    Fields := Fields ++ [("type_expression", expr_json Info.type)]
+    if !Info.isTheorem then
+      if let some Value := Info.value? (allowOpaque := true) then
+        Fields := Fields ++ [("value_expression", expr_json Value)]
+  return Json.mkObj Fields
+
+partial def binder_kinds (TermType : Expr) : List String :=
+  match TermType with
+  | .forallE _ _ Body Binder => reprStr Binder :: binder_kinds Body
+  | _ => []
+

@@ -1,0 +1,581 @@
+﻿\documentclass[11pt]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{The Degenerate Limit $c\to 0$ of the Shifted Krein Laplacian\\ \large (Quotient Left-Definite Space, Structural Stability of the Krein--Sobolev System, and a Correction to the ``Finite-Limit'' Heuristic)}
+\author{BVE research project --- session 12}
+\date{2026-08-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze the limit $c\to 0$ of the first left-definite space
+$(H^1[-1,1],(\cdot,\cdot)_{1,c})$ associated with the shifted Krein Laplacian
+$K_c f = -f''+cf$ on $[-1,1]$.  The limit inner product
+$(\cdot,\cdot)_{1,0}$ is only a pseudo inner product whose radical is exactly
+$W=\operatorname{span}\{1,x\}$ (the null space of $K_0$); we prove that the
+quotient $H^1/W$ is a Hilbert space isometrically isomorphic to
+$L^2_0(-1,1)=\{g\in L^2: \int_{-1}^1 g=0\}$, and that the images of the
+polynomials $\{S_n=P_n-P_{n-2}: n\ge 2\}$ span the image of all polynomials
+exactly, hence any Gram--Schmidt orthonormalization of them is a complete
+orthonormal system of the quotient.  For the Krein--Sobolev system
+$\{K_n^{(c)}\}$ we prove: $K_0=1$, $K_1=x$ have squared norms $2c$, $2c/3$
+(vanish linearly); $K_2=P_2$, $K_3=P_3$ are $c$-independent, and their
+squared norms tend to $6,10$, respectively.  For each fixed $n\ge4$ the
+coefficients $a_n$ and the squared norms
+$\|K_n^{(c)}\|_{1,c}^2=2c\,a_n a_{n+2}/(2n+1)$ \emph{diverge} (e.g.\
+$\|K_4^{(c)}\|_{1,c}^2\sim 3150/c^2$), while the \emph{unit-normalized} system
+$\widehat u_n^{(c)}=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$ has, for every fixed
+$n\ge2$, a limit in the ordinary Sobolev $H^1$ norm.  With
+$Q_n=S_n/\sqrt{2(2n-1)}$, the representatives converge to
+$P_2/\sqrt6=Q_2+1/\sqrt6$ for $n=2$, to
+$P_3/\sqrt{10}=Q_3+x/\sqrt{10}$ for $n=3$, and to $Q_n$ for $n\ge4$.
+Thus $[\widehat u_n^{(c)}]\to[Q_n]$ in $H^1/W$ for every fixed $n\ge2$,
+and these limiting classes form a complete orthonormal system.  This
+corrects both the low-mode representative limits and the earlier
+heuristic that ``all norms for $n\ge 2$ have finite limits'' (which holds only
+for $n=2,3$).  \emph{Proof status:} explicit Gram identities, parity
+induction with a controlled remainder, and finite polynomial expansions
+give full analytical proofs of these fixed-index assertions
+(Lemma~\ref{lem:explicit-q}, Theorems~\ref{thm:high}, \ref{thm:unit}).
+Finite checks are supplementary, and this author revision does not itself
+constitute independent acceptance.  No convergence estimate uniform in
+$n$, or limit with $n$ varying with $c$, is asserted.
+\end{abstract}
+
+\section{Setting}
+
+Let $H^1=H^1[-1,1]$ over $\mathbb C$, and let $\Pi$ denote the polynomials.
+Inner products are linear in the first argument; the real case follows by
+restriction.  For $c\ge 0$ consider the sesquilinear form \cite[eq.~(2)]{axioms}
+\begin{equation}
+	\begin{aligned}
+		(f,g)_{1,c}&:=-\tfrac12\,(f(1)-f(-1))\,\overline{(g(1)-g(-1))}\\
+		&\qquad+\int_{-1}^1\bigl(f'(x)\overline{g'(x)}+c\,f(x)\overline{g(x)}\bigr)\,dx,
+	\end{aligned}
+	\label{eq:ld}
+\end{equation}
+For $c>0$ this is the inner product of the first left-definite space of the
+shifted Krein Laplacian \cite[eqs.~(3)--(4)]{axioms}
+\begin{equation*}
+	\begin{aligned}
+		K_c f&:=-f''+cf,\quad D(K_c):=\bigl\{f\in\Delta:\ f'(1)=f'(-1)=\tfrac{f(1)-f(-1)}2\bigr\},\\
+		\Delta&:=\{f:\ f,f'\in AC[-1,1],\ f''\in L^2\}.
+	\end{aligned}
+\end{equation*}
+Integration by parts gives
+\begin{equation*}
+	(f,g)_{1,c}=(K_c f,g)_{L^2}
+	\qquad(f\in D(K_c),\ g\in H^1).
+\end{equation*}
+For $c>0$, $K_c$ is self-adjoint and $K_c\ge cI$.  Its form domain and
+form satisfy \cite[Theorem~1 and the following paragraph]{axioms}
+\begin{equation}
+	D(K_c^{1/2})=H^1,\qquad
+	(f,g)_{1,c}=(K_c^{1/2}f,K_c^{1/2}g)_{L^2}
+	\quad(f,g\in H^1).
+	\label{eq:form-domain}
+\end{equation}
+Thus the square-root identity applies to all of $H^1$, without imposing
+the operator boundary conditions on $f$ or $g$.
+The spectrum is $\sigma(K_c)=\sigma(K_0)+c$ where
+\cite[eqs.~(7)--(8)]{axioms}
+\begin{equation*}
+	\sigma(K_0)=\{0\}\cup\{(n\pi)^2:n\ge 1\}\cup\{\mu_n^2:n\ge 1\},
+\end{equation*}
+and $\mu_n$ is the unique root of $\tan\mu=\mu$ in
+$(n\pi,(n+\tfrac12)\pi)$, $n\ge1$.  The corresponding complete
+$L^2$ eigenfunction system is
+\begin{equation*}
+	\{1,x\}\cup\{\cos n\pi x:n\ge1\}\cup\{\sin\mu_n x:n\ge1\}.
+\end{equation*}
+The null space of $K_0$ is $W:=\operatorname{span}\{1,x\}$; for $K_c$ these
+two affine modes both have eigenvalue $c$.
+
+\section{The limit inner product and the quotient space}
+
+\begin{theorem}[quadratic form and radical]\label{thm:radical}
+	For $f\in H^1$,
+	\begin{equation*}
+		(f,f)_{1,0}=\int_{-1}^1|f'|^2\,dx-\frac{|f(1)-f(-1)|^2}{2}
+		=\Bigl\|f'-\frac{f(1)-f(-1)}2\Bigr\|_{L^2}^2\ge 0,
+	\end{equation*}
+	and $(f,f)_{1,0}=0$ if and only if $f\in W=\operatorname{span}\{1,x\}$.
+	Consequently $W$ is exactly the radical of $(\cdot,\cdot)_{1,0}$:
+	$(w,f)_{1,0}=0$ for all $w\in W$, $f\in H^1$.
+\end{theorem}
+
+\begin{proof}
+	Since $f(1)-f(-1)=\int_{-1}^1 f'$, the Cauchy--Schwarz inequality gives
+	$|f(1)-f(-1)|^2\le 2\|f'\|_{L^2}^2$, so the first expression is
+	nonnegative.  The last identity is the expansion of
+	$\|f'-\alpha\|^2$ with $\alpha=(f(1)-f(-1))/2$ (note $\int\alpha =2\alpha$
+	and $\int 1 =2$).  Equality in Cauchy--Schwarz holds iff $f'$ is constant
+	a.e., iff $f$ is affine, iff $f\in W$.  For $w\in W$, say $w=\alpha x+\beta$,
+	one has $w'=\alpha$ and $w(1)-w(-1)=2\alpha$, so
+	$(w,f)_{1,0}=\int \alpha\overline{f'}-\alpha\int\overline{f'}=0$.
+\end{proof}
+
+\begin{theorem}[isometric isomorphism of the quotient]\label{thm:quotient}
+	The quotient $H^1/W$ equipped with the inner product induced by
+	$(\cdot,\cdot)_{1,0}$ is a Hilbert space, and the map
+	\begin{equation*}
+		T\colon H^1/W\to L^2_0(-1,1):=\{g\in L^2(-1,1): \int_{-1}^1 g=0\},
+		\qquad
+		T([f]):=f'-\frac{f(1)-f(-1)}2,
+	\end{equation*}
+	is an isometric isomorphism.
+\end{theorem}
+
+\begin{proof}
+	By Theorem~\ref{thm:radical}, $(\cdot,\cdot)_{1,0}$ factors through the
+	quotient and is positive definite there.  The map $T$ is well defined and
+	injective: if $T([f])=0$ then $f'$ is constant, so $f$ is affine, so
+	$[f]=0$.  It is surjective: for $h\in L^2_0$, $f(x):=\int_0^x h(t)\,dt$
+	lies in $H^1$ with $f'=h$ and $\int h=0$, so $T([f])=h$.  It is
+	isometric: with $\alpha=(f(1)-f(-1))/2$,
+	$\|T([f])\|_{L^2}^2=\|f'-\alpha\|^2=(f,f)_{1,0}$.
+	Since $L^2_0$ is the kernel of the continuous functional
+	$h\mapsto\int_{-1}^1h$, it is closed in $L^2$.  Hence $H^1/W$ is complete.
+\end{proof}
+
+\section{Complete systems in the quotient}
+
+Let $P_n$ be the Legendre polynomials ($P_n(1)=1$) and set
+\begin{equation*}
+	S_0:=1,\qquad S_1:=x,\qquad S_n:=P_n-P_{n-2}\quad(n\ge 2),
+\end{equation*}
+the polynomial basis used to construct the Krein--Sobolev polynomials
+\cite[eq.~(15)]{axioms}.  Since $\deg S_n=n$ with nonzero leading
+coefficient, top-down elimination gives the exact decomposition
+\begin{equation*}
+	\Pi_N=\operatorname{span}\{1,x\}\oplus
+	\operatorname{span}\{S_2,\ldots,S_N\}\qquad(N\ge2).
+\end{equation*}
+
+\begin{theorem}[completeness in the quotient]\label{thm:complete}
+	(a) The images $\{[S_n]: n\ge 2\}$ span $[\Pi]$
+	$\bigl(=\operatorname{span}\{[p]:p\in\Pi\}\bigr)$ exactly;
+	(b) $[\Pi]$ is dense in $H^1/W$;
+	(c) any orthonormal system $\{Q_n:n\ge 2\}$ obtained from
+	$\{S_n:n\ge 2\}$ by Gram--Schmidt in $(\cdot,\cdot)_{1,0}$ is a complete
+	orthonormal system of $H^1/W$;
+	(d) the images of the eigenfunctions,
+	$\{[\cos n\pi x]:n\ge 1\}\cup\{[\sin\mu_n x]:n\ge 1\}$, also form a
+	complete system in $H^1/W$.
+\end{theorem}
+
+\begin{proof}
+	(a) is the displayed decomposition (the affine part has image $0$).
+	(b) Polynomials are dense in $H^1$ (standard); the quotient map
+	$H^1\to H^1/W$ is continuous because
+	$\|[f]\|_{1,0}\le\|f'\|_{L^2}\le\|f\|_{H^1}$, so $[\Pi]$ is dense.
+	(c) follows from (a), (b) and the density of the span in the closure.
+	(d) The actual images under the isometry of
+	Theorem~\ref{thm:quotient} are
+	\begin{equation*}
+		\begin{aligned}
+			T([\cos n\pi x])&=-n\pi\sin n\pi x,\\
+			T([\sin\mu_n x])&=\mu_n\cos\mu_n x-\sin\mu_n.
+		\end{aligned}
+	\end{equation*}
+	To prove density in the quotient, fix any $c>0$.  Let
+	$\{e_j\}_{j\ge0}$ be the $L^2$-orthonormal eigenbasis obtained by
+	normalizing the displayed eigenfunctions of $K_c$, with
+	$e_0=1/\sqrt2$, $e_1=\sqrt{3/2}\,x$, and
+	$K_ce_j=\lambda_je_j$.  Thus $\lambda_0=\lambda_1=c$, while each
+	$e_j$, $j\ge2$, is a normalized cosine or sine mode listed in (d), with
+	$\lambda_j>c$.  For $f\in H^1=D(K_c^{1/2})$, write
+	$a_j=(f,e_j)_{L^2}$ and set $f_N=\sum_{j=0}^N a_je_j$, $N\ge1$.
+	The spectral theorem and \eqref{eq:form-domain} give
+	\begin{equation*}
+		\sum_{j=0}^{\infty}\lambda_j|a_j|^2=\|f\|_{1,c}^2<\infty,
+		\qquad
+		\|f-f_N\|_{1,c}^2=\sum_{j>N}\lambda_j|a_j|^2\longrightarrow0.
+	\end{equation*}
+	Since $(u,u)_{1,c}=(u,u)_{1,0}+c\|u\|_{L^2}^2$ for $u\in H^1$,
+	\begin{equation*}
+		\|[f-f_N]\|_{1,0}^2
+		=\|f-f_N\|_{1,c}^2-c\|f-f_N\|_{L^2}^2
+		\le\|f-f_N\|_{1,c}^2\longrightarrow0.
+	\end{equation*}
+	Both $e_0$ and $e_1$ belong to the radical $W$, so
+	$[e_0]=[e_1]=0$ (indeed, $T([1])=0$ and $T([x])=1-1=0$).
+	Consequently $[f_N]=\sum_{j=2}^N a_j[e_j]$ is a finite linear
+	combination of the classes in (d).  As $[f]\in H^1/W$ was arbitrary,
+	this proves their density.
+\end{proof}
+
+\begin{lemma}[explicit orthonormal representatives]\label{lem:explicit-q}
+	For all $n,m\ge2$,
+	\begin{equation}
+		S_n'=(2n-1)P_{n-1},\qquad
+		(S_n,S_m)_{1,0}=2(2n-1)\delta_{nm}.
+		\label{eq:zero-gram}
+	\end{equation}
+	Consequently the Gram--Schmidt procedure applied in order to
+	$S_2,S_3,\ldots$, with positive leading coefficients, gives the
+	polynomial representatives
+	\begin{equation}
+		Q_n:=\frac{S_n}{\sqrt{2(2n-1)}}\qquad(n\ge2).
+		\label{eq:explicit-q}
+	\end{equation}
+	Their classes form a complete orthonormal system of $H^1/W$.
+\end{lemma}
+
+\begin{proof}
+	Use the Legendre normalization
+	$\int_{-1}^1P_jP_k=2\delta_{jk}/(2j+1)$ and leading coefficient
+	$\ell_j=2^{-j}\binom{2j}{j}$.  Since
+	$P_n(1)=P_{n-2}(1)=1$ and
+	$P_n(-1)=P_{n-2}(-1)=(-1)^n$, both endpoint values of $S_n$ vanish.
+	For any polynomial $p$ of degree at most $n-2$, integration by parts
+	gives
+	\begin{equation*}
+		\int_{-1}^1S_n'p=-\int_{-1}^1(P_n-P_{n-2})p'=0.
+	\end{equation*}
+	For $n=2$ this holds because $p'=0$; for $n\ge3$ it follows from
+	$\deg p'\le n-3$ and Legendre orthogonality.  Thus $S_n'$ is a
+	multiple of $P_{n-1}$, and its leading coefficient gives the factor
+	$n\ell_n/\ell_{n-1}=2n-1$.  The boundary term in
+	$(S_n,S_m)_{1,0}$ is zero, so the derivative identity and Legendre
+	orthogonality prove \eqref{eq:zero-gram}.  The Gram--Schmidt procedure
+	therefore only divides each $S_n$ by its positive norm, which proves
+	\eqref{eq:explicit-q}.  Completeness follows from
+	Theorem~\ref{thm:complete}(a)--(c).
+\end{proof}
+
+\section{Structural stability of the Krein--Sobolev system}
+
+The Krein--Sobolev polynomials $\{K_n^{(c)}\}$ are defined by
+$K_n=a_nS_n+K_{n-2}$, $K_n(1)=1$, with $a_0=a_1=a_2=a_3=1$ and, for $n\ge 2$
+\cite[eq.~(19)]{axioms},
+\begin{equation}
+	a_{n+2}=a_n\Bigl(1+\frac{4n^2-1}{c}\Bigr)
+	+\frac{2n+1}{2n-3}\,(a_n-a_{n-2}),
+	\label{eq:rec}
+\end{equation}
+and satisfy the orthogonality \cite[Theorem 3]{axioms}
+\begin{equation}
+	(K_m^{(c)},K_n^{(c)})_{1,c}=\frac{2c}{2n+1}\,a_n a_{n+2}\,\delta_{n,m}.
+	\label{eq:norm}
+\end{equation}
+
+\begin{theorem}[degeneration of the low modes]\label{thm:low}
+	$K_0^{(c)}=1$ and $K_1^{(c)}=x$ for all $c>0$, and
+	$\|K_0^{(c)}\|_{1,c}^2=2c$, $\|K_1^{(c)}\|_{1,c}^2=2c/3$.
+	Moreover $K_2^{(c)}=P_2$ and $K_3^{(c)}=P_3$ are independent of $c$, with
+	$\|K_2^{(c)}\|_{1,c}^2=6+\frac{2c}5\to 6$ and
+	$\|K_3^{(c)}\|_{1,c}^2=10+\frac{2c}7\to 10$ as $c\to 0$.
+\end{theorem}
+
+\begin{proof}
+	The formulas for $K_0,K_1$ are explicit; their squared norms are
+	$(1,1)_{1,c}=2c$ and $(x,x)_{1,c}=2c/3$.  From \eqref{eq:rec} with
+	$a_2=a_0=1$ and $a_3=a_1=1$,
+	$a_4=1+15/c$ and $a_5=1+35/c$; the coefficients of $S_2,S_0$ (resp.\
+	$S_3,S_1$) in $K_2$ (resp.\ $K_3$) are $(1,1)$, so
+	$K_2=S_2+S_0=P_2$ and $K_3=S_3+S_1=P_3$.  The norms follow from
+	\eqref{eq:norm}.
+\end{proof}
+
+\begin{theorem}[fixed-index asymptotics and high-mode divergence]\label{thm:high}
+	For $n=2m+\epsilon$, where $m\ge1$ and $\epsilon\in\{0,1\}$, set
+	\begin{equation}
+		r_n:=m-1,\qquad
+		C_n:=\prod_{j=1}^{m-1}\bigl(4(2j+\epsilon)^2-1\bigr)>0,
+		\label{eq:parity-constants}
+	\end{equation}
+	with an empty product equal to $1$.  For every fixed $n\ge2$, as
+	$c\downarrow0$,
+	\begin{equation}
+		\begin{aligned}
+			a_n(c)&=C_n c^{-r_n}\bigl(1+O_n(c)\bigr),\\
+			\|K_n^{(c)}\|_{1,c}^2
+			&=2(2n-1)C_n^2 c^{-2r_n}\bigl(1+O_n(c)\bigr).
+		\end{aligned}
+		\label{eq:fixed-asymptotics}
+	\end{equation}
+	Here $O_n$ allows constants depending on the fixed index $n$.
+	In particular, $r_n=(n-2)/2$ for even $n$ and $r_n=(n-3)/2$ for odd
+	$n$, and the squared norms tend to $+\infty$ for every fixed $n\ge4$.
+	For $n=4$ the exact formula is
+	\begin{equation}
+		\|K_4^{(c)}\|_{1,c}^2
+		=\frac{3150}{c^2}+\frac{560}{c}+\frac{80}{3}+\frac{2c}{9}.
+		\label{eq:norm-four}
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Fix $c>0$.  Write $b_n=(2n+1)/(2n-3)>0$ and
+	$\delta_n=a_n-a_{n-2}$ for $n\ge2$.  The recurrence gives
+	\begin{equation*}
+		\delta_{n+2}=\frac{4n^2-1}{c}\,a_n+b_n\delta_n.
+	\end{equation*}
+	Starting with $a_0=a_2=1$, $\delta_2=0$ in the even chain and
+	$a_1=a_3=1$, $\delta_3=0$ in the odd chain, induction yields
+	$a_n\ge a_{n-2}\ge1$ and $\delta_n\ge0$.  In particular, division
+	by $a_n$ is legitimate.  More precisely, \eqref{eq:rec} says
+	\begin{equation}
+		a_{n+2}=\frac{4n^2-1}{c}\,a_n+R_n,\qquad
+		R_n:=a_n+b_n(a_n-a_{n-2}),\qquad
+		a_n\le R_n\le(1+b_n)a_n.
+		\label{eq:legitimate-remainder}
+	\end{equation}
+	Thus the remainder is $O_n(a_n)$, and
+	\begin{equation}
+		c\,\frac{a_{n+2}}{a_n}
+		=4n^2-1+c\left(1+b_n\left(1-\frac{a_{n-2}}{a_n}\right)\right)
+		=4n^2-1+O_n(c).
+		\label{eq:normalized-ratio}
+	\end{equation}
+	For $n=2,3$, $r_n=0$, $C_n=1$, and the coefficient assertion in
+	\eqref{eq:fixed-asymptotics} is exact.  If it holds at $n$, then
+	\eqref{eq:legitimate-remainder} gives
+	\begin{equation*}
+		a_{n+2}
+		=(4n^2-1)C_n c^{-(r_n+1)}\bigl(1+O_n(c)\bigr).
+	\end{equation*}
+	Since $r_{n+2}=r_n+1$ and $C_{n+2}=(4n^2-1)C_n$, this completes
+	the induction on each parity chain, for all fixed $n$.  Substitution
+	in \eqref{eq:norm} proves the norm assertion, using
+	$2C_nC_{n+2}/(2n+1)=2(2n-1)C_n^2$.  When $n\ge4$, $r_n\ge1$,
+	so these norms diverge.  Finally,
+	$a_4=1+15/c$ and $a_6=1+105/c+945/c^2$ give
+	\eqref{eq:norm-four}.  They also exhibit the failure of an $O(1)$
+	remainder: $a_6-(63/c)a_4=1+42/c$.
+\end{proof}
+
+Throughout the next theorem the ordinary Sobolev norm is
+\begin{equation*}
+	\|f\|_{H^1_{\rm Sob}}^2
+	:=\int_{-1}^1\bigl(|f|^2+|f'|^2\bigr)\,dx.
+\end{equation*}
+It is distinct from the degenerate seminorm $\|f\|_{1,0}$ and from the
+$c$-dependent norm $\|f\|_{1,c}$.
+
+\begin{theorem}[fixed-index limits of representatives and classes]\label{thm:unit}
+	Let $\widehat u_n^{(c)}:=K_n^{(c)}/\|K_n^{(c)}\|_{1,c}$.
+	For every fixed $n\ge2$, as $c\downarrow0$,
+	\begin{equation}
+		\widehat u_n^{(c)}\longrightarrow L_n
+		\quad\text{in }H^1_{\rm Sob},\qquad
+		L_n:=
+		\begin{cases}
+			P_2/\sqrt6=Q_2+1/\sqrt6,&n=2,\\
+			P_3/\sqrt{10}=Q_3+x/\sqrt{10},&n=3,\\
+			Q_n=S_n/\sqrt{2(2n-1)},&n\ge4.
+		\end{cases}
+		\label{eq:representative-limits}
+	\end{equation}
+	In fact $\|\widehat u_n^{(c)}-L_n\|_{H^1_{\rm Sob}}=O_n(c)$.
+	For every fixed $n\ge2$ the quotient limit is
+	\begin{equation}
+		[\widehat u_n^{(c)}]\longrightarrow[Q_n]
+		\quad\text{in }(H^1/W,\|\cdot\|_{1,0}),
+		\label{eq:quotient-limits}
+	\end{equation}
+	and $\{[Q_n]:n\ge2\}$ is a complete orthonormal system there.
+	For $n=0,1$, $[\widehat u_n^{(c)}]=0$ for every $c>0$.
+	These assertions are for each fixed index; they make no claim of
+	convergence uniform over $n$.
+\end{theorem}
+
+\begin{proof}
+	Theorem~\ref{thm:low} gives
+	\begin{equation*}
+		\widehat u_2^{(c)}=\frac{P_2}{\sqrt{6+2c/5}},\qquad
+		\widehat u_3^{(c)}=\frac{P_3}{\sqrt{10+2c/7}}.
+	\end{equation*}
+	The scalar factors differ from $1/\sqrt6$ and $1/\sqrt{10}$ by
+	$O(c)$, respectively.  This proves the two low-mode limits and rates
+	in the ordinary Sobolev norm.  Their affine terms persist in that
+	norm: explicitly,
+	\begin{equation*}
+		\|L_2-Q_2\|_{H^1_{\rm Sob}}^2=\frac13,\qquad
+		\|L_3-Q_3\|_{H^1_{\rm Sob}}^2=\frac4{15}.
+	\end{equation*}
+
+	Now fix $n=2m+\epsilon\ge4$, so $m\ge2$.  Iterating the defining
+	polynomial recurrence is a finite identity:
+	\begin{equation}
+		K_n^{(c)}=P_\epsilon+
+		\sum_{j=1}^m a_{2j+\epsilon}(c)S_{2j+\epsilon},\qquad
+		\frac{K_n^{(c)}}{a_n}=S_n+\frac{K_{n-2}^{(c)}}{a_n}.
+		\label{eq:finite-expansion}
+	\end{equation}
+	For $1\le j\le m-1$, Theorem~\ref{thm:high} yields
+	\begin{equation*}
+		\frac{a_{2j+\epsilon}}{a_n}
+		=\frac{C_{2j+\epsilon}}{C_n}c^{m-j}\bigl(1+O_n(c)\bigr),
+		\qquad \frac1{a_n}=O_n(c^{m-1}).
+	\end{equation*}
+	The error constants can be combined because there are only finitely
+	many $j$ for this fixed $n$.  Applying the triangle inequality to
+	\eqref{eq:finite-expansion}, and using $m-j\ge1$ and $m-1\ge1$,
+	gives the explicit finite-sum bound
+	\begin{equation}
+		\left\|\frac{K_{n-2}^{(c)}}{a_n}\right\|_{H^1_{\rm Sob}}
+		\le\frac{\|P_\epsilon\|_{H^1_{\rm Sob}}}{a_n}
+		+\sum_{j=1}^{m-1}\frac{a_{2j+\epsilon}}{a_n}
+		\|S_{2j+\epsilon}\|_{H^1_{\rm Sob}}
+		=O_n(c).
+		\label{eq:polynomial-remainder}
+	\end{equation}
+	All coefficient ratios here are positive.  By \eqref{eq:norm} and
+	\eqref{eq:normalized-ratio}, the positive scalar
+	$\beta_n(c):=\|K_n^{(c)}\|_{1,c}/a_n(c)$ satisfies
+	\begin{equation*}
+		\beta_n(c)^2=\frac{2c}{2n+1}\frac{a_{n+2}}{a_n}
+		=2(2n-1)+O_n(c),\qquad
+		\beta_n(c)=\sqrt{2(2n-1)}+O_n(c).
+	\end{equation*}
+	Since this limit is positive, its reciprocal also differs from
+	$1/\sqrt{2(2n-1)}$ by $O_n(c)$.  Therefore
+	\begin{equation*}
+		\widehat u_n^{(c)}
+		=\frac{S_n+K_{n-2}^{(c)}/a_n}{\beta_n(c)}
+		=Q_n+O_n(c)\quad\text{in }H^1_{\rm Sob},
+	\end{equation*}
+	where the last error denotes a polynomial whose Sobolev norm is
+	$O_n(c)$.  This proves the representative assertion for every fixed
+	$n\ge4$ without taking any infinite-dimensional limit.
+
+	Finally the quotient map is continuous, since
+	$\|[f]\|_{1,0}\le\|f'\|_{L^2}\le\|f\|_{H^1_{\rm Sob}}$.
+	For all $n\ge2$, $L_n-Q_n\in W$, so the representative convergence
+	implies \eqref{eq:quotient-limits}, also with an $O_n(c)$ error.
+	Lemma~\ref{lem:explicit-q} proves orthonormality and completeness of
+	the limiting classes.  For $n=0,1$, the normalized polynomials are
+	still affine and hence have zero quotient class by
+	Theorem~\ref{thm:radical}.
+\end{proof}
+
+\begin{remark}[correction of a heuristic]
+	The natural guess that ``$\|K_n^{(c)}\|_{1,c}$ has a finite limit for all
+	$n\ge 2$'' is \emph{false}: it holds only for $n=2,3$
+	(Theorem~\ref{thm:low}); for $n\ge 4$ the norms diverge
+	(Theorem~\ref{thm:high}).  The unit-normalized representatives have
+	the limits stated in Theorem~\ref{thm:unit}, and their classes converge
+	to $[Q_n]$ for all fixed $n\ge2$.  For $n\ge4$, dividing by
+	$a_n\to\infty$ leaves $S_n$ as the leading polynomial, whose endpoint
+	values are zero.  The endpoint normalization $K_n(1)=1$ therefore hides
+	this finite limiting shape.  For $n=2,3$, the nonzero affine difference
+	between $L_n$ and $Q_n$ disappears only after passage to the quotient.
+\end{remark}
+
+\begin{remark}[verification status and quantifiers]
+	The fourth-round author repair supplies full analytical proofs of
+	Theorems~\ref{thm:high} and \ref{thm:unit}; their universal
+	fixed-index assertions do not depend on finite checks.  The original
+	proof-sketch status is superseded by the explicit induction and
+	Sobolev remainder estimate above.  In particular, the Gram matrix
+	of $S_2,\ldots,S_N$ at $c=0$ is exactly
+	$\operatorname{diag}(6,10,\ldots,2(2N-1))$ for every $N\ge2$.
+	Its smallest eigenvalue is $6$ for every such $N$; nonsingularity
+	is not an open obligation.  This Gram bound alone is not a
+	uniform-in-$n$ convergence estimate for $\widehat u_n^{(c)}$.
+	The proofs allow their constants to depend on $n$ and do not address
+	joint limits or infinite sums with indices varying as $c\downarrow0$.
+	This is an author proof revision, not an independent-acceptance
+	certificate or a claim of full formalization.
+\end{remark}
+
+\begin{remark}[spectral interpretation]
+	The two eigenvalues $c$ of $K_c$ (with eigenfunctions $1,x$) converge to
+	the eigenvalue $0$ of $K_0$, whose eigenspace $W$ becomes the radical of
+	$(\cdot,\cdot)_{1,0}$.  On the quotient, the remaining eigenfunctions
+	$\{[\cos n\pi x]\}\cup\{[\sin\mu_n x]\}$ form a complete orthogonal system
+	with squared quotient-norms computable from
+	$(f,f)_{1,0}=(K_0f,f)_{L^2}$ for $f\in D(K_0)$.
+\end{remark}
+
+\section{Exact checks and their scope}\label{sec:audit}
+
+The following identities follow from the analytical proofs and also give
+finite regression targets.  The fourth-round author checks use a separate
+local symbolic/rational test program; they are supplementary evidence,
+not proofs of a statement for all indices or independent acceptance.
+Historical output of \texttt{scripts/op08\_c0\_verify2.py} is not used as a
+premise for the repaired results.
+
+\begin{enumerate}[leftmargin=1.6em]
+	\item \emph{Radical (Theorem~\ref{thm:radical}).}  For $f\in\{x^2,S_4,S_7\}$,
+	$(1,f)_{1,0}=(x,f)_{1,0}=0$ exactly.
+	\item \emph{Gram of $\{S_2,\ldots,S_N\}$.}  For every $N\ge2$,
+	\eqref{eq:zero-gram} gives determinant
+	$\prod_{n=2}^N2(2n-1)$ and smallest eigenvalue $6$.  Thus, for
+	example, the determinant at $N=4$ is $6\cdot10\cdot14=840$.
+	\item \emph{Norms (Theorems~\ref{thm:low}, \ref{thm:high}).}
+	The first two squared norms are $2c,2c/3$, and the next two are
+	$6+2c/5,10+2c/7$.  Equation~\eqref{eq:norm-four} gives, at
+	$c=10^{-3}$, the exact value
+	$3150560026+3001/4500$ for $\|K_4\|_{1,c}^2$.
+	Both $n=4$ and $n=5$ have squared-norm growth of order $c^{-2}$;
+	for $n=6$ the order is $c^{-4}$, as dictated by $2r_n$.
+	\item \emph{Unit-normalized convergence (Theorem~\ref{thm:unit}).}
+	The low-mode squared Sobolev discrepancies from $Q_2,Q_3$ tend to
+	$1/3,4/15$.  For $n=4$, $K_4^{(c)}=a_4S_4+S_2+1$, so the
+	quotient-orthogonal projection of $[\widehat u_4^{(c)}]$ onto
+	$\operatorname{span}\{[S_4]\}$ is
+	$\bigl(a_4/\|K_4\|_{1,c}\bigr)[S_4]$.  Its coefficient tends to
+	$1/\sqrt{14}$; it is not equal to that limit for $c>0$.
+	The residual squared quotient norm is exactly
+	$6/\|K_4\|_{1,c}^2\to0$.  The ordinary Sobolev convergence also
+	controls the affine remainder, by \eqref{eq:polynomial-remainder}.
+	\item \emph{Exact spanning (Theorem~\ref{thm:complete}).}
+	Top-down elimination with $S_2,\ldots,S_N$ leaves an affine
+	remainder for every polynomial of degree at most $N$, by the
+	nonzero leading coefficients.  This is an algebraic proof;
+	finite sample elimination checks only test its implementation.
+\end{enumerate}
+
+\section{Mathematics involved}
+
+\begin{description}
+	\item[Pseudo inner product / radical] A Hermitian sesquilinear form
+	$(\cdot,\cdot)$ with $(f,f)\ge0$; the set of $w$ with
+	$(w,f)=0$ for all $f$ is the radical.  The quotient by the radical
+	carries a genuine inner product.
+	\item[Cauchy--Schwarz equality case] $|\int f'\overline{g'}|^2\le
+	\|f'\|^2\|g'\|^2$ with equality iff $f',g'$ are linearly dependent; this pins
+	down the radical.
+	\item[Quotient Hilbert space] $H^1/W$ with the induced inner product;
+	complete because isometric to the complete space $L^2_0$.
+	\item[Top-down degree elimination] $\deg S_n=n$ implies every
+	polynomial decomposes uniquely into an affine part and a combination of
+	$\{S_2,\ldots,S_N\}$.
+	\item[Gram--Schmidt and normalization] The divergence of
+	$\|K_n^{(c)}\|$ for $n\ge4$ shows that the choice of normalization
+	($K_n(1)=1$ vs.\ unit norm) changes the limiting behaviour.
+	\item[Krein Laplacian] The self-adjoint operator $-f''$ with the
+	nonlocal boundary condition $f'(1)=f'(-1)=(f(1)-f(-1))/2$; at $c=0$ it
+	has a two-dimensional kernel $\operatorname{span}\{1,x\}$.
+	\item[Spectrum and eigenfunctions] $\sigma(K_0)=\{0\}\cup\{(n\pi)^2\}
+	\cup\{\mu_n^2\}$ with $\tan\mu_n=\mu_n$; the transcendental equation is
+	central to the Krein Laplacian spectral analysis.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{axioms} A.~Jones, L.~Littlejohn, A.~Quintero Roba,
+	\emph{Krein-Sobolev Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\end{thebibliography}
+
+\end{document}
+
+
+
+

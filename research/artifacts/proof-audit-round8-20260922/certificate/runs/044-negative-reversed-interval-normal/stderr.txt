@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/trace_execution.py", line 38, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/trace_execution.py", line 16, in main
+    runpy.run_path(str(TargetPath), run_name="__main__")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/certificate.py", line 394, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/certificate.py", line 371, in main
+    run_negative(args.negative)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/certificate.py", line 329, in run_negative
+    Interval(2, 1)
+    ~~~~~~~~^^^^^^
+  File "<string>", line 5, in __init__
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/certificate.py", line 38, in __post_init__
+    require(self.lo <= self.hi, "Reversed interval")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round8-20260922/certificate-author/runs/044-negative-reversed-interval-normal/certificate.py", line 18, in require
+    raise ArithmeticError(message)
+ArithmeticError: Reversed interval

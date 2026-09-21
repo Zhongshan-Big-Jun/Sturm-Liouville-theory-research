@@ -1,0 +1,98 @@
+01-version exit 0 seconds 0.14
+Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+02-mathlib-revision exit 0 seconds 0.05
+03-import-discovery exit 0 seconds 10.46
+Hashing 4427 loaded external modules, 17708 compiled/IR artifacts before proof compilation
+04-compile-current-source exit 0 seconds 10.8
+05-positive-control exit 0 seconds 9.23
+06-declaration-inspection exit 0 seconds 14.46
+07-root-resolution exit 0 seconds 0.12
+08-WrongPhase exit 1 seconds 9.17
+F:\tools\math-audit-round8-20260922\formal-reviewer\review-20260921T171659Z-7dddbb5a\replay-01\WrongPhase.lean:5:35: error: Type mismatch
+  (phase_bound lambda2 h0 hmax).right.left
+has type
+  phase lambda2 ≤ Real.pi / 20
+but is expected to have type
+  Real.pi / 2 < phase lambda2
+09-WrongStationaryFactor exit 1 seconds 9.09
+F:\tools\math-audit-round8-20260922\formal-reviewer\review-20260921T171659Z-7dddbb5a\replay-01\WrongStationaryFactor.lean:7:2: error: Type mismatch
+  (stationary_coefficient a b u ha hu hu_half hb hroot hstat).left
+has type
+  C a b u = Real.pi ^ 2 * ell u / (3 * u ^ 3)
+but is expected to have type
+  C a b u = Real.pi ^ 2 * ell u / (2 * u ^ 3)
+10-WrongScalar exit 1 seconds 9.26
+F:\tools\math-audit-round8-20260922\formal-reviewer\review-20260921T171659Z-7dddbb5a\replay-01\WrongScalar.lean:4:39: error: unsolved goals
+⊢ False
+Rehashing runtime and every loaded external artifact after all controls
+{
+  "status": "AUTHOR_MACHINE_CHECKS_PASSED",
+  "run_id": "9e021388-6e0e-4d78-85ae-37f8cef2349c",
+  "utc_start": "2026-09-21T17:16:59.866648+00:00",
+  "utc_end": "2026-09-21T17:19:03.975714+00:00",
+  "role": "local_lean_author_execution",
+  "independent_verification": "not_performed",
+  "independent_semantic_review": "pending",
+  "source_sha256": "3cbc7e84dab06ffdc2cc974a9d7553c47847eca4227e49024f04a1e91ccc486e",
+  "source_path": "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/replay-01/src/AuditRound8.lean",
+  "olean_path": "/mnt/f/tools/math-audit-round8-20260922/formal-reviewer/review-20260921T171659Z-7dddbb5a/replay-01/lib/AuditRound8.olean",
+  "olean_sha256": "66a222f836b7b0f94b5a713202dd800af0bb2f78394ebce3663c94720949d26d",
+  "lean_version": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)",
+  "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+  "exact_contract_matched": true,
+  "root_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "public_declarations": 47,
+  "public_theorems": 36,
+  "public_definitions": 11,
+  "authored_theorems": 15,
+  "authored_definitions": 11,
+  "compiler_generated_theorems": 21,
+  "closure_declarations": 16511,
+  "external_loaded_modules": 4427,
+  "inspected_loaded_modules": 4428,
+  "external_import_artifacts": 17708,
+  "runtime_binaries": 10,
+  "negative_controls": [
+    {
+      "name": "WrongPhase",
+      "run_id": "2aac1887-673d-4f5b-a3d0-28c0f740d9f8",
+      "exit_code": 1,
+      "stdout_sha256": "8c98272b1ed1d06e66605c3a7caff9e43195b849a7f24cfe05a2bafe529559be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "WrongStationaryFactor",
+      "run_id": "e73a9af5-a0f2-4a38-8e2c-bc8e706c2878",
+      "exit_code": 1,
+      "stdout_sha256": "9733cc12a04ec23489d6ee56742cfbf2254ab28fe64cbbb7c6f28eac1546be12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "WrongScalar",
+      "run_id": "b93889b7-e517-41db-8c87-b3621f418a7e",
+      "exit_code": 1,
+      "stdout_sha256": "44bca378b56ad00a59dcb12a766bb79042c9e4ad3d38cbd26c5aa375129746a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "positive_control_exit_code": 0,
+  "current_source_compilation_exit_code": 0,
+  "input_and_import_stability": true,
+  "environment_sha256": "9fd3c7c278bca4802689d3db40034e598740cbefa523caabf61fc86d23acedef",
+  "public_semantic_sha256": "95c2c0f2e6870994137bc3472397ced7be0a6c844341519d0c9b0b97f35f5159",
+  "contract_sha256": "73343f7985954ee2f88b55546d89684bef34016956ce81d8c4a4a6025065f72a",
+  "declarations_sha256": "e3937890dda36e2c26cfe84bd9191dc4375c15523113a6c48a28fc1bb97f3340",
+  "commands": 10,
+  "excluded": [
+    "full spectral minmax",
+    "analytic implicit-function expansions and remainder",
+    "spectral identification of a/u/stationarity",
+    "T1/deep-sliver/global coverage",
+    "global convergence and minimizing-parameter rates",
+    "scalar estimates feeding scalarRatio other than the final rational comparison"
+  ]
+}

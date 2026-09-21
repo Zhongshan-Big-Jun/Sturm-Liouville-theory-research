@@ -1,0 +1,17 @@
+{
+  "tool": "multi_agent_v1__wait_agent",
+  "arguments": {
+    "targets": [
+      "01a0c527-4f90-7903-99db-da79a1fdd54c"
+    ],
+    "timeout_ms": 10000
+  },
+  "result": {
+    "status": {
+      "01a0c527-4f90-7903-99db-da79a1fdd54c": {
+        "completed": "{\n  \"packet_sha256\": \"463241e7fa5ffa8c76214f251048d3665d3f98c3d1361cefad2288abfa70abfd\",\n  \"verdict\": \"APPROVED\",\n  \"checked_paths\": [\n    \"research/artifacts/proof-audit-round8-20260922/summary-recovery/candidate-index.json\",\n    \"research/artifacts/proof-audit-round8-20260922/summary-recovery/comparison.json\",\n    \"research/artifacts/proof-audit-round8-20260922/summary-recovery/index-before.json\",\n    \"tools/denseness-criteria.md\",\n    \"tools/jump-stability.md\",\n    \"tools/krein-sobolev-polynomials.md\",\n    \"tools/left-definite-moment-recurrence.md\",\n    \"tools/left-definite-theory.md\",\n    \"tools/leftdef-o1pld-l2-structural.md\",\n    \"tools/moment-jump-completeness.md\",\n    \"tools/spectral-domain-checks.md\"\n  ],\n  \"claim_results\": [\n    {\n      \"id\": \"R8-summary-recovery\",\n      \"verdict\": \"APPROVED\",\n      \"reason\": \"All 11 input hashes match the packet. Independently removing each card's frontmatter, collapsing whitespace and taking the first 500 Unicode characters reproduces all eight candidate summaries exactly; none has an explicit summary override. Exhaustive structural comparison finds exactly four changes: the summaries for jump-stability, krein-sobolev-polynomials and leftdef-o1pld-l2-structural, plus updated_at. The other five target summaries already matched. The Krein summary now states f'(1)=f'(-1)=(f(1)-f(-1))/2 and records original-family H2/H3 completeness as proved, removing both obsolete statements. All card hashes and version pointers match the supplied snapshots in both indexes. Dependencies, correction states, reuse eligibility, all other row fields, membership and ordering remain identical. All 70 non-target active rows, the blocked row and global metadata, including all 35 issue records, are unchanged. All six declared dependency bindings match supplied card hashes. The comparison report's hashes, entries, change flags and counts agree with independent computation. This approves only the requested retrieval presentation repair.\"\n    }\n  ],\n  \"findings\": [],\n  \"limitations\": [\n    \"Card preservation is established through the frozen snapshots and matching before/after hash and version pointers; live working-tree state was not inspected.\",\n    \"Underlying mathematical proofs, correction receipts and historical formal or numerical evidence were not re-audited. Preserved gate metadata and index counts do not establish theorem approval or complete formalization.\",\n    \"No query implementation or runtime output was supplied, so live retrieval behavior and deployment of the candidate index were not checked.\"\n  ]\n}"
+      }
+    },
+    "timed_out": false
+  }
+}
