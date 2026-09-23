@@ -1,0 +1,78 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "e7e17f4fdd4036aa5c1b0f1a93e804eb49a8e80fb020e74431da1883355cd9a6",
+  "reviewer_id": "01a0cd1d-8ccf-7b91-9cfc-7cc51936aa0a",
+  "bindings": {
+    "cards/L10-fixed-operator-bridge.json": "4a6d2c4f494f6cf11c64ce6405e3ff9d981e503d4396ef9ecf58b06adbb453ff",
+    "cards/L11-measures-and-concentration.json": "c9725d110862f6cf9519e988a9a512578a11701e84f3af436e50d990d58aa1fd",
+    "cards/P3-bounded-interface-chain-rule.json": "b3f7a76670dc4aa09b322b77a03d53bd168bc036018c548b34a7e9d83d828113",
+    "derivations/P3-interface-chain-rule.md": "92eba63b76df55ea4280ff78de20b47d1a6941e3daeb69c21be0a9b0a78b77c6",
+    "derivations/calibrations.md": "1d568b2149ddf54ece55b5d761a34fe5a93f0e549b7236ec6f52b632173514c9",
+    "evidence/run-20260923T070250443181Z/execution.json": "c3c97fdd01adfb81cc4b2774972d64ca4288374817f40ee15bc77d4b93469ac1",
+    "evidence/run-20260923T070250443181Z/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/run-20260923T070250443181Z/stdout.json": "df1b01c80717ebc569cf70d7ff190ce7ff7fdd0d274440fe87dff86966adee58",
+    "notes/L10-source-to-claim.md": "a6b81d598e0bf3a8717f946a683438e65214473998dc2fe4a4334ec5086950f2",
+    "notes/L11-source-to-claim.md": "77e0637e97d48745eae29fdf60053e2d26a840cec8697821ae244fe80fa202e7",
+    "private/sources/L10-arxiv-pdf.pdf": "9bdca92caa8f7d91dd13067034a552fe506f0abd8760c69f95ecf0992117b732",
+    "private/sources/L11-arxiv-pdf.pdf": "9c748bd9ec74523f5bbea9391ea96016bdb7c953982afd0b303e4f15505ac9e5",
+    "private/text/L10-arxiv-pdf.txt": "6a8d2b9bfa8a93b65ef8455a30115dd44d474d16d5cf424a0a1920a98ef415e4",
+    "private/text/L11-arxiv-pdf.txt": "dfd269c714a749ba17e494ffb2b19d0492ca930a8369791dcf126abf26449d09",
+    "project/research/artifacts/proof-audit-round9-20260923/analytic-repair.md": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+    "scripts/check_calibrations.py": "8c51b2d5f718b7382eeab0f9a8ca9e95eeaebd1e2ac3eac5c9155e9ca634806c",
+    "scripts/run_checks.py": "acd54253ddf64abbf6e588d0337443d2f7d13f2f9036f4d2a835011ec8952119",
+    "source-manifest.json": "ab9007249aef77a4facbb9a83b83a63d94a93b1ea22e929faf52d3ea2437a2d8"
+  },
+  "claims": [
+    {
+      "id": "L10-L11-source-fidelity",
+      "reason": "Checked the cited statements against rendered pages of the supplied primary PDFs. L10 requires a fixed symmetric operator and adjoint graph space, a fixed bounded surjective trace with Green identity, and an operator-norm second-order expansion of the Lagrangian projections. The notes correctly distinguish first-order resolvent expansion into the graph space from second-order expansion in the original Hilbert space, and retain the additional spectral, Z-matrix and Robin hypotheses. The proposed unitary pullback produces -(c_j ell_j^2)^(-1)d^2/dxi^2 and the stated value/slope matching laws. Changing widths therefore changes the interior action on common compactly supported tests; its difference is unbounded on L2 and is not covered by Remark 2.14. The obstruction is appropriately limited to this realization. L11's coefficient mapping, regular Dirichlet realization, integration against the weight measure and separated-eigenvalue simplicity are accurately represented. With weight c dx+M delta_a, continuity of u and the jump [u']=-lambda M u(a) follow directly from the measure equation. Atoms in varsigma encode value jumps, whereas delta'_a is not a finite Radon weight measure. The notes and cards preserve these distinctions and do not claim arbitrary moving-measure differentiability or a full-paper proof audit.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "P3-interface-regularity-chain-rule",
+      "reason": "The finite positive-density, fixed-value, noncolliding-interface contract suffices. Independently checked y'(1)F_lambda=integral rho y^2>0, local analytic root selection, weighted normalization and the positive initial-slope convention. Across moving strips, matched base values and slopes give the required uniform remainder estimate; bounded spatial difference quotients and almost-everywhere convergence give H0^1 differentiation. Differentiated matching gives [v']=lambda s_i d_i u(a_i), consistently allowing jumps. Differentiating the weak equation and normalization yields lambda'=-lambda A and integral rho u v=-A/2. The endpoint Green construction has pole u(x)u(y)/(lambda-z), a continuous finite part, the stated weighted zero gauge and H0^1 columns, so finite atomic forcing is legitimate. These identities establish v=-(A/2)u+lambda Gtilde(mu u). Differentiating the finite interface-value sum gives A'=B+2<mu,uv>, hence lambda''=2lambda A^2-2lambda^2 E-lambda B. The gap formula, every factor of one-half, Hessian entries and gradient-times-coordinate-acceleration term have the correct signs and coefficients. Zero jumps, nodal interface values, mass constraints and additional equality constraints introduce no contradiction. Collisions remain excluded, and the broader extension explicitly assumes rather than establishes its differentiability and inverse-mapping requirements.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "P3-calibration-and-concentration",
+      "reason": "Independently rederived the physical secular function and its factorization at a=1/2. The selected frequencies 2theta and 2(pi-theta) are the first two positive roots; w=0 is removable with F(0)=1. Implicit differentiation gives lambda_a=2lambda and lambda_aa=6lambda+(3/2)w^3 tan(w/2). The shooting norm is 1/w^2, giving u(a)=sqrt(2/3) and u'(a)=w cos(w/2). Taylor division gives the stated Laurent finite part 1/(6w^2)+tan(w/2)/(24w); the density quadratic term and nonzero geometric term sum to the exact second derivative. Density scaling independently confirms the normalization component. The midpoint weight-atom transfer law yields the stated right derivatives and half-gap -3pi^2; negative mass is correctly excluded from positive-measure admissibility. Writing the thin-layer entries through entire cosine and sinc series proves uniform convergence on bounded complex spectral sets and bounded nonnegative mass sets, including lambda=0. Local simple-root convergence follows without differentiating the concentration limit. The fixed-kernel concentration estimate correctly uses uniform total-variation bounds, shrinking clusters and convergent signed cluster masses, including zero limiting mass. All three cards remain within these scopes.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "P3-executable-calibration",
+      "reason": "All 18 snapshot hashes match the packet. Inspected both scripts and the supplied execution records. Ran an unmodified copy of check_calibrations.py using /usr/bin/python3 -B in the new directory /tmp/sl-stateless-e7e17f4f-review-zlg4nf1v; the source-writing wrapper was not executed. The run exited 0 with empty stderr, passed all 39 checks at 70 decimal digits, and produced byte-identical stdout to the supplied record. The maximum reported equality residual was approximately 4.6365e-69. The direct-transfer, normalization, Laurent, curved-path, atomic-mass and finite-layer calculations corroborate the reported values. Exact trigonometric and chain-rule calculations were also checked analytically; the arithmetic half-gap assertion alone was not treated as independent proof of its convention.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "cards/L10-fixed-operator-bridge.json",
+    "cards/L11-measures-and-concentration.json",
+    "cards/P3-bounded-interface-chain-rule.json",
+    "derivations/P3-interface-chain-rule.md",
+    "derivations/calibrations.md",
+    "evidence/run-20260923T070250443181Z/execution.json",
+    "evidence/run-20260923T070250443181Z/stderr.log",
+    "evidence/run-20260923T070250443181Z/stdout.json",
+    "notes/L10-source-to-claim.md",
+    "notes/L11-source-to-claim.md",
+    "private/sources/L10-arxiv-pdf.pdf",
+    "private/sources/L11-arxiv-pdf.pdf",
+    "private/text/L10-arxiv-pdf.txt",
+    "private/text/L11-arxiv-pdf.txt",
+    "project/research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+    "scripts/check_calibrations.py",
+    "scripts/run_checks.py",
+    "source-manifest.json"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/e7e17f4fdd4036aa5c1b0f1a93e804eb49a8e80fb020e74431da1883355cd9a6-01a0cd1d-8ccf-7b91-9cfc-7cc51936aa0a",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval concerns only the listed obligations and frozen snapshots; it does not assert complete formalization or certify the source project.",
+    "Primary-source review was selective at the cited hypotheses and formulas. Unread proof continuations, the full extension classification, Appendix C and unrelated R9 B1-B2 claims were not audited.",
+    "Bibliographic and HTTP-history claims beyond the supplied PDFs were checked against the manifest only. Unsupplied response bodies, historical project files and actual author reading activity were not independently verified.",
+    "Numerical checks are floating-point corroboration, not interval certificates or proofs over all parameters, spectral indices or infinite-dimensional spaces. No formal compiler verification was performed.",
+    "General distribution-valued paths, moving-resolvent concentration derivatives, collisions, varying block values, alternative L10 realizations, global signs, G1' and uniqueness remain outside this approval."
+  ]
+}

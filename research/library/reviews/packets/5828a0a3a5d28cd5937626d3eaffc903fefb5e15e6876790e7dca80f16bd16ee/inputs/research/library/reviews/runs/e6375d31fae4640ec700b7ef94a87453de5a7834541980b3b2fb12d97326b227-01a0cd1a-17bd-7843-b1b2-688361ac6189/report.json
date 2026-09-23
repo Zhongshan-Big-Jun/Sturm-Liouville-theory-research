@@ -1,0 +1,80 @@
+{
+	"checked_paths": [
+		"docs/SL_fixed_n_supremum.tex",
+		"docs/SL_fractional_left_definite.tex",
+		"literature/absorption-20260923/metadata/L02-crossref.json",
+		"literature/absorption-20260923/metadata/L12-crossref.json",
+		"literature/absorption-20260923/metadata/L13-crossref.json",
+		"literature/absorption-20260923/notes/L02-L12-L13-source-to-claim.md",
+		"papers/krein_sobolev_II_axioms_2025.pdf",
+		"papers/willner1983.pdf",
+		"research/artifacts/literature-absorption-20260923/before/docs/SL_fixed_n_supremum.tex",
+		"research/artifacts/literature-absorption-20260923/before/tools/bloch-band.md",
+		"research/artifacts/literature-absorption-20260923/before/tools/secular-chebyshev-jacobi-rootcount.md",
+		"research/artifacts/literature-absorption-20260923/bibliography-only.diff",
+		"research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+		"research/library/card-versions/0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03.md",
+		"research/library/card-versions/2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7.md",
+		"research/library/card-versions/47895fe6c7b2e83d50fe5a5e29d1f6f36bcebd40fe4de415df9a85793c4c6db8.md",
+		"research/library/card-versions/5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf.md",
+		"research/library/card-versions/a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d.md",
+		"research/library/card-versions/fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359.md",
+		"research/library/corrections/evidence/3477ee7cb7ac3012c4f1d8923421d3d2c30596de36cacbe8fb007168af3f32f1.bin",
+		"research/library/corrections/evidence/90f741147a775ed54bdb308abff72ab962ff67ca263043f4944a9d612e534b21.bin",
+		"research/library/corrections/requests/0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5.json",
+		"research/library/corrections/requests/69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94.json",
+		"research/library/corrections/requests/94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b.json",
+		"research/library/corrections/requests/9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e.json",
+		"tools/bloch-band.md",
+		"tools/second-variation-weighted-eigenvalues.md",
+		"tools/secular-chebyshev-jacobi-rootcount.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94",
+			"reason": "For R>1 and every integer n>=1, the normalized transfer matrices give Fhat=omega F and F(pi-y)=y F(y)/(pi-y). The determinant recurrence and Jacobi square decompositions establish n simple roots in x in (0,1), producing exactly 2n simple physical roots in y in (0,pi). The n=1 square decompositions remain valid, and the normalization-induced zero at y=0 is correctly excluded. The current source hashes match the supplied proof and TeX. This resolves the physical-normalization obligation for the prescribed configuration without asserting global optimality.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5",
+			"reason": "The nested Jacobi argument proves strict decrease of z_n: equality would make the padded minimizing eigenvector an eigenvector of the larger matrix, whose last row and recurrence force it to vanish. The analytic bounds -2<z_n<=-2+(2-delta)/n prove convergence to -2 for all n. The phase transformation and strictly decreasing H(y)=(pi/y-1)^2 then prove the stated strict monotonicity and limit of c_n(R). The rebound root-count dependency matches exactly. The conclusion remains restricted to the prescribed balanced candidates.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b",
+			"reason": "Under the stated uniformly positive bounded density and bounded real linear perturbation, V1 supplies analytic simple eigenvalue branches, the required normalized kernel component, and the signed-denominator second-variation formula. Both block projections enforce the actual integral constraint, with the zero-normal case addressed. The continuous Green finite part proves boundedness under bounded total variation; the repaired card additionally requires concentrating support and convergent signed mass for its point-value limit. The midpoint example uses a summable bound for the full series. The interface acceleration sign and factor-of-two convention are correct, and the distributional chain rule is appropriately qualified. The earlier overstatement about pulse convergence is corrected.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "P0-model-and-novelty",
+			"reason": "L02 matches the supplied operator, complex domain, sparse family and exact second left-definite norm; integration by parts gives the stated negative boundary term. The comparison with the existing density theorem preserves its scope. L12's corrected bibliography, weighted normalization, switching signs, gap and ratio substitutions, squared-frequency convention, necessary candidate structure, omitted symmetry proof and conditional C(1,4) region agree with the supplied sources. L13 remains an incomplete model match and supplies no theorem dependency. However, line 33 incorrectly attributes an L-infinity density class to L12's general problem; the original definition is in L1. Finding F1 requires correction.",
+			"verdict": "CHANGES_REQUIRED"
+		},
+		{
+			"id": "P0-bibliography-rebinding",
+			"reason": "All 28 snapshot hashes match. Direct byte comparison confirms that the TeX files differ only in the wm entry, and the supplied diff matches the actual changes. The root-count card changes only its TeX source hash; the Bloch card changes only that source hash and its root-count dependency hash. Their prose and summaries are identical. Every current source/dependency binding resolves to the supplied bytes, and the second-variation card matches revision 2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7 exactly. Independent analytic reassessment supports all three current card revisions. This rebinding introduces no mathematical-body change or additional global or formalization claim.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [
+		{
+			"claim_id": "P0-model-and-novelty",
+			"id": "F1",
+			"impact": "This corrects the source attribution and hypotheses. The project's constant-box specialization and the checked gap/ratio substitutions remain valid.",
+			"line": 33,
+			"path": "literature/absorption-20260923/notes/L02-L12-L13-source-to-claim.md",
+			"problem": "The description of L12's original general problem says phi belongs to L-infinity. Equation (1.3) on printed page 621 explicitly defines C(a(x),b(x)) using phi in L1[0,1], also confirmed by the supplied Crossref abstract. General measurable bounding functions do not imply essential boundedness.",
+			"required_change": "State L1 for the original density class, then explain that the chosen constant bounds 1<=phi<=R imply L-infinity and a uniform positive lower bound."
+		}
+	],
+	"limitations": [
+		"L13's full article and publisher preview are not supplied. Its bibliographic metadata and explicit unresolved-model status were checked; statements describing the preview could not be independently verified.",
+		"L12's omitted symmetry proof was unavailable, and its numerical C(1,4) calculations were not independently certified. The note accurately records these limitations.",
+		"The fractional-density document was checked for the requested model, family, norm and theorem-scope comparison only; its entire proof was not re-audited.",
+		"No Lean sources, historical probe outputs or prior shared review packet were supplied. Formal execution, historical numerical reruns and the asserted contents of that prior packet were not verified.",
+		"The approved claim results cover only the requested current repairs. They establish no global novelty, O1/O2/G1 closure or complete formalization."
+	],
+	"packet_sha256": "e6375d31fae4640ec700b7ef94a87453de5a7834541980b3b2fb12d97326b227",
+	"readback": "Not applicable: the packet kind is mathematics.",
+	"verdict": "CHANGES_REQUIRED"
+}

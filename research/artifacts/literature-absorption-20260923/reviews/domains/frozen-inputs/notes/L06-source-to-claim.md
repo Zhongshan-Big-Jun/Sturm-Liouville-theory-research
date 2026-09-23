@@ -1,0 +1,11 @@
+# L06: verified 2026 preprint, comparative reading only
+
+Littlejohn, Wellman, Wicks. [arXiv:2607.19758v1](https://arxiv.org/abs/2607.19758v1), submitted 2026-07-22 05:08:22 UTC; the PDF is dated 2026-07-17. Its existence, title, authors, version and 19-page original were actually checked. No journal publication was verified in the primary records inspected.
+
+**Verified statement and hypotheses.** The model is the Friedrichs realization of -((1-x^2)f')'+kf on (-1,1), k>=0. Theorem 9.1 assumes local absolute continuity through derivative n-1 and weighted highest derivative (1-x^2)^{n/2}f^{(n)} in L^2; it recovers the lower weighted derivatives. The consistent domain formula in (1.3)/(10.2) uses local absolute continuity through 2n-1 and (1-x^2)^n f^{(2n)} in L^2(-1,1). Theorem 9.2 obtains f^{(n)} in L^2, optimally. Strictly positive left-definite norms use k>0. Section 7 credits earlier domain characterizations.
+
+**Project map / unmatched conditions.** The project has nondegenerate leading coefficient one, a fixed Krein domain, and non-eigenfunction sparse polynomials. None matches the singular coefficient, Friedrichs endpoint selection, or Legendre eigenpolynomials. The integral-operator method of Section 8 is useful comparative technique, with its bounded kernel-product supremum checked before use; it supplies no replacement Krein-domain theorem.
+
+**Original-page cautions.** PDF p.12 (7.5) has inconsistent weight notation; p.15 (9.5) prints L^2(0,1) inside a full-interval formula. Use the consistent (1.3)/(10.2), not a silent transcription. The sharpness construction p.16 requests only C^n matching at zero, which alone need not give the required AC through 2n-1. A sufficient author repair is to choose the matching Taylor polynomial through degree 2n-1; this is our correction, not an audited source erratum.
+
+**Reading depth / inference boundary.** Read the model, pp.1-3 and 5-6, and Sections 7-9, pp.11-17. Visually inspected pp.12,15-17; the weighted-step proof and sharpness example were examined, not only captured. No full-paper verification or transplant to K_c is claimed. Original comparative derivation: `notes/L06-comparative-extension.md`. Status: COMPARATIVE_READING_WITH_VERSION_CAUTIONS.

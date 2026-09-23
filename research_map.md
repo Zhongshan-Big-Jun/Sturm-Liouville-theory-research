@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-23 (round9 variation and balanced-candidate repairs; older runs retain their original dates)
+Last updated: 2026-09-23 (literature absorption P0-P4; older runs retain their original dates)
 
 
 
@@ -39,6 +39,10 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | docs/SL_stability_moment_jump | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
 | A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
 | A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
+| A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. No critical s=5/2 or general infinite-deletion conclusion |
+| A9 | Concrete fractional and critical power-domain dictionary | STRICT | tools/krein-fractional-trace-dictionary; tools/krein-parity-unitary | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
+| A10 | Boundary-compatible integrated Legendre replacement systems | STRICT | tools/krein-integrated-legendre-riesz; tools/finite-synthesis-tsvd | Fixed c>0, s=2/4; complete Riesz replacement systems with degree-independent constants and coefficient-tail errors. Not the original sparse monomials, uniform c→0 or quadrature certification |
+| A11 | Infinite-deletion subclasses in Hc2 | PARTIAL | tools/krein-infinite-deletion-subclasses; tools/full-muntz-krein-moment-interface | Both parity branches containing arithmetic progressions give the two-centre-trace closure; reciprocal-summable retained parity sets obstruct density. General divergent nonarithmetic cases remain open |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
@@ -53,6 +57,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B4-INF-LIMIT | Symmetric [R,1,R] first-gap scaled infimum and near-minimizers | SOLVED | docs/SL_gap_n1_inf_limit_proof.tex; round8 report | R*m_R→M≈24.9438661384 with nonnegative O(1/R) error; near-minimizers require R*eta_R→0. Entire thin-layer region covered by continuous phase speed; large-w comparison has positive margin. T1 uses T2 analytically, not T3 numerical constants. No new all-box/nonsymmetric/n>=2 claim |
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
+| B7 | Local second variation along finite fixed-value moving interfaces | STRICT | tools/finite-interface-second-derivative; literature/absorption-20260923/interfaces/derivations | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
 
 ## Relationships between problems
 
@@ -66,6 +71,9 @@ A3 (constrained density, open)
   A4 --uses--> round6 repaired projection/finite-obstacle criteria (docs/SL_projection_moment_repairs.tex); old run remains history
   A3 --historical O3--> A2 (Krein window now solved; general constraints separate)
 A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
+A9 parity/domain dictionary --supports--> A8 s3 cofinite three-trace closure
+A9/A7 --guides--> A10 boundary-compatible replacement coordinates
+A11 infinite-deletion subclasses --uses--> actual moment realization and Full Muntz; general A4 remains open
 
 Line B:
 B1 (sup ratio, solved)
@@ -74,6 +82,7 @@ B1 (sup ratio, solved)
 B2 (inf ratio, solved) --informs--> B4
 B3 --uses--> Fixed-n configuration tools
 B3 --solved candidate subproblem--> B3-CANDIDATE-LIMIT via nested Jacobi matrices
+B7 local interface chain rule --supports--> B4 variation analysis; global sign remains open
 B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
 B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
@@ -99,6 +108,11 @@ flowchart LR
   A4["A4 O1' moment step (PARTIAL)"]
   A5["A5 stability/threshold (PARTIAL)"]
   A6["A6 3rd-order recurrence (PARTIAL)"]
+  A8["A8 s=3 cofinite closure (SOLVED)"]
+  A9["A9 fractional domain dictionary (STRICT)"]
+  A10["A10 Legendre replacement systems (STRICT)"]
+  A11["A11 infinite deletion (PARTIAL)"]
+  B7["B7 finite interface derivatives (STRICT)"]
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
@@ -109,6 +123,10 @@ flowchart LR
   B5["B5 MDE unify (OPEN)"]
   B6["B6 p-Laplacian (OPEN)"]
 
+  A9 -->|domain and topology| A8
+  A9 -->|boundary conditions| A10
+  A11 -->|special subclasses| A4
+  B7 -->|local variation tools| B4
   A1 -->|extends| A2
   A1 -->|feeds methods| A5
   A1 -->|feeds methods| A6
@@ -156,7 +174,7 @@ flowchart LR
   coefficient family. Nonhomogeneous source control and arbitrary families remain OPEN.
 - DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
 - DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
-- O1'LD (2026-09-21 fifth-round correction): old Claim4 tail-L2 rigidity, unconditional cofinite-N density and proper-V corollary are REFUTED by central-trace Green kernels, not merely unproved. Lemma1 finite-deletion monomial totality retains its conclusion with a corrected proof. The s=2 cofinite two-trace classification has passed independent analytic review; its revised card is released; see reports/proof-audit-round5-20260921/REPORT.md and docs/SL_cofinite_left_definite.tex. General non-cofinite O1'LD and the cofinite classification at s=3 remain OPEN.
+- O1'LD (2026-09-21 fifth-round correction): old Claim4 tail-L2 rigidity, unconditional cofinite-N density and proper-V corollary are REFUTED by central-trace Green kernels, not merely unproved. Lemma1 finite-deletion monomial totality retains its conclusion with a corrected proof. The s=2 cofinite two-trace classification has passed independent analytic review; its revised card is released; see reports/proof-audit-round5-20260921/REPORT.md and docs/SL_cofinite_left_definite.tex. Those two questions were open at that date. The s=3 cofinite case is now A8; A11 handles only the stated infinite-deletion subclasses. General non-cofinite O1'LD remains open.
 - B3 current (plugin performance experiment round 4, R-20260823T060000Z-b3-current):
   new STRICT general equal-within-type alternating Chebyshev secular representation
   `(M_n)_01 = sin(p)[U_n(m)+delta U_{n-1}(m)]`, `delta=sin(q)/(s sin(p))`;
@@ -224,3 +242,9 @@ Four revised card versions and their exact issue releases are linked from report
 - Possible next idea, unproved: combine the finite regularized-kernel matrix with the correctly signed interface acceleration on the actual tangent space. First test against the constant-density midpoint limit and width-unequal directions; establish analytic concentration/tail control before attempting a sign theorem. A numerical negative direction alone is insufficient for the constrained extremum problem.
 
 Current proofs, correction receipts and version-bound annotations are linked from reports/proof-audit-round9-20260923/REPORT.md. Historical R206 and older B3 runs retain original bytes and dated claims. Canonical Blueprint was not changed.
+
+## Literature absorption (2026-09-23)
+
+P0-P4 connects13 source records to11 scoped tool cards.12 primary originals were available for targeted reading; L13 remains metadata/incomplete preview only. L02's second-left-definite object is matched to the existing project result, and L12's first-pair switching mechanism is attributed to its original source. Its numerically described C(1,4) region and unverified L13 constraints do not certify all-R novelty. Exact source-to-claim mappings, independent reviews and subsequent research contracts are in [the batch entry](literature/absorption-20260923/README.md).
+
+The finite exact checks do not prove Sobolev closure or spectral analysis. New results have scoped independent analytic review; no new Lean formalization or canonical Blueprint integration was performed. The old full-family threshold, O1/O2 and global G1′ retain their exact scopes.

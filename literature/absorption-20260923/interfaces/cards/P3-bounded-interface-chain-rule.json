@@ -1,0 +1,51 @@
+{
+  "title": "Second derivative along finite noncolliding fixed-density interfaces",
+  "summary": "A local transfer-matrix proof gives weighted-normalized eigenfunction derivatives and the complete interface chain rule, including finite geometric and path-acceleration terms. Exact single-interface and atomic benchmarks calibrate the signs and half-gap factor.",
+  "conditions": [
+    "Dirichlet [0,1]; finitely many fixed real block values in [m,M] with m>0",
+    "C2 interface path stays in the open ordered simplex; no collisions and positive local block-width lower bound",
+    "Fixed simple eigenvalue index; real eigenfunction weighted norm integral rho u^2=1 and u_prime(0)>0",
+    "Use the pencil Laurent finite-part Green kernel with dx forcing and weighted zero gauge; not the ordinary L2 orthogonal inverse",
+    "Additional mass, tangency or other feasibility constraints must be imposed separately"
+  ],
+  "scope": "Theorem P is an author-proved local result for this finite family. Beyond it, differentiability, weak product rules and inverse mapping hypotheses remain conditional. No global inertia or optimization classification.",
+  "evidence_status": "AUTHOR_ANALYTIC_DERIVATION; 39_EXECUTED_AUTHOR_CHECKS_PASS; NOT_INTERVAL_CERTIFIED; PENDING_INDEPENDENT_REVIEW",
+  "content": {
+    "mu": "-sum s_i d_i delta_(a_i)",
+    "eta": "sum s_i d_i^2 delta_prime_(a_i)-sum s_i e_i delta_(a_i)",
+    "A": "pairing(mu,u_k^2)",
+    "B": "pairing(eta,u_k^2)",
+    "E": "double integral u_k(x) Gtilde_k(x,y) u_k(y) dmu(x)dmu(y)",
+    "normalized_derivative": "v=-(A/2)u_k+lambda_k integral Gtilde_k(x,y)u_k(y)dmu(y)",
+    "eigenvalue_second": "2 lambda_k A^2-2 lambda_k^2 E-lambda_k B",
+    "gap_second": "Hbar_(n+1)(mu,mu)-Hbar_n(mu,mu)-sum s_i[d_i^2 f_prime(a_i)+e_i f(a_i)]",
+    "half_gap": "Q_path=gap_second/2, including every acceleration term",
+    "regularity_proved": "Eigenvalue analytic in interface positions; eigenfunction once differentiable in H0^1 and uniformly in x; v_prime can jump",
+    "exact_calibration": "c_left=1,c_right=4,a=1/2; theta=acos(1/sqrt(3)); w1=2theta,w2=2(pi-theta); lambda_a=2lambda, lambda_aa=6lambda+(3/2)w^3 tan(w/2)",
+    "review_boundary": "Analytic proof and numerical author checks await independent acceptance. L10 bridge, general measure paths, G1 prime and uniqueness remain open."
+  },
+  "sources": [
+    {
+      "path": "derivations/P3-interface-chain-rule.md",
+      "sha256": "92eba63b76df55ea4280ff78de20b47d1a6941e3daeb69c21be0a9b0a78b77c6",
+      "locator": "Theorem P, (P1)-(P9) and proof",
+      "authorship": "original author derivation or source adaptation, not independently accepted"
+    },
+    {
+      "path": "derivations/calibrations.md",
+      "sha256": "1d568b2149ddf54ece55b5d761a34fe5a93f0e549b7236ec6f52b632173514c9",
+      "locator": "C1-C6 and actual execution",
+      "authorship": "original author derivation or source adaptation, not independently accepted"
+    },
+    {
+      "path": "/mnt/f/LaTeX/BVE research/research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+      "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+      "locator": "V1-V4"
+    },
+    {
+      "path": "evidence/run-20260923T070250443181Z/stdout.json",
+      "sha256": "df1b01c80717ebc569cf70d7ff190ce7ff7fdd0d274440fe87dff86966adee58",
+      "locator": "39 executed author checks; not independent acceptance"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Fixed-operator boundary extension audit for moving density interfaces",
+  "summary": "Latushkin-Sukhtaiev expansions require a common symmetric operator and norm-C2 boundary path. The natural fixed-block pullback changes the principal coefficient, leaving a real applicability bridge open.",
+  "conditions": [
+    "One fixed Hilbert space and densely defined closed symmetric A with equal deficiency indices",
+    "Fixed graph-norm bounded surjective trace satisfying the Green identity",
+    "Self-adjoint extensions T^{-1}(ran Q_t), with norm second-order expansion of Lagrangian orthogonal projections",
+    "Isolated finite-multiplicity spectral cluster; extra Z or Robin hypotheses when those formulas are used"
+  ],
+  "scope": "A source-to-project applicability diagnostic. It is not an eigenvalue or Hessian sign theorem for the moving-density problem.",
+  "evidence_status": "PRIMARY_SOURCE_SELECTIVELY_READ; AUTHOR_MAPPING; FIXED_OPERATOR_BRIDGE_OPEN; PENDING_INDEPENDENT_REVIEW",
+  "content": {
+    "unitary_pullback": "v_j(xi)=sqrt(c_j ell_j(t))u(a_(j-1)(t)+ell_j(t)xi)",
+    "transformed_expression": "-(c_j ell_j(t)^2)^(-1) v_j_second_derivative",
+    "missing_bridge": "The expression differs on compactly supported interior tests; smooth matching equations alone do not make it an extension path of a common A. The bounded-additive Remark 2.14 does not cover a varying principal coefficient.",
+    "allowed_use": "Organize trace, projection, normalization and path-acceleration obligations; use the separate bounded transfer proof for present P3.",
+    "prohibited_inference": "No automatic substitution of density delta/delta-prime derivatives into L10; no global sign, G1 prime or uniqueness claim."
+  },
+  "sources": [
+    {
+      "id": "L10",
+      "url": "https://arxiv.org/pdf/2110.07434v1",
+      "locator": "pp.3-5,7-9,12-13,16-17; Hypotheses 2.1,2.2,2.6; Theorems 2.5,2.9-2.11; Cor.2.12; Remark2.14",
+      "raw_sha256": "9bdca92caa8f7d91dd13067034a552fe506f0abd8760c69f95ecf0992117b732",
+      "text_sha256": "6a8d2b9bfa8a93b65ef8455a30115dd44d474d16d5cf424a0a1920a98ef415e4",
+      "manifest_path": "source-manifest.json"
+    },
+    {
+      "path": "notes/L10-source-to-claim.md",
+      "sha256": "a6b81d598e0bf3a8717f946a683438e65214473998dc2fe4a4334ec5086950f2",
+      "locator": "Project mapping and an explicit obstruction",
+      "authorship": "original author derivation or source adaptation, not independently accepted"
+    }
+  ]
+}

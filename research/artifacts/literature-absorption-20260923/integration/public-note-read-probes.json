@@ -1,0 +1,392 @@
+[
+  {
+    "id": "L01",
+    "probe": {
+      "source_id": "eba49f723befaa9a72db155da8afee05d226f2ae516664ffdb89399abefd299f",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 11,
+        "original_locators": [
+          "domains/notes/L01-source-to-claim.md",
+          "L01 section/source mapping"
+        ],
+        "raw_sha256": "22292437d94b72084d941606e642f9b5d9460eeba0db9c95c7b3b8d1ad3842b2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "22292437d94b72084d941606e642f9b5d9460eeba0db9c95c7b3b8d1ad3842b2",
+        "title": "L01 项目原创阅读/适配笔记: 左定谱模型与空间传输",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1016/j.jde.2025.02.013",
+        "version": "original reading note 2026-09-23 22292437d94b"
+      },
+      "start_line": 1,
+      "end_line": 11,
+      "start_offset": 0,
+      "next_offset": null,
+      "passage_sha256": "22292437d94b72084d941606e642f9b5d9460eeba0db9c95c7b3b8d1ad3842b2",
+      "content": "# L01: abstract scales and realizations\n\nFischbacher, Gesztesy, Hagelstein, Littlejohn. Journal of Differential Equations 428 (2025), 422-482, DOI [10.1016/j.jde.2025.02.013](https://doi.org/10.1016/j.jde.2025.02.013). Publisher search metadata confirms the journal item. The original read was [arXiv:2408.01514v1](https://arxiv.org/abs/2408.01514v1), submitted 2024-08-02, 50 PDF pages; no later arXiv version was listed. The journal text was not acquired.\n\n**Verified source input.** Hypothesis 2.1 assumes self-adjoint A>=I on a separable complex Hilbert space. Equations (2.2)-(2.4) define H_r(A)=D(A^{r/2}) with the power inner product. Theorem 2.4 identifies the self-adjoint realization in H_r as A restricted to D(A^{(r+2)/2}) and transports realizations unitarily across the scale. Equations (2.16)-(2.20) treat completed negative scales; Theorem 2.6 allows spectral multiplicity. General left-definite theory is credited there to earlier Littlejohn-Wellman work.\n\n**Project map and unmatched conditions.** Take A=K_c/c: its lower bound is one, its domains equal those of K_c, and its r-norm is c^{-r/2} times the project norm. The eigenvalue c has multiplicity two, so a single simple-spectrum multiplication model is insufficient; retain both affine modes or use the direct-sum model. No unmatched condition remains for these abstract statements after rescaling. Constants need not be uniform as c decreases to zero.\n\n**Allowed / forbidden.** Use spectral transfer, graph-norm equivalence, H_c^{r+2} as realization domain, and completion at negative orders. None proves density of the separately prescribed p_n, or identifies algebraic polynomial inverses with genuine operator inverses. Those require the current project arguments.\n\n**Reading depth / pointers.** Targeted reading of Section 2, PDF pp.10-14, including proof of Theorem 2.4 and Theorem 2.6. Fractional Hermite examples were captured but not read. Project: `docs/SL_fractional_left_definite.tex`, Section 2; adaptation: proof 01, P3. Exact bytes and access times are in `source-manifest.json`. Status: SOURCE_READ_SCOPED; project adaptation pending independent review.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L02",
+    "probe": {
+      "source_id": "0eebd76f9e7d4cbec6ce6d6992bfc5be7ea019fcf694dad7a6771796f6001df8",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 65,
+        "original_locators": [
+          "notes/L02-L12-L13-source-to-claim.md",
+          "L02 section/source mapping"
+        ],
+        "raw_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "title": "L02 项目原创阅读/适配笔记: 原第二左定问题的对象对齐",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.3390/axioms14020115",
+        "version": "original reading note 2026-09-23 c7851526eac3"
+      },
+      "start_line": 5,
+      "end_line": 44,
+      "start_offset": 124,
+      "next_offset": 2113,
+      "passage_sha256": "82bda15112e56e95fbb7fe5801fadded491bed551ecd8d98ddb709f6c0675295",
+      "content": "## L02：同一个第二左定问题\n\nJones–Littlejohn–Quintero Roba，Axioms 14(2) (2025), 115，DOI [10.3390/axioms14020115](https://doi.org/10.3390/axioms14020115)。实际读取仓库 `papers/krein_sobolev_II_axioms_2025.pdf`：首页、算子定义、§6及末页；§6公式另看原PDF第9–10页。全十页已提取文本，不声称逐式审计其正交多项式显式公式。\n\n原文的正移位为固定 c>0，K_c f=−f″+cf，区间 (−1,1)，复函数空间，\n\n    D(K_c)={f∈H²_Sob(−1,1): f′(−1)=f′(1)=[f(1)−f(−1)]/2}.\n\n§6 的第二左定空间使用同一集合及内积（原式(25)）\n\n    (f,g)₂,c = ∫[f″ conjugate(g″)+2c f′ conjugate(g′)+c²f conjugate(g)]\n               −c Δf conjugate(Δg),  Δf=f(1)−f(−1).\n\n这恰好等于 ⟨K_cf,K_cg⟩₂。确实将交叉项分部积分：两项端点之和为 −2c[Δf conjugate(Δg)/2]；其余为 2c∫f′conjugate(g′)。所以该文的集合、移位、范数与项目 H_c²=D(K_c)、∥f∥₂,c=∥K_cf∥₂ 完全匹配，而不是仅有一个未说明常数的范数类比。\n\n所提稀疏族也逐项相同：p₀=1、p₁=x，m≥2 时\n\n    p₂ₘ=x²ᵐ−m/(m−1)x²ᵐ⁻²,\n    p₂ₘ₊₁=x²ᵐ⁺¹−m/(m−1)x²ᵐ⁻¹.\n\n没有 p₂、p₃。文中 §6 提出其在第二空间的密度问题；首页所述第一左定空间中的正交 K_n 系统是另一对象，n≥2 的 K_n 不是 K_c 本征函数。\n\n项目已有 `docs/SL_fractional_left_definite.tex` 的算子定义、原族定义、四阶多项式图核心及谱截断，证明完整原族在 0≤s<7/2 的稠密性，其中 s=2 回答上述确切问题；非仿射原成员在 s≥7/2 已不属于该幂域。这里新增的是出处与对象对应关系，不是本轮重新证明密度，也不是对所有受约束子空间或删项族的完备性断言。\n\n## L12：经典两特征值结构与数值条件\n\nWillner–Mahar，*The Two-Dimensional Eigenvalue Range and Extremal Eigenvalue Problems*，SIAM J. Math. Anal. **13(4) (1982), 621–631**，DOI [10.1137/0513040](https://doi.org/10.1137/0513040)。仓库文件名 `papers/willner1983.pdf` 的年份不准确，PDF首页和出版社记录均为1982；保留旧文件名供引用稳定。实际阅读了原PDF第1–5、9–11页及图形说明；没有重新计算§4数值表。\n\n原问题在 (0,1) 上为 −y″=λφy、两端Dirichlet；原文(1.3)要求 φ∈L¹[0,1] 且 a(x)≤φ≤b(x)，0<a(x)<b(x)，一般可测界本身不保证φ有界。本次适配只用常数界 a≡1,b≡R>1，所以φ自动属于L∞且有一致正下界，没有总质量等式。目标 f(λ₁,λ₂) 可微，文中(1.5)排除可达区域内部的驻点；对谱隙 f=x₂−x₁、比值 f=x₂/x₁，梯度处处非零。\n\n两本征函数采用 ∫φ y_j²=1。原式(2.1)的开关量有负号：\n\n    g=−λ₁ f₁ y₁²−λ₂ f₂ y₂².\n\n定理1给出必要开关规则：最大化时 g>0 取上界、g<0 取下界，最小化反之。对谱隙，g=λ₁y₁²−λ₂y₂²，正好对应项目归一化后的一阶密度导数。对比值，f₁=−λ₂/λ₁²、f₂=1/λ₁，因此 g=(λ₂/λ₁)(y₁²−y₂²)。不得混用未加权的 y_j 归一化。\n\n引理2.1及定理2（印刷页622–623）将零点模式限制为无零点、一个零点（简单或二重）、两个简单零点，并相应把极值密度约化为零、一或两次切换。其机制是 r=y₂/y₁ 单调，r² 在第二模态唯一节点两侧分别单调。该文将定理1明确归于更早文献；本轮不能把必要 bang-bang 条件或至多两次切换声明为项目首创。\n\n常数上下界时，§3把记号改为 a²,b²，把谱参数写成频率 λ_j，其平方才是§1中的本征值。项目 1≤ρ≤R 对应 a=1,b=√R；读取(3.4)、(3.6)不得将频率比直接误作本征值比。\n\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L03",
+    "probe": {
+      "source_id": "8a91706a736afcfd01d7fb570b856d2260500d3296530d354acd2fc33fd02b51",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 11,
+        "original_locators": [
+          "domains/notes/L03-source-to-claim.md",
+          "L03 section/source mapping"
+        ],
+        "raw_sha256": "705e9d9d2033a54cc9b2cb0237ef0c6a3f3c8f6e668de171b49428f495a5d875",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "705e9d9d2033a54cc9b2cb0237ef0c6a3f3c8f6e668de171b49428f495a5d875",
+        "title": "L03 项目原创阅读/适配笔记: 分数与临界幂域",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1002/mana.201500041",
+        "version": "original reading note 2026-09-23 705e9d9d2033"
+      },
+      "start_line": 1,
+      "end_line": 11,
+      "start_offset": 0,
+      "next_offset": null,
+      "passage_sha256": "705e9d9d2033a54cc9b2cb0237ef0c6a3f3c8f6e668de171b49428f495a5d875",
+      "content": "# L03: fractional boundary thresholds\n\nGrubb. Mathematische Nachrichten 289(7) (2016), 831-844, DOI [10.1002/mana.201500041](https://doi.org/10.1002/mana.201500041). Read [arXiv:1412.3744v4](https://arxiv.org/abs/1412.3744v4), revised 2015-06-28, and the [author-posted journal original](https://web.math.ku.dk/~grubb/MN16.pdf). The latter contains a cover and journal pp.831-844. Its front page says online 27 October 2015. The earlier draft asserted a publisher-search date of 26 October, but the retained search evidence does not support that assertion; it is withdrawn. The journal year, volume and pages are confirmed by the primary PDF.\n\n**Verified source input.** Section 2 assumes a smooth bounded domain, a smooth strongly elliptic second-order differential operator, a bijective realization, and a normal Dirichlet or Neumann-type boundary operator of order j=0 or 1; 1<p<infinity. Definition 2.1 and Theorem 2.2 characterize every positive power domain. Boundary conditions B A^ell become ordinary traces strictly above 2ell+j+1/p. At equality, the highest boundary expression has a zero-extension condition; for p=2 this requires distance^{-1/2} times that expression in L^2.\n\n**Project map / hypotheses.** The coupled full Krein domain is not itself the local boundary problem stated there. Proof 02 constructs full-interval Neumann and shifted Robin auxiliary operators, verifies positivity and local ellipticity, restricts their spectral calculi to parity sectors, and proves scalar-shift domain equivalence. This matches the actual cited j=1 case without presuming a mixed-order theorem.\n\n**Allowed / forbidden.** With that author bridge, obtain the project dictionary and critical weighted conditions in proof 02. Do not equate critical spaces with plain zero-trace Sobolev spaces, use unverified gluing at the half-interval midpoint, or identify spectral powers with the restricted fractional Laplacian.\n\n**Reading depth / pointers.** arXiv Section 2, pp.2-4; journal pp.832-833 (PDF pp.3-4), plus surrounding introduction. Definition 2.1, equations (2.5)-(2.7), Theorem 2.2 were read in both versions; the critical formula was visually checked in each. Later regularity sections were not fully audited. Project: `docs/SL_fractional_left_definite.tex`, domain definition; proofs 01-02. Status: SOURCE_READ_SCOPED; adaptation pending independent review.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L04",
+    "probe": {
+      "source_id": "81e2c35fb164cbac94419b48f34bcf07003fc5be379331674534186a9a53e5c8",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 13,
+        "original_locators": [
+          "domains/notes/L04-source-to-claim.md",
+          "L04 section/source mapping"
+        ],
+        "raw_sha256": "31bba0be9680a2b42586a407a0f2dec027c6d926e43f751c6aab58c24a796aa2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "31bba0be9680a2b42586a407a0f2dec027c6d926e43f751c6aab58c24a796aa2",
+        "title": "L04 项目原创阅读/适配笔记: GKN边界商空间与秩",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1016/j.jat.2018.10.005",
+        "version": "original reading note 2026-09-23 31bba0be9680"
+      },
+      "start_line": 1,
+      "end_line": 13,
+      "start_offset": 0,
+      "next_offset": null,
+      "passage_sha256": "31bba0be9680a2b42586a407a0f2dec027c6d926e43f751c6aab58c24a796aa2",
+      "content": "# L04: boundary quotient and finite rank\n\nFleeman, Frymark, Liaw. Journal of Approximation Theory 239 (2019), 1-28, DOI [10.1016/j.jat.2018.10.005](https://doi.org/10.1016/j.jat.2018.10.005). Publisher search metadata and arXiv journal metadata agree. Read [arXiv:1706.01539v1](https://arxiv.org/abs/1706.01539v1), submitted 2017-06-05, 28 pages. Publisher direct access returned HTTP403; the 2019 body was not compared with v1.\n\n**Verified usable statement.** Proposition 2.14: for maximal-domain vectors, a full-rank matrix of their boundary-form pairings implies linear independence modulo the minimal domain. The converse is not asserted. Theorem 3.2 adds a self-adjoint target with complete orthogonal eigenfunctions and an appropriate quotient basis containing selected eigenfunctions. GKN realization requires the correct deficiency count and isotropy, not rank alone.\n\n**Project map.** For the regular expression c-D^2, maximal/minimal domains are H^2 and H^2_0, with deficiency (2,2); its fourth-order expression has deficiency (4,4). Proof 04 derives these counts and checks the Krein boundary subspace. The project's four-trace residual matrix of determinant 15360 is a right-inverse construction, not the paper's skew pairing matrix. The actual eigenfunctions are affine, cosine and sine modes; p_n are not substitutes.\n\n**Unmatched/version issue.** The captured v1 p.15 prints deficiency (1,1) for its full-interval minimal Legendre setup; the both-limit-circle model has (2,2). This was visually confirmed and contrasted with L06 p.6. Whether the published revision corrects the examples remains unverified. No v1 Legendre dimension/example result is imported.\n\n**Allowed / forbidden.** Reuse the general quotient-independence argument with separately verified dimensions and boundary form. It gives no unconditional sparse-family or constrained-subspace density criterion.\n\n**Reading depth.** Targeted pp.4-20, especially Proposition 2.14 and proof, GKN hypotheses, Theorem 3.2 and proof, and Section 4's examples/limitations. This is not a whole-paper audit. Project: `tools/spectral-domain-checks.md`; proof 04; `scripts/exact_checks.py`. Status: GENERAL_INPUT_READ; SINGULAR_EXAMPLES_NOT_ADOPTED.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L05",
+    "probe": {
+      "source_id": "befc7469358b445abe663139e6bbab057e41992c80c6eee692773c0eb71ddfe3",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 13,
+        "original_locators": [
+          "domains/notes/L05-source-to-claim.md",
+          "L05 section/source mapping"
+        ],
+        "raw_sha256": "6c3b5b1cc3563afdcb8ef452ff23984b33fcfd4f7155b889d2ac394dbf661d2c",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "6c3b5b1cc3563afdcb8ef452ff23984b33fcfd4f7155b889d2ac394dbf661d2c",
+        "title": "L05 项目原创阅读/适配笔记: 反射对称与奇偶分解",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1016/j.jde.2025.01.088",
+        "version": "original reading note 2026-09-23 6c3b5b1cc356"
+      },
+      "start_line": 1,
+      "end_line": 13,
+      "start_offset": 0,
+      "next_offset": null,
+      "passage_sha256": "6c3b5b1cc3563afdcb8ef452ff23984b33fcfd4f7155b889d2ac394dbf661d2c",
+      "content": "# L05: symmetry and normalized restriction\n\nFischbacher, Stanfill. Journal of Differential Equations 427 (2025), 560-600, DOI [10.1016/j.jde.2025.01.088](https://doi.org/10.1016/j.jde.2025.01.088). Publisher metadata identifies the journal article. Read [arXiv:2410.04647v2](https://arxiv.org/abs/2410.04647v2), revised 2025-02-11, 36 pages. Direct publisher access returned HTTP403; the journal body's identity with v2 was not established.\n\n**Verified source input.** Hypotheses 2.1/4.1 require positive measurable p,r, local integrability of 1/p,q,r with real q, finite endpoints, limit-circle nonoscillatory endpoints, and midpoint-symmetric coefficients. Proposition 4.2 and Theorems 4.3/4.4/4.7 concern reflection-invariant self-adjoint domains. The parity reductions have Dirichlet/Neumann midpoint conditions; equations (4.11)-(4.12) include sqrt(2) normalization. Nonnegative-extension assertions add positivity hypotheses on the minimal operator.\n\n**Project map.** Here p=r=1, q=c, I=(-1,1). Regular endpoints satisfy the required endpoint class. The ordinary coupled boundary matrix is [[1,2],[0,1]], and direct calculation verifies domain reflection invariance. Proof 01 establishes both domain inclusions and U K_c U^{-1}=A_NN,c direct-sum A_DR,c, then transfers all Borel functional calculus with its domains. No angle parameters in generalized boundary coordinates need be guessed.\n\n**Unmatched assumptions / terminology.** K_c is K_0+cI with K_0 the original Krein realization. It is not automatically the Krein extension of the newly shifted minimal differential operator; that different extension would have different zero-energy solutions. Our derivation uses the actual fixed boundary conditions.\n\n**Allowed / forbidden.** Reuse the symmetry principle and normalized parity map. Symmetric coefficients alone do not make every chosen domain reflection invariant. The decomposition alone proves neither fractional Sobolev descriptions nor deletion closure.\n\n**Reading depth.** Hypothesis 2.1 p.4; Section 4, pp.20-26, including Theorem 4.4's domain reduction proof. Two-interval theorems and nonnegative-extension ordering were seen for context but are not proof inputs. Project: actual `SL_fractional_left_definite.tex`, Section 2.2; proof 01. Status: SOURCE_READ_SCOPED; adaptation pending independent review.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L06",
+    "probe": {
+      "source_id": "2e6fd639ab561532b59ade4847ba94a70f7e144710e3c3668266556cf04636ba",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 11,
+        "original_locators": [
+          "domains/notes/L06-source-to-claim.md",
+          "L06 section/source mapping"
+        ],
+        "raw_sha256": "2b9ee49238d3342b547301b19ec389e91a1ea141133d1c066b5d6f839e2a95ab",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "2b9ee49238d3342b547301b19ec389e91a1ea141133d1c066b5d6f839e2a95ab",
+        "title": "L06 项目原创阅读/适配笔记: 奇异Legendre比较工具",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.48550/arXiv.2607.19758",
+        "version": "original reading note 2026-09-23 2b9ee49238d3"
+      },
+      "start_line": 1,
+      "end_line": 11,
+      "start_offset": 0,
+      "next_offset": null,
+      "passage_sha256": "2b9ee49238d3342b547301b19ec389e91a1ea141133d1c066b5d6f839e2a95ab",
+      "content": "# L06: verified 2026 preprint, comparative reading only\n\nLittlejohn, Wellman, Wicks. [arXiv:2607.19758v1](https://arxiv.org/abs/2607.19758v1), submitted 2026-07-22 05:08:22 UTC; the PDF is dated 2026-07-17. Its existence, title, authors, version and 19-page original were actually checked. No journal publication was verified in the primary records inspected.\n\n**Verified statement and hypotheses.** The model is the Friedrichs realization of -((1-x^2)f')'+kf on (-1,1), k>=0. Theorem 9.1 assumes local absolute continuity through derivative n-1 and weighted highest derivative (1-x^2)^{n/2}f^{(n)} in L^2; it recovers the lower weighted derivatives. The consistent domain formula in (1.3)/(10.2) uses local absolute continuity through 2n-1 and (1-x^2)^n f^{(2n)} in L^2(-1,1). Theorem 9.2 obtains f^{(n)} in L^2, optimally. Strictly positive left-definite norms use k>0. Section 7 credits earlier domain characterizations.\n\n**Project map / unmatched conditions.** The project has nondegenerate leading coefficient one, a fixed Krein domain, and non-eigenfunction sparse polynomials. None matches the singular coefficient, Friedrichs endpoint selection, or Legendre eigenpolynomials. The integral-operator method of Section 8 is useful comparative technique, with its bounded kernel-product supremum checked before use; it supplies no replacement Krein-domain theorem.\n\n**Original-page cautions.** PDF p.12 (7.5) has inconsistent weight notation; p.15 (9.5) prints L^2(0,1) inside a full-interval formula. Use the consistent (1.3)/(10.2), not a silent transcription. The sharpness construction p.16 requests only C^n matching at zero, which alone need not give the required AC through 2n-1. A sufficient author repair is to choose the matching Taylor polynomial through degree 2n-1; this is our correction, not an audited source erratum.\n\n**Reading depth / inference boundary.** Read the model, pp.1-3 and 5-6, and Sections 7-9, pp.11-17. Visually inspected pp.12,15-17; the weighted-step proof and sharpness example were examined, not only captured. No full-paper verification or transplant to K_c is claimed. Original comparative derivation: `notes/L06-comparative-extension.md`. Status: COMPARATIVE_READING_WITH_VERSION_CAUTIONS.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L07",
+    "probe": {
+      "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 40,
+        "original_locators": [
+          "approximation/notes/01_primary_sources.md",
+          "L07 section/source mapping"
+        ],
+        "raw_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "title": "L07 项目原创阅读/适配笔记: Müntz与差分族的矩接口",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1007/BF02788108",
+        "version": "original reading note 2026-09-23 73b2658d31fc"
+      },
+      "start_line": 13,
+      "end_line": 40,
+      "start_offset": 2174,
+      "next_offset": null,
+      "passage_sha256": "7d547ff4111a88a0a61b04368323499ebcd96f5902f3e4e1eb63d61c5a316120",
+      "content": "## L07: hypotheses preserved\n\nThe exact formula is (D5) in note 04. It is unweighted Lebesgue Lp(A), for finite positive p; A must have positive lower density at zero, defined by liminf_(y->0+) m(A intersect [0,y])/y>0. The exponents are distinct, real and strictly above -1/p; no monotonicity or tending-to-infinity assumption is imposed. The convergent-sum branch provides analytic representatives on the slit disk up to the essential upper endpoint of A. The original PDF has **sum < infinity** for that branch. A browser extraction of the publisher abstract displayed the opposite comparison and malformed r_A; it is not used for this mathematical claim. This is an extraction discrepancy, not a verified publisher erratum.\n\nFor A=[0,1] the geometry assumption is automatic. At p=2 the source theorem applies to the deduplicated exponent sets (D6), all above -1/2. The power-weight conjugation in (D3)-(D4) is our explicit isometry, not an undocumented weighted variant of L07. Arbitrary complex exponents, Sobolev norms and project row-coefficient constraints are outside the theorem used. Only the bounded theorem statements and selected proof portions above were read; the quasi-Banach proof chain was not audited in full.\n\n## L08: what is sparse, and what is assumed\n\nFor homogeneous Dirichlet second-order problems, Lemma 2.1 uses (P_k-P_(k+2))/sqrt(4k+6). Its derivative Gram is the identity; its mass entries have offsets 0,±2. For clamped fourth-order problems, Lemma 3.1 uses\n\n$$\nd_k\\left(P_k-\\frac{2(2k+5)}{2k+7}P_{k+2}+\\frac{2k+3}{2k+7}P_{k+4}\\right),\n\\qquad d_k=[2(2k+3)^2(2k+5)]^{-1/2}.\n$$\n\nIts second-derivative Gram is the identity; mass and first-derivative offsets are 0,±2,±4 and 0,±2 respectively. The approximation hypotheses printed with (2.3) are alpha>=0, Sobolev regularity s>=1; (3.3) uses alpha,beta>0, s>=2 and clamped membership. These source estimates concern the stated local-boundary PDEs. They are not Riesz bounds for the project norm.\n\nThe adaptation in note 03 uses the clamped core plus explicit lifts. Source §4.1 instead discusses separated Robin data and a three-term ansatz. Its endpoint coefficient system must be nonsingular before uniqueness is invoked. Also, its printed (4.1) omits a generic Robin boundary term: integrating alpha u-u''=f gives alpha(u,v)+(u',v')-[u' conjugate(v)]_-1^1=(f,v). Thus a Robin or coupled Krein form must be rederived. For the Krein domain this boundary contribution is -Delta u conjugate(Delta v)/2. The source's Neumann special case has zero boundary term. The positive, constant-c operator and graph norm in our construction are checked directly. No exponential convergence is deduced merely from the word 'smooth'.\n\n## L09: cutoff identity and finite/global separation\n\nThe article's sigma_n in §5.2 denotes singular values of G_N, not of T_N. Since its Gram matrix is positive definite, those values are its eigenvalues. Equation (5.2) retains sigma_n>epsilon and sets equality to zero. Hence ||T_Nv_n||=sqrt(sigma_n), explaining the sqrt(epsilon) penalty. Theorem 5.3 and its finite proof were checked against the original page; (5.6) additionally invokes an infinite frame lower bound A. Note 02 gives a self-contained finite theorem for arbitrary finite synthesis maps, allowing zero eigenvalues, and separates synthesis cutoffs, Gram cutoffs and moment-data noise. It does not transfer the article's global frame premise to the project's original sparse family.\n\nPrimary links: [L07 author](https://people.tamu.edu/~terdelyi/papers-online/bill.pdf), [author publication list](https://people.tamu.edu/~terdelyi/papers-online/list.html), [L07 publisher identity](https://doi.org/10.1007/BF02788108); [L08 author](https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf), [L08 publisher identity](https://doi.org/10.1137/0915089); [L09 arXiv v4](https://arxiv.org/abs/1612.04464v4), [L09 publisher identity](https://doi.org/10.1137/17M1114697).\n\n## Current project inputs actually consulted\n\nThe root AGENTS and both supplied attachments were read. Mathematical source reading concentrated on docs/SL_cofinite_left_definite.tex (operator isomorphism/norm, exact family and q rows, central traces, cutoff and cofinite proof), docs/SL_fractional_left_definite.tex (genuine square domain, four-trace polynomial core, full-family window/member threshold), docs/SL_h2_completeness_proof.tex (§§1-2.3), and the moment/cofinite tool cards. These were frozen privately before authoring. The old memory entry with only s<=3 established is superseded by the current source's 0<=s<7/2 theorem. No old evidence, canonical records or project programs were changed or executed.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L08",
+    "probe": {
+      "source_id": "80d217eb4b3ebb6f3b1da9b0b2788bfe802cc892ebfd57b0f2097f42f1d02748",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 40,
+        "original_locators": [
+          "approximation/notes/01_primary_sources.md",
+          "L08 section/source mapping"
+        ],
+        "raw_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "title": "L08 项目原创阅读/适配笔记: 相容Legendre重组",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1137/0915089",
+        "version": "original reading note 2026-09-23 73b2658d31fc"
+      },
+      "start_line": 19,
+      "end_line": 40,
+      "start_offset": 3405,
+      "next_offset": null,
+      "passage_sha256": "7d127701d89034a17a40397a85ab04c7e60ee29a3ca1e9090ad9ed3e40835076",
+      "content": "## L08: what is sparse, and what is assumed\n\nFor homogeneous Dirichlet second-order problems, Lemma 2.1 uses (P_k-P_(k+2))/sqrt(4k+6). Its derivative Gram is the identity; its mass entries have offsets 0,±2. For clamped fourth-order problems, Lemma 3.1 uses\n\n$$\nd_k\\left(P_k-\\frac{2(2k+5)}{2k+7}P_{k+2}+\\frac{2k+3}{2k+7}P_{k+4}\\right),\n\\qquad d_k=[2(2k+3)^2(2k+5)]^{-1/2}.\n$$\n\nIts second-derivative Gram is the identity; mass and first-derivative offsets are 0,±2,±4 and 0,±2 respectively. The approximation hypotheses printed with (2.3) are alpha>=0, Sobolev regularity s>=1; (3.3) uses alpha,beta>0, s>=2 and clamped membership. These source estimates concern the stated local-boundary PDEs. They are not Riesz bounds for the project norm.\n\nThe adaptation in note 03 uses the clamped core plus explicit lifts. Source §4.1 instead discusses separated Robin data and a three-term ansatz. Its endpoint coefficient system must be nonsingular before uniqueness is invoked. Also, its printed (4.1) omits a generic Robin boundary term: integrating alpha u-u''=f gives alpha(u,v)+(u',v')-[u' conjugate(v)]_-1^1=(f,v). Thus a Robin or coupled Krein form must be rederived. For the Krein domain this boundary contribution is -Delta u conjugate(Delta v)/2. The source's Neumann special case has zero boundary term. The positive, constant-c operator and graph norm in our construction are checked directly. No exponential convergence is deduced merely from the word 'smooth'.\n\n## L09: cutoff identity and finite/global separation\n\nThe article's sigma_n in §5.2 denotes singular values of G_N, not of T_N. Since its Gram matrix is positive definite, those values are its eigenvalues. Equation (5.2) retains sigma_n>epsilon and sets equality to zero. Hence ||T_Nv_n||=sqrt(sigma_n), explaining the sqrt(epsilon) penalty. Theorem 5.3 and its finite proof were checked against the original page; (5.6) additionally invokes an infinite frame lower bound A. Note 02 gives a self-contained finite theorem for arbitrary finite synthesis maps, allowing zero eigenvalues, and separates synthesis cutoffs, Gram cutoffs and moment-data noise. It does not transfer the article's global frame premise to the project's original sparse family.\n\nPrimary links: [L07 author](https://people.tamu.edu/~terdelyi/papers-online/bill.pdf), [author publication list](https://people.tamu.edu/~terdelyi/papers-online/list.html), [L07 publisher identity](https://doi.org/10.1007/BF02788108); [L08 author](https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf), [L08 publisher identity](https://doi.org/10.1137/0915089); [L09 arXiv v4](https://arxiv.org/abs/1612.04464v4), [L09 publisher identity](https://doi.org/10.1137/17M1114697).\n\n## Current project inputs actually consulted\n\nThe root AGENTS and both supplied attachments were read. Mathematical source reading concentrated on docs/SL_cofinite_left_definite.tex (operator isomorphism/norm, exact family and q rows, central traces, cutoff and cofinite proof), docs/SL_fractional_left_definite.tex (genuine square domain, four-trace polynomial core, full-family window/member threshold), docs/SL_h2_completeness_proof.tex (§§1-2.3), and the moment/cofinite tool cards. These were frozen privately before authoring. The old memory entry with only s<=3 established is superseded by the current source's 0<=s<7/2 theorem. No old evidence, canonical records or project programs were changed or executed.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L09",
+    "probe": {
+      "source_id": "0dade3796a3eceab16645eceb0954d5ab0fc5a3690e61277c034963ddff60652",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 40,
+        "original_locators": [
+          "approximation/notes/01_primary_sources.md",
+          "L09 section/source mapping"
+        ],
+        "raw_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+        "title": "L09 项目原创阅读/适配笔记: 有限TSVD误差与系数范数",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1137/17M1114697",
+        "version": "original reading note 2026-09-23 73b2658d31fc"
+      },
+      "start_line": 32,
+      "end_line": 40,
+      "start_offset": 4872,
+      "next_offset": null,
+      "passage_sha256": "63e2e50c05f0a48663d092226eeea8e9449df636455513d326348acdeef6281a",
+      "content": "## L09: cutoff identity and finite/global separation\n\nThe article's sigma_n in §5.2 denotes singular values of G_N, not of T_N. Since its Gram matrix is positive definite, those values are its eigenvalues. Equation (5.2) retains sigma_n>epsilon and sets equality to zero. Hence ||T_Nv_n||=sqrt(sigma_n), explaining the sqrt(epsilon) penalty. Theorem 5.3 and its finite proof were checked against the original page; (5.6) additionally invokes an infinite frame lower bound A. Note 02 gives a self-contained finite theorem for arbitrary finite synthesis maps, allowing zero eigenvalues, and separates synthesis cutoffs, Gram cutoffs and moment-data noise. It does not transfer the article's global frame premise to the project's original sparse family.\n\nPrimary links: [L07 author](https://people.tamu.edu/~terdelyi/papers-online/bill.pdf), [author publication list](https://people.tamu.edu/~terdelyi/papers-online/list.html), [L07 publisher identity](https://doi.org/10.1007/BF02788108); [L08 author](https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf), [L08 publisher identity](https://doi.org/10.1137/0915089); [L09 arXiv v4](https://arxiv.org/abs/1612.04464v4), [L09 publisher identity](https://doi.org/10.1137/17M1114697).\n\n## Current project inputs actually consulted\n\nThe root AGENTS and both supplied attachments were read. Mathematical source reading concentrated on docs/SL_cofinite_left_definite.tex (operator isomorphism/norm, exact family and q rows, central traces, cutoff and cofinite proof), docs/SL_fractional_left_definite.tex (genuine square domain, four-trace polynomial core, full-family window/member threshold), docs/SL_h2_completeness_proof.tex (§§1-2.3), and the moment/cofinite tool cards. These were frozen privately before authoring. The old memory entry with only s<=3 established is superseded by the current source's 0<=s<7/2 theorem. No old evidence, canonical records or project programs were changed or executed.\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L10",
+    "probe": {
+      "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 53,
+        "original_locators": [
+          "interfaces/notes/L10-source-to-claim.md",
+          "L10 section/source mapping"
+        ],
+        "raw_sha256": "a6b81d598e0bf3a8717f946a683438e65214473998dc2fe4a4334ec5086950f2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "a6b81d598e0bf3a8717f946a683438e65214473998dc2fe4a4334ec5086950f2",
+        "title": "L10 项目原创阅读/适配笔记: 二阶边界变分的适用性检查",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1112/blms.12706",
+        "version": "original reading note 2026-09-23 a6b81d598e0b"
+      },
+      "start_line": 1,
+      "end_line": 40,
+      "start_offset": 0,
+      "next_offset": 4204,
+      "passage_sha256": "fe68dcc812392da521a54243c7e18221d97360a5013fd0fe461289276a9cfe29",
+      "content": "# L10: boundary-extension expansions and the moving-density bridge\n\nAuthor proposal, 2026-09-23. Independent acceptance review is pending. All project conclusions below are this author's adaptations, not claims that the paper proves the project's optimization problem.\n\n## Source identity and actual reading\n\nY. Latushkin and S. Sukhtaiev, *Resolvent expansions for self-adjoint operators via boundary triplets*, Bulletin of the London Mathematical Society 54(6) (2022), 2469-2491, [DOI](https://doi.org/10.1112/blms.12706). Formula locators here refer specifically to [arXiv:2110.07434v1](https://arxiv.org/pdf/2110.07434v1), 18 PDF pages, not to journal pagination. DOI registration confirms online publication 2022-07-12 and print issue 2022-12. Direct Wiley requests returned 403; they were not full-text reads. The arXiv PDF returned 200. Raw responses, UTC times, hashes and extraction identities are in `../source-manifest.json`.\n\nRead PDF pp.1-9, 12-13 and 16, plus the Remark 2.14 continuation at the start of p.17. Inspected original rendered pp.4,5,13,16 for formulas and operator spaces. Theorem 2.9's proof continuation on pp.10-11 and Theorem 2.11's proof on pp.14-15 were not read. This is a hypothesis/result adaptation, not an audit of every proof in the paper.\n\n## Source contract, in compressed form\n\nHypotheses 2.1-2.2 (pp.3-4) use one densely defined closed symmetric operator A in one Hilbert space, equal deficiency indices, and a fixed bounded surjective trace T on dom(A*) with its graph norm and Green identity. Extensions have domains T^{-1}(ran Q_t); the Lagrangian orthogonal projections Q_t have an operator-norm second-order Taylor expansion. Hypothesis 2.6 (p.7) requires an isolated eigenvalue of finite multiplicity.\n\nTheorem 2.5 (pp.5-7, (2.7)-(2.11)) obtains a first-order resolvent expansion into the graph space and second order in the original Hilbert space. Proposition 2.8, Theorems 2.9-2.10 (pp.8-9,12; (2.20),(2.24),(2.44)-(2.45)) transport projections and the finite spectral cluster and select eigenvalue expansions. Theorem 2.11 (p.13,(2.48)) additionally uses Z_t=[X_t,Y_t], X_tY_t*=Y_tX_t*, invertible X_tX_t*+Y_tY_t*, and a norm expansion. Corollary 2.12 (p.16,(2.65)) specializes to self-adjoint Robin data. Remark 2.14 (pp.16-17) adds bounded self-adjoint perturbations with norm expansions.\n\n## Project mapping and an explicit obstruction\n\nThe project model is `-u''=lambda rho_a u`, Dirichlet on [0,1], fixed positive block values c_j and ordered interfaces a_j. At one configuration it is self-adjoint in H_a=L2(rho_a dx), with simple isolated eigenvalues and normalization integral rho_a u_k^2=1. Those facts supply the spectral isolation part only.\n\nLet ell_j(t)=a_j(t)-a_{j-1}(t)>0. An explicit unitary map to the fixed space direct-sum_j L2(0,1) is\n\n`(U_t u)_j(xi)=sqrt(c_j ell_j(t)) u(a_{j-1}(t)+ell_j(t) xi)`.\n\nThe transformed expression on the interior of block j is\n\n`-(c_j ell_j(t)^2)^(-1) d^2/dxi^2`.\n\nContinuity of physical value and slope gives the matching conditions\n\n`v_j(1)/sqrt(c_j ell_j)=v_{j+1}(0)/sqrt(c_{j+1} ell_{j+1})`,\n\n`v_j'(1)/(ell_j sqrt(c_j ell_j))=v_{j+1}'(0)/(ell_{j+1} sqrt(c_{j+1} ell_{j+1}))`.\n\nThese equations exhibit both a changing differential expression and changing matching data. A compactly supported smooth test function in a changing block belongs to every natural minimal domain, yet the actions on it differ when ell_j changes. Thus this natural pullback does **not** produce extensions of one fixed minimal differential operator. A fixed boundary coordinate space, or smooth finite matching matrices, does not repair that missing hypothesis. The coefficient difference multiplying d²/dxi² is unbounded on L2, so Remark 2.14's bounded-additive extension does not supply the repair either. This rules out the naive application, not every possible alternative realization.\n\nMultiplication by sqrt(rho_a) to move H_a to L2(dx) is another incomplete shortcut: a genuinely displaced nonzero jump is not continuous in the L-infinity multiplier norm. A norm-C2 boundary path cannot be inferred from that operation.\n\n| Needed before using L10 as a proof dependency | Current status in this packet |\n| --- | --- |\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L11",
+    "probe": {
+      "source_id": "5a1af53f0cce3088825e827155c02234c036005882913e04a4c28a4566a0ee74",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 51,
+        "original_locators": [
+          "interfaces/notes/L11-source-to-claim.md",
+          "L11 section/source mapping"
+        ],
+        "raw_sha256": "77e0637e97d48745eae29fdf60053e2d26a840cec8697821ae244fe80fa202e7",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "77e0637e97d48745eae29fdf60053e2d26a840cec8697821ae244fe80fa202e7",
+        "title": "L11 项目原创阅读/适配笔记: 测度系数、点质量及Green集中",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1007/s11854-013-0018-x",
+        "version": "original reading note 2026-09-23 77e0637e97d4"
+      },
+      "start_line": 1,
+      "end_line": 40,
+      "start_offset": 0,
+      "next_offset": 4779,
+      "passage_sha256": "737d694899c477e947c1de054069bda81d7c84cb71ceed561e623c63756b9cac",
+      "content": "# L11: measure coefficients, atoms, and concentration limits\n\nAuthor proposal, 2026-09-23. Independent acceptance review is pending.\n\n## Source identity and actual reading\n\nJ. Eckhardt and G. Teschl, *Sturm-Liouville operators with measure-valued coefficients*, Journal d'Analyse Mathématique 120 (2013), 151-224, [DOI](https://doi.org/10.1007/s11854-013-0018-x). Read the primary [arXiv:1105.3755v2 PDF](https://arxiv.org/pdf/1105.3755v2), revised 2013-08-12. It has **61 PDF pages**; the landing-page comment “58 pages” is not the downloaded page count. Below, page numbers mean PDF/printed preprint pages. The [author's index](https://www.mat.univie.ac.at/~gerald/ftp/) and DOI registration confirm journal metadata. The author PDF and TeX were also captured, but their whole contents were not read or assumed byte-identical to arXiv. Springer returned HTTP 200 with a browser-challenge page, not readable article text.\n\nRead arXiv pp.3-7,9-11,24,27-28,32-33. Original rendered pp.4,5,11,32 were inspected for the measure labels, jump formulas, hypotheses and resolvent sign/measure. Coverage is selective; the complete extension classification and Appendix C were not audited. Capture/extraction is not reading. Identities and times are in `../source-manifest.json`.\n\n## Source contract, in compressed form\n\nSection 3 (p.4,(3.1)) uses measures varrho, varsigma, chi and quasi-derivative f^[1]=df/dvarsigma. Hypothesis 3.7 (p.11) requires positive varrho, real chi and varsigma, full support of varsigma, no common atoms of varsigma with the other measures, a uniqueness condition in support gaps, and more than one point in supp(varrho). Theorem 3.1 (pp.5-6,(3.2)-(3.4)) gives initial-value solvability; Proposition 3.2 gives the Lagrange identity. Theorem 3.6 (pp.9-10) concerns analyticity in the spectral parameter, not moving coefficients. Proposition 7.1 and Theorem 7.6 (pp.24,27) describe regular endpoint traces and self-adjoint boundary conditions. Theorem 8.3 (p.32,(8.5)-(8.6)) supplies the separated resolvent kernel; Corollary 8.4 (p.33) gives simplicity. Page 5 encodes delta-prime interactions by atoms of varsigma, producing value jumps, and delta interactions by atoms of chi, producing quasi-derivative jumps.\n\n## Mapping to the project and to a genuine point mass\n\nFor the existing model use `dvarrho=rho(x)dx`, `dvarsigma=dx`, `dchi=0`. Then f^[1]=f' and tau f=-f''/rho. The finite positive densities satisfy Hypothesis 3.7: varrho has full support, gap uniqueness is vacuous, and atom exclusion is immediate. Finite interval masses give regular endpoints; Dirichlet traces select a separated self-adjoint realization.\n\nFor the distinct atomic benchmark use `dvarrho=c dx+M delta_a`, c>0, M>=0, a in (0,1), while keeping varsigma=dx and chi=0. This still has full support and satisfies the same atom condition because varsigma has no atoms. Integrating the equation, with the source's left-continuous convention, gives continuous u and\n\n`u'(a+)-u'(a-)=-lambda M u(a)`.\n\nIts norm is `c integral u^2 dx+M u(a)^2`. The lambda-dependent jump distinguishes a **weight atom** from a potential delta interaction. It is also distinct from the original finite density interface, where both u and u' are continuous.\n\nThe source resolvent acts by integration against dvarrho. For positive density the project pencil inverse `(A-z rho)^(-1)` acts against dx; their scalar kernels agree only after making the right-hand-side conversion explicit. A reduced kernel at an eigenvalue also needs its normalized pole removed. The finite continuous kernel for the original bounded positive density model is justified in round9 V3 and in the companion derivation; it is not asserted for every possible measure-coefficient realization in L11.\n\n## Delta-prime: interaction versus distributional derivative\n\nThe paper's delta-prime interaction is not permission to set dvarrho=delta'_a. Its extra atom lies in varsigma and changes the value matching law. By contrast, `<delta'_a,phi>=-phi'(a)` is not bounded by the uniform norm of phi, and hence is not a finite Radon measure. Taking phi_e(x)=e psi((x-a)/e) with psi'(0) nonzero proves this directly: the uniform norm tends to zero while the derivative pairing stays nonzero.\n\nA translated point mass has distributional derivatives\n\n`(q delta_(a(t)))dot=-q a'(t) delta'_(a(t))`,\n\n`(q delta_(a(t)))ddot=q a'(t)^2 delta''_(a(t))-q a''(t) delta'_(a(t))`.\n\nA moving finite density step instead has a delta first derivative and delta-prime second derivative. Neither distributional differentiation operation is a statement that the resulting derivatives are admissible positive coefficient measures in L11. Translation is not even continuous in total variation for nonzero point masses.\n\n## Concentration: exact topology and limits\n\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L12",
+    "probe": {
+      "source_id": "6aa36b0d06b92dc2c36d5e40442d74f63a5f1a17788329cea428426ac4d9501a",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 65,
+        "original_locators": [
+          "notes/L02-L12-L13-source-to-claim.md",
+          "L12 section/source mapping"
+        ],
+        "raw_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "title": "L12 项目原创阅读/适配笔记: 首对谱值的新颖性与条件对照",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1137/0513040",
+        "version": "original reading note 2026-09-23 c7851526eac3"
+      },
+      "start_line": 29,
+      "end_line": 65,
+      "start_offset": 1132,
+      "next_offset": null,
+      "passage_sha256": "f40dfe853969fd8259315da4696269079c60965b7eb31cec1f329a9d31571369",
+      "content": "## L12：经典两特征值结构与数值条件\n\nWillner–Mahar，*The Two-Dimensional Eigenvalue Range and Extremal Eigenvalue Problems*，SIAM J. Math. Anal. **13(4) (1982), 621–631**，DOI [10.1137/0513040](https://doi.org/10.1137/0513040)。仓库文件名 `papers/willner1983.pdf` 的年份不准确，PDF首页和出版社记录均为1982；保留旧文件名供引用稳定。实际阅读了原PDF第1–5、9–11页及图形说明；没有重新计算§4数值表。\n\n原问题在 (0,1) 上为 −y″=λφy、两端Dirichlet；原文(1.3)要求 φ∈L¹[0,1] 且 a(x)≤φ≤b(x)，0<a(x)<b(x)，一般可测界本身不保证φ有界。本次适配只用常数界 a≡1,b≡R>1，所以φ自动属于L∞且有一致正下界，没有总质量等式。目标 f(λ₁,λ₂) 可微，文中(1.5)排除可达区域内部的驻点；对谱隙 f=x₂−x₁、比值 f=x₂/x₁，梯度处处非零。\n\n两本征函数采用 ∫φ y_j²=1。原式(2.1)的开关量有负号：\n\n    g=−λ₁ f₁ y₁²−λ₂ f₂ y₂².\n\n定理1给出必要开关规则：最大化时 g>0 取上界、g<0 取下界，最小化反之。对谱隙，g=λ₁y₁²−λ₂y₂²，正好对应项目归一化后的一阶密度导数。对比值，f₁=−λ₂/λ₁²、f₂=1/λ₁，因此 g=(λ₂/λ₁)(y₁²−y₂²)。不得混用未加权的 y_j 归一化。\n\n引理2.1及定理2（印刷页622–623）将零点模式限制为无零点、一个零点（简单或二重）、两个简单零点，并相应把极值密度约化为零、一或两次切换。其机制是 r=y₂/y₁ 单调，r² 在第二模态唯一节点两侧分别单调。该文将定理1明确归于更早文献；本轮不能把必要 bang-bang 条件或至多两次切换声明为项目首创。\n\n常数上下界时，§3把记号改为 a²,b²，把谱参数写成频率 λ_j，其平方才是§1中的本征值。项目 1≤ρ≤R 对应 a=1,b=√R；读取(3.4)、(3.6)不得将频率比直接误作本征值比。\n\n§3(3.10a)是低—高—低的中心高块，文中断言其两个切换点互补；印刷页624说明推导细节被省略，不能说已逐行复验了原文该证明。(3.10b)是高—低—高，原文随后给出的不对称极值例针对某些一般目标函数，不能据此断言项目特定谱隙目标的最优解不对称。\n\n§4专算 C(1,4)。§5在定理3之前明确假定这些数值计算正确，再论证所绘区域即首对谱值可达区域；定理4延续该区域。它们不是对所有 R 的无条件计算机证书。必要候选类型、参数驻点方程与完整可达集的充分刻画有不同证据等级。\n\n| 项目对象 | 对照结论 |\n| --- | --- |\n| n=1 首对比值的 bang-bang/切换结构 | 有明确经典前驱；项目可给独立推导或统一接口，不据此宣称结构首创 |\n| n=1 谱隙极值的候选结构 | 同一盒约束可用定理1–2作交叉核对；特定目标的排除、唯一性及精确极限须看项目自己的证明 |\n| 任意 R 的严格渐近常数、误差控制 | 本篇 C(1,4) 数值区域并不提供这些结论；只说未被此篇已读命题覆盖，不等于已证明全球新颖 |\n| n≥2 相邻比值全局最大值 / O1、O2 | 首对两维结果不能迁移到一般相邻对；项目规定平衡候选的单调极限仍与全局最优分开 |\n| 固定密度Hessian或移动接口二阶链式法则 | 本篇开关必要条件不替代二阶推导，亦不证明G1定号 |\n\n本轮只据可靠书目信息修正 `docs/SL_fixed_n_supremum.tex` 的 wm 条目。现有数学正文不因新文献登记而取得额外证明。\n\n## L13：高优先级线索，尚不能成为证明依赖\n\nHongli Sun，J. Math. Anal. Appl. **516(1) (2022), 126513**，DOI [10.1016/j.jmaa.2022.126513](https://doi.org/10.1016/j.jmaa.2022.126513)。作者拼写及书目由出版社提交的Crossref元数据核实。出版社可读预览讨论固定端振动弦的首对最小谱隙，涉及 S₁、S₂ 两类密度以及存在性和形状。但可读文本中的两类定义公式缺失，本轮未取得可核对的全文。\n\n不得将它登记为与项目同一盒约束的已匹配定理。后续取得原文时必须逐项抄核：S₁/S₂的完整定义、是否固定质量、点态下上界是否严格正、跳点个数限制、是否预设对称，以及最终结论适用全部R还是子范围。缺这些信息时，不利用其标题、摘要或定理预览证明项目n=1结论，更不用于任意n或精确渐近常数的新颖性断言。\n\n这里没有以搜索失败断言全文不存在；记录的是本轮可获取和实际读取的范围。\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  },
+  {
+    "id": "L13",
+    "probe": {
+      "source_id": "eb80f72bab64e453bc0e2da8d328fa757be2198d4f8d7f9297e67b06909ab0d9",
+      "metadata": {
+        "coverage": "Original note only. Actual primary reading coverage and raw-source namespace are separate in source-catalog.json.",
+        "extraction_method": "author-written UTF8 Markdown; not extracted publisher text",
+        "line_count": 65,
+        "original_locators": [
+          "notes/L02-L12-L13-source-to-claim.md",
+          "L13 section/source mapping"
+        ],
+        "raw_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "schema_version": 1,
+        "source_kind": "secondary",
+        "text_sha256": "c7851526eac321ca914b5571485ffdc4da83aaf86f8d17a2cd26a1e698dee5f2",
+        "title": "L13 项目原创阅读/适配笔记: 最小谱隙线索，待补模型",
+        "trust": "UNVERIFIED_SOURCE_CONTENT",
+        "url": "https://doi.org/10.1016/j.jmaa.2022.126513",
+        "version": "original reading note 2026-09-23 c7851526eac3"
+      },
+      "start_line": 59,
+      "end_line": 65,
+      "start_offset": 2778,
+      "next_offset": null,
+      "passage_sha256": "ed9a306bb7eb80336e9298bc36ad9fb926f28accfa4bf610a1bf09e03da658e7",
+      "content": "## L13：高优先级线索，尚不能成为证明依赖\n\nHongli Sun，J. Math. Anal. Appl. **516(1) (2022), 126513**，DOI [10.1016/j.jmaa.2022.126513](https://doi.org/10.1016/j.jmaa.2022.126513)。作者拼写及书目由出版社提交的Crossref元数据核实。出版社可读预览讨论固定端振动弦的首对最小谱隙，涉及 S₁、S₂ 两类密度以及存在性和形状。但可读文本中的两类定义公式缺失，本轮未取得可核对的全文。\n\n不得将它登记为与项目同一盒约束的已匹配定理。后续取得原文时必须逐项抄核：S₁/S₂的完整定义、是否固定质量、点态下上界是否严格正、跳点个数限制、是否预设对称，以及最终结论适用全部R还是子范围。缺这些信息时，不利用其标题、摘要或定理预览证明项目n=1结论，更不用于任意n或精确渐近常数的新颖性断言。\n\n这里没有以搜索失败断言全文不存在；记录的是本轮可获取和实际读取的范围。\n",
+      "locator_note": "Extraction line numbers; verify original page/theorem separately."
+    }
+  }
+]

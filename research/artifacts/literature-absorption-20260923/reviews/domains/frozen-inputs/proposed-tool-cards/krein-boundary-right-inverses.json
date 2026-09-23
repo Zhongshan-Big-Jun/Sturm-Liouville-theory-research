@@ -1,0 +1,35 @@
+{
+  "title": "Finite Krein boundary corrections with GKN scope checks",
+  "summary": "Explicit two- and four-trace right inverses preserve polynomial constraints; regular boundary-form dimensions and isotropy are checked separately from matrix rank.",
+  "conditions": [
+    "Regular constant-coefficient expression c-D^2 on (-1,1), c>0.",
+    "Use the actual maximal/minimal domains and deficiency counts: (2,2) at order two, (4,4) at order four.",
+    "Sobolev approximation and continuous trace bounds must be supplied before inferring any graph-core or closure result.",
+    "For the divisible correction use an even integer L>=2 and the two polynomials x^L,x^(L+1)."
+  ],
+  "scope": "Boundary algebra for the current operator, not the unverified singular Legendre examples in arXiv1706.01539v1; rank alone does not certify GKN isotropy or density.",
+  "evidence_status": "AUTHOR_REDERIVATION_WITH_EXACT_ALGEBRA_PENDING_INDEPENDENT_REVIEW",
+  "content": "B on (x^L,x^(L+1)) is [[L,L],[-L,L]], determinant 2L^2. For residual (u,v), subtract (u-v)x^L/(2L)+(u+v)x^(L+1)/(2L). For T=(Bf,Bf''), the columns x^2,x^3,x^4,x^5 form [[2,2,4,4],[-2,2,-4,4],[0,0,24,40],[0,0,-24,40]], determinant15360. The skew boundary form is separately isotropic on the Krein square-domain trace subspace. L04 Proposition2.14 is an independence criterion in the boundary quotient; this residual matrix is a different object. Numerical rank or substituting arbitrary p_n for eigenfunction GKN data is insufficient.",
+  "sources": [
+    {
+      "path": "proofs/04-boundary-algebra-and-gkn-scope.md",
+      "sha256": "cb3a3f2c67da73d7ec31bf5b1d7794eb2125b2f324ec3f992d8f965f7e3567e7",
+      "locator": "Entire scoped derivation",
+      "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW"
+    },
+    {
+      "source_id": "L04",
+      "source_id_scope": "LOCAL_AUTHOR_MANIFEST",
+      "url": "https://arxiv.org/pdf/1706.01539v1",
+      "version": "1706.01539v1",
+      "sha256": "73f6d4f8d074542f04c3b90d1badcea36b204e424d06e49cea27f8690f809957",
+      "locator": "Prop2.14 pp9-10, Thm3.2 pp12-14; v1 Section4 applications not imported"
+    },
+    {
+      "path": "evidence/exact-checks.json",
+      "sha256": "c7c007d6ab457b9c06adcc90bfe593a54db44ae7c0ee37b7ec438856069b3adb",
+      "locator": "98 exact checks; four negative controls; finite algebra only"
+    }
+  ],
+  "integration_status": "PROPOSED_ONLY; coordinator must register actual source IDs and obtain independent review before accepted reuse"
+}

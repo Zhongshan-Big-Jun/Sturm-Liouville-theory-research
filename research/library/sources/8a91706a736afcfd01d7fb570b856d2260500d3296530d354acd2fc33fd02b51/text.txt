@@ -1,0 +1,11 @@
+# L03: fractional boundary thresholds
+
+Grubb. Mathematische Nachrichten 289(7) (2016), 831-844, DOI [10.1002/mana.201500041](https://doi.org/10.1002/mana.201500041). Read [arXiv:1412.3744v4](https://arxiv.org/abs/1412.3744v4), revised 2015-06-28, and the [author-posted journal original](https://web.math.ku.dk/~grubb/MN16.pdf). The latter contains a cover and journal pp.831-844. Its front page says online 27 October 2015. The earlier draft asserted a publisher-search date of 26 October, but the retained search evidence does not support that assertion; it is withdrawn. The journal year, volume and pages are confirmed by the primary PDF.
+
+**Verified source input.** Section 2 assumes a smooth bounded domain, a smooth strongly elliptic second-order differential operator, a bijective realization, and a normal Dirichlet or Neumann-type boundary operator of order j=0 or 1; 1<p<infinity. Definition 2.1 and Theorem 2.2 characterize every positive power domain. Boundary conditions B A^ell become ordinary traces strictly above 2ell+j+1/p. At equality, the highest boundary expression has a zero-extension condition; for p=2 this requires distance^{-1/2} times that expression in L^2.
+
+**Project map / hypotheses.** The coupled full Krein domain is not itself the local boundary problem stated there. Proof 02 constructs full-interval Neumann and shifted Robin auxiliary operators, verifies positivity and local ellipticity, restricts their spectral calculi to parity sectors, and proves scalar-shift domain equivalence. This matches the actual cited j=1 case without presuming a mixed-order theorem.
+
+**Allowed / forbidden.** With that author bridge, obtain the project dictionary and critical weighted conditions in proof 02. Do not equate critical spaces with plain zero-trace Sobolev spaces, use unverified gluing at the half-interval midpoint, or identify spectral powers with the restricted fractional Laplacian.
+
+**Reading depth / pointers.** arXiv Section 2, pp.2-4; journal pp.832-833 (PDF pp.3-4), plus surrounding introduction. Definition 2.1, equations (2.5)-(2.7), Theorem 2.2 were read in both versions; the critical formula was visually checked in each. Later regularity sections were not fully audited. Project: `docs/SL_fractional_left_definite.tex`, domain definition; proofs 01-02. Status: SOURCE_READ_SCOPED; adaptation pending independent review.

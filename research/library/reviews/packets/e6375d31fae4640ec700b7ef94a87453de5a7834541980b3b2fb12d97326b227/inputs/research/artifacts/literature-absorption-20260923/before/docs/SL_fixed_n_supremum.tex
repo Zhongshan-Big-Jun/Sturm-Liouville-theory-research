@@ -1,0 +1,305 @@
+% 编译方式: xelatex SL_fixed_n_supremum.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{固定指标 $n$ 的相邻特征值比值上确界: 交替极值配置的平衡相位结构}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-09-23 (第九轮归一化与候选极限修订)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+固定 $n\ge1$ 的全局相邻比值上确界仍是本项目的开放问题.
+本文刻画规定平衡交替配置 $[1,R,1,\dots,1]$ 的候选谱, 其中
+$s=\sqrt R>1$, 轻块宽 $st_n$, 重块宽 $t_n=1/((n+1)s+n)$.
+物理世俗函数 $F_n$ 的正确关系为
+$F_n(\pi-y)=yF_n(y)/(\pi-y)$; 归一化函数
+$\widehat F_n=\omega F_n$ 才严格反射对称.
+归一化矩阵与 Jacobi 表示证明 $(0,\pi)$ 中恰有 $2n$ 个简单根.
+嵌套 Jacobi 矩阵进一步给出候选值 $c_n(R)$ 严格递减, 且
+\[
+ c_n(R)\downarrow\left(\frac{\pi-\varphi(R)}{\varphi(R)}\right)^2,
+ \qquad\varphi(R)=\arccos\frac{\sqrt R-1}{\sqrt R+1}.
+\]
+这是规定候选序列的解析结论, 不证明 $c_n(R)=\Lambda_n^{\sup}(R)$.
+全局最优性 O1/O2 仍开放; 后续极大子结构结果与早期数值实验分别标明来源.
+\end{abstract}
+
+\medskip
+\noindent\textbf{证据范围.} 反射、根计数及本稿候选单调极限有解析证明;
+第 4 节保留历史有限数值证据, 不构成全局极值性证明.
+第九轮的精确审查版本、独立检验与局部 Lean 范围见
+\path{reports/proof-audit-round9-20260923/REPORT.md}.
+
+\tableofcontents
+
+\section{问题与猜想}
+
+设 $0 < a \leq A$, $R = A/a$. 考虑
+\begin{equation}
+	-y'' = \lambda\,\rho(x)\,y, \qquad y(0) = y(1) = 0,
+	\qquad a \leq \rho \leq A,
+\end{equation}
+特征值 $0 < \lambda_1(\rho) < \lambda_2(\rho) < \cdots$.
+固定 $n \geq 1$, 记
+\[
+	\Lambda_n^{\sup}(R) := \sup_{\rho} \frac{\lambda_{n+1}(\rho)}{\lambda_n(\rho)}.
+\]
+会话 5 证明 $\sup_{n \geq 1}\Lambda_n^{\sup}(R) = \nu(R)$ (全序列上确界),
+并数值发现猜想极值配置: 交替 bang-bang
+\begin{equation}\label{eq:alt}
+	\rho = [1, R, 1, R, \dots, 1] \quad (2n+1 \text{ 块}), \qquad
+	\frac{w_1}{w_2} = \sqrt R,
+	\qquad t = \frac{1}{(n+1)\sqrt R + n},
+\end{equation}
+其中值为 $1$ 的块宽 $w_1 = w_3 = \cdots = \sqrt R\,t$, 值为 $R$ 的块宽
+$w_2 = w_4 = \cdots = t$.
+本文把这些配置的比值结构完全刻画 (反射对称 + 平衡相位), 给出闭式与
+$c_n(R)$, 并把 ``$c_n(R)$ 是全局上确界'' 归约为一个更小的缺口
+(见第~\ref{sec:open}~节).
+
+\section{交替配置的世俗方程与反射对称}
+
+令 $s = \sqrt R$, $y = \omega\,s\,t$ ($\omega = \sqrt\lambda$).
+对 (eq:alt) 的每个单元 $[1, R]$ (宽度 $st, t$), 两块的相位均为 $y$:
+块 1 (密度 1, 长度 $st$): $\omega \cdot st = y$; 块 2 (密度 $R$, 长度
+$t$): $\omega\sqrt R \cdot t = y$. 单元转移矩阵
+\[
+	T_{\mathrm{cell}}(y) =
+	\begin{pmatrix}
+		\cos^2 y - s^{-1}\sin^2 y & \dfrac{(1+s)\sin y\cos y}{\omega s}\\[2mm]
+		-\omega(1+s)\sin y\cos y & \cos^2 y - s\sin^2 y
+	\end{pmatrix},
+\]
+末块 $[1]$ (宽度 $st$, 相位 $y$): $T_{\mathrm{end}}(y)$.
+这里 $\omega=\omega(y)=y/(st)$ 随 $y$ 改变. 物理状态为 $(u,u')$,
+世俗函数
+\begin{equation}
+	F_n(y) := \bigl(T_{\mathrm{end}}(y)\,T_{\mathrm{cell}}(y)^n\bigr)_{01},
+	\qquad \text{Dirichlet 特征值} \iff F_n(y) = 0.
+\end{equation}
+
+定义 $P_\omega=\operatorname{diag}(1,\omega)$,
+$N=P_\omega^{-1}TP_\omega$, 以及
+$\widehat F_n(y)=\omega(y)F_n(y)=(N_{\rm end}N_{\rm cell}^n)_{01}$.
+写 $C=\cos y,S=\sin y$, 则
+\[
+ N_{\rm cell}=\begin{pmatrix}
+ C^2-S^2/s &(s+1)SC/s\\ -(s+1)SC&C^2-sS^2
+ \end{pmatrix},\qquad
+ N_{\rm end}=\begin{pmatrix}C&S\\-S&C\end{pmatrix}.
+\]
+\begin{theorem}[归一化反射与物理比例]\label{thm:sym}
+ 对一切整数 $n\ge1$, $s>1$, $0<y<\pi$,
+ \[
+  \widehat F_n(\pi-y)=\widehat F_n(y),\qquad
+  F_n(\pi-y)=\frac{y}{\pi-y}F_n(y).
+ \]
+\end{theorem}
+\begin{proof}
+ 令 $J=\operatorname{diag}(1,-1)$. 直接用反射后三角函数的符号得到
+ $N_{\rm cell}(\pi-y)=J N_{\rm cell}(y)J$,
+ $N_{\rm end}(\pi-y)=-J N_{\rm end}(y)J$.
+ 由 $J^2=I$, 任意次幂的乘积满足
+ \[
+ N_{\rm end}(\pi-y)N_{\rm cell}(\pi-y)^n
+ =-J[N_{\rm end}(y)N_{\rm cell}(y)^n]J.
+ \]
+ 其 $01$ 项不变, 得第一式. 再除以 $\omega(\pi-y)=(\pi-y)/(st)$
+ 得第二式. 不能在反射时冻结 $\omega$.
+\end{proof}
+\begin{remark}
+ 正比例因子保留内部根及其单重性. 旧物理函数值的对称等式为假:
+ $n=1,R=4$ 时
+ $F_1(\pi/3)=-21\sqrt3/(40\pi)$,
+ $F_1(2\pi/3)=-21\sqrt3/(80\pi)$.
+ 归一化在 $y=0$ 引入的零点不属于 Dirichlet 正谱, 本文仅在 $0<y<\pi$ 计数.
+\end{remark}
+
+\section{平衡定理与闭式}
+
+\begin{theorem}[根计数与配对]\label{thm:balance}
+	对交替配置 (eq:alt), $F_n$ 在 $(0, \pi)$ 中恰有 $2n$ 个根
+	$y_1 < y_2 < \dots < y_{2n}$, 且 $y_j + y_{2n+1-j} = \pi$
+	($j = 1, \dots, n$). 特别地 $y_n + y_{n+1} = \pi$, 于是
+	\begin{equation}
+		\frac{\lambda_{n+1}}{\lambda_n}
+		= \Bigl(\frac{y_{n+1}}{y_n}\Bigr)^2
+		= \Bigl(\frac{\pi - y_n}{y_n}\Bigr)^2
+		=: c_n(R).
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+ 令 $A=(s+1)^2/s$, $B=s+1/s=A-2$, $\delta=1/s\in(0,1)$.
+ 归一化矩阵行列式为一, Cayley--Hamilton 与首项计算给出
+ \[
+ \widehat F_n(y)=\sin y\,P_n(\cos^2y),\quad
+ P_0=1,\quad P_1=Ax-s,\quad
+ P_n=(Ax-B)P_{n-1}-P_{n-2}.
+ \]
+ 设 $z=Ax-B$, $J_n$ 是首对角为 $-\delta$、其余对角为零、
+ 两条次对角线为一的实对称矩阵.
+ 展开最后一行的行列式并核对初值 $1,z+\delta$ 得
+ $P_n(x)=\det((Ax-B)I-J_n)$.
+ 对任意非零实向量 $v$, 有
+ \begin{align*}
+ v^T(J_n+2I)v&=\sum_{j=1}^{n-1}(v_j+v_{j+1})^2
+ +(1-\delta)v_1^2+v_n^2>0,\\
+ v^T(2I-J_n)v&=\sum_{j=1}^{n-1}(v_j-v_{j+1})^2
+ +(1+\delta)v_1^2+v_n^2>0.
+ \end{align*}
+ $n=1$ 时求和为空, 两个端点项仍分别计入.
+ 因而谱在 $(-2,2)$. 本征向量由第一坐标及三对角递推唯一确定,
+ 第一坐标为零将使全向量为零; 配合对称矩阵可对角化, 得所有本征值简单.
+ 因 $B>2$, $A=B+2$, 对应 $x=(B+z)/A$ 恰有 $n$ 个简单根位于 $(0,1)$.
+ 每个产生两个互补相位, 变量变换导数在这些点非零, 故物理函数和归一化函数
+ 在 $(0,\pi)$ 都恰有 $2n$ 个简单根. 它们按频率排序就是前 $2n$ 个正特征值.
+ 反射配对给出相邻中心根和比值公式.
+ 后续历史证明入口为
+ \path{runs/plugin-perf-eval2/R-20260822T220000Z-b3-baseline/candidate_proof.md}
+ Part B; 其 $G_n=\omega F_n$ 已正确归一化, 不受旧物理等式错误否定.
+\end{proof}
+
+\begin{theorem}[显式闭式]\label{thm:closed}
+	$y_n$ ($n$ 配置的平衡相位) 的闭式:
+	\begin{align}
+		n = 1: &\quad \cos y_1 = \frac{s}{s+1},\qquad
+			c_1(R) = \nu(R);\\
+		n = 2: &\quad \cos y_2 = \frac{\sqrt{1+4s^2}-1}{2(s+1)},\qquad
+			c_2(R) = \Bigl(\frac{\pi}{y_2} - 1\Bigr)^2;\\
+		n = 3, 4: &\quad y_n = \arccos C_n \text{ 且 } Q_n(C_n) = 0,
+			\text{ 其中 } Q_j(C)=P_j(C^2),\ j=3,4.
+	\end{align}
+	数值: $y_2 = \arccos\frac{\sqrt{1+4R}-1}{2(\sqrt R+1)}$ 与直接特征值
+	提取的差 $\leq 4.4\times10^{-14}$ ($R = 2, 4, 10, 100$).
+\end{theorem}
+
+\begin{proof}
+ $n=1$: $Q_1(C)=((s+1)^2/s)C^2-s$, 故正根 $C=s/(s+1)$.
+ $n=2$: 递推给出精确因式分解
+ \[
+ s^2 Q_2(C)=\bigl((s+1)^2C^2+(s+1)C-s^2\bigr)
+ \bigl((s+1)^2C^2-(s+1)C-s^2\bigr).
+ \]
+ 最小的正 $C$ 对应最大的下半相位根, 即所列 $y_2$.
+ $n\ge3$ 的一般定义为 $Q_n(C)=P_n(C^2)$; 取最小正根, 不需数值验证来保证根的存在或指标.
+ 表中小数仅是历史有限数值展示.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{$c_n(R)$: 交替配置比值 ((2) 式) 与直接特征值计算的对照}
+\begin{tabular}{c|ccccc}
+	$n$ & 1 & 2 & 3 & 4 & 5 \\\hline
+	$R=4$, (2) 式 & 7.481533386 & 4.284661471 & 3.453882959 & 3.091176917 & 2.894425766\\
+	$R=4$, 直接 & 7.481533386 & 4.284661471 & 3.453882960 & 3.091176917 & 2.894425766\\
+	$R=10$, (2) 式 & 11.820372828 & 6.939060695 & 5.705227369 & 5.181332498 & 4.904313087
+\end{tabular}
+\end{table}
+
+\section{极值性的数值证据}
+
+对 $n=2$, $R=4$ (猜想值 $c_2(4) = 4.2846614708$):
+\begin{enumerate}
+	\item \textbf{5 块族优化}: Nelder-Mead 从 9 个随机起点出发全部收敛到
+		宽度 $(0.25, 0.125, 0.25, 0.125, 0.25)$ (即 $w_1/w_R = 2 =
+		\sqrt 4$), 比值 $4.28466147$ (脚本 \path{scripts/op02_n2_opt.py}).
+	\item \textbf{7 块优化塌缩}: 7 块 Nelder-Mead 收敛到
+		$(0.25, 0.125, 0.25, 0.124, 0, 0, 0.25)$ —— 中间两块的宽度趋于
+		零, 回到 5 块配置; 即额外块不提升比值.
+	\item \textbf{随机搜索}: 3, 5, 7, 9, 11 块各 300 个随机 Dirichlet
+		配置, 最大 $\lambda_3/\lambda_2$ 分别为 $2.89$, $3.98$, $4.17$,
+		$3.72$, $3.36$, 均低于 $c_2(4)$.
+	\item \textbf{临界点}: 猜想配置处 $\lambda_3/\lambda_2$ 对跳点的
+		中心差分梯度为 $O(h^2)$ (即零梯度, 有限差分噪声 $\sim
+		10^{-4}$ 由特征值精度引起).
+	\item \textbf{Keller 变分条件}: 会话 5 对 $n = 1..8$ 符号级验证
+		($10^{-11}$).
+\end{enumerate}
+
+\section{候选序列的严格单调与精确极限}
+\begin{theorem}\label{thm:limit}
+ 固定 $R>1$, 规定平衡配置的候选值满足
+ \[
+ c_n(R)\downarrow c_\infty(R)
+ =\left(\frac{\pi-\varphi(R)}{\varphi(R)}\right)^2,
+ \qquad \varphi(R)=\arccos\frac{\sqrt R-1}{\sqrt R+1},
+ \]
+ 且每一步都严格下降. 此结论不包含 $c_n=\Lambda_n^{\sup}$.
+\end{theorem}
+\begin{proof}
+ 设 $z_n$ 是上一节 $J_n$ 的最小特征值.
+ $J_n$ 是 $J_{n+1}$ 的顺序主子矩阵, 极小极大原理给出 $z_{n+1}\le z_n$.
+ 若相等, 给 $J_n$ 的最小本征向量补一个末尾零, 便取得 $J_{n+1}$ 的最小
+ Rayleigh 商, 因而是其本征向量. 最后一行强迫原末坐标为零, 递推使全向量为零, 矛盾.
+ 取单位向量 $v_j=(-1)^j/\sqrt n$, 则
+ \[
+ -2<z_n\le v^T J_n v=-2+\frac{2-\delta}{n}.
+ \]
+ 故 $z_n\downarrow-2$. 最小 $x_n=(B+z_n)/A$ 对应第 $n$ 个相位根,
+ \[
+ y_n=\arccos\sqrt{(B+z_n)/A}\uparrow
+ \arccos\sqrt{(B-2)/A}=\varphi(R).
+ \]
+ 最后 $H(y)=(\pi/y-1)^2$ 在 $(0,\pi/2)$ 满足
+ $H'(y)=-2\pi(\pi/y-1)/y^2<0$.
+ 因此 $c_n=H(y_n)$ 严格递减并收敛到声明的值.
+\end{proof}
+
+\section{开放缺口 (如实登记)}\label{sec:open}
+\begin{description}
+ \item[全局极值性 O1/O2] 后续研究已给出全局极大子的交替 $2n$ 开关结构;
+  该结构结果并不确定块宽. 仍须证明平衡等宽配置在完整容许族中达到全局最大,
+  才能得 $\Lambda_n^{\sup}(R)=c_n(R)$.
+  本轮只修订归一化和候选谱, 不重新审计该极大子结构证明.
+ \item[根计数] 上一节给出全部 $R>1,n\ge1$ 的解析根计数, 已不是仅有限样本的观察.
+ \item[两种序列] $c_n(R)$ 的单调与极限由定理~\ref{thm:limit} 完成;
+  $\Lambda_n^{\sup}(R)$ 的同类结论没有随之完成.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[转移矩阵与世俗方程] 分段常数密度的特征值问题化为 $2\times2$
+		转移矩阵乘积的 $01$ 分量求根.
+	\item[反射对称与 $J$-共轭] $\operatorname{diag}(1,-1)$ 共轭给出
+		$N(\pi-y)$ 与 $N(y)$ 的关系; 与能带理论中 Bloch 相位对称同源.
+	\item[特征值交错] 对称密度的特征值分裂为半弦 Dirichlet ($\nu_k$) 与
+		mixed ($\mu_k$) 两类, $\mu_k < \nu_k < \mu_{k+1} < \nu_{k+1}$;
+		用于 $y_n < \pi/2 < y_{n+1}$.
+	\item[平衡相位方法] 会话 5 的自研工具: 使相邻特征值相位互补
+		($y_n + y_{n+1} = \pi$) 的配置; 本会话将其推广到固定 $n$.
+	\item[极值问题的变分条件] Keller 变分原理与 Mahar--Willner 两步结构;
+		Feynman--Hellmann 导数.
+\end{description}
+
+\begin{thebibliography}{5}
+\bibitem{ratio} 项目文档, \emph{相邻特征值比值: 全序列上确界与平衡相位方法}
+	(会话 5), \path{docs/SL_ratio_proof.pdf}.
+\bibitem{summary} 项目文档, \emph{SL 谱主题总结与前沿开放问题} (会话 8),
+	\path{docs/SL_spectral_topics_summary.pdf}.
+\bibitem{keller} J. B. Keller, \emph{The minimum ratio of two eigenvalues},
+	SIAM J. Appl. Math. 31 (1976), 485--491. \url{https://doi.org/10.1137/0131042}
+\bibitem{mw} T. J. Mahar, B. Willner, \emph{An extremal eigenvalue problem},
+	Comm. Pure Appl. Math. 29 (1976), 517--529.
+	\url{https://doi.org/10.1002/cpa.3160290505}
+\bibitem{wm} B. Willner, T. J. Mahar, \emph{Extremal eigenvalue problems for
+	Sturm--Liouville operators with two-point constraints}, SIAM J. Math. Anal.
+	13 (1982), 557--570. \url{https://doi.org/10.1137/0513040}
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,26 @@
+---
+{"author_ids": ["01a0cd06-5c53-7572-aa00-e55c12964b1f", "01a06f46-dd03-7c83-9267-32048412c359"], "conditions": ["For the atomic weight example: c>0, M>=0, a strictly interior, varrho=c dx+M delta_a; varsigma=dx and chi=0", "For concentration: the base kernel is fixed and continuous on the closed square, total variations are uniformly bounded, supports shrink in finitely many clusters and each signed mass converges", "A moving density-step second derivative is a distribution paired only with sufficiently differentiable functions"], "created": "2026-09-23", "evidence": [{"locator": "Per-claim scope and limitations", "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/runtime/report.json", "sha256": "2d1715c9e70ffabb070309951095607336b50e689efac7becd921d8a2ff40a3f"}, {"locator": "Native call and exact input identities; private primary-source availability", "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/provenance.json", "sha256": "262e2c35376c4e081786967c0caf25e208db59dd6404c6ec2efe066bfc6bf4d6"}, {"locator": "Exact proposed card reviewed independently", "path": "literature/absorption-20260923/interfaces/cards/L11-measures-and-concentration.json", "sha256": "c9725d110862f6cf9519e988a9a512578a11701e84f3af436e50d990d58aa1fd"}], "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS", "integration_status": "ACTIVE_SCOPED_REVIEW; REVALIDATE_EACH_APPLICATION", "review_status": {"packet_sha256": "e7e17f4fdd4036aa5c1b0f1a93e804eb49a8e80fb020e74431da1883355cd9a6", "report": "research/artifacts/literature-absorption-20260923/reviews/interfaces/runtime/report.json", "reviewer_id": "01a0cd1d-8ccf-7b91-9cfc-7cc51936aa0a", "scope": "Exact original mathematical content and source mapping; no complete Lean formalization or canonical acceptance", "verdict": "APPROVED"}, "scope": "A regular one-dimensional coefficient mapping plus an elementary fixed-kernel limit. Does not assert differentiated-resolvent convergence for arbitrary measures.", "sources": [{"id": "L11", "locator": "pp.4-7,9-11,24,27-28,32-33; Hypothesis3.7, Theorems3.1,3.6,7.6,8.3; Cor8.4", "manifest_path": "source-manifest.json", "primary_source_id": "7c3dca82db43d15d32197e472b2d2425d6201a54f1f879f16e7ece0031a025e6", "primary_source_namespace": "private source-cache", "raw_sha256": "9c748bd9ec74523f5bbea9391ea96016bdb7c953982afd0b303e4f15505ac9e5", "text_sha256": "dfd269c714a749ba17e494ffb2b19d0492ca930a8369791dcf126abf26449d09", "url": "https://arxiv.org/pdf/1105.3755v2"}, {"authorship": "original author derivation or source adaptation, not independently accepted", "locator": "Mapping, delta-prime and concentration sections", "path": "literature/absorption-20260923/interfaces/notes/L11-source-to-claim.md", "sha256": "77e0637e97d48745eae29fdf60053e2d26a840cec8697821ae244fe80fa202e7"}, {"authorship": "original author derivation or source adaptation, not independently accepted", "locator": "C3-C4", "path": "literature/absorption-20260923/interfaces/derivations/calibrations.md", "sha256": "1d568b2149ddf54ece55b5d761a34fe5a93f0e549b7236ec6f52b632173514c9"}, {"locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified", "source_id": "5a1af53f0cce3088825e827155c02234c036005882913e04a4c28a4566a0ee74"}], "structured_content": {"boundary": "No global sign or G1 prime conclusion; negative M is not a positive-measure path.", "calibration": "At c=1,a=1/2,M=0+, lambda1_second=6 pi^2 and lambda2_second=0, so half-gap=-3 pi^2.", "delta_prime_distinction": "L11 encodes delta-prime interactions by atoms in varsigma. delta_prime_a as a distribution is not a finite Radon weight measure.", "limit": "Integral K dmu_e dmu_e tends to sum q_i q_j K(a_i,a_j) under the stated hypotheses. TV bounds alone are insufficient.", "topology": "The finite layer with fixed atom mass converges weak-star on C, not in TV or L-infinity. This alone controls neither changing kernels nor their derivatives.", "weight_atom": "u continuous; u_prime(a+)-u_prime(a-)=-lambda M u(a); norm=c integral u^2+M u(a)^2"}, "summary": "Map the project to measure coefficients varrho=rho dx, varsigma=dx, chi=0. Distinguish actual weight atoms, interaction encodings and distributional derivatives; extend a fixed continuous-kernel quadratic form under bounded TV and convergent signed masses.", "title": "Weight atoms, delta-prime interactions and signed Green concentration", "tool_id": "measure-weight-atoms-and-concentration", "updated": "2026-09-23"}
+---
+## weight_atom
+
+u continuous; u_prime(a+)-u_prime(a-)=-lambda M u(a); norm=c integral u^2+M u(a)^2
+
+## delta_prime_distinction
+
+L11 encodes delta-prime interactions by atoms in varsigma. delta_prime_a as a distribution is not a finite Radon weight measure.
+
+## limit
+
+Integral K dmu_e dmu_e tends to sum q_i q_j K(a_i,a_j) under the stated hypotheses. TV bounds alone are insufficient.
+
+## topology
+
+The finite layer with fixed atom mass converges weak-star on C, not in TV or L-infinity. This alone controls neither changing kernels nor their derivatives.
+
+## calibration
+
+At c=1,a=1/2,M=0+, lambda1_second=6 pi^2 and lambda2_second=0, so half-gap=-3 pi^2.
+
+## boundary
+
+No global sign or G1 prime conclusion; negative M is not a positive-measure path.

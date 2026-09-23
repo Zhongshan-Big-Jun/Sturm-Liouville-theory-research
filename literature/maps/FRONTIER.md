@@ -1,16 +1,15 @@
-# Frontier (open problems, current as of 2026-08-06)
+# 当前研究前沿
 
-Active frontier (DIR-1, gap-n1 run):
-- F-1 KEY LEMMA: (d/dc)log(M1/M2)<0 on q>1, c in (0,1/2); equivalent G(alpha2)>G(alpha1).
-- F-2 O3a Lemmas A-C: R-uniform lower bound for g1'-g2'; endpoint signs; branch coverage.
-- F-3 O1 draft independent audit (obligation O4).
-- F-4 Rigorous proof of INF limit D*R -> 24.943866 as R -> inf.
+更新：2026-09-23文献吸收。状态按[研究地图](../../research_map.md)、具体证明和独立回执读取。旧2026-08-06前沿保存于[吸收前快照](../../research/artifacts/literature-absorption-20260923/before/)；历史未解标签不覆盖后续结果。
 
-Standing open problems (portfolio):
-- inf_{n>=1,rho} lambda_{n+1}/lambda_n over box class: exact value (is it 1?).
-- Fixed-n sup ratio Lambda_n^sup(R)=c_n(R) conjecture with band limit c_inf(R).
-- n>=2 adjacent gap lambda_{n+1}-lambda_n extremals (template = n=1 proof).
-- L^1/L^p potential-ball extremal bounds for adjacent gap (MDE line).
-- Second/third left-definite spaces H^s (s>2): polynomial basis completeness.
-- Krein operator constant c->0 degenerate limit.
-- p-Laplacian and singular-measure generalizations of gap/ratio extremals.
+| 方向 | 当前已知起点 | 精确剩余问题 |
+| --- | --- | --- |
+| Krein分数域与删除 | 原完整族0≤s<7/2稠密；s=2两迹、s=3三迹余有限分类；分数/临界域有具体字典 | s=5/2等临界删除闭包；其它分数阶删除分类；c趋零退化极限 |
+| 无限删项与矩实现 | Hc2等差型稠密子类、倒数和有限非稠密子类 | 发散但非等差保留集；一般受约束非对角O1′/O1′LD；真实连续泛函/向量的实现 |
+| 稳定近似 | 固定c、s=2/4的相容Legendre替代Riesz系与TSVD误差 | 求积和矩噪声的可靠离散误差；更高阶/分数阶构造；参数一致性 |
+| 固定n比值 | 完整根计数与平衡候选c_n单调极限 | 证明候选等于全局上确界的O1/O2；真正最优值序列性质 |
+| n≥2谱隙 | 小反差局部对称、规定M3/KP范围、一般n上确界极限；有限界面局部二阶公式 | 实际切空间上的全局符号G1′、G2陈述对齐、有限R全局唯一性；L10固定算子桥梁 |
+| 文献新颖性 | L12首对切换机制和数值区域限制已逐条对照 | L13完整S₁/S₂与项目盒类匹配；首对全R改进和高对比常数的系统优先权检索 |
+| 拓展模型 | 已读测度SL及奇异Legendre比较框架 | MDE/势函数球类、p-Laplacian、其它奇异边界；逐模型重新验证 |
+
+优先级与可验收小目标见[P0–P4](../absorption-20260923/tasks/P0-P4.md)。全序列比值下确界1、n=1既有归约链、对称阱INF极限和原稀疏族完整窗口已有相应证明，不能再以早期前沿页为由重启。当前结果仍不等于全仓库认证、全局G1′解决或完整Lean形式化。

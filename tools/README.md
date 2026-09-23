@@ -1,5 +1,19 @@
 # 数学工具库
 
+## 文献吸收 (2026-09-23)
+
+[来源指针表](../literature/absorption-20260923/SOURCE_TABLE.md)区分原文与项目适配。新卡以实际审查版本接入：
+
+| 用途 | 当前工具 |
+| --- | --- |
+| 含域的奇偶分解与临界条件 | [幺正分解](krein-parity-unitary.md)、[分数域字典](krein-fractional-trace-dictionary.md) |
+| 余有限闭包与边界代数 | [s=3三迹](krein-s3-cofinite-three-traces.md)、[右逆与GKN范围](krein-boundary-right-inverses.md) |
+| 稳定近似 | [有限TSVD](finite-synthesis-tsvd.md)、[Legendre相容Riesz系](krein-integrated-legendre-riesz.md) |
+| 无限删项 | [真实矩/Müntz接口](full-muntz-krein-moment-interface.md)、[两个子类](krein-infinite-deletion-subclasses.md) |
+| 移动界面 | [二阶公式](finite-interface-second-derivative.md)、[固定算子适用性](fixed-operator-boundary-extension-check.md)、[测度与集中](measure-weight-atoms-and-concentration.md) |
+
+原作者稿的待审标签保留提交时状态；当前回执在卡片review_status/evidence中。使用前仍核对条件。L13只作待获取完整原文的批注，不支持任何已证步骤。第五轮段落中s=3当时开放的状态已由本批限定的余有限分类更新；无限删项一般情形仍开放。
+
 ## 第九轮修订 (2026-09-23)
 
 [二阶变分](second-variation-weighted-eigenvalues.md)补齐归一化核项、真实块积分切向和带符号集中脉冲的质量收敛条件; Green核有限及移动界面加速度分别处理. [世俗根计数](secular-chebyshev-jacobi-rootcount.md)区分物理F与omega*F, [平衡候选极限](bloch-band.md)用嵌套Jacobi矩阵证明候选c_n的严格单调和极限, 保留全局O1/O2开放. 精确版本和默认复用仍由纠错门禁决定, 不能由本段文字替代. [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md)记录首次退回、修复、局部Lean与实际数值复验.
@@ -86,8 +100,12 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | endpoint-collapse-reduction | [card](<endpoint-collapse-reduction.md>) | 0 |
 | feynman-hellmann | [card](<feynman-hellmann.md>) | 1 |
 | fh-hessian-branch-reduction | [card](<fh-hessian-branch-reduction.md>) | 0 |
+| finite-interface-second-derivative | [card](<finite-interface-second-derivative.md>) | 1 |
+| finite-synthesis-tsvd | [card](<finite-synthesis-tsvd.md>) | 1 |
+| fixed-operator-boundary-extension-check | [card](<fixed-operator-boundary-extension-check.md>) | 1 |
 | fp-arm-max-root | [card](<fp-arm-max-root.md>) | 0 |
-| gap-band-extremals | [card](<gap-band-extremals.md>) | 1 |
+| full-muntz-krein-moment-interface | [card](<full-muntz-krein-moment-interface.md>) | 1 |
+| gap-band-extremals | [card](<gap-band-extremals.md>) | 2 |
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |
@@ -102,18 +120,25 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | key-lemma-decomposition | [card](<key-lemma-decomposition.md>) | 0 |
 | kp-odd-firstzero-reduction | [card](<kp-odd-firstzero-reduction.md>) | 0 |
 | kpdet-common-beta-sign | [card](<kpdet-common-beta-sign.md>) | 0 |
+| krein-boundary-right-inverses | [card](<krein-boundary-right-inverses.md>) | 1 |
+| krein-fractional-trace-dictionary | [card](<krein-fractional-trace-dictionary.md>) | 1 |
+| krein-infinite-deletion-subclasses | [card](<krein-infinite-deletion-subclasses.md>) | 1 |
+| krein-integrated-legendre-riesz | [card](<krein-integrated-legendre-riesz.md>) | 1 |
+| krein-parity-unitary | [card](<krein-parity-unitary.md>) | 1 |
 | krein-power-domain-polynomial-obstruction | [card](<krein-power-domain-polynomial-obstruction.md>) | 0 |
+| krein-s3-cofinite-three-traces | [card](<krein-s3-cofinite-three-traces.md>) | 1 |
 | krein-sobolev-polynomials | [card](<krein-sobolev-polynomials.md>) | 0 |
 | lamplighter-range-translation-tv | [card](<lamplighter-range-translation-tv.md>) | 0 |
 | largeR-level-cascade | [card](<largeR-level-cascade.md>) | 0 |
 | left-definite-moment-recurrence | [card](<left-definite-moment-recurrence.md>) | 0 |
 | left-definite-theory | [card](<left-definite-theory.md>) | 0 |
-| leftdef-o1pld-l2-structural | [card](<leftdef-o1pld-l2-structural.md>) | 1 |
+| leftdef-o1pld-l2-structural | [card](<leftdef-o1pld-l2-structural.md>) | 2 |
 | lemma-A-doubleprime | [card](<lemma-A-doubleprime.md>) | 0 |
 | liouville-transform | [card](<liouville-transform.md>) | 0 |
 | m3-largeR-closure | [card](<m3-largeR-closure.md>) | 0 |
 | m3-log-correction | [card](<m3-log-correction.md>) | 0 |
 | mde-extremal | [card](<mde-extremal.md>) | 0 |
+| measure-weight-atoms-and-concentration | [card](<measure-weight-atoms-and-concentration.md>) | 1 |
 | moment-jump-completeness | [card](<moment-jump-completeness.md>) | 0 |
 | morales-ramis-kovacic | [card](<morales-ramis-kovacic.md>) | 0 |
 | mw-periodic-extension | [card](<mw-periodic-extension.md>) | 0 |
@@ -123,14 +148,14 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | prufer-phase | [card](<prufer-phase.md>) | 0 |
 | r1plus-perturbation-sheet | [card](<r1plus-perturbation-sheet.md>) | 0 |
 | ratio-energy-invariant | [card](<ratio-energy-invariant.md>) | 0 |
-| ratio-first-pair-variational | [card](<ratio-first-pair-variational.md>) | 1 |
+| ratio-first-pair-variational | [card](<ratio-first-pair-variational.md>) | 2 |
 | rational-envelope-certificates | [card](<rational-envelope-certificates.md>) | 0 |
 | reflection-branch-reduction | [card](<reflection-branch-reduction.md>) | 0 |
 | residual-exactness | [card](<residual-exactness.md>) | 0 |
-| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 1 |
+| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 2 |
 | secular-chebyshev-jacobi-rootcount | [card](<secular-chebyshev-jacobi-rootcount.md>) | 1 |
 | single-well-intersection | [card](<single-well-intersection.md>) | 0 |
-| spectral-domain-checks | [card](<spectral-domain-checks.md>) | 2 |
+| spectral-domain-checks | [card](<spectral-domain-checks.md>) | 3 |
 | spectral-monotonicity-reduction | [card](<spectral-monotonicity-reduction.md>) | 0 |
 | sturm-oscillation | [card](<sturm-oscillation.md>) | 0 |
 | switch-saturation-k-invariant | [card](<switch-saturation-k-invariant.md>) | 0 |

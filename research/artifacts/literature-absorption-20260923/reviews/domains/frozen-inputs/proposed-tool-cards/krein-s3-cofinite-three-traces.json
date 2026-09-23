@@ -1,0 +1,27 @@
+{
+  "title": "Cofinite sparse-family closure in the third Krein scale",
+  "summary": "The s=3 author proof adds the second centre trace: cofinite density requires retention of indices 0,1,4, with sufficiency supplied by local cutoff and corrected polynomial approximation.",
+  "conditions": [
+    "Fixed real c>0, complex Hc^3=D(Kc^(3/2)) with its power norm.",
+    "D={0,1} union {4,5,...}; p0=1,p1=x; p_(2m)=x^(2m)-m/(m-1)x^(2m-2) and p_(2m+1)=x^(2m+1)-m/(m-1)x^(2m-1), m>=2.",
+    "N is a cofinite subset of D; all spans are finite complex spans.",
+    "Use Hc3=H3_Sob intersect ker B with equivalent norms, proved in proof03 C1."
+  ],
+  "scope": "Only cofinite subsets of this specified family at s=3. No claim at s=5/2, for infinite deletions, arbitrary constrained families or stable bases.",
+  "evidence_status": "AUTHOR_PROVED_PENDING_INDEPENDENT_REVIEW",
+  "content": "closure_Hc3 span{pn:n in N}={f in Hc3: 0 notin N implies f(0)=0; 1 notin N implies f'(0)=0; 4 notin N implies f''(0)=0}. Codimension is |{0,1,4} minus N|. Proof: high complete tails with m0>=3 equal compatible polynomials divisible by x^(2m0−2); their closure is ker(f(0),f'(0),f''(0)) by local third-derivative cutoff estimates and a fixed endpoint right inverse. Independent trace vectors are p0,p1,p4, with p4''(0)=−4. This includes sufficiency, not merely necessary traces. Removing p4 gives a codimension-one obstruction; removing p5 alone does not. No independent approval is asserted.",
+  "sources": [
+    {
+      "path": "proofs/03-s3-cofinite-closure.md",
+      "sha256": "72a80213f816072e4fdeb50b0a839c0b4e6f25a8182e627ef7db087498719e42",
+      "locator": "C1-C8 and limitations",
+      "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW"
+    },
+    {
+      "path": "/mnt/f/LaTeX/BVE research/docs/SL_cofinite_left_definite.tex",
+      "sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+      "locator": "R5-ALG/CUT/POLY/TAIL/COFINITE; s=2 predecessor, not an s=3 input theorem"
+    }
+  ],
+  "integration_status": "PROPOSED_ONLY; coordinator must register actual source IDs and obtain independent review before accepted reuse"
+}

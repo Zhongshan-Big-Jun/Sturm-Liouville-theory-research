@@ -1,0 +1,2059 @@
+{
+  "verdict": "RETRIEVAL_ONLY",
+  "changed_paths": [],
+  "blocked": 1,
+  "hits": [
+    {
+      "score": 1,
+      "tool_id": "finite-interface-second-derivative",
+      "title": "Second derivative along finite noncolliding fixed-density interfaces",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/finite-interface-second-derivative.md",
+      "sha256": "5180c6a155f5d429be8eb28b81962d6944d7614e76af995b8c99324edd875e1b",
+      "version": "research/library/card-versions/5180c6a155f5d429be8eb28b81962d6944d7614e76af995b8c99324edd875e1b.md",
+      "summary": "A local transfer-matrix proof gives weighted-normalized eigenfunction derivatives and the complete interface chain rule, including finite geometric and path-acceleration terms. Exact single-interface and atomic benchmarks calibrate the signs and half-gap factor.",
+      "conditions": [
+        "Dirichlet [0,1]; finitely many fixed real block values in [m,M] with m>0",
+        "C2 interface path stays in the open ordered simplex; no collisions and positive local block-width lower bound",
+        "Fixed simple eigenvalue index; real eigenfunction weighted norm integral rho u^2=1 and u_prime(0)>0",
+        "Use the pencil Laurent finite-part Green kernel with dx forcing and weighted zero gauge; not the ordinary L2 orthogonal inverse",
+        "Additional mass, tangency or other feasibility constraints must be imposed separately"
+      ],
+      "scope": "Theorem P is an author-proved local result for this finite family. Beyond it, differentiability, weak product rules and inverse mapping hypotheses remain conditional. No global inertia or optimization classification.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/ed77902e7d271be53299eb846de522c8108e7e646737f4ed94fb21a6c23c9c04.json",
+          "sha256": "ed77902e7d271be53299eb846de522c8108e7e646737f4ed94fb21a6c23c9c04",
+          "kind": "scope-check",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+          "tool_sha256": "5180c6a155f5d429be8eb28b81962d6944d7614e76af995b8c99324edd875e1b",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "authorship": "original author derivation or source adaptation, not independently accepted",
+          "locator": "Theorem P, (P1)-(P9) and proof",
+          "path": "literature/absorption-20260923/interfaces/derivations/P3-interface-chain-rule.md",
+          "sha256": "92eba63b76df55ea4280ff78de20b47d1a6941e3daeb69c21be0a9b0a78b77c6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "authorship": "original author derivation or source adaptation, not independently accepted",
+          "locator": "C1-C6 and actual execution",
+          "path": "literature/absorption-20260923/interfaces/derivations/calibrations.md",
+          "sha256": "1d568b2149ddf54ece55b5d761a34fe5a93f0e549b7236ec6f52b632173514c9",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "V1-V4",
+          "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+          "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "39 executed author checks; not independent acceptance",
+          "path": "literature/absorption-20260923/interfaces/evidence/run-20260923T070250443181Z/stdout.json",
+          "sha256": "df1b01c80717ebc569cf70d7ff190ce7ff7fdd0d274440fe87dff86966adee58",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/runtime/report.json",
+          "sha256": "2d1715c9e70ffabb070309951095607336b50e689efac7becd921d8a2ff40a3f",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/provenance.json",
+          "sha256": "262e2c35376c4e081786967c0caf25e208db59dd6404c6ec2efe066bfc6bf4d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/interfaces/cards/P3-bounded-interface-chain-rule.json",
+          "sha256": "b3f7a76670dc4aa09b322b77a03d53bd168bc036018c548b34a7e9d83d828113",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "finite-synthesis-tsvd",
+      "title": "Finite synthesis TSVD with explicit Gram and synthesis cutoffs",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/finite-synthesis-tsvd.md",
+      "sha256": "0af2c6d06428977fa6abdd2600060840726bf29c4b094dad22b111ae653112f0",
+      "version": "research/library/card-versions/0af2c6d06428977fa6abdd2600060840726bf29c4b094dad22b111ae653112f0.md",
+      "summary": "For any finite synthesis map, including dependent columns, a Gram cutoff lambda>epsilon gives error <=inf_z(||f-Tz||+sqrt(epsilon)||z||); moment noise adds ||e||/sqrt(epsilon).",
+      "conditions": [
+        "Complex or real Hilbert space; finite linear synthesis T; exact adjoint and G=T*T.",
+        "epsilon>0 is an absolute Gram eigenvalue cutoff, with equality discarded.",
+        "Krein transfer requires fixed c>0, s=2 or4, f and every column in the genuine D(Kc^(s/2))."
+      ],
+      "scope": "Finite projection and noise estimates. No frame or infinite convergence assumption. Original nonaffine sparse p_n are not valid s=4 columns.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/3c9156e35e59d7d37cadf3a6b46492c8b356a76cd07314943b668dc8dd0a6a56.json",
+          "sha256": "3c9156e35e59d7d37cadf3a6b46492c8b356a76cd07314943b668dc8dd0a6a56",
+          "kind": "implementation-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "0dade3796a3eceab16645eceb0954d5ab0fc5a3690e61277c034963ddff60652",
+          "tool_sha256": "0af2c6d06428977fa6abdd2600060840726bf29c4b094dad22b111ae653112f0",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "author_source_id": "50f33ac9fcfd3d39d8d3b6112fedb9951ddc807b6fe5d9ac5e1e0466daf9e627",
+          "locator": "arXiv v4 p19 (5.2); p20 Theorem5.3 (5.5) and proof; p22 Theorem5.5",
+          "primary_source_id": "85a6fdc18a1d7f8824986b453d4fcb062ba1255527329de4e54d81384d7a73d3",
+          "primary_source_namespace": "private source-cache",
+          "raw_path": "private/raw/L09-arxiv-v4.pdf",
+          "raw_sha256": "7216e8f13713562927b7a6fd1fcd318697614656acecfb1410e3d41dff767b9e",
+          "text_path": "private/text/L09-arxiv-v4.txt",
+          "text_sha256": "28312456cd1f50576ba32d1836f00775e8a01b08c832ff79162b5ecb788e4c02",
+          "url": "https://arxiv.org/pdf/1612.04464v4",
+          "version": "arXiv:1612.04464v4, revised 2018-11-05, 32 pp",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "kind": "author_derivation_pending_independent_review",
+          "locator": "T1-T4 and conditional Krein transfer",
+          "path": "literature/absorption-20260923/approximation/notes/02_finite_tsvd.md",
+          "sha256": "0ef305e28720f16f5961620af2aa180c6c8fb5ccfb6f396d6ae4a83d68e2ada1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "0dade3796a3eceab16645eceb0954d5ab0fc5a3690e61277c034963ddff60652",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json",
+          "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json",
+          "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/approximation/tool-cards/01-finite-tsvd.json",
+          "sha256": "72897fb85bacbfe8523425d90e6a2eaa3f8024b63cb3d72d4deac6c3a927ba2d",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "fixed-operator-boundary-extension-check",
+      "title": "Fixed-operator boundary extension audit for moving density interfaces",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/fixed-operator-boundary-extension-check.md",
+      "sha256": "54ad1f162b57ade3011ec4fd5b0ffdc40a6a4f9dbf0c211570e9b6d0d06f7517",
+      "version": "research/library/card-versions/54ad1f162b57ade3011ec4fd5b0ffdc40a6a4f9dbf0c211570e9b6d0d06f7517.md",
+      "summary": "Latushkin-Sukhtaiev expansions require a common symmetric operator and norm-C2 boundary path. The natural fixed-block pullback changes the principal coefficient, leaving a real applicability bridge open.",
+      "conditions": [
+        "One fixed Hilbert space and densely defined closed symmetric A with equal deficiency indices",
+        "Fixed graph-norm bounded surjective trace satisfying the Green identity",
+        "Self-adjoint extensions T^{-1}(ran Q_t), with norm second-order expansion of Lagrangian orthogonal projections",
+        "Isolated finite-multiplicity spectral cluster; extra Z or Robin hypotheses when those formulas are used"
+      ],
+      "scope": "A source-to-project applicability diagnostic. It is not an eigenvalue or Hessian sign theorem for the moving-density problem.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/9d650af0e86e177caa4c66150f942f5946a4192a63960a01a0acb1ce2dff5cca.json",
+          "sha256": "9d650af0e86e177caa4c66150f942f5946a4192a63960a01a0acb1ce2dff5cca",
+          "kind": "research-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+          "tool_sha256": "54ad1f162b57ade3011ec4fd5b0ffdc40a6a4f9dbf0c211570e9b6d0d06f7517",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "id": "L10",
+          "locator": "pp.3-5,7-9,12-13,16-17; Hypotheses 2.1,2.2,2.6; Theorems 2.5,2.9-2.11; Cor.2.12; Remark2.14",
+          "manifest_path": "source-manifest.json",
+          "primary_source_id": "edaefd2b57ab9b96ed46865daa08d1d72dcd75081be43ae119317d5a79ded558",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "9bdca92caa8f7d91dd13067034a552fe506f0abd8760c69f95ecf0992117b732",
+          "text_sha256": "6a8d2b9bfa8a93b65ef8455a30115dd44d474d16d5cf424a0a1920a98ef415e4",
+          "url": "https://arxiv.org/pdf/2110.07434v1",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "authorship": "original author derivation or source adaptation, not independently accepted",
+          "locator": "Project mapping and an explicit obstruction",
+          "path": "literature/absorption-20260923/interfaces/notes/L10-source-to-claim.md",
+          "sha256": "a6b81d598e0bf3a8717f946a683438e65214473998dc2fe4a4334ec5086950f2",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/runtime/report.json",
+          "sha256": "2d1715c9e70ffabb070309951095607336b50e689efac7becd921d8a2ff40a3f",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/provenance.json",
+          "sha256": "262e2c35376c4e081786967c0caf25e208db59dd6404c6ec2efe066bfc6bf4d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/interfaces/cards/L10-fixed-operator-bridge.json",
+          "sha256": "4a6d2c4f494f6cf11c64ce6405e3ff9d981e503d4396ef9ecf58b06adbb453ff",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "full-muntz-krein-moment-interface",
+      "title": "Full Muntz comparison with the actual Krein moment and weight mapping",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/full-muntz-krein-moment-interface.md",
+      "sha256": "a33e7e4d37bb643c214a8964f3ea01ad113bee5de5c3e74910d46f4b04b8148f",
+      "version": "research/library/card-versions/a33e7e4d37bb643c214a8964f3ea01ad113bee5de5c3e74910d46f4b04b8148f.md",
+      "summary": "Use the distinct-real-exponent unweighted theorem only after explicit power-weight conjugation; project difference rows give one-way non-density implications, not a converse from a dense monomial superset.",
+      "conditions": [
+        "Source theorem: 0<p<infinity; compact A subset [0,1] with positive lower density at0; distinct real lambda_j>-1/p.",
+        "The project application fixes p=2, A=[0,1], c>0 and Hc2.",
+        "Deduplicate exponent sets. Account for t=x^2 weights t^(-1/2),t^(1/2) and exact row coefficients."
+      ],
+      "scope": "Primary monomial density theorem plus an author-derived unitary/moment interface. Not a Sobolev Muntz theorem or a complete criterion for the difference family.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/eb5ff00afa4329359db0987b44c1feb997883bbeb15097e72741167f9c7e6bfb.json",
+          "sha256": "eb5ff00afa4329359db0987b44c1feb997883bbeb15097e72741167f9c7e6bfb",
+          "kind": "scope-check",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+          "tool_sha256": "a33e7e4d37bb643c214a8964f3ea01ad113bee5de5c3e74910d46f4b04b8148f",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "author_source_id": "2944ad9840c5b40329cd9fef544429f7724b4420e64be060a776a2e6eb5d071a",
+          "locator": "author PDF p3 Theorem1.3 and norm definitions; p11 Theorem3.6",
+          "primary_source_id": "1fe9491bc339fee21cc91079875a41ebb1a4792c631f57a0b2c37c09aba289e8",
+          "primary_source_namespace": "private source-cache",
+          "raw_path": "private/raw/L07-author.pdf",
+          "raw_sha256": "923025280f4f1c018ea0330f4f70739cd3dec8d68816cbfe5f178882e2ac19f4",
+          "text_path": "private/text/L07-author.txt",
+          "text_sha256": "40d56e45f20696767cb2512bb92b972580d37dabb5016ba7c45862371a4b7ea1",
+          "url": "https://people.tamu.edu/~terdelyi/papers-online/bill.pdf",
+          "version": "Author-hosted bill.pdf, 26 pp, linked as item [64]; no mathematical revision date supplied. PDF production metadata is 2022-10-20, not a claimed revision date.",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "kind": "author_derivation_pending_independent_review",
+          "locator": "D1-D2, formulas D1-D6 and D10",
+          "path": "literature/absorption-20260923/approximation/notes/04_infinite_deletions.md",
+          "sha256": "8dd35ebe86e67eb301716869b7d312b87667ba927bd287b1ffc153e872d60fe0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json",
+          "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json",
+          "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/approximation/tool-cards/03-full-muntz-moment-interface.json",
+          "sha256": "72005ae3f05f8990f2341f8a75c2b04cbb85553c55514114efe43c35046d8154",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "gap-band-extremals",
+      "title": "带状自洽与谱隙的接口导数",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/feynman-hellmann.md",
+          "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/gap-band-extremals.md",
+      "sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+      "version": "research/library/card-versions/754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723.md",
+      "summary": "Dirichlet变权弦采用积分rho*u_k²=1. 单接口谱隙导数为(rho_left-rho_right)f; 左右镜像反向移动时为2(rho_left-rho_right)f. 驻点方程不变. 弱反差局部唯一性以统一Volterra和根隔离修复; 固定n的盒类SUP极限为(n+1)²pi². 不提供有限R全局唯一性或INF分类.",
+      "conditions": [
+        "Dirichlet weighted string on (0,1), 1<=rho<=R, fixed n>=1",
+        "Weighted normalization integral rho*u_k^2=1",
+        "The doubled formula requires symmetric density and paired opposite interface velocities"
+      ],
+      "scope": "Single and symmetric-pair shape derivatives; small-contrast local theorem; general-n supremum large-R limit. No all-R branch uniqueness or INF classification.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND7_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/212354a8683ad565ed9e50bea7ac9e9485ed1bf181264debe87e7d399dfbd2b4.json",
+          "sha256": "212354a8683ad565ed9e50bea7ac9e9485ed1bf181264debe87e7d399dfbd2b4",
+          "kind": "observation",
+          "author": "coordinator-20260921-round7",
+          "locator": "Round7 repaired proof, coordinate-aware regression and independent review",
+          "source_id": null,
+          "tool_sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/53c9dd1d6133e952205ccd9c382e817d5f2f95abffea9f0703a8152aac734051.json",
+          "sha256": "53c9dd1d6133e952205ccd9c382e817d5f2f95abffea9f0703a8152aac734051",
+          "kind": "unverified-source-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "eb80f72bab64e453bc0e2da8d328fa757be2198d4f8d7f9297e67b06909ab0d9",
+          "tool_sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round7 Wronskian/endpoint/local symmetry and general supremum limit",
+          "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+          "sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical n=1 large-R numerical evidence; not rerun as a full table",
+          "path": "docs/SL_gap_extremals.tex",
+          "sha256": "8e7a85ddb99cdc7cc395e0e855eebff9b8edec59e7e61c089cbabb7b97f5f070",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "program",
+          "locator": "Independent round7 finite checks",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+          "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "numerical-evidence",
+          "locator": "Nonstationary mirror derivative and other scoped checks",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/outputs.json",
+          "sha256": "9b54ef988988f2117bda2d2e1cfcea66702bc45fa916e7375cbd7dbc3761f3a8",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-boundary-right-inverses",
+      "title": "Finite Krein boundary corrections with GKN scope checks",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-boundary-right-inverses.md",
+      "sha256": "7eb39ea302a061590462e8b6884a55bf14f4a4d6dcd615af005cd51231dc418f",
+      "version": "research/library/card-versions/7eb39ea302a061590462e8b6884a55bf14f4a4d6dcd615af005cd51231dc418f.md",
+      "summary": "Explicit two- and four-trace right inverses preserve polynomial constraints; regular boundary-form dimensions and isotropy are checked separately from matrix rank.",
+      "conditions": [
+        "Regular constant-coefficient expression c-D^2 on (-1,1), c>0.",
+        "Use the actual maximal/minimal domains and deficiency counts: (2,2) at order two, (4,4) at order four.",
+        "Sobolev approximation and continuous trace bounds must be supplied before inferring any graph-core or closure result.",
+        "For the divisible correction use an even integer L>=2 and the two polynomials x^L,x^(L+1)."
+      ],
+      "scope": "Boundary algebra for the current operator, not the unverified singular Legendre examples in arXiv1706.01539v1; rank alone does not certify GKN isotropy or density.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/ebcf4263eb72d1ea7e12f3961e4dfca7f55ed60d70544431d129fb5b81f6f317.json",
+          "sha256": "ebcf4263eb72d1ea7e12f3961e4dfca7f55ed60d70544431d129fb5b81f6f317",
+          "kind": "scope-check",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "81e2c35fb164cbac94419b48f34bcf07003fc5be379331674534186a9a53e5c8",
+          "tool_sha256": "7eb39ea302a061590462e8b6884a55bf14f4a4d6dcd615af005cd51231dc418f",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW",
+          "locator": "Entire scoped derivation",
+          "path": "literature/absorption-20260923/domains/proofs/04-boundary-algebra-and-gkn-scope.md",
+          "sha256": "a5a7a8d75ecbacd224fc39c4e196096fc294661391bd367c770451ce9a6bfe09",
+          "binding_state": "CURRENT"
+        },
+        {
+          "author_source_id": "L04",
+          "locator": "Prop2.14 pp9-10, Thm3.2 pp12-14; v1 Section4 applications not imported",
+          "primary_source_id": "4b4ebfa9887b8857f629abd7f20fb216d396eeaf73f8102042104931de819010",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "73f6d4f8d074542f04c3b90d1badcea36b204e424d06e49cea27f8690f809957",
+          "sha256": "73f6d4f8d074542f04c3b90d1badcea36b204e424d06e49cea27f8690f809957",
+          "text_sha256": "87e17f097007dbc81ada097f1d7a5beeccd6734a6405be8710971b32d88a548a",
+          "url": "https://arxiv.org/pdf/1706.01539v1",
+          "version": "1706.01539v1",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "locator": "98 exact checks; four negative controls; finite algebra only",
+          "path": "literature/absorption-20260923/domains/evidence/exact-checks.json",
+          "sha256": "c7c007d6ab457b9c06adcc90bfe593a54db44ae7c0ee37b7ec438856069b3adb",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "81e2c35fb164cbac94419b48f34bcf07003fc5be379331674534186a9a53e5c8",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/runtime/report.json",
+          "sha256": "e452a8b06161ae000231401516a1601f6e2a09fcda10d5bf4747725c6cc79472",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/provenance.json",
+          "sha256": "1fb86b2cefba8ee11c4576698a104a87e09f7be1f0bff859fe698694d3a2ff02",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/domains/proposed-tool-cards/krein-boundary-right-inverses.json",
+          "sha256": "374d8c74436193ea9f0812178447094f1e525777b2b75c9d3a6f27c5f2cebd1e",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-fractional-trace-dictionary",
+      "title": "Krein fractional domains via full-interval parity and critical weighted traces",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-fractional-trace-dictionary.md",
+      "sha256": "83493e09a0acb24d87633cce6607e69d3d774901efa6a15af93284ca7b5c9eba",
+      "version": "research/library/card-versions/83493e09a0acb24d87633cce6607e69d3d774901efa6a15af93284ca7b5c9eba.md",
+      "summary": "A matched Neumann/shifted-Robin adaptation of Grubb yields ordinary boundary layers off s=3/2+2k and weighted H1/2-type conditions at those critical orders.",
+      "conditions": [
+        "Same fixed c>0 constant-coefficient Kc and coupled boundary domain as proof01.",
+        "Ordinary Hs_Sob is the L2 Bessel/Sobolev scale on the smooth interval (-1,1).",
+        "Use full-interval Nc=-D^2+c and Rc+4=-D^2+c+4 with outward Robin derivative minus value zero; positivity and normal ellipticity checked in proof02.",
+        "Apply Grubb only to these uniform-order j=1 local realizations; reduce parity and compare positive scalar shifts before transferring to Kc."
+      ],
+      "scope": "All s>=0 for this smooth constant-coefficient operator. Constants may depend on c and s. Not an arbitrary mixed-boundary theorem, uniform-c estimate, or deletion classification.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/b566334104d97426032d924e9225eddd723f7acbde04bc1b2e0a01b5fd32eb21.json",
+          "sha256": "b566334104d97426032d924e9225eddd723f7acbde04bc1b2e0a01b5fd32eb21",
+          "kind": "research-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "8a91706a736afcfd01d7fb570b856d2260500d3296530d354acd2fc33fd02b51",
+          "tool_sha256": "83493e09a0acb24d87633cce6607e69d3d774901efa6a15af93284ca7b5c9eba",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW",
+          "locator": "D1-D5",
+          "path": "literature/absorption-20260923/domains/proofs/02-fractional-trace-dictionary.md",
+          "sha256": "05467a3f3449b4f3df2317cdc7af558aec6194dc7f285bfb0ed275a1fe18038a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "author_source_id": "L03",
+          "locator": "Definition2.1/Theorem2.2 arXiv PDF p3; Corollary2.3/equation2.7 p4; author-posted journal p833 (PDF p4)",
+          "primary_source_id": "2311d88c1b3fcaed9db6d22ae1f840a938b87f3e088f94cb487022cab326277b",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "8dec5ce7ffe30c5f43c68dd6b93a2cedf038d47cf42b54a621a65eb178350f36",
+          "sha256": "8dec5ce7ffe30c5f43c68dd6b93a2cedf038d47cf42b54a621a65eb178350f36",
+          "text_sha256": "e7a4a1d6e119364a09410de2cddfb4013896e2fb512dc757fc5d8af2dddc34ad",
+          "url": "https://arxiv.org/pdf/1412.3744v4",
+          "version": "1412.3744v4",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "8a91706a736afcfd01d7fb570b856d2260500d3296530d354acd2fc33fd02b51",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/runtime/report.json",
+          "sha256": "e452a8b06161ae000231401516a1601f6e2a09fcda10d5bf4747725c6cc79472",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/provenance.json",
+          "sha256": "1fb86b2cefba8ee11c4576698a104a87e09f7be1f0bff859fe698694d3a2ff02",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/domains/proposed-tool-cards/krein-fractional-trace-dictionary.json",
+          "sha256": "248dfdc3505f61d7619c737618f27c5f2769dd05016f427539b6f031845293a4",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-infinite-deletion-subclasses",
+      "title": "Arithmetic versus reciprocal-summable retained sparse families in Hc2",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-infinite-deletion-subclasses.md",
+      "sha256": "40b38af703436a6be92b3b448d985ca30e77bde4e463c29d2c6502f292d4cc0a",
+      "version": "research/library/card-versions/40b38af703436a6be92b3b448d985ca30e77bde4e463c29d2c6502f292d4cc0a.md",
+      "summary": "At fixed c>0, a full arithmetic progression in each parity has the familiar affine-trace closure even after infinitely many deletions; a reciprocal-summable retained parity is not dense, including when its affine mode is retained.",
+      "conditions": [
+        "c>0, genuine Hc2=D(Kc), original p0=1,p1=x and p_(2m),p_(2m+1), m>=2.",
+        "Positive result: each selected parity set contains {a+d j:j>=0}, integers a>=2,d>=1.",
+        "Negative result: one retained infinite parity set S has sum_(m in S)1/m<infinity.",
+        "N is a selected-generator index set, not N_V of a closed subspace."
+      ],
+      "scope": "Two bounded infinite-deletion subclasses only. General divergent nonarithmetic deletion sets and exact sparse closure are not classified.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/aa0b1db425c3a7e4431caf3bb7c93d07f048ba2be0147e9ab4035f1c1dc24683.json",
+          "sha256": "aa0b1db425c3a7e4431caf3bb7c93d07f048ba2be0147e9ab4035f1c1dc24683",
+          "kind": "research-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+          "tool_sha256": "40b38af703436a6be92b3b448d985ca30e77bde4e463c29d2c6502f292d4cc0a",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "author_source_id": "2944ad9840c5b40329cd9fef544429f7724b4420e64be060a776a2e6eb5d071a",
+          "locator": "author PDF p3 Theorem1.3",
+          "primary_source_id": "1fe9491bc339fee21cc91079875a41ebb1a4792c631f57a0b2c37c09aba289e8",
+          "primary_source_namespace": "private source-cache",
+          "raw_path": "private/raw/L07-author.pdf",
+          "raw_sha256": "923025280f4f1c018ea0330f4f70739cd3dec8d68816cbfe5f178882e2ac19f4",
+          "text_path": "private/text/L07-author.txt",
+          "text_sha256": "40d56e45f20696767cb2512bb92b972580d37dabb5016ba7c45862371a4b7ea1",
+          "url": "https://people.tamu.edu/~terdelyi/papers-online/bill.pdf",
+          "version": "Author-hosted bill.pdf, 26 pp, linked as item [64]; no mathematical revision date supplied. PDF production metadata is 2022-10-20, not a claimed revision date.",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "kind": "author_derivation_pending_independent_review",
+          "locator": "D3-D4, arithmetic closure D7 and sparse annihilator construction",
+          "path": "literature/absorption-20260923/approximation/notes/04_infinite_deletions.md",
+          "sha256": "8dd35ebe86e67eb301716869b7d312b87667ba927bd287b1ffc153e872d60fe0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json",
+          "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json",
+          "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/approximation/tool-cards/04-infinite-deletion-subclasses.json",
+          "sha256": "b297392c60a00a5f5e3327d1f46a1aa430be426f24a4e988e147ed6f36dc53de",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-integrated-legendre-riesz",
+      "title": "Boundary-compatible integrated Legendre Riesz systems for fixed-c Hc2 and Hc4",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-integrated-legendre-riesz.md",
+      "sha256": "f7b869daf15b1bb470ca17a32fca41239e281b6392cd390a3533a854188de5a6",
+      "version": "research/library/card-versions/f7b869daf15b1bb470ca17a32fca41239e281b6392cd390a3533a854188de5a6.md",
+      "summary": "Add two affine lifts to the normalized twice-integrated Legendre core for s=2, or four explicit lifts to the four-times-integrated core for s=4; exact polynomial span, bounded Gram bands and uniform-in-degree stability follow analytically.",
+      "conditions": [
+        "Fixed real c>0; interval (-1,1); Bf=(f'(1)-Delta f/2,f'(-1)-Delta f/2).",
+        "s=2 uses D(Kc) and norm ||Kc f||; s=4 uses Bf=B(f'')=0 in ordinary H4 and norm ||Kc^2 f||.",
+        "Legendre P_n(1)=1; e_n=sqrt((2n+1)/2)P_n; J integrates from -1. Exact constant-c Gram entries."
+      ],
+      "scope": "Specific replacement polynomial Riesz bases, complete at s=2 and4; not the original monomial-difference family; constants depend on c and are not uniform at c=0.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/7f3f1842daac345bb1e09a894e6f3c444aef9ba04bc10c497d6024ec1510225a.json",
+          "sha256": "7f3f1842daac345bb1e09a894e6f3c444aef9ba04bc10c497d6024ec1510225a",
+          "kind": "research-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "80d217eb4b3ebb6f3b1da9b0b2788bfe802cc892ebfd57b0f2097f42f1d02748",
+          "tool_sha256": "f7b869daf15b1bb470ca17a32fca41239e281b6392cd390a3533a854188de5a6",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "author_source_id": "68743685a83769fb34e01c19cdbcce043995e769d51d593646a9b67b3fe29232",
+          "locator": "author PDF pp7-8, Lemma3.1 (3.4)-(3.7); p3 (2.5)",
+          "primary_source_id": "f2574d7d6769269c231a04fb9826cfd8c91faa867f330c2272749dd7a2bde6b6",
+          "primary_source_namespace": "private source-cache",
+          "raw_path": "private/raw/L08-author.pdf",
+          "raw_sha256": "b4681fc1c9aa1cc86f3e589ddb2ecadfd9d3965f22f62017ab752ff3383e0c9f",
+          "text_path": "private/text/L08-author.txt",
+          "text_sha256": "ab6d9854b0acb1e028336b9ffd36a0d14c7373e4a790027b5af497fa9be32329",
+          "url": "https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf",
+          "version": "Author-hosted LegendreG.pdf, 16 pp with 1994 journal header; not asserted identical to publisher edition",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "kind": "author_derivation_pending_independent_review",
+          "locator": "L0-L4, including exact constants and limits",
+          "path": "literature/absorption-20260923/approximation/notes/03_legendre_krein_construction.md",
+          "sha256": "9bb12829ca36fbbb28b10d0d3b23f656a06dba762755847da0c82098bbc07dab",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "80d217eb4b3ebb6f3b1da9b0b2788bfe802cc892ebfd57b0f2097f42f1d02748",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json",
+          "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json",
+          "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/approximation/tool-cards/02-krein-integrated-legendre.json",
+          "sha256": "95cd23d8c29d61d71e1b01e8717dd7100671a8a98b600b7e16b0bda4a3e02f2a",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-parity-unitary",
+      "title": "Krein parity unitary with complete domains and functional calculus",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-parity-unitary.md",
+      "sha256": "416b024723e5b071da0f243a2dc321d46b166d4a1a65332c3c90d6d81b33f902",
+      "version": "research/library/card-versions/416b024723e5b071da0f243a2dc321d46b166d4a1a65332c3c90d6d81b33f902.md",
+      "summary": "For fixed c>0, normalized even/odd restriction carries the current coupled Krein realization to Neumann-Neumann and Dirichlet-Robin half-interval operators, with all Borel-function domains transferred.",
+      "conditions": [
+        "Kc=-D^2+c on L2(-1,1), c>0 real.",
+        "D(Kc)={f in H2_Sob: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+        "Half-interval operator domains are exactly those in proof01 P2; sqrt(2) normalization is part of U."
+      ],
+      "scope": "This fixed coupled boundary realization; complex Hilbert spaces; Borel functional calculus and s>=0 power domains; negative scales only after completion.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/7565958c60dca1f813584233a36490a05433f2aab91c16ece51d81bb5bc90634.json",
+          "sha256": "7565958c60dca1f813584233a36490a05433f2aab91c16ece51d81bb5bc90634",
+          "kind": "scope-check",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "befc7469358b445abe663139e6bbab057e41992c80c6eee692773c0eb71ddfe3",
+          "tool_sha256": "416b024723e5b071da0f243a2dc321d46b166d4a1a65332c3c90d6d81b33f902",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW",
+          "locator": "P1-P4",
+          "path": "literature/absorption-20260923/domains/proofs/01-parity-unitary.md",
+          "sha256": "3e0a5c5c56298ffc31b7f98a30848fa0ec32d3d2ec24dedcd2ffd061c82a3aaa",
+          "binding_state": "CURRENT"
+        },
+        {
+          "author_source_id": "L05",
+          "locator": "Hyp4.1, Prop4.2, Thms4.3/4.4/4.7, (4.11)-(4.12), pp20-26",
+          "primary_source_id": "8415af02858c2707188170738c0855874c8f9658c6a73ed8001f3bf1236dc2b9",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "e3cc4394c7a613395a5ae56ef275face5bf38c805f7599065547465973c44045",
+          "sha256": "e3cc4394c7a613395a5ae56ef275face5bf38c805f7599065547465973c44045",
+          "text_sha256": "dcf871f890ec7df30cece96e386d29744c9a504d2fe53c8d514bafa2b2e94b6b",
+          "url": "https://arxiv.org/pdf/2410.04647v2",
+          "version": "2410.04647v2",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "author_source_id": "L01",
+          "locator": "Hyp2.1 and Thm2.4, pp10-13; use Kc/c to normalize",
+          "primary_source_id": "1937d38f8d380854c740446779c21718783650e1405dbeb44f0018fdce8f2f8b",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "454516433db2d5bcab7cc331ded464d322367c6204d1938f2671473bc38cbe40",
+          "sha256": "454516433db2d5bcab7cc331ded464d322367c6204d1938f2671473bc38cbe40",
+          "text_sha256": "77150eaab5dbb6931aced265d887b080e725193bed3db574f4ab4d1385e355de",
+          "url": "https://arxiv.org/pdf/2408.01514v1",
+          "version": "2408.01514v1",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "befc7469358b445abe663139e6bbab057e41992c80c6eee692773c0eb71ddfe3",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "eba49f723befaa9a72db155da8afee05d226f2ae516664ffdb89399abefd299f",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/runtime/report.json",
+          "sha256": "e452a8b06161ae000231401516a1601f6e2a09fcda10d5bf4747725c6cc79472",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/provenance.json",
+          "sha256": "1fb86b2cefba8ee11c4576698a104a87e09f7be1f0bff859fe698694d3a2ff02",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/domains/proposed-tool-cards/krein-parity-unitary.json",
+          "sha256": "681471a1821ee24b0e556d992a8e3c2dec4de386102391bb7d81b959efc2b2a1",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "krein-s3-cofinite-three-traces",
+      "title": "Cofinite sparse-family closure in the third Krein scale",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/krein-s3-cofinite-three-traces.md",
+      "sha256": "519d6748ed9d2e7f706b4490acc4d73c243ddbc3f71634bca64c5040353e552c",
+      "version": "research/library/card-versions/519d6748ed9d2e7f706b4490acc4d73c243ddbc3f71634bca64c5040353e552c.md",
+      "summary": "The s=3 author proof adds the second centre trace: cofinite density requires retention of indices 0,1,4, with sufficiency supplied by local cutoff and corrected polynomial approximation.",
+      "conditions": [
+        "Fixed real c>0, complex Hc^3=D(Kc^(3/2)) with its power norm.",
+        "D={0,1} union {4,5,...}; p0=1,p1=x; p_(2m)=x^(2m)-m/(m-1)x^(2m-2) and p_(2m+1)=x^(2m+1)-m/(m-1)x^(2m-1), m>=2.",
+        "N is a cofinite subset of D; all spans are finite complex spans.",
+        "Use Hc3=H3_Sob intersect ker B with equivalent norms, proved in proof03 C1."
+      ],
+      "scope": "Only cofinite subsets of this specified family at s=3. No claim at s=5/2, for infinite deletions, arbitrary constrained families or stable bases.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/fc1557a46e6c8e610067b9be559611f63f30592c0e2e7446bf4e63c1b024331a.json",
+          "sha256": "fc1557a46e6c8e610067b9be559611f63f30592c0e2e7446bf4e63c1b024331a",
+          "kind": "cross-result",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "0eebd76f9e7d4cbec6ce6d6992bfc5be7ea019fcf694dad7a6771796f6001df8",
+          "tool_sha256": "519d6748ed9d2e7f706b4490acc4d73c243ddbc3f71634bca64c5040353e552c",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "kind": "ORIGINAL_AUTHOR_PROOF_PENDING_REVIEW",
+          "locator": "C1-C8 and limitations",
+          "path": "literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md",
+          "sha256": "72a80213f816072e4fdeb50b0a839c0b4e6f25a8182e627ef7db087498719e42",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "R5-ALG/CUT/POLY/TAIL/COFINITE; s=2 predecessor, not an s=3 input theorem",
+          "path": "docs/SL_cofinite_left_definite.tex",
+          "sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/runtime/report.json",
+          "sha256": "e452a8b06161ae000231401516a1601f6e2a09fcda10d5bf4747725c6cc79472",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/domains3/provenance.json",
+          "sha256": "1fb86b2cefba8ee11c4576698a104a87e09f7be1f0bff859fe698694d3a2ff02",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/domains/proposed-tool-cards/krein-s3-cofinite-three-traces.json",
+          "sha256": "e7615ef2dc4c159dfb3b441c92288d381b0595059dd7bc072f4e7c744005f4a1",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "leftdef-o1pld-l2-structural",
+      "title": "第二左定空间的余有限稀疏族: 两条迹与L2障碍",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/left-definite-theory.md",
+          "sha256": "d16763412efe0a14ee2f32a17bf2d1e770360c255ef53a480ee222dd3471ac91"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/leftdef-o1pld-l2-structural.md",
+      "sha256": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+      "version": "research/library/card-versions/280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e.md",
+      "summary": "# 第二左定空间的余有限稀疏族: 两条迹与 L2 障碍 固定实数 c>0. 这里 Hc2 是满足 Krein 边界条件的 D(Kc), 范数为 ||Kc f||_2, Kc f=-f''+cf. 它不是全部普通 Sobolev H2. 函数和线性空间允许复数, 内积对第一变量线性. 指标 D={0,1}∪{4,5,...}, p0=1,p1=x, p_(2m)=x^(2m)-m/(m-1)x^(2m-2), p_(2m+1)=x^(2m+1)-m/(m-1)x^(2m-1), m>=2; q_n=Kc p_n. ## 被反证的旧候选声明 旧 run R-20260823T030000Z-leftdef-o1pld 的 Claim4、Theorem5、Corollary6 原状态均为 NOT-YET-STRICT. 以下按原量词均为 REFUTED: 尾部三项递推迫使全部 L2 矩为零; 任意余有限 q_n 子族在整个 L2 稠密; 任意真闭 V 必排除无穷多项. 旧 run 保留历史身份, 不能继续把这三条当作待证任务. 最短反例为 V={f∈Hc2:f(0)=0}. 求值连续, V ",
+      "conditions": "Both central traces are continuous in the equivalent left-definite and Sobolev H2 norms. Complete sufficiently high tails are used for the closure argument.",
+      "scope": "Fixed real c>0; complex Hc2=D(Kc) with specified Krein boundary conditions; cofinite subsets of D={0,1} union {4,5,...}. No general non-cofinite or s=3 conclusion.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/b8d18e285b0d4c2159cace50682c5200f74020f482fed5545b9b2481822aefb2.json",
+          "sha256": "b8d18e285b0d4c2159cace50682c5200f74020f482fed5545b9b2481822aefb2",
+          "kind": "cross-result",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "0eebd76f9e7d4cbec6ce6d6992bfc5be7ea019fcf694dad7a6771796f6001df8",
+          "tool_sha256": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86.json",
+          "sha256": "e6b65f639b32c1b2ff532c9c0542cb45f1111551dfd0c3e9655d3fb7a05f5e86",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round5",
+          "locator": "R5-TAIL-MOMENT and cofinite two-trace classification",
+          "source_id": null,
+          "tool_sha256": "f7fb9661112adbc744be991b923e39b9bd6bedec4dbbb89ced1cbc36962e7430",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Fifth-round Green kernels, cofinite closure and monomial correction",
+          "path": "docs/SL_cofinite_left_definite.tex",
+          "sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Section2, positive self-adjoint shifted Krein operator and isometry",
+          "path": "docs/SL_h2_completeness_proof.tex",
+          "sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical Lemma1 and refuted Claim4/Theorem5/Corollary6; unchanged branches scoped separately",
+          "path": "runs/rigorous-open-math-research/R-20260823T030000Z-leftdef-o1pld/candidate_proof.md",
+          "sha256": "cc358526dfd62dd799741c106407317429791f21486326fd48da8ed0b917f20c",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sixth-round range/dependency update only; unchanged earlier branches keep their own scope",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "measure-weight-atoms-and-concentration",
+      "title": "Weight atoms, delta-prime interactions and signed Green concentration",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/measure-weight-atoms-and-concentration.md",
+      "sha256": "8678e064872d933b48db9a3209994be7ea56a0451271d8b335952cebdaeafda6",
+      "version": "research/library/card-versions/8678e064872d933b48db9a3209994be7ea56a0451271d8b335952cebdaeafda6.md",
+      "summary": "Map the project to measure coefficients varrho=rho dx, varsigma=dx, chi=0. Distinguish actual weight atoms, interaction encodings and distributional derivatives; extend a fixed continuous-kernel quadratic form under bounded TV and convergent signed masses.",
+      "conditions": [
+        "For the atomic weight example: c>0, M>=0, a strictly interior, varrho=c dx+M delta_a; varsigma=dx and chi=0",
+        "For concentration: the base kernel is fixed and continuous on the closed square, total variations are uniformly bounded, supports shrink in finitely many clusters and each signed mass converges",
+        "A moving density-step second derivative is a distribution paired only with sufficiently differentiable functions"
+      ],
+      "scope": "A regular one-dimensional coefficient mapping plus an elementary fixed-kernel limit. Does not assert differentiated-resolvent convergence for arbitrary measures.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/a2fde78b1bf34ce2c06c4ebfe519f3fa4e030901e9d8f355ebba046975f6dd73.json",
+          "sha256": "a2fde78b1bf34ce2c06c4ebfe519f3fa4e030901e9d8f355ebba046975f6dd73",
+          "kind": "scope-check",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "5a1af53f0cce3088825e827155c02234c036005882913e04a4c28a4566a0ee74",
+          "tool_sha256": "8678e064872d933b48db9a3209994be7ea56a0451271d8b335952cebdaeafda6",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "id": "L11",
+          "locator": "pp.4-7,9-11,24,27-28,32-33; Hypothesis3.7, Theorems3.1,3.6,7.6,8.3; Cor8.4",
+          "manifest_path": "source-manifest.json",
+          "primary_source_id": "7c3dca82db43d15d32197e472b2d2425d6201a54f1f879f16e7ece0031a025e6",
+          "primary_source_namespace": "private source-cache",
+          "raw_sha256": "9c748bd9ec74523f5bbea9391ea96016bdb7c953982afd0b303e4f15505ac9e5",
+          "text_sha256": "dfd269c714a749ba17e494ffb2b19d0492ca930a8369791dcf126abf26449d09",
+          "url": "https://arxiv.org/pdf/1105.3755v2",
+          "binding_state": "UNBOUND_REFERENCE"
+        },
+        {
+          "authorship": "original author derivation or source adaptation, not independently accepted",
+          "locator": "Mapping, delta-prime and concentration sections",
+          "path": "literature/absorption-20260923/interfaces/notes/L11-source-to-claim.md",
+          "sha256": "77e0637e97d48745eae29fdf60053e2d26a840cec8697821ae244fe80fa202e7",
+          "binding_state": "CURRENT"
+        },
+        {
+          "authorship": "original author derivation or source adaptation, not independently accepted",
+          "locator": "C3-C4",
+          "path": "literature/absorption-20260923/interfaces/derivations/calibrations.md",
+          "sha256": "1d568b2149ddf54ece55b5d761a34fe5a93f0e549b7236ec6f52b632173514c9",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+          "source_id": "5a1af53f0cce3088825e827155c02234c036005882913e04a4c28a4566a0ee74",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [
+        {
+          "locator": "Per-claim scope and limitations",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/runtime/report.json",
+          "sha256": "2d1715c9e70ffabb070309951095607336b50e689efac7becd921d8a2ff40a3f",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Native call and exact input identities; private primary-source availability",
+          "path": "research/artifacts/literature-absorption-20260923/reviews/interfaces/provenance.json",
+          "sha256": "262e2c35376c4e081786967c0caf25e208db59dd6404c6ec2efe066bfc6bf4d6",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Exact proposed card reviewed independently",
+          "path": "literature/absorption-20260923/interfaces/cards/L11-measures-and-concentration.json",
+          "sha256": "c9725d110862f6cf9519e988a9a512578a11701e84f3af436e50d990d58aa1fd",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "ratio-first-pair-variational",
+      "title": "首对谱比值的全局变分极值证明",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/ratio-first-pair-variational.md",
+      "sha256": "0a92348158f098dd0114fecf3c5ed320476ed9bcafe42af97d7766695380b33a",
+      "version": "research/library/card-versions/0a92348158f098dd0114fecf3c5ed320476ed9bcafe42af97d7766695380b33a.md",
+      "summary": "# 首对谱比值的全局变分极值证明 在长为 1 的区间上考虑 Dirichlet 问题 `-u''=lambda*rho*u`, `1<=rho<=R`, `R>1`. 允许有界可测密度, 按几乎处处相等识别. 令 `s=sqrt(R)`. 首对比值的最大者为 `[1,R,1]`, 块宽为 `(s,1,s)/(2s+1)`; 最小者为 `[R,1,R]`, 块宽为 `(1,s,1)/(s+2)`. 区间中心固定时, 两个极值密度各自按 a.e. 意义唯一. `R=1` 单独给出比值 4. 可以复用的证明结构: 1. 密度盒类 weak* 紧. 在 H1_0 上用 `a(T_rho u,v)=integral rho*u*v` 定义紧正算子. 单位球在连续函数空间的紧嵌入 将 weak* 收敛升级为 T_rho 的算子范数收敛, 从而极值存在. 2. 按 `integral rho*u_i^2=1` 归一化. 首变分 `d log(lambda2/lambda1)[h]=integral h*(u1^2-u2^2)` 给出 bang-bang 条件. 取 u1>0, u2 在左端为正, W",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [
+        {
+          "path": "research/library/annotations/1bb1b8fba35d5d2283af20fc3caf3dcc187d0f9c9c8b6b8a6f4f70268d1c072b.json",
+          "sha256": "1bb1b8fba35d5d2283af20fc3caf3dcc187d0f9c9c8b6b8a6f4f70268d1c072b",
+          "kind": "correction",
+          "author": "coordinator-20260920-round2",
+          "locator": "reports/proof-audit-round2-20260920/REPORT.md",
+          "source_id": null,
+          "tool_sha256": "0a92348158f098dd0114fecf3c5ed320476ed9bcafe42af97d7766695380b33a",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/c6f2c50d02bca2fc33cd91955829454419107ec298c17b990c2afbf61d0ce378.json",
+          "sha256": "c6f2c50d02bca2fc33cd91955829454419107ec298c17b990c2afbf61d0ce378",
+          "kind": "source-attribution",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "6aa36b0d06b92dc2c36d5e40442d74f63a5f1a17788329cea428426ac4d9501a",
+          "tool_sha256": "0a92348158f098dd0114fecf3c5ed320476ed9bcafe42af97d7766695380b33a",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "second-variation-weighted-eigenvalues",
+      "title": "加权特征值二阶变分与归一化、切向及接口路径规范",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/second-variation-weighted-eigenvalues.md",
+      "sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+      "version": "research/library/card-versions/2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7.md",
+      "summary": "正密度线性路径的二阶谱公式; 归一化导数含核分量. 分块切向使用块积分, Green核有界, 集中脉冲须总变差有界且有符号质量收敛才有点值极限; 移动接口另有有限加速度项. 不证明切空间负定或G1定号.",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND9_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/09592fa98929c7cb62e3a506b1b581a10946c06e78a9716c3d1e897955278d8a.json",
+          "sha256": "09592fa98929c7cb62e3a506b1b581a10946c06e78a9716c3d1e897955278d8a",
+          "kind": "cross-result",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+          "tool_sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/5f9ae39ec16a0b6489e9b1a2a0c9099ba96ece0a858f8a0df091ae76b07d4d6b.json",
+          "sha256": "5f9ae39ec16a0b6489e9b1a2a0c9099ba96ece0a858f8a0df091ae76b07d4d6b",
+          "kind": "correction",
+          "author": "01a06f46-dd03-7c83-9267-32048412c359",
+          "locator": "V2-V4 and independent review F1",
+          "source_id": null,
+          "tool_sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "V1-V4",
+          "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+          "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "spectral-domain-checks",
+      "title": "Krein 谱系与幂域成员性检查",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/spectral-domain-checks.md",
+      "sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+      "version": "research/library/card-versions/eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7.md",
+      "summary": "# Krein 谱系与幂域成员性检查 设 `c>0`, 在 `L2(-1,1)` 中取 `Kc f=-f''+cf`, 定义域为通常 Sobolev `H2` 中满足 `f'(1)=f'(-1)=(f(1)-f(-1))/2` 的函数. 对非负实数 s, 这里的 `Hs` 专指 `D(Kc^(s/2))`, 不直接指通常 Sobolev 空间. 完整正交谱系包含两个低模态: | 未归一化模态 | 特征值 | L2 范数平方 | | --- | --- | --- | | 1 | c | 2 | | x | c | 2/3 | | cos(n pi x), n>=1 | (n pi)^2+c | 1 | | sin(mu_n x), n>=1 | mu_n^2+c | mu_n^2/(1+mu_n^2) | `mu_n` 是 `(n*pi,(n+1/2)*pi)` 中 `tan(mu)=mu` 的唯一根. 偶、奇子空间 分别化为 `[0,1]` 上的 Neumann-Neumann 和 Dirichlet-Robin 问题, 后者 含零频模态 x. 有 `||x||_s^2=2*c^s/",
+      "conditions": "UNSPECIFIED",
+      "scope": "Fixed c>0; original complete named sparse family in genuine powers of the positive self-adjoint Krein operator; no uniform-c, arbitrary-subspace or stable-basis claim.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND6_SCOPED_ANALYTIC_REPAIR; REUSE_REQUIRES_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/2917524d7f6c21a2dc3114177cfad3e8ec41c5c3e13b630f8fbda3e04157bcdc.json",
+          "sha256": "2917524d7f6c21a2dc3114177cfad3e8ec41c5c3e13b630f8fbda3e04157bcdc",
+          "kind": "research-experience",
+          "author": "coordinator-20260921-round6",
+          "locator": "Sixth-round repaired proof and independent findings",
+          "source_id": null,
+          "tool_sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/ba233a3673ae441970c26daab99bfa1e1a2df7066730fbe1f947dbc82cf29d21.json",
+          "sha256": "ba233a3673ae441970c26daab99bfa1e1a2df7066730fbe1f947dbc82cf29d21",
+          "kind": "correction",
+          "author": "coordinator-20260920-round2",
+          "locator": "reports/proof-audit-round2-20260920/REPORT.md",
+          "source_id": null,
+          "tool_sha256": "8deeec4e940472b96a502a78ea8a600bb9570547c9819b378199d006233625d4",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/c1b411eb024067b809f0829a58dee778765d82e03a42cb780bf8079f9be062f7.json",
+          "sha256": "c1b411eb024067b809f0829a58dee778765d82e03a42cb780bf8079f9be062f7",
+          "kind": "cross-result",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "8a91706a736afcfd01d7fb570b856d2260500d3296530d354acd2fc33fd02b51",
+          "tool_sha256": "eb65a8a7e076bd2299695b3e1d3dbaf012d822a311bfd5b890c480c68a50e9c7",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Full spectrum, all-member threshold and four-trace graph-core proof",
+          "path": "docs/SL_fractional_left_definite.tex",
+          "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    }
+  ],
+  "total_matches": 16,
+  "issues": [
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md",
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "6d7c9ba9e0298f3176545c996934df92cfb15b21490a34f85e55bbb138cf3106",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4b8b5b52d092ff4f294233332d6bbcbfb48dbb7b2b8b83403101ffd95c70b5a2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ecf70cb8a9c202455baa95802b49054f73354a1b6fbd3bd11db637416118a02e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b204180d36641021c5724355b6a74515b5155f68eb98c18d0d04d15e3acdb3f5",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "63d81785a166cb01e85a5d96bda6a88ebc75d402381d0503963697069fcbf046",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fe416182bd384429604bf340b002205811c3acdd35e97c2a439687d16b3f6e21",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "50fa3700213e6325dfad01ba39f0034e854991efb5d47d9cf0731933c67047a4",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "21733edfd0ccbe470a82e5f47cadcc904782c6eb637ae2acdae7c2f7d1e823d1",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "759b49f03efb0880aa38220e486d54d785cbd199c2175a04c88140689a8ccafb",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "c7507da37594c02487b1ca0d25960db48be984aaa383dfec70c2560fdaa4d010",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4a74cfd173c4a10458a5282cf614140a5d345af940508d5e795a3ad6e4f66fa9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "a4e5ebf660c41e84bebba94cacc51afb91b2060c4dd47550762efd8019088f4c",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "dd18b0a0c318c7c3021a83e660a9d2c498c8f2c5e0fa42538154f482304b550d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b581368d18d8b1ae044171a0a0943375eafe1536a82a7567095164c8fe5cc0d6",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b98e30355330073dfe9e209ba5bfe73ed5450e32fa9abee774bd3a91500a0e32",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "a410b906d539aa6998c206c98d90ee1be47acc711c9d82062b966498f5f89b46",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "726b8dabd6126b88bb2b90ef11b67a50b8785f7ee180eeeae890d1f5f7ba1124",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "990dfa97507851796c7a229e51d2f89eee21caeab3cb0e2d9e302e2338f9561f",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "03f0500237afcffb14a5de639f2af74fc3513900f8505a8fda487115b6d9d5ff",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fc1cc6f5f68d139f7d49cbda479785d965f8e3adaa23a6cf7d9c3557b6967dec",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "d7ed047fd46a5d5a749425589f3b1d2de98bec26a9005e8ac8ae54591693ab82",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "50a06424922e77a0b6e577c33bb60980d12f9ed7d0bf45633bfae05e31ae5d45",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "04a91a8c5e2ec803f754a72b1875be3184b0b5cade343c977bac93cd7277dec4",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "594708077caec6cbe8a60648b560a0129c0503fdaf71f482b5a452f1bdafa847",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "baa3e4c556f3de2a58792c1d69bc4ed383862c3bfd61ffc25b693cd15e88db5a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md"
+    },
+    {
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "6d7c9ba9e0298f3176545c996934df92cfb15b21490a34f85e55bbb138cf3106",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4b8b5b52d092ff4f294233332d6bbcbfb48dbb7b2b8b83403101ffd95c70b5a2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "ecf70cb8a9c202455baa95802b49054f73354a1b6fbd3bd11db637416118a02e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b204180d36641021c5724355b6a74515b5155f68eb98c18d0d04d15e3acdb3f5",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "63d81785a166cb01e85a5d96bda6a88ebc75d402381d0503963697069fcbf046",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fe416182bd384429604bf340b002205811c3acdd35e97c2a439687d16b3f6e21",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "50fa3700213e6325dfad01ba39f0034e854991efb5d47d9cf0731933c67047a4",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "21733edfd0ccbe470a82e5f47cadcc904782c6eb637ae2acdae7c2f7d1e823d1",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "759b49f03efb0880aa38220e486d54d785cbd199c2175a04c88140689a8ccafb",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "c7507da37594c02487b1ca0d25960db48be984aaa383dfec70c2560fdaa4d010",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4a74cfd173c4a10458a5282cf614140a5d345af940508d5e795a3ad6e4f66fa9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "a4e5ebf660c41e84bebba94cacc51afb91b2060c4dd47550762efd8019088f4c",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "dd18b0a0c318c7c3021a83e660a9d2c498c8f2c5e0fa42538154f482304b550d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b581368d18d8b1ae044171a0a0943375eafe1536a82a7567095164c8fe5cc0d6",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b98e30355330073dfe9e209ba5bfe73ed5450e32fa9abee774bd3a91500a0e32",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "a410b906d539aa6998c206c98d90ee1be47acc711c9d82062b966498f5f89b46",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "726b8dabd6126b88bb2b90ef11b67a50b8785f7ee180eeeae890d1f5f7ba1124",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "990dfa97507851796c7a229e51d2f89eee21caeab3cb0e2d9e302e2338f9561f",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "03f0500237afcffb14a5de639f2af74fc3513900f8505a8fda487115b6d9d5ff",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fc1cc6f5f68d139f7d49cbda479785d965f8e3adaa23a6cf7d9c3557b6967dec",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "d7ed047fd46a5d5a749425589f3b1d2de98bec26a9005e8ac8ae54591693ab82",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "50a06424922e77a0b6e577c33bb60980d12f9ed7d0bf45633bfae05e31ae5d45",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "04a91a8c5e2ec803f754a72b1875be3184b0b5cade343c977bac93cd7277dec4",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    },
+    {
+      "release": "594708077caec6cbe8a60648b560a0129c0503fdaf71f482b5a452f1bdafa847",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    },
+    {
+      "release": "baa3e4c556f3de2a58792c1d69bc4ed383862c3bfd61ffc25b693cd15e88db5a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "schema": "private-source-review-export/v1",
+  "verdict": "APPROVED",
+  "packet_sha256": "7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7",
+  "reviewer_id": "01a0cd26-cae2-7a63-9fba-0248babb4879",
+  "fork_context": false,
+  "original_review_project": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation",
+  "original_runtime_bundle": "research/library/reviews/runs/7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7-01a0cd26-cae2-7a63-9fba-0248babb4879",
+  "local_runtime_verification": {
+    "verdict": "APPROVED",
+    "packet_sha256": "7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7",
+    "reviewer_id": "01a0cd26-cae2-7a63-9fba-0248babb4879",
+    "bindings": {
+      "notes/01_primary_sources.md": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+      "notes/02_finite_tsvd.md": "0ef305e28720f16f5961620af2aa180c6c8fb5ccfb6f396d6ae4a83d68e2ada1",
+      "notes/03_legendre_krein_construction.md": "9bb12829ca36fbbb28b10d0d3b23f656a06dba762755847da0c82098bbc07dab",
+      "notes/04_infinite_deletions.md": "8dd35ebe86e67eb301716869b7d312b87667ba927bd287b1ffc153e872d60fe0",
+      "private/checks/check_author_results.py": "e0c0eac659712a94383f48fc5b91c3693ded54d09a8188967e5aa6f2695bbcb6",
+      "private/checks/checks-run-01.log": "772b773e9b2acd4a6bf07da5cf3fa05ac82edca17f795b02db1d6b8e3a5ecb1e",
+      "private/checks/execution-20260923T071045038414Z.json": "b9bf731a7aedf012d8ff8754f9cfb049cb5681c22b2584dd5e39d567fcf45a40",
+      "private/raw/L07-author.pdf": "923025280f4f1c018ea0330f4f70739cd3dec8d68816cbfe5f178882e2ac19f4",
+      "private/raw/L08-author.pdf": "b4681fc1c9aa1cc86f3e589ddb2ecadfd9d3965f22f62017ab752ff3383e0c9f",
+      "private/raw/L09-arxiv-v4.pdf": "7216e8f13713562927b7a6fd1fcd318697614656acecfb1410e3d41dff767b9e",
+      "private/text/L07-author.txt": "40d56e45f20696767cb2512bb92b972580d37dabb5016ba7c45862371a4b7ea1",
+      "private/text/L08-author.txt": "ab6d9854b0acb1e028336b9ffd36a0d14c7373e4a790027b5af497fa9be32329",
+      "private/text/L09-arxiv-v4.txt": "28312456cd1f50576ba32d1836f00775e8a01b08c832ff79162b5ecb788e4c02",
+      "project/docs/SL_cofinite_left_definite.tex": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+      "project/docs/SL_fractional_left_definite.tex": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+      "source-manifest.json": "9655cd07a272116ece6660d6122672fa353f105c39e3a8d2a7241cd969d2e9df",
+      "tool-cards/01-finite-tsvd.json": "72897fb85bacbfe8523425d90e6a2eaa3f8024b63cb3d72d4deac6c3a927ba2d",
+      "tool-cards/02-krein-integrated-legendre.json": "95cd23d8c29d61d71e1b01e8717dd7100671a8a98b600b7e16b0bda4a3e02f2a",
+      "tool-cards/03-full-muntz-moment-interface.json": "72005ae3f05f8990f2341f8a75c2b04cbb85553c55514114efe43c35046d8154",
+      "tool-cards/04-infinite-deletion-subclasses.json": "b297392c60a00a5f5e3327d1f46a1aa430be426f24a4e988e147ed6f36dc53de"
+    },
+    "claims": [
+      {
+        "id": "P2P4-source-fidelity",
+        "reason": "Checked the cited PDF passages and visually inspected the principal formula pages. L07 Theorems 1.3 and 3.6 require distinct real exponents greater than -1/p, compact A with positive lower density at zero, and precisely the stated shifted summation criterion. The analytic-extension branch has a convergent sum. The current notes import no Sobolev Müntz theorem. They correctly distinguish enlarged monomial spans from constrained difference spans. Shen's Dirichlet and clamped conditions, normalization constants, derivative Grams and band offsets agree with the PDF. Direct integration by parts confirms the generic Robin boundary-term caution and the negative Krein boundary contribution. L09 equation (5.2) uses a strict Gram cutoff; Theorem 5.3 has the square-root penalty, while its limiting consequence invokes the infinite frame bound. The supplied text extractions reproduce the PDFs exactly. Author/arXiv versions remain distinguished from publisher editions.",
+        "verdict": "APPROVED"
+      },
+      {
+        "id": "P2-finite-tsvd",
+        "reason": "The spectral derivation proves T1-T4 for arbitrary finite synthesis maps, including dependent columns, zero columns, the zero map and an empty retained spectrum. With first-variable-linear inner products, the stated adjoint and G_ij=<phi_j,phi_i> are correct. Positive eigenvectors produce orthonormal image vectors; discarded positive eigenvalues satisfy lambda<=epsilon, yielding the approximation and exact squared-error formulas. The coefficient operator and moment-reconstruction operator have norms bounded by epsilon^(-1/2); coefficient noise is bounded by epsilon^(-1). Perturbations of f instead pass through an orthogonal projection and are not subject to the moment-noise amplification. The synthesis cutoff conversion epsilon=tau^2 and positive relative-threshold interpretation are correct, with the zero map handled directly. Transfer requires genuine domain membership and exact Gram data. The supplied domain identities and the nonaffine original members' failure of the second boundary condition justify the s=4 exclusion.",
+        "verdict": "APPROVED"
+      },
+      {
+        "id": "P2-integrated-legendre-stability",
+        "reason": "L0-L4 pass analytic review. Kernel integration gives the stated Hilbert-Schmidt constants. Legendre orthogonality establishes both endpoint jets, finite recurrence support and completeness of the integrated cores, including n=2 and n=4. The affine s=2 lift and four s=4 lifts satisfy the actual coupled conditions and leave clamped remainders. Their polynomial spans have dimensions N-1 for N>=4 and N-3 for N>=8. The interpolation, trace and operator estimates imply the stated lower constants; Cauchy-Schwarz and bounded integration imply both upper constants for complex coefficients, independently of degree at fixed c. The expanded M_c squared identity was independently recomputed exactly. Legendre support proves the high-block bands and finite low coupling. The coefficient-tail bound and polynomial rate follow under the explicitly stated weighted square-summability hypothesis, and the Riesz bounds justify the TSVD transfer. These conclusions concern the replacement systems and provide no uniform lower bound as c approaches zero.",
+        "verdict": "APPROVED"
+      },
+      {
+        "id": "P4-infinite-deletion-classification",
+        "reason": "D0-D10 pass. Differentiation gives the genuine K_c image coefficients; moment conjugation, parity norms and exponent shifts are consistent. For D7, continuity of central traces proves one inclusion. For the reverse inclusion, the cutoff errors vanish through the local L2 norm of f'', parity-preserving smoothing admits the stated endpoint corrections, and the transformed boundary condition is h'(1)=0. The quotient defining F extends smoothly because the target vanishes near zero. C1 polynomial approximation followed by the exact D9 integration gives C2 convergence and hence H_c^2 convergence using only retained arithmetic generators. For reciprocal-summable sets, deduplicated enlarged exponents remain strictly above -1/2 and have finite Müntz sum. Their proper closed span therefore has a nonzero L2 orthogonal vector; the stated inverse parity unitary and genuine K_c inverse produce a nonzero domain annihilator. Both arithmetic and dyadic examples follow. D10 is exactly the bounded polynomial-functional criterion with the correct conjugation, so continuous extension and Riesz representation supply genuine moments. Selected indices remain distinct from actual closed-space membership, and arbitrary divergent nonarithmetic sets are not classified.",
+        "verdict": "APPROVED"
+      },
+      {
+        "id": "P2P4-cards-and-execution",
+        "reason": "All four cards preserve the relevant hypotheses, scope restrictions and proposed-review status. All 20 snapshot hashes match. After inspecting the checker, I copied it byte-for-byte into a new temporary project with private/checks and executed it there: exit code 0, 250/250 checks passed, matching the supplied check names and exact outputs. The run used Python 3.14.4, NumPy 2.5.2 and SymPy 1.14.0. Additional independent exact computations verified a complex dependent-column example with a zero column and threshold equality, the zero map, integration constants, smallest integrated modes, symbolic all-m boundary obstructions and the M_c squared expansion. Packet input hashes remained unchanged afterward. These computations support finite identities and diagnostics; the universal stability and infinite closure conclusions were checked analytically, not inferred from finite spectra. No Lean verification is claimed.",
+        "verdict": "APPROVED"
+      }
+    ],
+    "checked_paths": [
+      "notes/01_primary_sources.md",
+      "notes/02_finite_tsvd.md",
+      "notes/03_legendre_krein_construction.md",
+      "notes/04_infinite_deletions.md",
+      "private/checks/check_author_results.py",
+      "private/checks/checks-run-01.log",
+      "private/checks/execution-20260923T071045038414Z.json",
+      "private/raw/L07-author.pdf",
+      "private/raw/L08-author.pdf",
+      "private/raw/L09-arxiv-v4.pdf",
+      "private/text/L07-author.txt",
+      "private/text/L08-author.txt",
+      "private/text/L09-arxiv-v4.txt",
+      "project/docs/SL_cofinite_left_definite.tex",
+      "project/docs/SL_fractional_left_definite.tex",
+      "source-manifest.json",
+      "tool-cards/01-finite-tsvd.json",
+      "tool-cards/02-krein-integrated-legendre.json",
+      "tool-cards/03-full-muntz-moment-interface.json",
+      "tool-cards/04-infinite-deletion-subclasses.json"
+    ],
+    "kind": "mathematics",
+    "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+    "bundle": "research/library/reviews/runs/7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7-01a0cd26-cae2-7a63-9fba-0248babb4879",
+    "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+    "limitations": [
+      "L07 is used as an external theorem after checking its statement and application hypotheses; its complete proof and cited auxiliary literature were not independently re-proved.",
+      "Publisher full texts, author-index HTML, retrieval logs and other provenance artifacts mentioned only inside the manifest were not supplied as packet inputs. Their historical retrieval claims and publisher-version equivalence were not independently verified.",
+      "Numerical Gram checks concern finitely many parameters and degrees and are not interval certificates or proofs of infinite-dimensional statements.",
+      "Approval covers the listed obligations only. It does not establish quadrature perturbation bounds, uniform stability as c approaches zero, arbitrary divergent nonarithmetic deletion criteria, or complete formalization.",
+      "No Lean execution or formal-declaration audit was performed."
+    ]
+  },
+  "public_export_scope": "Native dispatch/completion/report and exact public-input mapping. Raw third-party primary papers/extractions remain private. This directory is an evidence export, not a complete in-repository research_review runtime bundle.",
+  "inputs": [
+    {
+      "input_path": "notes/01_primary_sources.md",
+      "sha256": "73b2658d31fcd57c90f2d878fc2410322848f81b6597f937c34961eed57eabb8",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/notes/01_primary_sources.md"
+    },
+    {
+      "input_path": "notes/02_finite_tsvd.md",
+      "sha256": "0ef305e28720f16f5961620af2aa180c6c8fb5ccfb6f396d6ae4a83d68e2ada1",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/notes/02_finite_tsvd.md"
+    },
+    {
+      "input_path": "notes/03_legendre_krein_construction.md",
+      "sha256": "9bb12829ca36fbbb28b10d0d3b23f656a06dba762755847da0c82098bbc07dab",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/notes/03_legendre_krein_construction.md"
+    },
+    {
+      "input_path": "notes/04_infinite_deletions.md",
+      "sha256": "8dd35ebe86e67eb301716869b7d312b87667ba927bd287b1ffc153e872d60fe0",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/notes/04_infinite_deletions.md"
+    },
+    {
+      "input_path": "private/checks/check_author_results.py",
+      "sha256": "e0c0eac659712a94383f48fc5b91c3693ded54d09a8188967e5aa6f2695bbcb6",
+      "role": "new author exact and numerical checks, not independent approval",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/private/checks/check_author_results.py"
+    },
+    {
+      "input_path": "private/checks/checks-run-01.log",
+      "sha256": "772b773e9b2acd4a6bf07da5cf3fa05ac82edca17f795b02db1d6b8e3a5ecb1e",
+      "role": "new author exact and numerical checks, not independent approval",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/private/checks/checks-run-01.log"
+    },
+    {
+      "input_path": "private/checks/execution-20260923T071045038414Z.json",
+      "sha256": "b9bf731a7aedf012d8ff8754f9cfb049cb5681c22b2584dd5e39d567fcf45a40",
+      "role": "new author exact and numerical checks, not independent approval",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/private/checks/execution-20260923T071045038414Z.json"
+    },
+    {
+      "input_path": "private/raw/L07-author.pdf",
+      "sha256": "923025280f4f1c018ea0330f4f70739cd3dec8d68816cbfe5f178882e2ac19f4",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/raw/L07-author.pdf",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "private/raw/L08-author.pdf",
+      "sha256": "b4681fc1c9aa1cc86f3e589ddb2ecadfd9d3965f22f62017ab752ff3383e0c9f",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/raw/L08-author.pdf",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "private/raw/L09-arxiv-v4.pdf",
+      "sha256": "7216e8f13713562927b7a6fd1fcd318697614656acecfb1410e3d41dff767b9e",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/raw/L09-arxiv-v4.pdf",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "private/text/L07-author.txt",
+      "sha256": "40d56e45f20696767cb2512bb92b972580d37dabb5016ba7c45862371a4b7ea1",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/text/L07-author.txt",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "private/text/L08-author.txt",
+      "sha256": "ab6d9854b0acb1e028336b9ffd36a0d14c7373e4a790027b5af497fa9be32329",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/text/L08-author.txt",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "private/text/L09-arxiv-v4.txt",
+      "sha256": "28312456cd1f50576ba32d1836f00775e8a01b08c832ff79162b5ecb788e4c02",
+      "role": "primary original/extraction; check exact cited locators and use PDF for formulas",
+      "availability": "PRIVATE_PRIMARY_ORIGINAL_OR_EXTRACTION",
+      "local_path": "/mnt/f/tools/sl-literature-absorption-20260923/verification/approximation/private/text/L09-arxiv-v4.txt",
+      "recovery": "Use primary URL/version/hash in the author manifest and source-catalog; original source bodies are not redistributed in this export."
+    },
+    {
+      "input_path": "project/docs/SL_cofinite_left_definite.tex",
+      "sha256": "ed07e47fd370a9db3b6a6a2d125d9eec996288e53a6024a0e9fb533ca1b3c0bb",
+      "role": "existing operator/norm/cutoff assumptions and known full-family scope",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "docs/SL_cofinite_left_definite.tex"
+    },
+    {
+      "input_path": "project/docs/SL_fractional_left_definite.tex",
+      "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+      "role": "existing operator/norm/cutoff assumptions and known full-family scope",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "input_path": "source-manifest.json",
+      "sha256": "9655cd07a272116ece6660d6122672fa353f105c39e3a8d2a7241cd969d2e9df",
+      "role": "versioned source/proof reading provenance",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/source-manifest.json"
+    },
+    {
+      "input_path": "tool-cards/01-finite-tsvd.json",
+      "sha256": "72897fb85bacbfe8523425d90e6a2eaa3f8024b63cb3d72d4deac6c3a927ba2d",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/tool-cards/01-finite-tsvd.json"
+    },
+    {
+      "input_path": "tool-cards/02-krein-integrated-legendre.json",
+      "sha256": "95cd23d8c29d61d71e1b01e8717dd7100671a8a98b600b7e16b0bda4a3e02f2a",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/tool-cards/02-krein-integrated-legendre.json"
+    },
+    {
+      "input_path": "tool-cards/03-full-muntz-moment-interface.json",
+      "sha256": "72005ae3f05f8990f2341f8a75c2b04cbb85553c55514114efe43c35046d8154",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/tool-cards/03-full-muntz-moment-interface.json"
+    },
+    {
+      "input_path": "tool-cards/04-infinite-deletion-subclasses.json",
+      "sha256": "b297392c60a00a5f5e3327d1f46a1aa430be426f24a4e988e147ed6f36dc53de",
+      "role": "proposed original literature adaptation/proof/card",
+      "availability": "PUBLIC_EXACT_INPUT",
+      "public_path": "literature/absorption-20260923/approximation/tool-cards/04-infinite-deletion-subclasses.json"
+    }
+  ]
+}

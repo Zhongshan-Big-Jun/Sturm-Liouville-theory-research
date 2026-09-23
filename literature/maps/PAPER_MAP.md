@@ -1,5 +1,15 @@
 # Paper map (SL spectral optimization; canonical identity + role)
 
+## 2026-09-23已核对的吸收批次
+
+[13项来源指针表](../absorption-20260923/SOURCE_TABLE.md)是本批的实际阅读入口，含版本、命题、模型对应和不可推论范围；[P0–P4](../absorption-20260923/tasks/P0-P4.md)连接研究问题和工具。12项取得原文并定点阅读，L13为未完成模型核对的线索。L01为2025期刊，L06为2026预印本。
+
+L02定位第二左定原问题；L01/L03/L04/L05连接谱框架、临界域、边界商和奇偶分解；L07/L08/L09连接无限删项与稳定相容近似；L10/L11连接移动界面与测度模型；L12/L13服务首对结果比较。L12的准确题名为 *The Two-Dimensional Eigenvalue Range and Extremal Eigenvalue Problems*，13(4)(1982),621–631；本轮已改活动TeX书目，旧PDF文件名`willner1983.pdf`只作为历史路径保留。
+
+下方是此前文献登记，不表示本轮重新阅读或认证了所有论文。尤其“内容可从另一论文恢复”不能代替读取所引原定理；跨文献的extends关系和新颖性主张须回到明确假设重新核对。本文件是人可编辑文献地图，不是Blueprint canonical。
+
+## 历史文献登记
+
 Core ratio/gap line (Dirichlet string, box or bounded density classes):
 - P-Keller1976: The minimum ratio of two eigenvalues, SIAM J. Appl. Math. 31 (1976),
   DOI 10.1137/0131042. Variational necessary conditions; inf ratio over box class.

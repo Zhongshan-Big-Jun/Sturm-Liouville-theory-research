@@ -1,0 +1,176 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359"
+	],
+	"claims": [
+		{
+			"id": "correction:69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94",
+			"statement": "Independently check the repaired card tools/secular-chebyshev-jacobi-rootcount.md at sha256 0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03, its scope and dependencies, against the original issue 9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e and old version a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5",
+			"statement": "Independently check the repaired card tools/bloch-band.md at sha256 5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf, its scope and dependencies, against the original issue 9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e and old version fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "correction:94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b",
+			"statement": "Independently check the repaired card tools/second-variation-weighted-eigenvalues.md at sha256 2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7, its scope and dependencies, against the original issue 9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e and old version 47895fe6c7b2e83d50fe5a5e29d1f6f36bcebd40fe4de415df9a85793c4c6db8. Determine whether this exact repair resolves that issue for this card; do not infer validity of other cards or complete formalization.",
+			"verification": "analytic"
+		},
+		{
+			"id": "P0-model-and-novelty",
+			"statement": "Independently check the L02/L12/L13 reading note against supplied primary PDFs and publisher-deposited metadata. Verify exact L02 operator/family/norm match including integration-by-parts signs, avoid conflating Kn with sparse pn. Verify L12 title/pages, equation2.1 sign and both gap/ratio substitutions, frequency squared convention in section3, scope of necessary switch structure versus arbitrary-n/global conclusions, omitted symmetry proof and conditional numeric C(1,4) region. L13 must remain incomplete model-match and not a theorem dependency. Check only the claimed comparison to the existing fractional-density proof, not all that proof anew.",
+			"verification": "analytic"
+		},
+		{
+			"id": "P0-bibliography-rebinding",
+			"statement": "Check actual before/current TeX bytes have identical mathematical body and differ only in the wm bibliographic entry. Check root-count and Bloch cards have identical prose/summary and only changed correct source/dependency hashes. Reassess the three precise correction obligations using the supplied unchanged R9 proof: normalized physical secular roots and prescribed balanced candidate monotonicity/limit, and existing normalized second-variation card. No new mathematical hypothesis, novel theorem, global O1/O2/G1 closure, or formalization is introduced. The second-variation card is unchanged but its old shared packet becomes stale because it included the full TeX; renew its exact existing revision. Historical receipts are evidence of provenance, not substitutes for this review.",
+			"verification": "analytic"
+		}
+	],
+	"inputs": {
+		"docs/SL_fixed_n_supremum.tex": {
+			"role": "current mathematical text and corrected bibliography",
+			"sha256": "c0b6b108369481284585cccc781693f15e03e1ef101f0a32662f620f65679a5c",
+			"snapshot": "inputs/docs/SL_fixed_n_supremum.tex"
+		},
+		"docs/SL_fractional_left_definite.tex": {
+			"role": "current exact model/family/density theorem, scope comparison only",
+			"sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+			"snapshot": "inputs/docs/SL_fractional_left_definite.tex"
+		},
+		"literature/absorption-20260923/metadata/L02-crossref.json": {
+			"role": "publisher deposited bibliographic facts",
+			"sha256": "2d048cf729d8d5f08c8430a4fbbf87dfe52c6962d330dc110e2a27d4dc0f82b1",
+			"snapshot": "inputs/literature/absorption-20260923/metadata/L02-crossref.json"
+		},
+		"literature/absorption-20260923/metadata/L12-crossref.json": {
+			"role": "publisher deposited bibliographic facts",
+			"sha256": "38704b5989b73787417ccf5de56ae5cb26556b5e80acb2c2af27e648ea482a00",
+			"snapshot": "inputs/literature/absorption-20260923/metadata/L12-crossref.json"
+		},
+		"literature/absorption-20260923/metadata/L13-crossref.json": {
+			"role": "metadata only, no full article",
+			"sha256": "292339c14f42c815deba725b8721ca71171c66dea2f513bede05e32b060e46eb",
+			"snapshot": "inputs/literature/absorption-20260923/metadata/L13-crossref.json"
+		},
+		"literature/absorption-20260923/notes/L02-L12-L13-source-to-claim.md": {
+			"role": "new source mapping and bounded novelty comparison",
+			"sha256": "9566d8cf3d1615b468618b27d278a46a174755d7c8b41a30099cedd8ec137918",
+			"snapshot": "inputs/literature/absorption-20260923/notes/L02-L12-L13-source-to-claim.md"
+		},
+		"papers/krein_sobolev_II_axioms_2025.pdf": {
+			"role": "primary original L02",
+			"sha256": "d1bcb1759ed6d4fc8e29eda248a78c646926ad94ca4dcc7e4a13eea909c2ecc6",
+			"snapshot": "inputs/papers/krein_sobolev_II_axioms_2025.pdf"
+		},
+		"papers/willner1983.pdf": {
+			"role": "primary original L12, actual year1982",
+			"sha256": "8b3a6f9bc6912a6b8e876fd308da2e205ab9f38791054245dbd5e703d8e20f46",
+			"snapshot": "inputs/papers/willner1983.pdf"
+		},
+		"research/artifacts/literature-absorption-20260923/before/docs/SL_fixed_n_supremum.tex": {
+			"role": "prior exact full text",
+			"sha256": "2f64287dea2b5efdcab06725480d779c286874ada75da13d9abca7adc40213f5",
+			"snapshot": "inputs/research/artifacts/literature-absorption-20260923/before/docs/SL_fixed_n_supremum.tex"
+		},
+		"research/artifacts/literature-absorption-20260923/before/tools/bloch-band.md": {
+			"role": "prior exact card to compare prose and scope",
+			"sha256": "fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359",
+			"snapshot": "inputs/research/artifacts/literature-absorption-20260923/before/tools/bloch-band.md"
+		},
+		"research/artifacts/literature-absorption-20260923/before/tools/secular-chebyshev-jacobi-rootcount.md": {
+			"role": "prior exact card to compare prose and scope",
+			"sha256": "a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d",
+			"snapshot": "inputs/research/artifacts/literature-absorption-20260923/before/tools/secular-chebyshev-jacobi-rootcount.md"
+		},
+		"research/artifacts/literature-absorption-20260923/bibliography-only.diff": {
+			"role": "metadata-only diff to check against actual files",
+			"sha256": "634fa47a0ff54a8fbebd5b1c371e85bdf2f5081a26b7f87175c25ff943f11702",
+			"snapshot": "inputs/research/artifacts/literature-absorption-20260923/bibliography-only.diff"
+		},
+		"research/artifacts/proof-audit-round9-20260923/analytic-repair.md": {
+			"role": "unchanged original R9 mathematical proof",
+			"sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+			"snapshot": "inputs/research/artifacts/proof-audit-round9-20260923/analytic-repair.md"
+		},
+		"research/library/card-versions/0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03.md": {
+			"role": "correction-review-input",
+			"sha256": "0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03",
+			"snapshot": "inputs/research/library/card-versions/0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03.md"
+		},
+		"research/library/card-versions/2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7.md": {
+			"role": "correction-review-input",
+			"sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+			"snapshot": "inputs/research/library/card-versions/2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7.md"
+		},
+		"research/library/card-versions/47895fe6c7b2e83d50fe5a5e29d1f6f36bcebd40fe4de415df9a85793c4c6db8.md": {
+			"role": "correction-review-input",
+			"sha256": "47895fe6c7b2e83d50fe5a5e29d1f6f36bcebd40fe4de415df9a85793c4c6db8",
+			"snapshot": "inputs/research/library/card-versions/47895fe6c7b2e83d50fe5a5e29d1f6f36bcebd40fe4de415df9a85793c4c6db8.md"
+		},
+		"research/library/card-versions/5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf.md": {
+			"role": "correction-review-input",
+			"sha256": "5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf",
+			"snapshot": "inputs/research/library/card-versions/5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf.md"
+		},
+		"research/library/card-versions/a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d.md": {
+			"role": "correction-review-input",
+			"sha256": "a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d",
+			"snapshot": "inputs/research/library/card-versions/a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d.md"
+		},
+		"research/library/card-versions/fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359.md": {
+			"role": "correction-review-input",
+			"sha256": "fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359",
+			"snapshot": "inputs/research/library/card-versions/fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359.md"
+		},
+		"research/library/corrections/evidence/3477ee7cb7ac3012c4f1d8923421d3d2c30596de36cacbe8fb007168af3f32f1.bin": {
+			"role": "correction-review-input",
+			"sha256": "3477ee7cb7ac3012c4f1d8923421d3d2c30596de36cacbe8fb007168af3f32f1",
+			"snapshot": "inputs/research/library/corrections/evidence/3477ee7cb7ac3012c4f1d8923421d3d2c30596de36cacbe8fb007168af3f32f1.bin"
+		},
+		"research/library/corrections/evidence/90f741147a775ed54bdb308abff72ab962ff67ca263043f4944a9d612e534b21.bin": {
+			"role": "correction-review-input",
+			"sha256": "90f741147a775ed54bdb308abff72ab962ff67ca263043f4944a9d612e534b21",
+			"snapshot": "inputs/research/library/corrections/evidence/90f741147a775ed54bdb308abff72ab962ff67ca263043f4944a9d612e534b21.bin"
+		},
+		"research/library/corrections/requests/0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5.json": {
+			"role": "correction-review-input",
+			"sha256": "0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5",
+			"snapshot": "inputs/research/library/corrections/requests/0b3c3bd6ae9add553641842d8acf91188cfd46ae550d2bf2fe8aaf971d77d2a5.json"
+		},
+		"research/library/corrections/requests/69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94.json": {
+			"role": "correction-review-input",
+			"sha256": "69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94",
+			"snapshot": "inputs/research/library/corrections/requests/69b36a5d6f4fdccb855405dd7ae1ef835601e7c95c0cf0679530b6c96d3c3a94.json"
+		},
+		"research/library/corrections/requests/94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b.json": {
+			"role": "correction-review-input",
+			"sha256": "94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b",
+			"snapshot": "inputs/research/library/corrections/requests/94585339698b2266b6a2d5e7f56e5eb584940c01e00cae35dee65f97fa70020b.json"
+		},
+		"research/library/corrections/requests/9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e.json": {
+			"role": "correction-review-input",
+			"sha256": "9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e",
+			"snapshot": "inputs/research/library/corrections/requests/9bdd43825648bd67160fcaad1501dfaec84f7a4cbdc46546f8482b0676c9157e.json"
+		},
+		"tools/bloch-band.md": {
+			"role": "correction-review-input",
+			"sha256": "5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf",
+			"snapshot": "inputs/tools/bloch-band.md"
+		},
+		"tools/second-variation-weighted-eigenvalues.md": {
+			"role": "correction-review-input",
+			"sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+			"snapshot": "inputs/tools/second-variation-weighted-eigenvalues.md"
+		},
+		"tools/secular-chebyshev-jacobi-rootcount.md": {
+			"role": "correction-review-input",
+			"sha256": "0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03",
+			"snapshot": "inputs/tools/secular-chebyshev-jacobi-rootcount.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

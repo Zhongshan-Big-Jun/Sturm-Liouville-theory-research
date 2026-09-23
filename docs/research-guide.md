@@ -1,5 +1,7 @@
 # 研究导航
 
+文献吸收入口（2026-09-23）：[来源/工具导航](../literature/absorption-20260923/README.md)、[P0–P4及精确余项](../literature/absorption-20260923/tasks/P0-P4.md)、[检验报告](../reports/literature-absorption-20260923/REPORT.md)。s=3余有限三迹闭包补充已有s=2结果；原完整族窗口仍为0≤s<7/2。Legendre Riesz结论针对新相容替代系，界面二阶公式针对固定块值且不碰撞的局部路径。
+
 第九轮当前入口: [二阶变分解析修复](../research/artifacts/proof-audit-round9-20260923/analytic-repair.md)、[固定 n 候选谱证明](SL_fixed_n_supremum.tex)和[修订报告](../reports/proof-audit-round9-20260923/REPORT.md). 真正切空间由块积分定义; 归一化导数、有限 Green 核与移动界面加速度分别处理. 物理函数反射有 y/(pi−y) 因子, 归一化后才严格对称. 平衡候选 c_n 的单调性和极限已给出解析证明; 完整全局极值问题仍开放.
 
 第八轮当前入口: [INF 极限证明](SL_gap_n1_inf_limit_proof.tex)与[修订报告](../reports/proof-audit-round8-20260922/REPORT.md). 连续相位方法覆盖完整薄层域, 大 w 用初等正余量比较; T1 的解析收敛与 T3 的数值定位分开. 旧05/16/19证书不再承担当前证明. 固定内部参数误差为1/R, 不能据此推断最优参数收敛率.
