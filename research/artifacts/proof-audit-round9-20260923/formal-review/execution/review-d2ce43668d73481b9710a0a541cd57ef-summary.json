@@ -1,0 +1,79 @@
+[
+  {
+    "case": "positive",
+    "manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-positive/run-manifest.json",
+    "exit_code": 0,
+    "exact_root_passed": true,
+    "machine": {
+      "status": "passed",
+      "execution_passed": true,
+      "scope": "exact_declaration",
+      "missing_files": [],
+      "scan_is_authoritative": false
+    },
+    "root_closure": {
+      "status": "closed",
+      "exact_root_passed": true,
+      "declaration_closed": true,
+      "scope": "expected Lean type in the recorded environment; semantic review is separate"
+    },
+    "expected_behavior_observed": true
+  },
+  {
+    "case": "wrong-type",
+    "manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-wrong-type/run-manifest.json",
+    "exit_code": 1,
+    "exact_root_passed": false,
+    "machine": {
+      "status": "passed",
+      "execution_passed": true,
+      "scope": "exact_declaration",
+      "missing_files": [],
+      "scan_is_authoritative": false
+    },
+    "root_closure": {
+      "status": "target_mismatch",
+      "exact_root_passed": false,
+      "reason": "the expected type or frozen definition/environment identity does not match"
+    },
+    "expected_behavior_observed": true
+  },
+  {
+    "case": "missing-target",
+    "manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-missing-target/run-manifest.json",
+    "exit_code": 1,
+    "exact_root_passed": false,
+    "machine": {
+      "status": "failed",
+      "execution_passed": false,
+      "scope": "exact_declaration",
+      "missing_files": [],
+      "scan_is_authoritative": false
+    },
+    "root_closure": {
+      "status": "incomplete",
+      "exact_root_passed": false,
+      "reason": "execution or evidence is incomplete"
+    },
+    "expected_behavior_observed": true
+  },
+  {
+    "case": "unproved-premise",
+    "manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-unproved-premise/run-manifest.json",
+    "exit_code": 1,
+    "exact_root_passed": false,
+    "machine": {
+      "status": "passed",
+      "execution_passed": true,
+      "scope": "exact_declaration",
+      "missing_files": [],
+      "scan_is_authoritative": false
+    },
+    "root_closure": {
+      "status": "target_mismatch",
+      "exact_root_passed": false,
+      "reason": "the expected type or frozen definition/environment identity does not match"
+    },
+    "expected_behavior_observed": true
+  }
+]

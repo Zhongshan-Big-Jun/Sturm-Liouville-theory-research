@@ -1,0 +1,9 @@
+# Frozen numerical repair reproduction
+
+This packet contains the actual current probe, its three local imported modules and input table, the original probe snapshot, and author test scripts/logs. External numerical dependencies are the installed NumPy, SciPy, mpmath; input_manifest.json records versions. These tests are finite numerical checks, not universal certificates.
+
+For independent execution, copy the packet's listed input snapshots preserving their original relative paths to a NEW private directory outside the source project. Work with that copied input root as cwd. Do not read the author's live work directory or alter the frozen packet. The current script in scripts/ uses its sibling dependencies. The identical author copy falls back to cwd/scripts; its tests locate that adjacent author copy. All required local imports and table are supplied.
+
+Run the copied test_candidate.py with -B normally and with -B -O, passing --output to a fresh reviewer output path. The copied current probe retains positional arguments n R mode and --output; rerun the four listed cases and the R=1 compatibility example as useful. sensitivity.py writes beside its own copy, so run ONLY the private copied version. regression_projection.py accepts a source path, and the old original projection should produce the recorded nonzero failure while the new projection passes. No original-source read is needed.
+
+Independently inspect the implementation and choose additional counterexamples instead of relying only on an author PASS label. Inspect cutoff/FD errors, actual residuals, path positivity, normalization, real endpoints and the distinction between arbitrary density direction and box feasibility. P3 remains a fixed-width finite experiment. The separate mathematical packet handles the universal analytic proof; no numerical packet establishes G1/O1/O2.

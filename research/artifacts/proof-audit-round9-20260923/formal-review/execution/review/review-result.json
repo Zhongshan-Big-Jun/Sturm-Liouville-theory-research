@@ -1,0 +1,63 @@
+{
+  "packet_sha256": "0480ca86b1aa481aaf4477e9864fbe3520f4470556eced893d9006da14800f6b",
+  "verdict": "APPROVED",
+  "checked_paths": [
+    "inputs/AuditRound9.lean",
+    "inputs/HUMAN-CONTRACT.md",
+    "inputs/SL_fixed_n_supremum.tex",
+    "inputs/analytic-repair.md",
+    "inputs/author-archive-manifest.json",
+    "inputs/author-raw-evidence.zip",
+    "inputs/author-report.md",
+    "inputs/author-result.json",
+    "inputs/declarations.json",
+    "inputs/environment.json",
+    "inputs/lean-toolchain",
+    "inputs/positive-contract.json",
+    "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/completion.json",
+    "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/dispatch.json",
+    "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/receipt.json",
+    "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/report.json",
+    "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/spawn.json"
+  ],
+  "claim_results": [
+    {
+      "id": "R9-fresh-Lean-execution",
+      "verdict": "APPROVED",
+      "reason": "Verified the packet and all 17 listed input snapshots. Inspected the supplied runners and executed copied launch_replay.py in the newly created private directory, using never-used prefix review-d2ce43668d73481b9710a0a541cd57ef. Lean 4.31.0 freshly compiled the candidate; no author root object was reused. The positive run matched the complete 15-conjunct type. All three controls completed with exit 1 for their specific causes: wrong sign in conjunct 5; missing AuditRound9.missing_root; and extra H:Prop, pending:H binders. The latter does not prove arbitrary H. Inspected all 35 recorded compiler/runtime commands and 8 wrapper records, including full logs, fresh objects and hash bindings. All 12,480 external imported artifacts, runtime binaries, verifier code, copied inputs and dependency manifest matched before/after hashes; 12,505 bound files had no content or metadata changes. The durable replay finished SUCCEEDED with exit 0. Every generated output path, size and SHA256 is enumerated in the output index.",
+      "output_paths": {
+        "private_directory": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer",
+        "exhaustive_output_index": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/output-index.json",
+        "replay_summary": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review-d2ce43668d73481b9710a0a541cd57ef-summary.json",
+        "positive_manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-positive/run-manifest.json",
+        "wrong_sign_manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-wrong-type/run-manifest.json",
+        "missing_target_manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-missing-target/run-manifest.json",
+        "extra_premise_manifest": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/evidence/review-d2ce43668d73481b9710a0a541cd57ef-unproved-premise/run-manifest.json",
+        "command_audit": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/replay-command-audit.json",
+        "wrapper_audit": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/wrapper-command-audit.json",
+        "before_hashes": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/bound-before.json",
+        "after_hashes": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/bound-after.json",
+        "final_validation": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/final-validation.json",
+        "saved_review": "/mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/review-result.json"
+      }
+    },
+    {
+      "id": "R9-Lean-semantic-fidelity",
+      "verdict": "APPROVED",
+      "reason": "All 59 freshly exported declarations match the frozen explicit types, universes and supplied definition bodies: 25 source theorems, 13 definitions/abbreviations and 21 generated auxiliaries. Independently checked all binders against the supplied readback, human contract and relevant analytic passages. The finite real projection handles A=0 and n=0, proves the nonzero denominator, tangency and idempotence. The Type-0 real-module correction uses explicit L(u)=1 to obtain -a/2 and independently preserves K(v0) when K(u)=0. Actual 2x2 entries, multiplication order, all natural powers including zero, J-conjugation and real sine/cosine reflection agree with the analytic definitions. Physical transport uses omega=y/(s*t) at each phase and the stated nonzero hypotheses; the interior factor y/(pi-y) is positive and gives zero equivalence. The conditional generic G lemma is discharged by proved symmetry in the physical theorem. No root conclusion is assumed or mathematical target replaced. Details: /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/semantic-assessment.md; fresh declarations and exact comparison: /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/fresh-declarations.json and /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/declaration-comparison.json."
+    },
+    {
+      "id": "R9-Lean-exact-scope",
+      "verdict": "APPROVED",
+      "reason": "The fresh root has no outer premises. Independent traversal of its exported 16,629-node dependency graph resolved every recorded edge; only propext, Classical.choice and Quot.sound occur as axioms, with no sorryAx, new axiom, unsafe or missing dependency. The synthetic expected-statement axiom is absent from the root closure. Exports describe the freshly compiled object. Initial development and positive-check failures remain failures; the interrupted negative-premise-01 lacks a final verifier exit/receipt and is not a pass. Its completed replacement and this reviewer replay are separate evidence. Execution passed, and semantic fidelity passed for the declared local algebraic interfaces only. No full Lake build or complete analytic formalization is claimed. Closure and binder evidence: /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/export-audit.json and /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/root-clause-binders.json. Historical evidence: /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/retained-author-attempts.json and /mnt/f/tools/math-audit-round9-20260923/formal-reviewer/review/retained-initial-failure-details.json."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Approval is restricted to the requested frozen local claims. Block-integral/program identification, quadrature accuracy, weighted projection, distance minimization, eigenfunction differentiability, infinite spectral expansion, reduced inverse and Green concentration are not proved by this Lean source.",
+    "ODE derivation, eigenvalue identification, root multiplicity, 2n root counting, candidate limits and global extrema remain outside this Lean result. The broader analytic manuscript and historical numerical experiments were not recertified.",
+    "Verification trusts the pinned Lean compiler and hash-checked installed dependency artifacts. No full dependency rebuild or independent second-kernel check was performed; neither was requested.",
+    "Historical blind-review independence is supported by the supplied coordinator-attested dispatch/completion bundle, whose hashes and report agreement were checked. No author conversations or unrelated sources were accessed.",
+    "The cause and final verifier exit code of the historical interrupted negative-premise-01 attempt remain unavailable. Its partial extraction was not upgraded to a completed run."
+  ]
+}

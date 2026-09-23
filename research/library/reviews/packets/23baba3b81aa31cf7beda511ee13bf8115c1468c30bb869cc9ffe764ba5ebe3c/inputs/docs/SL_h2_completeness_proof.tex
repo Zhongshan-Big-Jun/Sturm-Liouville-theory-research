@@ -1,0 +1,464 @@
+﻿% 编译方式: xelatex SL_h2_completeness_proof.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{example}[theorem]{例}
+\newtheorem{definition}[theorem]{定义}
+
+\title{第二左定空间 \texorpdfstring{$H^2[-1,1]$}{H2} 中多项式基的解析完备性: 证明文档}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-04}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文给出移位 Krein Laplacian
+\[
+	K_c f = -f'' + c f \qquad (c > 0)
+\]
+(定义域 $D(K_c)$ 由边界条件 $f'(\pm 1) = \bigl(f(1)-f(-1)\bigr)/2$ 决定)
+的第二左定空间 $(H^2[-1,1], (\cdot, \cdot)_{2,c})$ 中多项式基
+\[
+	p_0 = 1, \quad p_1 = x, \quad
+	p_{2n} = x^{2n} - \frac{n}{n-1} x^{2n-2}, \quad
+	p_{2n+1} = x^{2n+1} - \frac{n}{n-1} x^{2n-1}
+	\quad (n \in \mathbb{N}_0,\ n \neq 1)
+\]
+解析完备性 (analytically complete) 的完整证明: 其有限线性组合在
+$(\cdot, \cdot)_{2,c}$ 下稠密于 $H^2[-1,1]$. 这是 Jones--Littlejohn--Quintero Roba
+[4, Section 6] 提出的开放问题 (该基缺 2, 3 次多项式, 代数不完备).
+证明初等且自足, 由三步组成:
+(i) 恒等式 $(f,g)_{2,c} = (K_c f, K_c g)_{L^2}$, 结合 $0 \notin \sigma(K_c)$,
+得到等距同构 $K_c: (H^2, (\cdot,\cdot)_{2,c}) \to L^2$, 故问题归结为
+$\{K_c p_n\}$ 在 $L^2$ 中的完备性;
+(ii) 矩跳跃论证: 若 $g \perp \{K_c p_n\}$, 记 $\mu_k = \langle g, x^k \rangle$,
+则偶/奇矩各自满足带多项式系数的三阶跳变递推
+$c\mu_{2j} = A_j \mu_{2j-2} - B_j \mu_{2j-4}$ ($A_j = 2j(2j-1) + \tfrac{cj}{j-1}$,
+$B_j = 2j(2j-3)$), 自由参数仅 $\mu_2$ (偶) 与 $\mu_3$ (奇);
+(iii) 增长引理: 该递推的支配解满足 $u_j \geq (4/c)^{j-1} j!$, 而
+$L^2$ 函数矩满足 $|\mu_k| \leq \|g\|_2 \sqrt{2/(2k+1)}$, 二者矛盾迫使
+$\mu_2 = \mu_3 = 0$, 归纳得全部矩为零, 由 Weierstrass 稠密性 $g = 0$;
+Hahn--Banach 推论给出 $\{K_c p_n\}$ 完备. 文档末尾附对抗性审计清单、
+边界情形检查与精确有理数数值验证.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+\subsection{移位 Krein Laplacian 与第二左定空间}
+
+固定 $c > 0$. 在 $L^2(-1,1)$ 中定义
+\begin{equation}
+	K_c f := -f'' + c f, \qquad
+	D(K_c) := \Bigl\{ f : f, f' \in AC[-1,1],\ f'' \in L^2(-1,1),\
+		f'(\pm 1) = \tfrac{1}{2}\bigl( f(1) - f(-1) \bigr) \Bigr\}.
+\end{equation}
+边界条件 $f'(\pm 1) = \bigl(f(1)-f(-1)\bigr)/2$ 为 Krein 边界条件, 对应的
+$K_0$ 称为一维 Krein Laplacian; $K_c$ 为移位 (shift) 后的算子. 第二左定空间
+(second left-definite space) 定义为\footnote{左定理论中 $H_s = D(A^{s/2})$; 此处 $H^2$ 对应 $s = 2$. 见 [5,6] 与本文第 5 节.}
+\begin{equation}
+	H^2[-1,1] = D(K_c),
+	\qquad
+	(f, g)_{2,c} = -c\, \Delta f\, \overline{\Delta g}
+		+ \int_{-1}^{1} \left( f''\overline{g}'' + 2c\, f'\overline{g}' + c^2 f\overline{g} \right) dx,
+\end{equation}
+其中 $\Delta f := f(1) - f(-1)$.
+
+\subsection{问题陈述}
+
+直接计算 (第 2.1 节) 给出 $H^2$ 中多项式的一个基:
+\begin{equation}
+	\begin{aligned}
+		&p_0(x) = 1, \quad p_1(x) = x, \qquad
+			p_{2n}(x) = x^{2n} - \tfrac{n}{n-1} x^{2n-2}, \\
+		&p_{2n+1}(x) = x^{2n+1} - \tfrac{n}{n-1} x^{2n-1}
+			\quad (n \in \mathbb{N}_0,\ n \neq 1).
+	\end{aligned}
+\end{equation}
+由于不存在次数为 2 或 3 的多项式属于 $H^2$ (第 2.1 节), 该基代数不完备.
+Jones--Littlejohn--Quintero Roba 在 [4, Section 6] 中提出:
+
+\begin{quote}
+``Even though this basis is not algebraically complete, it is not clear if they
+are analytically complete in $H^2[-1,1]$.''
+\end{quote}
+
+本文的答案是肯定的.
+
+\begin{theorem}[主定理]
+对每个 $c > 0$, 多项式序列 $\{p_n\}_{n \in \mathbb{N}_0, n \neq 2,3}$
+在 Hilbert 空间 $(H^2[-1,1], (\cdot, \cdot)_{2,c})$ 中解析完备:
+\[
+	\overline{\operatorname{span}\{ p_n \}}^{H^2} = H^2[-1,1].
+\]
+\end{theorem}
+
+\section{预备: 等距同构 \texorpdfstring{$K_c$}{Kc}}
+
+\subsection{基的验证}
+
+\begin{lemma}[边界条件]
+多项式 (3) 全部属于 $H^2$; 且 $H^2$ 中不存在次数为 2 或 3 的多项式.
+\end{lemma}
+
+\begin{proof}
+对 $p_0 = 1$, $p_1 = x$ 直接验证. 对 $n \geq 2$, 偶次情形
+$p_{2n}' = 2n x^{2n-1} - \frac{n}{n-1}(2n-2) x^{2n-3}$:
+\[
+	p_{2n}'(1) = 2n - 2n = 0, \qquad
+	p_{2n}'(-1) = -2n + 2n = 0, \qquad
+	p_{2n}(1) - p_{2n}(-1) = 0,
+\]
+故 $p_{2n}'(\pm1) = 0 = \tfrac{1}{2}\bigl(p_{2n}(1)-p_{2n}(-1)\bigr)$. 奇次情形
+$p_{2n+1}' = (2n+1) x^{2n} - \frac{n}{n-1}(2n-1) x^{2n-2}$:
+\[
+	p_{2n+1}'(1) = p_{2n+1}'(-1) = (2n+1) - \frac{n(2n-1)}{n-1} = -\frac{1}{n-1},
+\]
+以及
+\[
+	\frac{p_{2n+1}(1)-p_{2n+1}(-1)}{2} = 1 - \frac{n}{n-1} = -\frac{1}{n-1}.
+\]
+再证次数 2, 3 的情形: 设 $q(x) = ax^2 + bx + c$ 且 $q \in H^2$, 则
+$q'(1) = 2a+b$, $q'(-1) = -2a+b$, $\tfrac12(q(1)-q(-1)) = b$; 边界条件给出
+$2a + b = b$ 与 $-2a + b = b$, 故 $a = 0$, $q$ 次数至多 1. 对三次
+$q(x) = ax^3 + bx^2 + cx + d$: $q'(1) = 3a+2b+c$, $q'(-1) = 3a-2b+c$,
+$\tfrac12(q(1)-q(-1)) = a+c$; 边界条件给出 $2a+2b = 0$ 与 $2a-2b = 0$,
+故 $a = b = 0$, 次数至多 1. 最后, (3) 是 $H^2 \cap \mathbb{C}[x]$
+的 Hamel 基: 对次数 $d \geq 4$ 的 $q \in H^2$, 减去首项系数的 $p_d$ 后
+余项仍属 $H^2$ 且次数 $< d$; 若余项次数落在 $\{2,3\}$ 则矛盾, 故按次数
+归纳即可归约到 $p_0, p_1$. \qed
+\end{proof}
+
+\subsection{恒等式 \texorpdfstring{$(f,g)_{2,c} = (K_c f, K_c g)_{L^2}$}{(f,g)=(Kf,Kg)}}
+
+\begin{lemma}[等距恒等式]
+对任意 $f, g \in H^2$,
+\begin{equation}
+	(f, g)_{2,c} = (K_c f, K_c g)_{L^2} := \int_{-1}^{1} (K_c f)(x)\, \overline{(K_c g)(x)}\, dx.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+展开 $(-f'' + cf)\,\overline{(-g'' + cg)}$ 并两次分部积分:
+\begin{align*}
+	(K_c f, K_c g)_{L^2}
+	&= \int_{-1}^1 f''\overline{g}''\, dx
+		+ 2c \int_{-1}^1 f'\overline{g}'\, dx
+		+ c^2 \int_{-1}^1 f\overline{g}\, dx
+		- c \bigl[\, f'\overline{g} \,\bigr]_{-1}^{1}
+		- c \bigl[\, f\overline{g}' \,\bigr]_{-1}^{1}.
+\end{align*}
+由边界条件, $f'(1) = f'(-1) = \tfrac12\Delta f$, $\overline{g}'(1) = \overline{g}'(-1) = \tfrac12\overline{\Delta g}$,
+故
+\[
+	\bigl[\, f'\overline{g} \,\bigr]_{-1}^{1} =
+	\tfrac12 \Delta f\, \overline{\Delta g}, \qquad
+	\bigl[\, f\overline{g}' \,\bigr]_{-1}^{1} =
+	\tfrac12 \Delta f\, \overline{\Delta g},
+\]
+两项合计 $c\,\Delta f\, \overline{\Delta g}$, 与内积定义中的
+$-c\,\Delta f\, \overline{\Delta g}$ 相消. \qed
+\end{proof}
+
+\subsection{谱与可逆性}
+
+\begin{lemma}[谱]
+$K_c$ 是 $L^2(-1,1)$ 中的自伴算子, 具有紧预解式, 且
+\begin{equation}
+	\sigma(K_c) = \{ c \} \cup \bigl\{ (n\pi)^2 + c : n \in \mathbb{N} \bigr\}
+		\cup \bigl\{ \mu_n^2 + c : n \in \mathbb{N} \bigr\},
+\end{equation}
+其中 $\mu_n$ 为 $\tan\mu = \mu$ 的正根 ($\mu_1 \approx 4.4934, \mu_2 \approx 7.7253, \dots$).
+特别地, 对 $c > 0$ 有 $0 \notin \sigma(K_c)$.
+\end{lemma}
+
+\begin{proof}
+按奇偶分解 $L^2(-1,1) = L^2_{\mathrm{even}} \oplus L^2_{\mathrm{odd}}$, 两个子空间均在
+$K_c$ 下不变. 偶函数 $f(x) = f(-x)$ 满足 $f'(0) = 0$, 且边界条件化为
+$f'(1) = \tfrac12(f(1)-f(1)) = 0$, 即 $[0,1]$ 上 Neumann 问题
+$-y'' = \lambda y$, $y'(0) = y'(1) = 0$, 特征对 $(\cos(n\pi x), (n\pi)^2)$, $n \in \mathbb{N}_0$.
+奇函数满足 $f(0) = 0$, 边界条件化为 $f'(1) = \tfrac12(f(1)+f(1)) = f(1)$, 即
+$[0,1]$ 上问题 $-y'' = \lambda y$, $y(0) = 0$, $y'(1) = y(1)$, 特征对
+$\bigl(\sin(\mu x), \mu^2\bigr)$, $\mu$ 为 $\mu\cos\mu = \sin\mu$ 的根; 除零根
+(给出 $y = x$, 对应 $\lambda = c$) 外为正根 $\mu_n$. 两个子问题均为正则
+Sturm-Liouville 问题, 分离自伴边界条件, 特征函数系在相应子空间完备
+(经典 Hilbert-Schmidt 理论), 故 (6) 穷尽谱. $c > 0$ 时 $\sigma(K_c)$ 由正数组成. \qed
+\end{proof}
+
+\begin{corollary}[等距同构]
+$K_c: \bigl( H^2[-1,1], (\cdot,\cdot)_{2,c} \bigr) \to L^2(-1,1)$
+是等距线性同构. 特别地 $\bigl( H^2, (\cdot,\cdot)_{2,c} \bigr)$ 是 Hilbert 空间,
+且
+\[
+	\overline{\operatorname{span}\{ p_n \}}^{H^2} = H^2
+	\iff
+	\overline{\operatorname{span}\{ K_c p_n \}}^{L^2} = L^2 .
+\]
+\end{corollary}
+
+\begin{proof}
+引理 2 给出等距性. 引理 3 中 $K_c$ 自伴且 $0 \notin \sigma(K_c)$,
+故 $K_c^{-1} \in \mathcal{B}(L^2)$ 存在且值域为 $D(K_c) = H^2$; 于是 $K_c: H^2 \to L^2$
+满射, 结合等距性即单射. 等距同构保持闭包与正交补, 故 (7) 成立. \qed
+\end{proof}
+
+\section{矩跳跃论证}
+
+\subsection{系数计算}
+
+\begin{lemma}[\texorpdfstring{$K_c p_n$}{Kc pn} 的显式形式]
+对 $n \geq 2$,
+\begin{align}
+	K_c p_{2n} &= c\, x^{2n} - A_n\, x^{2n-2} + B_n\, x^{2n-4},
+	&
+	A_n &= 2n(2n-1) + \frac{cn}{n-1}, \quad B_n = 2n(2n-3); \\
+	K_c p_{2n+1} &= c\, x^{2n+1} - A'_n\, x^{2n-1} + B'_n\, x^{2n-3},
+	&
+	A'_n &= 2n(2n+1) + \frac{cn}{n-1}, \quad B'_n = 2n(2n-1).
+\end{align}
+且 $A_n - B_n = A'_n - B'_n = 4n + \frac{cn}{n-1} \geq c$.
+\end{lemma}
+
+\begin{proof}
+直接对 $p_{2n}$ 求二阶导数: $p_{2n}'' = 2n(2n-1)x^{2n-2}
+- \frac{n}{n-1}(2n-2)(2n-3)x^{2n-4}$, 于是
+\[
+	K_c p_{2n} = -p_{2n}'' + c p_{2n}
+	= c x^{2n} - \Bigl( 2n(2n-1) + \frac{cn}{n-1} \Bigr) x^{2n-2}
+	+ \frac{n}{n-1}(2n-2)(2n-3) x^{2n-4},
+\]
+而 $\frac{n}{n-1}(2n-2)(2n-3) = 2n(2n-3)$. 奇次情形同理.
+最后, $A_n - B_n = 4n + \frac{cn}{n-1} \geq c$ 对一切 $n \geq 2$, $c > 0$
+成立: 等价于 $4n \geq -\frac{c}{n-1}$, 恒真 (注意不能从 $4n \geq c$ 推出,
+因 $c$ 可任意大; 正确下界由 $\frac{cn}{n-1}$ 项保证). \qed
+\end{proof}
+
+\subsection{矩递推}
+
+设 $g \in L^2$ 满足 $\langle g, K_c p_n \rangle_{L^2} = 0$ 对所有可允许的 $n$
+($n = 0, 1, 4, 5, \dots$) 成立. 记 $\mu_k := \langle g, x^k \rangle_{L^2}$.
+由 $K_c p_0 = c$, $K_c p_1 = cx$ 得
+\begin{equation}
+	\mu_0 = 0, \qquad \mu_1 = 0 .
+\end{equation}
+由引理 4 与 $n \geq 2$ 的正交条件得跳变递推
+\begin{align}
+	c\, \mu_{2n} &= A_n\, \mu_{2n-2} - B_n\, \mu_{2n-4} \qquad (n \geq 2), \\
+	c\, \mu_{2n+1} &= A'_n\, \mu_{2n-1} - B'_n\, \mu_{2n-3} \qquad (n \geq 2).
+\end{align}
+偶矩序列由 $\mu_0 = 0$ 与自由参数 $\mu_2$ 唯一决定; 奇矩序列由
+$\mu_1 = 0$ 与自由参数 $\mu_3$ 唯一决定.
+
+\subsection{增长引理}
+
+\begin{lemma}[增长引理]
+设 $c > 0$, $u_0 = 0$, $u_1 = 1$, 且对 $j \geq 2$
+\begin{equation}
+	c\, u_j = A_j\, u_{j-1} - B_j\, u_{j-2},
+	\qquad
+	A_j = 2j(2j-1) + \frac{cj}{j-1}, \quad B_j = 2j(2j-3) \geq 0 .
+\end{equation}
+则对一切 $j \geq 1$, $u_j > 0$, $u_j$ 单调不减, 且
+\begin{equation}
+	u_j \geq \left( \frac{4}{c} \right)^{j-1} j! .
+\end{equation}
+对系数 $(A'_j, B'_j)$ 同样成立.
+\end{lemma}
+
+\begin{proof}
+先证单调性. 归纳假设 $0 < u_{j-2} \leq u_{j-1}$. 由 (13), $B_j \geq 0$,
+\begin{equation}
+	c\, u_j = A_j u_{j-1} - B_j u_{j-2}
+	\geq (A_j - B_j)\, u_{j-1}.
+\end{equation}
+而 $A_j - B_j = 4j + \frac{cj}{j-1} \geq c$, 因为
+$4j \geq -\tfrac{c}{j-1}$ 恒真. 故 $u_j \geq u_{j-1} > 0$.
+基始: $u_1 = 1$, $u_2 = \tfrac{A_2}{c} = 2 + \tfrac{12}{c} \geq 1$.
+故归纳成立: 对一切 $j$, $0 < u_{j-1} \leq u_j$.
+
+再证增长. 记 $r_j := u_j / u_{j-1} \geq 1$ ($j \geq 2$). 由 (13),
+\[
+	c\, r_j = A_j - \frac{B_j}{r_{j-1}} \geq A_j - B_j
+	= 4j + \frac{cj}{j-1} \geq 4j,
+\]
+故 $r_j \geq \tfrac{4j}{c}$, 从而
+\[
+	u_j = r_j r_{j-1} \cdots r_2\, u_1
+	\geq \prod_{i=2}^{j} \frac{4i}{c}
+	= \left( \frac{4}{c} \right)^{j-1} j! .
+\]
+奇次系数 $A'_j - B'_j = 2j(2j+1) - 2j(2j-1) + \frac{cj}{j-1}
+= 4j + \frac{cj}{j-1} \geq c$ 同理. \qed
+\end{proof}
+
+\subsection{矩为零}
+
+\begin{proposition}
+若 $g \in L^2$ 且 $\langle g, K_c p_n \rangle = 0$ 对所有可允许的 $n$ 成立,
+则 $g = 0$.
+\end{proposition}
+
+\begin{proof}
+由 (9), (10), (11), 偶矩满足 $\mu_{2j} = \mu_2\, u_j$ ($u_j$ 如引理 5, $j \geq 1$;
+$j = 0$ 时 $\mu_0 = 0$). 若 $\mu_2 \neq 0$, 则由 (14),
+\[
+	|\mu_{2j}| = |\mu_2|\, u_j \geq |\mu_2| \left( \frac{4}{c} \right)^{j-1} j! \to \infty .
+\]
+但 $g \in L^2$ 给出 Cauchy-Schwarz 界
+\[
+	|\mu_{2j}| = \left| \int_{-1}^{1} g(x) x^{2j}\, dx \right|
+	\leq \|g\|_{L^2}\, \|x^{2j}\|_{L^2}
+	= \|g\|_{L^2}\, \sqrt{\frac{2}{4j+1}} \leq \|g\|_{L^2},
+\]
+矛盾. 故 $\mu_2 = 0$, 递推 (10) 给出全部偶矩为零. 奇矩情形完全相同
+(系数 $A'_j, B'_j$, 自由参数 $\mu_3$): $\mu_3 = 0$, 全部奇矩为零.
+
+于是 $\mu_k = 0$ 对一切 $k \geq 0$, 即 $g \perp \operatorname{span}\{ x^k \}$.
+多项式在 $C[-1,1]$ 中一致稠密 (Weierstrass), 从而在 $L^2$ 中稠密;
+取多项式逼近 $g$ 得 $\|g\|_{L^2}^2 = 0$, 故 $g = 0$. \qed
+\end{proof}
+
+\section{主定理的证明}
+
+\begin{proof}[定理 1 的证明]
+由推论 1, 只需证 $\{ K_c p_n \}$ 在 $L^2$ 中完备, 即
+$\overline{\operatorname{span}\{ K_c p_n \}}^{L^2} = L^2$. 其正交补为
+\[
+	\Bigl( \overline{\operatorname{span}\{ K_c p_n \}} \Bigr)^\perp
+	= \{ g \in L^2 : \langle g, K_c p_n \rangle = 0\ \forall\, n \}.
+\]
+命题 1 表明该正交补仅为 $\{ 0 \}$. Hilbert 空间中 $M^\perp = \{0\}$
+当且仅当 $\overline M = H$, 故 $\{ K_c p_n \}$ 在 $L^2$ 中完备. 再经等距同构
+$K_c$ 拉回: $\overline{\operatorname{span}\{ p_n \}}^{H^2} = H^2$. \qed
+\end{proof}
+
+\begin{remark}[证明机制]
+三个关键点缺一不可:
+(i) 等距同构把 $H^2$ 问题翻译成 $L^2$ 中的矩问题;
+(ii) 缺 2, 3 次多项式造成 $\mu_2, \mu_3$ 是自由参数, 但正交条件把它们
+``向后''传播为满足 (13) 的序列;
+(iii) 增长引理用 $A_j - B_j \geq c$ 这一简单代数事实推出阶乘增长,
+与 $L^2$ 矩的有界性矛盾, 从而自由参数被迫为零. 代数缺陷
+(缺次数) 因此不破坏解析完备性.
+\end{remark}
+
+\begin{remark}[更强的推论]
+由定理 1, $\{K_c p_n\}$ 是 $L^2$ 中的完备 (未必正交) 系. 事实上
+$\operatorname{span}\{ x^k : k \in \mathbb{N}_0 \}$ 中的缺次数 2, 3
+被 ``补全'': 存在唯一一组系数使 $x^2, x^3$ 能被 $\{K_c p_n\}$
+的超指数逼近 (第 6 节数值验证). 这与例外正交多项式理论
+(algebraically incomplete but analytically complete) 的类比吻合,
+且本文给出了该空间第一个严格的例子.
+\end{remark}
+
+\section{审计与边界情形}
+
+按严格研究流程对本证明逐条对抗性审查, 记录如下 (供独立验证).
+
+\begin{description}
+	\item[定义审计] $H^2 = D(K_c)$ 与论文 [4, (25),(26)] 逐字一致;
+		$(\cdot,\cdot)_{2,c}$ 正定 (等于 $\|K_c f\|_{L^2}^2$), 完备性由
+		推论 1 给出. 复值情形: 内积为双线性共轭, 边界项
+		$\overline{g}'(\pm1) = \tfrac12\overline{\Delta g}$ 使用共轭后仍成立.
+	\item[等距恒等式] 分部积分边界项符号已双重核对 (正文推导与精确有理数
+		数值, 第 6 节), 两项边界贡献 $+\tfrac12\Delta f\overline{\Delta g}$
+		各一次, 与 $-c\,\Delta f\overline{\Delta g}$ 相消.
+	\item[$0 \notin \sigma$] 特征值显式求解: 偶子空间 Neumann, 奇子空间
+		$y(0)=0, y'(1)=y(1)$; 两子空间特征函数系完备 (正则 SL 经典结论),
+		谱全为正. 不需要引用深理论.
+	\item[增长引理] 归纳前提 $B_j \geq 0$ ($j \geq 2$ 时 $2j(2j-3) \geq 4$)
+		与 $A_j - B_j \geq c$ 均已验证; 边界情形 $j = 2$ (基始) 与
+		$c \to \infty$ (下界退化, 但阶乘增长对所有固定的 $c > 0$ 最终
+		超越任何指数, 矛盾论证对任意 $c$ 成立).
+	\item[矩有界性] Cauchy-Schwarz 界对任意 $L^2$ 函数成立; 矛盾仅需
+		$|\mu_{2j}| \to \infty$ 与 $\leq \|g\|_2$ 相抵, 不需精细常数.
+	\item[逻辑闭环] 无循环论证: 等距恒等式 (引理 2) 独立于谱结论;
+		谱结论 (引理 3) 不依赖完备性结论; 完备性只使用前两者.
+	\item[边界情形] $n = 1$ 在 (3) 中排除 (分母 $n-1$); 缺次数 2, 3
+		是全部自由度缺陷 (引理 1); $c > 0$ 是 $0 \notin \sigma$ 的本质条件,
+		对 $c \leq 0$ 结论不保证 (负谱可能含 0).
+\end{description}
+
+\section{数值验证 (精确有理数)}
+
+使用 Python 的 \texttt{fractions.Fraction} 对 $c \in \{1, 3, 5\}$ 做精确
+(非浮点) 验证, 脚本为 \path{scripts/num_h2_proof_check.py}.
+
+\begin{enumerate}
+	\item 等距恒等式: 对度数 $\leq 9$ 的全部 $36$ 对基多项式,
+		$(p_i, p_j)_{2,c} = (K_c p_i, K_c p_j)_{L^2}$ 逐项精确相等 (三个 $c$).
+	\item 系数公式: 对 $n = 2, \dots, 20$, $K_c p_{2n}$, $K_c p_{2n+1}$ 的
+		闭式系数 (8) 与直接作用 $K_c$ 精确一致.
+	\item 增长引理: 对 $j \leq 24$, $u_j > 0$, $u_j \geq u_{j-1}$, 且
+		$u_j \geq (4/c)^{j-1} j!$ 全部成立; $c = 3$ 时
+		$u_{24}$ 有 51 位十进制数字.
+	\item 投影残差: $x^2, x^3$ 到 $\operatorname{span}\{K_c p_n : \deg \leq N\}$
+		的 $L^2$ 投影残差 ($c = 3$): $N = 6$ 时 $2.2\times10^{-6}$ 与
+		$4.6\times10^{-4}$; $N = 10$ 时 $2.4\times10^{-14}$ 与
+		$1.4\times10^{-11}$; $N \geq 16$ 时低于机器精度. 这直观印证
+		$\{K_c p_n\}$ 补全缺次数, 与命题 1 一致.
+	\item Gram 行列式: $\{K_c p_n : \deg \leq 11\}$ 的 $L^2$ Gram 矩阵
+		精确行列式非零 (线性无关).
+\end{enumerate}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[左定理论] 对正自伴算子 $A$, $H_r = D(A^{r/2})$ 连同
+		$(f,g)_r = (A^{r/2}f, A^{r/2}g)$ 构成左定空间族; $H^2 = D(K_c)$ 即
+		$r = 2$ 的成员. 特征函数系在各 $H_r$ 中保持完备 [5,6].
+	\item[Krein Laplacian] 带非局部 (Krein) 边界条件的自伴算子; 移位 $+c$
+		使谱进入正半轴, 是左定理论可行的前提.
+	\item[正则 Sturm-Liouville 理论] 分离自伴边界条件的算子谱为离散谱,
+		特征函数系完备 (Hilbert-Schmidt 理论).
+	\item[等距同构与稠密性] 保内积的双射把稠密性问题在源空间与目标空间之间
+		传递; $M^\perp = \{0\}$ 等价于 $\overline M = H$ (Hahn-Banach 推论).
+	\item[矩与矩问题] $L^2[-1,1]$ 函数 $g$ 的矩 $\mu_k = \langle g, x^k \rangle$
+		满足 Cauchy-Schwarz 上界 $|\mu_k| \le \|g\|_2 \sqrt{2/(2k+1)}$.
+		多项式稠密 (Weierstrass) 保证矩全零 $\Rightarrow$ 函数为零
+		(Hausdorff 矩问题的唯一性).
+	\item[三阶线性递推] 二阶齐次线性递推 $c u_j = A_j u_{j-1} - B_j u_{j-2}$
+		的支配解 (dominant solution) 行为由系数比值控制; 本文用
+		单调性 + 比值下界 $r_j \geq (A_j - B_j)/c$ 得到阶乘增长.
+	\item[代数完备与解析完备] 代数完备 = 张成多项式空间; 解析完备 = 在
+		Hilbert 空间中稠密. 例外正交多项式提供代数不完备但解析完备的实例;
+		本文给出左定 Sobolev 空间中的显式实例.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{lq} L. L. Littlejohn, A. Quintero, \emph{Krein-Sobolev orthogonal
+	polynomials}, in: Special Functions and Orthogonal Polynomials (OPSFA-16),
+	Springer, CRM Series in Mathematical Physics (2025), 107--123.
+	\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), no. 2, 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\bibitem{lw2} L. L. Littlejohn, R. Wellman, \emph{On the spectra of left-definite
+	operators}, Complex Anal. Oper. Theory 7 (2013), 437--455.
+	\url{https://doi.org/10.1007/s11785-011-0214-1}
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: A model operator approach, examples,
+	fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\bibitem{weier} K. Weierstrass, \emph{Approximation theorem} (多项式一致逼近,
+	经典 Weierstrass 定理), 任一数学分析教材.
+\bibitem{courant} R. Courant, D. Hilbert, \emph{Methods of Mathematical Physics,
+	Vol. I}, Wiley (1953) (正则 SL 理论与特征函数完备性).
+\end{thebibliography}
+
+\end{document}

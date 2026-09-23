@@ -1,5 +1,9 @@
 # 研究脚本导航
 
+第九轮当前诊断入口为 [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py). 投影用 A_i=∫I_i f 而非块平均; 另外直接积分检查一阶变分, 谱配对在真实密度/方向断点分段. 记录截断、求积和有限差分步长敏感性, 拒绝通过截断负密度制造可行扰动. 脉冲宽度或实际求积节点在浮点坐标中不能分辨时明确报错, 防止假零贡献. R=1 保留兼容. 有限样本符号不是 Hessian 定性证明或盒约束全局最优性.
+
+[_gapn2_k_global_rank2.py](_gapn2_k_global_rank2.py) 本轮只修正文档范围: 保留有限的移动界面加速度贡献, 不以 Green 对角发散推导其符号. 其 K 实现及历史 R206 扫描没有因此得到重认证. 原错误程序和失败解释保留在历史证据, 当前替代与复现入口见 [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md).
+
 第八轮 INF 的当前精确入口为[certificate.py](../research/artifacts/proof-audit-round8-20260922/certificate/certificate.py), 证明算术仅用有理数, Machin/Taylor余项及显式守卫; 十进制仅负责向外显示. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)给出普通/-O/-S执行、反例对照和独立复核.
 
 原 INF run 的05/16/19以及本目录 `_theoremA_recheck_*` 的旧抽样保留溯源. 05的像端点与16/19超越函数包络不能继续作为当前认证; 16的域覆盖由新的解析相位下界替代. 17/18及其它未重跑扫描没有获得本轮认证. 复用工具时从当前卡及精确版本回执进入.

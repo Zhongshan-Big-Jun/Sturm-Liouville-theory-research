@@ -1,0 +1,96 @@
+{
+	"checked_paths": [
+		"docs/SL_gap_n1_inf_limit_proof.tex",
+		"docs/SL_gap_n1_proof.tex",
+		"docs/SL_spectral_topics_summary.tex",
+		"research/artifacts/proof-audit-round8-20260922/certificate/README.md",
+		"research/artifacts/proof-audit-round8-20260922/certificate/certificate.py",
+		"research/artifacts/proof-audit-round8-20260922/certificate/results.json",
+		"research/artifacts/proof-audit-round8-20260922/direct-propagation-findings.md",
+		"research/artifacts/proof-audit-round8-20260922/literature/dlmf-equation-extract.md",
+		"research/artifacts/proof-audit-round8-20260922/submitted/analytic_repairs.md",
+		"research/artifacts/proof-audit-round8-20260922/submitted/proof_audit_round8_20260922.md",
+		"research/library/card-versions/0f6cf8a77d90dc510e3180f197ac3ce2f700b77fd4803d49641eb06432f64141.md",
+		"research/library/card-versions/26c097ee33faf5c90f9235ab6bc537ff16284747ec27c9ffc9f4466925e4fe5b.md",
+		"research/library/card-versions/5d0e09e792f1c3ceb0a671416e21e016d70dde1ecea6db3ff921e53697cbfcdf.md",
+		"research/library/card-versions/90ef14d51ba4484100a41c1d3fb94b634d3a5791c3de260104d87bd5a1c47e7b.md",
+		"research/library/card-versions/a4b382f79d39c092c9e2be61f1f39174132a7ac77567b351121d84eb5e74f20b.md",
+		"research/library/card-versions/a9d4f744d0617717187e522c6d24a0a6bd019fe4d32e69515a456d7f8637e5a0.md",
+		"research/library/card-versions/d759e4c41a800237671d575306a6eacd84a15102244109fd9c58f9f05b4e3c90.md",
+		"research/library/card-versions/f50caad200c2e3d9d2aea58f6162e7cc9cf7bf6519338838097584a2d24a29b5.md",
+		"research/library/corrections/evidence/3c76c1469792bbf02b6271dba59ff5a4b2576e4033c6fa1883ebf821610d430e.bin",
+		"research/library/corrections/evidence/ba933ced22f5208e383a0dabef00fa50db55a59d50ee62c739b22c62d593efde.bin",
+		"research/library/corrections/requests/1abf08d53cb548f101d4750539f5c2c1ee2b57edddcb23399d8e54b4d28150ba.json",
+		"research/library/corrections/requests/69425b718adc1704b8e77b7211f147ee70dde70be24acadb9e633131c7735a52.json",
+		"research/library/corrections/requests/c371c0398e6c9c4585126e835b67c3e4dd9280ef020b272bc63de5ac41405839.json",
+		"research/library/corrections/requests/ef698c4e149f87f152b54eb4cb1a3b2e1e5e755923c13ed7b6bf8af59b7d5b55.json",
+		"research/library/corrections/requests/fc1a3192bd69809f75492a6aa8e6432069fd201c5e47773351c2b23c8caa855d.json",
+		"tools/cot-series-certificate.md",
+		"tools/delta-bracketing.md",
+		"tools/inf-limit-comparison.md",
+		"tools/lemma-A-doubleprime.md"
+	],
+	"claim_results": [
+		{
+			"id": "correction:fc1a3192bd69809f75492a6aa8e6432069fd201c5e47773351c2b23c8caa855d",
+			"reason": "The exact repaired card resolves its stated mathematical issues. The Laurent powers are 2k-1, with first remainder term z/3. The supplied partial-fraction identity gives positive, strictly increasing r(z)/z on 0<z<pi; an M-test establishes uniform convergence on compact subintervals. Its value at pi/8 gives the stated small-phase bound, and independent rational arithmetic confirms 0<Cz<337/1000. The removable zero limits are correct. Historical floating-point certification and the unrelated tan remainder claim are not reinstated.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:ef698c4e149f87f152b54eb4cb1a3b2e1e5e755923c13ed7b6bf8af59b7d5b55",
+			"reason": "The repair correctly separates global pole-free matching from the restricted delta equations. Mode identification and interface positivity justify all divisions on R>=1500, w>=2. Both delta upper bounds, z2<=pi/8 and theta2<=a follow there. The R=1600, u=1/1600 counterexample is valid, and delta2+ tends to pi/2 as u approaches 1/2. The dependency names the supplied repaired cot card by its correct hash.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:69425b718adc1704b8e77b7211f147ee70dde70be24acadb9e633131c7735a52",
+			"reason": "The repaired card is supported by the new continuous proof: d1>4alpha and d2<3alpha imply G>Dbar+ell/(R*u^3). The denominator D0-d remains positive and is retained throughout the upper-bound argument. The proof covers w=2 and all larger admissible w without sampling or the former floating-point certificates. Its repaired dependencies match the supplied versions, and its exclusions correctly prevent extending this result to the thin region, nonsymmetric densities or higher gaps.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "correction:1abf08d53cb548f101d4750539f5c2c1ee2b57edddcb23399d8e54b4d28150ba",
+			"reason": "The repaired comparison card has sufficient current support for T1, T2 and T3. The continuous phase estimate replaces the missing grid coverage; A-doubleprime handles w>=2; and the fixed-u upper estimate completes the infimum sandwich. Both endpoint exclusions justify convergence for every stated near-minimizer tolerance. The corrected 1/R expansion and its compact-interior scope are accurate. Historical evidence is identified separately, and neither an exact optimized coefficient nor a parameter convergence rate is claimed.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-phase",
+			"reason": "Reflection symmetry, simplicity and nodal counts identify the even ground state and odd first excited state; their half-interval restrictions are positive. Matching gives the displayed pole-free equations. Positivity yields 0<theta_k<pi, 0<z1<pi/2 and 0<z2<pi, and the positive even interface derivative yields theta1<pi/2. On R>=1500, w>=2, c<=1/4-epsilon forces z2<pi/4 and theta2>pi/2. Monotonicity then proves the delta brackets; the stronger estimate z2<pi/8-epsilon*(pi/2-2/pi) and the strict cot comparison prove z2<pi/8 and theta2<a. The min-max counterexample gives theta2<=pi/20. The arctan upper bound remains bounded and tends to pi/2.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-A-doubleprime",
+			"reason": "All parameters divided by are positive on the stated open u-domain. Independently checked alpha<1/152, delta1<1/76, theta1>7/5 and the arctan estimate, giving d1>(20097/5000)alpha>4alpha. The integral remainder gives r(z)<(64/187)z<(7/20)z. The exact Taylor upper bounds sin(2)<=2578/2835 and cos(2)<=-131/315, together with concavity of t*sin(t), establish B(t)<2(t*sin(t))^2<=8 throughout (pi/2,pi). The tangent-difference identity gives the stated bound for psi. Since D0>=1 and d<1/1000, D0-d>(999/1000)D0; monotonicity in theta gives d2<(2800/999)alpha<3alpha. Thus the strict positive gap margin follows continuously, including w=2.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-continuous-sliver",
+			"reason": "The interface vector never vanishes, so its continuous argument is well-defined. Its derivative is epsilon/(cos(theta)^2+epsilon^2*sin(theta)^2), giving 0<Phi'<=ell+w/epsilon for R>=1. Strictly increasing spatial phase identifies Phi(k1)=pi/2 and Phi(k2)=pi as the actual first two full-string modes. Integration gives k2-k1>=pi/[2(ell+w/epsilon)], while the first-quadrant argument gives k1>=pi/[2(ell+w)]. These imply the claimed global bound. For R>=1500 and 0<w<=2, its denominator is strictly below 2*(1/38)*(5/2)*(2+1/76), hence G>(2888/765)pi^2>(15/4)pi^2>3pi^2 and >25. This argument covers arbitrarily small positive w, w=1/2, w=2, both historical curved strips and arbitrarily large finite R.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-T2-T3",
+			"reason": "Direct differentiation confirms the complete h/Ktilde/J/G/S chain, u'(a)>0 and Dbar'=S. The derivative signs and endpoint values give the unique minimum. The endpoint calculations give u*Dbar(u)->4 as u decreases to zero and Dbar(u)->3pi^2 as u increases to 1/2. Independently implemented Fraction/Machin/Taylor calculations confirm G(aL)>0>G(aH), the increasing u-image enclosure, both displayed T3 intervals and both comparison margins. Dbar is enclosed by interval arithmetic without assuming monotonicity across its minimum. Inspection confirms valid Taylor remainders, outward rational rounding and zero-excluding division. Replays under Python 3.14.4 with and without optimization reproduce all 19 arithmetic groups and the stored mathematical payload; all 14 negative controls reject for their intended reasons in both modes.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-fixed-u-T1",
+			"reason": "The three apparent square-root expressions extend analytically in t=1/R. The limiting root derivatives are E_theta=-1 and O_theta=cos(a)*(1+b+b^2*a^2), both nonzero. Implicit differentiation gives the stated phase expansions and C(u); positivity on the half interval establishes actual mode correspondence. Compactness supplies a common neighborhood and bounded second derivatives on each compact interior u-interval. Substitution into the actual S definition gives C(u)=4*mu1bar*ell/(3u)+ell*S(u)/3 and hence the stated positive C(u*). For R>=1500 the two continuous regions give inf G>=M, while evaluation at fixed u* gives inf G<=M+O(1/R). Near-minimizers with R*eta->0 therefore satisfy Dbar(u_j)->M after exclusion of the thin region. The limits +infinity at zero and 3pi^2>M at 1/2 exclude the two endpoints separately; uniqueness forces u_j->u*. No stronger optimized coefficient or parameter rate is inferred.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "R8-cards-summaries",
+			"reason": "All 29 supplied input hashes match, each current card equals its named version snapshot, and all 17 local dependency/resource/source references match supplied hashes. The four retrieval summaries accurately reflect the repaired domains and conclusions. The cot powers and compact-uniform convergence statement agree with the supplied DLMF equation and the mathematical derivation. The revised INF passages in SL_gap_n1_proof.tex lines 918-952 and SL_spectral_topics_summary.tex lines 615-628 agree with the current proof and numerical enclosures. Current claims distinguish analytic proofs, finite exact arithmetic and historical evidence, and exclude nonsymmetric/all-box results, higher gaps and complete Lean formalization.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval covers only the listed mathematical obligations for these frozen versions. Classical Sturm oscillation, spectral simplicity and the analytic implicit function theorem are used as standard mathematical dependencies; complete formalization is not asserted.",
+		"Lean sources, toolchain records, the linked final report and operational correction receipts were not supplied. Their execution, axiom dependencies and acceptance status were not checked.",
+		"DLMF was available only through the supplied equation transcription. The external source registry, raw web response and claimed retrieval/version provenance could not be independently authenticated.",
+		"Historical scripts and complete replay bundles referenced by the evidence were not supplied or rerun. Their reported historical verdicts were not used as proof of the current repair.",
+		"The two companion documents were substantively reviewed only in their revised INF passages. Their unrelated historical claims were not recertified.",
+		"No source-project files were modified. All frozen input hashes were checked again after execution and remained unchanged."
+	],
+	"packet_sha256": "d70ccbc3db566cd1c07d8509c055c52bdd21592928d29cc329abcefdcc8744d6",
+	"verdict": "APPROVED"
+}

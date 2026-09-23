@@ -1,0 +1,54 @@
+--- round9 baseline summary
++++ round9 corrected summary
+@@ -537,7 +537,7 @@
+ $\lambda_{n+1}\le\lambda_{2n}$; Mahar-Willner 倍指标恒等式
+ $\sup_\rho\lambda_{2n}/\lambda_n=\nu(R)$ [22]; 平衡相位闭式推导.
+ 平衡相位方法同时给出 Keller 极小值 $\mu(R)=\inf_\rho\lambda_2/\lambda_1$ 的闭式
+-(arccos 形式) [21]. 全序列下确界已严格证明 (会话 11/12, 见下); 固定 $n$ 上确界仅反射对称结构严格, 全局极值性为数值支持的猜想 (会话 12, 见下).
++(arccos 形式) [21]. 全序列下确界已严格证明 (会话 11/12, 见下); 固定 $n$ 的规定平衡候选已有归一化反射、根计数和单调极限证明, 全局最优性仍开放 (见下).
+ 
+ \subsection{进展: 全序列下确界已严格证明; 固定 \texorpdfstring{$n$}{n} 上确界为数值支持的猜想 (会话 11/12)}
+ 
+@@ -556,14 +556,21 @@
+ 沿 $n\to\infty$ 序列化达到. 关键更正 (会话 5): 下确界不等于 $\mu(R)$
+ ($R=4$ 时交替族给出 $\lambda_5/\lambda_4\approx1.0838<\mu(4)=2.4092$).
+ 
+-\emph{固定 $n$ 上确界猜想} (会话 12, \texttt{SL\_fixed\_n\_supremum.pdf}):
+-交替配置 $[1,R,1,\dots,1]$ ($2n+1$ 块, 宽度比 $\sqrt R$) 的世俗函数
+-$F_n(y)$ 满足反射对称 $F_n(\pi-y)=F_n(y)$ ($J$-共轭, 严格证明), 根按
+-$y_j+y_{2n+1-j}=\pi$ 配对, 故 $\lambda_{n+1}/\lambda_n =
+-((\pi-y_n)/y_n)^2$ (平衡相位, 数值验证); $n=1,2$ 给出闭式, $n=3,4$ 由
+-$F_n$ 的多项式给出; 极值性数值证据充分 (块数优化塌缩到 5 块, 随机搜索
+-不超越, 梯度为零). 未闭合: 全局极值性 (Keller 型归约到交替 bang-bang)
+-与 $2n$-根计数.
++\emph{固定 $n$ 上确界猜想} (第九轮范围修订, \texttt{SL\_fixed\_n\_supremum.pdf}):
++规定平衡交替配置 $[1,R,1,\dots,1]$ 的物理世俗函数记为 $F_n$,
++归一化函数为 $\widehat F_n=\omega F_n$, $y=\omega\sqrt R\,t_n$.
++准确关系是 $\widehat F_n(\pi-y)=\widehat F_n(y)$ 与
++$F_n(\pi-y)=yF_n(y)/(\pi-y)$, $0<y<\pi$.
++归一化 Chebyshev/Jacobi 表示证明恰有 $2n$ 个简单根并反射配对,
++所以规定配置的比值为 $c_n(R)=((\pi-y_n)/y_n)^2$.
++嵌套 Jacobi 矩阵的最小特征值严格下降到 $-2$, 给出
++\[
++ c_n(R)\downarrow\left(\frac{\pi-\varphi}{\varphi}\right)^2,
++ \qquad \varphi=\arccos\frac{\sqrt R-1}{\sqrt R+1}.
++\]
++这是候选序列的解析定理, 不证明其等于全局上确界 $\Lambda_n^{\sup}(R)$.
++后续极大子的交替 $2n$ 开关结构不确定最优块宽; O1/O2 的全局最优性仍开放.
++本轮仅修订本段归一化与候选状态, 完整审查范围见第九轮报告.
+ 
+ \subsection{\texorpdfstring{进展: 相邻间距 $\lambda_{n+1}-\lambda_n$ 的极端值 (会话 13/30/34/50)}{进展: 相邻间距 lambda(n+1)-lambda(n) 的极端值 (会话 13/30/34/50)}}
+ 
+@@ -832,9 +839,9 @@
+ 		见 \texttt{SL\_third\_order\_recurrence\_theory.pdf};
+ 		原 $c=1$ 锚点及其有限终端约定见
+ 		\texttt{SL\_third\_order\_K1\_proof.tex}.
+-	\item \textbf{固定 $n$ 上确界猜想的收尾} (会话 12): 全局极值性
+-		(Keller 型归约到交替 bang-bang), $2n$-根计数, 以及
+-		$\Lambda_n^{\sup}(R)\downarrow c_\infty(R)$ 的单调收敛.
++	\item \textbf{固定 $n$ 上确界猜想的收尾}: 仍须证明平衡候选的全局最优性 O1/O2,
++		以及整个 $\Lambda_n^{\sup}(R)$ 序列的单调极限.
++		规定候选 $c_n(R)$ 的根计数与单调极限已有解析证明, 不再列为同一缺口.
+ \end{enumerate}
+ 
+ 

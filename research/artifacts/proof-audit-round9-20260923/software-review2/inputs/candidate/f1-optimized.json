@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "mode": "optimized",
+  "candidate_sha256": "f846705159ed2ec559a368ab65eddeb8184b7d62b1cbd553e368868374c5a3ab",
+  "checks": [
+    {
+      "kind": "unresolved-geometry",
+      "width": 1e-20,
+      "error": "bump width cannot be resolved reliably in double-precision coordinates"
+    },
+    {
+      "kind": "unresolved-geometry",
+      "width": 1e-16,
+      "error": "bump width cannot be resolved reliably in double-precision coordinates"
+    },
+    {
+      "kind": "unresolved-geometry",
+      "width": 5e-324,
+      "error": "bump width cannot be resolved reliably in double-precision coordinates"
+    },
+    {
+      "kind": "default-unit-masses",
+      "masses": [
+        1.0000000000000009,
+        0.9999999999999455
+      ]
+    },
+    {
+      "kind": "unresolved-quadrature",
+      "error": "bump quadrature nodes cannot be resolved in double-precision coordinates"
+    },
+    {
+      "kind": "cli-rejection",
+      "width": "1e-20",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round9-20260923/software-f1-author/_gapn2_second_variation_probe.py",
+        "2",
+        "4",
+        "sup",
+        "--bump-width",
+        "1e-20"
+      ],
+      "start": "2026-09-23T02:21:52.386905+00:00",
+      "exit_code": 2,
+      "stdout": "optimized-cli-width-1e-20.stdout.log",
+      "stderr": "optimized-cli-width-1e-20.stderr.log"
+    },
+    {
+      "kind": "cli-rejection",
+      "width": "1e-16",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-O",
+        "/mnt/f/tools/math-audit-round9-20260923/software-f1-author/_gapn2_second_variation_probe.py",
+        "2",
+        "4",
+        "sup",
+        "--bump-width",
+        "1e-16"
+      ],
+      "start": "2026-09-23T02:21:53.966608+00:00",
+      "exit_code": 2,
+      "stdout": "optimized-cli-width-1e-16.stdout.log",
+      "stderr": "optimized-cli-width-1e-16.stderr.log"
+    }
+  ],
+  "scope": "Author numerical resolution regression, not independent approval or rigorous quadrature bound"
+}

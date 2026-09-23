@@ -1,0 +1,227 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359",
+		"01a0cbe7-3a93-7ec3-94d5-1481aa88a92d"
+	],
+	"claims": [
+		{
+			"id": "R9-final-bump-resolution",
+			"statement": "Independently inspect and execute the repaired bump support/node validation. Reproduce rejection of 1e-20 and 1e-16 widths normally and under -O, including a partially represented support and a distinct-endpoint interval with collapsed quadrature nodes. Check that defaults preserve individual unit masses and nonzero requested directions, failures use nonzero exit before misleading P3 values, and high quadrature orders/overlapping breaks have honest behavior. Evaluate the numerical guard as a finite resolution policy, not a theorem or arbitrary blanket validation.",
+			"verification": "software"
+		},
+		{
+			"id": "R9-final-numerical-regression",
+			"statement": "Compare actual current candidate with the rejected predecessor in the supplied archive, then personally run the existing normal/-O regressions against the NEW candidate, four named default CLI cases, and meaningful R=1 and width-weighted checks. Check true block-integral projection, zero normals, weighted normalization, unweighted pairings, direct tangency checks, finite-step positivity guards and default data/log preservation. Verify imported modules really are the supplied siblings and record hashes. Do not treat the author replay manifest or prior partial approvals as new execution.",
+			"verification": "software"
+		},
+		{
+			"id": "R9-final-software-scope",
+			"statement": "Check current cutoff/quadrature/finite-difference sensitivity, the small INF relative error and double-precision cancellation remain represented honestly. Check P2b was not wrongly diagnosed as the old block-average defect and P3 remains a fixed-width finite comparison with the negative half-interface acceleration. No infinite spectral-tail bound, root-enumeration certificate, stationary certificate, Hessian definiteness, box feasibility, eta-limit identity or global optimum may be inferred. Preserve both historical rejection and successful scoped behaviors, and report remaining actionable defects without inventing a universal numerical guarantee.",
+			"verification": "numerical"
+		}
+	],
+	"inputs": {
+		"inputs/analytic-repair.md": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+			"snapshot": "inputs/inputs/analytic-repair.md"
+		},
+		"inputs/candidate/AGENTS.md": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7a5fc74bca121fc101c89ef9f0f0a458e1eb19f38850881072ae46aed2138ffb",
+			"snapshot": "inputs/inputs/candidate/AGENTS.md"
+		},
+		"inputs/candidate/_gapn2_jacobian_analytic.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+			"snapshot": "inputs/inputs/candidate/_gapn2_jacobian_analytic.py"
+		},
+		"inputs/candidate/_gapn2_jacobian_probe.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+			"snapshot": "inputs/inputs/candidate/_gapn2_jacobian_probe.py"
+		},
+		"inputs/candidate/_gapn2_second_variation_probe.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "f846705159ed2ec559a368ab65eddeb8184b7d62b1cbd553e368868374c5a3ab",
+			"snapshot": "inputs/inputs/candidate/_gapn2_second_variation_probe.py"
+		},
+		"inputs/candidate/_gapn2_symmetry_recon.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "215521e056858ba07124823db1c0685a818e443b920bace9e480d76947d47ddc",
+			"snapshot": "inputs/inputs/candidate/_gapn2_symmetry_recon.py"
+		},
+		"inputs/candidate/default-replays.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "37f1455c0856205965b974cb4e9689db5690d729f2e55248a29daf128c95462b",
+			"snapshot": "inputs/inputs/candidate/default-replays.json"
+		},
+		"inputs/candidate/f1-normal.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "c9e18496e7c557cb76b60077bdc7a5727e39377542703cb179bfa41382c32362",
+			"snapshot": "inputs/inputs/candidate/f1-normal.json"
+		},
+		"inputs/candidate/f1-optimized.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "16e835f9d886b3e903dcb8b30394ee623d9172aa82fb2f3b163229ad8316f9ae",
+			"snapshot": "inputs/inputs/candidate/f1-optimized.json"
+		},
+		"inputs/candidate/input-manifest.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "63d80eb4aecd6447138326cc08bd7ecc79753b138729902c48df8d19e536d2bb",
+			"snapshot": "inputs/inputs/candidate/input-manifest.json"
+		},
+		"inputs/candidate/n2R10SUP.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "23d45c8fad33879392c08769465f145f3b5fd7448e50b43c68586c9c4a39ffe6",
+			"snapshot": "inputs/inputs/candidate/n2R10SUP.json"
+		},
+		"inputs/candidate/n2R10SUP.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "2a85f09806e7bd1896488e06dd4188eed43d198375f0e84ac6fb26153a0aef29",
+			"snapshot": "inputs/inputs/candidate/n2R10SUP.log"
+		},
+		"inputs/candidate/n2R10SUP.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/n2R10SUP.stderr.log"
+		},
+		"inputs/candidate/n2R4INF.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "4b7887d004210c3b8b7d0ed4d4f3df95ed92e43f8884abec253b612ecd1f0ed7",
+			"snapshot": "inputs/inputs/candidate/n2R4INF.json"
+		},
+		"inputs/candidate/n2R4INF.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "f94cd91eba4dc8f45126a212ba46ebda2fd6db7c07ebc3a364a815f73bff4e46",
+			"snapshot": "inputs/inputs/candidate/n2R4INF.log"
+		},
+		"inputs/candidate/n2R4INF.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/n2R4INF.stderr.log"
+		},
+		"inputs/candidate/n2R4SUP.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "0faaaa6f16a2ce371912365d952f636b6c33d0cefa38d7f80c13e389f2e4c256",
+			"snapshot": "inputs/inputs/candidate/n2R4SUP.json"
+		},
+		"inputs/candidate/n2R4SUP.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "247f24383f9ea7b816626a9f88359cb4dfd3dae775debd0220794404be00745d",
+			"snapshot": "inputs/inputs/candidate/n2R4SUP.log"
+		},
+		"inputs/candidate/n2R4SUP.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/n2R4SUP.stderr.log"
+		},
+		"inputs/candidate/n3R4SUP.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "cf8af91d6720a965ead09e9c0df4f078714650eb4960e95d96357833d2bb840e",
+			"snapshot": "inputs/inputs/candidate/n3R4SUP.json"
+		},
+		"inputs/candidate/n3R4SUP.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "98ca6e62ec08f8de513de5cd80ddab8f9a901d3f913c15c99252b0c869dca2a7",
+			"snapshot": "inputs/inputs/candidate/n3R4SUP.log"
+		},
+		"inputs/candidate/n3R4SUP.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/n3R4SUP.stderr.log"
+		},
+		"inputs/candidate/normal-cli-width-1e-16.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7087be86fa2d32382f783e255509439ddd848c5f7b30416f3caea2f94e96671b",
+			"snapshot": "inputs/inputs/candidate/normal-cli-width-1e-16.stderr.log"
+		},
+		"inputs/candidate/normal-cli-width-1e-16.stdout.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/normal-cli-width-1e-16.stdout.log"
+		},
+		"inputs/candidate/normal-cli-width-1e-20.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7087be86fa2d32382f783e255509439ddd848c5f7b30416f3caea2f94e96671b",
+			"snapshot": "inputs/inputs/candidate/normal-cli-width-1e-20.stderr.log"
+		},
+		"inputs/candidate/normal-cli-width-1e-20.stdout.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/normal-cli-width-1e-20.stdout.log"
+		},
+		"inputs/candidate/op03_gap_table.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+			"snapshot": "inputs/inputs/candidate/op03_gap_table.json"
+		},
+		"inputs/candidate/optimized-cli-width-1e-16.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7087be86fa2d32382f783e255509439ddd848c5f7b30416f3caea2f94e96671b",
+			"snapshot": "inputs/inputs/candidate/optimized-cli-width-1e-16.stderr.log"
+		},
+		"inputs/candidate/optimized-cli-width-1e-16.stdout.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/optimized-cli-width-1e-16.stdout.log"
+		},
+		"inputs/candidate/optimized-cli-width-1e-20.stderr.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "7087be86fa2d32382f783e255509439ddd848c5f7b30416f3caea2f94e96671b",
+			"snapshot": "inputs/inputs/candidate/optimized-cli-width-1e-20.stderr.log"
+		},
+		"inputs/candidate/optimized-cli-width-1e-20.stdout.log": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/candidate/optimized-cli-width-1e-20.stdout.log"
+		},
+		"inputs/candidate/regression_projection.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "e726bef1019b1aedf265e72d442c6f2e0e11217c64aa2034206d3671d4aec62d",
+			"snapshot": "inputs/inputs/candidate/regression_projection.py"
+		},
+		"inputs/candidate/run_defaults.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "4a8a9c8e6c9aa68a358500524343ec5bb9d189a30176e8fccbdead22a4f8d8c4",
+			"snapshot": "inputs/inputs/candidate/run_defaults.py"
+		},
+		"inputs/candidate/sensitivity.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "199619f5240914e77711d1bcefc59ea2518f1fe5414cf99b5e5a4fee64f654e0",
+			"snapshot": "inputs/inputs/candidate/sensitivity.py"
+		},
+		"inputs/candidate/test_candidate.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "a1ee77190f6284f40c5815a15cb0c740c9947d2f75b2b3650af1f5c19cadc095",
+			"snapshot": "inputs/inputs/candidate/test_candidate.py"
+		},
+		"inputs/candidate/test_f1.py": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "c9663cfb50f11443b1cfdb9ac23a3a071f7eb538e30485e97f8c3463830802e0",
+			"snapshot": "inputs/inputs/candidate/test_f1.py"
+		},
+		"inputs/first-review-execution.zip": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "d03730e036cc59323f640766dabac6f0a1eb9deb8027f6d8e83e83311bd3194b",
+			"snapshot": "inputs/inputs/first-review-execution.zip"
+		},
+		"inputs/first-review-manifest.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "90c0a069eaeb991247d05f2d4e49a6acb3c0b6ed1aae7f13a738dd521a142871",
+			"snapshot": "inputs/inputs/first-review-manifest.json"
+		},
+		"inputs/first-review-native-completion.json": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "dfd955f37d74308906a45a92ee899be6ce4767f0a89c351a8ff900ceec609dc0",
+			"snapshot": "inputs/inputs/first-review-native-completion.json"
+		},
+		"inputs/repair-scope.md": {
+			"role": "frozen-numerical-program-and-evidence",
+			"sha256": "502bb63eac326786b8fdc439a947981081412e623d3821902f6461109e491a4d",
+			"snapshot": "inputs/inputs/repair-scope.md"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

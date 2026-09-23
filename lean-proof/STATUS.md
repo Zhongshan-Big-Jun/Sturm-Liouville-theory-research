@@ -1,5 +1,13 @@
 # lean-proof 形式化状态总表
 
+## 2026-09-23 第九轮局部形式化
+
+新增[AuditRound9.lean](SL/AuditRound9.lean): 全维有限实向量的积分法向量投影代数、零法向量与幂等性、线性泛函归一化的核修正、真实2×2归一化矩阵的J共轭与任意n乘积反射、从状态相似变换到物理F的频率因子及内部零点等价. 文件含25个具名定理和13个定义/缩写, 验收根为15项合取, 机器导出59项声明(含辅助项). 作者实跑与另一新目录的独立执行均通过, 三类错误目标均拒收; 全部59声明盲读及另一新会话的语义/执行验收均 APPROVED, 精确证据与边界以[第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md)为准.
+
+使用固定Windows PE Lean4.31.0及原Mathlib依赖, 根闭包只含propext、Classical.choice、Quot.sound. 未形式化从积分到有限法向量的解析识别、本征函数可微性、无限谱展开/Green核、ODE传输矩阵来源、2n根计数、候选极限或全局极值; 可选的块宽加权投影未在新文件覆盖. 49份旧SL源码和原环境保留字节, 未执行全工程Lake build.
+
+旧ReflectionSymmetry.lean证明的是固定omega参数下的矩阵恒等式. 对文稿中omega(y)=y/(s*t)的物理函数, 严格对称的是omega*F; F(pi-y)=y/(pi-y)*F(y). 本轮新增文件补上该代数桥接, 旧文件保持历史原字节.
+
 ## 2026-09-22 第八轮局部形式化
 
 新增[AuditRound8.lean](SL/AuditRound8.lean): 显式谱上界前提下的相位反例界、真实三角根与S的代数桥接、固定u系数恒等式及驻点系数正性、0.8256有理比例、B/D曲边漏区的明确见证. 九合取根契约、47项实际公开声明(含编译器辅助声明)、传递公理、正对照和三个错误目标均留有实际新编译及独立复核. 精确次数和环境身份见[第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md).
@@ -68,7 +76,7 @@
 | `SL/MomentGrowth.lean` | 矩跳跃增长引理: 对 c>0, 递推 c u_j = A_j u_{j-1} - B_j u_{j-2} (A_j=2j(2j-1)+cj/(j-1), B_j=2j(2j-3)) 的解满足 u_j>0, u_j<=u_{j+1}, u_j >= (4/c)^(j-1) j! | `docs/SL_h2_completeness_proof.tex` (增长引理) | lake build 绿; sorry/axiom 0 |
 | `SL/BalancedPhase.lean` | 平衡相位闭式核心: theta=arccos(s/(s+1)) 满足 sup 配置 secular 方程; arccos(-s/(s+1))=pi-theta; nu(R) 闭式; (0,pi) 内 secular 根恰为 theta/pi-theta; tan^2 phi=s(s+2) (Keller inf); lambda1/lambda2 相位恒等式 | `docs/SL_ratio_proof.tex` 第 3 节, `tools/balanced-phase.md` | lake build 绿; sorry/axiom 0 |
 | `SL/TransferMatrix.lean` | 比值证明线转移矩阵/secular 核心: supM1/supM2/supM3 ([1,R,1] 三段矩阵), infM1/infM2/infM3 ([R,1,R] 三段矩阵), sup/inf top-right 乘积闭式与 Dirichlet 条件等价, theta/pi-theta/phi 满足矩阵 Dirichlet 条件, 平凡不等式 λ_{n+1}<=λ_{2n} 的严格单调序列版本 | `docs/SL_ratio_proof.tex` 第 1-3 节 | lake build 绿; sorry/axiom 0; 转移矩阵到特征值的谱论连接未形式化 |
-| `SL/ReflectionSymmetry.lean` | 固定 n 交替配置反射对称 (J-共轭): J=diag(1,-1), Tcell/Tend/M/F; J_Tcell/J_Tend (单块 J-共轭), J_conj_pow (矩阵幂共轭), M_reflection (M_n(pi-y)=-J M_n(y) J), J_conj_entry, F_reflection (F_n(pi-y)=F_n(y)) | `docs/SL_fixed_n_supremum.tex` 定理 "反射对称" | lake build 绿; sorry/axiom 0; 形式化固定 ω 参数的矩阵版本, 源中 y=ω√R·t 相位归一化与谱论连接未形式化 |
+| `SL/ReflectionSymmetry.lean` | 固定 n 交替配置反射对称 (J-共轭): J=diag(1,-1), Tcell/Tend/M/F; J_Tcell/J_Tend (单块 J-共轭), J_conj_pow (矩阵幂共轭), M_reflection (M_n(pi-y)=-J M_n(y) J), J_conj_entry, F_reflection (F_n(pi-y)=F_n(y)) | `docs/SL_fixed_n_supremum.tex` 定理 "反射对称" | lake build 绿; sorry/axiom 0; 形式化固定 ω 参数的矩阵版本, 源中变化ω的物理F不能据此宣称值对称; 第九轮AuditRound9补齐归一化/物理频率因子代数桥接, 谱论连接仍未形式化 |
 | `SL/DensenessCriteria.lean` | 稠密性准则的稀疏基矩刻画 (R 上): moments M_k=M(X^k); sparse_even_apply/sparse_odd_apply (pEvenR/pOddR 的矩展开), even/odd_moments_of_orthogonal (正交性 => M_{2m}=m M_2, M_{2m+1}=m M_3) 与 even/odd_orthogonal_of_moments (反向), sparse_moment_characterization (定理 2 的 iff) | `docs/SL_denseness_criteria.tex` 定理 2 (矩刻画) | lake build 绿; sorry/axiom 0; Hilbert 空间与稠密性收尾未形式化 |
 | `SL/SymlineUniqueZero.lean` | 对称线 KEY LEMMA 装配核心 (源 4.4 节 thm:keylemma): Fe/Mf 定义与 Mf_pos, FeHalf_neg (端点 (ii) 代数核心), FeZero_limit_pos (端点 (i) 极限值), positive/negative_of_no_zero_and_pos (零免费上符号恒定), existsUnique_zero_signs_of_nonneg_mono (通用分析装配: 右极限正 + IVT 存在性, 极大点/左右斜率极限 + ge_of_tendsto 唯一性, 符号结论), Fe_deriv_neg_of_nonneg (eq:mono 蕴含, 由 Fep_lt_zero_of_nonneg), keylemma_concrete (具体 KEY LEMMA, 分析钩子隔离为假设) | `docs/SL_gap_n1_symline_proof.tex` 4.4 节 (KEY LEMMA) | lake build 绿 (8586 jobs); sorry/axiom 0; 端点符号/相位分支/导数恒等式为文档钩子未形式化 (文件头诚实标注); 义务级独立复核未执行 |
 | `SL/SymlineTensionRatio.lean` | 间距线 n=1 对称线代数核心 (R 上): Phi/Mf/FeEquiv/Delta/T/rho 定义, Phi_nonneg/Phi_eq (Phi 闭式), P1 (u<=tan u => c/(q+c)<=t/(y+t), c=arctan(q*t)/y) 与 P1_tan, FeEquiv_eq (对称线公分母形式), FeEquiv_iff_rho_lt_one (FeEquiv<0 <=> rho<1, Delta>0), p/Q0/rho0 定义, P2 (s1^2*s2^2*T/Delta*(1-q^2)<=Q0, 三正项分解 E0/y^2=cos^2γ(p-A^2)+cos^2A(y^2s2^2-p)+cos^2A*A^2*cos^2γ, 对一切实数 q 成立) 与 tension_ratio_chain (rho<=rho0, 由 P1+P2), exists_gamma_star/GammaStar (tan γ=2(π-γ)/3 在 (π/4, 9π/20) 的 IVT 根) 与 ys2_of_ge_gamma_star (Lemma ys2 严格形式 p<(π-γ)^2*sinγ^2, strictConcaveOn_f/f_pi_div_four_gt: 严格凹 + 弦界, 只用 γ_0*>π/4) | `docs/SL_gap_n1_symline_allR_proof.tex` (引理 P1/P2 + 张力比链) | lake build 绿; sorry/axiom 0; 源 γ_0* 有理位置证书 (交替级数) 未复刻, 以 IVT + 严格凹弦界替代 (audit_report §16); 义务级独立复核未执行 |
@@ -119,7 +127,7 @@ MINOR_PARAPHRASE, 无关键错误; 独立第三方复核未执行, 见审计报�
 | SL_ratio_proof.tex | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) (平衡相位 + MW 引理 2) | 已证 | 部分: BalancedPhase (三角闭式核心) + TransferMatrix (三段转移矩阵乘积/secular 方程/平凡不等式); 转移矩阵到特征值的谱论连接与 MW 引理重证仍未形式化 |
 | SL_inf_ratio_proof.tex | inf_{n,rho} lambda_{n+1}/lambda_n = 1 (常密度高频序列已足够) | 已证 | 未开始; 无需为这个全序列结论先形式化一般 Weyl 渐近 |
 | SL_mw_lemma_reproof.tex | Mahar-Willner 引理 1-2 独立重证 (周期延拓 + 零点截断) | 已证 | 未开始 |
-| SL_fixed_n_supremum.tex | 固定 n 上确界: 交替配置平衡相位结构, n=1,2 闭式 | 部分 (全局极值未证) | 部分: ReflectionSymmetry (J-共轭反射对称 F_n(pi-y)=F_n(y), 固定 ω 参数); 平衡定理的 2n-根计数/闭式仍依赖数值证据, 未形式化 |
+| SL_fixed_n_supremum.tex | 固定 n 上确界: 交替配置平衡相位结构, n=1,2 闭式 | 部分 (全局极值未证) | 部分: ReflectionSymmetry限固定ω; AuditRound9证明归一化/物理F的代数桥接. 第九轮已有全部n的解析2n根计数及候选单调极限证明, 这些谱论结论尚未形式化 |
 | SL_gap_extremals.tex | 相邻间距极端值 (SUP/INF 配置表) | 数值强猜想 (n>=2 未严格) | 未开始 (源未严格证明, 不宣称形式化) |
 | SL_gap_n1_proof.tex | n=1 间距极端值定理 | 已证 | 未开始 |
 | SL_gap_n1_symline_proof.tex | 缺口 (a): 阱族对称线唯一零点 + D 单峰 | 已证 | 部分: P1/P2 对数导数界与 W0 引理的证书自由代数核心 (SymlineKeyLemma: q0/Gamma0 定位, W0 γ<4q0/3, P1_bound, P2_bound, P1_lt_P2, Fep_lt_zero_of_nonneg, gamma0_mono) + 唯一零点与符号结论装配核心 (SymlineUniqueZero, 分析钩子: 端点符号/相位分支/导数恒等式); 剩余: Fe 端点评值 (lem:endpoints) 与相位分支约化 γ=π-α2(c)<=γ_0(q) 的证明收尾 |

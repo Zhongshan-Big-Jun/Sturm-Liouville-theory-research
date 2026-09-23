@@ -1,0 +1,33 @@
+{
+  "scope": "Formatting only; remove extra final blank line left by deleting superseded in-progress note",
+  "before": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol",
+      "diff",
+      "--check",
+      "--",
+      "AGENTS.md"
+    ],
+    "exit_code": 2,
+    "stdout": "AGENTS.md:132: new blank line at EOF.\n",
+    "stderr": "",
+    "sha256": "b4a9173c7a6c6b87456ae31ae9f92a4eb532462b38fa92fc50b6e98823038621"
+  },
+  "after": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol",
+      "diff",
+      "--check",
+      "--",
+      "AGENTS.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "sha256": "767470b4bfe37cf72379dd4729017526aeb55c80405538f4add3968431d7cac1"
+  }
+}

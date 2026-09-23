@@ -1,0 +1,95 @@
+{
+  "kind": "mathematics",
+  "author_ids": [
+    "01a06f46-dd03-7c83-9267-32048412c359",
+    "01a0cbe7-a5ba-7be1-9170-4484e929436b",
+    "01a0cc16-7a4f-74a0-b80b-2413e676193e"
+  ],
+  "inputs": [
+    {
+      "path": "inputs/AuditRound9.lean",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/declarations.json",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/environment.json",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/lean-toolchain",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/author-raw-evidence.zip",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/author-archive-manifest.json",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/HUMAN-CONTRACT.md",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/author-result.json",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/author-report.md",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/positive-contract.json",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/analytic-repair.md",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "inputs/SL_fixed_n_supremum.tex",
+      "role": "actual-formal-definition-or-intended-local-contract"
+    },
+    {
+      "path": "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/report.json",
+      "role": "actual-independent-blind-readback"
+    },
+    {
+      "path": "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/receipt.json",
+      "role": "actual-independent-blind-readback"
+    },
+    {
+      "path": "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/dispatch.json",
+      "role": "actual-independent-blind-readback"
+    },
+    {
+      "path": "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/spawn.json",
+      "role": "actual-independent-blind-readback"
+    },
+    {
+      "path": "research/library/reviews/runs/bbe6410e6e958d392918fd8c023ae49c7e796ca361449684b91ed1e52359e61d-01a0cc16-7a4f-74a0-b80b-2413e676193e/completion.json",
+      "role": "actual-independent-blind-readback"
+    }
+  ],
+  "claims": [
+    {
+      "id": "R9-fresh-Lean-execution",
+      "verification": "formal",
+      "statement": "Personally execute a fresh compiler replay from the frozen author archive in a NEW private directory /mnt/f/tools/math-audit-round9-20260923/formal-reviewer. Inspect its author_runner.py, replay.py and launch_replay.py before running copied launch_replay.py with a never-used prefix. The supplied runner may read only the existing pinned Windows Lean4.31.0 executable, installed plugin verification/runtime code, original lean-proof/lake-manifest.json and declared Mathlib/package build artifacts needed for compilation. Reading those runtime dependencies is authorized; unrelated source, memory, skills or author conversations are not. No global configuration changes, downloads, Lake rebuild or reuse of an author root olean as your own new compilation. Check every actual argv/exit/stdout/stderr, fresh root artifact, exact 15-conjunct type, definitions and transitive axioms; use actual checks of every bound imported artifact and runtime identity before/after. Independently reproduce one positive exact target and the missing-target, wrong-sign expected type and extra-unproved-premise controls, with their specific mismatch causes. A missing run or a generic nonzero exit is not success. Preserve any failures and exact limits. Save evidence and identify all output paths in final JSON."
+    },
+    {
+      "id": "R9-Lean-semantic-fidelity",
+      "verification": "formal",
+      "statement": "Compare the supplied independent blind readback and your freshly elaborated declarations against the explicit human contract and actual analytic source. Account for all binders of all 59 exported declarations (25 source theorems, 13 definitions/abbreviations and generated auxiliaries). Check finite Fin n real integral-normal projection including zero norm and idempotence, the arbitrary real-module linear-functional correction with nonzero normalization and preservation of a kernel equation, actual 2x2 matrix entries and arbitrary-n powers/J-conjugation, physical similarity transport, omega=y/(s*t), nonzero-domain hypotheses, real sin/cos reflection and positive interior factor/zero iff. No root conclusion may be hidden in an unproved premise, no redefinition of the mathematical target is acceptable. The extra-premise negative control is a genuine type mismatch, not a proof of its arbitrary H."
+    },
+    {
+      "id": "R9-Lean-exact-scope",
+      "verification": "formal",
+      "statement": "Check that root closure is genuinely closed under only propext, Classical.choice and Quot.sound, with no sorryAx/new axioms/unsafe/unknown dependency, and that dependency/definition exports describe the compiled object. Distinguish algebraic interfaces from analytic block-integral identification, weighted projection (not selected), eigenfunction differentiability, infinite spectral expansion/reduced inverse/Green concentration, ODE derivation, 2n root counting, candidate limit and global extrema, none of which this Lean source fully proves. Inspect retained initial compile/positive failure and interrupted negative-premise attempt without upgrading them to passes; the completed replacement run is separate. A full project Lake build is not requested or claimed. Report execution and semantic conclusions separately, including any remaining formalization gaps."
+    }
+  ]
+}

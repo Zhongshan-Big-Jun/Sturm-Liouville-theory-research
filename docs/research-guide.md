@@ -1,5 +1,7 @@
 # 研究导航
 
+第九轮当前入口: [二阶变分解析修复](../research/artifacts/proof-audit-round9-20260923/analytic-repair.md)、[固定 n 候选谱证明](SL_fixed_n_supremum.tex)和[修订报告](../reports/proof-audit-round9-20260923/REPORT.md). 真正切空间由块积分定义; 归一化导数、有限 Green 核与移动界面加速度分别处理. 物理函数反射有 y/(pi−y) 因子, 归一化后才严格对称. 平衡候选 c_n 的单调性和极限已给出解析证明; 完整全局极值问题仍开放.
+
 第八轮当前入口: [INF 极限证明](SL_gap_n1_inf_limit_proof.tex)与[修订报告](../reports/proof-audit-round8-20260922/REPORT.md). 连续相位方法覆盖完整薄层域, 大 w 用初等正余量比较; T1 的解析收敛与 T3 的数值定位分开. 旧05/16/19证书不再承担当前证明. 固定内部参数误差为1/R, 不能据此推断最优参数收敛率.
 
 
@@ -18,7 +20,7 @@
 | n=1 间距极值 | [主证明](SL_gap_n1_proof.tex), [相位刚性](SL_gap_n1_O3a_phase_rigidity_proof.tex), [全 R 阱族刚性](SL_gap_n1_well_rigidity_allR_proof.tex), [对称线](SL_gap_n1_symline_allR_proof.tex), [全局 good-root](SL_gap_n1_global_goodroot_proof.tex), [INF 极限](SL_gap_n1_inf_limit_proof.tex) | SUP/INF 的完整证明链分别核对; 早期单篇文档的待办不代表整条路线的最终状态 |
 | n>=2 间距结构 | [有限块约化](SL_gap_nge2_finite_reduction_proof.tex), [精确 2n 开关](SL_gap_nge2_exact_2n_switches_proof.tex), [局部对称性](SL_gap_nge2_symmetry_local_proof.tex) | 第七轮以统一Volterra估计修复弱反差局部唯一性; 固定n>=1的SUP极限为(n+1)²pi²; 有限R全局唯一性与完整分类仍有缺口 |
 | 最小化方向的合作者结果 | [研究进展](SL_gap_nge2_min_direction_progress.tex), [可读 PDF](SL_gap_nge2_min_direction_progress.pdf), [审计](../runs/rigorous-open-math-research/R-20260816T174722Z-min-direction-audit/), [核验包](../collaborator_min_direction_verification/) | 按原文的 n, mu, 弱反差条件区分 Trusted, Reviewed 与 Open |
-| 固定 n 比值上确界 B3 | [早期相位文档](SL_fixed_n_supremum.tex), [后续研究对比](../reports/plugin-performance-b3-ab.md), [一般交替 Chebyshev 表示](../reports/plugin-performance-b3-o1o2-current.md) | 极大子的精确 2n 开关结构及平衡世俗函数的 2n 简单根计数已有后续 STRICT 结果; 全局最优值及其余单调性问题仍开放 |
+| 固定 n 比值上确界 B3 | [当前候选谱证明](SL_fixed_n_supremum.tex), [后续研究对比](../reports/plugin-performance-b3-ab.md), [一般交替 Chebyshev 表示](../reports/plugin-performance-b3-o1o2-current.md) | 精确 2n 开关结构保留原审查范围; 本轮重证全部 2n 简单根及平衡候选 c_n 的严格单调与极限. c_n=Lambda_n^sup 尚未证明, 全局 O1/O2 仍开放 |
 | B4/P1 M3 | [工具说明](../tools/m3-largeR-closure.md), [证明工件](../research/artifacts/blueprint-rigorous-math/R-20260825T100044Z-b4-m3-blueprint/), [接收记录](../blueprint/submissions/SUB-20260825-B4M3-FINAL-003/) | n=2 对称 INF, large-R, 有限非零内部 chart; 存在有限 R0, 对 R>R0 得到规定的渐近与符号结论 |
 | KP-DET | [sequence-26 白板][kp-whiteboard], [分支接受包][kp-branch], [求积接受包][kp-quadrature] | 完整约束下 0<c<=2/3 已严格闭合; P20-P21 给出精确求积约化; 本地主 run 的 Q9 仍记录为 OPEN |
 

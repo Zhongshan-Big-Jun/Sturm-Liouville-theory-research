@@ -10,6 +10,14 @@
 
 # 项目维护
 
+## 2026-09-23 第九轮审计修缮 (研究与验收完成)
+
+用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round9 继续修复", 指定 math-research-workflow 2.0.1. 核对附件和基线2a81b608后修复真实积分投影、有限Green核、归一化导数核项、物理世俗函数频率因子; 新补证仅闭合规定平衡候选序列的单调性与极限, O1/O2、G1仍开放. 两份PDF、研究地图、理解、导航、工具注释和续接记录同步. 详见[本轮报告](reports/proof-audit-round9-20260923/REPORT.md).
+
+方法: 附件作为待核实证据; 作者与无状态fork_context:false检验者分离, 冻结精确输入, 保存原生调用和真实回执. 两次首次退回另修: 卡片集中极限遗漏质量收敛, 极窄脉冲在浮点坐标中塌缩. 五份最终独立检验通过; Lean59声明经盲读及另一个新会话亲自编译/语义核查, 仅认证局部代数接口. 使用已安装2.0.1原版纠错模块释放3张修订卡, 12张未变卡完成22项续发; 实际检索78可用/1原撤回. 保留57条历史失效回执, 不绕过门禁.
+
+保护基线12666个tracked、134个原untracked、6项既有dirty, 49份旧Lean源、历史证据及canonical. 不改插件/cache或全局环境. 外部F:/tools/math-audit-round9-20260923保存真实执行与发布状态; 中断后先核对CURRENT/DELIVERY、实际双远端和原工作树, 不重跑已完成研究者. 精确暂存, origin先于fork推送; 具体对话与操作见state/AGENTS_SESSION_LOG.md.
+
 ## 2026-09-22 第八轮审计修缮 (本轮完成)
 
 用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round8 继续修订", 指定 math-research-workflow 2.0. 读取报告、解析补证、checks.py 及原失败/成功记录; 附件是待核查证据. 基线 d1462eb, 10236 个原跟踪文件、134 个原未跟踪文件与 6 项既有脏文件已保存字节身份到 F:/tools/math-audit-round8-20260922/baseline.json. 审计包十个清单哈希及六份被引用源码的原始 Git blob 身份核对一致.

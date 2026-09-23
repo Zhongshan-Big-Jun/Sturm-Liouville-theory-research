@@ -1,0 +1,186 @@
+{
+  "kind": "mathematics",
+  "author_ids": [
+    "01a06f46-dd03-7c83-9267-32048412c359",
+    "01a0cbe7-3a93-7ec3-94d5-1481aa88a92d"
+  ],
+  "inputs": [
+    {
+      "path": "inputs/analytic-repair.md",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/AGENTS.md",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/_gapn2_jacobian_analytic.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/_gapn2_jacobian_probe.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/_gapn2_second_variation_probe.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/_gapn2_symmetry_recon.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/default-replays.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/f1-normal.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/f1-optimized.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/input-manifest.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R10SUP.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R10SUP.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R10SUP.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4INF.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4INF.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4INF.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4SUP.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4SUP.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n2R4SUP.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n3R4SUP.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n3R4SUP.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/n3R4SUP.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/normal-cli-width-1e-16.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/normal-cli-width-1e-16.stdout.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/normal-cli-width-1e-20.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/normal-cli-width-1e-20.stdout.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/op03_gap_table.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/optimized-cli-width-1e-16.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/optimized-cli-width-1e-16.stdout.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/optimized-cli-width-1e-20.stderr.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/optimized-cli-width-1e-20.stdout.log",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/regression_projection.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/run_defaults.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/sensitivity.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/test_candidate.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/candidate/test_f1.py",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/first-review-execution.zip",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/first-review-manifest.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/first-review-native-completion.json",
+      "role": "frozen-numerical-program-and-evidence"
+    },
+    {
+      "path": "inputs/repair-scope.md",
+      "role": "frozen-numerical-program-and-evidence"
+    }
+  ],
+  "claims": [
+    {
+      "id": "R9-final-bump-resolution",
+      "verification": "software",
+      "statement": "Independently inspect and execute the repaired bump support/node validation. Reproduce rejection of 1e-20 and 1e-16 widths normally and under -O, including a partially represented support and a distinct-endpoint interval with collapsed quadrature nodes. Check that defaults preserve individual unit masses and nonzero requested directions, failures use nonzero exit before misleading P3 values, and high quadrature orders/overlapping breaks have honest behavior. Evaluate the numerical guard as a finite resolution policy, not a theorem or arbitrary blanket validation."
+    },
+    {
+      "id": "R9-final-numerical-regression",
+      "verification": "software",
+      "statement": "Compare actual current candidate with the rejected predecessor in the supplied archive, then personally run the existing normal/-O regressions against the NEW candidate, four named default CLI cases, and meaningful R=1 and width-weighted checks. Check true block-integral projection, zero normals, weighted normalization, unweighted pairings, direct tangency checks, finite-step positivity guards and default data/log preservation. Verify imported modules really are the supplied siblings and record hashes. Do not treat the author replay manifest or prior partial approvals as new execution."
+    },
+    {
+      "id": "R9-final-software-scope",
+      "verification": "numerical",
+      "statement": "Check current cutoff/quadrature/finite-difference sensitivity, the small INF relative error and double-precision cancellation remain represented honestly. Check P2b was not wrongly diagnosed as the old block-average defect and P3 remains a fixed-width finite comparison with the negative half-interface acceleration. No infinite spectral-tail bound, root-enumeration certificate, stationary certificate, Hessian definiteness, box feasibility, eta-limit identity or global optimum may be inferred. Preserve both historical rejection and successful scoped behaviors, and report remaining actionable defects without inventing a universal numerical guarantee."
+    }
+  ]
+}

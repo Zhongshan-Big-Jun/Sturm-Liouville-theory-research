@@ -1,0 +1,379 @@
+﻿% 编译方式: xelatex SL_denseness_criteria.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{边界约束 Hilbert 空间中多项式稠密的一般准则: 充分条件, 矩刻画与临界指数}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05; 2026-09-20 revision}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文建立受边界条件约束的 Hilbert 空间中多项式基稠密性的一般准则 (后续方向 2).
+设 $H$ 为 $[-1,1]$ 上含多项式 $\Pi$ 且多项式稠密的 Hilbert 空间, 稀疏基
+$p_0 = 1$, $p_1 = x$, $p_{2m} = x^{2m} - \frac{m}{m-1}x^{2m-2}$,
+$p_{2m+1} = x^{2m+1} - \frac{m}{m-1}x^{2m-1}$ ($m \geq 2$, 缺 2, 3 次). 三个结果:
+\begin{enumerate}
+	\item \emph{一阶矩准则} (定理 \ref{thm:first}): 若 $\|x^k\|_H \leq C k^\beta$ 且
+		$\beta < 1$, 则 $\{p_n\}$ 在 $H$ 中完备. 证明: 正交条件化为矩的
+		一阶递推 $M_{2m} = mM_2$, 与 $\beta < 1$ 的矩界矛盾.
+	\item \emph{跳变矩准则} (定理 \ref{thm:jump}): 若 $\{q_n\} \subset \Pi$ 满足三系数跳变
+		$q_{2m} = c_0 x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}$ ($c_0 > 0$,
+		$B_m \geq 0$, 增长引理假设), 且 $\|x^k\|_H \leq Ck^\beta$ (任意多项式阶),
+		则 $\{q_n\}$ 在 $H$ 中完备.
+	\item \emph{矩刻画} (定理 \ref{thm:moments}): $\{p_n\}$ 在 $H$ 中完备当且仅当不存在
+		非零 $w \in H$ 使矩 $M_k = (w, x^k)_H$ 满足 $M_0 = M_1 = 0$,
+		$M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 完备性被归结为一个矩量问题.
+\end{enumerate}
+应用到移位 Krein Laplacian 时, 跳变矩只在单项式与相关像都属于内积空间的
+前提下使用. H2/H3 主证明分别在 $L^2$ 与 $H^1$ 中满足此前提.
+结合谱截断, 同一稀疏族在 $0\le s\le3$ 的真正幂域 $H^s=D(K_c^{s/2})$
+中稠密. 2026-09-20 撤回旧版所有整数阶与任意阶结论:
+$p_4\notin H^s$ 对所有 $s\ge7/2$ 成立. 2026-09-21 第六轮分数阶修订稿另以四迹图核证明同一完整命名族在 $0\le s<7/2$ 中稠密; 这不扩大本文矩方法的取矩空间假设.
+临界性: 对角空间
+$H_\beta$ (内积 $(x^j, x^k) = \delta_{jk}(k+1)^{2\beta}$) 中 $\{p_n\}$
+完备当且仅当 $\beta \leq 3/2$; $\beta > 3/2$ 时显式 $w \neq 0$ 与
+$\{p_n\}$ 正交. 单幂范数多项式增长本身并非充分条件; 一阶准则的 $\beta<1$ 是充分非必要条件:
+对角族给出精确临界指数 $3/2$, 而 Cauchy-Schwarz 矩界只给出充分条件
+$\beta < 1$ (一阶) 与任意多项式阶 (跳变).
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与框架}
+
+固定 $H$ 为 $[-1,1]$ 上函数的 Hilbert 空间, 满足
+\begin{enumerate}
+	\item[(H1)] $\Pi \subset H$ (所有多项式属于 $H$), 且 $\Pi$ 在 $H$ 中稠密;
+	\item[(H2)] 矩泛函良定: 对 $w \in H$, $M_k := (w, x^k)_H$ 有定义且
+		$|M_k| \leq \|w\|_H\, \|x^k\|_H$.
+\end{enumerate}
+(H2) 自动成立 (Cauchy-Schwarz). 研究对象是稀疏基
+\begin{equation}
+	p_0 = 1, \quad p_1 = x, \qquad
+	p_{2m} = x^{2m} - \frac{m}{m-1} x^{2m-2}, \quad
+	p_{2m+1} = x^{2m+1} - \frac{m}{m-1} x^{2m-1} \quad (m \geq 2).
+\end{equation}
+允许指标 $n \in \{0,1\} \cup \{4,5,\dots\}$ (缺 2, 3). 注意 $\{p_n\}$
+虽各有首系数 $1$, 却缺少次数 $2,3$. 其代数线性包为
+\[
+ \mathcal P_K:=\operatorname{span}\{p_n\}=\Pi\cap D(K_c)\ne\Pi,
+ \qquad \operatorname{codim}_{\Pi}\mathcal P_K=2.
+\]
+每个 $p_n$ 满足 Krein 边界条件, 故线性包包含于右侧.
+反过来, 用首项消去把任一 $p\in\Pi\cap D(K_c)$ 化为
+$a+bx+dx^2+ex^3$. 两个边界残差在 $x^2,x^3$ 上分别为
+$(2,-2)$ 和 $(2,2)$, 线性无关, 所以 $d=e=0$.
+因此等号与余维断言成立. 要证明的是 $\mathcal P_K$ 在 $H$ 中的闭包等于 $H$,
+不能由全体多项式的稠密性直接替代.
+
+\begin{remark}[两个不同的稠密性]
+	(H1) 中``多项式稠密'' 是假设, 完备性结论 (定理 \ref{thm:first}, 5) 的输入; 输出是
+	``$\{p_n\}$ (甚至 $\{q_n\}$) 也稠密''. 应用时必须先验证
+	$\Pi\subset H$. 真正幂域 $H^2=D(K_c)$ 已不含 $x^2$,
+	不能把本节 (H1) 无条件代入所有左定空间.
+\end{remark}
+
+\section{矩刻画 (充要条件)}
+
+\begin{theorem}[矩刻画]\label{thm:moments}
+	$\{p_n\}$ 在 $H$ 中完备当且仅当: 对任意 $w \in H$, 若
+	$M_0 = M_1 = 0$ 且
+	\begin{equation}
+		M_{2m} = m\, M_2, \qquad M_{2m+1} = m\, M_3 \qquad (m \geq 1),
+	\end{equation}
+	则 $w = 0$. 等价地, 完备性失败当且仅当存在 $M_2, M_3$ 不全为零,
+	使得矩序列由 $M_0 = M_1 = 0$ 与 (2) 决定, 且可被某个 $w \in H$ 表示: $M_k = (w, x^k)_H$.
+\end{theorem}
+
+\begin{proof}
+	$w \perp \operatorname{span}\{p_n\}$ 当且仅当 $(w, p_n)_H = 0$ 对一切
+	允许 $n$ 成立. $n = 0, 1$ 给出 $M_0 = M_1 = 0$. 对 $m \geq 2$:
+	\[
+		0 = (w, p_{2m})_H = M_{2m} - \tfrac{m}{m-1} M_{2m-2},
+	\]
+	迭代得 $M_{2m} = mM_2$; 奇次同理. 反之若矩满足 (2) 且 $M_0 = M_1 = 0$,
+	则回代得 $w \perp \operatorname{span}\{p_n\}$. 故
+	$\operatorname{span}\{p_n\}$ 稠密 $\iff$ 正交补为 $\{0\}$
+	$\iff$ 所述矩条件仅由 $w = 0$ 满足. \qed
+\end{proof}
+
+\begin{remark}[矩量问题的视角]
+	定理 \ref{thm:moments} 把稠密性归结为: 序列 $(\mu_{2m}) = (mM_2)$, $(\mu_{2m+1}) = (mM_3)$
+	何时是某个 $w \in H$ 的矩. 对一般的 $H$ 这是经典矩量问题; 对角空间
+	$H_\beta$ (第 5 节) 中可表示性显式可判, 给出精确临界指数.
+\end{remark}
+
+\section{一阶矩准则 (充分条件)}
+
+\begin{theorem}[一阶矩准则]\label{thm:first}
+	设 $H$ 满足 (H1)(H2) 且 $\|x^k\|_H \leq C k^\beta$ ($\beta < 1$).
+	则 $\{p_n\}$ 在 $H$ 中完备.
+\end{theorem}
+
+\begin{proof}
+	设 $w \in H$, $(w, p_n)_H = 0$ 对一切允许 $n$. 由定理 \ref{thm:moments},
+	$M_{2m} = mM_2$. 由 (H2) 与范数假设:
+	\[
+		m\,|M_2| = |M_{2m}| \leq \|w\|_H \|x^{2m}\|_H \leq C\|w\|_H (2m)^\beta .
+	\]
+	若 $M_2 \neq 0$, 则 $m \leq (C\|w\|_H/|M_2|)(2m)^\beta$ 对一切 $m$,
+	与 $\beta < 1$ 矛盾. 故 $M_2 = 0$, 递推给出全部偶矩为零; 奇矩同理
+	($M_3 = 0$). 于是 $M_k = 0$ 对一切 $k$, 由 (H1) 中多项式稠密,
+	$\|w\|_H^2 = (w, w)_H = \lim (w, p_N)_H = 0$, $w = 0$. \qed
+\end{proof}
+
+\begin{corollary}[左定空间 $0\le s\le1$]
+对 $0\le s\le1$, 一阶矩准则给出 $\{p_n\}$ 在 $H^s$ 中完备.
+\end{corollary}
+\begin{proof}
+对 $k\ge1$, $\|x^k\|_0^2=2/(2k+1)$, 且
+\[
+ \|x^k\|_1^2=\frac{2k^2}{2k-1}+\frac{2c}{2k+1}
+ -\tfrac12\bigl(1-(-1)^k\bigr)^2\le C(k+1).
+\]
+谱 Holder 不等式给出
+$\|x^k\|_s\le\|x^k\|_0^{1-s}\|x^k\|_1^s
+\le C_s(k+1)^{s-1/2}$, 指数不超过 $1/2<1$.
+全体多项式在 $H^1$ 中稠密, 谱截断与连续嵌入再给出其在 $H^s$ 中稠密.
+不能向 $H^2$ 插值单项式, 因为 $x^2\notin H^2$.
+更大的安全范围 $0\le s\le3$ 见第 \ref{sec:left-scale} 节. \qed
+\end{proof}
+
+\section{跳变矩准则 (充分条件, 任意多项式阶)}
+
+\begin{lemma}[增长引理, 会话 9]\label{lem:growth}
+	设 $c_0 > 0$, $u_0 = 0$, $u_1 = 1$, $c_0 u_j = A_j u_{j-1} - B_j u_{j-2}$
+	($j \geq 2$), 且 $B_j\ge0$, $A_j - B_j \geq c_0$ 对一切 $j \geq 2$. 则 $u_j > 0$
+	且单调不减, 且
+	\[
+		u_m \geq \prod_{j=2}^{m} \frac{A_j - B_j}{c_0} .
+	\]
+	若 $\prod_j (A_j - B_j)/c_0$ 超多项式增长 (例如 Krein 情形
+	$A_j - B_j = 4j + cj/(j-1)$, 乘积 $\geq (4/c)^{m-1}m!$),
+	则 $u_m = \omega(m^\beta)$ 对一切 $\beta$.
+\end{lemma}
+
+\begin{proof}
+	单调性: $c_0 u_j \geq (A_j - B_j)u_{j-1} + B_j(u_{j-1} - u_{j-2})
+	\geq c_0 u_{j-1}$ 归纳 ($B_j \geq 0$). 比值: $u_j/u_{j-1}
+	\geq (A_j - B_j)/c_0$. 连乘即得. \qed
+\end{proof}
+
+\begin{theorem}[跳变矩准则]\label{thm:jump}
+	设 $H$ 满足 (H1)(H2), $\|x^k\|_H \leq C k^\beta$ (任意 $\beta$).
+	设 $\{q_n\} \subset \Pi$, $q_0 = c_0$, $q_1 = c_0 x$, 且对 $m \geq 2$:
+	\begin{equation}
+		q_{2m} = c_0 x^{2m} - A_m x^{2m-2} + B_m x^{2m-4}, \qquad
+		q_{2m+1} = c_0 x^{2m+1} - A'_m x^{2m-1} + B'_m x^{2m-3},
+	\end{equation}
+	其中 $c_0 > 0$, $B_m, B'_m \geq 0$, 且两族系数都满足增长引理 \ref{lem:growth} 的超多项式
+	假设. 则 $\{q_n\}$ 在 $H$ 中完备.
+\end{theorem}
+
+\begin{proof}
+	设 $w \in H$, $(w, q_n)_H = 0$ 对一切允许 $n$ ($n \in \{0,1\} \cup
+	\{4,5,\dots\}$). $n=0,1$ 给出 $M_0 = M_1 = 0$. 由 (3) 与线性性:
+	\[
+		0 = (w, q_{2m})_H = c_0 M_{2m} - A_m M_{2m-2} + B_m M_{2m-4},
+	\]
+	即 $M_{2m} = M_2 u_m$ ($u_m$ 为增长引理的解). 若 $M_2 \neq 0$, 由引理 \ref{lem:growth},
+	$|M_{2m}| = |M_2| u_m = \omega(m^\beta)$, 与 (H2) 的
+	$|M_{2m}| \leq \|w\|_H C (2m)^\beta$ 矛盾. 故 $M_2 = 0$, 全部偶矩为零;
+	奇矩同理 ($M_3 = 0$). 于是 $(w, p)_H = 0$ 对一切多项式 $p$, 多项式稠密
+	给出 $w = 0$. \qed
+\end{proof}
+
+\section{左定标度: 幂域前提与可保留范围}\label{sec:left-scale}
+
+\begin{lemma}[带成员条件的两步等距传输]
+对 $t\ge2$, $K_c:H^t\to H^{t-2}$ 是等距同构.
+对任一族 $\{h_n\}\subset H^t$, 有
+\[
+ \overline{\operatorname{span}\{h_n\}}^{H^t}=H^t
+ \iff \overline{\operatorname{span}\{K_ch_n\}}^{H^{t-2}}=H^{t-2}.
+\]
+\end{lemma}
+\begin{proof}
+泛函演算给出 $\|K_cf\|_{t-2}=\|f\|_t$,
+且 $K_c^{-1}:H^{t-2}\to H^t$ 满射. 同构保持闭包.
+应用于 $p_n$ 之前必须验证 $p_n\in H^t$, 不能从代数公式推断这一点. \qed
+\end{proof}
+
+\begin{theorem}[同一稀疏族在 $0\le s\le3$ 中稠密]\label{thm:low-order}
+对 $c>0$ 和实数 $0\le s\le3$, $\{p_n\}\subset H^s$ 且在其中稠密.
+\end{theorem}
+\begin{proof}
+$K_cp_n$ 为多项式, 属于 $H^1$; $p_n\in D(K_c)$, 所以 $p_n\in H^3$.
+H3 主证明 \cite{h3proof} 在 $H^1$ 中用矩跳跃和增长引理证明稠密性;
+H2 主证明 \cite{h2proof} 在 $L^2$ 中给出对应结论.
+对 $g\in H^3$, 谱下界 $K_c\ge cI$ 给出
+\[
+ \|g\|_{H^s}\le c^{(s-3)/2}\|g\|_{H^3}.
+\]
+对任意 $f\in H^s$, 谱截断 $E([c,N])f\in H^3$ 在 $H^s$ 中趋于 $f$.
+再用 H3 中的稀疏族逼近和上述不等式传输误差, 即得结论. \qed
+\end{proof}
+
+\begin{proposition}[高阶原陈述撤回]
+$p_4=x^4-2x^2\notin H^4$, 因此对任何 $s\ge4$, 该族不是 $H^s$ 内的完备族.
+\end{proposition}
+\begin{proof}
+$p_4\in D(K_c)$, 但
+\[
+ K_cp_4=cx^4-(2c+12)x^2+4,\qquad (K_cp_4)'(\pm1)=\mp24.
+\]
+$K_cp_4$ 为偶函数, 不满足两端导数为零的 Krein 边界条件.
+故 $p_4\notin D(K_c^2)$, 再用 $H^s\subset H^4$ ($s\ge4$). \qed
+\end{proof}
+
+2026-09-20 撤回旧版本节的任意阶跳变矩论证、单幂范数高阶界及全范围分数阶推论.
+$x^2\notin H^2$ 已说明 $(w,x^k)_t$ 并非任意阶都有定义.
+微分表达式 $(c-D^2)^r$ 的有限代数展开不等于带域条件的算子幂.
+只有 $t=0,1$ 的单项式范数界在这里直接使用; 第六轮分数阶修订稿中 $0\le s<7/2$ 的新证明另用四迹图核, 不在更高幂域内非法取单项式矩.
+
+\section{临界性: 对角空间 \texorpdfstring{$H_\beta$}{H beta}}
+
+\begin{definition}[对角空间]
+	对 $\beta \geq 0$, 令 $H_\beta$ 为 $\Pi$ 关于内积
+	$(x^j, x^k)_\beta := \delta_{jk}\, (k+1)^{2\beta}$ 的完备化. 元素为
+	$w = \sum_k w_k x^k$ 且 $\|w\|_\beta^2 = \sum_k |w_k|^2 (k+1)^{2\beta}
+	< \infty$; 矩为 $M_k = (w, x^k)_\beta = w_k (k+1)^{2\beta}$.
+\end{definition}
+
+\begin{theorem}[临界指数 $3/2$]\label{thm:diagonal}
+	在 $H_\beta$ 中 $\{p_n\}$ 完备当且仅当 $\beta \leq 3/2$.
+\end{theorem}
+
+\begin{proof}
+	由定理 \ref{thm:moments}, $w \perp \operatorname{span}\{p_n\}$ 当且仅当 $w_0 = w_1 = 0$
+	且 $M_{2m} = mM_2$, $M_{2m+1} = mM_3$. 代入表示性:
+	$w_{2m} = mM_2 (2m+1)^{-2\beta}$, 且
+	\[
+		\|w\|_\beta^2 = \sum_{m \geq 1} \frac{(mM_2)^2}{(2m+1)^{2\beta}}
+			+ \sum_{m \geq 1} \frac{(mM_3)^2}{(2m+2)^{2\beta}} .
+	\]
+	级数 $\sum_m m^2 (2m)^{-2\beta} = \sum_m m^{2-2\beta}$ 收敛当且仅当
+	$2 - 2\beta < -1$, 即 $\beta > 3/2$. 故 $\beta > 3/2$ 时取 $M_2 = 1$
+	定义非零 $w \in H_\beta$, $w \perp \operatorname{span}\{p_n\}$,
+	不完备. $\beta \leq 3/2$ 时级数发散, $w \in H_\beta$ 迫使 $M_2 = M_3 = 0$,
+	由定理 \ref{thm:moments} 完备. \qed
+\end{proof}
+
+\begin{remark}[充分条件不是必要的]
+	一阶矩准则要求 $\beta < 1$ (充分); 对角族表明真实临界界为
+	$\beta \leq 3/2$ (充要). 因此``单幂范数多项式增长''本身不能保证完备性:
+	$1 < \beta \leq 3/2$ 时 $\|x^k\|_{H_\beta} \sim k^\beta$ 多项式增长但
+	$\{p_n\}$ 仍完备, 而 $\beta > 3/2$ 时失败.
+	这与算子幂域成员关系是两项不同的前提; 范数增长估计不能替代后者.
+\end{remark}
+
+\begin{remark}[超多项式增长]
+	对角空间取 $\|x^k\|^2 = (k!)^2$ 时 $\beta = \infty$: $w = \sum_m
+	m(2m+1)^{-2}...$ 型矩序列 $M_{2m} = m$ 可表示 ($\sum m^2/(2m)!^2
+	\cdot ((2m)!)^2 = \sum m^2 = \infty$? 否: $w_{2m} = mM_2/((2m)!)^2$,
+	$\|w\|^2 = \sum (mM_2)^2/((2m)!)^2 < \infty$), 故不完备. 这与
+	定理 \ref{thm:diagonal} 的 $\beta > 3/2$ 情形一致 (对角族中可表示性即临界判据).
+\end{remark}
+
+\section{历史数值验证及其范围}
+2026-09-20 注: 下列涉及 $s>1$ 单项式范数或高阶微分展开的数据,
+只记录原脚本的形式微分计算; 不是真正自伴算子幂域中的范数或成员性证据.
+本次未重跑这些历史脚本. $H^0,H^1$ 与对角空间的计算应分别按其定义理解.
+
+
+脚本 \path{scripts/d2_criterion_verify.py} (精确有理数) 与
+\path{scripts/d2_v4_float.py} (浮点):
+\begin{enumerate}
+	\item \textbf{跳变 $s$-无关 (精确)}: 对 $s = 0..5$, $m = 2..6$,
+		$w \in \{x^2, x^3, 1+x+x^5, x^2+x^4\}$: 恒等式
+		$(w, K_c p_{2m})_s = cN_{2m} - A_mN_{2m-2} + B_mN_{2m-4}$ 逐项精确
+		成立 (偶/奇, 240 项).
+	\item \textbf{单幂范数增长}: $\|x^k\|_{H^s}$ 的数值指数 $s = 0..5$:
+		$-0.50, 0.49, 1.51, 2.53, 3.58, 4.65$, 与 $s - 1/2$ 理论一致,
+		且 $\leq C_s k^s$ 显然.
+	\item \textbf{对角临界 (部分和比)}: $\beta = 1.0, 1.4, 1.5$ 部分和
+		发散 (比率 $> 1$), $\beta = 1.51, 1.6, 2.0$ 收敛 (比率 $\to 1$),
+		与临界 $3/2$ 一致; $\beta = 2$ 时截断 $w$ 与 $p_{2m}$
+		($m \leq 10$) 的内积 $\leq 8.9\times10^{-16}$.
+	\item \textbf{$\{K_c p_n\}$ 在 $H^s$ 中完备 (浮点)}: $x^2, x^3$ 到
+		$\operatorname{span}\{K_c p_n : \deg \leq 2N\}$ 的 $H^s$-投影残差
+		对 $s = 0..4$ 在 $N \geq 10$ 时达机器精度.
+	\item \textbf{跳变恒等式对 $s \geq 4$ 失效}: $K_c^s/2 p_{2m}$ 非零项数
+		$s=2: 3$; $s=4: 4$ ($m \geq 3$); $s=6: 5$ ($m \geq 4$),
+		仅说明形式微分展开的项数, 不证明算子幂有定义.
+\end{enumerate}
+
+\section{对抗性审计与开放问题}
+
+\begin{description}
+	\item[逻辑闭环] 定理 \ref{thm:moments} (矩刻画) 与定理 \ref{thm:first}, 5 的证明独立于左定理论;
+		左定应用见定理 \ref{thm:low-order}, 依赖 H3 主证明和谱截断.
+	\item[更正透明性] 会话 10 推论 6.2 的证明思路有误 (恒等式对 $s \geq 4$
+		失效). 2026-09-20 进一步确认其高阶结论本身被幂域反例否定, 已撤回.
+	\item[边界情形] $s = 0, 1$ 由一阶准则 ($\beta < 1$); $s = 2, 3$
+		为会话 9, 10; $t = 2$ 的传输取 $H^0 = L^2$, 自洽. $c > 0$ 本质.
+	\item[必要性的诚实边界] 对角族给出充要临界 $\beta^* = 3/2$, 但仅对
+		对角 (正交单幂) 空间; 一般 $H$ 的完备性由定理 \ref{thm:moments} 的矩量问题刻画,
+		无一般闭式判据.
+	\item[状态更新] (O1) 同一完整稀疏族的 $0\le s<7/2$ 稠密性已由 2026-09-21 分数阶修订稿补证; 一般受约束空间的对应问题仍另计;
+		旧窗口 $3/2\le s<2$ 已由定理 \ref{thm:low-order} 覆盖;
+		(O2) 一般 $H$ 中矩量问题可表示性的刻画;
+		(O3) 跳变准则对更宽系数族 ($A_m - B_m \sim m^\alpha$, $\alpha > 1$)
+		的精确增长与临界.
+\end{description}
+
+\section{涉及到的数学知识}
+
+\begin{description}
+	\item[Hilbert 空间完备性] $\overline{\operatorname{span}} = H$
+		等价于正交补为 $\{0\}$ (Hahn-Banach 推论).
+	\item[矩量问题] 序列 $(M_k)$ 何时为某个 $w \in H$ 的矩; 对角空间中
+		可表示性化为级数收敛 (定理 \ref{thm:diagonal}).
+	\item[递推的增长理论] 二阶递推 $c_0 u_j = A_ju_{j-1} - B_ju_{j-2}$
+		支配解由系数差 $A_j - B_j$ 控制 (引理 \ref{lem:growth}); 连乘给出阶乘级增长.
+	\item[插值理论] 左定空间族 $H^s$ 在 $s$ 上插值 (Fischbacher--
+		Gesztesy--Hagelstein--Littlejohn), 用于分数阶矩界.
+	\item[等距传输] $K_c: H^t \to H^{t-2}$ 保内积双射, 稠密性问题在
+		标度间传递 (引理 6).
+	\item[Cauchy-Schwarz 矩界] $|M_k| \leq \|w\|_H \|x^k\|_H$ 是全部
+		上界论证的基础; 对 $L^2$ 给出 $k^{-1/2}$ 衰减.
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{lq} L. L. Littlejohn, A. Quintero, \emph{Krein-Sobolev orthogonal
+	polynomials}, in: OPSFA-16, Springer (2025), 107--123.
+	\url{https://link.springer.com/chapter/10.1007/978-3-031-90135-5_7}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{h2proof} 项目文档, \emph{$H^2$ 多项式基解析完备性证明}, 2026-08-04.
+\bibitem{h3proof} 项目文档, \emph{$H^3$ 多项式基解析完备性证明}, 2026-08-04.
+\bibitem{hso} 项目文档, \emph{左定空间 $H^s[-1,1]$ 中显式完备正交多项式系: 证明文档}, 2026-08-05.
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory},
+	J. Differential Equations 181 (2002), 280--339.
+	\url{https://doi.org/10.1006/jdeq.2001.4079}
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: a model operator approach, examples, fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+

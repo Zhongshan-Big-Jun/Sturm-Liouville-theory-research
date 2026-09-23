@@ -1,5 +1,9 @@
 # 数学工具库
 
+## 第九轮修订 (2026-09-23)
+
+[二阶变分](second-variation-weighted-eigenvalues.md)补齐归一化核项、真实块积分切向和带符号集中脉冲的质量收敛条件; Green核有限及移动界面加速度分别处理. [世俗根计数](secular-chebyshev-jacobi-rootcount.md)区分物理F与omega*F, [平衡候选极限](bloch-band.md)用嵌套Jacobi矩阵证明候选c_n的严格单调和极限, 保留全局O1/O2开放. 精确版本和默认复用仍由纠错门禁决定, 不能由本段文字替代. [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md)记录首次退回、修复、局部Lean与实际数值复验.
+
 ## 第八轮修订 (2026-09-22)
 
 [INF极限](inf-limit-comparison.md)、[大w比较](lemma-A-doubleprime.md)、[相位括号](delta-bracketing.md)、[余切余项](cot-series-certificate.md)已按当前精确版本修订. 新连续相位覆盖替代旧薄层网格, 固定u误差改为1/R; 根像端点、Laurent幂次、局部一致收敛与arctan极限同步修正. 默认复用须通过当前纠错回执, 旧证据和批注按原版本保留. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)分别列明解析、精确证书和局部Lean范围.
@@ -18,8 +22,7 @@
 4. 批注由 `research_library.py annotate` 绑定卡片版本. 旧批注和失败路线保留,
    不把旧版的认可自动转给新版. 历史隔离条目需显式 `--include-affected` 查看.
 
-命令入口随已加载插件版本确定; 本轮开发实现位于插件源码仓库 `_xsoc1_work/`,
-是否已发布和安装见对应版本报告, 不从目录存在推断安装成功.
+第九轮使用已安装的研究插件2.0.1纠错与检验运行时; 本轮未改插件实现或缓存. 命令入口随实际加载版本确定, 源码维护仓库为 `_xsoc1_work/`; 复用时以版本报告和真实运行记录核对.
 
 ## 第七轮修订 (2026-09-21)
 
@@ -74,7 +77,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | band-selfconsistency-equivariance | [card](<band-selfconsistency-equivariance.md>) | 0 |
 | banded-shift-toeplitz-density | [card](<banded-shift-toeplitz-density.md>) | 0 |
 | bang-bang | [card](<bang-bang.md>) | 0 |
-| bloch-band | [card](<bloch-band.md>) | 0 |
+| bloch-band | [card](<bloch-band.md>) | 1 |
 | cell-merging | [card](<cell-merging.md>) | 0 |
 | constrained-denseness-runs | [card](<constrained-denseness-runs.md>) | 1 |
 | cot-series-certificate | [card](<cot-series-certificate.md>) | 1 |
@@ -124,8 +127,8 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | rational-envelope-certificates | [card](<rational-envelope-certificates.md>) | 0 |
 | reflection-branch-reduction | [card](<reflection-branch-reduction.md>) | 0 |
 | residual-exactness | [card](<residual-exactness.md>) | 0 |
-| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 0 |
-| secular-chebyshev-jacobi-rootcount | [card](<secular-chebyshev-jacobi-rootcount.md>) | 0 |
+| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 1 |
+| secular-chebyshev-jacobi-rootcount | [card](<secular-chebyshev-jacobi-rootcount.md>) | 1 |
 | single-well-intersection | [card](<single-well-intersection.md>) | 0 |
 | spectral-domain-checks | [card](<spectral-domain-checks.md>) | 2 |
 | spectral-monotonicity-reduction | [card](<spectral-monotonicity-reduction.md>) | 0 |

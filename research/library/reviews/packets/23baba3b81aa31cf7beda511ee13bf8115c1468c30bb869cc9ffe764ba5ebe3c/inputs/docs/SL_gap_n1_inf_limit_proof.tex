@@ -1,0 +1,677 @@
+% 用法: xelatex SL_gap_n1_inf_limit_proof.tex (两次, -output-directory=build)
+% 主题: 定理 A (相邻间距 INF R->inf 极限) 的 T1/T2/T3 严格证明;
+%       证明见 §2 (数值仅作证据, 见 §3 计算机辅助认证, §4 数值证据 (非证明)).
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{conjecture}[theorem]{猜想}
+
+\title{SL 相邻特征间距的 $R\to\infty$ 极限: 第八轮修订证明}
+\author{研究组 (BVE research, run R-20260806T200000Z-inflimit-5B2C7D, 会话 30)}
+\date{2026-09-22 修订; 原稿 2026-08-07}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+考虑 Dirichlet 问题 $-y''=\lambda\rho y$ ($\rho\in[1,R]$ a.e.) 中对称三块
+$\rho=R$ on $[0,u]\cup[1-u,1]$, $\rho=1$ on $(u,1-u)$ 的相邻特征间距
+$D_R(u)=\lambda_2-\lambda_1$ 的下确界:
+\begin{equation}
+	\lim_{R\to\infty} R\cdot m_R \;=\; \bar D(u^*)\;=\; 24.943866138432\ldots
+	\;<\; 3\pi^2,
+	\qquad m_R:=\inf_{u\in(0,1/2)} D_R(u),
+\end{equation}
+其中 $u^*=0.32992250812006654959\ldots$ 是 $S(u)=0$ 在 $(0,1/2)$ 的唯一解
+(等价地 $\bar D'(u^*)=0$), 即 $\bar D$ 的全局极小点 $u^*$.
+证明分三步: (T1) 极限存在, (T2) $\bar D$ 的严格单调结构, (T3) 区间包含.
+(T2) 通过符号链 (K~$\to J\to G\to S$) 初等地建立;
+(T1) 的核心是引理 A$''$: 当 $w:=u\sqrt R\ge 2$ 时 $R\cdot D_R(u)\ge\bar D(u)$,
+其初等修订给出更强正余量 $G-\bar D>\ell/(Ru^3)$.
+薄层区域 ($w\le2$) 用连续相位速度的统一下界覆盖, 得 $G>15\pi^2/4>3\pi^2$.
+T1 因而不依赖旧二维网格或 T3 的高精度数值; T3 由新的精确有理证书支撑.
+正文结构: §2 严格证明, §3 计算机辅助认证, §4 数值证据 (非证明).
+\end{abstract}
+
+\tableofcontents
+
+\section{问题与记号}
+
+\subsection{设定}
+考虑 Dirichlet 问题
+\begin{equation}
+	-y''(x)=\lambda\,\rho(x)\,y(x),\qquad y(0)=y(1)=0,
+\end{equation}
+对称三块权: 对 $u\in(0,1/2)$,
+\begin{equation}
+	\rho_{R,u}(x)=R\ \text{on }(0,u)\cup(1-u,1),\qquad
+	\rho_{R,u}(x)=1\ \text{on }(u,1-u).
+\end{equation}
+$0<\lambda_1(R,u)<\lambda_2(R,u)$ 为前两个特征值,
+\begin{equation}
+	D_R(u):=\lambda_2(R,u)-\lambda_1(R,u),\qquad
+	m_R:=\inf_{u\in(0,1/2)}D_R(u),\qquad
+	G(R,u):=R\cdot D_R(u).
+\end{equation}
+记 $\varepsilon:=R^{-1/2}$, $\ell:=1/2-u$, $w:=u\sqrt R=u/\varepsilon$.
+用缩放特征值 $\mu_k(R,u):=R\lambda_k(R,u)$, 则 $G(R,u)=\mu_2-\mu_1$.
+
+\subsection{极限系统}
+对 $u\in(0,1/2)$ 令 $\bar\theta_2=\bar\theta_2(u)=a(u)\in(\pi/2,\pi)$ 为
+\begin{equation}
+	\tan a=a\Bigl(1-\frac1{2u}\Bigr)
+\end{equation}
+的唯一根 (等价地 $\tan a=-a\ell/u$), 并令
+\begin{equation}
+	\bar\mu_1(u):=\frac{\pi^2}{4u^2},\qquad
+	\bar\mu_2(u):=\frac{a(u)^2}{u^2},\qquad
+	\bar D(u):=\bar\mu_2(u)-\bar\mu_1(u).
+\end{equation}
+以及
+\begin{equation}
+	S(u):=\bar\mu_1(u)\frac2u-\bar\mu_2(u)\frac{\sin^2 a(u)}{I_2(u)},
+	\qquad I_2(u):=\int_0^u\sin^2\bigl(\sqrt{\bar\mu_2(u)}\,x\bigr)\,dx
+	=\frac u2-\frac{u\sin 2a(u)}{4a(u)}.
+\end{equation}
+
+\subsection{主定理}
+\begin{theorem}[定理 A (相邻间距的 INF 极限)]
+设 $u^*\in(0,1/2)$ 为 $S(u)=0$ 的唯一根 (等价地 $\bar D'(u^*)=0$). 则
+\begin{equation}
+	\lim_{R\to\infty} R\,m_R=\bar D(u^*),\qquad
+	\bar D(u^*)=24.943866138432\ldots<3\pi^2=29.608813203268\ldots,
+\end{equation}
+并且任何近极小化子序列 $u_R$ (即 $D_R(u_R)\le m_R+R^{-2}$) 满足 $u_R\to u^*$.
+\end{theorem}
+
+\begin{remark}[证明结构]
+定理 A 的证明分解为三个定理:
+\begin{itemize}
+	\item \textbf{T1} (收敛): $\lim_R R\,m_R=\bar D(u^*)$ 及近极小化子收敛到 $u^*$ (见 §\ref{sec:T1});
+	\item \textbf{T2} (单调结构): $S$ 在 $(0,1/2)$ 有唯一零点 $u^*$, 且 $\bar D$ 在 $u^*$ 处全局严格极小 (见 §\ref{sec:T2});
+	\item \textbf{T3} (区间包含): $\bar D(u^*)$ 的高精度区间包含且 $\bar D(u^*)<3\pi^2$ (见 §\ref{sec:T3}).
+\end{itemize}
+其余为初等引理; 这里的 $\inf$ 是固定 $R$ 下的 $\inf$, 全局对称性问题属 O3a/C1, 另行处理.
+\end{remark}
+
+\section{严格证明}
+
+证明先确定正确的模式分支. 大 $w$ 区域用初等差量界 $d_1>4\alpha$, $d_2<3\alpha$;
+薄层区域用连续展开相位的速度上界, 统一得到 $G>15\pi^2/4$.
+T1 只需这些连续估计和 T2 的解析单调结构; T3 的精确数值包含单独证明.
+
+\subsection{全域匹配方程与有条件的相位分支}\label{sec:global-phase}
+令 $\varepsilon=R^{-1/2}$, $\ell=1/2-u$, $\theta_k=u\sqrt{R\lambda_k}$,
+$z_k=\ell\sqrt{\lambda_k}$, $c=\varepsilon\ell/u$.
+对称性、特征值单性及振荡定理说明第一模态为偶函数, 第二模态为奇函数.
+第二模态若为偶函数, 则其零点成对, 而中心同时满足函数值与导数为零又与唯一性矛盾;
+这与第二模态恰有一个内部零点不符. 两个模态限制到 $(0,1/2)$ 后均可取为正.
+重层解为 $A\sin(\sqrt{R\lambda}\,x)$; 轻层的偶、奇解分别为
+$B\cos(\sqrt\lambda(1/2-x))$ 与 $B\sin(\sqrt\lambda(1/2-x))$.
+在 $x=u$ 匹配函数和导数, 消去振幅, 得到全域无极点方程
+\begin{align}
+ E(\theta,z)&:=\cos\theta\cos z-\varepsilon\sin\theta\sin z=0
+ &&\text{(偶)},\label{eq:polefree-even}\\
+ O(\theta,z)&:=\varepsilon\sin\theta\cos z+\cos\theta\sin z=0
+ &&\text{(奇)}.\label{eq:polefree-odd}
+\end{align}
+这里尚未除以任何三角因子. 半区间基态正性给出
+$0<\theta_k<\pi$, $0<z_1<\pi/2$ 及 $0<z_2<\pi$.
+偶模在接口处的轻层导数为正, 所以 $\cos\theta_1>0$,
+进而 $0<\theta_1<\pi/2$ 对全部 $R>1$, $0<u<1/2$ 成立.
+奇模的 $\theta_2>\pi/2$ 则不能无条件使用.
+
+以下相位括号与引理 A$''$ 明确假设 $R\ge1500$, $w=u/\varepsilon\ge2$.
+此时 $0<c=1/(2w)-\varepsilon<1/4$, 故 $z_2=c\theta_2<\pi/4$.
+由 \eqref{eq:polefree-odd} 可知 $\cos\theta_2<0$, 即
+$\pi/2<\theta_2<\pi$. 相关分母均非零, 因而可在此范围写成
+\begin{equation}
+ \cot\theta_1=\varepsilon\tan z_1,\qquad
+ \tan\theta_2=-\varepsilon^{-1}\tan z_2.\label{eq:secular}
+\end{equation}
+令 $\delta_1=\pi/2-\theta_1$, $\delta_2=\theta_2-\pi/2$. 此范围内有
+\begin{equation}
+ \tan\delta_1=\varepsilon\tan z_1,\quad
+ z_1=(\pi/2-\delta_1)c;\qquad
+ \tan\delta_2=\varepsilon\cot z_2,\quad
+ z_2=(\pi/2+\delta_2)c.\label{eq:delta}
+\end{equation}
+从而
+\begin{equation}
+ \mu_1=\frac{(\pi/2-\delta_1)^2}{u^2},\quad
+ \mu_2=\frac{(\pi/2+\delta_2)^2}{u^2},\quad
+ G(R,u)=\frac{(\pi/2+\delta_2)^2-(\pi/2-\delta_1)^2}{u^2}.\label{eq:mu}
+\end{equation}
+例如 $R=1600$, $u=1/1600$ 时, $\rho\ge1$ 与 min-max 给出
+$\lambda_2\le4\pi^2$, 因此 $\theta_2\le\pi/20<\pi/2$.
+这个实例反驳全域奇相位分支的旧说法, 不反驳上述受限分支.
+
+\subsection{相位括号 (引理 2.1)}
+\begin{lemma}\label{lem:phases}
+设 $R\ge 1500$, $u\ge 2\varepsilon$ (即 $w\ge 2$). 则
+\begin{enumerate}
+	\item[(a)] $0\le\delta_1\le\delta_1^+$, 其中
+		$\delta_1^+:=\arctan\bigl(\varepsilon\tan\bigl(\frac\pi2\frac{\varepsilon\ell}{u}\bigr)\bigr)
+		\le\varepsilon\tan\frac\pi8<0.011<\frac\pi4$;
+	\item[(b)] $0\le\delta_2\le\delta_2^+$, 其中 $\delta_2^+:=\arctan\frac{2u}{\pi\ell}$;
+	\item[(c)] $z_2\le\pi/8$;
+	\item[(d)] $\psi_2:=\bar\theta_2-\theta_2\ge 0$, 即 $\theta_2\le\bar\theta_2=a(u)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+由 $u\ge2\varepsilon$ 得 $\ell/u\le1/(4\varepsilon)$, 从而
+$\varepsilon\ell/u\le1/4$ 且 $\alpha:=(\ell/u)\varepsilon^2\le\varepsilon/4$.
+
+(a) $z_1=(\pi/2-\delta_1)\varepsilon\ell/u\le(\pi/2)\varepsilon\ell/u\le\pi/8$,
+$\tan z_1$ 递增, 故 $\delta_1=\arctan(\varepsilon\tan z_1)\le\delta_1^+$;
+再用 $\arctan x\le x$ 与 $\tan(\pi/8)<0.415$, 得
+$\delta_1^+\le\varepsilon\tan(\pi/8)\le\varepsilon_0\tan(\pi/8)<0.011<\pi/4$.
+
+(b) 对 $0<z<\pi$ 有 $\cot z\le1/z$; 因 $z_2=\theta_2\varepsilon\ell/u<\pi\cdot(1/4)<\pi$, 故
+$\tan\delta_2=\varepsilon\cot z_2\le\varepsilon/z_2=u/(\theta_2\ell)\le u/((\pi/2)\ell)$,
+故 $\delta_2\le\arctan(2u/(\pi\ell))=\delta_2^+$.
+
+(c) $z_2=(\pi/2+\delta_2)\varepsilon\ell/u\le(\pi/2+\delta_2^+)\cdot x$, $x:=\varepsilon\ell/u$.
+考察 $h(x):=x\bigl(\pi/2+\arctan(2\varepsilon/(\pi x))\bigr)$ 在 $(0,1/4-\varepsilon]$ 上单调:
+\begin{equation}
+	h'(x)=\frac\pi2+\arctan\frac{2\varepsilon}{\pi x}-\frac{2\varepsilon\pi x}{\pi^2x^2+4\varepsilon^2}
+	\ge\frac\pi2-\frac12>0,
+\end{equation}
+其中 $\sup_{x>0}2\varepsilon\pi x/(\pi^2x^2+4\varepsilon^2)=1/2$ (在 $x=2\varepsilon/\pi$ 处取得).
+故 $h(x)\le h(1/4-\varepsilon)$, 而
+\begin{align}
+	h\Bigl(\frac14-\varepsilon\Bigr)
+	&=\Bigl(\frac14-\varepsilon\Bigr)
+	\Bigl(\frac\pi2+\arctan\frac{8\varepsilon}{\pi(1-4\varepsilon)}\Bigr)
+	\le\Bigl(\frac14-\varepsilon\Bigr)
+	\Bigl(\frac\pi2+\frac{2\pi\varepsilon}{1-4\varepsilon}\Bigr)\notag\\
+	&=\frac\pi8-\frac{\pi\varepsilon}{2}
+	+\frac{2\pi\varepsilon(1/4-\varepsilon)}{1-4\varepsilon}
+	=\frac\pi8-\frac{\pi\varepsilon}{2}+\frac{\pi\varepsilon}{2}
+	=\frac\pi8,
+\end{align}
+其中用到 $\arctan t\le t$ 与 $8/\pi\le2\pi$ (因 $4\le\pi^2$).
+
+(d) 令 $g(\theta):=\theta-\pi/2-\arctan(\varepsilon\cot(\theta\varepsilon\ell/u))$.
+$g$ 在 $(\pi/2,\pi)$ 上严格递增 ($g'>0$), 且 $\theta_2$ 是 $g$ 的零点 (见 \eqref{eq:delta}).
+又 $\bar z_2:=\bar\theta_2\varepsilon\ell/u\le\pi/4<\pi$. 由 $\cot z\le1/z$:
+\begin{equation}
+	\varepsilon\cot\bar z_2\le\frac{\varepsilon}{\bar z_2}
+	=\frac{u}{\bar\theta_2\ell}=\tan\bar d_2,\qquad \bar d_2:=\bar\theta_2-\frac\pi2,
+\end{equation}
+故 $g(\bar\theta_2)=\bar d_2-\arctan(\varepsilon\cot\bar z_2)\ge0$, 且 $g(\bar\theta_2)\ge0=g(\theta_2)$.
+由 $g$ 递增得 $\theta_2\le\bar\theta_2$. \qed
+\end{proof}
+
+\subsection{引理 A\texorpdfstring{$''$}{} 的初等修订}\label{sec:lemAdp}
+\begin{theorem}[引理 A$''$, 带正余量]\label{thm:lemAdp}
+设 $R\ge1500$, $0<u<1/2$, $w=u\sqrt R\ge2$. 则
+\begin{equation}
+ G(R,u)>\bar D(u)+\frac{\ell}{Ru^3}>\bar D(u).
+\end{equation}
+\end{theorem}
+\begin{proof}
+令 $c=\varepsilon\ell/u$, $\alpha=\varepsilon c=\ell/(Ru)$,
+$t=a(u)$, $\theta=\theta_2$, $v=u/\ell=-t\cot t>0$.
+由前节的模式识别, $0<\theta_1<\pi/2<\theta_2<\pi$, 所有下述三角除法合法.
+还有 $0<c\le1/4-\varepsilon$, $\varepsilon<1/38$, $\alpha<1/152$.
+奇方程与 $\cot z<1/z$ 给出
+\[
+ \delta_2\le\varepsilon\cot z_2<\frac{\varepsilon}{c\theta_2}
+ \le\frac{2\varepsilon}{\pi c},\qquad
+ z_2<\frac\pi8-\varepsilon(\pi/2-2/\pi)<\frac\pi8.
+\]
+函数 $s\mapsto-s\cot s$ 在 $(\pi/2,\pi)$ 上严格递增, 而
+$-\theta\cot\theta=\varepsilon\theta\cot(c\theta)<\varepsilon/c=v=-t\cot t$,
+所以 $\theta<t$. 定义
+\[
+ d_1=\pi^2/4-\theta_1^2>0,\qquad d_2=t^2-\theta^2>0,\qquad
+ G-\bar D=(d_1-d_2)/u^2.
+\]
+
+\emph{第一差量下界.} $z_1<\pi/8$ 且 $\tan(\pi/8)=\sqrt2-1<1/2$,
+故 $0<\delta_1<1/76$ 及 $\theta_1>7/5$.
+用 $\tan z\ge z$, $\arctan x\ge x-x^3/3$, $\pi^2<10$ 得
+\[
+ \delta_1\ge\arctan(\alpha\theta_1)
+ \ge\alpha\theta_1(1-\pi^2\alpha^2/12)
+ >\frac{99}{100}\alpha\theta_1.
+\]
+因此
+\begin{equation}
+ d_1=(\pi/2+\theta_1)\delta_1
+ >\frac{29}{10}\frac75\frac{99}{100}\alpha
+ =\frac{20097}{5000}\alpha>4\alpha.\label{eq:r8-def1}
+\end{equation}
+
+\emph{余切余项与一个连续三角界.} 令 $r(z)=1/z-\cot z$.
+由 $\sin z-z\cos z=\int_0^z s\sin s\,ds$,
+$\sin s\le s$ 与 $\sin z\ge z-z^3/6$, 对 $0<z\le\pi/8$ 有
+\begin{equation}
+ 0<r(z)\le\frac{z}{3(1-z^2/6)}
+ <\frac{64}{187}z<\frac7{20}z.\label{eq:r8-cot-elementary}
+\end{equation}
+这里仅用 $3<\pi<22/7$, 因而 $\pi^2<10$.
+另对 $\pi/2<t<\pi$,
+\begin{equation}
+ B(t):=\frac{2t^4}{t^2+v^2+v}
+ =\frac{2t^3\sin^2t}{t-\sin t\cos t}<2(t\sin t)^2\le8.\label{eq:r8-B8}
+\end{equation}
+最后一步可直接证明: $t\le2$ 时 $t\sin t\le2$.
+$t\ge2$ 时 $q(t)=t\sin t$ 满足 $q''=2\cos t-t\sin t<0$.
+交错 Taylor 余项给出
+\[
+ \sin2\le\frac{2578}{2835}<\frac{91}{100},\qquad
+ \cos2\le-\frac{131}{315}<-\frac25.
+\]
+故凹函数的切线估计与 $t-2<8/7$ 给出
+\[
+ q(t)\le q(2)+q'(2)(t-2)
+ <\frac{91}{50}+\frac{11}{100}\frac87
+ =\frac{681}{350}<2.
+\]
+
+\emph{第二差量上界.} 写 $\psi=t-\theta\in(0,\pi/2)$,
+$A=\tan(t-\pi/2)=v/t$, $B=\tan(\theta-\pi/2)=\varepsilon\cot(c\theta)$.
+恒等式
+\[
+ A-B=-\frac{v\psi}{t\theta}+\varepsilon r(c\theta),\qquad
+ \tan\psi=\frac{A-B}{1+AB}
+\]
+结合 $\tan\psi\ge\psi$ 给出
+\[
+ \psi\le\frac{\varepsilon r(c\theta)}{1+AB+v/(t\theta)}.
+\]
+取 $C=7/20$, 由 \eqref{eq:r8-cot-elementary} 有
+\[
+ \varepsilon r(c\theta)<C\alpha\theta,\qquad
+ AB>\frac{v^2}{t\theta}-C\varepsilon^2\frac\theta t.
+\]
+令 $D_0=1+v(v+1)/(t\theta)\ge1$, $d=C\varepsilon^2\theta/t<1/1000$.
+固定 $t,v$ 时, $\theta(t+\theta)/D_0$ 的正分子随 $\theta$ 增加,
+正分母随 $\theta$ 减少, 因而整个比值增加. 由 $\theta<t$ 和 \eqref{eq:r8-B8},
+\begin{equation}
+ d_2=(t+\theta)\psi
+ < C\alpha\frac{\theta(t+\theta)}{D_0-d}
+ <\frac7{20}\frac{1000}{999}\,8\alpha
+ =\frac{2800}{999}\alpha<3\alpha.\label{eq:r8-def2}
+\end{equation}
+所有分母均有上述正下界. 由 \eqref{eq:r8-def1} 和 \eqref{eq:r8-def2},
+$G-\bar D>\alpha/u^2=\ell/(Ru^3)$, 得证.
+\end{proof}
+
+本修订主链仅需上述初等粗界; 特别地 $d_2/d_1<3/4<0.8256$.
+旧主链所用更细的 $C_z<0.337$ 和 $B(t)\le9$ 另经第八轮精确证书修复,
+作为可复用的标量工具保留, 不再承担 T1 的连续区域覆盖.
+\subsection{整个薄层区域的解析下界}\label{sec:sliver}
+\begin{lemma}[连续相位速度给出的谱隙下界]\label{lem:r8-phase-speed}
+对任意 $R\ge1$, $0<u<1/2$, 令 $\varepsilon=R^{-1/2}$,
+$\ell=1/2-u$, $w=u/\varepsilon$. 则
+\begin{equation}
+ G(R,u)\ge\frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+ \label{eq:r8-global-gap-bound}
+\end{equation}
+本结论不要求第二个重层相位大于 $\pi/2$.
+\end{lemma}
+\begin{proof}
+对 $k=\sqrt\lambda>0$, 取 $y(0)=0$, $y'(0)=1$ 的射击解.
+接口向量为 $(y'(u),ky(u))=(\cos(wk),\varepsilon\sin(wk))$.
+经过轻层后, 它旋转了角 $\ell k$, 两分量即 \eqref{eq:polefree-even}--\eqref{eq:polefree-odd}.
+令 $A_\varepsilon$ 是向量 $\cos\theta+i\varepsilon\sin\theta$ 的连续展开辐角,
+$A_\varepsilon(0)=0$. 向量从不为零, 且
+\[
+ A_\varepsilon'(\theta)=\frac{\varepsilon}{\cos^2\theta+\varepsilon^2\sin^2\theta}>0,
+ \quad A_\varepsilon(\pi/2)=\pi/2,\quad A_\varepsilon(\pi)=\pi.
+\]
+半区间末端相位为
+\[
+ \Phi(k)=\ell k+A_\varepsilon(wk),\qquad
+ 0<\Phi'(k)\le\ell+w/\varepsilon.
+\]
+它从零严格增加到无穷. 第一 Neumann 根和第一 Dirichlet 根分别满足
+$\Phi(k_1)=\pi/2$, $\Phi(k_2)=\pi$.
+空间相位在两层中均严格递增, 故这两个半区间解内部为正.
+前者偶延拓没有内部零点, 后者奇延拓恰有中点这一个零点;
+由振荡定理, $k_1^2,k_2^2$ 确为全区间的前两个特征值.
+
+对这两个实际根积分相位导数, 得
+\[
+ k_2-k_1\ge\frac{\pi}{2(\ell+w/\varepsilon)}.
+\]
+又 $\Phi(\pi/(2w))>\pi/2$, 故 $wk_1<\pi/2$.
+在第一分支, 因 $0<\varepsilon\le1$,
+$A_\varepsilon(\theta)=\arctan(\varepsilon\tan\theta)\le\theta$,
+所以 $k_1\ge\pi/[2(\ell+w)]$.
+相乘即得
+\[
+ G=\varepsilon^{-2}(k_2-k_1)(k_2+k_1)
+ \ge\frac{\pi^2}{2\varepsilon(w+\ell)(w+\varepsilon\ell)}.
+\]
+以上分母均正, 没有使用任何全域奇相位分支假设.
+\end{proof}
+
+\begin{lemma}[薄层区域, 替代旧网格证书]\label{lem:sliver}
+对每个 $R\ge1500$ 及 $0<u\le2/\sqrt R$, 有
+\begin{equation}
+ G(R,u)>\frac{15\pi^2}{4}>25,\qquad G(R,u)>3\pi^2.
+ \label{eq:r8-sliver-margin}
+\end{equation}
+\end{lemma}
+\begin{proof}
+此时 $w\le2$, $\ell<1/2$; 由 $38^2<1500$ 得 $\varepsilon<1/38$.
+故 \eqref{eq:r8-global-gap-bound} 给出
+\[
+ G>\frac{\pi^2}{2(1/38)(5/2)(2+1/76)}
+ =\frac{2888}{765}\pi^2>\frac{15}{4}\pi^2.
+\]
+最后一项有理比较等价于 $11552>11475$.
+再用 $\pi>3$, 得 $15\pi^2/4>135/4>25$; 另有 $15/4>3$.
+这覆盖整个连续区域, 包括任意小的正 $w$, $w=1/2$, 两条旧曲边界及无穷大的 $R$ 尾部.
+\end{proof}
+
+\subsection{T2: \texorpdfstring{$\bar D$}{D} 的单调结构与唯一临界点}\label{sec:T2}
+\begin{theorem}[T2]\label{thm:T2}
+$S(u)=0$ 在 $(0,1/2)$ 有唯一根 $u^*$, 且 $\bar D$ 在 $u^*$ 处全局严格极小.
+\end{theorem}
+\begin{proof}
+\emph{第 1 步 (参数化).} 令
+\begin{equation}
+	a\in(\pi/2,\pi)\;\longmapsto\;u(a):=\frac{a}{2(a-\tan a)}\in(0,1/2)
+\end{equation}
+良定义: 对 $a\in(\pi/2,\pi)$, $\tan a<0$, 故 $a-\tan a>0$, $u(a)>0$,
+且 $u(a)\to0^+$ (当 $a\to\pi/2^+$), $u(a)\to1/2^-$ (当 $a\to\pi^-$);
+另外
+\begin{equation}
+	u'(a)=\frac{a-\sin(2a)/2}{2\cos^2a\,(a-\tan a)^2}>0,
+\end{equation}
+其中 $a-\sin(2a)/2\ge a-1/2>0$ (因 $a\ge\pi/2$).
+
+\emph{第 2 步 (符号链).} 定义
+\begin{align}
+	\widetilde K(a)&:=-a^2+3\sin^2a+\frac32a\sin2a, &
+	J(a)&:=4a^3\cot a+6a^2-\pi^2, &\hspace{-0.6em}
+	G(a)&:=8a^3\sin^2a-\pi^2(2a-\sin2a).
+\end{align}
+符号验证 (初等求导, 也见脚本 07):
+\begin{equation}
+	J'(a)=\frac{4a\,\widetilde K(a)}{\sin^2a},\qquad
+	G'(a)=4\sin^2a\,J(a),
+	\label{eq:chain}
+\end{equation}
+以及
+\begin{equation}
+	\bar D'(u(a))=S(u(a)),
+	\qquad
+	S(u(a))=-\frac{4(a-\tan a)^3}{a^3(2a-\sin2a)}\,G(a).
+	\label{eq:SG}
+\end{equation}
+
+\emph{第 3 步 ($\widetilde K$ 的符号).} 对 $a\in(\pi/2,\pi)$ 有
+$\widetilde K(a)=\sin^2a\,h(a)$, $h(a):=3+3a\cot a-a^2/\sin^2a$, 且
+\begin{equation}
+	h'(a)\sin^3a=3\cos a\,\sin^2a-5a\sin a+2a^2\cos a<0,
+\end{equation}
+其中 $\cos a<0$, $\sin a>0$, $a>0$ 使三项均为负. 故 $h$ 严格递减; 又
+$h(\pi/2)=3-\pi^2/4>0$, $h(a)\to-\infty$ (当 $a\to\pi^-$), 故 $h$ (即 $\widetilde K$)
+在 $(\pi/2,\pi)$ 有唯一零点 $a_1$, 且 $\widetilde K>0$ on $(\pi/2,a_1)$,
+$\widetilde K<0$ on $(a_1,\pi)$.
+
+\emph{第 4 步 ($J$ 的符号).} 由 \eqref{eq:chain}, $J'=4a\widetilde K/\sin^2a$:
+$J$ 在 $(\pi/2,a_1)$ 上递增, 在 $(a_1,\pi)$ 上递减. $J(\pi/2)=\pi^2/2>0$,
+$J(a)\to-\infty$ (当 $a\to\pi^-$, 因 $\cot a\to-\infty$). 故 $J$ 有唯一零点
+$a^*\in(a_1,\pi)$, $J>0$ on $(\pi/2,a^*)$, $J<0$ on $(a^*,\pi)$.
+
+\emph{第 5 步 ($G$ 的符号).} 由 $G'=4\sin^2a\,J$: $G$ 在 $(\pi/2,a^*)$ 上递增,
+在 $(a^*,\pi)$ 上递减. $G(\pi/2)=0$ 且 $G'(\pi/2)=2\pi^2>0$, 故 $G>0$ on $(\pi/2,a^*]$;
+$G(\pi)=-2\pi^3<0$. 故 $G$ 在 $(a^*,\pi)$ 内有唯一零点 $a_G$, 即 $G$ 在 $(\pi/2,\pi)$ 上
+有唯一零点 $a_G$, 且 $G>0$ on $(\pi/2,a_G)$, $G<0$ on $(a_G,\pi)$.
+
+\emph{第 6 步 ($S$ 的符号).} 由 \eqref{eq:SG}, 因子 $-(4(a-\tan a)^3)/(a^3(2a-\sin2a))<0$
+(各因子均为正), 故 $\operatorname{sgn}S(u(a))=-\operatorname{sgn}G(a)$. 于是
+$S<0$ on $(0,u^*)$, $S=0$ at $u^*:=u(a_G)$, $S>0$ on $(u^*,1/2)$,
+即 $S$ 由负变正. 因 $\bar D'=S$, $\bar D$ 在 $(0,u^*)$ 上递减, 在 $(u^*,1/2)$ 上递增,
+故 $u^*$ 为全局严格极小. 为核对端点, 当 $u\downarrow0$ 时写 $a=\pi/2+d$.
+根方程等价于 $a\tan d=u/\ell$, 因而 $d/u\to4/\pi$,
+$u\bar D(u)=(a+\pi/2)d/u\to4$. 故 $\bar D(u)\to+\infty$.
+当 $u\uparrow1/2$ 时 $a\to\pi$, 直接代入得 $\bar D(u)\to3\pi^2$.
+严格递增的右支还给出 $\bar D(u^*)<3\pi^2$. \qed
+\end{proof}
+
+\begin{remark}[解析唯一性与数值定位]
+T2 的唯一性来自上述符号链. T3 只负责以精确包络定位已经确定唯一的根及其函数值.
+\end{remark}
+
+\subsection{T3: 区间包含}\label{sec:T3}
+\begin{theorem}[T3]\label{thm:T3}
+设 $u^*$ 如 T2. 则
+\begin{equation}
+	u^*\in[0.32992250812006654958,\;0.32992250812006654960],
+\end{equation}
+\begin{equation}
+	\bar D(u^*)\in[24.9438661384324768968,\;24.9438661384324769084],
+	\qquad
+	3\pi^2-\bar D(u^*)\ge4.664947,
+\end{equation}
+故 $25-\bar D(u^*)>0.0561$.
+\end{theorem}
+\begin{proof}[证明 (精确有理包络)]
+使用 Machin 恒等式
+$\pi=16\arctan(1/5)-4\arctan(1/239)$ 及交错部分和得到 $\pi$ 的有理上下界.
+对有理 $x$ 用 $\sin x$, $\cos x$ 的 Taylor 多项式及
+$|R_N(x)|\le |x|^{N+1}/(N+1)!$ 作包络; 除法前检查分母区间不含零.
+在两个精确有理端点
+\begin{align*}
+ a_L&=2.27651323902643307501655540074525185589672,\\
+ a_H&=2.27651323902643307501655540074525185589673
+\end{align*}
+分别证 $G(a_L)>0$, $G(a_H)<0$ (此处 $G$ 为 T2 的一变量符号链函数).
+由 T2 的唯一性得 $a_G\in(a_L,a_H)$. 使用严格递增的
+$u(a)=a/[2(a-\tan a)]$ 传播区间时, 取下端像的下界和上端像的上界,
+再对 $(a_G^2-\pi^2/4)/u(a_G)^2$ 使用精确区间四则运算.
+所得更窄包络严格位于本定理的两个显示区间内; 比较 $25$ 和 $3\pi^2$
+也在有理算术中完成. 十进制显示按向下/向上舍入, 不参与真值判定.
+第八轮证书及输入身份见 §\ref{sec:cac}.
+旧脚本 05 的两端均取根下界规则不能保证像包含, 不再作为本定理证书.
+\end{proof}
+
+\subsection{固定内部参数的解析展开}\label{sec:fixed-u}
+\begin{proposition}\label{prop:fixed-u}
+固定 $0<u<1/2$, 令 $\ell=1/2-u$, $b=\ell/u$, $a=a(u)$.
+当 $R\to\infty$ 时,
+\begin{equation}
+ G(R,u)=\bar D(u)+\frac{C(u)}R+O_u(R^{-2}),\qquad
+ C(u)=\frac{\pi^2b}{2u^2}-\frac{2a^4b^3}{3u^2(1+b+b^2a^2)}.\label{eq:rate}
+\end{equation}
+余项在任意紧区间 $J\Subset(0,1/2)$ 上可取为 $O_J(R^{-2})$.
+在 T2 的极小点,
+\begin{equation}
+ C(u^*)=\frac{\pi^2(1/2-u^*)}{3(u^*)^3}>0.\label{eq:stationary-rate}
+\end{equation}
+\end{proposition}
+\begin{proof}
+令 $t=1/R$. 把无极点偶方程以及除以正数 $\sqrt t$ 的奇方程写成
+\begin{align*}
+ \mathcal E(\theta,t)&=\cos\theta\cos(b\theta\sqrt t)
+ -\sqrt t\sin\theta\sin(b\theta\sqrt t),\\
+ \mathcal O(\theta,t)&=\sin\theta\cos(b\theta\sqrt t)
+ +\cos\theta\frac{\sin(b\theta\sqrt t)}{\sqrt t}.
+\end{align*}
+其中 $\cos(b\theta\sqrt t)$, $\sqrt t\sin(b\theta\sqrt t)$,
+$\sin(b\theta\sqrt t)/\sqrt t$ 均用幂级数在 $t=0$ 解析延拓.
+令 $p=\pi/2$, $H=1+b+b^2a^2>0$. 在 $(p,0)$,
+$\mathcal E_\theta=-1$, $\mathcal E_t=-bp$;
+在 $(a,0)$, 由 $\sin a+ba\cos a=0$ 得
+\[
+ \mathcal O_\theta=\cos a\,H\ne0,\qquad
+ \mathcal O_t=\frac{b^3a^3\cos a}{3}.
+\]
+解析隐函数定理于是给出
+\[
+ \theta_1(t)=p-pbt+O_u(t^2),\qquad
+ \theta_2(t)=a-\frac{a^3b^3}{3H}t+O_u(t^2).
+\]
+对充分小的正 $t$, 相位分别处于 $(0,\pi/2)$ 和 $(\pi/2,\pi)$,
+轻层相位足够小, 拼接解在半区间无内部零点. 因此这些根确为所需的偶、奇基态.
+平方相减再除以 $u^2$ 得 \eqref{eq:rate}.
+在任意 $J\Subset(0,1/2)$ 上, 限制根的导数连续且非零;
+有限子覆盖及根的唯一性给出共同邻域和二阶导数界, 从而余项在 $J$ 上一致.
+
+又 $\tan a=-ba$ 给出
+\[
+ \frac{\sin^2a}{I_2(u)}=\frac{2a^2b^2}{u(1+b+b^2a^2)},\qquad
+ I_2(u)=\frac u2(1+b\cos^2a).
+\]
+代入 $S(u)=2\bar\mu_1/u-\bar\mu_2\sin^2a/I_2$ 可得
+\[
+ C(u)=\frac{4\bar\mu_1(u)\ell}{3u}+\frac\ell3S(u).
+\]
+最后用 $S(u^*)=0$ 和 $\bar\mu_1=\pi^2/(4u^2)$ 得 \eqref{eq:stationary-rate}.
+\end{proof}
+这里不声称 $u\to0$ 或 $u\to1/2$ 时的一致展开, 也不凭固定参数展开交换下确界与极限.
+特别地 $\sqrt R(G(R,u^*)-\bar D(u^*))\to0$;
+$R(G(R,u^*)-\bar D(u^*))\to C(u^*)$, 其数值约为 $15.5807908501$.
+
+\subsection{T1: 极限、近极小化子与最优值误差}\label{sec:T1}
+\begin{theorem}[T1, 解析修订]\label{thm:T1}
+设 $u^*$ 为 T2 的唯一极小点, $M=\bar D(u^*)$. 则
+\[
+ \lim_{R\to\infty}Rm_R=M,\qquad 0\le Rm_R-M=O(R^{-1}).
+\]
+更一般地, 若 $R_j\to\infty$, $0<u_j<1/2$, $\eta_j\ge0$,
+$D_{R_j}(u_j)\le m_{R_j}+\eta_j$ 且 $R_j\eta_j\to0$,
+则 $u_j\to u^*$. 原条件 $\eta_j=R_j^{-2}$ 是其中一个特例.
+\end{theorem}
+\begin{proof}
+T2 的严格单调结构及端点极限给出 $M<3\pi^2$.
+这一步不使用 T3 的高精度区间. 对每个 $R\ge1500$ 和 $0<u<1/2$,
+若 $w\le2$, 引理 \ref{lem:sliver} 给出 $G>15\pi^2/4>3\pi^2>M$;
+若 $w\ge2$, 引理 A$''$ 给出 $G\ge\bar D(u)\ge M$.
+故 $Rm_R=\inf_u G(R,u)\ge M$.
+
+另一方面, 在单个固定点 $u^*$, 命题 \ref{prop:fixed-u} 或其证明中的相位括号
+给出 $G(R,u^*)=M+O(R^{-1})$. 由 $Rm_R\le G(R,u^*)$, 得到极限与非负误差的 $O(R^{-1})$ 上界.
+这里用到了前一段的全域下界, 并非仅凭点态展开交换下确界与极限.
+本结论没有给出最优值误差的精确首项系数, 也没有给出极小化参数的收敛速度.
+
+对所述近极小化子,
+\[
+ R_jm_{R_j}\le G(R_j,u_j)\le R_jm_{R_j}+R_j\eta_j\longrightarrow M.
+\]
+薄层下界的严格余量迫使 $w_j=u_j\sqrt{R_j}>2$ 最终成立, 因而
+$M\le\bar D(u_j)\le G(R_j,u_j)\to M$.
+任取在 $[0,1/2]$ 中收敛的子列: 极限为零将导致 $\bar D(u_j)\to+\infty$,
+与有限极限 $M$ 矛盾; 极限为 $1/2$ 将导致 $\bar D(u_j)\to3\pi^2>M$, 也矛盾.
+所以聚点都在内部. 连续性及 T2 的唯一性给出该聚点必须为 $u^*$.
+因此整个序列收敛到 $u^*$.
+\end{proof}
+
+\begin{corollary}[定理 A]
+由 \ref{thm:T1}, \ref{thm:T2}, \ref{thm:T3} 即得定理 A.
+\end{corollary}
+
+\section{精确证书、连续覆盖与历史程序}\label{sec:cac}
+
+当前标量证书位于第八轮工件目录中的 \texttt{certificate/certificate.py};
+以 Python 标准库 Fraction 作证明算术, 以 Decimal 的定向舍入作十进制显示.
+输入有理数、Machin 的交错余项、Taylor 的全局 Lagrange 余项及每次除法的非零分母均明确检查.
+实现与独立执行证据见
+\href{../reports/proof-audit-round8-20260922/REPORT.md}{第八轮修订报告}.
+
+T3 使用根的异号端点和 T2 的唯一性, 经正确方向的单调像传播得到包含.
+新的引理 A$''$ 主链已经解析证明 $B(t)\le8$ 及 $d_2/d_1<3/4$.
+旧链所需的 $C_z<0.337$, $B(t)\le9$ 与比例 $<0.8256$ 也由新证书独立支持,
+作为可复用标量工具保留; 这些细常数不再是 T1 的必要依赖.
+薄层区域的连续覆盖以 §\ref{sec:sliver} 的新证明为准, 不再调用旧矩形网格.
+
+历史 run \texttt{R-20260806T200000Z-inflimit-5B2C7D} 的源文件和输出保持原字节:
+\begin{itemize}
+ \item 脚本 05 把根的下界误作右端像上界, 且有普通浮点中间运算. 新证书替代其 T3 作用.
+ \item 脚本 16 的普通超越函数值加一次 \texttt{nextafter} 不保证包含;
+ B/D 曲边区域的矩形内缩、$w\downarrow0$ 和大 $R$ 尾部亦未完整覆盖.
+ 加密原网格不能消除这种方向错误.
+ \item 脚本 19 同样存在余切漏包, 并把未包络的 $v$ 值当区间端点,
+ 以小于真实 $\pi$ 的浮点数结束网格. 标量结论现由精确有理证书及解析覆盖支撑.
+ \item 脚本 17、18 及旧点抽样保留为历史记录, 本轮没有给它们重新授予区间认证或全域证明地位.
+\end{itemize}
+局部 Lean 的编译、实际声明和公理依赖另有独立证据; 它不等同于把本篇所有谱理论、
+隐函数和连续区域估计全部形式化. 各证据的精确边界与失败记录均列于第八轮报告.
+
+\subsection{余切细常数的正确来源}
+对于 $0<z<\pi$, NIST DLMF4.22.3 给出
+\[
+ \frac{1/z-\cot z}{z}=2\sum_{j=1}^{\infty}\frac1{j^2\pi^2-z^2}.
+\]
+级数在 $(-\pi,\pi)$ 的每个紧子区间上一致收敛, 每项在正半轴严格递增.
+故 $(1/z-\cot z)/z$ 严格递增, 并对 $0<z\le\pi/8$ 有
+\[
+ 1/z-\cot z\le C_z z,\qquad
+ C_z=\frac{8/\pi-(1+\sqrt2)}{\pi/8}<\frac{337}{1000}.
+\]
+Laurent 展开中的正确幂次为
+$\cot z=1/z-\sum_{k\ge1}c_kz^{2k-1}$,
+$c_k=2^{2k}|B_{2k}|/(2k)!>0$, 从 $z/3$ 开始.
+不能把紧子区间上的一致收敛说成在整个 $(0,\pi)$ 上一致收敛.
+证书用精确 $\pi$, $\sqrt2$ 有理包络核对细常数; 十进制打印值不作为零宽区间输入.
+
+\section{数值证据与收敛阶的范围}\label{sec:numeric}
+
+历史浮点扫描和拟合保存在原 run 中, 本轮不以它们证明连续区域的下界.
+第八轮精确证书重新支持 T3 的显示区间; 附带高精度数值只用于检验解析式的行为.
+
+命题 \ref{prop:fixed-u} 已解析证明固定内部 $u$ 的 $R^{-1}$ 展开.
+在 $u^*$ 处, 非零系数约为 $15.5807908501$, 因而
+$R(G(R,u^*)-\bar D(u^*))$ 趋于这一常数,
+而 $\sqrt R(G(R,u^*)-\bar D(u^*))\to0$.
+原文由数值误差声称非零 $R^{-1/2}$ 首项, 已撤回.
+本节不推断极小化参数或任意近极小化子序列的收敛速度.
+
+\section{涉及到的数学知识}
+\begin{itemize}
+	\item \textbf{Sturm--Liouville 谱理论}: Dirichlet 问题, 对称/反对称模态,
+		转移矩阵, 相位 (secular) 方程.
+	\item \textbf{Feynman--Hellmann 定理}: 特征值的参数单调性 (经典);
+		脚本 17 中验证 $d\mu_k/du<0$, $d\mu_k/dR>0$.
+	\item \textbf{相位括号方法}: 用单调函数夹逼特征相位 (见 \ref{lem:phases}(d)).
+	\item \textbf{三角级数余项}: $\tan$, $\cot$ 的级数余项符号与单调性,
+		给出显式常数 (见 §2.3).
+	\item \textbf{符号链}: $\widetilde K\to J\to G\to S$ 的逐层符号分析
+		(见 \ref{thm:T2}).
+	\item \textbf{精确包络}: 有理区间四则运算, Machin 恒等式, Taylor 余项及方向正确的像传播.
+	\item \textbf{极限系统端点}: 由 $a(u)$ 的极限方程, $u\to1/2$ 时 $\bar D\to3\pi^2$;
+		$u\to0$ 时 $\bar D\to+\infty$.
+\end{itemize}
+
+\section{文献}
+\sloppy
+\begin{enumerate}
+\raggedright
+	\item Keller: The minimum ratio of two eigenvalues, SIAM J.\ Appl.\ Math.\
+		\textbf{29}(2) (1975) 279--283,
+		\href{https://doi.org/10.1137/0129024}{DOI 10.1137/0129024}.
+	\item Mahar, Willner: An extremal eigenvalue problem, Comm.\ Pure Appl.\ Math.\
+		\textbf{29}(5) (1976) 517--529,
+		\href{https://doi.org/10.1002/cpa.3160290505}{DOI 10.1002/cpa.3160290505}.
+	\item Willner, Mahar: An extremal eigenvalue problem II, SIAM J.\ Math.\ Anal.\
+		\textbf{13}(4) (1982) 633--643,
+		\href{https://doi.org/10.1137/0513040}{DOI 10.1137/0513040}.
+	\item NIST Digital Library of Mathematical Functions, \href{https://dlmf.nist.gov/4.22.E3}{公式 4.22.3},
+版本 1.2.8 (2026-09-15), 本轮实际读取该公式及极点排除条件.
+\item 本项目内部 run (见 \texttt{runs/rigorous-open-math-research/}):
+		R-20260806T200000Z-inflimit-5B2C7D (INF 极限, 本文),
+		R-20260805T000000Z-gapn1-a1b2c3 (O1/O2/O3b 前期工作),
+		R-20260806T151000Z-o1reaudit-5A1C3D (O1 独立复审),
+		R-20260806T140000Z-o3ac1-42F931 (O3a C1).
+\end{enumerate}
+
+\end{document}

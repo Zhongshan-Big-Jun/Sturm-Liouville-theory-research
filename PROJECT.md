@@ -10,10 +10,13 @@ Sturm-Liouville spectral optimization: eigenvalue ratios, gaps, extremal configu
 
 ## Research directions
 1. **SL gap extremals** (active for n>=2): SUP/INF of lambda_{n+1}-lambda_n over box class 1<=rho<=R. For n=1, both SUP and INF are STRICT/CLOSED for all R>1 (2026-08-12, session 58 continuation 3; commit 220785e). See `state/RESUME.md` for the closure record and `docs/research-guide.md` for the proof chain. Round7 repairs the small-contrast endpoint/local-symmetry proof and establishes the fixed-n>=1 supremum limit (n+1)^2*pi^2 for measurable and finite-piecewise box classes. Round8 repairs the symmetric-well INF asymptotic proof with continuous phase coverage and an elementary large-w comparison, exact T3 enclosures and fixed-u 1/R expansion. It does not re-audit the separate all-R or nonsymmetric chains. The n>=2 finite-R global problem remains open; n=1 certificate-kernel formalization is a separate follow-up.
-2. **SL ratio extremals**: sup lambda_{n+1}/lambda_n = nu(R) proved (session 5); fixed-n and inf problems open.
+2. **SL ratio extremals**: the all-index supremum nu(R) and infimum 1 are proved in their documented classes. Round9 corrects the physical/normalized secular distinction and proves all-n root count, strict monotonicity and the limit of the prescribed balanced candidates. Equality with the fixed-n global supremum remains open (O1/O2).
 3. **Left-definite theory / orthogonal systems**: H^2 polynomial completeness proved (session 9).
 
+Round9 also repairs the true-integral tangent projection and eigenfunction normalization, and replaces the false Green-diagonal divergence argument with a finite concentration limit. These corrections do not resolve global G1 or certify historical scans.
+
 ## Key files
+- Latest scoped correction: `reports/proof-audit-round9-20260923/REPORT.md`; two revised PDFs and three versioned tool cards.
 - Status/proof navigation: `docs/research-guide.md`; overview: `docs/SL_spectral_topics_summary.tex`. Resolve status differences using the relevant proof chain and dated closure/audit records.
 - 2026-09-20 proof errata and validation: `reports/proof-audit-20260920/REPORT.md` (local repairs; historical full interval audits and Lean are separate).
 - Gap extremals report: `docs/SL_gap_extremals.tex`.

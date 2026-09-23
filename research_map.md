@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-22 (round8 scoped INF repairs; older runs retain their original dates)
+Last updated: 2026-09-23 (round9 variation and balanced-candidate repairs; older runs retain their original dates)
 
 
 
@@ -46,7 +46,8 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | --- | --- | --- | --- | --- |
 | B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
 | B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Constant-density high modes suffice; inf not attained |
-| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | reflection symmetry STRICT; ratio-extremizer exact-2n-switch structure STRICT (2026-08-22); 2n root count STRICT (2026-08-22); equal-width optimum O2 and global value O1 OPEN |
+| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | physical reflection has a frequency factor; normalized symmetry and all-n root count repaired in round9. Historical extremizer 2n-switch structure retains its scope; global equality/optimality O1/O2 OPEN |
+| B3-CANDIDATE-LIMIT | Prescribed balanced candidate ratios c_n(R), fixed R>1 | SOLVED | docs/SL_fixed_n_supremum.tex; round9 analytic repair | Jacobi principal submatrix argument gives c_n strictly decreasing to ((pi-phi)/phi)^2, phi=arccos((sqrt(R)-1)/(sqrt(R)+1)). Does not identify c_n with the global supremum |
 | B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; docs/SL_gap_nge2_symmetry_local_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 all-R chain retained; n>=2 small-contrast uniqueness repaired in round7; general SUP limit is solved as B4-SUP-LIMIT below. M3/KP retain their explicit chart scopes; historical G2 labels still require statement alignment; finite-R global uniqueness remains OPEN |
 | B4-SUP-LIMIT | lim_(R->infinity) sup_(1<=rho<=R) D_n, fixed n>=1 | SOLVED | docs/SL_gap_nge2_symmetry_local_proof.tex, round7 thin-heavy-interval theorem | Limit=(n+1)^2*pi^2 for measurable box and unrestricted finite-piecewise classes; 4*pi^2 only at n=1. Does not identify finite-R maximizing interfaces or prove every self-consistent branch reaches that limit |
 | B4-INF-LIMIT | Symmetric [R,1,R] first-gap scaled infimum and near-minimizers | SOLVED | docs/SL_gap_n1_inf_limit_proof.tex; round8 report | R*m_R→M≈24.9438661384 with nonnegative O(1/R) error; near-minimizers require R*eta_R→0. Entire thin-layer region covered by continuous phase speed; large-w comparison has positive margin. T1 uses T2 analytically, not T3 numerical constants. No new all-box/nonsymmetric/n>=2 claim |
@@ -72,6 +73,8 @@ B1 (sup ratio, solved)
   |-- informs --> B4 (gap extremals, partial)
 B2 (inf ratio, solved) --informs--> B4
 B3 --uses--> Fixed-n configuration tools
+B3 --solved candidate subproblem--> B3-CANDIDATE-LIMIT via nested Jacobi matrices
+B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
 B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
 B4 --solved symmetric-well subproblem--> B4-INF-LIMIT via phase speed + elementary A-doubleprime + analytic T2
@@ -99,6 +102,7 @@ flowchart LR
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
+  B3C["B3-CANDIDATE-LIMIT (SOLVED): prescribed balanced sequence"]
   B4["B4 gap extremals (PARTIAL)"]
   B4L["B4-SUP-LIMIT (SOLVED): (n+1)^2*pi^2"]
   B4I["B4-INF-LIMIT (SOLVED): symmetric well, continuous coverage"]
@@ -111,6 +115,7 @@ flowchart LR
   A3 -->|reduces_to| A4
   A3 -->|inherits O3| A2
   B1 -->|extends| B3
+  B3 -->|balanced candidate subproblem| B3C
   B1 -->|informs| B4
   B2 -->|informs| B4
   B4 -->|solved asymptotic subproblem| B4L
@@ -209,3 +214,13 @@ Round6 (2026-09-21): A3/A4 must use the corrected sparse projection and finite-t
 - Possible next idea, not a theorem: propagate unwrapped angle derivatives through more layers or general transfer matrices to obtain uniform mode separation. Each interface, mode index and parameter domain must be re-established.
 
 Four revised card versions and their exact issue releases are linked from reports/proof-audit-round8-20260922/REPORT.md. This human research map update does not change canonical Blueprint.
+
+## Round9 research knowledge (2026-09-23)
+
+- Tangency depends on the integral functional A, while the chosen projection metric determines which normal represents it. Unequal block widths expose the lost factors in projection against averages. Zero A means every direction is tangent; it does not license division by zero.
+- Spectral perturbation formulas must retain the component fixing the moving weighted normalization. The exact h=rho check gives u'=-u/2 and distinguishes this derivative from a reduced-inverse particular solution.
+- In regular one-dimensional Dirichlet problems the Green finite part is bounded. Unit-mass midpoint pulses at rho=1 give lambda1''→6*pi², lambda2''→0 and half-gap Q→−3*pi². This refutes the divergence argument, not every possible finite-kernel/interface route. Actual moving-interface acceleration remains a separate finite contribution.
+- Reflection of the physical secular value includes y/(pi-y); multiplying by the nonzero frequency preserves its zeros but changes its value law. An all-n Jacobi compression then turns a former candidate-limit conjecture into a proof, while leaving global optimality separate.
+- Possible next idea, unproved: combine the finite regularized-kernel matrix with the correctly signed interface acceleration on the actual tangent space. First test against the constant-density midpoint limit and width-unequal directions; establish analytic concentration/tail control before attempting a sign theorem. A numerical negative direction alone is insufficient for the constrained extremum problem.
+
+Current proofs, correction receipts and version-bound annotations are linked from reports/proof-audit-round9-20260923/REPORT.md. Historical R206 and older B3 runs retain original bytes and dated claims. Canonical Blueprint was not changed.
