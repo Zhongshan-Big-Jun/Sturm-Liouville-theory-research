@@ -1,0 +1,349 @@
+{
+  "candidate_id": "round11-krein-cofinite-closure-all-orders",
+  "id_scope": "LOCAL_NEW_CARD_CANDIDATE_ONLY_NOT_A_REGISTERED_LIBRARY_ID",
+  "status": "CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "evidence_status": "CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "title": "原稀疏多项式族在全部 0<=s<7/2 Krein 幂域中的余有限闭包",
+  "summary": "固定 c>0 的复 Krein 幂域中, 每个余有限保留集的闭包恰由遗漏且连续的中心迹刻画. 必须保留的指标依次为 {}, {0}, {0,1}, {0,1,4}; 三个等号点属于较少迹的一侧.",
+  "conditions": [
+    "For every fixed real c>0, use complex L2(-1,1), with inner product linear in its first argument.",
+    "Kc f=-f_second+c f, D(Kc)={f in ordinary H2: f_prime(1)=f_prime(-1)=(f(1)-f(-1))/2}.",
+    "Hc^s=D(Kc^(s/2)), with norm ||Kc^(s/2)f||_2; every real 0<=s<7/2 is included.",
+    "D={0,1} union {4,5,...}; p0=1, p1=x, p_(2m)=x^(2m)-m/(m-1)x^(2m-2), p_(2m+1)=x^(2m+1)-m/(m-1)x^(2m-1), every integer m>=2.",
+    "For every N subset D with D\\N finite. Spans consist of finite complex linear combinations."
+  ],
+  "scope": "All and only cofinite retained subsets of the specified original family in the stated fixed-c complex power spaces.",
+  "content": "closure_Hc^s span_C{p_n:n in N}={f in Hc^s: tau_j(f)=0 for all j in I(s)\\N}, where tau_0=f(0), tau_1=f_prime(0), tau_4=f_second(0). The complex codimension is |I(s)\\N| and density is equivalent to I(s) subset N.",
+  "trace_index_dictionary": {
+    "0": "f(0)",
+    "1": "f_prime(0)",
+    "4": "f_second(0)"
+  },
+  "cases": [
+    {
+      "s_condition": "0 <= s <= 1/2",
+      "essential_indices": [],
+      "trace_derivative_orders": []
+    },
+    {
+      "s_condition": "1/2 < s <= 3/2",
+      "essential_indices": [
+        0
+      ],
+      "trace_derivative_orders": [
+        0
+      ]
+    },
+    {
+      "s_condition": "3/2 < s <= 5/2",
+      "essential_indices": [
+        0,
+        1
+      ],
+      "trace_derivative_orders": [
+        0,
+        1
+      ]
+    },
+    {
+      "s_condition": "5/2 < s < 7/2",
+      "essential_indices": [
+        0,
+        1,
+        4
+      ],
+      "trace_derivative_orders": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "critical_cases": [
+    {
+      "s": "1/2",
+      "essential_indices": [],
+      "forbidden_extra_condition": "f(0)=0"
+    },
+    {
+      "s": "3/2",
+      "essential_indices": [
+        0
+      ],
+      "forbidden_extra_condition": "f_prime(0)=0"
+    },
+    {
+      "s": "5/2",
+      "essential_indices": [
+        0,
+        1
+      ],
+      "forbidden_extra_condition": "f_second(0)=0"
+    }
+  ],
+  "proof_steps": [
+    {
+      "id": "OP",
+      "locator": "2.1-2.2, equations (2.1)-(2.9)",
+      "claim": "Actual positive self-adjoint Krein realization and exact D(Kc^2) with equivalent H4 Sobolev norm."
+    },
+    {
+      "id": "MEMBERSHIP",
+      "locator": "3, equations (3.1)-(3.6)",
+      "claim": "Every original member is in Hc^s for every 0<=s<7/2, with both parity branches and normalization handled."
+    },
+    {
+      "id": "SPECTRAL_DENSITY",
+      "locator": "2.3, equation (2.11)",
+      "claim": "Hc^4 is dense in Hc^s by spectral cutoffs; no reliance on polynomial density."
+    },
+    {
+      "id": "LOCAL_NORM",
+      "locator": "4.1-4.3, equations (4.2)-(4.9)",
+      "claim": "Direct quadratic K-functional interpolation gives fixed interior multiplier bounds in both directions, including critical orders through 7/2."
+    },
+    {
+      "id": "HIGH_VANISHING_CORE",
+      "locator": "5, equations (5.2)-(5.11)",
+      "claim": "For each even L>=4, closure in Hc^4 of x^L C[x] intersect D(Kc^2) is the kernel of four centre traces."
+    },
+    {
+      "id": "TAIL_ALGEBRA",
+      "locator": "6, equations (6.1)-(6.2)",
+      "claim": "Every complete retained high tail equals compatible polynomials divisible by x^(2m0-2), by finite leading-term elimination for every degree."
+    },
+    {
+      "id": "DUAL_COMPRESSION",
+      "locator": "7, equation (7.1)",
+      "claim": "Any continuous functional annihilating a cofinite retained family restricts to a linear combination of four centre traces."
+    },
+    {
+      "id": "CRITICAL_LINEAR_COMBINATIONS",
+      "locator": "8, equations (8.1)-(8.7)",
+      "claim": "The logarithmic Fourier sequence excludes every highest nonzero derivative coefficient when s<=r+1/2, including arbitrary complex linear combinations."
+    },
+    {
+      "id": "COFINITE_CLOSURE",
+      "locator": "9, equations (9.1)-(9.2), and Theorem 1",
+      "claim": "Exact annihilator, closure, density criterion and complex codimension; equality points lie on the fewer-traces side."
+    }
+  ],
+  "analytic_strengthening": "Both directions of fixed interior multiplier control are proved from the L2 and H4 endpoints by an explicit quadratic K-functional computation. No closure/interpolation interchange and no unverified full-domain-dictionary dependence.",
+  "corollary": "Deleting only p6 leaves a dense family at every requested order. Hence the original family, under any nonzero termwise complex scaling and any bijective enumeration, is neither a Schauder basis nor a Riesz basis in that window.",
+  "exclusions": [
+    "c=0",
+    "uniform constants as c tends to zero",
+    "s>=7/2 original nonaffine members",
+    "arbitrary infinite deletions",
+    "arbitrary constraint-generated or projected families",
+    "approximation rates",
+    "frame bounds",
+    "orthogonalized or otherwise reconstructed replacement systems"
+  ],
+  "predecessor_relation": "Extends the s=3 cofinite three-trace pattern as an author candidate. The old s3 proof and domain dictionary are unmodified inputs and are not overwritten or reaccepted.",
+  "new_card_requested": true,
+  "replaces_existing_cards": [],
+  "sources": [
+    {
+      "path": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/cofinite-all-orders.md",
+      "sha256": "276720b6a28bbdbd06719d88aa003e8e1602b338bfaf75d2f03ce1f8b5312c9a",
+      "locator": "Theorem 1 (1.5), sections 2-9; Corollary 3 in section 10",
+      "kind": "CURRENT_AUTHOR_PROOF_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "source_id": "IN-SUBMITTED",
+      "path": "/mnt/c/Users/HuangZY/Downloads/sl_audit_round11/cofinite_all_orders_proof.md",
+      "sha256": "304c715a7e8c767bc360b08f40f01c6cb9df7b51b6fb37684207664b53768566",
+      "frozen_copy": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/sources/submitted-cofinite_all_orders_proof.md",
+      "locators": [
+        {
+          "line_start": 1,
+          "line_end": 219,
+          "description": "All sections; unverified input candidate, not independent acceptance"
+        }
+      ],
+      "kind": "UNVERIFIED_SUBMITTED_CANDIDATE"
+    },
+    {
+      "source_id": "P-FRAC",
+      "path": "/mnt/f/LaTeX/BVE research/docs/SL_fractional_left_definite.tex",
+      "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+      "frozen_copy": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/sources/SL_fractional_left_definite.tex",
+      "locators": [
+        {
+          "line_start": 38,
+          "line_end": 70,
+          "description": "eq:operator-domain; eq:original-family; definitions and scope"
+        },
+        {
+          "line_start": 74,
+          "line_end": 133,
+          "description": "prop:operator; h2 estimate; positivity, surjectivity, self-adjointness"
+        },
+        {
+          "line_start": 135,
+          "line_end": 194,
+          "description": "normalized-modes and spectral-norm; full eigenbasis"
+        },
+        {
+          "line_start": 207,
+          "line_end": 317,
+          "description": "lem:coefficient-upper; thm:all-thresholds; all named members"
+        },
+        {
+          "line_start": 339,
+          "line_end": 355,
+          "description": "lem:square-domain; genuine product domain"
+        },
+        {
+          "line_start": 356,
+          "line_end": 444,
+          "description": "four-trace-matrix; h4-approximation; h4-core mechanism"
+        },
+        {
+          "line_start": 461,
+          "line_end": 500,
+          "description": "thm:main; h4-embedding; spectral cutoff density"
+        }
+      ],
+      "kind": "CURRENT_OPERATOR_SPECTRAL_MEMBERSHIP_INPUT"
+    },
+    {
+      "source_id": "P-PARITY",
+      "path": "/mnt/f/LaTeX/BVE research/literature/absorption-20260923/domains/proofs/01-parity-unitary.md",
+      "sha256": "3e0a5c5c56298ffc31b7f98a30848fa0ec32d3d2ec24dedcd2ffd061c82a3aaa",
+      "frozen_copy": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/sources/01-parity-unitary.md",
+      "locators": [
+        {
+          "line_start": 1,
+          "line_end": 13,
+          "description": "Actual operator and fixed-c conventions"
+        },
+        {
+          "line_start": 32,
+          "line_end": 84,
+          "description": "P2-P3: domain invariance, parity gluing and spectral calculus"
+        }
+      ],
+      "kind": "CONTEXT_DOMAIN_CHECK"
+    },
+    {
+      "source_id": "P-DICT",
+      "path": "/mnt/f/LaTeX/BVE research/literature/absorption-20260923/domains/proofs/02-fractional-trace-dictionary.md",
+      "sha256": "05467a3f3449b4f3df2317cdc7af558aec6194dc7f285bfb0ed275a1fe18038a",
+      "frozen_copy": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/sources/02-fractional-trace-dictionary.md",
+      "locators": [
+        {
+          "line_start": 5,
+          "line_end": 38,
+          "description": "D1: separated-operator applicability bridge"
+        },
+        {
+          "line_start": 39,
+          "line_end": 97,
+          "description": "D2-D3: boundary thresholds, critical weighted residual and equivalent norm"
+        },
+        {
+          "line_start": 98,
+          "line_end": 112,
+          "description": "D4: centre trace thresholds and logarithmic Fourier construction"
+        },
+        {
+          "line_start": 113,
+          "line_end": 117,
+          "description": "D5: model scope and limitations"
+        }
+      ],
+      "kind": "CURRENT_DOMAIN_DICTIONARY_INPUT"
+    },
+    {
+      "source_id": "P-S3",
+      "path": "/mnt/f/LaTeX/BVE research/literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md",
+      "sha256": "72a80213f816072e4fdeb50b0a839c0b4e6f25a8182e627ef7db087498719e42",
+      "frozen_copy": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/sources/03-s3-cofinite-closure.md",
+      "locators": [
+        {
+          "line_start": 13,
+          "line_end": 49,
+          "description": "C1: actual Hc3 space and centre traces"
+        },
+        {
+          "line_start": 50,
+          "line_end": 65,
+          "description": "C2: all-degree complete-tail algebra"
+        },
+        {
+          "line_start": 66,
+          "line_end": 98,
+          "description": "C3-C4: local highest-derivative cutoff and finite boundary right inverse"
+        },
+        {
+          "line_start": 99,
+          "line_end": 118,
+          "description": "C5: exact s=3 cofinite closure and limits"
+        }
+      ],
+      "kind": "CURRENT_S3_PREDECESSOR_INPUT"
+    }
+  ],
+  "source_bindings": {
+    "path": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/source-bindings.json",
+    "relative_path": "source-bindings.json",
+    "sha256": "45fd7cda28bdf57922817c0056d2b9e6f26471c85961ad5103c95a3b8d4b12ce",
+    "size_bytes": 12964
+  },
+  "exact_author_evidence": {
+    "script": {
+      "path": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/checks/exact_algebra.py",
+      "relative_path": "checks/exact_algebra.py",
+      "sha256": "35eb53643f689ae4833141d2ad9868437239c7a0b9507cef64e1aef34cc2ca9e",
+      "size_bytes": 9622
+    },
+    "execution_manifest": {
+      "path": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/logs/algebra-20260925T171506459491Z.execution.json",
+      "relative_path": "logs/algebra-20260925T171506459491Z.execution.json",
+      "sha256": "8dd35ba1f2faf8e7c2a6383f06c09fb89e681058a254730682e0152cb895ec05",
+      "size_bytes": 1105
+    },
+    "stdout": {
+      "path": "/mnt/f/tools/math-audit-round11-20260926/cofinite-author/logs/algebra-20260925T171506459491Z.stdout.json",
+      "relative_path": "logs/algebra-20260925T171506459491Z.stdout.json",
+      "sha256": "be10a2f8338e887356de971a085371af92ef941dad0a749341eec6a92b66d0b8",
+      "size_bytes": 22573
+    },
+    "returncode": 0,
+    "category_counts": {
+      "symbolic_identity": 43,
+      "finite_exact_sample": 48,
+      "expected_rejection": 3
+    },
+    "certifies_infinite_dimensional_analysis": false
+  },
+  "author_assessment": {
+    "requested_scope_derivation": "COMPLETE_CANDIDATE",
+    "remaining_analytic_gaps_identified_by_author": [],
+    "scope_reduction_needed_by_author": false
+  },
+  "review": {
+    "independent_review_performed": false,
+    "review_agent_started": false,
+    "required": "Fresh independent mathematical review by the coordinator under a separate task.",
+    "priority_obligations": [
+      "OP",
+      "MEMBERSHIP",
+      "SPECTRAL_DENSITY",
+      "LOCAL_NORM",
+      "HIGH_VANISHING_CORE",
+      "TAIL_ALGEBRA",
+      "DUAL_COMPRESSION",
+      "CRITICAL_LINEAR_COMBINATIONS",
+      "COFINITE_CLOSURE"
+    ]
+  },
+  "formalization": {
+    "new_lean_files": 0,
+    "lean_verification_claim": false
+  },
+  "novelty_claim": false,
+  "integration_status": "PROPOSED_ONLY_NOT_CANONICAL_NOT_ACCEPTED"
+}

@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-25 (round10 indexed spectrum/reflection-sector repair independently reviewed; numerical scope retained)
+Last updated: 2026-09-26 (round11 cofinite closure analytically reviewed; cross-block/endpoint numerical repair independently checked)
 
 
 
@@ -33,16 +33,17 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
 | A1 | `{p_n}` density in genuine H^s, 0 <= s < 7/2 (Krein-Sobolev) | SOLVED | docs/SL_fractional_left_definite; H2/H3 proofs retained | Round6 four-trace graph core + spectral cutoff proves the full window; every nonaffine named member has threshold7/2, affine modes survive all nonnegative orders. No deleted-family or arbitrary-V extension |
-| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse basis | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
+| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse-family density | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
 | A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | docs/SL_stability_moment_jump | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
 | A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
 | A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
-| A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. No critical s=5/2 or general infinite-deletion conclusion |
+| A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. The original s3 proof has that scope; A12 now covers critical s=5/2. No general infinite-deletion conclusion |
 | A9 | Concrete fractional and critical power-domain dictionary | STRICT | tools/krein-fractional-trace-dictionary; tools/krein-parity-unitary | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
 | A10 | Boundary-compatible integrated Legendre replacement systems | STRICT | tools/krein-integrated-legendre-riesz; tools/finite-synthesis-tsvd | Fixed c>0, s=2/4; complete Riesz replacement systems with degree-independent constants and coefficient-tail errors. Not the original sparse monomials, uniform c→0 or quadrature certification |
 | A11 | Infinite-deletion subclasses in Hc2 | PARTIAL | tools/krein-infinite-deletion-subclasses; tools/full-muntz-krein-moment-interface | Both parity branches containing arithmetic progressions give the two-centre-trace closure; reciprocal-summable retained parity sets obstruct density. General divergent nonarithmetic cases remain open |
+| A12 | Cofinite closure throughout the full member window | SOLVED (independent analytic review) | docs/SL_cofinite_all_orders.pdf; tools/krein-cofinite-closure-all-orders | Fixed c>0, 0<=s<7/2. Essential retained indices are {}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Missing indices impose respectively f(0), f′(0), f″(0); codimension is their count. Delete p6: still dense, so every nonzero scaling/reordering of the original family is non-Schauder/Riesz. No arbitrary infinite deletion or uniform c→0 claim |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
@@ -59,6 +60,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
 | B7 | Local second variation along finite fixed-value moving interfaces | STRICT | tools/finite-interface-second-derivative; literature/absorption-20260923/interfaces/derivations | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
 | B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
+| B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | scripts/_gapn2_jacobian_probe.py; reports/proof-audit-round11-20260926/REPORT.md | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
 
 ## Relationships between problems
 
@@ -73,6 +75,8 @@ A3 (constrained density, open)
   A3 --historical O3--> A2 (Krein window now solved; general constraints separate)
 A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
 A9 parity/domain dictionary --supports--> A8 s3 cofinite three-trace closure
+A12 --extends--> A8 and the s2 classification via H4 core, weighted interpolation and critical Fourier sequences
+A12 --uses--> A1 member window; general infinite deletion in A11 remains separate
 A9/A7 --guides--> A10 boundary-compatible replacement coordinates
 A11 infinite-deletion subclasses --uses--> actual moment realization and Full Muntz; general A4 remains open
 
@@ -86,6 +90,7 @@ B3 --solved candidate subproblem--> B3-CANDIDATE-LIMIT via nested Jacobi matrice
 B7 local interface chain rule --supports--> B4 variation analysis; global sign remains open
 B8 phase indexing + actual reflection sectors --repairs numerical exploration of--> B4/B7
 B8 does not promote numerical observations to analytic G1 or global uniqueness
+B9 cross-block parity and actual edge differences --repairs numerical derivative tools for--> B7/B4; commuting Hessian parity remains distinct
 B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
 B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
@@ -115,8 +120,10 @@ flowchart LR
   A9["A9 fractional domain dictionary (STRICT)"]
   A10["A10 Legendre replacement systems (STRICT)"]
   A11["A11 infinite deletion (PARTIAL)"]
+  A12["A12 full-window cofinite closure (SOLVED)"]
   B7["B7 finite interface derivatives (STRICT)"]
   B8["B8 indexed numerical modes / pure seeds (NUMERICAL)"]
+  B9["B9 cross blocks / actual differences (NUMERICAL)"]
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
@@ -128,6 +135,9 @@ flowchart LR
   B5["B5 MDE unify (OPEN)"]
   B6["B6 p-Laplacian (OPEN)"]
 
+  A12 -->|extends s3 classification| A8
+  A1 -->|member window| A12
+  B9 -->|derivative diagnostics| B7
   A9 -->|domain and topology| A8
   A9 -->|boundary conditions| A10
   A11 -->|special subclasses| A4

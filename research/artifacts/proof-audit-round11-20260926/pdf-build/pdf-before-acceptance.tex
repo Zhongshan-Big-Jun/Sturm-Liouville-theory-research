@@ -1,0 +1,950 @@
+% !TEX program = xelatex
+% Generated from the bound Markdown author proof; mathematics is not changed.
+\documentclass[UTF8,fontset=fandol,11pt,a4paper]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{longtable,booktabs,array,enumitem}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks,unicode]{hyperref}
+\setlist{nosep,leftmargin=2em}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\begin{document}
+
+CANDIDATE\_PENDING\_INDEPENDENT\_REVIEW
+
+
+\section*{原稀疏多项式族在全部成员窗口内的余有限闭包}
+
+日期: 2026-09-26. 角色: round11 解析作者. 本文是待独立审查的完整作者证明, 不构成独立验收, 不主张文献新颖性, 未作 Lean 形式化. 项目输入的路径, 实际 SHA-256 和定位见 source-bindings.json. 所供 cofinite\_all\_orders\_proof.md 是待核查的论证来源, 其状态不能替代证明.
+
+
+\section*{1. 对象, 全部量词与结论}
+
+记 \(I=(-1,1)\). 全部空间和线性泛函取复数域, 内积对第一变量线性. 普通整数阶 Sobolev 空间记为 \(H_{\mathrm{Sob}}^k(I)\). 固定任意实数 \(c>0\), 采用实际算子
+
+
+\[
+\begin{gathered}
+ K_cf=-f''+cf,\qquad
+ D(K_c)=\{f\in H_{\mathrm{Sob}}^2(I):\mathcal Bf=0\},
+ \\
+ \mathcal Bf=
+ \begin{pmatrix}f'(1)-\Delta f/2\\f'(-1)-\Delta f/2\end{pmatrix},
+ \quad \Delta f=f(1)-f(-1).
+\end{gathered}
+ \tag{1.1}
+\]
+
+
+定义真正的幂域及其范数
+
+
+\[
+ \mathcal H_c^s=D(K_c^{s/2}),\qquad
+ \|f\|_{s,c}=\|K_c^{s/2}f\|_{L^2(I)},\qquad s\ge0.
+ \tag{1.2}
+\]
+
+
+原族及其指标集为
+
+
+\[
+ \begin{split}
+ \mathcal D&=\{0,1\}\cup\{4,5,6,\ldots\},\qquad p_0=1,\quad p_1=x,\\
+ p_{2m}&=x^{2m}-\frac m{m-1}x^{2m-2},\\
+ p_{2m+1}&=x^{2m+1}-\frac m{m-1}x^{2m-1},\qquad m\ge2.
+ \end{split}
+ \tag{1.3}
+\]
+
+
+所有线性包只含有限复线性组合. 对任意 \(0\le s<7/2\), 设
+
+
+\[
+ I(s)=
+ \begin{cases}
+ \varnothing,&0\le s\le1/2,\\
+ \{0\},&1/2<s\le3/2,\\
+ \{0,1\},&3/2<s\le5/2,\\
+ \{0,1,4\},&5/2<s<7/2.
+ \end{cases}
+ \tag{1.4}
+\]
+
+
+在相应迹连续时, 记 \(\tau_0 f=f(0)\), \(\tau_1 f=f'(0)\), \(\tau_4 f=f''(0)\). 下标 4 是原族指标, 不是导数阶数.
+
+
+\textbf{定理 1.} 对每个固定 \(c>0\), 每个实数 \(0\le s<7/2\), 以及每个满足 \(\mathcal D\setminus N\) 有限的子集 \(N\subset\mathcal D\), 原族全部成员属于 \(\mathcal H_c^s\), 且
+
+
+\[
+ \boxed{
+ \overline{\operatorname{span}_{\mathbb C}\{p_n:n\in N\}}^{\,\mathcal H_c^s}
+ =
+ \{f\in\mathcal H_c^s:\tau_j f=0\ \text{对所有 }j\in I(s)\setminus N\}.
+ }
+ \tag{1.5}
+\]
+
+
+闭包的复余维恰为 \(|I(s)\setminus N|\). 因而全空间稠密当且仅当 \(I(s)\subset N\). 特别地, \(s=1/2,3/2,5/2\) 各属于较少迹的一侧. 常数允许依赖固定的 \(c,s\), 截断函数以及选定尾部; 不断言 \(c\downarrow0\) 时一致.
+
+
+证明安排如下. 先从真实算子取得四阶域和局部幂范数控制, 再证明任意高消失阶的四阶相容多项式核心. 尾部代数将连续零化泛函压缩到四个中心迹. 对数 Fourier 序列排除不连续迹的任意线性组合, 最后检查原族的低阶迹表.
+
+
+\section*{2. 算子基础, 四阶域和谱稠密性}
+
+\subsection*{2.1. 正自伴性与所用正则性}
+
+以下重述并核查当前 docs/SL\_fractional\_left\_definite.tex, prop:operator 的论证. 分部积分给出
+
+
+\[
+ \langle K_cf,f\rangle
+ =\|f'\|_2^2-\tfrac12|\Delta f|^2+c\|f\|_2^2
+ \ge c\|f\|_2^2,
+ \tag{2.1}
+\]
+
+
+因为 \(\Delta f=\int_{-1}^1 f'\), 故 \(|\Delta f|^2\le2\|f'\|_2^2\). 同样的分部积分表明域上的边界形式为零, 所以 \(K_c\) 对称. \(C_c^\infty(I)\subset D(K_c)\) 保证定义稠密.
+
+
+对任意 \(u\in H_{\mathrm{Sob}}^2(I)\), 将
+\(u(x)=A+Bx+\int_0^x(x-t)u''(t)\,dt\)
+代入, 用 Cauchy-Schwarz 及
+\(\|A+Bx\|_2^2=2|A|^2+(2/3)|B|^2\), 得
+
+
+\[
+ \|u'\|_2\le C(\|u\|_2+\|u''\|_2).
+ \tag{2.2}
+\]
+
+
+因此, 对 \(f\in D(K_c)\), (2.1) 与 \(f''=cf-K_cf\) 给出
+
+
+\[
+ \|f\|_2\le c^{-1}\|K_cf\|_2,\quad
+ \|f''\|_2\le2\|K_cf\|_2,\quad
+ \|f\|_{H_{\mathrm{Sob}}^2}\le C_c\|K_cf\|_2.
+ \tag{2.3}
+\]
+
+
+为避免仅凭对称性宣称自伴, 可以直接证明满射. 置 \(a=\sqrt c\), 对 \(h\in L^2(I)\) 取
+
+
+\[
+ v_h(x)=-a^{-1}\int_0^x\sinh(a(x-t))h(t)\,dt.
+\]
+
+
+此处负 \(x\) 使用有向积分. 则 \(v_h\in H_{\mathrm{Sob}}^2\), \(K_cv_h=h\). 齐次解的边界矩阵为
+
+
+\[
+ \bigl(\mathcal B\cosh(ax),\mathcal B\sinh(ax)\bigr)=
+ \begin{pmatrix}a\sinh a&a\cosh a-\sinh a\\
+                 -a\sinh a&a\cosh a-\sinh a\end{pmatrix}.
+ \tag{2.4}
+\]
+
+
+它的行列式为 \(2a\sinh a(a\cosh a-\sinh a)>0\), 因为括号内函数在 0 为零, 导数为 \(a\sinh a>0\). 唯一的齐次修正于是将 \(v_h\) 送入 \(D(K_c)\), 证明 \(K_c\) 满射. 若 \(u\in D(K_c^*)\), 令 \(v=K_c^{-1}K_c^*u\), 对任意 \(f\in D(K_c)\) 有
+\(\langle K_cf,u-v\rangle=0\). 满射性迫使 \(u=v\in D(K_c)\), 故 \(K_c=K_c^*\).
+
+
+由 (2.3) 和有界区间上 \(H_{\mathrm{Sob}}^2\hookrightarrow L^2\) 的紧嵌入, \(K_c^{-1}\) 紧. 因而存在完整正交归一本征系 \((e_\nu)\) 及 \(\lambda_\nu\ge c\), 使
+
+
+\[
+ \|f\|_{s,c}^2=\sum_\nu\lambda_\nu^s|\langle f,e_\nu\rangle|^2.
+ \tag{2.5}
+\]
+
+
+\subsection*{2.2. 平方域及范数等价}
+
+按算子乘积的定义,
+
+
+\[
+ \boxed{\mathcal H_c^4=D(K_c^2)
+ =\{f\in H_{\mathrm{Sob}}^4(I):
+       \mathcal Bf=0,\ \mathcal B(f'')=0\}.}
+ \tag{2.6}
+\]
+
+
+确实, 若 \(f,K_cf\in D(K_c)\), 则 \(f''=cf-K_cf\in H_{\mathrm{Sob}}^2\), 所以 \(f\in H_{\mathrm{Sob}}^4\); 再由
+\(\mathcal B(K_cf)=c\mathcal Bf-\mathcal B(f'')\)
+取得第二层条件. 反之, (2.6) 右侧的条件使 \(f,K_cf\in D(K_c)\). 在这个已经确认的域上,
+
+
+\[
+ K_c^2f=f^{(4)}-2cf''+c^2f.
+ \tag{2.7}
+\]
+
+
+令 \(Z=\|K_c^2f\|_2\). 谱正性以及
+\(f^{(4)}=K_c^2f-2cK_cf+c^2f\) 给出
+
+
+\[
+ \|f\|_2\le c^{-2}Z,\quad
+ \|K_cf\|_2\le c^{-1}Z,\quad
+ \|f''\|_2\le2c^{-1}Z,\quad
+ \|f^{(4)}\|_2\le4Z.
+ \tag{2.8}
+\]
+
+
+分别将 (2.2) 用于 \(f\) 和 \(f''\), 控制一阶及三阶导数. 反向估计直接来自 (2.7). 于是
+
+
+\[
+ \|f\|_{4,c}\asymp_c\|f\|_{H_{\mathrm{Sob}}^4},
+ \qquad f\in\mathcal H_c^4.
+ \tag{2.9}
+\]
+
+
+这并不把任意普通四阶 Sobolev 函数当作幂域成员.
+
+
+\subsection*{2.3. 连续嵌入和稠密性}
+
+当 \(0\le s\le t\), (2.5) 给出
+
+
+\[
+ \|f\|_{s,c}\le c^{(s-t)/2}\|f\|_{t,c}.
+ \tag{2.10}
+\]
+
+
+特别地 \(\mathcal H_c^4\hookrightarrow\mathcal H_c^s\) 对 \(0\le s\le4\) 连续. 而对 \(f\in\mathcal H_c^s\), \(0\le s\le4\), 取谱截断 \(f_R=\mathbf1_{[c,R]}(K_c)f\). 有
+
+
+\[
+ \|K_c^2 f_R\|_2^2
+ \le R^{4-s}\|f_R\|_{s,c}^2<\infty,\qquad
+ \|f-f_R\|_{s,c}^2
+ =\sum_{\lambda_\nu>R}\lambda_\nu^s|\langle f,e_\nu\rangle|^2\to0.
+ \tag{2.11}
+\]
+
+
+所以 \(\mathcal H_c^4\) 在每个 \(0\le s\le4\) 的 \(\mathcal H_c^s\) 中稠密. 这一结论来自谱截断, 与待证多项式稠密性无关.
+
+
+\section*{3. 全部原族成员确实在窗口内}
+
+本节核查 (1.3) 的所有指标, 而非只检查 \(p_4\). 直接求导得到
+
+
+\[
+ p_{2m}'(\pm1)=0,\quad \Delta p_{2m}=0,\qquad
+ p_{2m+1}'(\pm1)=p_{2m+1}(1)=-\frac1{m-1}
+ =\frac{\Delta p_{2m+1}}2.
+ \tag{3.1}
+\]
+
+
+因此全部成员属于 \(D(K_c)\). 下面说明 \(3<s<7/2\) 也确实成立.
+
+
+反射保持 (1.1) 的域. 解常系数本征方程, 全部本征函数为 \(1,x\), 特征值同为 \(c\); 以及
+
+
+\[
+ \cos(k\pi x),\quad \lambda_k^{\rm e}=(k\pi)^2+c;\qquad
+ \frac{\sin(\mu_kx)}{N_k},\quad \lambda_k^{\rm o}=\mu_k^2+c,
+ \quad
+ N_k=\frac{\mu_k}{\sqrt{1+\mu_k^2}},
+ \tag{3.2}
+\]
+
+
+其中 \(k\ge1\), \(\tan\mu_k=\mu_k\), \(k\pi<\mu_k<(k+1/2)\pi\). 偶本征函数的范数为 1, 奇本征函数按 \(N_k\) 归一; 仿射模态归一为 \(1/\sqrt2,\sqrt{3/2}\,x\). 上述奇根在每个所列区间唯一: \(\tan\mu-\mu\) 严格增加, 两端异号. 在 \((0,\pi/2)\) 它严格为正, 其余正半周期的正切为负, 故没有遗漏正根. 由 \(\sin\mu_k=\mu_k\cos\mu_k\), 直接积分得 \(\|\sin(\mu_kx)\|_2^2=1-\sin(2\mu_k)/(2\mu_k)=\mu_k^2/(1+\mu_k^2)\), 这核实了 (3.2) 的归一化. 结合第 2 节的紧正自伴谱定理, 这列出了完整谱系.
+
+
+对任意固定多项式 \(g\), 记
+\(C_k(g)=\int_Ig\cos(k\pi x)\), \(S_k(g)=\int_Ig\sin(\mu_kx)\).
+两次分部积分给出
+
+
+\[
+ \begin{split}
+ C_k(g)&=\frac{(-1)^k(g'(1)-g'(-1))}{(k\pi)^2}
+                 -\frac{C_k(g'')}{(k\pi)^2},\\
+ S_k(g)&=\frac{\sin\mu_k}{\mu_k^2}
+           (g'(1)+g'(-1)-\Delta g)
+                 -\frac{S_k(g'')}{\mu_k^2}.
+ \end{split}
+ \tag{3.3}
+\]
+
+
+所以两者均为 \(O_g(k^{-2})\); 这一步不要求 \(g\in D(K_c)\). 若 \(p\) 是满足 \(\mathcal Bp=0\) 的多项式, 自伴性给出
+\(\langle p,e_\nu\rangle=\lambda_\nu^{-1}\langle K_cp,e_\nu\rangle\).
+\(K_cp\) 仍是多项式, 且 \(N_k\ge N_1>0\), 故两支归一化系数均为 \(O_{p,c}(k^{-4})\). 由 (2.5),
+
+
+\[
+ \|p\|_{s,c}^2
+ \le \text{有限低频项}+C_{p,c,s}\sum_{k\ge1}k^{2s-8}<\infty
+ \quad(0\le s<7/2).
+ \tag{3.4}
+\]
+
+
+式 (3.1) 和 (3.4) 证明定理中的全部成员性. 此处从未假设 \(K_cp\in D(K_c)\).
+
+
+同时, 当前文档中的尖锐阈值与这个论证一致. 对所有整数 \(m\ge2\),
+
+
+\[
+ p_{2m}'''(1)=4m(4m-5),\qquad
+ p_{2m+1}'''(1)-p_{2m+1}''(1)=4m(4m-3).
+ \tag{3.5}
+\]
+
+
+将 (3.3) 再用于二阶导数, 利用 \(\sin\mu_k/N_k=(-1)^k\), 得
+
+
+\[
+ \begin{split}
+ \langle p_{2m},\cos(k\pi x)\rangle
+ &=-\frac{8m(4m-5)(-1)^k}{(k\pi)^4}+O_m(k^{-6}),\\
+ \langle p_{2m+1},\sin(\mu_kx)/N_k\rangle
+ &=-\frac{8m(4m-3)(-1)^k}{\mu_k^4}+O_m(k^{-6}).
+ \end{split}
+ \tag{3.6}
+\]
+
+
+余项由 \(p^{(4)}\) 的 \(O(k^{-2})\) 系数界得到. 首项对每个 \(m\) 非零, 故非仿射命名成员在 \(s=7/2\) 已有调和级数发散, 在更高阶也不属于幂域. 仿射成员满足 \(K_cp_j=cp_j\), 属于全部非负幂域. 本文不会把非仿射命名成员逐个放进 \(\mathcal H_c^4\).
+
+
+\section*{4. 临界阶所需的局部幂范数控制}
+
+本节给出独立于完整分数域字典的证明. 周期区间取长度 2 的圆周 \(\mathbb T_2=\mathbb R/(2\mathbb Z)\). 对 \(u=\sum_{n\in\mathbb Z}u_n e^{i\pi nx}\), 定义
+
+
+\[
+ \|u\|_{\mathrm{per},t}^2
+ =2\sum_{n\in\mathbb Z}(1+\pi^2n^2)^t|u_n|^2,\qquad t\ge0.
+ \tag{4.1}
+\]
+
+
+整数 \(t=4\) 时, 由 Parseval 恒等式, 这与四阶导数的平方和范数等价. 第 3 节的原族系数与这里的周期 Fourier 系数是不同对象.
+
+
+\subsection*{4.1. 所需插值估计的直接证明}
+
+设 Hilbert 空间 \(X_0\) 有正交归一坐标. 取
+\(X_1=\{x\in X_0:\sum_\nu w_\nu|x_\nu|^2<\infty\}\),
+赋范数 \(\|x\|_{X_1}^2=\sum_\nu w_\nu|x_\nu|^2\), 其中 \(w_\nu\ge w_*>0\).
+定义二次 \(K\)-泛函
+
+
+\[
+ Q_X(t,x)=\inf_{x=a+b,\ a\in X_0,\ b\in X_1}
+       \bigl(\|a\|_{X_0}^2+t^2\|b\|_{X_1}^2\bigr),\qquad t>0.
+ \tag{4.2}
+\]
+
+
+本定义明确使用 \(t^2\), 后续积分也依此归一化. 逐坐标完成平方, 极小点为
+\(b_\nu=x_\nu/(1+t^2w_\nu)\), 因而
+
+
+\[
+ Q_X(t,x)=\sum_\nu\frac{t^2w_\nu}{1+t^2w_\nu}|x_\nu|^2.
+ \tag{4.3}
+\]
+
+
+极小分解确实可取: \(b\in X_1\), 因为
+\(w/(1+t^2w)^2\le1/(4t^2)\), 且 \(a=x-b\in X_0\).
+对 \(0<\theta<1\), Tonelli 定理和代换 \(u=t\sqrt{w_\nu}\) 给出
+
+
+\[
+ \begin{split}
+ \int_0^\infty t^{-2\theta}Q_X(t,x)\,\frac{dt}{t}
+ &=A_\theta\sum_\nu w_\nu^\theta|x_\nu|^2,\\
+ A_\theta&=\int_0^\infty\frac{u^{1-2\theta}}{1+u^2}\,du\in(0,\infty).
+ \end{split}
+ \tag{4.4}
+\]
+
+
+只需 \(A_\theta\) 有限正, 无需使用它的特殊函数值. 若同一线性映射 \(T\) 满足
+\(X_0\to Y_0\) 范数界 \(M_0>0\) 及 \(X_1\to Y_1\) 范数界 \(M_1>0\), 且两个空间对具有上述加权结构, 则对每个分解有
+
+
+\[
+ Q_Y(t,Tx)\le M_0^2Q_X(tM_1/M_0,x).
+\]
+
+
+积分并代换, 再用 (4.4), 得到
+
+
+\[
+ \|Tx\|_{Y_\theta}
+ \le M_0^{1-\theta}M_1^\theta\|x\|_{X_\theta},
+ \qquad
+ \|x\|_{X_\theta}^2=\sum_\nu w_\nu^\theta|x_\nu|^2.
+ \tag{4.5}
+\]
+
+
+端点 \(\theta=0,1\) 就是原有估计. 对周期空间的两端 \(L^2,H_{\mathrm{per}}^4\), 权重是 \((1+\pi^2n^2)^4\); 对算子空间的两端 \(L^2,\mathcal H_c^4\), 权重是 \(\lambda_\nu^4\). 所以 (4.5) 精确连接 \(H_{\mathrm{per}}^{4\theta}\) 与 \(\mathcal H_c^{4\theta}\).
+
+
+这一计算与 Fischbacher-Gesztesy-Hagelstein-Littlejohn, arXiv:2408.01514v1, Appendix A, Theorem A.3, (A.15)-(A.16) 的严格正自伴幂域插值陈述一致. 本文已直接证明需要的加权 Hilbert 情形及算子有界性, 不引用其其他应用或未读取的参考文献. 原文定位: \href{https://arxiv.org/html/2408.01514v1\#A1.Thmtheorem3}{Appendix A}.
+
+
+\subsection*{4.2. 两个固定光滑乘子}
+
+固定 \(\chi\in C_c^\infty(I)\). 定义 \(M_\chi u=(\chi u)|_I\), 周期 \(u\) 按基本区间理解.
+
+
+\begin{itemize}
+
+\item 
+\(M_\chi:L^2(\mathbb T_2)\to L^2(I)\) 有界.
+
+
+
+\item 
+\(M_\chi:H_{\mathrm{per}}^4\to\mathcal H_c^4\) 有界. 确实 \(\chi u\in H_{\mathrm{Sob}}^4(I)\), 在两个端点邻域恒为零, 因而 (2.6) 的全部边界条件自动满足; Leibniz 公式和 (2.7) 给出 \(\|K_c^2(\chi u)\|_2\le C_{\chi,c}\|u\|_{\mathrm{per},4}\).
+
+
+
+\end{itemize}
+
+由 (4.5), 对每个 \(0\le t\le4\),
+
+
+\[
+ \boxed{\|\chi u\|_{t,c}\le C_{\chi,c,t}\|u\|_{\mathrm{per},t}.}
+ \tag{4.6}
+\]
+
+
+反向的局部化映射 \(J_\chi f\) 定义为将 \(\chi f\) 按长度 2 周期延拓. 它从 \(L^2(I)\) 到 \(L^2(\mathbb T_2)\) 有界. 对 \(f\in\mathcal H_c^4\), (2.9) 和端点附近恒零保证延拓属于 \(H_{\mathrm{per}}^4\), 且范数受 \(\|f\|_{4,c}\) 控制. 再由 (4.5),
+
+
+\[
+ \boxed{\|J_\chi f\|_{\mathrm{per},t}\le C'_{\chi,c,t}\|f\|_{t,c},
+ \qquad 0\le t\le4.}
+ \tag{4.7}
+\]
+
+
+例如固定紧区间 \(J\Subset I\), 取 \(\chi=1\) 于 \(J\) 的邻域, 对支撑在 \(J\) 内的函数, (4.6)-(4.7) 给出幂域范数和周期局部 Sobolev 范数的双向控制. 这些估计包括 \(t=1/2,3/2,5/2,7/2\). 全部插值只施于已验证两端有界的固定映射; 没有交换任何多项式闭包与插值.
+
+
+\subsection*{4.3. 连续中心迹, 以及与域字典的核对}
+
+取 \(\chi=1\) 于 0 的邻域. 对整数 \(r\ge0\) 和 \(r+1/2<s\le4\),
+
+
+\[
+ \sum_{n\in\mathbb Z}\frac{|\pi n|^{2r}}{(1+\pi^2n^2)^s}<\infty,
+ \tag{4.8}
+\]
+
+
+其中 \(r=0,n=0\) 的分子按 1 理解. Fourier 级数和 Cauchy-Schwarz 表明 \(u\mapsto u^{(r)}(0)\) 在 \(H_{\mathrm{per}}^s\) 上有界. 结合 (4.7), 得到
+
+
+\[
+ |f^{(r)}(0)|\le C_{r,s,c,\chi}\|f\|_{s,c}.
+ \tag{4.9}
+\]
+
+
+该迹与局部弱导数的连续代表一致, 且不依赖所选等于 1 的截断. 可先在光滑函数上验证, 再用周期 Fourier 截断和 (2.11) 的稠密性延拓.
+
+
+当前域字典 02-fractional-trace-dictionary.md 的 D2-D4 与此一致. 其 \(s=3/2\) 的加权残差为
+\((|f_e'|^2+|xf_o'-f_o|^2)/(1-|x|)\).
+若支撑在 \([-a,a]\), \(a<1\), 奇偶部的支撑也在该区间, 故积分受
+\(C_a(\|f'\|_2^2+\|f\|_2^2)\) 控制. 在 \(s=7/2\), 对应残差受
+\(C_a(\|f'''\|_2^2+\|f''\|_2^2)\) 控制. 这为光滑内部支撑函数提供另一项一致性检查. \(s=5/2\) 是中心二阶迹的阈值, 并不是新的端点边界阈值. 主证明的内部范数控制已由 (4.2)-(4.7) 独立建立, 因而无需将域字典的全部高阶陈述作为本定理的未证前提.
+
+
+\section*{5. 四阶空间中的任意高消失相容多项式核心}
+
+定义
+
+
+\[
+ \Gamma_4 f=(f(0),f'(0),f''(0),f'''(0)),\qquad
+ W_4=\ker\Gamma_4\subset\mathcal H_c^4.
+ \tag{5.1}
+\]
+
+
+由 (2.9) 及一维迹估计, \(\Gamma_4\) 连续. 它满射: 固定光滑内部截断 \(\chi=1\) 于零点邻域, 令
+\(h_r=\chi x^r/r!\), \(r=0,1,2,3\). 它们属于 \(C_c^\infty(I)\), 所以由微分表达式的支撑保持性递归地属于每个整数幂域, 且 \(\Gamma_4h_r\) 是第 \(r\) 个标准向量.
+
+
+\textbf{引理 2.} 对每个偶整数 \(L\ge4\), 令
+
+
+\[
+ E_L=x^L\mathbb C[x]\cap\mathcal H_c^4.
+\]
+
+
+则
+
+
+\[
+ \boxed{\overline{E_L}^{\,\mathcal H_c^4}=W_4.}
+ \tag{5.2}
+\]
+
+
+\subsection*{5.1. 中心截断的四阶估计}
+
+一侧包含来自 \(x^L\) 的消失阶和迹连续性. 对另一侧, 给定 \(f\in W_4\). 取光滑 \(\eta\), 在 \([-1,1]\) 为零, 在 \(\mathbb R\setminus(-2,2)\) 为一; 令
+\(f_\delta(x)=\eta(x/\delta)f(x)\), \(0<\delta<1/4\).
+端点邻域未变, 所以 \(f_\delta\in\mathcal H_c^4\). 由四个中心零迹, 对 \(0\le j\le3\),
+
+
+\[
+ f^{(j)}(x)=\int_0^x
+       \frac{(x-t)^{3-j}}{(3-j)!}f^{(4)}(t)\,dt.
+ \tag{5.3}
+\]
+
+
+对 \(0<r\le1\), 在正负半区间分别用 Cauchy-Schwarz 并积分, 得
+
+
+\[
+ \|f^{(j)}\|_{L^2(-r,r)}
+ \le
+ \frac{r^{4-j}}{(3-j)!\sqrt{(7-2j)(8-2j)}}
+ \|f^{(4)}\|_{L^2(-r,r)}.
+ \tag{5.4}
+\]
+
+
+设 \(A_\delta=\|f^{(4)}\|_{L^2(-2\delta,2\delta)}\).
+Leibniz 公式中, 落在截断上的每个 \(\ell\) 阶导数至多为 \(C_\ell\delta^{-\ell}\); 其配对的 \(f^{(k-\ell)}\) 由 (5.4) 提供 \(\delta^{4-k+\ell}\).
+当 \(k=4,\ell=0\), 直接使用局部 \(A_\delta\). 因此
+
+
+\[
+ \|(f_\delta-f)^{(k)}\|_2
+ \le C_k\delta^{4-k}A_\delta,\qquad 0\le k\le4.
+ \tag{5.5}
+\]
+
+
+\(A_\delta\to0\) 来自 \(|f^{(4)}|^2\) 积分的绝对连续性. 尤其最高阶并非仅有一个不趋零的全局上界. 由 (2.9), \(f_\delta\to f\) 于 \(\mathcal H_c^4\).
+
+
+\subsection*{5.2. 保留高消失因子的普通多项式逼近}
+
+固定 \(\delta\). 函数 \(g_\delta=f_\delta/x^L\), 在零点邻域延为零, 属于 \(H_{\mathrm{Sob}}^4(I)\). 这是固定光滑乘法的结果: 可在 \(|x|<\delta\) 内光滑修改 \(x^{-L}\), 因为该区域 \(f_\delta=0\).
+
+
+为完整说明多项式逼近, 对任意 \(g\in H_{\mathrm{Sob}}^4(I)\), 取复多项式 \(a_j\to g^{(4)}\) 于 \(L^2\), 定义
+
+
+\[
+ r_j(x)=\sum_{q=0}^3\frac{g^{(q)}(-1)}{q!}(x+1)^q
+        +\int_{-1}^x\frac{(x-t)^3}{6}a_j(t)\,dt.
+ \tag{5.6}
+\]
+
+
+多项式在 \(L^2\) 的稠密性可由连续函数逼近和 Weierstrass 定理取得, 对实虚部分别应用. 反复积分的有界核给出
+\(\|r_j-g\|_{H_{\mathrm{Sob}}^4}\le C\|a_j-g^{(4)}\|_2\to0\).
+将此用于 \(g_\delta\), 再乘固定多项式 \(x^L\), 得
+
+
+\[
+ b_j=x^Lr_j\to f_\delta\quad\text{于 }H_{\mathrm{Sob}}^4(I).
+ \tag{5.7}
+\]
+
+
+尚需同时修正第一层及第二层边界残差.
+
+
+\subsection*{5.3. 高消失四方向的边界右逆}
+
+令 \(T f=(\mathcal Bf,\mathcal B(f''))^{\mathsf T}\), 残差顺序为 \(+,-,+,-\). 每一分量都是 \(H_{\mathrm{Sob}}^4\) 上的连续泛函. 对任意 \(v\), 把每一层残差 \(z_+,z_-\) 改写为
+\(z_e=(z_+-z_-)/2\), \(z_o=(z_++z_-)/2\); 这是可逆线性变换.
+
+
+对偶单项式 \(x^q\), 两层独立偶残差为 \(q\) 和 \(q(q-1)(q-2)\).
+对奇单项式 \(x^q\), 两层独立奇残差为 \(q-1\) 和 \(q(q-1)(q-3)\).
+因此, 在方向 \(x^L,x^{L+2}\) 及 \(x^{L+1},x^{L+3}\) 上, 两个矩阵分别是
+
+
+\[
+\begin{gathered}
+ M_e(L)=
+ \begin{pmatrix}
+ L&L+2\\
+ L(L-1)(L-2)&L(L+1)(L+2)
+ \end{pmatrix},
+ \\
+ M_o(L)=
+ \begin{pmatrix}
+ L&L+2\\
+ L(L+1)(L-2)&L(L+2)(L+3)
+ \end{pmatrix}.
+\end{gathered}
+ \tag{5.8}
+\]
+
+
+直接代数给出, 对所有 \(L\),
+
+
+\[
+ \det M_e=2L(L+2)(2L-1),\qquad
+ \det M_o=2L(L+2)(2L+1).
+ \tag{5.9}
+\]
+
+
+它们在偶整数 \(L\ge4\) 均严格正. 如需检查原始四残差坐标, 置
+\(A=L(L-1)(L-2)\), \(B=L(L+1)(L-2)\),
+\(C=L(L+1)(L+2)\), \(D=L(L+2)(L+3)\), 有
+
+
+\[
+ T(x^L,x^{L+1},x^{L+2},x^{L+3})=
+ \begin{pmatrix}
+ L&L&L+2&L+2\\
+ -L&L&-(L+2)&L+2\\
+ A&B&C&D\\
+ -A&B&-C&D
+ \end{pmatrix},
+ \quad \det=4\det M_e\det M_o\ne0.
+ \tag{5.10}
+\]
+
+
+故存在固定有限维右逆
+\(R_L:\mathbb C^4\to\operatorname{span}\{x^L,x^{L+1},x^{L+2},x^{L+3}\}\),
+满足 \(TR_L=I\) 和
+\(\|R_Lz\|_{H_{\mathrm{Sob}}^4}\le C_L|z|\).
+例如分别用 \(M_e^{-1}(z_{0,e},z_{2,e})^{\mathsf T}\) 和
+\(M_o^{-1}(z_{0,o},z_{2,o})^{\mathsf T}\) 取得四个系数即可.
+
+
+因为 \(Tf_\delta=0\) 且 (5.7) 成立, \(Tb_j\to0\). 定义
+
+
+\[
+ \widetilde b_j=b_j-R_LTb_j.
+ \tag{5.11}
+\]
+
+
+则 \(T\widetilde b_j=0\), 且仍被 \(x^L\) 整除, 因而 \(\widetilde b_j\in E_L\).
+修正量在普通 \(H^4\) 中趋零, 所以
+\(\widetilde b_j\to f_\delta\) 于 \(H_{\mathrm{Sob}}^4\), 再由 (2.9) 于 \(\mathcal H_c^4\) 收敛.
+先选 \(\delta\) 使 (5.5) 的误差小, 再选 \(j\) 使 (5.11) 的误差小, 证明 (5.2).
+不需要关于 \(\delta,L\) 的一致右逆界, 也不交换两个极限.
+
+
+注意修正方向本身无需属于 \(\mathcal H_c^4\). 我们先在普通 Sobolev 空间进行多项式运算, 再检查修正后的函数满足 (2.6), 才对它赋四阶幂范数.
+
+
+\section*{6. 所有完整高尾部的精确代数}
+
+对任意整数 \(m_0\ge3\), 置 \(L=2m_0-2\ge4\) 及
+
+
+\[
+ \mathcal T_{m_0}
+ =\operatorname{span}_{\mathbb C}\{p_{2m},p_{2m+1}:m\ge m_0\}.
+\]
+
+
+则
+
+
+\[
+ \boxed{\mathcal T_{m_0}=x^L\mathbb C[x]\cap\ker\mathcal B.}
+ \tag{6.1}
+\]
+
+
+正向包含由 (1.3), (3.1) 得到. 反向取被 \(x^L\) 整除且满足 \(\mathcal Bq=0\) 的多项式 \(q\). 只要最高次数 \(d\ge L+2\), 减去其首项系数乘 \(p_d\). 对偶 \(d\) 和奇 \(d\) 分别有 \(m\ge m_0\), 所以使用的都是指定尾部成员. 操作严格降次, 并保持整除性和边界相容性. 有限步后余式只能为 \(\alpha x^L+\beta x^{L+1}\). 而
+
+
+\[
+ (\mathcal Bx^L,\mathcal Bx^{L+1})=
+ \begin{pmatrix}L&L\\-L&L\end{pmatrix},
+ \qquad\det=2L^2\ne0.
+ \tag{6.2}
+\]
+
+
+故余式为零. 这是对所有次数成立的有限消元证明.
+
+
+由 (5.2), (6.1), 每个 \(E_L\) 元素都是该高尾部的有限组合. 这里不声称生成元分别属于四阶域. 因第 3 节, 在任意目标阶 \(s<7/2\), 这些有限组合都是 \(\mathcal H_c^s\) 内的合法运算.
+
+
+\section*{7. 连续零化泛函的四迹压缩}
+
+固定 \(0\le s<7/2\) 和余有限 \(N\). 设
+\(\ell\in(\mathcal H_c^s)^*\) 是连续复线性泛函, 满足 \(\ell(p_n)=0\) 对所有 \(n\in N\).
+因 \(N\) 余有限, 可选 \(m_0\ge3\), 使 \(\mathcal T_{m_0}\) 的全部命名成员都被保留. 由 (2.10), \(\ell|_{\mathcal H_c^4}\) 连续; 由 (6.1), 它消去 \(E_L\); 由 (5.2), 它消去 \(W_4\).
+
+
+利用第 5 节的固定提升 \(h_r\), 对任意 \(f\in\mathcal H_c^4\) 写
+
+
+\[
+ f-\sum_{r=0}^3 f^{(r)}(0)h_r\in W_4.
+\]
+
+
+因此存在复数 \(a_r=\ell(h_r)\), 使
+
+
+\[
+ \ell(f)=\sum_{r=0}^3a_rf^{(r)}(0),\qquad f\in\mathcal H_c^4.
+ \tag{7.1}
+\]
+
+
+这先排除了其他内部或端点连续障碍. 它只是四阶稠密子空间上的表示, 尚未把高阶中心迹误作 \(\mathcal H_c^s\) 上的连续泛函.
+
+
+\section*{8. 对数 Fourier 序列排除不连续迹的线性组合}
+
+假设 (7.1) 的系数不全为零, 取最高非零阶 \(r\in\{0,1,2,3\}\). 若 \(s\le r+1/2\), 置 \(t_r=r+1/2\le7/2\). 固定
+\(\chi\in C_c^\infty(-1/2,1/2)\), 在零点邻域恒为 1, 定义
+
+
+\[
+ h_{r,M}(x)=\frac1{\sqrt{\log(M+1)}}
+       \sum_{n=1}^M\frac{e^{i\pi nx}}{(i\pi n)^r n},
+ \qquad
+ v_{r,M}=\chi h_{r,M}.
+ \tag{8.1}
+\]
+
+
+这里 \(M\ge1\) 是序列截断指标, 与保留集 \(N\) 无关.
+\(h_{r,M}\) 是周期三角多项式; \(v_{r,M}\in C_c^\infty(I)\), 因而属于全部整数幂域.
+由 (4.1),
+
+
+\[
+ \begin{split}
+ \|h_{r,M}\|_{\mathrm{per},t_r}^2
+ &=\frac2{\log(M+1)}
+       \sum_{n=1}^M
+       \frac{(1+\pi^2n^2)^{r+1/2}}{(\pi n)^{2r}n^2}\\
+ &\le\frac{C_r}{\log(M+1)}\sum_{n=1}^M\frac1n
+ \le C'_r.
+ \end{split}
+ \tag{8.2}
+\]
+
+
+最后一步用调和和的上界 \(1+\log M\), 对全部 \(M\ge1\) 常数一致.
+由 (4.6) 在 \(t=t_r\) 的估计, 再用 (2.10),
+
+
+\[
+ \sup_M\|v_{r,M}\|_{t_r,c}<\infty,\qquad
+ \sup_M\|v_{r,M}\|_{s,c}<\infty.
+ \tag{8.3}
+\]
+
+
+特别地, \(r=3\) 时用到的 \(t_r=7/2\) 也已经由固定乘子证明覆盖; 这里的函数具有内部光滑支撑, 与原非仿射多项式在 \(7/2\) 出域没有冲突.
+
+
+由于 \(\chi\) 在零点邻域为 1,
+
+
+\[
+ v_{r,M}^{(j)}(0)
+ =\frac1{\sqrt{\log(M+1)}}\sum_{n=1}^M
+           \frac{(i\pi n)^{j-r}}n.
+ \tag{8.4}
+\]
+
+
+当 \(j=r\), 这是正实数
+\(H_M/\sqrt{\log(M+1)}\to\infty\),
+因为 \(H_M=\sum_{n\le M}1/n\ge\log(M+1)\).
+当 \(j<r\), 绝对值受
+
+
+\[
+ \frac{\pi^{j-r}}{\sqrt{\log(M+1)}}
+ \sum_{n=1}^\infty n^{j-r-1}
+ =O_r((\log(M+1))^{-1/2})\to0
+ \tag{8.5}
+\]
+
+
+控制. 因 \(r\) 是最高非零系数, 复数反三角不等式给出
+
+
+\[
+ |\ell(v_{r,M})|
+ \ge |a_r|\frac{H_M}{\sqrt{\log(M+1)}}
+       -\sum_{j<r}|a_j|\,|v_{r,M}^{(j)}(0)|
+ \longrightarrow\infty.
+ \tag{8.6}
+\]
+
+
+这与 (8.3) 及 \(\ell\) 连续矛盾. 因而 (7.1) 的非零系数只能满足
+
+
+\[
+ a_r\ne0\ \Longrightarrow\ r+\tfrac12<s.
+ \tag{8.7}
+\]
+
+
+也可逐次从 \(r=3\) 向下应用同一论证. 这里处理的是任意复系数线性组合, 不是仅分别宣布单个迹不连续. 例如在 \(s=3/2\), 任何含非零 \(f'(0)\) 系数的组合, 都会被先排除更高阶后的 \(r=1\) 序列否定.
+
+
+所有满足 (8.7) 的迹已经由 (4.9) 证明连续. 因 \(\mathcal H_c^4\) 在 \(\mathcal H_c^s\) 中稠密, (7.1) 的剩余表示延拓为整个 \(\mathcal H_c^s\) 上的等式. 对 \(s<7/2\), 三阶迹始终不可能保留. 等号 \(s=r+1/2\) 被同一序列排除, 没有另加临界迹或未定义的逐点条件.
+
+
+\section*{9. 低阶迹表与闭包等式}
+
+直接求导得到
+
+
+\[
+ \begin{array}{c|rrrr}
+       &f(0)&f'(0)&f''(0)&f'''(0)\\ \hline
+ p_0&1&0&0&0\\
+ p_1&0&1&0&0\\
+ p_4&0&0&-4&0\\
+ p_5&0&0&0&-12\\
+ p_n,\ n\ge6&0&0&0&0
+ \end{array}.
+ \tag{9.1}
+\]
+
+
+最后一行是全指标事实: 偶 \(n\ge6\) 的最小幂至少为 4, 奇 \(n\ge7\) 的最小幂至少为 5. 由于三阶迹已由第 8 节排除, \(p_5\) 的保留与否在本窗口不产生新障碍.
+
+
+若被保留的 \(p_0,p_1,p_4\) 所对应迹在当前阶连续, 则 \(\ell(p_j)=0\) 及 (9.1) 迫使相应系数为零. 反过来, 每个满足 \(j\in I(s)\setminus N\) 的 \(\tau_j\) 连续, 并由 (9.1) 消去所有保留成员. 所以连续零化空间恰为
+
+
+\[
+ \{\ell\in(\mathcal H_c^s)^*:\ell(p_n)=0\ (n\in N)\}
+ =
+ \operatorname{span}_{\mathbb C}\{\tau_j:j\in I(s)\setminus N\}.
+ \tag{9.2}
+\]
+
+
+闭线性子空间等于所有消去它的连续线性泛函之核的交. 这可由 Hilbert 正交投影取得: 若 \(f\) 不在闭子空间, 用其非零正交分量作 Riesz 表示元即可分离. 将这一事实用于保留族线性包的闭包, (9.2) 正是 (1.5).
+
+
+对遗漏迹的集合, 第 5 节的相应 \(h_0,h_1,h_2\) 给出独立提升. 因而遗漏迹映射到相应 \(\mathbb C^d\) 满射, 核的复余维为 \(d=|I(s)\setminus N|\). 定理得证.
+
+
+等号点的最终结果可单独核对:
+
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.3000\linewidth}>{\raggedright\arraybackslash}p{0.3000\linewidth}>{\raggedright\arraybackslash}p{0.3000\linewidth}@{}}
+\toprule
+阶数 & 可以出现的中心连续障碍 & 全空间稠密的充要条件 \\
+\midrule
+\(s=1/2\) & 无 & 每个余有限 \(N\) 都稠密 \\
+\(s=3/2\) & 只可能为 \(f(0)\) & \(0\in N\) \\
+\(s=5/2\) & 只可能为 \(f(0),f'(0)\) & \(0,1\in N\) \\
+
+\bottomrule
+\end{longtable}
+
+这里 \(s=3/2\) 的算子端点临界条件已经包含在空间 \(\mathcal H_c^{3/2}\) 的定义中, 它不是删项额外产生的中心迹障碍.
+
+
+\section*{10. 直接推论和明确边界}
+
+\textbf{推论 3.} 对每个固定 \(c>0\) 和每个 \(0\le s<7/2\), 原族在 \(\mathcal H_c^s\) 中都不是 Schauder 基, 从而不是 Riesz 基. 对原族任意逐项非零复数缩放和任意双射枚举, 结论仍成立.
+
+
+证明: 取 \(N=\mathcal D\setminus\{6\}\). 它总保留 \(I(s)\), 所以删去 \(p_6\) 后仍稠密. 如果某个枚举及缩放构成 Schauder 基, 其对应于 \(p_6\) 的连续坐标泛函将消去其他全部成员, 因而消去一个稠密子空间, 但对该缩放后的 \(p_6\) 取值 1, 矛盾. 非零逐项缩放不改变任意指定成员集的有限线性包, 所以不改变上述论证. 这使用 Schauder 基的连续坐标泛函性质, 不涉及数值条件数.
+
+
+此外, 删除 \(p_4\) 在 \(s=5/2\) 不影响完整族稠密性; 在 \(5/2<s<7/2\) 则恰留下一个中心二阶零迹条件. 这与旧 \(s=3\) 证明的三迹分类吻合.
+
+
+本定理的范围限于指定原族的余有限保留集. 未处理任意无限删项, 由任意约束空间筛选产生的族, frame 界, 逼近速度或重新构造的替代系. 不涉及 \(c=0\) 或关于 \(c\downarrow0\) 的一致估计. 在 \(s\ge7/2\) 原族的非仿射命名成员已出域; 某些相容有限组合仍可能属于高阶域, 但这是另一种对象.
+
+
+\section*{11. 输入核查, 精确自检与审查状态}
+
+本证明实际读取的主要项目输入为:
+
+
+\begin{enumerate}
+
+\item 
+docs/SL\_fractional\_left\_definite.tex: (1.1) 的实际定义, 正自伴基础, 完整谱及逐成员阈值, 平方域和四阶图核心机制. 本文第 2-3 节重给所需推导.
+
+
+
+\item 
+literature/absorption-20260923/domains/proofs/02-fractional-trace-dictionary.md: D1-D4 的对象和临界范数. 本文第 4 节给出本题所需的独立局部证明, 未重新认证字典在任意高阶的全部陈述, 也未冒称读取它引用的 Grubb 全文.
+
+
+
+\item 
+literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md: C2-C4 的尾部消元, 局部最高导数范数及边界修正思路, C5 的 \(s=3\) 一致性. 本文将核心提升到四阶并独立处理全部临界中心迹.
+
+
+
+\item 
+01-parity-unitary.md: 实际域和奇偶约定的核对, 不额外依赖其引用的外部扩张理论.
+
+
+
+\end{enumerate}
+
+没有改写旧 \(s=3\) 证明或域字典. 对所供候选的主要展开是: 明确 (2.9) 的范数等价和 (2.11) 的谱稠密性; 给出全残差矩阵 (5.10) 和固定右逆; 用 (4.2)-(4.7) 补足包括 \(7/2\) 在内的内部乘子估计; 用 (8.4)-(8.6) 明确复线性组合不能消去最高阶发散.
+
+
+checks/exact\_algebra.py 只对边界矩阵的全参数多项式恒等式, 成员边界恒等式, 四迹表和若干精确有理尾部重构进行自检. 符号参数恒等式与有限样本在日志中分别登记. 同时检查二次 \(K\)-泛函的逐坐标极小公式, 不以此声称无穷求和或插值有界性已机械证明. 第 4-9 节的无限维论证由正文承担. 实际命令, 时间, 返回码, stdout 和 stderr 均在 logs/ 中.
+
+
+作者结论: 在上述固定模型和全部指定量词内, 已给出覆盖 \(0\le s<7/2\), 包含 \(1/2,3/2,5/2\) 的完整候选证明; 未发现需缩小该陈述范围的剩余作者缺口. 此结论仍为 CANDIDATE\_PENDING\_INDEPENDENT\_REVIEW. 本作者没有启动验收 agent, 没有独立通过回执, 没有将该结果接收为 canonical 知识.
+
+
+\end{document}

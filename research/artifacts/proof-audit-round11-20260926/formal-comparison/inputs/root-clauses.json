@@ -1,0 +1,54 @@
+[
+  {
+    "declaration": "AuditRound11.parity_basis_identities",
+    "type": "∀ (n : ℕ),\n  parity_inverse n * parity_basis n = 1 ∧\n    parity_basis n * parity_inverse n = 1 ∧\n    reversal n * parity_basis n = parity_basis n * parity_sign n ∧\n    parity_inverse n * reversal n = parity_sign n * parity_inverse n"
+  },
+  {
+    "declaration": "AuditRound11.parity_relation",
+    "type": "∀ {n : ℕ} (J : PairedMatrix n) (a : ℝ)\n    (h : J * reversal n = a • (reversal n * J)),\n  parity_matrix J * parity_sign n = a • (parity_sign n * parity_matrix J)"
+  },
+  {
+    "declaration": "AuditRound11.anticommuting_blocks",
+    "type": "∀ {n : ℕ} (J : PairedMatrix n)\n    (h : J * reversal n = -(reversal n * J)),\n  (parity_matrix J).toBlocks₁₁ = 0 ∧ (parity_matrix J).toBlocks₂₂ = 0"
+  },
+  {
+    "declaration": "AuditRound11.commuting_blocks",
+    "type": "∀ {n : ℕ} (J : PairedMatrix n)\n    (h : J * reversal n = reversal n * J),\n  (parity_matrix J).toBlocks₁₂ = 0 ∧ (parity_matrix J).toBlocks₂₁ = 0"
+  },
+  {
+    "declaration": "AuditRound11.parity_determinant",
+    "type": "∀ {n : ℕ} (J : PairedMatrix n),\n  (parity_matrix J).det = J.det"
+  },
+  {
+    "declaration": "AuditRound11.off_diagonal_determinant",
+    "type": "∀ {n : ℕ} (C D : Square n),\n  (Matrix.fromBlocks (0 : Square n) C D (0 : Square n)).det =\n      (-1 : ℝ) ^ n * C.det * D.det"
+  },
+  {
+    "declaration": "AuditRound11.anticommuting_determinant",
+    "type": "∀ {n : ℕ} (J : PairedMatrix n)\n    (h : J * reversal n = -(reversal n * J)),\n  J.det = (-1 : ℝ) ^ n * (parity_matrix J).toBlocks₁₂.det *\n      (parity_matrix J).toBlocks₂₁.det"
+  },
+  {
+    "declaration": "AuditRound11.reflection_increment",
+    "type": "∀ {n : ℕ} (x v : PairIndex n → ℝ),\n  physical_reflection (x + v) - physical_reflection x = -(reversal n *ᵥ v)"
+  },
+  {
+    "declaration": "AuditRound11.reflection_parity",
+    "type": "∀ {n : ℕ} (x v : PairIndex n → ℝ),\n  (physical_reflection (x + v) - physical_reflection x = v ↔\n      reversal n *ᵥ v = -v) ∧\n    (physical_reflection (x + v) - physical_reflection x = -v ↔\n      reversal n *ᵥ v = v)"
+  },
+  {
+    "declaration": "AuditRound11.boundary_determinants",
+    "type": "∀ (L : ℝ),\n  (boundary_even L).det = 2 * L * (L + 2) * (2 * L - 1) ∧\n    (boundary_odd L).det = 2 * L * (L + 2) * (2 * L + 1)"
+  },
+  {
+    "declaration": "AuditRound11.boundary_positive",
+    "type": "∀ (L : ℝ) (h : 4 ≤ L),\n  0 < (boundary_even L).det ∧ 0 < (boundary_odd L).det"
+  },
+  {
+    "declaration": "AuditRound11.paired_coordinate_actions",
+    "type": "∀ {n : ℕ} (v : PairIndex n → ℝ) (i : Fin n),\n  (reversal n *ᵥ v) (Sum.inl i) = v (Sum.inr i) ∧\n    (reversal n *ᵥ v) (Sum.inr i) = v (Sum.inl i) ∧\n    (parity_basis n *ᵥ v) (Sum.inl i) = v (Sum.inl i) + v (Sum.inr i) ∧\n    (parity_basis n *ᵥ v) (Sum.inr i) = v (Sum.inl i) - v (Sum.inr i)"
+  },
+  {
+    "declaration": "AuditRound11.boundary_correction",
+    "type": "∀ (L : ℕ) (h : 4 ≤ L),\n  0 < (boundary_full (L : ℝ)).det ∧\n    (∀ b : PairIndex 2 → ℝ, ∃! a : PairIndex 2 → ℝ,\n      boundary_full (L : ℝ) *ᵥ a = b)"
+  }
+]

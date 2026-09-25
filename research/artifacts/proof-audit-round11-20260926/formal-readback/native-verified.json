@@ -1,0 +1,220 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "6e916e3a1580dccb784566aed6aeba4320cc37f82cc814ea9ee913a6ed070a1d",
+  "reviewer_id": "01a0d9a0-df41-7411-b2a4-17c791a134fc",
+  "bindings": {
+    "inputs/AuditRound11.lean": "c9ef0c5b0ec8c53b3fe38b60707894e0b7f1832666aa5dcd30bd15905e6f771b",
+    "inputs/PrintDeclarations.lean": "8ec1907b550135d8b197733be197f1bf7b7ed7dc3c1fcb6353d575bbd9cb98ba",
+    "inputs/declarations-full.json": "76614e0b594a9d673d03e20501769e5a9d2c12cdbb93adefefd8d6912768d8c0",
+    "inputs/environment.json": "cf00149810c02ecbbf173319fe6a8faca2b842de1069b263ffee1d7ad05ba0a7",
+    "inputs/imported-environment.json": "28da15a385f3d38c2c63a5b674eb8186600caf94809c3942fa1afe8241af38fc",
+    "inputs/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "inputs/print-and-axioms.log": "21a98bda99a1e4d291c48d12aac5df0a5ef249c90804877c8b4d1d575310dc07"
+  },
+  "claims": [
+    {
+      "id": "AuditRound11.PairIndex",
+      "reason": "For explicit n : Nat, this is Fin n ⊕ Fin n, with two separately tagged copies. No positivity assumption occurs; n = 0 gives an empty index type.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.PairedMatrix",
+      "reason": "For explicit n : Nat, this denotes real matrices with both indices in PairIndex n. The coefficient type and finite indexing are fixed, with no additional parameters.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.Square",
+      "reason": "For explicit n : Nat, this denotes Matrix (Fin n) (Fin n) Real, including the empty matrix when n = 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.anticommuting_blocks",
+      "reason": "The implicit dimension n, matrix J and explicit anticommutation hypothesis are preserved. The conclusion concerns precisely the two diagonal blocks of parity_matrix J. Over Real, the resulting equations A = -A and D = -D force both blocks to vanish.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.anticommuting_determinant",
+      "reason": "Under the stated anticommutation hypothesis, the determinant factors through the two off-diagonal blocks with sign (-1)^n. Its dependencies are the diagonal-block vanishing, determinant invariance and off-diagonal determinant identity; no invertibility of those blocks is assumed.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_correction",
+      "reason": "L is explicitly natural with hypothesis 4 ≤ L and is cast to Real inside boundary_full. The conclusion gives positive determinant and, for every real vector indexed by PairIndex 2, exactly one solution vector of the same type. The determinant-to-bijectivity argument applies to this finite square real matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_determinants",
+      "reason": "Both polynomial determinant identities quantify over every real L without a lower-bound assumption. Direct symbolic expansion gives the displayed factors, including at their zeros.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_even",
+      "reason": "The definition accepts every real L and returns the explicit 2 × 2 matrix with rows (L, L+2) and (L(L-1)(L-2), L(L+1)(L+2)). No domain restriction is hidden.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_even.eq_1",
+      "reason": "This universally quantified equation has one explicit real parameter L and reproduces the complete boundary_even definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_full",
+      "reason": "For every real L, this is the block-diagonal matrix with boundary_even L and boundary_odd L on its diagonal. PairIndex 2 fixes its total dimension at four.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_full.eq_1",
+      "reason": "The single explicit real binder L and both zero off-diagonal blocks agree with the defining expression.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_odd",
+      "reason": "The definition accepts every real L and has rows (L, L+2) and (L(L+1)(L-2), L(L+2)(L+3)). The elaborated expression retains these signs and factors.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_odd._proof_1",
+      "reason": "This is a closed auxiliary declaration of Nat.AtLeastTwo (2+1), supporting numeral elaboration. It has no binders and makes no assertion about L or a boundary matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_odd.eq_1",
+      "reason": "For every explicit real L, the equation reproduces the boundary_odd matrix, including L+1 in the lower-left entry and L+3 in the lower-right entry.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.boundary_positive",
+      "reason": "The binders are L : Real and an explicit proof of 4 ≤ L. Both determinant factorizations have strictly positive factors throughout this domain, including L = 4.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.commuting_blocks",
+      "reason": "For implicit n and explicit J, the hypothesis is commutation with reversal. The conclusion sets the upper-right and lower-left blocks of parity_matrix J to zero; no additional restriction on J occurs.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.off_diagonal_determinant",
+      "reason": "The declaration quantifies over implicit n and arbitrary real square matrices C and D of size n. The sign (-1)^n is the determinant of the block swap. Singular blocks and n = 0 are included; the latter gives 1 = 1.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.paired_coordinate_actions",
+      "reason": "All three binders are retained: implicit n, arbitrary vector v and explicit i : Fin n. The four conclusions describe coordinate swapping and sum/difference formation. For n = 0 the coordinate quantification is vacuous.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_basis",
+      "reason": "For every explicit n, the matrix is [[I,I],[I,-I]], where each block has size n. The matrix numeral 1 is the identity matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_basis.eq_1",
+      "reason": "The explicit natural binder and all four blocks reproduce the parity_basis definition without an additional hypothesis.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_basis_identities",
+      "reason": "For every explicit natural n, the declaration asserts both inverse identities and both stated intertwining identities. Block multiplication verifies their order and signs; the statements remain valid in dimension zero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_determinant",
+      "reason": "For implicit n and every paired matrix J, parity_matrix preserves the determinant. The inverse identities supply cancellation of the basis determinants; J itself need not be invertible.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_inverse",
+      "reason": "For explicit n, this is real scalar multiplication of parity_basis n by 1/2. The definition introduces no invertibility premise or integer division.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_inverse._proof_1",
+      "reason": "This closed auxiliary declaration has type Nat.AtLeastTwo (1+1), supporting the numeral 2. It has no parameters or matrix-level conclusion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_inverse.eq_1",
+      "reason": "For every explicit natural n, the equation states parity_inverse n = (1/2 : Real) • parity_basis n, with the same scalar and matrix types as the definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_matrix",
+      "reason": "With implicit n and explicit paired matrix J, the definition is (parity_inverse n * J) * parity_basis n. The multiplication order is preserved.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_matrix.eq_1",
+      "reason": "The equation retains implicit n and explicit J and reproduces the same ordered matrix product.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_relation",
+      "reason": "The declaration includes implicit n, explicit J, arbitrary real a and an explicit proof of J R = a • (R J). It concludes the corresponding relation with parity_sign after the basis transformation. No restriction to a = ±1 or a ≠ 0 occurs.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_sign",
+      "reason": "For explicit n, the definition is diag(I,-I) on the two tagged copies of Fin n, with zero off-diagonal blocks.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.parity_sign.eq_1",
+      "reason": "The universally quantified equation reproduces diag(I,-I), retaining the explicit natural parameter.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.physical_reflection",
+      "reason": "The fully expanded function has implicit n, explicit x : PairIndex n → Real and coordinate i : PairIndex n. Its value is 1 - (reversal n *ᵥ x)(i). There are no restrictions on the coordinates of x.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.physical_reflection.eq_1",
+      "reason": "This is a pointwise equation with three binders, including the explicit coordinate i. Its right-hand side is precisely 1 - (reversal n *ᵥ x)(i).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.reflection_increment",
+      "reason": "For implicit n and arbitrary vectors x and v, the finite increment equals -(reversal n *ᵥ v). Cancellation of the constant term and linearity of matrix-vector multiplication establish this exact vector identity without a smallness assumption.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.reflection_parity",
+      "reason": "Both equivalences quantify over arbitrary x and v with implicit n. An increment equal to v corresponds to reversal v = -v; an increment equal to -v corresponds to reversal v = v. The zero vector is included.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.reversal",
+      "reason": "For explicit n, this is [[0,I],[I,0]], swapping the two copies at the same Fin n index. Its definition contains no reversal of the internal Fin n ordering.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.reversal.eq_1",
+      "reason": "For every explicit natural n, this equation reproduces the block-swap definition exactly.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound11.root",
+      "reason": "The declaration has no outer binders and is a conjunction of 13 independently quantified propositions. Each extracted conjunct matches its corresponding explicit declaration type after whitespace normalization, preserving every hypothesis and the real-versus-natural distinction for L.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/AuditRound11.lean",
+    "inputs/PrintDeclarations.lean",
+    "inputs/declarations-full.json",
+    "inputs/environment.json",
+    "inputs/imported-environment.json",
+    "inputs/lean-toolchain",
+    "inputs/print-and-axioms.log"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/6e916e3a1580dccb784566aed6aeba4320cc37f82cc814ea9ee913a6ed070a1d-01a0d9a0-df41-7411-b2a4-17c791a134fc",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "This approval covers formal readback of the 37 listed declarations. It makes no comparison with an author's intended theorem and does not certify completeness of a larger formalization.",
+    "No independent Lean compilation or kernel replay was performed. The compiler and imported compiled artifacts are described by metadata but are not supplied as listed input snapshots; their contents and hashes were not independently verified.",
+    "All seven snapshot hashes matched the packet. The 26 declarations printed in the supplied log matched the corresponding explicit types, all 12 printed definition bodies matched, and their reported axiom lists agreed. These are consistency checks on supplied evidence, not independent authentication of the compilation that produced it.",
+    "The nine generated equation lemmas and two numeral helpers are present in declarations-full.json but are not separately printed by PrintDeclarations.lean. Their elaborated types and axiom reports were read from that dump. Reported dependencies are confined to propext, Classical.choice and Quot.sound; their transitive computation was not rerun."
+  ]
+}

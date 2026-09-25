@@ -1,0 +1,57 @@
+[
+  {
+    "name": "positive",
+    "expected_exact_root_passed": true,
+    "actual_exact_root_passed": true,
+    "exit_code": 0,
+    "root_closure": {
+      "status": "closed",
+      "exact_root_passed": true,
+      "declaration_closed": true,
+      "scope": "expected Lean type in the recorded environment; semantic review is separate"
+    },
+    "manifest": "evidence/closure-positive-01/run-manifest.json",
+    "as_expected": true
+  },
+  {
+    "name": "hidden-axiom",
+    "expected_exact_root_passed": false,
+    "actual_exact_root_passed": false,
+    "exit_code": 1,
+    "root_closure": {
+      "status": "open",
+      "exact_root_passed": false,
+      "unproved_or_untrusted_leaves": [
+        "Round11Control.hidden"
+      ]
+    },
+    "manifest": "evidence/closure-hidden-axiom-01/run-manifest.json",
+    "as_expected": true
+  },
+  {
+    "name": "wrong-type",
+    "expected_exact_root_passed": false,
+    "actual_exact_root_passed": false,
+    "exit_code": 1,
+    "root_closure": {
+      "status": "target_mismatch",
+      "exact_root_passed": false,
+      "reason": "the expected type or frozen definition/environment identity does not match"
+    },
+    "manifest": "evidence/closure-wrong-type-01/run-manifest.json",
+    "as_expected": true
+  },
+  {
+    "name": "missing-target",
+    "expected_exact_root_passed": false,
+    "actual_exact_root_passed": false,
+    "exit_code": 1,
+    "root_closure": {
+      "status": "incomplete",
+      "exact_root_passed": false,
+      "reason": "execution or evidence is incomplete"
+    },
+    "manifest": "evidence/closure-missing-target-01/run-manifest.json",
+    "as_expected": true
+  }
+]

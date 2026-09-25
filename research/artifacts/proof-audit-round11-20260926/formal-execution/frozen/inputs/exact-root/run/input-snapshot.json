@@ -1,0 +1,30 @@
+{
+	"run_id": "5e320d8926604eff9bfc5e0bd7b0a6e4",
+	"inputs": {
+		"AuditRound11.lean": "c9ef0c5b0ec8c53b3fe38b60707894e0b7f1832666aa5dcd30bd15905e6f771b",
+		"CheckContract.lean": "5c3d79b8b5dfc7f1b9dfc87a1f0c7cb62e8302e6c091491ff4cc1bb620c8ac16",
+		"ExportDeclarations.lean": "51333a7b54a6a8c63c3888e6d29361b125b33a521bca0f3226ff17522734b239",
+		"NegativeBoundaryFormula.lean": "ce5ebc5a95a4997e962cd047dcbc9c29fff6bc095904e4d884de123bcc33f9a0",
+		"NegativeDeterminantSign.lean": "3c6415d4c83efac07b5fb7a7b0af9c36d6e065ef55306fde29820055f52b2c2e",
+		"NegativeDiagonalBlocks.lean": "d302aef73a5afc5f8243cf1fe6e3ffa1f05d9b070f094c2d48cfb63963a9be14",
+		"NegativePhysicalSign.lean": "071d7e07157a06c0780f0e938d3025a4c650581aa37f5a09d9c4927541afe011",
+		"PositiveControls.lean": "e7fcbb7ca1ece2fc88797fd9f438f97b90aa7accb611c044f343d12adac40ebb",
+		"PrintDeclarations.lean": "8ec1907b550135d8b197733be197f1bf7b7ed7dc3c1fcb6353d575bbd9cb98ba",
+		"lakefile.toml": "583b6e97d76d7b6d8647fc802006208d5c34eb6dd7eeb20cc6416db3ecd21117",
+		"lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+	},
+	"tool_hashes": {
+		"verify_lean_project.py": "ccbdb79a8264a103006768636a5bb8a501c4bc4420eab0c783f08fbe5212592d",
+		"lean_runtime.py": "cb8de8974c1ed6598d3c81ebab40331944198da8feb6f80b20196362af5a6086",
+		"lean_evidence.py": "acfc329ae136d491293020dc0b1001f27b2b43200466962c07c83d960e991be1",
+		"LeanVerifyProbe.lean.template": "4299cc51119b911992511b2ce05e114dfdcbe5d698b4639838585e74c62a7a7f",
+		"lake_build_guard.py": "ad8107677112126a6ff9c2f6ed4ed7019960f8357306f4b69e98047ff2d0c4f0",
+		"run_manifest.schema.json": "0ba7f0afad04a704a7004cc98dd5ee7509a780eb719e45300edd1e6e477aef6c"
+	},
+	"contract": {
+		"file": "AuditRound11.lean",
+		"declaration": "AuditRound11.root",
+		"expected_type": "open scoped Matrix in ((∀ (n : ℕ),\n  AuditRound11.parity_inverse n * AuditRound11.parity_basis n = 1 ∧\n    AuditRound11.parity_basis n * AuditRound11.parity_inverse n = 1 ∧\n    AuditRound11.reversal n * AuditRound11.parity_basis n = AuditRound11.parity_basis n * AuditRound11.parity_sign n ∧\n    AuditRound11.parity_inverse n * AuditRound11.reversal n = AuditRound11.parity_sign n * AuditRound11.parity_inverse n) ∧\n(∀ {n : ℕ} (J : AuditRound11.PairedMatrix n) (a : ℝ)\n    (h : J * AuditRound11.reversal n = a • (AuditRound11.reversal n * J)),\n  AuditRound11.parity_matrix J * AuditRound11.parity_sign n = a • (AuditRound11.parity_sign n * AuditRound11.parity_matrix J)) ∧\n(∀ {n : ℕ} (J : AuditRound11.PairedMatrix n)\n    (h : J * AuditRound11.reversal n = -(AuditRound11.reversal n * J)),\n  (AuditRound11.parity_matrix J).toBlocks₁₁ = 0 ∧ (AuditRound11.parity_matrix J).toBlocks₂₂ = 0) ∧\n(∀ {n : ℕ} (J : AuditRound11.PairedMatrix n)\n    (h : J * AuditRound11.reversal n = AuditRound11.reversal n * J),\n  (AuditRound11.parity_matrix J).toBlocks₁₂ = 0 ∧ (AuditRound11.parity_matrix J).toBlocks₂₁ = 0) ∧\n(∀ {n : ℕ} (J : AuditRound11.PairedMatrix n),\n  (AuditRound11.parity_matrix J).det = J.det) ∧\n(∀ {n : ℕ} (C D : AuditRound11.Square n),\n  (Matrix.fromBlocks (0 : AuditRound11.Square n) C D (0 : AuditRound11.Square n)).det =\n      (-1 : ℝ) ^ n * C.det * D.det) ∧\n(∀ {n : ℕ} (J : AuditRound11.PairedMatrix n)\n    (h : J * AuditRound11.reversal n = -(AuditRound11.reversal n * J)),\n  J.det = (-1 : ℝ) ^ n * (AuditRound11.parity_matrix J).toBlocks₁₂.det *\n      (AuditRound11.parity_matrix J).toBlocks₂₁.det) ∧\n(∀ {n : ℕ} (x v : AuditRound11.PairIndex n → ℝ),\n  AuditRound11.physical_reflection (x + v) - AuditRound11.physical_reflection x = -(AuditRound11.reversal n *ᵥ v)) ∧\n(∀ {n : ℕ} (x v : AuditRound11.PairIndex n → ℝ),\n  (AuditRound11.physical_reflection (x + v) - AuditRound11.physical_reflection x = v ↔\n      AuditRound11.reversal n *ᵥ v = -v) ∧\n    (AuditRound11.physical_reflection (x + v) - AuditRound11.physical_reflection x = -v ↔\n      AuditRound11.reversal n *ᵥ v = v)) ∧\n(∀ (L : ℝ),\n  (AuditRound11.boundary_even L).det = 2 * L * (L + 2) * (2 * L - 1) ∧\n    (AuditRound11.boundary_odd L).det = 2 * L * (L + 2) * (2 * L + 1)) ∧\n(∀ (L : ℝ) (h : 4 ≤ L),\n  0 < (AuditRound11.boundary_even L).det ∧ 0 < (AuditRound11.boundary_odd L).det) ∧\n(∀ {n : ℕ} (v : AuditRound11.PairIndex n → ℝ) (i : Fin n),\n  (AuditRound11.reversal n *ᵥ v) (Sum.inl i) = v (Sum.inr i) ∧\n    (AuditRound11.reversal n *ᵥ v) (Sum.inr i) = v (Sum.inl i) ∧\n    (AuditRound11.parity_basis n *ᵥ v) (Sum.inl i) = v (Sum.inl i) + v (Sum.inr i) ∧\n    (AuditRound11.parity_basis n *ᵥ v) (Sum.inr i) = v (Sum.inl i) - v (Sum.inr i)) ∧\n(∀ (L : ℕ) (h : 4 ≤ L),\n  0 < (AuditRound11.boundary_full (L : ℝ)).det ∧\n    (∀ b : AuditRound11.PairIndex 2 → ℝ, ∃! a : AuditRound11.PairIndex 2 → ℝ,\n      AuditRound11.boundary_full (L : ℝ) *ᵥ a = b)))",
+		"universes": []
+	}
+}

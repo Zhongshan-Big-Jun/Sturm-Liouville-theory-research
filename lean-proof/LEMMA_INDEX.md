@@ -1,5 +1,38 @@
 # Lean lemma index (auto-generated)
 
+## 2026-09-26 AuditRound11 additions
+
+The 26 authored declarations below have a separate 37-entry full export, including generated helpers. Fresh blind readback and another reviewer's actual compilation/contract comparison passed. All matrix scalars are real; n may be 0; JP=-PJ remains a premise, and explicit boundary matrices do not formalize their analytic trace identification. [Exact scope and evidence](../reports/proof-audit-round11-20260926/REPORT.md).
+
+| Declaration | Source |
+| --- | --- |
+| `AuditRound11.PairIndex` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.Square` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.PairedMatrix` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.reversal` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_basis` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_inverse` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_sign` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_matrix` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.physical_reflection` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_even` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_odd` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_basis_identities` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_relation` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.anticommuting_blocks` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.commuting_blocks` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.parity_determinant` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.off_diagonal_determinant` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.anticommuting_determinant` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.reflection_increment` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.reflection_parity` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_determinants` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_positive` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.paired_coordinate_actions` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_full` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.boundary_correction` | [AuditRound11.lean](SL/AuditRound11.lean) |
+| `AuditRound11.root` | [AuditRound11.lean](SL/AuditRound11.lean) |
+
 ## 2026-09-25 AuditRound10 additions
 
 These28 named declarations were independently compiled and reviewed; the full export also includes10 compiler-generated declarations. Phase results retain explicit monotonicity, continuity where needed, and per-index brackets. See [scope and evidence](../reports/proof-audit-round10-20260925/REPORT.md). Historical rows below retain their original evidence scope.

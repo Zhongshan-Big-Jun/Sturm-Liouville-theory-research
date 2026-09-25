@@ -1,0 +1,46 @@
+--- frozen/inputs/run.py
++++ run.py
+@@ -20,7 +20,7 @@
+ 
+ def environment(Extra=()):
+ 	Env = os.environ.copy()
+-	Packages = json.loads((ORIGINAL / 'lake-manifest.json').read_text())['packages']
++	Packages = json.loads((BASE / 'lake-manifest.json').read_text())['packages']
+ 	Paths = [*Extra] + [ORIGINAL / '.lake/packages' / P['name'] / '.lake/build/lib/lean' for P in Packages]
+ 	Env['LEAN_PATH'] = ';'.join(win(P) for P in Paths if Path(P).is_dir())
+ 	Env['LEAN_SRC_PATH'] = ''
+@@ -46,7 +46,7 @@
+ 		shutil.copyfile(P, Snap / f'{I:02d}-{P.name}')
+ 	Env = environment(Extra)
+ 	Record = {'command_id': str(uuid.uuid4()), 'label': Label, 'argv': list(map(str, Args)), 'cwd': str(Cwd),
+-		'role': 'author', 'thread_id': os.environ.get('CODEX_THREAD_ID'),
++		'role': 'independent_reviewer', 'packet_sha256': '96a6a726749351139af2db393e13a9fb267866eec0139df1cd556a3c97904423',
+ 		'utc_start': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'inputs_before': Before,
+ 		'environment': {K: Env.get(K) for K in ('LEAN_PATH', 'LEAN_SRC_PATH', 'WSLENV', 'TMPDIR', 'TEMP', 'TMP', 'PYTHONDONTWRITEBYTECODE')}}
+ 	write_json(Out / 'command.json', Record)
+@@ -61,7 +61,7 @@
+ 	Record['inputs_unchanged'] = Record['inputs_before'] == Record['inputs_after']
+ 	write_json(Out / 'command.json', Record)
+ 	print(Label, Record['exit_code'], round(Record['seconds'], 3), flush=True)
+-	print((Out / 'stdout.log').read_text(errors='replace')[-18000:], end='', flush=True)
++	print((Out / 'stdout.log').read_text(errors='replace')[-4000:], end='', flush=True)
+ 	print((Out / 'stderr.log').read_text(errors='replace')[-5000:], end='', flush=True)
+ 	return Record
+ 
+@@ -72,7 +72,7 @@
+ 	elif Mode == 'compile':
+ 		Source = PROJECT / (sys.argv[3] if len(sys.argv) > 3 else 'AuditRound11.lean')
+ 		if not Source.resolve().is_relative_to(BASE):
+-			raise ValueError('source outside author workspace')
++			raise ValueError('source outside reviewer workspace')
+ 		Object = BASE / 'objects' / Label / Source.with_suffix('.olean').name
+ 		Object.parent.mkdir(parents=True, exist_ok=False)
+ 		Extra = [BASE / 'objects' / V for V in sys.argv[4:]]
+--- frozen/inputs/project/ExportDeclarations.lean
++++ project/ExportDeclarations.lean
+@@ -41,4 +41,4 @@
+         fields := fields ++ [("value_explicit", toJson body)]
+     entries := entries.push (Json.mkObj fields)
+   IO.FS.writeFile out.getString ((Json.arr entries).pretty ++ "\n")
+-#export_round11 "F:\\tools\\math-audit-round11-20260926\\formal-author\\declarations-full.json"
++#export_round11 "F:\\tools\\math-audit-round11-20260926\\formal-reviewer\\stateless-a8e81148d09f\\declarations-full.json"

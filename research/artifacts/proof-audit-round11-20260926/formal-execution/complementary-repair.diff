@@ -1,0 +1,11 @@
+--- ComplementaryControls.lean
++++ ComplementaryControlsFixed.lean
+@@ -18,7 +18,7 @@
+   ext i
+   cases i <;>
+     simp [physical_reflection, reversal, Matrix.mulVec, dotProduct,
+-      Fintype.sum_sum_type, Matrix.fromBlocks, Matrix.one_apply]
++      Fintype.sum_sum_type, Matrix.fromBlocks, Matrix.one_apply] <;> exact Subsingleton.elim _ _
+ 
+ example (x : PairIndex 0 → ℝ) :
+     physical_reflection (x + 0) - physical_reflection x = 0 := by simp

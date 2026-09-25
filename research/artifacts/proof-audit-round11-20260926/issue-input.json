@@ -1,0 +1,35 @@
+{
+  "issue_id": "round11-cross-blocks-and-faithful-fd",
+  "origin": "external",
+  "reporter": "sl_audit_round11; source bytes verified against current commit",
+  "summary": "R11-01: the shared probe extracts zero diagonal blocks of an anti-commuting residual Jacobian instead of its cross blocks. R11-02: fixed-step free-width finite differences can clip and renormalize endpoints, changing the intended edge direction. Suspend connected numerical-support reuse pending exact repair and caller review. Correct analytic reflection and Green/Hessian identities are not disproved; default R=4 outputs are not blanket retracted.",
+  "disposition": "quarantine",
+  "targets": [
+    {
+      "location": "tools/band-selfconsistency-equivariance.md",
+      "sha256": "cbe2050bf169630d38b99842971b76e62a46f0b0b156f9038be42065b540a759"
+    },
+    {
+      "location": "tools/second-variation-weighted-eigenvalues.md",
+      "sha256": "5586a2fdf09d91c2a089b0aac737bd80083a5c941becae3872b48de8741fe1f7"
+    },
+    {
+      "location": "tools/green-half-inertia.md",
+      "sha256": "ae8b1df2f082aa6d6252ecbd3adf007d9086e7322c6b56cacd4dca9b53f64adb"
+    },
+    {
+      "location": "tools/half-problem-regularized-green.md",
+      "sha256": "c0f7eb30ecebbd0b4d8ffc8ebee5b695a4485b10d11c7d3f7cc5453c115fc908"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "research/artifacts/proof-audit-round11-20260926/submitted/proof_audit_round11_20260925.md",
+      "locator": "R11-01, R11-02 and stated scope"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round11-20260926/before/scripts/_gapn2_jacobian_probe.py",
+      "locator": "Exact old jac_fd and sym_antisym_decomp"
+    }
+  ]
+}

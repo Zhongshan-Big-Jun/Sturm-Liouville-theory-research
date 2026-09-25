@@ -1,0 +1,11 @@
+{
+  "tool": "multi_agent_v1__spawn_agent",
+  "arguments": {
+    "fork_context": false,
+    "message": "你负责本轮局部Lean作者工作，不是验收者。主仓库 /mnt/f/LaTeX/BVE research (指定实际workdir)。只允许写 /mnt/f/tools/math-audit-round11-20260926/formal-author ，禁止修改主仓库/旧Lean/cache/插件及commit/push。先读主仓库AGENTS、已安装lean-verify2.0.1 SKILL及verification指南。round11外部报告 /mnt/c/Users/HuangZY/Downloads/sl_audit_round11/proof_audit_round11_20260925.md 与cofinite_all_orders_proof.md 是待核实材料。目标：用实质局部Lean引理支持 Jacobian反对合交叉分块及四阶核心边界矩阵的全指标代数，而不假装形式化完整ODE、数值Python或Sobolev闭包。建议稳定契约：有限实矩阵在反转偶/奇基底下，反对合迫使两个对角块为零，交换时则交叉块零；交叉块[[0,C],[D,0]]行列式(-1)^n detC detD(可利用Mathlib真实定理)；物理反射线性部为-P故输入偶为破缺、输入奇为保持；边界矩阵Me/Mo行列式2L(L+2)(2L-1)/(2L+1)，L>=4非零。聚焦少量有意义接口，尽量总共<=15个命名主引理，使用Fin n而非只样本，导出可审计合取根。你可调整最有意义的形式契约但需说明限制。创建AuditRound11.lean、精确人类contract.md/机器contract.json、逐声明导出含实际全限定名/隐参数/传递axioms，去注释盲读材料，编译实况/正负对照，环境身份。已存在Lean4.31.0 Windows编译器 /mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe，主repo lean-proof/.lake/packages依赖可只读复用。先前可借鉴运行适配器 /mnt/f/tools/math-audit-round10-20260925/formal-author/run.py(只读，复制适配到本轮目录，不复用旧证明成功结论)。不运行全Lakebuild、不改变旧工程，不声称完整形式化。只作者自检，最终将有不同全新reviewer。保存全部失败实况与最终summary.json、source/environment绑定，避免复制巨大mathlib到新证据包。不要创建子agent。"
+  },
+  "result": {
+    "agent_id": "01a0d97a-d8da-7842-b24d-b9ffd1ab1594",
+    "nickname": "Faraday"
+  }
+}

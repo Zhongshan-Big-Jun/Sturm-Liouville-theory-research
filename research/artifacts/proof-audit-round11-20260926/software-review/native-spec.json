@@ -1,0 +1,77 @@
+{
+  "kind": "mathematics",
+  "author_ids": [
+    "01a06f46-dd03-7c83-9267-32048412c359"
+  ],
+  "inputs": [
+    {
+      "path": "inputs/before-jacobian.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/check_jacobian.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/execution-scope.md",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/jacobian-repair.md",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_jacobian_analytic.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_jacobian_probe.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_jacobian_spectral.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_o3_scan.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_second_variation_probe.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_gapn2_symmetry_recon.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/_sl_prufer.py",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/op03_gap_table.json",
+      "role": "frozen-candidate-or-execution-contract"
+    },
+    {
+      "path": "inputs/scripts/reflection_seeds.py",
+      "role": "frozen-candidate-or-execution-contract"
+    }
+  ],
+  "claims": [
+    {
+      "id": "R11-cross-block-program",
+      "verification": "software",
+      "statement": "Independently inspect and execute the actual anticommuting Jacobian decomposition, corrected compatibility entry and two main consumers. Check cross block ordering, input/output parity versus physical reflection, diagonal and anticommutator residual rejection, determinant sign including odd n, invalid inputs and finite diagnostic limits. Do not substitute a block-diagonal Hessian or certify global nondegeneracy."
+    },
+    {
+      "id": "R11-faithful-finite-difference",
+      "verification": "software",
+      "statement": "Independently establish that jac_fd evaluates two feasible, resolvable physical endpoints along each requested independent edge coordinate, and refuses converter-altered or malformed endpoints/base points. Reproduce the old R1 narrow-block failure, compare corrected actual and analytic residual derivatives, check coupled full Jacobians, adaptive steps, explicit failure cases, and unchanged default return API. Inspect numeric limitations rather than certifying truncation or floating-point accuracy globally."
+    },
+    {
+      "id": "R11-caller-execution",
+      "verification": "numerical",
+      "statement": "Personally execute both named diagnostics and both default n2 R4 P3 consumers from frozen source siblings. Check actual imported module identities, saved source/geometry records and signs, and distinguish finite spectral truncation discrepancies, root residuals and stationary hypotheses. No complete revalidation of other historical consumers or optimality claims is made."
+    }
+  ]
+}

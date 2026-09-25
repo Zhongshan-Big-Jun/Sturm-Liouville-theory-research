@@ -1,0 +1,34 @@
+{
+  "utc": "2026-09-25T18:02:20.342090+00:00",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-c",
+        "http.version=HTTP/1.1",
+        "ls-remote",
+        "--exit-code",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "4f6b35cbdc433d2d319cd3e483b6dbf0af3f9d87\trefs/heads/main\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "http.version=HTTP/1.1",
+        "ls-remote",
+        "--exit-code",
+        "fork",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "4f6b35cbdc433d2d319cd3e483b6dbf0af3f9d87\trefs/heads/main\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Current remote preflight only; reverify after actual pushes. HTTP/1.1 override is per invocation; no global Git/proxy configuration change."
+}

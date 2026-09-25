@@ -1,5 +1,11 @@
 # lean-proof
 
+## 2026-09-26 第十一轮局部形式化
+
+新增 [AuditRound11.lean](SL/AuditRound11.lean): 成对实坐标中的反射/和差变换、条件反对易交叉块和对易对角块、detJ=(-1)^n detC detD、仿射反射增量, 以及显式偶/奇边界矩阵的行列式与唯一实修正. 14个具名定理含13项显式合取根, 12个定义/缩写, 全部导出37项声明. 37项盲读与另一个全新会话的实际重编译、精确根/公理检查及语义比对分别通过. 根公理仅propext、Classical.choice、Quot.sound. 见[第十一轮报告](../reports/proof-audit-round11-20260926/REPORT.md).
+
+`Fin n ⊕ Fin n`的第二半按镜像配对顺序, 不是直接递增的物理接口索引; 此置换桥梁尚未形式化. JP=-PJ是条件. 边界矩阵由条目定义, 未形式化其多项式迹来源、复数桥梁、Sobolev核心、临界迹或余有限分类. 没有完整ODE/Python形式化、全库Lake构建或canonical接收; 原51份SL源保持原字节. 历史条目保留其当时范围.
+
 ## 2026-09-25 第十轮局部形式化
 
 新增 [AuditRound10.lean](SL/AuditRound10.lean)：真实 Fin(2*n) 坐标反转、互补正交投影、仿射反射扰动，以及非负半轴上显式连续/严格单调/逐项括区前提下的唯一相位根与指标排序。22个具名定理、6个定义/缩写，完整导出38项声明（含辅助项），21项显式合取根。Windows PE Lean4.31.0的固定快照精确根检查、三个错误目标及其否定正证明、全声明盲读和另一个新会话的实际重编译/语义检验分别留证。根公理仅propext、Classical.choice、Quot.sound。见[第十轮报告](../reports/proof-audit-round10-20260925/REPORT.md)。

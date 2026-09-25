@@ -1,0 +1,36 @@
+{
+  "packet_sha256": "96a6a726749351139af2db393e13a9fb267866eec0139df1cd556a3c97904423",
+  "input_scope": "Only packet-listed research snapshots; runtime and dependency files restricted to the paths specified by execution-scope.md and environment-baseline.json.",
+  "parity": {
+    "coordinates": "PairIndex n = Fin n + Fin n. P swaps identical Fin n indices across tags. The second tag is in mirrored-pair order, not internally reversed. Physical increasing order requires an additional permutation, not proved here.",
+    "basis": "T=[[I,I],[I,-I]], S=T/2, Q=diag(I,-I). Block multiplication gives T^2=2I, ST=TS=I, PT=TQ, SP=QS. No normalization or orthogonality claim is used.",
+    "conditional_relation": "For arbitrary real a, JP=a PJ implies KQ=a QK for K=SJT, by right/left intertwining. a need not be nonzero. The source proves no differential equivariance or Jacobian identification.",
+    "blocks": "If K=[[A,C],[D,B]], anticommutation with Q forces A=-A and B=-B, so A=B=0 over Real. Commutation forces C=-C and D=-D, so C=D=0. No off-diagonal invertibility is assumed.",
+    "determinants": "det K=det J because det(S)det(T)=1. [[0,C],[D,0]]=diag(C,D)P and det P=(-1)^n. Thus det J=(-1)^n det C det D under the explicit anticommutation premise. Singular C,D are allowed.",
+    "empty_dimension": "n=0 is retained. Coordinate action claims have no indices; all matrix identities hold on the empty index type; empty determinant is 1 and the sign factor is 1.",
+    "reflection": "F(x)=1-Px gives F(x+v)-F(x)=-Pv for all real x,v. The preserving increment condition is Pv=-v and the reversing increment condition is Pv=v. Both hold for v=0. Actual preservation of a symmetric configuration additionally needs F(x)=x; no stationarity, feasibility, symmetry-breaking or derivative claim is inferred.",
+    "comparison": "Every scalar domain, natural dimension, explicit/implicit binder, and conditional premise agrees with contract.md, contract.json and the supplied independent readback. This is the algebraic portion of submitted/07 section 2 only."
+  },
+  "boundary": {
+    "entries": "E=[[L,L+2],[L(L-1)(L-2),L(L+1)(L+2)]]; O=[[L,L+2],[L(L+1)(L-2),L(L+2)(L+3)]], for every real L.",
+    "calculation": "det E=L(L+2)[L(L+1)-(L-1)(L-2)]=2L(L+2)(2L-1). det O=L(L+2)[L(L+3)-(L+1)(L-2)]=2L(L+2)(2L+1). These are polynomial identities over every real L.",
+    "positivity": "For real L>=4 all displayed factors are strictly positive, including at L=4 where det E=336 and det O=432. L=0 gives singular matrices; unrestricted invertibility is not asserted.",
+    "correction": "For every natural L>=4 cast to Real, B=diag(E,O) has positive determinant. The finite-dimensional square real map a -> Ba is bijective, yielding exactly one a for each real residual b. To cancel residual r, b=-r. Odd natural L are included algebraically; the polynomial interpretation in the supplied report uses even L.",
+    "comparison": "Matches the explicit arrays and equation (4) in submitted/06 and the exact bounds and quantifiers in both contracts and blind readback. Polynomial trace derivation, residual row conversion, complexification, continuity, approximation and Sobolev/cofinite conclusions are outside this target."
+  },
+  "generated_declarations": "The 9 equation lemmas reproduce all corresponding definition bodies and binders, including the explicit coordinate in physical_reflection.eq_1. The 2 closed numeral helpers assert Nat.AtLeastTwo 2 and Nat.AtLeastTwo 3 only. All universe lists are empty. The root has no outer premises and conjoins all 13 quantified statements.",
+  "controls": {
+    "negative_sign": "n=1,C=D=I gives determinant -1, so the submitted +1 assertion is false. Compiler exit 1 leaves False; its positive witness compiles.",
+    "negative_blocks": "J=diag(1,-1) anticommutes with P and has determinant -1, while the parity diagonal blocks vanish. A separate successful proof derives False from the submitted universal diagonal-block determinant formula.",
+    "negative_boundary": "At L=4 the even determinant is 336; the intentionally substituted odd factor yields 432. The negative reduces to False; positive values compile.",
+    "negative_physical": "The increment from constant zero to constant one is constant -1, not +1. The negative fails at its equality goals. The first complementary positive proof left Fin 1 index equalities unresolved; the unchanged mathematical assertion compiled after explicitly using Subsingleton.elim. Both attempts and source snapshots are retained."
+  },
+  "not_reviewed": [
+    "Full ODE/SL model and differentiability",
+    "Physical-order permutation and numerical implementations",
+    "Polynomial boundary-trace and residual-coordinate bridges",
+    "Complex residuals, right-inverse continuity and approximation",
+    "Sobolev/critical-trace/cofinite-density and basis claims",
+    "Cryptographic authentication of the supplied blind reviewer identity beyond frozen transcript/provenance metadata"
+  ]
+}

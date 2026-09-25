@@ -1,0 +1,61 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "378992ac556e3daba6664dd14c637d8850a3f4b75ca91f454d924e15e02e9957",
+  "reviewer_id": "01a0d99b-7b2d-7af2-8d43-dd358bfd1cc9",
+  "bindings": {
+    "inputs/cofinite-all-orders.md": "276720b6a28bbdbd06719d88aa003e8e1602b338bfaf75d2f03ce1f8b5312c9a",
+    "inputs/exact_algebra.py": "35eb53643f689ae4833141d2ad9868437239c7a0b9507cef64e1aef34cc2ca9e",
+    "inputs/prior-01-parity-unitary.md": "3e0a5c5c56298ffc31b7f98a30848fa0ec32d3d2ec24dedcd2ffd061c82a3aaa",
+    "inputs/prior-02-fractional-trace-dictionary.md": "05467a3f3449b4f3df2317cdc7af558aec6194dc7f285bfb0ed275a1fe18038a",
+    "inputs/prior-03-s3-cofinite-closure.md": "72a80213f816072e4fdeb50b0a839c0b4e6f25a8182e627ef7db087498719e42",
+    "inputs/prior-SL_fractional_left_definite.tex": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186",
+    "inputs/proposed-card.md": "e6a75ede0fa2233a9f016238df701ceb7bcccaf294a26f39cd75d1e8f6a91214",
+    "inputs/review-scope.md": "2eeeaef75c1c078528aef2126404f16f05d0432b8534fbbfbc25b83958d53d82",
+    "inputs/source-bindings.json": "45fd7cda28bdf57922817c0056d2b9e6f26471c85961ad5103c95a3b8d4b12ce",
+    "inputs/submitted-cofinite.md": "304c715a7e8c767bc360b08f40f01c6cb9df7b51b6fb37684207664b53768566"
+  },
+  "claims": [
+    {
+      "id": "R11-cofinite-operator-membership",
+      "reason": "Sections 2–3 establish positivity, surjectivity and self-adjointness for every fixed c>0 using the actual boundary conditions. Compactness of the inverse and exhaustive solution of the eigenvalue equation justify the complete normalized spectrum, including both affine modes. The polynomial integration-by-parts estimates give normalized coefficients O(k^-4) for every named nonaffine member, proving membership for all 0<=s<7/2 without assuming Kc*p belongs to D(Kc). The nonzero leading coefficients also justify exclusion at s=7/2. The product-domain argument proves exactly Hc4={f in ordinary H4: Bf=B(f'')=0}, with both norm inequalities. Spectral cutoffs establish Hc4 density independently of polynomial density, so the subsequent reasoning is not circular.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R11-cofinite-local-critical-norms",
+      "reason": "The quadratic K-functional minimizer is admissible in the infinite-dimensional weighted space because w/(1+t^2*w)^2<=1/(4t^2). Completion of squares and Tonelli justify the infinite sum and interpolation formula. Both fixed cutoff maps have the required L2 and fourth-order endpoint bounds, yielding both local norm directions for every 0<=t<=4, including t=7/2. Fourier Cauchy-Schwarz proves trace continuity when s>r+1/2. Section 8's localized logarithmic sequence has uniformly bounded critical norm, divergent r-th derivative and vanishing lower derivatives. The highest nonzero complex coefficient therefore cannot be cancelled by lower traces. This proves exclusion of entire discontinuous trace combinations, including equality at s=1/2, 3/2 and 5/2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R11-cofinite-core-tail-dual",
+      "reason": "The cutoff constants follow from the squared Volterra kernel integral on each half-interval. The highest derivative error is controlled by the local L2 norm of f'''' tending to zero, which supplies the necessary convergence. For fixed cutoff and even L>=4, division by x^L, fourth-derivative polynomial approximation and subsequent integration are valid in ordinary H4. The full boundary residual matrix has determinant 16*L^2*(L+2)^2*(4*L^2-1), so its fixed inverse gives bounded corrections preserving divisibility and both boundary layers. The descending-degree elimination proves the tail identity for all degrees, with terminal determinant 2*L^2. The proof correctly distinguishes compatible Hc4 combinations from individual generators outside Hc4. Consequently every continuous annihilator restricts to a combination of the four center traces; critical-trace exclusion and spectral density justify extension of precisely the surviving traces.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R11-cofinite-closure-and-card",
+      "reason": "The low-degree trace table and the all-index vanishing argument identify the annihilator exactly as the span of omitted continuous traces. Hilbert-space separation gives the stated closure, and compactly supported smooth lifts prove surjectivity of the omitted-trace map and the claimed complex codimension. The essential-index sets at s=1/2, 3/2 and 5/2 are respectively {}, {0} and {0,1}. Deleting p6 therefore preserves density throughout the window. A Schauder coordinate functional for p6 would contradict that density; every nonzero termwise complex scaling and bijective enumeration preserves this obstruction, also excluding Riesz bases. The proposed card's mathematical statement, quantifiers, critical cases, corollary and scope exclusions match the proof.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/cofinite-all-orders.md",
+    "inputs/exact_algebra.py",
+    "inputs/prior-01-parity-unitary.md",
+    "inputs/prior-02-fractional-trace-dictionary.md",
+    "inputs/prior-03-s3-cofinite-closure.md",
+    "inputs/prior-SL_fractional_left_definite.tex",
+    "inputs/proposed-card.md",
+    "inputs/review-scope.md",
+    "inputs/source-bindings.json",
+    "inputs/submitted-cofinite.md"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/378992ac556e3daba6664dd14c637d8850a3f4b75ca91f454d924e15e02e9957-01a0d99b-7b2d-7af2-8d43-dd358bfd1cc9",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "All ten snapshot hashes matched the packet. Review used only the frozen packet and its listed snapshots; the source project was not modified.",
+    "The inspected supplied exact_algebra.py could not complete its replay because SymPy was unavailable (ModuleNotFoundError, exit code 1). An independent standard-library checker passed 18 exact rational polynomial and kernel-integral checks. These checks support algebraic steps and do not establish infinite-dimensional analytic claims. Review notes, scripts and execution evidence are preserved at /mnt/f/tools/math-audit-round11-20260926/cofinite-reviewer/stateless-6bowb8bt/.",
+    "External papers, metadata-only source references, linked PDFs and separate acceptance reports were not supplied as snapshots and were not checked. Their status labels were not used as proof. The full all-order fractional-domain dictionary was not certified; the needed local estimates were checked through the manuscript's independent derivation.",
+    "Approval covers only the four requested analytic obligations within their declared scope. It does not certify complete Lean formalization, canonical acceptance, arbitrary infinite deletions, c=0, uniform estimates as c tends to zero, original-family closure at s>=7/2, frame bounds, approximation rates or reconstructed replacement systems."
+  ]
+}

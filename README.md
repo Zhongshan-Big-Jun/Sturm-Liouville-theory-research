@@ -1,5 +1,7 @@
 # Sturm-Liouville 边值问题研究
 
+2026-09-26 第十一轮: 修复残差 Jacobian 的交叉分块与窄层差分方向. 新的独立解析审查补齐固定 c>0、0<=s<7/2 的余有限闭包分类, 包含三个临界点和原族非 Schauder 基推论. 见[修订报告](reports/proof-audit-round11-20260926/REPORT.md)、[完整证明 PDF](docs/SL_cofinite_all_orders.pdf)和[工具卡](tools/krein-cofinite-closure-all-orders.md). 数值、解析与局部 Lean 的验收范围分别登记.
+
 2026-09-25 第十轮审计修订已完成独立验收: 修复漏掉近邻低频根后的谱序号错配, 并明确保持/破缺反射的真实种子. 旧数值按实际重算范围使用, 不扩张全局结论. 见[本轮报告](reports/proof-audit-round10-20260925/REPORT.md).
 
 [English](README_EN.md) | [研究导航](docs/research-guide.md) | [项目理解](docs/PROJECT_UNDERSTANDING.md) | [工具库](tools/README.md) | [Lean 状态](lean-proof/STATUS.md)
@@ -43,7 +45,7 @@
 
 ## 主要成果与范围
 
-下表保留2026-09-09整理的总体导航, 左定空间条目已按第六轮修订更新, 谱隙条目按第七、八轮修订更新, 固定 n 候选谱按第九轮修订更新. `STRICT` 只适用于来源给出的陈述与假设, 不表示整个项目已经解决或全部形式化.
+下表保留2026-09-09整理的总体导航, 左定空间条目已按第六轮修订更新, 谱隙条目按第七、八轮修订更新, 固定 n 候选谱按第九轮修订更新, 余有限闭包按第十一轮更新. `STRICT` 只适用于来源给出的陈述与假设, 不表示整个项目已经解决或全部形式化.
 
 | 研究线 | 已有成果 | 范围与证据 |
 | --- | --- | --- |
@@ -52,7 +54,7 @@
 | n=1 相邻间距 | SUP/INF 的归约, 刚性, 对称线与极值证明链 | [证明导航](docs/research-guide.md); 归一化盒类的全 R>1 结果 |
 | 对称阱族 INF 极限 | R m_R→M≈24.9438661384, 非负误差 O(1/R); Rη_R→0 的近极小化子收敛 | [第八轮连续证明](docs/SL_gap_n1_inf_limit_proof.tex); 相位薄层界与大 w 比较覆盖 R≥1500; 非对称族及全盒类须另核对 |
 | n>=2 间距结构 | 有限块结构, 弱反差局部对称性; 固定 n>=1 的 SUP 极限为 (n+1)²pi² | [当前局部证明与上确界极限](docs/SL_gap_nge2_symmetry_local_proof.tex); 可测盒类和有限分块类; 有限 R 全局唯一性仍开放 |
-| 左定空间与算子域 | 原完整稀疏族在0<=s<7/2稠密, s=2余有限分类, 以及算子幂域障碍 | [完整窗口](docs/SL_fractional_left_definite.tex), [s=2余有限分类](docs/SL_cofinite_left_definite.tex), [幂域障碍](tools/krein-power-domain-polynomial-obstruction.md) |
+| 左定空间与算子域 | 原完整族在0<=s<7/2稠密; 同一窗口内余有限闭包由保留的连续中心迹精确决定; 原族经非零缩放及重排仍非 Schauder/Riesz 基 | [全窗口删项证明](docs/SL_cofinite_all_orders.pdf), [工具卡](tools/krein-cofinite-closure-all-orders.md), [幂域障碍](tools/krein-power-domain-polynomial-obstruction.md); 固定c>0, 一般无限删项另计 |
 | B4/P1 M3 | STRICT 渐近与两个扇区行列式符号 | [工具与证明链](tools/m3-largeR-closure.md); n=2 对称 INF, large-R, 有限非零内部 chart |
 | KP-DET | 完整约束下 0<c<=2/3 的分支闭合, P20-P21 精确求积约化 | [sequence-26][kp-whiteboard]; 经审计的部分结果, 本地主 run 的 Q9 仍为 OPEN |
 
@@ -62,7 +64,7 @@
 
 - n>=2 间距极值的全局非退化, 对称性, 唯一性及最优值.
 - 固定 n 比值的全局最优值及真正上确界序列的性质. 平衡候选的 2n 根计数、单调性与极限见 [导航](docs/research-guide.md).
-- 一般非对角空间的稠密性判据 O1'/O1'LD, 其它阶的删除分类与受约束空间问题. 原完整族的0<=s<7/2窗口已补证.
+- 一般非对角空间的稠密性判据 O1'/O1'LD, 一般无限删项与其它边界条件的受约束问题. 本模型固定c>0、0<=s<7/2的余有限分类已补齐.
 - 三阶递推的非齐次源项控制与更一般系数族. [指定双奇偶系数族](docs/SL_third_order_recurrence_theory.tex) 的全部 c>0 最小解、常数和有理比值分类见第四轮修订; [K(1)=e/4](docs/SL_third_order_K1_proof.tex) 保留为偶族锚点.
 
 问题地图和早期综述含不同时间的记录. 接续研究时以具体证明, 审计, 范围说明及最新 run 为依据; 导航列出了尚待对齐的 G2 状态差异.

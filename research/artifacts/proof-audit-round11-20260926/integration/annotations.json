@@ -1,0 +1,98 @@
+[
+  {
+    "annotation_id": "43f53061ed16300d36f3d677d8f2ea63eb9e8380de41cd34671b7d49260066e8",
+    "schema_version": 1,
+    "tool_path": "tools/band-selfconsistency-equivariance.md",
+    "tool_sha256": "3ad9895865fb165e66d28df34fa9ef8cd4c4b4b143ca74b7d246822cb33fa98e",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "input and output reflection actions",
+    "content": "F(1-Px)=PF(x)的输入微分为-P, 对称点J反对易于P, 所以有效块为[[0,C],[D,0]], detJ=(-1)^n detC detD. 坐标偶/奇输入分别映入奇/偶输出; 不能把J解释成两个不变子空间上的自身限制. 与P对易的Hessian及跳量加权矩阵仍按自己的对角块分析. 第十一轮同时核对实际R=1驻点精确见证, 不据数值样本宣称全局非退化.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "eefef63f43026eba52779aa4e41e25614f95f8c61d969f761fb5abd371c83dba",
+    "schema_version": 1,
+    "tool_path": "tools/green-half-inertia.md",
+    "tool_sha256": "10873d6be96338ecf3024b93fd655c0ebcdf60445d35367773f174b7aba26c20",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "exact derivative path before matrix inertia",
+    "content": "自由宽度扰动经裁剪/归一化后可能改变差分方向. 当前直接构造独立接口正负端点, 按相邻宽度缩步并检查真实往返位移; 无法分辨时拒绝. 这是float64几何诊断, 不提供导数截断误差或全参数惯性证明. n=2,R=4默认实际样本已重算; 正确旧解析等式不因诊断程序故障一并撤回.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be",
+    "schema_version": 1,
+    "tool_path": "tools/half-problem-regularized-green.md",
+    "tool_sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "cross blocks versus commuting weighted matrices",
+    "content": "残差Jacobian的交叉块C,D与Hessian/K的对角块不是同一个对象. 非退化须同时检验C,D, 不能只看应为零的两个对角块. O3实际入口与N=80/160/320有限细化由新隔离agent回放; 不得据此复述所有历史配置已认证. R=1跳量为零时按跳量相除的K未定义.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "3b839fe7d95ad2762fd9406a7f9ce53db93b385d83703c3c6411418d3c6c56dd",
+    "schema_version": 1,
+    "tool_path": "tools/second-variation-weighted-eigenvalues.md",
+    "tool_sha256": "defcf0d4bdcba446acfcaa121898eb04a7bc293eaf18e9382f3e626077109aa3",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "actual P3 endpoints and stationary normalization",
+    "content": "P3沿物理接口的Jacobian差分现在保存实际端点及每列步长. 归一化Hessian识别要求精确驻点; 非驻点另有含F的归一化项. 本轮默认n=2,R=4 SUP/INF有限重算及独立高精度传递差分符合; 谱尾、求积、固定bump宽度及驻点残差仍未区间认证. 详见reports/proof-audit-round11-20260926/REPORT.md.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "36fe884795704937e8f14483c9917bf2cf696f7805b8fb8626cee84b6f1fc1ff",
+    "schema_version": 1,
+    "tool_path": "tools/krein-cofinite-closure-all-orders.md",
+    "tool_sha256": "e6a75ede0fa2233a9f016238df701ceb7bcccaf294a26f39cd75d1e8f6a91214",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "exact independent analytic acceptance",
+    "content": "本版本与冻结拟入库卡逐字相同, 数学与陈述由新fork_context:false审查378992ac556e3daba6664dd14c637d8850a3f4b75ca91f454d924e15e02e9957独立批准. 证据见research/artifacts/proof-audit-round11-20260926/cofinite-review/native-verified.json. 关键可复用步骤是四阶高消失核心、显式K泛函的局部双向范数控制、最高非零复迹的对数Fourier排除. 该批注只是验收指针与研究经验, 不是额外证明或完整Lean认证.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "1badef86d3f2bae522b02603f9ba420ecf548020aee72af569d2bdc062e38094",
+    "schema_version": 1,
+    "tool_path": "tools/leftdef-o1pld-l2-structural.md",
+    "tool_sha256": "280c10d1de347b78d3774512cde4d2caeb0ff9c37d3ce8922ff8d900432c0f4e",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "s2 classification now a full-window special case",
+    "content": "本卡s=2两迹余有限分类保留原版本和原审查. 新工具tools/krein-cofinite-closure-all-orders.md独立补齐同一固定c>0原族在0<=s<7/2的全部余有限分类, s=2仍只检测p0,p1. 一般无限删项和任意约束V不由这次扩展解决. 旧尾部刚性反证继续有效.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "8bb7ca1e2ce3ebf76d195726632d564cb7bbdb792569dda65159e4cf208b468e",
+    "schema_version": 1,
+    "tool_path": "tools/krein-s3-cofinite-three-traces.md",
+    "tool_sha256": "519d6748ed9d2e7f706b4490acc4d73c243ddbc3f71634bca64c5040353e552c",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "s3 and the critical s5/2 boundary",
+    "content": "本卡s=3三迹结论是新全窗口余有限分类的特例. 新证明独立处理临界s=5/2: 此时二阶中心迹不连续, 删除p4仍稠密; 仅当5/2<s<7/2才产生对应的一维缺陷. 不应把s=3的充分性直接外推到临界. 新工具为tools/krein-cofinite-closure-all-orders.md.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "76c462eb57026d6fba17c20e1ed35c62eac94688ced22a34f0cc8aca24e4ad44",
+    "schema_version": 1,
+    "tool_path": "tools/krein-fractional-trace-dictionary.md",
+    "tool_sha256": "83493e09a0acb24d87633cce6607e69d3d774901efa6a15af93284ca7b5c9eba",
+    "author": "agent:round11-20260926",
+    "kind": "correction-experience",
+    "locator": "boundary critical domains versus internal trace obstructions",
+    "content": "第十一轮补证用固定内部光滑乘子的L2/四阶端点界及显式K泛函得到0<=t<=4局部范数控制, 在同一实际域内识别中心迹阈值. 算子端点在s=3/2的临界边界条件与内部新增迹障碍是不同问题. 新余有限分类覆盖s=1/2,3/2,5/2, 无需交换多项式闭包与插值, 也不新增本卡之外的全阶域字典结论.",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  }
+]

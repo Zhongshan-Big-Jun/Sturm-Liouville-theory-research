@@ -1,0 +1,354 @@
+{
+  "commit": "4f6b35cbdc433d2d319cd3e483b6dbf0af3f9d87",
+  "python_optimized": false,
+  "group_count": 20,
+  "scope": "Finite checks plus exact finite/all-index algebra; no Lean or complete repository suite",
+  "checks": [
+    {
+      "name": "Current Pruefer source has exact repository Git blob identity",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "Current Jacobian probe source has exact repository Git blob identity",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "New engine recovers all four previously missed low roots",
+      "confirmed": true,
+      "details": {
+        "roots": [
+          0.7834240122391394,
+          0.797807654414425,
+          2.3457078475446362,
+          2.3585404210821923,
+          3.267148077304625,
+          3.9253705223414905
+        ],
+        "certified": false
+      }
+    },
+    {
+      "name": "High-contrast root prefixes agree for requests of 3, 6 and 61 modes",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "Independent 70-digit physical nodal counts agree with first six root indices",
+      "confirmed": true,
+      "details": {
+        "counts": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "status": "finite high-precision check, not interval certification"
+      }
+    },
+    {
+      "name": "Current root engine obeys constant-density and interval scaling cases",
+      "confirmed": true,
+      "details": [
+        0.0,
+        1.1102230246251565e-16,
+        2.220446049250313e-16,
+        2.220446049250313e-16
+      ]
+    },
+    {
+      "name": "Returned roots retain their labels under higher-precision phase evaluation",
+      "confirmed": true,
+      "details": {
+        "max_error": "4.216399745305935825e-14",
+        "limitation": "same phase mathematics; independent count is recorded separately"
+      }
+    },
+    {
+      "name": "Symbolic reflection law forces a cross-block, not block-diagonal, Jacobian",
+      "confirmed": true,
+      "details": {
+        "matrix": "Matrix([[0, 0, a, 0], [0, 0, 0, b], [a, 0, 0, 0], [0, b, 0, 0]])",
+        "determinant": "a**2*b**2"
+      }
+    },
+    {
+      "name": "Exact normalized R=1 Jacobian determinant is nonzero",
+      "confirmed": true,
+      "details": {
+        "det": "7030400000*pi**4/4782969"
+      }
+    },
+    {
+      "name": "Actual repository decomposition returns two zero blocks for a nondegenerate SL Jacobian",
+      "confirmed": true,
+      "details": {
+        "xstar": [
+          0.25597364467540806,
+          0.38264716110914193,
+          0.617352838890858,
+          0.7440263553245919
+        ],
+        "diag": [
+          18.311326699510122,
+          -20.664322393928494,
+          20.664322393928494,
+          -18.311326699510122
+        ],
+        "det_J": 143179.86873957375,
+        "old_det_A": 0.0,
+        "old_det_B": 0.0
+      }
+    },
+    {
+      "name": "Extracting the cross blocks restores the correct determinant relation",
+      "confirmed": true,
+      "details": {
+        "det_C": -378.39115837922765,
+        "det_D": -378.39115837922765
+      }
+    },
+    {
+      "name": "The finite-difference helper works on the well-separated R=1 configuration",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "Narrow-block counterexample base is strictly feasible and initially unclipped",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "Default finite difference silently changes paths after clipping a narrow block",
+      "confirmed": true,
+      "details": {
+        "default_h": 1e-06,
+        "widths": [
+          0.25,
+          3.000000000086267e-07,
+          0.49999940000000004,
+          2.9999999995311555e-07,
+          0.25
+        ],
+        "max_entry_error": 6.361733922377599,
+        "returned": [
+          [
+            16.728981900304696,
+            2.1205740214358393,
+            -2.120574022379529,
+            2.1205740214358393
+          ],
+          [
+            6.361733922377599,
+            12.487800943983274,
+            -2.120574198627434,
+            2.1205741976837444
+          ],
+          [
+            -2.1205747831598565,
+            2.1205747813279885,
+            -12.487833107588386,
+            -6.3617017546646615
+          ],
+          [
+            -2.120574607467063,
+            2.1205746058017283,
+            -2.1205746021379923,
+            -16.72898131555023
+          ]
+        ],
+        "correct": [
+          [
+            18.84955592153876,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            18.84953486608132,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -18.849534866081328,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            -18.849555921538755
+          ]
+        ]
+      }
+    },
+    {
+      "name": "A feasible smaller step removes the large clipping error in this finite example",
+      "confirmed": true,
+      "details": {
+        "h": 1e-08,
+        "max_entry_error": 3.608224830031759e-07,
+        "limitation": "finite numerical diagnostic, not a universal step rule"
+      }
+    },
+    {
+      "name": "Exact arithmetic proves that clipping moves an edge meant to stay fixed",
+      "confirmed": true,
+      "details": {
+        "intended_edge": "1/4",
+        "actual_after_clipping": "2500000/10000009",
+        "unintended_displacement": "-9/40000036"
+      }
+    },
+    {
+      "name": "All-degree even/odd endpoint correction determinants are nonzero for even L>=4",
+      "confirmed": true,
+      "details": {
+        "even_det": "2*L*(L + 2)*(2*L - 1)",
+        "odd_det": "2*L*(L + 2)*(2*L + 1)"
+      }
+    },
+    {
+      "name": "Finite direct differentiation checks the four-row boundary correction matrices",
+      "confirmed": true,
+      "details": null
+    },
+    {
+      "name": "Centre-jet algebra isolates the four possible low-order directions",
+      "confirmed": true,
+      "details": {
+        "0": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "1": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "4": [
+          0,
+          0,
+          -4,
+          0
+        ],
+        "5": [
+          0,
+          0,
+          0,
+          -12
+        ],
+        "6": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "7": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "8": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "9": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "10": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "11": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "12": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "14": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "15": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "17": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "18": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "19": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "20": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "21": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Critical threshold table uses strict interior trace inequalities",
+      "confirmed": true,
+      "details": null
+    }
+  ]
+}

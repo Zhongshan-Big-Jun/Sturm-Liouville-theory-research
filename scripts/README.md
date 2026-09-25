@@ -1,5 +1,9 @@
 # 研究脚本导航
 
+第十一轮修订: [_gapn2_jacobian_probe.py](_gapn2_jacobian_probe.py) 对残差Jacobian提取交叉块C,D, 校验JP=-PJ, 使用detJ=(-1)^n detC detD. `sym_antisym_decomp`保留调用签名, 返回值语义已改为C,D. 与P对易的Hessian/K仍使用其自己的块结构.
+
+`jac_fd`默认仍返回ndarray; `return_diagnostics=True`同时返回真实接口端点、接受步长和往返误差. 每列从独立接口坐标出发, 按相邻块宽缩步, 核验裁剪/归一化后的实际路径; 不可分辨或不忠实的方向明确报错. [_gapn2_o3_scan.py](_gapn2_o3_scan.py)与P3二阶变分实际入口已重跑, 四组有限配置见[本轮报告](../reports/proof-audit-round11-20260926/REPORT.md). 21个jac_fd命名调用文件已静态清点, 不表示这些文件的全部历史CLI均重跑. 无严格导数误差界或全参数符号证书.
+
 第十轮修订入口: [_sl_prufer.py](_sl_prufer.py)、[_gapn2_symmetry_recon.py](_gapn2_symmetry_recon.py) 与二阶变分诊断. 固定网格变号不保证谱序号; 当前每个n*pi相位水平单独括根, mp细化和FD端点保持指标, 不能分辨时明确报错. 反射种子按几何作用-J区分preserve/break, 校验实际接口及可行步长. 具体执行范围见[报告](../reports/proof-audit-round10-20260925/REPORT.md); 未重跑76项调用闭包的全部历史实验.
 
 从仓库根目录运行时，为新实验指定独立输出位置。例如在 WSL 中：

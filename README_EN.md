@@ -1,5 +1,7 @@
 # Sturm-Liouville Theory Research
 
+2026-09-26: Round11 repairs the residual Jacobian CROSS blocks and finite differences whose coordinate conversion changed their direction. A separate analytic review accepts the fixed-c>0 cofinite closure classification throughout 0<=s<7/2, including the three critical orders and the original-family non-Schauder/Riesz conclusion under nonzero termwise scaling and reordering. See the [report](reports/proof-audit-round11-20260926/REPORT.md), [proof PDF](docs/SL_cofinite_all_orders.pdf), and [reusable card](tools/krein-cofinite-closure-all-orders.md). Numerical execution and local Lean evidence have separate scopes.
+
 2026-09-25: Round10 repairs independently reviewed. Lifted-phase indexing replaces missed-root sign scans, and geometric reflection sectors are checked after coordinate conversion. Historical numerical output is revalidated only where actually rerun. See the [round10 report](reports/proof-audit-round10-20260925/REPORT.md).
 
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
@@ -45,7 +47,7 @@ Most detailed research notes are currently in Chinese or mixed Chinese and Engli
 
 ## Selected results and their scope
 
-The overview retains the research lines compiled on 2026-09-09, with the left-definite entry updated in round6 and the gap entries in rounds7-8 and the fixed-n balanced candidates in round9. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
+The overview retains the research lines compiled on 2026-09-09, with left-definite density updated in round6, gaps in rounds7-8, fixed-n balanced candidates in round9, and cofinite closure in round11. `STRICT` applies to the stated theorem and assumptions; it does not certify the entire project or imply complete formalization.
 
 | Research line | Existing result | Scope and evidence |
 | --- | --- | --- |
@@ -54,7 +56,7 @@ The overview retains the research lines compiled on 2026-09-09, with the left-de
 | Symmetric-well INF limit | R*m_R tends to M≈24.9438661384, with nonnegative O(1/R) error; near-minimizers converge when R*eta_R tends to zero | [Continuous proof](docs/SL_gap_n1_inf_limit_proof.tex); non-symmetric/all-box conclusions require their own evidence |
 | Fixed-n balanced ratio candidates | Complete 2n simple-root count; c_n strictly decreases to ((pi-phi)/phi)^2 | [Current proof](docs/SL_fixed_n_supremum.tex); phi=arccos((sqrt(R)-1)/(sqrt(R)+1)), R>1; global optimality remains open |
 | n>=2 gap structure | Finite-block structure, small-contrast local symmetry, and fixed-n>=1 gap supremum limit (n+1)^2*pi^2 | [Current proof](docs/SL_gap_nge2_symmetry_local_proof.tex); measurable box and finite-piecewise classes; finite-R global uniqueness remains open |
-| Left-definite spaces and domains | Sharp 0<=s<7/2 density of the original complete sparse family, s=2 cofinite classification, and operator-domain obstructions | [Full window](docs/SL_fractional_left_definite.tex), [s=2 cofinite classification](docs/SL_cofinite_left_definite.tex), [power-domain obstruction](tools/krein-power-domain-polynomial-obstruction.md) |
+| Left-definite spaces and domains | Full-window cofinite closure from the retained continuous central traces, 0<=s<7/2; the original family remains non-Schauder/Riesz under nonzero scaling and reordering | [All-order proof](docs/SL_cofinite_all_orders.pdf), [tool card](tools/krein-cofinite-closure-all-orders.md), [power-domain obstruction](tools/krein-power-domain-polynomial-obstruction.md); fixed c>0, general infinite deletion remains separate |
 | B4/P1 M3 | STRICT asymptotics and signs of two sector determinants | [Tool and proof chain](tools/m3-largeR-closure.md); n=2 symmetric INF, large R, finite nonzero interior chart |
 | KP-DET | Complete-constraint branch closed for 0<c<=2/3; exact quadrature reduction P20-P21 | [Sequence 26][kp-whiteboard]; audited partial results, with Q9 still OPEN in the local main run |
 
@@ -64,7 +66,7 @@ The plugin repository separately contains [three complete Q9 benchmark proofs an
 
 - Global nondegeneracy, symmetry, uniqueness, and optimal values for n>=2 gap extremals.
 - Fixed-n global ratio optima and properties of the actual supremum sequence. Root count, monotonicity and the limit of the prescribed balanced candidates are proved; see the [guide](docs/research-guide.md).
-- General non-diagonal density criteria O1'/O1'LD, deletion classifications at other orders, and constrained-space problems. The original complete family's nonnegative window 0<=s<7/2 is now proved.
+- General non-diagonal density criteria O1'/O1'LD, general infinite deletion and constrained problems for other boundary conditions. The fixed-c>0 cofinite classification is now proved throughout 0<=s<7/2 in this model.
 - Nonhomogeneous source-term control and broader coefficient families in the third-order recurrence. The [specified even/odd family](docs/SL_third_order_recurrence_theory.tex) now has minimal-solution constants for every c>0 and a rational-ratio classification. [K(1)=e/4](docs/SL_third_order_K1_proof.tex) remains the even-family anchor.
 
 The research map and early survey contain records from different dates. Follow the precise theorem, audit, scope, and relevant latest run when resuming. The guide identifies historical G2 status differences that still need statement-level reconciliation.

@@ -1,0 +1,249 @@
+{
+  "schema": "independent-formal-comparison/v1",
+  "packet_sha256": "96a6a726749351139af2db393e13a9fb267866eec0139df1cd556a3c97904423",
+  "scope": "Local real matrix algebra and finite-dimensional boundary correction; semantic comparison and fresh Lean replay. No full formalization or canonical acceptance.",
+  "verdict": "APPROVED",
+  "source_sha256": "c9ef0c5b0ec8c53b3fe38b60707894e0b7f1832666aa5dcd30bd15905e6f771b",
+  "contract_sha256": "70ee1004aabc6a327ca62e593120853a5939cb74f82dda25d6021653bdfd8010",
+  "root_type_sha256": "5b696cf49e3c0310d0d1e797ca8fde084133597eda3d2b7fdf4e9b83e44b4c87",
+  "root_semantic_sha256": "c4916aa4f5a6460b94de79f31f1db9f999b849cfd66cce6ecc078d461fda9171",
+  "root_semantic_environment_sha256": "9415fc86c71c872359c66c2dcacffd9b1ae69e3c415e34e813c5075d1f834fc6",
+  "required_checks_complete": true,
+  "declarations_compared": 37,
+  "definition_bodies_compared": 12,
+  "raw_print_types_compared": 26,
+  "root_conjuncts": 13,
+  "root_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "loaded_modules": 3917,
+  "external_import_artifacts": 11745,
+  "math_control_results": [
+    {
+      "label": "contract-type-01",
+      "file": "CheckContract.lean",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "as_expected": true,
+      "command_record": "commands/contract-type-01/command.json"
+    },
+    {
+      "label": "export-01",
+      "file": "ExportDeclarations.lean",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "as_expected": true,
+      "command_record": "commands/export-01/command.json"
+    },
+    {
+      "label": "print-01",
+      "file": "PrintDeclarations.lean",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "as_expected": true,
+      "command_record": "commands/print-01/command.json"
+    },
+    {
+      "label": "positive-01",
+      "file": "PositiveControls.lean",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "as_expected": true,
+      "command_record": "commands/positive-01/command.json"
+    },
+    {
+      "label": "negative-sign-01",
+      "file": "NegativeDeterminantSign.lean",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "as_expected": true,
+      "command_record": "commands/negative-sign-01/command.json"
+    },
+    {
+      "label": "negative-blocks-01",
+      "file": "NegativeDiagonalBlocks.lean",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "as_expected": true,
+      "command_record": "commands/negative-blocks-01/command.json"
+    },
+    {
+      "label": "negative-boundary-01",
+      "file": "NegativeBoundaryFormula.lean",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "as_expected": true,
+      "command_record": "commands/negative-boundary-01/command.json"
+    },
+    {
+      "label": "negative-physical-01",
+      "file": "NegativePhysicalSign.lean",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "as_expected": true,
+      "command_record": "commands/negative-physical-01/command.json"
+    },
+    {
+      "label": "complementary-01",
+      "file": "ComplementaryControls.lean",
+      "expected_exit": 0,
+      "actual_exit": 1,
+      "as_expected": false,
+      "command_record": "commands/complementary-01/command.json"
+    }
+  ],
+  "supplementary_repair": {
+    "expected_exit": 0,
+    "exit_code": 0,
+    "supersedes_failed_attempt": "commands/complementary-01/command.json",
+    "same_assertions": true,
+    "change": "Explicitly discharge Fin 1 index equality using Subsingleton.elim."
+  },
+  "closure_control_results": [
+    {
+      "name": "positive",
+      "exit_code": 0,
+      "root_closure": {
+        "status": "closed",
+        "exact_root_passed": true,
+        "declaration_closed": true,
+        "scope": "expected Lean type in the recorded environment; semantic review is separate"
+      },
+      "comparison": "matched",
+      "unexpected_axioms": [],
+      "manifest": "evidence/closure-positive-01/run-manifest.json",
+      "manifest_sha256": "7f0dadd921e685c147adf9eb0364e69b01fc1da49d02e10913733a0d624df83b"
+    },
+    {
+      "name": "hidden-axiom",
+      "exit_code": 1,
+      "root_closure": {
+        "status": "open",
+        "exact_root_passed": false,
+        "unproved_or_untrusted_leaves": [
+          "Round11Control.hidden"
+        ]
+      },
+      "comparison": "matched",
+      "unexpected_axioms": [
+        "Round11Control.hidden"
+      ],
+      "manifest": "evidence/closure-hidden-axiom-01/run-manifest.json",
+      "manifest_sha256": "9dd9c040ca65ed17e76cf05a10c738452d9d3f5b013d551e33e50e6e010ad2cd"
+    },
+    {
+      "name": "wrong-type",
+      "exit_code": 1,
+      "root_closure": {
+        "status": "target_mismatch",
+        "exact_root_passed": false,
+        "reason": "the expected type or frozen definition/environment identity does not match"
+      },
+      "comparison": "mismatched",
+      "unexpected_axioms": [],
+      "manifest": "evidence/closure-wrong-type-01/run-manifest.json",
+      "manifest_sha256": "4daa9dd4d910be776832e9fd8c1663e046ee6715a1c0c39a228bc466f5dbcfb7"
+    },
+    {
+      "name": "missing-target",
+      "exit_code": 1,
+      "root_closure": {
+        "status": "incomplete",
+        "exact_root_passed": false,
+        "reason": "execution or evidence is incomplete"
+      },
+      "comparison": null,
+      "unexpected_axioms": null,
+      "manifest": "evidence/closure-missing-target-01/run-manifest.json",
+      "manifest_sha256": "8f7ab578023fc58976044d740aae61fda72704fd7f74896da5b3f673f4e93f35"
+    }
+  ],
+  "actual_failed_commands": [
+    {
+      "label": "closure-hidden-axiom-01",
+      "exit_code": 1,
+      "record": "commands/closure-hidden-axiom-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "closure-missing-target-01",
+      "exit_code": 1,
+      "record": "commands/closure-missing-target-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "closure-wrong-type-01",
+      "exit_code": 1,
+      "record": "commands/closure-wrong-type-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "complementary-01",
+      "exit_code": 1,
+      "record": "commands/complementary-01/command.json",
+      "classification": "reviewer proof-development failure, resolved by complementary-02 with unchanged assertion"
+    },
+    {
+      "label": "negative-blocks-01",
+      "exit_code": 1,
+      "record": "commands/negative-blocks-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "negative-boundary-01",
+      "exit_code": 1,
+      "record": "commands/negative-boundary-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "negative-physical-01",
+      "exit_code": 1,
+      "record": "commands/negative-physical-01/command.json",
+      "classification": "intentional negative control"
+    },
+    {
+      "label": "negative-sign-01",
+      "exit_code": 1,
+      "record": "commands/negative-sign-01/command.json",
+      "classification": "intentional negative control"
+    }
+  ],
+  "unavailable_required_checks": [],
+  "derived_report_failure": {
+    "recorded_utc": "2026-09-25T18:02:45.488311+00:00",
+    "argv": [
+      "python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round11-20260926/formal-reviewer/stateless-a8e81148d09f/finalize_review.py"
+    ],
+    "cwd": "/mnt/f/tools/math-audit-round11-20260926/formal-reviewer/stateless-a8e81148d09f",
+    "exit_code": 1,
+    "source_sha256": "bbf37ab0169b96897c0570769e2a37cc1c1ae317cbee18e678d4f2023ac194d5",
+    "stdout": "",
+    "stderr_file": "finalization-failure-01.stderr.log",
+    "cause": "The report finalizer recognized only two generic missing-declaration diagnostics; the unchanged verifier actually emitted Exact root declaration not found: Round11Control.missing. All four preceding native compilation/import stages passed.",
+    "resolved_by": "finalize_review_v2.py",
+    "repair": "Match the actual exact-root missing-declaration diagnostic; no formal source, contract, native log or verifier result changed."
+  },
+  "evidence": {
+    "snapshot-integrity.json": "455b9076df74e8b1fbcb92fc28bdd8d3785b7ce5204bfc821bd38922d3e06ee5",
+    "snapshot-postcheck.json": "0fb16544c1e0a3350ff7cd5c22e3ad662657c0e436747967c7a73d7e9149a064",
+    "runtime-precheck.json": "db689d7fd839dc9c9682f798f344b9da88a77e322036b69f30e79aba5e16c9b4",
+    "runtime-postcheck.json": "53642a8052e08a84559fbfb43306221e419b17b62dd6d0156c4d71898b790fae",
+    "declaration-comparison.json": "fe8ffbf1aab0ffc7f0bf68be1967c249bf1f67b0787d8111ee9ef5c43c9cad9c",
+    "print-comparison.json": "18148c1a4abbeec7821ece5abc337aad0bbc468a79d0fffe4aabada5bdcbdae4",
+    "root-clause-comparison.json": "95667f459283607d213898a049b40d2615ffab2eae52e5a0d59c6a6565744b51",
+    "fresh-root-comparison.json": "de833a303e825570e42fe7f0d708c730bbc42756fdab2fc39aeef2dc3d4abff2",
+    "semantic-review.json": "a8a20ad21bbba56da653c0f9cdd5c483af4ae0c27ac853a9961d226496a5f4a6",
+    "nested-command-environments.json": "5e8881053f5ac12b2e2d7bf40d8a2f57ccb51bee61c7d325c6aa225cacd9601e",
+    "evidence/exact-root-fresh/run-manifest.json": "1988737294e5f98e59f3a67a32731b8555bf190caac9f568e6776b90ca14bb2f"
+  },
+  "limitations": [
+    "Trusted recorded Lean compiler and prebuilt imported artifacts; no independent second kernel or full dependency rebuild.",
+    "Native verifier per-child environments are reconstructed from the recorded parent environment and unchanged installed launcher.",
+    "Readback provenance is supplied snapshot evidence, not independent authentication of reviewer identity.",
+    "External mathematical/model/software bridges and full source reports were not re-audited outside the requested algebraic comparison."
+  ]
+}

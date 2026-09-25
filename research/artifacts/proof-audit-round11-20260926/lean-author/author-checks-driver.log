@@ -1,0 +1,244 @@
+export-01 0 46.216
+print-01 0 57.464
+Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))))
+                            L),
+                        And
+                          (@LT.lt.{0} Real Real.instLT
+                            (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                            (@Matrix.det.{0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                              (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                              (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real
+                              Real.commRing (AuditRound11.boundary_even L)))
+                          (@LT.lt.{0} Real Real.instLT
+                            (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                            (@Matrix.det.{0, 0} (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                              (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                              (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) Real
+                              Real.commRing (AuditRound11.boundary_odd L))))
+                      (And
+                        (∀ {n : Nat} (v : AuditRound11.PairIndex n → Real) (i : Fin n),
+                          And
+                            (@Eq.{1} Real
+                              (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                  (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                    (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                      (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                (AuditRound11.reversal n) v (@Sum.inl.{0, 0} (Fin n) (Fin n) i))
+                              (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i)))
+                            (And
+                              (@Eq.{1} Real
+                                (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                  (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                    (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                      (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                        (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                  (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                  (AuditRound11.reversal n) v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))
+                                (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)))
+                              (And
+                                (@Eq.{1} Real
+                                  (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                    (AuditRound11.parity_basis n) v (@Sum.inl.{0, 0} (Fin n) (Fin n) i))
+                                  (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+                                    (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)) (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))))
+                                (@Eq.{1} Real
+                                  (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                    (AuditRound11.parity_basis n) v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))
+                                  (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+                                    (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)) (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i)))))))
+                        (∀ (L : Nat)
+                          (h :
+                            @LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat (nat_lit 4) (instOfNatNat (nat_lit 4))) L),
+                          And
+                            (@LT.lt.{0} Real Real.instLT
+                              (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                              (@Matrix.det.{0, 0}
+                                (AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                (fun
+                                    (a b :
+                                      AuditRound11.PairIndex
+                                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) =>
+                                  @instDecidableEqSum.{0, 0}
+                                    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) a
+                                    b)
+                                (@instFintypeSum.{0, 0}
+                                  (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                                Real Real.commRing
+                                (AuditRound11.boundary_full (@Nat.cast.{0} Real Real.instNatCast L))))
+                            (∀
+                              (b :
+                                AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                  Real),
+                              @ExistsUnique.{1}
+                                (AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                  Real)
+                                fun
+                                  (a :
+                                    AuditRound11.PairIndex
+                                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                      Real) =>
+                                @Eq.{1}
+                                  (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                    Real)
+                                  (@Matrix.mulVec.{0, 0, 0}
+                                    (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0}
+                                      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                                    (AuditRound11.boundary_full (@Nat.cast.{0} Real Real.instNatCast L)) a)
+                                  b)))
+                      AuditRound11.boundary_positive
+                      (@And.intro
+                        (∀ {n : Nat} (v : AuditRound11.PairIndex n → Real) (i : Fin n),
+                          And
+                            (@Eq.{1} Real
+                              (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                  (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                    (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                      (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                (AuditRound11.reversal n) v (@Sum.inl.{0, 0} (Fin n) (Fin n) i))
+                              (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i)))
+                            (And
+                              (@Eq.{1} Real
+                                (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                  (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                    (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                      (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                        (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                  (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                  (AuditRound11.reversal n) v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))
+                                (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)))
+                              (And
+                                (@Eq.{1} Real
+                                  (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                    (AuditRound11.parity_basis n) v (@Sum.inl.{0, 0} (Fin n) (Fin n) i))
+                                  (@HAdd.hAdd.{0, 0, 0} Real Real Real (@instHAdd.{0} Real Real.instAdd)
+                                    (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)) (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))))
+                                (@Eq.{1} Real
+                                  (@Matrix.mulVec.{0, 0, 0} (AuditRound11.PairIndex n) (AuditRound11.PairIndex n) Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0} (Fin n) (Fin n) (Fin.fintype n) (Fin.fintype n))
+                                    (AuditRound11.parity_basis n) v (@Sum.inr.{0, 0} (Fin n) (Fin n) i))
+                                  (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub)
+                                    (v (@Sum.inl.{0, 0} (Fin n) (Fin n) i)) (v (@Sum.inr.{0, 0} (Fin n) (Fin n) i)))))))
+                        (∀ (L : Nat)
+                          (h :
+                            @LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat (nat_lit 4) (instOfNatNat (nat_lit 4))) L),
+                          And
+                            (@LT.lt.{0} Real Real.instLT
+                              (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                              (@Matrix.det.{0, 0}
+                                (AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                (fun
+                                    (a b :
+                                      AuditRound11.PairIndex
+                                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) =>
+                                  @instDecidableEqSum.{0, 0}
+                                    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (instDecidableEqFin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))) a
+                                    b)
+                                (@instFintypeSum.{0, 0}
+                                  (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                  (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                                Real Real.commRing
+                                (AuditRound11.boundary_full (@Nat.cast.{0} Real Real.instNatCast L))))
+                            (∀
+                              (b :
+                                AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                  Real),
+                              @ExistsUnique.{1}
+                                (AuditRound11.PairIndex (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                  Real)
+                                fun
+                                  (a :
+                                    AuditRound11.PairIndex
+                                        (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                      Real) =>
+                                @Eq.{1}
+                                  (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) →
+                                    Real)
+                                  (@Matrix.mulVec.{0, 0, 0}
+                                    (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    (AuditRound11.PairIndex
+                                      (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                    Real
+                                    (@NonUnitalNonAssocRing.toNonUnitalNonAssocSemiring.{0} Real
+                                      (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocRing.{0} Real
+                                        (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} Real
+                                          (@CommRing.toNonUnitalCommRing.{0} Real Real.commRing))))
+                                    (@instFintypeSum.{0, 0}
+                                      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))))
+                                      (Fin.fintype (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2)))))
+                                    (AuditRound11.boundary_full (@Nat.cast.{0} Real Real.instNatCast L)) a)
+                                  b))
+                        (@AuditRound11.paired_coordinate_actions) AuditRound11.boundary_correction)))))))))))
+'AuditRound11.root' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+positive-01 0 13.779
+negative-sign-01 1 14.483
+F:\tools\math-audit-round11-20260926\formal-author\project\NegativeDeterminantSign.lean:4:75: error: unsolved goals
+⊢ False
+negative-blocks-01 1 13.815
+F:\tools\math-audit-round11-20260926\formal-author\project\NegativeDiagonalBlocks.lean:16:83: error: unsolved goals
+J : PairedMatrix 1
+h : J * reversal 1 = -(reversal 1 * J)
+⊢ Matrix.det J = 0
+negative-boundary-01 1 13.268
+F:\tools\math-audit-round11-20260926\formal-author\project\NegativeBoundaryFormula.lean:4:67: error: unsolved goals
+⊢ False
+negative-physical-01 1 13.959
+F:\tools\math-audit-round11-20260926\formal-author\project\NegativePhysicalSign.lean:5:81: error: unsolved goals
+case inl
+val✝ : Fin 1
+⊢ (-if val✝ = 0 then 1 else 0) = 1
+
+case inr
+val✝ : Fin 1
+⊢ (-if val✝ = 0 then 1 else 0) = 1
+expected outcomes: 7 / 7

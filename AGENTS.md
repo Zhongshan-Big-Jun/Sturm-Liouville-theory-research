@@ -10,6 +10,14 @@
 
 # 项目维护
 
+## 2026-09-26 第十一轮审计修缮 (修订与验收完成)
+
+用户提供 "C:\Users\HuangZY\Downloads\sl_audit_round11", 指定 math-research-workflow 2.0.1, 后补充 "重新看一眼". 目录首次不可见, 再查已到位. 基线4f6b35c, 15077个tracked、134个原untracked和6项原dirty已记录到F:/tools/math-audit-round11-20260926/baseline.json. 报告及全阶余有限补证均作为待核实证据.
+
+本轮工作方法: 复现并修正残差Jacobian交叉分块和经过坐标转换的中心差分方向, 核查实际调用链; 单独推敲0<=s<7/2余有限闭包补证及临界迹门槛. 相关活动程序、附件隔离副本与必要局部Lean可用于本轮验证, 不运行旧Blueprint维护器或写canonical. 解析作者、形式化作者和最终全新fork_context:false检验者分离; 保存原生身份、真实回执及失败记录. 工具纠错使用已安装原版API, 保留旧证据/旧Lean和原未提交内容. 更新地图、理解、工具和续接后按origin先于fork推送. 具体对话与方法记录于state/AGENTS_SESSION_LOG.md.
+
+第十一轮完成: 两项Jacobian/差分错误已在真实模型中复现, 三个活动程序及四张卡修正. 独立解析补齐固定c>0、0<=s<7/2余有限分类, 含三个临界点和原族非基推论; 12页新PDF、A12/B9地图及理解同步. 六个独立无状态检验通过, 局部Lean14定理/12定义、37声明导出和13项根不等于完整分析形式化. 8张纠错/续审卡19项义务经原版API放行, 新增1卡与8条版本批注; 实际查询90可用/1原撤回, 历史失效记录保留. 原51份Lean、canonical、旧证据及134原untracked/6dirty按字节保护. 插件未改. 精确发布见本轮报告及外部DELIVERY, origin先于fork.
+
 ## 2026-09-25 第十轮审计修缮 (修订与验收完成)
 
 用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round10 进行修订", 指定 math-research-workflow 2.0.1. 基线5bb6b260, 13818个原tracked、134个原untracked和6项dirty已按字节记录至 F:/tools/math-audit-round10-20260925/baseline.json. 已用真实旧源码复现漏掉低频根, 并核对反射全索引赋值不是投影. 输入报告和附带程序按待核实证据处理.
@@ -133,6 +141,8 @@ R3-F1/F2 的一般递推、基扰动与 R3-F3 的商空间证明已核实修订,
 
 - n=1 SUP/INF: 历史 STRICT/CLOSED 范围为归一化盒类 1<=rho<=R, 全部 R>1. 2026-09-20 修正 C1 包络、O1 自伴化、归一化证书接口和 good-root 引理; 本轮局部验证不等于重跑整条证明或 Lean. 详见 [审计修订报告](reports/proof-audit-20260920/REPORT.md).
 - 原始稀疏多项式族: 第六轮四迹图核心补证给出固定c>0时0<=s<7/2稠密, 每个非仿射命名成员在s>=7/2出域. 仿射成员始终合格, 有限组合可以抵消边界残差. H2/H3主证明保留, 一般受约束或删除分类另计. 当前投影/有限矩条件见第六轮报告, 不沿用旧A-H整组STRICT.
+
+- 第十一轮余有限分类: 固定c>0、复幂域0<=s<7/2, 必要保留指标依次为{}, {0}, {0,1}, {0,1,4}, 在s=1/2,3/2,5/2等号点取较少迹的一侧. 删除p6仍稠密, 原族经逐项非零缩放与重排仍非Schauder/Riesz基. 新解析证明已独立审查, 一般无限删项与完整Lean另计; 见docs/SL_cofinite_all_orders.pdf.
 
 - M3: n=2 对称 INF large-R 有限非零内部 chart 内 STRICT 闭合, canonical 接收与独立复现已保存. 旧 staged D-side mass 的 odd/log 障碍已 SUPERSEDED.
 - KP-DET: sequence-26 的完整 0<c<=2/3 分支与 P20-P21 求积约化经审计 PASS. P1-P4 的 pivot/phase 部分已 canonical 接收; 后续 run 包与 canonical 分开登记. 本地主 run 的 Q9 仍 OPEN.
