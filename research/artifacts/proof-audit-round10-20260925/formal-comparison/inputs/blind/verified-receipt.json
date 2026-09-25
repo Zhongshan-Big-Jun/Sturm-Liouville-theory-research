@@ -1,0 +1,228 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "860efb04a2090bd7739ab0ad6e0c3ff259fa9ee0d3f8fde33d4192a3d66f01d1",
+  "reviewer_id": "01a0d74b-2c67-7a52-b0b8-f43dd64f1c31",
+  "bindings": {
+    "inputs/AuditRound10.lean": "655c50a819127828862baae58b775b61edcdd82fadc7f5d89aa011f319e5c60c",
+    "inputs/PrintAuditRound10.lean": "91132ca596e9380002b4d231f4aef8e087508d256cd0af1d8d060f5cfb2b500b",
+    "inputs/declarations-full.json": "0334984728ddcce2c6c9271a2ebb924a6dcda95db2b94b16339d878deede0cdf",
+    "inputs/environment.json": "1bea03a2be90ca70482610324feb4f5fc16ecb247e3a067615663b97b0b92d1a",
+    "inputs/lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+    "inputs/lakefile.toml": "4c4e489a74b3ee96738b8ef470de6d10c30e486b41633717e6a3c88fb363e4c3",
+    "inputs/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "inputs/print-and-axioms.log": "4dd013e3ad495cb84927f0c2726ad9b54187af39df1e42c3f60e5277f2e36994"
+  },
+  "claims": [
+    {
+      "id": "AuditRound10.J",
+      "reason": "Defines an ℝ-linear endomorphism of Fin(2n) → ℝ by reversing coordinates. Addition and scalar multiplication are pointwise, so reindexing preserves both. The definition includes n = 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.J._proof_1",
+      "reason": "For every natural n and two vectors, the exported type equates two definitionally identical functions representing addition followed by reversal. Both coordinate binders have domain Fin(2n).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.J._proof_2",
+      "reason": "For every natural n, real scalar and vector, the exported type equates definitionally identical functions representing scaling followed by reversal. There is no restriction on the scalar.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.J.eq_1",
+      "reason": "For each n, this is equality of linear-map structures: J n equals its defining constructor with the coordinate-reversal function and the two supplied linearity witnesses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_break",
+      "reason": "Defines the real linear map (id + J n)/2 for every natural n. The division is in ℝ, and the definition imposes no positivity assumption on n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_break.eq_1",
+      "reason": "The universally quantified equation reproduces the defining equality P_break n = (1/2) • (id + J n) at the level of linear maps.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_preserve",
+      "reason": "Defines the real linear map (id - J n)/2 for every natural n. Its two generated helper propositions concern scalar instances and the numeral 2, not additional hypotheses on n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_preserve._proof_1",
+      "reason": "For every n, this supplies SMulCommClass ℝ ℝ (Fin(2n) → ℝ). The two real scalar actions commute pointwise by commutativity of real multiplication.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_preserve._proof_2",
+      "reason": "This is the closed proposition Nat.AtLeastTwo (1 + 1). It has no n binder and does not assert or require n ≥ 2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.P_preserve.eq_1",
+      "reason": "For every n, the exported equation is exactly the defining linear-map equality P_preserve n = (1/2) • (id - J n).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.Vec",
+      "reason": "The abbreviation is exactly Fin(2n) → ℝ for arbitrary n ∈ ℕ. At n = 0 this is the space of functions on the empty index type; no nonzero-dimension assumption is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.bracket_unique_root",
+      "reason": "The hypotheses place [a,b] inside [0,∞), provide continuity there, and bracket kπ by non-strict endpoint inequalities. The intermediate value theorem supplies existence; strict monotonicity supplies uniqueness. Endpoint roots, a = b and k = 0 are covered.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.break_eigen",
+      "reason": "Coordinate reversal is involutive, so J((v + Jv)/2) = (v + Jv)/2. This is an equality for every vector, including zero, without a nonzero-eigenvector assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.enumeration_from_brackets",
+      "reason": "Bracketing assumptions are quantified over every natural m. Applying bracket_unique_root for each m and classical choice yields a sequence; strict index order yields strict root order. The conclusion concerns the supplied index range and does not assert surjectivity onto all phase levels.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.indexed_roots_strict_mono",
+      "reason": "For arbitrary natural a < b, strict monotonicity of index and the assumed phase-root identities imply roots a < roots b through phase_index_order. Existence of the roots is supplied by the universally quantified hypothesis hr.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.linear_interfaces",
+      "reason": "All six equalities follow from the three declared real linear maps. The binders include every natural n, both vectors and every real scalar; n = 0 and scalar zero require no exceptions.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.phase_index_order",
+      "reason": "Both root hypotheses ensure nonnegative arguments. Strict monotonicity on that domain and π > 0 give both directions of x < y iff j < k. Equal indices and index zero are included.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.phase_root",
+      "reason": "For an arbitrary total function Φ : ℝ → ℝ, natural k and real x, the predicate is exactly 0 ≤ x and Φ(x) = kπ. It contains no implicit continuity, monotonicity or existence assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.phase_root_unique",
+      "reason": "The two roots lie in [0,∞) and have equal Φ-values. Injectivity of a strictly increasing function on that set gives x = y. Continuity is unnecessary and is not assumed.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.preserve_eigen",
+      "reason": "Involutivity gives J((v - Jv)/2) = -(v - Jv)/2 for every vector. The statement does not require the projected vector to be nonzero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.preserved_perturbation_iff",
+      "reason": "The explicit hypothesis reflect x = x reduces reflect(x + v) = x + v to x - Jv = x + v, equivalently Jv = -v. The fixed-point hypothesis is retained.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_annihilation",
+      "reason": "Both compositions reduce to (id - J²)/4 and therefore vanish. The zero on the right is the zero vector in Vec n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_coordinates",
+      "reason": "Evaluation of the two linear-map definitions gives the stated half-difference and half-sum. The coordinate binder i : Fin(2n) makes the coordinate assertion vacuous when n = 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_decomposition",
+      "reason": "Adding (v - Jv)/2 and (v + Jv)/2 gives v pointwise. This holds for every n and vector, including the empty-dimensional case.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_fixed_iff",
+      "reason": "The fixed-point equations for the half-difference and half-sum are respectively equivalent to Jv = -v and Jv = v. Both directions hold over ℝ, including v = 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_idempotence",
+      "reason": "Expanding each squared projection and using J² = id gives the corresponding projection again. Both identities have the same universally quantified n and vector.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.projection_orthogonal",
+      "reason": "Reversal preserves the dot product and acts with opposite signs on the two projected vectors. Their dot product therefore equals its negative and is zero over ℝ. The two input vectors are independently quantified.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reflect",
+      "reason": "Defines the affine map x ↦ 1 - Jx coordinatewise on all of Vec n. There is no coordinate-order or interval-membership restriction on x.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reflect.eq_1",
+      "reason": "For implicit natural n, vector x and coordinate i : Fin(2n), this gives exactly reflect x i = 1 - x(i.rev).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reflection_at_fixed",
+      "reason": "Using the explicit fixed-point hypothesis, the perturbation formula and the two sign identities yields the stated equality for arbitrary x, u, v and real t. No smallness or nonzero condition on t is needed.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reflection_involution",
+      "reason": "Twice reversing the coordinate returns it, and 1 - (1 - x i) = x i. The resulting vector equality includes n = 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reflection_perturbation",
+      "reason": "For all x, v and real t, coordinate evaluation gives 1 - (x(i.rev) + t v(i.rev)) = reflect x i - t(Jv)i. No fixed-point hypothesis occurs in this declaration.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reversal_coordinate",
+      "reason": "The Fin index has natural value 2n - 1 - i.val. Membership of i in Fin(2n) supplies the required bound despite truncated natural subtraction. When n = 0 no coordinate exists.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reversal_coordinate._proof_1",
+      "reason": "The exported type is a contradiction from denying 2n - 1 - i.val < 2n. Since i.val < 2n, the dimension is positive and the claimed reversed index is in range.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reversal_coordinate._proof_1_1",
+      "reason": "The exported type is a contradiction from denying 2n - (i.val + 1) = (2n - 1) - i.val. This is a valid identity for truncated natural subtraction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reversal_dot",
+      "reason": "The simultaneous reversal reindexes the finite sum of coordinate products by a permutation. The empty sum at n = 0 is also preserved.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.reversal_involution",
+      "reason": "Applying the reversal permutation twice gives the original coordinate, hence J(Jv) = v for every n and vector.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound10.root",
+      "reason": "Its explicit type has exactly 21 conjuncts. Each was checked to match the complete explicit type of the corresponding component theorem after whitespace normalization. All local hypotheses and quantifiers remain inside their respective conjuncts; root has no outer parameters.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/AuditRound10.lean",
+    "inputs/PrintAuditRound10.lean",
+    "inputs/declarations-full.json",
+    "inputs/environment.json",
+    "inputs/lake-manifest.json",
+    "inputs/lakefile.toml",
+    "inputs/lean-toolchain",
+    "inputs/print-and-axioms.log"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/860efb04a2090bd7739ab0ad6e0c3ff259fa9ee0d3f8fde33d4192a3d66f01d1-01a0d74b-2c67-7a52-b0b8-f43dd64f1c31",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval is restricted to the requested formal readback and static mathematical checks. No comparison with an author's intended theorem was made, and this is not a claim of complete formalization.",
+    "No fresh Lean or Lake execution was performed. The compiler, imported libraries and compiled environment referenced by the metadata are outside the listed snapshots and were not inspected.",
+    "The supplied print log contains elisions, including in the printed root type and proof terms. Six type_readable fields also contain elisions. All 38 type_explicit fields and all six definition value_explicit fields are present without elisions and were used for the readback; the JSON export contains no theorem proof bodies.",
+    "The supplied log reports only propext, Classical.choice and Quot.sound for its 28 printed declarations. Ten generated declarations have no separate axiom report. These reports were inspected as supplied evidence, not independently regenerated or treated as a complete fresh dependency certification.",
+    "All eight snapshot hashes matched the packet. Environment package entries and recorded toolchain/manifest hashes agree with their snapshots, but the external executable hash and dependency contents were not independently verified."
+  ]
+}

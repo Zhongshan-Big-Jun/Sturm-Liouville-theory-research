@@ -1,5 +1,12 @@
 # lean-proof
 
+## 2026-09-25 第十轮局部形式化
+
+新增 [AuditRound10.lean](SL/AuditRound10.lean)：真实 Fin(2*n) 坐标反转、互补正交投影、仿射反射扰动，以及非负半轴上显式连续/严格单调/逐项括区前提下的唯一相位根与指标排序。22个具名定理、6个定义/缩写，完整导出38项声明（含辅助项），21项显式合取根。Windows PE Lean4.31.0的固定快照精确根检查、三个错误目标及其否定正证明、全声明盲读和另一个新会话的实际重编译/语义检验分别留证。根公理仅propext、Classical.choice、Quot.sound。见[第十轮报告](../reports/proof-audit-round10-20260925/REPORT.md)。
+
+相位条件仍是前提；指标可包含0且可跳号，逐项括区不可省略。未形式化Sturm ODE、相位提升、谱指标识别、比较界、浮点/区间误差、Python实现、物理接口可行性或全局极值。保留原50份SL源码及原环境字节，未运行全工程Lake build。首次根检查因开发目录变化被判stale，原记录不改写。
+
+
 Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
 每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
 

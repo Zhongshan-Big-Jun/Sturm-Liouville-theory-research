@@ -1,5 +1,7 @@
 # 研究导航
 
+第十轮当前入口: [谱序号与反射种子修订](../reports/proof-audit-round10-20260925/REPORT.md). 共享诊断采用提升相位定位; 旧纯扇区解释撤回, 历史数值须按重算范围读取. 解析结论与程序证据分别审查.
+
 文献吸收入口（2026-09-23）：[来源/工具导航](../literature/absorption-20260923/README.md)、[P0–P4及精确余项](../literature/absorption-20260923/tasks/P0-P4.md)、[检验报告](../reports/literature-absorption-20260923/REPORT.md)。s=3余有限三迹闭包补充已有s=2结果；原完整族窗口仍为0≤s<7/2。Legendre Riesz结论针对新相容替代系，界面二阶公式针对固定块值且不碰撞的局部路径。
 
 第九轮当前入口: [二阶变分解析修复](../research/artifacts/proof-audit-round9-20260923/analytic-repair.md)、[固定 n 候选谱证明](SL_fixed_n_supremum.tex)和[修订报告](../reports/proof-audit-round9-20260923/REPORT.md). 真正切空间由块积分定义; 归一化导数、有限 Green 核与移动界面加速度分别处理. 物理函数反射有 y/(pi−y) 因子, 归一化后才严格对称. 平衡候选 c_n 的单调性和极限已给出解析证明; 完整全局极值问题仍开放.

@@ -1,0 +1,3945 @@
+{
+  "Role": "implementation_author_self_checks_not_independent_acceptance",
+  "RunUTC": "2026-09-25T06:17:26.521051+00:00",
+  "Python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "NumPy": "2.5.2",
+  "AuthorFileSha256": {
+    "reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+    "test_reflection_seeds.py": "ad51f9924ce702d9c14ee55d75dd441e2823c943d14791fb61f62522921513f3"
+  },
+  "ReconSource": {
+    "Path": "/mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py",
+    "Sha256": "212f1137e230b2ab1b95652cdde312e7d70c25314a2da76a6211fefa8f62b20e",
+    "MethodSha256": {
+      "z_to_widths": "f097ff7b5234d37a040bc651fe8f065a6daf161501d5d2044140b796b9caaf93",
+      "widths_to_z": "cf649f73ed92e0e16abe1ab66dab4c722df23023300f6748bee5cc02053cb542"
+    },
+    "MethodSource": {
+      "z_to_widths": "def z_to_widths(self, z):\n        \"\"\"softmax parameterization: strictly feasible widths, sum = 1.\"\"\"\n        z = np.asarray(z, dtype=float)\n        ez = np.exp(z - np.max(z))\n        sm = ez / np.sum(ez)\n        return (1.0 - self.nb * 1e-7) * sm + 1e-7",
+      "widths_to_z": "def widths_to_z(self, widths):\n        \"\"\"inverse softmax (up to shift): z_i = log(width_i - 1e-7).\"\"\"\n        w = np.asarray(widths, dtype=float)\n        w = np.clip(w, 2e-7, 1.0 - 2e-7)\n        w = w / np.sum(w)\n        return np.log(w - 1e-7)"
+    },
+    "ExecutionScope": "Only the two AST-selected conversion methods; no module import, main or spectral functions"
+  },
+  "TestsRun": 21,
+  "Success": true,
+  "Failures": [],
+  "Cases": {
+    "softmax_preserve_1e-05": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 1e-05,
+      "UsedStep": 1e-05,
+      "ActualStep": 1.0000000000062656e-05,
+      "Edges": [
+        0.09999329179606747,
+        0.29999776393202254,
+        0.7000022360679775,
+        0.9000067082039326
+      ],
+      "Widths": [
+        0.09999329179606747,
+        0.20000447213595507,
+        0.40000447213595497,
+        0.2000044721359551,
+        0.09999329179606753
+      ],
+      "Z": [
+        -2.302653177351058,
+        -1.6094160519932665,
+        -0.9162798015940035,
+        -1.6094160519932663,
+        -2.3026531773510577
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 1e-05,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 1e-05,
+            "TargetEdges": [
+              0.0999932917960675,
+              0.2999977639320225,
+              0.7000022360679774,
+              0.9000067082039325
+            ],
+            "TargetWidths": [
+              0.0999932917960675,
+              0.20000447213595499,
+              0.4000044721359549,
+              0.20000447213595507,
+              0.09999329179606753
+            ],
+            "Z": [
+              -2.302653177351058,
+              -1.6094160519932665,
+              -0.9162798015940035,
+              -1.6094160519932663,
+              -2.3026531773510577
+            ],
+            "Widths": [
+              0.09999329179606747,
+              0.20000447213595507,
+              0.40000447213595497,
+              0.2000044721359551,
+              0.09999329179606753
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.09999329179606747,
+                0.20000447213595507,
+                0.40000447213595497,
+                0.2000044721359551,
+                0.09999329179606753
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09999329179606747,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.09999329179606747,
+                0.29999776393202254,
+                0.7000022360679775,
+                0.9000067082039326
+              ],
+              "InterfaceWidths": [
+                0.09999329179606747,
+                0.20000447213595507,
+                0.40000447213595497,
+                0.20000447213595507,
+                0.09999329179606742
+              ],
+              "MinimumInterfaceWidth": 0.09999329179606742,
+              "Displacement": [
+                -6.708203932531687e-06,
+                -2.2360679774457992e-06,
+                2.2360679775568215e-06,
+                6.708203932559442e-06
+              ],
+              "ActualMaxDisplacement": 6.708203932559442e-06,
+              "ActualLength": 1.0000000000062658e-05,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.0,
+              "SectorResidual": 5.551115123125783e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 8.27511384408347e-12,
+              "ActualStep": 1.0000000000062656e-05,
+              "ExpectedStep": 1e-05,
+              "DirectionResidual": 6.800065203852249e-17,
+              "DirectionRelativeResidual": 1.0136938698072283e-11,
+              "ExpectedDisplacementResidual": 6.007242365222223e-17,
+              "ExpectedRelativeResidual": 8.95506819055548e-12
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 1e-05,
+        "ActualStep": 1.0000000000062656e-05,
+        "TargetEdges": [
+          0.0999932917960675,
+          0.2999977639320225,
+          0.7000022360679774,
+          0.9000067082039325
+        ],
+        "TargetWidths": [
+          0.0999932917960675,
+          0.20000447213595499,
+          0.4000044721359549,
+          0.20000447213595507,
+          0.09999329179606753
+        ],
+        "FinalWidths": [
+          0.09999329179606747,
+          0.20000447213595507,
+          0.40000447213595497,
+          0.2000044721359551,
+          0.09999329179606753
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.09999329179606747,
+            0.20000447213595507,
+            0.40000447213595497,
+            0.2000044721359551,
+            0.09999329179606753
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09999329179606747,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.09999329179606747,
+            0.29999776393202254,
+            0.7000022360679775,
+            0.9000067082039326
+          ],
+          "InterfaceWidths": [
+            0.09999329179606747,
+            0.20000447213595507,
+            0.40000447213595497,
+            0.20000447213595507,
+            0.09999329179606742
+          ],
+          "MinimumInterfaceWidth": 0.09999329179606742,
+          "Displacement": [
+            -6.708203932531687e-06,
+            -2.2360679774457992e-06,
+            2.2360679775568215e-06,
+            6.708203932559442e-06
+          ],
+          "ActualMaxDisplacement": 6.708203932559442e-06,
+          "ActualLength": 1.0000000000062658e-05,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.0,
+          "SectorResidual": 5.551115123125783e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 8.27511384408347e-12,
+          "ActualStep": 1.0000000000062656e-05,
+          "ExpectedStep": 1e-05,
+          "DirectionResidual": 6.800065203852249e-17,
+          "DirectionRelativeResidual": 1.0136938698072283e-11,
+          "ExpectedDisplacementResidual": 6.007242365222223e-17,
+          "ExpectedRelativeResidual": 8.95506819055548e-12
+        }
+      }
+    },
+    "softmax_preserve_0.001": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 0.001,
+      "UsedStep": 0.001,
+      "ActualStep": 0.0009999999999999259,
+      "Edges": [
+        0.09932917960675007,
+        0.29977639320224997,
+        0.7002236067977499,
+        0.9006708203932499
+      ],
+      "Widths": [
+        0.09932917960675007,
+        0.2004472135954999,
+        0.40044721359549995,
+        0.20044721359549997,
+        0.09932917960675003
+      ],
+      "Z": [
+        -2.3093169048126008,
+        -1.6072048396206444,
+        -0.9151735721407828,
+        -1.6072048396206442,
+        -2.309316904812601
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 0.001,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.001,
+            "TargetEdges": [
+              0.09932917960675007,
+              0.29977639320225,
+              0.70022360679775,
+              0.90067082039325
+            ],
+            "TargetWidths": [
+              0.09932917960675007,
+              0.20044721359549994,
+              0.40044721359549995,
+              0.2004472135955,
+              0.09932917960675003
+            ],
+            "Z": [
+              -2.3093169048126008,
+              -1.6072048396206444,
+              -0.9151735721407828,
+              -1.6072048396206442,
+              -2.309316904812601
+            ],
+            "Widths": [
+              0.09932917960675007,
+              0.2004472135954999,
+              0.40044721359549995,
+              0.20044721359549997,
+              0.09932917960675003
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.09932917960675007,
+                0.2004472135954999,
+                0.40044721359549995,
+                0.20044721359549997,
+                0.09932917960675003
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09932917960675003,
+              "SumResidual": 1.1102230246251565e-16,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.09932917960675007,
+                0.29977639320224997,
+                0.7002236067977499,
+                0.9006708203932499
+              ],
+              "InterfaceWidths": [
+                0.09932917960675007,
+                0.20044721359549988,
+                0.4004472135954999,
+                0.2004472135955,
+                0.09932917960675014
+              ],
+              "MinimumInterfaceWidth": 0.09932917960675007,
+              "Displacement": [
+                -0.0006708203932499351,
+                -0.00022360679775002001,
+                0.000223606797749909,
+                0.000670820393249838
+              ],
+              "ActualMaxDisplacement": 0.0006708203932499351,
+              "ActualLength": 0.0009999999999999259,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 2.220446049250313e-16,
+              "SectorResidual": 5.551115123125783e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 8.275113844157598e-14,
+              "ActualStep": 0.0009999999999999259,
+              "ExpectedStep": 0.001,
+              "DirectionResidual": 5.762534546760456e-17,
+              "DirectionRelativeResidual": 8.59027931283157e-14,
+              "ExpectedDisplacementResidual": 9.898765834792655e-17,
+              "ExpectedRelativeResidual": 1.4756208866632592e-13
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.001,
+        "ActualStep": 0.0009999999999999259,
+        "TargetEdges": [
+          0.09932917960675007,
+          0.29977639320225,
+          0.70022360679775,
+          0.90067082039325
+        ],
+        "TargetWidths": [
+          0.09932917960675007,
+          0.20044721359549994,
+          0.40044721359549995,
+          0.2004472135955,
+          0.09932917960675003
+        ],
+        "FinalWidths": [
+          0.09932917960675007,
+          0.2004472135954999,
+          0.40044721359549995,
+          0.20044721359549997,
+          0.09932917960675003
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.09932917960675007,
+            0.2004472135954999,
+            0.40044721359549995,
+            0.20044721359549997,
+            0.09932917960675003
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09932917960675003,
+          "SumResidual": 1.1102230246251565e-16,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.09932917960675007,
+            0.29977639320224997,
+            0.7002236067977499,
+            0.9006708203932499
+          ],
+          "InterfaceWidths": [
+            0.09932917960675007,
+            0.20044721359549988,
+            0.4004472135954999,
+            0.2004472135955,
+            0.09932917960675014
+          ],
+          "MinimumInterfaceWidth": 0.09932917960675007,
+          "Displacement": [
+            -0.0006708203932499351,
+            -0.00022360679775002001,
+            0.000223606797749909,
+            0.000670820393249838
+          ],
+          "ActualMaxDisplacement": 0.0006708203932499351,
+          "ActualLength": 0.0009999999999999259,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 2.220446049250313e-16,
+          "SectorResidual": 5.551115123125783e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 8.275113844157598e-14,
+          "ActualStep": 0.0009999999999999259,
+          "ExpectedStep": 0.001,
+          "DirectionResidual": 5.762534546760456e-17,
+          "DirectionRelativeResidual": 8.59027931283157e-14,
+          "ExpectedDisplacementResidual": 9.898765834792655e-17,
+          "ExpectedRelativeResidual": 1.4756208866632592e-13
+        }
+      }
+    },
+    "softmax_preserve_0.1": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 0.1,
+      "UsedStep": 0.1,
+      "ActualStep": 0.09999999999999998,
+      "Edges": [
+        0.03291796067500631,
+        0.2776393202250021,
+        0.7223606797749978,
+        0.9670820393249937
+      ],
+      "Widths": [
+        0.03291796067500631,
+        0.2447213595499958,
+        0.44472135954999575,
+        0.24472135954999585,
+        0.03291796067500629
+      ],
+      "Z": [
+        -3.4137398908558114,
+        -1.407635432250169,
+        -0.8103075761094268,
+        -1.4076354322501687,
+        -3.413739890855812
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 0.1,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.1,
+            "TargetEdges": [
+              0.03291796067500631,
+              0.2776393202250021,
+              0.7223606797749978,
+              0.9670820393249937
+            ],
+            "TargetWidths": [
+              0.03291796067500631,
+              0.2447213595499958,
+              0.44472135954999575,
+              0.24472135954999585,
+              0.0329179606750063
+            ],
+            "Z": [
+              -3.4137398908558114,
+              -1.407635432250169,
+              -0.8103075761094268,
+              -1.4076354322501687,
+              -3.413739890855812
+            ],
+            "Widths": [
+              0.03291796067500631,
+              0.2447213595499958,
+              0.44472135954999575,
+              0.24472135954999585,
+              0.03291796067500629
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.03291796067500631,
+                0.2447213595499958,
+                0.44472135954999575,
+                0.24472135954999585,
+                0.03291796067500629
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.03291796067500629,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.03291796067500631,
+                0.2776393202250021,
+                0.7223606797749978,
+                0.9670820393249937
+              ],
+              "InterfaceWidths": [
+                0.03291796067500631,
+                0.2447213595499958,
+                0.44472135954999575,
+                0.24472135954999585,
+                0.0329179606750063
+              ],
+              "MinimumInterfaceWidth": 0.0329179606750063,
+              "Displacement": [
+                -0.0670820393249937,
+                -0.022360679774997894,
+                0.022360679774997894,
+                0.06708203932499368
+              ],
+              "ActualMaxDisplacement": 0.0670820393249937,
+              "ActualLength": 0.09999999999999999,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.0,
+              "SectorResidual": 6.938893903907228e-18,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 1.034389230519697e-16,
+              "ActualStep": 0.09999999999999998,
+              "ExpectedStep": 0.1,
+              "DirectionResidual": 1.3877787807814457e-17,
+              "DirectionRelativeResidual": 2.068778461039394e-16,
+              "ExpectedDisplacementResidual": 1.3877787807814457e-17,
+              "ExpectedRelativeResidual": 2.068778461039394e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.1,
+        "ActualStep": 0.09999999999999998,
+        "TargetEdges": [
+          0.03291796067500631,
+          0.2776393202250021,
+          0.7223606797749978,
+          0.9670820393249937
+        ],
+        "TargetWidths": [
+          0.03291796067500631,
+          0.2447213595499958,
+          0.44472135954999575,
+          0.24472135954999585,
+          0.0329179606750063
+        ],
+        "FinalWidths": [
+          0.03291796067500631,
+          0.2447213595499958,
+          0.44472135954999575,
+          0.24472135954999585,
+          0.03291796067500629
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.03291796067500631,
+            0.2447213595499958,
+            0.44472135954999575,
+            0.24472135954999585,
+            0.03291796067500629
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.03291796067500629,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.03291796067500631,
+            0.2776393202250021,
+            0.7223606797749978,
+            0.9670820393249937
+          ],
+          "InterfaceWidths": [
+            0.03291796067500631,
+            0.2447213595499958,
+            0.44472135954999575,
+            0.24472135954999585,
+            0.0329179606750063
+          ],
+          "MinimumInterfaceWidth": 0.0329179606750063,
+          "Displacement": [
+            -0.0670820393249937,
+            -0.022360679774997894,
+            0.022360679774997894,
+            0.06708203932499368
+          ],
+          "ActualMaxDisplacement": 0.0670820393249937,
+          "ActualLength": 0.09999999999999999,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.0,
+          "SectorResidual": 6.938893903907228e-18,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 1.034389230519697e-16,
+          "ActualStep": 0.09999999999999998,
+          "ExpectedStep": 0.1,
+          "DirectionResidual": 1.3877787807814457e-17,
+          "DirectionRelativeResidual": 2.068778461039394e-16,
+          "ExpectedDisplacementResidual": 1.3877787807814457e-17,
+          "ExpectedRelativeResidual": 2.068778461039394e-16
+        }
+      }
+    },
+    "softmax_preserve_1.0": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 1.0,
+      "UsedStep": 0.125,
+      "ActualStep": 0.12499999999999999,
+      "Edges": [
+        0.016147450843757898,
+        0.2720491502812526,
+        0.7279508497187474,
+        0.9838525491562421
+      ],
+      "Widths": [
+        0.016147450843757898,
+        0.2559016994374947,
+        0.45590169943749476,
+        0.25590169943749475,
+        0.01614745084375791
+      ],
+      "Z": [
+        -4.125999277210828,
+        -1.3629622855917114,
+        -0.785478283461164,
+        -1.3629622855917112,
+        -4.125999277210827
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 1.0,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 1.0,
+            "TargetEdges": [
+              -0.5708203932499369,
+              0.07639320225002103,
+              0.9236067977499789,
+              1.570820393249937
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 1,
+            "Step": 0.5,
+            "TargetEdges": [
+              -0.23541019662496845,
+              0.18819660112501052,
+              0.8118033988749894,
+              1.2354101966249684
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 2,
+            "Step": 0.25,
+            "TargetEdges": [
+              -0.06770509831248422,
+              0.24409830056250525,
+              0.7559016994374947,
+              1.0677050983124843
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 3,
+            "Step": 0.125,
+            "TargetEdges": [
+              0.01614745084375789,
+              0.2720491502812526,
+              0.7279508497187474,
+              0.9838525491562421
+            ],
+            "TargetWidths": [
+              0.01614745084375789,
+              0.2559016994374947,
+              0.45590169943749476,
+              0.25590169943749475,
+              0.016147450843757905
+            ],
+            "Z": [
+              -4.125999277210828,
+              -1.3629622855917114,
+              -0.785478283461164,
+              -1.3629622855917112,
+              -4.125999277210827
+            ],
+            "Widths": [
+              0.016147450843757898,
+              0.2559016994374947,
+              0.45590169943749476,
+              0.25590169943749475,
+              0.01614745084375791
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.016147450843757898,
+                0.2559016994374947,
+                0.45590169943749476,
+                0.25590169943749475,
+                0.01614745084375791
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.016147450843757898,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.016147450843757898,
+                0.2720491502812526,
+                0.7279508497187474,
+                0.9838525491562421
+              ],
+              "InterfaceWidths": [
+                0.016147450843757898,
+                0.2559016994374947,
+                0.45590169943749476,
+                0.25590169943749475,
+                0.016147450843757905
+              ],
+              "MinimumInterfaceWidth": 0.016147450843757898,
+              "Displacement": [
+                -0.0838525491562421,
+                -0.027950849718747395,
+                0.027950849718747395,
+                0.08385254915624207
+              ],
+              "ActualMaxDisplacement": 0.0838525491562421,
+              "ActualLength": 0.12499999999999997,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.0,
+              "SectorResidual": 1.3877787807814457e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 1.6550227688315156e-16,
+              "ActualStep": 0.12499999999999999,
+              "ExpectedStep": 0.125,
+              "DirectionResidual": 2.7755575615628914e-17,
+              "DirectionRelativeResidual": 3.310045537663031e-16,
+              "ExpectedDisplacementResidual": 4.163336342344337e-17,
+              "ExpectedRelativeResidual": 4.965068306494547e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 3,
+        "UsedStep": 0.125,
+        "ActualStep": 0.12499999999999999,
+        "TargetEdges": [
+          0.01614745084375789,
+          0.2720491502812526,
+          0.7279508497187474,
+          0.9838525491562421
+        ],
+        "TargetWidths": [
+          0.01614745084375789,
+          0.2559016994374947,
+          0.45590169943749476,
+          0.25590169943749475,
+          0.016147450843757905
+        ],
+        "FinalWidths": [
+          0.016147450843757898,
+          0.2559016994374947,
+          0.45590169943749476,
+          0.25590169943749475,
+          0.01614745084375791
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.016147450843757898,
+            0.2559016994374947,
+            0.45590169943749476,
+            0.25590169943749475,
+            0.01614745084375791
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.016147450843757898,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.016147450843757898,
+            0.2720491502812526,
+            0.7279508497187474,
+            0.9838525491562421
+          ],
+          "InterfaceWidths": [
+            0.016147450843757898,
+            0.2559016994374947,
+            0.45590169943749476,
+            0.25590169943749475,
+            0.016147450843757905
+          ],
+          "MinimumInterfaceWidth": 0.016147450843757898,
+          "Displacement": [
+            -0.0838525491562421,
+            -0.027950849718747395,
+            0.027950849718747395,
+            0.08385254915624207
+          ],
+          "ActualMaxDisplacement": 0.0838525491562421,
+          "ActualLength": 0.12499999999999997,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.0,
+          "SectorResidual": 1.3877787807814457e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 1.6550227688315156e-16,
+          "ActualStep": 0.12499999999999999,
+          "ExpectedStep": 0.125,
+          "DirectionResidual": 2.7755575615628914e-17,
+          "DirectionRelativeResidual": 3.310045537663031e-16,
+          "ExpectedDisplacementResidual": 4.163336342344337e-17,
+          "ExpectedRelativeResidual": 4.965068306494547e-16
+        }
+      }
+    },
+    "softmax_break_1e-05": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 1e-05,
+      "UsedStep": 1e-05,
+      "ActualStep": 1.0000000000030818e-05,
+      "Edges": [
+        0.10000500000000002,
+        0.30000499999999997,
+        0.700005,
+        0.900005
+      ],
+      "Widths": [
+        0.10000500000000002,
+        0.19999999999999996,
+        0.4000000000000001,
+        0.20000000000000007,
+        0.09999499999999995
+      ],
+      "Z": [
+        -2.3025360941945063,
+        -1.6094384124342256,
+        -0.9162909818741862,
+        -1.6094384124342251,
+        -2.3026360942945905
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 1e-05,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 1e-05,
+            "TargetEdges": [
+              0.10000500000000001,
+              0.30000499999999997,
+              0.700005,
+              0.900005
+            ],
+            "TargetWidths": [
+              0.10000500000000001,
+              0.19999999999999996,
+              0.4,
+              0.20000000000000007,
+              0.09999499999999995
+            ],
+            "Z": [
+              -2.3025360941945063,
+              -1.6094384124342256,
+              -0.9162909818741862,
+              -1.6094384124342251,
+              -2.3026360942945905
+            ],
+            "Widths": [
+              0.10000500000000002,
+              0.19999999999999996,
+              0.4000000000000001,
+              0.20000000000000007,
+              0.09999499999999995
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.10000500000000002,
+                0.19999999999999996,
+                0.4000000000000001,
+                0.20000000000000007,
+                0.09999499999999995
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09999499999999995,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.10000500000000002,
+                0.30000499999999997,
+                0.700005,
+                0.900005
+              ],
+              "InterfaceWidths": [
+                0.10000500000000002,
+                0.19999999999999996,
+                0.4,
+                0.20000000000000007,
+                0.09999499999999995
+              ],
+              "MinimumInterfaceWidth": 0.09999499999999995,
+              "Displacement": [
+                5.000000000018878e-06,
+                4.999999999977245e-06,
+                5.000000000032756e-06,
+                5.000000000032756e-06
+              ],
+              "ActualMaxDisplacement": 5.000000000032756e-06,
+              "ActualLength": 1.0000000000030818e-05,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 1.0000000000065512e-05,
+              "SectorResidual": 2.7755575615628914e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 5.551115123089416e-12,
+              "ActualStep": 1.0000000000030818e-05,
+              "ExpectedStep": 1e-05,
+              "DirectionResidual": 3.8163916471489756e-17,
+              "DirectionRelativeResidual": 7.632783294247947e-12,
+              "ExpectedDisplacementResidual": 3.275561110327105e-17,
+              "ExpectedRelativeResidual": 6.551122220611292e-12
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 1e-05,
+        "ActualStep": 1.0000000000030818e-05,
+        "TargetEdges": [
+          0.10000500000000001,
+          0.30000499999999997,
+          0.700005,
+          0.900005
+        ],
+        "TargetWidths": [
+          0.10000500000000001,
+          0.19999999999999996,
+          0.4,
+          0.20000000000000007,
+          0.09999499999999995
+        ],
+        "FinalWidths": [
+          0.10000500000000002,
+          0.19999999999999996,
+          0.4000000000000001,
+          0.20000000000000007,
+          0.09999499999999995
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.10000500000000002,
+            0.19999999999999996,
+            0.4000000000000001,
+            0.20000000000000007,
+            0.09999499999999995
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09999499999999995,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.10000500000000002,
+            0.30000499999999997,
+            0.700005,
+            0.900005
+          ],
+          "InterfaceWidths": [
+            0.10000500000000002,
+            0.19999999999999996,
+            0.4,
+            0.20000000000000007,
+            0.09999499999999995
+          ],
+          "MinimumInterfaceWidth": 0.09999499999999995,
+          "Displacement": [
+            5.000000000018878e-06,
+            4.999999999977245e-06,
+            5.000000000032756e-06,
+            5.000000000032756e-06
+          ],
+          "ActualMaxDisplacement": 5.000000000032756e-06,
+          "ActualLength": 1.0000000000030818e-05,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 1.0000000000065512e-05,
+          "SectorResidual": 2.7755575615628914e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 5.551115123089416e-12,
+          "ActualStep": 1.0000000000030818e-05,
+          "ExpectedStep": 1e-05,
+          "DirectionResidual": 3.8163916471489756e-17,
+          "DirectionRelativeResidual": 7.632783294247947e-12,
+          "ExpectedDisplacementResidual": 3.275561110327105e-17,
+          "ExpectedRelativeResidual": 6.551122220611292e-12
+        }
+      }
+    },
+    "softmax_break_0.001": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 0.001,
+      "UsedStep": 0.001,
+      "ActualStep": 0.0009999999999999454,
+      "Edges": [
+        0.1005,
+        0.3005,
+        0.7004999999999999,
+        0.9005
+      ],
+      "Widths": [
+        0.1005,
+        0.2,
+        0.3999999999999999,
+        0.20000000000000007,
+        0.09950000000000003
+      ],
+      "Z": [
+        -2.297598546508377,
+        -1.6094384124342254,
+        -0.9162909818741866,
+        -1.6094384124342251,
+        -2.3075986398432202
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 0.001,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.001,
+            "TargetEdges": [
+              0.1005,
+              0.3005,
+              0.7004999999999999,
+              0.9005
+            ],
+            "TargetWidths": [
+              0.1005,
+              0.19999999999999998,
+              0.3999999999999999,
+              0.20000000000000007,
+              0.09950000000000003
+            ],
+            "Z": [
+              -2.297598546508377,
+              -1.6094384124342254,
+              -0.9162909818741866,
+              -1.6094384124342251,
+              -2.3075986398432202
+            ],
+            "Widths": [
+              0.1005,
+              0.2,
+              0.3999999999999999,
+              0.20000000000000007,
+              0.09950000000000003
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.1005,
+                0.2,
+                0.3999999999999999,
+                0.20000000000000007,
+                0.09950000000000003
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09950000000000003,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.1005,
+                0.3005,
+                0.7004999999999999,
+                0.9005
+              ],
+              "InterfaceWidths": [
+                0.1005,
+                0.19999999999999998,
+                0.3999999999999999,
+                0.20000000000000007,
+                0.09950000000000003
+              ],
+              "MinimumInterfaceWidth": 0.09950000000000003,
+              "Displacement": [
+                0.0005000000000000004,
+                0.0005000000000000004,
+                0.0004999999999999449,
+                0.0004999999999999449
+              ],
+              "ActualMaxDisplacement": 0.0005000000000000004,
+              "ActualLength": 0.0009999999999999454,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.0009999999999998899,
+              "SectorResidual": 2.7755575615628914e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 5.5511151231257777e-14,
+              "ActualStep": 0.0009999999999999454,
+              "ExpectedStep": 0.001,
+              "DirectionResidual": 2.7755575615628914e-17,
+              "DirectionRelativeResidual": 5.5511151231257777e-14,
+              "ExpectedDisplacementResidual": 5.5077470362263625e-17,
+              "ExpectedRelativeResidual": 1.1015494072452715e-13
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.001,
+        "ActualStep": 0.0009999999999999454,
+        "TargetEdges": [
+          0.1005,
+          0.3005,
+          0.7004999999999999,
+          0.9005
+        ],
+        "TargetWidths": [
+          0.1005,
+          0.19999999999999998,
+          0.3999999999999999,
+          0.20000000000000007,
+          0.09950000000000003
+        ],
+        "FinalWidths": [
+          0.1005,
+          0.2,
+          0.3999999999999999,
+          0.20000000000000007,
+          0.09950000000000003
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.1005,
+            0.2,
+            0.3999999999999999,
+            0.20000000000000007,
+            0.09950000000000003
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09950000000000003,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.1005,
+            0.3005,
+            0.7004999999999999,
+            0.9005
+          ],
+          "InterfaceWidths": [
+            0.1005,
+            0.19999999999999998,
+            0.3999999999999999,
+            0.20000000000000007,
+            0.09950000000000003
+          ],
+          "MinimumInterfaceWidth": 0.09950000000000003,
+          "Displacement": [
+            0.0005000000000000004,
+            0.0005000000000000004,
+            0.0004999999999999449,
+            0.0004999999999999449
+          ],
+          "ActualMaxDisplacement": 0.0005000000000000004,
+          "ActualLength": 0.0009999999999999454,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.0009999999999998899,
+          "SectorResidual": 2.7755575615628914e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 5.5511151231257777e-14,
+          "ActualStep": 0.0009999999999999454,
+          "ExpectedStep": 0.001,
+          "DirectionResidual": 2.7755575615628914e-17,
+          "DirectionRelativeResidual": 5.5511151231257777e-14,
+          "ExpectedDisplacementResidual": 5.5077470362263625e-17,
+          "ExpectedRelativeResidual": 1.1015494072452715e-13
+        }
+      }
+    },
+    "softmax_break_0.1": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 0.1,
+      "UsedStep": 0.1,
+      "ActualStep": 0.10000000000000005,
+      "Edges": [
+        0.15000000000000002,
+        0.35,
+        0.75,
+        0.9500000000000001
+      ],
+      "Widths": [
+        0.15000000000000002,
+        0.19999999999999996,
+        0.4000000000000001,
+        0.20000000000000007,
+        0.04999999999999994
+      ],
+      "Z": [
+        -1.89712065155277,
+        -1.6094384124342256,
+        -0.9162909818741862,
+        -1.6094384124342251,
+        -2.995734273555992
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 0.1,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.1,
+            "TargetEdges": [
+              0.15000000000000002,
+              0.35,
+              0.75,
+              0.9500000000000001
+            ],
+            "TargetWidths": [
+              0.15000000000000002,
+              0.19999999999999996,
+              0.4,
+              0.20000000000000007,
+              0.04999999999999993
+            ],
+            "Z": [
+              -1.89712065155277,
+              -1.6094384124342256,
+              -0.9162909818741862,
+              -1.6094384124342251,
+              -2.995734273555992
+            ],
+            "Widths": [
+              0.15000000000000002,
+              0.19999999999999996,
+              0.4000000000000001,
+              0.20000000000000007,
+              0.04999999999999994
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.15000000000000002,
+                0.19999999999999996,
+                0.4000000000000001,
+                0.20000000000000007,
+                0.04999999999999994
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.04999999999999994,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.15000000000000002,
+                0.35,
+                0.75,
+                0.9500000000000001
+              ],
+              "InterfaceWidths": [
+                0.15000000000000002,
+                0.19999999999999996,
+                0.4,
+                0.20000000000000007,
+                0.04999999999999993
+              ],
+              "MinimumInterfaceWidth": 0.04999999999999993,
+              "Displacement": [
+                0.05000000000000002,
+                0.04999999999999999,
+                0.050000000000000044,
+                0.050000000000000044
+              ],
+              "ActualMaxDisplacement": 0.050000000000000044,
+              "ActualLength": 0.10000000000000005,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.10000000000000009,
+              "SectorResidual": 2.7755575615628914e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 5.551115123125778e-16,
+              "ActualStep": 0.10000000000000005,
+              "ExpectedStep": 0.1,
+              "DirectionResidual": 3.469446951953614e-17,
+              "DirectionRelativeResidual": 6.938893903907222e-16,
+              "ExpectedDisplacementResidual": 4.163336342344337e-17,
+              "ExpectedRelativeResidual": 8.326672684688667e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.1,
+        "ActualStep": 0.10000000000000005,
+        "TargetEdges": [
+          0.15000000000000002,
+          0.35,
+          0.75,
+          0.9500000000000001
+        ],
+        "TargetWidths": [
+          0.15000000000000002,
+          0.19999999999999996,
+          0.4,
+          0.20000000000000007,
+          0.04999999999999993
+        ],
+        "FinalWidths": [
+          0.15000000000000002,
+          0.19999999999999996,
+          0.4000000000000001,
+          0.20000000000000007,
+          0.04999999999999994
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.15000000000000002,
+            0.19999999999999996,
+            0.4000000000000001,
+            0.20000000000000007,
+            0.04999999999999994
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.04999999999999994,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.15000000000000002,
+            0.35,
+            0.75,
+            0.9500000000000001
+          ],
+          "InterfaceWidths": [
+            0.15000000000000002,
+            0.19999999999999996,
+            0.4,
+            0.20000000000000007,
+            0.04999999999999993
+          ],
+          "MinimumInterfaceWidth": 0.04999999999999993,
+          "Displacement": [
+            0.05000000000000002,
+            0.04999999999999999,
+            0.050000000000000044,
+            0.050000000000000044
+          ],
+          "ActualMaxDisplacement": 0.050000000000000044,
+          "ActualLength": 0.10000000000000005,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.10000000000000009,
+          "SectorResidual": 2.7755575615628914e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 5.551115123125778e-16,
+          "ActualStep": 0.10000000000000005,
+          "ExpectedStep": 0.1,
+          "DirectionResidual": 3.469446951953614e-17,
+          "DirectionRelativeResidual": 6.938893903907222e-16,
+          "ExpectedDisplacementResidual": 4.163336342344337e-17,
+          "ExpectedRelativeResidual": 8.326672684688667e-16
+        }
+      }
+    },
+    "softmax_break_1.0": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 1.0,
+      "UsedStep": 0.125,
+      "ActualStep": 0.12500000000000017,
+      "Edges": [
+        0.16250000000000003,
+        0.36250000000000004,
+        0.7625000000000001,
+        0.9625000000000001
+      ],
+      "Widths": [
+        0.16250000000000003,
+        0.2,
+        0.4,
+        0.20000000000000007,
+        0.03749999999999997
+      ],
+      "Z": [
+        -1.8170778925971496,
+        -1.6094384124342254,
+        -0.9162909818741864,
+        -1.6094384124342251,
+        -3.283417012675995
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 1.0,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 1.0,
+            "TargetEdges": [
+              0.6,
+              0.8,
+              1.2,
+              1.4
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 1,
+            "Step": 0.5,
+            "TargetEdges": [
+              0.35,
+              0.55,
+              0.95,
+              1.15
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 2,
+            "Step": 0.25,
+            "TargetEdges": [
+              0.225,
+              0.425,
+              0.825,
+              1.025
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 3,
+            "Step": 0.125,
+            "TargetEdges": [
+              0.1625,
+              0.3625,
+              0.7625,
+              0.9625
+            ],
+            "TargetWidths": [
+              0.1625,
+              0.19999999999999998,
+              0.39999999999999997,
+              0.20000000000000007,
+              0.03749999999999998
+            ],
+            "Z": [
+              -1.8170778925971496,
+              -1.6094384124342254,
+              -0.9162909818741864,
+              -1.6094384124342251,
+              -3.283417012675995
+            ],
+            "Widths": [
+              0.16250000000000003,
+              0.2,
+              0.4,
+              0.20000000000000007,
+              0.03749999999999997
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.16250000000000003,
+                0.2,
+                0.4,
+                0.20000000000000007,
+                0.03749999999999997
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.03749999999999997,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.16250000000000003,
+                0.36250000000000004,
+                0.7625000000000001,
+                0.9625000000000001
+              ],
+              "InterfaceWidths": [
+                0.16250000000000003,
+                0.2,
+                0.4,
+                0.20000000000000007,
+                0.03749999999999987
+              ],
+              "MinimumInterfaceWidth": 0.03749999999999987,
+              "Displacement": [
+                0.06250000000000003,
+                0.06250000000000006,
+                0.06250000000000011,
+                0.06250000000000011
+              ],
+              "ActualMaxDisplacement": 0.06250000000000011,
+              "ActualLength": 0.12500000000000014,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.12500000000000022,
+              "SectorResidual": 4.163336342344337e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 6.661338147750927e-16,
+              "ActualStep": 0.12500000000000017,
+              "ExpectedStep": 0.125,
+              "DirectionResidual": 5.551115123125783e-17,
+              "DirectionRelativeResidual": 8.881784197001237e-16,
+              "ExpectedDisplacementResidual": 1.1102230246251565e-16,
+              "ExpectedRelativeResidual": 1.7763568394002473e-15
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 3,
+        "UsedStep": 0.125,
+        "ActualStep": 0.12500000000000017,
+        "TargetEdges": [
+          0.1625,
+          0.3625,
+          0.7625,
+          0.9625
+        ],
+        "TargetWidths": [
+          0.1625,
+          0.19999999999999998,
+          0.39999999999999997,
+          0.20000000000000007,
+          0.03749999999999998
+        ],
+        "FinalWidths": [
+          0.16250000000000003,
+          0.2,
+          0.4,
+          0.20000000000000007,
+          0.03749999999999997
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.16250000000000003,
+            0.2,
+            0.4,
+            0.20000000000000007,
+            0.03749999999999997
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.03749999999999997,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.16250000000000003,
+            0.36250000000000004,
+            0.7625000000000001,
+            0.9625000000000001
+          ],
+          "InterfaceWidths": [
+            0.16250000000000003,
+            0.2,
+            0.4,
+            0.20000000000000007,
+            0.03749999999999987
+          ],
+          "MinimumInterfaceWidth": 0.03749999999999987,
+          "Displacement": [
+            0.06250000000000003,
+            0.06250000000000006,
+            0.06250000000000011,
+            0.06250000000000011
+          ],
+          "ActualMaxDisplacement": 0.06250000000000011,
+          "ActualLength": 0.12500000000000014,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.12500000000000022,
+          "SectorResidual": 4.163336342344337e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 6.661338147750927e-16,
+          "ActualStep": 0.12500000000000017,
+          "ExpectedStep": 0.125,
+          "DirectionResidual": 5.551115123125783e-17,
+          "DirectionRelativeResidual": 8.881784197001237e-16,
+          "ExpectedDisplacementResidual": 1.1102230246251565e-16,
+          "ExpectedRelativeResidual": 1.7763568394002473e-15
+        }
+      }
+    },
+    "direct_preserve": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 0.01,
+      "UsedStep": 0.01,
+      "ActualStep": 0.01,
+      "Edges": [
+        0.09329179606750064,
+        0.2977639320225002,
+        0.7022360679774997,
+        0.9067082039324994
+      ],
+      "Widths": [
+        0.09329179606750064,
+        0.20447213595499952,
+        0.40447213595499953,
+        0.2044721359549997,
+        0.0932917960675006
+      ],
+      "Z": null,
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 0.01,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": false,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.01,
+            "TargetEdges": [
+              0.09329179606750064,
+              0.2977639320225002,
+              0.7022360679774997,
+              0.9067082039324994
+            ],
+            "TargetWidths": [
+              0.09329179606750064,
+              0.20447213595499952,
+              0.40447213595499953,
+              0.2044721359549997,
+              0.0932917960675006
+            ],
+            "Z": null,
+            "Widths": [
+              0.09329179606750064,
+              0.20447213595499952,
+              0.40447213595499953,
+              0.2044721359549997,
+              0.0932917960675006
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.09329179606750064,
+                0.20447213595499952,
+                0.40447213595499953,
+                0.2044721359549997,
+                0.0932917960675006
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.0932917960675006,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.09329179606750064,
+                0.2977639320225002,
+                0.7022360679774997,
+                0.9067082039324994
+              ],
+              "InterfaceWidths": [
+                0.09329179606750064,
+                0.20447213595499952,
+                0.40447213595499953,
+                0.2044721359549997,
+                0.0932917960675006
+              ],
+              "MinimumInterfaceWidth": 0.0932917960675006,
+              "Displacement": [
+                -0.006708203932499365,
+                -0.0022360679774998116,
+                0.002236067977499756,
+                0.006708203932499379
+              ],
+              "ActualMaxDisplacement": 0.006708203932499379,
+              "ActualLength": 0.010000000000000002,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 1.1102230246251565e-16,
+              "SectorResidual": 2.7755575615628914e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 4.1375569220787825e-15,
+              "ActualStep": 0.01,
+              "ExpectedStep": 0.01,
+              "DirectionResidual": 3.382710778154774e-17,
+              "DirectionRelativeResidual": 5.0426474987835154e-15,
+              "ExpectedDisplacementResidual": 3.382710778154774e-17,
+              "ExpectedRelativeResidual": 5.0426474987835154e-15
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.01,
+        "ActualStep": 0.01,
+        "TargetEdges": [
+          0.09329179606750064,
+          0.2977639320225002,
+          0.7022360679774997,
+          0.9067082039324994
+        ],
+        "TargetWidths": [
+          0.09329179606750064,
+          0.20447213595499952,
+          0.40447213595499953,
+          0.2044721359549997,
+          0.0932917960675006
+        ],
+        "FinalWidths": [
+          0.09329179606750064,
+          0.20447213595499952,
+          0.40447213595499953,
+          0.2044721359549997,
+          0.0932917960675006
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.09329179606750064,
+            0.20447213595499952,
+            0.40447213595499953,
+            0.2044721359549997,
+            0.0932917960675006
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.0932917960675006,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.09329179606750064,
+            0.2977639320225002,
+            0.7022360679774997,
+            0.9067082039324994
+          ],
+          "InterfaceWidths": [
+            0.09329179606750064,
+            0.20447213595499952,
+            0.40447213595499953,
+            0.2044721359549997,
+            0.0932917960675006
+          ],
+          "MinimumInterfaceWidth": 0.0932917960675006,
+          "Displacement": [
+            -0.006708203932499365,
+            -0.0022360679774998116,
+            0.002236067977499756,
+            0.006708203932499379
+          ],
+          "ActualMaxDisplacement": 0.006708203932499379,
+          "ActualLength": 0.010000000000000002,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 1.1102230246251565e-16,
+          "SectorResidual": 2.7755575615628914e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 4.1375569220787825e-15,
+          "ActualStep": 0.01,
+          "ExpectedStep": 0.01,
+          "DirectionResidual": 3.382710778154774e-17,
+          "DirectionRelativeResidual": 5.0426474987835154e-15,
+          "ExpectedDisplacementResidual": 3.382710778154774e-17,
+          "ExpectedRelativeResidual": 5.0426474987835154e-15
+        }
+      }
+    },
+    "direct_break": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 0.01,
+      "UsedStep": 0.01,
+      "ActualStep": 0.010000000000000009,
+      "Edges": [
+        0.10500000000000001,
+        0.305,
+        0.705,
+        0.905
+      ],
+      "Widths": [
+        0.10500000000000001,
+        0.19999999999999998,
+        0.39999999999999997,
+        0.20000000000000007,
+        0.09499999999999997
+      ],
+      "Z": null,
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 0.01,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": false,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.01,
+            "TargetEdges": [
+              0.10500000000000001,
+              0.305,
+              0.705,
+              0.905
+            ],
+            "TargetWidths": [
+              0.10500000000000001,
+              0.19999999999999998,
+              0.39999999999999997,
+              0.20000000000000007,
+              0.09499999999999997
+            ],
+            "Z": null,
+            "Widths": [
+              0.10500000000000001,
+              0.19999999999999998,
+              0.39999999999999997,
+              0.20000000000000007,
+              0.09499999999999997
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.10500000000000001,
+                0.19999999999999998,
+                0.39999999999999997,
+                0.20000000000000007,
+                0.09499999999999997
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09499999999999997,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.10500000000000001,
+                0.305,
+                0.705,
+                0.905
+              ],
+              "InterfaceWidths": [
+                0.10500000000000001,
+                0.19999999999999998,
+                0.39999999999999997,
+                0.20000000000000007,
+                0.09499999999999997
+              ],
+              "MinimumInterfaceWidth": 0.09499999999999997,
+              "Displacement": [
+                0.0050000000000000044,
+                0.0050000000000000044,
+                0.0050000000000000044,
+                0.0050000000000000044
+              ],
+              "ActualMaxDisplacement": 0.0050000000000000044,
+              "ActualLength": 0.010000000000000009,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.010000000000000009,
+              "SectorResidual": 0.0,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 0.0,
+              "ActualStep": 0.010000000000000009,
+              "ExpectedStep": 0.01,
+              "DirectionResidual": 0.0,
+              "DirectionRelativeResidual": 0.0,
+              "ExpectedDisplacementResidual": 4.336808689942018e-18,
+              "ExpectedRelativeResidual": 8.673617379884028e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.01,
+        "ActualStep": 0.010000000000000009,
+        "TargetEdges": [
+          0.10500000000000001,
+          0.305,
+          0.705,
+          0.905
+        ],
+        "TargetWidths": [
+          0.10500000000000001,
+          0.19999999999999998,
+          0.39999999999999997,
+          0.20000000000000007,
+          0.09499999999999997
+        ],
+        "FinalWidths": [
+          0.10500000000000001,
+          0.19999999999999998,
+          0.39999999999999997,
+          0.20000000000000007,
+          0.09499999999999997
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.10500000000000001,
+            0.19999999999999998,
+            0.39999999999999997,
+            0.20000000000000007,
+            0.09499999999999997
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09499999999999997,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.10500000000000001,
+            0.305,
+            0.705,
+            0.905
+          ],
+          "InterfaceWidths": [
+            0.10500000000000001,
+            0.19999999999999998,
+            0.39999999999999997,
+            0.20000000000000007,
+            0.09499999999999997
+          ],
+          "MinimumInterfaceWidth": 0.09499999999999997,
+          "Displacement": [
+            0.0050000000000000044,
+            0.0050000000000000044,
+            0.0050000000000000044,
+            0.0050000000000000044
+          ],
+          "ActualMaxDisplacement": 0.0050000000000000044,
+          "ActualLength": 0.010000000000000009,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.010000000000000009,
+          "SectorResidual": 0.0,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 0.0,
+          "ActualStep": 0.010000000000000009,
+          "ExpectedStep": 0.01,
+          "DirectionResidual": 0.0,
+          "DirectionRelativeResidual": 0.0,
+          "ExpectedDisplacementResidual": 4.336808689942018e-18,
+          "ExpectedRelativeResidual": 8.673617379884028e-16
+        }
+      }
+    },
+    "halved_large_step": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "Direction": [
+        -0.6708203932499369,
+        -0.22360679774997896,
+        0.22360679774997896,
+        0.6708203932499369
+      ],
+      "RequestedStep": 10.0,
+      "UsedStep": 0.078125,
+      "ActualStep": 0.07812500000000003,
+      "Edges": [
+        0.04759215677734868,
+        0.28253071892578285,
+        0.717469281074217,
+        0.9524078432226514
+      ],
+      "Widths": [
+        0.04759215677734868,
+        0.23493856214843417,
+        0.4349385621484342,
+        0.23493856214843434,
+        0.047592156777348626
+      ],
+      "Z": null,
+      "Evidence": {
+        "InputBaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.1,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 10.0,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": false,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 10.0,
+            "TargetEdges": [
+              -6.60820393249937,
+              -1.9360679774997898,
+              2.93606797749979,
+              7.60820393249937
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 1,
+            "Step": 5.0,
+            "TargetEdges": [
+              -3.2541019662496846,
+              -0.8180339887498949,
+              1.8180339887498949,
+              4.254101966249685
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 2,
+            "Step": 2.5,
+            "TargetEdges": [
+              -1.5770509831248423,
+              -0.25901699437494746,
+              1.2590169943749474,
+              2.5770509831248423
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 3,
+            "Step": 1.25,
+            "TargetEdges": [
+              -0.7385254915624212,
+              0.020491502812526263,
+              0.9795084971874737,
+              1.738525491562421
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 4,
+            "Step": 0.625,
+            "TargetEdges": [
+              -0.3192627457812106,
+              0.16024575140626313,
+              0.8397542485937368,
+              1.3192627457812107
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 5,
+            "Step": 0.3125,
+            "TargetEdges": [
+              -0.10963137289060529,
+              0.23012287570313156,
+              0.7698771242968684,
+              1.1096313728906053
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 6,
+            "Step": 0.15625,
+            "TargetEdges": [
+              -0.0048156864453026416,
+              0.2650614378515658,
+              0.7349385621484341,
+              1.0048156864453026
+            ],
+            "Status": "infeasible_target",
+            "Reason": "Interfaces must lie strictly inside (0, 1)"
+          },
+          {
+            "Halvings": 7,
+            "Step": 0.078125,
+            "TargetEdges": [
+              0.04759215677734868,
+              0.28253071892578285,
+              0.717469281074217,
+              0.9524078432226514
+            ],
+            "TargetWidths": [
+              0.04759215677734868,
+              0.23493856214843417,
+              0.4349385621484342,
+              0.23493856214843434,
+              0.047592156777348626
+            ],
+            "Z": null,
+            "Widths": [
+              0.04759215677734868,
+              0.23493856214843417,
+              0.4349385621484342,
+              0.23493856214843434,
+              0.047592156777348626
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.04759215677734868,
+                0.23493856214843417,
+                0.4349385621484342,
+                0.23493856214843434,
+                0.047592156777348626
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.047592156777348626,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.04759215677734868,
+                0.28253071892578285,
+                0.717469281074217,
+                0.9524078432226514
+              ],
+              "InterfaceWidths": [
+                0.04759215677734868,
+                0.23493856214843417,
+                0.4349385621484342,
+                0.23493856214843434,
+                0.047592156777348626
+              ],
+              "MinimumInterfaceWidth": 0.047592156777348626,
+              "Displacement": [
+                -0.052407843222651324,
+                -0.017469281074217136,
+                0.01746928107421708,
+                0.05240784322265135
+              ],
+              "ActualMaxDisplacement": 0.05240784322265135,
+              "ActualLength": 0.07812500000000003,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 1.1102230246251565e-16,
+              "SectorResidual": 2.7755575615628914e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 5.296072860260846e-16,
+              "ActualStep": 0.07812500000000003,
+              "ExpectedStep": 0.078125,
+              "DirectionResidual": 3.122502256758253e-17,
+              "DirectionRelativeResidual": 5.958081967793451e-16,
+              "ExpectedDisplacementResidual": 2.7755575615628914e-17,
+              "ExpectedRelativeResidual": 5.296072860260846e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          -0.6708203932499369,
+          -0.22360679774997896,
+          0.22360679774997896,
+          0.6708203932499369
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 7,
+        "UsedStep": 0.078125,
+        "ActualStep": 0.07812500000000003,
+        "TargetEdges": [
+          0.04759215677734868,
+          0.28253071892578285,
+          0.717469281074217,
+          0.9524078432226514
+        ],
+        "TargetWidths": [
+          0.04759215677734868,
+          0.23493856214843417,
+          0.4349385621484342,
+          0.23493856214843434,
+          0.047592156777348626
+        ],
+        "FinalWidths": [
+          0.04759215677734868,
+          0.23493856214843417,
+          0.4349385621484342,
+          0.23493856214843434,
+          0.047592156777348626
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.04759215677734868,
+            0.23493856214843417,
+            0.4349385621484342,
+            0.23493856214843434,
+            0.047592156777348626
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.047592156777348626,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.04759215677734868,
+            0.28253071892578285,
+            0.717469281074217,
+            0.9524078432226514
+          ],
+          "InterfaceWidths": [
+            0.04759215677734868,
+            0.23493856214843417,
+            0.4349385621484342,
+            0.23493856214843434,
+            0.047592156777348626
+          ],
+          "MinimumInterfaceWidth": 0.047592156777348626,
+          "Displacement": [
+            -0.052407843222651324,
+            -0.017469281074217136,
+            0.01746928107421708,
+            0.05240784322265135
+          ],
+          "ActualMaxDisplacement": 0.05240784322265135,
+          "ActualLength": 0.07812500000000003,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 1.1102230246251565e-16,
+          "SectorResidual": 2.7755575615628914e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 5.296072860260846e-16,
+          "ActualStep": 0.07812500000000003,
+          "ExpectedStep": 0.078125,
+          "DirectionResidual": 3.122502256758253e-17,
+          "DirectionRelativeResidual": 5.958081967793451e-16,
+          "ExpectedDisplacementResidual": 2.7755575615628914e-17,
+          "ExpectedRelativeResidual": 5.296072860260846e-16
+        }
+      }
+    },
+    "clipping_guard_preserve": {
+      "Sector": "preserve",
+      "BaseEdges": [
+        3e-07,
+        0.3,
+        0.7,
+        0.9999997
+      ],
+      "Direction": [
+        -0.7071067811865475,
+        0.0,
+        0.0,
+        0.7071067811865475
+      ],
+      "RequestedStep": 2.5e-07,
+      "UsedStep": 1.25e-07,
+      "ActualStep": 1.2499999991633598e-07,
+      "Edges": [
+        2.116116523516815e-07,
+        0.3,
+        0.7,
+        0.9999997883883476
+      ],
+      "Widths": [
+        2.116116523516815e-07,
+        0.2999997883883476,
+        0.3999999999999999,
+        0.2999997883883477,
+        2.116116523120937e-07
+      ],
+      "Z": [
+        -16.00824038069631,
+        -1.2039738430319833,
+        -0.9162909818741864,
+        -1.203973843031983,
+        -16.008240381051003
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          3e-07,
+          0.3,
+          0.7,
+          0.9999997
+        ],
+        "BaseEdges": [
+          3e-07,
+          0.3,
+          0.7,
+          0.9999997
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "preserve",
+        "RequestedStep": 2.5e-07,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              -1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 2.5e-07,
+            "TargetEdges": [
+              1.2322330470336312e-07,
+              0.3,
+              0.7,
+              0.9999998767766953
+            ],
+            "TargetWidths": [
+              1.2322330470336312e-07,
+              0.29999987677669526,
+              0.39999999999999997,
+              0.2999998767766954,
+              1.232233046710718e-07
+            ],
+            "Z": [
+              -16.1180959580651,
+              -1.2039737019573251,
+              -0.9162911354276034,
+              -1.2039737019573247,
+              -16.1180959580651
+            ],
+            "Widths": [
+              1.9999996928932643e-07,
+              0.299999830710704,
+              0.3999999385786531,
+              0.2999998307107042,
+              1.9999996928932643e-07
+            ],
+            "Status": "rejected_roundtrip",
+            "Reason": "round trip changed the requested direction or step",
+            "Check": {
+              "Widths": [
+                1.9999996928932643e-07,
+                0.299999830710704,
+                0.3999999385786531,
+                0.2999998307107042,
+                1.9999996928932643e-07
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 1.9999996928932643e-07,
+              "SumResidual": 2.220446049250313e-16,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                1.9999996928932643e-07,
+                0.3000000307106733,
+                0.6999999692893264,
+                0.9999998000000305
+              ],
+              "InterfaceWidths": [
+                1.9999996928932643e-07,
+                0.299999830710704,
+                0.39999993857865307,
+                0.29999983071070413,
+                1.9999996947461796e-07
+              ],
+              "MinimumInterfaceWidth": 1.9999996928932643e-07,
+              "Displacement": [
+                -1.0000003071067356e-07,
+                3.071067333770827e-08,
+                -3.071067355975288e-08,
+                1.0000003047849759e-07
+              ],
+              "ActualMaxDisplacement": 1.0000003071067356e-07,
+              "ActualLength": 1.4794020131521124e-07,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 2.220446049250313e-16,
+              "SectorResidual": 1.1608798300357e-16,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 1.1608794735217944e-09,
+              "ActualStep": 1.4142139950458737e-07,
+              "ExpectedStep": 2.5e-07,
+              "DirectionResidual": 3.071067355975288e-08,
+              "DirectionRelativeResidual": 0.3071066412830107,
+              "ExpectedDisplacementResidual": 7.677666481813928e-08,
+              "ExpectedRelativeResidual": 0.7677664123951562
+            }
+          },
+          {
+            "Halvings": 1,
+            "Step": 1.25e-07,
+            "TargetEdges": [
+              2.1161165235168155e-07,
+              0.3,
+              0.7,
+              0.9999997883883477
+            ],
+            "TargetWidths": [
+              2.1161165235168155e-07,
+              0.2999997883883476,
+              0.39999999999999997,
+              0.29999978838834773,
+              2.1161165231209367e-07
+            ],
+            "Z": [
+              -16.00824038069631,
+              -1.2039738430319833,
+              -0.9162909818741864,
+              -1.203973843031983,
+              -16.008240381051003
+            ],
+            "Widths": [
+              2.116116523516815e-07,
+              0.2999997883883476,
+              0.3999999999999999,
+              0.2999997883883477,
+              2.116116523120937e-07
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                2.116116523516815e-07,
+                0.2999997883883476,
+                0.3999999999999999,
+                0.2999997883883477,
+                2.116116523120937e-07
+              ],
+              "Sector": "preserve",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 2.116116523120937e-07,
+              "SumResidual": 1.1102230246251565e-16,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                2.116116523516815e-07,
+                0.3,
+                0.7,
+                0.9999997883883476
+              ],
+              "InterfaceWidths": [
+                2.116116523516815e-07,
+                0.2999997883883476,
+                0.39999999999999997,
+                0.2999997883883476,
+                2.1161165242311597e-07
+              ],
+              "MinimumInterfaceWidth": 2.116116523516815e-07,
+              "Displacement": [
+                -8.838834764831849e-08,
+                0.0,
+                0.0,
+                8.838834752999958e-08
+              ],
+              "ActualMaxDisplacement": 8.838834764831849e-08,
+              "ActualLength": 1.2499999991633596e-07,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 1.1102230246251565e-16,
+              "SectorResidual": 5.915945448398011e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 6.693128229907075e-10,
+              "ActualStep": 1.2499999991633598e-07,
+              "ExpectedStep": 1.25e-07,
+              "DirectionResidual": 5.915945448398011e-17,
+              "DirectionRelativeResidual": 6.693128229907075e-10,
+              "ExpectedDisplacementResidual": 1.18318856028401e-16,
+              "ExpectedRelativeResidual": 1.338625047038674e-09
+            }
+          }
+        ],
+        "RawVector": [
+          -1.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "Direction": [
+          -0.7071067811865475,
+          0.0,
+          0.0,
+          0.7071067811865475
+        ],
+        "DirectionNorm": 0.9999999999999999,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 1,
+        "UsedStep": 1.25e-07,
+        "ActualStep": 1.2499999991633598e-07,
+        "TargetEdges": [
+          2.1161165235168155e-07,
+          0.3,
+          0.7,
+          0.9999997883883477
+        ],
+        "TargetWidths": [
+          2.1161165235168155e-07,
+          0.2999997883883476,
+          0.39999999999999997,
+          0.29999978838834773,
+          2.1161165231209367e-07
+        ],
+        "FinalWidths": [
+          2.116116523516815e-07,
+          0.2999997883883476,
+          0.3999999999999999,
+          0.2999997883883477,
+          2.116116523120937e-07
+        ],
+        "FinalCheck": {
+          "Widths": [
+            2.116116523516815e-07,
+            0.2999997883883476,
+            0.3999999999999999,
+            0.2999997883883477,
+            2.116116523120937e-07
+          ],
+          "Sector": "preserve",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 2.116116523120937e-07,
+          "SumResidual": 1.1102230246251565e-16,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            2.116116523516815e-07,
+            0.3,
+            0.7,
+            0.9999997883883476
+          ],
+          "InterfaceWidths": [
+            2.116116523516815e-07,
+            0.2999997883883476,
+            0.39999999999999997,
+            0.2999997883883476,
+            2.1161165242311597e-07
+          ],
+          "MinimumInterfaceWidth": 2.116116523516815e-07,
+          "Displacement": [
+            -8.838834764831849e-08,
+            0.0,
+            0.0,
+            8.838834752999958e-08
+          ],
+          "ActualMaxDisplacement": 8.838834764831849e-08,
+          "ActualLength": 1.2499999991633596e-07,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 1.1102230246251565e-16,
+          "SectorResidual": 5.915945448398011e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 6.693128229907075e-10,
+          "ActualStep": 1.2499999991633598e-07,
+          "ExpectedStep": 1.25e-07,
+          "DirectionResidual": 5.915945448398011e-17,
+          "DirectionRelativeResidual": 6.693128229907075e-10,
+          "ExpectedDisplacementResidual": 1.18318856028401e-16,
+          "ExpectedRelativeResidual": 1.338625047038674e-09
+        }
+      }
+    },
+    "clipping_guard_break": {
+      "Sector": "break",
+      "BaseEdges": [
+        3e-07,
+        0.3,
+        0.7,
+        0.9999997
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 3.2e-07,
+      "UsedStep": 1.6e-07,
+      "ActualStep": 1.5999999999234865e-07,
+      "Edges": [
+        3.800000000000004e-07,
+        0.30000008000000006,
+        0.7000000799999999,
+        0.99999978
+      ],
+      "Widths": [
+        3.800000000000004e-07,
+        0.29999970000000004,
+        0.3999999999999999,
+        0.29999970000000015,
+        2.1999999999522415e-07
+      ],
+      "Z": [
+        -15.088476233777161,
+        -1.2039741376601583,
+        -0.9162909818741866,
+        -1.2039741376601578,
+        -15.935774094204165
+      ],
+      "Evidence": {
+        "InputBaseEdges": [
+          3e-07,
+          0.3,
+          0.7,
+          0.9999997
+        ],
+        "BaseEdges": [
+          3e-07,
+          0.3,
+          0.7,
+          0.9999997
+        ],
+        "InputBaseReflectionResidual": 0.0,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": false,
+        "BaseCorrectionMax": 0.0,
+        "SymmetrizeBaseRequested": false,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 3.2e-07,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": true,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 3.2e-07,
+            "TargetEdges": [
+              4.6e-07,
+              0.30000016,
+              0.70000016,
+              0.9999998600000001
+            ],
+            "TargetWidths": [
+              4.6e-07,
+              0.29999970000000004,
+              0.39999999999999997,
+              0.2999997000000001,
+              1.3999999992631018e-07
+            ],
+            "Z": [
+              -14.83716188216292,
+              -1.2039741976601763,
+              -0.9162910418741997,
+              -1.2039741976601763,
+              -16.11809577095832
+            ],
+            "Widths": [
+              4.5999997240000156e-07,
+              0.2999996820000192,
+              0.3999999760000014,
+              0.2999996820000192,
+              1.999999880000007e-07
+            ],
+            "Status": "rejected_roundtrip",
+            "Reason": "actual displacement is outside the requested sector; round trip changed the requested direction or step",
+            "Check": {
+              "Widths": [
+                4.5999997240000156e-07,
+                0.2999996820000192,
+                0.3999999760000014,
+                0.2999996820000192,
+                1.999999880000007e-07
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 1.999999880000007e-07,
+              "SumResidual": 2.220446049250313e-16,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                4.5999997240000156e-07,
+                0.3000001419999916,
+                0.7000001179999931,
+                0.9999998000000123
+              ],
+              "InterfaceWidths": [
+                4.5999997240000156e-07,
+                0.2999996820000192,
+                0.3999999760000015,
+                0.29999968200001925,
+                1.9999998768227556e-07
+              ],
+              "MinimumInterfaceWidth": 1.9999998768227556e-07,
+              "Displacement": [
+                1.5999997240000158e-07,
+                1.4199999159858478e-07,
+                1.1799999311001841e-07,
+                1.0000001227083999e-07
+              ],
+              "ActualMaxDisplacement": 1.5999997240000158e-07,
+              "ActualLength": 2.639848283711243e-07,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 2.5999998465309204e-07,
+              "SectorResidual": 2.9999980064580794e-08,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 0.1874999077473622,
+              "ActualStep": 2.599999846897224e-07,
+              "ExpectedStep": 3.2e-07,
+              "DirectionResidual": 2.9999980074021214e-08,
+              "DirectionRelativeResidual": 0.18749990780636483,
+              "ExpectedDisplacementResidual": 5.999998772916001e-08,
+              "ExpectedRelativeResidual": 0.3749999879947443
+            }
+          },
+          {
+            "Halvings": 1,
+            "Step": 1.6e-07,
+            "TargetEdges": [
+              3.7999999999999996e-07,
+              0.30000008,
+              0.7000000799999999,
+              0.99999978
+            ],
+            "TargetWidths": [
+              3.7999999999999996e-07,
+              0.2999997,
+              0.3999999999999999,
+              0.2999997000000001,
+              2.1999999999522402e-07
+            ],
+            "Z": [
+              -15.088476233777161,
+              -1.2039741376601583,
+              -0.9162909818741866,
+              -1.2039741376601578,
+              -15.935774094204165
+            ],
+            "Widths": [
+              3.800000000000004e-07,
+              0.29999970000000004,
+              0.3999999999999999,
+              0.29999970000000015,
+              2.1999999999522415e-07
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                3.800000000000004e-07,
+                0.29999970000000004,
+                0.3999999999999999,
+                0.29999970000000015,
+                2.1999999999522415e-07
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 2.1999999999522415e-07,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                3.800000000000004e-07,
+                0.30000008000000006,
+                0.7000000799999999,
+                0.99999978
+              ],
+              "InterfaceWidths": [
+                3.800000000000004e-07,
+                0.29999970000000004,
+                0.39999999999999986,
+                0.2999997000000001,
+                2.1999999999522402e-07
+              ],
+              "MinimumInterfaceWidth": 2.1999999999522402e-07,
+              "Displacement": [
+                8.00000000000004e-08,
+                8.000000006891383e-08,
+                7.999999995789153e-08,
+                7.999999995789153e-08
+              ],
+              "ActualMaxDisplacement": 8.000000006891383e-08,
+              "ActualLength": 1.5999999999234865e-07,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 1.5999999991578306e-07,
+              "SectorResidual": 5.551115123125783e-17,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 6.938893897929907e-10,
+              "ActualStep": 1.5999999999234865e-07,
+              "ExpectedStep": 1.6e-07,
+              "DirectionResidual": 7.273951021083468e-17,
+              "DirectionRelativeResidual": 9.092438768521899e-10,
+              "ExpectedDisplacementResidual": 6.891383296500143e-17,
+              "ExpectedRelativeResidual": 8.614229113204684e-10
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 1,
+        "UsedStep": 1.6e-07,
+        "ActualStep": 1.5999999999234865e-07,
+        "TargetEdges": [
+          3.7999999999999996e-07,
+          0.30000008,
+          0.7000000799999999,
+          0.99999978
+        ],
+        "TargetWidths": [
+          3.7999999999999996e-07,
+          0.2999997,
+          0.3999999999999999,
+          0.2999997000000001,
+          2.1999999999522402e-07
+        ],
+        "FinalWidths": [
+          3.800000000000004e-07,
+          0.29999970000000004,
+          0.3999999999999999,
+          0.29999970000000015,
+          2.1999999999522415e-07
+        ],
+        "FinalCheck": {
+          "Widths": [
+            3.800000000000004e-07,
+            0.29999970000000004,
+            0.3999999999999999,
+            0.29999970000000015,
+            2.1999999999522415e-07
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 2.1999999999522415e-07,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            3.800000000000004e-07,
+            0.30000008000000006,
+            0.7000000799999999,
+            0.99999978
+          ],
+          "InterfaceWidths": [
+            3.800000000000004e-07,
+            0.29999970000000004,
+            0.39999999999999986,
+            0.2999997000000001,
+            2.1999999999522402e-07
+          ],
+          "MinimumInterfaceWidth": 2.1999999999522402e-07,
+          "Displacement": [
+            8.00000000000004e-08,
+            8.000000006891383e-08,
+            7.999999995789153e-08,
+            7.999999995789153e-08
+          ],
+          "ActualMaxDisplacement": 8.000000006891383e-08,
+          "ActualLength": 1.5999999999234865e-07,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 1.5999999991578306e-07,
+          "SectorResidual": 5.551115123125783e-17,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 6.938893897929907e-10,
+          "ActualStep": 1.5999999999234865e-07,
+          "ExpectedStep": 1.6e-07,
+          "DirectionResidual": 7.273951021083468e-17,
+          "DirectionRelativeResidual": 9.092438768521899e-10,
+          "ExpectedDisplacementResidual": 6.891383296500143e-17,
+          "ExpectedRelativeResidual": 8.614229113204684e-10
+        }
+      }
+    },
+    "unresolved_step_failure": {
+      "InputBaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "InputBaseReflectionResidual": 0.0,
+      "BaseReflectionResidual": 0.0,
+      "BaseWasSymmetrized": false,
+      "BaseCorrectionMax": 0.0,
+      "SymmetrizeBaseRequested": false,
+      "SymmetryTolerance": 1e-12,
+      "Origin": "pure_reflection_sector",
+      "DirectionSource": "provided_vector",
+      "Sector": "break",
+      "RequestedStep": 1e-300,
+      "MinWidth": 1e-07,
+      "MaxResamples": 32,
+      "MaxHalvings": 80,
+      "UsedCallbacks": false,
+      "SectorTolerance": 1e-08,
+      "RoundTripTolerance": 1e-08,
+      "Draws": [
+        {
+          "Index": 0,
+          "RawVector": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ],
+          "Status": "selected"
+        }
+      ],
+      "Attempts": [
+        {
+          "Halvings": 0,
+          "Step": 1e-300,
+          "TargetEdges": [
+            0.1,
+            0.3,
+            0.7,
+            0.9
+          ],
+          "TargetWidths": [
+            0.1,
+            0.19999999999999998,
+            0.39999999999999997,
+            0.20000000000000007,
+            0.09999999999999998
+          ],
+          "Z": null,
+          "Widths": [
+            0.1,
+            0.19999999999999998,
+            0.39999999999999997,
+            0.20000000000000007,
+            0.09999999999999998
+          ],
+          "Status": "rejected_geometry",
+          "Reason": "No resolvable nonzero actual interface displacement",
+          "Check": {
+            "Widths": [
+              0.1,
+              0.19999999999999998,
+              0.39999999999999997,
+              0.20000000000000007,
+              0.09999999999999998
+            ],
+            "Sector": "break",
+            "MinWidth": 1e-07,
+            "MinimumWidth": 0.09999999999999998,
+            "SumResidual": 0.0,
+            "SumTolerance": 8.881784197001252e-15,
+            "CheckedEdges": [
+              0.1,
+              0.3,
+              0.7,
+              0.9
+            ],
+            "InterfaceWidths": [
+              0.1,
+              0.19999999999999998,
+              0.39999999999999997,
+              0.20000000000000007,
+              0.09999999999999998
+            ],
+            "MinimumInterfaceWidth": 0.09999999999999998,
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "ActualMaxDisplacement": 0.0,
+            "ActualLength": 0.0,
+            "ResolutionFloor": 7.105427357601002e-15,
+            "FinalReflectionResidual": 0.0,
+            "SectorResidual": 0.0,
+            "SectorTolerance": 1e-08,
+            "RoundTripTolerance": 1e-08
+          }
+        }
+      ],
+      "RawVector": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "DirectionNorm": 1.0,
+      "DirectionSectorResidual": 0.0
+    },
+    "explicit_base_symmetrization": {
+      "Sector": "break",
+      "BaseEdges": [
+        0.10000000000025,
+        0.30000000000000004,
+        0.7,
+        0.89999999999975
+      ],
+      "Direction": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "RequestedStep": 0.01,
+      "UsedStep": 0.01,
+      "ActualStep": 0.010000000000000009,
+      "Edges": [
+        0.10500000000025,
+        0.30500000000000005,
+        0.705,
+        0.90499999999975
+      ],
+      "Widths": [
+        0.10500000000025,
+        0.19999999999975004,
+        0.3999999999999999,
+        0.19999999999975004,
+        0.09500000000025
+      ],
+      "Z": null,
+      "Evidence": {
+        "InputBaseEdges": [
+          0.10000000000050001,
+          0.3,
+          0.7,
+          0.9
+        ],
+        "BaseEdges": [
+          0.10000000000025,
+          0.30000000000000004,
+          0.7,
+          0.89999999999975
+        ],
+        "InputBaseReflectionResidual": 5.000444502911705e-13,
+        "BaseReflectionResidual": 0.0,
+        "BaseWasSymmetrized": true,
+        "BaseCorrectionMax": 2.5002222514558525e-13,
+        "SymmetrizeBaseRequested": true,
+        "SymmetryTolerance": 1e-12,
+        "Origin": "pure_reflection_sector",
+        "DirectionSource": "provided_vector",
+        "Sector": "break",
+        "RequestedStep": 0.01,
+        "MinWidth": 1e-07,
+        "MaxResamples": 32,
+        "MaxHalvings": 80,
+        "UsedCallbacks": false,
+        "SectorTolerance": 1e-08,
+        "RoundTripTolerance": 1e-08,
+        "Draws": [
+          {
+            "Index": 0,
+            "RawVector": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "Status": "selected"
+          }
+        ],
+        "Attempts": [
+          {
+            "Halvings": 0,
+            "Step": 0.01,
+            "TargetEdges": [
+              0.10500000000025,
+              0.30500000000000005,
+              0.705,
+              0.90499999999975
+            ],
+            "TargetWidths": [
+              0.10500000000025,
+              0.19999999999975004,
+              0.3999999999999999,
+              0.19999999999975004,
+              0.09500000000025
+            ],
+            "Z": null,
+            "Widths": [
+              0.10500000000025,
+              0.19999999999975004,
+              0.3999999999999999,
+              0.19999999999975004,
+              0.09500000000025
+            ],
+            "Status": "accepted",
+            "Check": {
+              "Widths": [
+                0.10500000000025,
+                0.19999999999975004,
+                0.3999999999999999,
+                0.19999999999975004,
+                0.09500000000025
+              ],
+              "Sector": "break",
+              "MinWidth": 1e-07,
+              "MinimumWidth": 0.09500000000025,
+              "SumResidual": 0.0,
+              "SumTolerance": 8.881784197001252e-15,
+              "CheckedEdges": [
+                0.10500000000025,
+                0.30500000000000005,
+                0.705,
+                0.90499999999975
+              ],
+              "InterfaceWidths": [
+                0.10500000000025,
+                0.19999999999975004,
+                0.3999999999999999,
+                0.19999999999975004,
+                0.09500000000025
+              ],
+              "MinimumInterfaceWidth": 0.09500000000025,
+              "Displacement": [
+                0.0050000000000000044,
+                0.0050000000000000044,
+                0.0050000000000000044,
+                0.0050000000000000044
+              ],
+              "ActualMaxDisplacement": 0.0050000000000000044,
+              "ActualLength": 0.010000000000000009,
+              "ResolutionFloor": 7.105427357601002e-15,
+              "FinalReflectionResidual": 0.010000000000000009,
+              "SectorResidual": 0.0,
+              "SectorTolerance": 1e-08,
+              "RoundTripTolerance": 1e-08,
+              "SectorRelativeResidual": 0.0,
+              "ActualStep": 0.010000000000000009,
+              "ExpectedStep": 0.01,
+              "DirectionResidual": 0.0,
+              "DirectionRelativeResidual": 0.0,
+              "ExpectedDisplacementResidual": 4.336808689942018e-18,
+              "ExpectedRelativeResidual": 8.673617379884028e-16
+            }
+          }
+        ],
+        "RawVector": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "Direction": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "DirectionNorm": 1.0,
+        "DirectionSectorResidual": 0.0,
+        "Halvings": 0,
+        "UsedStep": 0.01,
+        "ActualStep": 0.010000000000000009,
+        "TargetEdges": [
+          0.10500000000025,
+          0.30500000000000005,
+          0.705,
+          0.90499999999975
+        ],
+        "TargetWidths": [
+          0.10500000000025,
+          0.19999999999975004,
+          0.3999999999999999,
+          0.19999999999975004,
+          0.09500000000025
+        ],
+        "FinalWidths": [
+          0.10500000000025,
+          0.19999999999975004,
+          0.3999999999999999,
+          0.19999999999975004,
+          0.09500000000025
+        ],
+        "FinalCheck": {
+          "Widths": [
+            0.10500000000025,
+            0.19999999999975004,
+            0.3999999999999999,
+            0.19999999999975004,
+            0.09500000000025
+          ],
+          "Sector": "break",
+          "MinWidth": 1e-07,
+          "MinimumWidth": 0.09500000000025,
+          "SumResidual": 0.0,
+          "SumTolerance": 8.881784197001252e-15,
+          "CheckedEdges": [
+            0.10500000000025,
+            0.30500000000000005,
+            0.705,
+            0.90499999999975
+          ],
+          "InterfaceWidths": [
+            0.10500000000025,
+            0.19999999999975004,
+            0.3999999999999999,
+            0.19999999999975004,
+            0.09500000000025
+          ],
+          "MinimumInterfaceWidth": 0.09500000000025,
+          "Displacement": [
+            0.0050000000000000044,
+            0.0050000000000000044,
+            0.0050000000000000044,
+            0.0050000000000000044
+          ],
+          "ActualMaxDisplacement": 0.0050000000000000044,
+          "ActualLength": 0.010000000000000009,
+          "ResolutionFloor": 7.105427357601002e-15,
+          "FinalReflectionResidual": 0.010000000000000009,
+          "SectorResidual": 0.0,
+          "SectorTolerance": 1e-08,
+          "RoundTripTolerance": 1e-08,
+          "SectorRelativeResidual": 0.0,
+          "ActualStep": 0.010000000000000009,
+          "ExpectedStep": 0.01,
+          "DirectionResidual": 0.0,
+          "DirectionRelativeResidual": 0.0,
+          "ExpectedDisplacementResidual": 4.336808689942018e-18,
+          "ExpectedRelativeResidual": 8.673617379884028e-16
+        }
+      }
+    },
+    "bounded_zero_rng_failure": {
+      "InputBaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "BaseEdges": [
+        0.1,
+        0.3,
+        0.7,
+        0.9
+      ],
+      "InputBaseReflectionResidual": 0.0,
+      "BaseReflectionResidual": 0.0,
+      "BaseWasSymmetrized": false,
+      "BaseCorrectionMax": 0.0,
+      "SymmetrizeBaseRequested": false,
+      "SymmetryTolerance": 1e-12,
+      "Origin": "pure_reflection_sector",
+      "DirectionSource": "projected_rng",
+      "Sector": "preserve",
+      "RequestedStep": 0.01,
+      "MinWidth": 1e-07,
+      "MaxResamples": 3,
+      "MaxHalvings": 80,
+      "UsedCallbacks": false,
+      "SectorTolerance": 1e-08,
+      "RoundTripTolerance": 1e-08,
+      "Draws": [
+        {
+          "Index": 0,
+          "RawVector": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Status": "zero_projection"
+        },
+        {
+          "Index": 1,
+          "RawVector": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Status": "zero_projection"
+        },
+        {
+          "Index": 2,
+          "RawVector": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Status": "zero_projection"
+        }
+      ],
+      "Attempts": []
+    }
+  }
+}

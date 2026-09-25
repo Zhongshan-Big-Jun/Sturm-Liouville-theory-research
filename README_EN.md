@@ -1,5 +1,7 @@
 # Sturm-Liouville Theory Research
 
+2026-09-25: Round10 repairs independently reviewed. Lifted-phase indexing replaces missed-root sign scans, and geometric reflection sectors are checked after coordinate conversion. Historical numerical output is revalidated only where actually rerun. See the [round10 report](reports/proof-audit-round10-20260925/REPORT.md).
+
 [中文](README.md) | [Research guide](docs/research-guide.md) | [Project understanding](docs/PROJECT_UNDERSTANDING.md) | [Tool library](tools/README.md) | [Lean status](lean-proof/STATUS.md)
 
 Literature absorption (2026-09-23): [13 source pointers and reading notes](literature/absorption-20260923/README.md) connect the domain dictionary, s=3 cofinite closure, fixed-c Legendre replacement systems, finite moving-interface derivatives and two infinite-deletion subclasses to the tool library. The [report](reports/literature-absorption-20260923/REPORT.md) separates independent analytic review, finite checks and remaining scope. L13 lacks its complete constraint definitions and is not a proof dependency.

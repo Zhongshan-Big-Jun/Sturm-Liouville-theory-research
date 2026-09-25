@@ -1,0 +1,35 @@
+from pathlib import Path
+import json,shutil,sys
+R=Path('/mnt/f/LaTeX/BVE research');O=Path('/mnt/f/tools/math-audit-round10-20260925');A=R/'research/artifacts/proof-audit-round10-20260925';P=A/'software-review'
+sys.path.insert(0,'/mnt/c/Users/HuangZY/.codex/plugins/cache/math-research/manage-math-research-program/2.0.1/skills/manage-math-research-program/scripts')
+import research_review as V
+P.mkdir();D=P/'inputs/scripts';D.mkdir(parents=True)
+for N in ['_gapn2_symmetry_recon.py','_sl_prufer.py','reflection_seeds.py','_gapn2_second_variation_probe.py','_gapn2_jacobian_probe.py','_gapn2_jacobian_analytic.py','op03_gap_table.json']:shutil.copyfile(R/'scripts'/N,D/N)
+shutil.copyfile(O/'check_spectrum.py',D/'check_spectrum.py')
+shutil.copyfile(O/'sector-author/test_reflection_seeds.py',D/'test_reflection_seeds.py')
+for N in ['_gapn2_symmetry_recon.py','_gapn2_second_variation_probe.py']:
+	Dest=P/'inputs/before'/N;Dest.parent.mkdir(exist_ok=True);shutil.copyfile(A/'before/scripts'/N,Dest)
+shutil.copyfile(A/'analytic-repair.md',P/'inputs/analytic-repair.md')
+shutil.copyfile(A/'submitted/analytic_notes.md',P/'inputs/submitted-analytic-notes.md')
+(P/'AGENTS.md').write_text('# Round10 software review workspace\n\nFrozen candidate and original comparison bytes only. Independent reviewers start without author conversation and may write execution evidence only under a new external reviewer directory. This nested project separates review receipts from the active parent correction writer. No current candidate edits, old evidence edits or repository publication by reviewers.\n')
+(P/'inputs/execution-scope.md').write_text('''# Independent execution instructions and exact scope
+
+Review only the frozen inputs in this packet; do not read the author conversation, project history, memory or prior independent verdicts. Standard installed Python scientific packages are permitted. Run all commands in a NEW private directory under /mnt/f/tools/math-audit-round10-20260925/software-reviewer/, copying frozen inputs/scripts there. Check every imported _gapn2*, _sl_prufer and reflection_seeds module resolves to this private copy, not the active project; record module paths/hashes without pre-filtering unexpected modules. Do not run any old main routine. No project, plugin or global configuration writes.
+
+Read programs before running. Run check_spectrum.py PRIVATE_SCRIPTS OUTPUT_JSON normally and with -O. Run test_reflection_seeds.py --recon-source PRIVATE_SCRIPTS/_gapn2_symmetry_recon.py --evidence OUTPUT_JSON normally/-O with -W error. These are author regressions, so add meaningful adversarial checks and personally inspect the indexing mathematics and implementation. Tests deliberately include explicit physical-state zero counts, four exact supplied low-root brackets, scale/reflection/block-splitting properties and recovery of a requested mp index from a wrong guess. Do not equate agreement of the two phase implementations to an independent root enumeration certificate.
+
+Personally run _gapn2_second_variation_probe.py 2 4 sup and 2 4 inf with their current defaults and --output paths, plus R=1 or a genuinely different case. Run _gapn2_symmetry_recon.py 2 4 2 both 2 --break-repeats 2 --preserve-repeats 2 --output-dir PRIVATE_RESULTS; this exercises both pure sectors over all step schedules while keeping the stochastic search bounded. Inspect saved actual seed geometry, rejected seeds, identities and outputs. No finite search establishes global uniqueness. Check each final seed after the real z roundtrip, including a large infeasible step and zero projection; ensure ordinary random widths and pure sectors remain separately labeled.
+
+Recompute the old failure by calling only the frozen before module's roots_of, then check the new complete low prefix and downstream consumers. Inspect same-index safeguards in checked_roots, HighPrecisionTangent, SpectralProbe and finite-difference endpoints. Check exact count/prefix consistency, invalid inputs and explicit rejection of unresolvable cases. D_scalar at zero has the correct length limit. Additional direct propagation in the old helpers is inherited except the shared root routine; do not silently certify all historical Green/Jacobian logic.
+
+Save actual argv/cwd/environment details, timestamps, return codes, stdout/stderr, source identities before/after and computed artifacts. In the final JSON identify that directory so the coordinator can archive it. Distinguish finite behavior checks, mathematical algorithm, mp execution, and rigorous interval arithmetic; the last is not implemented. Approval must be based on your own execution and review, not the supplied author's descriptions.
+''')
+Inputs=[dict(path=F.relative_to(P).as_posix(),role='frozen-candidate-proof-or-execution-contract') for F in sorted((P/'inputs').rglob('*')) if F.is_file()]
+Claims=[
+	dict(id='R10-indexed-root-program',verification='software',statement='Personally inspect and execute the new shared indexed solver and safeguards. Establish that clustered low modes are not silently skipped; check per-index phase brackets/prefixes against independent physical-state zeros and supplied exact brackets, mathematical lift/coordinate conventions, constant/scaled/reflected/split configurations, invalid or unresolved inputs and actual same-index high-precision refinement. A small secular residual alone is not acceptable. Report any branch, seam, precision or failure-handling defect with a reproducer.'),
+	dict(id='R10-sector-program-and-main',verification='software',statement='Personally execute the pure reflection generator, its real Recon parameter conversions and the actual main integration in both sectors. Check preservation versus breaking under geometric -J, nonzero actual displacement, bounded resampling/backtracking, no infeasible clipping/relabeling, output provenance, source identities and rejected-seed recording. Labels refer only to starting points. Check ordinary random seeds remain separate and a nonsymmetric center is not silently advertised as a symmetric one.'),
+	dict(id='R10-consumer-and-evidence-scope',verification='numerical',statement='Personally run the actual two default n2R4 variation CLI cases and another meaningful case from frozen sibling modules, plus bounded recon main execution. Verify HighPrecisionTangent, SpectralProbe, checked_roots and finite-difference endpoints use the intended mode labels; keep existing true-integral tangency/finite truncation limitations. Check root-index metadata and source hashes, actual module origins, no unrelated writes, and that neither whole-history revalidation, interval certification, G1 sign nor global uniqueness is claimed.')]
+Spec=dict(kind='mathematics',author_ids=['01a06f46-dd03-7c83-9267-32048412c359','01a0d723-f06e-7612-8a8b-a630c01091e6'],inputs=Inputs,claims=Claims)
+for N,Dd in [('software-review-spec.json',Spec),('software-review-packet.json',V.create_packet(P,Spec)),('software-review-root.json',dict(project=str(P)))]:
+	(O/N).write_text(json.dumps(Dd,ensure_ascii=False,indent=2)+'\n')
+print('Software review packet ready',len(Inputs),'inputs',flush=True)

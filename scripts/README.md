@@ -1,5 +1,16 @@
 # 研究脚本导航
 
+第十轮修订入口: [_sl_prufer.py](_sl_prufer.py)、[_gapn2_symmetry_recon.py](_gapn2_symmetry_recon.py) 与二阶变分诊断. 固定网格变号不保证谱序号; 当前每个n*pi相位水平单独括根, mp细化和FD端点保持指标, 不能分辨时明确报错. 反射种子按几何作用-J区分preserve/break, 校验实际接口及可行步长. 具体执行范围见[报告](../reports/proof-audit-round10-20260925/REPORT.md); 未重跑76项调用闭包的全部历史实验.
+
+从仓库根目录运行时，为新实验指定独立输出位置。例如在 WSL 中：
+
+```bash
+python3 scripts/_gapn2_symmetry_recon.py 2 4 16 both 4 --output-dir /tmp/sl-round10-new-recon
+python3 scripts/_gapn2_second_variation_probe.py 2 4 sup --output /tmp/sl-round10-new-variation.json
+```
+
+侦察的五个位置参数依次是 n、R、普通随机种子数、图案、工作进程数。纯破缺/保持种子另由 `--break-repeats`、`--preserve-repeats` 控制，默认每种图案分别112和24个，输出的 `*-seeds.json` 保存实际步长、坐标转换检验和拒绝原因。普通随机种子不冒充纯扇区；初始标签也不约束后续优化轨迹。二阶变分 JSON 的 `root_index_records` 保存逐根指标证据，`certified:false` 表示浮点数值检查，不能作为严格区间证书。
+
 第九轮当前诊断入口为 [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py). 投影用 A_i=∫I_i f 而非块平均; 另外直接积分检查一阶变分, 谱配对在真实密度/方向断点分段. 记录截断、求积和有限差分步长敏感性, 拒绝通过截断负密度制造可行扰动. 脉冲宽度或实际求积节点在浮点坐标中不能分辨时明确报错, 防止假零贡献. R=1 保留兼容. 有限样本符号不是 Hessian 定性证明或盒约束全局最优性.
 
 [_gapn2_k_global_rank2.py](_gapn2_k_global_rank2.py) 本轮只修正文档范围: 保留有限的移动界面加速度贡献, 不以 Green 对角发散推导其符号. 其 K 实现及历史 R206 扫描没有因此得到重认证. 原错误程序和失败解释保留在历史证据, 当前替代与复现入口见 [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md).
@@ -14,6 +25,8 @@
 第七轮的当前诊断入口是 `op03_gap_fh.py`、`gap_n1_grad.py` 及报告列出的八个接口/矩阵诊断程序. 修订针对镜像坐标、SUP/INF 符号、两特征值权重和完整 Hessian 的矩阵乘法. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)区分实际 CLI、函数/AST 小样本回归与未重跑的历史扫描; 不将有限点通过理解为全部解析 Jacobian 后端或全 R 研究已经认证.
 
 已确认的遗留问题: `op03_gap_precise.py` 的特征函数传播顺序会破坏权归一化, 不能作为新的特征函数/FH 验证依据. 当前 `op03_gap_fh.py` 使用现有 `op03_gap_fixed.py`, 并以独立分块 ODE 积分核对有限样例. 其它仍导入 precise 的旧 `op03_gap_fh2`-`fh10`、`dbg*`、`shoot*`、`scan*` 等程序保留历史原字节, 不因名称含 precise 而获得可靠性保证. 单接口的 FH 系数本身不应一律加倍; 复用旧程序前必须同时核对参数坐标和特征函数后端.
+
+`docs/SL_gap_extremals.tex` 是2026-08-05的历史数值报告，仍保留当时的故障归因。它不属于本轮逐段重审的当前证明；尤其不能把其中“传播顺序导致特征值错误”的归因视为本轮已核实结论。当前工具卡只按其注明的历史数值范围引用该来源，新的谱编号依据见第十轮报告。
 
 本目录积累了不同阶段的数学程序. `num_*`, `h3_*`, `op*`, `_gapn2_*` 等名称是历史命名, 不表示统一 API 或严格性等级. 保留研究程序的输入条件, 精度, 输出与证明接口, 才能判断它能支持什么结论.
 

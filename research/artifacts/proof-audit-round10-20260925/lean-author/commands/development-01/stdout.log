@@ -1,0 +1,19 @@
+F:\tools\math-audit-round10-20260925\formal-author\project\AuditRound10.lean:29:2: error: Tactic `rfl` failed: The left-hand side
+  (J n) v i
+is not definitionally equal to the right-hand side
+  v ⟨2 * n - 1 - ↑i, ⋯⟩
+
+n : ℕ
+v : Vec n
+i : Fin (2 * n)
+⊢ (J n) v i = v ⟨2 * n - 1 - ↑i, ⋯⟩
+F:\tools\math-audit-round10-20260925\formal-author\project\AuditRound10.lean:37:43: error: unsolved goals
+case right
+n : ℕ
+v : Vec n
+i : Fin (2 * n)
+⊢ v i * 2⁻¹ + v i.rev * 2⁻¹ = (v i + v i.rev) * 2⁻¹
+F:\tools\math-audit-round10-20260925\formal-author\project\AuditRound10.lean:164:36: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  MulLeftStrictMono ℝ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.

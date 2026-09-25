@@ -1,0 +1,51 @@
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:36:55: error: Application type mismatch: The argument
+  StrictMono.strictMonoOn strictMono_id
+has type
+  ∀ (s : Set ?m.29), StrictMonoOn id s
+but is expected to have type
+  StrictMonoOn id (Set.Ici 0)
+in the application
+  bracket_unique_root (Continuous.continuousOn continuous_id) (StrictMono.strictMonoOn strictMono_id)
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:41:55: error: Application type mismatch: The argument
+  StrictMono.strictMonoOn strictMono_id
+has type
+  ∀ (s : Set ?m.22), StrictMonoOn id s
+but is expected to have type
+  StrictMonoOn id (Set.Ici 0)
+in the application
+  bracket_unique_root (Continuous.continuousOn continuous_id) (StrictMono.strictMonoOn strictMono_id)
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:53:36: error: Application type mismatch: The argument
+  StrictMono.strictMonoOn strictMono_id
+has type
+  ∀ (s : Set ?m.43), StrictMonoOn id s
+but is expected to have type
+  StrictMonoOn ?m.39 (Set.Ici 0)
+in the application
+  indexed_roots_strict_mono (StrictMono.strictMonoOn strictMono_id)
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:55:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  e - f ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 1
+where
+ c := ↑b
+ d := ↑a
+ e := ↑((fun m => 2 * m) a)
+ f := ↑((fun m => 2 * m) b)
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:59:8: error: Tactic `rfl` failed: The left-hand side
+  ?m.39 (↑(2 * m) * Real.pi)
+is not definitionally equal to the right-hand side
+  ↑(2 * m) * Real.pi
+
+case refine_2.hr.right
+m : ℕ
+⊢ ?m.39 (↑(2 * m) * Real.pi) = ↑(2 * m) * Real.pi
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:53:2: error: unsolved goals
+⊢ ℝ → ℝ
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:71:103: error(lean.invalidField): Invalid field `setNat`: The environment does not contain `Lean.Options.setNat`, so it is not possible to project the field `setNat` from an expression
+  ((o.setBool `pp.explicit false).setBool `pp.all false).setBool `pp.universes true
+of type `Options`
+F:\tools\math-audit-round10-20260925\formal-reviewer\independent-35c0ed5b7a9f\project\ReviewerChecks.lean:76:0: error: elaboration function for `«command#audit_all_»` has not been implemented

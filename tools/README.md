@@ -88,7 +88,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | Tool | Card | Annotations |
 | --- | --- | --- |
 | balanced-phase | [card](<balanced-phase.md>) | 0 |
-| band-selfconsistency-equivariance | [card](<band-selfconsistency-equivariance.md>) | 0 |
+| band-selfconsistency-equivariance | [card](<band-selfconsistency-equivariance.md>) | 1 |
 | banded-shift-toeplitz-density | [card](<banded-shift-toeplitz-density.md>) | 0 |
 | bang-bang | [card](<bang-bang.md>) | 0 |
 | bloch-band | [card](<bloch-band.md>) | 1 |
@@ -105,12 +105,12 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | fixed-operator-boundary-extension-check | [card](<fixed-operator-boundary-extension-check.md>) | 1 |
 | fp-arm-max-root | [card](<fp-arm-max-root.md>) | 0 |
 | full-muntz-krein-moment-interface | [card](<full-muntz-krein-moment-interface.md>) | 1 |
-| gap-band-extremals | [card](<gap-band-extremals.md>) | 2 |
+| gap-band-extremals | [card](<gap-band-extremals.md>) | 3 |
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |
-| green-half-inertia | [card](<green-half-inertia.md>) | 0 |
-| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 0 |
+| green-half-inertia | [card](<green-half-inertia.md>) | 1 |
+| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 1 |
 | helly-compactness | [card](<helly-compactness.md>) | 0 |
 | inf-limit-comparison | [card](<inf-limit-comparison.md>) | 1 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |
@@ -152,7 +152,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | rational-envelope-certificates | [card](<rational-envelope-certificates.md>) | 0 |
 | reflection-branch-reduction | [card](<reflection-branch-reduction.md>) | 0 |
 | residual-exactness | [card](<residual-exactness.md>) | 0 |
-| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 2 |
+| second-variation-weighted-eigenvalues | [card](<second-variation-weighted-eigenvalues.md>) | 3 |
 | secular-chebyshev-jacobi-rootcount | [card](<secular-chebyshev-jacobi-rootcount.md>) | 1 |
 | single-well-intersection | [card](<single-well-intersection.md>) | 0 |
 | spectral-domain-checks | [card](<spectral-domain-checks.md>) | 3 |

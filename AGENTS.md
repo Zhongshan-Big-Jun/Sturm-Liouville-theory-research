@@ -10,6 +10,14 @@
 
 # 项目维护
 
+## 2026-09-25 第十轮审计修缮 (修订与验收完成)
+
+用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round10 进行修订", 指定 math-research-workflow 2.0.1. 基线5bb6b260, 13818个原tracked、134个原untracked和6项dirty已按字节记录至 F:/tools/math-audit-round10-20260925/baseline.json. 已用真实旧源码复现漏掉低频根, 并核对反射全索引赋值不是投影. 输入报告和附带程序按待核实证据处理.
+
+本轮限定授权涵盖共享谱引擎、反射种子、实际调用的局部程序测试和隔离副本回放, 不执行旧Blueprint维护器或改写canonical. 谱序号由连续提升的Pruefer相位定位, 高精度细化保持同一指标. 两种反射投影必须检查转换后的实际接口和可行步长. 解析/数值/形式化分开登记; 作者与最终fork_context:false检验者分离, 保留真实执行与退回记录. 工具纠错通过已安装原版模块, 历史证据保持原字节. 完成后维护研究地图、理解与续接入口, 沿用origin后fork同步授权. 详细对话见state/AGENTS_SESSION_LOG.md.
+
+第十轮完成：真实旧源码复现漏根和投影混淆，共享连续相位按谱指标括根，mp/FD保持同一指标；两种反射投影检查真实可行接口，并撤回旧反对称网格的破缺解释。四个默认变分配置及实际侦察重算，5个新无状态检验分别完成解析、未变卡续审、软件执行、38声明盲读和独立Lean编译/语义核验。局部Lean为22定理/6定义、21项合取根，不是完整Sturm或Python形式化。8张卡15项事项放行、5条版本批注，实际查询89可用/1原撤回；历史失效回执保留。5页PDF、B8研究节点、理解、导航与续接同步。原50份Lean、canonical、旧证据、134原untracked/6dirty按字节保护；插件未改。精确发布与双远端身份以本轮报告、外部DELIVERY及实际Git为准。
+
 ## 2026-09-23 文献吸收 (研究与接入完成)
 
 用户提供 selected_references.bib 与 absorption_plan.md，原话“依照方案在项目中吸收文献”，指定 math-research-workflow 2.0.1。基线902d2a931；原13442个tracked、134个untracked和6项dirty的身份在 F:/tools/sl-literature-absorption-20260923/baseline.json。来源和计划中的断言须与原文及当前模型分别核实。

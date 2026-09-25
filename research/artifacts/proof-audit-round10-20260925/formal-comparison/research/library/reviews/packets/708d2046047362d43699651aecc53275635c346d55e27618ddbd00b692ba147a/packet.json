@@ -1,0 +1,303 @@
+{
+	"author_ids": [
+		"01a06f46-dd03-7c83-9267-32048412c359",
+		"01a0d723-0c42-7142-a358-78252676dccd",
+		"01a0d74b-2c67-7a52-b0b8-f43dd64f1c31"
+	],
+	"claims": [
+		{
+			"id": "R10-formal-reflection-fidelity",
+			"statement": "Check actual finite coordinate reversal, linear maps, complementary orthogonal projectors, affine reflection and perturbation against the contract and blind readback. Inspect true nontrivial cases and premises; do not claim physical feasibility or optimizer confinement.",
+			"verification": "formal"
+		},
+		{
+			"id": "R10-formal-index-interface-fidelity",
+			"statement": "Check phase_root, half-line assumptions, unique bracket roots, order equivalence and conditional sequence existence for the exact types and quantifiers. State that arbitrary increasing indices need not be consecutive and bracket existence is a premise; no Sturm operator or executable enumeration is formalized.",
+			"verification": "formal"
+		},
+		{
+			"id": "R10-independent-formal-execution",
+			"statement": "Personally perform the fresh execution and identity/axiom/definition checks required by execution-scope.md, including actual positive and negative controls and literal root-type matching. Distinguish author machine evidence, blind translation and your own execution/semantic decision; report exact private evidence path and all limitations.",
+			"verification": "formal"
+		}
+	],
+	"inputs": {
+		"inputs/HUMAN-CONTRACT.md": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "97c78fb10b8621b86efb6fff840f4dea2da5cc1b8c576fa60c33ec99a7d920de",
+			"snapshot": "inputs/inputs/HUMAN-CONTRACT.md"
+		},
+		"inputs/REPLAY.md": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "4d1fc99a86158c6cae5e0d13c6339edda05bd037ab21ca66554c795d66ffdd68",
+			"snapshot": "inputs/inputs/REPLAY.md"
+		},
+		"inputs/blind-transform.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "4263724b55d7a60aaa8effc28a16411f044c9f01f8fbc6972aacd8fc957b2305",
+			"snapshot": "inputs/inputs/blind-transform.json"
+		},
+		"inputs/blind/AuditRound10.lean": {
+			"role": "blind-source-identity",
+			"sha256": "655c50a819127828862baae58b775b61edcdd82fadc7f5d89aa011f319e5c60c",
+			"snapshot": "inputs/inputs/blind/AuditRound10.lean"
+		},
+		"inputs/blind/readback-completion.json": {
+			"role": "actual-independent-blind-readback",
+			"sha256": "518b670eab80e0642d86c5511b4302d25dfe7652988d8b767a465cd81c09d939",
+			"snapshot": "inputs/inputs/blind/readback-completion.json"
+		},
+		"inputs/blind/verified-receipt.json": {
+			"role": "blind-readback-provenance-only",
+			"sha256": "2654adf67769f47e22377b4add9c3320f710b50381d8ac0d0dfc020b0637fb2a",
+			"snapshot": "inputs/inputs/blind/verified-receipt.json"
+		},
+		"inputs/exact-root/run-manifest.json.gz": {
+			"role": "exact-target-machine-evidence-lossless-gzip",
+			"sha256": "45e4bbab3ea4f355355ad8c8641feb5992ba0d61027bd888824b98609be4b5e8",
+			"snapshot": "inputs/inputs/exact-root/run-manifest.json.gz"
+		},
+		"inputs/exact-root/run/DiscoverImports.lean": {
+			"role": "exact-target-command-or-log",
+			"sha256": "f6780f5da81a97d42910cbb6d1187e90f28583639dfdd74eccae48ad3b2d2c1a",
+			"snapshot": "inputs/inputs/exact-root/run/DiscoverImports.lean"
+		},
+		"inputs/exact-root/run/InspectRoot.lean": {
+			"role": "exact-target-command-or-log",
+			"sha256": "7de9ba767ef14a66ba95985313629c26a8a4caa74ebcdeca5851c7faaaf5552b",
+			"snapshot": "inputs/inputs/exact-root/run/InspectRoot.lean"
+		},
+		"inputs/exact-root/run/LeanVerifyProbe.lean": {
+			"role": "exact-target-command-or-log",
+			"sha256": "bee3acf730ea92509103b5c283da92501ae9db690608c525e2da5f4d02389011",
+			"snapshot": "inputs/inputs/exact-root/run/LeanVerifyProbe.lean"
+		},
+		"inputs/exact-root/run/input-snapshot.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "50a59d4247d70fe4de8057b35b9fc1340fb3a36f359962e8c9cb1f9b87bd9659",
+			"snapshot": "inputs/inputs/exact-root/run/input-snapshot.json"
+		},
+		"inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "72b60414a1949aef9596ebc2e923645b53a847c505a9d62862a24626a5ed9012",
+			"snapshot": "inputs/inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.job.json"
+		},
+		"inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.stderr.log"
+		},
+		"inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "3b2a3a13a2e62dfcbd5d4132a81ecae94b58514200a5fdfe4355bb0ea33b3cfe",
+			"snapshot": "inputs/inputs/exact-root/run/logs/2df1d080d2124dfcb1d39f6c7596a7f3.stdout.log"
+		},
+		"inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "f3143329e2a60ac4eaadb53947595e43922bc9af47ebf8c1eca2b515ab1c3710",
+			"snapshot": "inputs/inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.job.json"
+		},
+		"inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.stderr.log"
+		},
+		"inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+			"snapshot": "inputs/inputs/exact-root/run/logs/4052d0313af8408f95b36e82c8c9654d.stdout.log"
+		},
+		"inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e50a02af1f4ba30093f43c5e67b7524e938138b11074dcef149a587ed212db55",
+			"snapshot": "inputs/inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.job.json"
+		},
+		"inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.stderr.log"
+		},
+		"inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "87613fecb8fb8dc43ce7363e8c06a17a6554445284798c9ab6b0231da9d451b1",
+			"snapshot": "inputs/inputs/exact-root/run/logs/6b2b0d6845d54c308a0df325c51ea73d.stdout.log"
+		},
+		"inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "c936d725799ea50c4e20020cb0f0963652d209d0b225bbc25e989440b9c7e4c0",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.job.json"
+		},
+		"inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.stderr.log"
+		},
+		"inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ce8b25d13ae74d0589cf5867c75dd35e.stdout.log"
+		},
+		"inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "f2b06304d14a9d1694168b714a4f57ebae4862d4312de7f1b99683c32103f120",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.job.json"
+		},
+		"inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.stderr.log"
+		},
+		"inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d8f56d17492848c2891727341fbfefa9.stdout.log"
+		},
+		"inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "f5aedb3b18d6b9d567284e13b9ff579d172ffc26d9b384f169d7de78f853af77",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.job.json"
+		},
+		"inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.stderr.log"
+		},
+		"inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "505c28438dd7c4f3782bcf74a5be56648cb3b682ca60cfaeac71b569a2b89985",
+			"snapshot": "inputs/inputs/exact-root/run/logs/d900130492b84e6a81259441c294c6a5.stdout.log"
+		},
+		"inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e19289b7139a3292e3bb5badda413a7bf011c2c11e560381b34383bf134b24bb",
+			"snapshot": "inputs/inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.job.json"
+		},
+		"inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.stderr.log"
+		},
+		"inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "6f58696f01922d41f6fc62d17c4e44c7d414ea04cc5fc5ee3593d63b4cbe0512",
+			"snapshot": "inputs/inputs/exact-root/run/logs/f849f514976a46ba954b941959d44286.stdout.log"
+		},
+		"inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.job.json": {
+			"role": "exact-target-command-or-log",
+			"sha256": "fdf2e53f045d61e694729c7456c7790f55172828d357bae7258afa1b6a3d3f4b",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.job.json"
+		},
+		"inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.stderr.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.stderr.log"
+		},
+		"inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.stdout.log": {
+			"role": "exact-target-command-or-log",
+			"sha256": "00bda7aeac7710e63b578880cee41074ce553bb3ffcc0849824afb10a9914223",
+			"snapshot": "inputs/inputs/exact-root/run/logs/ff07417fa48747b58944311f05c29d0f.stdout.log"
+		},
+		"inputs/execution-scope.md": {
+			"role": "review-execution-and-scope-contract",
+			"sha256": "0c52103d1e48863d53b83c7bf975743d480bd3909f9e8f9e97ce4dfd9de4b22f",
+			"snapshot": "inputs/inputs/execution-scope.md"
+		},
+		"inputs/execution-summary.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "7e8c56a59c6f36d8c2ee4b8a65286f1147dff26b3566ca7021a83c96af579dac",
+			"snapshot": "inputs/inputs/execution-summary.json"
+		},
+		"inputs/formal-declarations-full.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "0334984728ddcce2c6c9271a2ebb924a6dcda95db2b94b16339d878deede0cdf",
+			"snapshot": "inputs/inputs/formal-declarations-full.json"
+		},
+		"inputs/per-declaration-axioms.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "9841bf90a9b244cdef485630ec23f730d57024bbba61ecaf4615bf72b478e69d",
+			"snapshot": "inputs/inputs/per-declaration-axioms.json"
+		},
+		"inputs/project/AuditRound10.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "821e19a77ed105f1642cd7dcc660a9992fa05fe0fa40e1021eaca24a178e8bc7",
+			"snapshot": "inputs/inputs/project/AuditRound10.lean"
+		},
+		"inputs/project/Counterexamples.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "963b2b4a54df63d553a0f3dd301c2c3c1865599277894197734bf42e03dd0896",
+			"snapshot": "inputs/inputs/project/Counterexamples.lean"
+		},
+		"inputs/project/NegativeFlip.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "0757a24017e88792872b163bd219cbfcfac17ada58963e9c7424fcb6daeef0ff",
+			"snapshot": "inputs/inputs/project/NegativeFlip.lean"
+		},
+		"inputs/project/NegativeIndex.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "6c645bff69f09c8005f04f1b532c7d78aacc2aaedcab4293d1b0065a52ca5087",
+			"snapshot": "inputs/inputs/project/NegativeIndex.lean"
+		},
+		"inputs/project/NegativeReflection.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "5996784c49af05c00ada6df78c5635dae7cb6b74637eba996c4b08cb07a8f06b",
+			"snapshot": "inputs/inputs/project/NegativeReflection.lean"
+		},
+		"inputs/project/PrintAuditRound10.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "91132ca596e9380002b4d231f4aef8e087508d256cd0af1d8d060f5cfb2b500b",
+			"snapshot": "inputs/inputs/project/PrintAuditRound10.lean"
+		},
+		"inputs/project/PrintCounterexamples.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "094f9e8de66cabc8aef6a29e38c261f3b6fbd183e0c89d0fd94ae2adbb4029ca",
+			"snapshot": "inputs/inputs/project/PrintCounterexamples.lean"
+		},
+		"inputs/project/ReadbackExportFull.lean": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "96ba6eb5a2b5cb6469bc11a1e142114bb7b2c4100206f3517b2e0cd42bc42168",
+			"snapshot": "inputs/inputs/project/ReadbackExportFull.lean"
+		},
+		"inputs/project/lake-manifest.json": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+			"snapshot": "inputs/inputs/project/lake-manifest.json"
+		},
+		"inputs/project/lakefile.toml": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "4c4e489a74b3ee96738b8ef470de6d10c30e486b41633717e6a3c88fb363e4c3",
+			"snapshot": "inputs/inputs/project/lakefile.toml"
+		},
+		"inputs/project/lean-toolchain": {
+			"role": "formal-source-or-pinned-environment",
+			"sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+			"snapshot": "inputs/inputs/project/lean-toolchain"
+		},
+		"inputs/root-clauses.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "9c6ab4d5df4d75c3515582423b54a45fab278fd594c8eb73ade62fb7c10fcbde",
+			"snapshot": "inputs/inputs/root-clauses.json"
+		},
+		"inputs/root-contract.json": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "8d24a64383e51b5fd859c09c3a77febd4218092de5bd7daebdeee01ed0325d40",
+			"snapshot": "inputs/inputs/root-contract.json"
+		},
+		"inputs/root-exact-type.lean.txt": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "b5f0bf4e84f60b8bce5bc21f6ebfd417119371750115320a1018c4339902a894",
+			"snapshot": "inputs/inputs/root-exact-type.lean.txt"
+		},
+		"inputs/run.py": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "ab6d52bb768c6bb669927dc146690c4493e4de53aadf52deb2d4686cc511e86b",
+			"snapshot": "inputs/inputs/run.py"
+		},
+		"inputs/verify_frozen.py": {
+			"role": "intended-contract-and-machine-evidence",
+			"sha256": "032de8f0326bd3a86a0532c3188c50d827301152a89a221e4aacd781a855932e",
+			"snapshot": "inputs/inputs/verify_frozen.py"
+		}
+	},
+	"kind": "mathematics",
+	"schema": "research-review-packet/v1"
+}

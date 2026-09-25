@@ -1,5 +1,7 @@
 # Sturm-Liouville 边值问题研究
 
+2026-09-25 第十轮审计修订已完成独立验收: 修复漏掉近邻低频根后的谱序号错配, 并明确保持/破缺反射的真实种子. 旧数值按实际重算范围使用, 不扩张全局结论. 见[本轮报告](reports/proof-audit-round10-20260925/REPORT.md).
+
 [English](README_EN.md) | [研究导航](docs/research-guide.md) | [项目理解](docs/PROJECT_UNDERSTANDING.md) | [工具库](tools/README.md) | [Lean 状态](lean-proof/STATUS.md)
 
 本仓库是使用 [rigorous-open-math-research 研究插件](https://github.com/xsoc1/rigorous-open-math-research) 开展长期数学研究的成果仓库. 保存人机合作形成的证明, 反例, 成功与失败路线, 可复用工具和部分 Lean 形式化.

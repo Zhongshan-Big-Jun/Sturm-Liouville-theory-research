@@ -1,5 +1,42 @@
 # Lean lemma index (auto-generated)
 
+## 2026-09-25 AuditRound10 additions
+
+These28 named declarations were independently compiled and reviewed; the full export also includes10 compiler-generated declarations. Phase results retain explicit monotonicity, continuity where needed, and per-index brackets. See [scope and evidence](../reports/proof-audit-round10-20260925/REPORT.md). Historical rows below retain their original evidence scope.
+
+| File | Declaration | Current scope |
+| --- | --- | --- |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.Vec` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.J` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.P_preserve` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.P_break` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reflect` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.linear_interfaces` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reversal_coordinate` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reversal_involution` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_coordinates` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.preserve_eigen` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.break_eigen` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_decomposition` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_idempotence` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_annihilation` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_fixed_iff` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reversal_dot` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.projection_orthogonal` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reflection_involution` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reflection_perturbation` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.reflection_at_fixed` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.preserved_perturbation_iff` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.phase_root` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.phase_root_unique` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.bracket_unique_root` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.phase_index_order` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.indexed_roots_strict_mono` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.enumeration_from_brackets` | LOCAL_CHECKED; see contract |
+| [AuditRound10.lean](SL/AuditRound10.lean) | `AuditRound10.root` | LOCAL_CHECKED; see contract |
+
+## Historical index
+
 Reuse before re-proving: search this table for an existing declaration.
 
 | File | Declaration | Status |

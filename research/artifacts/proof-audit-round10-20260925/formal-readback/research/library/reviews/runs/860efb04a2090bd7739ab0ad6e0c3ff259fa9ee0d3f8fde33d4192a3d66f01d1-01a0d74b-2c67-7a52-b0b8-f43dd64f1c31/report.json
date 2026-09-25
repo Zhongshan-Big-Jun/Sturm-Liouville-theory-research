@@ -1,0 +1,215 @@
+{
+	"checked_paths": [
+		"inputs/AuditRound10.lean",
+		"inputs/PrintAuditRound10.lean",
+		"inputs/declarations-full.json",
+		"inputs/environment.json",
+		"inputs/lake-manifest.json",
+		"inputs/lakefile.toml",
+		"inputs/lean-toolchain",
+		"inputs/print-and-axioms.log"
+	],
+	"claim_results": [
+		{
+			"id": "AuditRound10.J",
+			"reason": "Defines an ℝ-linear endomorphism of Fin(2n) → ℝ by reversing coordinates. Addition and scalar multiplication are pointwise, so reindexing preserves both. The definition includes n = 0.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.J._proof_1",
+			"reason": "For every natural n and two vectors, the exported type equates two definitionally identical functions representing addition followed by reversal. Both coordinate binders have domain Fin(2n).",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.J._proof_2",
+			"reason": "For every natural n, real scalar and vector, the exported type equates definitionally identical functions representing scaling followed by reversal. There is no restriction on the scalar.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.J.eq_1",
+			"reason": "For each n, this is equality of linear-map structures: J n equals its defining constructor with the coordinate-reversal function and the two supplied linearity witnesses.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_break",
+			"reason": "Defines the real linear map (id + J n)/2 for every natural n. The division is in ℝ, and the definition imposes no positivity assumption on n.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_break.eq_1",
+			"reason": "The universally quantified equation reproduces the defining equality P_break n = (1/2) • (id + J n) at the level of linear maps.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_preserve",
+			"reason": "Defines the real linear map (id - J n)/2 for every natural n. Its two generated helper propositions concern scalar instances and the numeral 2, not additional hypotheses on n.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_preserve._proof_1",
+			"reason": "For every n, this supplies SMulCommClass ℝ ℝ (Fin(2n) → ℝ). The two real scalar actions commute pointwise by commutativity of real multiplication.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_preserve._proof_2",
+			"reason": "This is the closed proposition Nat.AtLeastTwo (1 + 1). It has no n binder and does not assert or require n ≥ 2.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.P_preserve.eq_1",
+			"reason": "For every n, the exported equation is exactly the defining linear-map equality P_preserve n = (1/2) • (id - J n).",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.Vec",
+			"reason": "The abbreviation is exactly Fin(2n) → ℝ for arbitrary n ∈ ℕ. At n = 0 this is the space of functions on the empty index type; no nonzero-dimension assumption is present.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.bracket_unique_root",
+			"reason": "The hypotheses place [a,b] inside [0,∞), provide continuity there, and bracket kπ by non-strict endpoint inequalities. The intermediate value theorem supplies existence; strict monotonicity supplies uniqueness. Endpoint roots, a = b and k = 0 are covered.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.break_eigen",
+			"reason": "Coordinate reversal is involutive, so J((v + Jv)/2) = (v + Jv)/2. This is an equality for every vector, including zero, without a nonzero-eigenvector assertion.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.enumeration_from_brackets",
+			"reason": "Bracketing assumptions are quantified over every natural m. Applying bracket_unique_root for each m and classical choice yields a sequence; strict index order yields strict root order. The conclusion concerns the supplied index range and does not assert surjectivity onto all phase levels.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.indexed_roots_strict_mono",
+			"reason": "For arbitrary natural a < b, strict monotonicity of index and the assumed phase-root identities imply roots a < roots b through phase_index_order. Existence of the roots is supplied by the universally quantified hypothesis hr.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.linear_interfaces",
+			"reason": "All six equalities follow from the three declared real linear maps. The binders include every natural n, both vectors and every real scalar; n = 0 and scalar zero require no exceptions.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.phase_index_order",
+			"reason": "Both root hypotheses ensure nonnegative arguments. Strict monotonicity on that domain and π > 0 give both directions of x < y iff j < k. Equal indices and index zero are included.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.phase_root",
+			"reason": "For an arbitrary total function Φ : ℝ → ℝ, natural k and real x, the predicate is exactly 0 ≤ x and Φ(x) = kπ. It contains no implicit continuity, monotonicity or existence assertion.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.phase_root_unique",
+			"reason": "The two roots lie in [0,∞) and have equal Φ-values. Injectivity of a strictly increasing function on that set gives x = y. Continuity is unnecessary and is not assumed.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.preserve_eigen",
+			"reason": "Involutivity gives J((v - Jv)/2) = -(v - Jv)/2 for every vector. The statement does not require the projected vector to be nonzero.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.preserved_perturbation_iff",
+			"reason": "The explicit hypothesis reflect x = x reduces reflect(x + v) = x + v to x - Jv = x + v, equivalently Jv = -v. The fixed-point hypothesis is retained.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_annihilation",
+			"reason": "Both compositions reduce to (id - J²)/4 and therefore vanish. The zero on the right is the zero vector in Vec n.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_coordinates",
+			"reason": "Evaluation of the two linear-map definitions gives the stated half-difference and half-sum. The coordinate binder i : Fin(2n) makes the coordinate assertion vacuous when n = 0.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_decomposition",
+			"reason": "Adding (v - Jv)/2 and (v + Jv)/2 gives v pointwise. This holds for every n and vector, including the empty-dimensional case.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_fixed_iff",
+			"reason": "The fixed-point equations for the half-difference and half-sum are respectively equivalent to Jv = -v and Jv = v. Both directions hold over ℝ, including v = 0.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_idempotence",
+			"reason": "Expanding each squared projection and using J² = id gives the corresponding projection again. Both identities have the same universally quantified n and vector.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.projection_orthogonal",
+			"reason": "Reversal preserves the dot product and acts with opposite signs on the two projected vectors. Their dot product therefore equals its negative and is zero over ℝ. The two input vectors are independently quantified.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reflect",
+			"reason": "Defines the affine map x ↦ 1 - Jx coordinatewise on all of Vec n. There is no coordinate-order or interval-membership restriction on x.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reflect.eq_1",
+			"reason": "For implicit natural n, vector x and coordinate i : Fin(2n), this gives exactly reflect x i = 1 - x(i.rev).",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reflection_at_fixed",
+			"reason": "Using the explicit fixed-point hypothesis, the perturbation formula and the two sign identities yields the stated equality for arbitrary x, u, v and real t. No smallness or nonzero condition on t is needed.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reflection_involution",
+			"reason": "Twice reversing the coordinate returns it, and 1 - (1 - x i) = x i. The resulting vector equality includes n = 0.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reflection_perturbation",
+			"reason": "For all x, v and real t, coordinate evaluation gives 1 - (x(i.rev) + t v(i.rev)) = reflect x i - t(Jv)i. No fixed-point hypothesis occurs in this declaration.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reversal_coordinate",
+			"reason": "The Fin index has natural value 2n - 1 - i.val. Membership of i in Fin(2n) supplies the required bound despite truncated natural subtraction. When n = 0 no coordinate exists.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reversal_coordinate._proof_1",
+			"reason": "The exported type is a contradiction from denying 2n - 1 - i.val < 2n. Since i.val < 2n, the dimension is positive and the claimed reversed index is in range.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reversal_coordinate._proof_1_1",
+			"reason": "The exported type is a contradiction from denying 2n - (i.val + 1) = (2n - 1) - i.val. This is a valid identity for truncated natural subtraction.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reversal_dot",
+			"reason": "The simultaneous reversal reindexes the finite sum of coordinate products by a permutation. The empty sum at n = 0 is also preserved.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.reversal_involution",
+			"reason": "Applying the reversal permutation twice gives the original coordinate, hence J(Jv) = v for every n and vector.",
+			"verdict": "APPROVED"
+		},
+		{
+			"id": "AuditRound10.root",
+			"reason": "Its explicit type has exactly 21 conjuncts. Each was checked to match the complete explicit type of the corresponding component theorem after whitespace normalization. All local hypotheses and quantifiers remain inside their respective conjuncts; root has no outer parameters.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [],
+	"limitations": [
+		"Approval is restricted to the requested formal readback and static mathematical checks. No comparison with an author's intended theorem was made, and this is not a claim of complete formalization.",
+		"No fresh Lean or Lake execution was performed. The compiler, imported libraries and compiled environment referenced by the metadata are outside the listed snapshots and were not inspected.",
+		"The supplied print log contains elisions, including in the printed root type and proof terms. Six type_readable fields also contain elisions. All 38 type_explicit fields and all six definition value_explicit fields are present without elisions and were used for the readback; the JSON export contains no theorem proof bodies.",
+		"The supplied log reports only propext, Classical.choice and Quot.sound for its 28 printed declarations. Ten generated declarations have no separate axiom report. These reports were inspected as supplied evidence, not independently regenerated or treated as a complete fresh dependency certification.",
+		"All eight snapshot hashes matched the packet. Environment package entries and recorded toolchain/manifest hashes agree with their snapshots, but the external executable hash and dependency contents were not independently verified."
+	],
+	"packet_sha256": "860efb04a2090bd7739ab0ad6e0c3ff259fa9ee0d3f8fde33d4192a3d66f01d1",
+	"readback": "Conventions: All declaration names below belong to AuditRound10. ℕ includes zero. Put V_n = Fin(2n) → ℝ, with pointwise real vector operations. For i : Fin(2n), let r(i) = i.rev; its natural value is 2n - 1 - i.val, with natural subtraction truncated at zero. Write J_n = J n, P_n = P_preserve n, Q_n = P_break n, and R_n = reflect at parameter n. The dot product is the finite sum Σ_{i : Fin(2n)} u(i)v(i). Braces retain implicit declaration binders. All exported universe-parameter lists are empty; the scalar, vector and order structures are the fixed real and natural structures shown in the export.\n\nVec: For (n : ℕ), defines the type V_n = Fin(2n) → ℝ.\n\nJ: For (n : ℕ), defines an ℝ-linear map V_n → V_n whose underlying function sends (v : V_n) to the function (i : Fin(2n)) ↦ v(r(i)).\n\nJ._proof_1: For every (n : ℕ) and (x, x₁ : V_n), the function (i : Fin(2n)) ↦ (x + x₁)(r(i)) equals that same function. This is the exported, definitionally reduced addition-witness type.\n\nJ._proof_2: For every (n : ℕ), (a : ℝ) and (v : V_n), the function (i : Fin(2n)) ↦ (a • v)(r(i)) equals that same function. This is the exported, definitionally reduced scalar-witness type.\n\nJ.eq_1: For every (n : ℕ), J_n equals the real linear-map structure with underlying function (v : V_n) ↦ ((i : Fin(2n)) ↦ v(r(i))), addition witness J._proof_1 n and scalar witness J._proof_2 n.\n\nP_preserve: For (n : ℕ), defines the noncomputable real linear map P_n = (1/2) • (id_{V_n} - J_n).\n\nP_preserve._proof_1: For every (n : ℕ), supplies SMulCommClass ℝ ℝ V_n for the two displayed real scalar actions. Its mathematical content is that for every (a, b : ℝ) and (v : V_n), a • (b • v) = b • (a • v).\n\nP_preserve._proof_2: The closed proposition Nat.AtLeastTwo (1 + 1): the natural number 1 + 1 is at least two. There are no declaration parameters.\n\nP_preserve.eq_1: For every (n : ℕ), P_n = (1/2) • (id_{V_n} - J_n), as an equality of real linear maps.\n\nP_break: For (n : ℕ), defines the noncomputable real linear map Q_n = (1/2) • (id_{V_n} + J_n).\n\nP_break.eq_1: For every (n : ℕ), Q_n = (1/2) • (id_{V_n} + J_n), as an equality of real linear maps.\n\nreflect: For {n : ℕ} and (x : V_n), defines R_n(x) to be the function (i : Fin(2n)) ↦ 1 - x(r(i)).\n\nreflect.eq_1: For every {n : ℕ}, (x : V_n) and (i : Fin(2n)), R_n(x)(i) = 1 - x(r(i)).\n\nlinear_interfaces: For every {n : ℕ}, (u, v : V_n) and (a : ℝ), all six equations hold: J_n(u + v) = J_n u + J_n v; J_n(a • v) = a • J_n v; P_n(u + v) = P_n u + P_n v; P_n(a • v) = a • P_n v; Q_n(u + v) = Q_n u + Q_n v; Q_n(a • v) = a • Q_n v.\n\nreversal_coordinate: For every {n : ℕ}, (v : V_n) and (i : Fin(2n)), (J_n v)(i) = v(⟨2n - 1 - i.val, h⟩), where h proves that the displayed natural value is less than 2n. The witness is constructed from reversal_coordinate._proof_1 by contradiction.\n\nreversal_coordinate._proof_1: For every {n : ℕ} and (i : Fin(2n)), ¬(2n - 1 - i.val < 2n) → False.\n\nreversal_coordinate._proof_1_1: For every {n : ℕ} and (i : Fin(2n)), ¬(2n - (i.val + 1) = (2n - 1) - i.val) → False. All subtractions in these two helper statements are natural subtraction.\n\nreversal_involution: For every {n : ℕ} and (v : V_n), J_n(J_n v) = v.\n\nprojection_coordinates: For every {n : ℕ}, (v : V_n) and (i : Fin(2n)), both (P_n v)(i) = (v(i) - v(r(i)))/2 and (Q_n v)(i) = (v(i) + v(r(i)))/2.\n\npreserve_eigen: For every {n : ℕ} and (v : V_n), J_n(P_n v) = -P_n v.\n\nbreak_eigen: For every {n : ℕ} and (v : V_n), J_n(Q_n v) = Q_n v.\n\nprojection_decomposition: For every {n : ℕ} and (v : V_n), P_n v + Q_n v = v.\n\nprojection_idempotence: For every {n : ℕ} and (v : V_n), both P_n(P_n v) = P_n v and Q_n(Q_n v) = Q_n v.\n\nprojection_annihilation: For every {n : ℕ} and (v : V_n), both P_n(Q_n v) = 0 and Q_n(P_n v) = 0, where 0 is the zero vector in V_n.\n\nprojection_fixed_iff: For every {n : ℕ} and (v : V_n), both (P_n v = v ↔ J_n v = -v) and (Q_n v = v ↔ J_n v = v).\n\nreversal_dot: For every {n : ℕ} and (u, v : V_n), dotProduct(J_n u, J_n v) = dotProduct(u, v).\n\nprojection_orthogonal: For every {n : ℕ} and (u, v : V_n), dotProduct(P_n u, Q_n v) = 0 in ℝ.\n\nreflection_involution: For every {n : ℕ} and (x : V_n), R_n(R_n x) = x.\n\nreflection_perturbation: For every {n : ℕ}, (x, v : V_n) and (t : ℝ), R_n(x + t • v) = R_n x - t • J_n v.\n\nreflection_at_fixed: For every {n : ℕ}, (x, u, v : V_n), (t : ℝ) and (hx : R_n x = x), R_n(x + t • (P_n u + Q_n v)) = x + t • (P_n u - Q_n v).\n\npreserved_perturbation_iff: For every {n : ℕ}, (x, v : V_n) and (hx : R_n x = x), R_n(x + v) = x + v ↔ J_n v = -v.\n\nphase_root: For (Φ : ℝ → ℝ), (k : ℕ) and (x : ℝ), defines the proposition H(Φ,k,x) := (0 ≤ x ∧ Φ(x) = (k : ℝ)π). Here H abbreviates phase_root only within this readback.\n\nFor the following statements, StrictMonoOn Φ [0,∞) means that for every (s, t : ℝ), 0 ≤ s, 0 ≤ t and s < t imply Φ(s) < Φ(t). ContinuousOn is continuity restricted to that set. For a function f on ℕ, StrictMono f means that for every (a, b : ℕ), a < b implies f(a) < f(b).\n\nphase_root_unique: For every {Φ : ℝ → ℝ}, (hm : StrictMonoOn Φ [0,∞)), {k : ℕ}, {x, y : ℝ}, (hx : H(Φ,k,x)) and (hy : H(Φ,k,y)), x = y.\n\nbracket_unique_root: For every {Φ : ℝ → ℝ}, (hc : ContinuousOn Φ [0,∞)), (hm : StrictMonoOn Φ [0,∞)), (k : ℕ), (a, b : ℝ), (ha : 0 ≤ a), (hab : a ≤ b), (hl : Φ(a) ≤ (k : ℝ)π) and (hr : (k : ℝ)π ≤ Φ(b)), there exists exactly one (x : ℝ) satisfying a ≤ x ≤ b and H(Φ,k,x). Explicitly, the chosen x satisfies those conditions, and every (y : ℝ) satisfying a ≤ y ≤ b and H(Φ,k,y) equals x.\n\nphase_index_order: For every {Φ : ℝ → ℝ}, (hm : StrictMonoOn Φ [0,∞)), {j, k : ℕ}, {x, y : ℝ}, (hx : H(Φ,j,x)) and (hy : H(Φ,k,y)), x < y ↔ j < k.\n\nindexed_roots_strict_mono: For every {Φ : ℝ → ℝ}, (hm : StrictMonoOn Φ [0,∞)), (index : ℕ → ℕ), (roots : ℕ → ℝ), (hi : StrictMono index) and (hr : ∀ m : ℕ, H(Φ,index(m),roots(m))), StrictMono roots. Thus for every (a, b : ℕ), a < b implies roots(a) < roots(b).\n\nenumeration_from_brackets: For every {Φ : ℝ → ℝ}, (hc : ContinuousOn Φ [0,∞)), (hm : StrictMonoOn Φ [0,∞)), (index : ℕ → ℕ), (hi : StrictMono index), (left, right : ℕ → ℝ), (hleft : ∀ m : ℕ, 0 ≤ left(m)), (horder : ∀ m : ℕ, left(m) ≤ right(m)), (hl : ∀ m : ℕ, Φ(left(m)) ≤ (index(m) : ℝ)π) and (hr : ∀ m : ℕ, (index(m) : ℝ)π ≤ Φ(right(m))), there exists (roots : ℕ → ℝ) such that both: for every (m : ℕ), left(m) ≤ roots(m) ≤ right(m) and H(Φ,index(m),roots(m)); and for every (a, b : ℕ), a < b implies roots(a) < roots(b).\n\nroot: A closed proposition with no outer parameters. It is the right-associated conjunction of the complete universally quantified statements translated above for, in order: linear_interfaces; reversal_coordinate; reversal_involution; projection_coordinates; preserve_eigen; break_eigen; projection_decomposition; projection_idempotence; projection_annihilation; projection_fixed_iff; reversal_dot; projection_orthogonal; reflection_involution; reflection_perturbation; reflection_at_fixed; preserved_perturbation_iff; phase_root_unique; bracket_unique_root; phase_index_order; indexed_roots_strict_mono; enumeration_from_brackets. Each conjunct retains its own independent binders and hypotheses exactly as stated above. In particular, the existential sequence is inside the final conjunct and depends on that conjunct's universally quantified data.",
+	"verdict": "APPROVED"
+}

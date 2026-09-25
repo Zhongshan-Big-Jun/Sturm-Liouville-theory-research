@@ -1,0 +1,81 @@
+{
+  "Role": "implementation_author_not_independent_acceptance",
+  "Status": "ready_for_main_author_integration",
+  "FrozenUtc": "2026-09-25T06:19:11.669938+00:00",
+  "Directory": "/mnt/f/tools/math-audit-round10-20260925/sector-author",
+  "SuggestedProjectModule": "scripts/reflection_seeds.py",
+  "Module": "reflection_seeds.py",
+  "ApiDocument": "INTEGRATION.md",
+  "EntryPoints": [
+    "reflection_direction",
+    "generate_sector_seed",
+    "interfaces_to_widths",
+    "check_sector_seed"
+  ],
+  "Files": {
+    "reflection_seeds.py": {
+      "Sha256": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+      "Bytes": 17364
+    },
+    "test_reflection_seeds.py": {
+      "Sha256": "ad51f9924ce702d9c14ee55d75dd441e2823c943d14791fb61f62522921513f3",
+      "Bytes": 16210
+    },
+    "INTEGRATION.md": {
+      "Sha256": "bbff5bb2cd094c32585d9d671ed49f07f3ae85c6d90259554fd3e7ad42d360a5",
+      "Bytes": 8075
+    },
+    "AGENTS.md": {
+      "Sha256": "261736002104f68a0e1b4e7944b6a7e87e624384fbfeee5cb4b308ec568883ef",
+      "Bytes": 4960
+    },
+    "author-evidence-final.json": {
+      "Sha256": "93281534cc66830e8d4b414e4a309b0106231ba7255c9731d5540aabb29f5341",
+      "Bytes": 117227
+    },
+    "author-tests-final.log": {
+      "Sha256": "32de01efa0d0d37cb0548fb8ba20810c77e8e4f61cf1367ecca5e049bd53dfc5",
+      "Bytes": 2805
+    },
+    "author-evidence-optimized.json": {
+      "Sha256": "4682c5df8360b652b581807acd158e97acb5e5946f20777c509c06768fc8b983",
+      "Bytes": 117227
+    },
+    "author-tests-optimized.log": {
+      "Sha256": "fe6ce5a26d748af1059a0392303c59b79f6ed16a68576fdecd138fe332c269e5",
+      "Bytes": 2805
+    }
+  },
+  "AuthorChecks": {
+    "Normal": {
+      "TestsRun": 21,
+      "Success": true,
+      "Evidence": "author-evidence-final.json",
+      "Log": "author-tests-final.log",
+      "Flags": "-B -W error"
+    },
+    "Optimized": {
+      "TestsRun": 21,
+      "Success": true,
+      "Evidence": "author-evidence-optimized.json",
+      "Log": "author-tests-optimized.log",
+      "Flags": "-B -O -W error"
+    },
+    "Style": "AST parse, tab indentation, no multiword snake_case variable assignments: passed"
+  },
+  "ReconMethodSha256": {
+    "z_to_widths": "f097ff7b5234d37a040bc651fe8f065a6daf161501d5d2044140b796b9caaf93",
+    "widths_to_z": "cf649f73ed92e0e16abe1ab66dab4c722df23023300f6748bee5cc02053cb542"
+  },
+  "HistoricalOutputsOutsideFinalCandidate": [
+    "author-evidence-initial.json",
+    "author-tests-initial.log"
+  ],
+  "RemainingWithMainAuthor": [
+    "main integration",
+    "CLI checks",
+    "actual optimization reruns",
+    "independent acceptance"
+  ],
+  "Scope": "Only files under this directory written. No project edits, main execution, spectral/root work, Lean, propagation, commit or push by this author."
+}

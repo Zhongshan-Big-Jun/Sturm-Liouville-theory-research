@@ -1,0 +1,8 @@
+from pathlib import Path
+import json
+b=Path('/mnt/f/tools/math-audit-round10-20260925/formal-reviewer/independent-35c0ed5b7a9f')
+p=b/'project'/'ReviewerChecks.lean'
+s=p.read_text()
+w='F:'+str(b/'evidence'/'all-declaration-audit.json')[len('/mnt/f'):].replace('/','\\')
+assert '#audit_all "' not in s
+p.write_text(s+'\n#audit_all '+json.dumps(w)+'\n')

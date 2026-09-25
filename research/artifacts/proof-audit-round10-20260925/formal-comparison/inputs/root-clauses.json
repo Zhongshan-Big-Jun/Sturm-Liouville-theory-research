@@ -1,0 +1,86 @@
+[
+  {
+    "name": "AuditRound10.linear_interfaces",
+    "type_in_namespace": "∀ {n : ℕ} (u v : Vec n) (a : ℝ),\n(J n (u + v) = J n u + J n v) ∧ (J n (a • v) = a • J n v) ∧\n    (P_preserve n (u + v) = P_preserve n u + P_preserve n v) ∧\n    (P_preserve n (a • v) = a • P_preserve n v) ∧\n    (P_break n (u + v) = P_break n u + P_break n v) ∧\n    (P_break n (a • v) = a • P_break n v)"
+  },
+  {
+    "name": "AuditRound10.reversal_coordinate",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n) (i : Fin (2 * n)),\nJ n v i = v ⟨2 * n - 1 - i.val, by omega⟩"
+  },
+  {
+    "name": "AuditRound10.reversal_involution",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nJ n (J n v) = v"
+  },
+  {
+    "name": "AuditRound10.projection_coordinates",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n) (i : Fin (2 * n)),\nP_preserve n v i = (v i - v i.rev) / 2 ∧\n    P_break n v i = (v i + v i.rev) / 2"
+  },
+  {
+    "name": "AuditRound10.preserve_eigen",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nJ n (P_preserve n v) = -P_preserve n v"
+  },
+  {
+    "name": "AuditRound10.break_eigen",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nJ n (P_break n v) = P_break n v"
+  },
+  {
+    "name": "AuditRound10.projection_decomposition",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nP_preserve n v + P_break n v = v"
+  },
+  {
+    "name": "AuditRound10.projection_idempotence",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nP_preserve n (P_preserve n v) = P_preserve n v ∧\n    P_break n (P_break n v) = P_break n v"
+  },
+  {
+    "name": "AuditRound10.projection_annihilation",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\nP_preserve n (P_break n v) = 0 ∧\n    P_break n (P_preserve n v) = 0"
+  },
+  {
+    "name": "AuditRound10.projection_fixed_iff",
+    "type_in_namespace": "∀ {n : ℕ} (v : Vec n),\n(P_preserve n v = v ↔ J n v = -v) ∧\n    (P_break n v = v ↔ J n v = v)"
+  },
+  {
+    "name": "AuditRound10.reversal_dot",
+    "type_in_namespace": "∀ {n : ℕ} (u v : Vec n),\ndotProduct (J n u) (J n v) = dotProduct u v"
+  },
+  {
+    "name": "AuditRound10.projection_orthogonal",
+    "type_in_namespace": "∀ {n : ℕ} (u v : Vec n),\ndotProduct (P_preserve n u) (P_break n v) = 0"
+  },
+  {
+    "name": "AuditRound10.reflection_involution",
+    "type_in_namespace": "∀ {n : ℕ} (x : Vec n),\nreflect (reflect x) = x"
+  },
+  {
+    "name": "AuditRound10.reflection_perturbation",
+    "type_in_namespace": "∀ {n : ℕ} (x v : Vec n) (t : ℝ),\nreflect (x + t • v) = reflect x - t • J n v"
+  },
+  {
+    "name": "AuditRound10.reflection_at_fixed",
+    "type_in_namespace": "∀ {n : ℕ} (x u v : Vec n) (t : ℝ)\n    (hx : reflect x = x),\nreflect (x + t • (P_preserve n u + P_break n v)) =\n      x + t • (P_preserve n u - P_break n v)"
+  },
+  {
+    "name": "AuditRound10.preserved_perturbation_iff",
+    "type_in_namespace": "∀ {n : ℕ} (x v : Vec n)\n    (hx : reflect x = x),\nreflect (x + v) = x + v ↔ J n v = -v"
+  },
+  {
+    "name": "AuditRound10.phase_root_unique",
+    "type_in_namespace": "∀ {Phi : ℝ → ℝ}\n    (hm : StrictMonoOn Phi (Set.Ici 0)) {k : ℕ} {x y : ℝ}\n    (hx : phase_root Phi k x) (hy : phase_root Phi k y),\nx = y"
+  },
+  {
+    "name": "AuditRound10.bracket_unique_root",
+    "type_in_namespace": "∀ {Phi : ℝ → ℝ}\n    (hc : ContinuousOn Phi (Set.Ici 0))\n    (hm : StrictMonoOn Phi (Set.Ici 0))\n    (k : ℕ) (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b)\n    (hl : Phi a ≤ (k : ℝ) * Real.pi) (hr : (k : ℝ) * Real.pi ≤ Phi b),\n∃! x : ℝ, x ∈ Set.Icc a b ∧ phase_root Phi k x"
+  },
+  {
+    "name": "AuditRound10.phase_index_order",
+    "type_in_namespace": "∀ {Phi : ℝ → ℝ}\n    (hm : StrictMonoOn Phi (Set.Ici 0)) {j k : ℕ} {x y : ℝ}\n    (hx : phase_root Phi j x) (hy : phase_root Phi k y),\n(x < y ↔ j < k)"
+  },
+  {
+    "name": "AuditRound10.indexed_roots_strict_mono",
+    "type_in_namespace": "∀ {Phi : ℝ → ℝ}\n    (hm : StrictMonoOn Phi (Set.Ici 0)) (index : ℕ → ℕ) (roots : ℕ → ℝ)\n    (hi : StrictMono index) (hr : ∀ m, phase_root Phi (index m) (roots m)),\nStrictMono roots"
+  },
+  {
+    "name": "AuditRound10.enumeration_from_brackets",
+    "type_in_namespace": "∀ {Phi : ℝ → ℝ}\n    (hc : ContinuousOn Phi (Set.Ici 0))\n    (hm : StrictMonoOn Phi (Set.Ici 0))\n    (index : ℕ → ℕ) (hi : StrictMono index) (left right : ℕ → ℝ)\n    (hleft : ∀ m, 0 ≤ left m) (horder : ∀ m, left m ≤ right m)\n    (hl : ∀ m, Phi (left m) ≤ (index m : ℝ) * Real.pi)\n    (hr : ∀ m, (index m : ℝ) * Real.pi ≤ Phi (right m)),\n∃ roots : ℕ → ℝ,\n      (∀ m, roots m ∈ Set.Icc (left m) (right m) ∧ phase_root Phi (index m) (roots m)) ∧\n      StrictMono roots"
+  }
+]

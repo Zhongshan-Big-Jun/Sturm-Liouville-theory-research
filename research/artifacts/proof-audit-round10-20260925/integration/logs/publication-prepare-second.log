@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round10-20260925/publication.py", line 108, in <module>
+    elif mode=='prepare':prepare()
+                         ~~~~~~~^^
+  File "/mnt/f/tools/math-audit-round10-20260925/publication.py", line 71, in prepare
+    require(not extra,'Unassigned new paths '+str(extra));print('Exact publication candidate',len(paths),'files',flush=True)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round10-20260925/publication.py", line 31, in require
+    if not x:raise RuntimeError(m)
+             ^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Unassigned new paths ['.research-state/progress.lock', 'research/artifacts/proof-audit-round10-20260925/integration/publication-cache-exclusion.json']

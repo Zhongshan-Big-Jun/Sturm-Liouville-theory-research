@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-23 (literature absorption P0-P4; older runs retain their original dates)
+Last updated: 2026-09-25 (round10 indexed spectrum/reflection-sector repair independently reviewed; numerical scope retained)
 
 
 
@@ -58,6 +58,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
 | B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
 | B7 | Local second variation along finite fixed-value moving interfaces | STRICT | tools/finite-interface-second-derivative; literature/absorption-20260923/interfaces/derivations | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
+| B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
 
 ## Relationships between problems
 
@@ -83,6 +84,8 @@ B2 (inf ratio, solved) --informs--> B4
 B3 --uses--> Fixed-n configuration tools
 B3 --solved candidate subproblem--> B3-CANDIDATE-LIMIT via nested Jacobi matrices
 B7 local interface chain rule --supports--> B4 variation analysis; global sign remains open
+B8 phase indexing + actual reflection sectors --repairs numerical exploration of--> B4/B7
+B8 does not promote numerical observations to analytic G1 or global uniqueness
 B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
 B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
@@ -113,11 +116,13 @@ flowchart LR
   A10["A10 Legendre replacement systems (STRICT)"]
   A11["A11 infinite deletion (PARTIAL)"]
   B7["B7 finite interface derivatives (STRICT)"]
+  B8["B8 indexed numerical modes / pure seeds (NUMERICAL)"]
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
   B3C["B3-CANDIDATE-LIMIT (SOLVED): prescribed balanced sequence"]
   B4["B4 gap extremals (PARTIAL)"]
+  B8 -->|numerical exploration| B4
   B4L["B4-SUP-LIMIT (SOLVED): (n+1)^2*pi^2"]
   B4I["B4-INF-LIMIT (SOLVED): symmetric well, continuous coverage"]
   B5["B5 MDE unify (OPEN)"]
