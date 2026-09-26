@@ -1,0 +1,44 @@
+--- final_document_check.py
++++ final_document_check_v2.py
+@@ -1,11 +1,11 @@
+-from pathlib import Path
++from pathlib import Path as FilePath
+ import gzip
+ import hashlib
+ import json
+ import re
+ 
+-Root = Path('/mnt/f/LaTeX/BVE research')
+-Out = Path('/mnt/f/tools/math-audit-round12-20260926')
++Root = FilePath('/mnt/f/LaTeX/BVE research')
++Out = FilePath('/mnt/f/tools/math-audit-round12-20260926')
+ Artifact = Root / 'research/artifacts/proof-audit-round12-20260926'
+ Report = Root / 'reports/proof-audit-round12-20260926'
+ Paths = ['AGENTS.md', 'README.md', 'README_EN.md', 'research_map.md', 'docs/PROJECT_UNDERSTANDING.md', 'docs/research-guide.md', 'scripts/README.md', 'tools/README.md', 'literature/maps/FRONTIER.md', 'lean-proof/README.md', 'lean-proof/STATUS.md', 'lean-proof/LEMMA_INDEX.md', 'reports/proof-audit-round12-20260926/REPORT.md', 'research/artifacts/proof-audit-round12-20260926/README.md']
+@@ -48,7 +48,7 @@
+ 	if sha(Root / Row['path']) != Row['sha256']:
+ 		raise RuntimeError('Caller drift: ' + Row['path'])
+ Checkpoint = json.loads((Out / 'checkpoint-result.json').read_text())
+-Snapshot = json.loads(Path(Checkpoint['snapshot']).read_text())
++Snapshot = json.loads(FilePath(Checkpoint['snapshot']).read_text())
+ if sha(Root / Snapshot['progress']) != Snapshot['progress_sha256']:
+ 	raise RuntimeError('Progress changed after checkpoint')
+ for Name, Info in Snapshot['inputs'].items():
+@@ -57,7 +57,7 @@
+ if sha(Root / 'lean-proof/SL/AuditRound12.lean') != '21f0a2d46770474e6c32f78ead52c977dcec2f0e589308584d5499c253efa768':
+ 	raise RuntimeError('Formal source differs')
+ ArchiveCount = 0
+-for Name in ['lean-author-archive-manifest.json', 'formal-export2-archive-manifest.json', 'formal-execution-archive-manifest.json', 'coordinator-archive-manifest.json', 'integration/archive-manifest.json']:
++for Name in ['lean-author-archive-manifest.json', 'formal-export2-archive-manifest.json', 'formal-execution-archive-manifest.json', 'coordinator-archive-manifest.json', 'integration/archive-manifest.json', 'integration/document-check-repair/manifest.json']:
+ 	Manifest = json.loads((Artifact / Name).read_text())
+ 	for Row in Manifest['files']:
+ 		Data = (Artifact / Row['path']).read_bytes()
+@@ -73,7 +73,7 @@
+ for Review in Reviews:
+ 	Name = Review['kind']
+ 	RootFile = Out / (Name + '-root.json')
+-	Project = Path(json.loads(RootFile.read_text())['project']) if RootFile.exists() else Root
++	Project = FilePath(json.loads(RootFile.read_text())['project']) if RootFile.exists() else Root
+ 	PacketFile = Project / json.loads((Out / (Name + '-packet.json')).read_text())['packet']
+ 	if sha(PacketFile) != Review['packet_sha256']:
+ 		raise RuntimeError('Packet changed: ' + Name)

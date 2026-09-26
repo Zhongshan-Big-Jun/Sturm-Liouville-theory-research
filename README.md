@@ -1,5 +1,7 @@
 # Sturm-Liouville 边值问题研究
 
+2026-09-26 第十二轮修订与独立验收完成: DD/DN 半谱改为按相位序号定位, 去极点求和绑定共享谱表; 修正原 K 与 SKS 的扇区对象及三个工具卡中的传播. 独立检验与工具放行状态见[本轮报告](reports/proof-audit-round12-20260926/REPORT.md). 第十一轮余有限分类保留原验收范围, 全局 G1' 仍开放.
+
 2026-09-26 第十一轮: 修复残差 Jacobian 的交叉分块与窄层差分方向. 新的独立解析审查补齐固定 c>0、0<=s<7/2 的余有限闭包分类, 包含三个临界点和原族非 Schauder 基推论. 见[修订报告](reports/proof-audit-round11-20260926/REPORT.md)、[完整证明 PDF](docs/SL_cofinite_all_orders.pdf)和[工具卡](tools/krein-cofinite-closure-all-orders.md). 数值、解析与局部 Lean 的验收范围分别登记.
 
 2026-09-25 第十轮审计修订已完成独立验收: 修复漏掉近邻低频根后的谱序号错配, 并明确保持/破缺反射的真实种子. 旧数值按实际重算范围使用, 不扩张全局结论. 见[本轮报告](reports/proof-audit-round10-20260925/REPORT.md).

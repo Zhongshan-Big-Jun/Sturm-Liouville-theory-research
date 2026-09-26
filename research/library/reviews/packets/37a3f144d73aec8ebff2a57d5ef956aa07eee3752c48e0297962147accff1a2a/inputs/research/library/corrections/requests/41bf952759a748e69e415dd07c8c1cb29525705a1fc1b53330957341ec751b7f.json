@@ -1,0 +1,47 @@
+{
+	"input_sha256": "b583bf1fd6bd57530069b66d2c95ad3f48c585d01b6c5532acdc3ceb413f5a76",
+	"key": "issue:round11-cross-blocks-and-faithful-fd",
+	"kind": "issue",
+	"payload": {
+		"canonical_action": "NEEDS_RECEIVER_REVIEW",
+		"canonical_nodes": [],
+		"disposition": "quarantine",
+		"evidence": [
+			{
+				"locator": "R11-01, R11-02 and stated scope",
+				"path": "research/artifacts/proof-audit-round11-20260926/submitted/proof_audit_round11_20260925.md",
+				"sha256": "c9a5f5dabd8058ba27362f8d515c484bd9892895c07a6bf8300b3d8641be7998",
+				"snapshot": "research/library/corrections/evidence/c9a5f5dabd8058ba27362f8d515c484bd9892895c07a6bf8300b3d8641be7998.bin"
+			},
+			{
+				"locator": "Exact old jac_fd and sym_antisym_decomp",
+				"path": "research/artifacts/proof-audit-round11-20260926/before/scripts/_gapn2_jacobian_probe.py",
+				"sha256": "da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c",
+				"snapshot": "research/library/corrections/evidence/da8ff8aa4326a92f526cd404d9008088342b8d2bade59ea8d72de5a0afb17f0c.bin"
+			}
+		],
+		"issue_id": "round11-cross-blocks-and-faithful-fd",
+		"origin": "external",
+		"reporter": "sl_audit_round11; source bytes verified against current commit",
+		"summary": "R11-01: the shared probe extracts zero diagonal blocks of an anti-commuting residual Jacobian instead of its cross blocks. R11-02: fixed-step free-width finite differences can clip and renormalize endpoints, changing the intended edge direction. Suspend connected numerical-support reuse pending exact repair and caller review. Correct analytic reflection and Green/Hessian identities are not disproved; default R=4 outputs are not blanket retracted.",
+		"targets": [
+			{
+				"location": "tools/band-selfconsistency-equivariance.md",
+				"sha256": "cbe2050bf169630d38b99842971b76e62a46f0b0b156f9038be42065b540a759"
+			},
+			{
+				"location": "tools/second-variation-weighted-eigenvalues.md",
+				"sha256": "5586a2fdf09d91c2a089b0aac737bd80083a5c941becae3872b48de8741fe1f7"
+			},
+			{
+				"location": "tools/green-half-inertia.md",
+				"sha256": "ae8b1df2f082aa6d6252ecbd3adf007d9086e7322c6b56cacd4dca9b53f64adb"
+			},
+			{
+				"location": "tools/half-problem-regularized-green.md",
+				"sha256": "c0f7eb30ecebbd0b4d8ffc8ebee5b695a4485b10d11c7d3f7cc5453c115fc908"
+			}
+		]
+	},
+	"schema": "research-corrections/v1"
+}

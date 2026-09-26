@@ -1,0 +1,34 @@
+=== n=2 R=4 mode=sup: lam_2=22.50044205 lam_3=85.59364089 ===
+    half blocks: [(np.float64(0.29343445), 1.0), (np.float64(0.07202626), 4.0), (np.float64(0.1345393), 1.0)]
+C0 constant-density self-test: muD err=0.000e+00 muN err=0.000e+00
+C1 muD[:4] = [ 22.50044205 117.15980559 300.98624915 483.50545692]
+   muN[:4] = [  5.96865899  85.59364089 165.62193822 375.77925326]
+   |lam_2 - mu_1^D| = 0.000e+00, |lam_3 - mu_2^N| = 0.000e+00
+   interleaving mu_1^N < mu_1^D < mu_2^N < mu_2^D: True
+C2 closed-form vs Richardson spectral (regularized at own pole):
+   Gt_D: max err = 2.326e-06
+   Gt_N: max err = 1.302e-06
+C2 full Green at cross eigenvalue:
+   G_D(mu_2^N): max err = 2.288e-06
+   G_N(mu_1^D): max err = 1.262e-06
+C3 cross-parity assemblies = Kp_odd = E Ke E; raw Ko is separate:
+   R-205 vs collapsed assembly err = 8.882e-16
+   Ko_ref (raw-K odd sector, different object) = [[ 5.53304  -1.943929]
+ [-1.943929  4.756601]]
+   Kp_odd_R205 = [[4.416726 3.117367]
+ [3.117367 6.949729]]
+   Kp_odd = [[4.416726 3.117367]
+ [3.117367 6.949729]]
+   Ko_closed (reduced kernels + rank-one term) = [[ 5.557769 -1.943056]
+ [-1.943056  4.77344 ]]
+   Ko_closed vs raw spectral Ko_ref err = 2.473e-02
+   eig(Ko_ref) = [3.162505 7.127136]
+   Kp_odd vs Po Kp_full Po^T err = 1.994e-03
+   eig(Kp_odd) = [2.318409 9.048046]
+   FD odd sector Ko_fd = [[ 5.557769 -1.943056]
+ [-1.943056  4.77344 ]]
+   Ko_closed vs raw Ko_fd err = 3.785e-10
+   FD even sector Ke_fd = [[ 4.416726 -3.117367]
+ [-3.117367  6.949729]]
+   Kp_odd vs diag(1,-1) Ke_ref diag(1,-1) err = 2.419e-02
+   Kp_odd vs diag(1,-1) Ke_fd diag(1,-1) err = 3.499e-10

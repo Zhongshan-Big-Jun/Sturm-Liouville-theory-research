@@ -1,0 +1,31 @@
+{
+  "issue_id": "round12-half-spectrum-poles-and-parity",
+  "origin": "external",
+  "reporter": "sl_audit_round12; supplied function excerpts independently matched to whole current Git blobs",
+  "summary": "R12-01/02: the separate half-spectrum mu-grid drops low modes and changes prefix with N; position-only pole exclusion can retain the actual pole. R12-03: the historical cross-parity Green expression is the odd block of SKS (E Ke E), not the raw K odd block. Quarantine the two directly affected cards pending indexed DD/DN repair, bound pole identity and exact sector correction. No blanket retraction of unchanged reduced-kernel derivations, round11 cofinite classification, or default R4 historical data.",
+  "disposition": "quarantine",
+  "targets": [
+    {
+      "location": "tools/green-half-inertia.md",
+      "sha256": "10873d6be96338ecf3024b93fd655c0ebcdf60445d35367773f174b7aba26c20"
+    },
+    {
+      "location": "tools/half-problem-regularized-green.md",
+      "sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "research/artifacts/proof-audit-round12-20260926/submitted/proof_audit_round12_20260926.md",
+      "locator": "R12-01, R12-02, R12-03 and scope"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round12-20260926/intake-verification.json",
+      "locator": "Whole current Git blob and nine function AST identity checks"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round12-20260926/before/scripts/_gapn2_half_problem_probe.py",
+      "locator": "Old half_spectrum and _spectral_green exact bytes"
+    }
+  ]
+}

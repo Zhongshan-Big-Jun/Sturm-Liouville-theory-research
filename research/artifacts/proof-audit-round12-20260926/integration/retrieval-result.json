@@ -1,0 +1,2323 @@
+{
+  "verdict": "RETRIEVAL_ONLY",
+  "changed_paths": [],
+  "blocked": 1,
+  "hits": [
+    {
+      "score": 5,
+      "tool_id": "half-problem-regularized-green",
+      "title": "半问题约化 Green 闭式: 无 rho(y) 因子的约化预解核与 K 的两个镜扇区闭式",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/feynman-hellmann.md",
+          "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/half-problem-regularized-green.md",
+      "sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+      "version": "research/library/card-versions/c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56.md",
+      "summary": "半问题Green历史闭式及n=2镜像扇区研究入口. bare G1的行列式条件不等价于两扇区定性; 更强定性需另证. 半隙Hessian是B转置*H_full*B, 不是对完整Hessian一律加倍. 当前修订明确归一化、量词和历史边界; 未认证全R延拓或全部Green/M3/KP推导. 第十轮: 旧扫描不能认证谱序号, 旧asym非扇区投影; 新相位索引与可行扇区种子另审, 不据历史数值扩张解析结论. 第十一轮: 残差J取交叉块, 与Hessian块对角结构区分; 接口中心差分核对实际两侧位移, 失败明确拒绝, 不作全参数认证. 第十二轮: DD/DN相位按序号定位, 去极点绑定同一谱表; 交叉Green式为Kp奇块=E Ke E, 原Ko需自身约化核及秩一项. sector_data和负秩一判据原扇区标签已修正, 数值守卫不等于区间认证.",
+      "conditions": "UNSPECIFIED",
+      "scope": "Current round12 statements and retained earlier scoped repairs. n2 normalized Green and general finite matrix/phase identities; no all-R signs, historical full scans or complete formalization.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND12_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be.json",
+          "sha256": "0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be",
+          "kind": "correction-experience",
+          "author": "agent:round11-20260926",
+          "locator": "cross blocks versus commuting weighted matrices",
+          "source_id": null,
+          "tool_sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c.json",
+          "sha256": "24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c",
+          "kind": "correction-experience",
+          "author": "agent:round12-20260926",
+          "locator": "谱身份必须贯穿请求规模、去极点与求和",
+          "source_id": null,
+          "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81.json",
+          "sha256": "79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81",
+          "kind": "correction-experience",
+          "author": "agent:round10-20260925",
+          "locator": "2026-09-25 bounded propagation",
+          "source_id": null,
+          "tool_sha256": "c0f7eb30ecebbd0b4d8ffc8ebee5b695a4485b10d11c7d3f7cc5453c115fc908",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round7 local proof and explicitly scoped tail corrections",
+          "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+          "sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+          "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+          "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+          "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+          "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+          "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+          "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+          "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+          "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "program",
+          "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+          "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "source-audit",
+          "locator": "Confirmed direct propagation and untouched historical scope",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+          "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 4,
+      "tool_id": "green-half-inertia",
+      "title": "半问题 Green 与惯性: 对称支上的定性充分判据与奇偶性边界",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/feynman-hellmann.md",
+          "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/green-half-inertia.md",
+      "sha256": "9a6c8744d153b250df39fea15eedb15ad5aefe8350b063d4b8327689a898d773",
+      "version": "research/library/card-versions/9a6c8744d153b250df39fea15eedb15ad5aefe8350b063d4b8327689a898d773.md",
+      "summary": "对称密度才可使用镜像奇偶扇区. 有限点Green核惯性强化等式保留为待核验历史内容; 单凭detK>0不能推出定性. 奇扇区定性还不能替代另一扇区与完整G1义务. 第七轮范围修订按精确纠错回执检索, 不据历史STRICT标签宣布全局闭合. 第十轮: 旧扫描不能认证谱序号, 旧asym非扇区投影; 新相位索引与可行扇区种子另审, 不据历史数值扩张解析结论. 第十一轮: 残差J取交叉块, 与Hessian块对角结构区分; 接口中心差分核对实际两侧位移, 失败明确拒绝, 不作全参数认证. 第十二轮: DD/DN相位按序号定位, 去极点绑定同一谱表; 交叉Green式为Kp奇块=E Ke E, 原Ko需自身约化核及秩一项. sector_data和负秩一判据原扇区标签已修正, 数值守卫不等于区间认证.",
+      "conditions": "UNSPECIFIED",
+      "scope": "Current round12 statements and retained earlier scoped repairs. n2 normalized Green and general finite matrix/phase identities; no all-R signs, historical full scans or complete formalization.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND12_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/3207b541f796e43fc0ab777eec902ee71adb95bb1fa597077ccc035e85e09260.json",
+          "sha256": "3207b541f796e43fc0ab777eec902ee71adb95bb1fa597077ccc035e85e09260",
+          "kind": "correction-experience",
+          "author": "agent:round12-20260926",
+          "locator": "交叉 Green 式的对象与自身极点约化核",
+          "source_id": null,
+          "tool_sha256": "9a6c8744d153b250df39fea15eedb15ad5aefe8350b063d4b8327689a898d773",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/c460e9f43b6f7d3cff18d8d6d3416c60316824a1fbd1ef372b6c66a0d31929fe.json",
+          "sha256": "c460e9f43b6f7d3cff18d8d6d3416c60316824a1fbd1ef372b6c66a0d31929fe",
+          "kind": "correction-experience",
+          "author": "agent:round10-20260925",
+          "locator": "2026-09-25 spectral identity before precision",
+          "source_id": null,
+          "tool_sha256": "ae8b1df2f082aa6d6252ecbd3adf007d9086e7322c6b56cacd4dca9b53f64adb",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/eefef63f43026eba52779aa4e41e25614f95f8c61d969f761fb5abd371c83dba.json",
+          "sha256": "eefef63f43026eba52779aa4e41e25614f95f8c61d969f761fb5abd371c83dba",
+          "kind": "correction-experience",
+          "author": "agent:round11-20260926",
+          "locator": "exact derivative path before matrix inertia",
+          "source_id": null,
+          "tool_sha256": "10873d6be96338ecf3024b93fd655c0ebcdf60445d35367773f174b7aba26c20",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round7 local proof and explicitly scoped tail corrections",
+          "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+          "sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+          "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+          "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+          "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+          "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+          "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+          "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+          "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+          "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "program",
+          "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+          "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "source-audit",
+          "locator": "Confirmed direct propagation and untouched historical scope",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+          "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "band-selfconsistency-equivariance",
+      "title": "带状自洽等变性: F(R,x̄)=PF(R,x) 与反对合 Jacobi 结构 J=-PJP",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/feynman-hellmann.md",
+          "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/band-selfconsistency-equivariance.md",
+      "sha256": "d5051aee3b8332bf3673a697e333b257198c86f07b27a9335a6be15b75c01eeb",
+      "version": "research/library/card-versions/d5051aee3b8332bf3673a697e333b257198c86f07b27a9335a6be15b75c01eeb.md",
+      "summary": "回文密度图案的反射等变与对称点J=-PJP给出交叉块结构. G1仅要求指定符号的非零行列式; Hessian定性是更强条件, 沿支继承还须起点惯性、连续路径及全程非退化. full-interface与镜像坐标分开; 常密度W、lambda因子和一般SUP范围按第七轮更正. 历史Green推导未整体重审. 第十轮: 旧扫描不能认证谱序号, 旧asym非扇区投影; 新相位索引与可行扇区种子另审, 不据历史数值扩张解析结论. 第十一轮: 残差J取交叉块, 与Hessian块对角结构区分; 接口中心差分核对实际两侧位移, 失败明确拒绝, 不作全参数认证. 第十二轮: DD/DN相位按序号定位, 去极点绑定同一谱表; 交叉Green式为Kp奇块=E Ke E, 原Ko需自身约化核及秩一项. sector_data和负秩一判据原扇区标签已修正, 数值守卫不等于区间认证.",
+      "conditions": "UNSPECIFIED",
+      "scope": "Current round12 statements and retained earlier scoped repairs. n2 normalized Green and general finite matrix/phase identities; no all-R signs, historical full scans or complete formalization.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND12_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/1d986a2cb64492a0483693ff044455236ba7491fe777bc681bbc774fb11c605a.json",
+          "sha256": "1d986a2cb64492a0483693ff044455236ba7491fe777bc681bbc774fb11c605a",
+          "kind": "correction-experience",
+          "author": "agent:round12-20260926",
+          "locator": "原矩阵与共轭矩阵的扇区及 H/E 分量",
+          "source_id": null,
+          "tool_sha256": "d5051aee3b8332bf3673a697e333b257198c86f07b27a9335a6be15b75c01eeb",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/43f53061ed16300d36f3d677d8f2ea63eb9e8380de41cd34671b7d49260066e8.json",
+          "sha256": "43f53061ed16300d36f3d677d8f2ea63eb9e8380de41cd34671b7d49260066e8",
+          "kind": "correction-experience",
+          "author": "agent:round11-20260926",
+          "locator": "input and output reflection actions",
+          "source_id": null,
+          "tool_sha256": "3ad9895865fb165e66d28df34fa9ef8cd4c4b4b143ca74b7d246822cb33fa98e",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/688d7cf110c5dc67c9cdcc0fc4e11077d2660ce4d1835829f6573839a83c2f5d.json",
+          "sha256": "688d7cf110c5dc67c9cdcc0fc4e11077d2660ce4d1835829f6573839a83c2f5d",
+          "kind": "correction-experience",
+          "author": "agent:round10-20260925",
+          "locator": "2026-09-25 reflection geometry",
+          "source_id": null,
+          "tool_sha256": "cbe2050bf169630d38b99842971b76e62a46f0b0b156f9038be42065b540a759",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round7 local proof and explicitly scoped tail corrections",
+          "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+          "sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+          "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+          "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+          "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+          "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+          "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+          "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+          "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+          "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "program",
+          "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+          "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "source-audit",
+          "locator": "Confirmed direct propagation and untouched historical scope",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+          "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 3,
+      "tool_id": "endpoint-collapse-reduction",
+      "title": "endpoint-collapse reduction: w1 -> 0 forces a band-matched reduced root with q0 = c",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/endpoint-collapse-reduction.md",
+      "sha256": "ad437ec49a50d15af4136aa4c11d814480f209fc0a6f3e2a650d10f338817580",
+      "version": "research/library/card-versions/ad437ec49a50d15af4136aa4c11d814480f209fc0a6f3e2a650d10f338817580.md",
+      "summary": "# Endpoint-collapse reduction for the n>=2 gap extremal problem ## Statement (reduction, STRICT) For the Dirichlet weighted string $-u'' = \\lambda \\rho u$, $u(0) = u(1) = 0$, let $\\rho$ be the alternating bang-bang density with $2n+1$ blocks of heights in $\\{1, R\\}$ and widths $w_j > 0$ summing to 1, switch points $x_j = w_1 + \\dots + w_j$. Let $D_n = \\lambda_{n+1} - \\lambda_n$, $f = \\lambda_n u_n^2 - \\lambda_{n+1} u_{n+1}^2$, $c = \\sqrt{\\lambda_n / \\lambda_{n+1}}$, and the endpoint slope ratios",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "bloch-band",
+      "title": "规定平衡候选序列的严格单调与带边极限",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/secular-chebyshev-jacobi-rootcount.md",
+          "sha256": "0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/bloch-band.md",
+      "sha256": "5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf",
+      "version": "research/library/card-versions/5ea1595bfb136b69d7e25e8c9ae30a6827af0769ac07a3af74918f5f61dc41cf.md",
+      "summary": "固定R>1的规定平衡候选c_n严格递减至((pi-phi)/phi)^2, phi=arccos((sqrt(R)-1)/(sqrt(R)+1)). 嵌套Jacobi最小谱证明全部n; Lambda_n全局最优及O1/O2仍开放.",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND9_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/60464ac460df88b14aee0b60d604da5434e6cf3094802d29991f21eca39eb371.json",
+          "sha256": "60464ac460df88b14aee0b60d604da5434e6cf3094802d29991f21eca39eb371",
+          "kind": "correction",
+          "author": "01a06f46-dd03-7c83-9267-32048412c359",
+          "locator": "Nested Jacobi candidate argument and future use",
+          "source_id": null,
+          "tool_sha256": "fd3f71f840515a43c7dd7865a1c843eda1237670b02d04c02aec8401ab01c359",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "B2",
+          "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+          "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Normalized reflection, Jacobi root count and candidate limit",
+          "path": "docs/SL_fixed_n_supremum.tex",
+          "sha256": "c0b6b108369481284585cccc781693f15e03e1ef101f0a32662f620f65679a5c",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "feynman-hellmann",
+      "title": "Feynman-Hellmann公式: 固定空间与变权重",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/feynman-hellmann.md",
+      "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611",
+      "version": "research/library/card-versions/da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611.md",
+      "summary": "广义特征对的一阶变分须使用真实分母: lambda_prime <u,Bu>=<u,A_prime u>-lambda<u,B_prime u>. 固定普通L2的势扰动与L2(rho)归一化的变权弦不能混用. 仅在可微简单特征对及共同形式域前提下使用; 二阶与谱可微性另证.",
+      "conditions": [
+        "Differentiable simple eigenpair of symmetric forms on a common domain",
+        "Use the denominator of the actual generalized eigenproblem"
+      ],
+      "scope": "First derivative under explicit differentiability hypotheses; fixed L2 and variable-weight string normalization distinguished.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND7_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/63ffce41f8fb5aa80d80a344607add9f43405c6140a34f200e7b5ac031088e1e.json",
+          "sha256": "63ffce41f8fb5aa80d80a344607add9f43405c6140a34f200e7b5ac031088e1e",
+          "kind": "observation",
+          "author": "coordinator-20260921-round7",
+          "locator": "Round7 repaired proof, coordinate-aware regression and independent review",
+          "source_id": null,
+          "tool_sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "R7-P01 constant potential counterexample and generalized-eigenpair derivation",
+          "path": "research/artifacts/proof-audit-round7-20260921/internal-normalization-finding.md",
+          "sha256": "86459c7525f7384b7c08d1dc012baeabab9961734d441e9ba653e6e4efdc0bf8",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "gap-band-extremals",
+      "title": "带状自洽与谱隙的接口导数",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [
+        {
+          "location": "tools/feynman-hellmann.md",
+          "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+        }
+      ],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/gap-band-extremals.md",
+      "sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+      "version": "research/library/card-versions/754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723.md",
+      "summary": "Dirichlet变权弦采用积分rho*u_k²=1. 单接口谱隙导数为(rho_left-rho_right)f; 左右镜像反向移动时为2(rho_left-rho_right)f. 驻点方程不变. 弱反差局部唯一性以统一Volterra和根隔离修复; 固定n的盒类SUP极限为(n+1)²pi². 不提供有限R全局唯一性或INF分类.",
+      "conditions": [
+        "Dirichlet weighted string on (0,1), 1<=rho<=R, fixed n>=1",
+        "Weighted normalization integral rho*u_k^2=1",
+        "The doubled formula requires symmetric density and paired opposite interface velocities"
+      ],
+      "scope": "Single and symmetric-pair shape derivatives; small-contrast local theorem; general-n supremum large-R limit. No all-R branch uniqueness or INF classification.",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND7_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "evidence",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/212354a8683ad565ed9e50bea7ac9e9485ed1bf181264debe87e7d399dfbd2b4.json",
+          "sha256": "212354a8683ad565ed9e50bea7ac9e9485ed1bf181264debe87e7d399dfbd2b4",
+          "kind": "observation",
+          "author": "coordinator-20260921-round7",
+          "locator": "Round7 repaired proof, coordinate-aware regression and independent review",
+          "source_id": null,
+          "tool_sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/53c9dd1d6133e952205ccd9c382e817d5f2f95abffea9f0703a8152aac734051.json",
+          "sha256": "53c9dd1d6133e952205ccd9c382e817d5f2f95abffea9f0703a8152aac734051",
+          "kind": "unverified-source-lead",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "eb80f72bab64e453bc0e2da8d328fa757be2198d4f8d7f9297e67b06909ab0d9",
+          "tool_sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/9fdb6d55ff69a64ab9d08e45474308a6bf35b0d7da02edb7ecd35c768ce67edc.json",
+          "sha256": "9fdb6d55ff69a64ab9d08e45474308a6bf35b0d7da02edb7ecd35c768ce67edc",
+          "kind": "correction-experience",
+          "author": "agent:round10-20260925",
+          "locator": "2026-09-25 historical propagation diagnosis, line46",
+          "source_id": null,
+          "tool_sha256": "754852deebb0668b9ecb6c39386d91c050e5e6bf62c92a50c05c778b0f6bd723",
+          "state": "CURRENT"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "Round7 Wronskian/endpoint/local symmetry and general supremum limit",
+          "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+          "sha256": "c71a98c666492b9b947378432533fa60ea44dfee3029e0d21711cdc6cafa61b1",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Historical n=1 large-R numerical evidence; not rerun as a full table",
+          "path": "docs/SL_gap_extremals.tex",
+          "sha256": "8e7a85ddb99cdc7cc395e0e855eebff9b8edec59e7e61c089cbabb7b97f5f070",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [
+        {
+          "kind": "program",
+          "locator": "Independent round7 finite checks",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+          "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+          "binding_state": "CURRENT"
+        },
+        {
+          "kind": "numerical-evidence",
+          "locator": "Nonstationary mirror derivative and other scoped checks",
+          "path": "research/artifacts/proof-audit-round7-20260921/checks/outputs.json",
+          "sha256": "9b54ef988988f2117bda2d2e1cfcea66702bc45fa916e7375cbd7dbc3761f3a8",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "largeR-level-cascade",
+      "title": "大 R 层级级联平衡 (historical staged route)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/largeR-level-cascade.md",
+      "sha256": "71fd971d6b4336bf68182a92d051fecc433c2e9d8b85c688b1c8f98de8b95d31",
+      "version": "research/library/card-versions/71fd971d6b4336bf68182a92d051fecc433c2e9d8b85c688b1c8f98de8b95d31.md",
+      "summary": "# 大 R 层级级联平衡 ## 2026-08-29 correction This route is retained as failure history only. The staged Pbuild source used incorrect D-side mass powers and does not reproduce the exact closed residual. Its hard `E5_5` term, forced odd correction, and claimed obstruction to an even branch are invalid for the exact system. The corrected strict theorem is [[m3-largeR-closure]]. Everything below describes the superseded staged calculation and must not be used as a live premise. ## 解析 对 n=2 对称 INF 分支的闭合 4 方",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "secular-chebyshev-jacobi-rootcount",
+      "title": "平衡交替配置的归一化世俗函数与2n简单根",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/secular-chebyshev-jacobi-rootcount.md",
+      "sha256": "0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03",
+      "version": "research/library/card-versions/0e1aab984c735f83f7cfc4bd11e8a67cab1d6ffa52085294a88a297df17a6b03.md",
+      "summary": "物理F的反射有y/(pi-y)因子; omega*F才严格对称. 对R>1,n>=1的规定平衡交替配置, 归一化Chebyshev/Jacobi表示证明2n个简单根. 不证明全局最优.",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND9_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/c40cde49c1eebf492edcf1795aa0870ae85014f0256fa46108dc415e0197a6e8.json",
+          "sha256": "c40cde49c1eebf492edcf1795aa0870ae85014f0256fa46108dc415e0197a6e8",
+          "kind": "correction",
+          "author": "01a06f46-dd03-7c83-9267-32048412c359",
+          "locator": "Normalized reflection and root-count scope",
+          "source_id": null,
+          "tool_sha256": "a8cd55c6b564d8e792f5facc74285356c9cbaa2e529deeef5b0e25cbd947831d",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "B1-B2",
+          "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+          "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "Normalized reflection, Jacobi root count and candidate limit",
+          "path": "docs/SL_fixed_n_supremum.tex",
+          "sha256": "c0b6b108369481284585cccc781693f15e03e1ef101f0a32662f620f65679a5c",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "switch-saturation-k-invariant",
+      "title": "开关饱和与块能量不变量",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/switch-saturation-k-invariant.md",
+      "sha256": "689bdf5a815d74f9790c7e28c5c78ccf75337a8dc5a419408b254fcaf43f7461",
+      "version": "research/library/card-versions/689bdf5a815d74f9790c7e28c5c78ccf75337a8dc5a419408b254fcaf43f7461.md",
+      "summary": "# 开关饱和与块能量不变量 (switch-saturation-k-invariant) ## 解析 一维加权 Dirichlet 问题 $-u''=\\lambda\\rho u$, $u(0)=u(1)=0$, 完整可测盒 $1\\le\\rho\\le R$ a.e. 中, 相邻谱隙 $D_n=\\lambda_{n+1}-\\lambda_n$ ($n\\ge2$) 的 极值子结构由三个互锁机制决定: 1. **完全盒饱和 (FH 一侧变分)**: 以归一化特征函数定义切换函数 $F=\\lambda_n u_n^2-\\lambda_{n+1}u_{n+1}^2$. 全局最大化子在 $\\{F>0\\}$ 上 $\\rho=R$、在 $\\{F<0\\}$ 上 $\\rho=1$; 全局最小化子指派相反. 推导只用 任意有界方向的一阶公式 $D_n'[h]=\\int hF\\,dx$ (紧自伴算子扰动, 不需特征 向量预可微) 与盒约束一侧可行方向. 2. **零点-开关双向相等**: Wronskian $W=u'_{n+1}u_n-u_{n+1}u'_n$ 在 $(0,1)$ 严格为负 (由振荡与严格交",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 2,
+      "tool_id": "symline-n1-monotonicity",
+      "title": "对称线 1D 单调性: KEY LEMMA 与精确降维恒等式 (symmetric-line n=1 monotonicity)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/symline-n1-monotonicity.md",
+      "sha256": "01d52747c5e3de63127ccd4192e7679e348a0ef6f784ad30f8550a8f35ddef5b",
+      "version": "research/library/card-versions/01d52747c5e3de63127ccd4192e7679e348a0ef6f784ad30f8550a8f35ddef5b.md",
+      "summary": "# 对称线 1D 单调性: KEY LEMMA 与精确降维恒等式 ## 解析 对 Dirichlet 弦 -y'' = lambda*rho*y 的阱族对称线 rho_v = R*1_[0,v)∪(1-v,1] + 1_[v,1-v] (v in (0,1/2), 1 < R <= 3/2): m = sqrt(R), q~ = 1/m in [q0,1), q0 = sqrt(2/3). 相位参数 c = (1-2v)/(2mv) in (0,inf). 偶/奇相位分支 alpha_1 in (0,pi/2), alpha_2 in (0,pi) 满足 E(alpha_1) = c*alpha_1, O(alpha_2) = c*alpha_2 (E(x) = arctan(1/(q~ tan x)), O 为连续奇支); alpha_k'(c) = -alpha_k*Phi(alpha_k)/(q~ + c*Phi(alpha_k)), Phi = cos^2 + q~^2 sin^2, s_k = 2(c+q~)*alpha_k. **KEY LEMMA (定理 5.2, STR",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "fh-hessian-branch-reduction",
+      "title": "FH 带特征值因子 + Hessian/分支斜率归约 (fh-hessian-branch-reduction)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/fh-hessian-branch-reduction.md",
+      "sha256": "7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4",
+      "version": "research/library/card-versions/7f929befeaa5e7c55f1cedd230e05ccc0534085bf450b602e91efc5eb6444dd4.md",
+      "summary": "# FH 带特征值因子 + Hessian/分支斜率归约 (fh-hessian-branch-reduction) ## 解析 对 Dirichlet 弦 -y'' = lambda*rho*y (y(0)=y(1)=0) 与归一化 int rho u^2 = 1 (u 为 L^2(rho)-归一化特征函数), 微扰 rho_eps = 1 + eps*chi_(a,b) 的 Feynman-Hellmann 公式必须带特征值因子: d lambda_k / d eps = -lambda_k * int (d rho/d eps) u_k^2 dx. 对跳变族 rho_(a,b) = R 于 (a,b), 1 于其余处: d lambda_k/da = (R-1) lambda_k u_k(a)^2, d lambda_k/db = -(R-1) lambda_k u_k(b)^2. 于是 D = lambda_2 - lambda_1 满足 dD/da = -(R-1) R1, dD/db = +(R-1) R2, 其中 R1 = f(a), R2 = f(b), f = lam",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "general-alternating-secular-chebyshev",
+      "title": "一般等宽交替世俗 Chebyshev 表示 (general-alternating-secular-chebyshev)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/general-alternating-secular-chebyshev.md",
+      "sha256": "2433fd6ea2478ca13ad8e8f2801ceaaa457d636bed8c155a25152257933993fb",
+      "version": "research/library/card-versions/2433fd6ea2478ca13ad8e8f2801ceaaa457d636bed8c155a25152257933993fb.md",
+      "summary": "# 一般等宽交替世俗 Chebyshev 表示 ## 解析 对等宽交替族 `[1,R,1,...,1]` (2n+1 块, 所有 1-块等宽 a, 所有 R-块等宽 b, `r = a/b`, `s = sqrt(R)`), 令 `p = r x`, `q = s x`, `x = omega b`, 其中 `omega = sqrt(lambda)`。用归一化转移矩阵 `A(p)=T_1`, `B(q)=T_R`, `C = A B`, `M_n = C^n A`, 则 Dirichlet 条件 `(M_n)_{01}=0` 可写成 (M_n)_{01} = sin(p) [ U_n(m) + delta U_{n-1}(m) ], 其中 m = tr(C)/2 = cos p cos q - (s+1/s)/2 * sin p sin q, delta = sin q / (s sin p), `U_k` 为第二类 Chebyshev 多项式。该式由 Cayley-Hamilton 直接得到: `C^n = U_{n-1} C - U_{n-2} I` 与 `C00 sin p +",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "good-root-global-lemma",
+      "title": "内部临界点 => sign-consistent good root: Wronskian 比值单调 + f 零点唯一性 + FH 跳点公式",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/good-root-global-lemma.md",
+      "sha256": "420fe2f5ef320236756024251532becb3a4d9ddcb1ff731b990803d736db372d",
+      "version": "research/library/card-versions/420fe2f5ef320236756024251532becb3a4d9ddcb1ff731b990803d736db372d.md",
+      "summary": "# 内部临界点 => sign-consistent good root (good-root 全局引理) ## 解析 对 Dirichlet 弦 $-y''=\\lambda\\rho y$, 阱族 $\\rho_{a,b}=R\\cdot\\mathbf1_{[0,a]\\cup(b,1]}+\\mathbf1_{(a,b)}$, 参数集 $\\Omega=\\{(a,b):0\\le a\\le b\\le1\\}$, $D(a,b)=\\lambda_2-\\lambda_1$, 归一化特征函数 $\\hat y_k=y_k/\\sqrt{\\int_0^1\\rho\\,\\hat y_k^2}$, 残差 $R_1(a,b)=f_{a,b}(a)$, $R_2(a,b)=f_{a,b}(b)$, $f_{a,b}:=\\lambda_2\\hat y_2^2-\\lambda_1\\hat y_1^2$, $z_0$ 为 $y_2$ 在 $(0,1)$ 的唯一零点 (Sturm 振荡). **结构引理 A (比值单调, STRICT)**: 对任意 $0<a<b<1$, $W:=y_1y_2'-y_1'y_2<0$ 于 $(",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "m3-largeR-closure",
+      "title": "M3 large-R closure for the n=2 symmetric INF branch",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/m3-largeR-closure.md",
+      "sha256": "6094a9b23863de69a1473ea518d78bdf487bfd2de6a166846fd61c7f3c4a3080",
+      "version": "research/library/card-versions/6094a9b23863de69a1473ea518d78bdf487bfd2de6a166846fd61c7f3c4a3080.md",
+      "summary": "# M3 large-R closure ## Theorem Let `u=R^(-1/6)` and `kappa=(18pi-48/pi)^(1/3)`. In the finite-nonzero-interior n=2 symmetric INF chart, the exact four-equation system has a locally unique real-analytic even branch with ```text k2 = kappa u + O(u^3), k3 = kappa u + 16/(pi kappa) u^5 + O(u^7), p1 = pi/2 + 2/kappa u^2 + O(u^4), p3 = pi/4 + 1/kappa u^2 + O(u^4). ``` There is a finite existential `R0` such that for every `R>R0`, ```text m3D-m3N = -4/kappa^5 u^4 + O(u^6) < 0, Chi_up = 3/2 + 4/(pi kap",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "r1plus-perturbation-sheet",
+      "title": "一阶摄动片层法 (R->1+ 片层)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/r1plus-perturbation-sheet.md",
+      "sha256": "b35647a6dc19b5d48103c9c9b55d8b6caed0d5e41be072b7e0afbd9ed7e9bd53",
+      "version": "research/library/card-versions/b35647a6dc19b5d48103c9c9b55d8b6caed0d5e41be072b7e0afbd9ed7e9bd53.md",
+      "summary": "# 一阶摄动片层法 (r1plus-perturbation-sheet) ## 解析 对 Dirichlet 弦 $-y''=\\lambda\\rho y$, $\\rho=1+\\varepsilon 1_{(a,b)}$ (势垒族, $\\varepsilon=R-1$), 记 $R_1=f(a)$, $f=\\lambda_1 w_1^2-\\lambda_2 w_2^2$ ($w_k$ 为 $L^2(\\rho)$-归一化模态), 其零点集 $\\{R_1=0\\}$ 含经过 $(a_{\\rm fp},1-a_{\\rm fp})$ 的分支 S3. 当 $R\\to 1^+$ 时 S3 的结构是竖直片层: $$a = a_0 + \\varepsilon\\,\\varphi(b) + O(\\varepsilon^2),\\qquad b\\in[a_0,\\,b_{\\rm top}],$$ 其中 $a_0=\\arccos(1/4)/\\pi$, $b_0=1-a_0$, 且 $$\\varphi(b) = -\\frac{R_1^{(1)}(a_0; a_0,b)}{f_{\\rm const}'(a_0)}, \\",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "ratio-energy-invariant",
+      "title": "比值能量不变量 ratio-energy-invariant",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/ratio-energy-invariant.md",
+      "sha256": "d1beb29de71b384addc3e36f90c6a3daa2a6fd8feb24d88e18db2dc8dfea62bd",
+      "version": "research/library/card-versions/d1beb29de71b384addc3e36f90c6a3daa2a6fd8feb24d88e18db2dc8dfea62bd.md",
+      "summary": "# 比值能量不变量 (ratio-energy-invariant) ## 解析 对 Dirichlet 弦 `-u'' = lambda rho u`, `u(0)=u(1)=0`, `1<=rho<=R` 和固定 n, 定义比 `Lambda_n = lambda_{n+1}/lambda_n`。设 `u_n,u_{n+1}` 按 `int rho u_k^2 = 1`, `u_k'(0)>0` 归一化。令 H = u_n^2 - u_{n+1}^2. Feynman-Hellmann 给出 d/deps Lambda_n(rho+eps h) = Lambda_n(rho) int h H dx. 因此在盒约束下, 全局极大子满足完全饱和: `H>0 -> rho=R`, `H<0 -> rho=1`。 在常密度块 r 上, 定义 E = b(u_n'^2 + a r u_n^2) - a(u_{n+1}'^2 + b r u_{n+1}^2), a=lambda_n, b=lambda_{n+1}. E 在块内为常数。由于极值子开关处 H=0, E 在开关处无跳跃, 故 E 全",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "residual-exactness",
+      "title": "残差闭合恒等式 (residual exactness)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/residual-exactness.md",
+      "sha256": "7f4fde466c46c8fc902fe3fcd302b4fb4b362d84115cea6a70eb15598910d49d",
+      "version": "research/library/card-versions/7f4fde466c46c8fc902fe3fcd302b4fb4b362d84115cea6a70eb15598910d49d.md",
+      "summary": "# 残差闭合恒等式 (residual-exactness) ## 解析 设 Dirichlet 弦 $-y''=\\lambda\\rho y$ ($y(0)=y(1)=0$) 的密度属于双参数跳变族 $\\rho_{(a,b)}=R$ 于 $(a,b)$, $1$ 于其余处, $0<a<b<1$. 定义残差 $$R_1(a,b)=f(a;a,b),\\qquad R_2(a,b)=f(b;a,b),\\qquad f=\\lambda_1 u_1^2-\\lambda_2 u_2^2,$$ 其中 $u_k$ 为 $L^2(\\rho)$-归一化特征函数. 则有**精确恒等式** $$\\frac{\\partial R_1}{\\partial b}\\equiv-\\frac{\\partial R_2}{\\partial a}.$$ **证明**: 由 Feynman-Hellmann 跳变公式 (O1b), 移动跳变点 $a$ 使 $(a,a+da)$ 上的密度 从 $R$ 降为 $1$, 得 $\\partial D/\\partial a=-(R-1)R_1$; 移动 $b$ 得 $\\partial D",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "second-variation-weighted-eigenvalues",
+      "title": "加权特征值二阶变分与归一化、切向及接口路径规范",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/second-variation-weighted-eigenvalues.md",
+      "sha256": "defcf0d4bdcba446acfcaa121898eb04a7bc293eaf18e9382f3e626077109aa3",
+      "version": "research/library/card-versions/defcf0d4bdcba446acfcaa121898eb04a7bc293eaf18e9382f3e626077109aa3.md",
+      "summary": "正密度线性路径的二阶谱公式; 归一化导数含核分量. 分块切向使用块积分, Green核有界, 集中脉冲须总变差有界且有符号质量收敛才有点值极限; 移动接口另有有限加速度项. 不证明切空间负定或G1定号. 第十轮: 旧扫描不能认证谱序号, 旧asym非扇区投影; 新相位索引与可行扇区种子另审, 不据历史数值扩张解析结论. 第十一轮: 残差J取交叉块, 与Hessian块对角结构区分; 接口中心差分核对实际两侧位移, 失败明确拒绝, 不作全参数认证.",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "ROUND11_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [
+        "applicability",
+        "lifecycle",
+        "conditions",
+        "scope",
+        "evidence",
+        "resources",
+        "lean",
+        "experience"
+      ],
+      "annotations": [
+        {
+          "path": "research/library/annotations/09592fa98929c7cb62e3a506b1b581a10946c06e78a9716c3d1e897955278d8a.json",
+          "sha256": "09592fa98929c7cb62e3a506b1b581a10946c06e78a9716c3d1e897955278d8a",
+          "kind": "cross-result",
+          "author": "agent:literature-absorption-20260923",
+          "locator": "2026-09-23 source-to-claim / P0-P4",
+          "source_id": "7d2b88e5aae2ba77a2d41d0a1ae959de62f6ef0cc8bb96f487aa8c70a131bf61",
+          "tool_sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/3b839fe7d95ad2762fd9406a7f9ce53db93b385d83703c3c6411418d3c6c56dd.json",
+          "sha256": "3b839fe7d95ad2762fd9406a7f9ce53db93b385d83703c3c6411418d3c6c56dd",
+          "kind": "correction-experience",
+          "author": "agent:round11-20260926",
+          "locator": "actual P3 endpoints and stationary normalization",
+          "source_id": null,
+          "tool_sha256": "defcf0d4bdcba446acfcaa121898eb04a7bc293eaf18e9382f3e626077109aa3",
+          "state": "CURRENT"
+        },
+        {
+          "path": "research/library/annotations/5f9ae39ec16a0b6489e9b1a2a0c9099ba96ece0a858f8a0df091ae76b07d4d6b.json",
+          "sha256": "5f9ae39ec16a0b6489e9b1a2a0c9099ba96ece0a858f8a0df091ae76b07d4d6b",
+          "kind": "correction",
+          "author": "01a06f46-dd03-7c83-9267-32048412c359",
+          "locator": "V2-V4 and independent review F1",
+          "source_id": null,
+          "tool_sha256": "2c3a715f8c3200c6d10b1693f406db0fd384387a9ad1b3f1ea1f2459dc7f77d7",
+          "state": "STALE"
+        },
+        {
+          "path": "research/library/annotations/ec0a40fb88aff4efeddc7415ac2dfff0f2fd23742a8855163e8861488beddddc.json",
+          "sha256": "ec0a40fb88aff4efeddc7415ac2dfff0f2fd23742a8855163e8861488beddddc",
+          "kind": "correction-experience",
+          "author": "agent:round10-20260925",
+          "locator": "2026-09-25 same-index variation",
+          "source_id": null,
+          "tool_sha256": "5586a2fdf09d91c2a089b0aac737bd80083a5c941becae3872b48de8741fe1f7",
+          "state": "STALE"
+        }
+      ],
+      "matched_historical_annotation": false,
+      "sources": [
+        {
+          "locator": "V1-V4",
+          "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+          "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+          "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+          "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+          "binding_state": "CURRENT"
+        },
+        {
+          "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+          "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+          "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+          "binding_state": "CURRENT"
+        }
+      ],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "tension-ratio-chain",
+      "title": "张力比链: 比值上界化到退化极限 + 一维单峰不等式 (tension-ratio chain)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/tension-ratio-chain.md",
+      "sha256": "d88ad9b86d914fd1639b4962ef3f290e39db62fb603e51e796a092bb4ba2154b",
+      "version": "research/library/card-versions/d88ad9b86d914fd1639b4962ef3f290e39db62fb603e51e796a092bb4ba2154b.md",
+      "summary": "# 张力比链: 比值上界化到退化极限 + 一维单峰不等式 ## 解析 对 Dirichlet 弦 -y'' = lambda*rho*y 的阱族对称线 rho_v = R*1_[0,v)∪(1-v,1] + 1_[v,1-v] (v in (0,1/2), 全部 R>1): m = sqrt(R), q~ = 1/m in (0,1). 相位参数 c = (1-2v)/(2mv) in (0,1/2), 偶分支 A = alpha_1 in (0,pi/2), 奇分支 alpha_2 = pi - gamma, gamma in (0, gamma_0(q~)], gamma_0(q~) = arccos(q~/(1+q~)), c = arctan(q~ tan gamma)/y, y = pi - gamma, s_1 = sin A, s_2 = sin gamma. **等价性引理 (STRICT)**: 设 Delta = y^2 s_2^2 - A^2 s_1^2 > 0, 则 F~_e(c) < 0 等价于张力比 rho(q~,gamma) = c(1-q~^2) s_1",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    },
+    {
+      "score": 1,
+      "tool_id": "well-family-rigidity",
+      "title": "阱族相位比刚性 (well-family phase rigidity, 全 R)",
+      "kind": "tool",
+      "correction_state": {
+        "status": "clear",
+        "issues": [],
+        "reuse_allowed": true
+      },
+      "reuse_allowed": true,
+      "dependencies": [],
+      "dependencies_known": true,
+      "metadata_status": "VALID",
+      "identity_error": null,
+      "location": "tools/well-family-rigidity.md",
+      "sha256": "6a5505f169e145cc66c9414e82c991ad08b0226c13417b5409f4b4fe5999b500",
+      "version": "research/library/card-versions/6a5505f169e145cc66c9414e82c991ad08b0226c13417b5409f4b4fe5999b500.md",
+      "summary": "# 阱族相位比刚性 (well-family phase rigidity, 全 R) ## 解析 对 Dirichlet 弦 $-y''=\\lambda\\rho y$, 阱族 $\\rho_{a,b}=R\\cdot\\mathbf1_{[0,a]\\cup[b,1]}+\\mathbf1_{(a,b)}$, 相位变量 $A=ms_1a$, $B=ms_1(1-b)$, $\\tau=s_2/s_1>1$, $m=\\sqrt R$, $q=R-1$, $W(x)=\\sin^2x+m^2\\cos^2x$, $J(x)=\\sin^2x/W(x)$, $r_\\tau(x)=J(\\tau x)/J(x)$, $x_{mid}=\\pi/(1+\\tau)$. **主定理 (STRICT, 2026-08-10)**: 对\\emph{一切} $R>1$, 阱族的任意 sign-consistent good root 满足 $a+b=1$ (对称根). 全 R 证明链五步 (全部初等; 小 R 段 $1<R\\le3/2$ 的旧机制 (Psi~'<0 全局单调) 为特例, 见下): 1. **相位范围 + 模态",
+      "conditions": "UNSPECIFIED",
+      "scope": "UNSPECIFIED",
+      "applicability": [],
+      "lifecycle": "unclassified",
+      "evidence_status": "UNKNOWN",
+      "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+      "inherited_metadata": [],
+      "annotations": [],
+      "matched_historical_annotation": false,
+      "sources": [],
+      "evidence": [],
+      "resources": [],
+      "lean": [],
+      "experience": {}
+    }
+  ],
+  "total_matches": 21,
+  "issues": [
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex",
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md",
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex",
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "8d61bced1c2a86983a73f429cd639e6c4d3e0522f25e8768ca8a0459b1cb9265",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "1c13f76f40f8457743427f5ce237d56cc30266cc79cb815df70d59c493595f55",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "e6fbafc2bd2ad8ab787cd34036aa6ae6b7cc4d305a0c79362aaf4ef8b387617e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "666cdff52c559fb6e233e05a1d7caac087f15c9afaba44b04e862e7ca30576b3",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "8d4c4ae3aa5bf688fdea720789c30cca7bfaeacc387b4fefb3dfe26a5383e4cf",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "1d732ea1f9b6891d5b8a0abac73c337173bddf9d36c96a99d314c7c42835efb9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "99b14aea6340727d0889ece8b7bc89fb9948edbe2cbd1acaec6e9bf4382ed5da",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "e882e80b9e1fdbc2ccb5299459d48e59fcf926890dacfb0aafbea3ea18742972",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "6d7c9ba9e0298f3176545c996934df92cfb15b21490a34f85e55bbb138cf3106",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4b8b5b52d092ff4f294233332d6bbcbfb48dbb7b2b8b83403101ffd95c70b5a2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "ecf70cb8a9c202455baa95802b49054f73354a1b6fbd3bd11db637416118a02e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b204180d36641021c5724355b6a74515b5155f68eb98c18d0d04d15e3acdb3f5",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "63d81785a166cb01e85a5d96bda6a88ebc75d402381d0503963697069fcbf046",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fe416182bd384429604bf340b002205811c3acdd35e97c2a439687d16b3f6e21",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "50fa3700213e6325dfad01ba39f0034e854991efb5d47d9cf0731933c67047a4",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "21733edfd0ccbe470a82e5f47cadcc904782c6eb637ae2acdae7c2f7d1e823d1",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "759b49f03efb0880aa38220e486d54d785cbd199c2175a04c88140689a8ccafb",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "c7507da37594c02487b1ca0d25960db48be984aaa383dfec70c2560fdaa4d010",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "4a74cfd173c4a10458a5282cf614140a5d345af940508d5e795a3ad6e4f66fa9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "a4e5ebf660c41e84bebba94cacc51afb91b2060c4dd47550762efd8019088f4c",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "dd18b0a0c318c7c3021a83e660a9d2c498c8f2c5e0fa42538154f482304b550d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b581368d18d8b1ae044171a0a0943375eafe1536a82a7567095164c8fe5cc0d6",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "b98e30355330073dfe9e209ba5bfe73ed5450e32fa9abee774bd3a91500a0e32",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "a410b906d539aa6998c206c98d90ee1be47acc711c9d82062b966498f5f89b46",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "726b8dabd6126b88bb2b90ef11b67a50b8785f7ee180eeeae890d1f5f7ba1124",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "990dfa97507851796c7a229e51d2f89eee21caeab3cb0e2d9e302e2338f9561f",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "03f0500237afcffb14a5de639f2af74fc3513900f8505a8fda487115b6d9d5ff",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "fc1cc6f5f68d139f7d49cbda479785d965f8e3adaa23a6cf7d9c3557b6967dec",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "d7ed047fd46a5d5a749425589f3b1d2de98bec26a9005e8ac8ae54591693ab82",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex",
+      "release": "50a06424922e77a0b6e577c33bb60980d12f9ed7d0bf45633bfae05e31ae5d45",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "04a91a8c5e2ec803f754a72b1875be3184b0b5cade343c977bac93cd7277dec4",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "594708077caec6cbe8a60648b560a0129c0503fdaf71f482b5a452f1bdafa847",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex",
+      "release": "baa3e4c556f3de2a58792c1d69bc4ed383862c3bfd61ffc25b693cd15e88db5a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "c751b96d93e8093bfc2623edb55197e86326d33e9fa26cf1ab040f37b7550c9c",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "664adf38712d3f42d75094dc1cfe0997368ee2368df8cc0dd6b583971bd7b8a1",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "04a502fa23b984321ef7cfc024fda80b1760c06beaf63ce5bec579f1d63eae01",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "8277c3ff63676bcb772f2ba9d1396eca2b31e16467ccab8835aeed7da2e7ae62",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "5e9c16472cfcd50286847cb7ec4477862ac4f787c85046605e00173a2427d007",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "f1a1682cd730bafe33bd29202a83d901024a043599361566f46b761e3f3039a7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex",
+      "release": "58aa4ffd1916950b611cefd93816d9615bfefdcb16d56d6519d8f67c5c308e3c",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "25c7a9af9d7b6a86992fcf06c4f8224f702950611478f384737d0b72ea75c55d",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "b1b3209baa22e3a3d17320790e26a787f8f880cb35b787565a0f0f4bbdfe87a6",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "7121b47662076417612b83c5992bcb143cf0dc2cb3e26872264c2c8a496f7444",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "e96d343235a4218b81fb2ddcb8661c1651503b018868dca6d8d6e6136cf8688a",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "71e0824f20e6733316c6ba21e5f88a5dc4cce63727eea26b539ebd3609b623c1",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "ac9ac8b628ce7ec785c192290af6a1a4c62c74d0f5735bc324f5f65542e0a50b",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "e52c5f520a99dc983c1a5e3201880ce294a83d2d0a6c80ef6afcb09237f68b7e",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "d44c73678a5952799cfd9b88973f5be22203be1807d2fc510f2401058215db39",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md",
+      "release": "f2acf586bcfee3349dff458a8abadba3b101b9c362cfc8ff46500f8a98ca0a85",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "5113ca99c81ce302364a894d5ffc360f441bf20bbb4ed9eb92a7e48583a245b0",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "cc2d7cda4f98ff61d2e4720b77c6849647dbccba177e679fe3be1ff15acf1d07",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "3ae28439913b42c49d62b6ea52e7641b235814979dba4176f92d7d8f91fcbcd9",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "0f6723e67ca74ea039b340bb953aac69d40ee6a715afd67d6db8afe92b40bdd8",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "72f78f7d1de2b26fb02778ef7ab645303275b7c6b727a5fcb56216dafb7a02eb",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "8ade536b010309873b94867c1456be393bb1292dd08bad9ba26b2fb06e192648",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "ad54221ded1891cd1a9fa168bf6f9755a9aadfb1e1fc75a4942b36a35cfaa0ba",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "775d2bcd2997b523aa14e6c4908175fecff3ea3539eb5eeb5d65714772b769be",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "492ee36ee079a3104876ed3e7a25e1b487391edcdc3e09bf610d9aa985a55d68",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "55b38d1b32108b70d4770aad64694e5a6d87b9f74723a1a8dc935e2b8d3c2558",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "2988eb3e3e0eba2505ef963cb4d0be7a0142d5a4308f5fb35ac75e3d2781759c",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "f5393716c522e83993701628bd767f004cb59d2ee2d72322a0a660901473c754",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "01e88df0dc0707b4d34de02fef0039abd0e3beef206e67e14d81cc212b9100ee",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "fd1c2561f0cc9d06d9718a232b665bd0f5c4a6203d0973ec7e9b482722b16441",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "2141f6812f4c8fe22ce038160e16f77804619c13b973a560b78e70cfab7ba9f2",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "f7c0a289dc2751d3375af5931e15e76eedb291b1bb0e0a9eb40630c478becf15",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "c7503020794862369259e0e5f8533afd3b3d4e87c65b653004a81de3420f29e3",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "3a1f4e4c9f8663099eaac12ac0ea59852ef8bce1d3cd6916bf96149a270abf2f",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "8bc058fdbd879a0470882878862393c10fb640922ec68e0787dc56b43ff04bf6",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "df0e022a68cc07d1a9b5fd8d55b3ddfa974ff2059c0a700464cdff067ea7f432",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "3534318d2d2c8d30ab90068ee36771493e02d341da84fcd69096b762522b67f5",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "aa6614844a47a5e22686c10f944a1ffb4c6a70efabe6fc26dcc17445b3fd74d4",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "0a9143af87e58db7766f0a3058b56fa0b0a5f8ea0214775df36393e3082a5445",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "59f35e5c6638ab11b1a9ac5f802aa2a586905c68b46bb35585822065969175be",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md",
+      "release": "b913046d0749d943a4df0a947322251bde1faaa2077f88566a79356adaa69ec7",
+      "status": "REVIEW_NO_LONGER_VALID"
+    },
+    {
+      "release": "1c6da571c1f56904969ef97f7fdde91b1543b5d62b5d30fead256539f54dc8fd",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c46886dcc73efdde75efcbe014c6b781edd5eb3995656cee1be998cb4981f1ed",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c2af8f05c830f4cf2c30f5615f58c0d0c5a104525d62d561de9421dd9cc05dda",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0fc815eb84722341b97945f3934eac7fc79c1bb37ea0f514cb11bca777c9cad2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "43d2b6544eebfb60661d93b12f6a7c1a6a2d114bb7fa614f68ca9ec2976a727e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "bffdd3ab9839321c013d9d6b7bb74912c7d1fce83e64319e9cc11e1032920c73",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "f22b8e21e931763f1cce5c6be72cf42f73808a9c2f73d55b3e134bbfd5f1c044",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ceb77f3910493fea0ffa3044883405482fd37ee0c96dd42d0921f5eaa0cbc43e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "9d4f0b7556d30e50ec49d3c3d8fd857757410087e1376851c2687846ab42e918",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "89df0b340fccea453bcac1bd47118725158bba58e849f9a442ec7741585aa2b7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "0c349cd1a5f912bab9016d7e77d7b50c030811b34bda8e6fd0239557b0fef2fa",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "910d155f01df0344c777f352049eaf99bf9e3bb5b2a2de56d18085f77483d0f9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "c0af029ee6064d6a5ae2fadb097cbcb7e0655fca2f1e8201cc5cbf94e8e5ebbf",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "52694b47a8e7df8daccc8343814caa4ed5ede29578ca5c24a63a62cff49c7abe",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "45dce84fff76238c6b5edb444fcca0e18f4a1ea3dac5f4cde72b92dc426c6032",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_denseness_criteria.tex"
+    },
+    {
+      "release": "ca5b4d6b187d7808a3e6d241a3a64adab61d84dd0859ae7effb6b21761c3952d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/left-definite-theory.md"
+    },
+    {
+      "release": "e715b67f42392463b5211473842862a4dd754e91a47df8106a856e919d406880",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fractional_left_definite.tex"
+    },
+    {
+      "release": "ad31f1b1fda40e45eefc8ec2478a39d6a8bf31fd54d77c1d1887da453b945b37",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "12440760da0f5b03e311ae14331f268deb25ae7e97c930017cc5e70913d52955",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fa9fab9a5c99b6ef9eb6f63d6c79b7df2b87b46014ae69f4957fbf644041e767",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a04675f03228a3329ecac1b884d93e36b8bbeb33ce23ec259526900f0aa7e9b",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "ebbc16ed8a4eb5b3676f562ecf3cf41c8da153a4caa760021d1b40ca7fb390e0",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3baab21ac5bf219532552017b3f0715b9f0e56c489a0d2cc83870690cc873b71",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "5e45735afc8dd389c3b094d05e021cfb3b13e2fd5b304c1ee6decbdd6fce4607",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "8b6831ae8679ee2f07c0e31138f13e48966dfa94382276759b4f94b3954a1f9e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "3e2f241ac2745d590006a3e9745990bafd8e56f486456452c79ddaacc4bf0278",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "f99a00ea9d99a2a9f93d1bd80ca610164f639c47eca909197f6f4c735cf9cc25",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "af0dcc6d6fc370e37c9797667339ac2d154f8c49be00ff388955ac04f4cf3530",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "04ba9557078fe602eb3d3f80e544c26ae6f68e07b5883430411426cb96401e82",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "029ba5cab8cbe265c07f8d5adeea3787aab0d346fdfa096e476eeff608373131",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "805b413e6f0013916453c45ba927e7cdea484d12f3586d6c5f2351d53d0335a9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "7a59ff3ff5ca64a4c30d044fb34e3a6cb6add7b5e5892b23b48efb6666874e45",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "2586ce95a8cd1a030f6fd4cfec18ed4db5896e940caf1b7a7e03e707cb02bb8e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4bc4b1e1a676d29d5082560379d2ae9ac51c77137fdb2ce7b97943d455445aee",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "76d3762b240f6d0557fd5a7d2f3d810ba623d7bc5559d50fd39014b65f258e0a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "8d61bced1c2a86983a73f429cd639e6c4d3e0522f25e8768ca8a0459b1cb9265",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "1c13f76f40f8457743427f5ce237d56cc30266cc79cb815df70d59c493595f55",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "e6fbafc2bd2ad8ab787cd34036aa6ae6b7cc4d305a0c79362aaf4ef8b387617e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "666cdff52c559fb6e233e05a1d7caac087f15c9afaba44b04e862e7ca30576b3",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "8d4c4ae3aa5bf688fdea720789c30cca7bfaeacc387b4fefb3dfe26a5383e4cf",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "1d732ea1f9b6891d5b8a0abac73c337173bddf9d36c96a99d314c7c42835efb9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "99b14aea6340727d0889ece8b7bc89fb9948edbe2cbd1acaec6e9bf4382ed5da",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "e882e80b9e1fdbc2ccb5299459d48e59fcf926890dacfb0aafbea3ea18742972",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "6d7c9ba9e0298f3176545c996934df92cfb15b21490a34f85e55bbb138cf3106",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4b8b5b52d092ff4f294233332d6bbcbfb48dbb7b2b8b83403101ffd95c70b5a2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "ecf70cb8a9c202455baa95802b49054f73354a1b6fbd3bd11db637416118a02e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b204180d36641021c5724355b6a74515b5155f68eb98c18d0d04d15e3acdb3f5",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "63d81785a166cb01e85a5d96bda6a88ebc75d402381d0503963697069fcbf046",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fe416182bd384429604bf340b002205811c3acdd35e97c2a439687d16b3f6e21",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "50fa3700213e6325dfad01ba39f0034e854991efb5d47d9cf0731933c67047a4",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "21733edfd0ccbe470a82e5f47cadcc904782c6eb637ae2acdae7c2f7d1e823d1",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "759b49f03efb0880aa38220e486d54d785cbd199c2175a04c88140689a8ccafb",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "c7507da37594c02487b1ca0d25960db48be984aaa383dfec70c2560fdaa4d010",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "4a74cfd173c4a10458a5282cf614140a5d345af940508d5e795a3ad6e4f66fa9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "a4e5ebf660c41e84bebba94cacc51afb91b2060c4dd47550762efd8019088f4c",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "dd18b0a0c318c7c3021a83e660a9d2c498c8f2c5e0fa42538154f482304b550d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b581368d18d8b1ae044171a0a0943375eafe1536a82a7567095164c8fe5cc0d6",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "b98e30355330073dfe9e209ba5bfe73ed5450e32fa9abee774bd3a91500a0e32",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "a410b906d539aa6998c206c98d90ee1be47acc711c9d82062b966498f5f89b46",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "726b8dabd6126b88bb2b90ef11b67a50b8785f7ee180eeeae890d1f5f7ba1124",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "990dfa97507851796c7a229e51d2f89eee21caeab3cb0e2d9e302e2338f9561f",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "03f0500237afcffb14a5de639f2af74fc3513900f8505a8fda487115b6d9d5ff",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "fc1cc6f5f68d139f7d49cbda479785d965f8e3adaa23a6cf7d9c3557b6967dec",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "d7ed047fd46a5d5a749425589f3b1d2de98bec26a9005e8ac8ae54591693ab82",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "50a06424922e77a0b6e577c33bb60980d12f9ed7d0bf45633bfae05e31ae5d45",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_spectral_topics_summary.tex"
+    },
+    {
+      "release": "04a91a8c5e2ec803f754a72b1875be3184b0b5cade343c977bac93cd7277dec4",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    },
+    {
+      "release": "594708077caec6cbe8a60648b560a0129c0503fdaf71f482b5a452f1bdafa847",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    },
+    {
+      "release": "baa3e4c556f3de2a58792c1d69bc4ed383862c3bfd61ffc25b693cd15e88db5a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_fixed_n_supremum.tex"
+    },
+    {
+      "release": "c751b96d93e8093bfc2623edb55197e86326d33e9fa26cf1ab040f37b7550c9c",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "664adf38712d3f42d75094dc1cfe0997368ee2368df8cc0dd6b583971bd7b8a1",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "04a502fa23b984321ef7cfc024fda80b1760c06beaf63ce5bec579f1d63eae01",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "8277c3ff63676bcb772f2ba9d1396eca2b31e16467ccab8835aeed7da2e7ae62",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "5e9c16472cfcd50286847cb7ec4477862ac4f787c85046605e00173a2427d007",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "f1a1682cd730bafe33bd29202a83d901024a043599361566f46b761e3f3039a7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "58aa4ffd1916950b611cefd93816d9615bfefdcb16d56d6519d8f67c5c308e3c",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: docs/SL_gap_nge2_symmetry_recon.tex"
+    },
+    {
+      "release": "25c7a9af9d7b6a86992fcf06c4f8224f702950611478f384737d0b72ea75c55d",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "b1b3209baa22e3a3d17320790e26a787f8f880cb35b787565a0f0f4bbdfe87a6",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "7121b47662076417612b83c5992bcb143cf0dc2cb3e26872264c2c8a496f7444",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "e96d343235a4218b81fb2ddcb8661c1651503b018868dca6d8d6e6136cf8688a",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "71e0824f20e6733316c6ba21e5f88a5dc4cce63727eea26b539ebd3609b623c1",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "ac9ac8b628ce7ec785c192290af6a1a4c62c74d0f5735bc324f5f65542e0a50b",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "e52c5f520a99dc983c1a5e3201880ce294a83d2d0a6c80ef6afcb09237f68b7e",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "d44c73678a5952799cfd9b88973f5be22203be1807d2fc510f2401058215db39",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "f2acf586bcfee3349dff458a8abadba3b101b9c362cfc8ff46500f8a98ca0a85",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/second-variation-weighted-eigenvalues.md"
+    },
+    {
+      "release": "5113ca99c81ce302364a894d5ffc360f441bf20bbb4ed9eb92a7e48583a245b0",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "cc2d7cda4f98ff61d2e4720b77c6849647dbccba177e679fe3be1ff15acf1d07",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "3ae28439913b42c49d62b6ea52e7641b235814979dba4176f92d7d8f91fcbcd9",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "0f6723e67ca74ea039b340bb953aac69d40ee6a715afd67d6db8afe92b40bdd8",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "72f78f7d1de2b26fb02778ef7ab645303275b7c6b727a5fcb56216dafb7a02eb",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "8ade536b010309873b94867c1456be393bb1292dd08bad9ba26b2fb06e192648",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "ad54221ded1891cd1a9fa168bf6f9755a9aadfb1e1fc75a4942b36a35cfaa0ba",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "775d2bcd2997b523aa14e6c4908175fecff3ea3539eb5eeb5d65714772b769be",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "492ee36ee079a3104876ed3e7a25e1b487391edcdc3e09bf610d9aa985a55d68",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "55b38d1b32108b70d4770aad64694e5a6d87b9f74723a1a8dc935e2b8d3c2558",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "2988eb3e3e0eba2505ef963cb4d0be7a0142d5a4308f5fb35ac75e3d2781759c",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "f5393716c522e83993701628bd767f004cb59d2ee2d72322a0a660901473c754",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "01e88df0dc0707b4d34de02fef0039abd0e3beef206e67e14d81cc212b9100ee",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "fd1c2561f0cc9d06d9718a232b665bd0f5c4a6203d0973ec7e9b482722b16441",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "2141f6812f4c8fe22ce038160e16f77804619c13b973a560b78e70cfab7ba9f2",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "f7c0a289dc2751d3375af5931e15e76eedb291b1bb0e0a9eb40630c478becf15",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "c7503020794862369259e0e5f8533afd3b3d4e87c65b653004a81de3420f29e3",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "3a1f4e4c9f8663099eaac12ac0ea59852ef8bce1d3cd6916bf96149a270abf2f",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "8bc058fdbd879a0470882878862393c10fb640922ec68e0787dc56b43ff04bf6",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "df0e022a68cc07d1a9b5fd8d55b3ddfa974ff2059c0a700464cdff067ea7f432",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "3534318d2d2c8d30ab90068ee36771493e02d341da84fcd69096b762522b67f5",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "aa6614844a47a5e22686c10f944a1ffb4c6a70efabe6fc26dcc17445b3fd74d4",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "0a9143af87e58db7766f0a3058b56fa0b0a5f8ea0214775df36393e3082a5445",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "59f35e5c6638ab11b1a9ac5f802aa2a586905c68b46bb35585822065969175be",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    },
+    {
+      "release": "b913046d0749d943a4df0a947322251bde1faaa2077f88566a79356adaa69ec7",
+      "status": "REVIEW_NO_LONGER_VALID",
+      "error": "review receipt verification failed: review is stale: tools/band-selfconsistency-equivariance.md"
+    }
+  ]
+}

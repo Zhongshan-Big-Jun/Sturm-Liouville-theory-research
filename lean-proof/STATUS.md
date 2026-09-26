@@ -1,5 +1,11 @@
 # lean-proof 形式化状态总表
 
+## 2026-09-26 第十二轮局部形式化
+
+新增 [AuditRound12.lean](SL/AuditRound12.lean): 对任意自然数 n（含0）和实矩阵，建立真实配对/递增坐标 Equiv、反转与交错符号、基的 Gram 矩阵、sqrt(2) 归一化、原 K 与 SKS 的镜像压缩交换、奇秩一项存留及 n=1 反例。22 个作者定义/缩写，10 个主要定理含九项根，完整导出59声明。独立完整盲读与另一个新会话的实际 Lean 执行/契约比对通过；公理闭包仅 propext、Classical.choice、Quot.sound。首轮含省略号的导出和 INCOMPLETE 回执保留。见[第十二轮报告](../reports/proof-audit-round12-20260926/REPORT.md)。
+
+压缩交换不以 K 对称或与反转对易为前提；不变子空间分块另需对易。新文件补上自身配对模型到递增坐标的桥梁，不追改旧源或宣称旧命题新增全模型认证。未形式化 Green/ODE、相位单调性、数值 Python、惯性指标/Sylvester 定律或全局 G1。原52份SL源和依赖保持原字节，未作全库Lake构建或canonical接收。
+
 ## 2026-09-26 第十一轮局部形式化
 
 新增 [AuditRound11.lean](SL/AuditRound11.lean): 成对实坐标中的反射/和差变换、条件反对易交叉块和对易对角块、detJ=(-1)^n detC detD、仿射反射增量, 以及显式偶/奇边界矩阵的行列式与唯一实修正. 14个具名定理含13项显式合取根, 12个定义/缩写, 全部导出37项声明. 37项盲读与另一个全新会话的实际重编译、精确根/公理检查及语义比对分别通过. 根公理仅propext、Classical.choice、Quot.sound. 见[第十一轮报告](../reports/proof-audit-round11-20260926/REPORT.md).

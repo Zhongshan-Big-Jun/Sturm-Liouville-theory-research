@@ -10,6 +10,14 @@
 
 # 项目维护
 
+## 2026-09-26 第十二轮审计修缮 (修订与验收完成)
+
+用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round12 继续修订", 指定 math-research-workflow 2.0.1. 基线be7c091, 16541个tracked、134个原untracked和6项原dirty已按字节保存在F:/tools/math-audit-round12-20260926/baseline.json. 附件16项哈希通过, 两份摘录的九个函数AST与当前完整Git blob一致; 摘录仍按摘录分类.
+
+方法: 复现半区间扫描漏根、谱截断变动导致的错删极点和K与SKS扇区混淆. 修订相关活动谱引擎、调用者和工具卡, 附件仅在隔离副本执行. 解析作者与最终全新fork_context:false检验者分离, 必要局部Lean只认证明确声明. 原版纠错API先隔离后逐版本/事项审查放行; 不改canonical、旧冻结证据/52份旧Lean或无关未提交内容. 第十一轮已验收余有限结论不因未涉及的附件猜测重开. 完成后同步地图、项目理解、续接与origin先于fork交付. 详细对话与方法见state/AGENTS_SESSION_LOG.md.
+
+第十二轮完成: 六份程序与三张工具卡修复半谱、极点身份及原/共轭扇区传播；同时撤回负秩一项的错误减号充分判据。136 项普通/-O回归及独立实际执行通过。首轮软件溢出发现和首轮 Lean 类型省略导致 INCOMPLETE 均保留，修复后换全新会话复验。五个最终独立检验通过，原版模块完成 22 项纠错/续审义务，实际90可用/1原撤回及3条精确批注实查。Lean59声明及真实坐标/归一化桥接只认证有限实矩阵代数。B10、理解、前沿、导航和续接同步；52旧Lean、canonical、历史证据及原134untracked/6dirty按字节保护。发布依次origin、fork，以本轮报告及外部DELIVERY.json为准。
+
 ## 2026-09-26 第十一轮审计修缮 (修订与验收完成)
 
 用户提供 "C:\Users\HuangZY\Downloads\sl_audit_round11", 指定 math-research-workflow 2.0.1, 后补充 "重新看一眼". 目录首次不可见, 再查已到位. 基线4f6b35c, 15077个tracked、134个原untracked和6项原dirty已记录到F:/tools/math-audit-round11-20260926/baseline.json. 报告及全阶余有限补证均作为待核实证据.
@@ -159,3 +167,7 @@ R3-F1/F2 的一般递推、基扰动与 R3-F3 的商空间证明已核实修订,
 - 2026-09-20: 按用户核查同步 `PROJECT.md` 两处旧状态: n=1 间距 SUP/INF 在归一化盒类 `1<=rho<=R` 内对全部 `R>1` 为 STRICT/CLOSED, 以 `220785e` 的闭合记录及研究导航中的证明链为据; 移除综述开放问题清单的无条件权威表述. n>=2 完整问题及形式化另计, B4 保持 PARTIAL. 本轮仅做状态溯源与文档同步, 未重做证明审计或修改 canonical, 未 commit/push. 具体对话与核查见 [会话日志](state/AGENTS_SESSION_LOG.md).
 
 - 2026-09-20: 用户授权核查并修复所附证明审计后, 修正 F01-F08 及增长引理遗漏假设, 追踪高阶错误推广到分数阶文档、综述、工具卡与 A1/A2; B4 保持 PARTIAL. 新建 35 项精确检查全部通过, C1-C5 程序 PASS, 11 份 PDF 重建并同步. 修订前 36 文件按字节归档, 原封存证明包、canonical 和既有未提交工作保留; 未 stage/commit/push. 详见 [报告](reports/proof-audit-20260920/REPORT.md) 与会话日志.
+
+第十二轮发布检查补记: 最终文档检查辅助脚本首轮因Path变量覆盖构造器失败，原失败与源码差异保存于本轮integration/document-check-repair；改用FilePath构造器的v2继续核对，最终结果以final-document-check.json为准。已审核的数学源码与冻结包未改。
+
+第十二轮续接历史补记: 精确提交检查发现两份本轮原接口生成的中间progress快照尚未入清单；已依据save_progress回执及连续SHA256链核实，publication_v2仅补入这两个明确路径。原检查辅助源码/失败说明与修复差异保留在integration/publication-repair，v3文档检查将该补充归档纳入校验。

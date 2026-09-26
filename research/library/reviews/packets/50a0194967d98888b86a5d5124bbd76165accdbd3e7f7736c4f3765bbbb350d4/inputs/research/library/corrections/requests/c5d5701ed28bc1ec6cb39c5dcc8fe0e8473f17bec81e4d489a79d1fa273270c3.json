@@ -1,0 +1,45 @@
+{
+	"input_sha256": "c24281b523ebb25267585f585a85a7a44d3b4beb7656c4bfcb6efe33ae220b83",
+	"key": "issue:round12-half-spectrum-poles-and-parity",
+	"kind": "issue",
+	"payload": {
+		"canonical_action": "NEEDS_RECEIVER_REVIEW",
+		"canonical_nodes": [],
+		"disposition": "quarantine",
+		"evidence": [
+			{
+				"locator": "R12-01, R12-02, R12-03 and scope",
+				"path": "research/artifacts/proof-audit-round12-20260926/submitted/proof_audit_round12_20260926.md",
+				"sha256": "3888ea683851992606debebaac3d43dc5d22c9f5aa0d94614b54633c46941da0",
+				"snapshot": "research/library/corrections/evidence/3888ea683851992606debebaac3d43dc5d22c9f5aa0d94614b54633c46941da0.bin"
+			},
+			{
+				"locator": "Whole current Git blob and nine function AST identity checks",
+				"path": "research/artifacts/proof-audit-round12-20260926/intake-verification.json",
+				"sha256": "65432b774e31b35643e266bba37ed07c62b8a6fc79fa6f44e1fa1797e0e0efd8",
+				"snapshot": "research/library/corrections/evidence/65432b774e31b35643e266bba37ed07c62b8a6fc79fa6f44e1fa1797e0e0efd8.bin"
+			},
+			{
+				"locator": "Old half_spectrum and _spectral_green exact bytes",
+				"path": "research/artifacts/proof-audit-round12-20260926/before/scripts/_gapn2_half_problem_probe.py",
+				"sha256": "0ede3da04b28c7f319c5bb4657ad162d8ca50dc1995c36d89e96477f899148b7",
+				"snapshot": "research/library/corrections/evidence/0ede3da04b28c7f319c5bb4657ad162d8ca50dc1995c36d89e96477f899148b7.bin"
+			}
+		],
+		"issue_id": "round12-half-spectrum-poles-and-parity",
+		"origin": "external",
+		"reporter": "sl_audit_round12; supplied function excerpts independently matched to whole current Git blobs",
+		"summary": "R12-01/02: the separate half-spectrum mu-grid drops low modes and changes prefix with N; position-only pole exclusion can retain the actual pole. R12-03: the historical cross-parity Green expression is the odd block of SKS (E Ke E), not the raw K odd block. Quarantine the two directly affected cards pending indexed DD/DN repair, bound pole identity and exact sector correction. No blanket retraction of unchanged reduced-kernel derivations, round11 cofinite classification, or default R4 historical data.",
+		"targets": [
+			{
+				"location": "tools/green-half-inertia.md",
+				"sha256": "10873d6be96338ecf3024b93fd655c0ebcdf60445d35367773f174b7aba26c20"
+			},
+			{
+				"location": "tools/half-problem-regularized-green.md",
+				"sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd"
+			}
+		]
+	},
+	"schema": "research-corrections/v1"
+}

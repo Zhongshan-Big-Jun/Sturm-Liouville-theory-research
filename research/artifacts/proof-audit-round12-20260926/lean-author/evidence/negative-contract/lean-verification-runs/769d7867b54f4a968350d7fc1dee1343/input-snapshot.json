@@ -1,0 +1,29 @@
+{
+	"run_id": "769d7867b54f4a968350d7fc1dee1343",
+	"inputs": {
+		"AuditRound12.lean": "21f0a2d46770474e6c32f78ead52c977dcec2f0e589308584d5499c253efa768",
+		"ContractCheck.lean": "f94a4ce4963bab803f4927433d2f55c5b4297df5a0dce7eebdb05ce4a67b22ab",
+		"ExportRound12.lean": "d0cb93c62aecabc8e8ad10e509424f458c81b2383c64059d5baaaee8f78fc3b8",
+		"NegativeMirrorSign.lean": "1e661c18efcd3e2b6ccffe4302a40f7e14cb6909aed87feb7c782da710ac77ed",
+		"NegativeNormalization.lean": "bdd95919629a4f71ad5e01ce495e41eb226c457f4c39b0f696865cf06460777b",
+		"NegativeWrongSector.lean": "1508af6464cf933f3632eb4f9c7d0a41c07975354305478039d48cb7a13d8d5f",
+		"PositiveControls.lean": "de7eea2b7ba985af17ed2b968c6d794f43c7e1032f231dd6d10437338bef708e",
+		"lakefile.lean": "b3816ce71dcdb63c5739e309ab33311302ee78f11ab6d0e4d971155a983fa0fa",
+		"lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+	},
+	"tool_hashes": {
+		"verify_lean_project.py": "ccbdb79a8264a103006768636a5bb8a501c4bc4420eab0c783f08fbe5212592d",
+		"lean_runtime.py": "cb8de8974c1ed6598d3c81ebab40331944198da8feb6f80b20196362af5a6086",
+		"lean_evidence.py": "acfc329ae136d491293020dc0b1001f27b2b43200466962c07c83d960e991be1",
+		"LeanVerifyProbe.lean.template": "4299cc51119b911992511b2ce05e114dfdcbe5d698b4639838585e74c62a7a7f",
+		"lake_build_guard.py": "ad8107677112126a6ff9c2f6ed4ed7019960f8357306f4b69e98047ff2d0c4f0",
+		"run_manifest.schema.json": "0ba7f0afad04a704a7004cc98dd5ee7509a780eb719e45300edd1e6e477aef6c"
+	},
+	"contract": {
+		"file": "AuditRound12.lean",
+		"declaration": "AuditRound12.sector_exchange",
+		"expected_type": "open scoped Matrix in open AuditRound12 in (∀ {n : ℕ} (K : Matrix (Pair n) (Pair n) ℝ), rawKo K = E n * rawKe K * E n ∧ KpEven K = E n * rawKo K * E n)",
+		"universes": [],
+		"control": "Deliberately replace KpOdd with rawKo in the first exchange. Required result: target_mismatch with completed machine extraction."
+	}
+}

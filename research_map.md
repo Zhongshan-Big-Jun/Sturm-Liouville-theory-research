@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-26 (round11 cofinite closure analytically reviewed; cross-block/endpoint numerical repair independently checked)
+Last updated: 2026-09-26 (round12 scoped half-spectrum/pole/sector repair independently reviewed; round11 results retain their scope)
 
 
 
@@ -61,6 +61,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B7 | Local second variation along finite fixed-value moving interfaces | STRICT | tools/finite-interface-second-derivative; literature/absorption-20260923/interfaces/derivations | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
 | B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
 | B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | scripts/_gapn2_jacobian_probe.py; reports/proof-audit-round11-20260926/REPORT.md | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
+| B10 | Half-spectrum identity, bound poles and raw/conjugated sectors | SCOPED REPAIR VERIFIED | reports/proof-audit-round12-20260926/REPORT.md; tools/green-half-inertia; tools/half-problem-regularized-green | DD/DN phase targets label each mode; shared tables bind pole deletion. KpOdd=E Ke E, while raw Ko has reduced own-pole kernels and a rank-one term. Finite diagnostics and local algebra do not certify full ODE execution, global signs or G1 |
 
 ## Relationships between problems
 
@@ -91,6 +92,7 @@ B7 local interface chain rule --supports--> B4 variation analysis; global sign r
 B8 phase indexing + actual reflection sectors --repairs numerical exploration of--> B4/B7
 B8 does not promote numerical observations to analytic G1 or global uniqueness
 B9 cross-block parity and actual edge differences --repairs numerical derivative tools for--> B7/B4; commuting Hessian parity remains distinct
+B10 indexed half spectra and sector object identity --repairs Green diagnostics for--> B7/B4; all-R signs remain open
 B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
 B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
@@ -124,6 +126,7 @@ flowchart LR
   B7["B7 finite interface derivatives (STRICT)"]
   B8["B8 indexed numerical modes / pure seeds (NUMERICAL)"]
   B9["B9 cross blocks / actual differences (NUMERICAL)"]
+  B10["B10 indexed half spectra / bound poles / raw sectors (UNDER REVIEW)"]
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
@@ -138,6 +141,7 @@ flowchart LR
   A12 -->|extends s3 classification| A8
   A1 -->|member window| A12
   B9 -->|derivative diagnostics| B7
+  B10 -->|Green diagnostics| B7
   A9 -->|domain and topology| A8
   A9 -->|boundary conditions| A10
   A11 -->|special subclasses| A4

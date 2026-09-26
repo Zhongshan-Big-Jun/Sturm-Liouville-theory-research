@@ -1,0 +1,201 @@
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:101:33: warning: This simp argument is unused:
+  Matrix.diagonal_apply
+
+Hint: Omit it from the simp argument list.
+  simp [paired, orderedS, S, M̵a̵t̵r̵i̵x̵.̵d̵i̵a̵g̵o̵n̵a̵l̵_̵a̵p̵p̵l̵y̵,̵ ̵h, (order n).injective.ne h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:109:2: error: unsolved goals
+case refine_1
+n : ℕ
+hs : ∀ (i : Fin n), (-1) ^ ↑i * (-1) ^ ↑i = 1
+i j : Pair n
+⊢ ((∑ x, if Sum.inr x = j then if Sum.swap i = Sum.inl x then 1 else 0 else 0) +
+      ∑ x, if Sum.inl x = j then if Sum.swap i = Sum.inr x then 1 else 0 else 0) =
+    if i = j then 1 else 0
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:112:2: error: unsolved goals
+case inl
+n : ℕ
+hs : ∀ (i : Fin n), (-1) ^ ↑i * (-1) ^ ↑i = 1
+val✝ : Fin n
+⊢ Matrix.diagonal
+      (fun i =>
+        Sum.elim (fun i => (-1) ^ ↑i) (fun i => -(-1) ^ ↑i) i * Sum.elim (fun i => (-1) ^ ↑i) (fun i => -(-1) ^ ↑i) i)
+      (Sum.inl val✝) =
+    1 (Sum.inl val✝)
+
+case inr
+n : ℕ
+hs : ∀ (i : Fin n), (-1) ^ ↑i * (-1) ^ ↑i = 1
+val✝ : Fin n
+⊢ Matrix.diagonal
+      (fun i =>
+        Sum.elim (fun i => (-1) ^ ↑i) (fun i => -(-1) ^ ↑i) i * Sum.elim (fun i => (-1) ^ ↑i) (fun i => -(-1) ^ ↑i) i)
+      (Sum.inr val✝) =
+    1 (Sum.inr val✝)
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:118:4: error: Tactic `constructor` failed: no applicable constructor found
+
+case refine_4.e_c
+n : ℕ
+hs : ∀ (i : Fin n), (-1) ^ ↑i * (-1) ^ ↑i = 1
+i j : Pair n
+⊢ (Sum.swap j = i) = (Sum.swap i = j)
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:114:38: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp [sign,̵ ̵h̵s̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:131:2: error: unsolved goals
+case pos
+n : ℕ
+i j : Fin n
+h✝ : i = j
+⊢ ↑n + ↑n = 2
+
+case neg
+n : ℕ
+i j : Fin n
+h✝ : ¬i = j
+⊢ n = 0
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:135:2: error: unsolved goals
+case pos
+n : ℕ
+i j : Fin n
+h✝ : i = j
+⊢ ↑n + ↑n = 2
+
+case neg
+n : ℕ
+i j : Fin n
+h✝ : ¬i = j
+⊢ n = 0
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:144:14: error: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+case refine_6.inl
+n : ℕ
+j val✝ : Fin n
+⊢ (-1) ^ ↑val✝ = (-1) ^ ↑j
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:144:14: error: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+case refine_6.inr
+n : ℕ
+j val✝ : Fin n
+⊢ (-1) ^ ↑val✝ = (-1) ^ ↑j
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:147:14: error: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+case refine_7.inl
+n : ℕ
+j val✝ : Fin n
+⊢ (-1) ^ ↑val✝ = (-1) ^ ↑j
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:147:14: error: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+case refine_7.inr
+n : ℕ
+j val✝ : Fin n
+⊢ (-1) ^ ↑val✝ = (-1) ^ ↑j
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:132:56: warning: This simp argument is unused:
+  Fintype.sum_sum_type
+
+Hint: Omit it from the simp argument list.
+  simp [Be, Matrix.mul_apply, Matrix.transpose_apply, F̵i̵n̵t̵y̵p̵e̵.̵s̵u̵m̵_̵s̵u̵m̵_̵t̵y̵p̵e̵,̵Matrix.one_apply, Matrix.smul_apply,
+  ̲  ̲ ̲ ̲ ̲ ̲smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:141:6: warning: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [Be, Bo, Matrix.mul_apply, Matrix.transpose_apply, Fintype.sum_sum_type,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:143:74: warning: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [S, E, sign, Be, Bo, Matrix.diagonal_mul, Matrix.mul_diagonal,̵ ̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:146:74: warning: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [S, E, sign, Be, Bo, Matrix.diagonal_mul, Matrix.mul_diagonal,̵ ̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:194:68: error: unsolved goals
+n : ℕ
+K : Matrix (Fin (n + n)) (Fin (n + n)) ℝ
+hc :
+  ∀ (A : Matrix (Fin (n + n)) (Fin n) ℝ) (M : Matrix (Fin (n + n)) (Fin (n + n)) ℝ),
+    (A.submatrix (⇑(order n)) id)ᵀ * paired M * A.submatrix (⇑(order n)) id = Aᵀ * M * A
+he : (orderedBe n).submatrix (⇑(order n)) id = Be n
+ho : (orderedBo n).submatrix (⇑(order n)) id = Bo n
+hce : ∀ (M : Matrix (Fin (n + n)) (Fin (n + n)) ℝ), (orderedBe n)ᵀ * M * orderedBe n = rawKe (paired M)
+hco : ∀ (M : Matrix (Fin (n + n)) (Fin (n + n)) ℝ), (orderedBo n)ᵀ * M * orderedBo n = rawKo (paired M)
+⊢ S n * paired K * S n = S n * K.submatrix ⇑(order n) ⇑(order n) * S n
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:219:2: error: unsolved goals
+case refine_1
+n : ℕ
+K : Matrix (Pair n) (Pair n) ℝ
+hs : (√2)⁻¹ * (√2)⁻¹ = 1 / 2
+⊢ ((√2)⁻¹ * ((√2)⁻¹ * 2)) • 1 = 1
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:221:2: error: unsolved goals
+case refine_2
+n : ℕ
+K : Matrix (Pair n) (Pair n) ℝ
+hs : (√2)⁻¹ * (√2)⁻¹ = 1 / 2
+⊢ ((√2)⁻¹ * ((√2)⁻¹ * 2)) • 1 = 1
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:220:17: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp [normalizedBe, Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+  ̲  ̲ ̲ ̲h̵s̵,̵ ̵(basis_relations n).2.2.1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:222:17: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp [normalizedBo, Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+  ̲  ̲ ̲ ̲h̵s̵,̵ ̵(basis_relations n).2.2.2.1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:237:63: error: unsolved goals
+n : ℕ
+v : Fin n → ℝ
+i j : Fin n
+⊢ (∑ x, (∑ x_1, v x_1 * v x + ∑ x_1, v x * v x_1)) * 2 = v i * v j * 4
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:240:30: warning: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [rawKo, Bo, outer, oddVector, Matrix.mul_apply, Fintype.sum_sum_type,
+        Matrix.transpose_apply, Matrix.o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵M̵a̵t̵r̵i̵x̵.̵smul_apply, smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:245:30: warning: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [rawKe, Be, outer, oddVector, Matrix.mul_apply, Fintype.sum_sum_type,
+        Matrix.transpose_apply,̵ ̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:264:26: error(lean.unknownIdentifier): Unknown constant `Fin.sum_univ_one`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:258:33: error: unsolved goals
+h : rawKo (P 1) = KpOdd (P 1)
+hc :
+  ↑{x ∈ {0} | Sum.inr x = Sum.inl 0}.card + -1 +
+      ((-if Sum.inl 0 = Sum.inr 0 then -1 else 0) + -↑{x ∈ {0} | x = 0}.card) =
+    ↑{x | Sum.swap x = Sum.inl 0}.card + ↑{x | Sum.swap x = Sum.inr 0}.card
+⊢ False

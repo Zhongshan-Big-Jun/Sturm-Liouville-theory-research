@@ -1,5 +1,7 @@
 # Sturm-Liouville Theory Research
 
+2026-09-26 round12 repair and independent verification completed: DD/DN half spectra now use phase indices and pole sums bind a shared spectrum table. Raw K sectors are distinguished from those of S K S, including propagated program/card labels. See the [report](reports/proof-audit-round12-20260926/REPORT.md) for current independent-review and library-release status. Round11 cofinite results retain their scope; global G1 remains open.
+
 2026-09-26: Round11 repairs the residual Jacobian CROSS blocks and finite differences whose coordinate conversion changed their direction. A separate analytic review accepts the fixed-c>0 cofinite closure classification throughout 0<=s<7/2, including the three critical orders and the original-family non-Schauder/Riesz conclusion under nonzero termwise scaling and reordering. See the [report](reports/proof-audit-round11-20260926/REPORT.md), [proof PDF](docs/SL_cofinite_all_orders.pdf), and [reusable card](tools/krein-cofinite-closure-all-orders.md). Numerical execution and local Lean evidence have separate scopes.
 
 2026-09-25: Round10 repairs independently reviewed. Lifted-phase indexing replaces missed-root sign scans, and geometric reflection sectors are checked after coordinate conversion. Historical numerical output is revalidated only where actually rerun. See the [round10 report](reports/proof-audit-round10-20260925/REPORT.md).

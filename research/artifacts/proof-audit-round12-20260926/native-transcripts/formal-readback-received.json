@@ -1,0 +1,325 @@
+{
+  "verdict": "INCOMPLETE",
+  "packet_sha256": "742092c61c66c85856a9268cfca398f8c548c818ae99d3e8437b06ad784d0439",
+  "reviewer_id": "01a0dd02-c9b8-71b0-b917-007ab01153d6",
+  "bindings": {
+    "inputs/AuditRound12.lean": "10a17ea07e78d8ba7fb5d344815ef488f7d1eac396c0888d5d891a861c64c617",
+    "inputs/declarations.json": "bd52de825f08a29c69621d53df374fa2b02c16105b7f5234e8c66e2b4edc634a",
+    "inputs/declarations.txt": "38270745dd0542fcafbfb417dbed612f53133c74460afe2f5e1e427aab051e8e",
+    "inputs/lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+  },
+  "claims": [
+    {
+      "id": "AuditRound12.Be",
+      "reason": "For every explicit n:ℕ, this is the real Pair n by Fin n matrix with identity blocks [I; I]. Its entries and dimensions are fully specified, including n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Bo",
+      "reason": "For every explicit n:ℕ, this is the real Pair n by Fin n matrix [I; −I]. The negation applies to the entire second identity block.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.E",
+      "reason": "For every explicit n:ℕ, this is the diagonal Fin n square real matrix with diagonal entry (−1)^i.val. Indices start at zero.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Kp",
+      "reason": "With implicit n:ℕ and arbitrary explicit real Pair n square matrix K, the definition is (S n * K) * S n. There are no symmetry or commutation hypotheses.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.KpEven",
+      "reason": "With implicit n and arbitrary explicit K on Pair n, this returns rawKe(Kp K), a Fin n square real matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.KpOdd",
+      "reason": "With implicit n and arbitrary explicit K on Pair n, this returns rawKo(Kp K), a Fin n square real matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.P",
+      "reason": "For explicit n and entries i,j:Pair n, P n i j is 1 exactly when Sum.swap i=j, and 0 otherwise. This defines the block-swap matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Pair",
+      "reason": "For explicit n:ℕ, Pair n is the disjoint sum Fin n ⊕ Fin n. It is empty when n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.S",
+      "reason": "For explicit n:ℕ, S n is diagonal with diagonal sign n, giving blocks diag(E n,−E n).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.audit_root",
+      "reason": "The first eight exported conjuncts match the complete exported types of their corresponding component theorems after whitespace normalization. The final existential conjunct is truncated: type_explicit contains nine literal ⋯ placeholders, including an omitted terminal proposition. The source supplies a complete statement, but the complete elaborated root type cannot be read back from these exports.",
+      "verdict": "INCOMPLETE"
+    },
+    {
+      "id": "AuditRound12.basis_relations",
+      "reason": "The seven identities follow directly from P=[0,I;I,0], Be=[I;I], Bo=[I;−I], and S=diag(E,−E). Both Gram matrices are 2I and the cross Gram matrix is zero. All identities include n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.convention_bridge",
+      "reason": "For arbitrary K, the two signs cancel in (−S)K(−S); the basis identities acquire −E; and the normalized compression identities follow by multiplying the sector-exchange identities by 1/2. No additional hypothesis on K is present.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge",
+      "reason": "The equivalence sends left index i to i and right index i to 2n−1−i. This converts swapping into reversal and the paired sign into the ordered alternating sign. Whenever i:Fin n occurs, i<n justifies the natural-number subtraction identities; those quantified assertions are vacuous at n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.distinct_sectors_counterexample",
+      "reason": "The existential is specifically at n=1. The exact witness K=P 1 is symmetric and commutes with P 1, while rawKo K=[−2] and KpOdd K=[2]. This checks the existential without numerical approximation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.involutions",
+      "reason": "For every n, swapping twice is the identity and each diagonal sign squares to 1. The swap matrix and both diagonal matrices equal their transposes. The empty-matrix case is included.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalization",
+      "reason": "For implicit n and arbitrary explicit K, all four identities use the real scalar (sqrt 2)⁻¹, whose square is 1/2. The Gram identities use BeᵀBe=BoᵀBo=2I. No positivity assumption on n is needed.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalizedBe",
+      "reason": "For explicit n, this is scalar multiplication of Be n by the reciprocal of the nonnegative real square root of 2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalizedBo",
+      "reason": "For explicit n, this is scalar multiplication of Bo n by the reciprocal of the nonnegative real square root of 2.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.oddVector",
+      "reason": "With implicit n and explicit v:Fin n→ℝ, this is the function on Pair n taking values v on the left summand and −v on the right.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.odd_rank_one",
+      "reason": "Writing w=(v,−v), one has Boᵀw=2v and Beᵀw=0, giving the three compression identities. If v≠0, some diagonal entry 4(v i)² is nonzero. At n=0 the nonzero premise is impossible. The declared conclusion contains a conditional nonzero statement, not a rank-valued assertion.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.order",
+      "reason": "For explicit n, the equivalence first reverses the right Fin n summand and then applies finSumFinEquiv. Both summands and the target Fin(n+n) are specified.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedBe",
+      "reason": "For explicit n, the definition reindexes the rows of Be n by (order n)⁻¹ and leaves its Fin n columns unchanged.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedBo",
+      "reason": "For explicit n, the definition reindexes the rows of Bo n by (order n)⁻¹ and leaves its Fin n columns unchanged.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedP",
+      "reason": "For explicit n and i,j:Fin(n+n), its entry is 1 exactly when i.rev=j, and 0 otherwise.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedS",
+      "reason": "For explicit n, this is the Fin(n+n) square diagonal real matrix with diagonal entry (−1)^i.val.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.ordered_compressions",
+      "reason": "For arbitrary ordered K, bijective reindexing preserves the finite matrix sums in both compressions. Applying the coordinate bridge and sector exchange gives the other two identities. All matrix domains agree, including n=0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.outer",
+      "reason": "For implicit ι:Type 0 and explicit v:ι→ℝ, the entry at i,j:ι is v i * v j. This definition has no finiteness or nonzero hypothesis on ι or v.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.paired",
+      "reason": "With implicit n and explicit real Fin(n+n) square K, both indices are pulled back along order n, producing a Pair n square matrix.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.rawKe",
+      "reason": "With implicit n and arbitrary explicit real Pair n square K, this is the unnormalized compression Beᵀ K Be on Fin n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.rawKo",
+      "reason": "With implicit n and arbitrary explicit real Pair n square K, this is the unnormalized compression Boᵀ K Bo on Fin n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.sector_exchange",
+      "reason": "For every K, SBo=BeE and SBe=BoE, together with Sᵀ=S and Eᵀ=E, give KpOdd K=E rawKe K E and KpEven K=E rawKo K E. Symmetry and commutation of K are unnecessary.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.sign",
+      "reason": "For explicit n, the function on Pair n is (−1)^i.val on the left and −((−1)^i.val) on the right.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Be.eq_1",
+      "reason": "For every explicit n, this equates the whole matrix Be n with Sum.elim I I. It agrees with the supplied definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Bo.eq_1",
+      "reason": "For every explicit n, this equates the whole matrix Bo n with Sum.elim I (−I). It agrees with the supplied definition.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.E.eq_1",
+      "reason": "For every explicit n, this equates E n with the diagonal matrix of the function i:Fin n↦(−1)^i.val.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.Kp.eq_1",
+      "reason": "For implicit n and arbitrary explicit K on Pair n, this states Kp K=(S n*K)*S n, matching its defining equation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.P.eq_1",
+      "reason": "All three binders n:ℕ and i,j:Pair n are explicit. The equation states the entrywise swap indicator used in P.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.S.eq_1",
+      "reason": "For every explicit n, this states the whole-matrix equality S n=Matrix.diagonal(sign n).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge._proof_1_3",
+      "reason": "For explicit n and i:Fin n, with t=i.val, the third explicit argument denies (n−(t+1))+n=(n+n−1)−t and the conclusion is False. The equality follows from t+1≤n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge._proof_1_4",
+      "reason": "For explicit n and i:Fin n, with t=i.val, a denial of (n−(t+1))+n=(n+n)−(t+1) implies False. The bound t+1≤n handles truncated subtraction.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge._proof_1_5",
+      "reason": "For explicit n and i:Fin n, with t=i.val, a denial of t=(n+n)−((n−(t+1))+n+1) implies False. The inner subtracted quantity equals 2n−t under t<n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge._proof_1_6",
+      "reason": "For explicit n and i:Fin n, with t=i.val, a denial of ((n+n−1)−t)+t=2*(n−1)+1 implies False. Existence of i supplies n≥1, and t≤2n−1 prevents subtraction underflow.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.coordinate_bridge._simp_1_10",
+      "reason": "For universes u,v, implicit α:Sort u and β:Sort v, explicit equivalence f:α≃β, and implicit x,y:α, this states equality of the propositions f x=f y and x=y. Injectivity gives their equivalence; propositional extensionality gives the declared equality.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.involutions._simp_1_5",
+      "reason": "For universe u_1 and implicit α:Sort u_1 and a,b:α, this states equality of propositions (a=b)=(b=a), obtained from equality symmetry and propositional extensionality.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalization._simp_1_2",
+      "reason": "For universe u_1, implicit G:Type u_1, an instance argument Semigroup G, and explicit a,b,c:G, this states a*(b*c)=(a*b)*c. It uses associativity without commutativity.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalizedBe._proof_1",
+      "reason": "This closed declaration has type Nat.AtLeastTwo (1+1). It supplies numeral-instance evidence for 2 and has no binders.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalizedBe.eq_1",
+      "reason": "For every explicit n, this states normalizedBe n=(sqrt 2)⁻¹ • Be n as a whole-matrix equality.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.normalizedBo.eq_1",
+      "reason": "For every explicit n, this states normalizedBo n=(sqrt 2)⁻¹ • Bo n as a whole-matrix equality.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.oddVector.eq_1",
+      "reason": "For implicit n and explicit v:Fin n→ℝ, this is equality of functions oddVector v=Sum.elim v (−v), with pointwise function negation.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.order.eq_1",
+      "reason": "For explicit n, this is equality of equivalences between order n and the composition of Equiv.sumCongr identity Fin.revPerm with finSumFinEquiv.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedBe.eq_1",
+      "reason": "For explicit n, this states orderedBe n=(Be n).submatrix (order n).symm id, preserving the specified row and column domains.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedBo.eq_1",
+      "reason": "For explicit n, this states orderedBo n=(Bo n).submatrix (order n).symm id, preserving the specified row and column domains.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedP.eq_1",
+      "reason": "For explicit n and i,j:Fin(n+n), this states orderedP n i j=if i.rev=j then 1 else 0.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.orderedS.eq_1",
+      "reason": "For explicit n, this equates orderedS n with the diagonal matrix of i:Fin(n+n)↦(−1)^i.val.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.outer.eq_1",
+      "reason": "For implicit ι:Type 0 and explicit v:ι→ℝ and i,j:ι, this states outer v i j=v i*v j. No finite-index instance is required.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.paired.eq_1",
+      "reason": "For implicit n and explicit real Fin(n+n) square K, this states paired K=K.submatrix (order n) (order n).",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.rawKe.eq_1",
+      "reason": "For implicit n and arbitrary explicit real Pair n square K, this states rawKe K=((Be n)ᵀ*K)*Be n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.rawKo.eq_1",
+      "reason": "For implicit n and arbitrary explicit real Pair n square K, this states rawKo K=((Bo n)ᵀ*K)*Bo n.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "AuditRound12.sign.eq_1",
+      "reason": "For explicit n, this equates the whole function sign n with the sum eliminator whose left branch is i↦(−1)^i.val and right branch is i↦−((−1)^i.val).",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/AuditRound12.lean",
+    "inputs/declarations.json",
+    "inputs/declarations.txt",
+    "inputs/lean-toolchain"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/742092c61c66c85856a9268cfca398f8c548c818ae99d3e8437b06ad784d0439-01a0dd02-c9b8-71b0-b917-007ab01153d6",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "This was a static formal readback. All four input hashes matched the packet, all 59 claims had corresponding declaration records, and every JSON declaration block agreed with the text export.",
+    "Lean compilation and independent regeneration of declarations or transitive axiom closures were not performed. The packet specifies leanprover/lean4:v4.31.0 but does not include the imported Mathlib dependency snapshots or a dependency lockfile.",
+    "The exports report unsafe=false throughout and an axiom union of propext, Classical.choice and Quot.sound. These are inspected export metadata, not independently recomputed kernel results.",
+    "The audit_root translation below identifies its final conjunct from the supplied formal source. Its complete elaborated type remains unavailable because of export elision.",
+    "APPROVED claim results concern the stated declarations within this readback scope. They do not certify complete formalization, an external intended theorem, or an infinite-dimensional extension."
+  ]
+}

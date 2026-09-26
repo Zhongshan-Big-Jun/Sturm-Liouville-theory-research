@@ -1,0 +1,11 @@
+--- final_document_check_v2.py
++++ final_document_check_v3.py
+@@ -57,7 +57,7 @@
+ if sha(Root / 'lean-proof/SL/AuditRound12.lean') != '21f0a2d46770474e6c32f78ead52c977dcec2f0e589308584d5499c253efa768':
+ 	raise RuntimeError('Formal source differs')
+ ArchiveCount = 0
+-for Name in ['lean-author-archive-manifest.json', 'formal-export2-archive-manifest.json', 'formal-execution-archive-manifest.json', 'coordinator-archive-manifest.json', 'integration/archive-manifest.json', 'integration/document-check-repair/manifest.json']:
++for Name in ['lean-author-archive-manifest.json', 'formal-export2-archive-manifest.json', 'formal-execution-archive-manifest.json', 'coordinator-archive-manifest.json', 'integration/archive-manifest.json', 'integration/document-check-repair/manifest.json', 'integration/publication-repair/manifest.json']:
+ 	Manifest = json.loads((Artifact / Name).read_text())
+ 	for Row in Manifest['files']:
+ 		Data = (Artifact / Row['path']).read_bytes()

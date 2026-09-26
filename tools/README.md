@@ -88,7 +88,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | Tool | Card | Annotations |
 | --- | --- | --- |
 | balanced-phase | [card](<balanced-phase.md>) | 0 |
-| band-selfconsistency-equivariance | [card](<band-selfconsistency-equivariance.md>) | 2 |
+| band-selfconsistency-equivariance | [card](<band-selfconsistency-equivariance.md>) | 3 |
 | banded-shift-toeplitz-density | [card](<banded-shift-toeplitz-density.md>) | 0 |
 | bang-bang | [card](<bang-bang.md>) | 0 |
 | bloch-band | [card](<bloch-band.md>) | 1 |
@@ -109,8 +109,8 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |
-| green-half-inertia | [card](<green-half-inertia.md>) | 2 |
-| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 2 |
+| green-half-inertia | [card](<green-half-inertia.md>) | 3 |
+| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 3 |
 | helly-compactness | [card](<helly-compactness.md>) | 0 |
 | inf-limit-comparison | [card](<inf-limit-comparison.md>) | 1 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |

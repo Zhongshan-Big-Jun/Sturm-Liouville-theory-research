@@ -1,0 +1,448 @@
+{
+  "scope": "Tracked top-level research scripts containing direct references; dynamic indirection and frozen historical copies are not included. No source was altered by this scan.",
+  "entries": [
+    {
+      "path": "scripts/_gapn2_gap_convexity_probe.py",
+      "sha256": "0930881a3d738fa154f2010f55cfca8a39afcf1dfb6761a67ad69ce482794841",
+      "baseline_sha256": "0930881a3d738fa154f2010f55cfca8a39afcf1dfb6761a67ad69ce482794841",
+      "changed": false,
+      "references": [
+        {
+          "line": 23,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=2)"
+        },
+        {
+          "line": 24,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=3)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_green_inertia_probe.py",
+      "sha256": "013be45d68fa0f5bc810fe5b0ced054162e1347eabe477fb6878b08266740e09",
+      "baseline_sha256": "326422a35a2428703abe949edbf14c25d9a06a73b949c25a41695a5c2417ad6a",
+      "changed": true,
+      "references": [
+        {
+          "line": 66,
+          "text": "\t\tsd = sector_data(rc, zs, N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_half_debug2.py",
+      "sha256": "30ca30cc73d6c840b93828dd3c52362e5f9642408790db61faa5a013fe648800",
+      "baseline_sha256": "b66ca5c90987e2c3cbe5f5264761eff224b69032701361add400257dd95e407e",
+      "changed": true,
+      "references": [
+        {
+          "line": 67,
+          "text": "\tTables = {Boundary: half_spectrum(hb, Boundary, N=80, return_table=True) for Boundary in ('D', 'N')}"
+        },
+        {
+          "line": 108,
+          "text": "\t\t\tsp11 = _spectral_green(hb, mu, pole, bc, x1, yv, N=80, spectrum=Tables[bc])"
+        },
+        {
+          "line": 109,
+          "text": "\t\t\tsp22 = _spectral_green(hb, mu, pole, bc, x2, yv, N=80, spectrum=Tables[bc])"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_half_debug3.py",
+      "sha256": "382cf381cba951299a8ec4e4930a1333525b5d809cf8218ad3f4cfba307b3a1e",
+      "baseline_sha256": "f83b3d9bb22aaa2379b91e94d6390e8222d96b0970e971bd7d502f7eec91b90a",
+      "changed": true,
+      "references": [
+        {
+          "line": 57,
+          "text": "\tTables = {Boundary: half_spectrum(hb, Boundary, N=80, return_table=True) for Boundary in ('D', 'N')}"
+        },
+        {
+          "line": 95,
+          "text": "\t\t\tsp = _spectral_green(hb, mu, pole, bc, a, b, N=80, spectrum=Tables[bc])"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_half_debug4.py",
+      "sha256": "e50eed65687323fa320cc6db5875140ee5942cdd39d12a50bc3355633de3964e",
+      "baseline_sha256": "e50eed65687323fa320cc6db5875140ee5942cdd39d12a50bc3355633de3964e",
+      "changed": false,
+      "references": [
+        {
+          "line": 149,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=340)"
+        },
+        {
+          "line": 150,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=340)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_half_problem_probe.py",
+      "sha256": "455bb0f9a78e6b6fedd30bc0982c4f68f16e745c025e676ea3d8729308235e71",
+      "baseline_sha256": "0ede3da04b28c7f319c5bb4657ad162d8ca50dc1995c36d89e96477f899148b7",
+      "changed": true,
+      "references": [
+        {
+          "line": 95,
+          "text": "\t\tFrequencies, Records = indexed_roots(Values, Count, RightBoundary=Boundary)"
+        },
+        {
+          "line": 146,
+          "text": "def half_spectrum(hblocks, bc, N=60, mumax=None, *, return_table=False):"
+        },
+        {
+          "line": 538,
+          "text": "def _spectral_green(hblocks, mu, pole_idx, bc, x, y, N=80, *, spectrum=None):"
+        },
+        {
+          "line": 550,
+          "text": "def _spectral_full_green(hblocks, mu, bc, x, y, N=80, *, spectrum=None):"
+        },
+        {
+          "line": 583,
+          "text": "\tmuD1 = half_spectrum([(L, 1.0)], 'D', N=4)"
+        },
+        {
+          "line": 584,
+          "text": "\tmuN1 = half_spectrum([(L, 1.0)], 'N', N=4)"
+        },
+        {
+          "line": 589,
+          "text": "\tTableD = half_spectrum(hb, 'D', N=2 * N, return_table=True)"
+        },
+        {
+          "line": 590,
+          "text": "\tTableN = half_spectrum(hb, 'N', N=2 * N, return_table=True)"
+        },
+        {
+          "line": 619,
+          "text": "\t\tseqD = [_spectral_green(hb, muD[0], 0, 'D', a, b, N=nn, spectrum=TableD) for nn in (N, 2 * N)]"
+        },
+        {
+          "line": 620,
+          "text": "\t\tseqN = [_spectral_green(hb, muN[1], 1, 'N', a, b, N=nn, spectrum=TableN) for nn in (N, 2 * N)]"
+        },
+        {
+          "line": 621,
+          "text": "\t\tseqGD = [_spectral_full_green(hb, muN[1], 'D', a, b, N=nn, spectrum=TableD) for nn in (N, 2 * N)]"
+        },
+        {
+          "line": 622,
+          "text": "\t\tseqGN = [_spectral_full_green(hb, muD[0], 'N', a, b, N=nn, spectrum=TableN) for nn in (N, 2 * N)]"
+        },
+        {
+          "line": 643,
+          "text": "\tsd = sector_data(rc, zs, N=121)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_largeR_probe.py",
+      "sha256": "402f40da5a1ceeb60b3c1a9b5be0482b3e4f494550ced5311025768653f47d7d",
+      "baseline_sha256": "402f40da5a1ceeb60b3c1a9b5be0482b3e4f494550ced5311025768653f47d7d",
+      "changed": false,
+      "references": [
+        {
+          "line": 44,
+          "text": "\t\tmuD = half_spectrum(hb, 'D', N=4)"
+        },
+        {
+          "line": 45,
+          "text": "\t\tmuN = half_spectrum(hb, 'N', N=4)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_odd2x2_decompose.py",
+      "sha256": "60cb6d2fc6834aadf6f352c69e4d92fcd887400f2df5ee57801f0018881e6547",
+      "baseline_sha256": "60cb6d2fc6834aadf6f352c69e4d92fcd887400f2df5ee57801f0018881e6547",
+      "changed": false,
+      "references": [
+        {
+          "line": 61,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=N)"
+        },
+        {
+          "line": 62,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=N)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_odd2x2_scan.py",
+      "sha256": "f5cbc64ee741ad9c731ff536ff5eaa3252d249ab65b45d4d32e5a84e05fe11a8",
+      "baseline_sha256": "f5cbc64ee741ad9c731ff536ff5eaa3252d249ab65b45d4d32e5a84e05fe11a8",
+      "changed": false,
+      "references": [
+        {
+          "line": 53,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=N)"
+        },
+        {
+          "line": 54,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=N)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_r1_anchor_probe.py",
+      "sha256": "cd974245c5910ff142ead7cf2e12794579934ef05fb438bec60e19d336649146",
+      "baseline_sha256": "cd974245c5910ff142ead7cf2e12794579934ef05fb438bec60e19d336649146",
+      "changed": false,
+      "references": [
+        {
+          "line": 67,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=4)"
+        },
+        {
+          "line": 68,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=4)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_rawko_closed.py",
+      "sha256": "e7501d0ea86dc95e2871a74c8129165892abf2b4839282b87363418f74889b65",
+      "baseline_sha256": "e7501d0ea86dc95e2871a74c8129165892abf2b4839282b87363418f74889b65",
+      "changed": false,
+      "references": [
+        {
+          "line": 61,
+          "text": "\tmuD = half_spectrum(hb, 'D', N=N)"
+        },
+        {
+          "line": 62,
+          "text": "\tmuN = half_spectrum(hb, 'N', N=N)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_second_variation_probe.py",
+      "sha256": "82c829770d80743bd65018326f4e8f4a3be3a42209bba76066d0f7e8059f2cf3",
+      "baseline_sha256": "82c829770d80743bd65018326f4e8f4a3be3a42209bba76066d0f7e8059f2cf3",
+      "changed": false,
+      "references": [
+        {
+          "line": 469,
+          "text": "\t\t'root_index_records': indexed_roots(Blocks, Modes)[1],"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_sector_decomposition.py",
+      "sha256": "0b00190540e1599f4a15d8c23a1a6c8af82f4146e051d1ccea8b10d6b62e1657",
+      "baseline_sha256": "b57eea8541a5c677b43c4943f6269a5fc5eea7449f45b83de8d7c7cb843fea20",
+      "changed": true,
+      "references": [
+        {
+          "line": 28,
+          "text": "def sector_data(rc, zs, N=121):"
+        },
+        {
+          "line": 129,
+          "text": "\t\t\tsd = sector_data(rc, zs, N=N)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_gapn2_symmetry_recon.py",
+      "sha256": "fad376e8114307b299bba9b5ea85fd831d405dee51152a7d4e37fe5277d6f6f6",
+      "baseline_sha256": "fad376e8114307b299bba9b5ea85fd831d405dee51152a7d4e37fe5277d6f6f6",
+      "changed": false,
+      "references": [
+        {
+          "line": 31,
+          "text": "\treturn indexed_roots(blocks, k, refine)[0]"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_sl_prufer.py",
+      "sha256": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+      "baseline_sha256": "516614685cf6c5729eb4624d874b6b7219284895f33b43a034f62b42160f659b",
+      "changed": true,
+      "references": [
+        {
+          "line": 78,
+          "text": "def indexed_roots(Blocks, Count, Refine=60, *, RightBoundary='D'):"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_g1_dh.py",
+      "sha256": "8a108da1fcc41cf9f7ea3b7e400321352313b8de500f1352104845cb3361969c",
+      "baseline_sha256": "8a108da1fcc41cf9f7ea3b7e400321352313b8de500f1352104845cb3361969c",
+      "changed": false,
+      "references": [
+        {
+          "line": 10,
+          "text": " sd=sector_data(rc,zs,N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_g1_print.py",
+      "sha256": "188fa6321244e57085362e6201e6542e234a60208f46520c9df109fb43b49033",
+      "baseline_sha256": "188fa6321244e57085362e6201e6542e234a60208f46520c9df109fb43b49033",
+      "changed": false,
+      "references": [
+        {
+          "line": 13,
+          "text": "  sd=sector_data(rc,zs,N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_g1matrices.py",
+      "sha256": "e764a54a1b5aeae980a11445213162aade776d1ee8f5d861fbb624b723e7054e",
+      "baseline_sha256": "e764a54a1b5aeae980a11445213162aade776d1ee8f5d861fbb624b723e7054e",
+      "changed": false,
+      "references": [
+        {
+          "line": 18,
+          "text": "    sd = sector_data(rc, zs, N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect10.py",
+      "sha256": "805f340a108596a89f10b5a63ff9262d2c69274ebea4f27dd767996273fec29a",
+      "baseline_sha256": "805f340a108596a89f10b5a63ff9262d2c69274ebea4f27dd767996273fec29a",
+      "changed": false,
+      "references": [
+        {
+          "line": 9,
+          "text": " rc=Recon(n,R,mode); key=f'n{n}_{mode.upper()}'; e0=np.array(tab[key]['edges']); w0=np.diff(np.concatenate([[0],e0,[1]])); z0=rc.widths_to_z(w0); zs=symmetric_root(rc,z0); sd=sector_data(rc,zs,N=200); ed=eigen_data(rc,zs)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect2.py",
+      "sha256": "31a9f5c6bd8f61c112810b9d2a7a19e03576ced965d28ad3bbe8a9b1db94a502",
+      "baseline_sha256": "31a9f5c6bd8f61c112810b9d2a7a19e03576ced965d28ad3bbe8a9b1db94a502",
+      "changed": false,
+      "references": [
+        {
+          "line": 8,
+          "text": "    rc=Recon(n,R,mode); key=f'n{n}_{mode.upper()}'; edges=np.array(tab[key]['edges']); w=np.diff(np.concatenate([[0],edges,[1]])); z0=rc.widths_to_z(w); zs=symmetric_root(rc,z0); sd=sector_data(rc,zs,N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect4.py",
+      "sha256": "1f7f795c0a2c7a051d49880e764319aa5f5dbc6d521d0f01e8ca7a274da341b4",
+      "baseline_sha256": "1f7f795c0a2c7a051d49880e764319aa5f5dbc6d521d0f01e8ca7a274da341b4",
+      "changed": false,
+      "references": [
+        {
+          "line": 9,
+          "text": " rc=Recon(n,R,mode); key=f'n{n}_{mode.upper()}'; edges=np.array(tab[key]['edges']); w=np.diff(np.concatenate([[0],edges,[1]])); z0=rc.widths_to_z(w); zs=symmetric_root(rc,z0); sd=sector_data(rc,zs,N=200); ed=eigen_data(rc,zs)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect5.py",
+      "sha256": "bd8a41400cab467b794dc8c22bfebaf510db7e3369cdd2c399d9a8d6e97bffaa",
+      "baseline_sha256": "bd8a41400cab467b794dc8c22bfebaf510db7e3369cdd2c399d9a8d6e97bffaa",
+      "changed": false,
+      "references": [
+        {
+          "line": 14,
+          "text": " sd=sector_data(rc,zs,N=200); d=np.array(sd['d']); fac=4*lam_n/lam_np1"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect6.py",
+      "sha256": "3cf1cd1d33c6dc90beb05a4947ef9fec8c3e225bdc383c22e6f5868b6856b6a3",
+      "baseline_sha256": "3cf1cd1d33c6dc90beb05a4947ef9fec8c3e225bdc383c22e6f5868b6856b6a3",
+      "changed": false,
+      "references": [
+        {
+          "line": 13,
+          "text": " M=lam_np1*(E@Rhi@E)-lam_n*Rlo; sd=sector_data(rc,zs,N=200); d=np.array(sd['d']); fac=4*lam_n/lam_np1"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_inspect8.py",
+      "sha256": "8f739a43fe0cf7025dac695ddd5f23c18bfb810696481462604eac6e72fa2071",
+      "baseline_sha256": "8f739a43fe0cf7025dac695ddd5f23c18bfb810696481462604eac6e72fa2071",
+      "changed": false,
+      "references": [
+        {
+          "line": 8,
+          "text": " rc=Recon(n,R,mode); key=f'n{n}_{mode.upper()}'; e0=np.array(tab[key]['edges']); w0=np.diff(np.concatenate([[0],e0,[1]])); z0=rc.widths_to_z(w0); zs=symmetric_root(rc,z0); sd=sector_data(rc,zs,N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_scan_A_hm.py",
+      "sha256": "4057a5ebcfae822c060ac6364d191cb1b9473f0a815991f25a72fb52c8b6441e",
+      "baseline_sha256": "4057a5ebcfae822c060ac6364d191cb1b9473f0a815991f25a72fb52c8b6441e",
+      "changed": false,
+      "references": [
+        {
+          "line": 19,
+          "text": "   M=lam_np1*(E@Rhi@E)-lam_n*Rlo; sd=sector_data(rc,zs,N=200); d=np.array(sd['d']); A=np.diag(d/u**2)+fac*M; D=np.diag(np.diag(A)); off=A-D; rho=np.max(np.abs(np.linalg.eigvals(np.linalg.solve(D,off))))"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_scan_hm_sector.py",
+      "sha256": "fcec82e8b6643033cf2f2d2100bfe7e1b97cff84f2e73ceb857c798c67b0e79c",
+      "baseline_sha256": "fcec82e8b6643033cf2f2d2100bfe7e1b97cff84f2e73ceb857c798c67b0e79c",
+      "changed": false,
+      "references": [
+        {
+          "line": 15,
+          "text": "   prev=zs; sd=sector_data(rc,zs,N=200)"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    },
+    {
+      "path": "scripts/_tmp_scan_sup_margin.py",
+      "sha256": "c3b2d7eef3ea9b5342fe50ecb7ee46655d09614cb38acb78eeaaeebebdc7c823",
+      "baseline_sha256": "c3b2d7eef3ea9b5342fe50ecb7ee46655d09614cb38acb78eeaaeebebdc7c823",
+      "changed": false,
+      "references": [
+        {
+          "line": 22,
+          "text": "            sd=sector_data(rc,zs,N=400); d=np.array(sd['d']); fac=4*lam_n/lam_np1"
+        }
+      ],
+      "scope": "Static caller inventory; execution scope is separately recorded by software review2. Historical scan/debug files are not globally revalidated."
+    }
+  ]
+}

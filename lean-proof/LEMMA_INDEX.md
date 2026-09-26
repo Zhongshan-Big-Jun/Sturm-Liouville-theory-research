@@ -1,5 +1,45 @@
 # Lean lemma index (auto-generated)
 
+## 2026-09-26 AuditRound12 additions
+
+32 authored declarations; complete 59-entry export includes generated helpers. All n including zero, real matrices, actual coordinate Equiv, normalized compression and odd rank-one algebra. [Scope and independent execution](../reports/proof-audit-round12-20260926/REPORT.md).
+
+| Declaration | Source |
+| --- | --- |
+| `AuditRound12.Be` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.Bo` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.E` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.Kp` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.KpEven` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.KpOdd` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.P` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.Pair` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.S` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.audit_root` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.basis_relations` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.convention_bridge` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.coordinate_bridge` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.distinct_sectors_counterexample` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.involutions` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.normalization` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.normalizedBe` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.normalizedBo` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.oddVector` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.odd_rank_one` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.order` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.orderedBe` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.orderedBo` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.orderedP` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.orderedS` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.ordered_compressions` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.outer` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.paired` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.rawKe` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.rawKo` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.sector_exchange` | [AuditRound12.lean](SL/AuditRound12.lean) |
+| `AuditRound12.sign` | [AuditRound12.lean](SL/AuditRound12.lean) |
+
+
 ## 2026-09-26 AuditRound11 additions
 
 The 26 authored declarations below have a separate 37-entry full export, including generated helpers. Fresh blind readback and another reviewer's actual compilation/contract comparison passed. All matrix scalars are real; n may be 0; JP=-PJ remains a premise, and explicit boundary matrices do not formalize their analytic trace identification. [Exact scope and evidence](../reports/proof-audit-round11-20260926/REPORT.md).

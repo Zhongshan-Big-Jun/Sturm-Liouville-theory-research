@@ -1,0 +1,11 @@
+{
+	"author": "agent:round12-20260926",
+	"content": "第十二轮旧完整源码复现了独立网格漏模和请求 N/2N 时序号漂移。当前 DD/DN 按整数/半整数相位目标定位，绑定几何和边界的共享谱表维持每阶身份；去极点同时检查实际目标、序号、覆盖及全部分母。独立检验还发现极端浮点减法溢出会伪造有限零值，已改为明确拒绝并由新的无状态会话复验。数值误差半径、Richardson 和有限回归都不是区间认证。 精确推导与回执见 reports/proof-audit-round12-20260926/REPORT.md。",
+	"kind": "correction-experience",
+	"locator": "谱身份必须贯穿请求规模、去极点与求和",
+	"schema_version": 1,
+	"source_id": null,
+	"status": "CANDIDATE_ANNOTATION",
+	"tool_path": "tools/half-problem-regularized-green.md",
+	"tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56"
+}

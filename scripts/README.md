@@ -1,5 +1,9 @@
 # 研究脚本导航
 
+第十二轮程序接口: [_sl_prufer.py](_sl_prufer.py) 的 `indexed_roots` 新增仅关键字参数 `RightBoundary='D'` (默认不变), 可选 N 对应左 D/右 N 的半整数相位. [_gapn2_half_problem_probe.py](_gapn2_half_problem_probe.py) 的 `half_spectrum(..., return_table=True)` 返回只读数值谱表; 原默认仍返回 ndarray. `mumax` 若不足容纳所需 N 阶会报错. `_spectral_green` 保留零基 `pole_idx` 调用兼容, 内部按一基模态核验目标、几何、边界和分母; N/2N 主调用共用同表.
+
+[_gapn2_sector_decomposition.py](_gapn2_sector_decomposition.py) 的 `Ke/Ko/He/Ho/Ee/Eo` 已统一为原 K 的块, 显式 `Kp*` 键提供 SKS 的块, `c_e/c_o` 仍属于 Kp 的秩一分解并在元数据标明. [_gapn2_green_inertia_probe.py](_gapn2_green_inertia_probe.py) 的交叉 Green 比较目标为 `KpOdd=E Ke E`. 四份活动程序与两份历史 debug 调用的修改及检验范围见[报告](../reports/proof-audit-round12-20260926/REPORT.md); 不据这些检查重认证所有旧扫描或全 R 定性.
+
 第十一轮修订: [_gapn2_jacobian_probe.py](_gapn2_jacobian_probe.py) 对残差Jacobian提取交叉块C,D, 校验JP=-PJ, 使用detJ=(-1)^n detC detD. `sym_antisym_decomp`保留调用签名, 返回值语义已改为C,D. 与P对易的Hessian/K仍使用其自己的块结构.
 
 `jac_fd`默认仍返回ndarray; `return_diagnostics=True`同时返回真实接口端点、接受步长和往返误差. 每列从独立接口坐标出发, 按相邻块宽缩步, 核验裁剪/归一化后的实际路径; 不可分辨或不忠实的方向明确报错. [_gapn2_o3_scan.py](_gapn2_o3_scan.py)与P3二阶变分实际入口已重跑, 四组有限配置见[本轮报告](../reports/proof-audit-round11-20260926/REPORT.md). 21个jac_fd命名调用文件已静态清点, 不表示这些文件的全部历史CLI均重跑. 无严格导数误差界或全参数符号证书.

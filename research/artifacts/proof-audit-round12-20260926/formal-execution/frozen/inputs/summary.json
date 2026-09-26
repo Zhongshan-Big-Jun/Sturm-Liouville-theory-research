@@ -1,0 +1,236 @@
+{
+  "status": "AUTHOR_MACHINE_CHECKED_INDEPENDENT_SEMANTIC_REVIEW_PENDING",
+  "role": "round12 local Lean author, not final verifier",
+  "completed_utc": "2026-09-26T09:17:26.844233+00:00",
+  "write_scope": "/mnt/f/tools/math-audit-round12-20260926/formal-author",
+  "source": "project/AuditRound12.lean",
+  "source_sha256": "21f0a2d46770474e6c32f78ead52c977dcec2f0e589308584d5499c253efa768",
+  "contract": "contract.md",
+  "machine_contract": "contract.json",
+  "root_declaration": "AuditRound12.audit_root",
+  "principal_theorems": [
+    "coordinate_bridge",
+    "involutions",
+    "basis_relations",
+    "sector_exchange",
+    "ordered_compressions",
+    "normalization",
+    "odd_rank_one",
+    "convention_bridge",
+    "distinct_sectors_counterexample",
+    "audit_root"
+  ],
+  "principal_theorem_count": 10,
+  "authored_definitions_or_abbreviations": 22,
+  "actual_namespace_declarations": 59,
+  "generated_auxiliary_declarations": 27,
+  "declarations_export": "declarations.json",
+  "declarations_sha256": "bd52de825f08a29c69621d53df374fa2b02c16105b7f5234e8c66e2b4edc634a",
+  "export_scope": "All 59 actual namespace declarations, including generated equation/proof helpers; full explicit types, universe/binder information, definition bodies, and per-declaration transitive collectAxioms. Root extraction separately contains imported dependency/definition closure.",
+  "statement_scope": {
+    "n": "all natural numbers, including zero",
+    "scalar_field": "Real",
+    "K": "arbitrary real (Fin n ⊕ Fin n)-square matrix; no symmetry or reflection-commutation hypothesis",
+    "ordered_coordinates": "Fin(n+n), order(inl i)=i; order(inr i)=2n-1-i, actual equivalence",
+    "bases": "Be=[I;I], Bo=[I;-I]; normalized bases divide by sqrt(2); full ordered compression and scaling bridges",
+    "sign_convention": "One-based j=1: epsilon_j=(-1)^(j+1) starts +1. Zero-based i=j-1: (-1)^i starts +1. E is exactly the left diagonal block of S. The -S bridge is only a general convention conversion, not a necessary correction to current source.",
+    "rank_one": "For w=(v,-v): rawKo(ww^T)=4vv^T, rawKe=0, KpOdd=0; nonzero v gives nonzero raw odd compression.",
+    "counterexample": "n=1, K=P is symmetric and commutes with reflection; rawKo=-2 and KpOdd=+2 (normalized: -1 and +1)."
+  },
+  "machine": {
+    "exact_root_passed": true,
+    "machine_verification_passed": true,
+    "manifest": "evidence/exact-root/run-manifest.json",
+    "manifest_sha256": "db0c2711b521abd17cca35e3ad54831908bb2428f4ffabfc1138654504cb50ea",
+    "root_closure": {
+      "status": "closed",
+      "exact_root_passed": true,
+      "declaration_closed": true,
+      "scope": "expected Lean type in the recorded environment; semantic review is separate"
+    },
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "unexpected_axioms": [],
+    "unknown_dependencies": [],
+    "unsafe_dependencies": [],
+    "negative_contract_manifest": "evidence/negative-contract/run-manifest.json",
+    "negative_contract_manifest_sha256": "4dda6791e056ef9f533acd196682cf7e71987ffee468cee5acb31343e34ddeef",
+    "negative_root_closure": {
+      "status": "target_mismatch",
+      "exact_root_passed": false,
+      "reason": "the expected type or frozen definition/environment identity does not match"
+    }
+  },
+  "semantic_review": {
+    "status": "pending",
+    "independent_readback_performed": false,
+    "independent_execution_review_performed": false,
+    "author_spawned_subagents": false
+  },
+  "environment": {
+    "file": "environment.json",
+    "sha256": "1ca25df737ff89ecc586d61ce710156d62b41db360e19646cc4613355e18830a",
+    "environment_sha256": "e02d1aa85b39361cca309e4bafb8ec5bed6ebf8d74aea2035b4e0155e6703db7",
+    "loaded_module_count": 3799,
+    "imported_artifact_count": 11391
+  },
+  "blind_packet": {
+    "path": "blind",
+    "manifest_sha256": "11da7dc3201b29595ca1997ae11ec565cdcc4c8b77d010b79216191a1f8cd3dc",
+    "source_sha256": "10a17ea07e78d8ba7fb5d344815ef488f7d1eac396c0888d5d891a861c64c617",
+    "actual_compile_command": "commands/blind-source/command.json",
+    "compiled_object_equals_final_source_object": true,
+    "informal_author_contract_included": false
+  },
+  "read_set": {
+    "file": "read-set.json",
+    "sha256": "02ede716604cfe9d5228a0a6eca9d7cc06ec913b3405367acea04052344ca175",
+    "entries": 22,
+    "current_check": "read-set-current-check.json",
+    "concurrent_changes": [
+      {
+        "path": "/mnt/f/LaTeX/BVE research/scripts/_gapn2_half_problem_probe.py",
+        "snapshot_sha256": "63ae736b0d5bb555b5f8fc57a4858e5188f3c77e94de897410ae2a2ae7d7ee66",
+        "current_sha256": "455bb0f9a78e6b6fedd30bc0982c4f68f16e745c025e676ea3d8729308235e71"
+      },
+      {
+        "path": "/mnt/f/LaTeX/BVE research/scripts/_gapn2_sector_decomposition.py",
+        "snapshot_sha256": "b57eea8541a5c677b43c4943f6269a5fc5eea7449f45b83de8d7c7cb843fea20",
+        "current_sha256": "0b00190540e1599f4a15d8c23a1a6c8af82f4146e051d1ccea8b10d6b62e1657"
+      }
+    ]
+  },
+  "executions": [
+    {
+      "label": "final-source",
+      "exit_code": 0,
+      "seconds": 10.726035301020602,
+      "command_record": "commands/final-source/command.json",
+      "command_record_sha256": "f3dbab517af7bca7a7c7ea72bfa6e2c3f5fbe38fc6ebb2e4e4054df4b094e9c6",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "export-03",
+      "exit_code": 0,
+      "seconds": 10.306142638990423,
+      "command_record": "commands/export-03/command.json",
+      "command_record_sha256": "57fd6b85fb1851dce7e6897583987cbb7d81c5c2e970f05bc80db025aa83f405",
+      "stdout_sha256": "8fc2eb9a230ab9e0fd80b7a7efc60e22b1e9464a584711bb709fae9ee40982f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "positive-controls",
+      "exit_code": 0,
+      "seconds": 8.338907404977363,
+      "command_record": "commands/positive-controls/command.json",
+      "command_record_sha256": "5373afd65deb3faaa1d2c6dd58c6b228dda132c7e7dc54dea62028d43ed15a74",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "positive-contract-type",
+      "exit_code": 0,
+      "seconds": 9.712306397006614,
+      "command_record": "commands/positive-contract-type/command.json",
+      "command_record_sha256": "90068490365be31f6a51e09097789b22b48ffbe09e91e078600a7fc6c2d5c838",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "blind-source",
+      "exit_code": 0,
+      "seconds": 9.23406697702012,
+      "command_record": "commands/blind-source/command.json",
+      "command_record_sha256": "cf75c2e46639263e9f0432b917b2846c84869a2597ca478413159ec6f27521aa",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "negative-wrong-sector",
+      "exit_code": 1,
+      "seconds": 7.942636854015291,
+      "command_record": "commands/negative-wrong-sector/command.json",
+      "command_record_sha256": "dd64f00df2646eff8199728e86c9eb77ae1a04d8b0517ee56a54d837116441c7",
+      "stdout_sha256": "0e71d169dfa0d5c4da7cdca61df10b674ed05768370a38acc3f2827a6da1c9e1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "negative-mirror-sign",
+      "exit_code": 1,
+      "seconds": 7.719063777010888,
+      "command_record": "commands/negative-mirror-sign/command.json",
+      "command_record_sha256": "06df8283504efe45e3a0b06aea606448b30df635603963df48495aa0a9392a1e",
+      "stdout_sha256": "8fe362bff682af54825680cb56444c475ca08b304e81fa43e524ade75d0a8296",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "negative-normalization",
+      "exit_code": 1,
+      "seconds": 7.710735634987941,
+      "command_record": "commands/negative-normalization/command.json",
+      "command_record_sha256": "92b17442bc8f3653959a9d7897097a3787f74dd5e96da29bf004e3ca2a4d1071",
+      "stdout_sha256": "4ddc9aab834f49f4777e55504f579924c848a05f38f2b09c93a2ddeae0649562",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "exact-root",
+      "exit_code": 0,
+      "seconds": 354.0260231650027,
+      "command_record": "commands/exact-root/command.json",
+      "command_record_sha256": "2eeaa0ef21d18139757b063a6d440217869f03c489a67f97eccadce4ca4d905a",
+      "stdout_sha256": "191f25b498de05704ad9e581a5023cf88d0b35c098f65d5ec84aaf8d6a0b4a7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    },
+    {
+      "label": "negative-contract",
+      "exit_code": 1,
+      "seconds": 334.9749161619984,
+      "command_record": "commands/negative-contract/command.json",
+      "command_record_sha256": "d527c44d7f6f1a964f8a87b80d63693d95f1c94f3f520acf571f3fdd7dd9591a",
+      "stdout_sha256": "87d2aaea7c18d90faca91f70587790688042ef4edc41e816be1261176ec38483",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_unchanged": true
+    }
+  ],
+  "retained_development_failures": [
+    "dev-01",
+    "dev-02",
+    "dev-03",
+    "dev-04",
+    "export-01",
+    "export-02"
+  ],
+  "limitations": [
+    "No full Green/Pruefer/Sturm-Liouville or numerical Python formalization.",
+    "No formal inertia index or Sylvester law theorem.",
+    "Runtime/library binaries and imported artifacts are the compiler trust boundary.",
+    "No final independent semantic acceptance is claimed.",
+    "Read-set concurrent drift is reported against frozen copies; no whole-repository pristine assertion."
+  ],
+  "reproduction": {
+    "compile": "python3 -B /mnt/f/tools/math-audit-round12-20260926/formal-author/run.py compile UNIQUE_NEW_LABEL",
+    "exact_root": "python3 -B /mnt/f/tools/math-audit-round12-20260926/formal-author/run.py verify UNIQUE_NEW_LABEL contract.json",
+    "negative_contract": "python3 -B /mnt/f/tools/math-audit-round12-20260926/formal-author/run.py verify UNIQUE_NEW_LABEL negative-contract.json (expected exit 1, target_mismatch)",
+    "copyable_commands": "README.md"
+  },
+  "prohibitions_observed": [
+    "No main-repository/cache/plugin/history writes by this author",
+    "No commit or push",
+    "No subagents",
+    "No full lake build",
+    "No runtime or package installation"
+  ]
+}

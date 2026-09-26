@@ -1,0 +1,66 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "4f2474bf0339e94c1669667171f07f7e277b9d7002beff0383ef5b16f0dde7ae",
+  "reviewer_id": "01a0dcfd-182d-7e01-8635-c71a9d8e110f",
+  "bindings": {
+    "inputs/check_repair.py": "6225b4683f40ebd81dce65f2db5ddfad2949d1f49720f1c3261728464094f8ec",
+    "inputs/execution-scope.md": "275a846aa6537b6c0c0ff3abe0d34c1fb575558073cfea58e001cddd20e45ee4",
+    "inputs/scripts/_gapn2_green_inertia_probe.py": "013be45d68fa0f5bc810fe5b0ced054162e1347eabe477fb6878b08266740e09",
+    "inputs/scripts/_gapn2_half_debug2.py": "30ca30cc73d6c840b93828dd3c52362e5f9642408790db61faa5a013fe648800",
+    "inputs/scripts/_gapn2_half_debug3.py": "382cf381cba951299a8ec4e4930a1333525b5d809cf8218ad3f4cfba307b3a1e",
+    "inputs/scripts/_gapn2_half_problem_probe.py": "455bb0f9a78e6b6fedd30bc0982c4f68f16e745c025e676ea3d8729308235e71",
+    "inputs/scripts/_gapn2_jacobian_analytic.py": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+    "inputs/scripts/_gapn2_jacobian_probe.py": "e831039e85fcb1b7bbc7ca798a6c58e122f0d5e3a27dd3fe06bb15e5a866cc0e",
+    "inputs/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "inputs/scripts/_gapn2_rawko_closed.py": "e7501d0ea86dc95e2871a74c8129165892abf2b4839282b87363418f74889b65",
+    "inputs/scripts/_gapn2_sector_decomposition.py": "0b00190540e1599f4a15d8c23a1a6c8af82f4146e051d1ccea8b10d6b62e1657",
+    "inputs/scripts/_gapn2_symmetry_recon.py": "fad376e8114307b299bba9b5ea85fd831d405dee51152a7d4e37fe5277d6f6f6",
+    "inputs/scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+    "inputs/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "inputs/scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317"
+  },
+  "claims": [
+    {
+      "id": "R12-indexed-DD-DN",
+      "reason": "The positive-density interface transformation preserves the lifted phase, with D targets n*pi and N targets (n-1/2)*pi. Independent checks covered constant spectra, integer and half-integer interface levels, first modes, prefix equality, default versus explicit D, and the legacy roots_of call. Independent 85-digit transfer calculations and interior-zero counts verified 48 layered modes; maximum frequency relative error was 2.36e-16. Tested unresolved endpoints, optical underflow, frequency/eigenvalue overflow, eigenvalue underflow, excessive winding and insufficient refinement raised explicit errors. Phase records correctly remain uncertified numerical diagnostics.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R12-bound-pole-sums",
+      "reason": "Tables bind copied binary64 geometry, boundary condition and indexed eigenvalues; supported field assignment is frozen, nested records are tuples, and returned prefixes are detached. The legacy zero-based pole argument is converted to a one-based identity and checked against the target and requested prefix. Independent tests rejected geometry/BC mismatches, incorrect targets or poles, insufficient tables, retained and out-of-prefix near poles, uncovered full targets and invalid coordinates. Ninety-six constant-density finite-sum comparisons, including endpoints and nonpositive targets, agreed within 3.34e-16. Main-call and targeted legacy-call wiring uses the appropriate shared tables and pole indices. Both supplied suites passed 136 checks, including under -O.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R12-raw-conjugated-sectors",
+      "reason": "Executed both half-problem CLIs, both rawko CLIs and all four fixed green-inertia cases, inspecting numerical output. At n=2, R=4, raw Ko agreed with physical edge finite differences within 4.38e-10; cross-parity KpOdd agreed with E Ke E from finite differences within 4.49e-10. Matching-truncation comparisons passed for n=2,3 and both branches. Independent full-matrix assembly and projection of H/E summands agreed with all corresponding sector keys within 5.44e-13; legacy c_e/c_o metadata correctly identifies conjugated summands. Full spectral routines retain N+1 modes, which was matched explicitly. Visible spectral tails were distinguished from algebraic identities. All 15 snapshot hashes matched and remained unchanged; recorded project imports came exclusively from isolated copies. Execution logs, module origins, hashes and independent test sources/results are preserved at /mnt/f/tools/math-audit-round12-20260926/software-review2er/stateless-z6t8ur9y.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/check_repair.py",
+    "inputs/execution-scope.md",
+    "inputs/scripts/_gapn2_green_inertia_probe.py",
+    "inputs/scripts/_gapn2_half_debug2.py",
+    "inputs/scripts/_gapn2_half_debug3.py",
+    "inputs/scripts/_gapn2_half_problem_probe.py",
+    "inputs/scripts/_gapn2_jacobian_analytic.py",
+    "inputs/scripts/_gapn2_jacobian_probe.py",
+    "inputs/scripts/_gapn2_jacobian_spectral.py",
+    "inputs/scripts/_gapn2_rawko_closed.py",
+    "inputs/scripts/_gapn2_sector_decomposition.py",
+    "inputs/scripts/_gapn2_symmetry_recon.py",
+    "inputs/scripts/_sl_prufer.py",
+    "inputs/scripts/op03_gap_table.json",
+    "inputs/scripts/reflection_seeds.py"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/4f2474bf0339e94c1669667171f07f7e277b9d7002beff0383ef5b16f0dde7ae-01a0dcfd-182d-7e01-8635-c71a9d8e110f",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "Approval covers the declared software behavior and finite numerical review only; it does not establish complete formalization, certified error bounds, universal floating-point correctness or an infinite-dimensional Green identity.",
+    "The historical debug2/debug3 main routines were not executed, as excluded by scope. Their imports, changed table/pole wiring and targeted calls were checked; large quadrature routines and deprecated NumPy calls remain unvalidated.",
+    "Other historical scans, global signs, all-R inertia and uniqueness claims were not revalidated.",
+    "No earlier implementation snapshot was supplied. Default D compatibility was checked through current signatures, legacy calls and default-versus-explicit-D results."
+  ]
+}

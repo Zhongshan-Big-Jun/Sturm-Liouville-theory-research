@@ -1,0 +1,67 @@
+{
+  "verdict": "CHANGES_REQUIRED",
+  "packet_sha256": "d504a2b6b507309cdeab24cdde4cea0b6ed5bd42b84316a08d5f5943b58e5b8e",
+  "reviewer_id": "01a0dcf0-d75a-71f0-9eda-40e9b5618685",
+  "bindings": {
+    "inputs/check_repair.py": "d52f99692f7b524fc721629c71535b726b61d2f52651eed456772fde1ddf2d79",
+    "inputs/execution-scope.md": "4e6340ac458d064041d941700fbecd1faf06103c295d92573fb2876880287895",
+    "inputs/scripts/_gapn2_green_inertia_probe.py": "013be45d68fa0f5bc810fe5b0ced054162e1347eabe477fb6878b08266740e09",
+    "inputs/scripts/_gapn2_half_debug2.py": "30ca30cc73d6c840b93828dd3c52362e5f9642408790db61faa5a013fe648800",
+    "inputs/scripts/_gapn2_half_debug3.py": "382cf381cba951299a8ec4e4930a1333525b5d809cf8218ad3f4cfba307b3a1e",
+    "inputs/scripts/_gapn2_half_problem_probe.py": "63ae736b0d5bb555b5f8fc57a4858e5188f3c77e94de897410ae2a2ae7d7ee66",
+    "inputs/scripts/_gapn2_jacobian_analytic.py": "7a2cd43b1e0bbb9537c761ef2c47ce91b78c10fc48dbd34fd5a2df5ac3eaada2",
+    "inputs/scripts/_gapn2_jacobian_probe.py": "e831039e85fcb1b7bbc7ca798a6c58e122f0d5e3a27dd3fe06bb15e5a866cc0e",
+    "inputs/scripts/_gapn2_jacobian_spectral.py": "f8a06fadf66c6d071fd255a815952f8656f1a62ad5513650c4826acc5872f028",
+    "inputs/scripts/_gapn2_rawko_closed.py": "e7501d0ea86dc95e2871a74c8129165892abf2b4839282b87363418f74889b65",
+    "inputs/scripts/_gapn2_sector_decomposition.py": "0b00190540e1599f4a15d8c23a1a6c8af82f4146e051d1ccea8b10d6b62e1657",
+    "inputs/scripts/_gapn2_symmetry_recon.py": "fad376e8114307b299bba9b5ea85fd831d405dee51152a7d4e37fe5277d6f6f6",
+    "inputs/scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+    "inputs/scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "inputs/scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317"
+  },
+  "claims": [
+    {
+      "id": "R12-indexed-DD-DN",
+      "reason": "Within the declared numerical scope, positive-density interface maps preserve lifted half turns, and the right-D/right-N targets are respectively n*pi and (n-1/2)*pi. Constant-density checks, integer/half-integer interface checks, and independent 85-digit transfer calculations on five layered geometries passed. The checked modes had the required interior zero counts; maximum relative frequency discrepancy was 2.608e-15. Successful shorter calls reproduced prefixes exactly. Default calls matched explicit D calls. Tested invalid geometry, insufficient refinement, and unresolved frequency/eigenvalue scales raised exceptions.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R12-bound-pole-sums",
+      "reason": "Immutable table construction, detached prefixes, geometry/BC binding, zero-based-to-one-based pole conversion, wrong-pole rejection, near-pole rejection, and coverage checks passed the exercised cases. Current main and targeted legacy call sites use consistent shared tables and pole indices. However, the accepted finite-real target domain contains a reproducible denominator-overflow case: full Green evaluation returns an incorrect finite zero instead of rejecting unresolved arithmetic. This violates the requested denominator-resolvability behavior; see F1.",
+      "verdict": "CHANGES_REQUIRED"
+    },
+    {
+      "id": "R12-raw-conjugated-sectors",
+      "reason": "Executed both half-problem CLIs and both rawko CLIs at R=4, sup/inf, N=80, plus all four fixed green-inertia cases. Closed raw Ko agreed with physical-edge FD within 4.376e-10; cross-parity KpOdd agreed with E Ke E from FD within 4.483e-10. Matching-truncation projections used K=diag(1/jumps)J, Kp=diag(eps)Kdiag(eps), and normalized reversal bases. Candidate full-J comparisons differed by at most 3.448e-12. Independently assembling individual spectral summands reproduced raw and conjugated H/E/K sectors within 1.532e-12 across the checked truncations. Legacy c_e/c_o metadata correctly identifies KpEe/KpEo. Visible finite-tail discrepancies, including approximately 0.02473 for one closed-versus-truncated raw Ko comparison, were not treated as identity failures or infinite-dimensional certification.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "inputs/check_repair.py",
+    "inputs/execution-scope.md",
+    "inputs/scripts/_gapn2_green_inertia_probe.py",
+    "inputs/scripts/_gapn2_half_debug2.py",
+    "inputs/scripts/_gapn2_half_debug3.py",
+    "inputs/scripts/_gapn2_half_problem_probe.py",
+    "inputs/scripts/_gapn2_jacobian_analytic.py",
+    "inputs/scripts/_gapn2_jacobian_probe.py",
+    "inputs/scripts/_gapn2_jacobian_spectral.py",
+    "inputs/scripts/_gapn2_rawko_closed.py",
+    "inputs/scripts/_gapn2_sector_decomposition.py",
+    "inputs/scripts/_gapn2_symmetry_recon.py",
+    "inputs/scripts/_sl_prufer.py",
+    "inputs/scripts/op03_gap_table.json",
+    "inputs/scripts/reflection_seeds.py"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/d504a2b6b507309cdeab24cdde4cea0b6ed5bd42b84316a08d5f5943b58e5b8e-01a0dcf0-d75a-71f0-9eda-40e9b5618685",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "All 15 frozen input hashes matched the manifest and remained unchanged. Execution used isolated copies at /tmp/r12-stateless-review-y_2qj36n/inputs. Recorded project-module origins resolved to those copies; the source project was not modified.",
+    "Candidate checks passed 135 cases in ordinary mode and 135 in -O mode. Independent checks recorded 265 passes and the one failure reported above. Commands, timings, outputs, module origins, hashes, and reviewer test sources are retained in the evidence directory.",
+    "The debug2/debug3 main routines were not executed within this bounded review; their imports and current table/pole call sites were checked. Historical quadrature routines and scans were not revalidated.",
+    "Default-D compatibility was exercised within the supplied snapshot. No historical implementation baseline was supplied for version-to-version comparison.",
+    "Floating-point and high-precision numerical checks provide no rigorous interval bounds, universal error guarantee, infinite-dimensional Green-formula proof, global sign theorem, or complete formalization."
+  ]
+}

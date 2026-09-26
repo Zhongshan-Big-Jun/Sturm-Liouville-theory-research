@@ -1,0 +1,11 @@
+{
+  "tool": "multi_agent_v1__spawn_agent",
+  "arguments": {
+    "fork_context": false,
+    "message": "你负责第十二轮局部Lean作者工作, 不是最终检验者. 仓库只读 /mnt/f/LaTeX/BVE research; 先读其AGENTS与 /mnt/c/Users/HuangZY/.codex/plugins/cache/math-research/lean-verify/2.0.1/skills/lean-verify/SKILL.md 及verification指南. 只写 /mnt/f/tools/math-audit-round12-20260926/formal-author. 不改主repo/cache/历史/插件, 不commit/push, 不创建子agent. 具体任务: 为任意有限n的实矩阵K证明交错镜像坐标下扇区交换, 不限数值n=2. 可以选等价 paired coordinates Fin n ⊕ Fin n, Be/Bo取正规化或无归一化但须完整桥接实际原坐标: 反转P、S在镜像两侧相反, 左块E^2=I, S Be=Bo E及S Bo=Be E, 故Bo^T SKS Bo=E(Be^T K Be)E且Be^T SKS Be=E(Bo^T K Bo)E. 分别定义rawKo与KpOdd, 不把交换条件作为恒等式所需. 若有意义增加同惯性/奇秩一项存留或明确非相等反例的有限代数引理, 不用难度小但无实质关联的伪形式化. 范围尽量紧凑, 总共约<=10主引理; 不证明完整Green/Pruefer/数值Python. 生成 AuditRound12.lean, 人类精确contract.md和机器contract.json, 所有相关实际声明与定义导出含隐参数及transitive axioms, 去注释盲读输入, 实际编译日志与正负对照以及可复现环境SHA256. 已有Lean4.31.0 Windows编译器 /mnt/f/DevCache/elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe, Mathlib只读复用 repo/lean-proof/.lake/packages. 可只读借鉴 /mnt/f/tools/math-audit-round11-20260926/formal-author/run.py 运行适配器, 若无则rg有限该目录找. 不运行全lakebuild, 不安装runtime, 保存失败实况. 最终会由两个不同全新无状态agent盲读/实际执行语义复核. 开发结束给源文件、summary.json、可复制运行命令和读集哈希."
+  },
+  "result": {
+    "agent_id": "01a0dce9-5748-7710-9a4e-adff48f38f61",
+    "nickname": "Carver"
+  }
+}

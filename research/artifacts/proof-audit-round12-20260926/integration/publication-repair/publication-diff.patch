@@ -1,0 +1,11 @@
+--- publication.py
++++ publication_v2.py
+@@ -61,7 +61,7 @@
+ 			require(not(n.startswith('research/library/') and (p.name=='writer.lock' or p.name.startswith('.library-'))),'Unfinished library transaction '+n)
+ 			require(p.stat().st_size<100_000_000,'Oversized artifact '+n);paths.add(n)
+ 	paths.update(['lean-proof/SL/AuditRound12.lean'])
+-	for name in read('checkpoint-files'):paths.add(name)
++	for name in read('checkpoint-files') + read('progress-history-files'):paths.add(name)
+ 	require(not paths.intersection(B['untracked']),'Original untracked in staging scope')
+ 	require(not paths.intersection(B['original_dirty']),'Original dirty in staging scope')
+ 	manifest=Report+'/publication-manifest.json';paths.discard(manifest)

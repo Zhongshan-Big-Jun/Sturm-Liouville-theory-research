@@ -1,0 +1,38 @@
+[
+  {
+    "annotation_id": "1d986a2cb64492a0483693ff044455236ba7491fe777bc681bbc774fb11c605a",
+    "schema_version": 1,
+    "tool_path": "tools/band-selfconsistency-equivariance.md",
+    "tool_sha256": "d5051aee3b8332bf3673a697e333b257198c86f07b27a9335a6be15b75c01eeb",
+    "author": "agent:round12-20260926",
+    "kind": "correction-experience",
+    "locator": "原矩阵与共轭矩阵的扇区及 H/E 分量",
+    "content": "第十二轮从保留的逐模 Sigma 表达核对出旧 sector_data 输出属于 Kp=SKS；当前无前缀 Ke/Ko/He/Ho/Ee/Eo 统一为原 K，对共轭块提供 Kp* 字段。负秩一 Sherman--Morrison 判据属于 KpOdd，等价于原 Ke。旧 H_o-E_o 的减号不能给 H_o+E_o 的正定下界，该一般充分性解释撤回。历史扫描仍保留原字节；本轮没有重新认证其单块标签、全参数定性或 G1。 精确推导与回执见 reports/proof-audit-round12-20260926/REPORT.md。",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "3207b541f796e43fc0ab777eec902ee71adb95bb1fa597077ccc035e85e09260",
+    "schema_version": 1,
+    "tool_path": "tools/green-half-inertia.md",
+    "tool_sha256": "9a6c8744d153b250df39fea15eedb15ad5aefe8350b063d4b8327689a898d773",
+    "author": "agent:round12-20260926",
+    "kind": "correction-experience",
+    "locator": "交叉 Green 式的对象与自身极点约化核",
+    "content": "第十二轮明确交叉 Green 式是 KpOdd=E Ke E；n=2、固定有限 R>1、对称五层驻点的解析稿逐项推导归一化、源项、投影与半区间因子。原 Ko 使用自身极点约化核并保留秩一项。有限点核惯性并不由无限维谱计数自动得到，旧全 R 定性义务仍开放。Lean 只覆盖有限维扇区代数及坐标/归一化桥接。 精确推导与回执见 reports/proof-audit-round12-20260926/REPORT.md。",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  },
+  {
+    "annotation_id": "24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c",
+    "schema_version": 1,
+    "tool_path": "tools/half-problem-regularized-green.md",
+    "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+    "author": "agent:round12-20260926",
+    "kind": "correction-experience",
+    "locator": "谱身份必须贯穿请求规模、去极点与求和",
+    "content": "第十二轮旧完整源码复现了独立网格漏模和请求 N/2N 时序号漂移。当前 DD/DN 按整数/半整数相位目标定位，绑定几何和边界的共享谱表维持每阶身份；去极点同时检查实际目标、序号、覆盖及全部分母。独立检验还发现极端浮点减法溢出会伪造有限零值，已改为明确拒绝并由新的无状态会话复验。数值误差半径、Richardson 和有限回归都不是区间认证。 精确推导与回执见 reports/proof-audit-round12-20260926/REPORT.md。",
+    "source_id": null,
+    "status": "CANDIDATE_ANNOTATION"
+  }
+]

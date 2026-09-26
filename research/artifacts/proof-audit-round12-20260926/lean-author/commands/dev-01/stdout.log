@@ -1,0 +1,69 @@
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:1:0: warning: 
+'Mathlib.Data.Real.Sqrt' has been deprecated: please replace this import by
+
+import Mathlib.Analysis.Real.Sqrt
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:35:19: warning: Variable name `K` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:35:60: error: expected token
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:37:19: warning: Variable name `K` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:37:60: error: expected token
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:66:38: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:87:6: error: linarith failed to find a contradiction
+case inr.h1
+n : ℕ
+hpos : ∀ (i : Fin n), 0 < n
+hval : ∀ (i : Fin n), ↑((order n) (Sum.inr i)) = n + n - 1 - ↑i
+hswap : ∀ (i : Pair n), (order n) (Sum.swap i) = ((order n) i).rev
+i : Fin n
+hsum : n + n - 1 - ↑i + ↑i = 2 * (n - 1) + 1
+hs : (-1) ^ ↑i * (-1) ^ ↑i = 1
+hp : (-1) ^ (n + n - 1 - ↑i) * (-1) ^ ↑i = -1
+a✝ : -(-1) ^ ↑i < (-1) ^ (n + n - 1 - ↑i)
+⊢ False
+failed
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:96:33: warning: This simp argument is unused:
+  Matrix.diagonal_apply
+
+Hint: Omit it from the simp argument list.
+  simp [paired, orderedS, S, M̵a̵t̵r̵i̵x̵.̵d̵i̵a̵g̵o̵n̵a̵l̵_̵a̵p̵p̵l̵y̵,̵ ̵h, (order n).injective.ne h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:100:9: error: expected token
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:100:4: error: Application type mismatch: The argument
+  P n
+has type
+  Matrix (Pair n) (Pair n) ℝ
+but is expected to have type
+  Prop
+in the application
+  S n * S n = 1 ∧ P n
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:119:10: error: expected token
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:119:4: error: Application type mismatch: The argument
+  Be n
+has type
+  Matrix (Pair n) (Fin n) ℝ
+but is expected to have type
+  Prop
+in the application
+  P n * Bo n = -Bo n ∧ Be n
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:145:14: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HMul (Matrix (Fin n) (Fin n) ℝ) (Matrix (Pair n) (Fin n) ℝ) ?m.5
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:146:15: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HMul (Matrix (Fin n) (Fin n) ℝ) (Matrix (Pair n) (Fin n) ℝ) ?m.11
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:146:38: error: unsolved goals
+n : ℕ
+K : Matrix (Pair n) (Pair n) ℝ
+⊢ sorry ∧ sorry
+F:\tools\math-audit-round12-20260926\formal-author\project\AuditRound12.lean:151:20: error: expected token

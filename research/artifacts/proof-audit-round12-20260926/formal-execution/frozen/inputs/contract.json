@@ -1,0 +1,19 @@
+{
+  "file": "AuditRound12.lean",
+  "declaration": "AuditRound12.audit_root",
+  "expected_type": "open scoped Matrix in open AuditRound12 in (\n(∀ (n : ℕ),\n(∀ i : Fin n, (order n (Sum.inl i)).val = i.val ∧\n      (order n (Sum.inr i)).val = n+n-1-i.val) ∧\n    (∀ i : Pair n, order n (Sum.swap i) = (order n i).rev) ∧\n    (∀ i : Pair n, sign n i = (-1 : ℝ) ^ (order n i).val) ∧\n    paired (orderedP n) = P n ∧ paired (orderedS n) = S n) ∧\n(∀ (n : ℕ),\nP n * P n = 1 ∧ E n * E n = 1 ∧ S n * S n = 1 ∧\n    (P n)ᵀ = P n ∧ (E n)ᵀ = E n ∧ (S n)ᵀ = S n) ∧\n(∀ (n : ℕ),\nP n * Be n = Be n ∧ P n * Bo n = -Bo n ∧\n    (Be n)ᵀ * Be n = (2 : ℝ) • (1 : Matrix (Fin n) (Fin n) ℝ) ∧\n    (Bo n)ᵀ * Bo n = (2 : ℝ) • (1 : Matrix (Fin n) (Fin n) ℝ) ∧\n    (Be n)ᵀ * Bo n = 0 ∧\n    S n * Be n = Bo n * E n ∧ S n * Bo n = Be n * E n) ∧\n(∀ {n : ℕ} (K : Matrix (Pair n) (Pair n) ℝ),\nKpOdd K = E n * rawKe K * E n ∧\n    KpEven K = E n * rawKo K * E n) ∧\n(∀ {n : ℕ} (K : Matrix (Fin (n+n)) (Fin (n+n)) ℝ),\n(orderedBe n)ᵀ * K * orderedBe n = rawKe (paired K) ∧\n    (orderedBo n)ᵀ * K * orderedBo n = rawKo (paired K) ∧\n    (orderedBo n)ᵀ * (orderedS n * K * orderedS n) * orderedBo n =\n      E n * ((orderedBe n)ᵀ * K * orderedBe n) * E n ∧\n    (orderedBe n)ᵀ * (orderedS n * K * orderedS n) * orderedBe n =\n      E n * ((orderedBo n)ᵀ * K * orderedBo n) * E n) ∧\n(∀ {n : ℕ} (K : Matrix (Pair n) (Pair n) ℝ),\n(normalizedBe n)ᵀ * normalizedBe n = 1 ∧\n    (normalizedBo n)ᵀ * normalizedBo n = 1 ∧\n    (normalizedBe n)ᵀ * K * normalizedBe n = (1/2 : ℝ) • rawKe K ∧\n    (normalizedBo n)ᵀ * K * normalizedBo n = (1/2 : ℝ) • rawKo K) ∧\n(∀ {n : ℕ} (v : Fin n → ℝ),\nrawKo (outer (oddVector v)) = (4 : ℝ) • outer v ∧\n    rawKe (outer (oddVector v)) = 0 ∧\n    KpOdd (outer (oddVector v)) = 0 ∧\n    (v ≠ 0 → rawKo (outer (oddVector v)) ≠ 0)) ∧\n(∀ {n : ℕ} (K : Matrix (Pair n) (Pair n) ℝ),\n(-S n) * K * (-S n) = Kp K ∧\n    (-S n) * Be n = Bo n * (-E n) ∧\n    (-S n) * Bo n = Be n * (-E n) ∧\n    (normalizedBo n)ᵀ * Kp K * normalizedBo n =\n      E n * ((normalizedBe n)ᵀ * K * normalizedBe n) * E n ∧\n    (normalizedBe n)ᵀ * Kp K * normalizedBe n =\n      E n * ((normalizedBo n)ᵀ * K * normalizedBo n) * E n) ∧\n(∃ K : Matrix (Pair 1) (Pair 1) ℝ,\n      Kᵀ = K ∧ P 1 * K = K * P 1 ∧ rawKo K ≠ KpOdd K)\n)",
+  "universes": [],
+  "author_role": "local author, independent review pending",
+  "principal_theorems": [
+    "AuditRound12.coordinate_bridge",
+    "AuditRound12.involutions",
+    "AuditRound12.basis_relations",
+    "AuditRound12.sector_exchange",
+    "AuditRound12.ordered_compressions",
+    "AuditRound12.normalization",
+    "AuditRound12.odd_rank_one",
+    "AuditRound12.convention_bridge",
+    "AuditRound12.distinct_sectors_counterexample"
+  ],
+  "scope": "arbitrary finite n real matrix mirror sector algebra, not spectral analysis"
+}

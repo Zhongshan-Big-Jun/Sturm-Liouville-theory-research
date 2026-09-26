@@ -1,0 +1,609 @@
+{
+  "packet_sha256": "d080d3cc807519f2067666b19dd78db62196e9549b736c3fddd5c30037dfc279",
+  "reviewed_declarations": [
+    {
+      "name": "AuditRound12.Be",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; Pair n by Fin n identity columns [I;I], unnormalized."
+    },
+    {
+      "name": "AuditRound12.Bo",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; Pair n by Fin n identity columns [I;-I], unnormalized."
+    },
+    {
+      "name": "AuditRound12.E",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; real diagonal on Fin n, entries (-1)^i."
+    },
+    {
+      "name": "AuditRound12.Kp",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary real square K on Pair n; S K S."
+    },
+    {
+      "name": "AuditRound12.KpEven",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary K on Pair n; rawKe(Kp(K)), a Fin n square matrix."
+    },
+    {
+      "name": "AuditRound12.KpOdd",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary K on Pair n; rawKo(Kp(K)), a Fin n square matrix."
+    },
+    {
+      "name": "AuditRound12.P",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n, matrix entries indexed by Pair n; Kronecker delta swap(i)=j, not a constant-one matrix."
+    },
+    {
+      "name": "AuditRound12.Pair",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n : Nat; disjoint sum Fin n + Fin n, empty for n=0; no hidden positivity premise."
+    },
+    {
+      "name": "AuditRound12.S",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; real diagonal on Pair n, with blocks E and -E."
+    },
+    {
+      "name": "AuditRound12.audit_root",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [],
+      "reason": "Closed, with no universe or outer variable binder. Its literal nine-clause conjunction contains the complete eight universal component propositions followed by the n=1 existential. Fresh full export and source retain every inner binder and conjunct; there are no assumed correctness predicates or pre-assumed exchange conclusions."
+    },
+    {
+      "name": "AuditRound12.basis_relations",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "All n: PBe=Be, PBo=-Bo, both Gram matrices 2I, mixed Gram zero, SBe=BoE, SBo=BeE. Direct block multiplication verifies all seven conjuncts. Empty matrices satisfy the same statements; for n>0 the Gram matrices guarantee column independence."
+    },
+    {
+      "name": "AuditRound12.convention_bridge",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n and arbitrary K. Replacing both S/E by their negatives preserves conjugation and the column relations. The two normalized exchange formulas follow by common scaling 1/2. This is an optional convention conversion: the intended one-based (-1)^(j+1) already agrees with zero-based (-1)^i."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "All n, with the Fin n and Pair n binders intact: both coordinate positions, swap/reversal, sign parity and P/S pullbacks. For a right-half index, i<n implies n>=1, so 2n-1-i has opposite parity to i; no subtraction problem survives at n=0 because those index quantifiers are empty."
+    },
+    {
+      "name": "AuditRound12.distinct_sectors_counterexample",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [],
+      "reason": "Closed existential at n=1 only. Witness P=[[0,1],[1,0]] is symmetric and commutes with P. Its raw odd compression is -2 while the conjugated odd compression is +2; normalization gives -1 and +1. No Sturm-Liouville realization is asserted."
+    },
+    {
+      "name": "AuditRound12.involutions",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "All n: P^2, E^2 and S^2 are identities on their own index types and all three matrices are symmetric. Swap squared is identity and each diagonal sign squares to 1."
+    },
+    {
+      "name": "AuditRound12.normalization",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n and arbitrary explicit K. The two Gram identities and two compressions use c^2=1/2 for c=(sqrt 2)^-1. Real sqrt(2) is nonzero without an extra theorem hypothesis. Valid at n=0."
+    },
+    {
+      "name": "AuditRound12.normalizedBe",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; multiply Be by inverse of real sqrt(2); independent of dimension."
+    },
+    {
+      "name": "AuditRound12.normalizedBo",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; multiply Bo by inverse of real sqrt(2); independent of dimension."
+    },
+    {
+      "name": "AuditRound12.oddVector",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit v on Fin n; output is a function on Pair n with branches v and -v. The result function accounts for the extra default binder in exported binder_kinds."
+    },
+    {
+      "name": "AuditRound12.odd_rank_one",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, every v : Fin n -> Real. With w=(v,-v), Bo^T w=2v and Be^T w=0, giving raw odd 4 vv^T, raw even zero, and conjugated odd zero. v!=0 is needed only for the last nonvanishing implication. A nonzero diagonal square proves nonvanishing, and at n=0 its premise is impossible. Normalized odd coefficient is 2."
+    },
+    {
+      "name": "AuditRound12.order",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; actual Equiv: reverse second Fin n summand then concatenate. This gives left i and right 2n-1-i and is bijective also for n=0."
+    },
+    {
+      "name": "AuditRound12.orderedBe",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; row pullback of Be along order inverse, identity on Fin n columns."
+    },
+    {
+      "name": "AuditRound12.orderedBo",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; row pullback of Bo along order inverse, identity on Fin n columns."
+    },
+    {
+      "name": "AuditRound12.orderedP",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; full reversal delta on Fin(n+n)."
+    },
+    {
+      "name": "AuditRound12.orderedS",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n; real diagonal on Fin(n+n) starting with +1 if the index type is nonempty."
+    },
+    {
+      "name": "AuditRound12.ordered_compressions",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n and arbitrary explicit ordered real K. Bijective change of finite summation indices gives both compression equalities, and paired(orderedS)=S transports both exchange identities. The actual Equiv avoids assuming an unproved coordinate bijection."
+    },
+    {
+      "name": "AuditRound12.outer",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit index type iota : Type 0, explicit vector v : iota -> Real; entries v(i)*v(j). No Fintype or nonzero premise and no arbitrary universe parameter."
+    },
+    {
+      "name": "AuditRound12.paired",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary ordered K on Fin(n+n); pullback along order on both matrix indices."
+    },
+    {
+      "name": "AuditRound12.rawKe",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary real square K on Pair n; Be-transpose K Be, without any symmetry/commutation assumption."
+    },
+    {
+      "name": "AuditRound12.rawKo",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n, explicit arbitrary real square K on Pair n; Bo-transpose K Bo, without any symmetry/commutation assumption."
+    },
+    {
+      "name": "AuditRound12.sector_exchange",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Implicit n and arbitrary explicit real K; transpose SBo=BeE and SBe=BoE, using symmetry of S/E, to obtain KpOdd=E rawKe E and KpEven=E rawKo E. No K symmetry or reflection commutation is needed."
+    },
+    {
+      "name": "AuditRound12.sign",
+      "kind": "definition",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Explicit n, then a Pair n argument; real signs (-1)^i on left and its negative on right. This is the pullback of zero-based ordered alternation."
+    },
+    {
+      "name": "AuditRound12.Be.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; Pair n by Fin n identity columns [I;I], unnormalized."
+    },
+    {
+      "name": "AuditRound12.Bo.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; Pair n by Fin n identity columns [I;-I], unnormalized."
+    },
+    {
+      "name": "AuditRound12.E.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; real diagonal on Fin n, entries (-1)^i."
+    },
+    {
+      "name": "AuditRound12.Kp.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit n, explicit arbitrary real square K on Pair n; S K S."
+    },
+    {
+      "name": "AuditRound12.P.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n, matrix entries indexed by Pair n; Kronecker delta swap(i)=j, not a constant-one matrix."
+    },
+    {
+      "name": "AuditRound12.S.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; real diagonal on Pair n, with blocks E and -E."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge._proof_1_3",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "For every n and i:Fin n, denial of n-(i+1)+n=2n-1-i implies False. The bound i<n justifies natural subtraction."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge._proof_1_4",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "For every n and i:Fin n, denial of n-(i+1)+n=2n-(i+1) implies False."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge._proof_1_5",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "For every n and i:Fin n, denial of i=2n-((n-(i+1)+n)+1) implies False. It expresses double reversal, not unconditional False."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge._proof_1_6",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "For every n and i:Fin n, denial of (2n-1-i)+i=2(n-1)+1 implies False; existence of i forces n>=1."
+    },
+    {
+      "name": "AuditRound12.coordinate_bridge._simp_1_10",
+      "kind": "theorem",
+      "universes": [
+        "u",
+        "v"
+      ],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.implicit"
+      ],
+      "reason": "Universe u,v; implicit alpha:Sort u, beta:Sort v, explicit equivalence f, implicit x,y:alpha. Equality of propositions (f x=f y)=(x=y), from injectivity and propositional extensionality."
+    },
+    {
+      "name": "AuditRound12.involutions._simp_1_5",
+      "kind": "theorem",
+      "universes": [
+        "u_1"
+      ],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.implicit"
+      ],
+      "reason": "Universe u_1; implicit alpha:Sort u_1 and a,b:alpha. Equality in Prop of a=b and b=a."
+    },
+    {
+      "name": "AuditRound12.normalization._simp_1_2",
+      "kind": "theorem",
+      "universes": [
+        "u_1"
+      ],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.instImplicit",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Universe u_1; implicit G:Type u_1, instance Semigroup G, explicit a,b,c:G. Reverse associativity; no commutativity assumption."
+    },
+    {
+      "name": "AuditRound12.normalizedBe._proof_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [],
+      "reason": "Closed numeral-side proposition Nat.AtLeastTwo(1+1), not a lower bound on n."
+    },
+    {
+      "name": "AuditRound12.normalizedBe.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; multiply Be by inverse of real sqrt(2); independent of dimension."
+    },
+    {
+      "name": "AuditRound12.normalizedBo.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; multiply Bo by inverse of real sqrt(2); independent of dimension."
+    },
+    {
+      "name": "AuditRound12.oddVector.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit n, explicit v on Fin n; output is a function on Pair n with branches v and -v. The result function accounts for the extra default binder in exported binder_kinds."
+    },
+    {
+      "name": "AuditRound12.order.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; actual Equiv: reverse second Fin n summand then concatenate. This gives left i and right 2n-1-i and is bijective also for n=0."
+    },
+    {
+      "name": "AuditRound12.orderedBe.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; row pullback of Be along order inverse, identity on Fin n columns."
+    },
+    {
+      "name": "AuditRound12.orderedBo.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; row pullback of Bo along order inverse, identity on Fin n columns."
+    },
+    {
+      "name": "AuditRound12.orderedP.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; full reversal delta on Fin(n+n)."
+    },
+    {
+      "name": "AuditRound12.orderedS.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n; real diagonal on Fin(n+n) starting with +1 if the index type is nonempty."
+    },
+    {
+      "name": "AuditRound12.outer.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit index type iota : Type 0, explicit vector v : iota -> Real; entries v(i)*v(j). No Fintype or nonzero premise and no arbitrary universe parameter."
+    },
+    {
+      "name": "AuditRound12.paired.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit n, explicit arbitrary ordered K on Fin(n+n); pullback along order on both matrix indices."
+    },
+    {
+      "name": "AuditRound12.rawKe.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit n, explicit arbitrary real square K on Pair n; Be-transpose K Be, without any symmetry/commutation assumption."
+    },
+    {
+      "name": "AuditRound12.rawKo.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.implicit",
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Implicit n, explicit arbitrary real square K on Pair n; Bo-transpose K Bo, without any symmetry/commutation assumption."
+    },
+    {
+      "name": "AuditRound12.sign.eq_1",
+      "kind": "theorem",
+      "universes": [],
+      "binder_kinds": [
+        "Lean.BinderInfo.default"
+      ],
+      "reason": "Generated defining equation. Checked all explicit/implicit binders, entrywise versus whole-function equality, and right-hand side against the fresh definition: Explicit n, then a Pair n argument; real signs (-1)^i on left and its negative on right. This is the pullback of zero-based ordered alternation."
+    }
+  ],
+  "intent_comparison": [
+    "contract.md is explicitly real finite matrix algebra. Analytic Section 1 uses normalized columns and n>=1; the formal model uses raw columns with a proved normalization bridge and additionally covers n=0. Its generic compression identities have the same meaning. Complex coefficients, mixed-block identities and the equivalence with invariant-subspace decomposition are not formal target clauses.",
+    "For analytic Section 5, if Q=(q,q) in paired coordinates then S Q=(E q,-E q)=oddVector(E q). The formal odd outer-product theorem therefore supplies the relevant finite projection behavior conditional on that identification; it does not prove the Green expansions, spectral coefficients or spectral hypotheses.",
+    "Compared the supplied blind translation of all 59 declarations with fresh full types, all definition bodies and all binders. The blind source differs from main only by comment masking. The blind verdict is not used as proof.",
+    "Current full export is byte-identical to fresh extraction and contains no elisions. Older author summary/export records describe superseded evidence; the current claim is judged using the supplied complete exporter and current declarations."
+  ],
+  "scope_limits": [
+    "No full ODE/Green/phase/Sturm-Liouville differentiability proof, formal inertia index or Sylvester law, or numerical software validation.",
+    "No complete rebuild of imported dependencies and no independent second kernel; the recorded Lean runtime and binary artifacts are the execution trust boundary.",
+    "No numerical sample is used to justify universal claims."
+  ],
+  "reviewer_attempts": [
+    {
+      "label": "complementary-positive",
+      "exit_code": 1,
+      "meaning": "Reviewer-written explicit-entry witness initially left sum-constructor equalities unsimplified. Frozen source unaffected.",
+      "resolved_by": "complementary-positive-v2",
+      "evidence": "commands/complementary-positive/command.json"
+    },
+    {
+      "tool_chunk_id": "87b0c8",
+      "exit_code": 1,
+      "meaning": "Optional postprocessing tried theorem metadata type_expression, which the verifier only includes for semantic definition nodes. The fresh full 59-declaration export supplies those theorem types and was inspected instead.",
+      "actual_error": "KeyError: 'type_expression'",
+      "scope": "Analysis-script schema mistake, not a Lean failure."
+    }
+  ]
+}

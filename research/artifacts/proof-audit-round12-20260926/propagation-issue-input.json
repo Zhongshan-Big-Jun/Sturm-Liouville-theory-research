@@ -1,0 +1,23 @@
+{
+  "issue_id": "round12-propagated-sector-labels",
+  "origin": "internal",
+  "reporter": "01a06f46-dd03-7c83-9267-32048412c359",
+  "disposition": "quarantine",
+  "summary": "Direct propagation discovered during actual R4 repair runs: sector_data raw Ke/Ko labels actually denote even/odd blocks of Kp=SKS; band-selfconsistency-equivariance repeats that split and assigns the negative rank-one criterion to the wrong raw sector. Suspend current reuse of the card until convention and dominance scope are corrected. This is an object-identity error, not evidence against total-inertia preservation or round11 residual-Jacobian anticommutation.",
+  "targets": [
+    {
+      "location": "tools/band-selfconsistency-equivariance.md",
+      "sha256": "3ad9895865fb165e66d28df34fa9ef8cd4c4b4b143ca74b7d246822cb33fa98e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "research/artifacts/proof-audit-round12-20260926/before/scripts/_gapn2_sector_decomposition.py",
+      "locator": "sector_data old He/Ho/Ee/Eo and Ke/Ko assignment"
+    },
+    {
+      "path": "research/artifacts/proof-audit-round12-20260926/before/tools/band-selfconsistency-equivariance.md",
+      "locator": "Historical sector formulas and Sherman-Morrison odd label"
+    }
+  ]
+}

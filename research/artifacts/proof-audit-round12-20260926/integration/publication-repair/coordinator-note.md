@@ -1,0 +1,3 @@
+# Publication scope repair
+
+The original publication.py prepare stopped with an Unassigned new paths error naming the two progress histories listed here. This is a coordinator description of the observed tool result, not a fabricated execution receipt. The original helper remains archived. Both snapshots match the SHA256 in the original save_progress receipts and form the chain leading to current progress. Publication v2 adds only these explicit new paths; checker v3 additionally verifies this supplemental archive. No mathematical source, review packet, library release, or final checkpoint input was changed.
