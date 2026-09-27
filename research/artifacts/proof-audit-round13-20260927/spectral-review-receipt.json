@@ -1,0 +1,66 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "351b4411775cb431fa4f75d0c2e7b37718820cfcd9737cba2820ca43738ff3c6",
+  "reviewer_id": "01a0e2c3-82a7-7fb3-b3eb-25d696a0aef3",
+  "bindings": {
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/AUTHOR_NOTE.md": "3436a5a180d43c1c6b991b45f95903e43873078df03f0230cd98d4757325c035",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/derivation.md": "5e83c0fd5535a52256611fd28e75b1956322d4a6fd081470a094d1c50e326402",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/handoff.json": "94687a3a7c4148cf5528217be1f4e96544367ff76e17f3c6c433ea846ec0d6e0",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/r12_regression.py": "6225b4683f40ebd81dce65f2db5ddfad2949d1f49720f1c3261728464094f8ec",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/reference.py": "d1ecb7e2c3893f0520e556cb552fd757e34730a99f71367cc5a2893b35f4df41",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/research_ledger.md": "733ac8cbbf9e6470d85d1c83d0f8cdf12811b9615074b388a1cd3eb5971dc5bf",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/static_impacts.json": "30730db34e0720c4ab484a737c831ac6da70ab5322aa551e530032a30993eb16",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/test_round13.py": "e6bdc62c348934c9cc46e0b718e03b4ed87bf060cb2c4d81b0dcdda68bd3529a",
+    "research/artifacts/proof-audit-round13-20260927/submitted/REPORT.md": "bd54f71accd5fe0d4d2940e198102a638bee5a2c142e1206abe23ffb702c58b8",
+    "research/artifacts/proof-audit-round13-20260927/submitted/analytic_notes.md": "64c1cce964ce1b30b8f89534f3cc84494cf2b7f8c0faa6e05f7fc9ec32a6b1ba",
+    "scripts/_gapn2_half_problem_probe.py": "ffaa5dfe4b9f812c017ec93dcf2a73e56688c2f2eb25b2f6e55c9e5a01f6c4dc",
+    "scripts/_gapn2_jacobian_analytic.py": "1579a92ba9f3d293bb02a534508d4e0719f63aac8dfd03426a889bb6af991feb",
+    "scripts/_gapn2_jacobian_probe.py": "e831039e85fcb1b7bbc7ca798a6c58e122f0d5e3a27dd3fe06bb15e5a866cc0e",
+    "scripts/_gapn2_jacobian_spectral.py": "e26e5a38cb84f992e0c713e40fb0da6f19172c6e6ecacb632a74a446d9d324f8",
+    "scripts/_gapn2_sector_decomposition.py": "0b00190540e1599f4a15d8c23a1a6c8af82f4146e051d1ccea8b10d6b62e1657",
+    "scripts/_gapn2_symmetry_recon.py": "dd4093e67dc182dacdd2bd01e3847c0778ffa1144c5dbb0fda3336a8731b0573",
+    "scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042"
+  },
+  "claims": [
+    {
+      "id": "R13-spectral-analysis",
+      "reason": "Independently derived the physical transfer, midpoint mass integral and small-frequency limit. Values and derivatives share one IVP and one square-root mass normalization, eliminating sampled-value division at nodes. Continuity and the derivative jump -1 yield G=-phi(min(x,y))*psi(max(x,y))/W, including the stated DD/DN endpoints and linear/hyperbolic cases. Left Dirichlet coercivity excludes poles for mu<=0. Differentiating the weak eigenproblem and normalization gives da/dx_i=a*s_i*u_i^2 and dot(u)_i=s_i*u_i^2*u/2-a*s_i*u_i*Gtilde_a. Differentiating the moving observations and denominator produces the implemented general Jacobian, including -s_i*f_j*v_i^2/b. Its difference from the stationary expression is exactly s_i*(a*u_i^2*f_j+2*a*u_j^2*f_i-f_i*f_j)/b^2, which vanishes at f=0. Bounded point evaluation in H0^1 justifies the reduced-kernel pairing; it supplies no certified numerical truncation error. R=1 correctly retains the observation diagonal while jump terms vanish; jump-divided sector calculations exclude this case. Checked DD/DN phase targets, geometry/boundary/mode-bound pole deletion, JP=-PJ cross blocks, and the parity swap between raw K and SKS. No remaining defect was identified in the requested repair.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "R13-spectral-execution",
+      "reason": "Executed 701 reviewer-owned checks in ordinary Python and another 701 under -O; both final runs exited 0 without failures. All 17 snapshot hashes matched before and after execution. Project modules were compiled directly from listed source bytes without bytecode caches. Independent references used 65-digit physical transfer, direct mass quadrature, secular roots with physical zero counts, Green matching equations, and complex-step implicit differentiation. Tests covered R1/R4 nodes, small frequencies, unsorted/duplicate/endpoint Green inputs, nonpositive parameters, invalid domains, poles, overflow, physical FD directions, five nonstationary configurations, and six independently seeded stationary configurations for n=1,2,3 and both branches. R12 checks covered constant-density prefixes at 4/80/160 modes, piecewise mode indices and bound-pole rejection. The specified nonstationary Jacobian errors at truncations 160/640/2560 were 0.0359818546, 0.0090796048 and 0.0022752183. Maximum tested normalized-state and Green-reference discrepancies were 2.23e-14 and 7.11e-15; maximum physical-FD versus independent-Jacobian discrepancy was 3.72e-8. Five-block closed raw-Ko and KpOdd assemblies agreed with the independent Jacobian within 1.96e-14. Script, analytic review, final reports and earlier test-development failures are retained under /mnt/f/tools/math-audit-round13-20260927/spectral-reviewer; final reports are result-351b4411-normal.json and result-351b4411-optimized.json.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/AUTHOR_NOTE.md",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/derivation.md",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/handoff.json",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/r12_regression.py",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/reference.py",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/research_ledger.md",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/static_impacts.json",
+    "research/artifacts/proof-audit-round13-20260927/spectral-author/test_round13.py",
+    "research/artifacts/proof-audit-round13-20260927/submitted/REPORT.md",
+    "research/artifacts/proof-audit-round13-20260927/submitted/analytic_notes.md",
+    "scripts/_gapn2_half_problem_probe.py",
+    "scripts/_gapn2_jacobian_analytic.py",
+    "scripts/_gapn2_jacobian_probe.py",
+    "scripts/_gapn2_jacobian_spectral.py",
+    "scripts/_gapn2_sector_decomposition.py",
+    "scripts/_gapn2_symmetry_recon.py",
+    "scripts/_sl_prufer.py"
+  ],
+  "kind": "mathematics",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/351b4411775cb431fa4f75d0c2e7b37718820cfcd9737cba2820ca43738ff3c6-01a0e2c3-82a7-7fb3-b3eb-25d696a0aef3",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "reflection_seeds.py was not supplied. Its import was isolated with fail-closed sentinels, none of which was invoked. Unadapted module imports and seed-generation execution were not verified.",
+    "op03_gap_table.json and downstream caller snapshots were not supplied. Original table-driven CLIs and unsupplied callers were not executed; stationary test geometries were obtained by continuation from the constant-density switching equation.",
+    "Author scripts and historical execution logs were not used as reviewer execution evidence. Claims of unchanged protected code relative to an unsupplied HEAD or baseline could not be independently verified.",
+    "Numerical results concern finite samples and truncations. No uniform spectral-tail bound, interval certificate, arbitrary-range floating-point guarantee, Lean verification or global G1/M3/KP theorem was established.",
+    "Approval is limited to the two requested obligations and does not assert complete formalization. The source project was not modified."
+  ]
+}

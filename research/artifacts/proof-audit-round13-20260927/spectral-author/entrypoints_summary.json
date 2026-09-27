@@ -1,0 +1,77 @@
+[
+  {
+    "label": "r12-normal",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "/mnt/f/tools/math-audit-round13-20260927/spectral-author/r12_regression.py",
+      "/mnt/f/LaTeX/BVE research"
+    ]
+  },
+  {
+    "label": "r12-optimized",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "-O",
+      "/mnt/f/tools/math-audit-round13-20260927/spectral-author/r12_regression.py",
+      "/mnt/f/LaTeX/BVE research"
+    ]
+  },
+  {
+    "label": "analytic-cli",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "scripts/_gapn2_jacobian_analytic.py",
+      "2",
+      "4",
+      "both"
+    ]
+  },
+  {
+    "label": "spectral-cli",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "scripts/_gapn2_jacobian_spectral.py",
+      "2",
+      "4",
+      "both",
+      "640"
+    ]
+  },
+  {
+    "label": "half-sup-cli",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "scripts/_gapn2_half_problem_probe.py",
+      "4",
+      "sup",
+      "160"
+    ]
+  },
+  {
+    "label": "half-inf-cli",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "scripts/_gapn2_half_problem_probe.py",
+      "4",
+      "inf",
+      "160"
+    ]
+  },
+  {
+    "label": "physical-fd-cli",
+    "returncode": 0,
+    "command": [
+      "python3",
+      "scripts/_gapn2_jacobian_probe.py",
+      "4",
+      "2",
+      "both"
+    ]
+  }
+]

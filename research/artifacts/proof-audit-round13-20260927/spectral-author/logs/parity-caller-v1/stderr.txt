@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/mnt/f/LaTeX/BVE research/scripts/_gapn2_parity_global_probe.py", line 47, in <module>
+    pal, p1, fe = probe()
+                  ~~~~~^^
+  File "/mnt/f/LaTeX/BVE research/scripts/_gapn2_parity_global_probe.py", line 34, in probe
+    u = eigfun(blocks, ss[k - 1], grid)
+  File "/mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py", line 186, in eigfun
+    return eigenfunction_states(blocks, s, pts)[:, 0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py", line 163, in eigenfunction_states
+    Blocks, Mu, Points, Ends = _propagation_input(blocks, np.float64(Frequency)**2, pts)
+                               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py", line 61, in _propagation_input
+    raise ValueError('evaluation point lies outside the interval')
+ValueError: evaluation point lies outside the interval

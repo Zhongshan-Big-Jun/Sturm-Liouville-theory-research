@@ -1,0 +1,31 @@
+{
+  "runs": [
+    {
+      "mode": "normal",
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/test_round13_certificates.py"
+      ],
+      "exit_code": 0,
+      "tests": 8,
+      "log": "normal.log",
+      "scope": "same-interface valid controls and true receiver/exporter rejections; generator false/exception/unknown exits 1/2/1"
+    },
+    {
+      "mode": "optimized",
+      "argv": [
+        "python3",
+        "-O",
+        "-B",
+        "scripts/test_round13_certificates.py"
+      ],
+      "exit_code": 0,
+      "tests": 8,
+      "log": "optimized.log",
+      "scope": "same-interface valid controls and true receiver/exporter rejections; generator false/exception/unknown exits 1/2/1"
+    }
+  ],
+  "test_sha256": "58de9c4970ff6913017438869ee2f9b4ee5623cea363c620e3ec1b4f623bcc48",
+  "supersedes_test_evidence": "certificate-checks/; original F1 CLI false positive preserved"
+}

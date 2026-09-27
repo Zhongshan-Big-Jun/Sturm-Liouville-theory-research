@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round13-20260927/release_cards_v2.py", line 34, in <module>
+    Result=C.release(R,X['revision'],X['bundle'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/HuangZY/.codex/plugins/cache/math-research/manage-math-research-program/2.0.1/skills/manage-math-research-program/scripts/research_corrections.py", line 708, in release
+    with library.writer_lock(library.library_root(project)):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/mnt/c/Users/HuangZY/.codex/plugins/cache/math-research/manage-math-research-program/2.0.1/skills/manage-math-research-program/scripts/research_library.py", line 272, in writer_lock
+    with LockPath.open("x", encoding="utf-8") as Handle:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/mnt/f/LaTeX/BVE research/research/library/writer.lock'

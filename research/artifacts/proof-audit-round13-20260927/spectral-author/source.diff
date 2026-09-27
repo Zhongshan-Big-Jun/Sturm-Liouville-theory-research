@@ -1,0 +1,668 @@
+diff --git a/scripts/_gapn2_half_problem_probe.py b/scripts/_gapn2_half_problem_probe.py
+index 4982105..3d90b02 100644
+--- a/scripts/_gapn2_half_problem_probe.py
++++ b/scripts/_gapn2_half_problem_probe.py
+@@ -64,7 +64,7 @@ from dataclasses import dataclass
+ import numpy as np
+ 
+ sys.path.insert(0, r'scripts')
+-from _gapn2_symmetry_recon import Recon, roots_of, eigfun
++from _gapn2_symmetry_recon import Recon, roots_of, eigfun, solution_states, real_green_matrix, _real_parameter
+ from _gapn2_jacobian_probe import symmetric_root, jac_fd
+ from _gapn2_jacobian_analytic import eigen_data
+ from _gapn2_sector_decomposition import sector_data
+@@ -160,26 +160,8 @@ def half_spectrum(hblocks, bc, N=60, mumax=None, *, return_table=False):
+ 
+ 
+ def _propagate(hblocks, mu, x):
+-	"""u (A), u' (B) of the solution with u(0)=0, u'(0)=1 at scalar x."""
+-	k_list = [(np.sqrt(max(mu, 0.0) * rho), l, rho) for (l, rho) in hblocks]
+-	A, B = 0.0, 1.0
+-	x0 = 0.0
+-	for (k, l, rho) in k_list:
+-		if x <= x0 + l + 1e-14:
+-			dx = x - x0
+-			c = np.cos(k * dx)
+-			s = np.sin(k * dx)
+-			return A * c + B * s / k, -A * k * s + B * c
+-		c = np.cos(k * l)
+-		s = np.sin(k * l)
+-		A2 = A * c + B * s / k
+-		B2 = -A * k * s + B * c
+-		A, B = A2, B2
+-		x0 += l
+-	dx = x - x0
+-	c = np.cos(k_list[-1][0] * dx)
+-	s = np.sin(k_list[-1][0] * dx)
+-	return A * c + B * s / k, -A * k * s + B * c
++	"""Physical left solution for finite real mu, including mu<=0."""
++	return tuple(solution_states(hblocks, mu, [x])[0])
+ 
+ 
+ def _norm2(hblocks, mu, coefs, N=20000):
+@@ -317,39 +299,12 @@ def _mixed_prim(l, k, A, Ab, C, Cb):
+ 
+ 
+ def green_regular(hblocks, mu, x, y, bc):
+-	"""Full Green function at non-eigenvalue mu: phi(x_<) psi(x_>)/W."""
+-	L = sum(b[0] for b in hblocks)
+-	# phi: u(0)=0, u'(0)=1; psi: right BC, propagate leftwards
+-	k_list = [(np.sqrt(max(mu, 0.0) * rho), l) for (l, rho) in hblocks]
++	"""DD/DN Green kernel at real resolvent mu, including linear/hyperbolic cases.
+ 
+-	def psi(t):
+-		# propagate from x=L leftwards; D: psi(L)=0, psi'(L)=-1; N: psi(L)=1, psi'(L)=0
+-		if bc == 'D':
+-			A, B = 0.0, -1.0
+-		else:
+-			A, B = 1.0, 0.0
+-		xx = L
+-		for (k, l) in reversed(k_list):
+-			xx -= l
+-			if t >= xx - 1e-14:
+-				dx = t - (xx + l)
+-				c = np.cos(k * dx)
+-				s = np.sin(k * dx)
+-				return A * c + B * s / k, -A * k * s + B * c
+-			c = np.cos(k * l)
+-			s = np.sin(k * l)
+-			A2 = A * c - B * s / k
+-			B2 = A * k * s + B * c
+-			A, B = A2, B2
+-		return A, B
+-	# Wronskian phi psi' - phi' psi (constant in x)
+-	xm = L / 2
+-	p1 = _propagate(hblocks, mu, xm)
+-	ps, psp = psi(xm)
+-	W = p1[1] * ps - p1[0] * psp
+-	if x <= y:
+-		return _propagate(hblocks, mu, x)[0] * psi(y)[0] / W
+-	return _propagate(hblocks, mu, y)[0] * psi(x)[0] / W
++	Endpoints and either coordinate order are legal. Out-of-domain inputs,
++	invalid BCs and unresolved poles/overflow raise instead of returning nan.
++	"""
++	return float(real_green_matrix(hblocks, mu, [x, y], RightBoundary=bc)[0, 1])
+ 
+ 
+ def _prims_9(l, k):
+@@ -436,7 +391,11 @@ def green_regularized(hblocks, mu, x, y, bc):
+ 	"""Regularized Green at the eigenvalue mu (pole removed): Gt_k(x,y).
+ 
+ 	Closed form: Gt = B - u(x)P(y) (see module docstring), exact A1/A2.
++	This positive-eigenvalue formula is not an ordinary resolvent at mu<=0.
+ 	"""
++	mu = _real_parameter(mu, 'eigenvalue')
++	if mu <= 0:
++		raise ValueError('reduced Green requires a positive eigenvalue; use green_regular at mu<=0')
+ 	L = sum(b[0] for b in hblocks)
+ 	u0 = 1.0 / np.sqrt(_norm2(hblocks, mu, (0.0, 1.0)))
+ 	uf = lambda t: u0 * _propagate(hblocks, mu, t)[0]
+diff --git a/scripts/_gapn2_jacobian_analytic.py b/scripts/_gapn2_jacobian_analytic.py
+index 72f323d..227d9e3 100644
+--- a/scripts/_gapn2_jacobian_analytic.py
++++ b/scripts/_gapn2_jacobian_analytic.py
+@@ -1,6 +1,10 @@
+ # -*- coding: utf-8 -*-
+ """Verify the analytic Jacobian structure of the band self-consistency system.
+ 
++Round13: all three Jacobian entrypoints use the general quotient derivative.
++The stationary identities below are preserved at F=0. Finite Green sums are
++numerical evidence, not certified tail bounds.
++
+ Claims (all to be verified numerically, EVIDENCE):
+   (A1) At a band-consistent point x (F_j = f(x_j)/lambda_{n+1} = 0):
+        J = D_xF = (D~ + M~)/lambda_{n+1},  D~ = diag(f'(x_j)),
+@@ -42,95 +46,40 @@ import json
+ import numpy as np
+ 
+ sys.path.insert(0, r'scripts')
+-from _gapn2_symmetry_recon import Recon, roots_of, eigfun
++from _gapn2_symmetry_recon import (Recon, roots_of, eigfun, eigenfunction_states,
++	solution_states, real_green_matrix, _real_parameter, _transfer_matrix, positive_blocks)
+ from _gapn2_jacobian_probe import jac_fd, sym_antisym_decomp, symmetric_root
+ 
+ 
+ def prop_matrix(blocks, s):
+-    """Transfer matrix (u, u') -> (u, u') across all blocks for -u'' = s^2 rho u."""
+-    M = np.eye(2)
+-    for L, c in blocks:
+-        w = s * np.sqrt(c)
+-        wL = w * L
+-        cw, sw = np.cos(wL), np.sin(wL)
+-        P = np.array([[cw, sw / w], [-w * sw, cw]])
+-        M = P @ M
+-    return M
++	"""Physical transfer for frequency s, including the linear limit s=0."""
++	Frequency = _real_parameter(s, 'frequency')
++	Blocks = positive_blocks(blocks)
++	M = np.eye(2)
++	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
++		Mu = np.float64(Frequency)**2
++		for Length, Density in Blocks:
++			M = _transfer_matrix(Mu, Length, Density) @ M
++	if not np.all(np.isfinite(M)):
++		raise ArithmeticError('transfer matrix is not finite')
++	return M
+ 
+ 
+ def uv_at(blocks, s, pts, left=True):
+-    """(u, u') at pts for the solution with u(0)=0, u'(0)=1 (left=True) or
+-    the solution with u(1)=0, u'(1)=-1 propagated backward (left=False)."""
+-    xs = [0.0]
+-    for L, _ in blocks:
+-        xs.append(xs[-1] + L)
+-    out = np.zeros((len(pts), 2))
+-    # propagate segment starts
+-    starts = []
+-    M = np.eye(2)
+-    starts.append((0.0, M.copy()))
+-    for L, c in blocks:
+-        w = s * np.sqrt(c)
+-        wL = w * L
+-        cw, sw = np.cos(wL), np.sin(wL)
+-        P = np.array([[cw, sw / w], [-w * sw, cw]])
+-        M = P @ M
+-        starts.append((xs[len(starts)], M.copy()))
+-    for j, p in enumerate(pts):
+-        bi = max(i for i in range(len(xs) - 1) if xs[i] < p)
+-        base_x, M0 = starts[bi]
+-        L, c = blocks[bi]
+-        w = s * np.sqrt(c)
+-        d = p - base_x
+-        cw, sw = np.cos(w * d), np.sin(w * d)
+-        if left:
+-            v0 = np.array([0.0, 1.0])
+-        else:
+-            # backward: u(1)=0, u'(1)=-1 ; propagate through blocks after bi
+-            v1 = np.array([0.0, -1.0])
+-            Mback = np.eye(2)
+-            for Lb, cb in blocks[bi + 1:]:
+-                wb = s * np.sqrt(cb)
+-                wLb = wb * Lb
+-                cbw, sbw = np.cos(wLb), np.sin(wLb)
+-                Pb = np.array([[cbw, sbw / wb], [-wb * sbw, cbw]])
+-                Mback = Pb @ Mback
+-            # state at block start x_bi solves Mback @ v_start = v1 (propagate to x=1)
+-            v_start = np.linalg.solve(Mback, v1)
+-        if left:
+-            # forward from 0: state at block start then within-block propagation
+-            v_at_start = M0 @ v0
+-            P = np.array([[cw, sw / w], [-w * sw, cw]])
+-            out[j] = P @ v_at_start
+-        else:
+-            # backward from 1: v_start = state at block RIGHT end xs[bi+1];
+-            # propagate back to p within block bi: P(-(xs[bi+1]-p))
+-            db = xs[bi + 1] - p
+-            cbw, sbw = np.cos(w * db), np.sin(w * db)
+-            Pb = np.array([[cbw, -sbw / w], [w * sbw, cbw]])  # P(-db)
+-            out[j] = Pb @ v_start
+-    return out
++	"""Physical states at arbitrary points, with endpoint data (0,1)/(0,-1).
++
++	The compatibility parameter s is frequency; use solution_states for a
++	real spectral parameter mu (including mu<0).
++	"""
++	Frequency = _real_parameter(s, 'frequency')
++	with np.errstate(over='raise', invalid='raise'):
++		Mu = np.float64(Frequency)**2
++	return solution_states(blocks, Mu, pts, RightBoundary=None if left else 'D')
+ 
+ 
+ def green_kernel(blocks, mu, pts):
+-    """G_mu(x_i, x_j) via phi/psi/W formula; returns (npts x npts) matrix."""
+-    s = np.sqrt(mu)
+-    npts = len(pts)
+-    phi = uv_at(blocks, s, pts, left=True)          # (npts,2): phi, phi'
+-    psi = uv_at(blocks, s, pts, left=False)         # (npts,2): psi, psi'
+-    # Wronskian W = phi psi' - phi' psi (constant; evaluate at pts, take median)
+-    W = phi[:, 0] * psi[:, 1] - phi[:, 1] * psi[:, 0]
+-    Wv = np.median(W)
+-    # spectral Green kernel: G_mu(x,y) = -phi(x)psi(y)/W for x<=y
+-    # (normalization phi(0)=0, phi'(0)=1; psi(1)=0, psi'(1)=-1)
+-    G = np.zeros((npts, npts))
+-    for i in range(npts):
+-        for j in range(npts):
+-            if i <= j:
+-                G[i, j] = -phi[i, 0] * psi[j, 0] / Wv
+-            else:
+-                G[i, j] = -phi[j, 0] * psi[i, 0] / Wv
+-    return G
++	"""DD Green matrix for real resolvent mu, in the supplied coordinate order."""
++	return real_green_matrix(blocks, mu, pts)
+ 
+ 
+ def regularized_green(blocks, lam, pts, u_k=None, delta=1e-9):
+@@ -146,7 +95,7 @@ def regularized_green(blocks, lam, pts, u_k=None, delta=1e-9):
+     practice.  G_mu ~ 4.7e7 near the pole; transfer-matrix relative error
+     ~2.7e-8 leaves an absolute error ~1.27 in G~ (verified against the spectral
+     sum).  Do NOT use this routine for Jacobian work; use gtilde_spectral from
+-    _gapn2_jacobian_spectral (Richardson-accelerated).  Kept only for
++    _gapn2_jacobian_spectral (finite spectral sum; no certified tail bound).  Kept only for
+     green-kernel cross-checks at low accuracy."""
+     mu = lam * (1.0 - delta)
+     G = green_kernel(blocks, mu, pts)
+@@ -157,99 +106,67 @@ def regularized_green(blocks, lam, pts, u_k=None, delta=1e-9):
+ 
+ 
+ def eigen_data(rc, z):
+-    """lambda_n, lambda_{n+1}, u_n, u_{n+1}, u'_n, u'_{n+1} at switch points,
+-    eps_j, c, W(x_j)."""
+-    blocks = rc.blocks_from_z(z)
+-    ss = roots_of(blocks, rc.n + 1)
+-    lam_n, lam_np1 = ss[rc.n - 1] ** 2, ss[rc.n] ** 2
+-    w = rc.z_to_widths(z)
+-    edges = np.cumsum(w)[:-1]
+-    n = rc.n
+-    sn, snp1 = ss[rc.n - 1], ss[rc.n]
+-    # normalized eigenfunction values + derivatives at edges
+-    un = eigfun(blocks, sn, edges)
+-    unp = eigfun(blocks, snp1, edges)
+-    # derivatives: use uv_at with scaling.  eigfun normalizes by sqrt(int rho u^2).
+-    def derivs(s, edges_):
+-        # unnormalized solution (u0,u0') with u(0)=0,u'(0)=1
+-        vals = uv_at(blocks, s, edges_, left=True)
+-        # normalization: u = C * u0 ; C from eigfun value at first point
+-        u0 = vals[:, 0]
+-        # norm factor: eigfun already normalized; u0 unnormalized -> C = un/ u0
+-        C = np.mean(eigfun(blocks, s, edges_) / u0)
+-        return C * vals[:, 0], C * vals[:, 1]
+-    d_n, d_np = derivs(sn, edges), derivs(snp1, edges)
+-    u_n, up_n = d_n
+-    u_np1, up_np1 = d_np
+-    c = np.sqrt(lam_n / lam_np1)
+-    eps = np.sign(u_np1 / u_n)  # +1 left switches (odd j), -1 right (even j)
+-    W = up_np1 * u_n - u_np1 * up_n
+-    return dict(lam_n=lam_n, lam_np1=lam_np1, edges=edges, u_n=u_n, u_np1=u_np1,
+-                up_n=up_n, up_np1=up_np1, c=c, eps=eps, W=W)
+-
+-
+-def analytic_jacobian(rc, z):
+-    """J_analytic = (D~ + M~)/lambda_{n+1} at a band-consistent point."""
+-    ed = eigen_data(rc, z)
+-    lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
+-    edges = ed['edges']
+-    u_n, u_np1 = ed['u_n'], ed['u_np1']
+-    up_n, up_np1 = ed['up_n'], ed['up_np1']
+-    c, eps, W = ed['c'], ed['eps'], ed['W']
+-    n = rc.n
+-    # s_i = rho_{i+1} - rho_i
+-    pat = rc.pat
+-    s = np.array([pat[i + 1] - pat[i] for i in range(2 * n)])
+-    D = lam_np1 - lam_n
+-    wj = lam_n * u_n ** 2
+-    # check consistency lambda_{n+1} u_{n+1}^2 = wj
+-    wj2 = lam_np1 * u_np1 ** 2
+-    # diagonal D~
+-    fprime = 2.0 * lam_n * u_n * up_n - 2.0 * lam_np1 * u_np1 * up_np1
+-    # analytic identity f' = -2 lambda_{n+1} eps c W
+-    fprime_id = -2.0 * lam_np1 * eps * c * W
+-    # regularized resolvent kernels
+-    blocks = rc.blocks_from_z(z)
+-    from _gapn2_jacobian_spectral import gtilde_spectral
+-    Gn = gtilde_spectral(rc, z, lam_n, rc.n - 1, edges, N=2000)
+-    Gnp1 = gtilde_spectral(rc, z, lam_np1, rc.n, edges, N=2000)
+-    # sign-corrected formula (see docstring derivation): all three terms flipped
+-    # relative to the original draft
+-    M = np.zeros((2 * n, 2 * n))
+-    for j in range(2 * n):
+-        for i in range(2 * n):
+-            term = (+2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1)
+-                    - 2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j]
+-                    + 2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
+-            M[j, i] = s[i] * term
+-    np.fill_diagonal(M, M.diagonal())  # keep diagonal from the uniform formula
+-    J = (np.diag(fprime) + M) / lam_np1
+-    return J, fprime, fprime_id, wj, wj2
+-
+-
+-def term_breakdown(rc, z):
+-    """Return D~, M1 (w term), M2 (lambda_n Green), M3 (lambda_{n+1} Green) for diagnostics."""
+-    ed = eigen_data(rc, z)
+-    lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
+-    edges = ed['edges']
+-    u_n, u_np1 = ed['u_n'], ed['u_np1']
+-    n = rc.n
+-    pat = rc.pat
+-    s = np.array([pat[i + 1] - pat[i] for i in range(2 * n)])
+-    D = lam_np1 - lam_n
+-    wj = lam_n * u_n ** 2
+-    fprime = 2.0 * lam_n * u_n * ed['up_n'] - 2.0 * lam_np1 * u_np1 * ed['up_np1']
+-    blocks = rc.blocks_from_z(z)
+-    from _gapn2_jacobian_spectral import gtilde_spectral
+-    Gn = gtilde_spectral(rc, z, lam_n, rc.n - 1, edges, N=2000)
+-    Gnp1 = gtilde_spectral(rc, z, lam_np1, rc.n, edges, N=2000)
+-    M1 = np.zeros((2 * n, 2 * n)); M2 = np.zeros((2 * n, 2 * n)); M3 = np.zeros((2 * n, 2 * n))
+-    for j in range(2 * n):
+-        for i in range(2 * n):
+-            M1[j, i] = s[i] * (+2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1))
+-            M2[j, i] = s[i] * (-2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j])
+-            M3[j, i] = s[i] * (+2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
+-    return dict(fprime=fprime, M1=M1, M2=M2, M3=M3, s=s, wj=wj, D=D)
++	"""Adjacent eigenvalues and mass-normalized physical states at switches.
++
++	eps is sign(u_n)*sign(u_{n+1}); its band sign interpretation and the
++	Wronskian f' identity require stationarity and nonzero interface values.
++	"""
++	Blocks = rc.blocks_from_z(z)
++	Frequencies = roots_of(Blocks, rc.n + 1)
++	A, B = Frequencies[rc.n - 1]**2, Frequencies[rc.n]**2
++	Edges = np.cumsum(rc.z_to_widths(z))[:-1]
++	U = eigenfunction_states(Blocks, Frequencies[rc.n - 1], Edges)
++	V = eigenfunction_states(Blocks, Frequencies[rc.n], Edges)
++	return dict(lam_n=A, lam_np1=B, edges=Edges, u_n=U[:, 0], u_np1=V[:, 0],
++		up_n=U[:, 1], up_np1=V[:, 1], c=np.sqrt(A / B),
++		eps=np.sign(U[:, 0]) * np.sign(V[:, 0]), W=V[:, 1] * U[:, 0] - V[:, 0] * U[:, 1])
++
++
++def jacobian_terms(Data, Jumps, Gn, Gnp1):
++	"""Unscaled terms of d(f/b)/dx at any feasible configuration.
++
++	A=lambda_n, B=lambda_{n+1}, f=A*u^2-B*v^2. Moving switch i gives
++	d_i B=B*s_i*v_i^2, so the quotient contributes -s_i*f_j*v_i^2.
++	M1 includes that term. At f=0 it reduces to the stationary rank-one
++	term 2*s_i*w_i*w_j*(B-A)/(A*B). Green sums remain finite evidence.
++	"""
++	A, B = Data['lam_n'], Data['lam_np1']
++	U, V = Data['u_n'], Data['u_np1']
++	F = A * U**2 - B * V**2
++	M1 = (2*A*np.outer(U**2, U**2) - 2*B*np.outer(V**2, V**2) - np.outer(F, V**2)) * Jumps[None, :]
++	M2 = -2*A**2 * np.outer(U, U) * Gn * Jumps[None, :]
++	M3 = 2*B**2 * np.outer(V, V) * Gnp1 * Jumps[None, :]
++	Fprime = 2*A*U*Data['up_n'] - 2*B*V*Data['up_np1']
++	Stationary = 2*A*(B-A)/B * np.outer(U**2, U**2) * Jumps[None, :]
++	return dict(fprime=Fprime, M1=M1, M2=M2, M3=M3, s=Jumps, wj=A*U**2, D=B-A,
++		M1_stationary=Stationary, correction=M1-Stationary, eigen_data=Data)
++
++
++def term_breakdown(rc, z, N=2000):
++	"""General Jacobian terms; J=(diag(fprime)+M1+M2+M3)/lambda_{n+1}.
++
++	M1 is the full normalization/quotient term. M1_stationary and correction
++	separate its old stationary specialization from the nonstationary part.
++	"""
++	Data = eigen_data(rc, z)
++	from _gapn2_jacobian_spectral import gtilde_spectral
++	Gn = gtilde_spectral(rc, z, Data['lam_n'], rc.n - 1, Data['edges'], N=N)
++	Gnp1 = gtilde_spectral(rc, z, Data['lam_np1'], rc.n, Data['edges'], N=N)
++	return jacobian_terms(Data, np.diff(rc.pat), Gn, Gnp1)
++
++
++def analytic_jacobian(rc, z, N=2000):
++	"""General physical-interface Jacobian with finite spectral Green sums.
++
++	The returned fprime_id is a stationary Wronskian diagnostic only; it is
++	not used to assemble J. N controls the numerical spectral truncation.
++	"""
++	Terms = term_breakdown(rc, z, N=N)
++	Data = Terms['eigen_data']
++	B = Data['lam_np1']
++	J = (np.diag(Terms['fprime']) + Terms['M1'] + Terms['M2'] + Terms['M3']) / B
++	FprimeId = -2*B*Data['eps']*Data['c']*Data['W']
++	return J, Terms['fprime'], FprimeId, Terms['wj'], B*Data['u_np1']**2
+ 
+ 
+ def main():
+diff --git a/scripts/_gapn2_jacobian_spectral.py b/scripts/_gapn2_jacobian_spectral.py
+index 82451c5..6cebbfc 100644
+--- a/scripts/_gapn2_jacobian_spectral.py
++++ b/scripts/_gapn2_jacobian_spectral.py
+@@ -5,7 +5,10 @@ More robust than the resolvent subtraction (W(lam) -> 0 near the pole causes
+ catastrophic cancellation for delta < 1e-6).  Tail error ~ sum_{l>N} O(1)/lambda_l
+ ~ 1/(pi^2 N) times mean u_l u_l, i.e. ~ 1e-5 at N = 2000 (verified by N doubling).
+ 
+-Jacobian formula (verified 2026-08-12 against clean raw-block FD, EVIDENCE):
++The implementation uses the general nonstationary quotient derivative in
++term_breakdown; the following formula is its F=0 specialization.
++
++Stationary Jacobian formula (verified 2026-08-12 against clean raw-block FD, EVIDENCE):
+   J_ji = dF_j/dx_i = (diag(f') + M~)/lam_np1,
+   M~_{ji} = s_i { +2 w_i w_j D/(lam_n lam_np1)
+                   - 2 lam_n^2 u_n(x_i) u_n(x_j) G~_n(x_i,x_j)
+@@ -26,7 +29,7 @@ import numpy as np
+ sys.path.insert(0, r'scripts')
+ from _gapn2_symmetry_recon import Recon, roots_of, eigfun
+ from _gapn2_jacobian_probe import jac_fd, symmetric_root
+-from _gapn2_jacobian_analytic import eigen_data
++from _gapn2_jacobian_analytic import term_breakdown
+ 
+ 
+ def gtilde_spectral(rc, z, lam, k, edges, N=2000):
+@@ -42,29 +45,9 @@ def gtilde_spectral(rc, z, lam, k, edges, N=2000):
+ 
+ 
+ def analytic_jacobian_spectral(rc, z, N=2000):
+-    """Analytic Jacobian with spectral-sum regularized Green kernels."""
+-    ed = eigen_data(rc, z)
+-    lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
+-    edges = ed['edges']
+-    u_n, u_np1 = ed['u_n'], ed['u_np1']
+-    up_n, up_np1 = ed['up_n'], ed['up_np1']
+-    n = rc.n
+-    pat = rc.pat
+-    s = np.array([pat[i + 1] - pat[i] for i in range(2 * n)])
+-    D = lam_np1 - lam_n
+-    wj = lam_n * u_n ** 2
+-    fprime = 2.0 * lam_n * u_n * up_n - 2.0 * lam_np1 * u_np1 * up_np1
+-    Gn = gtilde_spectral(rc, z, lam_n, n - 1, edges, N=N)
+-    Gnp1 = gtilde_spectral(rc, z, lam_np1, n, edges, N=N)
+-    M = np.zeros((2 * n, 2 * n))
+-    for j in range(2 * n):
+-        for i in range(2 * n):
+-            term = (2.0 * wj[i] * wj[j] * D / (lam_n * lam_np1)
+-                    - 2.0 * lam_n ** 2 * u_n[i] * u_n[j] * Gn[i, j]
+-                    + 2.0 * lam_np1 ** 2 * u_np1[i] * u_np1[j] * Gnp1[i, j])
+-            M[j, i] = s[i] * term
+-    J = (np.diag(fprime) + M) / lam_np1
+-    return J
++	"""General residual Jacobian; exact shape formula, finite Green truncation."""
++	Terms = term_breakdown(rc, z, N=N)
++	return (np.diag(Terms['fprime']) + Terms['M1'] + Terms['M2'] + Terms['M3']) / Terms['eigen_data']['lam_np1']
+ 
+ 
+ def main():
+diff --git a/scripts/_gapn2_symmetry_recon.py b/scripts/_gapn2_symmetry_recon.py
+index 5af9ef6..86937d7 100644
+--- a/scripts/_gapn2_symmetry_recon.py
++++ b/scripts/_gapn2_symmetry_recon.py
+@@ -11,6 +11,7 @@ Usage:  python _gapn2_symmetry_recon.py [n] [R] [seeds] [mode] [workers]
+ mode in {both, sup, inf}
+ """
+ import sys, json, time, argparse, hashlib
++import numbers
+ from pathlib import Path
+ from reflection_seeds import generate_sector_seed, SeedGenerationError
+ import numpy as np
+@@ -19,7 +20,7 @@ from scipy.optimize import least_squares
+ # ----------------------------------------------------------------------------
+ # spectral engine (transfer matrix, Dirichlet)
+ # ----------------------------------------------------------------------------
+-from _sl_prufer import indexed_roots
++from _sl_prufer import indexed_roots, positive_blocks
+ 
+ 
+ def roots_of(blocks, k, npts=20000, refine=60):
+@@ -41,37 +42,154 @@ def D_scalar(blocks, s):
+     return M01
+ 
+ 
++def _real_parameter(Value, Name):
++	if isinstance(Value, (bool, np.bool_)) or not isinstance(Value, numbers.Real) or not np.isfinite(Value):
++		raise ValueError(Name + ' must be a finite real scalar')
++	return float(Value)
++
++
++def _propagation_input(blocks, mu, pts, *, EndpointRoundoff=False):
++	Blocks = positive_blocks(blocks)
++	Mu = _real_parameter(mu, 'mu')
++	if np.iscomplexobj(pts):
++		raise ValueError('evaluation points must be real')
++	Points = np.asarray(pts, dtype=float)
++	Ends = np.r_[0.0, np.cumsum(Blocks[:, 0])]
++	if Points.ndim != 1 or not np.all(np.isfinite(Points)):
++		raise ValueError('evaluation points must be a finite one-dimensional array')
++	Tolerance = 8 * len(Blocks) * np.finfo(float).eps * Ends[-1] if EndpointRoundoff else 0.0
++	if np.any(Points < -Tolerance) or np.any(Points > Ends[-1] + Tolerance):
++		raise ValueError('evaluation point lies outside the interval')
++	if EndpointRoundoff:
++		Points = np.clip(Points, 0.0, Ends[-1])
++	return Blocks, Mu, Points, Ends
++
++
++def _transfer_matrix(Mu, Length, Density):
++	"""Physical (u,u') transfer. Caller guards floating range and input domain."""
++	if Mu == 0:
++		return np.array([[1.0, Length], [0.0, 1.0]])
++	Wave = np.sqrt(abs(Mu)) * np.sqrt(Density)
++	Angle = Wave * Length
++	if Mu > 0:
++		C = np.cos(Angle)
++		S = Length * np.sinc(Angle / np.pi)
++		Lower = -Wave * np.sin(Angle)
++	else:
++		C = np.cosh(Angle)
++		S = Length * (np.sinh(Angle) / Angle if Angle != 0 else 1.0)
++		Lower = Wave * np.sinh(Angle)
++	return np.array([[C, S], [Lower, C]])
++
++
++def _fundamental_states(Blocks, Mu, RightBoundary=None):
++	States = np.empty((len(Blocks) + 1, 2))
++	if RightBoundary is None:
++		States[0] = [0.0, 1.0]
++		for i, (Length, Density) in enumerate(Blocks):
++			States[i + 1] = _transfer_matrix(Mu, Length, Density) @ States[i]
++	else:
++		States[-1] = [0.0, -1.0] if RightBoundary == 'D' else [1.0, 0.0]
++		for i in range(len(Blocks) - 1, -1, -1):
++			Length, Density = Blocks[i]
++			States[i] = _transfer_matrix(Mu, -Length, Density) @ States[i + 1]
++	return States
++
++
++def _sample_solution(Blocks, Mu, Points, Ends, States, FromRight=False):
++	Out = np.empty((len(Points), 2))
++	for j, Point in enumerate(Points):
++		i = min(int(np.searchsorted(Ends, Point, side='right')) - 1, len(Blocks) - 1)
++		Anchor = i + 1 if FromRight else i
++		Out[j] = _transfer_matrix(Mu, Point - Ends[Anchor], Blocks[i, 1]) @ States[Anchor]
++	return Out
++
++
++def solution_states(blocks, mu, pts, *, RightBoundary=None):
++	"""Physical states for real mu, including 0 and negative resolvent parameters.
++
++	Default initial data are (0,1) at the left endpoint. Right D/N initial
++	data are (0,-1)/(1,0). Endpoints, duplicates and arbitrary point order are
++	legal. Invalid geometry/points raise ValueError; float overflow raises
++	ArithmeticError. Hyperbolic propagation is unscaled, not arbitrary-range.
++	"""
++	if RightBoundary is not None and RightBoundary not in ('D', 'N'):
++		raise ValueError('right boundary must be D or N')
++	Blocks, Mu, Points, Ends = _propagation_input(blocks, mu, pts)
++	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
++		States = _fundamental_states(Blocks, Mu, RightBoundary)
++		Out = _sample_solution(Blocks, Mu, Points, Ends, States, RightBoundary is not None)
++	if not np.all(np.isfinite(States)) or not np.all(np.isfinite(Out)):
++		raise ArithmeticError('physical propagation is not finite')
++	return Out
++
++
++def real_green_matrix(blocks, mu, pts, *, RightBoundary='D'):
++	"""Kernel of -d^2/dx^2-mu*rho with left D and right D/N boundary.
++
++	Real resolvent parameters, including all mu<=0, are supported subject to
++	floating range. Numerically unresolved positive poles raise ArithmeticError.
++	The coordinate comparison is invariant under permutations and duplicates.
++	"""
++	if RightBoundary not in ('D', 'N'):
++		raise ValueError('right boundary must be D or N')
++	Blocks, Mu, Points, Ends = _propagation_input(blocks, mu, pts)
++	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
++		Left = _fundamental_states(Blocks, Mu)
++		Right = _fundamental_states(Blocks, Mu, RightBoundary)
++		Phi = _sample_solution(Blocks, Mu, Points, Ends, Left)[:, 0]
++		Psi = _sample_solution(Blocks, Mu, Points, Ends, Right, True)[:, 0]
++		# Evaluate -W at the right boundary, avoiding cancellation of products.
++		Denominator = Left[-1, 0 if RightBoundary == 'D' else 1]
++		Scale = max(abs(Left[-1, 0]), Ends[-1] * abs(Left[-1, 1]))
++		Residual = abs(Denominator) * (1.0 if RightBoundary == 'D' else Ends[-1])
++		if not np.isfinite(Scale) or Residual <= 64 * np.finfo(float).eps * Scale:
++			raise ArithmeticError('Green target is at or numerically near a pole')
++		Forward = np.outer(Phi, Psi)
++		Kernel = np.where(Points[:, None] <= Points[None, :], Forward, Forward.T) / Denominator
++	if not np.all(np.isfinite(Kernel)):
++		raise ArithmeticError('Green kernel is not finite')
++	return Kernel
++
++
++def eigenfunction_states(blocks, s, pts):
++	"""Values AND derivatives of one physical solution divided by its mass.
++
++	The left solution has (u,u')=(0,1). Its exact block integrals are evaluated
++	in midpoint coordinates, with a Taylor limit for small frequency*length.
++	No normalization is reconstructed from point values, even at nodes.
++	Only this normalized sampler snaps endpoint roundoff within 8*m*eps*L,
++	for legacy unit-interval grids whose block sums differ by a few ulps.
++	Green/unnormalized propagation retain strict coordinate rejection.
++	"""
++	Frequency = _real_parameter(s, 'frequency')
++	if Frequency < 0:
++		raise ValueError('frequency must be nonnegative')
++	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
++		Blocks, Mu, Points, Ends = _propagation_input(blocks, np.float64(Frequency)**2, pts, EndpointRoundoff=True)
++		States = _fundamental_states(Blocks, Mu)
++		Mass = 0.0
++		for i, (Length, Density) in enumerate(Blocks):
++			Angle = Frequency * np.sqrt(Density) * Length
++			Midpoint = _transfer_matrix(Mu, Length / 2, Density) @ States[i]
++			CosIntegral = Length * (1.0 + np.sinc(Angle / np.pi)) / 2
++			if abs(Angle) < 0.01:
++				Q = Angle**2
++				SinIntegral = Length**3 * (1/12 - Q/240 + Q**2/10080 - Q**3/725760)
++			else:
++				SinIntegral = Length * (1.0 - np.sinc(Angle / np.pi)) / (2 * (Frequency * np.sqrt(Density))**2)
++			Mass += Density * (Midpoint[0]**2 * CosIntegral + Midpoint[1]**2 * SinIntegral)
++		if not np.isfinite(Mass) or Mass <= 0:
++			raise ArithmeticError('eigenfunction mass is not finite and positive')
++		Out = _sample_solution(Blocks, Mu, Points, Ends, States) / np.sqrt(Mass)
++	if not np.all(np.isfinite(Out)):
++		raise ArithmeticError('normalized eigenfunction states are not finite')
++	return Out
++
++
+ def eigfun(blocks, s, pts):
+-    """Normalized eigenfunction values at pts (L^2(rho) normalization)."""
+-    xs = [0.0]
+-    for L, _ in blocks:
+-        xs.append(xs[-1] + L)
+-    starts = []
+-    M00 = 1.0; M01 = 0.0; M10 = 0.0; M11 = 1.0
+-    starts.append((0.0, M00, M01, M10, M11))
+-    for L, c in blocks:
+-        w = s * np.sqrt(c); wL = w * L
+-        cw = np.cos(wL); sw = L * np.sinc(wL / np.pi); sw2 = -w * np.sin(wL)
+-        M00, M01, M10, M11 = cw * M00 + sw * M10, cw * M01 + sw * M11, \
+-                             sw2 * M00 + cw * M10, sw2 * M01 + cw * M11
+-        starts.append((xs[len(starts)], M00, M01, M10, M11))
+-    norm = 0.0
+-    for bi, (L, c) in enumerate(blocks):
+-        _, M00, M01, M10, M11 = starts[bi]
+-        w = s * np.sqrt(c)
+-        A = M01; B = M11 / w
+-        Icos = 0.5 * (L + np.sin(2 * w * L) / (2 * w))
+-        Isin = 0.5 * (L - np.sin(2 * w * L) / (2 * w))
+-        Icross = np.sin(w * L) ** 2 / (2 * w)
+-        norm += c * (A * A * Icos + B * B * Isin + 2 * A * B * Icross)
+-    out = np.zeros(len(pts))
+-    for j, p in enumerate(pts):
+-        bi = max(i for i in range(len(xs) - 1) if xs[i] <= p)
+-        _, M00, M01, M10, M11 = starts[bi]
+-        L, c = blocks[bi]
+-        w = s * np.sqrt(c); d = p - xs[bi]
+-        out[j] = M01 * np.cos(w * d) + (M11 / w) * np.sin(w * d)
+-    return out / np.sqrt(norm)
++	"""L2(rho)-normalized values; derivatives share exactly the same mass."""
++	return eigenfunction_states(blocks, s, pts)[:, 0]
+ 
+ 
+ class Recon:

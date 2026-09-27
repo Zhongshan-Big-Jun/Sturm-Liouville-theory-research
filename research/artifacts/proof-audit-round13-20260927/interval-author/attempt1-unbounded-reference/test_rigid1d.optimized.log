@@ -1,0 +1,55 @@
+SOURCE /mnt/f/LaTeX/BVE research/misc/rigid1d.py sha256=3a34bdd9d839c542d004933fabbd15aca4908cef04cf54f076fe4a1b74f80be2
+E1_SOURCE /mnt/f/LaTeX/BVE research/misc/e1_certgen.py sha256=954c653ed3a83730b86b093806edb013300f737d7ac3c3eb2a9cdeae246828f3
+E1_EXECUTION named definitions/constants only; no generator output body
+R13 AUTHOR SELFCHECK optimize=1 python=3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]
+test_actual_e1_comps2_selected_certificate_margins (__main__.ExactChecks.test_actual_e1_comps2_selected_certificate_margins) ... E1_COMPS2 3 actual point evaluations; B1(17/20), B1(43/50), tau(GHI), TB(GHI) exact target margins checked
+ok
+test_actual_e1_derivative_cells_gamma_and_tau (__main__.ExactChecks.test_actual_e1_derivative_cells_gamma_and_tau) ... Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round13-20260927/interval-author/test_rigid1d.py", line 411, in <module>
+    unittest.main(verbosity=2)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/main.py", line 104, in __init__
+    self.runTests()
+    ~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/unittest/main.py", line 270, in runTests
+    self.result = testRunner.run(self.test)
+                  ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/runner.py", line 257, in run
+    test(result)
+    ~~~~^^^^^^^^
+  File "/usr/lib/python3.14/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+           ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/suite.py", line 122, in run
+    test(result)
+    ~~~~^^^^^^^^
+  File "/usr/lib/python3.14/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+           ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/suite.py", line 122, in run
+    test(result)
+    ~~~~^^^^^^^^
+  File "/usr/lib/python3.14/unittest/case.py", line 725, in __call__
+    return self.run(*args, **kwds)
+           ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/mnt/f/tools/math-audit-round13-20260927/interval-author/test_rigid1d.py", line 373, in test_actual_e1_derivative_cells_gamma_and_tau
+    self.enclosure(tau.v, (atan_reference(argument.lo)[0],
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round13-20260927/interval-author/test_rigid1d.py", line 57, in atan_reference
+    a, b = atan_reference(1/v)
+           ~~~~~~~~~~~~~~^^^^^
+  File "/mnt/f/tools/math-audit-round13-20260927/interval-author/test_rigid1d.py", line 62, in atan_reference
+    c, d = atan_series_reference((v-F(1, 2))/(1+v/2))
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round13-20260927/interval-author/test_rigid1d.py", line 38, in atan_series_reference
+    s = sum(((-1)**k * v**(2*k+1) / (2*k+1) for k in range(n)), F(0))
+  File "/usr/lib/python3.14/fractions.py", line 699, in forward
+    return monomorphic_operator(a, b)
+  File "/usr/lib/python3.14/fractions.py", line 803, in _add
+    g2 = math.gcd(t, g)
+KeyboardInterrupt

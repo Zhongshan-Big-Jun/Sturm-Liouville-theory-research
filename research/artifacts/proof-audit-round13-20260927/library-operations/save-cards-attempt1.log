@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/mnt/f/tools/math-audit-round13-20260927/save_cards.py", line 61, in <module>
+    Results[Name]=L.save_card(R,Data,PathValue,hashlib.sha256(Raw).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/HuangZY/.codex/plugins/cache/math-research/manage-math-research-program/2.0.1/skills/manage-math-research-program/scripts/research_library.py", line 216, in save_card
+    Raw = ("---\n" + json.dumps(Data, ensure_ascii=False, sort_keys=True, allow_nan=False) + "\n---\n" + Content.rstrip("\n") + "\n").encode("utf-8")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/mnt/f/tools/math-audit-round7-20260921/posix-native-probe/root/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable

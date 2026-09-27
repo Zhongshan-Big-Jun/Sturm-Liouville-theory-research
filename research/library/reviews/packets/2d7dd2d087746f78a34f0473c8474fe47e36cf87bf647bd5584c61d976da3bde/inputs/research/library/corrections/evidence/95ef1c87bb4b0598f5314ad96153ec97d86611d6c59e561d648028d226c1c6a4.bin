@@ -1,0 +1,243 @@
+﻿% 编译方式: xelatex SL_fractional_left_definite.tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\emergencystretch 3em
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{definition}[theorem]{定义}
+
+\title{稀疏多项式族的分数阶稠密性: $0\le s\le3$ 与高阶推广勘误}
+\author{研究证明文档 (项目: BVE research)}
+\date{2026-08-05; 2026-09-20 revision}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+2026-09-20 修订. 旧版声称同一稀疏多项式族在所有实数阶 $H^s$ 中完备,
+该全范围结论已撤回: 对 $s\ge0$, $p_4=x^4-2x^2\in H^s$ 当且仅当 $s<7/2$.
+本版仅保留由 H3 主定理、谱截断和连续嵌入严格推出的 $0\le s\le3$
+结论, 它覆盖原分数窗口 $3/2\le s<2$. $3<s<7/2$ 的同族稠密性本次不判定.
+原文与历史数值证据按修订前字节保存在本轮审计工件中; 它们不再作为高阶幂域证明.
+\end{abstract}
+
+\tableofcontents
+
+\section{对象与可用输入}
+固定 $c>0$, 令 $K_cf=-f''+cf$ 为 $L^2(-1,1)$ 中的移位 Krein Laplacian,
+\[
+ D(K_c)=\{f\in H^2_{\rm Sob}(-1,1):
+ f'(1)=f'(-1)=(f(1)-f(-1))/2\}.
+\]
+这里 $H^2_{\rm Sob}$ 表示通常 Sobolev 空间, 避免与左定记号混淆.
+对实数 $s\ge0$ 定义
+\[
+ H^s=D(K_c^{s/2}),\qquad \|f\|_{H^s}=\|K_c^{s/2}f\|_2.
+\]
+自伴性与 $K_c\ge cI$ 为既有左定设定. 完整正交谱系及其 $L^2$ 范数平方为
+\[
+\begin{array}{c|c|c}
+ \phi & \lambda & \|\phi\|_2^2\\ \hline
+ 1 & c & 2\\
+ x & c & 2/3\\
+ \cos(n\pi x),\ n\ge1 & (n\pi)^2+c & 1\\
+ \sin(\mu_nx),\ n\ge1 & \mu_n^2+c & \mu_n^2/(1+\mu_n^2)
+\end{array}
+\]
+其中 $n\pi<\mu_n<(n+1/2)\pi$, $\tan\mu_n=\mu_n$.
+特别地 $c$ 的重数为二. 偶子空间在 $[0,1]$ 上给出 Neumann--Neumann
+问题; 奇子空间给出 $f(0)=0$, $f'(1)=f(1)$ 的问题, 后者的零频模态为 $x$.
+两者都是正则分离边界问题, 其完备正交系合起来即上表. 直接积分还给出
+\[
+ \int_{-1}^1x\sin(\mu_nx)\,dx
+ =\frac{2(\sin\mu_n-\mu_n\cos\mu_n)}{\mu_n^2}=0,\qquad
+ \|\sin(\mu_nx)\|_2^2=1-\frac{\sin(2\mu_n)}{2\mu_n}
+ =\frac{\mu_n^2}{1+\mu_n^2}.
+\]
+把上表归一化并枚举为 $\{e_j\}$, 对 $s\ge0$ 有真正的幂域判据
+\[
+ f\in H^s\quad\Longleftrightarrow\quad
+ \sum_j\lambda_j^s|\langle f,e_j\rangle|^2<\infty,
+ \qquad \|f\|_{H^s}^2=\sum_j\lambda_j^s|\langle f,e_j\rangle|^2.
+\]
+若使用未归一化的 $\phi_j$, 每项必须除以 $\|\phi_j\|_2^2$.
+
+对 $s<0$, 定义 $H^s$ 为 $L^2$ 在范数 $\|K_c^{s/2}f\|_2$ 下的完备化,
+即加权序列空间 $\{(a_j):\sum_j\lambda_j^s|a_j|^2<\infty\}$.
+虽然有界算子 $K_c^{s/2}$ 在 $L^2$ 上处处有定义, 这个较弱范数不与
+$L^2$ 范数等价: $\|\cos(n\pi x)\|_s=((n\pi)^2+c)^{s/2}\to0$,
+而其 $L^2$ 范数恒为一. 事实上对任意 $s<0$, 取余弦模态系数
+$a_n=n^{-1/2}$, 则 $\sum\lambda_n^s/n<\infty$ 而 $\sum1/n=\infty$;
+其有限和在弱范数下 Cauchy, 在 $L^2$ 中没有该范数的极限.
+这同时说明必须作完备化. 在这个完整标度上, 系数映射
+\[
+ \mathcal K_c:(a_j)\longmapsto(\lambda_ja_j),\qquad
+ \mathcal K_c:H^s\longrightarrow H^{s-2}
+\]
+对每个实数 $s$ 是等距满射, 逆映射逐项乘以 $\lambda_j^{-1}$.
+它在 $D(K_c)$ 上与原算子相同, 在其它阶上表示标度延拓, 不能默认
+对所有元素都按经典二阶导数作用. 下述低阶稠密性证明仍不依赖负阶空间.
+
+稀疏族为
+\[
+ p_0=1,\quad p_1=x,\quad
+ p_{2m}=x^{2m}-\frac m{m-1}x^{2m-2},\quad
+ p_{2m+1}=x^{2m+1}-\frac m{m-1}x^{2m-1},\quad m\ge2.
+\]
+每个 $p_n$ 满足边界条件, 且 $K_cp_n$ 为光滑多项式, 属于
+$D(K_c^{1/2})=H^1_{\rm Sob}(-1,1)$, 所以 $p_n\in H^3$.
+本页使用修订后的 \texttt{SL\_h3\_completeness\_proof.tex} 主定理:
+$\operatorname{span}\{p_n\}$ 在 $H^3$ 中稠密. 该输入仍由 H1 矩跳跃主链证明,
+不依赖已撤回的任意阶推广.
+
+\section{谱截断传输的严格证明}
+\begin{theorem}[低阶和分数窗口]\label{thm:main}
+对每个 $c>0$ 和实数 $0\le s\le3$, $\{p_n\}$ 在 $H^s$ 中稠密.
+\end{theorem}
+\begin{proof}
+设 $E$ 为 $K_c$ 的谱测度. 对 $g\in H^3$, 因谱包含于 $[c,\infty)$,
+\[
+ \|g\|_{H^s}^2=\int\lambda^s\,d\|E_\lambda g\|^2
+ \le c^{s-3}\int\lambda^3\,d\|E_\lambda g\|^2
+ =c^{s-3}\|g\|_{H^3}^2.
+\]
+取 $f\in H^s$ 及 $\varepsilon>0$. 截断 $f_N=E([c,N])f$ 属于 $H^3$,
+因为谱支集有界. 由积分尾部收敛,
+$\|f-f_N\|_{H^s}^2=\int_{(N,\infty)}\lambda^s\,d\|E_\lambda f\|^2\to0$.
+先取 $N$ 使此误差范数小于 $\varepsilon/2$, 再由 H3 主定理取有限线性组合
+$p\in\operatorname{span}\{p_n\}$ 使
+$\|f_N-p\|_{H^3}<\varepsilon/(2c^{(s-3)/2})$.
+三角不等式和连续嵌入给出 $\|f-p\|_{H^s}<\varepsilon$. \qed
+\end{proof}
+
+\section{反例与撤回的证明机制}
+\begin{proposition}[精确成员阈值]\label{prop:thresholds}
+对每个 $c>0$, $t,s\ge0$,
+\[
+ x^2\in H^t\iff t<3/2,\qquad p_4\in H^s\iff s<7/2.
+\]
+因此 $s\ge7/2$ 时原稀疏族甚至不是 $H^s$ 的子集.
+\end{proposition}
+\begin{proof}
+对 $a=n\pi$, 两次分部积分给出
+\[
+ \int_{-1}^1x^2\cos(ax)\,dx=\frac{4(-1)^n}{a^2},\qquad
+ \int_{-1}^1x^4\cos(ax)\,dx
+ =\frac{8(-1)^n}{a^2}-\frac{48(-1)^n}{a^4}.
+\]
+所以 $p_4$ 的 $a^{-2}$ 项恰好相消. 与未归一化常数模态的内积分别为 $2/3$ 与
+$-14/15$, 所有奇模态的投影为零. 允许级数值为 $+\infty$, 得到
+\begin{align*}
+ \|x^2\|_t^2&=\frac{2c^t}{9}
+ +16\sum_{n\ge1}\frac{((n\pi)^2+c)^t}{(n\pi)^4},\\
+ \|p_4\|_s^2&=\frac{98c^s}{225}
+ +2304\sum_{n\ge1}\frac{((n\pi)^2+c)^s}{(n\pi)^8}.
+\end{align*}
+尾项分别与 $n^{2t-4}$ 和 $n^{2s-8}$ 等价. 正项级数判别给出上述
+严格阈值, 两个端点均为调和级数型发散. 这里 $+\infty$ 只表示不属于
+相应空间, 不是空间元素的有限范数. \qed
+\end{proof}
+
+保留第一轮的独立算子域反例作为一致性检查:
+$p_4\in D(K_c)$, 但
+\[
+ K_cp_4=cx^4-(2c+12)x^2+4,\qquad (K_cp_4)'(1)=-24,\quad
+ (K_cp_4)'(-1)=24.
+\]
+偶函数 $K_cp_4$ 的边界值差为零, 两端导数却不为零, 所以不属于 $D(K_c)$.
+按算子乘积域定义 $p_4\notin D(K_c^2)$, 与精确阈值相符.
+
+旧版的 $N_k=(w,x^k)_t$ 任意阶取矩不成立: $x^2\notin D(K_c)$,
+所以高阶内积可能未定义. 同样, $(c-D^2)^r$ 的形式多项式展开不证明
+真正算子幂存在. 稠密性传输只可应用于已经属于源空间的族.
+尤其从 $t=3/2$ 起, 连 $x^2$ 的 $H^t$ 矩都不能这样定义.
+负阶标度虽可按上文修正, 却不消除正阶的成员障碍.
+历史脚本的投影残差或形式范数增长不是幂域成员关系的证书.
+$p_4$ 的成员判据也不是 $3<s<7/2$ 时整个族的稠密性证明.
+
+\section{仍然有效的增长引理}
+\begin{lemma}[有显式系数条件的钉住解]\label{lem:growth}
+设 $c_0>0$, $u_0=0$, $u_1=1$, 且
+$c_0u_j=A_ju_{j-1}-B_ju_{j-2}$ ($j\ge2$).
+若 $B_j\ge0$ 且 $A_j-B_j\ge c_0$ 对每个 $j\ge2$ 成立, 则
+$u_j>0$ ($j\ge1$), $u_j\ge u_{j-1}$, 并且
+\[
+ u_j\ge\prod_{k=2}^j\frac{A_k-B_k}{c_0}.
+\]
+若还满足 $A_j-B_j\ge4j+c_0$, 则
+$u_j\ge(4/c_0)^{j-1}j!$, 因而增长快于每个固定次数的多项式.
+\end{lemma}
+\begin{proof}
+从 $0=u_0<u_1=1$ 出发, 归纳使用
+\[
+ c_0u_j=(A_j-B_j)u_{j-1}+B_j(u_{j-1}-u_{j-2})
+ \ge(A_j-B_j)u_{j-1}\ge c_0u_{j-1}.
+\]
+逐项连乘得第一下界; 再用 $(A_j-B_j)/c_0\ge4j/c_0$ 得第二下界.
+仅有前两个条件不保证快于多项式的增长: $A_j=c_0$, $B_j=0$ 时
+$u_j=1$ ($j\ge1$). \qed
+\end{proof}
+
+本问题的偶、奇递推系数分别为
+\[
+ A_j=2j(2j-1)+\frac{cj}{j-1},\quad B_j=2j(2j-3),\qquad
+ A'_j=2j(2j+1)+\frac{cj}{j-1},\quad B'_j=2j(2j-1).
+\]
+两者均满足 $A_j-B_j=A'_j-B'_j=4j+cj/(j-1)\ge4j+c$.
+引理由直接归纳成立, 不依赖任何衰减根断言. 更确切地, 若某个递推解的
+比值 $r_j=u_j/u_{j-1}$ 最终有定义并收敛到有限非零 $L$, 则
+$cr_j=A_j-B_j/r_{j-1}$ 除以 $j^2$ 后给出 $0=4-4/L$, 故只能有 $L=1$.
+这不声称这样的解存在或决定其增长阶. 增长引理的应用仍须先确认矩内积
+有定义及其增长上界; 此处保留的 H3 证明只在 $H^1$ 中取矩.
+
+\section{数值工具的含义与限制}
+\path{scripts/op10_verify_mechanism.py} 与
+\path{scripts/op10_fractional_window.py} 中的有限谱和只表示谱投影的平方范数,
+不自动表示原函数的有限范数. 对命题 \ref{prop:thresholds} 的发散区间,
+程序应明确报告解析发散, 不以有限截断宣称通过. 在收敛区间可使用尾界:
+若 $q-2t>1$, 则
+\[
+ \sum_{n>N}\frac{((n\pi)^2+c)^t}{(n\pi)^q}
+ \le \pi^{2t-q}\left(1+\frac{c}{\pi^2(N+1)^2}\right)^{\max(t,0)}
+ \frac{N^{2t-q+1}}{q-2t-1}.
+\]
+这是用单调因子上界和 $p$ 级数的积分尾界得到的解析估计; 普通浮点计算
+该表达式仍不等于带向外舍入的区间证书.
+
+为稳定计算第 $k$ 个正根, 写 $P_k=(k+1/2)\pi$, $\delta=P_k-\mu$,
+在 $[0,\pi/2]$ 求
+\[
+ h_k(\delta)=\cos\delta-(P_k-\delta)\sin\delta=0.
+\]
+有 $h_k(0)=1$, $h_k(\pi/2)=-k\pi<0$,
+$h_k'(\delta)=-(P_k-\delta)\cos\delta<0$ 于开区间, 因而严格括住唯一根.
+程序检查端点符号、分支和缩放残差; 若浮点精度已不能分辨根与极点,
+应显式失败, 而非把极点或固定偏移端点当根. 这些诊断、自检和有限传输
+恒等式均不是独立验收或无限维稠密性的数值证明.
+
+\begin{thebibliography}{9}
+\bibitem{axioms} A. Jones, L. L. Littlejohn, A. Quintero Roba, \emph{Krein-Sobolev
+	Orthogonal Polynomials II}, Axioms 14 (2025), 115.
+	\url{https://doi.org/10.3390/axioms14020115}
+\bibitem{lw1} L. L. Littlejohn, R. Wellman, \emph{A general left-definite theory
+	for certain self-adjoint operators with applications to differential equations},
+	J. Differential Equations 181 (2002), 280--339.
+\bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
+	\emph{Abstract left-definite theory: a model operator approach, examples,
+	fractional Sobolev spaces, and interpolation theory}, arXiv:2408.01514 (2024).
+	\url{https://arxiv.org/abs/2408.01514}
+\bibitem{hs} 项目文档, \emph{左定空间 $H^s[-1,1]$ 中显式完备正交多项式系: 证明文档},
+	2026-08-05.
+\bibitem{dc} 项目文档, \emph{边界约束 Hilbert 空间中多项式稠密的一般准则},
+	2026-08-05.
+\end{thebibliography}
+
+\end{document}

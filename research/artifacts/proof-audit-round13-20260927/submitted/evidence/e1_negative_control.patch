@@ -1,0 +1,11 @@
+--- recovered_driver.py
++++ negative_control.py
+@@ -65,7 +65,7 @@
+ t0 = time.time()
+ 
+ # ---------- bracket signs / structure ----------
+-ok, v = lb(lambda g: comps(g)['B1'], D('0.85'), '1/200');       add('B1(0.85) >= 1/200', ok)
++ok, v = lb(lambda g: comps(g)['B1'], D('0.85'), '100');       add('B1(0.85) >= 1/200', ok)
+ ok, v = ub(lambda g: comps(g)['B1'], D('0.86'), '-1/50');       add('B1(0.86) <= -1/50', ok)
+ ok, n = der_sign(lambda g: comps(g)['B1'], GLO, GHI, False);    add('B1 decreasing', ok, 'boxes=%d' % n)
+ ok, n = range_pos(lambda g: comps(g)['B2']*(-1), GLO, GHI);     add('B2 < 0', ok, 'boxes=%d' % n)

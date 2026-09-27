@@ -1,0 +1,549 @@
+{
+  "FACT_SPECS": [
+    {
+      "name": "B1 decreasing [0.655,1.0472]",
+      "kind": "analytic",
+      "expression": "dB1",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ]
+    },
+    {
+      "name": "B1(0.85) >= 1/200",
+      "kind": "point",
+      "expression": "B1",
+      "comparison": "ge",
+      "target": "1/200",
+      "point": "17/20"
+    },
+    {
+      "name": "B1(0.86) <= -1/50",
+      "kind": "point",
+      "expression": "B1",
+      "comparison": "le",
+      "target": "-1/50",
+      "point": "43/50"
+    },
+    {
+      "name": "B2 < 0",
+      "kind": "value-taylor",
+      "expression": "B2",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 4
+    },
+    {
+      "name": "M < 0",
+      "kind": "value-taylor",
+      "expression": "M",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 2
+    },
+    {
+      "name": "B4 > 0",
+      "kind": "value-taylor",
+      "expression": "B4",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 8
+    },
+    {
+      "name": "G5 > 0",
+      "kind": "value-taylor",
+      "expression": "G5",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 8
+    },
+    {
+      "name": "Qhi < 0",
+      "kind": "value-taylor",
+      "expression": "Qhi",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 8
+    },
+    {
+      "name": "TA_B2 >= 27/10 on [0.723,0.724]",
+      "kind": "value-taylor",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "27/10",
+      "domain": [
+        "723/1000",
+        "181/250"
+      ],
+      "n": 4
+    },
+    {
+      "name": "TC >= 19/10 on [0.82,0.83]",
+      "kind": "value-taylor",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "19/10",
+      "domain": [
+        "41/50",
+        "83/100"
+      ],
+      "n": 4
+    },
+    {
+      "name": "Qlo increasing",
+      "kind": "deriv-taylor",
+      "expression": "Qlo",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 4
+    },
+    {
+      "name": "F increasing [1.0014,1.0472]",
+      "kind": "deriv-taylor",
+      "expression": "Fv",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "5007/5000",
+        "1309/1250"
+      ],
+      "n": 2
+    },
+    {
+      "name": "TA_B2 inc [0.655,0.72]",
+      "kind": "deriv-taylor",
+      "expression": "TA_B2",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "18/25"
+      ],
+      "n": 8
+    },
+    {
+      "name": "TA_B2 inc [0.72,0.723]",
+      "kind": "deriv-taylor",
+      "expression": "TA_B2",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "18/25",
+        "723/1000"
+      ],
+      "n": 2
+    },
+    {
+      "name": "TA_B2 dec [0.724,0.73]",
+      "kind": "deriv-taylor",
+      "expression": "TA_B2",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "181/250",
+        "73/100"
+      ],
+      "n": 2
+    },
+    {
+      "name": "TA_B2 dec [0.73,0.85]",
+      "kind": "deriv-taylor",
+      "expression": "TA_B2",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "73/100",
+        "17/20"
+      ],
+      "n": 8
+    },
+    {
+      "name": "TA_B2 dec [0.85,0.86]",
+      "kind": "deriv-taylor",
+      "expression": "TA_B2",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "17/20",
+        "43/50"
+      ],
+      "n": 2
+    },
+    {
+      "name": "TA_M dec [0.85,0.86]",
+      "kind": "deriv-taylor",
+      "expression": "TA_M",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "17/20",
+        "43/50"
+      ],
+      "n": 2
+    },
+    {
+      "name": "TA_M dec [0.86,1.0472]",
+      "kind": "deriv-taylor",
+      "expression": "TA_M",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "43/50",
+        "1309/1250"
+      ],
+      "n": 4
+    },
+    {
+      "name": "TB decreasing",
+      "kind": "deriv-taylor",
+      "expression": "TB",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "1309/1250"
+      ],
+      "n": 8
+    },
+    {
+      "name": "TC inc [0.655,0.82]",
+      "kind": "deriv-taylor",
+      "expression": "TC",
+      "comparison": "gt",
+      "target": "0/1",
+      "domain": [
+        "131/200",
+        "41/50"
+      ],
+      "n": 16
+    },
+    {
+      "name": "TC dec [0.83,1.0472]",
+      "kind": "deriv-taylor",
+      "expression": "TC",
+      "comparison": "lt",
+      "target": "0/1",
+      "domain": [
+        "83/100",
+        "1309/1250"
+      ],
+      "n": 8
+    },
+    {
+      "name": "TA_B2(0.655) >= 11/5",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "11/5",
+      "point": "131/200"
+    },
+    {
+      "name": "TA_B2(0.72) >= 13/5",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "13/5",
+      "point": "18/25"
+    },
+    {
+      "name": "TA_B2(0.73) >= 13/5",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "13/5",
+      "point": "73/100"
+    },
+    {
+      "name": "TA_B2(0.82) >= 2",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "2/1",
+      "point": "41/50"
+    },
+    {
+      "name": "TA_B2(0.83) >= 2",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "2/1",
+      "point": "83/100"
+    },
+    {
+      "name": "TA_B2(0.85) >= 19/10",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "19/10",
+      "point": "17/20"
+    },
+    {
+      "name": "TA_B2(0.86) >= 47/25",
+      "kind": "point",
+      "expression": "TA_B2",
+      "comparison": "ge",
+      "target": "47/25",
+      "point": "43/50"
+    },
+    {
+      "name": "TA_M(0.86) >= 9/5",
+      "kind": "point",
+      "expression": "TA_M",
+      "comparison": "ge",
+      "target": "9/5",
+      "point": "43/50"
+    },
+    {
+      "name": "TA_M(1.0014) >= 3/5",
+      "kind": "point",
+      "expression": "TA_M",
+      "comparison": "ge",
+      "target": "3/5",
+      "point": "5007/5000"
+    },
+    {
+      "name": "TA_M(1.0472) >= 3/8",
+      "kind": "point",
+      "expression": "TA_M",
+      "comparison": "ge",
+      "target": "3/8",
+      "point": "1309/1250"
+    },
+    {
+      "name": "TB(0.72) >= 3/10",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "3/10",
+      "point": "18/25"
+    },
+    {
+      "name": "TB(0.73) >= 3/10",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "3/10",
+      "point": "73/100"
+    },
+    {
+      "name": "TB(0.82) >= 3/20",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "3/20",
+      "point": "41/50"
+    },
+    {
+      "name": "TB(0.83) >= 3/20",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "3/20",
+      "point": "83/100"
+    },
+    {
+      "name": "TB(0.85) >= 1/10",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "1/10",
+      "point": "17/20"
+    },
+    {
+      "name": "TB(0.86) >= 1/10",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "1/10",
+      "point": "43/50"
+    },
+    {
+      "name": "TB(1.0014) >= 1/25",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "1/25",
+      "point": "5007/5000"
+    },
+    {
+      "name": "TB(1.0472) >= 1/40",
+      "kind": "point",
+      "expression": "TB",
+      "comparison": "ge",
+      "target": "1/40",
+      "point": "1309/1250"
+    },
+    {
+      "name": "TC(0.655) >= 57/50",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "57/50",
+      "point": "131/200"
+    },
+    {
+      "name": "TC(0.72) >= 3/2",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "3/2",
+      "point": "18/25"
+    },
+    {
+      "name": "TC(0.73) >= 3/2",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "3/2",
+      "point": "73/100"
+    },
+    {
+      "name": "TC(0.85) >= 19/10",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "19/10",
+      "point": "17/20"
+    },
+    {
+      "name": "TC(0.86) >= 19/10",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "19/10",
+      "point": "43/50"
+    },
+    {
+      "name": "TC(1.0014) >= 4/3",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "4/3",
+      "point": "5007/5000"
+    },
+    {
+      "name": "TC(1.0472) >= 11/10",
+      "kind": "point",
+      "expression": "TC",
+      "comparison": "ge",
+      "target": "11/10",
+      "point": "1309/1250"
+    },
+    {
+      "name": "B4(1.0472) >= 9/25",
+      "kind": "point",
+      "expression": "B4",
+      "comparison": "ge",
+      "target": "9/25",
+      "point": "1309/1250"
+    },
+    {
+      "name": "Qlo(1.0014) <= -1/10000",
+      "kind": "point",
+      "expression": "Qlo",
+      "comparison": "le",
+      "target": "-1/10000",
+      "point": "5007/5000"
+    },
+    {
+      "name": "Qlo(1.0472) <= 33/200",
+      "kind": "point",
+      "expression": "Qlo",
+      "comparison": "le",
+      "target": "33/200",
+      "point": "1309/1250"
+    },
+    {
+      "name": "F(1.0472) <= 63/100",
+      "kind": "point",
+      "expression": "Fv",
+      "comparison": "le",
+      "target": "63/100",
+      "point": "1309/1250"
+    },
+    {
+      "name": "tau(1.0472) < 13/10",
+      "kind": "point",
+      "expression": "tmax",
+      "comparison": "lt",
+      "target": "13/10",
+      "point": "1309/1250"
+    },
+    {
+      "name": "h(gamma) >= m at 0.655",
+      "kind": "point",
+      "expression": "h",
+      "comparison": "ge",
+      "target": "791/2500",
+      "point": "131/200"
+    },
+    {
+      "name": "h(13/10) >= m",
+      "kind": "point",
+      "expression": "h",
+      "comparison": "ge",
+      "target": "791/2500",
+      "point": "13/10"
+    },
+    {
+      "name": "h(gamma) >= m",
+      "kind": "concavity-reduction",
+      "expression": "h",
+      "comparison": "ge",
+      "target": "791/2500"
+    },
+    {
+      "name": "h(tau) >= m",
+      "kind": "concavity-reduction",
+      "expression": "h",
+      "comparison": "ge",
+      "target": "791/2500"
+    },
+    {
+      "name": "h(t) >= m on [0.655,13/10]",
+      "kind": "concavity-reduction",
+      "expression": "h",
+      "comparison": "ge",
+      "target": "791/2500"
+    }
+  ],
+  "PRIMITIVE_POINTS": [
+    "131/200",
+    "18/25",
+    "723/1000",
+    "181/250",
+    "73/100",
+    "41/50",
+    "83/100",
+    "17/20",
+    "43/50",
+    "5007/5000",
+    "1309/1250"
+  ]
+}

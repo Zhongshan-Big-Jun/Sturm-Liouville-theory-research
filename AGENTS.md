@@ -10,6 +10,16 @@
 
 # 项目维护
 
+## 2026-09-27 第十三轮复核修订 (修订与验收完成)
+
+用户要求基于sl_audit_round13直接修复实际工作区, 逐项核对R13-01至R13-12, 不覆盖新版、不机械接受审计、不放宽阈值或删反例. 基线4a82d3c, 17892 tracked/134原untracked/6原dirty已存F:/tools/math-audit-round13-20260927/baseline.json. 41项附件哈希及3份完整源Git blob核对通过.
+
+本轮只修复证书/接收链、共享谱和Green接口、Helly假设及活动状态, 保留正确相位/极点/驻点Jacobian/扇区区分与A1/A12结论. 不修改旧讲义PDF、冻结作者稿或历史回执, 不扩写G1或M3/KP. 允许执行本轮实际源及隔离附件作性质测试, 不执行旧Blueprint维护器或修改canonical. 作者分工范围互斥, 协调器负责卡片纠错与集成; 最终检验使用新fork_context:false会话及精确冻结材料. 只生成必要证据和简短逐项关闭表, 活动TeX修改后重建相应阅读版并检查修改页. 完成后按origin后fork交付.
+
+第十三轮完成: 57条完整证书重新计算, 有理端点/目标谓词/原语包络/失败传播修复; 节点共同归一化、坐标Green、非正参数传播及一般Jacobian补项修复. 普通/-O性质与第十二轮回归实际通过, 3份最终新隔离回执按当前哈希验收. 首次证书审查退回的CLI负对照、旧引擎漏引用和开闭区域错误已另版修复, 原回执保留. Helly和直接bang-bang前提、研究地图与活动状态同步; 四份活动PDF编译并检查修改页. 原版API接收31项义务, 当前89可用/2阻断(含退役Decimal), 两条版本批注已查询核对. 无新Lean/全局理论扩写, canonical、旧讲义和原6dirty/134untracked保留; 报告见reports/proof-audit-round13-20260927/REPORT.md, 最终发布另核对外部DELIVERY.json及真实远端.
+
+发布前字节核对另发现: 最终追加日志时统一了旧混合换行; 已从基线恢复历史前缀原字节, 本轮追加正文不变. 原失败检查与修复记录见 research/artifacts/proof-audit-round13-20260927/operations/post-reception-preservation.json.
+
 ## 2026-09-26 第十二轮审计修缮 (修订与验收完成)
 
 用户原话: "C:\Users\HuangZY\Downloads\sl_audit_round12 继续修订", 指定 math-research-workflow 2.0.1. 基线be7c091, 16541个tracked、134个原untracked和6项原dirty已按字节保存在F:/tools/math-audit-round12-20260926/baseline.json. 附件16项哈希通过, 两份摘录的九个函数AST与当前完整Git blob一致; 摘录仍按摘录分类.
@@ -155,7 +165,7 @@ R3-F1/F2 的一般递推、基扰动与 R3-F3 的商空间证明已核实修订,
 - M3: n=2 对称 INF large-R 有限非零内部 chart 内 STRICT 闭合, canonical 接收与独立复现已保存. 旧 staged D-side mass 的 odd/log 障碍已 SUPERSEDED.
 - KP-DET: sequence-26 的完整 0<c<=2/3 分支与 P20-P21 求积约化经审计 PASS. P1-P4 的 pivot/phase 部分已 canonical 接收; 后续 run 包与 canonical 分开登记. 本地主 run 的 Q9 仍 OPEN.
 - 插件公开 benchmark 另有三份 Q9 完整证明及匿名外审 PASS, 尚未接入本 canonical 或 Lean. 不据此宣称全局 G1', KO-DET 或完整 n>=2 极值问题已解决.
-- 旧文档中 G2 的闭合范围表述存在差异, 需要按定义与量词对齐. 本轮维护不改写历史证明来消除差异.
+- G2 当前活动入口已区分: 全部残差零点且含 R↓1 的一致桥梁仍待证; 历史符号相容分支且 R0>1 的有限结论不被扩大. 第十三轮对齐活动量词, 历史证明/日志保持原字节.
 - Lean 工程含已检查的证明片段, 条件化接口和带 sorry 的脚手架. 历史全库计数不得复述为当前形式化结论.
 
 ## 近期维护记录

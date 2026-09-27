@@ -1,0 +1,31 @@
+# Source excerpts, not a runnable full copy.
+# Commit 4a82d3c2c8c7c3e5f3f027efcf2be3c54a612983
+# misc/e1_certgen.py, Git blob 00f87e20a50251a8cb859844e87ddd3aa58965f1
+
+# These call sites advertise nonzero lower bounds but pass the unshifted function
+# to a helper whose predicate is only lo_v > 0:
+ok, pieces = taylor_value(lambda g: comps2(g)['TA_B2'], F(723,1000), F(724,1000), True, 4)
+add('TA_B2 >= 27/10 on [0.723,0.724]', 'value-taylor', ok, dict(n=4, pieces=pieces))
+ok, pieces = taylor_value(lambda g: comps2(g)['TC'], F(82,100), F(83,100), True, 4)
+add('TC >= 19/10 on [0.82,0.83]', 'value-taylor', ok, dict(n=4, pieces=pieces))
+
+# Current generator finalization (no aggregate failure exit):
+print()
+print('summary:', ledger['summary'])
+print('elapsed %.1f s' % (time.time() - t0))
+with open('misc/e1_cert_ledger.json', 'w', encoding='utf-8') as f:
+    json.dump(ledger, f, ensure_ascii=False, indent=1)
+print('written misc/e1_cert_ledger.json')
+
+# misc/e1_cert_ledger.json, Git blob 84687410555bb1bed04260574c0df5bdde47a4a4
+# First numerical fact:
+# name = B1(0.85) >= 1/200
+# val = ["0.009851718323", "0.009851718323"]
+# target = "1/200", cmp = "ge", ok = true
+
+# docs/SL_gap_n1_O3a_phase_rigidity_proof.tex:
+# The point-certificate table calls its values outward-rounded certified
+# intervals, often displayed as a singleton. Its first row uses
+# 0.009851718323 >= 1/200 as the certified lower value.
+# The same document explicitly retires rigid_dec.py/zz_verify_e1_dec.py.
+# Do not attribute retired-engine failures directly to the current main proof.

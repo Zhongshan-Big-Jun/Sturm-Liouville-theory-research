@@ -1,0 +1,8 @@
+{
+  "status": {
+    "01a0e2aa-6854-74a3-a88a-51d82ec96334": {
+      "completed": "R13-07..R13-10 的代码作者修复与自测已完成，未提交或推送，也未作独立批准。\n\n修改仅涉及：\n\n- [_gapn2_symmetry_recon.py](</mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py>)\n- [_gapn2_jacobian_analytic.py](</mnt/f/LaTeX/BVE research/scripts/_gapn2_jacobian_analytic.py>)\n- [_gapn2_jacobian_spectral.py](</mnt/f/LaTeX/BVE research/scripts/_gapn2_jacobian_spectral.py>)\n- [_gapn2_half_problem_probe.py](</mnt/f/LaTeX/BVE research/scripts/_gapn2_half_problem_probe.py>)\n\n值与导数现共用物理解及质量积分；Green 支持坐标重排、端点和非正参数；三个 Jacobian 入口统一使用一般公式，并保留 `F=0` 的原驻点公式。\n\n最终普通／`-O` 模式各通过 **469 项性质测试及 136 项 R12 回归**，另完成六次实际 CLI 运行。节点反例误差降至约 `10⁻¹⁴`。端点兼容性回归的失败与修复日志均已保留。\n\n交接材料：\n\n- [作者说明、实际命令及限制](/mnt/f/tools/math-audit-round13-20260927/spectral-author/AUTHOR_NOTE.md)\n- [完整推导](/mnt/f/tools/math-audit-round13-20260927/spectral-author/derivation.md)\n- [最终源码哈希与日志索引](/mnt/f/tools/math-audit-round13-20260927/spectral-author/handoff.json)\n\n仍有有限谱尾误差；极端双曲传播会明确报溢出。范围外旧诊断脚本的问题已列入作者说明，未改写。\n\n"
+    }
+  },
+  "timed_out": false
+}

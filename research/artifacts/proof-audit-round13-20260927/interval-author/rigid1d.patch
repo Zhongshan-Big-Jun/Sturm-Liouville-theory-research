@@ -1,0 +1,194 @@
+diff --git a/misc/rigid1d.py b/misc/rigid1d.py
+index 49b36c2..d0fcd4a 100644
+--- a/misc/rigid1d.py
++++ b/misc/rigid1d.py
+@@ -1,8 +1,9 @@
+ ﻿# -*- coding: utf-8 -*-
+-"""rigid1d.py v3: fast exact-rational interval arithmetic + 2nd-order Taylor sign verifier.
++"""rigid1d.py: exact-rational interval arithmetic + 2nd-order Taylor sign verifier.
+ - Tight pi certified via Machin series.
+-- sin/cos: 10-term alternating series at center + interval for u.
+-- atan: 20-term series (x<=1) or pi/2 - atan(1/x).
++- sin/cos: bounded-derivative Taylor envelopes at the center + full offset ranges.
++- atan: monotone endpoint envelopes, oddness, reciprocal and pi/4 reductions.
++- Powers require nonnegative integers; sqrt requires nonnegative I / positive D, D2 values.
+ - D: dual (value, derivative);  sign verification via Taylor model f'(x) in f'(c) + f''(piece)*[-w,w]."""
+ from fractions import Fraction as F
+ import math
+@@ -46,7 +47,8 @@ class I:
+         return I(min(a,b,c,d), max(a,b,c,d))
+     def __neg__(self): return I(-self.hi, -self.lo)
+     def __pow__(self, n):
+-        assert isinstance(n, int) and n >= 0
++        if not isinstance(n, int): raise TypeError('power requires an integer exponent')
++        if n < 0: raise ValueError('power requires a nonnegative exponent')
+         if n == 0: return I(1)
+         if n == 1: return self
+         if self.lo >= 0: return I(self.lo**n, self.hi**n)
+@@ -60,7 +62,7 @@ class I:
+     def width(self): return self.hi - self.lo
+     def abs(self): return self if self.lo >= 0 else (-self if self.hi <= 0 else I(0, max(-self.lo, self.hi)))
+     def sqrt(self):
+-        assert self.lo >= 0
++        if self.lo < 0: raise ValueError('sqrt requires a nonnegative interval')
+         l = F(math.isqrt(self.lo.numerator*self.lo.denominator), self.lo.denominator)
+         h = F(math.isqrt(self.hi.numerator*self.hi.denominator) + 1, self.hi.denominator)
+         return I(l, h)
+@@ -68,6 +70,13 @@ class I:
+ NS = 12  # sin/cos series terms at center
+ 
+ def _sc_series(c):
++    """Point enclosures for every rational c, with NS >= 1 fixed above.
++
++    Use Taylor degrees 2*NS (sin) and 2*NS-1 (cos), including their zero
++    final coefficients. All derivatives have absolute value <= 1, so the
++    Lagrange remainders below hold even when the terms do not decrease.
++    """
++    c = _asF(c)
+     s = F(0); sign = 1; p = c; fact = F(1)
+     for k in range(NS):
+         s = s + sign * p / fact
+@@ -86,38 +95,40 @@ def _sc_series(c):
+     return sI, I(t - rem2, t + rem2)
+ 
+ def _sc_u(w):
+-    su = F(0); sign = 1; p = w; fact = F(1)
+-    for k in range(NS):
+-        su = su + sign * p / fact
+-        sign = -sign
+-        p = p * w * w
+-        fact = fact * F((2*k+2)*(2*k+3))
+-    rem = w**(2*NS+1) / F(math.factorial(2*NS+1))
+-    cu = F(1); sign = -1; p = w*w; fact = F(2)
+-    for k in range(1, NS):
+-        cu = cu + sign * p / fact
+-        sign = -sign
+-        p = p * w * w
+-        fact = fact * F((2*k+1)*(2*k+2))
+-    rem2 = w**(2*NS) / F(math.factorial(2*NS))
+-    return I(-(su+rem), su+rem), I(cu-rem2, cu+rem2)
++    """Enclose sin(u), cos(u) for every u in [-w,w], not only at w."""
++    w = _asF(w)
++    if w < 0: raise ValueError('offset radius must be nonnegative')
++    if w > 1: return I(-1, 1), I(-1, 1)
++    # On [0,1], cos(t) >= 1-t*t/2 >= 1/2. Thus sin increases from 0
++    # and cos decreases from 1. Oddness/evenness give the full ranges.
++    sw, cw = _sc_series(w)
++    upper_s = min(F(1), sw.hi)
++    return I(-upper_s, upper_s), I(max(F(-1), cw.lo), F(1))
+ 
+ def I_sin(x):
+     c = (x.lo + x.hi)/2
+     w = (x.hi - x.lo)/2
++    if w > 1: return I(-1, 1)
+     sc, cc = _sc_series(c)
+     sin_u, cos_u = _sc_u(w)
+-    return sc*cos_u + cc*sin_u
++    value = sc*cos_u + cc*sin_u
++    return I(max(F(-1), value.lo), min(F(1), value.hi))
+ 
+ def I_cos(x):
+     c = (x.lo + x.hi)/2
+     w = (x.hi - x.lo)/2
++    if w > 1: return I(-1, 1)
+     sc, cc = _sc_series(c)
+     sin_u, cos_u = _sc_u(w)
+-    return cc*cos_u - sc*sin_u
++    value = cc*cos_u - sc*sin_u
++    return I(max(F(-1), value.lo), min(F(1), value.hi))
+ 
+ # Machin: pi = 16 atan(1/5) - 4 atan(1/239), certified via alternating series
+ def _atan1_series(v, N=22):
++    v = _asF(v)
++    if not isinstance(N, int): raise TypeError('series length must be an integer')
++    if N < 1: raise ValueError('series length must be positive')
++    if not 0 <= v <= 1: raise ValueError('atan series requires 0 <= v <= 1')
+     s = F(0); sign = 1; p = v; k = 1
+     for _ in range(N):
+         s = s + sign * p / F(k)
+@@ -132,19 +143,31 @@ def certified_pi():
+     lo239, hi239 = _atan1_series(F(1,239))
+     lo = 16*lo5 - 4*hi239
+     hi = 16*hi5 - 4*lo239
+-    assert lo < F(22,7) and hi > F(157,50) and hi - lo < F(1,10**9)
++    if not (lo < F(22,7) and hi > F(157,50) and hi - lo < F(1,10**9)):
++        raise ArithmeticError('Machin pi enclosure sanity check failed')
+     return I(lo, hi)
+ 
+ PI = certified_pi()
+ 
++def _atan_point(v):
++    """Point bounds on the full real line; at most two recursive reductions."""
++    v = _asF(v)
++    if v < 0:
++        lo, hi = _atan_point(-v)
++        return -hi, -lo
++    if v == 1: return PI.lo/4, PI.hi/4
++    if v > 1:
++        lo, hi = _atan_point(1/v)
++        return PI.lo/2 - hi, PI.hi/2 - lo
++    if v > F(1,2):
++        # atan(v) = pi/4 - atan((1-v)/(1+v)); reduced argument < 1/3.
++        lo, hi = _atan1_series((1-v)/(1+v))
++        return PI.lo/4 - hi, PI.hi/4 - lo
++    return _atan1_series(v)
++
+ def I_atan(x):
+-    assert x.lo >= 0
+-    if x.hi <= 1:
+-        lo = _atan1_series(x.lo)[0]; hi = _atan1_series(x.hi)[1]
+-        return I(lo, hi)
+-    inv = I(F(1))/x
+-    a = I_atan(inv)
+-    return I(PI.lo/2 - a.hi, PI.hi/2 - a.lo)
++    """Monotonic endpoint enclosure, including intervals crossing 0 or +/-1."""
++    return I(_atan_point(x.lo)[0], _atan_point(x.hi)[1])
+ 
+ class D:
+     __slots__ = ('v','d')
+@@ -169,16 +192,18 @@ class D:
+         return D(self.v/o.v, (self.d*o.v - self.v*o.d)/(o.v*o.v))
+     def __neg__(self): return D(-self.v, -self.d)
+     def __pow__(self, n):
+-        assert isinstance(n, int) and n >= 0
++        if not isinstance(n, int): raise TypeError('power requires an integer exponent')
++        if n < 0: raise ValueError('power requires a nonnegative exponent')
+         if n == 0: return D(I(1), I(0))
+         return D(self.v**n, self.d*(n*self.v**(n-1)))
+     def sqrt(self):
++        if self.v.lo <= 0: raise ValueError('dual sqrt requires a strictly positive value interval')
+         r = self.v.sqrt()
+         return D(r, self.d/(I(2)*r))
+ 
+ def d_sin(x): return D(I_sin(x.v), I_cos(x.v)*x.d)
+ def d_cos(x): return D(I_cos(x.v), -I_sin(x.v)*x.d)
+-def d_atan(x): return D(I_atan(x.v), x.d/(I(1)+x.v*x.v))
++def d_atan(x): return D(I_atan(x.v), x.d/(I(1)+x.v**2))
+ 
+ # ---- second-order sign verifier ----
+ 
+@@ -212,12 +237,14 @@ class D2:
+                   (u.d2*w.v - u.v*w.d2)/w2 - 2*w.d1*(u.d1*w.v - u.v*w.d1)/(w2*w.v))
+     def __neg__(self): return D2(-self.v, -self.d1, -self.d2)
+     def __pow__(self, n):
+-        assert isinstance(n, int) and n >= 0
++        if not isinstance(n, int): raise TypeError('power requires an integer exponent')
++        if n < 0: raise ValueError('power requires a nonnegative exponent')
+         if n == 0: return D2(I(1), I(0), I(0))
+         if n == 1: return self
+         return D2(self.v**n, self.d1*(n*self.v**(n-1)),
+                   self.d2*(n*self.v**(n-1)) + self.d1*self.d1*(n*(n-1)*self.v**(n-2)))
+     def sqrt(self):
++        if self.v.lo <= 0: raise ValueError('dual sqrt requires a strictly positive value interval')
+         r = self.v.sqrt()
+         return D2(r, self.d1/(I(2)*r), self.d2/(I(2)*r) - self.d1*self.d1/(4*r*r*r))
+     def inv(self):
+@@ -231,7 +258,7 @@ def d2_cos(x):
+     return D2(I_cos(x.v), -I_sin(x.v)*x.d1,
+               -I_cos(x.v)*x.d1*x.d1 - I_sin(x.v)*x.d2)
+ def d2_atan(x):
+-    g = I(1) + x.v*x.v
++    g = I(1) + x.v**2
+     return D2(I_atan(x.v), x.d1/g,
+               x.d2/g - 2*x.v*x.d1*x.d1/(g*g))
+ 

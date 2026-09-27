@@ -1,0 +1,1 @@
+Both modes completed 22 tests with 2 harness errors: the coordinator concurrently moved E1 parameter lists from e1_certgen.py to e1_certificate_io.py. KeyError for PRIM_PTS and deriv_facts occurred before those two E1 tests could execute. The other 20 test methods passed. Adapt the read-only AST extraction to current declarations; do not change the coordinator files.

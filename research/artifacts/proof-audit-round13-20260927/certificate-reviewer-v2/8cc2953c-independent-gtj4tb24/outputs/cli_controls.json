@@ -1,0 +1,130 @@
+[
+  {
+    "mode": "normal",
+    "case": "valid regenerated certificate",
+    "consumer": "e1_cert_receive.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_receive.py",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/recomputed.json"
+    ],
+    "exit": 0,
+    "stdout": "{\"status\": \"PASS\", \"facts\": 57, \"primitives\": 11, \"scope\": \"Exact contracts, finite witness arithmetic, directed display and source binding; analytic enclosure lemmas remain explicit dependencies.\"}\n",
+    "stderr": ""
+  },
+  {
+    "mode": "normal",
+    "case": "valid regenerated certificate",
+    "consumer": "e1_cert_tables.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py",
+      "--ledger",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/recomputed.json",
+      "--output",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/table.normal.tex"
+    ],
+    "exit": 0,
+    "stdout": "Accepted all57 complete facts; wrote /mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/table.normal.tex\n",
+    "stderr": ""
+  },
+  {
+    "mode": "normal",
+    "case": "altered target with matching PASS status hash",
+    "consumer": "e1_cert_receive.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_receive.py",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/altered-contract.normal.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "{\"status\": \"REJECTED\", \"error\": \"ValueError\", \"message\": \"point contract mismatch\"}\n"
+  },
+  {
+    "mode": "normal",
+    "case": "altered target with matching PASS status hash",
+    "consumer": "e1_cert_tables.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py",
+      "--ledger",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/altered-contract.normal.json",
+      "--output",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/negative-table.normal.tex"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py\", line 333, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py\", line 319, in main\n    Ledger = load_accepted_ledger(Args.ledger)\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 175, in load_accepted_ledger\n    validate_ledger(Ledger)\n    ~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 117, in validate_ledger\n    require(Detail['point'] == Spec['point'] and Detail['cmp'] == Cmp and F(Detail['target']) == Target, 'point contract mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 21, in require\n    raise ValueError(Message)\nValueError: point contract mismatch\n"
+  },
+  {
+    "mode": "optimized",
+    "case": "valid regenerated certificate",
+    "consumer": "e1_cert_receive.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-O",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_receive.py",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/recomputed.json"
+    ],
+    "exit": 0,
+    "stdout": "{\"status\": \"PASS\", \"facts\": 57, \"primitives\": 11, \"scope\": \"Exact contracts, finite witness arithmetic, directed display and source binding; analytic enclosure lemmas remain explicit dependencies.\"}\n",
+    "stderr": ""
+  },
+  {
+    "mode": "optimized",
+    "case": "valid regenerated certificate",
+    "consumer": "e1_cert_tables.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-O",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py",
+      "--ledger",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/recomputed.json",
+      "--output",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/table.optimized.tex"
+    ],
+    "exit": 0,
+    "stdout": "Accepted all57 complete facts; wrote /mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/table.optimized.tex\n",
+    "stderr": ""
+  },
+  {
+    "mode": "optimized",
+    "case": "altered target with matching PASS status hash",
+    "consumer": "e1_cert_receive.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-O",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_receive.py",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/altered-contract.optimized.json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "{\"status\": \"REJECTED\", \"error\": \"ValueError\", \"message\": \"point contract mismatch\"}\n"
+  },
+  {
+    "mode": "optimized",
+    "case": "altered target with matching PASS status hash",
+    "consumer": "e1_cert_tables.py",
+    "argv": [
+      "/usr/bin/python3",
+      "-O",
+      "-B",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py",
+      "--ledger",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/altered-contract.optimized.json",
+      "--output",
+      "/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/outputs/negative-table.optimized.tex"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py\", line 333, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_cert_tables.py\", line 319, in main\n    Ledger = load_accepted_ledger(Args.ledger)\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 175, in load_accepted_ledger\n    validate_ledger(Ledger)\n    ~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 117, in validate_ledger\n    require(Detail['point'] == Spec['point'] and Detail['cmp'] == Cmp and F(Detail['target']) == Target, 'point contract mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/f/tools/math-audit-round13-20260927/certificate-reviewer-v2/8cc2953c-independent-gtj4tb24/snapshot/misc/e1_certificate_io.py\", line 21, in require\n    raise ValueError(Message)\nValueError: point contract mismatch\n"
+  }
+]

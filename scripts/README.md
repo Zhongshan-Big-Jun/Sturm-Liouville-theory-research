@@ -1,5 +1,11 @@
 # 研究脚本导航
 
+第十三轮当前接口：`_gapn2_symmetry_recon.eigenfunction_states` 用同一物理解、质量积分与比例系数返回值和导数，节点合法；`real_green_matrix` 按实际坐标组装，支持端点及非正参数，越界/不可分辨极点/溢出明确拒绝。半问题约化核仍限正特征值。`analytic_jacobian`、`analytic_jacobian_spectral`、`term_breakdown` 已实现一般非驻点公式，在 F=0 恢复原驻点公式。第十二轮半谱、极点身份和 raw K/SKS 区分保留。实际调用和有限检验见[第十三轮报告](../reports/proof-audit-round13-20260927/REPORT.md)。
+
+当前证书入口是 `python3 misc/e1_certgen.py`、`python3 misc/e1_cert_receive.py`、`python3 misc/e1_cert_tables.py`；精确端点与完整目标写入台账，失败不发布成功。`misc/rigid_dec.py`、`zz_verify_e1_dec.py` 和 `audit_o3a_cert_replay.py` 保持历史原字节，不能作为默认可信验证器。复验入口：`python3 research/artifacts/proof-audit-round13-20260927/run_checks.py`，另加 `--optimized` 检查 -O 行为。
+
+历史探测边界：`_gapn2_jacobian_pieces.py` 有旧符号组合，`_gapn2_largeR_probe2.py` 仍手动使用首点比值且有独立网格续接，`_gapn2_green_check.py` 有先算极点和再相减的旧诊断路径。它们不被上述修订入口调用，本轮不重认证其独立公式或历史扫描；需复用 Jacobian/归一化/Green 时使用本段当前入口。原文件和记录保留，不由默认 R=4 样本推断全部历史数据有效或无效。
+
 第十二轮程序接口: [_sl_prufer.py](_sl_prufer.py) 的 `indexed_roots` 新增仅关键字参数 `RightBoundary='D'` (默认不变), 可选 N 对应左 D/右 N 的半整数相位. [_gapn2_half_problem_probe.py](_gapn2_half_problem_probe.py) 的 `half_spectrum(..., return_table=True)` 返回只读数值谱表; 原默认仍返回 ndarray. `mumax` 若不足容纳所需 N 阶会报错. `_spectral_green` 保留零基 `pole_idx` 调用兼容, 内部按一基模态核验目标、几何、边界和分母; N/2N 主调用共用同表.
 
 [_gapn2_sector_decomposition.py](_gapn2_sector_decomposition.py) 的 `Ke/Ko/He/Ho/Ee/Eo` 已统一为原 K 的块, 显式 `Kp*` 键提供 SKS 的块, `c_e/c_o` 仍属于 Kp 的秩一分解并在元数据标明. [_gapn2_green_inertia_probe.py](_gapn2_green_inertia_probe.py) 的交叉 Green 比较目标为 `KpOdd=E Ke E`. 四份活动程序与两份历史 debug 调用的修改及检验范围见[报告](../reports/proof-audit-round12-20260926/REPORT.md); 不据这些检查重认证所有旧扫描或全 R 定性.

@@ -109,12 +109,11 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |
-| green-half-inertia | [card](<green-half-inertia.md>) | 3 |
-| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 3 |
+| green-half-inertia | [card](<green-half-inertia.md>) | 4 |
+| half-problem-regularized-green | [card](<half-problem-regularized-green.md>) | 4 |
 | helly-compactness | [card](<helly-compactness.md>) | 0 |
 | inf-limit-comparison | [card](<inf-limit-comparison.md>) | 1 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |
-| interval-dec-directed-rounding | [card](<interval-dec-directed-rounding.md>) | 0 |
 | jump-stability | [card](<jump-stability.md>) | 1 |
 | keller-variational | [card](<keller-variational.md>) | 0 |
 | key-lemma-decomposition | [card](<key-lemma-decomposition.md>) | 0 |

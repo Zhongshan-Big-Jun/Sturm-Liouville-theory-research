@@ -1,5 +1,7 @@
 # Sturm-Liouville 边值问题研究
 
+2026-09-27 第十三轮：修复精确证书端点、完整阈值与失败传播；共享谱助手支持节点归一化、坐标 Green、非正参数及一般 Jacobian。Helly 工具补齐容许类闭性与半连续性，旧 Decimal 默认可信复用撤回。逐项证据和限制见[修订报告](reports/proof-audit-round13-20260927/REPORT.md)。A1/A12、相容 Legendre 系与可测盒存在性保留原范围；全局 G1/G2 尚未闭合。
+
 2026-09-26 第十二轮修订与独立验收完成: DD/DN 半谱改为按相位序号定位, 去极点求和绑定共享谱表; 修正原 K 与 SKS 的扇区对象及三个工具卡中的传播. 独立检验与工具放行状态见[本轮报告](reports/proof-audit-round12-20260926/REPORT.md). 第十一轮余有限分类保留原验收范围, 全局 G1' 仍开放.
 
 2026-09-26 第十一轮: 修复残差 Jacobian 的交叉分块与窄层差分方向. 新的独立解析审查补齐固定 c>0、0<=s<7/2 的余有限闭包分类, 包含三个临界点和原族非 Schauder 基推论. 见[修订报告](reports/proof-audit-round11-20260926/REPORT.md)、[完整证明 PDF](docs/SL_cofinite_all_orders.pdf)和[工具卡](tools/krein-cofinite-closure-all-orders.md). 数值、解析与局部 Lean 的验收范围分别登记.

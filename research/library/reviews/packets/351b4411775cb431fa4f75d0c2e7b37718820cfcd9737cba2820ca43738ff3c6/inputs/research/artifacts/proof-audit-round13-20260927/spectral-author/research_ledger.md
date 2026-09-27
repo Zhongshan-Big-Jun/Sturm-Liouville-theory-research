@@ -1,0 +1,13 @@
+# Author ledger
+
+2026-09-27: Initial snapshot command used `python`, unavailable in this WSL shell; shell continued to create own documentation and logger. No source edits occurred. Retried with `python3`; dependency imports and baseline capture succeeded.
+
+Before-repair run (`logs/before`): actual source reproduced R1 derivative error 1.1164272981771965, R4 error 6.392068402342106, reversed-coordinate Green discrepancy 0.479425538604203, left endpoint exception and four nonpositive half-Green nan results. Independent 70-digit implicit derivative at x=(.25,.75) disagreed with the source stationary formula. Exit 0 reports reproduction, not correctness.
+
+First repair: normalized eigenfunction values/derivatives now use the same physical starts and midpoint-coordinate mass. Shared helpers are inside the authorized symmetry module; no new shared file required. Real Green uses linear/hyperbolic/trigonometric transfer, right-end boundary denominator, coordinate comparison and explicit domain/range rejection. General quotient Jacobian terms shared by analytic_jacobian, analytic_jacobian_spectral and term_breakdown. Beginning author property checks with references from independent transfer/quadrature/implicit differentiation.
+
+467-property ordinary/-O runs and original 136-check R12 ordinary/-O runs passed. Actual analytic/spectral/half SUP/INF/physical-FD CLIs exited 0. Half raw-K closed-vs-physical-FD errors were about 4e-10, whereas fixed spectral truncations retain visible tail error.
+
+Caller regression discovered and preserved at logs/parity-caller-v1 (exit 1): legacy _gapn2_parity_global_probe uses a [0,1] grid with Dirichlet random widths whose binary64 sum can be a few ulps below 1. Newly strict shared validation rejected x=1. Repair is limited to normalized sampling: snap endpoints within 8*m*eps*L, an explicitly documented roundoff allowance. Green and unnormalized physical propagation keep strict out-of-domain rejection. No caller file changed. Added paired compatibility/strict-Green tests and rerun against final source.
+
+Final source validation: 469 ordinary and 469 optimized properties; original R12 136 ordinary and 136 optimized checks; actual analytic/spectral/half SUP/half INF/physical-FD/parity CLI invocations all exit 0. Static import map covers 100 sites in 54 files and 76 transitive modules; this is not executed coverage. Ten protected AST nodes and four protected source files match the baseline/HEAD. Final derivation, author note and hash-bound handoff separate analytic identities, finite evidence and remaining limitations. Source patch passes scoped git diff --check. No source changes after these final runs.

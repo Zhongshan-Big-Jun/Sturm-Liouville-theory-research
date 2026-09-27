@@ -1,5 +1,11 @@
 # RESUME
 
+## 2026-09-27 round13 repair and independent verification COMPLETE
+
+Read reports/proof-audit-round13-20260927/REPORT.md and verification.json, then F:/tools/math-audit-round13-20260927/CURRENT.json and DELIVERY.json plus actual Git state before retrying publication. Do not restart completed authors/reviews. The baseline is 4a82d3c; original17892 tracked,134 untracked and6 dirty remain protected outside the declared scope.
+
+57 exact certificate contracts retain nonzero/strict targets and directed endpoints. Physical-state mass normalization, coordinate Green kernels and nonpositive-parameter propagation, general residual Jacobian and R12 identities are repaired. Helly topology/closedness/semicontinuity and active A1/A12/G2 scope are aligned. Three final fresh reviews pass; first certificate rejection and earlier failed attempts remain.31 obligations on20 current cards were received through original APIs;89 usable/2 blocked, including retired Decimal. Four PDFs were built and modified pages inspected. No new Lean or canonical integration, no global G1/M3/KP extension. Stage only exact Round13 paths; deliver origin before fork and verify remote heads. Older entries remain historical.
+
 ## 2026-09-26 round12 repair and independent verification COMPLETE
 
 Latest user input: C:\Users\HuangZY\Downloads\sl_audit_round12, workflow2.0.1, "继续修订". Before any retry read reports/proof-audit-round12-20260926/REPORT.md, F:/tools/math-audit-round12-20260926/CURRENT.json and actual DELIVERY/Git state. Do not restart completed authors or reviews.

@@ -1,0 +1,168 @@
+{
+  "status": "REPAIRED_AND_AUTHOR_TESTED_NOT_INDEPENDENT_APPROVAL",
+  "head": "4a82d3c2c8c7c3e5f3f027efcf2be3c54a612983",
+  "changed_repository_files": {
+    "/mnt/f/LaTeX/BVE research/scripts/_gapn2_symmetry_recon.py": "dd4093e67dc182dacdd2bd01e3847c0778ffa1144c5dbb0fda3336a8731b0573",
+    "/mnt/f/LaTeX/BVE research/scripts/_gapn2_jacobian_analytic.py": "1579a92ba9f3d293bb02a534508d4e0719f63aac8dfd03426a889bb6af991feb",
+    "/mnt/f/LaTeX/BVE research/scripts/_gapn2_jacobian_spectral.py": "e26e5a38cb84f992e0c713e40fb0da6f19172c6e6ecacb632a74a446d9d324f8",
+    "/mnt/f/LaTeX/BVE research/scripts/_gapn2_half_problem_probe.py": "ffaa5dfe4b9f812c017ec93dcf2a73e56688c2f2eb25b2f6e55c9e5a01f6c4dc"
+  },
+  "final_runs": {
+    "properties-final-normal": {
+      "command": [
+        "python3",
+        "/mnt/f/tools/math-audit-round13-20260927/spectral-author/test_round13.py"
+      ],
+      "exit": 0,
+      "seconds": 44.65203309059143,
+      "record": "logs/properties-final-normal/command.json"
+    },
+    "properties-final-optimized": {
+      "command": [
+        "python3",
+        "-O",
+        "/mnt/f/tools/math-audit-round13-20260927/spectral-author/test_round13.py"
+      ],
+      "exit": 0,
+      "seconds": 44.77335524559021,
+      "record": "logs/properties-final-optimized/command.json"
+    },
+    "r12-final-normal": {
+      "command": [
+        "python3",
+        "/mnt/f/tools/math-audit-round13-20260927/spectral-author/r12_regression.py",
+        "/mnt/f/LaTeX/BVE research"
+      ],
+      "exit": 0,
+      "seconds": 2.0726165771484375,
+      "record": "logs/r12-final-normal/command.json"
+    },
+    "r12-final-optimized": {
+      "command": [
+        "python3",
+        "-O",
+        "/mnt/f/tools/math-audit-round13-20260927/spectral-author/r12_regression.py",
+        "/mnt/f/LaTeX/BVE research"
+      ],
+      "exit": 0,
+      "seconds": 2.4071555137634277,
+      "record": "logs/r12-final-optimized/command.json"
+    },
+    "final-analytic-cli": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_jacobian_analytic.py",
+        "2",
+        "4",
+        "both"
+      ],
+      "exit": 0,
+      "seconds": 2.5679330825805664,
+      "record": "logs/final-analytic-cli/command.json"
+    },
+    "final-spectral-cli": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_jacobian_spectral.py",
+        "2",
+        "4",
+        "both",
+        "640"
+      ],
+      "exit": 0,
+      "seconds": 1.3182199001312256,
+      "record": "logs/final-spectral-cli/command.json"
+    },
+    "final-half-sup-cli": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_half_problem_probe.py",
+        "4",
+        "sup",
+        "160"
+      ],
+      "exit": 0,
+      "seconds": 2.1535181999206543,
+      "record": "logs/final-half-sup-cli/command.json"
+    },
+    "final-half-inf-cli": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_half_problem_probe.py",
+        "4",
+        "inf",
+        "160"
+      ],
+      "exit": 0,
+      "seconds": 2.298346519470215,
+      "record": "logs/final-half-inf-cli/command.json"
+    },
+    "final-physical-fd-cli": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_jacobian_probe.py",
+        "4",
+        "2",
+        "both"
+      ],
+      "exit": 0,
+      "seconds": 0.7115294933319092,
+      "record": "logs/final-physical-fd-cli/command.json"
+    },
+    "parity-caller-final": {
+      "command": [
+        "python3",
+        "scripts/_gapn2_parity_global_probe.py"
+      ],
+      "exit": 0,
+      "seconds": 1.0725727081298828,
+      "record": "logs/parity-caller-final/command.json"
+    },
+    "static-final": {
+      "command": [
+        "python3",
+        "/mnt/f/tools/math-audit-round13-20260927/spectral-author/static_impacts.py"
+      ],
+      "exit": 0,
+      "seconds": 3.7498531341552734,
+      "record": "logs/static-final/command.json"
+    }
+  },
+  "author_artifacts": {
+    "AGENTS.md": "fe24d27cea6ead907b15609a4b0c3782a730dcf7ebad2f0b781d3e97aae52590",
+    "AUTHOR_NOTE.md": "3436a5a180d43c1c6b991b45f95903e43873078df03f0230cd98d4757325c035",
+    "baseline.json": "4376a22059795108f30ffb6edd2a875abafd759bc000763e7bb7630a59d8f9df",
+    "derivation.md": "5e83c0fd5535a52256611fd28e75b1956322d4a6fd081470a094d1c50e326402",
+    "edit_source.py": "a99bc8fe5259c8963cf102930b12db737a70371a62d1ac8f4aa5857129a8d679",
+    "endpoint_compatibility.py": "acaf6a80f4676ebae08cb73dcae7cb2cb06df24d449e5ce56f7a007d4b6b18b8",
+    "entrypoints-final-summary.json": "8e17937ad5ec488e0f09fffa2dbb84dfab36678fa9c8e9a7484e8f602b3648df",
+    "entrypoints.py": "9c12d53c0e3177c3818e1f078dc3af5fe35a3a2ae41301c1d6bb68f9f0607ea5",
+    "entrypoints_summary.json": "04b095e20fc510153b797b6e12a660425e936c5caeee9822773cc1477d5d25b2",
+    "finalize_source.py": "a93420bafbf4e00f8512b4b761134b7aebc32ca36ba3148b2eae03ea8404c4db",
+    "r12_regression.py": "6225b4683f40ebd81dce65f2db5ddfad2949d1f49720f1c3261728464094f8ec",
+    "reference.py": "d1ecb7e2c3893f0520e556cb552fd757e34730a99f71367cc5a2893b35f4df41",
+    "reproduce_before.py": "f9f082bca9e65b880e54507febcce27ea06aa69665f127edbc559c0c963612d9",
+    "research_ledger.md": "733ac8cbbf9e6470d85d1c83d0f8cdf12811b9615074b388a1cd3eb5971dc5bf",
+    "run_logged.py": "e3d90e2b39204675e9f3c406547d9b76ff0e23ebb1db0bd4bdf337295140a97d",
+    "source.diff": "369048ff129f46e225ee09545d02c0566d6598dc4420575196ad6aaa0f8719f2",
+    "static_impacts.json": "30730db34e0720c4ab484a737c831ac6da70ab5322aa551e530032a30993eb16",
+    "static_impacts.py": "ab1100bc491e4616c19494d6a90fc5638c959e8d6c53b7ece9089d8e74a153b5",
+    "test_round13.py": "e6bdc62c348934c9cc46e0b718e03b4ed87bf060cb2c4d81b0dcdda68bd3529a"
+  },
+  "ordinary_properties": 469,
+  "optimized_properties": 469,
+  "ordinary_R12_checks": 136,
+  "optimized_R12_checks": 136,
+  "failures_preserved": [
+    "logs/before",
+    "logs/parity-caller-v1",
+    "research_ledger.md"
+  ],
+  "limits": [
+    "unscaled float propagation can explicitly reject extreme range",
+    "no uniform spectral tail certificate",
+    "static inventory is not full caller execution",
+    "legacy out-of-scope diagnostics noted in AUTHOR_NOTE.md",
+    "no independent approval, Lean, global theorem certification, commit or push"
+  ]
+}
