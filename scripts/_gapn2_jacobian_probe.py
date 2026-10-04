@@ -155,7 +155,7 @@ def sym_antisym_decomp(J, n):
 	"""Compatibility name: returns the Jacobian's CROSS blocks C,D."""
 	return jacobian_cross_blocks(J, n)
 
-def symmetric_root(rc, z_seed, max_nfev=300):
+def symmetric_root(rc, z_seed, max_nfev=300, *, return_diagnostics=False):
     """solve the symmetric 2-param system: enforce x3=1-x2, x4=1-x1 by symmetry of widths."""
     from scipy.optimize import least_squares
     n = rc.n
@@ -165,13 +165,18 @@ def symmetric_root(rc, z_seed, max_nfev=300):
         ws = 0.5 * (w + w[::-1])
         zs = rc.widths_to_z(ws)
         return rc.residual(zs)
-    r = least_squares(res_sym, z_seed, xtol=1e-13, ftol=1e-13, gtol=1e-13, max_nfev=max_nfev)
-    if np.max(np.abs(r.fun)) > 1e-8:
-        return None
-    w = rc.z_to_widths(r.x)
-    ws = 0.5 * (w + w[::-1])
-    z = rc.widths_to_z(ws)
-    return z
+    try:
+        r = least_squares(res_sym, z_seed, xtol=1e-13, ftol=1e-13, gtol=1e-13, max_nfev=max_nfev)
+        w = rc.z_to_widths(r.x)
+        ws = 0.5 * (w + w[::-1])
+        z = rc.widths_to_z(ws)
+        Evidence = rc.stationarity_diagnostics(z, solver_success=r.success)
+    except (ValueError, ArithmeticError) as Error:
+        z = None
+        Evidence = dict(accepted=False, status='unresolved', reason=str(Error),
+                        evidence='float64 diagnostic, not interval certification')
+    Result = z if Evidence['accepted'] else None
+    return (Result, Evidence) if return_diagnostics else Result
 
 def main():
     Rs = [float(x) for x in sys.argv[1].split(',')] if len(sys.argv) > 1 else [1.05, 1.2, 1.5, 2.0, 3.0, 4.0, 6.0, 10.0, 20.0, 50.0]

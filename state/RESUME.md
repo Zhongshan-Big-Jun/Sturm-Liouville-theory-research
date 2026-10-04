@@ -1,5 +1,24 @@
 # RESUME
 
+## 2026-10-04 Round14 publication follow-up authorized
+
+The user explicitly requested "上传上云" after the local Round14 handoff. Upload only this round's exact files and necessary byte-preservation attributes. Prepublication origin/main and fork/main both matched a815803a6492951cbed010624b42805fb1b49bd8. Preserve the original KP-DET dirty file and134 original untracked files. The exact selected paths/blob identities and actual final commit/remote readback are in F:/tools/math-audit-round14-20261004/publication/DELIVERY.json. Reconcile that receipt and both real remote refs before retrying an interrupted push; origin precedes fork, no force push. Older "no commit/push" statements describe the original local repair handoff, superseded by this publication authorization.
+
+The independent code-v3/proofs-v4 scopes and automatic-release gap remain unchanged. Do not restart completed authors/reviews or continue ND, M3/KP or A11 extensions during publication.
+
+
+## 2026-10-04 Round14 local repair and scoped native reviews
+
+Read reports/proof-audit-round14-20261004/REPORT.md and research/artifacts/proof-audit-round14-20261004/final-review-bindings.json. Baseline/HEAD a815803a6492951cbed010624b42805fb1b49bd8; 19190 tracked and134 original untracked byte identities remain in F:/tools/math-audit-round14-20261004/baseline.json. No commit/push in this request. Do not restart completed mathematics or scans.
+
+R14-01 shared stationary diagnostics rejects the thin-block false root and all unresolved/unconverged candidates; pure softmax has no fixed floor, F=f/b and general JF remain. Full and reduced endpoint searches/continuation/stationary-only consumers share the guard. R14-02 full DD and closed half DD/DN reduced kernels share geometry/BC/one-based target/coverage/retained-denominator checks. The direct positivity assembly now returns raw K sectors and explicit SKS sectors. Final software code-v3 has a separate fresh native reviewer approval and actual normal/-O 62/143/26 checks; relevant old regression136/469 passes separately.
+
+Full exact-zero G2 includes every1<=R<=Rmax, fixedn>=2, both patterns; only G2+unproved all-zero ND gives a unique analytic symmetric branch. Fixedc>0 actual complexHc2 arbitrary retention A11 density iff affineboth+two divergent reciprocal sums, divergent exact two-trace closure, convergent infinite codimension. Complete proofs and final native analytic review are linked in the report. ND/G1, unconditional uniqueness, remainingM3/KP/Q9 and summable-side full closure/other orders/A3-A4/bases/rates remain open. Stop after this bounded round.
+
+Automatic library releases are UNRECEIVED, not passed: installed original adapter rejects current collaboration task_name/fork_turns fields. Four saved card versions and exact correction revisions remain behind the gate, including affected inherited whole-file review bindings. Do not forge old UUIDs or rewrite immutable reviews. Native independent review evidence is a different layer. No new Lean/canonical change; both active PDFs rebuilt and modified pages inspected; builtin compiler failed on runtime directories, direct existing XeLaTeX succeeded.
+
+Final preservation.json PASS: 34 allowed active tracked changes; all other19156 original tracked and134 original untracked unchanged. Software22 and analytic11 exact final review bindings match live sources. Library query blocked34 concerns actual current whole-file/receipt gates; do not equate it with proof failure or pre-round baseline.
+
 ## 2026-09-27 round13 repair and independent verification COMPLETE
 
 Read reports/proof-audit-round13-20260927/REPORT.md and verification.json, then F:/tools/math-audit-round13-20260927/CURRENT.json and DELIVERY.json plus actual Git state before retrying publication. Do not restart completed authors/reviews. The baseline is 4a82d3c; original17892 tracked,134 untracked and6 dirty remain protected outside the declared scope.

@@ -84,7 +84,7 @@ def branch_solution(n, R, mode, seed=None):
         else:
             seed = rc.widths_to_z(np.full(rc.nb, 1.0 / rc.nb))
     res = rc.solve(seed)
-    if np.max(np.abs(res.fun)) >= 1e-7:
+    if not res.stationary:
         return None, rc
     rep = rc.full_report(res.x)
     return rep, rc

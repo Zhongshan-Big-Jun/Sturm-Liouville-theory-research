@@ -159,13 +159,15 @@ def analytic_jacobian(rc, z, N=2000):
 	"""General physical-interface Jacobian with finite spectral Green sums.
 
 	The returned fprime_id is a stationary Wronskian diagnostic only; it is
-	not used to assemble J. N controls the numerical spectral truncation.
+	None if the shared stationarity guard fails. It never assembles J.
+	N controls the numerical spectral truncation.
 	"""
 	Terms = term_breakdown(rc, z, N=N)
 	Data = Terms['eigen_data']
 	B = Data['lam_np1']
 	J = (np.diag(Terms['fprime']) + Terms['M1'] + Terms['M2'] + Terms['M3']) / B
-	FprimeId = -2*B*Data['eps']*Data['c']*Data['W']
+	FprimeId = (-2*B*Data['eps']*Data['c']*Data['W']
+		if rc.stationarity_diagnostics(z)['accepted'] else None)
 	return J, Terms['fprime'], FprimeId, Terms['wj'], B*Data['u_np1']**2
 
 

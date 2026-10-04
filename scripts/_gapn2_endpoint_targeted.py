@@ -25,7 +25,7 @@ def branch_widths(n, R, mode):
     w0 = np.diff(np.concatenate([[0.0], e0, [1.0]]))
     rc = Recon(n, R, mode)
     res = rc.solve(rc.widths_to_z(w0), max_nfev=800)
-    if np.max(np.abs(res.fun)) >= 1e-7:
+    if not res.stationary:
         return None, rc
     rep = rc.full_report(res.x)
     if not rep['band_ok']:
@@ -51,9 +51,8 @@ def targeted(n, R, mode):
     roots = []
     for s in seeds:
         z0 = rd.widths_to_z(s)
-        res = least_squares(rd.residual, z0, xtol=1e-12, ftol=1e-12, gtol=1e-12,
-                            max_nfev=120)
-        if np.max(np.abs(res.fun)) < 1e-7:
+        res = rd.solve(z0, max_nfev=120)
+        if res.stationary:
             rep = rd.report(res.x)
             dup = any(np.max(np.abs(np.array(rep['edges']) -
                                    np.array(r['edges']))) < 1e-4 for r in roots)

@@ -1,0 +1,1712 @@
+{
+  "reviewer": "/root/r14_software_review",
+  "root": "F:\\tools\\math-audit-round14-20261004\\final-review\\code-v2",
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "optimization": 1,
+  "manifest_sha256": "fd15c2107ad8d8a314b30b673faea2fd05316b47a9552f2f46080d5f04a75bb4",
+  "probe_sha256": "764e3eeed673200ac359e3477bb42f29a9c0b8f4089bc24cb73450ac64b3e26e",
+  "passed": false,
+  "checks": 92,
+  "records": [
+    {
+      "name": "sup_interior_root_retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "sup_physical_quadrature_mass_and_one_based_modes",
+      "passed": true,
+      "details": {
+        "errors": [
+          1.1102230246251565e-16,
+          3.3306690738754696e-16,
+          2.220446049250313e-16,
+          3.552713678800501e-15
+        ],
+        "reference": {
+          "dps": 80,
+          "method": "physical transfer; explicit trigonometric zero count; block quadrature mass",
+          "modes": [
+            {
+              "index": 2,
+              "frequency": "4.7434630863061270053975680924983847893816844437740116570039598760641599563461444",
+              "eigenvalue": "22.500442051148847695555887745308726210150057241079679607360195913060030611471115",
+              "mass": "0.036850523862665743982515662771308893914862438084203311958894950483058956034027971",
+              "values": [
+                "1.080675584604436235556592466884751986271452807570574798159012689009666688953029",
+                "0.89974288960504311902189020336538417908942692753643679475915220400787378384615554",
+                "-0.89974288960504311902189020336538417908942692753643679475915220400787378384615554",
+                "-1.080675584604436235556592466884751986271452807570574798159012689009666688953029"
+              ],
+              "derivatives": [
+                "0.92698238959437866986132784908234105494611311625735891540157731129723930317306851",
+                "-5.7540377646398530161585913344722613532557843646373603213099277437291397455210242",
+                "-5.7540377646398530161585913344722613532557843646373603213099277437291397455210242",
+                "0.92698238959437866986132784908234105494611311625735891540157731129723930317306856"
+              ],
+              "internal_zero_count": 1,
+              "internal_zeros": [
+                "0.4999999999999999722444243843710864894092082977294921875"
+              ],
+              "right_residual": "1.7131071657749600239566432833313780887528687246348824768876364915800734472825859e-81"
+            },
+            {
+              "index": 3,
+              "frequency": "9.2516831379702447325730939877413183255509787043299226645980808385728934828423077",
+              "eigenvalue": "85.593640885402954432160511373690713610720341912377551290994830438793463155114729",
+              "mass": "0.0065221763734258241974214010573040497448468140722890467386896602968488738669944867",
+              "values": [
+                "0.55407698981875991323792612264058137923070128387520541400021129238640080259009293",
+                "-0.46131034973428726683780306978013432217895828949220536233034228622956586788365066",
+                "-0.46131034973428726683780306978013432217895828949220536233034228622956586788365066",
+                "0.55407698981875991323792612264058137923070128387520541400021129238640080259009293"
+              ],
+              "derivatives": [
+                "-11.271454831525683400698635553282233797730165323483397965652099248506435223245544",
+                "-12.621226099924420841815123767556489008299521541886703127791665729235094656675073",
+                "12.621226099924420841815123767556489008299521541886703127791665729235094656675073",
+                "11.271454831525683400698635553282233797730165323483397965652099248506435223245544"
+              ],
+              "internal_zero_count": 2,
+              "internal_zeros": [
+                "0.3333235537527280850697138313134080392310466850352270705534765645551365183734783",
+                "0.6666764462472718594191349374287649395873699104237573044465234354448634816265217"
+              ],
+              "right_residual": "-6.5888737145190770152178587820437618798187258639803172187986018906925901818560997e-83"
+            }
+          ],
+          "raw_residual": [
+            "-0.000000000000011364673781505942038097866706169319535316855372878997210684831123339893604927854",
+            "0.0000000000000068687048729133337485769014910260113772914285972722800834043775502517251164693742",
+            "0.0000000000000068687048729133337485769014910260113772914285972722800834043775502517251164693742",
+            "-0.000000000000011364673781505942038097866706169319535316855372878997210684831123339893604927854"
+          ],
+          "relative_defect": [
+            "-0.000000000000018509161667045381101766916941276636497184788627819345853244940514045277510546336",
+            "0.000000000000016138325257519208653678127126773515946807224349249039455190558837455413606564053",
+            "0.000000000000016138325257519208653678127126773515946807224349249039455190558837455413606564053",
+            "-0.000000000000018509161667045381101766916941276636497184788627819345853244940514045277510546336"
+          ]
+        }
+      }
+    },
+    {
+      "name": "sup_sector_data_retains_raw_and_SKS_identity",
+      "passed": true,
+      "details": {
+        "raw_errors": [
+          8.260059303211165e-14,
+          6.306066779870889e-14
+        ],
+        "conjugate_errors": [
+          6.306066779870889e-14,
+          8.260059303211165e-14
+        ]
+      }
+    },
+    {
+      "name": "sup_positivity_run_Ke_Ko_are_declared_raw_K",
+      "passed": false,
+      "details": {
+        "raw_eigen_errors": [
+          1.9034364992446022,
+          1.9034364992446244
+        ],
+        "SKS_eigen_errors": [
+          2.220446049250313e-14,
+          4.440892098500626e-14
+        ],
+        "returned_even": [
+          3.1199546961889966,
+          7.093511541752429
+        ],
+        "returned_odd": [
+          2.2479904079167596,
+          8.996948040997076
+        ],
+        "raw_even": [
+          2.247990407916754,
+          8.996948040997031
+        ],
+        "raw_odd": [
+          3.1199546961890077,
+          7.093511541752451
+        ]
+      }
+    },
+    {
+      "name": "sup_stationary_positivity_insufficient_mode_coverage",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "pole mode is outside the requested prefix"
+      }
+    },
+    {
+      "name": "sup_full_target_slightly_off_own_eigenvalue",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "inf_interior_root_retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "inf_physical_quadrature_mass_and_one_based_modes",
+      "passed": true,
+      "details": {
+        "errors": [
+          4.440892098500626e-16,
+          3.552713678800501e-15,
+          6.661338147750939e-16,
+          2.6645352591003757e-15
+        ],
+        "reference": {
+          "dps": 80,
+          "method": "physical transfer; explicit trigonometric zero count; block quadrature mass",
+          "modes": [
+            {
+              "index": 2,
+              "frequency": "4.1852266952788733358064679258793349805870740867387492207407568932085551165401354",
+              "eigenvalue": "17.516122490874919284159628171526775244972054902232589216152331234947678405990697",
+              "mass": "0.016940530586830372720021681247533003067067559828820084587787120491111210134497553",
+              "values": [
+                "0.91044198595274513314340951767046437625618308604002944792770910685921570104050531",
+                "0.43240281946522735233278525132087077513614934425303607211788554290104379797964917",
+                "-0.43240281946522735233278525132087077513614934425303607211788554290104379797964917",
+                "-0.91044198595274513314340951767046437625618308604002944792770910685921570104050531"
+              ],
+              "derivatives": [
+                "-0.97634501559738044780035911051654866698858601780982834887880346200001405655743823",
+                "-3.4924799699139863213124402603698227778353570188232904315437167307775628558017243",
+                "-3.4924799699139863213124402603698227778353570188232904315437167307775628558017243",
+                "-0.97634501559738044780035911051654866698858601780982834887880346200001405655743824"
+              ],
+              "internal_zero_count": 1,
+              "internal_zeros": [
+                "0.4999999999999999722444243843710864894092082977294921875"
+              ],
+              "right_residual": "-1.6472184286297692538044646955109404699546814659950793046996504726731475454640249e-82"
+            },
+            {
+              "index": 3,
+              "frequency": "5.1516172563731100274409715367983239737692625891916582464574313408114434421077733",
+              "eigenvalue": "26.53916035616120964764229607332717208349301323283184073477101939672101921431656",
+              "mass": "0.012974189764064335737682423219001663435951288521542944761470168793428679528988864",
+              "values": [
+                "0.73965240709586217990025465112587710773117664863978865118324787192934447222205197",
+                "-0.35128848535896394233379606970049420250697292782583474555040264105509305958476652",
+                "-0.35128848535896394233379606970049420250697292782583474555040264105509305958476652",
+                "0.73965240709586217990025465112587710773117664863978865118324787192934447222205197"
+              ],
+              "derivatives": [
+                "-4.3588215517544762854065418977229227311923192221299568803194873550224497558840349",
+                "-5.4994083382498090208271528598306223052277603460674677517849870218976765724502168",
+                "5.4994083382498090208271528598306223052277603460674677517849870218976765724502169",
+                "4.3588215517544762854065418977229227311923192221299568803194873550224497558840349"
+              ],
+              "internal_zero_count": 2,
+              "internal_zeros": [
+                "0.3423273413636244982090070354270063927304071966410033944878446429477366494637131",
+                "0.6576726586363754462798417333151665860880093988179809805121553570522633505362869"
+              ],
+              "right_residual": "-6.5888737145190770152178587820437618798187258639803172187986018906925901818560997e-83"
+            }
+          ],
+          "raw_residual": [
+            "-0.00000000000023266571420022295992260966252683680500781626562089027250600961096617306194797241",
+            "-0.000000000000094170326756211372414063424583154416861014110018361899826674662532580668807092327",
+            "-0.000000000000094170326756211372414063424583154416861014110018361899826674662532580668807092327",
+            "-0.00000000000023266571420022295992260966252683680500781626562089027250600961096617306194797241"
+          ],
+          "relative_defect": [
+            "-0.00000000000021264101885027087307164114711094875463797931906272176646464097226186458113538003",
+            "-0.00000000000038155421234717454470198759527863371511798692490528166049487461163416693535461573",
+            "-0.00000000000038155421234717454470198759527863371511798692490528166049487461163416693535461573",
+            "-0.00000000000021264101885027087307164114711094875463797931906272176646464097226186458113538003"
+          ]
+        }
+      }
+    },
+    {
+      "name": "inf_sector_data_retains_raw_and_SKS_identity",
+      "passed": true,
+      "details": {
+        "raw_errors": [
+          3.47455397786689e-12,
+          1.2441159213949504e-12
+        ],
+        "conjugate_errors": [
+          1.2441159213949504e-12,
+          3.47455397786689e-12
+        ]
+      }
+    },
+    {
+      "name": "inf_positivity_run_Ke_Ko_are_declared_raw_K",
+      "passed": false,
+      "details": {
+        "raw_eigen_errors": [
+          6.226251712979056,
+          6.226251712974481
+        ],
+        "SKS_eigen_errors": [
+          9.825473767932635e-13,
+          3.7836400679225335e-12
+        ],
+        "returned_even": [
+          -2.925668138488727,
+          -1.0820693909514503
+        ],
+        "returned_odd": [
+          -9.151919851464,
+          -0.6390604286623138
+        ],
+        "raw_even": [
+          -9.151919851467783,
+          -0.6390604286621141
+        ],
+        "raw_odd": [
+          -2.9256681384895185,
+          -1.0820693909524328
+        ]
+      }
+    },
+    {
+      "name": "inf_stationary_positivity_insufficient_mode_coverage",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "pole mode is outside the requested prefix"
+      }
+    },
+    {
+      "name": "inf_full_target_slightly_off_own_eigenvalue",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_report_does_not_label_small_absolute_residual_stationary",
+      "passed": true,
+      "details": {
+        "accepted": false,
+        "status": "rejected",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          1e-06,
+          2e-06,
+          0.9999979999999998,
+          0.9999989999999999
+        ],
+        "absolute_max": 5.702438102321175e-10,
+        "eigenvalues": [
+          39.478417604357396,
+          88.82643960980403
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          1.889736367381095e-08,
+          7.558945467694662e-08,
+          7.558945468361957e-08,
+          1.889736367714741e-08
+        ],
+        "relative_defects": [
+          -0.6701030929013225,
+          -0.670103092860539,
+          -0.6701030928779051,
+          -0.6701030929360546
+        ],
+        "relative_max": 0.6701030929360546,
+        "reason": "absolute or local relative balance fails"
+      }
+    },
+    {
+      "name": "one_solve_does_not_accept_negative_control",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "nonstationary_J_F_finite_and_stationary_Wronskian_identity_absent",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reduced_first_actual_one_rejects_collapsed_candidate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reduced_last_actual_one_rejects_collapsed_candidate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reduced_both_actual_one_rejects_collapsed_candidate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_D_near_but_distinct_target_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "spectral_D_near_but_distinct_target_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_N_near_but_distinct_target_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "spectral_N_near_but_distinct_target_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_imported_frozen_project_modules_are_manifest_listed",
+      "passed": true,
+      "details": {
+        "reflection_seeds": "scripts/reflection_seeds.py",
+        "_sl_prufer": "scripts/_sl_prufer.py",
+        "_gapn2_symmetry_recon": "scripts/_gapn2_symmetry_recon.py",
+        "_gapn2_jacobian_probe": "scripts/_gapn2_jacobian_probe.py",
+        "_gapn2_jacobian_analytic": "scripts/_gapn2_jacobian_analytic.py",
+        "_sl_spectral_identity": "scripts/_sl_spectral_identity.py",
+        "_gapn2_jacobian_spectral": "scripts/_gapn2_jacobian_spectral.py",
+        "_gapn2_sector_decomposition": "scripts/_gapn2_sector_decomposition.py",
+        "_gapn2_ktilde_positivity": "scripts/_gapn2_ktilde_positivity.py",
+        "_gapn2_half_problem_probe": "scripts/_gapn2_half_problem_probe.py",
+        "_gapn2_slope_ratio": "scripts/_gapn2_slope_ratio.py",
+        "_gapn2_reduced_endpoint_hunt": "scripts/_gapn2_reduced_endpoint_hunt.py",
+        "independent_physical": "research/artifacts/proof-audit-round14-20261004/independent_physical.py"
+      }
+    },
+    {
+      "name": "all_frozen_inputs_remained_unchanged",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "error": null,
+  "limitations": "Finite floating point source and numerical audit; no analytic supplement or full parameter theorem proof; no Lean executed."
+}

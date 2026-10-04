@@ -23,7 +23,7 @@ def one(job):
     n, R, mode, z0, label = job
     rc = Recon(n, R, mode)
     r = rc.solve(z0, max_nfev=200)
-    if np.max(np.abs(r.fun)) >= 1e-8:
+    if not r.stationary:
         return None
     rep = rc.full_report(r.x)
     rep['seed'] = label

@@ -1,0 +1,954 @@
+{
+  "passed": false,
+  "optimization": 0,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "checks": [
+    {
+      "name": "full_DD_mode_1_exact_finite_constant_sum",
+      "passed": true,
+      "details": 5.551115123125783e-17
+    },
+    {
+      "name": "print_mode_1_uses_same_guarded_kernel",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_mode_1_matrix_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_DD_mode_2_exact_finite_constant_sum",
+      "passed": true,
+      "details": 9.540979117872439e-18
+    },
+    {
+      "name": "print_mode_2_uses_same_guarded_kernel",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_mode_2_matrix_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_DD_mode_10_exact_finite_constant_sum",
+      "passed": true,
+      "details": 1.734723475976807e-17
+    },
+    {
+      "name": "print_mode_10_uses_same_guarded_kernel",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_mode_10_matrix_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "full_wrong_lam1_k1_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "print_wrong_lam1_k1_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_wrong_lam2_k0_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_invalid_target_0.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_invalid_target_-1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_invalid_target_1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "full_invalid_target_inf",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "full_invalid_target_nan",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "full_invalid_target_(9.869604401089358+0j)",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "full_invalid_target_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "full_invalid_or_uncovered_k_-1",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "k must be a nonnegative integer"
+      }
+    },
+    {
+      "name": "full_invalid_or_uncovered_k_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "k must be a nonnegative integer"
+      }
+    },
+    {
+      "name": "full_invalid_or_uncovered_k_1.5",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "k must be a nonnegative integer"
+      }
+    },
+    {
+      "name": "full_invalid_or_uncovered_k_10",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "pole mode is outside the requested prefix"
+      }
+    },
+    {
+      "name": "full_invalid_truncation_0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral truncation must be a positive integer"
+      }
+    },
+    {
+      "name": "full_invalid_truncation_-1",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral truncation must be a positive integer"
+      }
+    },
+    {
+      "name": "full_invalid_truncation_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral truncation must be a positive integer"
+      }
+    },
+    {
+      "name": "full_invalid_truncation_2.5",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral truncation must be a positive integer"
+      }
+    },
+    {
+      "name": "full_invalid_points_[-1e-05, 0.25]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation point lies outside the interval"
+      }
+    },
+    {
+      "name": "full_invalid_points_[0.25, 1.000001]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation point lies outside the interval"
+      }
+    },
+    {
+      "name": "full_invalid_points_[0.25, nan]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation points must be a finite one-dimensional array"
+      }
+    },
+    {
+      "name": "full_invalid_points_[(0.25+0j), 0.75]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation points must be real"
+      }
+    },
+    {
+      "name": "full_invalid_points_[[0.25, 0.75]]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation points must be a finite one-dimensional array"
+      }
+    },
+    {
+      "name": "full_wrong_geometry_table",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "full_wrong_DN_boundary_table",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "full_short_table",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "requested prefix exceeds the indexed table"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(0.0, 1.0)]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(0.5, 0.0)]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(0.5, -1.0)]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(inf, 1.0)]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(1.0, (1+0j))]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "blocks must be real"
+      }
+    },
+    {
+      "name": "full_invalid_geometry_[(1.0,)]",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "blocks must have shape (m, 2)"
+      }
+    },
+    {
+      "name": "indexed_table_is_immutable",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "indexed_table_assignment_rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "retained_denominator_overflow_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ArithmeticError",
+        "message": "spectral target differences exceed floating-point range"
+      }
+    },
+    {
+      "name": "unresolved_eigenvalue_overflow_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ArithmeticError",
+        "message": "indexed eigenvalues are not numerically resolvable"
+      }
+    },
+    {
+      "name": "half_D_160_indexed_constant_modes",
+      "passed": true,
+      "details": 4.440892098500626e-16
+    },
+    {
+      "name": "half_D_prefix_4_invariance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_D_prefix_80_invariance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_D_valid_reduced_sum_finite",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_D_mismatched_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "half_D_uncovered_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "pole mode is outside the requested prefix"
+      }
+    },
+    {
+      "name": "half_D_full_sum_at_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "full Green target is at or numerically near a tabulated pole"
+      }
+    },
+    {
+      "name": "half_D_full_sum_above_table_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "full Green target requires a larger table to resolve its spectral location"
+      }
+    },
+    {
+      "name": "half_D_wrong_geometry_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "half_D_invalid_target_nan",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_D_invalid_target_inf",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_D_invalid_target_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_D_invalid_target_(1.5791367041742972+0j)",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_D_mode_1_legacy_inference_matches",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_D_mode_1_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_D_mode_1_wrong_mode",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_D_mode_1_wrong_boundary",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_D_mode_2_legacy_inference_matches",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_D_mode_2_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_D_mode_2_wrong_mode",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_D_mode_2_wrong_boundary",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_0.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "reduced Green requires a positive eigenvalue; use green_regular at mu<=0"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_-1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "reduced Green requires a positive eigenvalue; use green_regular at mu<=0"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_nan",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_inf",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_D_invalid_target_(0.3947841760435743+0j)",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_D_invalid_bc_'bad'",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_D_invalid_bc_None",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_D_invalid_bc_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_D_invalid_bc_['D']",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_D_invalid_mode_0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_D_invalid_mode_-1",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_D_invalid_mode_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_D_invalid_mode_1.5",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_D_outside_point_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation point lies outside the interval"
+      }
+    },
+    {
+      "name": "closed_D_table_geometry_mismatch",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "closed_D_table_coverage_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "requested prefix exceeds the indexed table"
+      }
+    },
+    {
+      "name": "half_N_160_indexed_constant_modes",
+      "passed": true,
+      "details": 4.440892098500626e-16
+    },
+    {
+      "name": "half_N_prefix_4_invariance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_N_prefix_80_invariance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_N_valid_reduced_sum_finite",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "half_N_mismatched_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "half_N_uncovered_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "pole mode is outside the requested prefix"
+      }
+    },
+    {
+      "name": "half_N_full_sum_at_pole_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "full Green target is at or numerically near a tabulated pole"
+      }
+    },
+    {
+      "name": "half_N_full_sum_above_table_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "full Green target requires a larger table to resolve its spectral location"
+      }
+    },
+    {
+      "name": "half_N_wrong_geometry_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "half_N_invalid_target_nan",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_N_invalid_target_inf",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_N_invalid_target_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "half_N_invalid_target_(0.8882643960980422+0j)",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral target must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_N_mode_1_legacy_inference_matches",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_N_mode_1_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_N_mode_1_wrong_mode",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_N_mode_1_wrong_boundary",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_N_mode_2_legacy_inference_matches",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_N_mode_2_symmetry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "closed_N_mode_2_wrong_mode",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_N_mode_2_wrong_boundary",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_0.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "reduced Green requires a positive eigenvalue; use green_regular at mu<=0"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_-1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "reduced Green requires a positive eigenvalue; use green_regular at mu<=0"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_1.0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "target eigenvalue does not uniquely match the specified pole mode"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_nan",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_inf",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_N_invalid_target_(0.09869604401089357+0j)",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "eigenvalue must be a finite real scalar"
+      }
+    },
+    {
+      "name": "closed_N_invalid_bc_'bad'",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_N_invalid_bc_None",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_N_invalid_bc_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_N_invalid_bc_['D']",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "right boundary must be D or N"
+      }
+    },
+    {
+      "name": "closed_N_invalid_mode_0",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_N_invalid_mode_-1",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_N_invalid_mode_True",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_N_invalid_mode_1.5",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "one-based pole mode must be a positive integer"
+      }
+    },
+    {
+      "name": "closed_N_outside_point_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "Green evaluation point lies outside the interval"
+      }
+    },
+    {
+      "name": "closed_N_table_geometry_mismatch",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "spectral table geometry or boundary does not match the equation"
+      }
+    },
+    {
+      "name": "closed_N_table_coverage_rejected",
+      "passed": true,
+      "details": {
+        "exception": "ValueError",
+        "message": "requested prefix exceeds the indexed table"
+      }
+    },
+    {
+      "name": "closed_constant_D_correct_formula_vs_extrapolated_spectrum",
+      "passed": true,
+      "details": {
+        "errors": [
+          9.940106989875241e-07,
+          1.3048882644252704e-06,
+          1.3048882644157295e-06,
+          1.7181334292099004e-07,
+          0.0,
+          2.2467650191292692e-17
+        ],
+        "maximum": 1.3048882644252704e-06,
+        "threshold": 2e-06
+      }
+    },
+    {
+      "name": "closed_constant_N_correct_formula_vs_extrapolated_spectrum",
+      "passed": false,
+      "details": {
+        "errors": [
+          1.0202588243551913e-06,
+          1.6524577992615974e-06,
+          1.6524577992615974e-06,
+          6.455917484979312e-07,
+          0.0,
+          2.2407093460082884e-06
+        ],
+        "maximum": 2.2407093460082884e-06,
+        "threshold": 2e-06
+      }
+    }
+  ],
+  "error": {
+    "type": "RuntimeError",
+    "message": "failed check: closed_constant_N_correct_formula_vs_extrapolated_spectrum"
+  },
+  "source_sha256": {
+    "scripts/_sl_spectral_identity.py": "9a1336bcc41178e28ffb0cc4e9ac4045652732ee5e9d1c7b313dd3a613728f32",
+    "scripts/_gapn2_jacobian_spectral.py": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+    "scripts/_gapn2_half_problem_probe.py": "daacb42d5292b8a17dc8132d49794b7287a6eda51654753b8b374a7567f0662e",
+    "scripts/_gapn2_gtilde_print.py": "3d1b70f4a483d19b41988aaa45b3de4cbc2a38acbb73bc27463c7487a4861e72",
+    "scripts/_gapn2_symmetry_recon.py": "9854d8075a5048c274165e18a7369c8669ee20b9975522004a4207093fd50ad4",
+    "scripts/_gapn2_jacobian_analytic.py": "4d7cb5385b6f2b8d668ec4c5c417876a57713b6780bb11e1478cb0fcbc00aa02"
+  }
+}

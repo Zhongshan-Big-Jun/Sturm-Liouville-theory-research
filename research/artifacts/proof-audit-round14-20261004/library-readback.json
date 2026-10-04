@@ -1,0 +1,703 @@
+[
+  {
+    "query": "regularized green",
+    "verdict": "RETRIEVAL_ONLY",
+    "blocked": 34,
+    "total_matches": 13,
+    "target_hits": [
+      {
+        "score": 2,
+        "tool_id": "band-selfconsistency-equivariance",
+        "title": "带状自洽等变性: F(R,x̄)=PF(R,x) 与反对合 Jacobi 结构 J=-PJP",
+        "kind": "tool",
+        "correction_state": {
+          "status": "quarantine",
+          "issues": [
+            "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c",
+            "cb146a641ab5ff4eb712ccec5ca139fd93247aa7a97fc0fa057dd1607a5e05aa",
+            "dcd09930a4e0530a1fa1b8a34ce9d3606afed88943172efe0bca4d9f84a0057a",
+            "41bf952759a748e69e415dd07c8c1cb29525705a1fc1b53330957341ec751b7f",
+            "a545cf14e1c8116fae3ba71aa21ec4a5f950e7f33877bfd339b071c9e30dc2db",
+            "9c9a18313ed2d1f634f5865df98988722093ca734e6f40cbcf99c7aaff91234c"
+          ],
+          "reuse_allowed": false
+        },
+        "reuse_allowed": false,
+        "dependencies": [
+          {
+            "location": "tools/feynman-hellmann.md",
+            "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+          }
+        ],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/band-selfconsistency-equivariance.md",
+        "sha256": "a5692e263359db5cc4f8e8c5b3102fe9169956c63bbef25d046b2324a369695c",
+        "version": "research/library/card-versions/a5692e263359db5cc4f8e8c5b3102fe9169956c63bbef25d046b2324a369695c.md",
+        "summary": "Complete current G2 for every fixed n>=2, both patterns and all exact residual zeros on 1<=R<=Rmax: uniform positive block widths, including R down to1. F=0 implies K=-2D and sign compatibility. G2 plus unproved all-zero ND gives constant root count and a unique analytic branch conditionally. Shared numerical stationary acceptance tests absolute/relative balance, resolution and local switching corrections, preserving F and general JF; no interval certificate or unconditional global uniqueness.",
+        "conditions": "UNSPECIFIED",
+        "scope": "Round14: full exact-zero G2 for every fixed n>=2 and both patterns on [1,Rmax], conditional G2+all-zero ND branch uniqueness, and shared floating-point stationary acceptance. Earlier local reflection/general-Jacobian repairs retain their exact scope. ND, unconditional global uniqueness, historical scans and full formalization are not proved.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "HISTORY_ONLY_NOT_REUSE",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "lean",
+          "experience"
+        ],
+        "annotations": [
+          {
+            "path": "research/library/annotations/1d986a2cb64492a0483693ff044455236ba7491fe777bc681bbc774fb11c605a.json",
+            "sha256": "1d986a2cb64492a0483693ff044455236ba7491fe777bc681bbc774fb11c605a",
+            "kind": "correction-experience",
+            "author": "agent:round12-20260926",
+            "locator": "原矩阵与共轭矩阵的扇区及 H/E 分量",
+            "source_id": null,
+            "tool_sha256": "d5051aee3b8332bf3673a697e333b257198c86f07b27a9335a6be15b75c01eeb",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/43f53061ed16300d36f3d677d8f2ea63eb9e8380de41cd34671b7d49260066e8.json",
+            "sha256": "43f53061ed16300d36f3d677d8f2ea63eb9e8380de41cd34671b7d49260066e8",
+            "kind": "correction-experience",
+            "author": "agent:round11-20260926",
+            "locator": "input and output reflection actions",
+            "source_id": null,
+            "tool_sha256": "3ad9895865fb165e66d28df34fa9ef8cd4c4b4b143ca74b7d246822cb33fa98e",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/688d7cf110c5dc67c9cdcc0fc4e11077d2660ce4d1835829f6573839a83c2f5d.json",
+            "sha256": "688d7cf110c5dc67c9cdcc0fc4e11077d2660ce4d1835829f6573839a83c2f5d",
+            "kind": "correction-experience",
+            "author": "agent:round10-20260925",
+            "locator": "2026-09-25 reflection geometry",
+            "source_id": null,
+            "tool_sha256": "cbe2050bf169630d38b99842971b76e62a46f0b0b156f9038be42065b540a759",
+            "state": "STALE"
+          }
+        ],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "Round7 local proof and explicitly scoped tail corrections",
+            "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+            "sha256": "7ac96d66493039476f67be315d484cb221cde8364484dd80ae3cb7b2fafdb182",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+            "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+            "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+            "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+            "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+            "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+            "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+            "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+            "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Complete current G2 and conditional ND corollary, sections 1-7",
+            "path": "docs/SL_G2_compactness_proof.md",
+            "sha256": "3e81f40a67467269e2f75eca653d90cf3d69791c8701da800071ddd3d21186e9",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [
+          {
+            "kind": "program",
+            "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+            "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "source-audit",
+            "locator": "Confirmed direct propagation and untouched historical scope",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+            "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current common floating-point stationarity acceptance",
+            "path": "scripts/_gapn2_symmetry_recon.py",
+            "sha256": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "lean": [],
+        "experience": {}
+      },
+      {
+        "score": 2,
+        "tool_id": "half-problem-regularized-green",
+        "title": "半问题约化 Green 闭式: 无 rho(y) 因子的约化预解核与 K 的两个镜扇区闭式",
+        "kind": "tool",
+        "correction_state": {
+          "status": "quarantine",
+          "issues": [
+            "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c",
+            "cb146a641ab5ff4eb712ccec5ca139fd93247aa7a97fc0fa057dd1607a5e05aa",
+            "dcd09930a4e0530a1fa1b8a34ce9d3606afed88943172efe0bca4d9f84a0057a",
+            "41bf952759a748e69e415dd07c8c1cb29525705a1fc1b53330957341ec751b7f",
+            "c5d5701ed28bc1ec6cb39c5dcc8fe0e8473f17bec81e4d489a79d1fa273270c3",
+            "4a5b479309b2f716af2148ab6f1cc11c7642aea5550fecdf7f232a6ebb2beae1"
+          ],
+          "reuse_allowed": false
+        },
+        "reuse_allowed": false,
+        "dependencies": [
+          {
+            "location": "tools/feynman-hellmann.md",
+            "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+          }
+        ],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/half-problem-regularized-green.md",
+        "sha256": "af730f2fcd7502bfb466bc959a6fe862d08b3f8747c6d860aebe7ccf0c3ca44c",
+        "version": "research/library/card-versions/af730f2fcd7502bfb466bc959a6fe862d08b3f8747c6d860aebe7ccf0c3ca44c.md",
+        "summary": "Full DD and closed half DD/DN reduced kernels jointly validate geometry, boundary, one-based pole mode, target, prefix coverage and all retained denominators. Correct paired formulas, nonpositive ordinary Green, coordinate reordering, mass normalization, raw K/SKS and general Jacobian remain. Numerical stationarity guards apply to dedicated K formulas; no interval certification or global G1 conclusion.",
+        "conditions": "UNSPECIFIED",
+        "scope": "Round14: numerical geometry/DD-DN/one-based target identity, coverage and resolved retained-denominator guards for full and half reduced kernels and active assemblies. Correct paired formulas and earlier normalization/general-Jacobian/raw K versus SKS distinctions are preserved; no interval/tail certificate, all-R signs or full formalization.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "HISTORY_ONLY_NOT_REUSE",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "lean",
+          "experience"
+        ],
+        "annotations": [
+          {
+            "path": "research/library/annotations/0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be.json",
+            "sha256": "0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be",
+            "kind": "correction-experience",
+            "author": "agent:round11-20260926",
+            "locator": "cross blocks versus commuting weighted matrices",
+            "source_id": null,
+            "tool_sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c.json",
+            "sha256": "24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c",
+            "kind": "correction-experience",
+            "author": "agent:round12-20260926",
+            "locator": "谱身份必须贯穿请求规模、去极点与求和",
+            "source_id": null,
+            "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81.json",
+            "sha256": "79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81",
+            "kind": "correction-experience",
+            "author": "agent:round10-20260925",
+            "locator": "2026-09-25 bounded propagation",
+            "source_id": null,
+            "tool_sha256": "c0f7eb30ecebbd0b4d8ffc8ebee5b695a4485b10d11c7d3f7cc5453c115fc908",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/8715923d64d4cd4c7c3d79ec5a787419e48a388b1c8df75890b4639725c83aee.json",
+            "sha256": "8715923d64d4cd4c7c3d79ec5a787419e48a388b1c8df75890b4639725c83aee",
+            "kind": "application-boundary",
+            "author": "01a06f46-dd03-7c83-9267-32048412c359",
+            "locator": "Round13 shared numerical interfaces",
+            "source_id": null,
+            "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+            "state": "STALE"
+          }
+        ],
+        "matched_historical_annotation": true,
+        "sources": [
+          {
+            "locator": "Round7 local proof and explicitly scoped tail corrections",
+            "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+            "sha256": "7ac96d66493039476f67be315d484cb221cde8364484dd80ae3cb7b2fafdb182",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+            "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+            "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+            "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+            "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+            "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+            "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+            "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+            "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [
+          {
+            "kind": "program",
+            "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+            "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "source-audit",
+            "locator": "Confirmed direct propagation and untouched historical scope",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+            "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_sl_spectral_identity.py",
+            "sha256": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_gapn2_jacobian_spectral.py",
+            "sha256": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_gapn2_half_problem_probe.py",
+            "sha256": "daacb42d5292b8a17dc8132d49794b7287a6eda51654753b8b374a7567f0662e",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "lean": [],
+        "experience": {}
+      },
+      {
+        "score": 1,
+        "tool_id": "switch-saturation-k-invariant",
+        "title": "开关饱和与块能量不变量",
+        "kind": "tool",
+        "correction_state": {
+          "status": "quarantine",
+          "issues": [
+            "9c9a18313ed2d1f634f5865df98988722093ca734e6f40cbcf99c7aaff91234c"
+          ],
+          "reuse_allowed": false
+        },
+        "reuse_allowed": false,
+        "dependencies": [],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/switch-saturation-k-invariant.md",
+        "sha256": "9cce46fa6d463b63bce9f2cfed759c69d630ab0a4c2d7aa5c0de9ed8bb134f78",
+        "version": "research/library/card-versions/9cce46fa6d463b63bce9f2cfed759c69d630ab0a4c2d7aa5c0de9ed8bb134f78.md",
+        "summary": "Complete current G2 for every fixed n>=2, both patterns and all exact residual zeros on 1<=R<=Rmax: uniform positive block widths, including R down to1. F=0 implies K=-2D and sign compatibility. G2 plus unproved all-zero ND gives constant root count and a unique analytic branch conditionally. Shared numerical stationary acceptance tests absolute/relative balance, resolution and local switching corrections, preserving F and general JF; no interval certificate or unconditional global uniqueness.",
+        "conditions": "UNSPECIFIED",
+        "scope": "Round14: all-interface exact F=0 implies K=-2D, sign compatibility and the full current G2 compactness theorem on [1,Rmax]. Conditional ND corollary only; retained older saturation/extremal assertions keep their historical evidence scope. No automatic all-G1/M3/KP expansion.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "HISTORY_ONLY_NOT_REUSE",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "lean",
+          "experience"
+        ],
+        "annotations": [],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "Complete current G2 and conditional ND corollary, sections 1-7",
+            "path": "docs/SL_G2_compactness_proof.md",
+            "sha256": "3e81f40a67467269e2f75eca653d90cf3d69791c8701da800071ddd3d21186e9",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [
+          {
+            "kind": "program",
+            "locator": "Current common floating-point stationarity acceptance",
+            "path": "scripts/_gapn2_symmetry_recon.py",
+            "sha256": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "lean": [],
+        "experience": {}
+      }
+    ],
+    "issue_count": 386,
+    "changed_paths": []
+  },
+  {
+    "query": "arbitrary retained",
+    "verdict": "RETRIEVAL_ONLY",
+    "blocked": 34,
+    "total_matches": 20,
+    "target_hits": [
+      {
+        "score": 2,
+        "tool_id": "krein-infinite-deletion-subclasses",
+        "title": "Arbitrary retained original sparse families in genuine complex Hc2",
+        "kind": "tool",
+        "correction_state": {
+          "status": "clear",
+          "issues": [],
+          "reuse_allowed": true
+        },
+        "reuse_allowed": true,
+        "dependencies": [],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/krein-infinite-deletion-subclasses.md",
+        "sha256": "b8c92949857e461fa3b50efc54b5ee9a9418530602353587fb6438e04a890011",
+        "version": "research/library/card-versions/b8c92949857e461fa3b50efc54b5ee9a9418530602353587fb6438e04a890011.md",
+        "summary": "Fixed c>0 genuine complex Hc2: arbitrary retained original named family is dense iff both affine columns remain and each parity reciprocal sum diverges. Both divergent parity sums give the exact missing-affine two-trace closure; either finite/summable parity gives infinite codimension. Complete convergent-side element descriptions, other orders, non-diagonal A3/A4, stable bases and rates remain outside the theorem.",
+        "conditions": [
+          "Fixed c>0, genuine complex Hc2=D(Kc), original p0=1,p1=x and p_(2m),p_(2m+1), m>=2.",
+          "Arbitrary J subset {0,1} and Se,So subset {2,3,...}, including finite and empty sets.",
+          "The selected-generator index set is not the membership set N_V of a closed subspace."
+        ],
+        "scope": "Round14: fixed c>0 genuine complex Hc2, arbitrary original-generator retained sets, density iff both affine columns remain and both parity reciprocal sums diverge; exact two-trace closure for divergent parity sums and infinite codimension if either sum converges, including finite/empty sets. Full convergent-side element descriptions, other orders, non-diagonal A3/A4, stable bases and rates remain open.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "lean",
+          "experience"
+        ],
+        "annotations": [
+          {
+            "path": "research/library/annotations/aa0b1db425c3a7e4431caf3bb7c93d07f048ba2be0147e9ab4035f1c1dc24683.json",
+            "sha256": "aa0b1db425c3a7e4431caf3bb7c93d07f048ba2be0147e9ab4035f1c1dc24683",
+            "kind": "research-lead",
+            "author": "agent:literature-absorption-20260923",
+            "locator": "2026-09-23 source-to-claim / P0-P4",
+            "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+            "tool_sha256": "40b38af703436a6be92b3b448d985ca30e77bde4e463c29d2c6502f292d4cc0a",
+            "state": "STALE"
+          }
+        ],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "author_source_id": "2944ad9840c5b40329cd9fef544429f7724b4420e64be060a776a2e6eb5d071a",
+            "locator": "author PDF p3 Theorem1.3",
+            "primary_source_id": "1fe9491bc339fee21cc91079875a41ebb1a4792c631f57a0b2c37c09aba289e8",
+            "primary_source_namespace": "private source-cache",
+            "raw_path": "private/raw/L07-author.pdf",
+            "raw_sha256": "923025280f4f1c018ea0330f4f70739cd3dec8d68816cbfe5f178882e2ac19f4",
+            "text_path": "private/text/L07-author.txt",
+            "text_sha256": "40d56e45f20696767cb2512bb92b972580d37dabb5016ba7c45862371a4b7ea1",
+            "url": "https://people.tamu.edu/~terdelyi/papers-online/bill.pdf",
+            "version": "Author-hosted bill.pdf, 26 pp, linked as item [64]; no mathematical revision date supplied. PDF production metadata is 2022-10-20, not a claimed revision date.",
+            "binding_state": "UNBOUND_REFERENCE"
+          },
+          {
+            "kind": "author_derivation_pending_independent_review",
+            "locator": "D3-D4, arithmetic closure D7 and sparse annihilator construction",
+            "path": "literature/absorption-20260923/approximation/notes/04_infinite_deletions.md",
+            "sha256": "8dd35ebe86e67eb301716869b7d312b87667ba927bd287b1ffc153e872d60fe0",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified",
+            "source_id": "9cedc89841ab871e476762e55964261a729070d279d182ee86944c8848f72118",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Complete arbitrary-retention Hc2 theorem and proof, sections 1-9",
+            "path": "docs/SL_H2_arbitrary_deletion_proof.md",
+            "sha256": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [
+          {
+            "locator": "Per-claim scope and limitations",
+            "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json",
+            "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Native call and exact input identities; private primary-source availability",
+            "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json",
+            "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Exact proposed card reviewed independently",
+            "path": "literature/absorption-20260923/approximation/tool-cards/04-infinite-deletion-subclasses.json",
+            "sha256": "b297392c60a00a5f5e3327d1f46a1aa430be426f24a4e988e147ed6f36dc53de",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "resources": [],
+        "lean": [],
+        "experience": {}
+      },
+      {
+        "score": 1,
+        "tool_id": "half-problem-regularized-green",
+        "title": "半问题约化 Green 闭式: 无 rho(y) 因子的约化预解核与 K 的两个镜扇区闭式",
+        "kind": "tool",
+        "correction_state": {
+          "status": "quarantine",
+          "issues": [
+            "82c7846adee27cc4bc51041413ef93155256ca2f90d473b90aadd81aad74479c",
+            "cb146a641ab5ff4eb712ccec5ca139fd93247aa7a97fc0fa057dd1607a5e05aa",
+            "dcd09930a4e0530a1fa1b8a34ce9d3606afed88943172efe0bca4d9f84a0057a",
+            "41bf952759a748e69e415dd07c8c1cb29525705a1fc1b53330957341ec751b7f",
+            "c5d5701ed28bc1ec6cb39c5dcc8fe0e8473f17bec81e4d489a79d1fa273270c3",
+            "4a5b479309b2f716af2148ab6f1cc11c7642aea5550fecdf7f232a6ebb2beae1"
+          ],
+          "reuse_allowed": false
+        },
+        "reuse_allowed": false,
+        "dependencies": [
+          {
+            "location": "tools/feynman-hellmann.md",
+            "sha256": "da33642d9b86de9587760ffc635f9b4e655fc86c6610b75c1732dc0920095611"
+          }
+        ],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/half-problem-regularized-green.md",
+        "sha256": "af730f2fcd7502bfb466bc959a6fe862d08b3f8747c6d860aebe7ccf0c3ca44c",
+        "version": "research/library/card-versions/af730f2fcd7502bfb466bc959a6fe862d08b3f8747c6d860aebe7ccf0c3ca44c.md",
+        "summary": "Full DD and closed half DD/DN reduced kernels jointly validate geometry, boundary, one-based pole mode, target, prefix coverage and all retained denominators. Correct paired formulas, nonpositive ordinary Green, coordinate reordering, mass normalization, raw K/SKS and general Jacobian remain. Numerical stationarity guards apply to dedicated K formulas; no interval certification or global G1 conclusion.",
+        "conditions": "UNSPECIFIED",
+        "scope": "Round14: numerical geometry/DD-DN/one-based target identity, coverage and resolved retained-denominator guards for full and half reduced kernels and active assemblies. Correct paired formulas and earlier normalization/general-Jacobian/raw K versus SKS distinctions are preserved; no interval/tail certificate, all-R signs or full formalization.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "HISTORY_ONLY_NOT_REUSE",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "lean",
+          "experience"
+        ],
+        "annotations": [
+          {
+            "path": "research/library/annotations/0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be.json",
+            "sha256": "0a6cd8470318d998204a72f6a799931f03a615c8d0695b139fff1e6d97b052be",
+            "kind": "correction-experience",
+            "author": "agent:round11-20260926",
+            "locator": "cross blocks versus commuting weighted matrices",
+            "source_id": null,
+            "tool_sha256": "fe1c3b2772225d60122ac81fda7df94cb819a552cf2b21a6ba57a67614d8a9fd",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c.json",
+            "sha256": "24eff2ab8f2272e22a8da44ab1cdf478f844c38e1ca5afcfdcdb383d0835d12c",
+            "kind": "correction-experience",
+            "author": "agent:round12-20260926",
+            "locator": "谱身份必须贯穿请求规模、去极点与求和",
+            "source_id": null,
+            "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81.json",
+            "sha256": "79690543f283ff2958bf87346d4a0c7beee83ab3dd4304ab41bfa5a08a706f81",
+            "kind": "correction-experience",
+            "author": "agent:round10-20260925",
+            "locator": "2026-09-25 bounded propagation",
+            "source_id": null,
+            "tool_sha256": "c0f7eb30ecebbd0b4d8ffc8ebee5b695a4485b10d11c7d3f7cc5453c115fc908",
+            "state": "STALE"
+          },
+          {
+            "path": "research/library/annotations/8715923d64d4cd4c7c3d79ec5a787419e48a388b1c8df75890b4639725c83aee.json",
+            "sha256": "8715923d64d4cd4c7c3d79ec5a787419e48a388b1c8df75890b4639725c83aee",
+            "kind": "application-boundary",
+            "author": "01a06f46-dd03-7c83-9267-32048412c359",
+            "locator": "Round13 shared numerical interfaces",
+            "source_id": null,
+            "tool_sha256": "c1f5f7cc704a8e518055a74e7d6ea189597c6dde7544ee374368f885ced40c56",
+            "state": "STALE"
+          }
+        ],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "Round7 local proof and explicitly scoped tail corrections",
+            "path": "docs/SL_gap_nge2_symmetry_local_proof.tex",
+            "sha256": "7ac96d66493039476f67be315d484cb221cde8364484dd80ae3cb7b2fafdb182",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Historical reconnaissance with round10 numerical-evidence and reflection-sector corrections",
+            "path": "docs/SL_gap_nge2_symmetry_recon.tex",
+            "sha256": "986262ff5379e2855f6e6cb9c907d6955da1a625ee31d5907f72314fd8e984bc",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope",
+            "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md",
+            "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits",
+            "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md",
+            "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824",
+            "binding_state": "CURRENT"
+          },
+          {
+            "locator": "Sections 1-6: exact parity compression, indexed DD/DN phases, normalized n2 Green identities and explicit scope",
+            "path": "research/artifacts/proof-audit-round12-20260926/analytic-repair.md",
+            "sha256": "e133d8cc04484f44879af165f5022d2ce0ffc19af2e268c0748c5be973b6e571",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [
+          {
+            "kind": "program",
+            "locator": "Scoped finite exact and numerical checks; not complete Green audit",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/checks.py",
+            "sha256": "7dd9ef3f7b3b3544d9f69a6a355a32278fa2132622437624e16253c9fe5b911a",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "source-audit",
+            "locator": "Confirmed direct propagation and untouched historical scope",
+            "path": "research/artifacts/proof-audit-round7-20260921/checks/propagation.md",
+            "sha256": "f9eae002f40576f74fd7d9a89f5de9c516f95b56c274f56f2c00087a33246a46",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_sl_spectral_identity.py",
+            "sha256": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_gapn2_jacobian_spectral.py",
+            "sha256": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+            "binding_state": "CURRENT"
+          },
+          {
+            "kind": "program",
+            "locator": "Current R14-02 numerical identity guard",
+            "path": "scripts/_gapn2_half_problem_probe.py",
+            "sha256": "daacb42d5292b8a17dc8132d49794b7287a6eda51654753b8b374a7567f0662e",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "lean": [],
+        "experience": {}
+      },
+      {
+        "score": 1,
+        "tool_id": "switch-saturation-k-invariant",
+        "title": "开关饱和与块能量不变量",
+        "kind": "tool",
+        "correction_state": {
+          "status": "quarantine",
+          "issues": [
+            "9c9a18313ed2d1f634f5865df98988722093ca734e6f40cbcf99c7aaff91234c"
+          ],
+          "reuse_allowed": false
+        },
+        "reuse_allowed": false,
+        "dependencies": [],
+        "dependencies_known": true,
+        "metadata_status": "VALID",
+        "identity_error": null,
+        "location": "tools/switch-saturation-k-invariant.md",
+        "sha256": "9cce46fa6d463b63bce9f2cfed759c69d630ab0a4c2d7aa5c0de9ed8bb134f78",
+        "version": "research/library/card-versions/9cce46fa6d463b63bce9f2cfed759c69d630ab0a4c2d7aa5c0de9ed8bb134f78.md",
+        "summary": "Complete current G2 for every fixed n>=2, both patterns and all exact residual zeros on 1<=R<=Rmax: uniform positive block widths, including R down to1. F=0 implies K=-2D and sign compatibility. G2 plus unproved all-zero ND gives constant root count and a unique analytic branch conditionally. Shared numerical stationary acceptance tests absolute/relative balance, resolution and local switching corrections, preserving F and general JF; no interval certificate or unconditional global uniqueness.",
+        "conditions": "UNSPECIFIED",
+        "scope": "Round14: all-interface exact F=0 implies K=-2D, sign compatibility and the full current G2 compactness theorem on [1,Rmax]. Conditional ND corollary only; retained older saturation/extremal assertions keep their historical evidence scope. No automatic all-G1/M3/KP expansion.",
+        "applicability": [],
+        "lifecycle": "unclassified",
+        "evidence_status": "ROUND14_SCOPED_ANALYTIC_PROOF_AND_NUMERICAL_GUARDS; CHECK_NATIVE_REVIEWS_AND_CORRECTION_RECEIPTS",
+        "trust": "HISTORY_ONLY_NOT_REUSE",
+        "inherited_metadata": [
+          "applicability",
+          "lifecycle",
+          "conditions",
+          "lean",
+          "experience"
+        ],
+        "annotations": [],
+        "matched_historical_annotation": false,
+        "sources": [
+          {
+            "locator": "Complete current G2 and conditional ND corollary, sections 1-7",
+            "path": "docs/SL_G2_compactness_proof.md",
+            "sha256": "3e81f40a67467269e2f75eca653d90cf3d69791c8701da800071ddd3d21186e9",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "evidence": [],
+        "resources": [
+          {
+            "kind": "program",
+            "locator": "Current common floating-point stationarity acceptance",
+            "path": "scripts/_gapn2_symmetry_recon.py",
+            "sha256": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+            "binding_state": "CURRENT"
+          }
+        ],
+        "lean": [],
+        "experience": {}
+      }
+    ],
+    "issue_count": 386,
+    "changed_paths": []
+  }
+]

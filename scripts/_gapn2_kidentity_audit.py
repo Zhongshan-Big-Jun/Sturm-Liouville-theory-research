@@ -32,6 +32,9 @@ def main():
         e0 = np.array(tab["n2_" + mode.upper()]["edges"])
         w0 = np.diff(np.concatenate([[0.0], e0, [1.0]]))
         res = rc.solve(rc.widths_to_z(w0))
+        if not res.stationary:
+            print(f'{mode}: stationary branch unavailable ({res.stationarity["status"]})')
+            continue
         rep = rc.full_report(res.x)
         blocks = [(float(w), rc.pat[i]) for i, w in enumerate(rep["widths"])]
         lam_n, lam_np1, q0, q1 = report(blocks, 2)
@@ -50,9 +53,8 @@ def main():
         for t in range(6):
             w0 = rng.dirichlet(np.ones(rd.nb))
             z0 = rd.widths_to_z(w0)
-            res = least_squares(rd.residual, z0, xtol=1e-12, ftol=1e-12,
-                                gtol=1e-12, max_nfev=150)
-            if np.max(np.abs(res.fun)) < 1e-7:
+            res = rd.solve(z0, max_nfev=150)
+            if res.stationary:
                 rep = rd.report(res.x)
                 blocks = [(float(w), rd.pat[i]) for i, w in enumerate(rep["widths"])]
                 lam_n, lam_np1, q0, q1 = report(blocks, 2)

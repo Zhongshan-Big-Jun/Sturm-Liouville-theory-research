@@ -20,14 +20,11 @@ from _gapn2_symmetry_recon import Recon, roots_of, eigfun
 from _gapn2_slope_ratio import eigfun_slope0
 
 
-class Reduced:
+class Reduced(Recon):
     def __init__(self, n, R, mode, end='first'):
-        self.n = n
-        self.R = R
+        super().__init__(n, R, mode)
         self.end = end
-        self.mode = mode
-        rc = Recon(n, R, mode)
-        pat0 = rc.pat
+        pat0 = self.pat
         self.pat0 = pat0
         if end == 'first':
             self.pat = pat0[1:]          # 2n blocks, 2n-1 switches
@@ -38,18 +35,6 @@ class Reduced:
         else:
             raise ValueError(end)
         self.nb = len(self.pat)
-
-    def z_to_widths(self, z):
-        z = np.asarray(z, dtype=float)
-        ez = np.exp(z - np.max(z))
-        sm = ez / np.sum(ez)
-        return (1.0 - self.nb * 1e-7) * sm + 1e-7
-
-    def widths_to_z(self, widths):
-        w = np.asarray(widths, dtype=float)
-        w = np.clip(w, 2e-7, 1.0 - 2e-7)
-        w = w / np.sum(w)
-        return np.log(w - 1e-7)
 
     def blocks_from_z(self, z):
         w = self.z_to_widths(z)
@@ -105,6 +90,8 @@ class Reduced:
                  q1mc=float(q1 - c), q1c=float(q1 / c),
                  widths=w.tolist(), edges=edges.tolist(),
                  band_ok=band_ok, nz=nz)
+        Stationarity = self.stationarity_diagnostics(z)
+        d.update(stationary=Stationarity['accepted'], stationarity=Stationarity)
         # margin relevant for the endpoint condition of this end
         if self.end == 'first':
             d['mc'] = d['q0mc']
@@ -118,9 +105,12 @@ class Reduced:
 def one(job):
     n, R, mode, end, z0 = job
     rd = Reduced(n, R, mode, end)
-    res = least_squares(rd.residual, z0, xtol=1e-12, ftol=1e-12, gtol=1e-12, max_nfev=150)
-    if np.max(np.abs(res.fun)) < 1e-7:
-        return rd.report(res.x)
+    try:
+        res = rd.solve(z0, max_nfev=150)
+        if res.stationary:
+            return rd.report(res.x)
+    except (ValueError, ArithmeticError):
+        return None
     return None
 
 

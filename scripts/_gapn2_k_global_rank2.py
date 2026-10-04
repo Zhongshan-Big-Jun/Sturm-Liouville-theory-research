@@ -56,6 +56,9 @@ from _gapn2_jacobian_spectral import gtilde_spectral
 
 def build_kprime(rc, zs, N=2000):
     """Reconstruct Kp via the corrected identity; compare with FD."""
+    rc.require_stationary(zs)
+    if rc.R <= 1:
+        raise ValueError('stationary Kp requires R>1')
     ed = eigen_data(rc, zs)
     n = rc.n
     lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']

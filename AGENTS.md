@@ -10,6 +10,26 @@
 
 # 项目维护
 
+## 2026-10-04 第十四轮云端交付 (用户明确授权)
+
+用户原话 "上传上云", 授权提交并同步本轮成果. 实际 origin 与 fork 的 main 在发布前均为 a815803a6492951cbed010624b42805fb1b49bd8; 本轮只收录已交付的四项软件/解析修订、证据、PDF、必要工具库版本和维护记录, 不纳入原 KP-DET 未提交草稿或134个原未跟踪文件. 新增精确 -text 规则保护审查绑定及历史换行, 不改变已复审源码/证明. 当前 G2 边界条目已与本轮补证同步; 旧 dated 记录保持历史范围.
+
+发布依次主仓库 Zhongshan-Big-Jun/Sturm-Liouville-theory-research 后 xsoc1/Sturm-Liouville-theory-research fork, 仅常规快进推送. 暂存/提交 blob 逐项与工作区字节及冻结审查输入核对, 最终提交身份和真实远端读回保存在 F:/tools/math-audit-round14-20261004/publication/DELIVERY.json. 本文件随上传提交记录授权、范围与方法; 实际云端结果以该回执和真实远端为准. 自动工具库回执仍未接收, 上传不放行该门禁, 不声称 Lean 或 CI 新验收.
+
+## 2026-10-04 第十四轮: 共享入口与两份解析补证
+
+用户提供 C:/Users/HuangZY/Downloads/sl_audit_round14, 要求直接修订实际工作区的 R14-01/R14-02, 独立核对并争取合并 C14-G2/C14-A11, 只完成四项有限义务, 不以弱量词/状态标签关闭, 不扩写本科讲义或其它 M3/KP. HEAD 与审计基线 a815803a6492951cbed010624b42805fb1b49bd8 一致; 19190 tracked/134 original untracked 的字节记录在 F:/tools/math-audit-round14-20261004/baseline.json. 33项输入清单、7项上游完整源码 blob 核对通过, 摘录未覆盖源码.
+
+统一驻点数值验收已贯穿完整/约化求解、续接、扇区和专用公式: 绝对 F=f/b、局部相对平衡、分母/导数分辨及局部切换零点校正; 失败/未收敛/不可判定不当驻点. 纯 softmax 无人为块宽地板, 一般 J_F 保留. 全 DD 与半 DD/DN 约化核统一几何/一基目标/覆盖/未删分母守卫. 独立软件复审另发现直接装配的 coverage 漏查及 SKS 误名 raw K, 新 code-v3 已修并复审通过; 首次退回保留. 普通/-O 当前性质62项、核143项、审查者独立补测26项及旧回归136/469项均实际通过, 只属有限诊断而非区间证书.
+
+两份完整证明在 docs/SL_G2_compactness_proof.md 与 docs/SL_H2_arbitrary_deletion_proof.md. G2 对每个 n>=2、两图案及全部精确零点在 [1,Rmax] 给统一正块宽, 包括 R↓1; F=0 本身给 K=-2D 和符号相容. G2+全部精确零点 ND 只给条件化常根数/唯一解析分支, ND/G1/无条件唯一仍开放. A11 在固定 c>0 真实复 Hc2 对任意 J/Se/So 完成稠密充要判据与发散侧精确两迹闭包; 任一收敛侧无限余维, 全部元素描述/其它阶数/A3-A4/稳定基/误差率另计. 初审和最终数学复审使用当前实际 collaboration 的 fork_turns=none 原生会话及冻结哈希, 不以有限脚本代替解析证明. 最终活动整合精确结论见本轮报告.
+
+四卡通过原版 save_card/version/revision API 保存旧/新身份, 地图、活动正文和续接同步. 自动接收仍未完成: 原版 check_spawn 只接受旧 multi_agent_v1__spawn_agent/fork_context=false/UUID, 实际拒收当前 task_name/fork_turns=none 格式. 不改插件或伪造旧回执, 相关门禁保持; 这项接收缺口与原生数学/软件审查通过分开. 16/22页两份活动PDF用既有 XeLaTeX 重建并检查修改页; 内置编译器环境失败、latexmk缺Perl均保留记录. 无 Lean、canonical 写入、全扫描重审或云端发布. 旧冻结材料和无关原工作按字节保护. 详情见 [四项交付表](reports/proof-audit-round14-20261004/REPORT.md).
+
+重放使用有 scipy/numpy/mpmath/sympy 的 Python3.10, 命令 `python -B research/artifacts/proof-audit-round14-20261004/checks.py --output <outside.json>` 与 `python -O -B research/artifacts/proof-audit-round14-20261004/kernel_checks.py --output <outside.json>`, 实际解释器和结果身份见报告. 停在本轮边界; 不自动开始 ND、收敛侧分类或其它理论扩写.
+
+最终保护核对 PASS: 19156 个原跟踪文件与全部134原未跟踪文件字节不变, 只改变本轮34个活动文件; 13842 个受保护历史路径没有改动, 最终软件22项/解析11项审查输入与实际源一致. 证据见 research/artifacts/proof-audit-round14-20261004/preservation.json. 原版查询全库 blocked=34, 不将旧整文件绑定缺口记作数学命题失败或自动已放行.
+
 ## 2026-09-27 第十三轮复核修订 (修订与验收完成)
 
 用户要求基于sl_audit_round13直接修复实际工作区, 逐项核对R13-01至R13-12, 不覆盖新版、不机械接受审计、不放宽阈值或删反例. 基线4a82d3c, 17892 tracked/134原untracked/6原dirty已存F:/tools/math-audit-round13-20260927/baseline.json. 41项附件哈希及3份完整源Git blob核对通过.
@@ -165,7 +185,7 @@ R3-F1/F2 的一般递推、基扰动与 R3-F3 的商空间证明已核实修订,
 - M3: n=2 对称 INF large-R 有限非零内部 chart 内 STRICT 闭合, canonical 接收与独立复现已保存. 旧 staged D-side mass 的 odd/log 障碍已 SUPERSEDED.
 - KP-DET: sequence-26 的完整 0<c<=2/3 分支与 P20-P21 求积约化经审计 PASS. P1-P4 的 pivot/phase 部分已 canonical 接收; 后续 run 包与 canonical 分开登记. 本地主 run 的 Q9 仍 OPEN.
 - 插件公开 benchmark 另有三份 Q9 完整证明及匿名外审 PASS, 尚未接入本 canonical 或 Lean. 不据此宣称全局 G1', KO-DET 或完整 n>=2 极值问题已解决.
-- G2 当前活动入口已区分: 全部残差零点且含 R↓1 的一致桥梁仍待证; 历史符号相容分支且 R0>1 的有限结论不被扩大. 第十三轮对齐活动量词, 历史证明/日志保持原字节.
+- G2: 第十四轮完整补证已独立复审通过, 覆盖固定 n>=2、两图案及全部 1<=R<=Rmax 精确残差零点的一致正块宽, 包括 R↓1. 本条取代第十三轮待证登记; 历史原证明/日志仍保持原字节. G2+全部零点 ND 的全局分支推论为条件化结论, ND/G1 和无条件全局唯一性仍开放. 见 docs/SL_G2_compactness_proof.md 及本轮报告.
 - Lean 工程含已检查的证明片段, 条件化接口和带 sorry 的脚手架. 历史全库计数不得复述为当前形式化结论.
 
 ## 近期维护记录

@@ -23,6 +23,7 @@ sys.path.insert(0, r'scripts')
 from _gapn2_symmetry_recon import Recon, roots_of, eigfun
 from _gapn2_jacobian_probe import symmetric_root
 from _gapn2_jacobian_analytic import eigen_data
+from _sl_spectral_identity import spectrum_for, spectral_denominators
 
 
 def sector_data(rc, zs, N=121):
@@ -37,9 +38,7 @@ def sector_data(rc, zs, N=121):
 	lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
 	D = lam_np1 - lam_n
 	EdgeValues = np.asarray(ed['edges'])
-	Residual = np.asarray(rc.residual(zs))
-	if not np.all(np.isfinite(Residual)) or np.max(np.abs(Residual)) > 1e-8:
-		raise ValueError('sector decomposition requires a stationary point')
+	Stationarity = rc.require_stationary(zs)
 	if np.max(np.abs(EdgeValues + EdgeValues[::-1] - 1.0)) > 1e-10:
 		raise ValueError('sector decomposition requires mirror-symmetric geometry')
 	u_n = ed['u_n']
@@ -49,8 +48,11 @@ def sector_data(rc, zs, N=121):
 	m = 2 * n
 	wj = lam_n * u_n ** 2
 	blocks = rc.blocks_from_z(zs)
-	ss = roots_of(blocks, N + 1)
-	lam_all = ss ** 2
+	Table = spectrum_for(blocks, 'D', N+1)
+	lam_all = Table.prefix(N+1)
+	ss = Table.frequency_prefix(N+1)
+	spectral_denominators(Table, lam_n, N+1, PoleMode=n)
+	spectral_denominators(Table, lam_np1, N+1, PoleMode=n+1)
 	ni, nj = n - 1, n
 	x = ed['edges']
 	xbar = 1.0 - x
@@ -91,7 +93,7 @@ def sector_data(rc, zs, N=121):
 	He, Ho = E @ KpHo @ E, E @ KpHe @ E
 	Ee, Eo = E @ KpEo @ E, E @ KpEe @ E
 	Ke, Ko = E @ KpOdd @ E, E @ KpEven @ E
-	out = dict(d=d[:n].tolist(), c_e=c_e, c_o=c_o,
+	out = dict(d=d[:n].tolist(), c_e=c_e, c_o=c_o, stationarity=Stationarity,
 			   coefficient_target='c_e/c_o belong to KpEe/KpEo',
 			   sector_convention='Ke/Ko are raw K; KpEven/KpOdd are S K S',
 			   KpEven=KpEven.tolist(), KpOdd=KpOdd.tolist(),

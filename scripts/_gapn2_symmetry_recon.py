@@ -15,7 +15,7 @@ import numbers
 from pathlib import Path
 from reflection_seeds import generate_sector_seed, SeedGenerationError
 import numpy as np
-from scipy.optimize import least_squares
+from scipy.optimize import least_squares, brentq
 
 # ----------------------------------------------------------------------------
 # spectral engine (transfer matrix, Dirichlet)
@@ -194,6 +194,11 @@ def eigfun(blocks, s, pts):
 
 class Recon:
     def __init__(self, n, R, mode):
+        if isinstance(n, (bool, np.bool_)) or not isinstance(n, numbers.Integral) or n < 1:
+            raise ValueError('n must be a positive integer')
+        R = _real_parameter(R, 'R')
+        if R < 1 or mode not in ('sup', 'inf'):
+            raise ValueError('require R>=1 and mode sup/inf')
         self.n = n
         self.R = R
         self.mode = mode  # 'sup' or 'inf'
@@ -203,18 +208,33 @@ class Recon:
         self.pat = [self.start_val if i % 2 == 0 else self.alt_val for i in range(self.nb)]
 
     def z_to_widths(self, z):
-        """softmax parameterization: strictly feasible widths, sum = 1."""
-        z = np.asarray(z, dtype=float)
-        ez = np.exp(z - np.max(z))
-        sm = ez / np.sum(ez)
-        return (1.0 - self.nb * 1e-7) * sm + 1e-7
+        """Pure softmax; unrepresentable geometry raises instead of clipping.
+
+        There is no fixed minimum block width or claim of complete search.
+        """
+        Values = np.asarray(z)
+        if Values.shape != (self.nb,) or Values.dtype.kind not in 'iuf' or not np.all(np.isfinite(Values)):
+            raise ValueError('z must be a finite real vector matching the block count')
+        with np.errstate(over='raise', invalid='raise', under='ignore'):
+            Exponential = np.exp(Values.astype(float) - np.max(Values))
+            Widths = Exponential / np.sum(Exponential)
+        Edges = np.r_[0., np.cumsum(Widths)[:-1], 1.]
+        if np.any(Widths <= 0) or np.any(np.diff(Edges) <= 0):
+            raise ArithmeticError('block geometry is not resolvable in float64')
+        return Widths
 
     def widths_to_z(self, widths):
-        """inverse softmax (up to shift): z_i = log(width_i - 1e-7)."""
-        w = np.asarray(widths, dtype=float)
-        w = np.clip(w, 2e-7, 1.0 - 2e-7)
-        w = w / np.sum(w)
-        return np.log(w - 1e-7)
+        """Inverse pure softmax; no width floor or silent geometry repair."""
+        Widths = np.asarray(widths)
+        if (Widths.shape != (self.nb,) or Widths.dtype.kind not in 'iuf'
+            or not np.all(np.isfinite(Widths)) or np.any(Widths <= 0)):
+            raise ValueError('widths must be a positive finite real vector')
+        Widths = Widths.astype(float)
+        if abs(float(np.sum(Widths)) - 1.) > 32*self.nb*np.finfo(float).eps:
+            raise ValueError('widths must sum to one')
+        if np.any(np.diff(np.r_[0., np.cumsum(Widths)[:-1], 1.]) <= 0):
+            raise ArithmeticError('block geometry is not resolvable in float64')
+        return np.log(Widths)
 
     def blocks_from_z(self, z):
         w = self.z_to_widths(z)
@@ -236,6 +256,83 @@ class Recon:
         edges = np.cumsum(w)[:-1]  # 2n interior switch points
         f, lam_n, lam_np1 = self.f_at(z, edges)
         return f / lam_np1
+
+    def stationarity_diagnostics(self, z, *, solver_success=None):
+        """One shared FLOATING-POINT acceptance contract for F=f/b.
+
+        Tests absolute F, local relative balance, resolved modal energy and
+        simple switching zeros, including their correction relative to the
+        adjacent widths. These are numerical diagnostics, not an interval
+        certificate. The solver continues to use F and its own derivative;
+        this routine never substitutes a relative residual into J_F.
+        """
+        Evidence = dict(accepted=False, status='unresolved',
+                        evidence='float64 diagnostic, not interval certification',
+                        absolute_tolerance=1e-8, relative_tolerance=1e-7,
+                        correction_tolerance=1e-7)
+        if solver_success is not None and not solver_success:
+            return dict(Evidence, status='not_converged', reason='optimizer did not converge')
+        try:
+            Widths = self.z_to_widths(z)
+            Edges = np.cumsum(Widths)[:-1]
+            Blocks = self.blocks_from_z(z)
+            Frequencies = roots_of(Blocks, self.n+1)
+            A, B = Frequencies[self.n-1]**2, Frequencies[self.n]**2
+            U = eigenfunction_states(Blocks, Frequencies[self.n-1], Edges)
+            V = eigenfunction_states(Blocks, Frequencies[self.n], Edges)
+            Numerator = A*U[:, 0]**2-B*V[:, 0]**2
+            Denominator = A*U[:, 0]**2+B*V[:, 0]**2
+            Eps = np.finfo(float).eps
+            EnergyScale = A*(np.abs(U[:, 0])+np.abs(U[:, 1]))**2 + B*(np.abs(V[:, 0])+np.abs(V[:, 1]))**2
+            Evidence.update(edges=Edges.tolist(), absolute_max=float(np.max(np.abs(Numerator/B))),
+                            eigenvalues=[float(A), float(B)], mode_indices=[self.n, self.n+1],
+                            balance_denominators=Denominator.tolist())
+            if (not np.all(np.isfinite(Denominator)) or not np.all(np.isfinite(EnergyScale))
+                or np.any(Denominator <= 256*Eps*EnergyScale)):
+                return dict(Evidence, reason='local modal energy denominator is not resolvable')
+            Relative = Numerator/Denominator
+            Evidence.update(relative_defects=Relative.tolist(), relative_max=float(np.max(np.abs(Relative))))
+            if not np.isfinite(Evidence['absolute_max']) or not np.all(np.isfinite(Relative)):
+                return dict(Evidence, reason='residual is not finite')
+            if Evidence['absolute_max'] > Evidence['absolute_tolerance'] or Evidence['relative_max'] > Evidence['relative_tolerance']:
+                return dict(Evidence, status='rejected', reason='absolute or local relative balance fails')
+            Fprime = 2*A*U[:, 0]*U[:, 1]-2*B*V[:, 0]*V[:, 1]
+            DerivativeScale = 2*A*np.abs(U[:, 0]*U[:, 1])+2*B*np.abs(V[:, 0]*V[:, 1])
+            if not np.all(np.isfinite(Fprime)) or np.any(np.abs(Fprime) <= 256*Eps*DerivativeScale):
+                return dict(Evidence, reason='switching derivative is not resolvable')
+            LocalWidths = np.minimum(Widths[:-1], Widths[1:])
+            Budgets = np.maximum(Evidence['correction_tolerance']*LocalWidths, 64*Eps)
+            if np.any(Budgets >= .01*LocalWidths):
+                return dict(Evidence, reason='switching correction cannot be resolved against local widths')
+            LinearCorrections = np.abs(Numerator/Fprime)
+            Evidence['linear_corrections'] = LinearCorrections.tolist()
+            if np.any(LinearCorrections > Budgets):
+                return dict(Evidence, status='rejected', reason='local switching correction is too large')
+            def switching_value(Point):
+                Up = eigfun(Blocks, Frequencies[self.n-1], [Point])[0]
+                Vp = eigfun(Blocks, Frequencies[self.n], [Point])[0]
+                return A*Up**2-B*Vp**2
+            ZeroPoints = []
+            for Edge, LocalWidth, Budget in zip(Edges, LocalWidths, Budgets):
+                Left, Right = Edge-.25*LocalWidth, Edge+.25*LocalWidth
+                Fl, Fr = switching_value(Left), switching_value(Right)
+                if not np.isfinite(Fl) or not np.isfinite(Fr) or Fl == 0 or Fr == 0 or np.sign(Fl) == np.sign(Fr):
+                    return dict(Evidence, reason='no resolved simple switching zero in the local slot')
+                Zero = brentq(switching_value, Left, Right, xtol=4*Eps, rtol=4*Eps)
+                ZeroPoints.append(float(Zero))
+                if abs(Zero-Edge) > Budget:
+                    return dict(Evidence, status='rejected', reason='actual switching zero correction is too large')
+            Evidence.update(switching_zeros=ZeroPoints, correction_budgets=Budgets.tolist(),
+                            accepted=True, status='accepted', reason='all numerical stationarity checks passed')
+            return Evidence
+        except (ValueError, ArithmeticError) as Error:
+            return dict(Evidence, reason=str(Error))
+
+    def require_stationary(self, z):
+        Evidence = self.stationarity_diagnostics(z)
+        if not Evidence['accepted']:
+            raise ValueError('stationary point required: '+Evidence['status']+': '+Evidence['reason'])
+        return Evidence
 
     def full_report(self, z):
         z = np.asarray(z, dtype=float)
@@ -259,15 +356,19 @@ class Recon:
         expect = np.array(expect)
         band_min = float(np.min(np.abs(f_m) / lam_np1))
         band_ok = bool(np.all(np.sign(f_m) == expect) and band_min > 1e-6)
+        Stationarity = self.stationarity_diagnostics(z)
         return dict(edges=edges.tolist(), widths=w.tolist(), D=float(D),
                     lam_n=float(lam_n), lam_np1=float(lam_np1),
                     asym=float(asym), band_ok=band_ok,
                     band_min=band_min,
-                    res_max=float(np.max(np.abs(f_e) / lam_np1)))
+                    res_max=float(np.max(np.abs(f_e) / lam_np1)),
+                    stationary=Stationarity['accepted'], stationarity=Stationarity)
 
     def solve(self, z0, max_nfev=250):
         res = least_squares(self.residual, np.asarray(z0, dtype=float),
                             xtol=1e-12, ftol=1e-12, gtol=1e-12, max_nfev=max_nfev)
+        res.stationarity = self.stationarity_diagnostics(res.x, solver_success=res.success)
+        res.stationary = res.stationarity['accepted']
         return res
 
 
@@ -289,8 +390,11 @@ def one_solve(job):
     """job = (n, R, mode, z0, label). Returns report dict or None."""
     n, R, mode, z0, label, *metadata = job
     rc = Recon(n, R, mode)
-    r = rc.solve(z0)
-    if np.max(np.abs(r.fun)) >= 1e-7:
+    try:
+        r = rc.solve(z0)
+    except (ValueError, ArithmeticError):
+        return None
+    if not r.stationary:
         return None
     rep = rc.full_report(r.x)
     rep['seed'] = label

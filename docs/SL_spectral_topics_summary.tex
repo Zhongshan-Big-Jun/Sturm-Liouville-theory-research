@@ -15,7 +15,7 @@
 
 \title{SL 边值问题的谱分析: 正交函数系完备性与特征值间距的最优界}
 \author{研究总结文档 (项目: BVE research)}
-\date{2026-08-10; 2026-09-27 状态与紧性条件修订}
+\date{2026-08-10; 2026-10-04 G2 与 A11 补证修订}
 
 \begin{document}
 \maketitle
@@ -31,7 +31,7 @@ Quintero-Roba 的 Krein-Sobolev 正交多项式一文 (OPSFA-16 会议论文集,
 的临界情形. 见 \path{SL_fractional_left_definite.tex} 与
 \path{SL_cofinite_all_orders.tex}. 非仿射命名成员在 $s\ge7/2$ 出域,
 仿射成员 $1,x$ 仍合格; 相容有限组合与逐个命名成员须区分.
-这些结论不扩展本文的条件稳定性论证, 也不解决一般无限删项或全局 (G1$'$).
+第十四轮进一步给出固定 $c>0$ 的真实 $H_c^2$ 任意保留集稠密性判定及发散侧闭包; 条件稳定性和全局 (G1$'$) 仍另计.
 本次仅同步入口与假设, 不重新认证 A1/A12.
 
 以下带 2026-08 日期的更新记录保留当时进度, 当前范围以本段及正文的修订说明为准.
@@ -65,10 +65,10 @@ $\partial_w\mathrm{IN}=M_2<0$ 于 $D$ 已升级为完全解析证明 ($\theta$-�
 未检索到直接等价已发表定理, 不声称首创.
 2026-08-13 的历史 (G2) 闭合登记须与当前分类框架分开读取:
 旧声明涉及带自洽解及远离 $R=1$ 的紧区间, 框架则要求全部残差零点集合上的
-统一块宽下界, 包括 $R\downarrow1$ 的控制. 当前证明文档已将历史整体闭合标为
-未重新认证. 因而全局反射对称性,唯一性与 (G1$'$) 仍开放, 不能写成
-``只余 (G1$'$)''. 具体量词见 \path{SL_gap_nge2_symmetry_local_proof.tex}
-的分类框架及历史 (G2) 节.
+统一块宽下界, 包括 $R\downarrow1$ 的控制. 历史整体闭合仍保留未重新认证的原登记. 第十四轮另以完整精确残差零点量词
+证明当前 (G2), 包括 $R\downarrow1$, 见 \path{SL_G2_compactness_proof.md}.
+全局反射对称性和唯一性仍以全部零点非退化 (ND) 为未证前提; 本轮不证明
+(G1$'$), 不扩大 M3/KP. 具体量词见当前局部证明的第十四轮节.
 \end{abstract}
 
 \tableofcontents
@@ -799,15 +799,14 @@ INF 侧 $R\to\infty$ 极限定理 A (对称阱族) 已证 (会话 30); O3a/C1
 $n\ge2$ 的有限块约化与精确 $2n$ 开关已解决 (会话 50, 见
 \path{SL_gap_nge2_finite_reduction_proof.pdf} 与
 \path{SL_gap_nge2_exact_2n_switches_proof.pdf}).
-(G2) 的当前用途仍是条件化框架. 记
-$\Sigma_\sigma=\{(R,x):R>1,\ x\in U,\ F_\sigma(R,x)=0\}$, 其中 $U$ 为
-有序内部开关的开单纯形. 框架要求: 对每个 $R_*>1$, 存在 $\eta(R_*)>0$,
-使全部 $(R,x)\in\Sigma_\sigma$, $1<R\le R_*$ 的所有块宽均不小于 $\eta(R_*)$.
-旧 2026-08-13 声明则针对带自洽解及 $1<R_0\le R\le R_1<\infty$;
-带匹配限制,全部残差零点的量词以及 $R\downarrow1$ 的控制仍须衔接.
-\path{SL_gap_nge2_symmetry_local_proof.tex} 的
-\texttt{sec:global} 与 \texttt{sec:g2closed} 已将该历史整体闭合标为未重新认证.
-本次不新增 (G2) 证明, 也不改写历史 run 或回执.
+第十四轮已证明当前完整 (G2): 每个固定 $n\ge2$、每个有限
+$R_{\max}>1$, 全部 $1\le R\le R_{\max}$ 的精确残差零点在两图案内
+均有一致正块宽. 只用全部 $F=0$ 得到 $K=-2D$ 和自动带匹配,
+再用退化权的 $L^1$ 谱连续性、跨移动跳点的统一 Volterra 余项及 Rolle 矛盾.
+证明见 \path{SL_G2_compactness_proof.md} 和局部证明的 \texttt{sec:g2round14}.
+这不否认闭单纯形边界的形式零点. 若所有精确零点非退化 (ND),
+紧性与隐函数定理使根数局部常数, 从 $R=1$ 唯一种子推出唯一解析对称全局支.
+ND 本身仍未证明. 历史 run、作者稿和回执保持原身份.
 剩余: (i) $n=1$ INF 侧已完全闭合 (2026-08-12): 阱族刚性全 $R$ (2026-08-10
 会话 56, \path{SL\_gap\_n1\_well\_rigidity\_allR\_proof.pdf}), 对称线 1D 分析
 全 $R$ 版 (缺口 a$'$, 2026-08-12, 张力比链, \path{SL\_gap\_n1\_symline\_allR\_proof.pdf}),
@@ -818,7 +817,7 @@ $I(R)=D(v^*(R),1-v^*(R))<3\pi^2/R$ 在对称阱 $[R,1,R]$ 唯一达到; 仅剩 (
 (ii) 开关位置/块长的显式方程与闭式构造;
 (iii) 反射对称性 (至少存在一个关于 $1/2$ 对称的极值子? 每个极值子都对称?);
 (iv) 唯一性与完整分类: 当前仍待证明 (G1$'$) 在全部 $\Sigma_\sigma$ 上的
-Jacobian 非退化与符号 $(-1)^n$, 并完成上述 (G2) 量词衔接.
+Jacobian 非退化 (ND); 行列式符号在该条件下由初值自动继承. (G2) 已完成.
 带自洽点上的矩阵归约或有限对称样本不能替代这些全局前提;
 M3 (n=2 INF 分支 $R\to\infty$ 渐近, 2026-08-29): 已在有限非零内部 chart 内严格闭合.
 令 $u=R^{-1/6}$, $\kappa^3=18\pi-48/\pi$. Blueprint 的两次精确 blow-up,
@@ -828,7 +827,7 @@ $\mathrm{Chi}_{\mathrm{up}}=3/2+4/(\pi\kappa)+O(u^2)>0$,
 $\det Kp_{odd}=(128\kappa^2/\pi^2)u^{20}+O(u^{22})>0$, 以及
 $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$, 对所有充分大有限 $R$ 成立.
 事后 Codex+Whiteboard 盲复现逐项一致. 旧 staged Pbuild 的 D 侧质量 $u$ 幂次错误,
-故其硬奇分量障碍与 log-correction 假设均已废弃. M3 之外的 all-R (G1$'$)/(G2)
+故其硬奇分量障碍与 log-correction 假设均已废弃. M3 之外的 all-R 非退化 (ND)
 与全局唯一性仍开放;
 (v) 最优值 $\max D_n$/$\min D_n$ 的闭式或锐界;
 (vi) $n=1$ 证书重放内核的形式化收尾.
@@ -870,7 +869,9 @@ $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$, 对所有充分大有限 $R$ 
         第十一轮 A12 另以四阶核心,尾部消元和临界 Fourier 序列证明整个
         $0\le s<7/2$ 的余有限分类, 见注~\ref{rem:cofinite-current} 与
         \path{SL_cofinite_all_orders.tex}; 这不是把旧 $s=2$ 或 $s=3$ 结论机械外推.
-        一般无限删项及非对角 O1'/O1'LD 的矩可表示性与实际成员条件仍开放.
+        第十四轮 A11 完成固定 $c>0$ 的真实 $H_c^2$ 任意保留集稠密性判定,
+        两支倒数和发散时的精确两迹闭包, 以及任一支收敛时的无限余维.
+        收敛侧全部空间元素的描述, 其它阶数及非对角 O1'/O1'LD 的矩可表示性仍开放.
         原 Krein O3 的 $3/2\le s<2$ 已被覆盖, 一般边界约束空间须逐案检验.
         \item \textbf{p-Laplacian 等非线性问题的推广}: Wen-Zhou [7] 的奇异
 		测度技巧在非线性情形的适用范围未定.
@@ -917,6 +918,24 @@ $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$, 对所有充分大有限 $R$ 
 	\item Chu-Guo-Meng-Zhang [11] 全文经 ar5iv 镜像获取 (\texttt{research\_cache/ar5iv\_2512.18404.html}), 定理 3.16 的极值测度刻画已逐字核对;
 	\item Guo-Meng-Yan-Zhang [6] 仅获取摘要, 显式解的具体数值未核实.
 \end{itemize}
+
+
+\section{第十四轮: 第二左定空间的任意保留集}\label{sec:a11round14}
+固定 $c>0$, 采用原命名族与真实 $H_c^2=D(K_c)$, 范数 $\|K_cf\|_2$,
+复内积第一变量线性. 任意 $J\subset\{0,1\}$,
+$S_e,S_o\subset\{2,3,\ldots\}$, $N=J\cup2S_e\cup(2S_o+1)$.
+则原族的有限复线性包在 $H_c^2$ 稠密当且仅当
+\[
+J=\{0,1\},\qquad \sum_{m\in S_e}1/m=\sum_{m\in S_o}1/m=\infty.
+\]
+两侧都发散时, 闭包精确为缺失 $p_0,p_1$ 所对应的 $f(0),f'(0)$ 零迹空间.
+任一侧收敛时, 闭包有无限余维, 包括空或有限保留集.
+证明从实际 $w=K_cg\in L^2$ 构造 Mellin 函数, 以三次多项式归一化
+和 Blaschke 零点条件扩展正交性, 再用已证的完整高尾两迹闭包.
+收敛侧的 Cauchy Gram 距离乘积给出无限维实际 $L^2$ 障碍, 经过有限维商及 $K_c^{-1}$ 返回真实空间.
+完整证明见 \path{SL_H2_arbitrary_deletion_proof.md}.
+没有预设被删指标的递推, 没有从扩大单项式空间的稠密性反推差分族.
+收敛侧全部元素描述、其他阶数、非对角 A3/A4、稳定基和误差率仍开放.
 
 \begin{thebibliography}{23}
 \bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,

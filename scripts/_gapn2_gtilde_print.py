@@ -8,19 +8,14 @@ sys.path.insert(0, r'scripts')
 from _gapn2_symmetry_recon import Recon, roots_of, eigfun
 from _gapn2_jacobian_probe import symmetric_root
 from _gapn2_jacobian_analytic import green_kernel
+from _gapn2_jacobian_spectral import gtilde_spectral_blocks
 
 np.set_printoptions(precision=5, suppress=True, linewidth=180)
 
 
-def gtilde_spectral(blocks, lamk, k, edges, N=400):
-    ss = roots_of(blocks, N + 1)
-    G = np.zeros((len(edges), len(edges)))
-    for l in range(N + 1):
-        if l == k:
-            continue
-        ul = eigfun(blocks, ss[l], edges)
-        G += np.outer(ul, ul) / (ss[l] ** 2 - lamk)
-    return G
+def gtilde_spectral(blocks, lamk, k, edges, N=400, *, spectrum=None):
+	"""Use the shared DD target guard; legacy k is zero-based."""
+	return gtilde_spectral_blocks(blocks, lamk, k, edges, N=N, spectrum=spectrum)
 
 
 def main():
@@ -35,6 +30,9 @@ def main():
     z0 = rc0.widths_to_z(w0)
     rc = Recon(n, R, mode)
     zs = symmetric_root(rc, z0)
+    if zs is None:
+        print('stationary branch unavailable')
+        return
     blocks = rc.blocks_from_z(zs)
     edges = np.cumsum(rc.z_to_widths(zs))[:-1]
     ss = roots_of(blocks, n + 1)

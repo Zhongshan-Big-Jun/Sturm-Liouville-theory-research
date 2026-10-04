@@ -60,7 +60,6 @@ Usage: python _gapn2_half_problem_probe.py [R] [mode] [N]
 """
 import sys
 import json
-from dataclasses import dataclass
 import numpy as np
 
 sys.path.insert(0, r'scripts')
@@ -69,51 +68,20 @@ from _gapn2_jacobian_probe import symmetric_root, jac_fd
 from _gapn2_jacobian_analytic import eigen_data
 from _gapn2_sector_decomposition import sector_data
 from _sl_prufer import indexed_roots, positive_blocks
+from _sl_spectral_identity import (IndexedSpectrum, positive_count, legacy_pole_mode,
+	spectrum_for, green_points, spectral_denominators, reduced_pole_table)
 
 
 def _positive_count(Value, Name):
-	if isinstance(Value, (bool, np.bool_)) or not isinstance(Value, (int, np.integer)) or Value < 1:
-		raise ValueError(Name + ' must be a positive integer')
-	return int(Value)
+	return positive_count(Value, Name)
 
 
-@dataclass(frozen=True, init=False)
-class HalfSpectrum:
+class HalfSpectrum(IndexedSpectrum):
 	"""Immutable numerical mode table, bound to exact binary64 blocks and BC.
 
 	Mode numbers are one-based. The error radii are floating diagnostics, not
 	rigorous error bounds. Construct from the equation, never from scan hits.
 	"""
-	blocks: tuple
-	boundary: str
-	eigenvalues: tuple
-	error_radii: tuple
-	phase_records: tuple
-
-	def __init__(self, Blocks, Boundary, Count):
-		Values = positive_blocks(Blocks)
-		Frequencies, Records = indexed_roots(Values, Count, RightBoundary=Boundary)
-		with np.errstate(over='ignore', under='ignore', invalid='ignore'):
-			Eigenvalues = Frequencies ** 2
-			Brackets = np.array([Record['bracket'] for Record in Records]) ** 2
-			Radii = np.maximum(Eigenvalues - Brackets[:, 0], Brackets[:, 1] - Eigenvalues)
-			Radii += 8 * np.finfo(float).eps * Eigenvalues
-		if (not np.all(np.isfinite(Eigenvalues)) or np.any(Eigenvalues <= 0)
-			or np.any(np.diff(Eigenvalues) <= 0) or not np.all(np.isfinite(Radii))
-			or np.any(np.diff(Eigenvalues) <= 4 * (Radii[:-1] + Radii[1:]))):
-			raise ArithmeticError('half eigenvalues are not numerically resolvable')
-		object.__setattr__(self, 'blocks', tuple(tuple(map(float, Block)) for Block in Values))
-		object.__setattr__(self, 'boundary', Boundary)
-		object.__setattr__(self, 'eigenvalues', tuple(map(float, Eigenvalues)))
-		object.__setattr__(self, 'error_radii', tuple(map(float, Radii)))
-		object.__setattr__(self, 'phase_records', tuple(tuple((Key, tuple(Value) if isinstance(Value, list) else Value)
-			for Key, Value in sorted(Record.items())) for Record in Records))
-
-	def prefix(self, Count):
-		Count = _positive_count(Count, 'prefix count')
-		if Count > len(self.eigenvalues):
-			raise ValueError('requested prefix exceeds the indexed table')
-		return np.array(self.eigenvalues[:Count])
 
 
 def half_blocks(rc, w):
@@ -387,101 +355,70 @@ def _a1a2_exact(hblocks, mu, u0):
 	return A1, A2
 
 
-def green_regularized(hblocks, mu, x, y, bc):
+def green_regularized(hblocks, mu, x, y, bc, *, mode=None, spectrum=None):
 	"""Regularized Green at the eigenvalue mu (pole removed): Gt_k(x,y).
 
 	Closed form: Gt = B - u(x)P(y) (see module docstring), exact A1/A2.
 	This positive-eigenvalue formula is not an ordinary resolvent at mu<=0.
+	mode is one-based. Legacy omission uses lifted phase to propose the mode,
+	then an indexed table verifies the geometry/BC/target identity. Floating
+	identity checks are not interval certification of the closed primitives.
 	"""
 	mu = _real_parameter(mu, 'eigenvalue')
-	if mu <= 0:
-		raise ValueError('reduced Green requires a positive eigenvalue; use green_regular at mu<=0')
-	L = sum(b[0] for b in hblocks)
-	u0 = 1.0 / np.sqrt(_norm2(hblocks, mu, (0.0, 1.0)))
-	uf = lambda t: u0 * _propagate(hblocks, mu, t)[0]
-	vf = second_solution(hblocks, mu)
-	A1, A2 = _a1a2_exact(hblocks, mu, u0)
+	Table, PoleMode = reduced_pole_table(hblocks, mu, bc, Mode=mode, Spectrum=spectrum)
+	hblocks = Table.blocks
+	x, y = green_points(Table, [_real_parameter(x, 'x'), _real_parameter(y, 'y')])
+	L = float(np.cumsum(np.array(hblocks)[:, 0])[-1])
+	with np.errstate(divide='raise', invalid='raise', over='raise', under='ignore'):
+		Norm = _norm2(hblocks, mu, (0.0, 1.0))
+		if not np.isfinite(Norm) or Norm <= 0:
+			raise ArithmeticError('half-eigenfunction normalization is not resolvable')
+		u0 = 1.0 / np.sqrt(Norm)
+		uf = lambda t: u0 * _propagate(hblocks, mu, t)[0]
+		vf = second_solution(hblocks, mu)
+		A1, A2 = _a1a2_exact(hblocks, mu, u0)
 
-	def B(a, b):
-		I1a = _int_rho_u_v(hblocks, mu, a, u0)
-		I2a = _int_rho_u2(hblocks, mu, a, u0)
-		heaviside = 1.0 if a > b else 0.0
-		return (uf(a) * vf(b) - vf(a) * uf(b)) * heaviside \
-			- uf(a) * uf(b) * I1a + vf(a) * uf(b) * I2a
-	I1L = _int_rho_u_v(hblocks, mu, L, u0)
-	I1y = _int_rho_u_v(hblocks, mu, y, u0)
-	I2y = _int_rho_u2(hblocks, mu, y, u0)
-	P = vf(y) * (1.0 - I2y) - uf(y) * (A1 - A2 + I1L - I1y)
-	return B(x, y) - uf(x) * P
+		def B(a, b):
+			I1a = _int_rho_u_v(hblocks, mu, a, u0)
+			I2a = _int_rho_u2(hblocks, mu, a, u0)
+			heaviside = 1.0 if a > b else 0.0
+			return (uf(a) * vf(b) - vf(a) * uf(b)) * heaviside \
+				- uf(a) * uf(b) * I1a + vf(a) * uf(b) * I2a
+		I1L = _int_rho_u_v(hblocks, mu, L, u0)
+		I1y = _int_rho_u_v(hblocks, mu, y, u0)
+		I2y = _int_rho_u2(hblocks, mu, y, u0)
+		P = vf(y) * (1.0 - I2y) - uf(y) * (A1 - A2 + I1L - I1y)
+		Result = B(x, y) - uf(x) * P
+	if not np.isfinite(Result):
+		raise ArithmeticError('closed reduced Green kernel is not finite')
+	return float(Result)
 
 
 def _full_S(rc, zs, ed, N=1500):
 	"""Full 2n x 2n collapsed S = eps Gt_{n+1} eps - (lam_n/lam_{n+1}) Gt_n (spectral)."""
+	from _gapn2_jacobian_spectral import gtilde_spectral_blocks
 	blocks = rc.blocks_from_z(zs)
-	ss = roots_of(blocks, N + 1)
 	x = ed['edges']
-	m = len(x)
 	lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
 	eps = ed['eps']
-	Gn = np.zeros((m, m))
-	Gnp1 = np.zeros((m, m))
-	for l in range(N + 1):
-		ul = eigfun(blocks, ss[l], x)
-		if l != rc.n - 1:
-			Gn += np.outer(ul, ul) / (ss[l] ** 2 - lam_n)
-		if l != rc.n:
-			Gnp1 += np.outer(ul, ul) / (ss[l] ** 2 - lam_np1)
+	Table = spectrum_for(blocks, 'D', _positive_count(N, 'spectral truncation') + 1)
+	Gn = gtilde_spectral_blocks(blocks, lam_n, rc.n - 1, x, N=N, spectrum=Table)
+	Gnp1 = gtilde_spectral_blocks(blocks, lam_np1, rc.n, x, N=N, spectrum=Table)
 	return np.diag(eps) @ Gnp1 @ np.diag(eps) - (lam_n / lam_np1) * Gn
 
 
 def _green_table(hblocks, bc, N, Spectrum):
 	Count = _positive_count(N, 'spectral truncation')
-	Blocks = tuple(tuple(map(float, Block)) for Block in positive_blocks(hblocks))
 	if Spectrum is None:
-		Spectrum = HalfSpectrum(Blocks, bc, Count)
-	if not isinstance(Spectrum, HalfSpectrum):
-		raise ValueError('spectrum must be an indexed HalfSpectrum table')
-	if Spectrum.blocks != Blocks or Spectrum.boundary != bc:
-		raise ValueError('spectral table geometry or boundary does not match the equation')
+		Spectrum = HalfSpectrum(hblocks, bc, Count)
+	Spectrum = spectrum_for(hblocks, bc, Count, Spectrum)
 	return Spectrum, Spectrum.prefix(Count)
 
 
 def _green_sum(Table, Mu, X, Y, Count, PoleMode=None):
 	"""Finite sum with validated one-based pole identity and resolvability."""
-	for Value, Name in ((Mu, 'mu'), (X, 'x'), (Y, 'y')):
-		if np.iscomplexobj(Value) or not np.isscalar(Value) or not np.isfinite(Value):
-			raise ValueError(Name + ' must be a finite real scalar')
-	Length = sum(Block[0] for Block in Table.blocks)
-	if not (0 <= X <= Length and 0 <= Y <= Length):
-		raise ValueError('Green evaluation point lies outside the half interval')
-	AllModes = np.array(Table.eigenvalues)
-	Tolerance = 4 * np.array(Table.error_radii) + 16 * np.finfo(float).eps * abs(Mu)
-	with np.errstate(over='raise', invalid='raise'):
-		try:
-			Differences = AllModes - Mu
-		except FloatingPointError as Error:
-			raise ArithmeticError('spectral target differences exceed floating-point range') from Error
-	if not np.all(np.isfinite(Differences)):
-		raise ArithmeticError('spectral target differences are not finite')
-	Near = np.abs(Differences) <= Tolerance
-	if PoleMode is not None:
-		PoleMode = _positive_count(PoleMode, 'one-based pole mode')
-		if PoleMode > Count:
-			raise ValueError('pole mode is outside the requested prefix')
-		if np.flatnonzero(Near).tolist() != [PoleMode - 1]:
-			raise ValueError('target eigenvalue does not uniquely match the specified pole mode')
-	else:
-		if np.any(Near):
-			raise ValueError('full Green target is at or numerically near a tabulated pole')
-		if Mu >= AllModes[-1] - Tolerance[-1]:
-			raise ValueError('full Green target requires a larger table to resolve its spectral location')
-	Modes = Table.prefix(Count)
-	Keep = np.ones(Count, dtype=bool)
-	if PoleMode is not None:
-		Keep[PoleMode - 1] = False
-	Denominators = Differences[:Count][Keep]
-	if np.any(np.abs(Denominators) <= Tolerance[:Count][Keep]):
-		raise ArithmeticError('retained spectral denominator is not resolvable')
+	X, Y = green_points(Table, [_real_parameter(X, 'x'), _real_parameter(Y, 'y')])
+	Modes, Keep, Denominators = spectral_denominators(Table, Mu, Count, PoleMode=PoleMode)
 	with np.errstate(divide='raise', invalid='raise', over='raise', under='ignore'):
 		Norms = np.array([_norm2(Table.blocks, Value, (0.0, 1.0)) for Value in Modes[Keep]])
 		if not np.all(np.isfinite(Norms)) or np.any(Norms <= 0):
@@ -500,10 +437,9 @@ def _spectral_green(hblocks, mu, pole_idx, bc, x, y, N=80, *, spectrum=None):
 	Pass the same table for N and 2N comparisons. When omitted, deterministic
 	phase indexing constructs it and still verifies the target/pole identity.
 	"""
-	if isinstance(pole_idx, (bool, np.bool_)) or not isinstance(pole_idx, (int, np.integer)) or pole_idx < 0:
-		raise ValueError('pole_idx must be a nonnegative integer')
+	PoleMode = legacy_pole_mode(pole_idx, 'pole_idx')
 	Table, Modes = _green_table(hblocks, bc, N, spectrum)
-	return _green_sum(Table, mu, x, y, len(Modes), PoleMode=int(pole_idx) + 1)
+	return _green_sum(Table, mu, x, y, len(Modes), PoleMode=PoleMode)
 
 
 def _spectral_full_green(hblocks, mu, bc, x, y, N=80, *, spectrum=None):
@@ -571,8 +507,8 @@ def main():
 	GN_sp = np.zeros((2, 2))
 	for (i, j) in [(0, 0), (0, 1), (1, 1)]:
 		a, b = xs[i], xs[j]
-		GtD_cf[i, j] = green_regularized(hb, muD[0], a, b, 'D')
-		GtN_cf[i, j] = green_regularized(hb, muN[1], a, b, 'N')
+		GtD_cf[i, j] = green_regularized(hb, muD[0], a, b, 'D', mode=1, spectrum=TableD)
+		GtN_cf[i, j] = green_regularized(hb, muN[1], a, b, 'N', mode=2, spectrum=TableN)
 		GD_cf[i, j] = green_regular(hb, muN[1], a, b, 'D')
 		GN_cf[i, j] = green_regular(hb, muD[0], a, b, 'N')
 		seqD = [_spectral_green(hb, muD[0], 0, 'D', a, b, N=nn, spectrum=TableD) for nn in (N, 2 * N)]

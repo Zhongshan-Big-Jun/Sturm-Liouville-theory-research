@@ -1,0 +1,188 @@
+{
+  "status": "FAIL",
+  "checks": 18,
+  "passed": 18,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "optimized": false,
+  "elapsed_seconds": 0.2873365879058838,
+  "records": [
+    {
+      "name": "current_phase_full_blob_identity",
+      "passed": true,
+      "kind": "provenance",
+      "details": "a69d89e28cb54562cbea605c92a822b807d75529"
+    },
+    {
+      "name": "constant_half_D_indexed_spectrum",
+      "passed": true,
+      "kind": "property",
+      "details": 4.440892098500626e-16
+    },
+    {
+      "name": "constant_half_D_prefix_invariance",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "half_D_correct_pole_is_finite",
+      "passed": true,
+      "kind": "property",
+      "details": -0.036088386237209454
+    },
+    {
+      "name": "half_D_mismatched_pole_is_rejected",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "constant_half_N_indexed_spectrum",
+      "passed": true,
+      "kind": "property",
+      "details": 4.440892098500626e-16
+    },
+    {
+      "name": "constant_half_N_prefix_invariance",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "half_N_correct_pole_is_finite",
+      "passed": true,
+      "kind": "property",
+      "details": -0.01911657913278097
+    },
+    {
+      "name": "half_N_mismatched_pole_is_rejected",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "real_green_D_mu_0.0_permutation_endpoints_duplicates",
+      "passed": true,
+      "kind": "property",
+      "details": 0.0
+    },
+    {
+      "name": "real_green_D_mu_-1.0_permutation_endpoints_duplicates",
+      "passed": true,
+      "kind": "property",
+      "details": 1.3877787807814457e-17
+    },
+    {
+      "name": "real_green_N_mu_0.0_permutation_endpoints_duplicates",
+      "passed": true,
+      "kind": "property",
+      "details": 0.0
+    },
+    {
+      "name": "real_green_N_mu_-1.0_permutation_endpoints_duplicates",
+      "passed": true,
+      "kind": "property",
+      "details": 5.551115123125783e-17
+    },
+    {
+      "name": "real_green_outside_point_rejected",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "node_sampler_common_mass_constant_density",
+      "passed": true,
+      "kind": "property",
+      "details": 4.930380657631324e-32
+    },
+    {
+      "name": "R13_R4_node_normalization_fixed",
+      "passed": true,
+      "kind": "property",
+      "details": {
+        "error": 2.886579864025407e-15,
+        "reference": {
+          "dps": 65,
+          "method": "physical transfer; explicit trigonometric zero count; block quadrature mass",
+          "modes": [
+            {
+              "index": 2,
+              "frequency": "5.7119866428905327550390420595866041006246909048669755992775997296",
+              "eigenvalue": "32.626791408559858566885981453467127820591906312022085190253016998",
+              "mass": "0.011665390849610789682567815176286567982002663640280786531382203377",
+              "values": [
+                "-0.000000000000000049392843965665945023499560938161470444610350331493817343817645674",
+                "-0.80174003053040032750395060734417261732421839040845534947540912632"
+              ],
+              "derivatives": [
+                "-9.2587072579937300045213279550572532142547155518717808843154082916",
+                "-1.3547474383546775600088865343245668878479780878493783386315636733"
+              ],
+              "internal_zero_count": 1,
+              "internal_zeros": [
+                "0.55000000000000003907417579981624144753442284254669341882698919246"
+              ],
+              "right_residual": "1.3353142142474716988634246941571502248123233203528047608830940612e-66"
+            }
+          ],
+          "raw_residual": [],
+          "relative_defect": []
+        }
+      }
+    },
+    {
+      "name": "R14_02_wrong_full_pole_pair_rejected",
+      "passed": true,
+      "kind": "property",
+      "details": null
+    },
+    {
+      "name": "R14_01_false_stationary_rejected",
+      "passed": true,
+      "kind": "property",
+      "details": {
+        "accepted": false,
+        "status": "rejected",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          1e-06,
+          2e-06,
+          0.9999979999999998,
+          0.9999989999999999
+        ],
+        "absolute_max": 5.702438102321175e-10,
+        "eigenvalues": [
+          39.478417604357396,
+          88.82643960980403
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          1.889736367381095e-08,
+          7.558945467694662e-08,
+          7.558945468361957e-08,
+          1.889736367714741e-08
+        ],
+        "relative_defects": [
+          -0.6701030929013225,
+          -0.670103092860539,
+          -0.6701030928779051,
+          -0.6701030929360546
+        ],
+        "relative_max": 0.6701030929360546,
+        "reason": "absolute or local relative balance fails"
+      }
+    }
+  ],
+  "failure": {
+    "type": "UFuncTypeError",
+    "message": "ufunc 'subtract' did not contain a loop with signature matching types (dtype('float64'), dtype('<U68')) -> None"
+  },
+  "limitation": "Actual current workspace modules plus independent high-precision physical and implicit derivative references; finite diagnostics, not interval proofs, global scans, Lean or infinite-dimensional theorem verification."
+}

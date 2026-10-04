@@ -2,7 +2,7 @@
 """Sweep (EVIDENCE) the sign structure of the closed-form decomposition of K at
 band-consistent points:
 
-  K = D_f + E + H,
+  Kp = SKS = D_f + E + H, S=diag(eps),
   E = c_1 w w^T + c_2' (eps w)(eps w)^T  (rank 2, closed form),
   H = (2 lam_n/lam_{n+1}) diag(u_n) K~ diag(u_n),
   K~_ij = Sigma'(x_i,x_j)  (eps_i = eps_j),  -Sigma_+(x_i,x_j)  (eps_i != eps_j).
@@ -12,7 +12,7 @@ range (continuation in R from the op03 table seed):
   (P1) K~_ij > 0 for all pairs (entrywise positivity of the Green sign matrix);
   (P2) spectra of G_n^mat = diag(u_n) G~_n diag(u_n) and
        G_{n+1}^mat = diag(eps u_n) G~_{n+1} diag(eps u_n);
-  (P3) mirror-sector spectra of K (even/odd), det K = det Ke * det Ko;
+  (P3) raw K mirror-sector spectra (even/odd); Kp sectors are returned separately;
   (P4) total rank-1 coefficients rho_+ (same-eps) and rho_- (cross-eps):
        rho_+ = -beta + 2 lam_n/(D lam_{n+1}^2) + 2/(lam_n D)  (numerically > 0),
        rho_- = -alpha - 2 lam_n/(D lam_{n+1}^2) - 2/(lam_n D)  (numerically < 0),
@@ -28,9 +28,14 @@ sys.path.insert(0, r'scripts')
 from _gapn2_symmetry_recon import Recon, roots_of, eigfun
 from _gapn2_jacobian_probe import symmetric_root
 from _gapn2_jacobian_analytic import eigen_data
+from _sl_spectral_identity import positive_count, spectrum_for, spectral_denominators
 
 
 def run(n, mode, R, zs, N=150):
+    rcR = Recon(n, R, mode)
+    rcR.require_stationary(zs)
+    if rcR.R <= 1:
+        raise ValueError('stationary K requires R>1')
     ed = eigen_data(rcR, zs)
     lam_n, lam_np1 = ed['lam_n'], ed['lam_np1']
     D = lam_np1 - lam_n
@@ -40,17 +45,23 @@ def run(n, mode, R, zs, N=150):
     m = 2 * n
     wj = lam_n * u_n ** 2
     blocks = rcR.blocks_from_z(zs)
-    ss = roots_of(blocks, N + 1)
-    lam_all = ss ** 2
-    U = np.zeros((N + 1, m))
-    for l in range(N + 1):
+    Count = positive_count(N, 'spectral truncation N') + 1
+    Table = spectrum_for(blocks, 'D', Count)
+    lam_all, KeepN, DenN = spectral_denominators(Table, lam_n, Count, PoleMode=n)
+    _, KeepP, DenP = spectral_denominators(Table, lam_np1, Count, PoleMode=n+1)
+    ss = Table.frequency_prefix(Count)
+    U = np.zeros((Count, m))
+    for l in range(Count):
         U[l] = eigfun(blocks, ss[l], edges)
-    wgt_n = np.array([0.0 if l == n - 1 else 1.0 / (lam_all[l] - lam_n) for l in range(N + 1)])
-    wgt_np1 = np.array([0.0 if l == n else 1.0 / (lam_all[l] - lam_np1) for l in range(N + 1)])
-    wgt_s1 = np.array([0.0 if (l == n - 1 or l == n) else lam_all[l] * D
-                       / ((lam_all[l] - lam_np1) * (lam_all[l] - lam_n)) for l in range(N + 1)])
-    wgt_s2 = np.array([0.0 if (l == n - 1 or l == n) else lam_n / (lam_all[l] - lam_n)
-                       + lam_np1 / (lam_all[l] - lam_np1) for l in range(N + 1)])
+    wgt_n, wgt_np1, wgt_s1, wgt_s2 = [np.zeros(Count) for _ in range(4)]
+    KeepBoth = KeepN & KeepP
+    with np.errstate(over='raise', divide='raise', invalid='raise'):
+        wgt_n[KeepN] = 1.0 / DenN
+        wgt_np1[KeepP] = 1.0 / DenP
+        wgt_s1[KeepBoth] = lam_all[KeepBoth]*D / ((lam_all[KeepBoth]-lam_np1)*(lam_all[KeepBoth]-lam_n))
+        wgt_s2[KeepBoth] = lam_n/(lam_all[KeepBoth]-lam_n) + lam_np1/(lam_all[KeepBoth]-lam_np1)
+    if not all(np.all(np.isfinite(Values)) for Values in (U, wgt_n, wgt_np1, wgt_s1, wgt_s2)):
+        raise ArithmeticError('stationary spectral assembly is not finite')
     Gn = U.T @ np.diag(wgt_n) @ U
     Gnp1 = U.T @ np.diag(wgt_np1) @ U
     S1 = U.T @ np.diag(wgt_s1) @ U
@@ -64,7 +75,9 @@ def run(n, mode, R, zs, N=150):
     beta = 4.0 / (D * lam_np1)
     alpha = 4.0 * (lam_np1 ** 2 - lam_n * lam_np1 + lam_n ** 2) / (lam_n * lam_np1 * D * lam_np1)
     E = np.where(same, -beta * np.outer(wj, wj), alpha * np.outer(wj, wj))
-    K = Df + E + H
+    Kp = Df + E + H
+    S = np.diag(eps)
+    K = S @ Kp @ S
     rho_p = -beta + 2.0 * lam_n / (D * lam_np1 ** 2) + 2.0 / (lam_n * D)
     rho_m = -alpha - 2.0 * lam_n / (D * lam_np1 ** 2) - 2.0 / (lam_n * D)
     Gn_mat = np.diag(u_n) @ Gn @ np.diag(u_n)
@@ -75,9 +88,12 @@ def run(n, mode, R, zs, N=150):
         Bo[j, j] = 1.0 / np.sqrt(2.0); Bo[m - 1 - j, j] = -1.0 / np.sqrt(2.0)
     Ke = Be.T @ K @ Be
     Ko = Bo.T @ K @ Bo
+    KpEven = Be.T @ Kp @ Be
+    KpOdd = Bo.T @ Kp @ Bo
     return dict(min_ktilde=Ktilde.min(), min_S1_same=S1[same].min(), max_S2_cross=S2[~same].max(),
                 rho_p=rho_p, rho_m=rho_m,
                 evKe=np.linalg.eigvalsh(Ke), evKo=np.linalg.eigvalsh(Ko),
+                evKpEven=np.linalg.eigvalsh(KpEven), evKpOdd=np.linalg.eigvalsh(KpOdd),
                 evGn=np.linalg.eigvalsh(Gn_mat), evGnp1=np.linalg.eigvalsh(Gnp1_mat),
                 detK=np.linalg.det(K), min_diagK=np.diag(K).min())
 

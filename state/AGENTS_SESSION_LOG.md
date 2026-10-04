@@ -3818,3 +3818,13 @@ F01-F05主要影响对称阱INF极限的证书及范围, 第七轮主链不自�
 修复证书完整合同、精确有理端点及正确包络, 重算57条; 修复节点质量归一化、任意点序Green/端点/非正参数及非驻点Jacobian. 普通/-O执行、独立质量积分/Green匹配/隐式求导与原R12性质回归分别留证. Helly补齐TV、闭性和半连续性, 保留不取到反例及可测盒存在性; 不撤回A1/A12、相容Legendre、正确驻点公式和原扇区区分. 研究地图/活动总览/稳定性/比值前提与四份阅读PDF已同步, 修改页实际检查.
 
 作者和最终fork_context:false审查者分离. 首次证书回执CHANGES_REQUIRED指出CLI参数导致假负对照、漏掉的旧引擎引用以及开闭区域表述; 已修复并换全新隔离审查, 原错误测试与退回记录保持冻结. 三份最终回执APPROVED仅适用于各自列明的当前义务. 原版工具纠错接收31项修订/续审, 默认查询89可用、2阻断, 旧Decimal保留历史而禁止可信复用. 两条精确版本批注另记应用边界. 未执行新Lean、全库CI或完整数学认证; 无canonical/插件代码改动. 原17892tracked之外的允许变更范围、6dirty/134untracked及精确提交blob另核对; origin先于fork,真实推送结果记录外部DELIVERY.json. 完成本轮后停止理论扩写.
+
+## 2026-10-04 Round14 bounded workspace revision
+
+用户要求以 sl_audit_round14、基线a815803a直接修改实际仓库, 完成R14-01/R14-02与C14-G2/C14-A11, 不扩大理论或过程文档. 当前HEAD一致,输入33/33哈希与7/7上游blob实查. 先复现薄块伪驻点(absolute5.702438e-10, relative约-0.670103)及错DD pole产生inf; 原记录保留. 独立初审分别核实完整G2及任意保留集Hc2证明. 实施共用验收、纯softmax、DD/DN目标守卫和直接调用传播, 不换F/JF. 独立软件复审发现约化探索、专用装配覆盖与raw K/SKS误名后局部补修, 精确v3普通/-O复审通过, 前次失败保留. 最终解析整合复核指出活动scope过时与重复节, 已同步字段、旧review标签明确历史化, 保留完整旧书目; 最终版本身份和审查见本轮报告.
+
+四卡经原版API保存版本和修订, 未用手工改门禁. 原版adapter实际拒收当前collaboration身份格式, 自动release/继承续发缺口保持公开, 未伪造UUID或改cache. native fresh审查、有限执行、PDF构建与canonical接收分别记. 两PDF使用既有XeLaTeX重建并看修改页; builtin目录错误和latexmk缺Perl记录保留. 无Lean/canonical/旧讲义/全扫描/云端发布. 地图、理解、root AGENTS与RESUME维护到四项有限结果及明确剩余目标. 详见 reports/proof-audit-round14-20261004/REPORT.md; 基线保护实查以 preservation.json为准.
+
+## 2026-10-04 第十四轮上传授权与交付范围
+
+用户在本地四项修订交付后明确要求 "上传上云". 协调器实际读回 origin/main 和 fork/main 均为本轮基线 a815803a6492951cbed010624b42805fb1b49bd8, 索引原为空. 本次提交只纳入第十四轮修改、完整证明/阅读版、性质测试/运行/原生复审证据、工具库新版本及必要精确字节规则; 保留原 KP-DET dirty 文件和134原 untracked, 不修改研究命题或伪造工具库回执. 当前 AGENTS 的旧 G2 待证边界与已复审第十四轮结论同步, 旧 dated 记录不改. Git 常规快进按 origin 后 fork 顺序, 提交和远端 blob 核对及真实执行结果另存 F:/tools/math-audit-round14-20261004/publication/DELIVERY.json; 这里不以准备动作宣称远端已成功. 既有普通/-O测试和独立审查结果只在最终输入字节一致时复用, 本次不冒称新 Lean/全库或 CI 检查.
