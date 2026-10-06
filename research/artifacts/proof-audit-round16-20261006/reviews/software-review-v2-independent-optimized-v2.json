@@ -1,0 +1,615 @@
+{
+  "task": "/root/r16_software_review_v2",
+  "scope": "finite independent reviewer checks; no interval/Lean/infinite theorem acceptance",
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "optimize": 1,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "count": 71,
+  "pass_count": 67,
+  "failed": [
+    {
+      "name": "third-mode node at non-dyadic anchor nodal square retains physical IVP",
+      "passed": false,
+      "blocks": [
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "left": 0.3333333333333333,
+      "right": 0.33333333333333337,
+      "width": 5.551115123125783e-17,
+      "mode": 3,
+      "same_binary64_frequency": 9.42477796076938,
+      "actual": 8.433138578625724e-32,
+      "reference": "4.8107259030910521913246981525576427894187645257588786512066577927e-32",
+      "relative_error": "0.75298671105064429490756405297198073",
+      "pairing_status": "NUMERICAL_ANALYTIC_EVALUATION"
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor nodal cross retains physical IVP",
+      "passed": false,
+      "actual": -2.409723609052609e-16,
+      "reference": "0.000000000000000061085911528233920259062943273823091074870782783996657203018841623",
+      "absolute_error": "3.0205827243349481966884095553549812e-16"
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block nodal square retains physical IVP",
+      "passed": false,
+      "blocks": [
+        [
+          0.25,
+          1.0
+        ],
+        [
+          0.5,
+          4.0
+        ],
+        [
+          0.25,
+          1.0
+        ]
+      ],
+      "left": 0.5,
+      "right": 0.5000000000000001,
+      "width": 1.1102230246251565e-16,
+      "mode": 2,
+      "same_binary64_frequency": 3.8212664724980367,
+      "actual": 6.620066623604503e-32,
+      "reference": "6.9624814255891543814655215723888108237125034069882816431163844514e-32",
+      "relative_error": "0.049179995041161185916329776195952114",
+      "pairing_status": "NUMERICAL_ANALYTIC_EVALUATION"
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block nodal cross retains physical IVP",
+      "passed": false,
+      "actual": -1.1279505597216472e-16,
+      "reference": "-0.00000000000000012156156244336319281214776723224548709682453137458572574516336635",
+      "absolute_error": "8.7665064711984688466594011761045479e-18"
+    }
+  ],
+  "checks": [
+    {
+      "name": "der_sign2 huge/subnormal/negative-adjacent exact coverage <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign2 huge/subnormal/negative-adjacent exact coverage <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign2 huge/subnormal/negative-adjacent exact coverage <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign2 nonboolean sign",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "der_sign2 noncallable function",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "der_sign2 False is explicitly unproved",
+      "passed": true
+    },
+    {
+      "name": "der_sign_adaptive huge/subnormal/negative-adjacent exact coverage <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign_adaptive huge/subnormal/negative-adjacent exact coverage <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign_adaptive huge/subnormal/negative-adjacent exact coverage <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "der_sign_adaptive nonboolean sign",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "der_sign_adaptive noncallable function",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "der_sign_adaptive False is explicitly unproved",
+      "passed": true
+    },
+    {
+      "name": "invalid max_n False",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid max_n 0",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid max_n -1",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid max_n 2.5",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid max_n nan",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "strict five-box evaluation budget",
+      "passed": true,
+      "calls": 10,
+      "result": "(False, 'unproved: max_boxes=5 exhausted with 6 pending pieces')"
+    },
+    {
+      "name": "E1 static exact conversion precedes arithmetic",
+      "passed": true,
+      "first_statement": "(a, b, Target) = (F(a), F(b), F(Target))"
+    },
+    {
+      "name": "E1 imports/calls no affected generic helpers",
+      "passed": true
+    },
+    {
+      "name": "non-unit constant rho/h analytic matrix",
+      "passed": true
+    },
+    {
+      "name": "independent constant-density Q scaling",
+      "passed": true,
+      "actual": 56.90443787503125,
+      "expected": 56.90443787503083
+    },
+    {
+      "name": "ordinary callback modal underresolution budget",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "ordinary modal underresolution explicit status",
+      "passed": true
+    },
+    {
+      "name": "ordinary callback retains two-comparison estimate data",
+      "passed": true,
+      "diagnostics": {
+        "method": "adaptive-split-gauss",
+        "status": "CONVERGED_NUMERICAL_ESTIMATE",
+        "order": 1024,
+        "previous_order": 512,
+        "estimated_absolute_errors": [
+          1.587618925213974e-14,
+          6.350475700855895e-14,
+          1.2323475573339238e-14,
+          2.0872192862952943e-14
+        ],
+        "AbsTol": 1e-10,
+        "RelTol": 1e-10,
+        "MaxOrder": 1024,
+        "black_box_error_enclosure": null,
+        "modal_Gram_error": 2.942091015256665e-14,
+        "parseval_total_energy": [
+          0.5624999999999858,
+          0.562499999999986,
+          0.5624999999999856,
+          0.5624999999999861,
+          0.5624999999999869,
+          0.5624999999999873,
+          0.562499999999987,
+          0.5624999999999871,
+          0.5624999999999873,
+          0.5624999999999873,
+          0.5624999999999862,
+          0.5624999999999865,
+          0.5624999999999862,
+          0.5624999999999858,
+          0.5624999999999851,
+          0.5624999999999842,
+          0.562499999999984,
+          0.5624999999999838,
+          0.5624999999999835,
+          0.5624999999999837,
+          0.5624999999999843,
+          0.5624999999999843,
+          0.5624999999999851,
+          0.5624999999999859,
+          0.5624999999999858,
+          0.5624999999999856,
+          0.5624999999999858,
+          0.5624999999999861,
+          0.562499999999987,
+          0.562499999999988,
+          0.5624999999999883,
+          0.5624999999999885,
+          0.5624999999999879,
+          0.5624999999999885,
+          0.5624999999999891,
+          0.56249999999999,
+          0.5624999999999901,
+          0.56249999999999,
+          0.5624999999999898,
+          0.5624999999999883,
+          0.5624999999999889
+        ],
+        "parseval_remainder_raw": [
+          1.354472090042691e-14,
+          1.4099832412739488e-14,
+          1.454392162258955e-14,
+          1.354472090042691e-14,
+          1.2545520178264269e-14,
+          1.2434497875801753e-14,
+          1.2656542480726785e-14,
+          1.2101430968414206e-14,
+          1.2656542480726785e-14,
+          1.3100631690576847e-14,
+          1.354472090042691e-14,
+          1.3100631690576847e-14,
+          1.3655743202889425e-14,
+          1.3766765505351941e-14,
+          1.509903313490213e-14,
+          1.5987211554602254e-14,
+          1.609823385706477e-14,
+          1.6542323066914832e-14,
+          1.6764367671839864e-14,
+          1.609823385706477e-14,
+          1.5765166949677223e-14,
+          1.509903313490213e-14,
+          1.4099832412739488e-14,
+          1.3655743202889425e-14,
+          1.3766765505351941e-14,
+          1.4210854715202004e-14,
+          1.4765966227514582e-14,
+          1.3766765505351941e-14,
+          1.2989609388114332e-14,
+          1.176836406102666e-14,
+          1.1657341758564144e-14,
+          1.1546319456101628e-14,
+          1.199040866595169e-14,
+          1.1546319456101628e-14,
+          1.0547118733938987e-14,
+          9.769962616701378e-15,
+          9.547918011776346e-15,
+          9.992007221626409e-15,
+          1.0769163338864018e-14,
+          1.1435297153639112e-14,
+          1.1324274851176597e-14
+        ],
+        "spectral_tail_certification": "NOT_CERTIFIED_FLOAT_INPUT",
+        "sign_certified": false
+      }
+    },
+    {
+      "name": "callback invalid MaxOrder True",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "MaxOrder must be an integer >= 8"
+    },
+    {
+      "name": "callback invalid MaxOrder 7",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "MaxOrder must be an integer >= 8"
+    },
+    {
+      "name": "callback invalid MaxOrder 8.5",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "MaxOrder must be an integer >= 8"
+    },
+    {
+      "name": "callback samples shape mismatch",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction samples must match quadrature points"
+    },
+    {
+      "name": "callback nonfinite samples",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction samples must be a nonempty finite real vector"
+    },
+    {
+      "name": "thin density independent high-precision mass pairing",
+      "passed": true,
+      "actual": 1.9999999999999947,
+      "reference": "1.999999999999994550433101322284626672711"
+    },
+    {
+      "name": "thin density all geometric cuts retained",
+      "passed": true
+    },
+    {
+      "name": "direction-only thin segment independent high-precision mass pairing",
+      "passed": true,
+      "actual": 1.3090169943749497,
+      "reference": "1.309016994374949890576911699345063025347"
+    },
+    {
+      "name": "direction-only thin segment all geometric cuts retained",
+      "passed": true
+    },
+    {
+      "name": "union density/direction/extra cuts exact count",
+      "passed": true,
+      "intervals": 6
+    },
+    {
+      "name": "unresolvable density endpoint rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "block endpoints cannot be resolved in double precision"
+    },
+    {
+      "name": "zero direction preserves zero raw remainder without sign certificate",
+      "passed": true
+    },
+    {
+      "name": "half-width at exactly dyadic constant anchor 90/110-dps reference stable",
+      "passed": true
+    },
+    {
+      "name": "half-width at exactly dyadic constant anchor nodal square retains physical IVP",
+      "passed": true,
+      "blocks": [
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "left": 0.5,
+      "right": 0.5000000000000001,
+      "width": 1.1102230246251565e-16,
+      "mode": 2,
+      "same_binary64_frequency": 6.283185307179586,
+      "actual": 1.835449602266039e-31,
+      "reference": "1.8354496022660389176118453439807534035311079116801447786451070808e-31",
+      "relative_error": "5.3233283981492250795798570249132364e-17",
+      "pairing_status": "NUMERICAL_ANALYTIC_EVALUATION"
+    },
+    {
+      "name": "half-width at exactly dyadic constant anchor nodal cross retains physical IVP",
+      "passed": true,
+      "actual": -4.526443397722557e-16,
+      "reference": "-0.00000000000000045264433977225569961315937103038214087507377526991687685254930803",
+      "absolute_error": "3.7648492041254525242271174777065885e-32"
+    },
+    {
+      "name": "half-width at exactly dyadic constant anchor direction mass exact from endpoint binary rationals",
+      "passed": true
+    },
+    {
+      "name": "half-width at exactly dyadic constant anchor ordinary folded nodes rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor 90/110-dps reference stable",
+      "passed": true
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor nodal square retains physical IVP",
+      "passed": false,
+      "blocks": [
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "left": 0.3333333333333333,
+      "right": 0.33333333333333337,
+      "width": 5.551115123125783e-17,
+      "mode": 3,
+      "same_binary64_frequency": 9.42477796076938,
+      "actual": 8.433138578625724e-32,
+      "reference": "4.8107259030910521913246981525576427894187645257588786512066577927e-32",
+      "relative_error": "0.75298671105064429490756405297198073",
+      "pairing_status": "NUMERICAL_ANALYTIC_EVALUATION"
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor nodal cross retains physical IVP",
+      "passed": false,
+      "actual": -2.409723609052609e-16,
+      "reference": "0.000000000000000061085911528233920259062943273823091074870782783996657203018841623",
+      "absolute_error": "3.0205827243349481966884095553549812e-16"
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor direction mass exact from endpoint binary rationals",
+      "passed": true
+    },
+    {
+      "name": "third-mode node at non-dyadic anchor ordinary folded nodes rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block 90/110-dps reference stable",
+      "passed": true
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block nodal square retains physical IVP",
+      "passed": false,
+      "blocks": [
+        [
+          0.25,
+          1.0
+        ],
+        [
+          0.5,
+          4.0
+        ],
+        [
+          0.25,
+          1.0
+        ]
+      ],
+      "left": 0.5,
+      "right": 0.5000000000000001,
+      "width": 1.1102230246251565e-16,
+      "mode": 2,
+      "same_binary64_frequency": 3.8212664724980367,
+      "actual": 6.620066623604503e-32,
+      "reference": "6.9624814255891543814655215723888108237125034069882816431163844514e-32",
+      "relative_error": "0.049179995041161185916329776195952114",
+      "pairing_status": "NUMERICAL_ANALYTIC_EVALUATION"
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block nodal cross retains physical IVP",
+      "passed": false,
+      "actual": -1.1279505597216472e-16,
+      "reference": "-0.00000000000000012156156244336319281214776723224548709682453137458572574516336635",
+      "absolute_error": "8.7665064711984688466594011761045479e-18"
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block direction mass exact from endpoint binary rationals",
+      "passed": true
+    },
+    {
+      "name": "direction-only node inside broad rho=4 block ordinary folded nodes rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "R15 high-contrast indexed prefix stable",
+      "passed": true
+    },
+    {
+      "name": "R15 unresolved tol cannot pass",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "requested tol is unresolved in binary64; use higher precision"
+    },
+    {
+      "name": "R15 nondefault legacy range warns but preserves indices",
+      "passed": true
+    },
+    {
+      "name": "D constant indexed identity",
+      "passed": true
+    },
+    {
+      "name": "N constant indexed identity",
+      "passed": true
+    },
+    {
+      "name": "reduced wrong pole index rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "target eigenvalue does not uniquely match the specified pole mode"
+    },
+    {
+      "name": "reduced excluded pole outside prefix rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "pole mode is outside the requested prefix"
+    },
+    {
+      "name": "full target lacks spectral coverage rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "full Green target requires a larger table to resolve its spectral location"
+    },
+    {
+      "name": "Green table geometry mismatch rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "Green table boundary mismatch rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "Green coordinate order and duplicates at mu=0",
+      "passed": true
+    },
+    {
+      "name": "Green positive pole rejected",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "Green target is at or numerically near a pole"
+    },
+    {
+      "name": "spectral Green wrong removed mode rejected",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "target eigenvalue does not uniquely match the specified pole mode"
+    },
+    {
+      "name": "value and derivative retain one common mass",
+      "passed": true
+    },
+    {
+      "name": "pure softmax has no artificial positive width floor",
+      "passed": true
+    },
+    {
+      "name": "solver failure cannot be stationary",
+      "passed": true
+    },
+    {
+      "name": "Jacobian CROSS determinant identity",
+      "passed": true
+    },
+    {
+      "name": "commuting Hessian rejected as residual CROSS Jacobian",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "J is not reversal-anticommuting within tolerance: JP+PJ=2, diagonal=1, limit=1.01e-06"
+    },
+    {
+      "name": "general quotient term survives away from stationarity",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "elapsed_seconds": 2.1089999999967404,
+  "sources": {
+    "misc/rigid1d.py": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55",
+    "misc/e1_certgen.py": "db92fc5dbeaa0f2ec5f399320210d7d4246c08b7e146d86d8602ba1429bdb829",
+    "scripts/_gapn2_second_variation_probe.py": "5d2caea2308f9140a3f037bf1c291d7643b68cc47a4429535e5b92a4d7fdaa80",
+    "scripts/op03_gap_fixed.py": "5dab895bc9c574ea48aa35eff337f33e38a6a3d11d4b4eb7d5e48e58fe54d9df",
+    "scripts/op03_gap_fh.py": "9cea8a73ade19abe5e7d530eab553571fc5cc5ff87242db2997a78a9efb1c0b8",
+    "scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "research/artifacts/proof-audit-round16-20261006/checks.py": "85676b5c9d9c75a03bcf93da655ca5560471964157a9f4a51a8c6abed78bba9a",
+    "scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+    "scripts/_gapn2_symmetry_recon.py": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+    "scripts/_gapn2_jacobian_probe.py": "793705efee95718b7917ba3669e1bc2108fc5f7ed1205b226f9ed5679451b7dd",
+    "scripts/_gapn2_jacobian_analytic.py": "4d7cb5385b6f2b8d668ec4c5c417876a57713b6780bb11e1478cb0fcbc00aa02",
+    "scripts/_gapn2_jacobian_spectral.py": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+    "scripts/_sl_spectral_identity.py": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9",
+    "scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+    "misc/e1_certificate_io.py": "65bab32c155fae9402b35a10d1c482c220cbf85648ae133e9a219cdd39c3a940"
+  },
+  "review_script": "F:\\tools\\math-audit-round16-20261006\\software-review-v2-independent-checks.py",
+  "review_script_sha256": "ac11977cd15485d025569e1f98d0e8e3021f9c4cc72bde5713aa7fb3d0c043b2"
+}

@@ -1,0 +1,458 @@
+{
+  "identity": "/root/r16_software_review_v3",
+  "all_passed": false,
+  "count": 80,
+  "checks": [
+    {
+      "name": "independent exact fifths",
+      "passed": true
+    },
+    {
+      "name": "negative adjacent floats exact endpoints",
+      "passed": true
+    },
+    {
+      "name": "false sign fixed integer3",
+      "passed": true
+    },
+    {
+      "name": "false sign adaptive integer3",
+      "passed": true
+    },
+    {
+      "name": "false sign fixed float1",
+      "passed": true
+    },
+    {
+      "name": "false sign adaptive float1",
+      "passed": true
+    },
+    {
+      "name": "strict endpoint zero fixed True",
+      "passed": true
+    },
+    {
+      "name": "strict endpoint zero adaptive True",
+      "passed": true
+    },
+    {
+      "name": "strict endpoint zero fixed False",
+      "passed": true
+    },
+    {
+      "name": "strict endpoint zero adaptive False",
+      "passed": true
+    },
+    {
+      "name": "fixed does not round budget upward",
+      "passed": true
+    },
+    {
+      "name": "adaptive budget exact",
+      "passed": true
+    },
+    {
+      "name": "fixed invalid {'max_n': True}",
+      "passed": true,
+      "exception": "TypeError",
+      "message": "max_n must be a positive integer"
+    },
+    {
+      "name": "fixed invalid {'max_n': 3.0}",
+      "passed": true,
+      "exception": "TypeError",
+      "message": "max_n must be a positive integer"
+    },
+    {
+      "name": "fixed invalid {'base_n': 2, 'max_n': 1}",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "base_n must not exceed max_n"
+    },
+    {
+      "name": "exact bool contract {'want_pos': 1}",
+      "passed": true,
+      "exception": "TypeError",
+      "message": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "exact bool contract {'want_pos': np.True_}",
+      "passed": true,
+      "exception": "TypeError",
+      "message": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "E1 static dedicated conversion precedes arithmetic",
+      "passed": true,
+      "first_statement": "(a, b, Target) = (F(a), F(b), F(Target))"
+    },
+    {
+      "name": "E1 static no generic Taylor dependency",
+      "passed": true
+    },
+    {
+      "name": "61 constant pairing order8",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "61 exact Q (8, 1)",
+      "passed": true,
+      "Q": 14.80440660163404,
+      "exact": 14.804406601634037
+    },
+    {
+      "name": "61 exact Q (8, 17)",
+      "passed": true,
+      "Q": 172.718077019063,
+      "exact": 172.71807701906377
+    },
+    {
+      "name": "61 exact Q (8, 58)",
+      "passed": true,
+      "Q": 577.3718574637242,
+      "exact": 577.3718574637275
+    },
+    {
+      "name": "61 exact Q (8, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "raw residual retained order8",
+      "passed": true
+    },
+    {
+      "name": "61 constant pairing order16",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "61 exact Q (16, 1)",
+      "passed": true,
+      "Q": 14.80440660163404,
+      "exact": 14.804406601634037
+    },
+    {
+      "name": "61 exact Q (16, 17)",
+      "passed": true,
+      "Q": 172.718077019063,
+      "exact": 172.71807701906377
+    },
+    {
+      "name": "61 exact Q (16, 58)",
+      "passed": true,
+      "Q": 577.3718574637242,
+      "exact": 577.3718574637275
+    },
+    {
+      "name": "61 exact Q (16, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "raw residual retained order16",
+      "passed": true
+    },
+    {
+      "name": "oracle thin cross constant rho3.7 node2/7",
+      "passed": true,
+      "actual": 1.2909965148804643e-16,
+      "reference": "1.2909965148804645008539144170288972e-16",
+      "abs_error": 2.384029662238055e-32,
+      "tolerance": 3.8729895446413936e-29
+    },
+    {
+      "name": "oracle thin square constant rho3.7 node2/7",
+      "passed": true,
+      "actual": 1.1757031870924275e-31,
+      "reference": "1.1757031870924274204057940515834231e-31",
+      "relative_error": 6.938458567489769e-17
+    },
+    {
+      "name": "oracle common mass constant rho3.7 node2/7",
+      "passed": true,
+      "max_relative_mass_error": 1.751223449766085e-16
+    },
+    {
+      "name": "all cuts and honest diagnostics constant rho3.7 node2/7",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard constant rho3.7 node2/7",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard constant rho3.7 node2/7",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "oracle thin cross constant rho0.25 node1/7",
+      "passed": true,
+      "actual": -2.8915361789975746e-17,
+      "reference": "-2.8915361789975744034462631363845314e-17",
+      "abs_error": 1.9219651057508994e-33,
+      "tolerance": 3e-29
+    },
+    {
+      "name": "oracle thin square constant rho0.25 node1/7",
+      "passed": true,
+      "actual": 2.4892854064465716e-31,
+      "reference": "2.4892854064465714410194948516971948e-31",
+      "relative_error": 6.615483190172483e-17
+    },
+    {
+      "name": "oracle common mass constant rho0.25 node1/7",
+      "passed": true,
+      "max_relative_mass_error": 1.5905851674492175e-16
+    },
+    {
+      "name": "all cuts and honest diagnostics constant rho0.25 node1/7",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard constant rho0.25 node1/7",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard constant rho0.25 node1/7",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "oracle thin cross internal rho9 odd node1/2",
+      "passed": true,
+      "actual": -1.3786223166610367e-16,
+      "reference": "-1.3786223166610366605097442129075367e-16",
+      "abs_error": 3.704591753709631e-33,
+      "tolerance": 4.1358669499831096e-29
+    },
+    {
+      "name": "oracle thin square internal rho9 odd node1/2",
+      "passed": true,
+      "actual": 9.187870400303357e-32,
+      "reference": "9.1878704003033545012620390593844344e-32",
+      "relative_error": 2.5113602661994224e-16
+    },
+    {
+      "name": "oracle common mass internal rho9 odd node1/2",
+      "passed": true,
+      "max_relative_mass_error": 3.167738144834932e-16
+    },
+    {
+      "name": "all cuts and honest diagnostics internal rho9 odd node1/2",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard internal rho9 odd node1/2",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard internal rho9 odd node1/2",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "oracle thin cross internal rho0.125 odd node1/2",
+      "passed": true,
+      "actual": -4.181129314812431e-15,
+      "reference": "-4.1811293148124267226019672247712383e-15",
+      "abs_error": 4.525330261148072e-30,
+      "tolerance": 1.254338794443728e-27
+    },
+    {
+      "name": "oracle thin square internal rho0.125 odd node1/2",
+      "passed": true,
+      "actual": 1.14450621160884e-29,
+      "reference": "1.1445062116088376984022213911471238e-29",
+      "relative_error": 2.031923776934386e-15
+    },
+    {
+      "name": "oracle common mass internal rho0.125 odd node1/2",
+      "passed": true,
+      "max_relative_mass_error": 1.6438551362545627e-15
+    },
+    {
+      "name": "all cuts and honest diagnostics internal rho0.125 odd node1/2",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard internal rho0.125 odd node1/2",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard internal rho0.125 odd node1/2",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "oracle thin cross binary 1/3 rho7 near modal3",
+      "passed": true,
+      "actual": 8.762523027837543e-17,
+      "reference": "8.7625230278375423072099913590960778e-17",
+      "abs_error": 9.115251695052372e-33,
+      "tolerance": 3e-29
+    },
+    {
+      "name": "oracle thin square binary 1/3 rho7 near modal3",
+      "passed": true,
+      "actual": 4.2348596956638897e-32,
+      "reference": "4.2348596956638888662633492558585302e-32",
+      "relative_error": 1.9205733335919231e-16
+    },
+    {
+      "name": "oracle common mass binary 1/3 rho7 near modal3",
+      "passed": true,
+      "max_relative_mass_error": 2.5828515411710593e-16
+    },
+    {
+      "name": "all cuts and honest diagnostics binary 1/3 rho7 near modal3",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard binary 1/3 rho7 near modal3",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard binary 1/3 rho7 near modal3",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "oracle thin cross asymmetric internal rho0.7 mp-located-node6",
+      "passed": true,
+      "actual": -4.912947914906442e-16,
+      "reference": "-4.9129479149064429882243625315248108e-16",
+      "abs_error": 1.4279107975046405e-31,
+      "tolerance": 1.4738843744719327e-28
+    },
+    {
+      "name": "oracle thin square asymmetric internal rho0.7 mp-located-node6",
+      "passed": true,
+      "actual": 3.7271292928121884e-31,
+      "reference": "3.727129292812191044030136049157043e-31",
+      "relative_error": 7.019967813114585e-16
+    },
+    {
+      "name": "oracle common mass asymmetric internal rho0.7 mp-located-node6",
+      "passed": true,
+      "max_relative_mass_error": 3.646665348686764e-16
+    },
+    {
+      "name": "all cuts and honest diagnostics asymmetric internal rho0.7 mp-located-node6",
+      "passed": true
+    },
+    {
+      "name": "ordinary one-ulp guard asymmetric internal rho0.7 mp-located-node6",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "callback one-ulp guard asymmetric internal rho0.7 mp-located-node6",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "thin distinct density unweighted (0, 0)",
+      "passed": true,
+      "actual": 1.2335460222721775,
+      "reference": 1.2335460222721775
+    },
+    {
+      "name": "thin distinct density weighted (0, 0)",
+      "passed": true,
+      "actual": 9.46777612439779,
+      "reference": 9.46777612439779
+    },
+    {
+      "name": "thin distinct density unweighted (0, 6)",
+      "passed": true,
+      "actual": 0.018570062155921066,
+      "reference": 0.018570062155921118
+    },
+    {
+      "name": "thin distinct density weighted (0, 6)",
+      "passed": true,
+      "actual": -0.2937482005250611,
+      "reference": -0.293748200525061
+    },
+    {
+      "name": "thin distinct density unweighted (6, 6)",
+      "passed": true,
+      "actual": -0.2842139334338238,
+      "reference": -0.28421393343382395
+    },
+    {
+      "name": "thin distinct density weighted (6, 6)",
+      "passed": true,
+      "actual": -0.48281215882678785,
+      "reference": -0.4828121588267881
+    },
+    {
+      "name": "density and direction full cut union",
+      "passed": true
+    },
+    {
+      "name": "ordinary thin distinct density fails actual nodes",
+      "passed": true,
+      "exception": "ValueError",
+      "message": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "independent phase product ([1e-14, 0.4, 1.0], 0.09, 0, 0)",
+      "passed": true,
+      "relative_error": 1.0044263089297773e-17
+    },
+    {
+      "name": "independent phase product ([1e-14, 0.4, 1.0], 0.09, 0, 2)",
+      "passed": true,
+      "relative_error": 5.766218209622018e-17
+    },
+    {
+      "name": "independent phase product ([1e-14, 0.4, 1.0], 0.09, 1, 2)",
+      "passed": true,
+      "relative_error": 2.935740258938289e-16
+    },
+    {
+      "name": "independent phase product ([1e-14, 0.4, 1.0], 0.09, 2, 2)",
+      "passed": true,
+      "relative_error": 1.8590494673134593e-16
+    },
+    {
+      "name": "independent phase product ([0.01, 1.0, 100.0], 0.02, 0, 0)",
+      "passed": false,
+      "relative_error": 1.5179701311887922e-08
+    }
+  ],
+  "error": "RuntimeError('independent phase product ([0.01, 1.0, 100.0], 0.02, 0, 0)')",
+  "elapsed_seconds": 4.14100000000326,
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "optimize": 0,
+    "numpy": "2.2.6",
+    "mpmath": "1.3.0",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "meaning": "Independent finite numerical and interface checks; no interval, all-integer, Lean or canonical certification",
+  "harness_sha256": "c6de87cc15a392261a867f14413449373ed4554a2ee29ef2a78cc90bf7382ed5"
+}

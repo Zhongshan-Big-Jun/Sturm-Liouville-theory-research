@@ -1,5 +1,14 @@
 # 数学工具库
 
+## 第十六轮当前范围 (2026-10-06)
+
+[精确Taylor类型边界](exact-taylor-sign-boundary.md)、[二阶变分与有界谱尾](second-variation-weighted-eigenvalues.md)、[所有整数阶Riesz替代系](krein-integrated-legendre-riesz.md)对应本轮五项有限义务. 完整两份解析稿已独立复审, 数值入口另经新隔离软件执行. 卡片由已安装原版API保存旧/新版本, 原生审查不等于旧自动适配接收; 既有隔离保持. [本轮交付](../reports/proof-audit-round16-20261006/REPORT.md)给出确切范围与未执行项.
+
+
+## 第十五轮当前范围 (2026-10-05)
+
+[全窗口任意删项](krein-infinite-deletion-subclasses.md)、[Krein有限约束逐项筛选](krein-finite-constraint-filtering.md) 与 [DD频率枚举入口](indexed-dd-frequency-enumeration.md) 对应三个有限义务. 两支发散的精确迹闭包/任一收敛无限余维覆盖整个0<=s<7/2, 不再仅限Hc2. 数学原生复审、软件真实执行和原版工具库接收分别列在[第十五轮报告](../reports/proof-audit-round15-20261005/REPORT.md); 旧自动适配格式缺口仍保持. 下方带日期条目保留当时范围.
+
 ## 文献吸收 (2026-09-23)
 
 [来源指针表](../literature/absorption-20260923/SOURCE_TABLE.md)区分原文与项目适配。新卡以实际审查版本接入：
@@ -90,6 +99,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | banded-shift-toeplitz-density | [card](<banded-shift-toeplitz-density.md>) | 0 |
 | cell-merging | [card](<cell-merging.md>) | 0 |
 | endpoint-collapse-reduction | [card](<endpoint-collapse-reduction.md>) | 0 |
+| exact-taylor-sign-boundary | [card](<exact-taylor-sign-boundary.md>) | 0 |
 | fh-hessian-branch-reduction | [card](<fh-hessian-branch-reduction.md>) | 0 |
 | finite-interface-second-derivative | [card](<finite-interface-second-derivative.md>) | 1 |
 | finite-synthesis-tsvd | [card](<finite-synthesis-tsvd.md>) | 1 |
@@ -99,6 +109,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | gap-n1-reduction | [card](<gap-n1-reduction.md>) | 0 |
 | general-alternating-secular-chebyshev | [card](<general-alternating-secular-chebyshev.md>) | 0 |
 | good-root-global-lemma | [card](<good-root-global-lemma.md>) | 0 |
+| indexed-dd-frequency-enumeration | [card](<indexed-dd-frequency-enumeration.md>) | 0 |
 | interval-ad-certificate | [card](<interval-ad-certificate.md>) | 0 |
 | keller-variational | [card](<keller-variational.md>) | 0 |
 | key-lemma-decomposition | [card](<key-lemma-decomposition.md>) | 0 |
@@ -106,6 +117,7 @@ Cards and notes are retrieval leads. Check their scope and evidence before reuse
 | kpdet-common-beta-sign | [card](<kpdet-common-beta-sign.md>) | 0 |
 | krein-boundary-right-inverses | [card](<krein-boundary-right-inverses.md>) | 1 |
 | krein-cofinite-closure-all-orders | [card](<krein-cofinite-closure-all-orders.md>) | 1 |
+| krein-finite-constraint-filtering | [card](<krein-finite-constraint-filtering.md>) | 0 |
 | krein-fractional-trace-dictionary | [card](<krein-fractional-trace-dictionary.md>) | 2 |
 | krein-infinite-deletion-subclasses | [card](<krein-infinite-deletion-subclasses.md>) | 1 |
 | krein-integrated-legendre-riesz | [card](<krein-integrated-legendre-riesz.md>) | 1 |

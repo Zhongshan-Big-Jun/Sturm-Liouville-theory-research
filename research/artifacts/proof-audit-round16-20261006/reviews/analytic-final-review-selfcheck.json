@@ -1,0 +1,4780 @@
+{
+  "runtime": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+  "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "package": "F:\\tools\\math-audit-round16-20261006\\analytic-final-review",
+  "inputs": [
+    {
+      "name": "integer.md",
+      "bytes": 12343,
+      "sha256": "786ae7ec05f2b6bc4b781b94315a34cc2e2683da8d04acbb5af0ab37dab4f568"
+    },
+    {
+      "name": "tail.md",
+      "bytes": 6379,
+      "sha256": "147a27b2b11eb658c932847723cdcd70e464255bdfa758017109d3d908c3f680"
+    },
+    {
+      "name": "domain.tex",
+      "bytes": 28821,
+      "sha256": "30261aaca9a4ebd2688bd24b61509250de6795da55d9b69a5840d197de00e186"
+    }
+  ],
+  "passed_checks": 948,
+  "arithmetic": "exact fractions; no floating point",
+  "limitations": "Finite r=1,...,6 checks do not prove the general integer theorem; no actual source/runtime acceptance, Lean, TeX compilation or R15 proof was used.",
+  "counterexample_coefficients_divided_by_pi_squared": {
+    "a": "1/2",
+    "b": "2",
+    "d_lower": "9/2",
+    "a_upper": "5",
+    "e_a_upper": "1/4",
+    "e_b_upper": "1/4",
+    "Q_N": "-1/8",
+    "Q": "-53/192",
+    "stated_lower": "-21/40",
+    "stated_upper": "-101/8",
+    "repaired_upper": "11/40"
+  },
+  "checks": [
+    {
+      "name": "manifest:integer.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest:tail.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest:domain.tex",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r1:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r1:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r1:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r1:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r1:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r1:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r1:N1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r1:N2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r1:N3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r1:N4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r1:N5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r1:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n2:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1/3:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1/3:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n4:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1/3:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n5:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1/3:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n6:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n6:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1/3:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r1:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n2:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n4:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n5:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c1:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n6:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n6:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c1:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r1:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n2:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c7/2:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c7/2:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n4:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c7/2:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n5:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r1:c7/2:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n6:l1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n6:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r1:c7/2:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r2:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r2:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r2:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r2:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r2:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r2:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r2:N3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r2:N4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r2:N5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r2:N6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r2:N7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r2:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1/3:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1/3:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n7:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1/3:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n8:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1/3:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n9:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n9:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1/3:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r2:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n7:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n8:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c1:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n9:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n9:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c1:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r2:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n3:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n5:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c7/2:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c7/2:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n7:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c7/2:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n8:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r2:c7/2:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n9:l2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n9:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r2:c7/2:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r3:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r3:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r3:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r3:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r3:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r3:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r3:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r3:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r3:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r3:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r3:N5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r3:N6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r3:N7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r3:N8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r3:N9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r3:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1/3:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1/3:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n10:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1/3:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n11:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1/3:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1/3:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r3:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n10:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n11:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c1:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c1:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r3:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n4:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n6:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n8:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c7/2:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c7/2:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n10:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c7/2:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n11:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r3:c7/2:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r3:c7/2:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r4:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r4:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r4:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r4:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r4:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r4:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r4:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r4:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r4:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r4:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r4:N7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r4:N8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r4:N9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r4:N10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r4:N11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r4:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1/3:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1/3:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n13:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1/3:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1/3:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1/3:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r4:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n13:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c1:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c1:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r4:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n5:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n7:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n9:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n11:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c7/2:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c7/2:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n13:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c7/2:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r4:c7/2:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r4:c7/2:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(4, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(4, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r5:(4, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r5:(4, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r5:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r5:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r5:N9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r5:N10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r5:N11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r5:N12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r5:N13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r5:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1/3:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1/3:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1/3:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1/3:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1/3:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r5:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c1:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c1:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r5:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n6:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n8:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n10:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n12:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n14:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c7/2:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c7/2:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c7/2:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r5:c7/2:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r5:c7/2:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(0, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(0, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(2, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(2, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(4, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(4, Fraction(-1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_jets:r6:(4, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hermite_boundary:r6:(4, Fraction(1, 1))",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "free_dimension:r6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero_jets:r6:n21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_identity:r6:n21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r6:N11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r6:N12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r6:N13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r6:N14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_span_dimension:r6:N15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r6:c1/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1/3:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1/3:n19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n19:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1/3:n20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n20:l19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1/3:n21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1/3:n21:l20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r6:c1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1:n19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n19:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1:n20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n20:l19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c1:n21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c1:n21:l20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finite_gram_positive:r6:c7/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n7:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n8:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n9:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n9:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n10:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n10:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n11:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n11:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n11:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n12:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n12:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n12:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n13:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n13:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n13:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n13:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n14:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n14:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n14:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n14:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n15:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n15:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n15:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n15:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n15:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n16:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n16:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n16:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n16:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n16:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n17:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c7/2:n18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n18:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c7/2:n19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n19:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c7/2:n20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n20:l19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low_high_zero:r6:c7/2:n21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_band_zero:r6:c7/2:n21:l20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_counterexample_QN",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_counterexample_Q",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_current_written_conditions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_interval_claim_fails",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_interval_claim_reversed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tail_interval_repair_covers_exact_Q",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

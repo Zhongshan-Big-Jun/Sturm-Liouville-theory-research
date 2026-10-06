@@ -1,0 +1,139 @@
+{
+  "baseline_commit": "ec45bf99ae746b0a3699557e06700a3c00c5a831",
+  "meaning": "baseline defects confirmed plus finite regression/algebra; not theorem certification",
+  "all_confirmed": false,
+  "count": 11,
+  "checks": [
+    {
+      "name": "current_half_spectrum_D",
+      "confirmed": true
+    },
+    {
+      "name": "current_half_spectrum_N",
+      "confirmed": true
+    },
+    {
+      "name": "current_wrong_pole_pairing_rejected",
+      "confirmed": true
+    },
+    {
+      "name": "current_Green_zero_parameter_and_order",
+      "confirmed": true
+    },
+    {
+      "name": "round14_endpoint_pseudostationary_still_rejected",
+      "confirmed": true,
+      "evidence": {
+        "accepted": false,
+        "status": "rejected",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          1e-06,
+          2e-06,
+          0.9999979999999998,
+          0.9999989999999999
+        ],
+        "absolute_max": 5.702438102321175e-10,
+        "eigenvalues": [
+          39.478417604357396,
+          88.82643960980403
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          1.889736367381095e-08,
+          7.558945467694662e-08,
+          7.558945468361957e-08,
+          1.889736367714741e-08
+        ],
+        "relative_defects": [
+          -0.6701030929013225,
+          -0.670103092860539,
+          -0.6701030928779051,
+          -0.6701030929360546
+        ],
+        "relative_max": 0.6701030929360546,
+        "reason": "absolute or local relative balance fails"
+      }
+    },
+    {
+      "name": "quadrature_can_reverse_Q_sign",
+      "confirmed": true,
+      "order": 32,
+      "n": 20,
+      "Q": -1667.4793719376685,
+      "exact": 202.32689022233183,
+      "relative_error": -9.241511398239345
+    },
+    {
+      "name": "oscillatory_Gram_not_identity_at_default_order",
+      "confirmed": true,
+      "max_Gram_error": 0.39265586569336414
+    },
+    {
+      "name": "constant_scaling_Q_wrong_at_default_order",
+      "confirmed": true,
+      "order": 64,
+      "n": 60,
+      "Q": 1468.8578582412156,
+      "exact": 597.1110662659062,
+      "relative_error": 1.4599407735429613
+    },
+    {
+      "name": "same_roots_analytic_pairing_removes_error",
+      "confirmed": true,
+      "Q": 597.1110662659121,
+      "expected": 597.1110662659062,
+      "Gram_error": 7.78721461250592e-15
+    },
+    {
+      "name": "higher_order_positive_control",
+      "confirmed": true,
+      "rows": [
+        {
+          "order": 128,
+          "n": 2,
+          "Q": 24.67401100272307,
+          "exact": 24.674011002723397,
+          "relative_error": -1.3211653993039363e-14
+        },
+        {
+          "order": 128,
+          "n": 20,
+          "Q": 202.32689022232353,
+          "exact": 202.32689022233183,
+          "relative_error": -4.0967229608668276e-14
+        },
+        {
+          "order": 128,
+          "n": 60,
+          "Q": 597.111066265843,
+          "exact": 597.1110662659062,
+          "relative_error": -1.0580425424677742e-13
+        }
+      ]
+    },
+    {
+      "name": "equal_density_split_changes_quadrature_not_problem",
+      "confirmed": false,
+      "Q_two_identical_blocks": 597.1110453835281,
+      "expected": 597.1110662659062
+    }
+  ],
+  "data": {
+    "error": "RuntimeError('equal_density_split_changes_quadrature_not_problem')"
+  },
+  "elapsed_s": 0.2828831672668457,
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "optimize": 0,
+    "numpy": "2.3.5",
+    "sympy": "1.14.0",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41"
+  }
+}

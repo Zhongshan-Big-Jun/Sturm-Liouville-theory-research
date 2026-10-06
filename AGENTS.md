@@ -10,6 +10,40 @@
 
 # 项目维护
 
+## 2026-10-06 第十五、十六轮完整云端交付 (用户明确授权)
+
+用户本次明确要求“全上传”，授权将已完成的第十五、十六轮成果一并提交并同步云端。本次包含两轮全部活动源码、完整证明、R15阅读版PDF、修后测试、原始基线和失败/批准回执、工具卡版本、派生索引及必要维护记录；不纳入本轮之前的KP-DET脏稿或134个无关未跟踪文件。冻结R15/R16研究报告保留完成时的文字与字节，本次授权及发布另记于此。
+
+发布基线为ec45bf99ae746b0a3699557e06700a3c00c5a831；发布前实际origin和fork的main均核实为该提交。精确清单见reports/publication-round15-16-20261006/MANIFEST.json，按工作区原始字节与Git blob逐项核对，依次正常快进推送Zhongshan-Big-Jun主仓库、xsoc1 fork并读回两边提交、tree与全部清单blob。真实提交及远端结果以F:/tools/math-audit-round16-20261006/publication/DELIVERY.json和实际远端为准；本段不预先宣称尚未完成的推送。
+
+本次发布不新增数学命题或审查，不把上传等同Lean、CI、canonical或旧自动工具库接收。保留两轮已经完成的独立解析/软件审查及未执行项记录。今后本项目完成用户要求的修订后，应一并完成提交、主仓库与fork同步及远端读回，不再只交付本地修改；仅在授权范围或实际阻碍需要用户决定时说明具体原因。
+
+## 2026-10-06 第十六轮: Taylor精确类型、配对积分与两项补证 (五项有限义务完成)
+
+用户提供C:/Users/HuangZY/Downloads/sl_audit_round16, 只授权R16-01/R16-02/R16-03/C16-TAIL/C16-A10-INTEGER五项有限义务. HEAD仍为ec45bf99ae746b0a3699557e06700a3c00c5a831; 本地R15正确修改及审查包存在并保留. 本轮19283 tracked/233 initial untracked/16 initial dirty的字节起点在F:/tools/math-audit-round16-20261006/baseline.json, 暂存为空. 25附件清单及5上游完整blob核对; Gateway ensure=ALREADY_READY/no changes, 不运行旧Blueprint维护器或写canonical.
+
+通用Taylor先精确转换端点再运算, 检查类型/顺序/计数/宽度/预算; 专用E1已有Fraction且无受影响调用,57账不撤回. 配对使用全部rho/h共同小段的左锚点/局部半宽,70位同频传播复用既有共同质量, 小相位展开及按消去程度提高精度的sinc和/差回退. 普通节点折叠或正积分/相位下溢拒绝; 回调检查模态分辨率/两次比较/MaxOrder预算. 四数组兼容结果与CLI保留diagnostics, 原始浮点Parseval残余不截零, 无包络不认证符号.
+
+两完整活动证明docs/SL_bounded_direction_spectral_tail.md和docs/SL_integer_left_definite_riesz_systems.md经全新/root/r16_final_analytic_review_v2解析APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION. 初审补齐速率t>=0,N>=2r-1及宽a包络分母, 原失败保留. 软件v1半宽、v2近节点、v3混合相位退回均实际修订, 当前v4普通/-O各205性质与R4 SUP/INF完整CLI通过, 最终15项活动源与冻结字节一致,/root/r16_software_review_v4实际APPROVED_FOR_SCOPED_SOFTWARE_INTEGRATION, 普通/-O各205重放及各105独立补测通过. 三张卡经原版API保存旧/新版本, 最终索引60可检索/34原隔离仅为RETRIEVAL_ONLY. R14驻点62和核143普通/-O通过, 相关旧源不改. 初审额外E1全账误启动已停止,20条部分输出不计验收, 原账未写. 当前原版check_spawn仍拒收任务名/fork_turns身份; 不伪造UUID或放行旧隔离.
+
+地图、理解、导航和续接同步有限解析合同, A10为固定c所有整数替代系. 保留R15删项/有限约束、R14守卫/身份/质量/Jacobian/交叉/raw K-SKS及G2/Hc2, 冻结历史/无关工作. 本轮无Lean、TeX/PDF编译、canonical或云端交付; 五项交付见reports/proof-audit-round16-20261006/REPORT.md. 最终回执、五项表及保护以本轮报告为准. 完成后停止, 不扩大非整数基/c趋零一致性、一般A3/A4、无限约束、ND/G1/无条件唯一或其余M3/KP.
+
+## 2026-10-05 第十五轮: 遗漏谱入口、全窗口删项与有限约束
+
+用户提供 C:/Users/HuangZY/Downloads/sl_audit_round15, 要求在实际工作区完成 R15-01、C15-A11-SCALE、C15-A3-KREIN 三项有限义务. 实际 HEAD=审计基线 ec45bf99ae746b0a3699557e06700a3c00c5a831; 19283 tracked、134 original untracked、1 original dirty 的字节基线在 F:/tools/math-audit-round15-20261005/baseline.json. 附件24项清单及6项上游完整源码 Git blob 均核对; 摘录没有覆盖完整活动源码. Blueprint 当前插件 gateway ensure 已实际运行且 ALREADY_READY/no changes, 不运行项目内旧维护器或写 canonical.
+
+实际旧 op03_gap_fixed::lams_precise 高反差 k3 首项3.26579575为第五模态, k1/3/6前缀不一致; R4普通样本正确. 活动入口已委托现有 DD 指标相位引擎, 返回频率 omega (lambda=omega²). tol 明确请求 bracket-width<=tol*max(1,omega), 不可分辨则报错; smax_scale 默认兼容静默, 非默认正值弃用警告, 非法值拒绝. 保留归一化传播, 不设块宽地板. 13个直接导入者静态清点, FH四原R4点实际运行; 不重认证独立历史 lams_vec/lams_fast 或全部旧R4数据. 普通/-O 修后性质各92、R14驻点各62及核各143项通过; 独立软件审查另实跑各92及各103项.
+
+完整证明 docs/SL_full_window_deletions_and_finite_constraints.md 在固定c>0、真实复Hc^s、0<=s<7/2 对任意保留N完成两奇偶发散精确缺迹闭包、任一收敛无限余维与稠密充要条件, 临界1/2/3/2/5/2取较少迹侧. H4∩kerB通过p4,p5修正第二层边界后进入D(Kc²), H4值全纯/四次增长和Blaschke补齐高尾, 零化泛函等价后才用A12. 有限连续约束下逐个成员筛选稠密iff中心迹部分坐标核交, 恰有1/2/4/8个不同可行子空间. 原生初审与最终活动整合复审另开fork_turns=none会话; 只用精确冻结材料, 实际结论/身份见本轮报告, 不用有限脚本代替解析证明.
+
+三卡经已安装原版save_card/version API保存旧/新身份, 活动正文、地图、理解、导航及续接同步. 原版check_spawn本轮实际仍拒收collaboration/task_name/fork_turns格式, 不伪造旧UUID或修改插件绕过; 原查询59可检索/34阻断只表示检索门禁. 本轮无Lean/canonical接收. 内置编译失败原日志保留, 已有XeLaTeX三遍构建23页阅读版, 最终修改页1/2/17/18/19实际渲染检查.
+
+重放: 科学Python3.10, `python -X utf8 -B research/artifacts/proof-audit-round15-20261005/checks.py --root <project> --output <outside.json>`, 并加-O检查接收逻辑. 原44项基线脚本只在隔离附件副本重放并保留原错误期待. 保持R14守卫、谱身份/质量/Jacobian/交叉/rawK-SKS和原G2/Hc2完整证明; 冻结历史、旧稿及原1dirty/134untracked按字节保护, 最终证据见[三项交付表](reports/proof-audit-round15-20261005/REPORT.md). 原收敛侧全部元素、窗口外、c=0或一致c↓0、一般非对角A3/A4、无限约束、基/速率、ND/G1/无条件唯一及其余M3/KP仍开放. 到本轮边界结束; 不自动开始理论扩写. 之前“上传上云”的精确范围是已发布R14, 本轮不据此制造新的云端回执.
+
+
+
+本轮最终核对 (2026-10-05): 独立软件回执APPROVED、最终九项活动整合回执APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION均已实际保存. 19268原跟踪/134原未跟踪字节不变, 仅15个活动跟踪文件修改; 软件11项与数学9项冻结输入和实际工作区完全匹配. 原dirty也保留, git diff --check通过. 真实报告已将三个编号记为各自有限范围完成, 自动适配/Lean/canonical仍未接收或未执行.
+
 ## 2026-10-04 第十四轮云端交付 (用户明确授权)
 
 用户原话 "上传上云", 授权提交并同步本轮成果. 实际 origin 与 fork 的 main 在发布前均为 a815803a6492951cbed010624b42805fb1b49bd8; 本轮只收录已交付的四项软件/解析修订、证据、PDF、必要工具库版本和维护记录, 不纳入原 KP-DET 未提交草稿或134个原未跟踪文件. 新增精确 -text 规则保护审查绑定及历史换行, 不改变已复审源码/证明. 当前 G2 边界条目已与本轮补证同步; 旧 dated 记录保持历史范围.

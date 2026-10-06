@@ -1,0 +1,1576 @@
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -27,3 +27,12 @@
+ /scripts/op03_gap_fh.py -text whitespace=cr-at-eol
+ /docs/SL_spectral_topics_summary.tex -text whitespace=cr-at-eol
+ /scripts/README.md -text
++
++# Round16 exact complete proofs, native review inputs and evidence.
++/reports/proof-audit-round16-20261006/** -text
++/research/artifacts/proof-audit-round16-20261006/** -text
++/docs/SL_bounded_direction_spectral_tail.md -text
++/docs/SL_integer_left_definite_riesz_systems.md -text
++/tools/exact-taylor-sign-boundary.md -text
++/tools/krein-integrated-legendre-riesz.md -text
++/tools/second-variation-weighted-eigenvalues.md -text
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -9,6 +9,16 @@
+ <!-- blueprint-project-layout:v1:end -->
+ 
+ # 项目维护
++
++## 2026-10-06 第十六轮: Taylor精确类型、配对积分与两项补证 (五项有限义务完成)
++
++用户提供C:/Users/HuangZY/Downloads/sl_audit_round16, 只授权R16-01/R16-02/R16-03/C16-TAIL/C16-A10-INTEGER五项有限义务. HEAD仍为ec45bf99ae746b0a3699557e06700a3c00c5a831; 本地R15正确修改及审查包存在并保留. 本轮19283 tracked/233 initial untracked/16 initial dirty的字节起点在F:/tools/math-audit-round16-20261006/baseline.json, 暂存为空. 25附件清单及5上游完整blob核对; Gateway ensure=ALREADY_READY/no changes, 不运行旧Blueprint维护器或写canonical.
++
++通用Taylor先精确转换端点再运算, 检查类型/顺序/计数/宽度/预算; 专用E1已有Fraction且无受影响调用,57账不撤回. 配对使用全部rho/h共同小段的左锚点/局部半宽,70位同频传播复用既有共同质量, 小相位展开及按消去程度提高精度的sinc和/差回退. 普通节点折叠或正积分/相位下溢拒绝; 回调检查模态分辨率/两次比较/MaxOrder预算. 四数组兼容结果与CLI保留diagnostics, 原始浮点Parseval残余不截零, 无包络不认证符号.
++
++两完整活动证明docs/SL_bounded_direction_spectral_tail.md和docs/SL_integer_left_definite_riesz_systems.md经全新/root/r16_final_analytic_review_v2解析APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION. 初审补齐速率t>=0,N>=2r-1及宽a包络分母, 原失败保留. 软件v1半宽、v2近节点、v3混合相位退回均实际修订, 当前v4普通/-O各205性质与R4 SUP/INF完整CLI通过, 最终15项活动源与冻结字节一致,/root/r16_software_review_v4实际APPROVED_FOR_SCOPED_SOFTWARE_INTEGRATION, 普通/-O各205重放及各105独立补测通过. 三张卡经原版API保存旧/新版本, 最终索引60可检索/34原隔离仅为RETRIEVAL_ONLY. R14驻点62和核143普通/-O通过, 相关旧源不改. 初审额外E1全账误启动已停止,20条部分输出不计验收, 原账未写. 当前原版check_spawn仍拒收任务名/fork_turns身份; 不伪造UUID或放行旧隔离.
++
++地图、理解、导航和续接同步有限解析合同, A10为固定c所有整数替代系. 保留R15删项/有限约束、R14守卫/身份/质量/Jacobian/交叉/raw K-SKS及G2/Hc2, 冻结历史/无关工作. 本轮无Lean、TeX/PDF编译、canonical或云端交付; 五项交付见reports/proof-audit-round16-20261006/REPORT.md. 最终回执、五项表及保护以本轮报告为准. 完成后停止, 不扩大非整数基/c趋零一致性、一般A3/A4、无限约束、ND/G1/无条件唯一或其余M3/KP.
+ 
+ ## 2026-10-05 第十五轮: 遗漏谱入口、全窗口删项与有限约束
+ 
+--- a/docs/PROJECT_UNDERSTANDING.md
++++ b/docs/PROJECT_UNDERSTANDING.md
+@@ -1,4 +1,13 @@
+ # 项目理解与共同研究
++
++## 2026-10-06 第十六轮当前结果
++
++[所有整数阶Riesz替代系](SL_integer_left_definite_riesz_systems.md)以真实整数幂域和第一型域为起点. 偶阶低提升为r列, 奇阶为r+1列; Hermite低提升剥离后, H0^r余项的r阶导数用Legendre展开. 双向范数界给出次数一致的Riesz界与精确有限多项式张成; 奇阶Gram保留端点项. 速率需要t>=0及加权系数条件. 这是相容替代系, 原稀疏族的非基结论和第十五轮删项/有限约束结论保持.
++
++[有界方向谱尾](SL_bounded_direction_spectral_tail.md)从(h/rho)u_k的真实加权Parseval预算给出Q-Q_N两侧界. 零尾例仍能被欠分辨求积算错, 因而求积误差不能伪装成谱截断误差. 有可靠有限配对、总能量及特征值包络后才允许认证符号; 浮点负残余不截零. 活动配对的结构化分块解析计算和一般回调误差估计均保存诊断, 不冒充区间包络.
++
++通用Taylor助手先转精确端点, 再做全部分区/半宽算术. 相邻float和整数负例已拒收; 专用E1路径和57条旧账不因此撤回. 五项实际证据、首次退回和最终原生审查见[第十六轮报告](../reports/proof-audit-round16-20261006/REPORT.md). 非整数Riesz/c趋零一致性、收敛删项侧全部元素、一般A3/A4、无限约束、ND/G1和其余M3/KP仍独立开放.
++
+ 
+ ## 2026-10-05: 全成员窗口的任意删项与有限约束
+ 
+--- a/misc/rigid1d.py
++++ b/misc/rigid1d.py
+@@ -262,63 +262,96 @@
+     return D2(I_atan(x.v), x.d1/g,
+               x.d2/g - 2*x.v*x.d1*x.d1/(g*g))
+ 
++def _exact_sign_scalar(Value, Name):
++	"""Integers/rationals and finite binary floats denote exact real numbers.
++
++	Float conversion is by its exact binary ratio, before ANY arithmetic.
++	Strings, Decimal, complex numbers and booleans have no implicit contract.
++	"""
++	if isinstance(Value, bool) or not isinstance(Value, (int, float, F)):
++		raise TypeError(Name + ' must be an int, Fraction or finite float')
++	if isinstance(Value, float) and not math.isfinite(Value):
++		raise ValueError(Name + ' must be finite')
++	return F(Value)
++
++
++def _sign_count(Value, Name):
++	if isinstance(Value, bool) or not isinstance(Value, int):
++		raise TypeError(Name + ' must be a positive integer')
++	if Value < 1:
++		raise ValueError(Name + ' must be a positive integer')
++	return Value
++
++
++def _sign_inputs(fn, a, b, want_pos):
++	Left = _exact_sign_scalar(a, 'a')
++	Right = _exact_sign_scalar(b, 'b')
++	if Left >= Right:
++		raise ValueError('sign verification requires a < b')
++	if not callable(fn) or not isinstance(want_pos, bool):
++		raise TypeError('fn must be callable and want_pos must be bool')
++	return Left, Right
++
++
++def _derivative_bounds(fn, Left, Right):
++	Center, HalfWidth = (Left + Right) / 2, (Right - Left) / 2
++	PieceValue = fn(D2(I(Left, Right), I(1), I(0)))
++	CenterValue = fn(D2(I(Center), I(1), I(0)))
++	if not isinstance(PieceValue, D2) or not isinstance(CenterValue, D2):
++		raise TypeError('fn must return a D2 interval evaluation')
++	Bound = max(PieceValue.d2.abs().hi, CenterValue.d2.abs().hi)
++	Correction = Bound * HalfWidth
++	return CenterValue.d1.lo - Correction, CenterValue.d1.hi + Correction, Bound
++
++
+ def der_sign2(fn, a, b, want_pos, base_n=64, max_n=65536, name=''):
+-    """Verify d/dg fn has constant sign on [a,b] via Taylor model:
+-    f'(x) in f'(c) + f''(piece)*[-w,w], where f''(piece) is the D2 interval evaluation (superset)."""
+-    span = b - a
+-    n = base_n
+-    while n <= max_n:
+-        w = span / (2*n)
+-        all_ok = True
+-        bad = None
+-        for i in range(n):
+-            c = a + span*F(2*i+1, 2*n)
+-            piece = I(c - w, c + w)
+-            fp = fn(D2(piece, I(1), I(0)))      # f'' over piece (superset)
+-            fc = fn(D2(I(c, c), I(1), I(0)))    # sharp at center
+-            M = max(fp.d2.abs().hi, fc.d2.abs().hi)
+-            corr = M * w
+-            lo = fc.d1.lo - corr
+-            hi = fc.d1.hi + corr
+-            if want_pos:
+-                if not (lo > 0):
+-                    all_ok = False; bad = (i, c, lo, hi, M); break
+-            else:
+-                if not (hi < 0):
+-                    all_ok = False; bad = (i, c, lo, hi, M); break
+-        if all_ok:
+-            return True, n
+-        n *= 2
+-    return False, ('failed at n=%d piece %s' % (n, bad))
+-
++	"""Strict derivative sign on the whole real interval, using exact partitions.
++
++	(False, info) is unproved, never a certificate of the opposite sign.
++	The callback must provide valid second-order interval enclosures.
++	"""
++	Left, Right = _sign_inputs(fn, a, b, want_pos)
++	Count = _sign_count(base_n, 'base_n')
++	Limit = _sign_count(max_n, 'max_n')
++	if Count > Limit:
++		raise ValueError('base_n must not exceed max_n')
++	Span = Right - Left
++	while Count <= Limit:
++		AllOk = True
++		for Index in range(Count):
++			Lo = Left + Span * F(Index, Count)
++			Hi = Left + Span * F(Index + 1, Count)
++			Lower, Upper, Bound = _derivative_bounds(fn, Lo, Hi)
++			if not (Lower > 0 if want_pos else Upper < 0):
++				AllOk = False
++				Bad = (Index, Lo, Hi, Lower, Upper, Bound)
++				break
++		if AllOk:
++			return True, Count
++		LastCount = Count
++		Count *= 2
++	return False, ('unproved at n=%d piece %s' % (LastCount, Bad))
+ 
+ 
+ def der_sign_adaptive(fn, a, b, want_pos, min_w=None, max_boxes=200000, name=''):
+-    """Adaptive Taylor-model sign verification of f' on [a,b].
+-    Splits only pieces whose sign is not certified. Returns (True, nboxes) or (False, info)."""
+-    span = b - a
+-    if min_w is None: min_w = span / (2**20)
+-    boxes = [(a, b)]
+-    nboxes = 0
+-    while boxes:
+-        lo, hi = boxes.pop()
+-        w = (hi - lo) / 2
+-        c = (lo + hi) / 2
+-        piece = I(c - w, c + w)
+-        fp = fn(D2(piece, I(1), I(0)))
+-        fc = fn(D2(I(c, c), I(1), I(0)))
+-        M = max(fp.d2.abs().hi, fc.d2.abs().hi)
+-        corr = M * w
+-        lo_d = fc.d1.lo - corr
+-        hi_d = fc.d1.hi + corr
+-        nboxes += 1
+-        if want_pos:
+-            if lo_d > 0: continue
+-        else:
+-            if hi_d < 0: continue
+-        if w <= min_w:
+-            return False, ('stuck at n=%d piece [%s,%s] f=[%s,%s] M=%s' % (nboxes, lo, hi, lo_d, hi_d, M))
+-        boxes.append((lo, c)); boxes.append((c, hi))
+-        if nboxes > max_boxes:
+-            return False, ('max_boxes exceeded at [%s,%s]' % (lo, hi))
+-    return True, nboxes
++	"""Exact adaptive Taylor bounds; the evaluation budget is never exceeded."""
++	Left, Right = _sign_inputs(fn, a, b, want_pos)
++	Limit = _sign_count(max_boxes, 'max_boxes')
++	Span = Right - Left
++	MinWidth = Span / 2**20 if min_w is None else _exact_sign_scalar(min_w, 'min_w')
++	if not 0 < MinWidth <= Span:
++		raise ValueError('min_w must be positive and at most b-a')
++	Boxes, Count = [(Left, Right)], 0
++	while Boxes:
++		if Count >= Limit:
++			return False, ('unproved: max_boxes=%d exhausted with %d pending pieces' % (Limit, len(Boxes)))
++		Lo, Hi = Boxes.pop()
++		Lower, Upper, Bound = _derivative_bounds(fn, Lo, Hi)
++		Count += 1
++		if (Lower > 0 if want_pos else Upper < 0):
++			continue
++		if (Hi - Lo) / 2 <= MinWidth:
++			return False, ('unproved at n=%d piece [%s,%s] f=[%s,%s] M=%s' % (Count, Lo, Hi, Lower, Upper, Bound))
++		Center = (Lo + Hi) / 2
++		Boxes.extend(((Lo, Center), (Center, Hi)))
++	return True, Count
+--- a/research_map.md
++++ b/research_map.md
+@@ -1,6 +1,6 @@
+ # Research map: Sturm-Liouville spectral optimization (BVE research)
+ 
+-Last updated: 2026-09-27 (round13 certificate/interface/Helly repair; exact evidence and review scope in reports/proof-audit-round13-20260927/REPORT.md)
++Last updated: 2026-10-06 (Round16 exact Taylor boundary, resolved pairings, bounded-direction tail and all-integer replacement systems; scoped evidence in reports/proof-audit-round16-20261006/REPORT.md)
+ 
+ 
+ 
+@@ -41,7 +41,7 @@
+ | A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
+ | A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. The original s3 proof has that scope; A12 now covers critical s=5/2. No general infinite-deletion conclusion |
+ | A9 | Concrete fractional and critical power-domain dictionary | STRICT | tools/krein-fractional-trace-dictionary; tools/krein-parity-unitary | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
+-| A10 | Boundary-compatible integrated Legendre replacement systems | STRICT | tools/krein-integrated-legendre-riesz; tools/finite-synthesis-tsvd | Fixed c>0, s=2/4; complete Riesz replacement systems with degree-independent constants and coefficient-tail errors. Not the original sparse monomials, uniform c→0 or quadrature certification |
++| A10 | Hermite-integrated Legendre Riesz replacement systems, every integer order | STRICT (scoped independent analytic review) | docs/SL_integer_left_definite_riesz_systems.md; tools/krein-integrated-legendre-riesz | Every fixed c>0 and integer r>=0, true complex power domain, 2ceil(r/2) low lifts (odd r needs r+1), degree-independent Riesz bounds and exact polynomial span. Rates need weighted coefficients with t>=0. Not original sparse-family Riesz, noninteger orders or uniform c->0 |
+ | A11 | Arbitrary retained sets throughout the full Krein member window | Density criterion / divergent closure CLOSED; summable closure description PARTIAL | docs/SL_full_window_deletions_and_finite_constraints.md; tools/krein-infinite-deletion-subclasses | Fixed c>0, 0<=s<7/2, arbitrary N. Both parity reciprocal sums divergent: exact omitted continuous-center-trace closure with I(s)={}, {0}, {0,1}, {0,1,4}; equalities1/2,3/2,5/2 use fewer traces. Either convergent: infinite codimension. Dense iff both divergent and I(s) subset N. Full summable-space description remains open |
+ | A3-KREIN-FINITE | Individual-member filtering under finite continuous complex constraints in genuine Hc^s | SOLVED (scoped independent analytic review) | docs/SL_full_window_deletions_and_finite_constraints.md, section7; tools/krein-finite-constraint-filtering | Fixed c>0, 0<=s<7/2: filtered family dense in V iff V is an intersection of a subset of current continuous central trace coordinate kernels; 1/2/4/8 distinct subspaces. No general H, infinite constraints, projection or recombination theorem |
+ | A12 | Cofinite closure throughout the full member window | SOLVED (independent analytic review) | docs/SL_cofinite_all_orders.pdf; tools/krein-cofinite-closure-all-orders | Fixed c>0, 0<=s<7/2. Essential retained indices are {}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Missing indices impose respectively f(0), f′(0), f″(0); codimension is their count. Delete p6: still dense, so every nonzero scaling/reordering of the original family is non-Schauder/Riesz. No arbitrary infinite deletion or uniform c→0 claim |
+@@ -63,6 +63,7 @@
+ | B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
+ | B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | scripts/_gapn2_jacobian_probe.py; reports/proof-audit-round11-20260926/REPORT.md | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
+ | B10 | Half-spectrum identity, bound poles and raw/conjugated sectors | SCOPED REPAIR VERIFIED | reports/proof-audit-round12-20260926/REPORT.md; tools/green-half-inertia; tools/half-problem-regularized-green | DD/DN phase targets label each mode; shared tables bind pole deletion. KpOdd=E Ke E, while raw Ko has reduced own-pole kernels and a rank-one term. Round13 repairs node normalization, real-coordinate/nonpositive Green and the general residual Jacobian; round12 prefix/pole/sector properties are retained. Finite diagnostics and local algebra do not certify global signs or G1 |
++| B11 | Parseval residual and two-sided spectral tail along bounded real density directions | STRICT (scoped independent analytic review) | docs/SL_bounded_direction_spectral_tail.md; tools/second-variation-weighted-eigenvalues | True DD, positive bounded rho, real L-infinity h; reliable finite-pairing/J/eigenvalue/Q envelopes required for sign certification. Numerical quadrature and truncation are distinct. Not delta/delta-prime interface directions or ND/G1 |
+ 
+ ## Relationships between problems
+ 
+@@ -79,7 +80,7 @@
+ A9 parity/domain dictionary --supports--> A8 s3 cofinite three-trace closure
+ A12 --extends--> A8 and the s2 classification via H4 core, weighted interpolation and critical Fourier sequences
+ A12 --uses--> A1 member window; A11 now uses its cofinite closure at all three critical thresholds for arbitrary retention throughout0<=s<7/2; full summable closures remain separate
+-A9/A7 --guides--> A10 boundary-compatible replacement coordinates
++A9/A7 --guides--> A10 boundary-compatible replacement coordinates; direct integer-domain proof now covers every fixed integer r>=0 independently of A11
+ A11 arbitrary retained sets --uses--> actual square-domain boundary lifts, H4-valued holomorphic uniqueness, A12 cofinite closure and Cauchy Gram distance; A3-KREIN-FINITE follows for individual filtering, while general A4 remains open
+ 
+ Line B:
+@@ -121,14 +122,15 @@
+   A6["A6 3rd-order recurrence (PARTIAL)"]
+   A8["A8 s=3 cofinite closure (SOLVED)"]
+   A9["A9 fractional domain dictionary (STRICT)"]
+-  A10["A10 Legendre replacement systems (STRICT)"]
++  A10["A10 integer Hermite-Legendre Riesz systems (STRICT)"]
+   A11["A11 full-window criterion/closure (CLOSED); summable elements (OPEN)"]
+   A3K["A3 Krein finite constraints: filtering (SOLVED)"]
+   A12["A12 full-window cofinite closure (SOLVED)"]
+   B7["B7 finite interface derivatives (STRICT)"]
+   B8["B8 indexed numerical modes / pure seeds (NUMERICAL)"]
+   B9["B9 cross blocks / actual differences (NUMERICAL)"]
+-  B10["B10 indexed half spectra / bound poles / raw sectors (UNDER REVIEW)"]
++  B10["B10 indexed half spectra / bound poles / raw sectors (SCOPED REPAIR VERIFIED)"]
++  B11["B11 bounded-direction Parseval tail (STRICT)"]
+   B1["B1 sup ratio nu(R) (SOLVED)"]
+   B2["B2 inf ratio 1 (SOLVED)"]
+   B3["B3 fixed-n supremum (PARTIAL)"]
+@@ -144,6 +146,7 @@
+   A1 -->|member window| A12
+   B9 -->|derivative diagnostics| B7
+   B10 -->|Green diagnostics| B7
++  B11 -->|conditional finite tail enclosures| B4
+   A9 -->|domain and topology| A8
+   A9 -->|boundary conditions| A10
+   A1 -->|member window| A11
+@@ -275,3 +278,5 @@
+ The finite exact checks do not prove Sobolev closure or spectral analysis. New results have scoped independent analytic review; no new Lean formalization or canonical Blueprint integration was performed. The old full-family threshold, O1/O2 and global G1′ retain their exact scopes.
+ 
+ 2026-10-04 Round14: G2 covers every exact residual zero for each fixed n>=2 and both patterns on [1,Rmax], including R down to1. G2+ND conditionally gives locally constant root count and a unique global analytic symmetric branch; ND and G1/global uniqueness remain open. A11 arbitrary Hc2 density criterion and divergent two-trace closure are proved, while the summable-side full space description remains open. Exact independent reviews and software controls: reports/proof-audit-round14-20261004/REPORT.md. No canonical/M3/KP scope expansion.
++
++2026-10-06 Round16: R16-01/02/03 repair only the active generic Taylor and pairing paths. C16-TAIL and C16-A10-INTEGER have separate complete proofs and final fresh native analytic approval. Initial analytic/software rejections remain as evidence; automatic adapter, Lean and canonical reception are separate. R15 local results and all original untracked bytes preserved. Stop at the five scoped obligations; see reports/proof-audit-round16-20261006/REPORT.md.
+--- a/scripts/README.md
++++ b/scripts/README.md
+@@ -1,4 +1,11 @@
+ # 研究脚本导航
++
++第十六轮当前入口: [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py) 的 block_direction 返回带完整断点的BlockDirection. SpectralProbe.pairings优先在所有rho/h共同小段做局部解析积分; 每段左端锚定后保留半宽, 70位相位传播降低近节点消去, 小相位展开/消去回退避免节点折叠和求积混叠. 数值配对复用原物理模态共同质量, 正积分下溢拒绝, 不改变谱编号.
++
++一般回调声明已知Breaks, 实际节点必须严格在每段内部且互异, 模态相位须可分辨, 在MaxOrder内完成两次连续误差比较; 未决抛ArithmeticError. PairingResult仍兼容四数组, 同时有diagnostics属性; return_diagnostics=True返回第五项. CLI的P1/P2/P2b/P3均保存诊断. 误差是估计, 舍入/黑箱包络为None, sign_certified=false; 原始浮点Parseval残余不截零.
++
++通用misc/rigid1d的两导数符号助手先精确转换端点, 预算/计数/宽度/顺序均检查. 专用E1已Fraction且无受影响调用. 重放命令: Python3.10 -X utf8 -B research/artifacts/proof-audit-round16-20261006/checks.py --root <project> --output <outside.json>, 优化检查再加-O; OPENBLAS_NUM_THREADS=OMP_NUM_THREADS=1. [完整证明与真实结果](../reports/proof-audit-round16-20261006/REPORT.md). 不重认证全部历史扫描.
++
+ 
+ 第十五轮当前复用入口: [op03_gap_fixed.py](op03_gap_fixed.py)::lams_precise 已委托 [_sl_prufer.py](_sl_prufer.py)::indexed_roots 的 DD 指标相位枚举. 返回首 k 个频率 omega, 特征值是 omega**2; [op03_gap_fh.py](op03_gap_fh.py) 及直接计算调用保留平方转换. tol 是括号宽度不超过 tol*max(1,omega) 的请求, binary64 无法分辨时显式拒绝; smax_scale 不再控制网格, 非默认正值发出弃用警告, 非法值拒绝. 函数名为兼容保留.
+ 
+--- a/scripts/_gapn2_second_variation_probe.py
++++ b/scripts/_gapn2_second_variation_probe.py
+@@ -50,7 +50,7 @@
+ if not (SCRIPT_DIR / '_gapn2_symmetry_recon.py').is_file():
+ 	SCRIPT_DIR = Path.cwd() / 'scripts'
+ sys.path.insert(0, str(SCRIPT_DIR))
+-from _gapn2_symmetry_recon import Recon, roots_of, eigfun
++from _gapn2_symmetry_recon import Recon, roots_of, eigfun, eigenfunction_states
+ from _sl_prufer import indexed_roots, lifted_phase, mp_lifted_phase
+ from _gapn2_jacobian_probe import symmetric_root, jac_fd
+ from _gapn2_jacobian_analytic import eigen_data
+@@ -170,7 +170,10 @@
+ 	Nodes, Weights = leggauss(Order)
+ 	Points, Factors = [], []
+ 	for Left, Right in zip(Knots[:-1], Knots[1:]):
+-		Points.extend((Left + Right) / 2 + (Right - Left) * Nodes / 2)
++		Local = Left + (Right - Left) * (Nodes + 1) / 2
++		if (np.any(np.diff(Local) <= 0) or Local[0] <= Left or Local[-1] >= Right):
++			raise ValueError('quadrature nodes collapse or leave their open interval; use structured analytic pairings')
++		Points.extend(Local)
+ 		Factors.extend((Right - Left) * Weights / 2)
+ 	return np.asarray(Points), np.asarray(Factors), Knots
+ 
+@@ -207,8 +210,89 @@
+ 	return Breaks
+ 
+ 
++class BlockDirection:
++	"""A real piecewise-constant function, with its full breakpoint geometry.
++
++	Its immutable data, rather than samples at rounded global coordinates,
++	select the analytic pairing path. Endpoints have no effect on integrals.
++	"""
++	def __init__(self, Coeff, Edges):
++		self.coefficients = finite_vector(Coeff, 'block coefficients').copy()
++		self.edges = finite_vector(Edges, 'direction edges').copy()
++		if len(self.edges) != len(self.coefficients) + 1 or np.any(np.diff(self.edges) <= 0):
++			raise ValueError('direction edges must be strictly ordered and match coefficients')
++		self.coefficients.flags.writeable = False
++		self.edges.flags.writeable = False
++
++	def __call__(self, Points):
++		Points = finite_vector(Points, 'direction evaluation points')
++		if np.any(Points < self.edges[0]) or np.any(Points > self.edges[-1]):
++			raise ValueError('direction evaluation outside its domain')
++		Index = np.minimum(np.searchsorted(self.edges, Points, side='right') - 1, len(self.coefficients) - 1)
++		return self.coefficients[Index]
++
++
++class PairingResult(tuple):
++	"""Four-array compatible result carrying its numerical diagnostics."""
++	def __new__(cls, Arrays, Diagnostics):
++		Result = super().__new__(cls, Arrays)
++		Result.diagnostics = Diagnostics
++		return Result
++
++
++def _cos_sin_integrals(Waves, Length):
++	"""Integral cos_i*cos_j and (sin_i/w_i)*(sin_j/w_j) about a midpoint.
++
++	Use a bivariate Taylor series on a small-phase cell. Else use sinc, with
++	an mp fallback where subtraction cannot resolve the sine-product term.
++	The mp fallback is a numerical evaluation, not an interval certificate.
++	"""
++	Angles = Waves * Length / 2
++	if np.any(Angles <= 0) or not np.all(np.isfinite(Angles)):
++		raise ArithmeticError('local positive phases are not numerically resolvable')
++	Minus, Plus = Angles[:, None] - Angles[None, :], Angles[:, None] + Angles[None, :]
++	Sminus, Splus = np.sinc(Minus / np.pi), np.sinc(Plus / np.pi)
++	Cosine = Length * (Sminus + Splus) / 2
++	if np.max(np.abs(Angles)) < 0.05:
++		Sine = np.zeros_like(Cosine)
++		for p in range(6):
++			for q in range(6):
++				Sine += ((-1)**(p + q) * np.outer(Angles**(2*p), Angles**(2*q))
++					/ (math.factorial(2*p + 1) * math.factorial(2*q + 1) * (2*p + 2*q + 3)))
++		Sine *= Length**3 / 4
++	else:
++		Difference = Sminus - Splus
++		Sine = Length * Difference / (2 * np.outer(Waves, Waves))
++		Magnitude = np.abs(Sminus) + np.abs(Splus)
++		Unresolved = ((np.minimum(Angles[:, None], Angles[None, :]) < 0.05)
++			| (np.abs(Difference) <= 0.05 * Magnitude)
++			| (np.abs(Sminus+Splus) <= 0.05 * Magnitude))
++		# Resolve small sine-square differences to well beyond binary64 before
++		# conversion. A fixed precision is insufficient if one phase is tiny
++		# while another phase makes the global Taylor branch inapplicable.
++		Digits = max(60, 40+2*max(0, int(math.ceil(-math.log10(float(np.min(Angles)))))))
++		with mp.workdps(Digits):
++			for i, j in zip(*np.where(np.triu(Unresolved))):
++				Wi, Wj, L = mp.mpf(float(Waves[i])), mp.mpf(float(Waves[j])), mp.mpf(float(Length))
++				def Sinc(x):
++					return mp.sin(x)/x if x else mp.mpf(1)
++				Low, High = Sinc((Wi-Wj)*L/2), Sinc((Wi+Wj)*L/2)
++				Sine[i, j] = Sine[j, i] = float(L*(Low-High)/(2*Wi*Wj))
++				Cosine[i, j] = Cosine[j, i] = float(L*(Low+High)/2)
++	if not np.all(np.isfinite(Cosine)) or not np.all(np.isfinite(Sine)):
++		raise ArithmeticError('analytic local integrals exceed floating-point range')
++	if np.any(np.diag(Sine) <= 0):
++		raise ArithmeticError('positive local sine-square integral is below floating-point resolution')
++	return Cosine, Sine
++
++
+ class SpectralProbe:
+-	"""Finite double-precision spectral sum with endpoint-aligned quadrature."""
++	"""Finite numerical sums: analytic block pairings or checked callback quadrature.
++
++	Callback convergence/error estimates are numerical diagnostics. Finite
++	samples cannot certify an arbitrary bounded black-box function. Unresolved
++	geometry, frequency resolution or convergence raises before returning Q data.
++	"""
+ 	def __init__(self, Blocks, Modes=N_MODES + 1, Order=64):
+ 		self.blocks = validate_blocks(Blocks)
+ 		self.order = positive_integer(Order, 'quadrature order', 8)
+@@ -218,19 +302,25 @@
+ 			raise ArithmeticError('nonfinite eigenvalues')
+ 		self.edges = np.r_[0.0, np.cumsum([L for L, _ in self.blocks])]
+ 		self.cache = {}
+-
+-	def quadrature(self, Breaks=()):
+-		Key = tuple(Breaks)
++		self.last_pairing_diagnostics = None
++
++	def quadrature(self, Breaks=(), *, Order=None):
++		ActualOrder = self.order if Order is None else positive_integer(Order, 'quadrature order', 8)
++		Key = (ActualOrder, tuple(Breaks))
+ 		if Key not in self.cache:
+-			Points, Weights, Knots = quadrature_rule(self.blocks, self.order, Key)
++			Points, Weights, Knots = quadrature_rule(self.blocks, ActualOrder, Breaks)
++			Index = np.searchsorted(self.edges, Knots[:-1], side='right') - 1
++			Phase = self.roots[-1] * np.sqrt(np.asarray(self.blocks)[Index, 1]) * np.diff(Knots)
++			if np.any(Phase > ActualOrder):
++				raise ArithmeticError('quadrature is below the conservative modal phase resolution; increase the explicit budget or use analytic block directions')
+ 			Values = np.array([eigfun(self.blocks, Root, Points) for Root in self.roots])
+ 			if not np.all(np.isfinite(Values)):
+ 				raise ArithmeticError('nonfinite normalized eigenfunctions')
+ 			self.cache[Key] = (Points, Weights, Values, Knots)
+ 		return self.cache[Key]
+ 
+-	def pairings(self, drf, Breaks=()):
+-		Points, Weights, Values, _ = self.quadrature(Breaks)
++	def _sample_pairings(self, drf, Breaks, Order):
++		Points, Weights, Values, _ = self.quadrature(Breaks, Order=Order)
+ 		Direction = finite_vector(drf(Points), 'direction samples')
+ 		if Direction.shape != Points.shape:
+ 			raise ValueError('direction samples must match quadrature points')
+@@ -240,7 +330,148 @@
+ 		Weighted = (Values * (Weights * Direction * Density)) @ Values.T
+ 		if not np.all(np.isfinite(Unweighted)) or not np.all(np.isfinite(Weighted)):
+ 			raise ArithmeticError('nonfinite pairings')
+-		return self.lam, Unweighted, Weighted, np.diag(Unweighted).copy()
++		Energy = (Values**2) @ (Weights * Direction**2 / Density)
++		MassGram = (Values * (Weights * Density)) @ Values.T
++		if not np.all(np.isfinite(Energy)):
++			raise ArithmeticError('nonfinite Parseval budget')
++		return Unweighted, Weighted, Energy, MassGram
++
++	def _analytic_anchor_states(self, Points):
++		"""Stable phase propagation at common anchors, with the SAME modal mass.
++
++		Binary64 multiplication of frequency*offset can lose the amplitude near
++		a node even after retaining a local half-width. Propagate the same binary
++		frequency and original block lengths at 70 digits before rounding values
++		and derivatives. The existing sampler's initial derivative supplies its
++		one common normalization factor; no mass is recovered from a node.
++		This higher-precision numerical evaluation is not an error enclosure.
++		"""
++		Scales = np.array([eigenfunction_states(self.blocks, Root, [0.0])[0, 1] for Root in self.roots])
++		Out = np.empty((len(self.roots), len(Points), 2))
++		with mp.workdps(70):
++			for Mode, Root in enumerate(self.roots):
++				Frequency, Scale = mp.mpf(float(Root)), mp.mpf(float(Scales[Mode]))
++				Starts, Waves, States = [], [], []
++				Start, Value, Derivative = mp.mpf(0), mp.mpf(0), mp.mpf(1)
++				for Length, Density in self.blocks:
++					Wave, Width = Frequency*mp.sqrt(mp.mpf(float(Density))), mp.mpf(float(Length))
++					Starts.append(Start)
++					Waves.append(Wave)
++					States.append((Value, Derivative))
++					Cos, Sin = mp.cos(Wave*Width), mp.sin(Wave*Width)
++					Value, Derivative = Value*Cos+Derivative*Sin/Wave, -Value*Wave*Sin+Derivative*Cos
++					Start += Width
++				for Cell, Point in enumerate(Points):
++					Index = np.searchsorted(self.edges, Point, side='right')-1
++					Offset = mp.mpf(float(Point))-Starts[Index]
++					Wave, (Value, Derivative) = Waves[Index], States[Index]
++					Cos, Sin = mp.cos(Wave*Offset), mp.sin(Wave*Offset)
++					Out[Mode, Cell] = (float(Scale*(Value*Cos+Derivative*Sin/Wave)),
++						float(Scale*(-Value*Wave*Sin+Derivative*Cos)))
++		if not np.all(np.isfinite(Out)):
++			raise ArithmeticError('analytic anchor states exceed floating-point range')
++		return Out
++
++	def _analytic_pairings(self, Direction, Breaks):
++		if Direction.edges[0] != 0 or Direction.edges[-1] != self.edges[-1]:
++			raise ValueError('direction and density domains must coincide')
++		# Validate optional extra cuts without constructing any Gauss nodes.
++		Extra = np.asarray(Breaks)
++		if Extra.size:
++			Extra = finite_vector(Extra, 'direction breakpoints')
++			if np.any(Extra <= 0) or np.any(Extra >= self.edges[-1]):
++				raise ValueError('direction breakpoints must be strictly internal')
++		elif Extra.ndim != 1:
++			raise ValueError('direction breakpoints must be a vector')
++		Knots = np.unique(np.r_[self.edges, Direction.edges, Extra])
++		for Width, (Requested, _) in zip(np.diff(self.edges), self.blocks):
++			if abs(Width / Requested - 1) > 1e-12:
++				raise ArithmeticError('density width is not resolved by its cumulative coordinates')
++		States = self._analytic_anchor_states(Knots[:-1])
++		Count = len(self.roots)
++		Unweighted, Weighted = np.zeros((Count, Count)), np.zeros((Count, Count))
++		MassGram, Energy = np.zeros((Count, Count)), np.zeros(Count)
++		for Cell, (Left, Right) in enumerate(zip(Knots[:-1], Knots[1:])):
++			Index = np.searchsorted(self.edges, Left, side='right') - 1
++			DirIndex = np.searchsorted(Direction.edges, Left, side='right') - 1
++			Length, Density, Height = Right - Left, self.blocks[Index][1], Direction.coefficients[DirIndex]
++			Waves = self.roots * np.sqrt(Density)
++			# A local offset retains tiny half-widths even when the global midpoint
++			# would round to an endpoint. All states share the existing analytic
++			# mass normalization; its floating evaluation is not an enclosure.
++			Offset = Length / 2
++			Phase = Waves * Offset
++			Cos, Sin = np.cos(Phase), np.sin(Phase)
++			Value, Derivative = States[:, Cell, 0], States[:, Cell, 1]
++			Center = Value * Cos + Derivative * Offset * np.sinc(Phase / np.pi)
++			Slope = -Value * Waves * Sin + Derivative * Cos
++			Cosine, Sine = _cos_sin_integrals(Waves, Length)
++			Local = np.outer(Center, Center)*Cosine + np.outer(Slope, Slope)*Sine
++			Unweighted += Height * Local
++			Weighted += Density * Height * Local
++			MassGram += Density * Local
++			Energy += (Height / Density) * Height * np.diag(Local)
++		if not all(np.all(np.isfinite(A)) for A in (Unweighted, Weighted, Energy, MassGram)):
++			raise ArithmeticError('analytic pairing or energy exceeds finite floating-point range')
++		return Unweighted, Weighted, Energy, MassGram, len(Knots)-1
++
++	def pairings(self, drf, Breaks=(), *, AbsTol=1e-10, RelTol=1e-10, MaxOrder=1024, return_diagnostics=False):
++		"""Four compatible arrays with .diagnostics, optionally followed by it.
++
++	Structured block directions integrate all true cuts analytically. General
++	callbacks require declared cuts, modal resolution and two successive Gauss
++	comparisons within the budget. The reported error is an estimate, not an
++	enclosure; no sign certificate or zero-tail assertion follows from it.
++	"""
++		self.last_pairing_diagnostics = None
++		if isinstance(drf, BlockDirection):
++			Cu, Cw, Energy, Gram, Cells = self._analytic_pairings(drf, Breaks)
++			Info = {'method': 'analytic-local-blocks', 'status': 'NUMERICAL_ANALYTIC_EVALUATION',
++				'intervals': Cells, 'quadrature_error': 0.0, 'roundoff_enclosure': None,
++				'anchor_precision_digits': 70, 'mass_normalization': 'existing shared physical sampler'}
++		else:
++			if not callable(drf):
++				raise ValueError('direction must be callable or BlockDirection')
++			AbsTol, RelTol = positive_scalar(AbsTol, 'AbsTol'), positive_scalar(RelTol, 'RelTol')
++			MaxOrder = positive_integer(MaxOrder, 'MaxOrder', 8)
++			Breaks = tuple(Breaks)
++			Order, Previous, Stable = self.order, None, 0
++			while Order <= MaxOrder:
++				try:
++					Current = self._sample_pairings(drf, Breaks, Order)
++				except ArithmeticError as Error:
++					if 'modal phase resolution' not in str(Error):
++						raise
++					Order *= 2
++					continue
++				if Previous is not None:
++					Errors = [float(np.max(np.abs(A-B))) for A, B in zip(Current, Previous)]
++					Tolerances = [AbsTol + RelTol*float(np.max(np.abs(A))) for A in Current]
++					Stable = Stable+1 if all(E <= T for E, T in zip(Errors, Tolerances)) else 0
++					if Stable == 2:
++						Cu, Cw, Energy, Gram = Current
++						Info = {'method': 'adaptive-split-gauss', 'status': 'CONVERGED_NUMERICAL_ESTIMATE',
++							'order': Order, 'previous_order': Order//2, 'estimated_absolute_errors': Errors,
++							'AbsTol': AbsTol, 'RelTol': RelTol, 'MaxOrder': MaxOrder,
++							'black_box_error_enclosure': None}
++						break
++				Previous = Current
++				Order *= 2
++			else:
++				self.last_pairing_diagnostics = {'status': 'UNRESOLVED', 'method': 'adaptive-split-gauss', 'MaxOrder': MaxOrder}
++				raise ArithmeticError('callback quadrature unresolved within MaxOrder; no pairing or Q accepted')
++		GramError = float(np.max(np.abs(Gram - np.eye(len(self.roots)))))
++		if GramError > 2e-8:
++			raise ArithmeticError('retained modal mass/orthogonality is numerically unresolved')
++		Remainder = Energy - np.sum(Cu**2, axis=1)
++		if np.any(Remainder < -2e-8*np.maximum(1.0, np.abs(Energy))):
++			raise ArithmeticError('pairings violate the Parseval energy budget')
++		Info.update({'modal_Gram_error': GramError, 'parseval_total_energy': Energy.tolist(),
++			'parseval_remainder_raw': Remainder.tolist(), 'spectral_tail_certification': 'NOT_CERTIFIED_FLOAT_INPUT',
++			'sign_certified': False})
++		self.last_pairing_diagnostics = Info
++		Result = PairingResult((self.lam, Cu, Cw, np.diag(Cu).copy()), Info)
++		return Result + (Info,) if return_diagnostics else Result
+ 
+ 
+ def q_formula(lam, Cu, Cw, n, dr_sq):
+@@ -363,14 +594,7 @@
+ 
+ 
+ def block_direction(Coeff, Edges):
+-	Coeff = finite_vector(Coeff, 'block coefficients')
+-	Edges = finite_vector(Edges, 'edges')
+-	if len(Edges) != len(Coeff) + 1 or np.any(np.diff(Edges) <= 0):
+-		raise ValueError('edges must be strictly ordered and match coefficients')
+-	def Direction(Points):
+-		Index = np.clip(np.searchsorted(Edges, Points, side='right') - 1, 0, len(Coeff) - 1)
+-		return Coeff[Index]
+-	return Direction
++	return BlockDirection(Coeff, Edges)
+ 
+ 
+ def trig_direction(Coeff):
+@@ -468,7 +692,7 @@
+ 		'lambda_n': Ln, 'lambda_np1': Lp, 'stationary_residual_max': float(np.max(np.abs(Rc.residual(Stationary)))),
+ 		'root_index_records': indexed_roots(Blocks, Modes)[1],
+ 		'block_integrals_mp': Tangent.integrals_text(), 'P1': [], 'P2': [], 'P2b': [], 'P3': [],
+-		'limitations': ['finite spectral cutoff; no rigorous tail bound', 'lifted-phase indices and safeguarded mp refinement are numerical, not interval-certified enumeration', 'mp and Gauss quadrature are not interval certificates',
++		'limitations': ['bounded-direction tail bound is available analytically, but this run has no reliable finite-input enclosures for its use', 'lifted-phase indices and safeguarded mp refinement are numerical, not interval-certified enumeration', 'mp and Gauss quadrature are not interval certificates',
+ 			'input decimals and numerical stationary solve are not exact stationary certificates',
+ 			'random signs do not establish definiteness, density-box admissibility or optimality',
+ 			'P3 is fixed-width only; neither convergence nor divergence inferred']}
+@@ -484,11 +708,11 @@
+ 			Coeff = project_tangent(Rng.standard_normal(len(Blocks)), A, Widths, Metric)
+ 			if Scale is not None and np.max(np.abs(Coeff)) != 0:
+ 				Coeff *= Scale / np.max(np.abs(Coeff))
+-			Lam, Cu, Cw, Diagonal = Probe.pairings(block_direction(Coeff, Probe.edges))
++			Lam, Cu, Cw, Diagonal, PairingInfo = Probe.pairings(block_direction(Coeff, Probe.edges), return_diagnostics=True)
+ 			Q = q_formula(Lam, Cu, Cw, n, Diagonal)
+ 			Residual = Tangent.direct_residual(Coeff)
+ 			Row = {'t': t, 'coefficients': Coeff.tolist(), 'Q': Q, 'dot_A': float(Coeff @ A),
+-				'direct_fh': mp.nstr(Residual, 30)}
++				'direct_fh': mp.nstr(Residual, 30), 'pairing_diagnostics': PairingInfo}
+ 			print('    t=%d: Q=%.12e  direct integral f*h=%s' % (t, Q, Row['direct_fh']), flush=True)
+ 			if Group == 'P1':
+ 				Row['FD'] = []
+@@ -503,15 +727,19 @@
+ 		if Group == 'P2':
+ 			print('    sampled signs: %s (finite samples only)' % np.sign([Row['Q'] for Row in Result[Group]]), flush=True)
+ 	print('  P2b: integral-based trig projection, shared robustness changes only:', flush=True)
+-	Points, Weights, Values, _ = Probe.quadrature()
+-	F = Probe.lam[n - 1] * Values[n - 1] ** 2 - Probe.lam[n] * Values[n] ** 2
+-	G = np.array([np.sum(Weights * F * np.sin((j + 1) * np.pi * Points)) for j in range(8)])
++	G, ProjectionInfo = [], []
++	for Unit in np.eye(8):
++		_, _, _, Diagonal, Info = Probe.pairings(trig_direction(Unit), return_diagnostics=True)
++		G.append(Probe.lam[n-1]*Diagonal[n-1] - Probe.lam[n]*Diagonal[n])
++		ProjectionInfo.append(Info)
++	G = np.asarray(G)
++	Result['P2b_projection_pairing_diagnostics'] = ProjectionInfo
+ 	for t in range(6):
+ 		Coeff = project_tangent(Rng.standard_normal(8), G)
+-		Lam, Cu, Cw, Diagonal = Probe.pairings(trig_direction(Coeff))
++		Lam, Cu, Cw, Diagonal, PairingInfo = Probe.pairings(trig_direction(Coeff), return_diagnostics=True)
+ 		Q = q_formula(Lam, Cu, Cw, n, Diagonal)
+ 		Residual = Tangent.direct_residual(Coeff, 'trig')
+-		Row = {'t': t, 'coefficients': Coeff.tolist(), 'Q': Q, 'direct_fh': mp.nstr(Residual, 30)}
++		Row = {'t': t, 'coefficients': Coeff.tolist(), 'Q': Q, 'direct_fh': mp.nstr(Residual, 30), 'pairing_diagnostics': PairingInfo}
+ 		Result['P2b'].append(Row)
+ 		print('    t=%d: Q=%.12e direct integral f*h=%s' % (t, Q, Row['direct_fh']), flush=True)
+ 	if IncludeP3:
+@@ -531,12 +759,12 @@
+ 			def Bump(Points):
+ 				return np.sum((-Jumps * Displacement / (2 * BumpWidth))[:, None]
+ 					* (np.abs(Points[None, :] - Edges[:, None]) < BumpWidth), axis=0)
+-			Lam, Cu, Cw, Diagonal = Probe.pairings(Bump, Breaks)
++			Lam, Cu, Cw, Diagonal, PairingInfo = Probe.pairings(Bump, Breaks, return_diagnostics=True)
+ 			Qbump = q_formula(Lam, Cu, Cw, n, Diagonal)
+ 			Qedge = float(Displacement @ Hessian @ Displacement / 2)
+ 			Acceleration = float(-np.sum(Jumps * Displacement ** 2 * Fprime) / 2)
+ 			Row = {'t': t, 'half_width': BumpWidth, 'displacement': Displacement.tolist(),
+-				'Q_interface_hessian_fd': Qedge, 'Q_linear_fixed_bump': Qbump,
++				'Q_interface_hessian_fd': Qedge, 'Q_linear_fixed_bump': Qbump, 'pairing_diagnostics': PairingInfo,
+ 				'half_interface_acceleration': Acceleration, 'finite_comparison_difference': Qedge - (Qbump + Acceleration)}
+ 			Result['P3'].append(Row)
+ 			print('    t=%d Q_edge=%.8e Q_linear_bump=%.8e half_accel=%.8e finite_diff=%.3e'
+--- a/state/AGENTS_SESSION_LOG.md
++++ b/state/AGENTS_SESSION_LOG.md
+@@ -3842,3 +3842,16 @@
+ 重放: 科学Python3.10, `python -X utf8 -B research/artifacts/proof-audit-round15-20261005/checks.py --root <project> --output <outside.json>`, 并加-O检查接收逻辑. 原44项基线脚本只在隔离附件副本重放并保留原错误期待. 保持R14守卫、谱身份/质量/Jacobian/交叉/rawK-SKS和原G2/Hc2完整证明; 冻结历史、旧稿及原1dirty/134untracked按字节保护, 最终证据见[三项交付表](reports/proof-audit-round15-20261005/REPORT.md). 原收敛侧全部元素、窗口外、c=0或一致c↓0、一般非对角A3/A4、无限约束、基/速率、ND/G1/无条件唯一及其余M3/KP仍开放. 到本轮边界结束; 不自动开始理论扩写. 之前“上传上云”的精确范围是已发布R14, 本轮不据此制造新的云端回执.
+ 
+ 本轮最终核对 (2026-10-05): 独立软件回执APPROVED、最终九项活动整合回执APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION均已实际保存. 19268原跟踪/134原未跟踪字节不变, 仅15个活动跟踪文件修改; 软件11项与数学9项冻结输入和实际工作区完全匹配. 原dirty也保留, git diff --check通过. 真实报告已将三个编号记为各自有限范围完成, 自动适配/Lean/canonical仍未接收或未执行.
++
++
++## 2026-10-06 第十六轮: 五项有限义务完成
++
++用户要求基于sl_audit_round16直接修订真实工作区, 明确R16-01/R16-02/R16-03/C16-TAIL/C16-A10-INTEGER范围, 保留本地R15后续正确工作, 不因远端同HEAD覆盖新版, 不扩写本科讲义/全局理论. HEAD仍ec45bf99;19283 tracked/233 initial untracked/16 initial dirty起点和源码身份实际留存,25附件清单及5上游完整blob核对. 原34项附件和9个完整源观测只确认旧错误, 与修后测试分开.
++
++通用Taylor两助手先Fraction规范化再做全部端点/分区/中心/半宽/修正/比较, 类型/顺序/计数/宽度/预算显式拒绝. 原E1专用_taylor已Fraction且无受影响调用; 初审超范围全账重算停止,20条部分输出和停止记录保留, 不计验收也未改原57账/退役Decimal. 配对按全部rho/h共同切点解析积分; v1半宽舍失、v2非二进制近节点、v3混合相位sinc差/和消去均由真实新独审发现并修复. v4局部锚点70位同频传播保留既有共同质量, 小相位/消去按需要提高精度, 正积分/相位下溢拒绝. 一般回调以实际节点/模态分辨/两次比较及预算诊断, 未决不返配对/Q; 无区间包络时不认证符号, 负浮点剩余不截零.
++
++两完整活动解析证明独立最终/root/r16_final_analytic_review_v2通过. Parseval剩余及Q-Q_N两侧界仅为实有界真实密度方向, 可靠有限输入才可认证符号, 宽a包络用真实谱序先收紧上端; 不适用delta/delta-prime. 固定c>0每个非负整数阶的真实复Krein空间完成Hermite-Legendre Riesz替代系, 奇阶r+1低列、双向范数/有限多项式张成/Gram带宽成立, 误差率另需t>=0与加权系数. 不是原稀疏族变基, 不依赖R15删项扩展. 原首次速率与宽包络退回记录不改.
++
++当前v4普通/-O各205性质、驻点62及核143通过;完整R4 SUP/INF受控CLI实际运行. 新/root/r16_software_review_v4冻结15项源码, 普通/-O各205及105独立补测, 完整SUP CLI和独立110位物理IVP实际通过; 最终输入与活动源码一致. 三卡经已安装原版API保存版本, 索引60可检索/34原隔离; check_spawn仍不接受当前native任务名格式, 不伪造UUID/旧回执或改插件放行. 本轮无Lean/TeX编译/canonical/云端交付.
++
++完整证明、卡片、地图、理解、导航与续接同步, 保护冻结历史/旧稿/原回执及R15工作. 具体五项表、真实执行/审查/保护及本轮开始实际树上的补丁见reports/proof-audit-round16-20261006/REPORT.md. 到五项有限范围结束, 剩余非整数基/c趋零一致性、收敛侧全部元素、一般A3/A4/无限约束、ND/G1/无条件唯一及其余M3/KP另计, 不自动启动下一轮.
+--- a/state/RESUME.md
++++ b/state/RESUME.md
+@@ -1,4 +1,15 @@
+ # RESUME
++
++## 2026-10-06 Round16: five bounded obligations
++
++HEAD remains ec45bf99ae746b0a3699557e06700a3c00c5a831; Round15 correct local work is present and preserved, not missing because it is absent remotely. Current handoff: reports/proof-audit-round16-20261006/REPORT.md. Evidence root: research/artifacts/proof-audit-round16-20261006; external original execution root F:/tools/math-audit-round16-20261006.
++
++R16-01 normalizes exact Taylor endpoints before arithmetic. R16-02/03 integrate structured directions on every common rho/h cell with local left anchoring and small-phase handling; callbacks require actual node/modal resolution and budgeted convergence estimates, unresolved rejected. Numerical outputs do not certify signs. E1 specialized Fraction path and57 original ledger entries remain unchanged.
++
++C16-TAIL complete bounded-direction Parseval/two-sided proof: docs/SL_bounded_direction_spectral_tail.md. C16-A10-INTEGER complete every-fixed-integer Riesz replacement proof: docs/SL_integer_left_definite_riesz_systems.md. Native final analytic review and fresh final software review have their exact frozen inputs/results in this round's report. First rejections are preserved. No new Lean, compilation, canonical reception or remote publication is claimed; legacy native-identity adapter remains unsupported.
++
++Stop after these five obligations. Noninteger Riesz, uniform c down to0, summable-side full closure elements, general non-diagonal A3/A4, infinite/new constraints, unconditional rates, ND/G1/global uniqueness and remaining M3/KP are separate. Do not restart completed reviewers or widen the task.
++
+ 
+ ## 2026-10-05 Round15: current bounded handoff
+ 
+--- a/tools/README.md
++++ b/tools/README.md
+@@ -1,4 +1,9 @@
+ # 数学工具库
++
++## 第十六轮当前范围 (2026-10-06)
++
++[精确Taylor类型边界](exact-taylor-sign-boundary.md)、[二阶变分与有界谱尾](second-variation-weighted-eigenvalues.md)、[所有整数阶Riesz替代系](krein-integrated-legendre-riesz.md)对应本轮五项有限义务. 完整两份解析稿已独立复审, 数值入口另经新隔离软件执行. 卡片由已安装原版API保存旧/新版本, 原生审查不等于旧自动适配接收; 既有隔离保持. [本轮交付](../reports/proof-audit-round16-20261006/REPORT.md)给出确切范围与未执行项.
++
+ 
+ ## 第十五轮当前范围 (2026-10-05)
+ 
+@@ -94,6 +99,7 @@
+ | banded-shift-toeplitz-density | [card](<banded-shift-toeplitz-density.md>) | 0 |
+ | cell-merging | [card](<cell-merging.md>) | 0 |
+ | endpoint-collapse-reduction | [card](<endpoint-collapse-reduction.md>) | 0 |
++| exact-taylor-sign-boundary | [card](<exact-taylor-sign-boundary.md>) | 0 |
+ | fh-hessian-branch-reduction | [card](<fh-hessian-branch-reduction.md>) | 0 |
+ | finite-interface-second-derivative | [card](<finite-interface-second-derivative.md>) | 1 |
+ | finite-synthesis-tsvd | [card](<finite-synthesis-tsvd.md>) | 1 |
+--- a/tools/krein-integrated-legendre-riesz.md
++++ b/tools/krein-integrated-legendre-riesz.md
+@@ -1,4 +1,18 @@
+ ---
+-{"author_ids": ["01a0cd06-58a9-7081-98c7-f5473abc68c5", "01a06f46-dd03-7c83-9267-32048412c359"], "conditions": ["Fixed real c>0; interval (-1,1); Bf=(f'(1)-Delta f/2,f'(-1)-Delta f/2).", "s=2 uses D(Kc) and norm ||Kc f||; s=4 uses Bf=B(f'')=0 in ordinary H4 and norm ||Kc^2 f||.", "Legendre P_n(1)=1; e_n=sqrt((2n+1)/2)P_n; J integrates from -1. Exact constant-c Gram entries."], "created": "2026-09-23", "evidence": [{"locator": "Per-claim scope and limitations", "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json", "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001"}, {"locator": "Native call and exact input identities; private primary-source availability", "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json", "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de"}, {"locator": "Exact proposed card reviewed independently", "path": "literature/absorption-20260923/approximation/tool-cards/02-krein-integrated-legendre.json", "sha256": "95cd23d8c29d61d71e1b01e8717dd7100671a8a98b600b7e16b0bda4a3e02f2a"}], "evidence_status": "INDEPENDENT_ANALYTIC_REVIEW_APPROVED_WITH_DECLARED_LIMITS", "integration_status": "ACTIVE_SCOPED_REVIEW; REVALIDATE_EACH_APPLICATION", "lean_status": "NOT_RUN", "review_status": {"packet_sha256": "7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7", "report": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json", "reviewer_id": "01a0cd26-cae2-7a63-9fba-0248babb4879", "scope": "Exact original mathematical content and source mapping; no complete Lean formalization or canonical acceptance", "verdict": "APPROVED"}, "scope": "Specific replacement polynomial Riesz bases, complete at s=2 and4; not the original monomial-difference family; constants depend on c and are not uniform at c=0.", "sources": [{"author_source_id": "68743685a83769fb34e01c19cdbcce043995e769d51d593646a9b67b3fe29232", "locator": "author PDF pp7-8, Lemma3.1 (3.4)-(3.7); p3 (2.5)", "primary_source_id": "f2574d7d6769269c231a04fb9826cfd8c91faa867f330c2272749dd7a2bde6b6", "primary_source_namespace": "private source-cache", "raw_path": "private/raw/L08-author.pdf", "raw_sha256": "b4681fc1c9aa1cc86f3e589ddb2ecadfd9d3965f22f62017ab752ff3383e0c9f", "text_path": "private/text/L08-author.txt", "text_sha256": "ab6d9854b0acb1e028336b9ffd36a0d14c7373e4a790027b5af497fa9be32329", "url": "https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf", "version": "Author-hosted LegendreG.pdf, 16 pp with 1994 journal header; not asserted identical to publisher edition"}, {"kind": "author_derivation_pending_independent_review", "locator": "L0-L4, including exact constants and limits", "path": "literature/absorption-20260923/approximation/notes/03_legendre_krein_construction.md", "sha256": "9bb12829ca36fbbb28b10d0d3b23f656a06dba762755847da0c82098bbc07dab"}, {"locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified", "source_id": "80d217eb4b3ebb6f3b1da9b0b2788bfe802cc892ebfd57b0f2097f42f1d02748"}], "summary": "Add two affine lifts to the normalized twice-integrated Legendre core for s=2, or four explicit lifts to the four-times-integrated core for s=4; exact polynomial span, bounded Gram bands and uniform-in-degree stability follow analytically.", "title": "Boundary-compatible integrated Legendre Riesz systems for fixed-c Hc2 and Hc4", "tool_id": "krein-integrated-legendre-riesz", "updated": "2026-09-23"}
++{"author_ids": ["01a0cd06-58a9-7081-98c7-f5473abc68c5", "01a06f46-dd03-7c83-9267-32048412c359", "/root"], "conditions": ["Fixed c>0, each integer r>=0; complex inner product linear in the first variable.", "True Hc^r=D(Kc^(r/2)); B(f^(2j))=0 for j<floor(r/2), first form domain H1.", "Odd r requires r+1 low lifts, even r requires r; r=0 uses the ordinary orthonormal Legendre basis.", "Finite degree statement N>=2r-1; rate requires t>=0 and sum (1+n)^(2t)|z_n|^2<infinity."], "created": "2026-09-23", "evidence": [{"locator": "Per-claim scope and limitations", "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json", "sha256": "f08363d88d880559352d32d1710751f6b46d5c835daf6a50c6ac0b7b22e7b001"}, {"locator": "Native call and exact input identities; private primary-source availability", "path": "research/artifacts/literature-absorption-20260923/reviews/approximation/provenance.json", "sha256": "1b260874b525e1aa97050e2f35819e550b1f305906bcafd0c8ed04add43469de"}, {"locator": "Exact proposed card reviewed independently", "path": "literature/absorption-20260923/approximation/tool-cards/02-krein-integrated-legendre.json", "sha256": "95cd23d8c29d61d71e1b01e8717dd7100671a8a98b600b7e16b0bda4a3e02f2a"}, {"locator": "Both complete general analytic contracts; native isolated session /root/r16_final_analytic_review_v2", "path": "research/artifacts/proof-audit-round16-20261006/reviews/analytic-final-review-v2-result.md", "sha256": "906f3bd91c8287f5c18c40174a842019e444636ccb581d2ab59e16afa5cdffdf"}], "evidence_status": "NATIVE_SCOPED_ANALYTIC_APPROVED; LEGACY_AUTOMATIC_UNRECEIVED", "integration_status": "ACTIVE_COMPLETE_INTEGER_PROOF; REVALIDATE_EACH_APPLICATION", "lean_status": "NOT_RUN", "prior_reviews": [{"packet_sha256": "7c22aae870f3257020c5beb098d36b5a491cc7cdebe98edc55415fefd8106ed7", "report": "research/artifacts/literature-absorption-20260923/reviews/approximation/runtime/report.json", "reviewer_id": "01a0cd26-cae2-7a63-9fba-0248babb4879", "scope": "Exact original mathematical content and source mapping; no complete Lean formalization or canonical acceptance", "verdict": "APPROVED"}], "review_status": {"automatic_receipt": "UNRECEIVED_UNSUPPORTED_NATIVE_ADAPTER", "report": "research/artifacts/proof-audit-round16-20261006/reviews/analytic-final-review-v2-result.md", "reviewer_id": "/root/r16_final_analytic_review_v2", "scope": "Complete analytic contracts in the exact two current proofs; not Lean or canonical acceptance", "sha256": "906f3bd91c8287f5c18c40174a842019e444636ccb581d2ab59e16afa5cdffdf", "verdict": "APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION"}, "scope": "Every fixed c>0 and integer r>=0 in the true complex Hc^r. Constants depend on r,c. Replacement systems, not the original sparse family.", "sources": [{"author_source_id": "68743685a83769fb34e01c19cdbcce043995e769d51d593646a9b67b3fe29232", "locator": "author PDF pp7-8, Lemma3.1 (3.4)-(3.7); p3 (2.5)", "primary_source_id": "f2574d7d6769269c231a04fb9826cfd8c91faa867f330c2272749dd7a2bde6b6", "primary_source_namespace": "private source-cache", "raw_path": "private/raw/L08-author.pdf", "raw_sha256": "b4681fc1c9aa1cc86f3e589ddb2ecadfd9d3965f22f62017ab752ff3383e0c9f", "text_path": "private/text/L08-author.txt", "text_sha256": "ab6d9854b0acb1e028336b9ffd36a0d14c7373e4a790027b5af497fa9be32329", "url": "https://www.math.purdue.edu/~shen7/pub/LegendreG.pdf", "version": "Author-hosted LegendreG.pdf, 16 pp with 1994 journal header; not asserted identical to publisher edition"}, {"kind": "author_derivation_pending_independent_review", "locator": "L0-L4, including exact constants and limits", "path": "literature/absorption-20260923/approximation/notes/03_legendre_krein_construction.md", "sha256": "9bb12829ca36fbbb28b10d0d3b23f656a06dba762755847da0c82098bbc07dab"}, {"locator": "Original project reading/assumption note; SECONDARY source, primary body separately identified", "source_id": "80d217eb4b3ebb6f3b1da9b0b2788bfe802cc892ebfd57b0f2097f42f1d02748"}, {"locator": "Sections1-6, all-integer proof with explicit constants", "path": "docs/SL_integer_left_definite_riesz_systems.md", "sha256": "786ae7ec05f2b6bc4b781b94315a34cc2e2683da8d04acbb5af0ab37dab4f568"}, {"locator": "User-supplied original proof, independently checked and locally supplemented; raw bytes retained", "path": "research/artifacts/proof-audit-round16-20261006/input/proofs/integer_left_definite_riesz_systems.md", "sha256": "6783e89883a8ed7ef5135b170d2be71216f55b0acbcbd5b96bccfbd8c4caad88"}], "summary": "All fixed integer orders: true domains and two-sided norms, 2ceil(r/2) Hermite lifts, clamped integrated Legendre core, degree-independent Riesz bounds, exact finite polynomial span and banded Gram structure. Rates require t>=0 and a weighted coefficient condition.", "title": "固定任意非负整数阶的 Krein Hermite-Legendre Riesz 替代系", "tool_id": "krein-integrated-legendre-riesz", "updated": "2026-10-06"}
+ ---
++## 第十六轮: 所有固定整数阶的当前构造
++
++固定 c>0, 对每个整数 r>=1, 真实复空间 Hc^r 由普通 H^r 加 m=floor(r/2) 组 B(f^(2j))=0 给出. 偶阶使用 ||Kc^m f||, 奇阶使用 q_c(Kc^m f)^(1/2), q_c(f,g)=int f' conjugate(g')-Delta f conjugate(Delta g)/2+c int f conjugate(g). 完整证明给出与普通 H^r 的双向常数 U_(r,c),V_(r,c); 边界项不能在奇阶忽略.
++
++自由偶阶端点 jet 的数目是 d_r=2ceil(r/2). Krein 条件唯一确定相应奇阶 jet; 次数<=2r-1 的 Hermite 插值给出唯一低提升 h_j. 因此奇阶有 r+1 个低列. 减去提升后余项属于 H0^r, 其 r 阶导数正交于 Pi_(r-1), 在 e_n=sqrt((2n+1)/2)P_n, n>=r, 展开. 高列 b_n=J^r e_n 与低提升合为完整 Riesz 基.
++
++可取 A_(r,c)=1/(6 V_(r,c)^2), B_(r,c)=U_(r,c)^2(H_r^2+J_r^2), 其中 H_r 是低提升普通 H^r 范数平方和的平方根, J_r 来自迭代积分算子界. 常数不依赖截断次数 N. N>=2r-1 时有限列恰张成 Pi_N intersect Hc^r. 高 Gram 带宽 |n-m|<=2r 且同奇偶, 低-高耦合仅到 n<=3r-1; 奇阶内积保留 q_c 的负端点项. r=0 的 Legendre 正交基上下界为1.
++
++若 t>=0 且加权导数系数和 sum(1+n)^(2t)|z_n|^2 有限, 次数截断给出证明第6节的误差率; 不对任意空间元素凭空给速率. 结论不依赖第十五轮删项定理. 非整数阶、c下降至0的一致界、原稀疏族的Riesz性及任意新约束另计.
++
++[完整一般整数证明](../docs/SL_integer_left_definite_riesz_systems.md)和[最终原生解析复审](../research/artifacts/proof-audit-round16-20261006/reviews/analytic-final-review-v2-result.md). 工具卡版本由原版API保存; 原生审查不冒充旧自动适配接收或Lean.
++
++## 2026-09-23 原 s=2、4 推导与来源记录
++
+ Set b_n^(r)=J^r e_n, n>=r, r=2 or4. It has zero endpoint derivatives of orders <r, rth derivative e_n, and Legendre support n-r,n-r+2,...,n+r. For s=2 use e0,e1 and b_n^(2). Endpoint affine interpolation leaves a clamped remainder; finite columns through degree N span Pi_N intersect D(Kc). For s=4 use 1,x,E=(3-q6)/16,O=(11x-5q7)/48, q6=x6-5x4+7x2, q7=x7-21x5/5+27x3/5, and b_n^(4). The lifts specify the endpoint values of f and f''; Krein conditions determine f' and f''', leaving a fully clamped remainder. Exact span is Pi_N intersect D(Kc^2). Note03 proves A_(s,c)||w||^2<=||Tw||_(s,c)^2<=B_(s,c)||w||^2 with explicit positive constants independent of N. High Gram offsets satisfy |n-m|<=4 for s=2, <=8 for s=4, with fixed low couplings. Highest-derivative coefficient tails give quantitative approximation; epsilon<A_(s,c) discards no Gram direction. The clamped s=2 high modes are Shen Lemma3.1, credited accordingly; the coupled lifts and graph-norm bounds are this adaptation.
+--- a/tools/second-variation-weighted-eigenvalues.md
++++ b/tools/second-variation-weighted-eigenvalues.md
+@@ -1,6 +1,27 @@
+ ---
+-{"author_ids": ["01a06f46-dd03-7c83-9267-32048412c359"], "canonical_key": "second-variation-weighted-eigenvalues (lambda'' formula + pitfalls + gap second variation Q)", "created": "2026-08-13", "dependencies": [], "evidence_status": "ROUND11_SCOPED_REPAIR; CHECK_EXACT_CORRECTION_RECEIPT", "source": "自研 (R-206, 2026-08-13; 承接 docs/SL_gap_nge2_symmetry_local_proof.tex 的 (G1')/(G2) 框架)", "sources": [{"locator": "V1-V4", "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md", "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0"}, {"locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope", "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md", "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066"}, {"locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits", "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md", "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824"}], "status": "第十一轮数值分块/差分路径修订; 可复用性以当前精确版本独立纠错回执为准", "summary": "正密度线性路径的二阶谱公式; 归一化导数含核分量. 分块切向使用块积分, Green核有界, 集中脉冲须总变差有界且有符号质量收敛才有点值极限; 移动接口另有有限加速度项. 不证明切空间负定或G1定号. 第十轮: 旧扫描不能认证谱序号, 旧asym非扇区投影; 新相位索引与可行扇区种子另审, 不据历史数值扩张解析结论. 第十一轮: 残差J取交叉块, 与Hessian块对角结构区分; 接口中心差分核对实际两侧位移, 失败明确拒绝, 不作全参数认证.", "tags": ["mathtool", "self-developed", "perturbation-theory", "second-variation", "hessian", "gap-extremals", "nge2"], "title": "加权特征值二阶变分与归一化、切向及接口路径规范", "tool_id": "second-variation-weighted-eigenvalues", "updated": "2026-09-26"}
++{"author_ids": ["01a06f46-dd03-7c83-9267-32048412c359"], "canonical_key": "second-variation-weighted-eigenvalues (lambda'' formula + pitfalls + gap second variation Q)", "created": "2026-08-13", "dependencies": [], "evidence": [{"locator": "Both complete general analytic contracts; native isolated session /root/r16_final_analytic_review_v2", "path": "research/artifacts/proof-audit-round16-20261006/reviews/analytic-final-review-v2-result.md", "sha256": "906f3bd91c8287f5c18c40174a842019e444636ccb581d2ab59e16afa5cdffdf"}, {"locator": "Current 15-file software packet; actual ordinary/-O independent execution", "path": "research/artifacts/proof-audit-round16-20261006/reviews/software-review-v4-result.md", "sha256": "8ecd71b08980eed6ecefc0ef57d2f1b4c1b7f78840f933d7baa6f964a3b91e68"}], "evidence_status": "ROUND16_SCOPED_NATIVE_ANALYTIC_AND_SOFTWARE_APPROVED; LEGACY_GATES_REMAIN", "review_status": {"automatic_receipt": "UNRECEIVED_UNSUPPORTED_NATIVE_ADAPTER", "report": "research/artifacts/proof-audit-round16-20261006/reviews/analytic-final-review-v2-result.md", "reviewer_id": "/root/r16_final_analytic_review_v2", "scope": "Complete analytic contracts in the exact two current proofs; not Lean or canonical acceptance", "sha256": "906f3bd91c8287f5c18c40174a842019e444636ccb581d2ab59e16afa5cdffdf", "verdict": "APPROVED_FOR_SCOPED_ANALYTIC_INTEGRATION"}, "software_review_status": {"automatic_receipt": "UNRECEIVED_UNSUPPORTED_NATIVE_ADAPTER", "report": "research/artifacts/proof-audit-round16-20261006/reviews/software-review-v4-result.md", "reviewer_id": "/root/r16_software_review_v4", "scope": "Only the frozen current software input and actually executed finite tests", "sha256": "8ecd71b08980eed6ecefc0ef57d2f1b4c1b7f78840f933d7baa6f964a3b91e68", "verdict": "APPROVED_FOR_SCOPED_SOFTWARE_INTEGRATION"}, "source": "自研 (R-206, 2026-08-13; 承接 docs/SL_gap_nge2_symmetry_local_proof.tex 的 (G1')/(G2) 框架)", "sources": [{"locator": "V1-V4", "path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md", "sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0"}, {"locator": "S1-S4,R1-R2; independent analytic identities retain their prior scope", "path": "research/artifacts/proof-audit-round10-20260925/analytic-repair.md", "sha256": "1215c0f2291829a5fd40dd212f313e5ba07841bec9d70477d1dca4580bb0a066"}, {"locator": "J1-J5, finite-dimensional structure and finite-difference geometry with explicit limits", "path": "research/artifacts/proof-audit-round11-20260926/jacobian-repair.md", "sha256": "aabc1aa00e43ec64a1ef48e5f68dd39b349d57b6dfa3efd1da0cb1dd5e157824"}, {"locator": "Equations1-8, equality example and reliable-envelope premises", "path": "docs/SL_bounded_direction_spectral_tail.md", "sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"}, {"locator": "User-supplied tail appendix; independently derived rather than accepted by label", "path": "research/artifacts/proof-audit-round16-20261006/input/analytic_notes.md", "sha256": "c4e3eac6884ed2a387d14a92226e0c8e7b4a52a4a5279646f483af18dc283c31"}, {"locator": "BlockDirection, SpectralProbe.pairings, actual P1/P2/P2b/P3 calls", "path": "scripts/_gapn2_second_variation_probe.py", "sha256": "6410e71518c7e59ffd7f67342a809ab2dd827a5de66c2bc984172d68dd190f44"}], "status": "第十六轮有界方向尾界已证明并原生复审; 数值配对修复已独立执行; 旧精确纠错门禁未自动释放", "summary": "真实有界密度方向的二阶谱公式与Parseval两侧尾界. 分块方向按全部rho/h切点局部解析配对; 一般回调检查节点、模态分辨率和连续比较预算, 未决拒绝. 原始负浮点残余不截零, 浮点积分/特征值不是符号包络. 原归一化、接口与Jacobian范围保留.", "tags": ["mathtool", "self-developed", "perturbation-theory", "second-variation", "hessian", "gap-extremals", "nge2"], "title": "加权特征值二阶变分与归一化、切向及接口路径规范", "tool_id": "second-variation-weighted-eigenvalues", "updated": "2026-10-06"}
+ ---
++## 第十六轮: 有界方向的 Parseval 尾界与配对积分
++
++真实 DD、0<m<=rho<=M、实 h in L-infinity, int rho u_k^2=1. 设 c_kl=int h u_k u_l, J_k=int(h^2/rho)u_k^2. 对真实完整一基模态,
++E_(k,N)=J_k-sum_(l<=N)|c_kl|^2=sum_(l>N)|c_kl|^2>=0.
++若 n>=1,N>=n+1, a=lambda_n,b=lambda_(n+1), Q_N 用前N模态,
++
++ -b^2 E_(n+1,N)/(lambda_(N+1)-b) <= Q-Q_N
++ <= a^2 E_(n,N)/(lambda_(N+1)-a).
++
++rho=2,h=2 时配对为单位阵并精确零尾, Q=(2n+1)pi^2/2. rho=2,h=2cos(pi x), n>=2,N=n+1 达到左界. 欠分辨求积会在零尾例仍给错误Q, 所以积分误差与谱截断必须分开.
++
++可靠的有限配对、J、特征值及Q_N包络才允许认证符号. E上端为负意味着输入预算矛盾并拒绝; 不能把普通负浮点剩余截零. 若d_lower>b_upper, 宽a包络先与真实谱序相交, aHat_upper=min(a_upper,b_upper), 再按完整证明式(8)取两侧包络. 分母未证明严格正或最终区间含0时未决.
++
++活动分块常值方向用 BlockDirection 声明全部真实切点, 与rho断点取共同分割; 每个共同小段左端状态配合局部半宽积分, 避免全局中点舍失. 锚点以70位传播同一二进制频率/块长, 复用既有物理采样器的一个共同质量因子, 减少近节点相位舍入. 小相位乘积展开和按消去位数提高精度的sinc和/差回退维持数值可分辨; 正局部积分/相位下溢则拒绝. 不采用采样点的方向归属算薄段质量.
++
++一般回调须声明已知断点, 拒绝折叠/端点节点, 检查模态相位分辨, 并在MaxOrder内完成两次连续比较. 误差仅为估计, 黑箱区间包络为None; 未决拒绝返回配对/Q. PairingResult保留原四数组兼容并携带diagnostics, CLI逐项写入; sign_certified=false. 解析三角浮点计算仍无舍入包络.
++
++本尾界不适用于delta/delta'接口方向, 不建立脉冲宽度趋零的一致结论或ND/G1. 原Green、归一化、交叉Jacobian和raw K/SKS区别保持各自已修范围.
++
++[完整尾界证明](../docs/SL_bounded_direction_spectral_tail.md)、[第十六轮实际交付](../reports/proof-audit-round16-20261006/REPORT.md). 原有纠错隔离和旧回执保持, 本段不构造自动放行.
++
+ ## 第十一轮: Jacobian 分块与差分方向
+ 
+ 对称点的残差 Jacobian 满足 JP=-PJ. 在反转偶/奇坐标下应取交叉块 C,D,
+--- /dev/null
++++ b/docs/SL_bounded_direction_spectral_tail.md
+@@ -0,0 +1,141 @@
++# 有界真实密度方向的 Parseval 剩余能量与两侧谱尾界
++
++本轮活动解析补证. 解析证明、有限数值诊断和区间输入认证是不同的证据; 当前审查状态见第十六轮交付报告. 本命题不使用第十五轮删项扩展, 也不要求驻点或 ND.
++
++## 1. 精确对象和量词
++
++固定长度 L>0, 实可测密度 0<m<=rho<=M<infinity 及实方向 h in L-infinity(0,L). 采用真实 DD 问题
++
++\[
++-u_k''=\lambda_k\rho u_k,\quad u_k(0)=u_k(L)=0,
++\qquad \int_0^L\rho u_k^2=1.
++\]
++
++模态选为实数, 按完整谱的一基指标排序 0<lambda_1<lambda_2<.... 特征值 lambda 与频率 sqrt(lambda) 不可混用. 内积对第一变量线性. 置
++
++\[
++c_{kl}=\int_0^L h u_k u_l,\qquad
++J_k=\int_0^L\frac{h^2}{\rho}u_k^2,\qquad
++E_{k,N}=J_k-\sum_{l=1}^N|c_{kl}|^2.
++\tag{1}
++\]
++
++配对不额外乘 rho. 对任意整数 n>=1 和 N>=n+1, a=lambda_n, b=lambda_(n+1), 令 Q=D_n''(0)/2, D_n(t)=lambda_(n+1)(rho+t h)-lambda_n(rho+t h). Q_N 是下述精确二阶公式中保留前 N 个真实模态的值. 结论为
++
++\[
++-\frac{b^2E_{n+1,N}}{\lambda_{N+1}-b}
++\le Q-Q_N\le
++\frac{a^2E_{n,N}}{\lambda_{N+1}-a}.
++\tag{2}
++\]
++
++## 2. 完整模态和二阶公式
++
++加权空间 H_rho=L2((0,L),rho dx) 与普通 L2 范数等价. DD Green 算子
++Tf(x)=integral G_D(x,y)rho(y)f(y)dy 将 H_rho 有界映入 H0^1, 再通过紧嵌入返回 H_rho. 对称核和能量恒等式给出 T 紧、自伴、正; Tf=0 推出 rho f=0, 所以核为零. 紧自伴谱分解给出上述模态的完备正交基. 左 DD 解由其左端导数唯一决定, 因而每个特征空间一维, 所有相邻谱隙严格正.
++
++选足够小的实 t 使 rho+t h 保持正. 射击解 v(0)=0,v'(0)=1 满足
++
++\[
++v(x)=x-\lambda\int_0^x(x-y)(\rho(y)+t h(y))v(y)dy.
++\]
++
++有界系数 Volterra 迭代关于 (lambda,t) 局部解析. 在 DD 根处, Lagrange 恒等式给出
++v'(L) partial_lambda v(L)=integral rho v^2>0. 根和其正质量平方根可解析续接. 所以对模态作两次参数微分合法. 微分方程及变化密度下的归一化给出
++
++\[
++\lambda_k'=-\lambda_k c_{kk},\qquad
++\langle\dot u_k,u_l\rangle_\rho=
++\frac{\lambda_k c_{kl}}{\lambda_l-\lambda_k}\ (l\ne k),
++\qquad \langle\dot u_k,u_k\rangle_\rho=-c_{kk}/2.
++\]
++
++于是
++
++\[
++\frac{\lambda_k''}{2}
++=\lambda_k c_{kk}^2-\lambda_k^2\sum_{l\ne k}
++\frac{|c_{kl}|^2}{\lambda_l-\lambda_k},
++\tag{3}
++\]
++
++以及
++
++\[
++Q=b c_{n+1,n+1}^2-a c_{nn}^2
+++a^2\sum_{l\ne n}\frac{|c_{nl}|^2}{\lambda_l-a}
++-b^2\sum_{l\ne n+1}\frac{|c_{n+1,l}|^2}{\lambda_l-b}.
++\tag{4}
++\]
++
++下一节的 Parseval 恒等式使级数绝对收敛: 低于目标指标的项有限, 其余分母至少为一个正谱隙. 配对泛函在 H_rho 有界, 因而也可把模态导数的 L2 展开代入配对. (4) 对应活动 q_formula 的 Python 下标 n 为上模态、n-1 为下模态; Cw 不进入该物理公式, 对角数据必须等于 Cu 的真实对角.
++
++## 3. 剩余能量和两侧估计的证明
++
++在 H_rho 中取 g_k=(h/rho)u_k. 由于 h/rho 有界, g_k 属于 H_rho,
++其平方范数为 J_k, 且 <g_k,u_l>_rho=c_kl. 完备正交展开和 Parseval 给出
++
++\[
++J_k=\sum_{l\ge1}|c_{kl}|^2,\qquad
++E_{k,N}=\sum_{l>N}|c_{kl}|^2\ge0.
++\tag{5}
++\]
++
++若 N>=k, 全部遗漏分母均满足 lambda_l-lambda_k>=lambda_(N+1)-lambda_k>0. 逐项比较得
++
++\[
++0\le T_{k,N}:=\sum_{l>N}\frac{|c_{kl}|^2}{\lambda_l-\lambda_k}
++\le\frac{E_{k,N}}{\lambda_{N+1}-\lambda_k}.
++\tag{6}
++\]
++
++由 (4), Q-Q_N=a^2 T_(n,N)-b^2 T_(n+1,N). 两个 T 非负, 代入 (6) 即得 (2). 这是两个符号各自控制的两侧界, 没有把谱尾假设成零.
++
++另外,
++
++\[
++0\le E_{k,N}\le J_k\le\|h/\rho\|_\infty^2.
++\tag{7}
++\]
++
++DD Rayleigh 商和 min-max 比较给出 lambda_j>=j^2 pi^2/(M L^2). 可用 d=(N+1)^2 pi^2/(M L^2) 替代 (2) 中的 lambda_(N+1), 前提是 d>b; 区间运算须先检查 d_lower>b_upper. 这个粗下界不足以超过 b 时, 该替代分母不可使用.
++
++## 4. 取等与零尾例子
++
++单位区间 rho=2,h=2 时, u_k=sin(k pi x), lambda_k=k^2 pi^2/2, c_kl=delta_kl, J_k=1. 所以 N>=k 时 E_(k,N)=0 恰由解析恒等式成立, 不是由负浮点残余截零得到. 对所有 n>=1 和 N>=n+1, Q_N=Q=(2n+1)pi^2/2. 欠分辨求积仍可能把这个精确零尾例算成错误 Q, 证明求积误差与谱截断误差是两回事.
++
++取 rho=2,h=2cos(pi x), n>=2,N=n+1. 三角恒等式给出 c_kl=1/2 当 l=k-1 或 k+1, 其余为零. 下模态无遗漏配对; 上模态只遗漏 l=n+2. 因此 E_(n,N)=0,E_(n+1,N)=1/4, 且
++
++\[
++Q-Q_N=-\frac{b^2}{4(\lambda_{n+2}-b)}
++=-\frac{\pi^2(n+1)^4}{8(2n+3)}.
++\]
++
++这精确达到 (2) 的左界. 对符号认证而言, 模型的 rho/h 和这些积分恒等式仍须对应实际输入.
++
++## 5. 可靠包络与数值接收边界
++
++若可信的包络给出 J_k in [J_k^-,J_k^+] 和 c_kl in C_kl, 定义
++S_k^- 为各 |C_kl|^2 下端之和、S_k^+ 为上端之和. 则
++E_(k,N) 属于 [J_k^- - S_k^+, J_k^+ - S_k^-] 与 [0,infinity) 的交.
++若其上端为负, 输入与已证明的 Parseval 预算矛盾, 必须拒绝. 交集的合法性来自 (5) 和可靠输入包络, 不是把任意负浮点剩余改成零. 尤其未经包络的微小负浮点值也不能证明尾部消失.
++
++设 a in [a^-,a^+],b in [b^-,b^+],lambda_(N+1)>=d^- > b^+, E 的可信上端分别为 e_a^+,e_b^+, 并且有限公式 Q_N in [q^-,q^+]. 可信包络可能很宽, 不能从 d^->b^+ 直接推断 d^->a^+. 先利用真实谱序 0<a<b<=b^+, 令
++
++\[
++\widehat a^+=\min(a^+,b^+).
++\]
++
++于是 0<a<=widehat a^+<=b^+<d^-, 两个分母均严格正. 函数 x^2/(d^--x) 在 0<x<d^- 单调递增, 所以
++
++\[
++Q\in\left[q^- -\frac{(b^+)^2e_b^+}{d^--b^+},\quad
++q^+ +\frac{(\widehat a^+)^2e_a^+}{d^--\widehat a^+}\right].
++\tag{8}
++\]
++
++只有整个区间严格在零的一侧, 才能在这些输入前提下认证符号; 含零则未决. 有限配对、总能量积分、特征值、一基谱身份和 Q_N 本身均须有可靠包络. 普通 Gauss 差值、mp 近似或浮点解析三角计算都不会自动成为这种包络.
++
++活动 SpectralProbe 优先对完整分块方向采用局部解析积分, 并报告数值舍入尚未包络. 一般回调要求全部已知方向断点、实际不折叠的内部节点、保守模态相位分辨检查及预算内两次连续求积比较; 输出误差为估计, 未收敛或不可分辨即拒绝. 任意有界黑箱在采样点外可有未观测结构, 因此这些数值诊断不能认证任意黑箱的真实积分. CLI 逐项保存该诊断, 原始浮点剩余保留且 sign_certified=false.
++
++此结论只用于实际有界实密度方向. delta/delta' 接口方向不是该 H_rho 中的有界乘法方向. 本证不给出脉冲宽度趋零的一致界, 不关闭接口 Hessian 的符号、ND/G1、无条件全局唯一性或 M3/KP.
+--- /dev/null
++++ b/docs/SL_integer_left_definite_riesz_systems.md
+@@ -0,0 +1,334 @@
++# 固定整数阶 Krein 左定空间中的 Hermite–Legendre Riesz 替代系
++
++**第十六轮活动解析补证。审查与执行状态见本轮交付报告；未作完整 Lean 形式化。**
++
++基线为 `ec45bf99ae746b0a3699557e06700a3c00c5a831`。本稿推广的是当前 A10 在 s=2、4 的积分 Legendre 替代系，不改变原稀疏族的成员门槛或非基结论。以下 r 为固定正整数，c 为固定正实数；常数可以依赖二者。
++
++## 1. 模型与整数域
++
++内积对第一变量线性，空间取复数域。设 I=(-1,1)，
++
++\[
++K_cf=-f''+cf,\quad
++D(K_c)=\{f\in H^2(I): f'(1)=f'(-1)=[f(1)-f(-1)]/2\},
++\quad \mathcal H_c^r=D(K_c^{r/2}).
++\]
++
++记 \(\mathcal Bf=(f'(1)-\Delta f/2,f'(-1)-\Delta f/2)^T\)，\(\Delta f=f(1)-f(-1)\)。令 m=⌊r/2⌋。所用整数域为
++
++\[
++V_r=\{f\in H^r(I):\mathcal B(f^{(2j)})=0,
++                 \ 0\le j<m\}.
++\tag{1}
++\]
++
++当 r=1 时条件为空。对每个整数 r≥1，\(\mathcal H_c^r=V_r\)，且图标度范数与普通 H^r 范数等价。这里没有半整数临界边界条件。
++
++下面给出这一既有输入在整数阶的直接证明和可取的常数，以免将一个空间等同关系藏在未核对的分数域引用中。
++
++### 1.1 第一层型范数
++
++Kc 的闭型为
++
++\[
++q_c(f,g)=\int f'\overline{g'}-\tfrac12\Delta f\overline{\Delta g}
++                +c\int f\overline g,\quad D(q_c)=H^1(I).
++\tag{2}
++\]
++
++令 a=Δf/2，h=f-ax。则 Δh=0，
++
++\[
++q_c(f,f)=\|h'\|_2^2+c\|f\|_2^2.
++\tag{3}
++\]
++
++对任意 H1 函数 h，\(\|h-\bar h\|_2\le2\|h'\|_2\)；这可由与平均值比较并积分一阶导数得到。将 f=a x+\bar h+(h-\bar h) 投影到 span{x}，有
++
++\[
++\sqrt{2/3}|a|\le\|f\|_2+2\|h'\|_2.
++\]
++
++因此
++
++\[
++\|f'\|_2\le\sqrt3\|f\|_2+(1+2\sqrt3)\|h'\|_2
++\le C_1(c)q_c(f,f)^{1/2},
++\quad C_1(c)^2=3/c+(1+2\sqrt3)^2.
++\tag{4}
++\]
++
++型范数与 H1 等价、q_c≥c||f||²，故型闭且严格正。分部积分和独立的两个端点值表明其关联算子的定义域正是 D(Kc)。由正自伴算子的闭型/平方根对应，\(D(K_c^{1/2})=H^1\)，且平方根范数平方为 q_c。该对应亦可由 Kc 的正交谱展开构造型的完备化得到；这是本模型已有的第一左定空间事实，不是新的谱定理。
++
++### 1.2 任意整数层
++
++偶数 r=2m 时，迭代条件 \(f,K_cf,\ldots,K_c^{m-1}f\in D(K_c)\)，结合 f''=cf-Kcf，给出 (1)。边界条件从 B(Kc^j f)=0 到 B(f^(2j))=0 是三角可逆变换，不需要增加或删除条件。
++
++奇数 r=2m+1 时，谱展开给出
++
++\[
++D(K_c^{m+1/2})=\{f\in D(K_c^m):K_c^mf\in D(K_c^{1/2})\}.
++\]
++
++由 1.1，右侧的最后条件为 Kc^m f∈H1。对每次方程 -u''+cu=v 作一维正则性递推，即得 f∈H^(2m+1) 及同样 m 组边界条件。反向代入也成立。
++
++可以给出完全显式但不追求最优的等价常数。写
++
++\[
++U_{2m,c}^2=\sum_{j=0}^m{m\choose j}^2c^{2(m-j)},\quad
++U_{2m+1,c}^2=\max(1,c)\sum_{j=0}^m{m\choose j}^2c^{2(m-j)}.
++\tag{5}
++\]
++
++二项式展开和 (2) 的负边界项给出 ||f||_(r,c)≤U_(r,c)||f||_H^r。
++
++反向取 \(d=1/2+1/\sqrt2\)。偶数 r=2m 定义
++
++\[
++ b_{2j}=2^jc^{j-m}\ (0\le j\le m),\qquad
++ b_{2j+1}=\sqrt3b_{2j}+d b_{2j+2}\ (0\le j<m).
++\tag{6}
++\]
++
++由 f^(2j)=(c-Kc)^j f、Kc≥c 和普通一维不等式
++\(\|u'\|_2\le\sqrt3\|u\|_2+d\|u''\|_2\)，有 ||f^(k)||₂≤b_k||f||_(r,c)。
++
++奇数 r=2m+1 定义
++
++\[
++ b_{2j}=2^jc^{j-m-1/2},\qquad
++ b_{2j+1}=C_1(c)2^jc^{j-m}\quad(0\le j\le m).
++\tag{7}
++\]
++
++这里 f^(2j)=(c-Kc)^j f 属于第一左定空间；以谱嵌入控制其第一左定范数，再用 (4) 即得奇导数界。于是，令
++
++\[
++ V_{r,c}^2=\sum_{k=0}^r b_k^2,
++\quad
++\|f\|_{H^r}\le V_{r,c}\|f\|_{r,c}.
++\tag{8}
++\]
++
++为直接证明 (6) 使用的普通不等式，置
++\[
++u(x)=A+Bx+R(x),\qquad R(x)=\int_0^x(x-t)u''(t)dt.
++\]
++两半区间上的 Cauchy–Schwarz 给出
++\(\|R\|_2\le\|u''\|_2/(2\sqrt3)\)、
++\(\|R'\|_2\le\|u''\|_2/\sqrt2\)。将 \(u-R\) 投影到
++\(\operatorname{span}\{x\}\)，得到
++\(\sqrt{2/3}|B|\le\|u\|_2+\|R\|_2\)。所以
++\[
++\|u'\|_2\le\sqrt3\|u\|_2+
++(1/2+1/\sqrt2)\|u''\|_2.
++\]
++这些估计对复函数同样成立。
++
++## 2. 自由端点数据与唯一低阶 Hermite 提升
++
++取自由指标
++
++\[
++\mathcal E_r=\{(2j,\pm1):0\le2j<r\},\qquad
++ d_r=|\mathcal E_r|=2\lceil r/2\rceil.
++\tag{9}
++\]
++
++给定 ξ=(ξ_(2j,±))∈C^(d_r)，规定所有偶阶端点导数为这些自由数据；对每个 2j+1<r，规定
++
++\[
++p^{(2j+1)}(1)=p^{(2j+1)}(-1)
++                  =(\xi_{2j,+}-\xi_{2j,-})/2.
++\tag{10}
++\]
++
++这样正好规定了两个端点从 0 到 r-1 阶的 2r 个 Hermite 数据。存在唯一次数至多 2r-1 的多项式 \(\mathscr L_r\xi\) 具有这些数据。唯一性可直接证明：若全部端点 jet 为零，则 (x²-1)^r 整除该多项式，和次数小于 2r 矛盾。由维数相等，唯一性同时给出存在性。
++
++记 h_1,...,h_(d_r) 为自由数据标准单位向量的像。这些多项式系数为有理数且与 c 无关，并有
++
++\[
++L_r:=\operatorname{span}\{h_j\}
++     =\Pi_{2r-1}\cap V_r,\qquad \dim L_r=d_r.
++\tag{11}
++\]
++
++对 f∈V_r，取 ξ_f 为它的自由偶阶端点数据。由于 f 本身满足 (10)，
++
++\[
++g=f-\mathscr L_r\xi_f\in H_0^r(I)
++ :=\{g\in H^r:g^{(k)}(\pm1)=0,\ 0\le k<r\}.
++\tag{12}
++\]
++
++重要区别：偶数 r 时低提升数为 r；奇数 r 时为 r+1。不能把 s=2、4 的“低提升数等于阶数”原样套到奇数阶。
++
++## 3. 积分 Legendre 高阶列
++
++令 e_n=√((2n+1)/2)P_n 为 L2 正交归一 Legendre 系，P_n(1)=1。记
++
++\[
++J^kv(x)=\frac1{(k-1)!}\int_{-1}^x(x-t)^{k-1}v(t)dt\ (k\ge1),
++\quad b_n^{(r)}=J^r e_n\quad(n\ge r).
++\tag{13}
++\]
++
++所有 0≤j<r 阶左端迹为零。右端迹为 ∫(1-t)^(r-1-j)e_n(t)dt 的倍数，由 n≥r 和正交性也为零。且 (b_n^(r))^(r)=e_n。
++
++对任意 g∈H0^r，分部积分 r 次表明 g^(r)⊥Π_(r-1)。因此
++
++\[
++g^{(r)}=\sum_{n\ge r}z_ne_n,
++\quad g=\sum_{n\ge r}z_nb_n^{(r)}\quad\text{在 }H^r\text{ 中收敛}.
++\tag{14}
++\]
++
++最后一式由有界的逐次积分和左端零数据推出。由于低提升的 r 阶导数次数≤r-1，
++
++\[
++z_n=\langle f^{(r)},e_n\rangle_2\quad(n\ge r).
++\tag{15}
++\]
++
++这给出了可直接提取的系数；它不是在未证明基性质之前预设无穷展开。
++
++## 4. 完整 Riesz 基及显式次数一致界
++
++**定理。** 对每个固定 c>0 和每个整数 r≥1，
++
++\[
++\Phi_{r,c}=(h_1,\ldots,h_{d_r},b_r^{(r)},b_{r+1}^{(r)},\ldots)
++\tag{16}
++\]
++
++是实际空间 \(\mathcal H_c^r\) 的 Riesz 基。对 N≥2r-1，其次数≤N 的上述有限列张成
++
++\[
++\Pi_N\cap\mathcal H_c^r,
++\qquad \dim=N+1-2\lfloor r/2\rfloor.
++\tag{17}
++\]
++
++存在不依赖 N 的正数 A_(r,c)、B_(r,c)，使全部有限系数满足
++
++\[
++A_{r,c}\|w\|_{\ell^2}^2
++\le\|T_rw\|_{r,c}^2
++\le B_{r,c}\|w\|_{\ell^2}^2.
++\tag{18}
++\]
++
++**证明。** (12)–(15) 证明完整性、唯一性和系数的 ℓ² 性。令 C₀=1，并取 J^k 的 Hilbert–Schmidt 上界
++
++\[
++C_k=\frac{2^k}{(k-1)!\sqrt{(2k-1)(2k)}}\quad(k\ge1).
++\]
++
++记
++
++\[
++H_r^2=\sum_{j=1}^{d_r}\|h_j\|_{H^r}^2,
++\qquad J_r^2=\sum_{k=0}^rC_k^2.
++\]
++
++低提升是一个固定有限矩阵，H_r 可由有理多项式积分精确计算。高部分的普通 H^r 范数不超过 J_r||z||₂，因此
++
++\[
++\|T_rw\|_{r,c}\le
++ U_{r,c}\sqrt{H_r^2+J_r^2}\|w\|_2.
++\]
++
++反向使用端点不等式
++
++\[
++|u(\pm1)|\le2^{-1/2}\|u\|_2+\sqrt2\|u'\|_2.
++\]
++
++两个端点平方和≤5(||u||²+||u'||²)。自由数据只取偶阶导数，相应相邻导数对互不重复，故
++
++\[
++\|\xi_f\|_2^2\le5\|f\|_{H^r}^2,
++\qquad\sum_{n\ge r}|z_n|^2\le\|f^{(r)}\|_2^2.
++\]
++
++所以 ||w||²≤6V_(r,c)²||f||_(r,c)²。可以取
++
++\[
++A_{r,c}=\frac1{6V_{r,c}^2},
++\quad B_{r,c}=U_{r,c}^2(H_r^2+J_r^2).
++\tag{19}
++\]
++
++这些估计扩展到 ℓ²，合成映射为有界双射且逆有界，证明 Riesz 基结论。
++
++若 f 为次数≤N 的域内多项式，减去次数≤2r-1 的低提升后，g^(r) 是次数≤N-r 且正交于 Π_(r-1) 的多项式，只用 e_r,...,e_(N-r) 展开。因此有限列精确张成 (17)。低列从端点 jet 独立，高列从第 r 阶导数独立，列数即给出所列维数。证毕。
++
++s=0 独立采用标准 L2 Legendre 正交基即可，此时上下界均为 1，没有低提升，有限列精确张成每个 Pi_N。这里没有宣称一套固定、未经重新赋权的 (16) 同时成为所有 r 或非整数 s 的 Riesz 基。
++
++## 5. 稀疏 Gram 结构
++
++恒等式 JP_k=(P_(k+1)-P_(k-1))/(2k+1) 在 k≥1 时具有正确的左端零值。对 n≥r 连用 r 次，在最后一次以前最小索引始终至少为 1，所以
++
++\[
++b_n^{(r)}\in\operatorname{span}\{P_{n-r},P_{n-r+2},\ldots,P_{n+r}\}.
++\tag{20}
++\]
++
++偶数 r=2m 时，Kc^m b_n^(r) 仍具有 (20) 范围内的支撑。为避免直接求导 Legendre 支撑的误用，先注意
++\[
++K_c^m b_n^{(r)}=\sum_{j=0}^m(-1)^j{m\choose j}c^{m-j}J^{r-2j}e_n,
++\quad J^0e_n=e_n.
++\]
++奇数 r=2m+1 时，其导数把积分次数变为 r-2j-1，而不是对任意带状 Legendre 多项式直接求导；这些次数均非负。用 q_c(Kc^m b_n,Kc^m b_l) 计算 Gram；高列的 Kc^m 像两端为零，边界项消失。其函数和一阶导数的 Legendre 支撑分别包含于 [n-r,n+r] 与 [n-r+1,n+r-1]。所以所有整数 r 都有
++
++\[
++\langle b_n^{(r)},b_l^{(r)}\rangle_{r,c}=0
++\quad\text{若 }|n-l|>2r\text{ 或 }n-l\text{ 为奇数}.
++\tag{21}
++\]
++
++低提升和它的 Kc^m 像次数至多 2r-1，故低–高耦合只可能发生在 n≤3r-1。对奇数阶，涉及低列的边界项也因高列端点为零而消失。这些结论来自精确正交性，不是把浮点小数截断为零。
++
++## 6. 逼近误差与一个新增的三阶例子
++
++以下 N 为满足 N≥2r-1 的整数。在 (14) 中保留 n≤N-r 和全部低提升，可得
++
++\[
++\|f-f_N\|_{r,c}\le U_{r,c}J_r
++\left(\sum_{n>N-r}|z_n|^2\right)^{1/2}.
++\tag{22}
++\]
++
++对每个实数 t≥0，若另有 \(M_t^2=\sum_{n\ge r}(n+1)^{2t}|z_n|^2<\infty\)，则
++
++\[
++\|f-f_N\|_{r,c}\le U_{r,c}J_r (N-r+2)^{-t} M_t.
++\tag{23}
++\]
++
++(23) 的附加条件是明确的系数条件，不把任意“光滑”无条件解释为某个代数或指数收敛率。
++
++r=3 时可把低提升作固定可逆线性变换，写成更容易检查的四列
++
++\[
++1,\quad x,\quad \frac{(1-x^2)^2}{8},
++\quad \frac{x(1-x^2)^2}{8}.
++\]
++
++它们分别指定端点值和二阶端点值的奇偶分量，满足第一组 Krein 条件；再加 \(J^3e_n,n\ge3\)，即得到三阶的完整稳定多项式系。它并不使原稀疏族变成 Schauder 或 Riesz 基。
++
++## 7. 适用边界与可关闭的义务
++
++独立复核通过后，可将 A10 的“存在可构造、次数一致稳定的边界相容多项式替代系”从 s=2、4 扩展到所有非负整数 s；包括奇数阶的 r+1 个低提升。
++
++仍未覆盖：非整数阶的统一稳定基构造、r→∞ 或 c↓0 的一致常数、原稀疏族的稳定坐标、任意新约束下未经调整的同一基、浮点超高次组装的精度认证、完整测度/无限约束问题，以及 ND/G1/M3/KP。
++
++当前来源：
++- `literature/absorption-20260923/approximation/notes/03_legendre_krein_construction.md`：仅 s=2、4 的构造、积分引理和带宽思想。
++- `tools/krein-integrated-legendre-riesz.md`：活动范围与已有来源归属。
++- `tools/krein-fractional-trace-dictionary.md`：整数域与非整数临界情况的区别。
++- `docs/SL_fractional_left_definite.tex`：Kc 的实际定义域、正性、自伴性、普通一维估计。
++
++本稿的贡献是一般整数 r 的明确 Hermite 提升、完整域上的 Riesz 证明、显式次数一致上下界及带宽/尾误差，不声称 Hilbert 空间正交展开、Hermite 插值或边界适配思想本身为新结果。有限脚本只核对 r=1,...,6 的有限代数及几个 Gram 恒等式，不替代上述全指标证明。
++
++一般正左定标度的外部基础另对照 Fischbacher–Gesztesy–Hagelstein–Littlejohn, *Abstract Left-Definite Theory: A Model Operator Approach, Examples, Fractional Sobolev Spaces, and Interpolation Theory*, arXiv:2408.01514v1, Theorem 1.1（谱幂域构造）。仅核对这一基础输入，新的 Hermite–Legendre 适配由本稿独立推导，不声称是该论文已有定理。
+--- /dev/null
++++ b/tools/exact-taylor-sign-boundary.md
+@@ -0,0 +1,10 @@
++---
++{"author_ids": ["/root"], "conditions": ["Endpoints int/Fraction/finite binary float, bool excluded; normalize before all arithmetic.", "Strictly ordered interval, positive plain-int counts and budgets; exact positive min_w.", "Callback must return D2 with valid interval derivative enclosures. False means unproved."], "created": "2026-10-06", "evidence": [{"locator": "Current 15-file software packet; actual ordinary/-O independent execution", "path": "research/artifacts/proof-audit-round16-20261006/reviews/software-review-v4-result.md", "sha256": "8ecd71b08980eed6ecefc0ef57d2f1b4c1b7f78840f933d7baa6f964a3b91e68"}, {"locator": "Taylor false/positive/input/partition/budget properties", "path": "research/artifacts/proof-audit-round16-20261006/checks.py", "sha256": "a183247c3a43f8fbe884bf2d2fdf4e0015919eea5e2b2bf8c890fa35a2c474f8"}], "evidence_status": "SCOPED_NATIVE_SOFTWARE_APPROVED; NO_AUTOMATIC_RECEIPT", "lean_status": "NOT_RUN", "review_status": {"automatic_receipt": "UNRECEIVED_UNSUPPORTED_NATIVE_ADAPTER", "report": "research/artifacts/proof-audit-round16-20261006/reviews/software-review-v4-result.md", "reviewer_id": "/root/r16_software_review_v4", "scope": "Only the frozen current software input and actually executed finite tests", "sha256": "8ecd71b08980eed6ecefc0ef57d2f1b4c1b7f78840f933d7baa6f964a3b91e68", "verdict": "APPROVED_FOR_SCOPED_SOFTWARE_INTEGRATION"}, "scope": "Only generic rigid1d.der_sign2/der_sign_adaptive and compatible valid interval D2 callbacks", "sources": [{"locator": "_exact_sign_scalar through der_sign_adaptive", "path": "misc/rigid1d.py", "sha256": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55"}], "summary": "先精确转换端点再分区, Fraction中心/半宽/修正和严格比较贯穿. 两个整数/相邻float反例拒收, 计数/顺序/宽度/预算显式检查. 专用E1已Fraction并无受影响调用, 不撤回57项旧账.", "title": "通用 Taylor 导数符号验收的精确类型边界", "tool_id": "exact-taylor-sign-boundary", "updated": "2026-10-06"}
++---
++接受int、Fraction或有限float端点, 排除bool、Decimal、字符串、复数和非有限值. float按其实际二进制数精确转Fraction, 不宣称十进制意图. 转换先于端点差、分区、中心和半宽, 整数输入也不使用普通除法产生float.
++
++der_sign2检查base_n<=max_n并以精确有理端点覆盖; der_sign_adaptive在评估下个盒之前检查max_boxes, min_w精确且合法. D2中心的导数和区间二阶界产生精确修正量, 只有严格的一侧界成立才能True. 拒绝、预算/宽度耗尽和未证明不能当作符号已证.
++
++f=(x-x^2/2)/15-2^-62*x 在整数[0,1]三分区不能认证正导数; 同Fraction负例也不能. 相邻float端点[1,nextafter(1,2)]中 f=(1+3*2^-54)*x-x^2/2 右端导数=-2^-54, 两助手均拒收. 诚实正/负性例及非二进制有理分区通过.
++
++本卡前提仍要求回调产生有效D2区间包络, 不以有限脚本认证任意Python函数. 活动E1专用_taylor在端点算术前已转Fraction且不调用两助手, 不撤回57条已接收证书, 不重启退役Decimal. 实际复用边界与普通/-O独立运行见[第十六轮报告](../reports/proof-audit-round16-20261006/REPORT.md).
+--- /dev/null
++++ b/research/artifacts/proof-audit-round16-20261006/checks.py
+@@ -0,0 +1,250 @@
++"""Round16 repaired properties on COMPLETE active modules; no assert acceptance.
++
++Finite diagnostics and exact low-degree examples do not prove infinite tails
++or the all-integer Riesz theorem. The original defect-confirming suite is kept
++separately in input/, with its original expectations and failures unchanged.
++"""
++import argparse
++from decimal import Decimal
++from fractions import Fraction as F
++import hashlib
++import importlib
++import json
++import math
++import mpmath as mp
++from pathlib import Path
++import platform
++import sys
++import time
++import numpy as np
++import sympy as sp
++
++
++ROWS = []
++
++
++def check(Name, Condition, **Data):
++	Passed = bool(Condition)
++	ROWS.append({'name': Name, 'passed': Passed, **Data})
++	if not Passed:
++		raise RuntimeError(Name)
++
++
++def rejects(Name, Fn, Types=(ValueError, TypeError, ArithmeticError)):
++	try:
++		Fn()
++	except Types as Error:
++		check(Name, True, error_type=type(Error).__name__, error=str(Error))
++	else:
++		check(Name, False)
++
++
++def taylor_checks(T):
++	FalseInt = lambda z: (z-z*z/2)/15-F(1, 2**62)*z
++	FalseFloat = lambda z: (F(1)+F(3, 2**54))*z-z*z/2
++	for Name, Fn, A, B, Count in (
++		('integer', FalseInt, 0, 1, 3),
++		('Fraction-integer', FalseInt, F(0), F(1), 3),
++		('adjacent-float', FalseFloat, 1., math.nextafter(1., 2.), 1),
++		('Fraction-adjacent', FalseFloat, F(1), F(math.nextafter(1., 2.)), 1)):
++		check('Taylor rejects false '+Name, not T.der_sign2(Fn, A, B, True, base_n=Count, max_n=Count)[0])
++		check('adaptive rejects false '+Name, not T.der_sign_adaptive(Fn, A, B, True, max_boxes=80)[0])
++	for A, B in ((0, 1), (F(0), F(1)), (0., 1.)):
++		check('honest strict polynomial '+str(type(A)), T.der_sign2(lambda z:z+z*z, A, B, True, base_n=3, max_n=3)[0])
++		check('honest adaptive negative '+str(type(A)), T.der_sign_adaptive(lambda z:-z, A, B, False)[0])
++	for Name, Fn in (('sin', T.d2_sin), ('cos', lambda z:-T.d2_cos(z)), ('atan', T.d2_atan)):
++		check('rational transcendental '+Name, T.der_sign2(Fn, F(1, 3), F(1, 2), True, base_n=3, max_n=24)[0])
++	for Value in (True, '0', Decimal('0'), complex(0), float('nan'), float('inf')):
++		for Fn in (T.der_sign2, T.der_sign_adaptive):
++			rejects('unsupported endpoint '+repr(Value)+' '+Fn.__name__, lambda Fn=Fn,Value=Value:Fn(lambda z:z, Value, 1, True))
++	for A, B in ((1, 0), (0, 0)):
++		for Fn in (T.der_sign2, T.der_sign_adaptive):
++			rejects('invalid ordering '+str((A,B))+' '+Fn.__name__, lambda Fn=Fn,A=A,B=B:Fn(lambda z:z, A, B, True))
++	for Value in (0, -1, True, 2.5, F(3,2)):
++		rejects('invalid grid count '+str(Value), lambda Value=Value:T.der_sign2(lambda z:z,0,1,True,base_n=Value))
++		rejects('invalid adaptive budget '+str(Value), lambda Value=Value:T.der_sign_adaptive(lambda z:z,0,1,True,max_boxes=Value))
++	rejects('base beyond max', lambda:T.der_sign2(lambda z:z,0,1,True,base_n=4,max_n=3))
++	for Value in (0, -1, 2, True, '0.1', float('inf')):
++		rejects('invalid adaptive width '+repr(Value), lambda Value=Value:T.der_sign_adaptive(lambda z:z,0,1,True,min_w=Value))
++	Calls = []
++	def BudgetFn(z):
++		Calls.append(z)
++		return z*z
++	check('budget ends before evaluating another box', not T.der_sign_adaptive(BudgetFn,-1,1,True,max_boxes=1)[0] and len(Calls)==2, evaluations=len(Calls))
++	Pieces = []
++	def ExactFn(z):
++		Pieces.append((z.v.lo,z.v.hi))
++		return z
++	check('exact nonbinary partition positivity', T.der_sign2(ExactFn,0,1,True,base_n=3,max_n=3)[0])
++	check('exact partition complete and adjacent', Pieces[0]==(F(0),F(1,3)) and Pieces[2]==(F(1,3),F(2,3)) and Pieces[4]==(F(2,3),F(1)))
++	check('all partition coordinates Fraction', all(isinstance(v,F) for p in Pieces for v in p))
++	Seen = []
++	def FloatFn(z):
++		Seen.append((z.v.lo,z.v.hi));return z
++	check('adjacent floats retain whole real interval', T.der_sign2(FloatFn,1.,math.nextafter(1.,2.),True,base_n=1,max_n=1)[0] and Seen[0]==(F(1),F(math.nextafter(1.,2.))))
++	rejects('unsupported callback result', lambda:T.der_sign2(lambda z:1,0,1,True))
++
++
++def pairing_checks(V, Physical):
++	for Order in (32,64,128):
++		for Blocks in ([(1.,2.)],[(.5,2.)]*2,[(.25,2.)]*4):
++			P = V.SpectralProbe(Blocks,61,Order)
++			Lam,C,W,D,Info = P.pairings(V.block_direction([2.]*len(Blocks),P.edges),return_diagnostics=True)
++			check('analytic constant identity '+str((Order,len(Blocks))), np.max(np.abs(C-np.eye(61)))<2e-12, error=float(np.max(np.abs(C-np.eye(61)))))
++			for n in (2,20,60):
++				Q = V.q_formula(Lam,C,W,n,D); Exact=(2*n+1)*math.pi**2/2
++				check('correct Q '+str((Order,len(Blocks),n)), abs(Q-Exact)<2e-7, Q=Q, exact=Exact)
++			check('analytic diagnostic finite-not-certified '+str((Order,len(Blocks))), Info['quadrature_error']==0 and Info['roundoff_enclosure'] is None and not Info['sign_certified'])
++	P = V.SpectralProbe([(1.,2.)],61,32)
++	rejects('callback insufficient phase/budget rejected',lambda:P.pairings(lambda x:2*np.ones_like(x),MaxOrder=64))
++	check('unresolved callback explicit status',P.last_pairing_diagnostics['status']=='UNRESOLVED')
++	Lam,C,W,D,Info = P.pairings(lambda x:2*np.ones_like(x),return_diagnostics=True)
++	check('resolved callback constant Q',abs(V.q_formula(Lam,C,W,20,D)-41*math.pi**2/2)<2e-7)
++	check('callback records error and no enclosure', Info['status']=='CONVERGED_NUMERICAL_ESTIMATE' and len(Info['estimated_absolute_errors'])==4 and Info['black_box_error_enclosure'] is None)
++	rejects('direct retained high-mode underresolution', lambda:P.quadrature())
++	for Exponent in (40,50):
++		Delta=2.**(-Exponent); Blocks=[(.5,1.),(Delta,1.),(.5-Delta,1.)]
++		for Order in (64,128):
++			P=V.SpectralProbe(Blocks,3,Order); Direction=V.block_direction([0,1/Delta,0],P.edges)
++			_,C,_,_,Info=P.pairings(Direction,return_diagnostics=True)
++			check('thin analytic pairing '+str((Exponent,Order)),abs(C[0,0]-2)<2e-12, pairing=float(C[0,0]))
++			check('thin exact direction mass '+str((Exponent,Order)),F(float(Direction.coefficients[1]))*(F(float(Direction.edges[2]))-F(float(Direction.edges[1])))==1)
++			check('thin common normalization unchanged '+str((Exponent,Order)),Info['modal_Gram_error']<2e-12)
++			if Exponent==50:
++				for Callback in (lambda:V.quadrature_rule(Blocks,Order),lambda:P.pairings(lambda x:Direction(x))):
++					rejects('folded ordinary nodes reject '+str(Order),Callback)
++			else:
++				Points,Weights,Knots=V.quadrature_rule(Blocks,Order)
++				check('resolved ordinary cell '+str(Order),len(np.unique(Points))==len(Points) and abs(Weights@Direction(Points)-1)<2e-12)
++	P=V.SpectralProbe([(1.,1.)],4,64)
++	DefaultResult=P.pairings(V.block_direction([1.],[0.,1.]))
++	check('default compatible result carries diagnostics',len(DefaultResult)==4 and DefaultResult.diagnostics['sign_certified'] is False)
++	Direction=V.block_direction([2.,-1.],[0.,.2,1.])
++	_,C,W,_,Info=P.pairings(Direction,return_diagnostics=True)
++	_,Cq,Wq,_,_=P.pairings(lambda x:Direction(x),(.2,),return_diagnostics=True)
++	check('direction-only breakpoint analytic vs resolved callback',np.max(np.abs(C-Cq))<2e-11 and np.max(np.abs(W-Wq))<2e-11)
++	check('all direction cuts included',Info['intervals']==2)
++	# The density has no cut here. A one-ulp DIRECTION cell still needs its
++	# own left anchor; compare the same binary-frequency IVP, not an exact
++	# DD eigenvalue or a certified sign at a near-nodal floating coefficient.
++	Left=.5;Right=math.nextafter(Left,1.);Delta=Right-Left
++	_,C,_,_,_=P.pairings(V.block_direction([0.,1/Delta,0.],[0.,Left,Right,1.]),return_diagnostics=True)
++	with mp.workdps(90):
++		Waves=[mp.mpf(float(w)) for w in P.roots]
++		Mass=[mp.quad(lambda x,w=w:(mp.sin(w*x)/w)**2,[0,1]) for w in Waves]
++		def Reference(i,j):
++			return float(mp.quad(lambda x:mp.sin(Waves[i]*x)*mp.sin(Waves[j]*x)/(Waves[i]*Waves[j]*mp.sqrt(Mass[i]*Mass[j])),[mp.mpf(Left),mp.mpf(Right)])/mp.mpf(Delta))
++		Cross,Square=Reference(0,1),Reference(1,1)
++	check('direction-only one-ulp cell retains half-width cross',abs(C[0,1]-Cross)<3e-30,actual=float(C[0,1]),same_IVP_reference=Cross)
++	check('direction-only one-ulp nodal square stable',abs(C[1,1]/Square-1)<2e-12,actual=float(C[1,1]),same_IVP_reference=Square)
++	# A binary-rounded 1/3 anchor and an interior node of a nonconstant
++	# density also require accurate phase propagation before local centering.
++	for Blocks,Left,Index in (([(1.,1.)],float(1/3),2),
++		([(.25,1.),(.5,4.),(.25,1.)],.5,1), ([(1.,2.)],float(1/3),2)):
++		Pn=V.SpectralProbe(Blocks,6,8);Right=math.nextafter(Left,1.);Delta=Right-Left
++		_,Cn,_,_=Pn.pairings(V.block_direction([0.,1/Delta,0.],[0.,Left,Right,1.]))
++		with mp.workdps(100):
++			Functions=[]
++			for RootFrequency in Pn.roots:
++				Frequency=mp.mpf(float(RootFrequency));Parts=[];Start=mp.mpf(0);U=mp.mpf(0);D=mp.mpf(1);Mass=mp.mpf(0)
++				for Length,Density in Blocks:
++					Width,Rho=mp.mpf(Length),mp.mpf(Density);Wave=Frequency*mp.sqrt(Rho)
++					A,B=U,D/Wave;Parts.append((Start,Wave,A,B))
++					Mass+=Rho*mp.quad(lambda x:A*A*mp.cos(Wave*x)**2+2*A*B*mp.cos(Wave*x)*mp.sin(Wave*x)+B*B*mp.sin(Wave*x)**2,[0,Width])
++					U,D=A*mp.cos(Wave*Width)+B*mp.sin(Wave*Width),Wave*(-A*mp.sin(Wave*Width)+B*mp.cos(Wave*Width))
++					Start+=Width
++				def Sample(Point,Parts=Parts,Mass=Mass):
++					Start,Wave,A,B=next(Part for Part in reversed(Parts) if Part[0]<=Point)
++					return (A*mp.cos(Wave*(Point-Start))+B*mp.sin(Wave*(Point-Start)))/mp.sqrt(Mass)
++				Functions.append(Sample)
++			Cross=float(mp.quad(lambda t:Functions[0](mp.mpf(Left)+mp.mpf(Delta)*t)*Functions[Index](mp.mpf(Left)+mp.mpf(Delta)*t),[0,1]))
++			Square=float(mp.quad(lambda t:Functions[Index](mp.mpf(Left)+mp.mpf(Delta)*t)**2,[0,1]))
++		check('near-node phase cross '+str((Blocks,Left,Index)),abs(Cn[0,Index]-Cross)<3e-29,actual=float(Cn[0,Index]),same_IVP_reference=Cross)
++		check('near-node phase square '+str((Blocks,Left,Index)),abs(Cn[Index,Index]/Square-1)<2e-12,actual=float(Cn[Index,Index]),same_IVP_reference=Square)
++	Anchors=P._analytic_anchor_states(np.array([0.,.5]))
++	Scales=np.array([Physical.eigenfunction_states(P.blocks,Root,[0.])[0,1] for Root in P.roots])
++	check('analytic anchors retain existing common mass',np.array_equal(Anchors[:,0,1],Scales))
++	rejects('positive local integral underflow refused',lambda:V._cos_sin_integrals(np.array([1.]),2.**-400))
++	for Waves,Length in ((np.array([1e-9,1.,10.]),.75),(np.array([1.,2.,3.]),1e-10),
++		(np.array([.01,1.,100.]),.02),(np.array([1e-40,1.,100.]),.02)):
++		Cosine,Sine=V._cos_sin_integrals(Waves,Length)
++		with mp.workdps(80):
++			for i in range(3):
++				for j in range(i,3):
++					Wi,Wj,L=mp.mpf(float(Waves[i])),mp.mpf(float(Waves[j])),mp.mpf(Length)
++					Exact=mp.quad(lambda x:mp.sin(Wi*x)*mp.sin(Wj*x)/(Wi*Wj),[-L/2,L/2])
++					check('small/unequal phase sine integral '+str((float(Length),i,j)),abs(mp.mpf(float(Sine[i,j]))-Exact)<mp.mpf('2e-14')*abs(Exact))
++	Delta=2.**-20;Pm=V.SpectralProbe([(.5,1.),(Delta,4e10),(.5-Delta,1.)],61,64)
++	Length=.021;_,Cm,_,_=Pm.pairings(V.block_direction([1e8,0.],[0.,Length,1.]))
++	with mp.workdps(100):
++		Frequency=mp.mpf(float(Pm.roots[0]));U=mp.mpf(0);D=mp.mpf(1);Mass=mp.mpf(0)
++		for Width,Rho in Pm.blocks:
++			Width,Rho=mp.mpf(Width),mp.mpf(Rho);Wave=Frequency*mp.sqrt(Rho);A,B=U,D/Wave
++			Mass+=Rho*mp.quad(lambda x:A*A*mp.cos(Wave*x)**2+2*A*B*mp.cos(Wave*x)*mp.sin(Wave*x)+B*B*mp.sin(Wave*x)**2,[0,Width])
++			U,D=A*mp.cos(Wave*Width)+B*mp.sin(Wave*Width),Wave*(-A*mp.sin(Wave*Width)+B*mp.cos(Wave*Width))
++		Expected=mp.mpf(1e8)*mp.quad(lambda x:(mp.sin(Frequency*x)/Frequency)**2,[0,mp.mpf(Length)])/Mass
++	check('actual spectrum mixed-phase pairing',abs(mp.mpf(float(Cm[0,0]))/Expected-1)<mp.mpf('4e-13'),actual=float(Cm[0,0]),same_IVP_reference=mp.nstr(Expected,50))
++	Zeros=V.block_direction([0.],[0.,1.]);_,C,W,D,Info=P.pairings(Zeros,return_diagnostics=True)
++	check('zero direction no invented tail',np.all(C==0) and np.all(D==0) and Info['parseval_remainder_raw']==[0.]*4 and not Info['sign_certified'])
++	rejects('direction domain mismatch',lambda:P.pairings(V.block_direction([1.],[0.,2.])))
++	for Coeff,Edges in (([1.],[0.,0.]),([1.,2.],[0.,1.]),([float('nan')],[0.,1.])):
++		rejects('invalid structured direction '+str((Coeff,Edges)),lambda Coeff=Coeff,Edges=Edges:V.block_direction(Coeff,Edges))
++	for Bad in ((0.,), (1.,), (float('nan'),), 1.):
++		rejects('invalid extra cuts '+str(Bad),lambda Bad=Bad:P.pairings(Zeros,Bad))
++	for n in (2,):
++		for Mode in ('sup','inf'):
++			Rc,Z,Blocks,_=V.build_case(n,4.,Mode)
++			P=V.SpectralProbe(Blocks,12,64)
++			_,C,_,_,Info=P.pairings(V.block_direction([1.]*len(Blocks),P.edges),return_diagnostics=True)
++			check('normal R4 '+Mode+' common mass and balance',Rc.stationarity_diagnostics(Z)['accepted'] and Info['modal_Gram_error']<2e-10 and np.all(np.isfinite(C)), diagnostics=Rc.stationarity_diagnostics(Z))
++
++
++def integer_examples():
++	x=sp.Symbol('x'); c=sp.Symbol('c',positive=True)
++	def Integral(Poly):
++		Result=sp.integrate(Poly,x);return sp.expand(Result-Result.subs(x,-1))
++	for r in range(1,7):
++		Matrix=sp.Matrix([[sp.diff(x**k,x,j).subs(x,Side) for k in range(2*r)] for Side in (-1,1) for j in range(r)])
++		Free=[(j,Side) for j in range(0,r,2) for Side in (-1,1)]
++		Lifts=[]
++		for Target in Free:
++			Data=[]
++			for Side in (-1,1):
++				for j in range(r):
++					Data.append(sp.Integer((j,Side)==Target) if j%2==0 else (sp.Integer((j-1,1)==Target)-sp.Integer((j-1,-1)==Target))/2)
++			Coefficients=Matrix.inv()*sp.Matrix(Data)
++			Lifts.append(sp.expand(sum(Coefficients[k]*x**k for k in range(2*r))))
++		Jet=sp.Matrix([[sp.diff(P,x,j).subs(x,Side) for P in Lifts] for j,Side in Free])
++		check('integer Hermite identity r'+str(r),Jet==sp.eye(2*math.ceil(r/2)))
++		for n in range(r,r+3):
++			P=sp.legendre(n,x)
++			for _ in range(r):P=Integral(P)
++			check('integer clamped high column '+str((r,n)),all(sp.diff(P,x,j).subs(x,Side)==0 for j in range(r) for Side in (-1,1)) and sp.expand(sp.diff(P,x,r)-sp.legendre(n,x))==0)
++			Lifts.append(P)
++		N=2*r+2; Coeff=sp.Matrix([[sp.expand(P).coeff(x,k) for P in Lifts] for k in range(N+1)])
++		check('integer finite exact span r'+str(r),Coeff.rank()==N+1-2*(r//2))
++	n=sp.Symbol('n',integer=True,positive=True); b=(n+1)**2*sp.pi**2/2; d=(n+2)**2*sp.pi**2/2
++	check('tail lower equality exact symbolic',sp.simplify(-b*b/(4*(d-b))+sp.pi**2*(n+1)**4/(8*(2*n+3)))==0)
++	check('rate negative-t counterexample preserved',F(47,45)>F(3,4))
++
++
++def main():
++	Parser=argparse.ArgumentParser();Parser.add_argument('--root',type=Path,required=True);Parser.add_argument('--output',type=Path,required=True);Args=Parser.parse_args()
++	Root=Args.root.resolve();sys.path.insert(0,str(Root/'scripts'));sys.path.insert(0,str(Root/'misc'))
++	T=importlib.import_module('rigid1d');V=importlib.import_module('_gapn2_second_variation_probe');Physical=importlib.import_module('_gapn2_symmetry_recon')
++	Start=time.monotonic();Error=None
++	try:
++		taylor_checks(T);pairing_checks(V,Physical);integer_examples()
++	except Exception as Exc:
++		Error=repr(Exc)
++	finally:
++		Paths=[Path(T.__file__),Path(V.__file__),Path(Physical.__file__),Root/'scripts/_sl_prufer.py',Root/'scripts/op03_gap_fixed.py']
++		Result={'meaning':'repaired finite software properties and finite exact examples; no all-integer or interval certification', 'all_passed':Error is None and all(R['passed'] for R in ROWS),'count':len(ROWS),'checks':ROWS,'error':Error,'elapsed_seconds':time.monotonic()-Start,'environment':{'python':sys.version,'optimize':sys.flags.optimize,'numpy':np.__version__,'sympy':sp.__version__,'platform':platform.platform()},'sources':{str(P):hashlib.sha256(P.read_bytes()).hexdigest() for P in Paths}}
++		Args.output.parent.mkdir(parents=True,exist_ok=True);Args.output.write_text(json.dumps(Result,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
++	print('PASS' if Result['all_passed'] else 'FAIL',Result['count'],'properties',Error or '')
++	if Error:
++		raise RuntimeError(Error)
++
++
++if __name__=='__main__':
++	main()
+--- /dev/null
++++ b/research/artifacts/proof-audit-round16-20261006/actual_baseline_replay.py
+@@ -0,0 +1,54 @@
++"""Defect reproduction on frozen COMPLETE pre-edit sources, never live code.
++
++A confirmed wrong result is evidence of the old bug, not repaired acceptance.
++Unchanged sibling spectral/physical dependencies are checked against the
++round16 baseline source snapshots. Outputs must use a new external path.
++"""
++import argparse
++from fractions import Fraction as F
++import hashlib
++import importlib.util
++import json
++import math
++from pathlib import Path
++import sys
++import numpy as np
++
++
++def main():
++	Parser=argparse.ArgumentParser();Parser.add_argument('--root',type=Path,required=True);Parser.add_argument('--output',type=Path,required=True);Args=Parser.parse_args()
++	Work=Path(__file__).resolve().parent;Root=Args.root.resolve();Base=Work/'baseline_sources'
++	for Rel in ('scripts/_sl_prufer.py','scripts/_sl_spectral_identity.py','scripts/_gapn2_symmetry_recon.py'):
++		if (Base/Rel).read_bytes()!=(Root/Rel).read_bytes():
++			raise RuntimeError('unchanged dependency mismatch: '+Rel)
++	sys.path.insert(0,str(Root/'scripts'))
++	def Load(Name,Rel):
++		Spec=importlib.util.spec_from_file_location(Name,Base/Rel);Module=importlib.util.module_from_spec(Spec);sys.modules[Name]=Module;Spec.loader.exec_module(Module);return Module
++	T=Load('round16_baseline_rigid1d','misc/rigid1d.py');V=Load('round16_baseline_variation','scripts/_gapn2_second_variation_probe.py')
++	Rows=[]
++	def Observe(Name,Condition,**Data):
++		Rows.append({'name':Name,'defect_confirmed':bool(Condition),**Data})
++		if not Condition:
++			raise RuntimeError(Name)
++	f=lambda z:(z-z*z/2)/15-F(1,2**62)*z
++	Observe('integer endpoint false True',T.der_sign2(f,0,1,True,base_n=3,max_n=3)[0],right_derivative=str(-F(1,2**62)))
++	Observe('Fraction same false statement rejected',not T.der_sign2(f,F(0),F(1),True,base_n=3,max_n=3)[0])
++	f=lambda z:(F(1)+F(3,2**54))*z-z*z/2
++	for Fn in (T.der_sign2,T.der_sign_adaptive):
++		Kw={'base_n':1,'max_n':1} if Fn==T.der_sign2 else {'max_boxes':40,'min_w':F(1,2**60)}
++		Observe(Fn.__name__+' adjacent float false True',Fn(f,1.,math.nextafter(1.,2.),True,**Kw)[0],right_derivative=str(-F(1,2**54)))
++	for Order,n in ((32,20),(64,60)):
++		P=V.SpectralProbe([(1.,2.)],61,Order);Lam,C,W,D=P.pairings(lambda x:2*np.ones_like(x));Q=V.q_formula(Lam,C,W,n,D);Expected=(2*n+1)*math.pi**2/2
++		Observe('old oscillatory error '+str((Order,n)),Q<0 if Order==32 else abs(Q/Expected-1)>1,Q=Q,expected=Expected,Gram_error=float(np.max(np.abs(C-np.eye(61)))),first_mode=float(Lam[0]),last_mode=float(Lam[-1]))
++	for Order in (64,128):
++		Delta=2.**-50;P=V.SpectralProbe([(.5,1.),(Delta,1.),(.5-Delta,1.)],3,Order);Direction=V.block_direction([0,1/Delta,0],P.edges)
++		Points,Weights,_,_=P.quadrature();_,C,_,_=P.pairings(Direction);Cell=Points.reshape(3,Order)[1]
++		Observe('old folded coordinates '+str(Order),len(np.unique(Cell))==9 and C[0,0]<1.9,mass=float(Weights@Direction(Points)),first_pairing=float(C[0,0]),unique_nodes=len(np.unique(Cell)),nodes_at_right=int(np.sum(Cell==.5+Delta)))
++	P=V.SpectralProbe([(1.,2.)],61,64);Lam,C,W,D=P.pairings(lambda x:2*np.ones_like(x));Q=V.q_formula(Lam,C,W,2,D)
++	Observe('old low-mode positive control',abs(Q-5*math.pi**2/2)<2e-7,Q=Q)
++	Result={'meaning':'confirmed old defects and one surviving low-mode positive control; not post-repair tests','all_confirmed':all(R['defect_confirmed'] for R in Rows),'count':len(Rows),'checks':Rows,'optimization':sys.flags.optimize,'complete_source_hashes':{str(P.relative_to(Base)):hashlib.sha256(P.read_bytes()).hexdigest() for P in Base.rglob('*.py')}}
++	Args.output.write_text(json.dumps(Result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print('CONFIRMED',len(Rows),'frozen complete-source observations')
++
++
++if __name__=='__main__':
++	main()

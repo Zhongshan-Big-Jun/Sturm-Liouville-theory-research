@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/mnt/data/sl_audit_round16/checks.py", line 239, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/mnt/data/sl_audit_round16/checks.py", line 224, in main
+    results['quadrature']=quadrature_checks();results['thin_cells']=thin_checks()
+                          ~~~~~~~~~~~~~~~~~^^
+  File "/mnt/data/sl_audit_round16/checks.py", line 71, in quadrature_checks
+    check('equal_density_split_changes_quadrature_not_problem',abs(val-121*math.pi**2/2)<2e-7,
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          Q_two_identical_blocks=val,expected=121*math.pi**2/2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/sl_audit_round16/checks.py", line 26, in check
+    if not status: raise RuntimeError(name)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: equal_density_split_changes_quadrature_not_problem

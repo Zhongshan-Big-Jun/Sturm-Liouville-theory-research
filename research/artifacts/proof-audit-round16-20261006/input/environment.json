@@ -1,0 +1,21 @@
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "executable": "/opt/pyvenv/bin/python",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "sympy": "1.14.0",
+  "commands": [
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -B checks.py --output results/normal.json",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -O -B checks.py --output results/optimized.json"
+  ],
+  "normal_and_optimized_use_same_final_script": true,
+  "limitations": [
+    "Not an end-to-end original CLI run",
+    "Not a full upstream test suite",
+    "Not a full E1 certificate regeneration",
+    "No Lean",
+    "No second independent reviewer",
+    "Exact polynomial/rational cases plus finite float64 diagnostics, not blanket interval certification"
+  ]
+}

@@ -1,6 +1,6 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-09-27 (round13 certificate/interface/Helly repair; exact evidence and review scope in reports/proof-audit-round13-20260927/REPORT.md)
+Last updated: 2026-10-06 (Round16 exact Taylor boundary, resolved pairings, bounded-direction tail and all-integer replacement systems; scoped evidence in reports/proof-audit-round16-20261006/REPORT.md)
 
 
 
@@ -34,15 +34,16 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | --- | --- | --- | --- | --- |
 | A1 | `{p_n}` density in genuine H^s, 0 <= s < 7/2 (Krein-Sobolev) | SOLVED | docs/SL_fractional_left_definite; H2/H3 proofs retained | Round6 four-trace graph core + spectral cutoff proves the full window; every nonaffine named member has threshold7/2, affine modes survive all nonnegative orders. No deleted-family or arbitrary-V extension |
 | A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse-family density | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
-| A3 | Density criterion in constrained subspace V = cap ker L_j, general (non-coordinate) H | OPEN (general); diagonal SOLVED as Theorem E | DensBC runs; tools/constrained-denseness | reduced core is A4 |
+| A3 | Density in constrained subspace V, general non-coordinate H | OPEN (general); diagonal Theorem E and Krein finite-codimension subclass SOLVED | tools/constrained-denseness-runs; A3-KREIN-FINITE | General A4, infinite constraints and projected/recombined families are separate |
 | A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
 | A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | docs/SL_stability_moment_jump | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
 | A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
 | A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
 | A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. The original s3 proof has that scope; A12 now covers critical s=5/2. No general infinite-deletion conclusion |
 | A9 | Concrete fractional and critical power-domain dictionary | STRICT | tools/krein-fractional-trace-dictionary; tools/krein-parity-unitary | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
-| A10 | Boundary-compatible integrated Legendre replacement systems | STRICT | tools/krein-integrated-legendre-riesz; tools/finite-synthesis-tsvd | Fixed c>0, s=2/4; complete Riesz replacement systems with degree-independent constants and coefficient-tail errors. Not the original sparse monomials, uniform c→0 or quadrature certification |
-| A11 | Arbitrary retained sets in actual Hc2 | Density criterion / divergent closure CLOSED; summable closure description PARTIAL | docs/SL_H2_arbitrary_deletion_proof.md; tools/krein-infinite-deletion-subclasses | For fixed c>0, arbitrary J,Se,So: dense iff both affine columns retained and both reciprocal sums diverge. Divergent side has exact two-trace closure; either convergent side has infinite codimension. Full summable-space description remains open |
+| A10 | Hermite-integrated Legendre Riesz replacement systems, every integer order | STRICT (scoped independent analytic review) | docs/SL_integer_left_definite_riesz_systems.md; tools/krein-integrated-legendre-riesz | Every fixed c>0 and integer r>=0, true complex power domain, 2ceil(r/2) low lifts (odd r needs r+1), degree-independent Riesz bounds and exact polynomial span. Rates need weighted coefficients with t>=0. Not original sparse-family Riesz, noninteger orders or uniform c->0 |
+| A11 | Arbitrary retained sets throughout the full Krein member window | Density criterion / divergent closure CLOSED; summable closure description PARTIAL | docs/SL_full_window_deletions_and_finite_constraints.md; tools/krein-infinite-deletion-subclasses | Fixed c>0, 0<=s<7/2, arbitrary N. Both parity reciprocal sums divergent: exact omitted continuous-center-trace closure with I(s)={}, {0}, {0,1}, {0,1,4}; equalities1/2,3/2,5/2 use fewer traces. Either convergent: infinite codimension. Dense iff both divergent and I(s) subset N. Full summable-space description remains open |
+| A3-KREIN-FINITE | Individual-member filtering under finite continuous complex constraints in genuine Hc^s | SOLVED (scoped independent analytic review) | docs/SL_full_window_deletions_and_finite_constraints.md, section7; tools/krein-finite-constraint-filtering | Fixed c>0, 0<=s<7/2: filtered family dense in V iff V is an intersection of a subset of current continuous central trace coordinate kernels; 1/2/4/8 distinct subspaces. No general H, infinite constraints, projection or recombination theorem |
 | A12 | Cofinite closure throughout the full member window | SOLVED (independent analytic review) | docs/SL_cofinite_all_orders.pdf; tools/krein-cofinite-closure-all-orders | Fixed c>0, 0<=s<7/2. Essential retained indices are {}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Missing indices impose respectively f(0), f′(0), f″(0); codimension is their count. Delete p6: still dense, so every nonzero scaling/reordering of the original family is non-Schauder/Riesz. No arbitrary infinite deletion or uniform c→0 claim |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
@@ -62,6 +63,7 @@ stage boundaries and whenever a problem, result, or relationship changes.
 | B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
 | B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | scripts/_gapn2_jacobian_probe.py; reports/proof-audit-round11-20260926/REPORT.md | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
 | B10 | Half-spectrum identity, bound poles and raw/conjugated sectors | SCOPED REPAIR VERIFIED | reports/proof-audit-round12-20260926/REPORT.md; tools/green-half-inertia; tools/half-problem-regularized-green | DD/DN phase targets label each mode; shared tables bind pole deletion. KpOdd=E Ke E, while raw Ko has reduced own-pole kernels and a rank-one term. Round13 repairs node normalization, real-coordinate/nonpositive Green and the general residual Jacobian; round12 prefix/pole/sector properties are retained. Finite diagnostics and local algebra do not certify global signs or G1 |
+| B11 | Parseval residual and two-sided spectral tail along bounded real density directions | STRICT (scoped independent analytic review) | docs/SL_bounded_direction_spectral_tail.md; tools/second-variation-weighted-eigenvalues | True DD, positive bounded rho, real L-infinity h; reliable finite-pairing/J/eigenvalue/Q envelopes required for sign certification. Numerical quadrature and truncation are distinct. Not delta/delta-prime interface directions or ND/G1 |
 
 ## Relationships between problems
 
@@ -77,9 +79,9 @@ A3 (constrained density, open)
 A1 abstract polynomial transport --corrected_by--> A7 operator-domain obstruction
 A9 parity/domain dictionary --supports--> A8 s3 cofinite three-trace closure
 A12 --extends--> A8 and the s2 classification via H4 core, weighted interpolation and critical Fourier sequences
-A12 --uses--> A1 member window; arbitrary Hc2 density in A11 is now classified; other orders and full summable closures remain separate
-A9/A7 --guides--> A10 boundary-compatible replacement coordinates
-A11 arbitrary retained sets --uses--> actual Kc transport, bounded Mellin uniqueness, full high-tail two-trace closure and Cauchy Gram distance; general A4 remains open
+A12 --uses--> A1 member window; A11 now uses its cofinite closure at all three critical thresholds for arbitrary retention throughout0<=s<7/2; full summable closures remain separate
+A9/A7 --guides--> A10 boundary-compatible replacement coordinates; direct integer-domain proof now covers every fixed integer r>=0 independently of A11
+A11 arbitrary retained sets --uses--> actual square-domain boundary lifts, H4-valued holomorphic uniqueness, A12 cofinite closure and Cauchy Gram distance; A3-KREIN-FINITE follows for individual filtering, while general A4 remains open
 
 Line B:
 B1 (sup ratio, solved)
@@ -120,13 +122,15 @@ flowchart LR
   A6["A6 3rd-order recurrence (PARTIAL)"]
   A8["A8 s=3 cofinite closure (SOLVED)"]
   A9["A9 fractional domain dictionary (STRICT)"]
-  A10["A10 Legendre replacement systems (STRICT)"]
-  A11["A11 infinite deletion (PARTIAL)"]
+  A10["A10 integer Hermite-Legendre Riesz systems (STRICT)"]
+  A11["A11 full-window criterion/closure (CLOSED); summable elements (OPEN)"]
+  A3K["A3 Krein finite constraints: filtering (SOLVED)"]
   A12["A12 full-window cofinite closure (SOLVED)"]
   B7["B7 finite interface derivatives (STRICT)"]
   B8["B8 indexed numerical modes / pure seeds (NUMERICAL)"]
   B9["B9 cross blocks / actual differences (NUMERICAL)"]
-  B10["B10 indexed half spectra / bound poles / raw sectors (UNDER REVIEW)"]
+  B10["B10 indexed half spectra / bound poles / raw sectors (SCOPED REPAIR VERIFIED)"]
+  B11["B11 bounded-direction Parseval tail (STRICT)"]
   B1["B1 sup ratio nu(R) (SOLVED)"]
   B2["B2 inf ratio 1 (SOLVED)"]
   B3["B3 fixed-n supremum (PARTIAL)"]
@@ -142,9 +146,14 @@ flowchart LR
   A1 -->|member window| A12
   B9 -->|derivative diagnostics| B7
   B10 -->|Green diagnostics| B7
+  B11 -->|conditional finite tail enclosures| B4
   A9 -->|domain and topology| A8
   A9 -->|boundary conditions| A10
-  A11 -->|special subclasses| A4
+  A1 -->|member window| A11
+  A12 -->|cofinite closure| A11
+  A11 -->|finite-codim filtering| A3K
+  A3K -->|scoped subclass| A3
+  A11 -->|general model remains open| A4
   B7 -->|local variation tools| B4
   A1 -->|extends| A2
   A1 -->|feeds methods| A5
@@ -269,3 +278,5 @@ P0-P4 connects13 source records to11 scoped tool cards.12 primary originals were
 The finite exact checks do not prove Sobolev closure or spectral analysis. New results have scoped independent analytic review; no new Lean formalization or canonical Blueprint integration was performed. The old full-family threshold, O1/O2 and global G1′ retain their exact scopes.
 
 2026-10-04 Round14: G2 covers every exact residual zero for each fixed n>=2 and both patterns on [1,Rmax], including R down to1. G2+ND conditionally gives locally constant root count and a unique global analytic symmetric branch; ND and G1/global uniqueness remain open. A11 arbitrary Hc2 density criterion and divergent two-trace closure are proved, while the summable-side full space description remains open. Exact independent reviews and software controls: reports/proof-audit-round14-20261004/REPORT.md. No canonical/M3/KP scope expansion.
+
+2026-10-06 Round16: R16-01/02/03 repair only the active generic Taylor and pairing paths. C16-TAIL and C16-A10-INTEGER have separate complete proofs and final fresh native analytic approval. Initial analytic/software rejections remain as evidence; automatic adapter, Lean and canonical reception are separate. R15 local results and all original untracked bytes preserved. Stop at the five scoped obligations; see reports/proof-audit-round16-20261006/REPORT.md.

@@ -1,0 +1,612 @@
+{
+  "identity": "/root/r16_software_review_v4",
+  "all_passed": true,
+  "count": 105,
+  "error": null,
+  "elapsed_seconds": 1.875,
+  "optimize": 1,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "checks": [
+    {
+      "name": "false strict derivative thirds",
+      "passed": true,
+      "fixed": "(False, 'unproved at n=3 piece (2, Fraction(2, 3), Fraction(1, 1), Fraction(-1, 4611686018427387904), Fraction(4611686018427387859, 207525870829232455680), Fraction(1, 15))')",
+      "adaptive": "(False, 'unproved at n=20 piece [524287/524288,1] f=[-1/4611686018427387904,8796093022193/69175290276410818560] M=1/15')"
+    },
+    {
+      "name": "false strict derivative adjacent-float",
+      "passed": true,
+      "fixed": "(False, 'unproved at n=1 piece (0, Fraction(1, 1), Fraction(4503599627370497, 4503599627370496), Fraction(-1, 18014398509481984), Fraction(3, 18014398509481984), Fraction(1, 1))')",
+      "adaptive": "(False, 'unproved at n=20 piece [2361183241434823131135/2361183241434822606848,4503599627370497/4503599627370496] f=[-1/18014398509481984,-131071/2361183241434822606848] M=1')"
+    },
+    {
+      "name": "honest exact endpoint <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "honest exact endpoint <class 'fractions.Fraction'>",
+      "passed": true
+    },
+    {
+      "name": "honest exact endpoint <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "strict sign choice der_sign2 1",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign2 None",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign2 'positive'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict endpoint der_sign2 Decimal('0.2')",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 '0.2'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 (0.2+0j)",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 -inf",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive 1",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive None",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive 'positive'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive Decimal('0.2')",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive '0.2'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive (0.2+0j)",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive -inf",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "adaptive three-box hard budget",
+      "passed": true,
+      "calls": 6,
+      "result": "(False, 'unproved: max_boxes=3 exhausted with 2 pending pieces')"
+    },
+    {
+      "name": "False means unproved only",
+      "passed": true
+    },
+    {
+      "name": "E1 static independent Fraction preconversion",
+      "passed": true
+    },
+    {
+      "name": "61 modes analytic identity independent low order",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "independent constant Q 1",
+      "passed": true,
+      "q": 14.80440660163404,
+      "exact": 14.804406601634037
+    },
+    {
+      "name": "independent constant Q 3",
+      "passed": true,
+      "q": 34.543615403812765,
+      "exact": 34.54361540381275
+    },
+    {
+      "name": "independent constant Q 17",
+      "passed": true,
+      "q": 172.718077019063,
+      "exact": 172.71807701906377
+    },
+    {
+      "name": "independent constant Q 59",
+      "passed": true,
+      "q": 587.2414618648218,
+      "exact": 587.2414618648168
+    },
+    {
+      "name": "independent constant Q 60",
+      "passed": true,
+      "q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "raw Parseval retained bit-for-bit",
+      "passed": true,
+      "minimum": -2.220446049250313e-16,
+      "negative_entries": 11
+    },
+    {
+      "name": "analytic diagnostic estimate boundary",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP half constant (0, 1)",
+      "passed": true,
+      "actual": -4.526443397722558e-16,
+      "reference": "-4.52644339772255699613159371030382140875073775e-16",
+      "relative_error": "1.34673331256e-16"
+    },
+    {
+      "name": "one-ulp physical IVP half constant (1, 1)",
+      "passed": true,
+      "actual": 1.835449602266039e-31,
+      "reference": "1.83544960226603891761184534398075340353110791e-31",
+      "relative_error": "5.32332839815e-17"
+    },
+    {
+      "name": "one-ulp weighted physical density half constant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass half constant",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP one-third constant rho3 (0, 2)",
+      "passed": true,
+      "actual": -1.8464519554442923e-16,
+      "reference": "-1.84645195544429316460623522463738687882503992e-16",
+      "relative_error": "4.79084707403e-16"
+    },
+    {
+      "name": "one-ulp physical IVP one-third constant rho3 (2, 2)",
+      "passed": true,
+      "actual": 8.339422979953229e-32,
+      "reference": "8.33942297995323174874419848501698122624715133e-32",
+      "relative_error": "3.43321613909e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density one-third constant rho3",
+      "passed": true
+    },
+    {
+      "name": "one shared mass one-third constant rho3",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP half symmetric nonconstant (0, 1)",
+      "passed": true,
+      "actual": -1.3786223166610367e-16,
+      "reference": "-1.37862231666103666050974421290753667097359476e-16",
+      "relative_error": "2.68716943643e-17"
+    },
+    {
+      "name": "one-ulp physical IVP half symmetric nonconstant (1, 1)",
+      "passed": true,
+      "actual": 9.187870400303357e-32,
+      "reference": "9.18787040030335450126203905938443438586079657e-32",
+      "relative_error": "2.5113602662e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density half symmetric nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass half symmetric nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP one-third nonconstant (0, 2)",
+      "passed": true,
+      "actual": 0.02420875782648118,
+      "reference": "0.0242087578264811682137517696540709637664638357",
+      "relative_error": "4.67045339265e-16"
+    },
+    {
+      "name": "one-ulp physical IVP one-third nonconstant (2, 2)",
+      "passed": true,
+      "actual": 0.0026812143635740033,
+      "reference": "0.00268121436357400128197511158879611874952457728",
+      "relative_error": "7.43440282146e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density one-third nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass one-third nonconstant",
+      "passed": true
+    },
+    {
+      "name": "thin rho/h all cuts physical IVP",
+      "passed": true,
+      "actual": 1.550935203443997,
+      "reference": "1.55093520344399664602711263775514894998773585",
+      "relative_error": "1.86179918551e-16"
+    },
+    {
+      "name": "thin rho actual Gauss folding",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "unresolved asymmetric contrast explicitly refused",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "indexed roots are unresolved; increase precision/refinement, not the scan grid"
+    },
+    {
+      "name": "actual 61-mode spectrum straddles local Taylor branch",
+      "passed": true,
+      "lowest_phase": 4.7591157600813956e-05,
+      "highest_phase": 1.078177160248141,
+      "lowest_frequency": 0.00528790640009044,
+      "highest_frequency": 119.79746224979344
+    },
+    {
+      "name": "different high-contrast physical IVP (0, 0)",
+      "passed": true,
+      "actual": 0.048922097409655335,
+      "reference": "0.0489220974096553276754220879604683161819793701",
+      "relative_error": "1.52867065246e-16"
+    },
+    {
+      "name": "different high-contrast physical IVP (0, 1)",
+      "passed": true,
+      "actual": 0.0002310748541208431,
+      "reference": "0.000231074854120843129997185099460671862589853984",
+      "relative_error": "1.57228006581e-16"
+    },
+    {
+      "name": "different high-contrast physical IVP (0, 60)",
+      "passed": true,
+      "actual": 1.262374142862387,
+      "reference": "1.26237414286238962262907116517548559808931512",
+      "relative_error": "2.14366697362e-15"
+    },
+    {
+      "name": "different high-contrast physical IVP (1, 60)",
+      "passed": true,
+      "actual": 0.005962980797615685,
+      "reference": "0.00596298079761570110843011648020397440755357774",
+      "relative_error": "2.70564857976e-15"
+    },
+    {
+      "name": "local extreme mixed phase (1e-60, 0, 0)",
+      "passed": true,
+      "sine_relative_error": "3.72965547335e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-60, 0, 2)",
+      "passed": true,
+      "sine_relative_error": "2.99041949615e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-60, 1, 2)",
+      "passed": true,
+      "sine_relative_error": "7.25183331832e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-60, 2, 2)",
+      "passed": true,
+      "sine_relative_error": "5.37742635966e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-140, 0, 0)",
+      "passed": true,
+      "sine_relative_error": "6.87632640354e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-140, 0, 2)",
+      "passed": true,
+      "sine_relative_error": "7.12923154917e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-140, 1, 2)",
+      "passed": true,
+      "sine_relative_error": "4.47132748962e-17"
+    },
+    {
+      "name": "local extreme mixed phase (1e-140, 2, 2)",
+      "passed": true,
+      "sine_relative_error": "6.26581071514e-16"
+    },
+    {
+      "name": "local extreme mixed phase (0.01, 0, 0)",
+      "passed": true,
+      "sine_relative_error": "3.23251176775e-16"
+    },
+    {
+      "name": "local extreme mixed phase (0.01, 0, 2)",
+      "passed": true,
+      "sine_relative_error": "4.64639445157e-17"
+    },
+    {
+      "name": "local extreme mixed phase (0.01, 1, 2)",
+      "passed": true,
+      "sine_relative_error": "1.28380107706e-16"
+    },
+    {
+      "name": "local extreme mixed phase (0.01, 2, 2)",
+      "passed": true,
+      "sine_relative_error": "1.3534680619e-17"
+    },
+    {
+      "name": "positive local integral underflow",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "positive local sine-square integral is below floating-point resolution"
+    },
+    {
+      "name": "positive phase underflow",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "local positive phases are not numerically resolvable"
+    },
+    {
+      "name": "callback actual two successive comparisons",
+      "passed": true,
+      "calls": []
+    },
+    {
+      "name": "callback diagnostics no invented enclosure",
+      "passed": true
+    },
+    {
+      "name": "callback bounded budget 16",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback no further evaluations 16",
+      "passed": true,
+      "calls": [
+        16
+      ]
+    },
+    {
+      "name": "callback bounded budget 32",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback no further evaluations 32",
+      "passed": true,
+      "calls": [
+        16,
+        32
+      ]
+    },
+    {
+      "name": "callback bounded budget 63",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback no further evaluations 63",
+      "passed": true,
+      "calls": [
+        16,
+        32
+      ]
+    },
+    {
+      "name": "callback unconverged refused",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback unresolved retained",
+      "passed": true,
+      "calls": [
+        16,
+        32,
+        64,
+        128
+      ]
+    },
+    {
+      "name": "high-frequency callback phase resolution and insufficient budget",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "phase resolution skips callback before sampling",
+      "passed": true
+    },
+    {
+      "name": "R15 1/3/6 enumeration prefixes identical",
+      "passed": true,
+      "frequencies": [
+        0.0003253257761990209,
+        0.0007004245533274537,
+        0.0011250815684087144,
+        0.0015783826878894177,
+        0.002046338483582114,
+        0.002522122600932231
+      ]
+    },
+    {
+      "name": "R15 prefixes retain one-based DD index",
+      "passed": true
+    },
+    {
+      "name": "R15 unresolved tolerance refuses",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "requested tol is unresolved in binary64; use higher precision"
+    },
+    {
+      "name": "R15 smax default compatibility explicit deprecation",
+      "passed": true
+    },
+    {
+      "name": "R14 physical Green zero parameter coordinate order",
+      "passed": true
+    },
+    {
+      "name": "R14 reduced finite DD kernel target usable",
+      "passed": true
+    },
+    {
+      "name": "R14 reduced target wrong spectral index",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "target eigenvalue does not uniquely match the specified pole mode"
+    },
+    {
+      "name": "R14 spectral prefix coverage guard",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "requested prefix exceeds the indexed table"
+    },
+    {
+      "name": "R14 geometry-bound table",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "R14 boundary-bound table",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "R14 general Jacobian quotient retained",
+      "passed": true,
+      "absolute_error": 2.7755575615628914e-17
+    },
+    {
+      "name": "R14 stationary acceptance and Jacobian cross blocks",
+      "passed": true,
+      "anticommutator": 7.886242769927776e-10
+    },
+    {
+      "name": "R14 cross API refuses commuting Hessian",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "J is not reversal-anticommuting within tolerance: JP+PJ=2, diagonal=1, limit=1.01e-06"
+    },
+    {
+      "name": "R14 physical Green near pole refusal",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "Green target is at or numerically near a pole"
+    },
+    {
+      "name": "R14 extreme softmax geometry not stationary",
+      "passed": true
+    },
+    {
+      "name": "full R4 CLI P1/P2/P2b/P3 executed",
+      "passed": true,
+      "counts": {
+        "P1": 3,
+        "P2": 8,
+        "P2b": 6,
+        "P3": 3
+      }
+    },
+    {
+      "name": "CLI saved diagnostics P1",
+      "passed": true
+    },
+    {
+      "name": "CLI saved diagnostics P2",
+      "passed": true
+    },
+    {
+      "name": "CLI saved diagnostics P2b",
+      "passed": true
+    },
+    {
+      "name": "CLI saved diagnostics P3",
+      "passed": true
+    },
+    {
+      "name": "CLI P2b projection diagnostics saved",
+      "passed": true
+    }
+  ],
+  "sources": {
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4\\root\\misc\\rigid1d.py": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55",
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4\\root\\scripts\\_gapn2_second_variation_probe.py": "6410e71518c7e59ffd7f67342a809ab2dd827a5de66c2bc984172d68dd190f44",
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4-independent.py": "2e3d3750d44c793f4a85ff5a715ee78cbb42095e13bde94d710b27ec9b4465a2"
+  }
+}

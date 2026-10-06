@@ -1,0 +1,1086 @@
+{
+  "all_passed": true,
+  "count": 174,
+  "failed": [],
+  "rows": [
+    {
+      "name": "integer counterexample has negative exact endpoint derivative",
+      "passed": true
+    },
+    {
+      "name": "adjacent float counterexample has negative exact endpoint derivative",
+      "passed": true
+    },
+    {
+      "name": "independent false Taylor integer",
+      "passed": true,
+      "result": "(False, 'unproved at n=3 piece (2, Fraction(2, 3), Fraction(1, 1), Fraction(-1, 4611686018427387904), Fraction(4611686018427387859, 207525870829232455680), Fraction(1, 15))')"
+    },
+    {
+      "name": "independent false adaptive integer",
+      "passed": true,
+      "result": "(False, 'unproved at n=20 piece [524287/524288,1] f=[-1/4611686018427387904,8796093022193/69175290276410818560] M=1/15')"
+    },
+    {
+      "name": "independent false Taylor rational-offset",
+      "passed": true,
+      "result": "(False, 'unproved at n=5 piece (4, Fraction(38, 35), Fraction(9, 7), Fraction(-1, 4611686018427387904), Fraction(4611686018427387829, 345876451382054092800), Fraction(1, 15))')"
+    },
+    {
+      "name": "independent false adaptive rational-offset",
+      "passed": true,
+      "result": "(False, 'unproved at n=20 piece [4718585/3670016,9/7] f=[-1/4611686018427387904,8796093022193/69175290276410818560] M=1/15')"
+    },
+    {
+      "name": "independent false Taylor adjacent-float",
+      "passed": true,
+      "result": "(False, 'unproved at n=1 piece (0, Fraction(1, 1), Fraction(4503599627370497, 4503599627370496), Fraction(-1, 18014398509481984), Fraction(3, 18014398509481984), Fraction(1, 1))')"
+    },
+    {
+      "name": "independent false adaptive adjacent-float",
+      "passed": true,
+      "result": "(False, 'unproved at n=20 piece [2361183241434823131135/2361183241434822606848,4503599627370497/4503599627370496] f=[-1/18014398509481984,-131071/2361183241434822606848] M=1')"
+    },
+    {
+      "name": "exact center halfwidth Taylor bound (Fraction(0, 1), Fraction(1, 3))",
+      "passed": true,
+      "exact_bounds": [
+        "61/21",
+        "3",
+        "2/7"
+      ]
+    },
+    {
+      "name": "exact center halfwidth Taylor bound (Fraction(-2, 5), Fraction(7, 13))",
+      "passed": true,
+      "exact_bounds": [
+        "37/13",
+        "109/35",
+        "2/7"
+      ]
+    },
+    {
+      "name": "exact center halfwidth Taylor bound (Fraction(1, 1), Fraction(4503599627370497, 4503599627370496))",
+      "passed": true,
+      "exact_bounds": [
+        "42784196460019711/15762598695796736",
+        "19/7",
+        "2/7"
+      ]
+    },
+    {
+      "name": "seven nonbinary cells and centers exactly cover declared domain",
+      "passed": true
+    },
+    {
+      "name": "adaptive exact budget 1",
+      "passed": true,
+      "callbacks": 2,
+      "maximum_callbacks": 2,
+      "result": "(False, 'unproved: max_boxes=1 exhausted with 2 pending pieces')"
+    },
+    {
+      "name": "adaptive exact budget 2",
+      "passed": true,
+      "callbacks": 4,
+      "maximum_callbacks": 4,
+      "result": "(False, 'unproved: max_boxes=2 exhausted with 3 pending pieces')"
+    },
+    {
+      "name": "adaptive exact budget 3",
+      "passed": true,
+      "callbacks": 6,
+      "maximum_callbacks": 6,
+      "result": "(False, 'unproved: max_boxes=3 exhausted with 2 pending pieces')"
+    },
+    {
+      "name": "adaptive exact budget 4",
+      "passed": true,
+      "callbacks": 8,
+      "maximum_callbacks": 8,
+      "result": "(False, 'unproved: max_boxes=4 exhausted with 3 pending pieces')"
+    },
+    {
+      "name": "adaptive exact budget 8",
+      "passed": true,
+      "callbacks": 16,
+      "maximum_callbacks": 16,
+      "result": "(False, 'unproved: max_boxes=8 exhausted with 3 pending pieces')"
+    },
+    {
+      "name": "adaptive exact budget 13",
+      "passed": true,
+      "callbacks": 26,
+      "maximum_callbacks": 26,
+      "result": "(False, 'unproved: max_boxes=13 exhausted with 2 pending pieces')"
+    },
+    {
+      "name": "invalid uniform parameter {'max_n': 0}",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid uniform parameter {'max_n': True}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid uniform parameter {'max_n': 2.0}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_n must be a positive integer"
+    },
+    {
+      "name": "invalid uniform parameter {'base_n': False}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid uniform parameter {'base_n': 8, 'max_n': 7}",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "base_n must not exceed max_n"
+    },
+    {
+      "name": "invalid adaptive parameter {'max_boxes': Fraction(1, 1)}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive parameter {'max_boxes': np.int64(3)}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive parameter {'min_w': nan}",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be finite"
+    },
+    {
+      "name": "invalid adaptive parameter {'min_w': (0.1+0j)}",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "min_w must be an int, Fraction or finite float"
+    },
+    {
+      "name": "invalid adaptive parameter {'min_w': Fraction(3, 2)}",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be positive and at most b-a"
+    },
+    {
+      "name": "nonbool requested sign der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable function der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "nonbool requested sign der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable function der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "honest sign independent (Fraction(-2, 1), Fraction(-1, 1), False)",
+      "passed": true
+    },
+    {
+      "name": "honest sign independent (-1, 2, True)",
+      "passed": true
+    },
+    {
+      "name": "honest sign independent (1.0, 2.0, False)",
+      "passed": true
+    },
+    {
+      "name": "E1 specialized generator has no dependency on repaired sign helpers",
+      "passed": true
+    },
+    {
+      "name": "E1 named obligation contract still contains 57 unique facts",
+      "passed": true
+    },
+    {
+      "name": "E1 independent exact Fraction partition",
+      "passed": true
+    },
+    {
+      "name": "E1 dedicated path rejects integer false derivative",
+      "passed": true
+    },
+    {
+      "name": "independent local small/close wave integrals ([0.01, 0.2, 1.3], 0.02)",
+      "passed": true,
+      "worst_relative_error": 3.176480915530521e-16
+    },
+    {
+      "name": "local products symmetric ([0.01, 0.2, 1.3], 0.02)",
+      "passed": true
+    },
+    {
+      "name": "independent local small/close wave integrals ([1e-12, 1e-05, 1.0, 20.0], 0.01)",
+      "passed": true,
+      "worst_relative_error": 8.939948062310989e-13
+    },
+    {
+      "name": "local products symmetric ([1e-12, 1e-05, 1.0, 20.0], 0.01)",
+      "passed": true
+    },
+    {
+      "name": "independent local small/close wave integrals ([99.0, 99.00000000000001, 199.0], 0.03)",
+      "passed": true,
+      "worst_relative_error": 2.1872167363068065e-16
+    },
+    {
+      "name": "local products symmetric ([99.0, 99.00000000000001, 199.0], 0.03)",
+      "passed": true
+    },
+    {
+      "name": "independent local small/close wave integrals ([3.0, 5.0, 9.0], 8.881784197001252e-16)",
+      "passed": true,
+      "worst_relative_error": 0.0
+    },
+    {
+      "name": "local products symmetric ([3.0, 5.0, 9.0], 8.881784197001252e-16)",
+      "passed": true
+    },
+    {
+      "name": "61 retained frequencies preserve exact indexed prefix 1",
+      "passed": true
+    },
+    {
+      "name": "constant unweighted identity 1",
+      "passed": true
+    },
+    {
+      "name": "rho-weighted pairing has distinct density factor 1",
+      "passed": true
+    },
+    {
+      "name": "independent 61-mode rho2 h2 Q (1, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "target": 202.32689022233183
+    },
+    {
+      "name": "independent 61-mode rho2 h2 Q (1, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "target": 597.1110662659062
+    },
+    {
+      "name": "physical value derivative share mass (1, 1)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (1, 1)",
+      "passed": true
+    },
+    {
+      "name": "physical value derivative share mass (1, 20)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (1, 20)",
+      "passed": true
+    },
+    {
+      "name": "physical value derivative share mass (1, 60)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (1, 60)",
+      "passed": true
+    },
+    {
+      "name": "signed Parseval residual not silently truncated 1",
+      "passed": true
+    },
+    {
+      "name": "61 retained frequencies preserve exact indexed prefix 4",
+      "passed": true
+    },
+    {
+      "name": "constant unweighted identity 4",
+      "passed": true
+    },
+    {
+      "name": "rho-weighted pairing has distinct density factor 4",
+      "passed": true
+    },
+    {
+      "name": "independent 61-mode rho2 h2 Q (4, 20)",
+      "passed": true,
+      "Q": 202.32689022233308,
+      "target": 202.32689022233183
+    },
+    {
+      "name": "independent 61-mode rho2 h2 Q (4, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "target": 597.1110662659062
+    },
+    {
+      "name": "physical value derivative share mass (4, 1)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (4, 1)",
+      "passed": true
+    },
+    {
+      "name": "physical value derivative share mass (4, 20)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (4, 20)",
+      "passed": true
+    },
+    {
+      "name": "physical value derivative share mass (4, 60)",
+      "passed": true
+    },
+    {
+      "name": "eigfun is same shared normalized value (4, 60)",
+      "passed": true
+    },
+    {
+      "name": "signed Parseval residual not silently truncated 4",
+      "passed": true
+    },
+    {
+      "name": "roundoff-negative Parseval residues actually preserved",
+      "passed": true,
+      "count": 26
+    },
+    {
+      "name": "callback resolution/convergence budget 64",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 64",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 64
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 64",
+      "passed": true,
+      "sample_orders": []
+    },
+    {
+      "name": "callback resolution/convergence budget 128",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 128",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 128
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 128",
+      "passed": true,
+      "sample_orders": []
+    },
+    {
+      "name": "callback resolution/convergence budget 255",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 255",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 255
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 255",
+      "passed": true,
+      "sample_orders": []
+    },
+    {
+      "name": "callback resolution/convergence budget 256",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 256",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 256
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 256",
+      "passed": true,
+      "sample_orders": [
+        256
+      ]
+    },
+    {
+      "name": "callback resolution/convergence budget 512",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 512",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 512
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 512",
+      "passed": true,
+      "sample_orders": [
+        256,
+        512
+      ]
+    },
+    {
+      "name": "callback resolution/convergence budget 1023",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "callback budget status remains unresolved 1023",
+      "passed": true,
+      "diagnostics": {
+        "status": "UNRESOLVED",
+        "method": "adaptive-split-gauss",
+        "MaxOrder": 1023
+      }
+    },
+    {
+      "name": "callback has no order above explicit budget 1023",
+      "passed": true,
+      "sample_orders": [
+        256,
+        512
+      ]
+    },
+    {
+      "name": "ordinary callback explicitly reports estimated errors not enclosure",
+      "passed": true,
+      "diagnostics": {
+        "method": "adaptive-split-gauss",
+        "status": "CONVERGED_NUMERICAL_ESTIMATE",
+        "order": 1024,
+        "previous_order": 512,
+        "estimated_absolute_errors": [
+          2.098321516541546e-14,
+          4.196643033083092e-14,
+          2.098321516541546e-14,
+          2.098321516541546e-14
+        ],
+        "AbsTol": 1e-10,
+        "RelTol": 1e-10,
+        "MaxOrder": 1024,
+        "black_box_error_enclosure": null,
+        "modal_Gram_error": 2.9531932455029164e-14,
+        "parseval_total_energy": [
+          0.9999999999999754,
+          0.9999999999999751,
+          0.9999999999999744,
+          0.9999999999999752,
+          0.999999999999976,
+          0.9999999999999774,
+          0.9999999999999771,
+          0.9999999999999777,
+          0.9999999999999777,
+          0.9999999999999769,
+          0.999999999999976,
+          0.9999999999999759,
+          0.9999999999999756,
+          0.9999999999999751,
+          0.9999999999999728,
+          0.9999999999999714,
+          0.9999999999999716,
+          0.9999999999999711,
+          0.9999999999999708,
+          0.9999999999999711,
+          0.9999999999999719,
+          0.9999999999999726,
+          0.999999999999974,
+          0.9999999999999751,
+          0.999999999999975,
+          0.9999999999999744,
+          0.9999999999999747,
+          0.9999999999999754,
+          0.9999999999999767,
+          0.9999999999999785,
+          0.9999999999999793,
+          0.9999999999999791,
+          0.9999999999999785,
+          0.9999999999999795,
+          0.9999999999999809,
+          0.9999999999999823,
+          0.9999999999999832,
+          0.9999999999999822,
+          0.9999999999999812,
+          0.9999999999999796,
+          0.9999999999999802,
+          0.9999999999999798,
+          0.9999999999999791,
+          0.999999999999979,
+          0.9999999999999782,
+          0.9999999999999793,
+          0.9999999999999809,
+          0.9999999999999795,
+          0.9999999999999797,
+          0.9999999999999795,
+          0.9999999999999785,
+          0.9999999999999787,
+          0.9999999999999774,
+          0.9999999999999762,
+          0.9999999999999769,
+          0.9999999999999765,
+          0.999999999999978,
+          0.999999999999979,
+          0.9999999999999796,
+          0.9999999999999787,
+          0.999999999999978
+        ],
+        "parseval_remainder_raw": [
+          2.4424906541753444e-14,
+          2.531308496145357e-14,
+          2.5424107263916085e-14,
+          2.4313884239290928e-14,
+          2.3314683517128287e-14,
+          2.19824158875781e-14,
+          2.3092638912203256e-14,
+          2.275957200481571e-14,
+          2.298161660974074e-14,
+          2.2648549702353193e-14,
+          2.398081733190338e-14,
+          2.4313884239290928e-14,
+          2.4424906541753444e-14,
+          2.4646951146678475e-14,
+          2.653433028854124e-14,
+          2.842170943040401e-14,
+          2.8199664825478976e-14,
+          2.930988785010413e-14,
+          2.986499936241671e-14,
+          2.930988785010413e-14,
+          2.808864252301646e-14,
+          2.786659791809143e-14,
+          2.5757174171303632e-14,
+          2.4646951146678475e-14,
+          2.5202062658991053e-14,
+          2.5202062658991053e-14,
+          2.55351295663786e-14,
+          2.4868995751603507e-14,
+          2.3092638912203256e-14,
+          2.1538326677728037e-14,
+          2.1094237467877974e-14,
+          2.0650148258027912e-14,
+          2.1316282072803006e-14,
+          2.0539125955565396e-14,
+          1.9761969838327786e-14,
+          1.787459069646502e-14,
+          1.6986412276764895e-14,
+          1.7763568394002505e-14,
+          1.8762769116165146e-14,
+          2.042810365310288e-14,
+          1.9984014443252818e-14,
+          1.9761969838327786e-14,
+          2.1094237467877974e-14,
+          2.142730437526552e-14,
+          2.1760371282653068e-14,
+          2.0872192862952943e-14,
+          1.865174681370263e-14,
+          2.0761170560490427e-14,
+          2.0317081350640365e-14,
+          2.098321516541546e-14,
+          2.1760371282653068e-14,
+          2.1094237467877974e-14,
+          2.2870594307278225e-14,
+          2.4202861936828413e-14,
+          2.19824158875781e-14,
+          2.3314683517128287e-14,
+          2.220446049250313e-14,
+          2.0761170560490427e-14,
+          2.020605904817785e-14,
+          2.1538326677728037e-14,
+          2.1316282072803006e-14
+        ],
+        "spectral_tail_certification": "NOT_CERTIFIED_FLOAT_INPUT",
+        "sign_certified": false
+      }
+    },
+    {
+      "name": "ordinary callback uses resolved finite order",
+      "passed": true
+    },
+    {
+      "name": "ordinary resolved callback Q60",
+      "passed": true
+    },
+    {
+      "name": "new thin direction cuts included (40, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (40, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (40, 0.125)",
+      "passed": true,
+      "error": 4.440892098500626e-16,
+      "C00": 0.2928932188154729
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (40, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "2^-40 ordinary positive control 0.125",
+      "passed": true
+    },
+    {
+      "name": "new thin direction cuts included (40, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (40, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (40, 0.375)",
+      "passed": true,
+      "error": 4.440892098500626e-16,
+      "C00": 1.707106781188568
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (40, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "2^-40 ordinary positive control 0.375",
+      "passed": true
+    },
+    {
+      "name": "new thin direction cuts included (40, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (40, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (40, 0.5)",
+      "passed": true,
+      "error": 8.881784197001252e-16,
+      "C00": 2.000000000000001
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (40, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "2^-40 ordinary positive control 0.5",
+      "passed": true
+    },
+    {
+      "name": "new thin direction cuts included (40, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (40, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (40, 0.875)",
+      "passed": true,
+      "error": 1.9984014443252818e-15,
+      "C00": 0.2928932188114323
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (40, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "2^-40 ordinary positive control 0.875",
+      "passed": true
+    },
+    {
+      "name": "new thin direction cuts included (50, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (50, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (50, 0.125)",
+      "passed": true,
+      "error": 4.440892098500626e-16,
+      "C00": 0.2928932188134544
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (50, 0.125)",
+      "passed": true
+    },
+    {
+      "name": "ordinary new thin cut node collapse 0.125",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "new thin direction cuts included (50, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (50, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (50, 0.375)",
+      "passed": true,
+      "error": 6.661338147750939e-16,
+      "C00": 1.70710678118655
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (50, 0.375)",
+      "passed": true
+    },
+    {
+      "name": "ordinary new thin cut node collapse 0.375",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "new thin direction cuts included (50, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (50, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (50, 0.5)",
+      "passed": true,
+      "error": 9.92896876885061e-16,
+      "C00": 1.9999999999999996
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (50, 0.5)",
+      "passed": true
+    },
+    {
+      "name": "ordinary new thin cut node collapse 0.5",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "new thin direction cuts included (50, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction recovers exact mass (50, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "new thin direction local pairings independently matched (50, 0.875)",
+      "passed": true,
+      "error": 4.440892098500626e-16,
+      "C00": 0.2928932188134507
+    },
+    {
+      "name": "new thin direction Parseval energy independently matched (50, 0.875)",
+      "passed": true
+    },
+    {
+      "name": "ordinary new thin cut node collapse 0.875",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "density versus direction split block ownership",
+      "passed": true,
+      "error": 2.220446049250313e-16
+    },
+    {
+      "name": "every true cut plus optional cut included",
+      "passed": true,
+      "intervals": 7
+    },
+    {
+      "name": "density-block Parseval weighting oracle",
+      "passed": true
+    },
+    {
+      "name": "weighted/unweighted block ownership matches resolved callback",
+      "passed": true
+    },
+    {
+      "name": "genuine thin density analytic pairing 40",
+      "passed": true,
+      "error": 4.996003610813204e-16
+    },
+    {
+      "name": "genuine thin density common mass 40",
+      "passed": true
+    },
+    {
+      "name": "genuine thin density analytic pairing 50",
+      "passed": true,
+      "error": 4.440892098500626e-16
+    },
+    {
+      "name": "genuine thin density common mass 50",
+      "passed": true
+    },
+    {
+      "name": "unresolved cumulative narrow density width",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "density width is not resolved by its cumulative coordinates"
+    },
+    {
+      "name": "nonfinite direction sample",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction samples must be a nonempty finite real vector"
+    },
+    {
+      "name": "wrong shape direction sample",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction samples must be a nonempty finite real vector"
+    },
+    {
+      "name": "complex direction sample",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction samples must be real"
+    },
+    {
+      "name": "invalid MaxOrder bool",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "MaxOrder must be an integer >= 8"
+    },
+    {
+      "name": "invalid callback error tolerance",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "AbsTol must be finite and positive"
+    },
+    {
+      "name": "unresolved P3 bump width 8.881784197001252e-16",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "bump width cannot be resolved reliably in double-precision coordinates"
+    },
+    {
+      "name": "unresolved P3 bump width 9.094947017729282e-13",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "bump width cannot be resolved reliably in double-precision coordinates"
+    },
+    {
+      "name": "resolvable P3 support positive control",
+      "passed": true
+    },
+    {
+      "name": "R15 enumerator prefix persists under large contrast",
+      "passed": true
+    },
+    {
+      "name": "R15 enumerator frequencies still bind claimed index",
+      "passed": true
+    },
+    {
+      "name": "R15 unresolved tol remains rejected",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "requested tol is unresolved in binary64; use higher precision"
+    },
+    {
+      "name": "deprecated R15 range scale affects no index",
+      "passed": true
+    },
+    {
+      "name": "R14 zero Green coordinate order and duplicates D",
+      "passed": true
+    },
+    {
+      "name": "R14 zero Green coordinate order and duplicates N",
+      "passed": true
+    },
+    {
+      "name": "R14 negative Green parameter still supported",
+      "passed": true
+    },
+    {
+      "name": "R14 exact Green pole remains rejected",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "Green target is at or numerically near a pole"
+    },
+    {
+      "name": "R14 spectrum wrong geometry",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "R14 spectrum wrong boundary",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "spectral table geometry or boundary does not match the equation"
+    },
+    {
+      "name": "R14 reduced target wrong mode",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "target eigenvalue does not uniquely match the specified pole mode"
+    },
+    {
+      "name": "R14 reduced target arbitrary positive is not eigenvalue",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "target eigenvalue does not uniquely match the specified pole mode"
+    },
+    {
+      "name": "R14 reduced requested pole outside coverage",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "pole mode is outside the requested prefix"
+    },
+    {
+      "name": "R14 valid reduced Green kernel finite symmetric",
+      "passed": true
+    },
+    {
+      "name": "R14 shared stationarity guard accepts actual ordinary solved point",
+      "passed": true
+    },
+    {
+      "name": "R14 explicit failed solver result rejects stationary label",
+      "passed": true
+    },
+    {
+      "name": "R14 nonstationary perturbation not relabeled stationary",
+      "passed": true
+    },
+    {
+      "name": "R14 tiny denominator configuration not accepted as stationary",
+      "passed": true
+    },
+    {
+      "name": "R14 faithful independent edge roundtrips retained",
+      "passed": true
+    },
+    {
+      "name": "R14 Jacobian CROSS sectors retained",
+      "passed": true
+    },
+    {
+      "name": "R14 commuting identity cannot be Jacobian CROSS decomposition",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "J is not reversal-anticommuting within tolerance: JP+PJ=2, diagonal=1, limit=1.01e-06"
+    },
+    {
+      "name": "R14 general quotient Jacobian term retained off stationarity",
+      "passed": true
+    },
+    {
+      "name": "all frozen input bytes remain unchanged after independent checks",
+      "passed": true
+    },
+    {
+      "name": "every active project module loaded from frozen root",
+      "passed": true
+    }
+  ],
+  "error": null,
+  "elapsed_seconds": 10.71899999998277,
+  "meaning": "independent finite software review; no interval, infinite-tail or all-integer certification",
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "optimize": 1,
+    "numpy": "2.2.6",
+    "mpmath": "1.3.0",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "sources": {
+    "misc/rigid1d.py": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55",
+    "misc/e1_certgen.py": "db92fc5dbeaa0f2ec5f399320210d7d4246c08b7e146d86d8602ba1429bdb829",
+    "scripts/_gapn2_second_variation_probe.py": "cb855ece3374129e794d9a922e779bd182ec0ef645f97e9823e401fb51373e85",
+    "scripts/op03_gap_fixed.py": "5dab895bc9c574ea48aa35eff337f33e38a6a3d11d4b4eb7d5e48e58fe54d9df",
+    "scripts/op03_gap_fh.py": "9cea8a73ade19abe5e7d530eab553571fc5cc5ff87242db2997a78a9efb1c0b8",
+    "scripts/op03_gap_table.json": "dbad285bddf2bfeb728b67f98a303f25e5fe3f7e59d4219f1470d360e53790bd",
+    "research/artifacts/proof-audit-round16-20261006/checks.py": "62227ff5365fd52e648e33d4a15a4dcadc323555a9905e99c81322048dca4b6c",
+    "scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+    "scripts/_gapn2_symmetry_recon.py": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+    "scripts/_gapn2_jacobian_probe.py": "793705efee95718b7917ba3669e1bc2108fc5f7ed1205b226f9ed5679451b7dd",
+    "scripts/_gapn2_jacobian_analytic.py": "4d7cb5385b6f2b8d668ec4c5c417876a57713b6780bb11e1478cb0fcbc00aa02",
+    "scripts/_gapn2_jacobian_spectral.py": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+    "scripts/_sl_spectral_identity.py": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9",
+    "scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+    "misc/e1_certificate_io.py": "65bab32c155fae9402b35a10d1c482c220cbf85648ae133e9a219cdd39c3a940"
+  },
+  "loaded_dependencies": {
+    "rigid1d": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\misc\\rigid1d.py",
+    "_gapn2_second_variation_probe": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_gapn2_second_variation_probe.py",
+    "_gapn2_symmetry_recon": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_gapn2_symmetry_recon.py",
+    "_sl_prufer": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_sl_prufer.py",
+    "_sl_spectral_identity": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_sl_spectral_identity.py",
+    "_gapn2_jacobian_probe": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_gapn2_jacobian_probe.py",
+    "_gapn2_jacobian_analytic": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_gapn2_jacobian_analytic.py",
+    "_gapn2_jacobian_spectral": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\_gapn2_jacobian_spectral.py",
+    "e1_certgen": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\misc\\e1_certgen.py",
+    "e1_certificate_io": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\misc\\e1_certificate_io.py",
+    "op03_gap_fixed": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\op03_gap_fixed.py",
+    "reflection_seeds": "F:\\tools\\math-audit-round16-20261006\\software-review-v1\\root\\scripts\\reflection_seeds.py"
+  },
+  "reviewer_script_sha256": "11307032dfa1acb89a6b588a8f28c016bd49526e00dd4308d27db7bf1c936cd6"
+}

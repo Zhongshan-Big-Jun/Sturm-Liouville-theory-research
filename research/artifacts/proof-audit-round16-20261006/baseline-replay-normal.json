@@ -1,0 +1,503 @@
+{
+  "baseline_commit": "ec45bf99ae746b0a3699557e06700a3c00c5a831",
+  "meaning": "baseline defects confirmed plus finite regression/algebra; not theorem certification",
+  "all_confirmed": true,
+  "count": 34,
+  "checks": [
+    {
+      "name": "current_half_spectrum_D",
+      "confirmed": true
+    },
+    {
+      "name": "current_half_spectrum_N",
+      "confirmed": true
+    },
+    {
+      "name": "current_wrong_pole_pairing_rejected",
+      "confirmed": true
+    },
+    {
+      "name": "current_Green_zero_parameter_and_order",
+      "confirmed": true
+    },
+    {
+      "name": "round14_endpoint_pseudostationary_still_rejected",
+      "confirmed": true,
+      "evidence": {
+        "accepted": false,
+        "status": "rejected",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          1e-06,
+          2e-06,
+          0.9999979999999998,
+          0.9999989999999999
+        ],
+        "absolute_max": 5.702438102321175e-10,
+        "eigenvalues": [
+          39.478417604357396,
+          88.82643960980403
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          1.889736367381095e-08,
+          7.558945467694662e-08,
+          7.558945468361957e-08,
+          1.889736367714741e-08
+        ],
+        "relative_defects": [
+          -0.6701030929013225,
+          -0.670103092860539,
+          -0.6701030928779051,
+          -0.6701030929360546
+        ],
+        "relative_max": 0.6701030929360546,
+        "reason": "absolute or local relative balance fails"
+      }
+    },
+    {
+      "name": "quadrature_can_reverse_Q_sign",
+      "confirmed": true,
+      "order": 32,
+      "n": 20,
+      "Q": -1667.4793719376748,
+      "exact": 202.32689022233183,
+      "relative_error": -9.241511398239377
+    },
+    {
+      "name": "oscillatory_Gram_not_identity_at_default_order",
+      "confirmed": true,
+      "max_Gram_error": 0.39265586569336625
+    },
+    {
+      "name": "constant_scaling_Q_wrong_at_default_order",
+      "confirmed": true,
+      "order": 64,
+      "n": 60,
+      "Q": 1468.8578582414048,
+      "exact": 597.1110662659062,
+      "relative_error": 1.459940773543278
+    },
+    {
+      "name": "computed_pairings_violate_exact_Bessel_budget",
+      "confirmed": true,
+      "finite_pairing_energy": 2.029327385671214,
+      "exact_full_energy": 1.0
+    },
+    {
+      "name": "same_roots_analytic_pairing_removes_error",
+      "confirmed": true,
+      "Q": 597.1110662659121,
+      "expected": 597.1110662659062,
+      "Gram_error": 7.78721461250592e-15
+    },
+    {
+      "name": "higher_order_positive_control",
+      "confirmed": true,
+      "rows": [
+        {
+          "order": 128,
+          "n": 2,
+          "Q": 24.674011002723688,
+          "exact": 24.674011002723397,
+          "relative_error": 1.176836406102666e-14
+        },
+        {
+          "order": 128,
+          "n": 20,
+          "Q": 202.3268902223383,
+          "exact": 202.32689022233183,
+          "relative_error": 3.197442310920451e-14
+        },
+        {
+          "order": 128,
+          "n": 60,
+          "Q": 597.1110662659266,
+          "exact": 597.1110662659062,
+          "relative_error": 3.419486915845482e-14
+        }
+      ]
+    },
+    {
+      "name": "equal_density_split_changes_quadrature_not_problem",
+      "confirmed": true,
+      "Q_one_block": 1468.8578582414048,
+      "Q_two_identical_blocks": 597.111045383499,
+      "expected": 597.1110662659062,
+      "note": "two halves improve but do not meet the earlier 2e-7 positive-control target"
+    },
+    {
+      "name": "four_identical_blocks_positive_control_same_tolerance",
+      "confirmed": true,
+      "Q": 597.1110662658612,
+      "expected": 597.1110662659062
+    },
+    {
+      "name": "resolved_geometry_unresolved_thin_cell_nodes",
+      "confirmed": true,
+      "exponent": 50,
+      "order": 64,
+      "integrated_direction": 0.9390022688259569,
+      "first_pairing": 1.8780045376519134,
+      "unique_nodes": 9,
+      "nodes_at_right": 10
+    },
+    {
+      "name": "thin_pairing_loses_positive_mass",
+      "confirmed": true,
+      "exact_lower_bound": "46586159558387430505003842797447/23293079779193715252501921398784",
+      "exponent": 50,
+      "order": 64,
+      "integrated_direction": 0.9390022688259569,
+      "first_pairing": 1.8780045376519134,
+      "unique_nodes": 9,
+      "nodes_at_right": 10
+    },
+    {
+      "name": "increasing_order_does_not_fix_coordinate_loss",
+      "confirmed": true,
+      "rows": [
+        {
+          "exponent": 50,
+          "order": 64,
+          "integrated_direction": 0.9390022688259569,
+          "first_pairing": 1.8780045376519134,
+          "unique_nodes": 9,
+          "nodes_at_right": 10
+        },
+        {
+          "exponent": 50,
+          "order": 128,
+          "integrated_direction": 0.9399739570364813,
+          "first_pairing": 1.8799479140729616,
+          "unique_nodes": 9,
+          "nodes_at_right": 20
+        }
+      ]
+    },
+    {
+      "name": "thicker_resolved_cell_positive_control",
+      "confirmed": true,
+      "rows": [
+        {
+          "exponent": 40,
+          "order": 64,
+          "integrated_direction": 1.0,
+          "first_pairing": 2.0,
+          "unique_nodes": 64,
+          "nodes_at_right": 0
+        },
+        {
+          "exponent": 40,
+          "order": 128,
+          "integrated_direction": 1.0,
+          "first_pairing": 1.9999999999999984,
+          "unique_nodes": 128,
+          "nodes_at_right": 0
+        }
+      ]
+    },
+    {
+      "name": "float_endpoints_false_adaptive_certificate",
+      "confirmed": true,
+      "returned": [
+        true,
+        1
+      ],
+      "derivative_at_right": "-1/18014398509481984",
+      "a": "0x1.0000000000000p+0",
+      "b": "0x1.0000000000001p+0",
+      "t": "18014398509481987/18014398509481984"
+    },
+    {
+      "name": "float_endpoints_false_grid_certificate",
+      "confirmed": true,
+      "returned": [
+        true,
+        1
+      ]
+    },
+    {
+      "name": "Fraction_endpoints_reject_false_claim",
+      "confirmed": true,
+      "adaptive": [
+        false,
+        "stuck at n=8 piece [576460752303423615/576460752303423488,4503599627370497/4503599627370496] f=[-1/18014398509481984,-31/576460752303423488] M=1"
+      ],
+      "grid": [
+        false,
+        "failed at n=2 piece (0, Fraction(9007199254740993, 9007199254740992), Fraction(-1, 18014398509481984), Fraction(3, 18014398509481984), Fraction(1, 1))"
+      ]
+    },
+    {
+      "name": "plain_integer_endpoints_still_float_division",
+      "confirmed": true,
+      "returned_integer": [
+        true,
+        3
+      ],
+      "returned_Fraction": [
+        false,
+        "failed at n=6 piece (2, Fraction(5, 6), Fraction(-1, 4611686018427387904), Fraction(4611686018427387859, 207525870829232455680), Fraction(1, 15))"
+      ],
+      "derivative_at_one": "-1/4611686018427387904"
+    },
+    {
+      "name": "honest_positive_polynomial_control",
+      "confirmed": true
+    },
+    {
+      "name": "Hermite_and_finite_span_r1",
+      "confirmed": true,
+      "order": 1,
+      "low_columns": 2,
+      "degree_cutoff": 4,
+      "exact_rank": 5
+    },
+    {
+      "name": "Hermite_and_finite_span_r2",
+      "confirmed": true,
+      "order": 2,
+      "low_columns": 2,
+      "degree_cutoff": 6,
+      "exact_rank": 5
+    },
+    {
+      "name": "Hermite_and_finite_span_r3",
+      "confirmed": true,
+      "order": 3,
+      "low_columns": 4,
+      "degree_cutoff": 8,
+      "exact_rank": 7
+    },
+    {
+      "name": "Hermite_and_finite_span_r4",
+      "confirmed": true,
+      "order": 4,
+      "low_columns": 4,
+      "degree_cutoff": 10,
+      "exact_rank": 7
+    },
+    {
+      "name": "Hermite_and_finite_span_r5",
+      "confirmed": true,
+      "order": 5,
+      "low_columns": 6,
+      "degree_cutoff": 12,
+      "exact_rank": 9
+    },
+    {
+      "name": "Hermite_and_finite_span_r6",
+      "confirmed": true,
+      "order": 6,
+      "low_columns": 6,
+      "degree_cutoff": 14,
+      "exact_rank": 9
+    },
+    {
+      "name": "exact_high_band_and_parity_r1",
+      "confirmed": true
+    },
+    {
+      "name": "exact_high_band_and_parity_r2",
+      "confirmed": true
+    },
+    {
+      "name": "exact_high_band_and_parity_r3",
+      "confirmed": true
+    },
+    {
+      "name": "exact_high_band_and_parity_r4",
+      "confirmed": true
+    },
+    {
+      "name": "new_odd_order_Gram_positive_exactly",
+      "confirmed": true,
+      "LDL_pivots": [
+        "2/3",
+        "1/2",
+        "552224/121275",
+        "1269198937/289917600",
+        "57998582942/179898874155",
+        "2501048340058/10446144824115"
+      ]
+    },
+    {
+      "name": "bounded_direction_tail_lower_bound_is_sharp",
+      "confirmed": true,
+      "direction": "rho=2, h=2 cos(pi x), n>=2, N=n+1",
+      "exact_difference": "-pi**2*(n + 1)**4/(8*(2*n + 3))"
+    }
+  ],
+  "data": {
+    "quadrature": [
+      {
+        "order": 32,
+        "n": 2,
+        "Q": 24.437963151388587,
+        "exact": 24.674011002723397,
+        "relative_error": -0.009566659077389406
+      },
+      {
+        "order": 32,
+        "n": 20,
+        "Q": -1667.4793719376748,
+        "exact": 202.32689022233183,
+        "relative_error": -9.241511398239377
+      },
+      {
+        "order": 32,
+        "n": 60,
+        "Q": -12667.25822341386,
+        "exact": 597.1110662659062,
+        "relative_error": -22.21424126775916
+      },
+      {
+        "order": 64,
+        "n": 2,
+        "Q": 24.67401100272341,
+        "exact": 24.674011002723397,
+        "relative_error": 6.661338147750939e-16
+      },
+      {
+        "order": 64,
+        "n": 20,
+        "Q": 179.83090277819065,
+        "exact": 202.32689022233183,
+        "relative_error": -0.11118634512407577
+      },
+      {
+        "order": 64,
+        "n": 60,
+        "Q": 1468.8578582414048,
+        "exact": 597.1110662659062,
+        "relative_error": 1.459940773543278
+      },
+      {
+        "order": 128,
+        "n": 2,
+        "Q": 24.674011002723688,
+        "exact": 24.674011002723397,
+        "relative_error": 1.176836406102666e-14
+      },
+      {
+        "order": 128,
+        "n": 20,
+        "Q": 202.3268902223383,
+        "exact": 202.32689022233183,
+        "relative_error": 3.197442310920451e-14
+      },
+      {
+        "order": 128,
+        "n": 60,
+        "Q": 597.1110662659266,
+        "exact": 597.1110662659062,
+        "relative_error": 3.419486915845482e-14
+      }
+    ],
+    "thin_cells": [
+      {
+        "exponent": 40,
+        "order": 64,
+        "integrated_direction": 1.0,
+        "first_pairing": 2.0,
+        "unique_nodes": 64,
+        "nodes_at_right": 0
+      },
+      {
+        "exponent": 40,
+        "order": 128,
+        "integrated_direction": 1.0,
+        "first_pairing": 1.9999999999999984,
+        "unique_nodes": 128,
+        "nodes_at_right": 0
+      },
+      {
+        "exponent": 50,
+        "order": 64,
+        "integrated_direction": 0.9390022688259569,
+        "first_pairing": 1.8780045376519134,
+        "unique_nodes": 9,
+        "nodes_at_right": 10
+      },
+      {
+        "exponent": 50,
+        "order": 128,
+        "integrated_direction": 0.9399739570364813,
+        "first_pairing": 1.8799479140729616,
+        "unique_nodes": 9,
+        "nodes_at_right": 20
+      }
+    ],
+    "integer_lifts": [
+      {
+        "r": 1,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2"
+        ]
+      },
+      {
+        "r": 2,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2"
+        ]
+      },
+      {
+        "r": 3,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2",
+          "-x**5/16 + x**4/16 + x**3/8 - x**2/8 - x/16 + 1/16",
+          "x**5/16 + x**4/16 - x**3/8 - x**2/8 + x/16 + 1/16"
+        ]
+      },
+      {
+        "r": 4,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2",
+          "5*x**7/96 - x**6/32 - 7*x**5/32 + 5*x**4/32 + 9*x**3/32 - 7*x**2/32 - 11*x/96 + 3/32",
+          "-5*x**7/96 - x**6/32 + 7*x**5/32 + 5*x**4/32 - 9*x**3/32 - 7*x**2/32 + 11*x/96 + 3/32"
+        ]
+      },
+      {
+        "r": 5,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2",
+          "-35*x**9/768 + 5*x**8/256 + 15*x**7/64 - 7*x**6/64 - 63*x**5/128 + 35*x**4/128 + 89*x**3/192 - 19*x**2/64 - 41*x/256 + 29/256",
+          "35*x**9/768 + 5*x**8/256 - 15*x**7/64 - 7*x**6/64 + 63*x**5/128 + 35*x**4/128 - 89*x**3/192 - 19*x**2/64 + 41*x/256 + 29/256",
+          "-x**9/768 + x**8/768 + x**7/192 - x**6/192 - x**5/128 + x**4/128 + x**3/192 - x**2/192 - x/768 + 1/768",
+          "x**9/768 + x**8/768 - x**7/192 - x**6/192 + x**5/128 + x**4/128 - x**3/192 - x**2/192 + x/768 + 1/768"
+        ]
+      },
+      {
+        "r": 6,
+        "lifts": [
+          "1/2 - x/2",
+          "x/2 + 1/2",
+          "21*x**11/512 - 7*x**10/512 - 385*x**9/1536 + 45*x**8/512 + 165*x**7/256 - 63*x**6/256 - 231*x**5/256 + 105*x**4/256 + 1027*x**3/1536 - 187*x**2/512 - 103*x/512 + 65/512",
+          "-21*x**11/512 - 7*x**10/512 + 385*x**9/1536 + 45*x**8/512 - 165*x**7/256 - 63*x**6/256 + 231*x**5/256 + 105*x**4/256 - 1027*x**3/1536 - 187*x**2/512 + 103*x/512 + 65/512",
+          "7*x**11/3840 - x**10/768 - x**9/96 + x**8/128 + 3*x**7/128 - 7*x**6/384 - 5*x**5/192 + x**4/48 + 11*x**3/768 - 3*x**2/256 - x/320 + 1/384",
+          "-7*x**11/3840 - x**10/768 + x**9/96 + x**8/128 - 3*x**7/128 - 7*x**6/384 + 5*x**5/192 + x**4/48 - 11*x**3/768 - 3*x**2/256 + x/320 + 1/384"
+        ]
+      }
+    ]
+  },
+  "elapsed_s": 2.2060577869415283,
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "optimize": 0,
+    "numpy": "2.2.6",
+    "sympy": "1.14.0",
+    "platform": "Windows-10-10.0.26200-SP0"
+  }
+}

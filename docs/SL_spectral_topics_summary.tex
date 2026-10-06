@@ -9,13 +9,14 @@
 \newtheorem{theorem}{定理}[section]
 \newtheorem{proposition}[theorem]{命题}
 \newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
 \newtheorem{remark}[theorem]{注}
 \newtheorem{example}[theorem]{例}
 \newtheorem{definition}[theorem]{定义}
 
 \title{SL 边值问题的谱分析: 正交函数系完备性与特征值间距的最优界}
 \author{研究总结文档 (项目: BVE research)}
-\date{2026-08-10; 2026-10-04 G2 与 A11 补证修订}
+\date{2026-08-10; 2026-10-05 全窗口删项与有限约束修订}
 
 \begin{document}
 \maketitle
@@ -31,7 +32,7 @@ Quintero-Roba 的 Krein-Sobolev 正交多项式一文 (OPSFA-16 会议论文集,
 的临界情形. 见 \path{SL_fractional_left_definite.tex} 与
 \path{SL_cofinite_all_orders.tex}. 非仿射命名成员在 $s\ge7/2$ 出域,
 仿射成员 $1,x$ 仍合格; 相容有限组合与逐个命名成员须区分.
-第十四轮进一步给出固定 $c>0$ 的真实 $H_c^2$ 任意保留集稠密性判定及发散侧闭包; 条件稳定性和全局 (G1$'$) 仍另计.
+第十五轮进一步给出固定 $c>0$、$0\le s<7/2$ 的真实 $H_c^s$ 任意保留集判据、发散侧精确闭包及本模型有限连续约束的逐项筛选分类; 条件稳定性和全局 (G1$'$) 仍另计.
 本次仅同步入口与假设, 不重新认证 A1/A12.
 
 以下带 2026-08 日期的更新记录保留当时进度, 当前范围以本段及正文的修订说明为准.
@@ -871,7 +872,8 @@ $\det K_o=(2048\kappa^2/\pi^4)u^{26}+O(u^{28})>0$, 对所有充分大有限 $R$ 
         \path{SL_cofinite_all_orders.tex}; 这不是把旧 $s=2$ 或 $s=3$ 结论机械外推.
         第十四轮 A11 完成固定 $c>0$ 的真实 $H_c^2$ 任意保留集稠密性判定,
         两支倒数和发散时的精确两迹闭包, 以及任一支收敛时的无限余维.
-        收敛侧全部空间元素的描述, 其它阶数及非对角 O1'/O1'LD 的矩可表示性仍开放.
+        第十五轮已扩展到整个成员窗口及本 Krein 模型的有限连续约束逐项筛选, 见第~\ref{sec:a11round15} 节.
+        收敛侧全部元素、成员窗口之外及一般非对角 O1'/O1'LD 的矩可表示性仍开放.
         原 Krein O3 的 $3/2\le s<2$ 已被覆盖, 一般边界约束空间须逐案检验.
         \item \textbf{p-Laplacian 等非线性问题的推广}: Wen-Zhou [7] 的奇异
 		测度技巧在非线性情形的适用范围未定.
@@ -935,8 +937,60 @@ J=\{0,1\},\qquad \sum_{m\in S_e}1/m=\sum_{m\in S_o}1/m=\infty.
 收敛侧的 Cauchy Gram 距离乘积给出无限维实际 $L^2$ 障碍, 经过有限维商及 $K_c^{-1}$ 返回真实空间.
 完整证明见 \path{SL_H2_arbitrary_deletion_proof.md}.
 没有预设被删指标的递推, 没有从扩大单项式空间的稠密性反推差分族.
-收敛侧全部元素描述、其他阶数、非对角 A3/A4、稳定基和误差率仍开放.
+该第十四轮条目的当时范围保留; 第十五轮全成员窗口扩展见第~\ref{sec:a11round15} 节. 收敛侧全部元素描述、一般非对角 A3/A4、稳定基和误差率仍开放.
 
+
+\section{第十五轮: 全成员窗口任意删项与有限约束}\label{sec:a11round15}
+固定 $c>0$, 令 $H_c^s=D(K_c^{s/2})$, $0\le s<7/2$, 使用第一变量线性的复内积.
+原族指标为 $\mathcal D=\{0,1,4,5,\ldots\}$; 任取 $N\subset\mathcal D$,
+令 $S_e=\{m\ge2:2m\in N\}$、$S_o=\{m\ge2:2m+1\in N\}$,
+$Y_N^s=\overline{\operatorname{span}_{\mathbb C}\{p_n:n\in N\}}^{H_c^s}$.
+采用注~\ref{rem:cofinite-current} 的 $I(s)$ 和中心迹 $\tau_0,\tau_1,\tau_4$.
+\begin{theorem}[任意保留集的全窗口判据]
+若 $\sum_{m\in S_e}1/m=\sum_{m\in S_o}1/m=\infty$, 则
+\[
+Y_N^s=\bigcap_{j\in I(s)\setminus N}\ker\tau_j,
+\qquad\operatorname{codim}Y_N^s=|I(s)\setminus N|.
+\]
+任一倒数和收敛时, $Y_N^s$ 的余维无穷.
+故稠密当且仅当两和发散且 $I(s)\subset N$.
+三个临界等号 $s=1/2,3/2,5/2$ 均属于较少迹侧.
+\end{theorem}
+新增连接如下. $X=H^4\cap\ker\mathcal B$ 并非平方域; 对
+$r=\mathcal B(f'')$ 取 $a=(r_+-r_-)/48$, $b=(r_++r_-)/80$,
+则 $q=f-ap_4-bp_5\in D(K_c^2)$, 因为
+$\mathcal B(p_4'')=(24,-24)^T$, $\mathcal B(p_5'')=(40,40)^T$.
+由 $p_4,p_5$ 的窗口成员性得到有界包含 $X\longrightarrow H_c^s$.
+两支参数族
+\[
+P_z^e=|x|^{z+6}-\frac{z+6}{z+4}|x|^{z+4},\qquad P_z^o=xP_z^e
+\]
+在 $\Re z>0$ 为 $X$ 值全纯, 跨 $x=0$ 的前三阶导数连续且四阶弱导数可积,
+$\|P_z^{e,o}\|_{H^4}\le C(1+|z|)^4$ 对 $\Re z\ge0$ 成立.
+对连续复线性泛函 $\ell$, $\ell(P_z^{e,o})/(z+1)^4$ 有界全纯.
+保留的 $m\ge4$ 给出零点 $2m-6$; 发散倒数和与 Blaschke 条件迫使两支恒零,
+$m=3$ 经 $z\to0$ 连续性补齐. 因而 $N$ 与
+$N^\sharp=(N\cap\{0,1,4,5\})\cup\{6,7,\ldots\}$ 有相同零化泛函,
+再合法使用 A12 得到闭包. 收敛侧由 Cauchy Gram 距离乘积得到无限维
+$L^2$ 障碍; 限制到 $H_c^s$ 连续且单射, 从而余维无穷.
+\begin{corollary}[有限余维约束的逐项筛选]
+若 $V=\bigcap_{j=1}^M\ker L_j$, $L_j$ 是 $H_c^s$ 上连续复线性泛函,
+令 $N_V=\{n:p_n\in V\}$, 则
+\[
+\overline{\operatorname{span}\{p_n:n\in N_V\}}^{H_c^s}=V
+\quad\Longleftrightarrow\quad
+V=\bigcap_{j\in J}\ker\tau_j\text{ 对某个 }J\subset I(s).
+\]
+四段阶数分别有 $1,2,4,8$ 个不同可行子空间.
+\end{corollary}
+有限余维排除任一收敛奇偶侧, 发散侧定理给必要性.
+反向使用低列迹矩阵 $\operatorname{diag}(1,1,-4)$, 此时
+$N_V=\mathcal D\setminus J$ 余有限, A12 给充分性.
+这里是逐个成员筛选; $s=2$ 的 $\ker(f(0)+f'(0))$ 筛选闭包
+为 $\ker f(0)\cap\ker f'(0)$, 严格更小.
+完整证明见 \path{SL_full_window_deletions_and_finite_constraints.md}.
+独立原生初审和最终整合复审的精确范围见本轮报告; 自动工具库接收格式缺口仍另计.
+不扩展到收敛侧全部元素、$s\ge7/2$、一般非对角 $H$ 的 A3/A4、无限约束、稳定基或误差率.
 \begin{thebibliography}{23}
 \bibitem{fg} C. Fischbacher, F. Gesztesy, P. Hagelstein, L. L. Littlejohn,
 	\emph{Abstract left-definite theory: A model operator approach, examples,

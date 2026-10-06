@@ -1,0 +1,308 @@
+{
+  "identity": "/root/r16_software_review_v4",
+  "all_passed": false,
+  "count": 52,
+  "error": "ArithmeticError('indexed roots are unresolved; increase precision/refinement, not the scan grid')",
+  "elapsed_seconds": 0.7970000000204891,
+  "optimize": 0,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "checks": [
+    {
+      "name": "false strict derivative thirds",
+      "passed": true,
+      "fixed": "(False, 'unproved at n=3 piece (2, Fraction(2, 3), Fraction(1, 1), Fraction(-1, 4611686018427387904), Fraction(4611686018427387859, 207525870829232455680), Fraction(1, 15))')",
+      "adaptive": "(False, 'unproved at n=20 piece [524287/524288,1] f=[-1/4611686018427387904,8796093022193/69175290276410818560] M=1/15')"
+    },
+    {
+      "name": "false strict derivative adjacent-float",
+      "passed": true,
+      "fixed": "(False, 'unproved at n=1 piece (0, Fraction(1, 1), Fraction(4503599627370497, 4503599627370496), Fraction(-1, 18014398509481984), Fraction(3, 18014398509481984), Fraction(1, 1))')",
+      "adaptive": "(False, 'unproved at n=20 piece [2361183241434823131135/2361183241434822606848,4503599627370497/4503599627370496] f=[-1/18014398509481984,-131071/2361183241434822606848] M=1')"
+    },
+    {
+      "name": "honest exact endpoint <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "honest exact endpoint <class 'fractions.Fraction'>",
+      "passed": true
+    },
+    {
+      "name": "honest exact endpoint <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "strict sign choice der_sign2 1",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign2 None",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign2 'positive'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict endpoint der_sign2 Decimal('0.2')",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 '0.2'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 (0.2+0j)",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign2 -inf",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive 1",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive None",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict sign choice der_sign_adaptive 'positive'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "noncallable der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must be callable and want_pos must be bool"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive Decimal('0.2')",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive '0.2'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive (0.2+0j)",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "strict endpoint der_sign_adaptive -inf",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "adaptive three-box hard budget",
+      "passed": true,
+      "calls": 6,
+      "result": "(False, 'unproved: max_boxes=3 exhausted with 2 pending pieces')"
+    },
+    {
+      "name": "False means unproved only",
+      "passed": true
+    },
+    {
+      "name": "E1 static independent Fraction preconversion",
+      "passed": true
+    },
+    {
+      "name": "61 modes analytic identity independent low order",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "independent constant Q 1",
+      "passed": true,
+      "q": 14.80440660163404,
+      "exact": 14.804406601634037
+    },
+    {
+      "name": "independent constant Q 3",
+      "passed": true,
+      "q": 34.543615403812765,
+      "exact": 34.54361540381275
+    },
+    {
+      "name": "independent constant Q 17",
+      "passed": true,
+      "q": 172.718077019063,
+      "exact": 172.71807701906377
+    },
+    {
+      "name": "independent constant Q 59",
+      "passed": true,
+      "q": 587.2414618648218,
+      "exact": 587.2414618648168
+    },
+    {
+      "name": "independent constant Q 60",
+      "passed": true,
+      "q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "raw Parseval retained bit-for-bit",
+      "passed": true,
+      "minimum": -2.220446049250313e-16,
+      "negative_entries": 11
+    },
+    {
+      "name": "analytic diagnostic estimate boundary",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP half constant (0, 1)",
+      "passed": true,
+      "actual": -4.526443397722558e-16,
+      "reference": "-4.52644339772255699613159371030382140875073775e-16",
+      "relative_error": "1.34673331256e-16"
+    },
+    {
+      "name": "one-ulp physical IVP half constant (1, 1)",
+      "passed": true,
+      "actual": 1.835449602266039e-31,
+      "reference": "1.83544960226603891761184534398075340353110791e-31",
+      "relative_error": "5.32332839815e-17"
+    },
+    {
+      "name": "one-ulp weighted physical density half constant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass half constant",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP one-third constant rho3 (0, 2)",
+      "passed": true,
+      "actual": -1.8464519554442923e-16,
+      "reference": "-1.84645195544429316460623522463738687882503992e-16",
+      "relative_error": "4.79084707403e-16"
+    },
+    {
+      "name": "one-ulp physical IVP one-third constant rho3 (2, 2)",
+      "passed": true,
+      "actual": 8.339422979953229e-32,
+      "reference": "8.33942297995323174874419848501698122624715133e-32",
+      "relative_error": "3.43321613909e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density one-third constant rho3",
+      "passed": true
+    },
+    {
+      "name": "one shared mass one-third constant rho3",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP half symmetric nonconstant (0, 1)",
+      "passed": true,
+      "actual": -1.3786223166610367e-16,
+      "reference": "-1.37862231666103666050974421290753667097359476e-16",
+      "relative_error": "2.68716943643e-17"
+    },
+    {
+      "name": "one-ulp physical IVP half symmetric nonconstant (1, 1)",
+      "passed": true,
+      "actual": 9.187870400303357e-32,
+      "reference": "9.18787040030335450126203905938443438586079657e-32",
+      "relative_error": "2.5113602662e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density half symmetric nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass half symmetric nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one-ulp physical IVP one-third nonconstant (0, 2)",
+      "passed": true,
+      "actual": 0.02420875782648118,
+      "reference": "0.0242087578264811682137517696540709637664638357",
+      "relative_error": "4.67045339265e-16"
+    },
+    {
+      "name": "one-ulp physical IVP one-third nonconstant (2, 2)",
+      "passed": true,
+      "actual": 0.0026812143635740033,
+      "reference": "0.00268121436357400128197511158879611874952457728",
+      "relative_error": "7.43440282146e-16"
+    },
+    {
+      "name": "one-ulp weighted physical density one-third nonconstant",
+      "passed": true
+    },
+    {
+      "name": "one shared mass one-third nonconstant",
+      "passed": true
+    },
+    {
+      "name": "thin rho/h all cuts physical IVP",
+      "passed": true,
+      "actual": 1.550935203443997,
+      "reference": "1.55093520344399664602711263775514894998773585",
+      "relative_error": "1.86179918551e-16"
+    },
+    {
+      "name": "thin rho actual Gauss folding",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    }
+  ],
+  "sources": {
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4\\root\\misc\\rigid1d.py": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55",
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4\\root\\scripts\\_gapn2_second_variation_probe.py": "6410e71518c7e59ffd7f67342a809ab2dd827a5de66c2bc984172d68dd190f44",
+    "F:\\tools\\math-audit-round16-20261006\\software-review-v4-independent.py": "88823d448fedacdf336fb635467e96d3ab3444df82c2c0661fc4cc74784ebb5e"
+  }
+}

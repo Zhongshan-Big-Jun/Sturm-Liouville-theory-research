@@ -1,5 +1,16 @@
 # 研究脚本导航
 
+第十六轮当前入口: [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py) 的 block_direction 返回带完整断点的BlockDirection. SpectralProbe.pairings优先在所有rho/h共同小段做局部解析积分; 每段左端锚定后保留半宽, 70位相位传播降低近节点消去, 小相位展开/消去回退避免节点折叠和求积混叠. 数值配对复用原物理模态共同质量, 正积分下溢拒绝, 不改变谱编号.
+
+一般回调声明已知Breaks, 实际节点必须严格在每段内部且互异, 模态相位须可分辨, 在MaxOrder内完成两次连续误差比较; 未决抛ArithmeticError. PairingResult仍兼容四数组, 同时有diagnostics属性; return_diagnostics=True返回第五项. CLI的P1/P2/P2b/P3均保存诊断. 误差是估计, 舍入/黑箱包络为None, sign_certified=false; 原始浮点Parseval残余不截零.
+
+通用misc/rigid1d的两导数符号助手先精确转换端点, 预算/计数/宽度/顺序均检查. 专用E1已Fraction且无受影响调用. 重放命令: Python3.10 -X utf8 -B research/artifacts/proof-audit-round16-20261006/checks.py --root <project> --output <outside.json>, 优化检查再加-O; OPENBLAS_NUM_THREADS=OMP_NUM_THREADS=1. [完整证明与真实结果](../reports/proof-audit-round16-20261006/REPORT.md). 不重认证全部历史扫描.
+
+
+第十五轮当前复用入口: [op03_gap_fixed.py](op03_gap_fixed.py)::lams_precise 已委托 [_sl_prufer.py](_sl_prufer.py)::indexed_roots 的 DD 指标相位枚举. 返回首 k 个频率 omega, 特征值是 omega**2; [op03_gap_fh.py](op03_gap_fh.py) 及直接计算调用保留平方转换. tol 是括号宽度不超过 tol*max(1,omega) 的请求, binary64 无法分辨时显式拒绝; smax_scale 不再控制网格, 非默认正值发出弃用警告, 非法值拒绝. 函数名为兼容保留.
+
+高反差三块反例的遗漏与 k 依赖前缀已修复, R4 原正常样本继续通过. 直接导入 fixed 的13个活动文件已静态清点; asym3/global/global2 的独立 lams_vec/lams_fast 历史扫描并未因此重认证. 普通/-O 当前性质、R14 驻点/核旧回归及独立物理模态核验见[第十五轮报告](../reports/proof-audit-round15-20261005/REPORT.md). 这不是全部旧 R4 数据失效的断言.
+
 第十三轮当前接口：`_gapn2_symmetry_recon.eigenfunction_states` 用同一物理解、质量积分与比例系数返回值和导数，节点合法；`real_green_matrix` 按实际坐标组装，支持端点及非正参数，越界/不可分辨极点/溢出明确拒绝。半问题约化核仍限正特征值。`analytic_jacobian`、`analytic_jacobian_spectral`、`term_breakdown` 已实现一般非驻点公式，在 F=0 恢复原驻点公式。第十二轮半谱、极点身份和 raw K/SKS 区分保留。实际调用和有限检验见[第十三轮报告](../reports/proof-audit-round13-20260927/REPORT.md)。
 
 当前证书入口是 `python3 misc/e1_certgen.py`、`python3 misc/e1_cert_receive.py`、`python3 misc/e1_cert_tables.py`；精确端点与完整目标写入台账，失败不发布成功。`misc/rigid_dec.py`、`zz_verify_e1_dec.py` 和 `audit_o3a_cert_replay.py` 保持历史原字节，不能作为默认可信验证器。复验入口：`python3 research/artifacts/proof-audit-round13-20260927/run_checks.py`，另加 `--optimized` 检查 -O 行为。

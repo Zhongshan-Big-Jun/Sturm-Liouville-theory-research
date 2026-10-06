@@ -1,0 +1,508 @@
+# -*- coding: utf-8 -*-
+"""Reconnaissance: are all self-consistent stationary points of D_n = lambda_{n+1}-lambda_n
+(within the (2n+1)-block bang-bang family, 1<=rho<=R, Dirichlet) reflection-symmetric?
+
+Method: solve the band self-consistency system f(x_j) = 0, j=1..2n, where
+f = lambda_n u_n^2 - lambda_{n+1} u_{n+1}^2, from many random seeds AND from
+checked preserve/break reflection-sector seeds at mirror-symmetric bases.  For every root we
+report: D, asymmetry max_j |x_j + x_{2n+1-j} - 1|, band-matching.
+
+Usage:  python _gapn2_symmetry_recon.py [n] [R] [seeds] [mode] [workers]
+mode in {both, sup, inf}
+"""
+import sys, json, time, argparse, hashlib
+import numbers
+from pathlib import Path
+from reflection_seeds import generate_sector_seed, SeedGenerationError
+import numpy as np
+from scipy.optimize import least_squares, brentq
+
+# ----------------------------------------------------------------------------
+# spectral engine (transfer matrix, Dirichlet)
+# ----------------------------------------------------------------------------
+from _sl_prufer import indexed_roots, positive_blocks
+
+
+def roots_of(blocks, k, npts=20000, refine=60):
+	"""First k Dirichlet frequencies, indexed by lifted phase n*pi.
+
+	Numerical only, not interval-certified. npts remains an unused compatibility
+	argument; no frequency scan is performed. Unresolved enumeration raises.
+	"""
+	return indexed_roots(blocks, k, refine)[0]
+
+
+def D_scalar(blocks, s):
+    M00 = 1.0; M01 = 0.0; M10 = 0.0; M11 = 1.0
+    for L, c in blocks:
+        w = s * np.sqrt(c); wL = w * L
+        cw = np.cos(wL); sw = L * np.sinc(wL / np.pi); sw2 = -w * np.sin(wL)
+        M00, M01, M10, M11 = cw * M00 + sw * M10, cw * M01 + sw * M11, \
+                             sw2 * M00 + cw * M10, sw2 * M01 + cw * M11
+    return M01
+
+
+def _real_parameter(Value, Name):
+	if isinstance(Value, (bool, np.bool_)) or not isinstance(Value, numbers.Real) or not np.isfinite(Value):
+		raise ValueError(Name + ' must be a finite real scalar')
+	return float(Value)
+
+
+def _propagation_input(blocks, mu, pts, *, EndpointRoundoff=False):
+	Blocks = positive_blocks(blocks)
+	Mu = _real_parameter(mu, 'mu')
+	if np.iscomplexobj(pts):
+		raise ValueError('evaluation points must be real')
+	Points = np.asarray(pts, dtype=float)
+	Ends = np.r_[0.0, np.cumsum(Blocks[:, 0])]
+	if Points.ndim != 1 or not np.all(np.isfinite(Points)):
+		raise ValueError('evaluation points must be a finite one-dimensional array')
+	Tolerance = 8 * len(Blocks) * np.finfo(float).eps * Ends[-1] if EndpointRoundoff else 0.0
+	if np.any(Points < -Tolerance) or np.any(Points > Ends[-1] + Tolerance):
+		raise ValueError('evaluation point lies outside the interval')
+	if EndpointRoundoff:
+		Points = np.clip(Points, 0.0, Ends[-1])
+	return Blocks, Mu, Points, Ends
+
+
+def _transfer_matrix(Mu, Length, Density):
+	"""Physical (u,u') transfer. Caller guards floating range and input domain."""
+	if Mu == 0:
+		return np.array([[1.0, Length], [0.0, 1.0]])
+	Wave = np.sqrt(abs(Mu)) * np.sqrt(Density)
+	Angle = Wave * Length
+	if Mu > 0:
+		C = np.cos(Angle)
+		S = Length * np.sinc(Angle / np.pi)
+		Lower = -Wave * np.sin(Angle)
+	else:
+		C = np.cosh(Angle)
+		S = Length * (np.sinh(Angle) / Angle if Angle != 0 else 1.0)
+		Lower = Wave * np.sinh(Angle)
+	return np.array([[C, S], [Lower, C]])
+
+
+def _fundamental_states(Blocks, Mu, RightBoundary=None):
+	States = np.empty((len(Blocks) + 1, 2))
+	if RightBoundary is None:
+		States[0] = [0.0, 1.0]
+		for i, (Length, Density) in enumerate(Blocks):
+			States[i + 1] = _transfer_matrix(Mu, Length, Density) @ States[i]
+	else:
+		States[-1] = [0.0, -1.0] if RightBoundary == 'D' else [1.0, 0.0]
+		for i in range(len(Blocks) - 1, -1, -1):
+			Length, Density = Blocks[i]
+			States[i] = _transfer_matrix(Mu, -Length, Density) @ States[i + 1]
+	return States
+
+
+def _sample_solution(Blocks, Mu, Points, Ends, States, FromRight=False):
+	Out = np.empty((len(Points), 2))
+	for j, Point in enumerate(Points):
+		i = min(int(np.searchsorted(Ends, Point, side='right')) - 1, len(Blocks) - 1)
+		Anchor = i + 1 if FromRight else i
+		Out[j] = _transfer_matrix(Mu, Point - Ends[Anchor], Blocks[i, 1]) @ States[Anchor]
+	return Out
+
+
+def solution_states(blocks, mu, pts, *, RightBoundary=None):
+	"""Physical states for real mu, including 0 and negative resolvent parameters.
+
+	Default initial data are (0,1) at the left endpoint. Right D/N initial
+	data are (0,-1)/(1,0). Endpoints, duplicates and arbitrary point order are
+	legal. Invalid geometry/points raise ValueError; float overflow raises
+	ArithmeticError. Hyperbolic propagation is unscaled, not arbitrary-range.
+	"""
+	if RightBoundary is not None and RightBoundary not in ('D', 'N'):
+		raise ValueError('right boundary must be D or N')
+	Blocks, Mu, Points, Ends = _propagation_input(blocks, mu, pts)
+	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+		States = _fundamental_states(Blocks, Mu, RightBoundary)
+		Out = _sample_solution(Blocks, Mu, Points, Ends, States, RightBoundary is not None)
+	if not np.all(np.isfinite(States)) or not np.all(np.isfinite(Out)):
+		raise ArithmeticError('physical propagation is not finite')
+	return Out
+
+
+def real_green_matrix(blocks, mu, pts, *, RightBoundary='D'):
+	"""Kernel of -d^2/dx^2-mu*rho with left D and right D/N boundary.
+
+	Real resolvent parameters, including all mu<=0, are supported subject to
+	floating range. Numerically unresolved positive poles raise ArithmeticError.
+	The coordinate comparison is invariant under permutations and duplicates.
+	"""
+	if RightBoundary not in ('D', 'N'):
+		raise ValueError('right boundary must be D or N')
+	Blocks, Mu, Points, Ends = _propagation_input(blocks, mu, pts)
+	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+		Left = _fundamental_states(Blocks, Mu)
+		Right = _fundamental_states(Blocks, Mu, RightBoundary)
+		Phi = _sample_solution(Blocks, Mu, Points, Ends, Left)[:, 0]
+		Psi = _sample_solution(Blocks, Mu, Points, Ends, Right, True)[:, 0]
+		# Evaluate -W at the right boundary, avoiding cancellation of products.
+		Denominator = Left[-1, 0 if RightBoundary == 'D' else 1]
+		Scale = max(abs(Left[-1, 0]), Ends[-1] * abs(Left[-1, 1]))
+		Residual = abs(Denominator) * (1.0 if RightBoundary == 'D' else Ends[-1])
+		if not np.isfinite(Scale) or Residual <= 64 * np.finfo(float).eps * Scale:
+			raise ArithmeticError('Green target is at or numerically near a pole')
+		Forward = np.outer(Phi, Psi)
+		Kernel = np.where(Points[:, None] <= Points[None, :], Forward, Forward.T) / Denominator
+	if not np.all(np.isfinite(Kernel)):
+		raise ArithmeticError('Green kernel is not finite')
+	return Kernel
+
+
+def eigenfunction_states(blocks, s, pts):
+	"""Values AND derivatives of one physical solution divided by its mass.
+
+	The left solution has (u,u')=(0,1). Its exact block integrals are evaluated
+	in midpoint coordinates, with a Taylor limit for small frequency*length.
+	No normalization is reconstructed from point values, even at nodes.
+	Only this normalized sampler snaps endpoint roundoff within 8*m*eps*L,
+	for legacy unit-interval grids whose block sums differ by a few ulps.
+	Green/unnormalized propagation retain strict coordinate rejection.
+	"""
+	Frequency = _real_parameter(s, 'frequency')
+	if Frequency < 0:
+		raise ValueError('frequency must be nonnegative')
+	with np.errstate(over='raise', invalid='raise', divide='raise', under='ignore'):
+		Blocks, Mu, Points, Ends = _propagation_input(blocks, np.float64(Frequency)**2, pts, EndpointRoundoff=True)
+		States = _fundamental_states(Blocks, Mu)
+		Mass = 0.0
+		for i, (Length, Density) in enumerate(Blocks):
+			Angle = Frequency * np.sqrt(Density) * Length
+			Midpoint = _transfer_matrix(Mu, Length / 2, Density) @ States[i]
+			CosIntegral = Length * (1.0 + np.sinc(Angle / np.pi)) / 2
+			if abs(Angle) < 0.01:
+				Q = Angle**2
+				SinIntegral = Length**3 * (1/12 - Q/240 + Q**2/10080 - Q**3/725760)
+			else:
+				SinIntegral = Length * (1.0 - np.sinc(Angle / np.pi)) / (2 * (Frequency * np.sqrt(Density))**2)
+			Mass += Density * (Midpoint[0]**2 * CosIntegral + Midpoint[1]**2 * SinIntegral)
+		if not np.isfinite(Mass) or Mass <= 0:
+			raise ArithmeticError('eigenfunction mass is not finite and positive')
+		Out = _sample_solution(Blocks, Mu, Points, Ends, States) / np.sqrt(Mass)
+	if not np.all(np.isfinite(Out)):
+		raise ArithmeticError('normalized eigenfunction states are not finite')
+	return Out
+
+
+def eigfun(blocks, s, pts):
+	"""L2(rho)-normalized values; derivatives share exactly the same mass."""
+	return eigenfunction_states(blocks, s, pts)[:, 0]
+
+
+class Recon:
+    def __init__(self, n, R, mode):
+        if isinstance(n, (bool, np.bool_)) or not isinstance(n, numbers.Integral) or n < 1:
+            raise ValueError('n must be a positive integer')
+        R = _real_parameter(R, 'R')
+        if R < 1 or mode not in ('sup', 'inf'):
+            raise ValueError('require R>=1 and mode sup/inf')
+        self.n = n
+        self.R = R
+        self.mode = mode  # 'sup' or 'inf'
+        self.start_val = 1.0 if mode == 'sup' else R
+        self.alt_val = R if mode == 'sup' else 1.0
+        self.nb = 2 * n + 1
+        self.pat = [self.start_val if i % 2 == 0 else self.alt_val for i in range(self.nb)]
+
+    def z_to_widths(self, z):
+        """Pure softmax; unrepresentable geometry raises instead of clipping.
+
+        There is no fixed minimum block width or claim of complete search.
+        """
+        Values = np.asarray(z)
+        if Values.shape != (self.nb,) or Values.dtype.kind not in 'iuf' or not np.all(np.isfinite(Values)):
+            raise ValueError('z must be a finite real vector matching the block count')
+        with np.errstate(over='raise', invalid='raise', under='ignore'):
+            Exponential = np.exp(Values.astype(float) - np.max(Values))
+            Widths = Exponential / np.sum(Exponential)
+        Edges = np.r_[0., np.cumsum(Widths)[:-1], 1.]
+        if np.any(Widths <= 0) or np.any(np.diff(Edges) <= 0):
+            raise ArithmeticError('block geometry is not resolvable in float64')
+        return Widths
+
+    def widths_to_z(self, widths):
+        """Inverse pure softmax; no width floor or silent geometry repair."""
+        Widths = np.asarray(widths)
+        if (Widths.shape != (self.nb,) or Widths.dtype.kind not in 'iuf'
+            or not np.all(np.isfinite(Widths)) or np.any(Widths <= 0)):
+            raise ValueError('widths must be a positive finite real vector')
+        Widths = Widths.astype(float)
+        if abs(float(np.sum(Widths)) - 1.) > 32*self.nb*np.finfo(float).eps:
+            raise ValueError('widths must sum to one')
+        if np.any(np.diff(np.r_[0., np.cumsum(Widths)[:-1], 1.]) <= 0):
+            raise ArithmeticError('block geometry is not resolvable in float64')
+        return np.log(Widths)
+
+    def blocks_from_z(self, z):
+        w = self.z_to_widths(z)
+        return [(float(w[i]), self.pat[i]) for i in range(self.nb)]
+
+    def f_at(self, z, pts):
+        """f = lam_n u_n^2 - lam_{n+1} u_{n+1}^2 at pts (normalized)."""
+        blocks = self.blocks_from_z(z)
+        ss = roots_of(blocks, self.n + 1)
+        lam_n = ss[self.n - 1] ** 2
+        lam_np1 = ss[self.n] ** 2
+        u_n = eigfun(blocks, ss[self.n - 1], pts)
+        u_np1 = eigfun(blocks, ss[self.n], pts)
+        return lam_n * u_n ** 2 - lam_np1 * u_np1 ** 2, lam_n, lam_np1
+
+    def residual(self, z):
+        z = np.asarray(z, dtype=float)
+        w = self.z_to_widths(z)
+        edges = np.cumsum(w)[:-1]  # 2n interior switch points
+        f, lam_n, lam_np1 = self.f_at(z, edges)
+        return f / lam_np1
+
+    def stationarity_diagnostics(self, z, *, solver_success=None):
+        """One shared FLOATING-POINT acceptance contract for F=f/b.
+
+        Tests absolute F, local relative balance, resolved modal energy and
+        simple switching zeros, including their correction relative to the
+        adjacent widths. These are numerical diagnostics, not an interval
+        certificate. The solver continues to use F and its own derivative;
+        this routine never substitutes a relative residual into J_F.
+        """
+        Evidence = dict(accepted=False, status='unresolved',
+                        evidence='float64 diagnostic, not interval certification',
+                        absolute_tolerance=1e-8, relative_tolerance=1e-7,
+                        correction_tolerance=1e-7)
+        if solver_success is not None and not solver_success:
+            return dict(Evidence, status='not_converged', reason='optimizer did not converge')
+        try:
+            Widths = self.z_to_widths(z)
+            Edges = np.cumsum(Widths)[:-1]
+            Blocks = self.blocks_from_z(z)
+            Frequencies = roots_of(Blocks, self.n+1)
+            A, B = Frequencies[self.n-1]**2, Frequencies[self.n]**2
+            U = eigenfunction_states(Blocks, Frequencies[self.n-1], Edges)
+            V = eigenfunction_states(Blocks, Frequencies[self.n], Edges)
+            Numerator = A*U[:, 0]**2-B*V[:, 0]**2
+            Denominator = A*U[:, 0]**2+B*V[:, 0]**2
+            Eps = np.finfo(float).eps
+            EnergyScale = A*(np.abs(U[:, 0])+np.abs(U[:, 1]))**2 + B*(np.abs(V[:, 0])+np.abs(V[:, 1]))**2
+            Evidence.update(edges=Edges.tolist(), absolute_max=float(np.max(np.abs(Numerator/B))),
+                            eigenvalues=[float(A), float(B)], mode_indices=[self.n, self.n+1],
+                            balance_denominators=Denominator.tolist())
+            if (not np.all(np.isfinite(Denominator)) or not np.all(np.isfinite(EnergyScale))
+                or np.any(Denominator <= 256*Eps*EnergyScale)):
+                return dict(Evidence, reason='local modal energy denominator is not resolvable')
+            Relative = Numerator/Denominator
+            Evidence.update(relative_defects=Relative.tolist(), relative_max=float(np.max(np.abs(Relative))))
+            if not np.isfinite(Evidence['absolute_max']) or not np.all(np.isfinite(Relative)):
+                return dict(Evidence, reason='residual is not finite')
+            if Evidence['absolute_max'] > Evidence['absolute_tolerance'] or Evidence['relative_max'] > Evidence['relative_tolerance']:
+                return dict(Evidence, status='rejected', reason='absolute or local relative balance fails')
+            Fprime = 2*A*U[:, 0]*U[:, 1]-2*B*V[:, 0]*V[:, 1]
+            DerivativeScale = 2*A*np.abs(U[:, 0]*U[:, 1])+2*B*np.abs(V[:, 0]*V[:, 1])
+            if not np.all(np.isfinite(Fprime)) or np.any(np.abs(Fprime) <= 256*Eps*DerivativeScale):
+                return dict(Evidence, reason='switching derivative is not resolvable')
+            LocalWidths = np.minimum(Widths[:-1], Widths[1:])
+            Budgets = np.maximum(Evidence['correction_tolerance']*LocalWidths, 64*Eps)
+            if np.any(Budgets >= .01*LocalWidths):
+                return dict(Evidence, reason='switching correction cannot be resolved against local widths')
+            LinearCorrections = np.abs(Numerator/Fprime)
+            Evidence['linear_corrections'] = LinearCorrections.tolist()
+            if np.any(LinearCorrections > Budgets):
+                return dict(Evidence, status='rejected', reason='local switching correction is too large')
+            def switching_value(Point):
+                Up = eigfun(Blocks, Frequencies[self.n-1], [Point])[0]
+                Vp = eigfun(Blocks, Frequencies[self.n], [Point])[0]
+                return A*Up**2-B*Vp**2
+            ZeroPoints = []
+            for Edge, LocalWidth, Budget in zip(Edges, LocalWidths, Budgets):
+                Left, Right = Edge-.25*LocalWidth, Edge+.25*LocalWidth
+                Fl, Fr = switching_value(Left), switching_value(Right)
+                if not np.isfinite(Fl) or not np.isfinite(Fr) or Fl == 0 or Fr == 0 or np.sign(Fl) == np.sign(Fr):
+                    return dict(Evidence, reason='no resolved simple switching zero in the local slot')
+                Zero = brentq(switching_value, Left, Right, xtol=4*Eps, rtol=4*Eps)
+                ZeroPoints.append(float(Zero))
+                if abs(Zero-Edge) > Budget:
+                    return dict(Evidence, status='rejected', reason='actual switching zero correction is too large')
+            Evidence.update(switching_zeros=ZeroPoints, correction_budgets=Budgets.tolist(),
+                            accepted=True, status='accepted', reason='all numerical stationarity checks passed')
+            return Evidence
+        except (ValueError, ArithmeticError) as Error:
+            return dict(Evidence, reason=str(Error))
+
+    def require_stationary(self, z):
+        Evidence = self.stationarity_diagnostics(z)
+        if not Evidence['accepted']:
+            raise ValueError('stationary point required: '+Evidence['status']+': '+Evidence['reason'])
+        return Evidence
+
+    def full_report(self, z):
+        z = np.asarray(z, dtype=float)
+        w = self.z_to_widths(z)
+        edges = np.cumsum(w)[:-1]
+        mids = np.cumsum(w) - 0.5 * w  # block midpoints
+        f_e, lam_n, lam_np1 = self.f_at(z, edges)
+        f_m, _, _ = self.f_at(z, mids)
+        D = lam_np1 - lam_n
+        n = self.n
+        asym = max(abs(edges[j] + edges[2 * n - 1 - j] - 1.0) for j in range(2 * n))
+        # band matching (delta D = int delta-rho f dx, numerically verified):
+        #   SUP: f>0 on rho=R blocks, f<0 on rho=1 blocks;
+        #   INF: f>0 on rho=1 blocks, f<0 on rho=R blocks
+        expect = []
+        for i in range(self.nb):
+            if self.mode == 'sup':
+                expect.append(1.0 if self.pat[i] == self.R else -1.0)
+            else:
+                expect.append(1.0 if self.pat[i] == 1.0 else -1.0)
+        expect = np.array(expect)
+        band_min = float(np.min(np.abs(f_m) / lam_np1))
+        band_ok = bool(np.all(np.sign(f_m) == expect) and band_min > 1e-6)
+        Stationarity = self.stationarity_diagnostics(z)
+        return dict(edges=edges.tolist(), widths=w.tolist(), D=float(D),
+                    lam_n=float(lam_n), lam_np1=float(lam_np1),
+                    asym=float(asym), band_ok=band_ok,
+                    band_min=band_min,
+                    res_max=float(np.max(np.abs(f_e) / lam_np1)),
+                    stationary=Stationarity['accepted'], stationarity=Stationarity)
+
+    def solve(self, z0, max_nfev=250):
+        res = least_squares(self.residual, np.asarray(z0, dtype=float),
+                            xtol=1e-12, ftol=1e-12, gtol=1e-12, max_nfev=max_nfev)
+        res.stationarity = self.stationarity_diagnostics(res.x, solver_success=res.success)
+        res.stationary = res.stationarity['accepted']
+        return res
+
+
+def cluster_solutions(sols, tol=1e-6):
+    kept = []
+    for s in sols:
+        e = np.array(s['edges'])
+        dup = False
+        for k in kept:
+            if np.max(np.abs(e - np.array(k['edges']))) < tol:
+                dup = True
+                break
+        if not dup:
+            kept.append(s)
+    return kept
+
+
+def one_solve(job):
+    """job = (n, R, mode, z0, label). Returns report dict or None."""
+    n, R, mode, z0, label, *metadata = job
+    rc = Recon(n, R, mode)
+    try:
+        r = rc.solve(z0)
+    except (ValueError, ArithmeticError):
+        return None
+    if not r.stationary:
+        return None
+    rep = rc.full_report(r.x)
+    rep['seed'] = label
+    if metadata:
+        rep['seed_geometry'] = metadata[0]
+    rep['cost'] = float(np.max(np.abs(r.fun)))
+    return rep
+
+
+def sector_jobs(Rc, Center, Rng, BreakRepeats=16, PreserveRepeats=8):
+	"""Build initial seeds; subsequent optimization is not sector constrained."""
+	Jobs, Records = [], []
+	for Sector, Steps, Repeats in (
+		('break', (1e-5, 1e-4, 1e-3, 1e-2, 3e-2, 1e-1, 2e-1), BreakRepeats),
+		('preserve', (1e-4, 1e-2, 5e-2), PreserveRepeats)):
+		for Step in Steps:
+			for Index in range(Repeats):
+				Label = f'pure_reflection:{Sector}:{Step}:{Index}'
+				try:
+					Seed = generate_sector_seed(Center, Sector, Step, Rng=Rng,
+						WidthsToZ=Rc.widths_to_z, ZToWidths=Rc.z_to_widths, SymmetrizeBase=True)
+				except (ValueError, SeedGenerationError) as Error:
+					Records.append(dict(label=Label, status='rejected_seed', sector=Sector,
+						reason=str(Error), evidence=getattr(Error, 'Evidence', {})))
+					continue
+				Record = dict(label=Label, status='accepted_seed', **Seed.to_dict())
+				Records.append(Record)
+				Jobs.append((Rc.n, Rc.R, Rc.mode, np.asarray(Seed.Z), Label, Record))
+	return Jobs, Records
+
+
+def main(argv=None):
+	Parser = argparse.ArgumentParser(description=__doc__)
+	Parser.add_argument('n', nargs='?', type=int, default=2)
+	Parser.add_argument('R', nargs='?', type=float, default=4.0)
+	Parser.add_argument('seeds', nargs='?', type=int, default=200)
+	Parser.add_argument('mode', nargs='?', choices=('both', 'sup', 'inf'), default='both')
+	Parser.add_argument('workers', nargs='?', type=int, default=8)
+	Parser.add_argument('--output-dir', type=Path, help='directory for results and actual seed evidence')
+	Parser.add_argument('--table', type=Path)
+	Parser.add_argument('--break-repeats', type=int, default=16)
+	Parser.add_argument('--preserve-repeats', type=int, default=8)
+	Args = Parser.parse_args(argv)
+	if (Args.n < 1 or not np.isfinite(Args.R) or Args.R < 1 or Args.seeds < 0
+		or Args.workers < 1 or Args.break_repeats < 0 or Args.preserve_repeats < 0):
+		Parser.error('require n/workers>=1, finite R>=1 and nonnegative seed counts')
+	import multiprocessing as mp
+	Started = time.time()
+	Rng = np.random.default_rng(20260812)
+	Output = Args.output_dir or Path(__file__).resolve().parent
+	Output.mkdir(parents=True, exist_ok=True)
+	TablePath = Args.table or Path(__file__).resolve().parent / 'op03_gap_table.json'
+	Known, TableError = {}, None
+	try:
+		Table = json.loads(TablePath.read_text(encoding='utf-8'))
+		for Mode in ('sup', 'inf'):
+			Key = f'n{Args.n}_{Mode.upper()}'
+			if Key in Table:
+				Known[Mode] = np.asarray(Table[Key]['edges'], dtype=float)
+	except (OSError, ValueError, KeyError, TypeError) as Error:
+		TableError = str(Error)
+	Sources = [Path(__file__).resolve(), Path(__file__).resolve().parent/'_sl_prufer.py',
+		Path(__file__).resolve().parent/'reflection_seeds.py']
+	if TablePath.is_file():
+		Sources.append(TablePath.resolve())
+	Identities = {str(Source): hashlib.sha256(Source.read_bytes()).hexdigest() for Source in Sources}
+	with mp.Pool(processes=Args.workers) as Pool:
+		for Mode in (['sup', 'inf'] if Args.mode == 'both' else [Args.mode]):
+			Rc = Recon(Args.n, Args.R, Mode)
+			print(f'=== n={Args.n} R={Args.R} mode={Mode}; finite sampled evidence ===', flush=True)
+			Jobs, RandomRecords = [], []
+			for Index in range(Args.seeds):
+				Widths = Rng.dirichlet(np.ones(Rc.nb))
+				Z = Rc.widths_to_z(Widths)
+				Label = f'random_width:{Index}'
+				Jobs.append((Args.n, Args.R, Mode, Z, Label))
+				RandomRecords.append(dict(label=Label, origin='random_width',
+					requested_widths=Widths.tolist(), actual_widths=Rc.z_to_widths(Z).tolist()))
+			Results = Pool.map(one_solve, Jobs, chunksize=1)
+			Solutions = [Result for Result in Results if Result is not None]
+			Center, CenterSource = None, None
+			if Mode in Known and len(Known[Mode]) == 2 * Args.n:
+				Center, CenterSource = Known[Mode], 'stored R4 table geometry; stationarity at requested R is not assumed'
+			else:
+				Candidates = [Row for Row in Solutions if Row['band_min'] > 1e-7 and Row['asym'] <= 1e-12]
+				if Candidates:
+					Center = np.asarray(min(Candidates, key=lambda Row: Row['asym'])['edges'])
+					CenterSource = 'computed mirror-symmetric numerical root'
+			PerturbationJobs, SectorRecords = [], []
+			if Center is not None:
+				PerturbationJobs, SectorRecords = sector_jobs(Rc, Center, Rng, Args.break_repeats, Args.preserve_repeats)
+				Results = Pool.map(one_solve, PerturbationJobs, chunksize=1)
+				Solutions.extend(Result for Result in Results if Result is not None)
+			Unique = cluster_solutions(Solutions)
+			print(f'  accepted pure seeds={len(PerturbationJobs)} rejected={sum(Row["status"]=="rejected_seed" for Row in SectorRecords)}', flush=True)
+			print(f'  converged roots={len(Solutions)}, distinct sampled roots={len(Unique)}', flush=True)
+			for Index, Row in enumerate(sorted(Unique, key=lambda Value: Value['D'])):
+				print(f'  [{Index}] D={Row["D"]:.10f} asym={Row["asym"]:.3e} band={Row["band_ok"]} res={Row["res_max"]:.2e}', flush=True)
+			Stem = f'_gapn2_symmetry_recon_n{Args.n}_{Mode}'
+			(Output/(Stem+'.json')).write_text(json.dumps(Unique, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+			Evidence = dict(scope='finite numerical experiment; sectors label initial seeds only; no uniqueness or interval certificate',
+				n=Args.n, R=Args.R, mode=Mode, random_seed=20260812, source_sha256=Identities,
+				table_error=TableError, center=None if Center is None else Center.tolist(), center_source=CenterSource,
+				random_seeds=RandomRecords, sector_seeds=SectorRecords, converged=len(Solutions), distinct=len(Unique))
+			(Output/(Stem+'-seeds.json')).write_text(json.dumps(Evidence, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+	print(f'total wall time {time.time()-Started:.2f}s', flush=True)
+	return 0
+
+
+if __name__ == '__main__':
+	sys.exit(main())

@@ -1,0 +1,973 @@
+{
+  "meaning": "repaired finite software properties and finite exact examples; no all-integer or interval certification",
+  "all_passed": true,
+  "count": 169,
+  "checks": [
+    {
+      "name": "Taylor rejects false integer",
+      "passed": true
+    },
+    {
+      "name": "adaptive rejects false integer",
+      "passed": true
+    },
+    {
+      "name": "Taylor rejects false Fraction-integer",
+      "passed": true
+    },
+    {
+      "name": "adaptive rejects false Fraction-integer",
+      "passed": true
+    },
+    {
+      "name": "Taylor rejects false adjacent-float",
+      "passed": true
+    },
+    {
+      "name": "adaptive rejects false adjacent-float",
+      "passed": true
+    },
+    {
+      "name": "Taylor rejects false Fraction-adjacent",
+      "passed": true
+    },
+    {
+      "name": "adaptive rejects false Fraction-adjacent",
+      "passed": true
+    },
+    {
+      "name": "honest strict polynomial <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "honest adaptive negative <class 'int'>",
+      "passed": true
+    },
+    {
+      "name": "honest strict polynomial <class 'fractions.Fraction'>",
+      "passed": true
+    },
+    {
+      "name": "honest adaptive negative <class 'fractions.Fraction'>",
+      "passed": true
+    },
+    {
+      "name": "honest strict polynomial <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "honest adaptive negative <class 'float'>",
+      "passed": true
+    },
+    {
+      "name": "rational transcendental sin",
+      "passed": true
+    },
+    {
+      "name": "rational transcendental cos",
+      "passed": true
+    },
+    {
+      "name": "rational transcendental atan",
+      "passed": true
+    },
+    {
+      "name": "unsupported endpoint True der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint True der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint '0' der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint '0' der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint Decimal('0') der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint Decimal('0') der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint 0j der_sign2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint 0j der_sign_adaptive",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "a must be an int, Fraction or finite float"
+    },
+    {
+      "name": "unsupported endpoint nan der_sign2",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "unsupported endpoint nan der_sign_adaptive",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "unsupported endpoint inf der_sign2",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "unsupported endpoint inf der_sign_adaptive",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "a must be finite"
+    },
+    {
+      "name": "invalid ordering (1, 0) der_sign2",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "sign verification requires a < b"
+    },
+    {
+      "name": "invalid ordering (1, 0) der_sign_adaptive",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "sign verification requires a < b"
+    },
+    {
+      "name": "invalid ordering (0, 0) der_sign2",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "sign verification requires a < b"
+    },
+    {
+      "name": "invalid ordering (0, 0) der_sign_adaptive",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "sign verification requires a < b"
+    },
+    {
+      "name": "invalid grid count 0",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive budget 0",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid grid count -1",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive budget -1",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid grid count True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive budget True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid grid count 2.5",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive budget 2.5",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "invalid grid count 3/2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "base_n must be a positive integer"
+    },
+    {
+      "name": "invalid adaptive budget 3/2",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "max_boxes must be a positive integer"
+    },
+    {
+      "name": "base beyond max",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "base_n must not exceed max_n"
+    },
+    {
+      "name": "invalid adaptive width 0",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be positive and at most b-a"
+    },
+    {
+      "name": "invalid adaptive width -1",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be positive and at most b-a"
+    },
+    {
+      "name": "invalid adaptive width 2",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be positive and at most b-a"
+    },
+    {
+      "name": "invalid adaptive width True",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "min_w must be an int, Fraction or finite float"
+    },
+    {
+      "name": "invalid adaptive width '0.1'",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "min_w must be an int, Fraction or finite float"
+    },
+    {
+      "name": "invalid adaptive width inf",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "min_w must be finite"
+    },
+    {
+      "name": "budget ends before evaluating another box",
+      "passed": true,
+      "evaluations": 2
+    },
+    {
+      "name": "exact nonbinary partition positivity",
+      "passed": true
+    },
+    {
+      "name": "exact partition complete and adjacent",
+      "passed": true
+    },
+    {
+      "name": "all partition coordinates Fraction",
+      "passed": true
+    },
+    {
+      "name": "adjacent floats retain whole real interval",
+      "passed": true
+    },
+    {
+      "name": "unsupported callback result",
+      "passed": true,
+      "error_type": "TypeError",
+      "error": "fn must return a D2 interval evaluation"
+    },
+    {
+      "name": "analytic constant identity (32, 1)",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "correct Q (32, 1, 2)",
+      "passed": true,
+      "Q": 24.674011002723383,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (32, 1, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (32, 1, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (32, 1)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (32, 2)",
+      "passed": true,
+      "error": 7.716050021144838e-15
+    },
+    {
+      "name": "correct Q (32, 2, 2)",
+      "passed": true,
+      "Q": 24.674011002723418,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (32, 2, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (32, 2, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (32, 2)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (32, 4)",
+      "passed": true,
+      "error": 7.771561172376096e-15
+    },
+    {
+      "name": "correct Q (32, 4, 2)",
+      "passed": true,
+      "Q": 24.674011002723397,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (32, 4, 20)",
+      "passed": true,
+      "Q": 202.32689022233308,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (32, 4, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (32, 4)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (64, 1)",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "correct Q (64, 1, 2)",
+      "passed": true,
+      "Q": 24.674011002723383,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (64, 1, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (64, 1, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (64, 1)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (64, 2)",
+      "passed": true,
+      "error": 7.716050021144838e-15
+    },
+    {
+      "name": "correct Q (64, 2, 2)",
+      "passed": true,
+      "Q": 24.674011002723418,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (64, 2, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (64, 2, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (64, 2)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (64, 4)",
+      "passed": true,
+      "error": 7.771561172376096e-15
+    },
+    {
+      "name": "correct Q (64, 4, 2)",
+      "passed": true,
+      "Q": 24.674011002723397,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (64, 4, 20)",
+      "passed": true,
+      "Q": 202.32689022233308,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (64, 4, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (64, 4)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (128, 1)",
+      "passed": true,
+      "error": 7.787214612505921e-15
+    },
+    {
+      "name": "correct Q (128, 1, 2)",
+      "passed": true,
+      "Q": 24.674011002723383,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (128, 1, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (128, 1, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (128, 1)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (128, 2)",
+      "passed": true,
+      "error": 7.716050021144838e-15
+    },
+    {
+      "name": "correct Q (128, 2, 2)",
+      "passed": true,
+      "Q": 24.674011002723418,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (128, 2, 20)",
+      "passed": true,
+      "Q": 202.32689022233217,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (128, 2, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (128, 2)",
+      "passed": true
+    },
+    {
+      "name": "analytic constant identity (128, 4)",
+      "passed": true,
+      "error": 7.771561172376096e-15
+    },
+    {
+      "name": "correct Q (128, 4, 2)",
+      "passed": true,
+      "Q": 24.674011002723397,
+      "exact": 24.674011002723397
+    },
+    {
+      "name": "correct Q (128, 4, 20)",
+      "passed": true,
+      "Q": 202.32689022233308,
+      "exact": 202.32689022233183
+    },
+    {
+      "name": "correct Q (128, 4, 60)",
+      "passed": true,
+      "Q": 597.1110662659084,
+      "exact": 597.1110662659062
+    },
+    {
+      "name": "analytic diagnostic finite-not-certified (128, 4)",
+      "passed": true
+    },
+    {
+      "name": "callback insufficient phase/budget rejected",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "callback quadrature unresolved within MaxOrder; no pairing or Q accepted"
+    },
+    {
+      "name": "unresolved callback explicit status",
+      "passed": true
+    },
+    {
+      "name": "resolved callback constant Q",
+      "passed": true
+    },
+    {
+      "name": "callback records error and no enclosure",
+      "passed": true
+    },
+    {
+      "name": "direct retained high-mode underresolution",
+      "passed": true,
+      "error_type": "ArithmeticError",
+      "error": "quadrature is below the conservative modal phase resolution; increase the explicit budget or use analytic block directions"
+    },
+    {
+      "name": "thin analytic pairing (40, 64)",
+      "passed": true,
+      "pairing": 1.9999999999999996
+    },
+    {
+      "name": "thin exact direction mass (40, 64)",
+      "passed": true
+    },
+    {
+      "name": "thin common normalization unchanged (40, 64)",
+      "passed": true
+    },
+    {
+      "name": "resolved ordinary cell 64",
+      "passed": true
+    },
+    {
+      "name": "thin analytic pairing (40, 128)",
+      "passed": true,
+      "pairing": 1.9999999999999996
+    },
+    {
+      "name": "thin exact direction mass (40, 128)",
+      "passed": true
+    },
+    {
+      "name": "thin common normalization unchanged (40, 128)",
+      "passed": true
+    },
+    {
+      "name": "resolved ordinary cell 128",
+      "passed": true
+    },
+    {
+      "name": "thin analytic pairing (50, 64)",
+      "passed": true,
+      "pairing": 1.9999999999999996
+    },
+    {
+      "name": "thin exact direction mass (50, 64)",
+      "passed": true
+    },
+    {
+      "name": "thin common normalization unchanged (50, 64)",
+      "passed": true
+    },
+    {
+      "name": "folded ordinary nodes reject 64",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "folded ordinary nodes reject 64",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "thin analytic pairing (50, 128)",
+      "passed": true,
+      "pairing": 1.9999999999999996
+    },
+    {
+      "name": "thin exact direction mass (50, 128)",
+      "passed": true
+    },
+    {
+      "name": "thin common normalization unchanged (50, 128)",
+      "passed": true
+    },
+    {
+      "name": "folded ordinary nodes reject 128",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "folded ordinary nodes reject 128",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "quadrature nodes collapse or leave their open interval; use structured analytic pairings"
+    },
+    {
+      "name": "direction-only breakpoint analytic vs resolved callback",
+      "passed": true
+    },
+    {
+      "name": "all direction cuts included",
+      "passed": true
+    },
+    {
+      "name": "zero direction no invented tail",
+      "passed": true
+    },
+    {
+      "name": "direction domain mismatch",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction and density domains must coincide"
+    },
+    {
+      "name": "invalid structured direction ([1.0], [0.0, 0.0])",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction edges must be strictly ordered and match coefficients"
+    },
+    {
+      "name": "invalid structured direction ([1.0, 2.0], [0.0, 1.0])",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction edges must be strictly ordered and match coefficients"
+    },
+    {
+      "name": "invalid structured direction ([nan], [0.0, 1.0])",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "block coefficients must be a nonempty finite real vector"
+    },
+    {
+      "name": "invalid extra cuts (0.0,)",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction breakpoints must be strictly internal"
+    },
+    {
+      "name": "invalid extra cuts (1.0,)",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction breakpoints must be strictly internal"
+    },
+    {
+      "name": "invalid extra cuts (nan,)",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction breakpoints must be a nonempty finite real vector"
+    },
+    {
+      "name": "invalid extra cuts 1.0",
+      "passed": true,
+      "error_type": "ValueError",
+      "error": "direction breakpoints must be a nonempty finite real vector"
+    },
+    {
+      "name": "normal R4 sup common mass and balance",
+      "passed": true,
+      "diagnostics": {
+        "accepted": true,
+        "status": "accepted",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          0.29343444668877594,
+          0.36546070235558503,
+          0.6345392976444149,
+          0.706565553311224
+        ],
+        "absolute_max": 1.1414355687686999e-14,
+        "eigenvalues": [
+          22.50044205114885,
+          85.59364088540296
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          52.55471986966837,
+          36.429892746525084,
+          36.42989274652506,
+          52.554719869668375
+        ],
+        "relative_defects": [
+          -1.838727564394178e-14,
+          1.5701031739695155e-14,
+          1.5798553675966562e-14,
+          -1.8590076478249958e-14
+        ],
+        "relative_max": 1.8590076478249958e-14,
+        "linear_corrections": [
+          8.673022418266649e-16,
+          4.651507805937467e-16,
+          4.680399158769377e-16,
+          8.76868075376224e-16
+        ],
+        "switching_zeros": [
+          0.29343444668877683,
+          0.3654607023555855,
+          0.6345392976444144,
+          0.7065655533112231
+        ],
+        "correction_budgets": [
+          7.202625566680909e-09,
+          7.202625566680909e-09,
+          7.202625566680909e-09,
+          7.202625566680909e-09
+        ],
+        "reason": "all numerical stationarity checks passed"
+      }
+    },
+    {
+      "name": "normal R4 inf common mass and balance",
+      "passed": true,
+      "diagnostics": {
+        "accepted": true,
+        "status": "accepted",
+        "evidence": "float64 diagnostic, not interval certification",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-07,
+        "correction_tolerance": 1e-07,
+        "edges": [
+          0.2028824169434251,
+          0.4040382298316725,
+          0.5959617701683275,
+          0.7971175830565749
+        ],
+        "absolute_max": 2.335976453779417e-13,
+        "eigenvalues": [
+          17.516122490874913,
+          26.5391603561612
+        ],
+        "mode_indices": [
+          2,
+          3
+        ],
+        "balance_denominators": [
+          29.038389356516305,
+          6.55005585497554,
+          6.550055854975538,
+          29.03838935651629
+        ],
+        "relative_defects": [
+          -2.1349274208680207e-13,
+          -3.80693076290937e-13,
+          -3.831338511344765e-13,
+          -2.1153521551179426e-13
+        ],
+        "relative_max": 3.831338511344765e-13,
+        "linear_corrections": [
+          4.4286836162018084e-14,
+          1.6041423410183976e-14,
+          1.6144271360810263e-14,
+          4.388076775021744e-14
+        ],
+        "switching_zeros": [
+          0.20288241694346937,
+          0.40403822983165644,
+          0.5959617701683436,
+          0.797117583056531
+        ],
+        "correction_budgets": [
+          2.0115581288824734e-08,
+          1.9192354033665504e-08,
+          1.9192354033665504e-08,
+          2.0115581288824734e-08
+        ],
+        "reason": "all numerical stationarity checks passed"
+      }
+    },
+    {
+      "name": "integer Hermite identity r1",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (1, 1)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (1, 2)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (1, 3)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r1",
+      "passed": true
+    },
+    {
+      "name": "integer Hermite identity r2",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (2, 2)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (2, 3)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (2, 4)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r2",
+      "passed": true
+    },
+    {
+      "name": "integer Hermite identity r3",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (3, 3)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (3, 4)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (3, 5)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r3",
+      "passed": true
+    },
+    {
+      "name": "integer Hermite identity r4",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (4, 4)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (4, 5)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (4, 6)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r4",
+      "passed": true
+    },
+    {
+      "name": "integer Hermite identity r5",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (5, 5)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (5, 6)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (5, 7)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r5",
+      "passed": true
+    },
+    {
+      "name": "integer Hermite identity r6",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (6, 6)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (6, 7)",
+      "passed": true
+    },
+    {
+      "name": "integer clamped high column (6, 8)",
+      "passed": true
+    },
+    {
+      "name": "integer finite exact span r6",
+      "passed": true
+    },
+    {
+      "name": "tail lower equality exact symbolic",
+      "passed": true
+    },
+    {
+      "name": "rate negative-t counterexample preserved",
+      "passed": true
+    }
+  ],
+  "error": null,
+  "elapsed_seconds": 2.562000000034459,
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "optimize": 0,
+    "numpy": "2.2.6",
+    "sympy": "1.14.0",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "sources": {
+    "F:\\LaTeX\\BVE research\\misc\\rigid1d.py": "4ade74f1274bbfd296736410ac18953e5f0c64ffb107980e1d6175f80cefec55",
+    "F:\\LaTeX\\BVE research\\scripts\\_gapn2_second_variation_probe.py": "284d01e95fc9707d5c9590e619ee77476c5f6c31f4a22ca06763d6c037882c60",
+    "F:\\LaTeX\\BVE research\\scripts\\_gapn2_symmetry_recon.py": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+    "F:\\LaTeX\\BVE research\\scripts\\_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+    "F:\\LaTeX\\BVE research\\scripts\\op03_gap_fixed.py": "5dab895bc9c574ea48aa35eff337f33e38a6a3d11d4b4eb7d5e48e58fe54d9df"
+  }
+}

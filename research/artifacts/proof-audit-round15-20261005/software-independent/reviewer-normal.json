@@ -1,0 +1,1943 @@
+{
+  "task_name": "/root/r15_software_review",
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "optimized": false,
+  "seconds": 1.2683162689208984,
+  "test_sha256": "32eff9a508284174b622964f04842f5ab488d507f6310afea0e75452b87f4f4d",
+  "count": 103,
+  "passed": 103,
+  "checks": [
+    {
+      "name": "input_manifest_11_matches",
+      "ok": true,
+      "detail": {
+        "research/artifacts/proof-audit-round15-20261005/checks.py": "997d3f1fc84f54058e1cf1d4f2bdf33ae6c0d7c914fbd24586d743a39bce8a48",
+        "research/artifacts/proof-audit-round15-20261005/independent_physical.py": "79de8bed29436b2c04f51a064b0274f6a2465ebb9bc38d6da9fd60ccad65eef3",
+        "scripts/op03_gap_fh.py": "9cea8a73ade19abe5e7d530eab553571fc5cc5ff87242db2997a78a9efb1c0b8",
+        "scripts/op03_gap_fixed.py": "5dab895bc9c574ea48aa35eff337f33e38a6a3d11d4b4eb7d5e48e58fe54d9df",
+        "scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+        "scripts/_gapn2_jacobian_analytic.py": "4d7cb5385b6f2b8d668ec4c5c417876a57713b6780bb11e1478cb0fcbc00aa02",
+        "scripts/_gapn2_jacobian_probe.py": "793705efee95718b7917ba3669e1bc2108fc5f7ed1205b226f9ed5679451b7dd",
+        "scripts/_gapn2_jacobian_spectral.py": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+        "scripts/_gapn2_symmetry_recon.py": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+        "scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+        "scripts/_sl_spectral_identity.py": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9"
+      }
+    },
+    {
+      "name": "direct_exact_count_high_contrast",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "delegated_DD_high_contrast",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "default_tol_bracket_high_contrast",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_exact_count_R4_control",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "delegated_DD_R4_control",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "default_tol_bracket_R4_control",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_exact_count_homogeneous",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "delegated_DD_homogeneous",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "default_tol_bracket_homogeneous",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_exact_count_tiny_positive_blocks",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "delegated_DD_tiny_positive_blocks",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "default_tol_bracket_tiny_positive_blocks",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "bitwise_prefix_1",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "bitwise_prefix_3",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "bitwise_prefix_6",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_tol_width_1e-08",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "loose_tol_keeps_indices_1e-08",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_tol_width_1e-15",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "loose_tol_keeps_indices_1e-15",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "direct_tol_width_0.5",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "loose_tol_keeps_indices_0.5",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "omega_not_lambda_homogeneous",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "scale_compatibility_0.001",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "scale_compatibility_2.0",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "scale_compatibility_5.0",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "scale_compatibility_100000.0",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "negative_squaring_mutation_guard",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "injected_unresolved_backend_width_rejected",
+      "ok": true,
+      "detail": {
+        "type": "ArithmeticError",
+        "message": "requested tol is unresolved in binary64; use higher precision"
+      }
+    },
+    {
+      "name": "backend_failure_propagates_without_scan_fallback",
+      "ok": true,
+      "detail": {
+        "type": "ArithmeticError",
+        "message": "intentional independent engine failure"
+      }
+    },
+    {
+      "name": "actual_unresolved_tol_rejected",
+      "ok": true,
+      "detail": {
+        "type": "ArithmeticError",
+        "message": "requested tol is unresolved in binary64; use higher precision"
+      }
+    },
+    {
+      "name": "independent_bad_count_np.True_",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_np.float64(3.0)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_0",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_-2",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_nan",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_None",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_count_[1]",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "mode count must be a positive integer"
+      }
+    },
+    {
+      "name": "independent_bad_tol_np.True_",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_np.complex128(1+0j)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_np.float64(nan)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_np.float64(inf)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_-1",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_0",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_tol_None",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "tol must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_np.True_",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_np.complex128(1+0j)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_np.float64(nan)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_np.float64(inf)",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_-1",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_0",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_smax_scale_None",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "smax_scale must be a finite positive real number"
+      }
+    },
+    {
+      "name": "independent_bad_geometry_[[(1+0j), 1]]",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "blocks must be real"
+      }
+    },
+    {
+      "name": "independent_bad_geometry_array([[ 1.,  1.],\n       [inf,  1.]])",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "independent_bad_geometry_[[1.0, 1.0], [1e-20, 1.0]]",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "block endpoints are not resolvable in double precision"
+      }
+    },
+    {
+      "name": "independent_bad_geometry_[[1.0, 1.0], [1e-12, 0.0]]",
+      "ok": true,
+      "detail": {
+        "type": "ValueError",
+        "message": "block lengths and densities must be finite and positive"
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_1",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "physical_root_high_contrast_1",
+      "ok": true,
+      "detail": {
+        "omega": "0.7462197727914001176782338",
+        "error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_2",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "physical_root_high_contrast_2",
+      "ok": true,
+      "detail": {
+        "omega": "0.7604843852750858667850983",
+        "error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_3",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "physical_root_high_contrast_3",
+      "ok": true,
+      "detail": {
+        "omega": "2.235281119475818692653683",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_4",
+      "ok": true,
+      "detail": 3
+    },
+    {
+      "name": "physical_root_high_contrast_4",
+      "ok": true,
+      "detail": {
+        "omega": "2.246563445569171242253614",
+        "error": 4.440892098500626e-16
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_5",
+      "ok": true,
+      "detail": 4
+    },
+    {
+      "name": "physical_root_high_contrast_5",
+      "ok": true,
+      "detail": {
+        "omega": "3.265795750778952745835685",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_high_contrast_6",
+      "ok": true,
+      "detail": 5
+    },
+    {
+      "name": "physical_root_high_contrast_6",
+      "ok": true,
+      "detail": {
+        "omega": "3.738925656322286008091501",
+        "error": 4.440892098500626e-16
+      }
+    },
+    {
+      "name": "physical_prop_to_multiplication_high_contrast",
+      "ok": true,
+      "detail": 4.8405723873656825e-14
+    },
+    {
+      "name": "physical_normalized_samples_high_contrast",
+      "ok": true,
+      "detail": 8.694434061595757e-15
+    },
+    {
+      "name": "quadrature_actual_weighted_mass_high_contrast",
+      "ok": true,
+      "detail": 3.1086244689504383e-15
+    },
+    {
+      "name": "physical_index_R4_control_1",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "physical_root_R4_control_1",
+      "ok": true,
+      "detail": {
+        "omega": "1.766364701503894725262444",
+        "error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "physical_index_R4_control_2",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "physical_root_R4_control_2",
+      "ok": true,
+      "detail": {
+        "omega": "4.289302802958511352899954",
+        "error": 8.881784197001252e-16
+      }
+    },
+    {
+      "name": "physical_index_R4_control_3",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "physical_root_R4_control_3",
+      "ok": true,
+      "detail": {
+        "omega": "7.097161081408614401362459",
+        "error": 1.7763568394002505e-15
+      }
+    },
+    {
+      "name": "physical_prop_to_multiplication_R4_control",
+      "ok": true,
+      "detail": 4.830006685903674e-16
+    },
+    {
+      "name": "physical_normalized_samples_R4_control",
+      "ok": true,
+      "detail": 1.856372202508424e-15
+    },
+    {
+      "name": "quadrature_actual_weighted_mass_R4_control",
+      "ok": true,
+      "detail": 2.220446049250313e-15
+    },
+    {
+      "name": "physical_index_homogeneous_1",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "physical_root_homogeneous_1",
+      "ok": true,
+      "detail": {
+        "omega": "3.141592653589793238462643",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_homogeneous_2",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "physical_root_homogeneous_2",
+      "ok": true,
+      "detail": {
+        "omega": "6.283185307179586476925287",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_homogeneous_3",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "physical_root_homogeneous_3",
+      "ok": true,
+      "detail": {
+        "omega": "9.42477796076937971538793",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_prop_to_multiplication_homogeneous",
+      "ok": true,
+      "detail": 3.4626072486992214e-15
+    },
+    {
+      "name": "physical_normalized_samples_homogeneous",
+      "ok": true,
+      "detail": 1.1102230246251565e-15
+    },
+    {
+      "name": "quadrature_actual_weighted_mass_homogeneous",
+      "ok": true,
+      "detail": 3.552713678800501e-15
+    },
+    {
+      "name": "physical_index_tiny_positive_blocks_1",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "physical_root_tiny_positive_blocks_1",
+      "ok": true,
+      "detail": {
+        "omega": "3.141592653589793099467777",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_tiny_positive_blocks_2",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "physical_root_tiny_positive_blocks_2",
+      "ok": true,
+      "detail": {
+        "omega": "6.283185307179586198935553",
+        "error": 0.0
+      }
+    },
+    {
+      "name": "physical_index_tiny_positive_blocks_3",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "physical_root_tiny_positive_blocks_3",
+      "ok": true,
+      "detail": {
+        "omega": "9.42477796076937929840333",
+        "error": 1.7763568394002505e-15
+      }
+    },
+    {
+      "name": "physical_prop_to_multiplication_tiny_positive_blocks",
+      "ok": true,
+      "detail": 2.5079769857934717e-15
+    },
+    {
+      "name": "physical_normalized_samples_tiny_positive_blocks",
+      "ok": true,
+      "detail": 1.84096652843205e-15
+    },
+    {
+      "name": "quadrature_actual_weighted_mass_tiny_positive_blocks",
+      "ok": true,
+      "detail": 3.774758283725532e-15
+    },
+    {
+      "name": "negative_omitted_first_pair_is_rejected_as_indices_1_2",
+      "ok": true,
+      "detail": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "negative_lambda_as_omega_fails_DD",
+      "ok": true,
+      "detail": [
+        0.04359862862918773,
+        0.024781655664734482,
+        0.00854526224599167
+      ]
+    },
+    {
+      "name": "negative_single_sign_cell_hides_two_first_DD_roots",
+      "ok": true,
+      "detail": {
+        "cell": [
+          0.7423964656698073,
+          0.7954247775033649
+        ],
+        "endpoint_values": [
+          "0.0002738185639672711173574274",
+          "0.006695304264906702156293718"
+        ]
+      }
+    },
+    {
+      "name": "no_width_floor_or_repair",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "frozen_project_import_provenance",
+      "ok": true,
+      "detail": {
+        "op03_gap_fixed": "F:\\tools\\math-audit-round15-20261005\\review-input\\software\\scripts\\op03_gap_fixed.py",
+        "_sl_prufer": "F:\\tools\\math-audit-round15-20261005\\review-input\\software\\scripts\\_sl_prufer.py"
+      }
+    }
+  ],
+  "data": {
+    "input_sha256": {
+      "research/artifacts/proof-audit-round15-20261005/checks.py": "997d3f1fc84f54058e1cf1d4f2bdf33ae6c0d7c914fbd24586d743a39bce8a48",
+      "research/artifacts/proof-audit-round15-20261005/independent_physical.py": "79de8bed29436b2c04f51a064b0274f6a2465ebb9bc38d6da9fd60ccad65eef3",
+      "scripts/op03_gap_fh.py": "9cea8a73ade19abe5e7d530eab553571fc5cc5ff87242db2997a78a9efb1c0b8",
+      "scripts/op03_gap_fixed.py": "5dab895bc9c574ea48aa35eff337f33e38a6a3d11d4b4eb7d5e48e58fe54d9df",
+      "scripts/reflection_seeds.py": "66f0473302b56b3cca3d8e2b0b70dd733d024da33b449ea166692d85b51fe317",
+      "scripts/_gapn2_jacobian_analytic.py": "4d7cb5385b6f2b8d668ec4c5c417876a57713b6780bb11e1478cb0fcbc00aa02",
+      "scripts/_gapn2_jacobian_probe.py": "793705efee95718b7917ba3669e1bc2108fc5f7ed1205b226f9ed5679451b7dd",
+      "scripts/_gapn2_jacobian_spectral.py": "227c40a23cdd04e3c64c56e4d8895cb3355a952001603f184ce65de6e0ab149e",
+      "scripts/_gapn2_symmetry_recon.py": "4f418bdca359c64e7ad6298ad01b6b80f0dc46d8484b2155bcf18623bc529713",
+      "scripts/_sl_prufer.py": "489f14986ea61f1560b338a0ae6a33e0da3f2c1fc30c77e8272c9f0ca6a34042",
+      "scripts/_sl_spectral_identity.py": "c763b576b6af23f4b2db33b198059eea69560a5949d4119571daccefc75cebe9"
+    },
+    "backend_calls": [
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 6,
+        "Refine": 61,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          },
+          {
+            "index": 4,
+            "right_boundary": "D",
+            "frequency": 2.246563445569171,
+            "bracket": [
+              2.2465634455691705,
+              2.246563445569171
+            ],
+            "phase_bracket": [
+              12.56637061435917,
+              12.566370614359172
+            ],
+            "target_phase": 12.566370614359172,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.12566370614359174,
+              12.566370614359172
+            ],
+            "certified": false
+          },
+          {
+            "index": 5,
+            "right_boundary": "D",
+            "frequency": 3.2657957507789526,
+            "bracket": [
+              3.265795750778952,
+              3.2657957507789526
+            ],
+            "phase_bracket": [
+              15.707963267948848,
+              15.707963267948974
+            ],
+            "target_phase": 15.707963267948966,
+            "phase_residual": 8.881784197001252e-15,
+            "comparison": [
+              0.15707963267948966,
+              15.707963267948966
+            ],
+            "certified": false
+          },
+          {
+            "index": 6,
+            "right_boundary": "D",
+            "frequency": 3.7389256563222855,
+            "bracket": [
+              3.738925656322285,
+              3.7389256563222855
+            ],
+            "phase_bracket": [
+              18.849555921538755,
+              18.84955592153876
+            ],
+            "target_phase": 18.84955592153876,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.18849555921538758,
+              18.84955592153876
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.3,
+            1.0
+          ],
+          [
+            0.4,
+            4.0
+          ],
+          [
+            0.3,
+            1.0
+          ]
+        ],
+        "count": 3,
+        "Refine": 60,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 1.7663647015038946,
+            "bracket": [
+              1.7663647015038944,
+              1.7663647015038946
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              1.5707963267948966,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 4.2893028029585105,
+            "bracket": [
+              4.2893028029585105,
+              4.289302802958511
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179587
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 8.881784197001252e-16,
+            "comparison": [
+              3.141592653589793,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 7.097161081408613,
+            "bracket": [
+              7.097161081408612,
+              7.097161081408613
+            ],
+            "phase_bracket": [
+              9.424777960769376,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              4.71238898038469,
+              9.42477796076938
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "count": 3,
+        "Refine": 60,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 3.141592653589793,
+            "bracket": [
+              3.1415926535897927,
+              3.141592653589793
+            ],
+            "phase_bracket": [
+              3.1415926535897927,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              3.141592653589793,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 6.283185307179586,
+            "bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              6.283185307179586,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 9.42477796076938,
+            "bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              9.42477796076938,
+              9.42477796076938
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            1e-12,
+            3.0
+          ],
+          [
+            0.999999999998,
+            1.0
+          ],
+          [
+            1e-12,
+            7.0
+          ]
+        ],
+        "count": 3,
+        "Refine": 60,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 3.141592653589793,
+            "bracket": [
+              3.1415926535897927,
+              3.141592653589793
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.1415926535897936
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 4.440892098500626e-16,
+            "comparison": [
+              1.1874104117237259,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 6.283185307179586,
+            "bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "phase_bracket": [
+              6.2831853071795845,
+              6.283185307179587
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 8.881784197001252e-16,
+            "comparison": [
+              2.3748208234474517,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 9.424777960769378,
+            "bracket": [
+              9.424777960769376,
+              9.424777960769378
+            ],
+            "phase_bracket": [
+              9.424777960769374,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              3.5622312351711773,
+              9.42477796076938
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 1,
+        "Refine": 61,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 3,
+        "Refine": 61,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 6,
+        "Refine": 61,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          },
+          {
+            "index": 4,
+            "right_boundary": "D",
+            "frequency": 2.246563445569171,
+            "bracket": [
+              2.2465634455691705,
+              2.246563445569171
+            ],
+            "phase_bracket": [
+              12.56637061435917,
+              12.566370614359172
+            ],
+            "target_phase": 12.566370614359172,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.12566370614359174,
+              12.566370614359172
+            ],
+            "certified": false
+          },
+          {
+            "index": 5,
+            "right_boundary": "D",
+            "frequency": 3.2657957507789526,
+            "bracket": [
+              3.265795750778952,
+              3.2657957507789526
+            ],
+            "phase_bracket": [
+              15.707963267948848,
+              15.707963267948974
+            ],
+            "target_phase": 15.707963267948966,
+            "phase_residual": 8.881784197001252e-15,
+            "comparison": [
+              0.15707963267948966,
+              15.707963267948966
+            ],
+            "certified": false
+          },
+          {
+            "index": 6,
+            "right_boundary": "D",
+            "frequency": 3.7389256563222855,
+            "bracket": [
+              3.738925656322285,
+              3.7389256563222855
+            ],
+            "phase_bracket": [
+              18.849555921538755,
+              18.84955592153876
+            ],
+            "target_phase": 18.84955592153876,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.18849555921538758,
+              18.84955592153876
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 6,
+        "Refine": 60,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          },
+          {
+            "index": 4,
+            "right_boundary": "D",
+            "frequency": 2.246563445569171,
+            "bracket": [
+              2.2465634455691705,
+              2.246563445569171
+            ],
+            "phase_bracket": [
+              12.56637061435917,
+              12.566370614359172
+            ],
+            "target_phase": 12.566370614359172,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.12566370614359174,
+              12.566370614359172
+            ],
+            "certified": false
+          },
+          {
+            "index": 5,
+            "right_boundary": "D",
+            "frequency": 3.2657957507789526,
+            "bracket": [
+              3.265795750778952,
+              3.2657957507789526
+            ],
+            "phase_bracket": [
+              15.707963267948848,
+              15.707963267948974
+            ],
+            "target_phase": 15.707963267948966,
+            "phase_residual": 8.881784197001252e-15,
+            "comparison": [
+              0.15707963267948966,
+              15.707963267948966
+            ],
+            "certified": false
+          },
+          {
+            "index": 6,
+            "right_boundary": "D",
+            "frequency": 3.7389256563222855,
+            "bracket": [
+              3.738925656322285,
+              3.7389256563222855
+            ],
+            "phase_bracket": [
+              18.849555921538755,
+              18.84955592153876
+            ],
+            "target_phase": 18.84955592153876,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.18849555921538758,
+              18.84955592153876
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 6,
+        "Refine": 61,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          },
+          {
+            "index": 4,
+            "right_boundary": "D",
+            "frequency": 2.246563445569171,
+            "bracket": [
+              2.2465634455691705,
+              2.246563445569171
+            ],
+            "phase_bracket": [
+              12.56637061435917,
+              12.566370614359172
+            ],
+            "target_phase": 12.566370614359172,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.12566370614359174,
+              12.566370614359172
+            ],
+            "certified": false
+          },
+          {
+            "index": 5,
+            "right_boundary": "D",
+            "frequency": 3.2657957507789526,
+            "bracket": [
+              3.265795750778952,
+              3.2657957507789526
+            ],
+            "phase_bracket": [
+              15.707963267948848,
+              15.707963267948974
+            ],
+            "target_phase": 15.707963267948966,
+            "phase_residual": 8.881784197001252e-15,
+            "comparison": [
+              0.15707963267948966,
+              15.707963267948966
+            ],
+            "certified": false
+          },
+          {
+            "index": 6,
+            "right_boundary": "D",
+            "frequency": 3.7389256563222855,
+            "bracket": [
+              3.738925656322285,
+              3.7389256563222855
+            ],
+            "phase_bracket": [
+              18.849555921538755,
+              18.84955592153876
+            ],
+            "target_phase": 18.84955592153876,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.18849555921538758,
+              18.84955592153876
+            ],
+            "certified": false
+          }
+        ]
+      },
+      {
+        "blocks": [
+          [
+            0.021,
+            10000.0
+          ],
+          [
+            0.958,
+            1.0
+          ],
+          [
+            0.021,
+            10000.0
+          ]
+        ],
+        "count": 6,
+        "Refine": 60,
+        "RightBoundary": "D",
+        "records": [
+          {
+            "index": 1,
+            "right_boundary": "D",
+            "frequency": 0.7462197727914001,
+            "bracket": [
+              0.7462197727914,
+              0.7462197727914001
+            ],
+            "phase_bracket": [
+              3.1415926535897922,
+              3.141592653589793
+            ],
+            "target_phase": 3.141592653589793,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.031415926535897934,
+              3.141592653589793
+            ],
+            "certified": false
+          },
+          {
+            "index": 2,
+            "right_boundary": "D",
+            "frequency": 0.7604843852750858,
+            "bracket": [
+              0.7604843852750857,
+              0.7604843852750858
+            ],
+            "phase_bracket": [
+              6.283185307179585,
+              6.283185307179586
+            ],
+            "target_phase": 6.283185307179586,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.06283185307179587,
+              6.283185307179586
+            ],
+            "certified": false
+          },
+          {
+            "index": 3,
+            "right_boundary": "D",
+            "frequency": 2.2352811194758186,
+            "bracket": [
+              2.235281119475818,
+              2.2352811194758186
+            ],
+            "phase_bracket": [
+              9.424777960769378,
+              9.42477796076938
+            ],
+            "target_phase": 9.42477796076938,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.09424777960769379,
+              9.42477796076938
+            ],
+            "certified": false
+          },
+          {
+            "index": 4,
+            "right_boundary": "D",
+            "frequency": 2.246563445569171,
+            "bracket": [
+              2.2465634455691705,
+              2.246563445569171
+            ],
+            "phase_bracket": [
+              12.56637061435917,
+              12.566370614359172
+            ],
+            "target_phase": 12.566370614359172,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.12566370614359174,
+              12.566370614359172
+            ],
+            "certified": false
+          },
+          {
+            "index": 5,
+            "right_boundary": "D",
+            "frequency": 3.2657957507789526,
+            "bracket": [
+              3.265795750778952,
+              3.2657957507789526
+            ],
+            "phase_bracket": [
+              15.707963267948848,
+              15.707963267948974
+            ],
+            "target_phase": 15.707963267948966,
+            "phase_residual": 8.881784197001252e-15,
+            "comparison": [
+              0.15707963267948966,
+              15.707963267948966
+            ],
+            "certified": false
+          },
+          {
+            "index": 6,
+            "right_boundary": "D",
+            "frequency": 3.7389256563222855,
+            "bracket": [
+              3.738925656322285,
+              3.7389256563222855
+            ],
+            "phase_bracket": [
+              18.849555921538755,
+              18.84955592153876
+            ],
+            "target_phase": 18.84955592153876,
+            "phase_residual": 0.0,
+            "comparison": [
+              0.18849555921538758,
+              18.84955592153876
+            ],
+            "certified": false
+          }
+        ]
+      }
+    ],
+    "high_contrast": {
+      "frequencies": [
+        0.7462197727914001,
+        0.7604843852750858,
+        2.2352811194758186,
+        2.246563445569171,
+        3.2657957507789526,
+        3.7389256563222855
+      ],
+      "modes": [
+        {
+          "index": 1,
+          "omega": "0.74621977279140011767823378531179352964905118330291",
+          "eigenvalue": "0.55684394930484881537556371553724931676979405726782",
+          "internal_zero_count": 0,
+          "right_residual": "-5.615612317e-76",
+          "mass": "0.0378105585654933095019123216853"
+        },
+        {
+          "index": 2,
+          "omega": "0.76048438527508586678509826428031239264692003561469",
+          "eigenvalue": "0.57833650024722523752418699545647050352561549799681",
+          "internal_zero_count": 1,
+          "right_residual": "1.408277536e-75",
+          "mass": "0.0369631187088828493379552956444"
+        },
+        {
+          "index": 3,
+          "omega": "2.2352811194758186926536829414125833713219498600197",
+          "eigenvalue": "4.996481683085069240738486397782521586617238676794",
+          "internal_zero_count": 2,
+          "right_residual": "7.234984744e-76",
+          "mass": "0.00424463766533107174942739157797"
+        },
+        {
+          "index": 4,
+          "omega": "2.2465634455691712422536143272866241946738955380644",
+          "eigenvalue": "5.0470473149676266389083746366293144337796398158728",
+          "internal_zero_count": 3,
+          "right_residual": "-1.038297135e-75",
+          "mass": "0.00417310064558946714225706784875"
+        },
+        {
+          "index": 5,
+          "omega": "3.2657957507789527458356847755313506101667858266181",
+          "eigenvalue": "10.665421885805863634208786456784930554293269714208",
+          "internal_zero_count": 4,
+          "right_residual": "-4.088335752e-74",
+          "mass": "0.0335995269371012849895662475371"
+        },
+        {
+          "index": 6,
+          "omega": "3.7389256563222860080915014319948481801195367464597",
+          "eigenvalue": "13.979565063505037184550144870304109567443868881477",
+          "internal_zero_count": 5,
+          "right_residual": "-1.589510318e-75",
+          "mass": "0.00150579065065537812350453469615"
+        }
+      ],
+      "matrix_error": 4.8405723873656825e-14,
+      "sample_error": 8.694434061595757e-15,
+      "mass_error": 3.1086244689504383e-15
+    },
+    "R4_control": {
+      "frequencies": [
+        1.7663647015038946,
+        4.2893028029585105,
+        7.097161081408613
+      ],
+      "modes": [
+        {
+          "index": 1,
+          "omega": "1.7663647015038947252624436485545028994908395439899",
+          "eigenvalue": "3.1200442587189431127012567377639607578271521274853",
+          "internal_zero_count": 0,
+          "right_residual": "-1.180556458e-74",
+          "mass": "0.209385158639942811317790905091"
+        },
+        {
+          "index": 2,
+          "omega": "4.2893028029585113528999541334213958764249533317086",
+          "eigenvalue": "18.398118535467742068403912193949850770138974673575",
+          "internal_zero_count": 1,
+          "right_residual": "7.191551434e-75",
+          "mass": "0.057228231990117902835014843151"
+        },
+        {
+          "index": 3,
+          "omega": "7.0971610814086144013624593410374515938826812296365",
+          "eigenvalue": "50.369695415461093014138485348312616245232288582917",
+          "internal_zero_count": 2,
+          "right_residual": "-4.90066293e-74",
+          "mass": "0.0184951295659329457464998205085"
+        }
+      ],
+      "matrix_error": 4.830006685903674e-16,
+      "sample_error": 1.856372202508424e-15,
+      "mass_error": 2.220446049250313e-15
+    },
+    "homogeneous": {
+      "frequencies": [
+        3.141592653589793,
+        6.283185307179586,
+        9.42477796076938
+      ],
+      "modes": [
+        {
+          "index": 1,
+          "omega": "3.1415926535897932384626433832795028841971693993751",
+          "eigenvalue": "9.8696044010893586188344909998761511353136994072408",
+          "internal_zero_count": 0,
+          "right_residual": "-2.794544117e-74",
+          "mass": "0.0506605918211688857219397316049"
+        },
+        {
+          "index": 2,
+          "omega": "6.2831853071795864769252867665590057683943387987502",
+          "eigenvalue": "39.478417604357434475337963999504604541254797628963",
+          "internal_zero_count": 1,
+          "right_residual": "2.794544117e-74",
+          "mass": "0.0126651479552922214304849329012"
+        },
+        {
+          "index": 3,
+          "omega": "9.4247779607693797153879301498385086525915081981253",
+          "eigenvalue": "88.826439609804227569510418998885360217823294665167",
+          "internal_zero_count": 2,
+          "right_residual": "-2.794544296e-74",
+          "mass": "0.00562895464679654285799330351165"
+        }
+      ],
+      "matrix_error": 3.4626072486992214e-15,
+      "sample_error": 1.1102230246251565e-15,
+      "mass_error": 3.552713678800501e-15
+    },
+    "tiny_positive_blocks": {
+      "frequencies": [
+        3.141592653589793,
+        6.283185307179586,
+        9.424777960769378
+      ],
+      "modes": [
+        {
+          "index": 1,
+          "omega": "3.141592653589793099467776546432681489017811489062",
+          "eigenvalue": "9.8696044010893577455039859172170576091138256383204",
+          "internal_zero_count": 0,
+          "right_residual": "-1.648326258e-74",
+          "mass": "0.0506605918211688924461353323447"
+        },
+        {
+          "index": 2,
+          "omega": "6.283185307179586198935553092865362481935196093327",
+          "eigenvalue": "39.478417604357430982015943668868224202273476377127",
+          "internal_zero_count": 1,
+          "right_residual": "2.437479994e-74",
+          "mass": "0.0126651479552922231115330830862"
+        },
+        {
+          "index": 3,
+          "omega": "9.424777960769379298403329639298042482651726927998",
+          "eigenvalue": "88.826439609804219709535873254953481076933473687958",
+          "internal_zero_count": 2,
+          "right_residual": "5.559053962e-74",
+          "mass": "0.00562895464679654360512525914941"
+        }
+      ],
+      "matrix_error": 2.5079769857934717e-15,
+      "sample_error": 1.84096652843205e-15,
+      "mass_error": 3.774758283725532e-15
+    },
+    "imported_project_modules": {
+      "op03_gap_fixed": "F:\\tools\\math-audit-round15-20261005\\review-input\\software\\scripts\\op03_gap_fixed.py",
+      "_sl_prufer": "F:\\tools\\math-audit-round15-20261005\\review-input\\software\\scripts\\_sl_prufer.py"
+    }
+  },
+  "error": null,
+  "scope": "Independent finite software and physical diagnostic checks; no Lean, interval certification or tool-library reception."
+}

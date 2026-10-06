@@ -12,3 +12,41 @@ tools/m3-largeR-closure.md text eol=lf
 /AGENTS.md -text
 /research_map.md -text
 /index/tools.json -text
+
+# Round15 exact review inputs and immutable evidence bytes.
+/reports/proof-audit-round15-20261005/** -text
+/research/artifacts/proof-audit-round15-20261005/** -text
+/docs/SL_full_window_deletions_and_finite_constraints.md -text
+/scripts/op03_gap_fixed.py -text
+/scripts/op03_gap_fh.py -text
+/tools/krein-finite-constraint-filtering.md -text
+/tools/indexed-dd-frequency-enumeration.md -text
+
+# Preserve CRLF as part of reviewed source identity; recognize CR as an EOL.
+/scripts/op03_gap_fixed.py -text whitespace=cr-at-eol
+/scripts/op03_gap_fh.py -text whitespace=cr-at-eol
+/docs/SL_spectral_topics_summary.tex -text whitespace=cr-at-eol
+/scripts/README.md -text
+
+# Round16 exact complete proofs, native review inputs and evidence.
+/reports/proof-audit-round16-20261006/** -text
+/research/artifacts/proof-audit-round16-20261006/** -text
+/docs/SL_bounded_direction_spectral_tail.md -text
+/docs/SL_integer_left_definite_riesz_systems.md -text
+/tools/exact-taylor-sign-boundary.md -text
+/tools/krein-integrated-legendre-riesz.md -text
+/tools/second-variation-weighted-eigenvalues.md -text
+
+# Exact Round15/16 publication manifest bytes.
+/reports/publication-round15-16-20261006/** -text
+
+# Reviewed and archived CRLF is a valid EOL, without rewriting any bytes.
+/AGENTS.md -text whitespace=cr-at-eol
+/state/AGENTS_SESSION_LOG.md -text whitespace=cr-at-eol
+/state/RESUME.md -text whitespace=cr-at-eol
+/docs/SL_integer_left_definite_riesz_systems.md -text whitespace=cr-at-eol
+/reports/proof-audit-round15-20261005/** -text whitespace=cr-at-eol
+/reports/proof-audit-round16-20261006/** -text whitespace=cr-at-eol
+/reports/publication-round15-16-20261006/** -text whitespace=cr-at-eol
+/research/artifacts/proof-audit-round15-20261005/** -text whitespace=cr-at-eol
+/research/artifacts/proof-audit-round16-20261006/** -text whitespace=cr-at-eol

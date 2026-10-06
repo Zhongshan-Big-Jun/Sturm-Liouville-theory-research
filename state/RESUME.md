@@ -1,4 +1,25 @@
+## 2026-10-06 第十五、十六轮上传续接
+
+用户明确要求全上传；研究任务已完成，本次只进行精确提交、origin后fork同步和远端读回。清单：reports/publication-round15-16-20261006/MANIFEST.json。中断后先读取F:/tools/math-audit-round16-20261006/publication/DELIVERY.json、实际HEAD和双远端，沿已完成阶段续接，不重做证明、不重启审查、不纳入无关草稿。
+
 # RESUME
+
+## 2026-10-06 Round16: five bounded obligations
+
+HEAD remains ec45bf99ae746b0a3699557e06700a3c00c5a831; Round15 correct local work is present and preserved, not missing because it is absent remotely. Current handoff: reports/proof-audit-round16-20261006/REPORT.md. Evidence root: research/artifacts/proof-audit-round16-20261006; external original execution root F:/tools/math-audit-round16-20261006.
+
+R16-01 normalizes exact Taylor endpoints before arithmetic. R16-02/03 integrate structured directions on every common rho/h cell with local left anchoring and small-phase handling; callbacks require actual node/modal resolution and budgeted convergence estimates, unresolved rejected. Numerical outputs do not certify signs. E1 specialized Fraction path and57 original ledger entries remain unchanged.
+
+C16-TAIL complete bounded-direction Parseval/two-sided proof: docs/SL_bounded_direction_spectral_tail.md. C16-A10-INTEGER complete every-fixed-integer Riesz replacement proof: docs/SL_integer_left_definite_riesz_systems.md. Native final analytic review and fresh final software review have their exact frozen inputs/results in this round's report. First rejections are preserved. No new Lean, compilation, canonical reception or remote publication is claimed; legacy native-identity adapter remains unsupported.
+
+Stop after these five obligations. Noninteger Riesz, uniform c down to0, summable-side full closure elements, general non-diagonal A3/A4, infinite/new constraints, unconditional rates, ND/G1/global uniqueness and remaining M3/KP are separate. Do not restart completed reviewers or widen the task.
+
+
+## 2026-10-05 Round15: current bounded handoff
+
+Baseline HEAD ec45bf99ae746b0a3699557e06700a3c00c5a831. User supplied sl_audit_round15 and authorized R15-01, C15-A11-SCALE and C15-A3-KREIN only. Current complete proof: docs/SL_full_window_deletions_and_finite_constraints.md. Current report: reports/proof-audit-round15-20261005/REPORT.md. External execution/evidence root: F:/tools/math-audit-round15-20261005. Do not rerun frozen history or start ND/global uniqueness/summable-space classification.
+
+DD lams_precise now delegates indexed phase enumeration and returns frequencies; tol is a checked bracket-width request, nondefault smax_scale warns as deprecated. Full member-window arbitrary retention and finite-codimension individual-filtering classification are integrated with their exact three critical endpoints. R14 code and complete G2/Hc2 proofs remain. Native independent reviews are separate from the still unsupported legacy automatic adapter; no Lean/canonical receipt is implied. Final tests, review hashes and preservation evidence belong to the report. This round has no new upload request; earlier Round14 publication notes below are historical.
 
 ## 2026-10-04 Round14 publication follow-up authorized
 
