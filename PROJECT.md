@@ -1,24 +1,30 @@
 # BVE research (MRP-20260731-BVE-SL)
 
-Sturm-Liouville spectral optimization: eigenvalue ratios, gaps, extremal configurations, and left-definite theory.
+Sturm-Liouville 边值问题的长期研究成果仓库. 两条主线是左定空间/正交系与特征值比值/谱隙极值. 保存文献, 证明, 反例, 失败路线, 数值诊断和部分形式化.
 
-## Ownership (per manage-math-research-program v2026-08-05)
-- Program state: `state/`, `index/`, `agenda/`, `literature/`, `knowledge/`, `reports/` (manager-owned).
-- Legacy pre-skill layout preserved as-is: `docs/`, `tools/`, `papers/`, `scripts/`, `research_cache/`, `images/`, `misc/`.
-- Solver runs: `runs/rigorous-open-math-research/RUN_ID/` (owned by $rigorous-open-math-research).
-- Protected upstream filenames (`problem_contract.md` etc.) only under run roots.
+## 文档职责
 
-## Research directions
-1. **SL gap extremals** (active for n>=2): SUP/INF of lambda_{n+1}-lambda_n over box class 1<=rho<=R. For n=1, both SUP and INF are STRICT/CLOSED for all R>1 (2026-08-12, session 58 continuation 3; commit 220785e). See `state/RESUME.md` for the closure record and `docs/research-guide.md` for the proof chain. Round7 repairs the small-contrast endpoint/local-symmetry proof and establishes the fixed-n>=1 supremum limit (n+1)^2*pi^2 for measurable and finite-piecewise box classes. Round8 repairs the symmetric-well INF asymptotic proof with continuous phase coverage and an elementary large-w comparison, exact T3 enclosures and fixed-u 1/R expansion. It does not re-audit the separate all-R or nonsymmetric chains. The n>=2 finite-R global problem remains open; n=1 certificate-kernel formalization is a separate follow-up.
-2. **SL ratio extremals**: the all-index supremum nu(R) and infimum 1 are proved in their documented classes. Round9 corrects the physical/normalized secular distinction and proves all-n root count, strict monotonicity and the limit of the prescribed balanced candidates. Equality with the fixed-n global supremum remains open (O1/O2).
-3. **Left-definite theory / orthogonal systems**: H^2 polynomial completeness proved (session 9).
+| 文件 | 职责 |
+| --- | --- |
+| [README](README.md), [English](README_EN.md) | 首次访问者的项目介绍与代表成果 |
+| [research_map](research_map.md) | 人工维护的问题编号, 依赖, 结果范围与剩余缺口 |
+| [研究导航](docs/research-guide.md) | 按数学问题选择当前证明, 前置材料和历史替代关系 |
+| [项目理解](docs/PROJECT_UNDERSTANDING.md) | 数学理解, 直觉, 失败路线分析和人的批注 |
+| [AGENTS](AGENTS.md) | 长期工作规则和简短维护摘要 |
+| [RESUME](state/RESUME.md), [current.json](state/current.json) | 人工续接入口与兼容的机器摘要; 历史任务不因旧 active 字段自动重启 |
+| [会话日志](state/AGENTS_SESSION_LOG.md), [reports](reports/) | 详细请求, 决定, 实际操作及对应证据; 保留日期语境 |
 
-Round9 also repairs the true-integral tangent projection and eigenfunction normalization, and replaces the false Green-diagonal divergence argument with a finite concentration limit. These corrections do not resolve global G1 or certify historical scans.
+数学状态由研究地图汇总, 证明由实际来源承载; 本页不另维护逐轮成果清单. 数学证明, 独立审查, 软件测试, 各接收门禁, Lean 与发布分别核对.
 
-## Key files
-- Latest scoped correction: `reports/proof-audit-round9-20260923/REPORT.md`; two revised PDFs and three versioned tool cards.
-- Status/proof navigation: `docs/research-guide.md`; overview: `docs/SL_spectral_topics_summary.tex`. Resolve status differences using the relevant proof chain and dated closure/audit records.
-- 2026-09-20 proof errata and validation: `reports/proof-audit-20260920/REPORT.md` (local repairs; historical full interval audits and Lean are separate).
-- Gap extremals report: `docs/SL_gap_extremals.tex`.
-- Tools: `tools/` (legacy) + `knowledge/tools/` (new index).
-- Recovery entry: `state/RESUME.md`.
+## 物理布局与目录职责
+
+[blueprint-project.json](blueprint-project.json) 是现行布局依据. [仓库说明](docs/repository-guide.md) 解释 docs, runs, research, blueprint, index 等目录及源/PDF关系; [归档规则](docs/archive-policy.md) 界定证据保护.
+
+- `docs/` 是活动数学文稿和已有阅读版; `runs/` 与 `research/runs/` 保存各自时期的研究上下文与复现路径.
+- `blueprint/` 承载 canonical 图, inventory, submissions 和接收历史. 操作使用已安装插件 gateway.
+- `tools/` 保存当前可读工具卡; `index/tools.json` 是派生指针, `research/library/` 保存版本, 批注, 原文及审查/纠错证据. `knowledge/tools/` 是保留的旧管理布局位置, 当前为空. 三者不合并.
+- `scripts/` 与 `misc/` 的推荐数值/证书接口见 [脚本导航](scripts/README.md); 历史实现保持原路径. `lean-proof/` 的范围见 [状态表](lean-proof/STATUS.md).
+
+## 接手
+
+先读 [AGENTS](AGENTS.md) 和 [RESUME](state/RESUME.md), 再按问题进入证明与证据. 已有未提交进展, 冻结包和精确版本绑定优先保护. 本次 2026-10-08 先完成本地文档整理与验证, 用户后续“上传”明确授权发布本轮精确范围; 具体授权及实际结果见 [AGENTS](AGENTS.md#2026-10-08-本轮整理发布-用户明确授权).

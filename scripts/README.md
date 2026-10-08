@@ -1,81 +1,60 @@
 # 研究脚本导航
 
-第十六轮当前入口: [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py) 的 block_direction 返回带完整断点的BlockDirection. SpectralProbe.pairings优先在所有rho/h共同小段做局部解析积分; 每段左端锚定后保留半宽, 70位相位传播降低近节点消去, 小相位展开/消去回退避免节点折叠和求积混叠. 数值配对复用原物理模态共同质量, 正积分下溢拒绝, 不改变谱编号.
+[数学问题与证明](../docs/research-guide.md) | [工具卡与门禁](../tools/README.md) | [目录与复现](../docs/repository-guide.md)
 
-一般回调声明已知Breaks, 实际节点必须严格在每段内部且互异, 模态相位须可分辨, 在MaxOrder内完成两次连续误差比较; 未决抛ArithmeticError. PairingResult仍兼容四数组, 同时有diagnostics属性; return_diagnostics=True返回第五项. CLI的P1/P2/P2b/P3均保存诊断. 误差是估计, 舍入/黑箱包络为None, sign_certified=false; 原始浮点Parseval残余不截零.
+以下按实际用途选择当前入口. 这次文档整理未执行数学程序或重认证历史扫描; 表中的测试范围来自对应冻结报告. 从仓库根运行, 为新实验指定独立输出位置, 保留旧证据文件.
 
-通用misc/rigid1d的两导数符号助手先精确转换端点, 预算/计数/宽度/顺序均检查. 专用E1已Fraction且无受影响调用. 重放命令: Python3.10 -X utf8 -B research/artifacts/proof-audit-round16-20261006/checks.py --root <project> --output <outside.json>, 优化检查再加-O; OPENBLAS_NUM_THREADS=OMP_NUM_THREADS=1. [完整证明与真实结果](../reports/proof-audit-round16-20261006/REPORT.md). 不重认证全部历史扫描.
+## 当前数值计算与诊断
 
+| 入口 | 用途与接口语义 | 已记录验证及限制 |
+| --- | --- | --- |
+| [_sl_prufer.py](_sl_prufer.py)::indexed_roots, [op03_gap_fixed.py](op03_gap_fixed.py)::lams_precise | 按提升相位给模态逐项括根. fixed 兼容名称返回首 k 个**频率 omega**, 特征值为 omega². DD 是默认边界, 半问题 RightBoundary='N' 对应 DN 的半整数相位 | [R15](../reports/proof-audit-round15-20261005/REPORT.md): 普通/-O 各 92 项性质, 审查者各 103 项独立补测; 13 个直接导入者只作静态清点, 未重跑全部历史 CLI |
+| [op03_gap_fh.py](op03_gap_fh.py), [gap_n1_grad.py](gap_n1_grad.py) | 物理归一化特征函数与 FH/坐标导数. 保留平方转换, 区分单接口与镜像成对坐标; FH 系数不一律加倍 | [R7](../reports/proof-audit-round7-20260921/REPORT.md) 的局部回归及 R15 四个原 R4 FH 点; 不认证所有旧 R4 数据 |
+| [_gapn2_symmetry_recon.py](_gapn2_symmetry_recon.py) | 分块谱, 一般残差/Jacobian, 驻点求解/续接. F=f/b 保留; 绝对残差, 局部相对平衡, 模态分辨和切换零点校正共用验收. 未收敛/不可判定拒绝; 纯 softmax 不设块宽地板 | [R14](../reports/proof-audit-round14-20261004/REPORT.md): 普通/-O 各 62 项驻点性质; optimizer 成功或小 F 本身不证明驻点 |
+| [_sl_spectral_identity.py](_sl_spectral_identity.py), [_gapn2_half_problem_probe.py](_gapn2_half_problem_probe.py) | 谱表绑定几何, 边界, 一基目标, 覆盖与未删分母. half_spectrum 的默认 ndarray 保留, return_table=True 给只读表; mumax 不足报错. _spectral_green 兼容零基 pole_idx, 内部核对一基身份 | [R12](../reports/proof-audit-round12-20260926/REPORT.md), [R14](../reports/proof-audit-round14-20261004/REPORT.md): 后者普通/-O 各 143 项核性质及独立补测; 有限浮点诊断 |
+| [_gapn2_jacobian_probe.py](_gapn2_jacobian_probe.py), [_gapn2_sector_decomposition.py](_gapn2_sector_decomposition.py), [_gapn2_green_inertia_probe.py](_gapn2_green_inertia_probe.py) | JP=-PJ 的 Jacobian 使用交叉 C,D, detJ=(-1)^n detC detD; sym_antisym_decomp 返回 C,D. 与 P 对易的 Hessian 另处理. Ke/Ko 属 raw K, Kp* 属 SKS; c_e/c_o 属 Kp 秩一分解 | [R11](../reports/proof-audit-round11-20260926/REPORT.md), R12/R14: 实际有限差分路径及核对象核对; 21 个 jac_fd 命名调用者静态清点不等于全量运行. 无全参数导数误差/符号证书 |
+| [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py) | 有界方向配对及 P1/P2/P2b/P3. BlockDirection 保留所有 rho/h 断点, 每共同小段局部解析积分, 原共同质量与模态身份复用; 近节点/小相位稳定回退, 折叠/下溢拒绝 | [R16](../reports/proof-audit-round16-20261006/REPORT.md): 普通/-O 各 205 项, 各 105 项独立补测及 n=2,R=4 SUP/INF 完整 CLI. 浮点误差估计不认证 Q 符号 |
+| [d4_third_order_theory.py](d4_third_order_theory.py), [d3_stability_verify.py](d3_stability_verify.py), [op12_dichotomy_verify.py](op12_dichotomy_verify.py) 等 | 指定递推族的有理恒等式或有限向后诊断; 一般递推与 B=0 乘积模型分开. solve_u_log 用输入精确有理比值决定符号, 不恢复输入前舍入 | [R3](../reports/proof-audit-round3-20260920/REPORT.md), [R4](../reports/proof-audit-round4-20260921/REPORT.md): 对应明确程序的行为检查. 有限 N/部分和不是无穷极限证明 |
 
-第十五轮当前复用入口: [op03_gap_fixed.py](op03_gap_fixed.py)::lams_precise 已委托 [_sl_prufer.py](_sl_prufer.py)::indexed_roots 的 DD 指标相位枚举. 返回首 k 个频率 omega, 特征值是 omega**2; [op03_gap_fh.py](op03_gap_fh.py) 及直接计算调用保留平方转换. tol 是括号宽度不超过 tol*max(1,omega) 的请求, binary64 无法分辨时显式拒绝; smax_scale 不再控制网格, 非默认正值发出弃用警告, 非法值拒绝. 函数名为兼容保留.
+### 容易误用的参数
 
-高反差三块反例的遗漏与 k 依赖前缀已修复, R4 原正常样本继续通过. 直接导入 fixed 的13个活动文件已静态清点; asym3/global/global2 的独立 lams_vec/lams_fast 历史扫描并未因此重认证. 普通/-O 当前性质、R14 驻点/核旧回归及独立物理模态核验见[第十五轮报告](../reports/proof-audit-round15-20261005/REPORT.md). 这不是全部旧 R4 数据失效的断言.
+- lams_precise 的 tol 请求 bracket-width<=tol*max(1,omega); binary64 无法分辨时报错. smax_scale 默认 5 兼容静默, 非默认有限正值有弃用警告, 非法值拒绝; 不再控制网格.
+- eigenfunction_states 的值/导数使用同一物理解和加权质量. real_green_matrix 按真实坐标组装, 可处理端点及非正参数; 半问题约化核仍限正特征值. 一般 Jacobian 公式只在精确 F=0 恢复驻点简式.
+- jac_fd 默认 ndarray, return_diagnostics=True 给实际接口端点, 接受步长和往返误差. 反射种子按几何导数 -J 区分 preserve/break; 初始扇区标签不约束后续轨迹.
+- 配对回调声明已知 Breaks, 节点须在段内部且互异, 在 MaxOrder 内通过两次连续误差比较; 未决抛 ArithmeticError. PairingResult 兼容四数组, diagnostics 保留, return_diagnostics=True 给第五项. CLI 保存诊断, sign_certified=false, 黑箱/舍入包络未提供; 原始 Parseval 浮点残余不截零.
+- 二阶变分切空间用真实块积分 A_i, 不能用块平均替代; 不裁剪负密度制造可行方向. 固定宽度 P3 不等于脉冲极限, 移动界面的加速度另计.
 
-第十三轮当前接口：`_gapn2_symmetry_recon.eigenfunction_states` 用同一物理解、质量积分与比例系数返回值和导数，节点合法；`real_green_matrix` 按实际坐标组装，支持端点及非正参数，越界/不可分辨极点/溢出明确拒绝。半问题约化核仍限正特征值。`analytic_jacobian`、`analytic_jacobian_spectral`、`term_breakdown` 已实现一般非驻点公式，在 F=0 恢复原驻点公式。第十二轮半谱、极点身份和 raw K/SKS 区分保留。实际调用和有限检验见[第十三轮报告](../reports/proof-audit-round13-20260927/REPORT.md)。
-
-当前证书入口是 `python3 misc/e1_certgen.py`、`python3 misc/e1_cert_receive.py`、`python3 misc/e1_cert_tables.py`；精确端点与完整目标写入台账，失败不发布成功。`misc/rigid_dec.py`、`zz_verify_e1_dec.py` 和 `audit_o3a_cert_replay.py` 保持历史原字节，不能作为默认可信验证器。复验入口：`python3 research/artifacts/proof-audit-round13-20260927/run_checks.py`，另加 `--optimized` 检查 -O 行为。
-
-历史探测边界：`_gapn2_jacobian_pieces.py` 有旧符号组合，`_gapn2_largeR_probe2.py` 仍手动使用首点比值且有独立网格续接，`_gapn2_green_check.py` 有先算极点和再相减的旧诊断路径。它们不被上述修订入口调用，本轮不重认证其独立公式或历史扫描；需复用 Jacobian/归一化/Green 时使用本段当前入口。原文件和记录保留，不由默认 R=4 样本推断全部历史数据有效或无效。
-
-第十二轮程序接口: [_sl_prufer.py](_sl_prufer.py) 的 `indexed_roots` 新增仅关键字参数 `RightBoundary='D'` (默认不变), 可选 N 对应左 D/右 N 的半整数相位. [_gapn2_half_problem_probe.py](_gapn2_half_problem_probe.py) 的 `half_spectrum(..., return_table=True)` 返回只读数值谱表; 原默认仍返回 ndarray. `mumax` 若不足容纳所需 N 阶会报错. `_spectral_green` 保留零基 `pole_idx` 调用兼容, 内部按一基模态核验目标、几何、边界和分母; N/2N 主调用共用同表.
-
-[_gapn2_sector_decomposition.py](_gapn2_sector_decomposition.py) 的 `Ke/Ko/He/Ho/Ee/Eo` 已统一为原 K 的块, 显式 `Kp*` 键提供 SKS 的块, `c_e/c_o` 仍属于 Kp 的秩一分解并在元数据标明. [_gapn2_green_inertia_probe.py](_gapn2_green_inertia_probe.py) 的交叉 Green 比较目标为 `KpOdd=E Ke E`. 四份活动程序与两份历史 debug 调用的修改及检验范围见[报告](../reports/proof-audit-round12-20260926/REPORT.md); 不据这些检查重认证所有旧扫描或全 R 定性.
-
-第十一轮修订: [_gapn2_jacobian_probe.py](_gapn2_jacobian_probe.py) 对残差Jacobian提取交叉块C,D, 校验JP=-PJ, 使用detJ=(-1)^n detC detD. `sym_antisym_decomp`保留调用签名, 返回值语义已改为C,D. 与P对易的Hessian/K仍使用其自己的块结构.
-
-`jac_fd`默认仍返回ndarray; `return_diagnostics=True`同时返回真实接口端点、接受步长和往返误差. 每列从独立接口坐标出发, 按相邻块宽缩步, 核验裁剪/归一化后的实际路径; 不可分辨或不忠实的方向明确报错. [_gapn2_o3_scan.py](_gapn2_o3_scan.py)与P3二阶变分实际入口已重跑, 四组有限配置见[本轮报告](../reports/proof-audit-round11-20260926/REPORT.md). 21个jac_fd命名调用文件已静态清点, 不表示这些文件的全部历史CLI均重跑. 无严格导数误差界或全参数符号证书.
-
-第十轮修订入口: [_sl_prufer.py](_sl_prufer.py)、[_gapn2_symmetry_recon.py](_gapn2_symmetry_recon.py) 与二阶变分诊断. 固定网格变号不保证谱序号; 当前每个n*pi相位水平单独括根, mp细化和FD端点保持指标, 不能分辨时明确报错. 反射种子按几何作用-J区分preserve/break, 校验实际接口及可行步长. 具体执行范围见[报告](../reports/proof-audit-round10-20260925/REPORT.md); 未重跑76项调用闭包的全部历史实验.
-
-从仓库根目录运行时，为新实验指定独立输出位置。例如在 WSL 中：
+需要运行侦察时的调用形式如下; 本轮未执行这些示例:
 
 ```bash
-python3 scripts/_gapn2_symmetry_recon.py 2 4 16 both 4 --output-dir /tmp/sl-round10-new-recon
-python3 scripts/_gapn2_second_variation_probe.py 2 4 sup --output /tmp/sl-round10-new-variation.json
+python3 scripts/_gapn2_symmetry_recon.py 2 4 16 both 4 --output-dir /tmp/sl-new-recon
+python3 scripts/_gapn2_second_variation_probe.py 2 4 sup --output /tmp/sl-new-variation.json
 ```
 
-侦察的五个位置参数依次是 n、R、普通随机种子数、图案、工作进程数。纯破缺/保持种子另由 `--break-repeats`、`--preserve-repeats` 控制，默认每种图案分别112和24个，输出的 `*-seeds.json` 保存实际步长、坐标转换检验和拒绝原因。普通随机种子不冒充纯扇区；初始标签也不约束后续优化轨迹。二阶变分 JSON 的 `root_index_records` 保存逐根指标证据，`certified:false` 表示浮点数值检查，不能作为严格区间证书。
+侦察五个位置参数依次是 n, R, 普通随机种子数, 图案, 进程数; --break-repeats/--preserve-repeats 控制其他种子. 输出 seeds JSON 记录真实步长/坐标检查. 这些命令的默认预算应在实际运行前核对源码.
 
-第九轮当前诊断入口为 [_gapn2_second_variation_probe.py](_gapn2_second_variation_probe.py). 投影用 A_i=∫I_i f 而非块平均; 另外直接积分检查一阶变分, 谱配对在真实密度/方向断点分段. 记录截断、求积和有限差分步长敏感性, 拒绝通过截断负密度制造可行扰动. 脉冲宽度或实际求积节点在浮点坐标中不能分辨时明确报错, 防止假零贡献. R=1 保留兼容. 有限样本符号不是 Hessian 定性证明或盒约束全局最优性.
+## 精确证书及验证
 
-[_gapn2_k_global_rank2.py](_gapn2_k_global_rank2.py) 本轮只修正文档范围: 保留有限的移动界面加速度贡献, 不以 Green 对角发散推导其符号. 其 K 实现及历史 R206 扫描没有因此得到重认证. 原错误程序和失败解释保留在历史证据, 当前替代与复现入口见 [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md).
+| 入口 | 合同 | 验证范围 |
+| --- | --- | --- |
+| [misc/e1_certgen.py](../misc/e1_certgen.py), [e1_cert_receive.py](../misc/e1_cert_receive.py), [e1_cert_tables.py](../misc/e1_cert_tables.py) | 有理端点, 原语包络, 完整目标谓词和失败传播; 生成, 接收, 台账三步分别检查. 失败不发布成功 | [R13](../reports/proof-audit-round13-20260927/REPORT.md) 的 57 条完整账及性质检查. 本轮未重算; R16 通用 Taylor 修订不改变该专用 Fraction 路径 |
+| [INF 有理 certificate.py](../research/artifacts/proof-audit-round8-20260922/certificate/certificate.py) | 证明运算用有理数, Machin/Taylor 余项和显式守卫; 十进制仅作向外显示 | [R8](../reports/proof-audit-round8-20260922/REPORT.md) 的实际重放与 56 次预期失败负对照; 以相应覆盖域/解析桥为准 |
+| [misc/rigid1d.py](../misc/rigid1d.py) 的两导数 Taylor 符号助手 | 先转精确端点再运算, 核对类型/顺序/分区/预算. True 仍依赖正确 D2 区间回调, False 表示未证明 | [R16](../reports/proof-audit-round16-20261006/REPORT.md) 有限性质与负例; 不是给任意黑箱导数自动认证 |
 
-第八轮 INF 的当前精确入口为[certificate.py](../research/artifacts/proof-audit-round8-20260922/certificate/certificate.py), 证明算术仅用有理数, Machin/Taylor余项及显式守卫; 十进制仅负责向外显示. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)给出普通/-O/-S执行、反例对照和独立复核.
+重放时先读绑定报告及完整冻结输入, 输出另存. R14/R15/R16 的 checks.py 和 R14 kernel_checks.py 是对应版本的验收 harness; 当前检索到它们不表示已对新版本运行. 本轮没有重跑这些研究测试.
 
-原 INF run 的05/16/19以及本目录 `_theoremA_recheck_*` 的旧抽样保留溯源. 05的像端点与16/19超越函数包络不能继续作为当前认证; 16的域覆盖由新的解析相位下界替代. 17/18及其它未重跑扫描没有获得本轮认证. 复用工具时从当前卡及精确版本回执进入.
+## 历史与不推荐直接复用的实现
 
-
-[研究导航](../docs/research-guide.md) | [工具库](../tools/README.md) | [目录与复现](../docs/repository-guide.md)
-
-第七轮的当前诊断入口是 `op03_gap_fh.py`、`gap_n1_grad.py` 及报告列出的八个接口/矩阵诊断程序. 修订针对镜像坐标、SUP/INF 符号、两特征值权重和完整 Hessian 的矩阵乘法. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)区分实际 CLI、函数/AST 小样本回归与未重跑的历史扫描; 不将有限点通过理解为全部解析 Jacobian 后端或全 R 研究已经认证.
-
-已确认的遗留问题: `op03_gap_precise.py` 的特征函数传播顺序会破坏权归一化, 不能作为新的特征函数/FH 验证依据. 当前 `op03_gap_fh.py` 使用现有 `op03_gap_fixed.py`, 并以独立分块 ODE 积分核对有限样例. 其它仍导入 precise 的旧 `op03_gap_fh2`-`fh10`、`dbg*`、`shoot*`、`scan*` 等程序保留历史原字节, 不因名称含 precise 而获得可靠性保证. 单接口的 FH 系数本身不应一律加倍; 复用旧程序前必须同时核对参数坐标和特征函数后端.
-
-`docs/SL_gap_extremals.tex` 是2026-08-05的历史数值报告，仍保留当时的故障归因。它不属于本轮逐段重审的当前证明；尤其不能把其中“传播顺序导致特征值错误”的归因视为本轮已核实结论。当前工具卡只按其注明的历史数值范围引用该来源，新的谱编号依据见第十轮报告。
-
-本目录积累了不同阶段的数学程序. `num_*`, `h3_*`, `op*`, `_gapn2_*` 等名称是历史命名, 不表示统一 API 或严格性等级. 保留研究程序的输入条件, 精度, 输出与证明接口, 才能判断它能支持什么结论.
-
-| 需要做的事 | 先读什么 |
+| 历史入口 | 已知限制或替代 |
 | --- | --- |
-| 查找相位, 转移矩阵或谱极值方法 | [研究图的 B 系列](../research_map.md), [谱研究导航](../docs/research-guide.md) |
-| 查找矩递推或稠密性程序 | [研究图的 A 系列](../research_map.md), [工具索引](../tools/README.md) |
-| 重放精确证书 | 对应 run 的 `repro_manifest.md`, `reproducibility/` 或证明中的程序清单 |
-| 理解一次失败尝试 | 原 run 的研究台账, 反例记录与后续修正, 再看 [项目理解](../docs/PROJECT_UNDERSTANDING.md) |
-| 维护 Blueprint | 当前安装插件的运行时 gateway, 见 [维护规则](../AGENTS.md) |
+| op03_gap_precise.py 及仍依赖它的 fh2--fh10/dbg/shoot/scan 等 | 旧传播破坏特征函数权归一化; 新 FH 使用 op03_gap_fixed.py. 不据此断言全部旧特征值/数据错误 |
+| asym3/global/global2 的独立 lams_vec/lams_fast, _gapn2_largeR_probe2.py | 独立固定网格或首点比值路径未获共享相位入口的再认证; 新计算从 indexed_roots/fixed 进入 |
+| _gapn2_jacobian_pieces.py, _gapn2_green_check.py, _gapn2_k_global_rank2.py | 旧符号/去极点/移动界面解释分别有限; 当前公式读一般 Jacobian, 身份守卫与有限界面证明. 未重认证历史扫描 |
+| misc/rigid_dec.py, zz_verify_e1_dec.py, audit_o3a_cert_replay.py | 退役 Decimal 或旧可信接收路径; 当前用 E1 精确生成/接收接口 |
+| 原 INF run 05/16/19, _theoremA_recheck_* | 旧像端点/超越包络/域覆盖或抽样不承担当前认证; 相应职责由 R8 解析相位界与有理证书替代. 17/18 等未重跑部分保留原范围 |
+| d4_third_order_theory2.py, h3_v56_odd_explicit.py, d4_verify*/op13_* | 旧降阶公式或历史实验; 当前指定族读 d4_third_order_theory.py 与完整证明 |
+| _patch_stability12*.py, _json_update.py, _tmp_update_state.py, archive_old_runs.py | 一次性旧文本/状态/mtime 维护逻辑, 不作当前更新或归档入口; Blueprint 操作走已安装插件 gateway |
 
-数值网格和浮点优化通常提供 EVIDENCE. 符号恒等式或有理数证书可以成为严格论证的一部分, 前提是数学证明说明了覆盖范围, 精确算术和从计算结论到定理的连接. 目录位置不能替代这项判断.
+[SL_gap_extremals.tex](../docs/SL_gap_extremals.tex) 是历史数值报告, 旧故障归因不等于当前已核实结论. densbc_v1--v6 的根目录/run 副本各有路径与冻结复现职责, 保留两者. 名称含 precise/final, scratch 或超时均不能独自决定可靠性或删除.
 
-部分程序在 run 中还有相同副本. 例如 `densbc_v1_*` 至 `densbc_v6_*` 被历史台账按当前路径引用, run 副本又承担固定复现包的用途, 因此本轮保留两者. 没有把 scratch, 超时或无返回任务自动判为废弃研究.
-
-本轮移除了经检查无调用或证据引用的一次性维护程序, 清单见 [清理报告](../reports/repository-cleanup-20260909/REPORT.md). 新增可复用数学程序时, 可在工具卡记录用途和指针, 让后续研究找到它, 不需要再复制一份通用执行框架.
-
-第三轮审计修订了 `d3_stability_verify.py`, `d3_stability_verify2.py`, `op12_dichotomy_verify.py`, `op12_threshold_verify.py`, `op12_sparse_check.py`. 这些程序区分一般递推与 B=0 乘积模型, 保留正确的 c0 归一化、扰动系数及稀疏跳点. 有限部分和与浮点曲线只作诊断, 不据此判定无穷级数收敛. 实际执行及独立检验见 [第三轮报告](../reports/proof-audit-round3-20260920/REPORT.md).
-
-`scripts/_patch_stability12*.py` 是历史文本补丁, 包含本轮已撤回的陈述, 仅为溯源保留原字节. 它们不是当前证明、验证程序或文档更新入口. 本轮修订以现行 TeX、上述五个诊断程序及第三轮报告为准.
-
-第三轮独立程序检验另发现多步相减的符号误判. 最终 `solve_u_log` 用输入系数的精确有理数比值递推决定正负, 只把对数输出交给浮点; 它不会恢复输入前的舍入信息, 且分母增长可能增加计算成本. 首次拒收与修订后检验分别保留, 见报告.
-
-
-第四轮审计的当前活动入口为 `d4_third_order_theory.py`. 它用有理除法检验四个闭式, 使用带逐项非零前提的正确降阶系数, 并以正的二阶差分作有限向后计算. 数值部分采用任意指数范围, 不把有限 N 的结果当作无穷极限证明; 检验失败显式返回非零退出码. 原程序曾输出 False 和 nan 而退出0, 原字节与实际日志保存在第四轮审计工件中.
-
-`d4_third_order_theory2.py` 与 `h3_v56_odd_explicit.py` 包含已更正的旧降阶公式, 仅供追踪失败路线. `d4_verify*.py` 和 `op13_*.py` 属历史实验, 本轮没有把它们的旧打印、符号求解或有限扫描重新认证为完整证明; 复用时先检查现行三阶递推文稿的适用范围.
+逐轮接口细节原文在 [本页整理前快照](../docs/history/scripts-README.pre-organization-20261008.txt), [会话日志](../state/AGENTS_SESSION_LOG.md) 和各轮报告. 快照路径按原 scripts/README.md 解释, 历史程序与证据字节未修改.

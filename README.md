@@ -1,89 +1,44 @@
 # Sturm-Liouville 边值问题研究
 
-2026-09-27 第十三轮：修复精确证书端点、完整阈值与失败传播；共享谱助手支持节点归一化、坐标 Green、非正参数及一般 Jacobian。Helly 工具补齐容许类闭性与半连续性，旧 Decimal 默认可信复用撤回。逐项证据和限制见[修订报告](reports/proof-audit-round13-20260927/REPORT.md)。A1/A12、相容 Legendre 系与可测盒存在性保留原范围；全局 G1/G2 尚未闭合。
+[English](README_EN.md) | [按问题阅读](docs/research-guide.md) | [问题与剩余缺口](research_map.md) | [接续研究](state/RESUME.md)
 
-2026-09-26 第十二轮修订与独立验收完成: DD/DN 半谱改为按相位序号定位, 去极点求和绑定共享谱表; 修正原 K 与 SKS 的扇区对象及三个工具卡中的传播. 独立检验与工具放行状态见[本轮报告](reports/proof-audit-round12-20260926/REPORT.md). 第十一轮余有限分类保留原验收范围, 全局 G1' 仍开放.
+本仓库保存 Sturm-Liouville 理论的人机合作研究: 证明, 反例, 失败路线, 计算工具和部分 Lean 形式化. 数学来源包括既有文献, 合作者工作和项目推导, 归属与证据以原文和研究包为准. 项目使用 [数学研究插件](https://github.com/xsoc1/rigorous-open-math-research) 支持长期研究与验证.
 
-2026-09-26 第十一轮: 修复残差 Jacobian 的交叉分块与窄层差分方向. 新的独立解析审查补齐固定 c>0、0<=s<7/2 的余有限闭包分类, 包含三个临界点和原族非 Schauder 基推论. 见[修订报告](reports/proof-audit-round11-20260926/REPORT.md)、[完整证明 PDF](docs/SL_cofinite_all_orders.pdf)和[工具卡](tools/krein-cofinite-closure-all-orders.md). 数值、解析与局部 Lean 的验收范围分别登记.
+## 两条研究主线
 
-2026-09-25 第十轮审计修订已完成独立验收: 修复漏掉近邻低频根后的谱序号错配, 并明确保持/破缺反射的真实种子. 旧数值按实际重算范围使用, 不扩张全局结论. 见[本轮报告](reports/proof-audit-round10-20260925/REPORT.md).
+- **左定空间与正交系.** 研究 Krein 模型中的算子幂域, 原稀疏多项式族的完备性, 删项闭包, 有限约束及稳定替代系. 区分代数多项式传输, 抽象完备化和真实自伴算子域.
+- **特征值比值与谱隙.** 研究 Dirichlet 问题 $-y''=\lambda\rho y$ 的相邻比值与间距极值, 开关结构, 对称性及唯一性. 各证明的权重类与参数范围分别保留.
 
-[English](README_EN.md) | [研究导航](docs/research-guide.md) | [项目理解](docs/PROJECT_UNDERSTANDING.md) | [工具库](tools/README.md) | [Lean 状态](lean-proof/STATUS.md)
+## 代表成果与适用范围
 
-本仓库是使用 [rigorous-open-math-research 研究插件](https://github.com/xsoc1/rigorous-open-math-research) 开展长期数学研究的成果仓库. 保存人机合作形成的证明, 反例, 成功与失败路线, 可复用工具和部分 Lean 形式化.
-
-数学内容包括既有文献, 合作者工作与项目中的推导. 插件帮助检索, 整理思路, 记录研究与组织验证; 具体归属和证据以原文及各研究包为准.
-
-2026-09-23 文献吸收：[13项来源与阅读笔记](literature/absorption-20260923/README.md)接入工具库，形成分数/临界域字典、s=3余有限三迹闭包、s=2/4的相容Legendre替代系及有限移动界面公式，并判定两个无限删项子类。[报告](reports/literature-absorption-20260923/REPORT.md)列出独立检验和剩余范围；L13仍缺完整约束，不作为证明依赖。
-
-2026-09-23 第九轮修订: 二阶变分程序改用真实块积分约束, 补齐本征函数导数的归一化核项; 撤回一维 Green 对角发散的错误解释. 物理世俗函数带频率因子, 严格反射对称的是归一化函数. 新的 Jacobi 证明给出平衡候选值随 n 严格递减及其极限, 尚未证明它就是全局最优值. 证据与检验范围见 [第九轮报告](reports/proof-audit-round9-20260923/REPORT.md).
-
-2026-09-22 第八轮修订: 对称阱族 INF 极限改用连续相位下界覆盖整个薄层区域, 初等差量估计修复大 w 比较, T1 不再依赖旧网格或 T3 高精度数值. 固定内部 u 的首项为 C(u)/R; 最优值满足 0≤R m_R−M=O(1/R). 四张工具卡、精确有理证书、局部 Lean 与隔离检验见 [第八轮报告](reports/proof-audit-round8-20260922/REPORT.md).
-
-2026-09-21 第七轮修订: 修正谱隙文稿的常密度公式, 用统一 Volterra 估计补齐端点引理及局部唯一性证明. 一般指标的上确界极限为 $\lim_{R\to\infty}S_n(R)=(n+1)^2\pi^2$; $4\pi^2$ 限于 $n=1$. 五张工具卡同步修正镜像导数、归一化及行列式/惯性边界, 十个诊断脚本修复直接传播问题, 解析与局部 Lean 的隔离检验见 [第七轮报告](reports/proof-audit-round7-20260921/REPORT.md).
-
-2026-09-21 第六轮修订: 修复稀疏投影、有限矩检验与约束表示元的三类问题, 并补齐原完整稀疏族在真正左定空间中的精确非负稠密范围 $0\le s<7/2$. 两份解析证明和工具库传播经新的隔离审查通过; 局部 Lean 的覆盖范围见 [第六轮报告](reports/proof-audit-round6-20260921/REPORT.md).
-
-2026-09-21 第五轮核查: O1'LD 的尾部刚性、无条件余有限稠密性和真闭子空间排除推论已被反证; 单项式有限删除引理的公式已核实修正. s=2 的两条迹替代分类已获独立审查通过, 新工具卡已恢复检索, 详见 [第五轮报告](reports/proof-audit-round5-20260921/REPORT.md).
-
-2026-09-21 第四轮修订: 区分退化极限的普通函数代表与商类, 修复三阶递推程序、降阶前提与参数分类, 补出指定系数族的一般 c 最小解和常数. 解析证明、隔离检验及局部 Lean 的不同范围见 [第四轮报告](reports/proof-audit-round4-20260921/REPORT.md).
-
-2026-09-20 第三轮审计: 修复一般递推与乘积模型的混淆、错误的基扰动稳健性与商空间证明漏洞. 工具卡、程序和局部 Lean 已随之修订; 证据、独立检验及适用边界见 [第三轮报告](reports/proof-audit-round3-20260920/REPORT.md).
-
-2026-09-20 第二轮审计修订: 已补正谱模态、幂域阈值、首对全局极值证明与 K1 终端条件, 并将外部报告接入工具库纠错. 修订、隔离检验、局部 Lean 及剩余边界见 [第二轮报告](reports/proof-audit-round2-20260920/REPORT.md).
-
-## 研究什么
-
-- **正交系与左定空间.** 研究多项式系的完备性, 受约束空间的稠密性, 矩递推与算子幂域. 特别区分代数多项式逆, 抽象完备化和真正的自伴算子逆.
-- **特征值比值与间距.** 研究 Dirichlet 问题 $-y''=\lambda\rho y$ 的相邻比值和谱隙极值, 以及极值权重的开关结构, 对称性和唯一性. 每项结果采用的权重类与参数范围见原证明.
-
-## 从这里阅读
-
-| 想了解什么 | 入口 |
-| --- | --- |
-| 各研究问题的证明与剩余缺口 | [研究导航](docs/research-guide.md) |
-| 目前怎样理解问题, 怎样共同研究 | [项目理解与人的批注](docs/PROJECT_UNDERSTANDING.md) |
-| 问题编号与依赖关系 | [研究关系图](research_map.md) |
-| 文献方法, 自研工具与失败路线 | [工具库及索引](tools/README.md) |
-| 目录用途, 文档构建与复现 | [仓库使用说明](docs/repository-guide.md) |
-
-## 主要成果与范围
-
-下表保留2026-09-09整理的总体导航, 左定空间条目已按第六轮修订更新, 谱隙条目按第七、八轮修订更新, 固定 n 候选谱按第九轮修订更新, 余有限闭包按第十一轮更新. `STRICT` 只适用于来源给出的陈述与假设, 不表示整个项目已经解决或全部形式化.
-
-| 研究线 | 已有成果 | 范围与证据 |
+| 问题 | 已有成果 | 推荐证明 |
 | --- | --- | --- |
-| 全序列相邻比值 | 上确界的平衡相位闭式, 下确界为 1 且不达到 | [上确界](docs/SL_ratio_proof.tex), [下确界](docs/SL_inf_ratio_proof.tex); 按原文权重类使用 |
-| 固定 n 平衡候选比值 | 完整 2n 简单根计数; 候选 c_n 严格递减至 ((pi−phi)/phi)² | [当前证明](docs/SL_fixed_n_supremum.tex); phi=arccos((sqrt(R)−1)/(sqrt(R)+1)), R>1; 全局最优性仍开放 |
-| n=1 相邻间距 | SUP/INF 的归约, 刚性, 对称线与极值证明链 | [证明导航](docs/research-guide.md); 归一化盒类的全 R>1 结果 |
-| 对称阱族 INF 极限 | R m_R→M≈24.9438661384, 非负误差 O(1/R); Rη_R→0 的近极小化子收敛 | [第八轮连续证明](docs/SL_gap_n1_inf_limit_proof.tex); 相位薄层界与大 w 比较覆盖 R≥1500; 非对称族及全盒类须另核对 |
-| n>=2 间距结构 | 有限块结构, 弱反差局部对称性; 固定 n>=1 的 SUP 极限为 (n+1)²pi² | [当前局部证明与上确界极限](docs/SL_gap_nge2_symmetry_local_proof.tex); 可测盒类和有限分块类; 有限 R 全局唯一性仍开放 |
-| 左定空间与算子域 | 原完整族在0<=s<7/2稠密; 同一窗口内余有限闭包由保留的连续中心迹精确决定; 原族经非零缩放及重排仍非 Schauder/Riesz 基 | [全窗口删项证明](docs/SL_cofinite_all_orders.pdf), [工具卡](tools/krein-cofinite-closure-all-orders.md), [幂域障碍](tools/krein-power-domain-polynomial-obstruction.md); 固定c>0, 一般无限删项另计 |
-| B4/P1 M3 | STRICT 渐近与两个扇区行列式符号 | [工具与证明链](tools/m3-largeR-closure.md); n=2 对称 INF, large-R, 有限非零内部 chart |
-| KP-DET | 完整约束下 0<c<=2/3 的分支闭合, P20-P21 精确求积约化 | [sequence-26][kp-whiteboard]; 经审计的部分结果, 本地主 run 的 Q9 仍为 OPEN |
+| 全序列相邻比值 B1/B2 | 在原文权重类中有上确界闭式; 下确界为 1 且不达到 | [上确界](docs/SL_ratio_proof.tex), [下确界](docs/SL_inf_ratio_proof.tex) |
+| 固定指标候选 B3 | 平衡候选的 2n 简单根计数, 候选比值严格递减及其极限; 与全局最优值相等仍开放 | [候选谱证明](docs/SL_fixed_n_supremum.tex) |
+| n=1 谱隙 B4 | 归一化盒类 $1\le\rho\le R$ 中全部 $R>1$ 的 SUP/INF 证明链 | [主证明及前置材料](docs/research-guide.md#n1-谱隙) |
+| n>=2 谱隙 B4 | 有限块与精确开关结构, 弱反差局部唯一性; G2 对全部精确零点在 $1\le R\le R_{max}$ 上给统一正块宽 | [局部证明](docs/SL_gap_nge2_symmetry_local_proof.tex), [完整 G2 补证](docs/SL_G2_compactness_proof.md) |
+| 原族与删项 A1/A11/A12 | 固定 $c>0$, 真实复 $\mathcal H_c^s$, $0\le s<7/2$: 原族稠密; 任意保留集的稠密充要判据, 两奇偶倒数和发散时的精确缺迹闭包, 任一收敛时无限余维 | [成员窗口](docs/SL_fractional_left_definite.tex), [全窗口删项](docs/SL_full_window_deletions_and_finite_constraints.md) |
+| 有限约束 A3-KREIN-FINITE | 同一模型及窗口内, 逐个成员筛选的完备性恰对应连续中心迹的部分坐标核交 | [完整证明第 7 节](docs/SL_full_window_deletions_and_finite_constraints.md#7-任意有限个连续约束下的逐项筛选分类) |
+| 整数阶替代系 A10 | 每个固定 $c>0$ 和非负整数阶的 Hermite-Legendre Riesz 替代基; 次数一致界, 速率另需加权系数条件 | [完整整数阶证明](docs/SL_integer_left_definite_riesz_systems.md) |
+| 有界方向谱尾 B11 | 正有界密度及实 $L^\infty$ 方向的 Parseval 剩余与两侧谱尾界; 符号认证需可靠有限输入包络 | [完整谱尾证明](docs/SL_bounded_direction_spectral_tail.md) |
 
-插件仓库另有 [Q9 三臂完整证明与匿名外审][q9], 尚未接入本仓库 canonical, 也未做 Lean 形式化. 这与主项目当前状态分开登记, 不据此宣称全局 G1', KO-DET 或完整 n>=2 极值问题已解决.
+这些条目分别指向具体数学合同. G2 不证明 ND/G1 或无条件全局唯一性; Riesz 结论针对新替代系, 不改变原族非基结论; 谱尾结论不覆盖 delta/delta-prime 界面方向. [研究地图](research_map.md) 保留全部稳定编号及依赖, [研究导航](docs/research-guide.md) 说明前置材料和历史替代关系.
 
-## 仍在研究
+## 主要开放问题
 
-- n>=2 间距极值的全局非退化, 对称性, 唯一性及最优值.
-- 固定 n 比值的全局最优值及真正上确界序列的性质. 平衡候选的 2n 根计数、单调性与极限见 [导航](docs/research-guide.md).
-- 一般非对角空间的稠密性判据 O1'/O1'LD, 一般无限删项与其它边界条件的受约束问题. 本模型固定c>0、0<=s<7/2的余有限分类已补齐.
-- 三阶递推的非齐次源项控制与更一般系数族. [指定双奇偶系数族](docs/SL_third_order_recurrence_theory.tex) 的全部 c>0 最小解、常数和有理比值分类见第四轮修订; [K(1)=e/4](docs/SL_third_order_K1_proof.tex) 保留为偶族锚点.
+- 固定 n 比值的全局最优性 O1/O2; n>=2 谱隙的 ND/G1, 无条件全局唯一性与最优值.
+- 收敛删项侧闭包全部元素的描述, 一般非对角 A3/A4, 无限约束, 非整数阶稳定替代系及 $c\downarrow0$ 一致性.
+- 一般递推的非齐次源项控制和更广系数族. M3/KP-DET 的已有局部或 chart 结果与剩余全局问题分别见 [导航](docs/research-guide.md#局部-chart-与外部结果).
 
-问题地图和早期综述含不同时间的记录. 接续研究时以具体证明, 审计, 范围说明及最新 run 为依据; 导航列出了尚待对齐的 G2 状态差异.
+## 阅读与接手
 
-## 形式化状态
+| 需要什么 | 入口 |
+| --- | --- |
+| 数学理解, 直觉, 失败路线与人的批注 | [项目理解](docs/PROJECT_UNDERSTANDING.md) |
+| 当前计算接口, 精确证书和历史实现 | [脚本导航](scripts/README.md) |
+| 工具卡, 检索门禁和版本证据 | [工具入口](tools/README.md) |
+| 目录职责, 源文件与 PDF 对应, 复现 | [仓库说明](docs/repository-guide.md) |
+| 长期工作规则与本次维护 | [AGENTS.md](AGENTS.md) |
+| 最新完成工作, 未完成事项及历史发布证据 | [RESUME](state/RESUME.md) |
 
-[lean-proof/](lean-proof/) 固定 Lean/mathlib v4.31.0, 包含已经机器检查的引理和证明片段, 也包含带 `sorry` 的研究脚手架及条件化的分析接口. 历史构建成功只覆盖对应文件与版本.
-
-查看 [状态表](lean-proof/STATUS.md), [义务审计](lean-proof/audit_report.md) 和 [脚手架登记](lean-proof/formalization_progress.md), 再核对具体根定理与依赖. 仓库没有宣称全部数学结果已经通过 Lean 验证.
-
-## 维护与协作
-
-本项目欢迎围绕问题, 证明和研究理解进行合作. 进入仓库先读 [AGENTS.md](AGENTS.md); 人的直觉和 agent 的自由批注可以写入 [项目理解](docs/PROJECT_UNDERSTANDING.md) 或相关工具卡, 并注明证据状态.
-
-[主仓库](https://github.com/Zhongshan-Big-Jun/Sturm-Liouville-theory-research) 与 [fork](https://github.com/xsoc1/Sturm-Liouville-theory-research) 按项目规则同步. [本轮清理报告](reports/repository-cleanup-20260909/REPORT.md) 记录目录整理, 删除理由和证据保护; 旧首页保存在研究导航的历史入口.
-
-[kp-whiteboard]: research/runs/R-20260831T020156Z-g1p-kpdet/workspace/runs/rigorous-open-math-research/R-20260831T020156Z-g1p-kpdet/whiteboard-26.md
-[q9]: https://github.com/xsoc1/rigorous-open-math-research/blob/f95627ca1b44aeb75692a5814e20050b0e6a40cb/benchmarks/codex-20260908-q9/CONCLUSIONS.md
+数学证明, 独立审查, 软件测试, 工具库接收, Blueprint 接收, Lean 与远端发布分别登记. [Lean 状态](lean-proof/STATUS.md) 和对应声明的代码/日志界定形式化范围. [R14](reports/proof-audit-round14-20261004/REPORT.md), [R15](reports/proof-audit-round15-20261005/REPORT.md), [R16](reports/proof-audit-round16-20261006/REPORT.md) 保留各轮真实结果和失败回执; 整理前的入口原文在 [历史快照清单](docs/history/entry-snapshots-20261008.json), 完整对话在 [会话日志](state/AGENTS_SESSION_LOG.md).

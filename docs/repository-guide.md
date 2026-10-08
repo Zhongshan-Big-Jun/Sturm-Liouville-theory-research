@@ -1,29 +1,53 @@
-# 目录, 文档构建与复现
+# 目录, 文档与复现
 
-[中文首页](../README.md) | [English overview](../README_EN.md) | [研究导航](research-guide.md)
+[中文首页](../README.md) | [English](../README_EN.md) | [数学阅读导航](research-guide.md) | [当前续接](../state/RESUME.md)
 
-## 从哪里开始
+## 文档与目录职责
 
-| 位置 | 内容与用途 |
+首页负责介绍, [research_map](../research_map.md) 负责当前问题/结果/缺口, [研究导航](research-guide.md) 负责选择证明和前置材料. [PROJECT](../PROJECT.md) 说明定位, [AGENTS](../AGENTS.md) 说明工作规则, [RESUME](../state/RESUME.md)/[current.json](../state/current.json) 承担人工/机器续接; [会话日志](../state/AGENTS_SESSION_LOG.md) 保存详细过程. [项目理解](PROJECT_UNDERSTANDING.md) 保留数学理解和人的批注, 不作另一份状态台账.
+
+| 位置 | 内容与使用者 |
 | --- | --- |
-| [docs/](./) | TeX 证明与可读 PDF; 从研究导航按问题进入 |
-| [tools/README.md](../tools/README.md) | 文献工具, 自研方法及旧路线的卡片索引 |
-| [research_map.md](../research_map.md) | 稳定问题编号和关系图; 某些状态段落早于最新 run |
-| [PROJECT_UNDERSTANDING.md](PROJECT_UNDERSTANDING.md) | 人机共同编辑的研究解释, 失败路线再检视与候选动作 |
-| [lean-proof/](../lean-proof/) | Lean 源码, 状态表, 审计与脚手架登记 |
-| [blueprint/](../blueprint/) | canonical 数学图, inventory, 不可变提交与接收记录 |
-| [research/artifacts/](../research/artifacts/), [research/runs/](../research/runs/) | 已保存的证明工件及新布局中的研究 run |
-| [runs/](../runs/) | 历史研究, benchmark 与复现包; 路径可能被证据清单绑定 |
-| [collaborator_min_direction_verification/](../collaborator_min_direction_verification/) | 合作者研究的核验包 |
-| [scripts/](../scripts/README.md), [misc/](../misc/) | 探索程序, 证书程序与历史诊断; 按实际用途判断证据等级 |
-| [papers/](../papers/), [literature/](../literature/), [research_cache/](../research_cache/) | 已有文献与读取资料; 遵守各来源的使用许可 |
-| [state/](../state/), [index/](../index/), [reports/](../reports/) | 接续入口, 索引, 研究与工程报告 |
+| [docs](./) | 活动数学源文稿, 既有 PDF, 同目录 build 历史镜像; 按版本证据选择阅读版 |
+| [tools](../tools/README.md), `knowledge/tools/`, [research/library](../research/library/) | 当前卡片, 旧管理布局空目录, 版本/原文/批注/审查纠错库; [工具说明](../tools/README.md) 给消费者, 三者不合并 |
+| [index](../index/) | 文献/任务/run/工件及工具的派生或历史索引; 旧记录不等于当前运行中 |
+| [blueprint](../blueprint/) | canonical 图, inventory, submissions, 审查和接收历史 |
+| [research/artifacts](../research/artifacts/), [research/runs](../research/runs/), [runs](../runs/) | 活动/冻结工件及不同布局时期的 run; 各路径可能被证据精确绑定 |
+| [scripts](../scripts/README.md), [misc](../misc/) | 数值诊断, 有理证书, 历史实现; 当前/退役用途见脚本导航 |
+| [lean-proof](../lean-proof/STATUS.md) | 形式化片段, 条件接口及脚手架; 对照具体根声明和依赖 |
+| [papers](../papers/), [literature](../literature/), [research_cache](../research_cache/) | 来源及读取资料, 保留版本/许可/实际读取范围 |
+| [collaborator_min_direction_verification](../collaborator_min_direction_verification/) | 合作者最小方向结果的核验上下文 |
+| [state](../state/), [reports](../reports/), [docs/history](history/) | 续接/历史状态, 实际交付/失败记录, 未覆盖的原字节快照 |
 
-[blueprint-project.json](../blueprint-project.json) 是物理布局依据. 既有目录按引用保留; 本轮通过导航组织内容, 没有移动 canonical 或哈希绑定的研究工件.
+[blueprint-project.json](../blueprint-project.json) 是物理布局依据. 本轮保留所有目录与研究工件原路径, 不迁移 docs/runs/research/blueprint.
 
-## 阅读与构建文档
+## 源文件与 PDF 对应
 
-阅读可以直接打开研究导航中的 PDF. 编辑后在 `docs/` 使用已配置中文字体的 XeLaTeX, 将中间文件写入 `build/`. 例如从仓库根运行:
+同名或修改时间不能证明源/PDF一致. 下表用实际文件哈希和现存构建记录核对; 没有重新编译或进行本轮 PDF 版面验收.
+
+| 当前源/主题 | 阅读版与对应依据 | 限制 |
+| --- | --- | --- |
+| [n>=2 局部框架源](SL_gap_nge2_symmetry_local_proof.tex) | [根 PDF](SL_gap_nge2_symmetry_local_proof.pdf) 与 build PDF 字节相同; 源和两 PDF 均匹配 [R14 构建绑定](../research/artifacts/proof-audit-round14-20261004/pdf-verification.json), 16 页 | 含 G2 活动框架补证; 原完整 [G2 Markdown](SL_G2_compactness_proof.md) 无独立同名 PDF |
+| [综述源](SL_spectral_topics_summary.tex) | [根 PDF](SL_spectral_topics_summary.pdf) 匹配 R15 发布清单与 [23 页最终阅读版记录](../research/artifacts/proof-audit-round15-20261005/compilation/visual-check.json); 源匹配 R15 最终解析输入 | build PDF 仍匹配 R14 的 22 页旧版, 与根 PDF 不同. 综述不是 R16 两项完整证明的 PDF |
+| [A12 余有限源](SL_cofinite_all_orders.tex) | [根 PDF](SL_cofinite_all_orders.pdf), [R11 报告](../reports/proof-audit-round11-20260926/REPORT.md) 的既有阅读版 | A11 任意保留集推广另读 R15 完整 Markdown, 不以此 PDF 覆盖推广 |
+| [Hc2 删项](SL_H2_arbitrary_deletion_proof.md), [全窗口删项/有限约束](SL_full_window_deletions_and_finite_constraints.md) | 当前完整证明是 Markdown, 未找到独立同名 TeX/PDF | 根综述 PDF 可作概览, 不能替代完整证明 |
+| [整数阶 Riesz](SL_integer_left_definite_riesz_systems.md), [有界方向谱尾](SL_bounded_direction_spectral_tail.md) | 当前完整证明是 Markdown; R16 明记没有 TeX/PDF 编译 | 没有独立同名 PDF, 不用旧阅读版冒充 |
+| 比值, 固定 n 候选, n=1 主证明和 INF 极限 | 根 PDF 与 build PDF 现场哈希均不同; 推荐从 [主题导航](research-guide.md) 的活动 TeX 与审查范围进入 | 本轮未逐一证明这些不同阅读版与现行源同步, 不按文件名/时间猜测 |
+| [Hs 旧稿](SL_hs_orthogonal_systems_proof.tex) | 根与 build 的同名 PDF 字节相同, build 副本起点为未跟踪文件 | 一致的两个 PDF 不证明与源同步或全阶结论成立; 配合 A7 域障碍读取, 原未跟踪副本保留 |
+
+## 状态接口与历史程序
+
+`state/current.json` 继续作为 v1 机器摘要. 已安装 manage 插件的 assets/current-state.template.json 定义数组身份, lifecycle_state, current_objective, latest_checkpoint_path 与 updated_at; init_project.py 生成此文件, validate_project.py 检查存在性/project_id 和 checkpoint 提示. 本项目还含旧别名 project_lifecycle_state/objective/latest_checkpoint/last_updated 和单个 active 字段. 本轮保留旧键及类型, 增补模板键并同步别名; 无本轮派发时活动 ID 清空, 旧 ID/状态原文保存在 [原状态快照](history/current.pre-organization-20261008.txt). 历史预算数值不作为当前预算.
+
+仓库 scripts/_json_update.py 和 _tmp_update_state.py 是旧一次性写入器, _act.py/_agents.py 含当时记录. workflow 的 research_state.py 管理另行版本绑定的进度/checkpoint, 未找到其以 state/current.json 为当前读写入口的代码. 本轮未创建另一份 current 文件, 未改 checkpoint/progress 原快照, 也未启动旧状态写入器.
+
+旧 validate_project.py 仍期待 knowledge/ 下旧 canonical 文件和旧目录职责; v2.2 布局按顶部 gateway 生效. 本轮不以该旧全项目检查给当前布局制造通过标签, 只验证本次状态 JSON 的字段/类型/别名及实际指针. 不把预算, ID 或 schema 兼容性检查当作任务运行状态验证.
+
+## 复现和构建
+
+复现数学结果先读原 run 的合同, 冻结源码和 repro manifest, 确认输入/精度/依赖, 输出另存. [脚本导航](../scripts/README.md) 区分当前数值诊断, 精确证书与历史实现. 本轮未重跑它们.
+
+编辑某个 TeX 后可在有中文字体的既有 XeLaTeX 环境按该文稿的构建约定运行, 例如:
 
 ```bash
 cd docs
@@ -31,27 +55,10 @@ xelatex -interaction=nonstopmode -halt-on-error -output-directory=build SL_ratio
 xelatex -interaction=nonstopmode -halt-on-error -output-directory=build SL_ratio_proof.tex
 ```
 
-核对 PDF 与日志后再选择发布的文档版本. `docs/build/` 中的 PDF 也可能是旧证明清单的证据, 应按原路径保留. 本轮清理没有替换任何 TeX 或 PDF, 也没有重新编译研究文档.
+实际构建前检查是否会覆盖被绑定的 build/PDF/日志, 为新版本选独立输出位置. [归档规则](archive-policy.md) 要求保留证据日志; 本轮未编译任何文稿.
 
-## Lean 的复现范围
+Blueprint 读取与维护通过当前安装插件的 runtime/blueprintctl.py: 先 ensure, 再按具体任务 query/validate. 本轮只核对 runtime 绑定, 不提交/接收命题或执行退役项目内维护器. Lean 复现遵循 [工程状态](../lean-proof/STATUS.md), toolchain 与具体审核合同; 构建成功不建立全部数学形式化.
 
-工程中的 [lean-toolchain](../lean-proof/lean-toolchain) 与 [lakefile.lean](../lean-proof/lakefile.lean) 当前固定 Lean/mathlib v4.31.0. 安装相应工具链后, 从仓库根检查一个已有文件:
+## 历史入口
 
-```bash
-cd lean-proof
-lake env lean SL/MomentGrowth.lean
-```
-
-`lake build` 可检查包中的构建目标, 但工程包含有 `sorry` 的研究脚手架, 某些已编译定理也显式假设尚未接入的分析结论. 构建成功不等于整个数学项目已形式化. 发布某个形式化结果时, 对照原陈述核对具体根声明, 其依赖和实际使用的公理, 并引用对应代码版本和日志. 使用插件自己的验证工具, 不把旧全库计数当作当前结论.
-
-## Blueprint 与研究程序
-
-canonical 的读取与校验通过当前安装插件的 `runtime/blueprintctl.py` 完成. 根 [AGENTS.md](../AGENTS.md) 约定先完成一次运行时 `ensure`, 再使用 `query` 或 `validate`; 本仓库的历史本地 Blueprint Python 工具不作为运行入口. 本次整理使用已有的有效运行时绑定, 没有接收新的数学命题.
-
-[脚本导航](../scripts/README.md) 帮助区分数学实现和一次性维护代码. 需要复现证明时, 先读取对应 run 的契约与复现清单, 再确定环境, 输入和精度. 不能仅凭脚本名, 目录名或成功退出判断结果是否严格.
-
-## 清理与历史
-
-本轮的 [清理报告](../reports/repository-cleanup-20260909/REPORT.md) 与 [逐项清单](../reports/repository-cleanup-20260909/cleanup-manifest.json) 记录删除理由, 原始哈希, 引用检查和保留项. [归档规则](archive-policy.md) 要求先检查证据绑定与活跃状态; 文件年代和重复内容本身都不是删除依据.
-
-旧中文与英文首页以原字节保存在 [历史中文](history/README.pre-v2.zh.txt) 和 [历史英文](history/README.pre-v2.en.txt). 根 AGENTS 的长会话记录归入 [state/AGENTS_SESSION_LOG.md](../state/AGENTS_SESSION_LOG.md). 数学状态保持原始证据与显式范围, 文档导航中的当前解释不覆盖历史原件.
+[2026-09-09 整理报告](../reports/repository-cleanup-20260909/REPORT.md) 与 [旧清单](../reports/repository-cleanup-20260909/cleanup-manifest.json) 保留当时删除/保护记录. 本轮没有删除文件. [2026-10-08 维护记录](../state/AGENTS_SESSION_LOG.md#2026-10-08-仓库入口与续接整理) 和 [原字节快照清单](history/entry-snapshots-20261008.json) 保存本次范围, 引用/绑定检查和验证结果; [最早中文](history/README.pre-v2.zh.txt)/[英文](history/README.pre-v2.en.txt) 快照不覆盖. 历史未提交/未发布状态保持当时语境, 后续发布看 [RESUME](../state/RESUME.md).

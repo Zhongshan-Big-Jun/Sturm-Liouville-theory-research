@@ -1,30 +1,22 @@
 # Research map: Sturm-Liouville spectral optimization (BVE research)
 
-Last updated: 2026-10-06 (Round16 exact Taylor boundary, resolved pairings, bounded-direction tail and all-integer replacement systems; scoped evidence in reports/proof-audit-round16-20261006/REPORT.md)
+Navigation updated: 2026-10-08. Mathematical scopes below retain the existing R14--R16 results; this maintenance adds no theorem or acceptance.
 
-
-
-
-
-This is a project-wide, human-readable map of every problem being studied and
-how the problems relate to each other. It is a living document: update it at
-stage boundaries and whenever a problem, result, or relationship changes.
+[首页](README.md) | [按问题选择证明](docs/research-guide.md) | [当前续接](state/RESUME.md) | [数学理解](docs/PROJECT_UNDERSTANDING.md)
 
 ## How to read this map
 
-- Each **node** is a research problem (with a stable id, name, status).
-- Each **edge** is a relationship: `extends` (one generalizes another),
-  `reduces_to` (one is a reduced core of another), `uses` (reuses a tool or
-  result), `supersedes` (a newer result covers an older one), `unifies`.
-- Statuses: `SOLVED` / `STRICT` (proved) / `PARTIAL` / `OPEN` / `NUMERICAL`.
+This is the human-maintained problem--result--remaining-gap overview. Stable node IDs and dependency relations are preserved. SOLVED/STRICT describe only the exact scope in that row, PARTIAL leaves the stated gaps open, NUMERICAL denotes finite diagnostic evidence. The map is not a proof or a Blueprint/library/Lean acceptance record.
+
+Follow each actual proof and its report, then check prerequisites and replacement relationships in the research guide. Independent analytic review, software execution, retrieval, automated reception, canonical integration, formalization and remote publication are separate. A newer navigation date does not extend any result.
 
 ## Entry points
 
-- Overview: `docs/SL_spectral_topics_summary.tex` now aligns A1/A12 and distinguishes the G2 quantifiers; section 5 retains the remaining open problems.
-- Project/ownership: `PROJECT.md`, `AGENTS.md`, `state/RESUME.md`.
-- Runs: `runs/rigorous-open-math-research/`.
-- Tools: `tools/` (+ index `tools/README.md`) and `knowledge/tools/`.
-- Formalization state: `lean-proof/STATUS.md`, `lean-proof/LEMMA_INDEX.md`.
+- [研究导航](docs/research-guide.md): recommended proofs and necessary prerequisites by mathematical problem.
+- [目录及源/PDF关系](docs/repository-guide.md): some complete proofs are Markdown-only; historical PDFs retain their original roles.
+- [工具入口](tools/README.md), [脚本入口](scripts/README.md): card gates and current numerical/certificate interfaces.
+- [Lean 状态](lean-proof/STATUS.md): inspect the exact declarations, hypotheses and bound code/logs.
+- [R14](reports/proof-audit-round14-20261004/REPORT.md), [R15](reports/proof-audit-round15-20261005/REPORT.md), [R16](reports/proof-audit-round16-20261006/REPORT.md): scoped evidence and original failed reviews.
 
 ## Two research lines
 
@@ -32,38 +24,38 @@ stage boundaries and whenever a problem, result, or relationship changes.
 
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
-| A1 | `{p_n}` density in genuine H^s, 0 <= s < 7/2 (Krein-Sobolev) | SOLVED | docs/SL_fractional_left_definite; H2/H3 proofs retained | Round6 four-trace graph core + spectral cutoff proves the full window; every nonaffine named member has threshold7/2, affine modes survive all nonnegative orders. No deleted-family or arbitrary-V extension |
-| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse-family density | SOLVED | docs/SL_fractional_left_definite | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
-| A3 | Density in constrained subspace V, general non-coordinate H | OPEN (general); diagonal Theorem E and Krein finite-codimension subclass SOLVED | tools/constrained-denseness-runs; A3-KREIN-FINITE | General A4, infinite constraints and projected/recombined families are separate |
-| A4 | O1' moment-representability + membership step | PARTIAL | 2026-08-16 run R-20260816T210000Z-densbc-o1p | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
-| A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | docs/SL_stability_moment_jump | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
-| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | docs/SL_third_order_recurrence_theory; docs/SL_third_order_K1_proof.tex | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
-| A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | tools/krein-power-domain-polynomial-obstruction; pilot-v6-hs-domain/arms/a-plugin; arms/c-qed | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
-| A8 | Cofinite original-family closure at s=3 | SOLVED | literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md; tools/krein-s3-cofinite-three-traces | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. The original s3 proof has that scope; A12 now covers critical s=5/2. No general infinite-deletion conclusion |
-| A9 | Concrete fractional and critical power-domain dictionary | STRICT | tools/krein-fractional-trace-dictionary; tools/krein-parity-unitary | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
-| A10 | Hermite-integrated Legendre Riesz replacement systems, every integer order | STRICT (scoped independent analytic review) | docs/SL_integer_left_definite_riesz_systems.md; tools/krein-integrated-legendre-riesz | Every fixed c>0 and integer r>=0, true complex power domain, 2ceil(r/2) low lifts (odd r needs r+1), degree-independent Riesz bounds and exact polynomial span. Rates need weighted coefficients with t>=0. Not original sparse-family Riesz, noninteger orders or uniform c->0 |
-| A11 | Arbitrary retained sets throughout the full Krein member window | Density criterion / divergent closure CLOSED; summable closure description PARTIAL | docs/SL_full_window_deletions_and_finite_constraints.md; tools/krein-infinite-deletion-subclasses | Fixed c>0, 0<=s<7/2, arbitrary N. Both parity reciprocal sums divergent: exact omitted continuous-center-trace closure with I(s)={}, {0}, {0,1}, {0,1,4}; equalities1/2,3/2,5/2 use fewer traces. Either convergent: infinite codimension. Dense iff both divergent and I(s) subset N. Full summable-space description remains open |
-| A3-KREIN-FINITE | Individual-member filtering under finite continuous complex constraints in genuine Hc^s | SOLVED (scoped independent analytic review) | docs/SL_full_window_deletions_and_finite_constraints.md, section7; tools/krein-finite-constraint-filtering | Fixed c>0, 0<=s<7/2: filtered family dense in V iff V is an intersection of a subset of current continuous central trace coordinate kernels; 1/2/4/8 distinct subspaces. No general H, infinite constraints, projection or recombination theorem |
-| A12 | Cofinite closure throughout the full member window | SOLVED (independent analytic review) | docs/SL_cofinite_all_orders.pdf; tools/krein-cofinite-closure-all-orders | Fixed c>0, 0<=s<7/2. Essential retained indices are {}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Missing indices impose respectively f(0), f′(0), f″(0); codimension is their count. Delete p6: still dense, so every nonzero scaling/reordering of the original family is non-Schauder/Riesz. No arbitrary infinite deletion or uniform c→0 claim |
+| A1 | `{p_n}` density in genuine H^s, 0 <= s < 7/2 (Krein-Sobolev) | SOLVED | [完整成员窗口](docs/SL_fractional_left_definite.tex); [R6](reports/proof-audit-round6-20260921/REPORT.md) | Round6 four-trace graph core + spectral cutoff proves the full window; every nonaffine named member has threshold7/2, affine modes survive all nonnegative orders. No deleted-family or arbitrary-V extension |
+| A2 | Fractional left-definite H^s, 3/2 <= s < 2, sparse-family density | SOLVED | [分数阶证明](docs/SL_fractional_left_definite.tex) | covered by A1 via H3 density and spectral truncation, 2026-09-20; no claim for arbitrary constrained spaces |
+| A3 | Density in constrained subspace V, general non-coordinate H | OPEN (general); diagonal Theorem E and Krein finite-codimension subclass SOLVED | [修后准则](tools/constrained-denseness-runs.md); A3-KREIN-FINITE below | General A4, infinite constraints and projected/recombined families are separate |
+| A4 | O1' moment-representability + membership step | PARTIAL | [受约束证明与原 run](tools/constrained-denseness-runs.md); [R6 修复](reports/proof-audit-round6-20260921/REPORT.md) | CLOSED on H_beta + finite polynomial constraints; general H OPEN |
+| A5 | Conditional moment-jump stability and actual-solution criterion | PARTIAL | [稳定性证明](docs/SL_stability_moment_jump.tex); [R3](reports/proof-audit-round3-20260920/REPORT.md) | General product lower bound only; B=0 diagonal models classified; unconditional bounded basis-perturbation stability refuted (round 3) |
+| A6 | Three-order recurrence theory (fixed point / closed forms / minimal solution) | PARTIAL | [指定族证明](docs/SL_third_order_recurrence_theory.tex); [K1 锚点](docs/SL_third_order_K1_proof.tex); [R4](reports/proof-audit-round4-20260921/REPORT.md) | specified even/odd P,Q,R: positive minimal solution and K0(c)/K1(c) for c>0, rational ratios classified in round4; nonhomogeneous source control and arbitrary families remain OPEN |
+| A7 | Krein algebraic polynomial inverse versus operator power domain | STRICT | [域障碍](tools/krein-power-domain-polynomial-obstruction.md); [pilot-v6](runs/three-arm-pilot-v2/pilot-v6-hs-domain/RESULTS.md) | for every c>0 and integer s>=4, membership holds exactly for n=0,1; genuine operator inverses are dense but generally non-polynomial; boundary-compatible polynomials form a graph core with exact degrees `{0,1} union {N:N>=2 floor(s/2)+2}` |
+| A8 | Cofinite original-family closure at s=3 | SOLVED | [s=3 证明](literature/absorption-20260923/domains/proofs/03-s3-cofinite-closure.md); [吸收报告](reports/literature-absorption-20260923/REPORT.md) | Fixed c>0. Closure is determined exactly by retention of indices0,1,4, detecting f(0),f′(0),f″(0); high-tail sufficiency proved. The original s3 proof has that scope; A12 now covers critical s=5/2. No general infinite-deletion conclusion |
+| A9 | Concrete fractional and critical power-domain dictionary | STRICT | [域字典](tools/krein-fractional-trace-dictionary.md); [幺正桥](tools/krein-parity-unitary.md) | All s≥0 in this smooth constant-coefficient model via full-interval Neumann/shifted-Robin bridge; ordinary boundary layers off3/2+2k and weighted critical residuals at equality |
+| A10 | Hermite-integrated Legendre Riesz replacement systems, every integer order | STRICT (scoped independent analytic review) | [完整整数证明](docs/SL_integer_left_definite_riesz_systems.md); [R16](reports/proof-audit-round16-20261006/REPORT.md) | Every fixed c>0 and integer r>=0, true complex power domain, 2ceil(r/2) low lifts (odd r needs r+1), degree-independent Riesz bounds and exact polynomial span. Rates need weighted coefficients with t>=0. Not original sparse-family Riesz, noninteger orders or uniform c->0 |
+| A11 | Arbitrary retained sets throughout the full Krein member window | Density criterion / divergent closure CLOSED; summable closure description PARTIAL | [完整全窗口证明](docs/SL_full_window_deletions_and_finite_constraints.md); [R15](reports/proof-audit-round15-20261005/REPORT.md) | Fixed c>0, 0<=s<7/2, arbitrary N. Both parity reciprocal sums divergent: exact omitted continuous-center-trace closure with I(s)={}, {0}, {0,1}, {0,1,4}; equalities1/2,3/2,5/2 use fewer traces. Either convergent: infinite codimension. Dense iff both divergent and I(s) subset N. Full summable-space description remains open |
+| A3-KREIN-FINITE | Individual-member filtering under finite continuous complex constraints in genuine Hc^s | SOLVED (scoped independent analytic review) | [完整证明第 7 节](docs/SL_full_window_deletions_and_finite_constraints.md#7-任意有限个连续约束下的逐项筛选分类); [R15](reports/proof-audit-round15-20261005/REPORT.md) | Fixed c>0, 0<=s<7/2: filtered family dense in V iff V is an intersection of a subset of current continuous central trace coordinate kernels; 1/2/4/8 distinct subspaces. No general H, infinite constraints, projection or recombination theorem |
+| A12 | Cofinite closure throughout the full member window | SOLVED (independent analytic review) | [A12 源证明](docs/SL_cofinite_all_orders.tex); [阅读版](docs/SL_cofinite_all_orders.pdf); [R11](reports/proof-audit-round11-20260926/REPORT.md) | Fixed c>0, 0<=s<7/2. Essential retained indices are {}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Missing indices impose respectively f(0), f′(0), f″(0); codimension is their count. Delete p6: still dense, so every nonzero scaling/reordering of the original family is non-Schauder/Riesz. No arbitrary infinite deletion or uniform c→0 claim |
 
 ### Line B - Eigenvalue ratios and spectral gaps of weighted Dirichlet SL
 
 | Id | Problem | Status | Key result / pointer | Notes |
 | --- | --- | --- | --- | --- |
-| B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | docs/SL_ratio_proof | balanced-phase closed form |
-| B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | docs/SL_inf_ratio_proof | Constant-density high modes suffice; inf not attained |
-| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | docs/SL_fixed_n_supremum | physical reflection has a frequency factor; normalized symmetry and all-n root count repaired in round9. Historical extremizer 2n-switch structure retains its scope; global equality/optimality O1/O2 OPEN |
-| B3-CANDIDATE-LIMIT | Prescribed balanced candidate ratios c_n(R), fixed R>1 | SOLVED | docs/SL_fixed_n_supremum.tex; round9 analytic repair | Jacobi principal submatrix argument gives c_n strictly decreasing to ((pi-phi)/phi)^2, phi=arccos((sqrt(R)-1)/(sqrt(R)+1)). Does not identify c_n with the global supremum |
-| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | docs/SL_gap_n1_proof; docs/SL_gap_nge2_symmetry_local_proof; blueprint target CLM-SL-B4-M3-TARGET-V1 | n=1 all-R chain retained; n>=2 small-contrast uniqueness repaired in round7; general SUP limit is solved as B4-SUP-LIMIT below. M3/KP retain their explicit chart scopes; G2 now covers all exact zeros uniformly on 1<=R<=Rmax (Round14); all-zero Jacobian nondegeneracy ND remains open; finite-R global uniqueness remains OPEN |
-| B4-SUP-LIMIT | lim_(R->infinity) sup_(1<=rho<=R) D_n, fixed n>=1 | SOLVED | docs/SL_gap_nge2_symmetry_local_proof.tex, round7 thin-heavy-interval theorem | Limit=(n+1)^2*pi^2 for measurable box and unrestricted finite-piecewise classes; 4*pi^2 only at n=1. Does not identify finite-R maximizing interfaces or prove every self-consistent branch reaches that limit |
-| B4-INF-LIMIT | Symmetric [R,1,R] first-gap scaled infimum and near-minimizers | SOLVED | docs/SL_gap_n1_inf_limit_proof.tex; round8 report | R*m_R→M≈24.9438661384 with nonnegative O(1/R) error; near-minimizers require R*eta_R→0. Entire thin-layer region covered by continuous phase speed; large-w comparison has positive margin. T1 uses T2 analytically, not T3 numerical constants. No new all-box/nonsymmetric/n>=2 claim |
-| B5 | MDE extremal measure unified theory | OPEN | docs/SL_spectral_topics_summary section 5 | unifies nodes/largest gap via extremal measures |
-| B6 | p-Laplacian / nonlinear generalizations | OPEN | docs/SL_spectral_topics_summary section 5 | Wen-Zhou singularity technique scope |
-| B7 | Local second variation along finite fixed-value moving interfaces | STRICT | tools/finite-interface-second-derivative; literature/absorption-20260923/interfaces/derivations | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
-| B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | reports/proof-audit-round10-20260925/REPORT.md; scripts/_sl_prufer.py | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
-| B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | scripts/_gapn2_jacobian_probe.py; reports/proof-audit-round11-20260926/REPORT.md | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
-| B10 | Half-spectrum identity, bound poles and raw/conjugated sectors | SCOPED REPAIR VERIFIED | reports/proof-audit-round12-20260926/REPORT.md; tools/green-half-inertia; tools/half-problem-regularized-green | DD/DN phase targets label each mode; shared tables bind pole deletion. KpOdd=E Ke E, while raw Ko has reduced own-pole kernels and a rank-one term. Round13 repairs node normalization, real-coordinate/nonpositive Green and the general residual Jacobian; round12 prefix/pole/sector properties are retained. Finite diagnostics and local algebra do not certify global signs or G1 |
-| B11 | Parseval residual and two-sided spectral tail along bounded real density directions | STRICT (scoped independent analytic review) | docs/SL_bounded_direction_spectral_tail.md; tools/second-variation-weighted-eigenvalues | True DD, positive bounded rho, real L-infinity h; reliable finite-pairing/J/eigenvalue/Q envelopes required for sign certification. Numerical quadrature and truncation are distinct. Not delta/delta-prime interface directions or ND/G1 |
+| B1 | sup_{n,rho} lambda_{n+1}/lambda_n = nu(R) | SOLVED | [上确界证明](docs/SL_ratio_proof.tex) | balanced-phase closed form |
+| B2 | inf_{n,rho} lambda_{n+1}/lambda_n = 1 | SOLVED | [下确界证明](docs/SL_inf_ratio_proof.tex) | Constant-density high modes suffice; inf not attained |
+| B3 | Fixed-n supremum Lambda_n^sup(R) | PARTIAL | [候选谱证明](docs/SL_fixed_n_supremum.tex); [R9](reports/proof-audit-round9-20260923/REPORT.md) | physical reflection has a frequency factor; normalized symmetry and all-n root count repaired in round9. Historical extremizer 2n-switch structure retains its scope; global equality/optimality O1/O2 OPEN |
+| B3-CANDIDATE-LIMIT | Prescribed balanced candidate ratios c_n(R), fixed R>1 | SOLVED | [指定候选证明](docs/SL_fixed_n_supremum.tex); [R9](reports/proof-audit-round9-20260923/REPORT.md) | Jacobi principal submatrix argument gives c_n strictly decreasing to ((pi-phi)/phi)^2, phi=arccos((sqrt(R)-1)/(sqrt(R)+1)). Does not identify c_n with the global supremum |
+| B4 | Adjacent gap extremals D_n = lambda_{n+1}-lambda_n | PARTIAL | [n=1](docs/SL_gap_n1_proof.tex); [局部框架](docs/SL_gap_nge2_symmetry_local_proof.tex); [完整 G2](docs/SL_G2_compactness_proof.md); [R14](reports/proof-audit-round14-20261004/REPORT.md) | n=1 all-R chain retained; n>=2 small-contrast uniqueness repaired in round7; general SUP limit is solved as B4-SUP-LIMIT below. M3/KP retain their explicit chart scopes; G2 now covers all exact zeros uniformly on 1<=R<=Rmax (Round14); all-zero Jacobian nondegeneracy ND remains open; finite-R global uniqueness remains OPEN |
+| B4-SUP-LIMIT | lim_(R->infinity) sup_(1<=rho<=R) D_n, fixed n>=1 | SOLVED | [一般 SUP 极限](docs/SL_gap_nge2_symmetry_local_proof.tex); [R7](reports/proof-audit-round7-20260921/REPORT.md) | Limit=(n+1)^2*pi^2 for measurable box and unrestricted finite-piecewise classes; 4*pi^2 only at n=1. Does not identify finite-R maximizing interfaces or prove every self-consistent branch reaches that limit |
+| B4-INF-LIMIT | Symmetric [R,1,R] first-gap scaled infimum and near-minimizers | SOLVED | [对称阱极限](docs/SL_gap_n1_inf_limit_proof.tex); [R8](reports/proof-audit-round8-20260922/REPORT.md) | R*m_R→M≈24.9438661384 with nonnegative O(1/R) error; near-minimizers require R*eta_R→0. Entire thin-layer region covered by continuous phase speed; large-w comparison has positive margin. T1 uses T2 analytically, not T3 numerical constants. No new all-box/nonsymmetric/n>=2 claim |
+| B5 | MDE extremal measure unified theory | OPEN | [综述开放问题](docs/SL_spectral_topics_summary.tex) | unifies nodes/largest gap via extremal measures |
+| B6 | p-Laplacian / nonlinear generalizations | OPEN | [综述开放问题](docs/SL_spectral_topics_summary.tex) | Wen-Zhou singularity technique scope |
+| B7 | Local second variation along finite fixed-value moving interfaces | STRICT | [有限界面公式](tools/finite-interface-second-derivative.md); [原推导](literature/absorption-20260923/interfaces/derivations/) | Ordered noncolliding internal interfaces, fixed positive block values, simple fixed mode; normalization, finite Green kernel, geometry and coordinate acceleration retained. No global sign/G1′ or arbitrary distribution-path differentiability |
+| B8 | Indexed numerical spectrum and geometrically pure reflection seeds | NUMERICAL (independently reviewed) | [相位枚举](scripts/_sl_prufer.py); [R10](reports/proof-audit-round10-20260925/REPORT.md) | Continuous lifted phase locates each mode before refinement; seed sectors follow derivative -J and actual feasible displacement. Finite checks are not interval certification or G1/global uniqueness |
+| B9 | Residual Jacobian cross blocks and faithful finite-difference endpoints | NUMERICAL (independently reviewed) | [交叉块诊断](scripts/_gapn2_jacobian_probe.py); [R11](reports/proof-audit-round11-20260926/REPORT.md) | JP=-PJ gives [[0,C],[D,0]], detJ=(-1)^n detC detD. Commuting Hessians have different blocks. Independent edge steps check actual callback displacement and feasibility; finite float checks, no global derivative-error/sign/G1 certificate |
+| B10 | Half-spectrum identity, bound poles and raw/conjugated sectors | SCOPED REPAIR VERIFIED | [身份守卫](scripts/_sl_spectral_identity.py); [R12](reports/proof-audit-round12-20260926/REPORT.md); [R14](reports/proof-audit-round14-20261004/REPORT.md) | DD/DN phase targets label each mode; shared tables bind pole deletion. KpOdd=E Ke E, while raw Ko has reduced own-pole kernels and a rank-one term. Round13 repairs node normalization, real-coordinate/nonpositive Green and the general residual Jacobian; round12 prefix/pole/sector properties are retained. Finite diagnostics and local algebra do not certify global signs or G1 |
+| B11 | Parseval residual and two-sided spectral tail along bounded real density directions | STRICT (scoped independent analytic review) | [完整谱尾证明](docs/SL_bounded_direction_spectral_tail.md); [R16](reports/proof-audit-round16-20261006/REPORT.md) | True DD, positive bounded rho, real L-infinity h; reliable finite-pairing/J/eigenvalue/Q envelopes required for sign certification. Numerical quadrature and truncation are distinct. Not delta/delta-prime interface directions or ND/G1 |
 
 ## Relationships between problems
 
@@ -96,7 +88,7 @@ B8 does not promote numerical observations to analytic G1 or global uniqueness
 B9 cross-block parity and actual edge differences --repairs numerical derivative tools for--> B7/B4; commuting Hessian parity remains distinct
 B10 indexed half spectra and sector object identity --repairs Green diagnostics for--> B7/B4; all-R signs remain open
 B4 --uses--> true-integral projection + normalized derivative + finite Green concentration; G1 remains OPEN
-B4 --finite-R global gaps--> (G1') and scope-aligned boundary exclusion; M3 retains its finite-interior chart
+B4 --G2 complete--> all exact zeros on compact 1<=R<=Rmax; global ND/G1' remain open; M3 retains its finite-interior chart
 B4 --solved subproblem--> B4-SUP-LIMIT via thin heavy intervals + min-max
 B4 --solved symmetric-well subproblem--> B4-INF-LIMIT via phase speed + elementary A-doubleprime + analytic T2
 B4-INF-LIMIT --separate numerical localization--> exact rational T3 (not a prerequisite of T1)
@@ -173,110 +165,18 @@ flowchart LR
   B6 -->|generalizes| B4
 ```
 
-## Historical status (2026-08; consult the 2026-09 corrections before reuse)
+## Remaining gaps and maintenance
 
-- DensBC O1 (R-20260816T000000Z): historical structure inventory; sparse projection assertions superseded by round6
-  (projection-density, obstruction system, run/first-obstruction, diagonal
-  reduction, finite-rank structure); reduced core O1' (A4).
-- DensBC O1' (R-20260816T210000Z): A4 closed on H_beta + finite polynomial
-  constraints; exact criterion `dense <=> ker(T|B_adm) = {0}`; coordinate
-  Theorem E reproduced; Example 7 non-coordinate obstruction. General O1'
-  remains OPEN.
-- leftdef-density (R-20260816T120000Z): STRICT L1-L6 with a concrete
-  counterexample (V = ker Delta in H^2); open core O1'LD.
-- min-direction audit (R-20260816T174722Z): ACCEPT with verification package.
-- hs-operator-domain (historical run R-20260816T200000Z, pilot v6 2026-08-28):
-  main obstruction/completion/non-density package is STRICT. For every `c>0`,
-  integer `s>=4`, the algebraic transported polynomial `Q_n^(s)` belongs to
-  `D(K_c^(s/2))` iff `n in {0,1}`. The abstract polynomial completion is not
-  the operator domain under the identity, although a boundary-correcting unitary
-  relates them. The larger space `C[x] intersect D(K_c^(s/2))` is a STRICT
-  graph core. Its exact nonzero polynomial degree spectrum is also STRICT:
-  `{0,1} union {N:N>=2 floor(s/2)+2}`.
-- A6 root-1 no-go (plugin performance experiment 2026-08-22): root-1 branch
-  higher-degree rational product exclusion STRICT partial (independent audit
-  REPAIRABLE_GAP repaired); the root-0/minimal branch was open at that date and is now covered for the specified P,Q,R family by the 2026-09-21 fourth-round proof.
-- A6 c=1 anchor (R-20260824T184147Z-k1-e4-ab, 2026-08-25): the even minimal
-  solution has a standalone STRICT proof of K(1)=e/4. Its then-open general-c
-  extension is covered by the 2026-09-21 fourth-round proof for the same explicit
-  coefficient family. Nonhomogeneous source control and arbitrary families remain OPEN.
-- DensBC O1' baseline (plugin performance experiment round 3, R-20260823T000000Z-o1p-baseline): new STRICT finite-rank criterion for stable banded-shift H_shift(m,lambda) (bandwidth m>=1, finite polynomial representers): density <=> ker(T|B_fin)={0}; bandwidth-2 v_1=x^4 non-dense; general O1' remains open.
-- DensBC O1' light-reuse (plugin performance experiment round 3, R-20260823T000000Z-o1p-lightreuse): new STRICT weighted-shift H_{beta,lambda} criterion: density <=> ker(T|B_adm)={0}, B_adm includes infinite runs iff beta>3/2; unifies H_beta/H_lambda; general O1' remains open (audit REPAIRABLE_GAP repaired).
-- O1'LD (2026-09-21 fifth-round correction): old Claim4 tail-L2 rigidity, unconditional cofinite-N density and proper-V corollary are REFUTED by central-trace Green kernels, not merely unproved. Lemma1 finite-deletion monomial totality retains its conclusion with a corrected proof. The s=2 cofinite two-trace classification has passed independent analytic review; its revised card is released; see reports/proof-audit-round5-20260921/REPORT.md and docs/SL_cofinite_left_definite.tex. Those two questions were open at that date. The s=3 cofinite case is now A8; A11 handles only the stated infinite-deletion subclasses. General non-cofinite O1'LD remains open.
-- B3 current (plugin performance experiment round 4, R-20260823T060000Z-b3-current):
-  new STRICT general equal-within-type alternating Chebyshev secular representation
-  `(M_n)_01 = sin(p)[U_n(m)+delta U_{n-1}(m)]`, `delta=sin(q)/(s sin(p))`;
-  amplitude-equality corollary from E=0; O1/O2 remain open (EVIDENCE for maxima).
-- B3 baseline (plugin performance experiment round 2, R-20260822T220000Z-b3-baseline):
-  new STRICT (i) every fixed-n ratio maximizer is bang-bang `[1,R,1,...,1]` with exactly 2n switches
-  (ratio energy invariant E=0, q0=1/c, q1=-1/c);
-  (ii) alternating balanced secular `F_n` has exactly 2n simple roots in (0,pi)
-  (transfer-matrix recurrence + Chebyshev/Jacobi argument). This closes O3; O1 equal-width/value and O2 monotonicity remain open.
+- A11: the divergent-side closure and arbitrary-retention density criterion are complete in the fixed-c member window; a full description of the summable-side space remains open. A3-KREIN-FINITE does not close general A3/A4, infinite constraints or projected/recombined families.
+- A10: all fixed nonnegative integer orders are covered by replacement systems; noninteger orders and uniformity as c tends to zero are separate. The original family remains non-Schauder/Riesz under the stated scalings/reorderings.
+- B3: the balanced candidate theorem does not identify the fixed-n global optimum O1/O2.
+- B4: G2 is proved in its all-exact-zero compact-R contract. ND/G1 and unconditional global uniqueness remain open; proving G2 alone does not mark B4 SOLVED. M3/KP scopes are linked from the research guide.
+- B11: bounded real density directions and reliable finite-input enclosures only; numerical pairings do not give certified signs or delta-interface derivatives.
 
-## Tools shared across problems
+Change a status only after checking the precise statement, dependencies and new evidence. Record acceptance in its actual subsystem; link the corresponding report rather than copying its approval into this map.
 
-- Left-definite / moment side: `balanced-phase`, `transfer-matrix-secular`,
-  `prufer-phase`, `sturm-oscillation`, `moment-jump-recurrence`,
-  `left-definite-moment-recurrence`, `kp-constrained-denseness`,
-  `run-free-base` (O1'), `banded-shift-toeplitz-density` (stable banded-shift O1' finite-rank criterion), `weighted-shift-beta-lambda-density` (weighted-shift O1' criterion).
-- Ratio/gap side: `balanced-phase`, `transfer-matrix-secular`,
-  `bang-bang`, `keller-variational`, `mw-periodic-extension`,
-  `r1plus-perturbation-sheet`, `gap-band-extremals`,
-  `general-alternating-secular-chebyshev` (round 4).
-- Cross: `cell-merging`, `half-problem-regularized-green`.
+## History, intuition and failed routes
 
-## What to update next
+The [pre-organization map](docs/history/research_map.pre-organization-20261008.txt) preserves every former history, route and dated status paragraph at its original bytes. Its paths use the original repository-root base. [Project understanding](docs/PROJECT_UNDERSTANDING.md) continues to hold mathematical intuition, counterexamples and failed-route analysis, including human edits. Detailed requests and maintenance outcomes are in the [session log](state/AGENTS_SESSION_LOG.md#2026-10-08-仓库入口与续接整理).
 
-- Promotion of A4: if O1' general (or a wider structured family) is resolved,
-  mark A4 SOLVED and update A3.
-- B3/B4: if (G1')/(G2) or fixed-n global extremality is proved, mark
-  corresponding PARTIAL nodes SOLVED and link the proof/tool.
-- Add new problem nodes as they appear (e.g. operator-domain results).
-
-## Routes and methods tried
-| densbc-o1p2|solver|PARTIAL-SUCCEEDED|O1' closed on H_lambda (banded non-diagonal) + finite polynomial representers: density <=> ker(T|B_fin)={0}; v_1=x^4 non-dense for all lambda |
-
-| densbc-o1p2|solver|PARTIAL(in-progress)|banded / finitely-supported representer-moment extension of O1' |
-
-## Intermediate results and unexpected findings
-
-- lean-proof/LEMMA_INDEX.md regenerated (487 declarations) to reuse existing formalizations; performance test points P1-P6 in reports/plugin-performance-test-round2.md
-
-## Failed attempts and failure reasons
-
-- single representer density-holding search in H_lambda found no candidate in tried grids (EVIDENCE only)
-
-## Avoid list (dead ends)
-
-- do not claim general banded-O1' from H_lambda alone; realizability in general banded H needs moment-problem data
-
-Round6 (2026-09-21): A3/A4 must use the corrected sparse projection and finite-tail-obstacle criteria. The all-polynomial projection theorem remains true; the unqualified sparse corollary does not. A7 concerns a distinct inverse-family/domain construction; the new full original-family threshold does not overwrite its scoped result. See reports/proof-audit-round6-20260921/REPORT.md.
-
-## Round8 research knowledge (2026-09-22)
-
-- Reusable phase-speed bound: for the symmetric three-layer string, all R>=1 and 0<u<1/2 satisfy G>=pi^2/[2epsilon(w+ell)(w+epsilon*ell)]. True mode indexing and the continuously unwrapped angle are part of the contract.
-- The failed rectangle route omitted curved B/D strips, arbitrarily small w and part of the R-infinity tail. A finer grid does not repair inward coverage. Historical scripts remain unchanged; the current proof replaces their role.
-- Fixed-u 1/R expansion and optimized-value O(1/R) are separate statements: the latter also uses the global lower bound. The exact optimized coefficient and parameter rate have not been proved here.
-- Possible next idea, not a theorem: propagate unwrapped angle derivatives through more layers or general transfer matrices to obtain uniform mode separation. Each interface, mode index and parameter domain must be re-established.
-
-Four revised card versions and their exact issue releases are linked from reports/proof-audit-round8-20260922/REPORT.md. This human research map update does not change canonical Blueprint.
-
-## Round9 research knowledge (2026-09-23)
-
-- Tangency depends on the integral functional A, while the chosen projection metric determines which normal represents it. Unequal block widths expose the lost factors in projection against averages. Zero A means every direction is tangent; it does not license division by zero.
-- Spectral perturbation formulas must retain the component fixing the moving weighted normalization. The exact h=rho check gives u'=-u/2 and distinguishes this derivative from a reduced-inverse particular solution.
-- In regular one-dimensional Dirichlet problems the Green finite part is bounded. Unit-mass midpoint pulses at rho=1 give lambda1''→6*pi², lambda2''→0 and half-gap Q→−3*pi². This refutes the divergence argument, not every possible finite-kernel/interface route. Actual moving-interface acceleration remains a separate finite contribution.
-- Reflection of the physical secular value includes y/(pi-y); multiplying by the nonzero frequency preserves its zeros but changes its value law. An all-n Jacobi compression then turns a former candidate-limit conjecture into a proof, while leaving global optimality separate.
-- Possible next idea, unproved: combine the finite regularized-kernel matrix with the correctly signed interface acceleration on the actual tangent space. First test against the constant-density midpoint limit and width-unequal directions; establish analytic concentration/tail control before attempting a sign theorem. A numerical negative direction alone is insufficient for the constrained extremum problem.
-
-Current proofs, correction receipts and version-bound annotations are linked from reports/proof-audit-round9-20260923/REPORT.md. Historical R206 and older B3 runs retain original bytes and dated claims. Canonical Blueprint was not changed.
-
-## Literature absorption (2026-09-23)
-
-P0-P4 connects13 source records to11 scoped tool cards.12 primary originals were available for targeted reading; L13 remains metadata/incomplete preview only. L02's second-left-definite object is matched to the existing project result, and L12's first-pair switching mechanism is attributed to its original source. Its numerically described C(1,4) region and unverified L13 constraints do not certify all-R novelty. Exact source-to-claim mappings, independent reviews and subsequent research contracts are in [the batch entry](literature/absorption-20260923/README.md).
-
-The finite exact checks do not prove Sobolev closure or spectral analysis. New results have scoped independent analytic review; no new Lean formalization or canonical Blueprint integration was performed. The old full-family threshold, O1/O2 and global G1′ retain their exact scopes.
-
-2026-10-04 Round14: G2 covers every exact residual zero for each fixed n>=2 and both patterns on [1,Rmax], including R down to1. G2+ND conditionally gives locally constant root count and a unique global analytic symmetric branch; ND and G1/global uniqueness remain open. A11 arbitrary Hc2 density criterion and divergent two-trace closure are proved, while the summable-side full space description remains open. Exact independent reviews and software controls: reports/proof-audit-round14-20261004/REPORT.md. No canonical/M3/KP scope expansion.
-
-2026-10-06 Round16: R16-01/02/03 repair only the active generic Taylor and pairing paths. C16-TAIL and C16-A10-INTEGER have separate complete proofs and final fresh native analytic approval. Initial analytic/software rejections remain as evidence; automatic adapter, Lean and canonical reception are separate. R15 local results and all original untracked bytes preserved. Stop at the five scoped obligations; see reports/proof-audit-round16-20261006/REPORT.md.
+Historical summaries such as A11-only-subclasses or G2-bridge-open are superseded only within the later explicitly proved contracts. Their original run/report/snapshot records remain unchanged. The new map version is not covered by old whole-file review input hashes; immutable receipts still refer to their original snapshots.

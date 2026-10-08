@@ -1,92 +1,45 @@
 # 数学工具库
 
-## 第十六轮当前范围 (2026-10-06)
+[按数学问题阅读](../docs/research-guide.md) | [问题地图](../research_map.md) | [数值与证书接口](../scripts/README.md)
 
-[精确Taylor类型边界](exact-taylor-sign-boundary.md)、[二阶变分与有界谱尾](second-variation-weighted-eigenvalues.md)、[所有整数阶Riesz替代系](krein-integrated-legendre-riesz.md)对应本轮五项有限义务. 完整两份解析稿已独立复审, 数值入口另经新隔离软件执行. 卡片由已安装原版API保存旧/新版本, 原生审查不等于旧自动适配接收; 既有隔离保持. [本轮交付](../reports/proof-audit-round16-20261006/REPORT.md)给出确切范围与未执行项.
+工具卡服务于检索和复用. 读取具体范围, 原证明和精确版本证据后再使用; 卡片保存, 检索可用, 独立审查与自动接收是不同状态.
 
+## 三个位置的职责与消费者
 
-## 第十五轮当前范围 (2026-10-05)
+| 位置 | 实际内容 | 使用者 |
+| --- | --- | --- |
+| [tools/](./) | 当前可读数学卡片和本索引; 当前 index 的 tool_roots=['tools'] | 人类读者, 插件 research_library.py 的卡片读取/保存/检索 |
+| `knowledge/tools/` | 原管理布局的保留位置, 当前为空 | 旧 init_project.py/validate_project.py 仍要求此目录; 当前卡片索引不从这里取卡 |
+| [research/library/](../research/library/) | sources, annotations, card-versions/card-bindings, index-history, reviews 与 corrections | 现行库插件的版本绑定, 原文读取, 批注, 审查/纠错门禁 |
 
-[全窗口任意删项](krein-infinite-deletion-subclasses.md)、[Krein有限约束逐项筛选](krein-finite-constraint-filtering.md) 与 [DD频率枚举入口](indexed-dd-frequency-enumeration.md) 对应三个有限义务. 两支发散的精确迹闭包/任一收敛无限余维覆盖整个0<=s<7/2, 不再仅限Hc2. 数学原生复审、软件真实执行和原版工具库接收分别列在[第十五轮报告](../reports/proof-audit-round15-20261005/REPORT.md); 旧自动适配格式缺口仍保持. 下方带日期条目保留当时范围.
+[index/tools.json](../index/tools.json) 是派生检索指针. 下方 generated 区块来自它的既有生成流程; 本次只编辑人工说明, 保留该区块原字节, 不重建索引或改动卡片/接收记录. Blueprint 的 canonical 图与 inventory 位于 blueprint/, 与工具库职责分开.
 
-## 文献吸收 (2026-09-23)
+## 按用途查卡
 
-[来源指针表](../literature/absorption-20260923/SOURCE_TABLE.md)区分原文与项目适配。新卡以实际审查版本接入：
-
-| 用途 | 当前工具 |
+| 主题 | 当前入口及使用限制 |
 | --- | --- |
-| 含域的奇偶分解与临界条件 | [幺正分解](krein-parity-unitary.md)、[分数域字典](krein-fractional-trace-dictionary.md) |
-| 余有限闭包与边界代数 | [s=3三迹](krein-s3-cofinite-three-traces.md)、[右逆与GKN范围](krein-boundary-right-inverses.md) |
-| 稳定近似 | [有限TSVD](finite-synthesis-tsvd.md)、[Legendre相容Riesz系](krein-integrated-legendre-riesz.md) |
-| 无限删项 | [真实矩/Müntz接口](full-muntz-krein-moment-interface.md)、[两个子类](krein-infinite-deletion-subclasses.md) |
-| 移动界面 | [二阶公式](finite-interface-second-derivative.md)、[固定算子适用性](fixed-operator-boundary-extension-check.md)、[测度与集中](measure-weight-atoms-and-concentration.md) |
+| 空间和算子域 | [真实谱域](spectral-domain-checks.md), [幂域障碍](krein-power-domain-polynomial-obstruction.md), [域字典](krein-fractional-trace-dictionary.md), [奇偶桥](krein-parity-unitary.md); 固定模型的真实域与代数传输分开 |
+| 原族/删项/有限约束 | [余有限全窗口](krein-cofinite-closure-all-orders.md), [任意保留集](krein-infinite-deletion-subclasses.md), [有限约束筛选](krein-finite-constraint-filtering.md); 固定 c>0, 0<=s<7/2, 收敛侧全部元素仍开放 |
+| 稳定替代系 | [整数 Hermite-Legendre](krein-integrated-legendre-riesz.md), [有限 TSVD](finite-synthesis-tsvd.md); 原族非基结论保留, 速率另有条件 |
+| 一般稠密/矩递推 | [修后投影准则](constrained-denseness-runs.md), [左定矩](left-definite-moment-recurrence.md), [矩跳跃](moment-jump-completeness.md), [三阶递推](third-order-recurrence.md); 一般 A3/A4 与非齐次推广仍开放 |
+| 比值与谱隙 | [首对变分](ratio-first-pair-variational.md), [MW 零点接口](mw-zero-truncation.md), [FH](feynman-hellmann.md), [谱隙](gap-band-extremals.md); 卡片可读不等于门禁允许复用 |
+| 模态与 Green | [DD 频率枚举](indexed-dd-frequency-enumeration.md), [半问题核](half-problem-regularized-green.md), [惯性](green-half-inertia.md); omega/omega², raw K/SKS 和一基身份分开 |
+| 变分与证书 | [有界方向及谱尾](second-variation-weighted-eigenvalues.md), [有限界面](finite-interface-second-derivative.md), [精确 Taylor](exact-taylor-sign-boundary.md); 有界方向与 delta 路径不同, 浮点误差不作认证包络 |
 
-原作者稿的待审标签保留提交时状态；当前回执在卡片review_status/evidence中。使用前仍核对条件。L13只作待获取完整原文的批注，不支持任何已证步骤。第五轮段落中s=3当时开放的状态已由本批限定的余有限分类更新；无限删项一般情形仍开放。
+数学范围和原生审查分别见 [R14](../reports/proof-audit-round14-20261004/REPORT.md), [R15](../reports/proof-audit-round15-20261005/REPORT.md), [R16](../reports/proof-audit-round16-20261006/REPORT.md). 旧自动适配器拒收 task_name/fork_turns 原生身份的缺口仍保留, 不伪造旧 UUID 或放行隔离. R16 的 60 可检索/34 阻断是当时快照, 当前检索需现场查询.
 
-## 第九轮修订 (2026-09-23)
+## 使用与纠错
 
-[二阶变分](second-variation-weighted-eigenvalues.md)补齐归一化核项、真实块积分切向和带符号集中脉冲的质量收敛条件; Green核有限及移动界面加速度分别处理. [世俗根计数](secular-chebyshev-jacobi-rootcount.md)区分物理F与omega*F, [平衡候选极限](bloch-band.md)用嵌套Jacobi矩阵证明候选c_n的严格单调和极限, 保留全局O1/O2开放. 精确版本和默认复用仍由纠错门禁决定, 不能由本段文字替代. [第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md)记录首次退回、修复、局部Lean与实际数值复验.
+1. 先查下方指针, 读取卡片的条件/原证明. 正式查询使用**当前安装插件**的 research_library.py query --project <root> --query <terms>, 它会重新检查纠错门禁. 旧手工索引不覆盖隔离.
+2. 需要历史隔离条目时显式 --include-affected, 结果只供溯源. RETRIEVAL_ONLY 不等于数学自动接收.
+3. 发现实质错误按原版 research_corrections.py issue 绑定出错版本与下游. 受影响事项修后需独立新会话审查, 再按原机制处理精确版本的释放. 修改说明或索引不释放任何事项.
+4. annotate 的批注绑定卡片版本. 本次编辑的导航有历史整文件输入绑定, 旧批准仅覆盖原快照, 不转给新说明; 具体影响记在 [会话日志](../state/AGENTS_SESSION_LOG.md#2026-10-08-仓库入口与续接整理).
 
-## 第八轮修订 (2026-09-22)
+文献来源与原文读取位置见 [SOURCE_TABLE](../literature/absorption-20260923/SOURCE_TABLE.md); L13 仍为元数据/不完整预览, 不支持已证步骤. [人的理解和批注](../docs/PROJECT_UNDERSTANDING.md) 保留自由分析职责.
 
-[INF极限](inf-limit-comparison.md)、[大w比较](lemma-A-doubleprime.md)、[相位括号](delta-bracketing.md)、[余切余项](cot-series-certificate.md)已按当前精确版本修订. 新连续相位覆盖替代旧薄层网格, 固定u误差改为1/R; 根像端点、Laurent幂次、局部一致收敛与arctan极限同步修正. 默认复用须通过当前纠错回执, 旧证据和批注按原版本保留. [第八轮报告](../reports/proof-audit-round8-20260922/REPORT.md)分别列明解析、精确证书和局部Lean范围.
+## 历史
 
-
-工具库保存可复用的数学方法、适用条件、来源、批注及成功或失败路线.
-它服务于研究, 每次使用仍要核对当前问题是否满足工具的假设.
-
-## 怎样使用
-
-1. 先查下方生成指针, 再读取卡片的适用范围与原证明.
-2. 正式复用使用插件 `research_library.py query`; 程序会重新检查纠错状态.
-   手工索引的旧副本或 `status: 已证` 不能覆盖当前隔离状态.
-3. 发现错误时保留报告, 用 `research_corrections.py issue` 绑定出错版本;
-   下游待复核. 修订后经新会话隔离检验, 才能恢复特定版本的复用.
-4. 批注由 `research_library.py annotate` 绑定卡片版本. 旧批注和失败路线保留,
-   不把旧版的认可自动转给新版. 历史隔离条目需显式 `--include-affected` 查看.
-
-第九轮使用已安装的研究插件2.0.1纠错与检验运行时; 本轮未改插件实现或缓存. 命令入口随实际加载版本确定, 源码维护仓库为 `_xsoc1_work/`; 复用时以版本报告和真实运行记录核对.
-
-## 第七轮修订 (2026-09-21)
-
-[FH](feynman-hellmann.md)和[谱隙](gap-band-extremals.md)修正真实归一化与镜像成对导数. [等变性](band-selfconsistency-equivariance.md)、[半问题Green](half-problem-regularized-green.md)、[惯性](green-half-inertia.md)同步修正行列式与定性的逻辑边界、lambda因子和半隙坐标. 五张当前卡均由精确版本纠错回执控制, 原版本与失败路线保留; 历史Green推导没有因此整体重新获证. [第七轮报告](../reports/proof-audit-round7-20260921/REPORT.md)列出统一端点估计、一般SUP极限、软件回归和局部Lean的不同验收范围.
-
-## 第六轮修订 (2026-09-21)
-
-[投影与有限矩准则](constrained-denseness-runs.md)修复三项问题, 采用实际尾部正交障碍上的有限检验; 原F的假设无实例, 一个表示元的非零检测不等于两个矩分别为零. [谱域工具](spectral-domain-checks.md)给出原完整命名族的精确非负稠密范围0<=s<7/2, 由四迹图核心补证. 九张相关卡和继承义务均按当前版本审查并释放; 旧源和批注保留. 第五轮s=2删除分类范围不扩大. [第六轮报告](../reports/proof-audit-round6-20260921/REPORT.md)区分解析验收、局部Lean和首次摘要退回.
-
-## 第五轮修订 (2026-09-21)
-
-[余有限稀疏族与两条迹](leftdef-o1pld-l2-structural.md)撤回原Claim4/Theorem5/Corollary6的错误候选, 给出s=2的完整余有限闭包、两个Green障碍及实际闭子空间分类. 单项式有限删除引理的换元系数和证明同时修复. 原封存run保持不变, 当前复用以新版精确回执为准; 一般非余有限O1'LD与s=3的对应分类仍开放. [第五轮报告](../reports/proof-audit-round5-20260921/REPORT.md)区分解析证明、37个局部Lean定理、四份隔离审查回执与额外的独立编译检查.
-
-## 第四轮修订 (2026-09-21)
-
-[三阶递推](third-order-recurrence.md)给出指定双奇偶系数族的正项尾解、一般c常数和全部有理比值分类; [K1锚点](third-order-minimal-K1.md)保留独立有限终端约定. [Krein-Sobolev](krein-sobolev-polynomials.md)区分普通函数代表与商类极限. [稳定性](jump-stability.md)及四张未改正文的卡片完成精确审计绑定续接. 原错误版本、退回记录和批注仍可溯源, 默认检索只按当前纠错状态复用. 证明、程序与局部Lean的不同范围见 [第四轮报告](../reports/proof-audit-round4-20260921/REPORT.md).
-
-## 本轮修订入口
-
-| 主题 | 工具 |
-| --- | --- |
-| 完整谱系、归一化、负阶完备化、成员性 | [谱系与幂域检查](spectral-domain-checks.md) |
-| 增长条件、矩跳跃与精确适用阶数 | [左定矩递推](left-definite-moment-recurrence.md), [矩跳跃](moment-jump-completeness.md), [稠密性准则](denseness-criteria.md) |
-| 全局首对极值与候选计算的分工 | [变分证明](ratio-first-pair-variational.md), [平衡相位](balanced-phase.md) |
-| 有符号延拓、共同零点与谱指标 | [MW 胞延拓](mw-periodic-extension.md), [零点截断](mw-zero-truncation.md), [单调性归约](spectral-monotonicity-reduction.md) |
-| K1 终端条件、归一化与极限 | [最小解 K1](third-order-minimal-K1.md) |
-
-本轮精确结论: `x² in Ht iff t<3/2`, `p4 in Hs iff s<7/2` (非负阶).
-原稀疏族在 `s>=7/2` 时不全属于相应幂域; 第二轮当时保留的 `3<s<7/2` 问题已由第六轮四迹图核心补证关闭, 当前原完整族范围为 `0<=s<7/2`.
-原“全阶算子域多项式基”解释已经撤回, 见 [幂域障碍](krein-power-domain-polynomial-obstruction.md).
-首对全局最优性需要变分证明; 全序列相邻比值下确界为 1, 与固定指标问题分开.
-详细检验、纠错回执及 Lean 范围见 [第二轮报告](../reports/proof-audit-round2-20260920/REPORT.md).
-
-## 历史与证据边界
-
-[原索引与逐次维护记录](../docs/history/tools-index-before-round2-20260920.md) 按原字节归档,
-其中的旧状态和高阶推广不能作为当前结论. 历史文件中的相对路径基准是原 `tools/README.md`.
-冻结证明、审计和 checkpoint 保持原身份. 错误清除意味着停止默认复用并修订活动内容,
-而不是删除用于解释错误成因的证据.
-
-下表是可再生的检索指针, 数学认证范围仍以各次精确声明的独立检验为准.
+[本页整理前全文](../docs/history/tools-README.pre-organization-20261008.txt) 保留逐轮范围与 generated 指针原文, 路径按原 tools/README.md 解释. [更早索引](../docs/history/tools-index-before-round2-20260920.md), 各报告, 原失败及 [会话日志](../state/AGENTS_SESSION_LOG.md) 保留当时语境; 当前主题入口不覆盖原证据.
 
 <!-- research-tool-pointers:v1:start -->
 

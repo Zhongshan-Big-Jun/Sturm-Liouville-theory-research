@@ -3864,3 +3864,50 @@ F01-F05主要影响对称阱INF极限的证书及范围, 第七轮主链不自�
 发布基线为ec45bf99ae746b0a3699557e06700a3c00c5a831；发布前实际origin和fork的main均核实为该提交。精确清单见reports/publication-round15-16-20261006/MANIFEST.json，按工作区原始字节与Git blob逐项核对，依次正常快进推送Zhongshan-Big-Jun主仓库、xsoc1 fork并读回两边提交、tree与全部清单blob。真实提交及远端结果以F:/tools/math-audit-round16-20261006/publication/DELIVERY.json和实际远端为准；本段不预先宣称尚未完成的推送。
 
 本次发布不新增数学命题或审查，不把上传等同Lean、CI、canonical或旧自动工具库接收。保留两轮已经完成的独立解析/软件审查及未执行项记录。今后本项目完成用户要求的修订后，应一并完成提交、主仓库与fork同步及远端读回，不再只交付本地修改；仅在授权范围或实际阻碍需要用户决定时说明具体原因。
+
+
+## 2026-10-08 仓库入口与续接整理
+
+用户具体要求: 直接在 Zhongshan-Big-Jun/Sturm-Liouville-theory-research 完成一轮本地整理, 以入口清晰/职责明确/状态一致为目标; 开始读根 AGENTS, blueprint-project.json, repository-guide 与 archive-policy, 核对实际分支/HEAD/工作树. d311bb4 仅定位参考, 不机械套旧检查; 已解决的 PROJECT n=1 状态不再作为缺陷. 先本地修改及验证, 无本次明确授权不提交/推送, 不强推/改历史.
+
+用户指定职责: 两首页给首次读者介绍/两主线/代表成果/开放问题; 地图保留稳定编号和依赖, 只汇总问题-结果-缺口; research-guide 按空间与域/原族/删项/有限约束/替代系/开放问题和全序列谱比/固定指标/n1/n>=2/计算工具组织. PROJECT 定位与目录职责, AGENTS 长期规则和简短摘要, RESUME 当前续接, current.json 先查 schema/消费者再兼容修复. 脚本开头区分数值/精确证书/历史实现并说明 omega 与 omega² 等语义. 查 tools/knowledge/tools/research/library 的职责, 不因相似合并; PROJECT_UNDERSTANDING 继续承担数学理解/失败路线及人的批注.
+
+用户边界: 不改数学结论/新研究/算法重构/稳定编号/物理布局, 不重做全仓审计. 原失败/冻结包/证书/审查/清单/日志/编译证据原路径原字节保留. 编辑入口检查引用/整文件哈希绑定, 原批准不覆盖新版; 证明/审查/软件测试/各接收/Lean/发布分别表述. 不覆盖旧快照, 不因 build/scratch/年代/重复而删除, 不擅自重编全部文稿. 历史“未提交/未上传/旧HEAD”保留日期语境. 需检查本地链接/关键入口/范围一致/推荐与历史脚本/保护/diff --check; 无法确认者明记. 不新建平行状态框架或冗长整理报告.
+
+现场核对与决定: main/HEAD=d311bb410cb5e425ac7f7ac4879a4decaa5f0540, origin/fork main 只读查询均为该提交. core.longpaths=true 的只读 Git 检查消除了默认长路径读取的假删除; 本轮不改 Git 配置. 最终起点 19680 tracked/134 nonignored untracked, 无缺失 tracked. 初始字节清点覆盖了无关忽略依赖缓存, 该只读进程停止并改为 Git 全部 tracked/untracked 加 docs/build 工件的有界清点, 共19814个实际文件, 2227250079 bytes. 保护基线和当前文档原件在 F:/tools/sl-repository-organize-20261008/baseline.json 与 original/, 外部位置不是新的仓库状态系统.
+
+旧授权解释: 根 AGENTS 的 2026-10-06 “今后修订一并提交发布”原文及所有当轮派发要求保留到原字节快照. 本次用户明确要求只做本地整理, 因此当前规则标明本次不提交/发布. 永久的字节保护, 证据分层, 原版纠错门禁及已授权时 origin-first 顺序保留; 已结束轮次的动作不作为当前任务. 旧 PROJECT 的 n=1 STRICT/CLOSED 原已修正, 本次只去掉重复状态摘要并说明职责.
+
+实际整理: 重写中英文首页/PROJECT/根AGENTS/RESUME, 按题目重排 research-guide 与 scripts 导航, map 的27个稳定节点和原依赖图保留, 各行问题/状态/范围原文不改, 仅使证明/报告指针可点击并移出长历史分析. tools/README 只改人工说明, generated区块原字节保留; index/tools.json, 卡片, library原文/版本/批注/审查纠错及 canonical 不改. 根 AGENTS/RESUME 和长入口原文以及旧状态 JSON 共9份原字节快照写入既有 docs/history, 清单 entry-snapshots-20261008.json 记录原路径/哈希/基准及绑定检查. 旧 docs/history 快照与旧会话日志前缀不覆盖. PROJECT_UNDERSTANDING 的完整字节和人的批注不改.
+
+current.json 调查: 仍有 consumers, 未退役. 活动 manage插件2.0.1 的 assets/current-state.template.json 定义v1字段, init_project.py生成, validate_project.py检查存在/project_id及latest_checkpoint_path提示; 旧完整校验器仍期待 knowledge/旧canonical布局, 不适用于本次v2.2全库验收. 项目 _json_update.py/_tmp_update_state.py 是一次性历史写入器, _act/_agents含旧记录, 均不运行. workflow research_state.py 管理另行进度/checkpoint, 未找到它以本state/current.json为入口的代码. 本次保留原键/类型, 加入兼容模板别名, 本轮无派发则活动字段清空而不宣布历史run完成/取消; 原ID/完整状态到快照. 原预算8.0/7.5数值和last_literature_cutoff保留, 标明旧阶段估计而非当前预算. 没有新Q/R/checkpoint或另一份current. 旧R-20260808T143337Z-o3a-c1路径现场不存在, 旧M3/densbc IDs未在对应索引找到, 不伪造接收/任务记录; KP-DET独立脏工作及live状态不在本轮评定范围.
+
+工具位置: index的tool_roots=['tools']; tools为当前可读卡, knowledge/tools为空但旧初始化/校验仍要求位置, research/library保存sources/annotations/card-versions/card-bindings/index-history/reviews/corrections. 使用者和门禁在原tools说明与repository-guide中解释, 不搬迁或合并.
+
+版本绑定影响: library packet 2d7dd2d087746f78a34f0473c8474fe47e36cf87bf647bd5584c61d976da3bde 直接绑定旧research_map与research-guide; packet及inputs保持原字节, 其哈希在本轮起点已不是当前导航. R14 final-review-bindings 与 R15 integration-final-review 还绑定当时地图/RESUME; R16 preservation和发布清单保存后续身份. 当前导航的新版本不在这些旧整文件批准覆盖内, 不重算旧清单/哈希, 不复制批准标签, 不把上下文绑定变更当作数学推翻. 原证明/算法及其实际审查输入继续保护; 自动门禁用原版实时query核对, 不签发新的release/canonical/Lean回执. 明确记录本轮无独立数学重审.
+
+源/PDF对应: n>=2局部源和根/build PDF均匹配R14 pdf-verification, 16页. 综述根PDF匹配R15最终visual-check的23页和发布清单, build仍匹配R14的22页; 不改任何版本. R14 G2/Hc2, R15全窗口及R16整数/尾界完整MD均无独立同名TeX/PDF. A12使用原R11阅读版, 不覆盖后续任意删项扩展. ratio/fixed-n/n1/INF-limit根与build PDF字节不同, 未逐一证明与源同步, 优先活动源/对应审查. Hs两PDF相同但不推断与源同步, 原build未跟踪文件保留. 本轮未编译/渲染PDF, 未重跑数学harness/扫描/Lean.
+
+实际验证结果将在本节追加; 上述整理不是数学或自动接收报告.
+
+
+本轮最终本地校验 (2026-10-08): 修改范围内462个本地链接和14个Markdown标题锚点实际通过, 9份归档与整理前原件/SHA256逐字节一致. 地图27个稳定节点的问题/状态/范围列及原Mermaid依赖图保持一致, tools生成指针区块与旧会话日志前缀原字节不变. current.json原键/类型, schema_version=1, project_id, 模板别名, 空派发字段以及原预算/文献截止日期兼容检查通过; 完成摘要随后写回, 不新增任务/预算/checkpoint.
+
+完整保护重读实际覆盖19801个本轮编辑范围外的原路径, SHA256全部与起点一致; 其中包含原134个未跟踪文件, 既有KP-DET脏文件, 研究源码/PDF/build证据, 冻结包/失败/回执/历史清单, canonical与库卡片/索引, Lean和人的理解批注. 起点包括61条docs/build工件路径, 未用“忽略”绕过编译证据. 无关忽略依赖缓存不在此次完整保护清点范围, 未扫描或修改它们. 不把这一字节保护检查称为数学/软件/全仓形式化验收.
+
+插件实际执行: active manage-math-research-program 2.0.1 runtime/blueprintctl.py ensure --project <root> 退出0, ALREADY_READY, changes=[], 本轮只执行一次. 原版research_library.py query --project <root> --query Krein --limit 50 --include-affected前/后均退出0/RETRIEVAL_ONLY/changed_paths=[]/blocked=34, 22个命中的精确卡片身份及correction_state/reuse_allowed完全一致. query-only读回未签发审查/释放/接收, 未重建generated指针. post-query首次外部包装因Windows默认子进程编码解码失败, 改为子Python -X utf8后重放成功; 不是库审查退回, 未改插件/卡片/门禁.
+
+git -c core.longpaths=true diff --check退出0; 分支/HEAD仍为main/d311bb410cb5e425ac7f7ac4879a4decaa5f0540, 暂存为空. 当前跟踪改动为13个本轮入口/维护文件加1个原dirty; 当前未跟踪为134原文件加9快照及1清单. 无删除/重命名/提交/推送. Git默认长路径假缺失不当作缺陷; 无全局配置改动. 首次diff检查发现新research_map写入CRLF与其既有-text规则冲突, 初次失败保存在外部validation-documents-initial.json; 只将当前可编辑map改为LF后通过, 原快照/历史属性未用于遮掩失败.
+
+脚本CLI位置参数/选项及indexed_roots/lams_precise语义与活动源码作静态核对, 没有执行导航里的计算示例. 两首页/地图/主题导航/RESUME均连接同四份G2/全窗口/整数替代系/谱尾完整证明, 并保留同一范围与开放项. 外部链接未作逐项端到端检查, 源/PDF未确定同步者保持明确未确认; 未编译/渲染PDF, 未新增数学审查/Lean/软件测试/canonical接收.
+
+真实原输出与重放命令保存在F:/tools/sl-repository-organize-20261008/: baseline.json, gateway-ensure.json, library-before.json/library-after.json/library-comparison.json, validation-full.json和最终validation-documents.json; 复核程序为同位置verify.py (Python3.10 -X utf8 -B, --full开启完整保护读回). 这些是本机外部检查证据, 公共读者不必依赖该位置; 本节保留交付范围和实际结果, 仓库docs/history/entry-snapshots-20261008.json承载原件身份. 本轮以本地整理结束, 后续研究与发布需按新的具体请求接续.
+
+
+## 2026-10-08 本轮整理上传授权
+
+用户在本地整理完成后直接要求“上传”, 授权将本轮整理提交并同步origin主仓库后fork. 本次范围为既有change-scope的13个当前入口/维护文件和9份原字节快照加1清单, 合计23项; 只补充这些范围内的当前授权说明及必要日志, 不纳入原KP-DET dirty或134原untracked, 不启动研究/重审/编译. 初始“仅本地、未授权发布”记录按当时语境保留, 当前AGENTS/PROJECT/RESUME/current.json同步新的具体授权.
+
+发布前main/HEAD及两个远端main均实际核对为d311bb410cb5e425ac7f7ac4879a4decaa5f0540. 使用git -c core.longpaths=true, 保持常规快进, 不强推/改历史. 清单和原执行输出在F:/tools/sl-repository-organize-20261008/publication/; 采用工作区SHA256与Git属性过滤后的blob双身份核对, 9份原快照必须在Git中保持精确原字节, 旧会话日志前缀不改变. 正式提交前重新做本轮文档/保护/diff检查; 提交后依次推origin/fork并从远端读回commit/tree和23项blob. 最终实际结果以同位置DELIVERY.json与真实远端为准, 不在提交前伪造成功回执. 本次不改变任何数学范围、旧审查绑定或接收门禁.
+
+上传前再次校验实际通过: 466个本地链接/16个标题锚点, 9份精确原快照, 27个稳定节点及原依赖图; 19801个非本轮编辑原路径字节不变, git diff --check退出0. 当前授权只增加入口中的发布授权说明, 不改变前次数学/软件/接收范围. 完整输出在publication/validation-before-stage.json.
