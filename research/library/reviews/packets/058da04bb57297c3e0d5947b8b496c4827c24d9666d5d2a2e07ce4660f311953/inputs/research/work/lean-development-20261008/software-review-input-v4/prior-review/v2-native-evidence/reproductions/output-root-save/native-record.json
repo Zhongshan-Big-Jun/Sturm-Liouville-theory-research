@@ -1,0 +1,49 @@
+{
+  "schema": "review-native-execution-recovery/v1",
+  "reviewer_canonical_task": "/root/plugin_review_v2",
+  "packet_sha256": "5e98a16d78949e397e42b429a05b03ab0c475b54818140b9c03a55ab42483ede",
+  "source_scope": "Only the supplied frozen packet snapshots; ordinary temporary runtime fixtures. No experiment was rerun for preservation.",
+  "source_payload": "reproduce.py preserves the original inline Python -c payload from the earlier PowerShell here-string; no original .py file existed.",
+  "original_call": "exec-command-call.json",
+  "original_call_workdir_argument": "omitted",
+  "effective_cwd_from_original_turn_context": "F:\\LaTeX\\BVE research",
+  "python_executable": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+  "lean_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+  "lake_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+  "native_session_id": 98440,
+  "original_native_process_pid": null,
+  "pid_availability": "Not captured in the recoverable original call/result summaries. No PID was inferred or invented.",
+  "original_start_timestamp": null,
+  "start_timestamp_availability": "No explicit execution start/end UTC timestamps were returned for these original commands. Preservation time is recorded separately in manifest.json.",
+  "original_initial_result": {
+    "chunk_id": "487abd",
+    "wall_time_seconds": 10.0134641,
+    "session_id": 98440,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "original_intermediate_wait_results": [],
+  "original_terminal_wait": {
+    "tool": "write_stdin",
+    "arguments": {
+      "session_id": 98440,
+      "chars": "",
+      "yield_time_ms": 1000,
+      "max_output_tokens": 6500
+    },
+    "result": {
+      "chunk_id": "5596e3",
+      "wall_time_seconds": 0.0000068,
+      "exit_code": 0,
+      "original_token_count": 319,
+      "output": "{\r\n  \"scope\": \"Actual Lean using frozen tool snapshots, output equal to project root, disposable source fixture only\",\r\n  \"trial_status\": \"candidate_checked\",\r\n  \"trial_input_hashes\": {\r\n    \"lean-toolchain\": \"465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832\"\r\n  },\r\n  \"events\": [\r\n    {\r\n      \"imports_unchanged\": true,\r\n      \"dependency_source_changed\": true\r\n    }\r\n  ],\r\n  \"imported_artifacts_unchanged\": true,\r\n  \"save\": {\r\n    \"status\": \"saved\",\r\n    \"file\": \"C:\\\\Users\\\\HuangZY\\\\AppData\\\\Local\\\\Temp\\\\review-v2-save-root-1yyght92\\\\project\\\\Main.lean\",\r\n    \"source_sha256\": \"3ae07cf48956cb45360a7aea00751e326de840827bda5de3c5cd74750a3f06f6\",\r\n    \"trial\": \"C:\\\\Users\\\\HuangZY\\\\AppData\\\\Local\\\\Temp\\\\review-v2-save-root-1yyght92\\\\project\\\\development\\\\f313f184b176457e9d36e6bfb8050d0d\\\\trial.json\",\r\n    \"exact_root_passed\": false,\r\n    \"scope\": \"fresh candidate atomically saved; exact statement and axiom verification still required\"\r\n  },\r\n  \"destination_created\": true,\r\n  \"actual_current_root_passed\": false,\r\n  \"actual_current_machine\": {\r\n    \"status\": \"failed\",\r\n    \"execution_passed\": false,\r\n    \"scope\": \"exact_declaration\",\r\n    \"missing_files\": [],\r\n    \"scan_is_authoritative\": false\r\n  },\r\n  \"actual_current_build_status\": \"failed\"\r\n}\r\n"
+    }
+  },
+  "original_exit_code": 0,
+  "original_output_file": "original-output.txt",
+  "output_recovery": "The earlier decoded exec_command/write_stdin output field was an indented JSON summary. Its complete values, order and observed CRLF text are recovered from this agent's existing review context; no rerun, additional compiler output, or new observation was substituted.",
+  "original_split_logs": {
+    "available": false,
+    "reason": "Lean stdout/stderr/job/manifest files and source fixtures were inside TemporaryDirectory and were cleaned when the original programs exited. They were not copied before cleanup and are unavailable now. The native tool exposed combined output; separate top-level stdout/stderr streams and their original raw-file hashes were not captured. Missing logs were not recreated."
+  }
+}

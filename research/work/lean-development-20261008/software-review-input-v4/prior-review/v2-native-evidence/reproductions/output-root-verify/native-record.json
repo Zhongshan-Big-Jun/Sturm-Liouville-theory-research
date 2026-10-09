@@ -1,0 +1,65 @@
+{
+  "schema": "review-native-execution-recovery/v1",
+  "reviewer_canonical_task": "/root/plugin_review_v2",
+  "packet_sha256": "5e98a16d78949e397e42b429a05b03ab0c475b54818140b9c03a55ab42483ede",
+  "source_scope": "Only the supplied frozen packet snapshots; ordinary temporary runtime fixtures. No experiment was rerun for preservation.",
+  "source_payload": "reproduce.py preserves the original inline Python -c payload from the earlier PowerShell here-string; no original .py file existed.",
+  "original_call": "exec-command-call.json",
+  "original_call_workdir_argument": "omitted",
+  "effective_cwd_from_original_turn_context": "F:\\LaTeX\\BVE research",
+  "python_executable": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+  "lean_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+  "lake_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+  "native_session_id": 30966,
+  "original_native_process_pid": null,
+  "pid_availability": "Not captured in the recoverable original call/result summaries. No PID was inferred or invented.",
+  "original_start_timestamp": null,
+  "start_timestamp_availability": "No explicit execution start/end UTC timestamps were returned for these original commands. Preservation time is recorded separately in manifest.json.",
+  "original_initial_result": {
+    "chunk_id": "662000",
+    "wall_time_seconds": 10.0088919,
+    "session_id": 30966,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "original_intermediate_wait_results": [
+    {
+      "call": {
+        "session_id": 30966,
+        "chars": "",
+        "yield_time_ms": 1000,
+        "max_output_tokens": 7000
+      },
+      "result": {
+        "chunk_id": "6a9e80",
+        "wall_time_seconds": 5.0009174,
+        "session_id": 30966,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "original_terminal_wait": {
+    "tool": "write_stdin",
+    "arguments": {
+      "session_id": 30966,
+      "chars": "",
+      "yield_time_ms": 1000,
+      "max_output_tokens": 6500
+    },
+    "result": {
+      "chunk_id": "e5294b",
+      "wall_time_seconds": 0.0000089,
+      "exit_code": 0,
+      "original_token_count": 458,
+      "output": "{\r\n  \"scope\": \"Actual Lean with supplied tool snapshots, disposable project and valid output equal to project root\",\r\n  \"source_file\": \"Src/Main.lean\",\r\n  \"batch_observed_sources\": {\r\n    \"lean-toolchain\": \"465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832\"\r\n  },\r\n  \"full_sources\": {\r\n    \"lean-toolchain\": \"465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832\",\r\n    \"Src\\\\Main.lean\": \"7a69b1346e5bee941d7eae8fda3732e7a69e7757f869e7f3e8243e13915ef27f\",\r\n    \"targets\\\\one\\\\lean-verification-runs\\\\2b25841b2f2c4f319433af756654307c\\\\DiscoverImports.lean\": \"28c7864bb098bee0227426bb6d647576326bb057fa7978f318ae2d98105cf847\",\r\n    \"targets\\\\one\\\\lean-verification-runs\\\\2b25841b2f2c4f319433af756654307c\\\\InspectRoot.lean\": \"a20a0bfc886f8893d51352f61064be8170b782c8f7f948fcb0ee4a061bda28f6\",\r\n    \"targets\\\\one\\\\lean-verification-runs\\\\2b25841b2f2c4f319433af756654307c\\\\LeanVerifyProbe.lean\": \"cfcd3c44a6f99c74b78081a324be6427e06ec19cf0772a3690f873f549b5c8b6\",\r\n    \"targets\\\\one\\\\lean-verification-runs\\\\rechecks\\\\4c06e6fdedd74aef897971cb6cf134b7\\\\ResolveImports.lean\": \"ed3517a8aee07af1d1511d590d66ad613369fe4ec41c16af32d9d4ab522dc681\"\r\n  },\r\n  \"observed_terminal_checks\": [\r\n    true\r\n  ],\r\n  \"returned_status\": \"verified\",\r\n  \"returned_exact_root_passed\": true,\r\n  \"batch_current\": true,\r\n  \"batch_changed\": [],\r\n  \"post_recheck\": {\r\n    \"status\": \"stale\",\r\n    \"snapshot_current\": false,\r\n    \"exact_root_passed\": false,\r\n    \"declaration\": \"result\",\r\n    \"semantic_sha256\": \"571313fcb7a1bfe6bb5efa85023386387c460cc567231bcd666d2e3b7f913d11\",\r\n    \"manifest_sha256\": \"9520f20c69d65ff8277ee64d5407186b793f20bee66c14323c6d899779585d00\",\r\n    \"reasons\": [\r\n      \"source:Src\\\\Main.lean\"\r\n    ],\r\n    \"scope\": \"saved evidence and current Lean module resolution checked; no new kernel proof replay\"\r\n  }\r\n}\r\n"
+    }
+  },
+  "original_exit_code": 0,
+  "original_output_file": "original-output.txt",
+  "output_recovery": "The earlier decoded exec_command/write_stdin output field was an indented JSON summary. Its complete values, order and observed CRLF text are recovered from this agent's existing review context; no rerun, additional compiler output, or new observation was substituted.",
+  "original_split_logs": {
+    "available": false,
+    "reason": "Lean stdout/stderr/job/manifest files and source fixtures were inside TemporaryDirectory and were cleaned when the original programs exited. They were not copied before cleanup and are unavailable now. The native tool exposed combined output; separate top-level stdout/stderr streams and their original raw-file hashes were not captured. Missing logs were not recreated."
+  }
+}

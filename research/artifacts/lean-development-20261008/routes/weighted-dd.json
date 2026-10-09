@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    {
+      "id": "weighted-general-norm",
+      "declaration": "SL.Weighted.weighted_norm_eq_mass",
+      "expected_type": "∀ (Length : ℝ) (LengthPos : 0 < Length) (Rho : SL.Weighted.Density Length) (Value : ℝ → ℂ) (Regular : ContinuousOn Value (Set.Icc 0 Length)), ‖SL.Weighted.weighted_vector Rho Value Regular‖ ^ 2 = SL.Weighted.mass Length Rho.value Value",
+      "semantic_sha256": "5ffb74c877b35c7617d29b3e1c4c91c5a5908fc6fe0f180b5b18d868e6723fbb",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "weighted-constant-dd",
+      "declaration": "SL.Weighted.ConstantDD.constant_dd_l2_root",
+      "expected_type": "∀ (Length Rho : ℝ) (Index : ℕ) (LengthPos : 0 < Length) (RhoPos : 0 < Rho) (IndexPos : 0 < Index), 0 < SL.Weighted.ConstantDD.frequency Length Rho Index ∧ SL.Weighted.ConstantDD.eigenvalue Length Rho Index = SL.Weighted.ConstantDD.frequency Length Rho Index ^ 2 ∧ SL.Weighted.NormalizedEigenfunction SL.Weighted.Boundary.DD Length (fun _ => Rho) (SL.Weighted.ConstantDD.eigenvalue Length Rho Index) (SL.Weighted.ConstantDD.solution Length Rho Index RhoPos) ∧ ‖SL.Weighted.ConstantDD.eigenvector Length Rho Index RhoPos‖ ^ 2 = 1",
+      "semantic_sha256": "b5d8ead536f537e4070278e47d4c89f4a466ebc11bba66d353f02a1164bda1b2",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "weighted-dd",
+      "declaration": "SLVerified.weighted_dd_root",
+      "expected_type": "(∀ (Length : ℝ) (LengthPos : 0 < Length) (Rho : SL.Weighted.Density Length) (Value : ℝ → ℂ) (Regular : ContinuousOn Value (Set.Icc 0 Length)), ‖SL.Weighted.weighted_vector Rho Value Regular‖ ^ 2 = SL.Weighted.mass Length Rho.value Value) ∧\n    (∀ (Length Rho : ℝ) (Index : ℕ) (LengthPos : 0 < Length) (RhoPos : 0 < Rho) (IndexPos : 0 < Index), 0 < SL.Weighted.ConstantDD.frequency Length Rho Index ∧ SL.Weighted.ConstantDD.eigenvalue Length Rho Index = SL.Weighted.ConstantDD.frequency Length Rho Index ^ 2 ∧ SL.Weighted.NormalizedEigenfunction SL.Weighted.Boundary.DD Length (fun _ => Rho) (SL.Weighted.ConstantDD.eigenvalue Length Rho Index) (SL.Weighted.ConstantDD.solution Length Rho Index RhoPos) ∧ ‖SL.Weighted.ConstantDD.eigenvector Length Rho Index RhoPos‖ ^ 2 = 1)",
+      "semantic_sha256": "cecf70bdee88c4c1009f502996c0936ea5eb8193a01cec4b5e168a68f6ba88d8",
+      "routes": [
+        {
+          "id": "conjunction-of-existing-lemmas",
+          "statement_sha256": "cecf70bdee88c4c1009f502996c0936ea5eb8193a01cec4b5e168a68f6ba88d8",
+          "dependencies": [
+            "weighted-general-norm",
+            "weighted-constant-dd"
+          ],
+          "application_source": "lean-proof/SLVerified.lean"
+        }
+      ],
+      "materialized_source": "lean-proof/SLVerified.lean"
+    }
+  ],
+  "scope": "Dependency decomposition and actual application source. Leaf identities do not imply proof evidence. The saved compiled root alone closes the requested formal declaration."
+}

@@ -1,0 +1,432 @@
+--- baseline-v1/plugins/lean-verify/.codex-plugin/plugin.json
++++ source/plugins/lean-verify/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "lean-verify",
+-  "version": "2.1.0",
++  "version": "2.1.1",
+   "description": "Develop Lean proofs with local lemma discovery, actual interface probes and fresh candidate feedback, then use exact declaration, transitive axiom and intended-scope verification with durable research jobs.",
+   "author": {
+     "name": "xsoc1"
+--- baseline-v1/plugins/lean-verify/scripts/lean_develop.py
++++ source/plugins/lean-verify/scripts/lean_develop.py
+@@ -69,7 +69,8 @@
+ def load_targets(Root, PathValue, TargetId=None):
+ 	"""Adapt a nonempty independently authored root list to the existing contract."""
+ 	PathValue = Path(PathValue).resolve()
+-	Data = json.loads(PathValue.read_text(encoding="utf-8"))
++	Raw = PathValue.read_bytes()
++	Data = json.loads(Raw)
+ 	Targets = Data.get("targets") if isinstance(Data, dict) else None
+ 	if(not isinstance(Targets, list) or not Targets):
+ 		raise ValueError("a nonempty targets array is required")
+@@ -99,7 +100,7 @@
+ 		Result = [Item for Item in Result if Item[0] == TargetId]
+ 		if(not Result):
+ 			raise ValueError("requested target id is absent")
+-	return Result, sha256_file(PathValue)
++	return Result, hash_bytes(Raw)
+ 
+ 
+ def declarations_in_file(FilePath):
+@@ -321,6 +322,13 @@
+ 			if(self.import_identity(Raw.decode("utf-8")) != Receipt["import_artifacts"]):
+ 				raise ValueError("import resolution or artifacts changed; run a fresh trial")
+ 			self.require_current_tools()
++			# Environment and actual import queries can take time. Recheck editor
++			# inputs after them, immediately before the atomic compare-and-write.
++			if(source_snapshot(self.Runtime.Root, [self.Runtime.LogDir]) != Receipt["input_hashes"]):
++				raise ValueError("source or configuration changed during save; run a fresh trial")
++			FinalRaw = FilePath.read_bytes() if FilePath.is_file() else None
++			if((hash_bytes(FinalRaw) if FinalRaw is not None else None) != Receipt["disk_sha256"]):
++				raise ValueError("destination changed during save; merge and retry")
+ 			Workflow.atomic_write(FilePath, Raw, CurrentRaw)
+ 		Result = {"status": "saved", "file": str(FilePath), "source_sha256": sha256_file(FilePath), "trial": str(Path(ReceiptPath).resolve()), "exact_root_passed": False, "scope": "fresh candidate atomically saved; exact statement and axiom verification still required"}
+ 		write_json(Path(ReceiptPath).with_name("save.json"), Result)
+@@ -355,9 +363,51 @@
+ 		return Result
+ 
+ 
++def batch_input_snapshot(Runtime, ListPath, Targets):
++	"""Observed declared inputs/version, not an OS-wide filesystem transaction."""
++	Runtime.Environment = None
++	Environment = Runtime.environment()
++	Paths = {Path(ListPath).resolve()}
++	for _, Contract, Item in Targets:
++		Bindings = Contract.get("input_file_hashes", {})
++		if(not isinstance(Bindings, dict)):
++			raise ValueError("contract input_file_hashes must map paths to SHA-256 values")
++		Paths.update((Runtime.Root / Name).resolve() for Name in Bindings)
++		if(Item.get("semantic_audit")):
++			Paths.add((Runtime.Root / Item["semantic_audit"]).resolve())
++	return {"environment_sha256": Environment["sha256"], "tool_hashes": tool_hashes(),
++		"bound_files": {str(PathValue): sha256_file(PathValue) if PathValue.is_file() else None for PathValue in sorted(Paths)},
++		"sources": source_snapshot(Runtime.Root, [Runtime.LogDir])}
++
++
++def batch_evidence_snapshot(Rows):
++	"""Keep already listed evidence bytes stable across the terminal recheck pass."""
++	Paths = set()
++	for Row in Rows:
++		ManifestPath = Path(Row["manifest"])
++		Paths.add(ManifestPath)
++		Manifest = json.loads(ManifestPath.read_bytes())
++		Evidence = Manifest.get("evidence") or {}
++		Target = Manifest.get("target") or {}
++		Paths.update(Path(Name) for Name in Evidence.get("compiled_artifacts") or {})
++		Paths.update(Path(Item["path"]) for Item in (Target.get("import_artifacts") or {}).values())
++		if(Target.get("extraction_file")):
++			Paths.add(Path(Target["extraction_file"]))
++		if(Evidence.get("run_directory")):
++			Directory = Path(Evidence["run_directory"])
++			Paths.update(Directory / Name for Name in ("input-snapshot.json", "run-manifest.json"))
++			Paths.update(Directory / Name for Name in Evidence.get("generated_sources", {}))
++		for Command in (Manifest.get("build") or {}).get("commands", []):
++			Paths.update(Path(Command[Name]) for Name in ("job_record", "stdout_log", "stderr_log") if Command.get(Name))
++	return {str(PathValue): sha256_file(PathValue) if PathValue.is_file() else None for PathValue in sorted(Paths)}
++
++
+ def verify_targets(Arguments):
+ 	Root, Output = Path(Arguments.project).resolve(), Path(Arguments.output).resolve()
+ 	Targets, ListHash = load_targets(Root, Arguments.targets, Arguments.target_id)
++	ListPath = Path(Arguments.targets).resolve()
++	Runtime = LeanRuntime(Root, Output, Arguments.lean, Arguments.lake, Arguments.direct)
++	Initial = batch_input_snapshot(Runtime, ListPath, Targets)
+ 	Results = []
+ 	for Id, Contract, Item in Targets:
+ 		Directory = Output / "targets" / Id
+@@ -373,10 +423,30 @@
+ 		if(Audit):
+ 			Argv += ["--semantic-audit", str((Root / Audit).resolve())]
+ 		Manifest, ManifestPath = verify_project(verifier_parser().parse_args(Argv))
+-		Current = recheck_manifest(ManifestPath)
+-		ListCurrent = sha256_file(Arguments.targets) == ListHash
+-		Results.append({"id": Id, "declaration": Contract["declaration"], "manifest": str(ManifestPath), "manifest_sha256": sha256_file(ManifestPath), "exact_root_passed": Manifest["exact_root_passed"] is True and Current["exact_root_passed"] is True and ListCurrent, "machine": Manifest["machine"], "root_closure": Manifest["root_closure"], "semantic": Manifest["semantic"], "evidence_check": Current, "target_list_current": ListCurrent})
+-	Result = {"status": "verified" if all(Item["exact_root_passed"] for Item in Results) else "incomplete", "target_list": str(Path(Arguments.targets).resolve()), "target_list_sha256": ListHash, "targets": Results, "exact_root_passed": bool(Results) and all(Item["exact_root_passed"] for Item in Results), "scope": "selected nonempty exact roots checked by existing verifier and evidence checker; semantic acceptance and publication separate"}
++		Results.append({"id": Id, "declaration": Contract["declaration"], "manifest": str(ManifestPath), "manifest_sha256": sha256_file(ManifestPath), "exact_root_passed": False, "machine": Manifest["machine"], "root_closure": Manifest["root_closure"], "semantic": Manifest["semantic"]})
++	# Earlier root checks cannot authorize the later combined result. Observe a
++	# common input/version epoch on both sides of one terminal pass over all roots.
++	Before = batch_input_snapshot(Runtime, ListPath, Targets)
++	EvidenceBefore = batch_evidence_snapshot(Results)
++	Checks = [recheck_manifest(Item["manifest"]) for Item in Results]
++	EvidenceAfter = batch_evidence_snapshot(Results)
++	After = batch_input_snapshot(Runtime, ListPath, Targets)
++	ListCurrent = After["bound_files"].get(str(ListPath)) == ListHash
++	Changed = [Key for Key in Initial if Initial[Key] != Before[Key] or Before[Key] != After[Key]]
++	if(EvidenceBefore != EvidenceAfter):
++		Changed.append("evidence_bytes")
++	if(Initial["tool_hashes"] != LOADED_TOOL_HASHES):
++		Changed.append("loaded_tools")
++	if(not ListCurrent):
++		Changed.append("target_list")
++	BatchCurrent = not Changed
++	for Item, Check in zip(Results, Checks):
++		ManifestCurrent = EvidenceBefore.get(Item["manifest"]) == Item["manifest_sha256"] and Check.get("manifest_sha256") == Item["manifest_sha256"]
++		Item.update(evidence_check=Check, target_list_current=ListCurrent, batch_current=BatchCurrent, manifest_current=ManifestCurrent,
++			exact_root_passed=BatchCurrent and ManifestCurrent and Item["root_closure"].get("exact_root_passed") is True and Check["exact_root_passed"] is True)
++	SnapshotPath = Output / "batch-inputs.json"
++	write_json(SnapshotPath, {"initial": Initial, "before_terminal_rechecks": Before, "after_terminal_rechecks": After, "evidence_before": EvidenceBefore, "evidence_after": EvidenceAfter})
++	Result = {"status": "verified" if all(Item["exact_root_passed"] for Item in Results) else "incomplete", "target_list": str(ListPath), "target_list_sha256": ListHash, "targets": Results, "batch": {"current": BatchCurrent, "changed": Changed, "input_snapshot": str(SnapshotPath), "input_snapshot_sha256": sha256_file(SnapshotPath), "scope": "declared inputs/version and listed evidence observed stable across terminal rechecks; no OS-wide filesystem transaction"}, "exact_root_passed": bool(Results) and all(Item["exact_root_passed"] for Item in Results), "scope": "selected nonempty exact roots checked by existing verifier and terminal evidence pass with common input/version bindings; semantic acceptance and publication separate"}
+ 	write_json(Output / "development-result.json", Result)
+ 	return Result
+ 
+@@ -413,7 +483,13 @@
+ 		if(ListPath and ListPath in Command and "--output" in Command and Path(Command[Command.index("--output") + 1]).resolve() == Path(Arguments.output).resolve()):
+ 			Targets, CurrentHash = load_targets(Arguments.project, ListPath, Command[Command.index("--target-id") + 1] if "--target-id" in Command else None)
+ 			Rows = Summary.get("targets", [])
++			Runtime = LeanRuntime(Arguments.project, Arguments.output, Command[Command.index("--lean") + 1], Command[Command.index("--lake") + 1], "--direct" in Command)
++			Before = batch_input_snapshot(Runtime, ListPath, Targets)
++			EvidenceBefore = batch_evidence_snapshot(Rows)
+ 			Checks = [recheck_manifest(Item["manifest"]) for Item in Rows]
++			EvidenceAfter = batch_evidence_snapshot(Rows)
++			After = batch_input_snapshot(Runtime, ListPath, Targets)
++			Stable = Before == After and EvidenceBefore == EvidenceAfter and After["tool_hashes"] == LOADED_TOOL_HASHES and After["bound_files"].get(ListPath) == CurrentHash
+ 			ById = {Id: Contract for Id, Contract, _ in Targets}
+ 			Bound = len(Rows) == len(Targets) and {Item["id"] for Item in Rows} == set(ById)
+ 			for Item in Rows:
+@@ -421,8 +497,8 @@
+ 				Contract = Manifest["evidence"]["contract"]
+ 				Bound = Bound and Item["manifest_sha256"] == sha256_file(Item["manifest"]) and Item["id"] in ById and all(Contract.get(Key) == Value for Key, Value in ById.get(Item["id"], {}).items() if Key != "input_file_hashes") and Contract.get("input_file_hashes", {}).get(ListPath) == CurrentHash
+ 			Printed = json.loads((Path(Arguments.project).resolve() / Result["stdout"]).read_text(encoding="utf-8"))
+-			Result["exact_root_passed"] = bool(Rows) and Bound and Printed == Summary and CurrentHash == Summary.get("target_list_sha256") and all(Check["exact_root_passed"] is True for Check in Checks)
+-			Result["verification"] = {"summary": str(ManifestPath), "checks": Checks}
++			Result["exact_root_passed"] = bool(Rows) and Bound and Stable and Printed == Summary and CurrentHash == Summary.get("target_list_sha256") and all(Check["exact_root_passed"] is True for Check in Checks)
++			Result["verification"] = {"summary": str(ManifestPath), "checks": Checks, "batch_current": Stable}
+ 	return Result
+ 
+ 
+--- baseline-v1/plugins/lean-verify/scripts/tests/test_lean_develop.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop.py
+@@ -14,7 +14,7 @@
+ from unittest.mock import patch
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+-from lean_develop import DevelopSession, declarations_in_file, feedback_passed, load_targets, make_parser, project_file, search_sources, serve, tool_hashes, verify_targets, workflow_module
++from lean_develop import DevelopSession, declarations_in_file, feedback_passed, load_targets, make_parser, project_file, search_sources, serve, tool_hashes, verification_status, verify_targets, workflow_module
+ from lean_runtime import LeanRuntime, background_options, bound_input_changes, full_output, hash_bytes, hash_json, run, sha256_file, source_snapshot, write_json
+ from lean_feedback import ProtocolFailure
+ 
+@@ -152,6 +152,121 @@
+ 			Result = verify_targets(Arguments)
+ 		self.assertEqual(Result["status"], "incomplete")
+ 		self.assertFalse(Result["exact_root_passed"])
++
++	def test_target_list_hash_binds_the_bytes_actually_parsed(self):
++		Targets = self.targets([{"id": "one", "file": "Main.lean", "declaration": "result", "expected_type": "∀ n : Nat, n = n"}])
++		Raw = Targets.read_bytes()
++		ReadBytes = Path.read_bytes
++		def replace_after_read(PathValue):
++			Result = ReadBytes(PathValue)
++			if(PathValue == Targets):
++				Targets.write_text('{"targets":[]}', encoding="utf-8")
++			return Result
++		with patch.object(Path, "read_bytes", replace_after_read):
++			Loaded, Digest = load_targets(self.Root, Targets)
++		self.assertEqual(len(Loaded), 1)
++		self.assertEqual(Digest, hash_bytes(Raw))
++		self.assertNotEqual(Digest, sha256_file(Targets))
++
++	def test_save_rechecks_source_and_destination_after_import_query(self):
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		try:
++			for Changed in ("Dependency.lean", "Main.lean"):
++				with self.subTest(Changed=Changed):
++					Receipt = self.receipt()
++					def change_during_import_query(Text):
++						(self.Root / Changed).write_text("def changed : Nat := 1\n", encoding="utf-8")
++						return {}
++					with patch.object(self.Runtime, "environment", return_value={"sha256": "environment-fixture"}), patch.object(Session, "import_identity", side_effect=change_during_import_query):
++						with self.assertRaisesRegex(ValueError, "changed during save"):
++							Session.save(Receipt)
++					if(Changed == "Dependency.lean"):
++						self.assertFalse((self.Root / "Main.lean").exists())
++					else:
++						self.assertEqual((self.Root / Changed).read_text(encoding="utf-8"), "def changed : Nat := 1\n")
++					(self.Root / Changed).unlink()
++			Receipt = self.receipt()
++			Calls = []
++			def source_snapshot_then_destination_edit(*Args):
++				Snapshot = source_snapshot(*Args)
++				Calls.append(Snapshot)
++				if(len(Calls) == 2):
++					(self.Root / "Main.lean").write_text("def concurrent_destination : Nat := 2\n", encoding="utf-8")
++				return Snapshot
++			with patch.object(self.Runtime, "environment", return_value={"sha256": "environment-fixture"}), patch.object(Session, "import_identity", return_value={}), patch("lean_develop.source_snapshot", side_effect=source_snapshot_then_destination_edit):
++				with self.assertRaisesRegex(ValueError, "destination changed during save"):
++					Session.save(Receipt)
++			self.assertEqual((self.Root / "Main.lean").read_text(encoding="utf-8"), "def concurrent_destination : Nat := 2\n")
++		finally:
++			Session.close()
++
++	def positive_batch_fixture(self):
++		(self.Root / "First.lean").write_text("theorem first (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		(self.Root / "Second.lean").write_text("theorem second (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		Statement = self.Root / "statement.txt"
++		Statement.write_text("original independently written statement", encoding="utf-8")
++		Targets = self.targets([{ "id": "first", "file": "First.lean", "declaration": "first", "expected_type": "∀ n : Nat, n = n", "input_file_hashes": {"statement.txt": sha256_file(Statement)}}, {"id": "second", "file": "Second.lean", "declaration": "second", "expected_type": "∀ n : Nat, n = n"}])
++		Arguments = make_parser().parse_args(["--project", str(self.Root), "--output", str(self.Output), "verify", "--targets", str(Targets)])
++		def verify_fixture(Args):
++			Contract = json.loads(Path(Args.contract).read_bytes())
++			Manifest = {"exact_root_passed": True, "machine": {"status": "passed"}, "root_closure": {"exact_root_passed": True}, "semantic": {"status": "not_supplied"}, "evidence": {"contract": Contract}}
++			PathValue = self.Output / (Contract["declaration"] + ".json")
++			write_json(PathValue, Manifest)
++			return Manifest, PathValue
++		def recheck_fixture(PathValue):
++			return {"exact_root_passed": True, "manifest_sha256": sha256_file(PathValue)}
++		return Targets, Arguments, verify_fixture, recheck_fixture
++
++	def test_batch_rechecks_have_common_source_list_and_bound_input_epoch(self):
++		for Timing in ("second_target", "terminal_source", "terminal_list", "terminal_bound_input", "terminal_evidence"):
++			with self.subTest(Timing=Timing):
++				Targets, Arguments, Verify, Recheck = self.positive_batch_fixture()
++				Calls = []
++				def verify_with_edit(Args):
++					Calls.append("verify")
++					if(Timing == "second_target" and Calls.count("verify") == 2):
++						(self.Root / "First.lean").write_text("theorem first : False := by sorry\n", encoding="utf-8")
++					return Verify(Args)
++				def recheck_with_edit(PathValue):
++					Calls.append("recheck")
++					Result = Recheck(PathValue)
++					if(Calls.count("recheck") == 2):
++						if(Timing == "terminal_source"):
++							(self.Root / "First.lean").write_text("theorem first : False := by sorry\n", encoding="utf-8")
++						elif(Timing == "terminal_list"):
++							Targets.write_text('{"targets":[]}', encoding="utf-8")
++						elif(Timing == "terminal_bound_input"):
++							(self.Root / "statement.txt").write_text("changed independent statement", encoding="utf-8")
++						elif(Timing == "terminal_evidence"):
++							(self.Output / "first.json").write_text("{}", encoding="utf-8")
++					return Result
++				with patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.verify_project", side_effect=verify_with_edit), patch("lean_develop.recheck_manifest", side_effect=recheck_with_edit):
++					Result = verify_targets(Arguments)
++				self.assertEqual(Result["status"], "incomplete", Result)
++				self.assertFalse(Result["batch"]["current"], Result)
++				self.assertTrue(all(not Item["exact_root_passed"] for Item in Result["targets"]))
++				self.assertTrue(all(Item["evidence_check"]["exact_root_passed"] for Item in Result["targets"]))
++
++	def test_job_status_cannot_accept_inputs_changed_during_terminal_rechecks(self):
++		Targets, Arguments, Verify, Recheck = self.positive_batch_fixture()
++		with patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.verify_project", side_effect=Verify), patch("lean_develop.recheck_manifest", side_effect=Recheck):
++			Summary = verify_targets(Arguments)
++		self.assertTrue(Summary["exact_root_passed"], Summary)
++		write_json(self.Root / "stdout.json", Summary)
++		Command = [sys.executable, "lean_develop.py", "--project", str(self.Root), "--output", str(self.Output), "--lean", "lean", "--lake", "lake", "verify", "--targets", str(Targets)]
++		Job = {"state": "SUCCEEDED", "recorded_inputs_match_current": True, "command": Command, "stdout": "stdout.json"}
++		Workflow = workflow_module()
++		Calls = []
++		def recheck_then_edit(PathValue):
++			Calls.append(PathValue)
++			Result = Recheck(PathValue)
++			if(len(Calls) == 2):
++				(self.Root / "First.lean").write_text("theorem first : False := by sorry\n", encoding="utf-8")
++			return Result
++		with patch.object(Workflow, "job_status", return_value=Job), patch("lean_develop.workflow_module", return_value=Workflow), patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.recheck_manifest", side_effect=recheck_then_edit):
++			Result = verification_status(make_parser().parse_args(["--project", str(self.Root), "--output", str(self.Output), "status", "--job-id", "batch"]))
++		self.assertFalse(Result["exact_root_passed"], Result)
++		self.assertFalse(Result["verification"]["batch_current"])
+ 
+ 	def test_workflow_adapter_reuses_actual_local_job_interface(self):
+ 		Workflow = workflow_module()
+--- baseline-v1/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
+@@ -11,11 +11,13 @@
+ import subprocess
+ import time
+ import unittest
++from unittest.mock import patch
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+ from lean_develop import DevelopSession, make_parser, start_verification, verification_status, verify_targets
+ from lean_evidence import recheck_manifest
+ from lean_runtime import LeanRuntime, background_options, sha256_file, write_json
++from verify_lean_project import verify_project
+ 
+ LEAN = os.environ.get("LEAN_VERIFY_REAL_LEAN")
+ LAKE = os.environ.get("LEAN_VERIFY_REAL_LAKE", "lake")
+@@ -216,6 +218,67 @@
+ 		self.assertEqual(len(Expanded["targets"]), 2)
+ 		self.Results.append({"test": self.id(), "warm_responses": Responses, "first_root": First, "extension_trial": Extended, "expanded_targets": Expanded})
+ 
++	def test_actual_save_rechecks_dependency_after_import_query(self):
++		Root, Output, Runtime = self.project()
++		Helper = Root / "Helper.lean"
++		Helper.write_text("theorem helper (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++		Candidate = Root.parent / "Candidate.lean"
++		Candidate.write_text("import Helper\ntheorem result (n : Nat) : n + 0 = n := helper n\n", encoding="utf-8")
++		Session = DevelopSession(Runtime, 60, "cli")
++		try:
++			Trial = Session.trial("Main.lean", Candidate)
++			self.assertEqual(Trial["status"], "candidate_checked", Trial)
++			Receipt = json.loads(Path(Trial["receipt"]).read_bytes())
++			RealImports = Session.import_identity
++			Events = []
++			def actual_import_query_then_edit(Text):
++				Imports = RealImports(Text)
++				self.assertEqual(Imports, Receipt["import_artifacts"])
++				Helper.write_text("theorem helper (n : Nat) : n + 0 = n := by sorry\n", encoding="utf-8")
++				Events.append({"event": "source changed after actual import query", "source_sha256": sha256_file(Helper), "imports_unchanged": Imports})
++				return Imports
++			with patch.object(Session, "import_identity", side_effect=actual_import_query_then_edit):
++				with self.assertRaisesRegex(ValueError, "source or configuration changed during save") as Failure:
++					Session.save(Trial["receipt"])
++			self.assertFalse((Root / "Main.lean").exists())
++			self.assertFalse(Path(Trial["receipt"]).with_name("save.json").exists())
++			self.assertTrue(all(sha256_file(Item["path"]) == Item["sha256"] for Item in Receipt["import_artifacts"].values()))
++			self.Results.append({"test": self.id(), "trial": Trial, "save_error": str(Failure.exception), "events": Events, "destination_created": False})
++		finally:
++			Session.close()
++
++	def test_actual_batch_rechecks_share_one_input_version(self):
++		for Timing in ("second_target", "after_terminal_rechecks"):
++			with self.subTest(Timing=Timing):
++				Root, Output, _ = self.project()
++				First = Root / "First.lean"
++				First.write_text("theorem first (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++				(Root / "Second.lean").write_text("theorem second (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++				Targets = Root / "targets.json"
++				write_json(Targets, {"targets": [{"id": "first", "file": "First.lean", "declaration": "first", "expected_type": "∀ n : Nat, n + 0 = n"}, {"id": "second", "file": "Second.lean", "declaration": "second", "expected_type": "∀ n : Nat, n + 0 = n"}]})
++				Calls = []
++				def actual_verify_with_editor_edit(Arguments):
++					Calls.append("verify")
++					if(Timing == "second_target" and Calls.count("verify") == 2):
++						First.write_text("theorem first : False := by sorry\n", encoding="utf-8")
++					return verify_project(Arguments)
++				def actual_recheck_with_editor_edit(PathValue):
++					Calls.append("recheck")
++					Check = recheck_manifest(PathValue)
++					if(Timing == "after_terminal_rechecks" and Calls.count("recheck") == 2):
++						First.write_text("theorem first : False := by sorry\n", encoding="utf-8")
++					return Check
++				with patch("lean_develop.verify_project", side_effect=actual_verify_with_editor_edit), patch("lean_develop.recheck_manifest", side_effect=actual_recheck_with_editor_edit):
++					Result = verify_targets(self.arguments(Root, Output, Targets))
++				self.assertEqual(Result["status"], "incomplete", Result)
++				self.assertFalse(Result["exact_root_passed"])
++				self.assertIn("sources", Result["batch"]["changed"])
++				self.assertTrue(all(not Item["exact_root_passed"] for Item in Result["targets"]))
++				Observed = [Item["evidence_check"]["exact_root_passed"] for Item in Result["targets"]]
++				self.assertEqual(Observed, [False, True] if Timing == "second_target" else [True, True])
++				Terminal = [recheck_manifest(Item["manifest"]) for Item in Result["targets"]]
++				self.Results.append({"test": self.id(), "timing": Timing, "verification": Result, "actual_post_batch_rechecks": Terminal})
++
+ 
+ if(__name__ == "__main__"):
+ 	unittest.main()
+--- baseline-v1/plugins/lean-verify/skills/lean-verify/references/changelog.md
++++ source/plugins/lean-verify/skills/lean-verify/references/changelog.md
+@@ -1,4 +1,16 @@
+ # Release history
++
++## 2.1.1 (local correction, 2026-10-09)
++
++Recheck trial sources and destination bytes after the potentially slow runtime
++and import queries, immediately before atomic saving. Recheck every selected
++manifest in one terminal pass, with common source, declared-input, runtime,
++tool and listed-evidence bindings observed before and after it; recompute each
++row and the combined result from that terminal pass. Durable status uses the
++same stability boundary. Hash target-list bytes from the actual parsed read.
++These are observed freshness checks, not an OS-wide filesystem transaction.
++The first independent v1 review and actual race reproductions remain retained;
++current acceptance requires new frozen evidence and a fresh correction review.
+ 
+ ## 2.1.0 (local development, 2026-10-08)
+ 
+--- baseline-v1/plugins/lean-verify/skills/lean-verify/references/v2-development.md
++++ source/plugins/lean-verify/skills/lean-verify/references/v2-development.md
+@@ -81,6 +81,9 @@
+ Each trial freezes candidate bytes and records disk/source/configuration,
+ runtime, loaded-artifact and tool identities. `save` rechecks all of them,
+ including current import resolution, and uses the workflow's atomic writer.
++It repeats the source and destination checks after the runtime/import queries,
++immediately before the atomic compare-and-write, so an edit during those
++queries cannot authorize saving the older trial.
+ Source edits by another collaborator make the old trial stale; rerun it against
+ the current state before saving. Error, unavailable, timeout and stale feedback
+ cannot authorize saving. Successfully saving a file leaves exact-root closure
+@@ -128,6 +131,17 @@
+ scope. Automatic checks cannot establish every informal semantic match,
+ nonempty carrier or satisfiable hypothesis; review those explicitly.
+ 
++For multiple roots, all final manifest rechecks form one terminal pass. The
++adapter binds common project sources/configuration, the original target-list
++bytes, declared non-Lean inputs, runtime/tool identities and listed evidence
++bytes before and after that pass. Changes anywhere in those bindings keep every
++row and the combined result incomplete, even when a previously observed root
++check passed. `batch-inputs.json` retains the observed snapshots. Target-list
++identity hashes the bytes actually parsed, not a later reread. These checks
++observe declared bindings; they do not create an OS-wide filesystem transaction
++or prevent an uncooperative writer from editing after the last observation.
++Recheck saved evidence when consuming it.
++
+ ## Decompose, compose and continue
+ 
+ For complex goals, `routes --graph GRAPH --root ID [--root-manifest MANIFEST]`
+@@ -156,6 +170,8 @@
+ fresh exact-root manifests can report a checked root. Unknown or interrupted
+ jobs remain incomplete and keep their original process identity and logs for
+ inspection. Exit code 0 or process completion alone establishes no theorem.
++The terminal status rechecks also require common declared bindings to remain
++stable across the complete manifest pass.
+ 
+ ## Tests and limits
+ 

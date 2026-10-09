@@ -1,0 +1,337 @@
+{
+  "kind": "mathematics",
+  "author_ids": [
+    "/root",
+    "/root/plugin_develop",
+    "/root/krein_model"
+  ],
+  "claims": [
+    {
+      "id": "development-entrance",
+      "verification": "software",
+      "statement": "The generic lean_develop entrance searches current project and manifest-selected mathlib source declarations as candidates, probes actual Lean constant types, accepts external complete candidates for CLI/LSP feedback, retains failures, checks buffer/source/environment/import resolution and loaded tool-code freshness before atomic save, and supports a same-process warm serve session. Feedback and save never themselves report exact-root acceptance; current generic fixture exercises failed proof -> revision -> save -> strict verification and adding a second target without research-specific constants."
+    },
+    {
+      "id": "strict-and-continuation",
+      "verification": "software",
+      "statement": "Target adaptation requires a nonempty uniquely identified list with independently supplied expected_type, delegates exact roots to the retained strict verifier and evidence recheck with optional source-byte bindings, and uses existing workflow jobs for resumable start/status. Job completion or available route leaves alone does not close a root. Current generic negative cases reject extra hypotheses, missing root, transitive sorry, research axiom and model mismatch; old entry remains usable. The retained full real 15-test suite is not yet claimed passed."
+    },
+    {
+      "id": "native-review-identity",
+      "verification": "software",
+      "statement": "The review adapter retains the legacy UUID protocol and also records the real collaboration.spawn_agent canonical task identity with explicit fork_turns none, exact frozen prompt, matching task name and author exclusion; only a matching native FINAL_ANSWER with full report can complete it. It rejects ordinary messages, wrong sender, missing completion and forged alternate identity fields. This is coordinator-attested transcript validation, not service-side authentication, and current unit adapter fixtures are synthetic software tests rather than evidence of a completed real review."
+    },
+    {
+      "id": "hidden-windows-processes",
+      "verification": "software",
+      "statement": "Native Windows Lean/Lake, LSP, rg and actual workflow children use centralized CREATE_NO_WINDOW options while existing detached supervisor behavior and POSIX process setup are retained. Portable tests check both flag branches and a native child GetConsoleWindow result of zero; workflow native child regression passes. No Linux/WSL live run or universal no-flicker UI observation is claimed."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/.github/workflows/validate.yml",
+      "role": "software-source-or-test",
+      "sha256": "1d0a6f584bb56195d2bf82e339ab7e9aaa5d8a2fafc8e9ae33f5e6258004fbe0"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/.github/workflows/validate.yml",
+      "role": "prior-software-source",
+      "sha256": "3b68782988167a96bcec4e245910b556e5569388a2c10232daf68daa25350c2a"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/.codex-plugin/plugin.json",
+      "role": "software-source-or-test",
+      "sha256": "c16b66c0dc5383a1bfcc6a73f2afbc7e61a8658775ee917c02981fd4a7190bc3"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/.codex-plugin/plugin.json",
+      "role": "prior-software-source",
+      "sha256": "7c3ba1cc7c4b846ba314700b2419a2377b298c0ca25fd0b52bc4625e80e6e1fc"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/README.md",
+      "role": "software-source-or-test",
+      "sha256": "5ce281a949aa32b0954db068f2724c6c70b3bd023b158057ed8a28bd4e4d0113"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/README.md",
+      "role": "prior-software-source",
+      "sha256": "a9f122eea595eafa121afa927c90f021c455cdc922cc1f7750193b94397bba4e"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/assets/lean-audit-report.template.md",
+      "role": "software-source-or-test",
+      "sha256": "8a8363bc6d8b38d476831120fe825c645a6c5a3d90085586010e1bbbfef92370"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/assets/lean-obligation.template.md",
+      "role": "software-source-or-test",
+      "sha256": "1c3830cc543e09e699803ddc8a3d61763bc1ac5be02ff9ce0417b994c0749df5"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/assets/verification_output.schema.json",
+      "role": "software-source-or-test",
+      "sha256": "0ba7f0afad04a704a7004cc98dd5ee7509a780eb719e45300edd1e6e477aef6c"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/assets/verification_output.v1.schema.json",
+      "role": "software-source-or-test",
+      "sha256": "cf2f2532843b8b03fe7f3d42ccbf5bc8565a3871afe44a14bc7bb1e8fd4f7b26"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/LeanVerifyProbe.lean.template",
+      "role": "software-source-or-test",
+      "sha256": "4299cc51119b911992511b2ce05e114dfdcbe5d698b4639838585e74c62a7a7f"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lake_build_guard.py",
+      "role": "software-source-or-test",
+      "sha256": "ad8107677112126a6ff9c2f6ed4ed7019960f8357306f4b69e98047ff2d0c4f0"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lean_develop.py",
+      "role": "software-source-or-test",
+      "sha256": "4ef6c7e17b54e594f7b1cff120595cfa3254b6cf36bfcc9864cebc75517dc567"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lean_evidence.py",
+      "role": "software-source-or-test",
+      "sha256": "4b9bab684e531e98d7ccd370c8b937a43b1a141750c208e95d56ce80ff662393"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/scripts/lean_evidence.py",
+      "role": "prior-software-source",
+      "sha256": "acfc329ae136d491293020dc0b1001f27b2b43200466962c07c83d960e991be1"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lean_feedback.py",
+      "role": "software-source-or-test",
+      "sha256": "592386b5a725b35969512b55738720ab1cdd126424cb7c53a9163fb5d431d95d"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/scripts/lean_feedback.py",
+      "role": "prior-software-source",
+      "sha256": "cf3a7c5e18a4f981768fdccfa8761fe8e91a92b8f6ac5e60b5d79e36139a90bc"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lean_routes.py",
+      "role": "software-source-or-test",
+      "sha256": "4c286832a5a9b69a2f8c66768906993bacd7ced232a4af6175a7fca5cf9031f3"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/lean_runtime.py",
+      "role": "software-source-or-test",
+      "sha256": "1ee058a8e5a06ba9f21bc604597c5a24a56b28e2a99e42ec62eb86805c87e6eb"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/scripts/lean_runtime.py",
+      "role": "prior-software-source",
+      "sha256": "cb8de8974c1ed6598d3c81ebab40331944198da8feb6f80b20196362af5a6086"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/run_manifest.schema.json",
+      "role": "software-source-or-test",
+      "sha256": "0ba7f0afad04a704a7004cc98dd5ee7509a780eb719e45300edd1e6e477aef6c"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/tests/test_lean_develop.py",
+      "role": "software-source-or-test",
+      "sha256": "1a2ef04b1a16c07c8d9314e28cad57dc44b69241e2e3f5ad552fd9d5ba883e91"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/tests/test_lean_develop_real.py",
+      "role": "software-source-or-test",
+      "sha256": "f00c66b402b49aab47cef9e3ccf3ebe4b25456739584a8779810bf594c5c3fec"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/tests/test_v2_lean_real.py",
+      "role": "software-source-or-test",
+      "sha256": "1bc6fc0990875212304517832e281f34b209a1fb9acdaccbfa1046a4b3984f1b"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/tests/test_v2_verifier.py",
+      "role": "software-source-or-test",
+      "sha256": "4b1d35838970d19307a3948dc98530f4e8d92870ec9fcf25148af3aa2ba9132b"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/scripts/tests/test_v2_verifier.py",
+      "role": "prior-software-source",
+      "sha256": "c53b0b3625bd8799ad2c9d06df48b59bafc8dd0e227f896009f9dcf6b86c8281"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/scripts/verify_lean_project.py",
+      "role": "software-source-or-test",
+      "sha256": "abad5db32a7c6974979351dea74e7d74a1eb83e949a2c3fa2bef089f357a99d3"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/scripts/verify_lean_project.py",
+      "role": "prior-software-source",
+      "sha256": "ccbdb79a8264a103006768636a5bb8a501c4bc4420eab0c783f08fbe5212592d"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/skills/lean-verify/SKILL.md",
+      "role": "software-source-or-test",
+      "sha256": "738da16a45876309a98681c5e041b0d89c22077825d5c69238aaf45586727d37"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/skills/lean-verify/SKILL.md",
+      "role": "prior-software-source",
+      "sha256": "8c448198a3fe52c8e5368501394bb5459fd794a13f0666186711543f603d27f8"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/skills/lean-verify/references/v2-development.md",
+      "role": "software-source-or-test",
+      "sha256": "d9817c915f49f393ef0b6fd27db173ccabeb39d2a937b37f5060e722d348cf87"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/lean-verify/skills/lean-verify/references/v2-verification.md",
+      "role": "software-source-or-test",
+      "sha256": "b84118cc78127ed788691f5d9ea7a0bce5af7b833ae0e9e223375451d95c088b"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/lean-verify/skills/lean-verify/references/v2-verification.md",
+      "role": "prior-software-source",
+      "sha256": "6613032ba8207c82abdb2c9e3aa29d33036fde48e6535eca98a86482e6ac101a"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/manage-math-research-program/.codex-plugin/plugin.json",
+      "role": "software-source-or-test",
+      "sha256": "c2fa1c62f286fd4113d52f38a0152f5240c6d5ddbae7de81f56f4a656304384c"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/manage-math-research-program/.codex-plugin/plugin.json",
+      "role": "prior-software-source",
+      "sha256": "f6b27c9e4cf6af012ad40cf70893e6da121748330f7996a38d853a7dd0309c7f"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/manage-math-research-program/skills/manage-math-research-program/references/v2-review.md",
+      "role": "software-source-or-test",
+      "sha256": "95d475a330eb374cf2f7cc5f4042cdef9e00b326dbfb3dc8bf6d228da535ceb4"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/manage-math-research-program/skills/manage-math-research-program/references/v2-review.md",
+      "role": "prior-software-source",
+      "sha256": "bfeb6f4c900b8e60277bf3f4987141953398fbedcec2fedb2ef967ff0bfa03df"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/research_library.py",
+      "role": "software-source-or-test",
+      "sha256": "273d31edff1ed89747b81fac5da9dc0cd4e5b3d092cd4718e9fb8a4ec2d96447"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/research_review.py",
+      "role": "software-source-or-test",
+      "sha256": "15bd6e7870c62585af0a5bd32c192608ab070ba9926cf9dda3118962c0a0d412"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/research_review.py",
+      "role": "prior-software-source",
+      "sha256": "e5ae2a786bc9ac26ce489abe05627d166bc4699389ba20f938540bbe60ae2c14"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests/test_research_review.py",
+      "role": "software-source-or-test",
+      "sha256": "b3834bfd858d04a0356d9cd69ab779748410724044a13eaa8f8a5883ab78615b"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests/test_research_review.py",
+      "role": "prior-software-source",
+      "sha256": "48fa5faf43323d4232f957ce79e54c1af2526ff1d4024223109f434225bb8e92"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/math-research-workflow/.codex-plugin/plugin.json",
+      "role": "software-source-or-test",
+      "sha256": "ea3651216a597216537aec48fce5eae3fe5a721eda182abae4d060cda8ee21fe"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/math-research-workflow/.codex-plugin/plugin.json",
+      "role": "prior-software-source",
+      "sha256": "113645d817e96789f7d3210fcf6f2971f74de5d8560a901d5784c93d90cb065d"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/plugins/math-research-workflow/scripts/research_state.py",
+      "role": "software-source-or-test",
+      "sha256": "9ec4afa2d2936bc1940548ba01fd9c97768357f1327170484dfb2ea2a0520132"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/plugins/math-research-workflow/scripts/research_state.py",
+      "role": "prior-software-source",
+      "sha256": "ab96eeca235872ccd3ec251b2be76354b2d80d6e7c2f095e9c34fdf647a014e0"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/source/tests/test_research_state.py",
+      "role": "software-source-or-test",
+      "sha256": "893621b42cd84466f0b51db78b2cbee2a91630bb82b2eadf942c102c6380ff79"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/baseline/tests/test_research_state.py",
+      "role": "prior-software-source",
+      "sha256": "a204bd7e06240cfd4bb454f0956ebbad5aa394f51f9b3b89c57b10792ac94707"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/SOURCE-MANIFEST.json",
+      "role": "original-complete-source-freeze-identity",
+      "sha256": "5cef86862b561f7bbaa60ba0b41b5c55aae1045d15795c63832af135c87a2bde"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/SOURCE-CHANGES.diff",
+      "role": "software-diff-against-9e0da0c",
+      "sha256": "282c4a16dbb5cec9fc8dcc85a50bc65d113b7d881a8d6145f1324fa9c615bb14"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/frozen-development-real.log",
+      "role": "executed-test-evidence",
+      "sha256": "507a0775badbc62885775855d2fb8532cd44efddee93f8621733de91bdced8c9"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/frozen-development-real.json",
+      "role": "executed-test-evidence",
+      "sha256": "338046514d2031d6467b4992297a524f94970940c00c8c618760855a12322f28"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/development-portable-hidden.log",
+      "role": "executed-test-evidence",
+      "sha256": "5c8bac3c1a6c3319b99d80ecaacbaa350ad244ad03b359077bdbe3ba31e191a0"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/retained-portable-hidden.log",
+      "role": "executed-test-evidence",
+      "sha256": "d5237bac5bea7fabea3b990089077c0f2a7abe724f373f157217dc0cf1f200af"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/frozen-workflow.log",
+      "role": "executed-test-evidence",
+      "sha256": "5c4d6cd272c4fe1258760dd3a265d127f28fddcfdbcdd310279a4bf6876ab546"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/frozen-validate.log",
+      "role": "executed-test-evidence",
+      "sha256": "1738ab2571db0aa7b55d76e15127bd888b702eba8e4cc3e1413b07aae1258179"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/manage-all.log",
+      "role": "executed-test-evidence",
+      "sha256": "b1486795b465927cd42e926b0aa8fcfdee6f7f4ce90c472fdf24066dc807781c"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/warm-trial-0.json",
+      "role": "actual-warm-development-receipt",
+      "sha256": "3c9b03169cae3cbac351ff745d67fc96a88cff67a2a61daf2867959c3a0e4fbc"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/evidence/warm-trial-1.json",
+      "role": "actual-warm-development-receipt",
+      "sha256": "71f87d942f26918455409f8cbbe2427168b26a9db2a6c6505b4c9703b73635fe"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/EVIDENCE-SCOPE.json",
+      "role": "test-scope-and-limitations",
+      "sha256": "007f96dec5da9ac18d308c77e56f3c6cf88c2baec7ff5d777f0be35248713d01"
+    },
+    {
+      "path": "research/work/lean-development-20261008/software-review-input/README.md",
+      "role": "review-scope-and-reproduction",
+      "sha256": "9feab6b88e3f9e3bf5b62db4c7a4365fce47a0cfcc4eb80c80502a1ef55e9e70"
+    }
+  ]
+}

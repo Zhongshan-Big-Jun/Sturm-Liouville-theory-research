@@ -1,0 +1,1697 @@
+--- baseline/.github/workflows/validate.yml
++++ source/.github/workflows/validate.yml
+@@ -80,6 +80,8 @@
+         run: python -X utf8 -m unittest discover -s plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests -p "test_*.py"
+       - name: Test 2.0 Lean execution and evidence handling
+         run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_v2_verifier.py"
++      - name: Test proof development adapters
++        run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_lean_develop.py"
+       - name: Test metric comparisons
+         run: python -X utf8 tests/smoke_performance_metrics.py
+       - name: Test skill source diagnostics
+@@ -111,6 +113,14 @@
+           LEAN_VERIFY_TEST_REPORT: ${{ runner.temp }}/lean-controls.json
+           LEAN_VERIFY_KEEP_TEST_ARTIFACTS: "1"
+         run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_v2_lean_real.py" -v
++      - name: Verify actual proof development and job continuation
++        env:
++          LEAN_VERIFY_REAL_LEAN: lean
++          LEAN_VERIFY_REAL_LAKE: lake
++          LEAN_VERIFY_TEST_TMPDIR: ${{ runner.temp }}
++          LEAN_DEVELOP_TEST_REPORT: ${{ runner.temp }}/lean-development-controls.json
++          LEAN_VERIFY_KEEP_TEST_ARTIFACTS: "1"
++        run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_lean_develop_real.py" -v
+       - name: Retain actual compiler evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+@@ -119,3 +129,5 @@
+           path: |
+             ${{ runner.temp }}/lean-controls.json
+             ${{ runner.temp }}/real-*
++            ${{ runner.temp }}/lean-development-controls.json
++            ${{ runner.temp }}/develop-real-*
+--- baseline/plugins/lean-verify/.codex-plugin/plugin.json
++++ source/plugins/lean-verify/.codex-plugin/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "lean-verify",
+-  "version": "2.0.1",
+-  "description": "Use Lean feedback during research and check execution, exact declarations, transitive axioms and intended mathematical scope. Preserve input-bound evidence and reuse unchanged semantic reviews.",
++  "version": "2.1.0",
++  "description": "Develop Lean proofs with local lemma discovery, actual interface probes and fresh candidate feedback, then use exact declaration, transitive axiom and intended-scope verification with durable research jobs.",
+   "author": {
+     "name": "xsoc1"
+   },
+@@ -16,8 +16,8 @@
+   "skills": "./skills/",
+   "interface": {
+     "displayName": "Lean Verify",
+-    "shortDescription": "Precise Lean targets, compiler feedback and evidence",
+-    "longDescription": "Use Lean feedback during research and check execution, exact declarations, transitive axioms and intended mathematical scope. Preserve input-bound evidence and reuse unchanged semantic reviews.",
++    "shortDescription": "Proof development, precise targets and checked evidence",
++    "longDescription": "Develop Lean proofs with local lemma discovery, actual interface probes and fresh candidate feedback, then use exact declaration, transitive axiom and intended-scope verification with durable research jobs.",
+     "developerName": "xsoc1",
+     "category": "Developer Tools",
+     "capabilities": [],
+--- baseline/plugins/lean-verify/README.md
++++ source/plugins/lean-verify/README.md
+@@ -1,15 +1,20 @@
+ # lean-verify
+ 
+-Strict verification workflow for Lean 4 formalizations: statement-fidelity audit, machine
+-checks (lake build, sorry/admit/axiom scan), per-obligation independent audit, structured
+-verdicts, and hash-bound run manifests.
++Develop Lean 4 proofs with local lemma discovery, actual interface experiments,
++incremental candidate feedback and durable per-root jobs. Exact verification
++continues to compare independently authored intended types and inspect
++transitive axioms, current modules and semantic review separately.
+ 
+ ## Structure
+ 
+ - `skills/lean-verify/SKILL.md` - the verification workflow skill.
+-- `scripts/verify_lean_project.py` - static and machine checks (stdlib only): records lean/lake
+-  versions and lean-toolchain, scans .lean files for sorry/admit/axiom, optionally runs
+-  `lake build`, and writes `run-manifest.json`.
++- `scripts/lean_develop.py` - source search, actual type probes, candidate trial/save,
++  nonempty independent root lists and the existing workflow's start/status jobs.
++- `scripts/lean_feedback.py` - persistent LSP feedback and explicit CLI fallback.
++- `scripts/verify_lean_project.py` - isolated exact declaration/type/axiom checking
++  and optional explicit project builds, with retained v2 run manifests.
++- `scripts/lean_evidence.py` and `scripts/lean_routes.py` - current evidence and
++  AND/OR readiness; actual materialized roots remain required.
+ - `assets/verification_output.schema.json` - JSON Schema for the structured verdict.
+ - `assets/lean-audit-report.template.md` - audit report template.
+ - `assets/lean-obligation.template.md` - obligation-to-Lean-declaration mapping template.
+@@ -20,8 +25,10 @@
+    xsoc1/rigorous-open-math-research`, then `codex plugin add lean-verify@math-research`.
+    (Alternative: install the skill directory directly via `$skill-installer`.)
+ 2. Invoke `$lean-verify` with a Lean project directory and the informal theorem contract.
+-3. The skill runs Phase 0-5 and emits `verification.json`, `audit_report.md`, and
+-   `run-manifest.json`.
++3. For development commands read
++   [proof development](skills/lean-verify/references/v2-development.md); for
++   exact contracts and result fields read
++   [verification](skills/lean-verify/references/v2-verification.md).
+ 
+ Script (standalone):
+ 
+@@ -37,5 +44,6 @@
+ 
+ ## Version
+ 
+-- 0.1.0 (2026-08-11): initial plugin with verification workflow skill, static/machine check
+-  script, structured verdict schema, and audit/obligation templates.
++- 2.1.0 (local development): connected proof-development mode, with the existing
++  exact verifier and v2 evidence format. A source version does not assert release
++  or installation. [Release history](skills/lean-verify/references/changelog.md).
+--- baseline/plugins/lean-verify/scripts/lean_develop.py
++++ source/plugins/lean-verify/scripts/lean_develop.py
+@@ -0,0 +1,548 @@
++#!/usr/bin/env python3
++"""Local lemma discovery, candidate feedback and exact-root checks using existing tools.
++
++The agent writes candidates and independent expected types. This is neither an
++automatic prover nor a second verifier. Development receipts authorize a fresh
++atomic save; only verify_lean_project and lean_evidence decide root closure.
++"""
++
++from __future__ import annotations
++
++import argparse
++import importlib.util
++import json
++import os
++from pathlib import Path
++import re
++import shutil
++import subprocess
++import sys
++import uuid
++
++from lean_feedback import FeedbackSession, ProtocolFailure
++from lean_runtime import LeanRuntime, aggregate_results, background_options, full_output, hash_bytes, hash_json, mask_lean_source, now_iso, result_status, sha256_file, source_snapshot, tool_path, write_json
++from lean_evidence import recheck_manifest
++from lean_routes import evaluate_routes
++from verify_lean_project import compile_local_tree, make_parser as verifier_parser, source_imports, valid_name, verify_project
++
++
++SCRIPT_DIR = Path(__file__).resolve().parent
++DEVELOP_TOOLS = ("lean_develop.py", "lean_feedback.py", "lean_runtime.py", "verify_lean_project.py", "lean_evidence.py", "lean_routes.py", "LeanVerifyProbe.lean.template")
++DECLARATION = re.compile(r"\b(theorem|lemma|def|abbrev|opaque|axiom|structure|inductive)\s+([\w.']+)", re.UNICODE)
++
++
++def workflow_module():
++	PathValue = SCRIPT_DIR.parents[1] / "math-research-workflow" / "scripts" / "research_state.py"
++	if(not PathValue.is_file()):
++		raise ValueError("workflow research_state.py is unavailable; install the existing workflow component for durable jobs")
++	Spec = importlib.util.spec_from_file_location("lean_develop_research_state", PathValue)
++	Module = importlib.util.module_from_spec(Spec)
++	Spec.loader.exec_module(Module)
++	return Module
++
++
++def project_file(Root, Name):
++	Root = Path(Root).resolve()
++	FilePath = (Root / Name).resolve()
++	if(not FilePath.is_relative_to(Root) or FilePath.is_relative_to(Root / ".lake") or FilePath.suffix != ".lean"):
++		raise ValueError("candidate destination must be a project-local Lean source outside .lake")
++	return FilePath
++
++
++def tool_hashes():
++	return {Name: sha256_file(SCRIPT_DIR / Name) for Name in DEVELOP_TOOLS}
++
++
++# Capture the process's code epoch, before any long-lived development session.
++# A new Session in this same interpreter cannot reload changed Python modules.
++LOADED_TOOL_HASHES = tool_hashes()
++
++
++def has_errors(Feedback):
++	return any(Item.get("severity") in (1, "error") for Item in Feedback.get("diagnostics", []))
++
++
++def feedback_passed(Feedback):
++	return Feedback.get("status") in ("passed", "complete") and not has_errors(Feedback)
++
++
++def load_targets(Root, PathValue, TargetId=None):
++	"""Adapt a nonempty independently authored root list to the existing contract."""
++	PathValue = Path(PathValue).resolve()
++	Data = json.loads(PathValue.read_text(encoding="utf-8"))
++	Targets = Data.get("targets") if isinstance(Data, dict) else None
++	if(not isinstance(Targets, list) or not Targets):
++		raise ValueError("a nonempty targets array is required")
++	Ids = set()
++	Result = []
++	for Item in Targets:
++		if(not isinstance(Item, dict)):
++			raise ValueError("each target must be an object")
++		Id = Item.get("id")
++		if(not isinstance(Id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", Id) or Id in Ids):
++			raise ValueError("each target needs a unique ordinary id")
++		Ids.add(Id)
++		if(not isinstance(Item.get("expected_type"), str) or not Item["expected_type"].strip()):
++			raise ValueError("each target needs an independently written nonempty expected_type")
++		if(not isinstance(Item.get("file"), str)):
++			raise ValueError("each target needs a source file")
++		Contract = {"file": str(project_file(Root, Item["file"]).relative_to(Path(Root).resolve())), "declaration": valid_name(Item.get("declaration")), "expected_type": Item["expected_type"]}
++		Universes = Item.get("universes", [])
++		if(not isinstance(Universes, list)):
++			raise ValueError("universes must be an array")
++		Contract["universes"] = [valid_name(Name) for Name in Universes]
++		for Key in ("definition_hashes", "type_sha256", "environment_sha256", "semantic_sha256", "semantic_environment_sha256", "input_file_hashes"):
++			if(Key in Item):
++				Contract[Key] = Item[Key]
++		Result.append((Id, Contract, Item))
++	if(TargetId is not None):
++		Result = [Item for Item in Result if Item[0] == TargetId]
++		if(not Result):
++			raise ValueError("requested target id is absent")
++	return Result, sha256_file(PathValue)
++
++
++def declarations_in_file(FilePath):
++	"""Source-location hints only; Lean probes authenticate the inferred names."""
++	Code = mask_lean_source(Path(FilePath).read_text(encoding="utf-8-sig"))
++	Stack = []
++	Records = []
++	for LineNumber, Line in enumerate(Code.splitlines(), 1):
++		Namespace = re.match(r"\s*namespace\s+([\w.']+)", Line)
++		Section = re.match(r"\s*(?:noncomputable\s+)?section(?:\s+([\w.']+))?\s*$", Line)
++		End = re.match(r"\s*end(?:\s+([\w.']+))?\s*$", Line)
++		if(Namespace):
++			Stack.append(("namespace", Namespace.group(1)))
++		elif(Section):
++			Stack.append(("section", Section.group(1)))
++		elif(End and Stack):
++			Stack.pop()
++		for Match in DECLARATION.finditer(Line):
++			Prefix = ".".join(Value for Kind, Value in Stack if Kind == "namespace")
++			Name = Match.group(2)
++			Name = Name[7:] if Name.startswith("_root_.") else Prefix + "." + Name if Prefix else Name
++			Records.append({"candidate_name": Name, "kind": Match.group(1), "declaration_line": LineNumber})
++	return Records
++
++
++def source_roots(Root):
++	Roots = [("project", Root)]
++	Manifest = Root / "lake-manifest.json"
++	if(Manifest.is_file()):
++		Data = json.loads(Manifest.read_text(encoding="utf-8-sig"))
++		Package = next((Item for Item in Data.get("packages", []) if Item.get("name") == "mathlib"), None)
++		if(Package):
++			PackagesDir = Root / Data.get("packagesDir", ".lake/packages")
++			PackageRoot = (PackagesDir / "mathlib").resolve()
++			if(PackageRoot.is_dir()):
++				Roots.append(("mathlib", PackageRoot))
++	return Roots
++
++
++def search_sources(Runtime, Query, Limit=20):
++	if(not Query.strip() or Limit <= 0):
++		raise ValueError("a nonempty search query and a positive limit are required")
++	Rg = shutil.which("rg")
++	Matches = []
++	Cache = {}
++	Engines = []
++	Roots = source_roots(Runtime.Root)
++	for RootIndex, (Scope, Root) in enumerate(Roots):
++		StartCount = len(Matches)
++		ScopeLimit = max(1, (Limit - StartCount) // (len(Roots) - RootIndex))
++		if(Rg):
++			Command = [Rg, "--json", "--no-ignore", "--hidden", "-i", "-F", "-g", "*.lean", "-g", "!**/.lake/**", "-g", "!**/.git/**", "-g", "!**/.lean-verify/**", "--", Query, "."]
++			Engines.append({"scope": Scope, "cwd": str(Root), "command": Command})
++			Process = subprocess.Popen(Command, cwd=Root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, **background_options())
++			try:
++				for Raw in Process.stdout:
++					Event = json.loads(Raw)
++					if(Event.get("type") != "match"):
++						continue
++					Data = Event["data"]
++					FilePath = (Root / Data["path"]["text"]).resolve()
++					Matches.append(search_match(FilePath, Root, Scope, Data["line_number"], Data["lines"]["text"], Cache))
++					if(len(Matches) - StartCount >= ScopeLimit):
++						break
++			finally:
++				if(Process.poll() is None):
++					Process.terminate()
++				Process.communicate(timeout=10)
++		else:
++			Engines.append({"scope": Scope, "engine": "stdlib fallback; rg unavailable"})
++			for Directory, Subdirs, Names in os.walk(Root):
++				Subdirs[:] = sorted(Name for Name in Subdirs if Name not in (".lake", ".git", ".lean-verify", "__pycache__"))
++				for Name in sorted(Names):
++					if(not Name.endswith(".lean")):
++						continue
++					FilePath = Path(Directory) / Name
++					for LineNumber, Line in enumerate(FilePath.read_text(encoding="utf-8-sig").splitlines(), 1):
++						if(Query.lower() in Line.lower()):
++							Matches.append(search_match(FilePath, Root, Scope, LineNumber, Line, Cache))
++							if(len(Matches) - StartCount >= ScopeLimit):
++								break
++					if(len(Matches) - StartCount >= ScopeLimit):
++						break
++				if(len(Matches) - StartCount >= ScopeLimit):
++					break
++		if(len(Matches) >= Limit):
++			break
++	return {"status": "searched", "query": Query, "matches": Matches, "limit": Limit, "search_engines": Engines, "environment_sha256": Runtime.environment()["sha256"], "exact_root_passed": False, "scope": "source hits; inferred names require the actual-version probe"}
++
++
++def search_match(FilePath, Root, Scope, LineNumber, Text, Cache):
++	if(FilePath not in Cache):
++		Cache[FilePath] = declarations_in_file(FilePath)
++	Before = [Item for Item in Cache[FilePath] if Item["declaration_line"] <= LineNumber]
++	Declaration = Before[-1] if Before else {}
++	return {"file": str(FilePath), "module": ".".join(FilePath.relative_to(Root).with_suffix("").parts), "scope": Scope, "line": LineNumber, "text": Text.rstrip(), "source_sha256": sha256_file(FilePath), **Declaration}
++
++
++class DevelopSession:
++	def __init__(self, Runtime, Timeout=60, Backend="auto"):
++		self.LoadedToolHashes = dict(LOADED_TOOL_HASHES)
++		self.require_current_tools()
++		self.Runtime = Runtime
++		self.Timeout = Timeout
++		self.Feedback = FeedbackSession(Runtime, Timeout, Backend)
++		self.ImportPreparationCache = {}
++
++	def close(self):
++		self.Feedback.close()
++
++	def require_current_tools(self):
++		if(tool_hashes() != self.LoadedToolHashes):
++			raise ValueError("development code changed since process load; start a new Python process (LSP restart does not reload Python)")
++
++	def prepare_imports(self, Source, Directory):
++		Discovery = self.Runtime.source_dependencies(Source, Directory, self.Timeout)
++		Commands = [Discovery]
++		if(result_status(Discovery) != "passed"):
++			return Commands
++		Imports, Sources = source_imports(Discovery, self.Runtime.Root)
++		self.Runtime.Environment = None
++		CacheKey = hash_json({"imports": Imports, "sources": source_snapshot(self.Runtime.Root, [self.Runtime.LogDir]), "environment": self.Runtime.environment()["sha256"]})
++		Cached = self.ImportPreparationCache.get(CacheKey)
++		if(Cached):
++			CurrentImports = self.import_identity(Source.read_text(encoding="utf-8"))
++			if(CurrentImports == Cached["inventory"] and all(Path(Name).is_file() and self.Feedback.HashCache.digest(Name) == Digest for Name, Digest in Cached["artifacts"].items())):
++				for Library in Cached["libraries"]:
++					if(Library not in self.Runtime.SearchPaths):
++						self.Runtime.SearchPaths.insert(0, Library)
++				Commands.append({"status": "passed", "exit_code": 0, "kind": "development_import_cache", "scope": "current source/environment/artifact bindings; final roots still require fresh verification", "cache_key": CacheKey})
++				return Commands
++		Libraries = []
++		for FilePath in Sources:
++			if(FilePath is not None):
++				# Lean resolves one module-directory prefix in the first search root.
++				# All local imports must therefore share one complete fresh library.
++				Library, Compilation = compile_local_tree(self.Runtime, FilePath, Directory / "local-imports", self.Timeout)
++				Commands.extend(Compilation)
++				if(aggregate_results(Compilation)["status"] != "passed"):
++					return Commands
++				if(Library not in Libraries):
++					self.Runtime.SearchPaths.insert(0, Library)
++					Libraries.append(Library)
++		if(Libraries):
++			Artifacts = self.import_identity(Source.read_text(encoding="utf-8"))
++			self.ImportPreparationCache[CacheKey] = {"libraries": Libraries, "artifacts": {Item["path"]: Item["sha256"] for Item in Artifacts.values()}, "inventory": Artifacts}
++		return Commands
++
++	def import_identity(self, Text):
++		Inventory = self.Feedback.inventory(self.Feedback.import_header(Text))
++		return {Name: {"path": PathValue, "sha256": self.Feedback.HashCache.digest(PathValue)} for Name, PathValue in Inventory.items()}
++
++	def trial(self, FileName, Candidate):
++		self.require_current_tools()
++		FilePath = project_file(self.Runtime.Root, FileName)
++		Raw = Path(Candidate).read_bytes()
++		Text = Raw.decode("utf-8")
++		if(not Text.strip()):
++			raise ValueError("candidate source must be nonempty")
++		if(Text.startswith("\ufeff")):
++			raise ValueError("candidate source must be UTF-8 without BOM")
++		Directory = self.Runtime.LogDir / "development" / uuid.uuid4().hex
++		Directory.mkdir(parents=True)
++		CandidatePath = Directory / "Candidate.lean"
++		CandidatePath.write_bytes(Raw)
++		Initial = source_snapshot(self.Runtime.Root, [self.Runtime.LogDir])
++		DiskHash = sha256_file(FilePath) if FilePath.is_file() else None
++		Commands = self.prepare_imports(CandidatePath, Directory)
++		if(aggregate_results(Commands)["status"] != "passed"):
++			Feedback = {"status": aggregate_results(Commands)["status"], "reason": "current local imports could not be prepared", "exact_root_passed": False}
++			Imports = {}
++		else:
++			try:
++				Imports = self.import_identity(Text)
++				CurrentPaths = {Name: Item["path"] for Name, Item in Imports.items()}
++				if(self.Feedback.ImportInventory and self.Feedback.ImportInventory != CurrentPaths):
++					# The LSP process inherited its LEAN_PATH at launch. Replacing a
++					# prepared library or adding a shadow must refresh that context.
++					self.Feedback.query({"action": "restart"})
++				Feedback = self.Feedback.query({"action": "diagnostics", "file": str(FilePath.relative_to(self.Runtime.Root)), "text": Text})
++				if(Imports != self.import_identity(Text)):
++					Feedback.update(status="stale", reason="import resolution or artifacts changed during candidate feedback")
++			except (OSError, ProtocolFailure) as Error:
++				Imports = {}
++				Feedback = {"status": "unavailable", "reason": str(Error), "exact_root_passed": False}
++		if(Initial != source_snapshot(self.Runtime.Root, [self.Runtime.LogDir]) or DiskHash != (sha256_file(FilePath) if FilePath.is_file() else None)):
++			Feedback.update(status="stale", reason="current source changed during candidate feedback")
++		if(tool_hashes() != self.LoadedToolHashes):
++			Feedback.update(status="stale", reason="development code changed during feedback; start a new Python process")
++		Receipt = {"schema": "lean-development-trial/v1", "created_at": now_iso(), "project_root": str(self.Runtime.Root), "file": str(FilePath.relative_to(self.Runtime.Root)), "candidate": str(CandidatePath), "candidate_sha256": hash_bytes(Raw), "disk_sha256": DiskHash, "input_hashes": Initial, "environment_sha256": self.Runtime.environment()["sha256"], "import_artifacts": Imports, "tool_hashes": self.LoadedToolHashes, "feedback": Feedback, "preparation_commands": Commands, "search_paths": [str(Item) for Item in self.Runtime.SearchPaths], "exact_root_passed": False}
++		Receipt["receipt_sha256"] = hash_json(Receipt)
++		ReceiptPath = Directory / "trial.json"
++		write_json(ReceiptPath, Receipt)
++		return {"status": "candidate_checked" if feedback_passed(Feedback) else "candidate_incomplete", "receipt": str(ReceiptPath), "candidate_sha256": Receipt["candidate_sha256"], "feedback": Feedback, "exact_root_passed": False}
++
++	def save(self, ReceiptPath):
++		self.require_current_tools()
++		Receipt = json.loads(Path(ReceiptPath).read_text(encoding="utf-8"))
++		Digest = Receipt.pop("receipt_sha256", None)
++		if(Receipt.get("schema") != "lean-development-trial/v1" or hash_json(Receipt) != Digest or Receipt.get("project_root") != str(self.Runtime.Root)):
++			raise ValueError("invalid development receipt or different project")
++		if(not feedback_passed(Receipt["feedback"])):
++			raise ValueError("incomplete or stale candidate feedback cannot authorize saving")
++		Raw = Path(Receipt["candidate"]).read_bytes()
++		if(hash_bytes(Raw) != Receipt["candidate_sha256"] or Receipt["tool_hashes"] != tool_hashes()):
++			raise ValueError("candidate or development tools changed; run a fresh trial")
++		FilePath = project_file(self.Runtime.Root, Receipt["file"])
++		Workflow = workflow_module()
++		with Workflow.writer_lock(self.Runtime.Root / ".lean-verify" / "development-save.lock"):
++			CurrentRaw = FilePath.read_bytes() if FilePath.is_file() else None
++			if((hash_bytes(CurrentRaw) if CurrentRaw is not None else None) != Receipt["disk_sha256"]):
++				raise ValueError("destination changed since candidate feedback; merge and retry")
++			if(source_snapshot(self.Runtime.Root, [self.Runtime.LogDir]) != Receipt["input_hashes"]):
++				raise ValueError("source or configuration changed; run a fresh trial")
++			self.Runtime.Environment = None
++			if(self.Runtime.environment()["sha256"] != Receipt["environment_sha256"]):
++				raise ValueError("runtime or pinned environment changed; run a fresh trial")
++			self.Runtime.SearchPaths = [Path(Item) for Item in Receipt["search_paths"]]
++			if(self.import_identity(Raw.decode("utf-8")) != Receipt["import_artifacts"]):
++				raise ValueError("import resolution or artifacts changed; run a fresh trial")
++			self.require_current_tools()
++			Workflow.atomic_write(FilePath, Raw, CurrentRaw)
++		Result = {"status": "saved", "file": str(FilePath), "source_sha256": sha256_file(FilePath), "trial": str(Path(ReceiptPath).resolve()), "exact_root_passed": False, "scope": "fresh candidate atomically saved; exact statement and axiom verification still required"}
++		write_json(Path(ReceiptPath).with_name("save.json"), Result)
++		return Result
++
++	def probe(self, Names, Imports):
++		self.require_current_tools()
++		Names = [valid_name(Name) for Name in Names]
++		Imports = [valid_name(Name) for Name in Imports]
++		if(not Names):
++			raise ValueError("probe needs at least one declaration name")
++		Directory = self.Runtime.LogDir / "probes" / uuid.uuid4().hex
++		Directory.mkdir(parents=True)
++		Source = Directory / "Interface.lean"
++		Code = "import Lean\n" + "".join("import " + Name + "\n" for Name in Imports)
++		Code += "open Lean Elab Command Meta\n"
++		for Name in Names:
++			Code += ("run_cmd do\n  let Environment := (← getEnv).setExporting false\n  let Name := `" + Name + "\n  let some Info := Environment.checked.get.find? Name | throwError \"requested declaration is absent\"\n  let FullType ← liftTermElabM <| withOptions (fun Options => Options.setBool `pp.all true |>.setBool `pp.universes true |>.setBool `pp.explicit true) (do return (← ppExpr Info.type).pretty)\n  let Module := (Environment.getModuleIdxFor? Name).bind fun Index => Environment.header.moduleNames[Index.toNat]?\n  IO.println (\"LEAN_DEVELOP_DECL \" ++ (Json.mkObj [(\"name\", toJson Name.toString), (\"actual_type\", toJson FullType), (\"module\", toJson (Module.map Lean.Name.toString)), (\"universes\", toJson (Info.levelParams.map Lean.Name.toString))]).compress)\n")
++		Source.write_text(Code, encoding="utf-8", newline="\n")
++		Commands = self.prepare_imports(Source, Directory)
++		if(aggregate_results(Commands)["status"] == "passed"):
++			Commands.append(self.Runtime.execute([tool_path(Source, self.Runtime.Command)], self.Timeout))
++		Declarations = []
++		if(Commands):
++			for Line in full_output(Commands[-1]).splitlines():
++				if(Line.startswith("LEAN_DEVELOP_DECL ")):
++					Declarations.append(json.loads(Line[len("LEAN_DEVELOP_DECL "):]))
++		Result = {"status": "checked" if aggregate_results(Commands)["status"] == "passed" and len(Declarations) == len(Names) else "incomplete", "declarations": Declarations, "probe_source": str(Source), "commands": Commands, "environment_sha256": self.Runtime.environment()["sha256"], "exact_root_passed": False, "scope": "actual installed-environment type/interface query; not a proof"}
++		if(tool_hashes() != self.LoadedToolHashes):
++			Result.update(status="incomplete", reason="development code changed during the interface probe; start a new Python process")
++		write_json(Directory / "probe.json", Result)
++		return Result
++
++
++def verify_targets(Arguments):
++	Root, Output = Path(Arguments.project).resolve(), Path(Arguments.output).resolve()
++	Targets, ListHash = load_targets(Root, Arguments.targets, Arguments.target_id)
++	Results = []
++	for Id, Contract, Item in Targets:
++		Directory = Output / "targets" / Id
++		Directory.mkdir(parents=True, exist_ok=True)
++		ContractPath = Directory / "contract.json"
++		# Keep the independently authored source list available to the verifier snapshot.
++		Contract["input_file_hashes"] = {**Contract.get("input_file_hashes", {}), str(Path(Arguments.targets).resolve()): ListHash}
++		write_json(ContractPath, Contract)
++		Argv = ["--project", str(Root), "--output", str(Directory), "--contract", str(ContractPath), "--lean", Arguments.lean, "--lake", Arguments.lake, "--build-timeout", str(Arguments.timeout), "--strict-exit"]
++		if(Arguments.direct):
++			Argv.append("--direct")
++		Audit = Item.get("semantic_audit")
++		if(Audit):
++			Argv += ["--semantic-audit", str((Root / Audit).resolve())]
++		Manifest, ManifestPath = verify_project(verifier_parser().parse_args(Argv))
++		Current = recheck_manifest(ManifestPath)
++		ListCurrent = sha256_file(Arguments.targets) == ListHash
++		Results.append({"id": Id, "declaration": Contract["declaration"], "manifest": str(ManifestPath), "manifest_sha256": sha256_file(ManifestPath), "exact_root_passed": Manifest["exact_root_passed"] is True and Current["exact_root_passed"] is True and ListCurrent, "machine": Manifest["machine"], "root_closure": Manifest["root_closure"], "semantic": Manifest["semantic"], "evidence_check": Current, "target_list_current": ListCurrent})
++	Result = {"status": "verified" if all(Item["exact_root_passed"] for Item in Results) else "incomplete", "target_list": str(Path(Arguments.targets).resolve()), "target_list_sha256": ListHash, "targets": Results, "exact_root_passed": bool(Results) and all(Item["exact_root_passed"] for Item in Results), "scope": "selected nonempty exact roots checked by existing verifier and evidence checker; semantic acceptance and publication separate"}
++	write_json(Output / "development-result.json", Result)
++	return Result
++
++
++def start_verification(Arguments):
++	Root = Path(Arguments.project).resolve()
++	Targets, _ = load_targets(Root, Arguments.targets, Arguments.target_id)
++	ListPath = Path(Arguments.targets).resolve()
++	if(not ListPath.is_relative_to(Root)):
++		raise ValueError("durable verification requires a project-local target list so the existing workflow can bind it")
++	Command = [sys.executable, "-X", "utf8", str(Path(__file__).resolve()), "--project", str(Root), "--output", str(Path(Arguments.output).resolve()), "--lean", Arguments.lean, "--lake", Arguments.lake, "--timeout", str(Arguments.timeout)]
++	if(Arguments.direct):
++		Command.append("--direct")
++	Command += ["verify", "--targets", str(ListPath)]
++	if(Arguments.target_id):
++		Command += ["--target-id", Arguments.target_id]
++	Inputs = list(source_snapshot(Root, [Arguments.output])) + [str(ListPath.relative_to(Root))]
++	for _, _, Item in Targets:
++		if(Item.get("semantic_audit")):
++			Inputs.append(Item["semantic_audit"])
++	Result = workflow_module().start_job(Root, Arguments.job_id, Command, sorted(set(Inputs)), Timeout=Arguments.job_timeout)
++	Result["exact_root_passed"] = False
++	return Result
++
++
++def verification_status(Arguments):
++	Result = workflow_module().job_status(Arguments.project, Arguments.job_id)
++	Result["exact_root_passed"] = False
++	ManifestPath = Path(Arguments.output).resolve() / "development-result.json"
++	if(Result["state"] == "SUCCEEDED" and Result.get("recorded_inputs_match_current") and ManifestPath.is_file()):
++		Summary = json.loads(ManifestPath.read_text(encoding="utf-8"))
++		Command = Result.get("command", [])
++		ListPath = Summary.get("target_list")
++		if(ListPath and ListPath in Command and "--output" in Command and Path(Command[Command.index("--output") + 1]).resolve() == Path(Arguments.output).resolve()):
++			Targets, CurrentHash = load_targets(Arguments.project, ListPath, Command[Command.index("--target-id") + 1] if "--target-id" in Command else None)
++			Rows = Summary.get("targets", [])
++			Checks = [recheck_manifest(Item["manifest"]) for Item in Rows]
++			ById = {Id: Contract for Id, Contract, _ in Targets}
++			Bound = len(Rows) == len(Targets) and {Item["id"] for Item in Rows} == set(ById)
++			for Item in Rows:
++				Manifest = json.loads(Path(Item["manifest"]).read_text(encoding="utf-8"))
++				Contract = Manifest["evidence"]["contract"]
++				Bound = Bound and Item["manifest_sha256"] == sha256_file(Item["manifest"]) and Item["id"] in ById and all(Contract.get(Key) == Value for Key, Value in ById.get(Item["id"], {}).items() if Key != "input_file_hashes") and Contract.get("input_file_hashes", {}).get(ListPath) == CurrentHash
++			Printed = json.loads((Path(Arguments.project).resolve() / Result["stdout"]).read_text(encoding="utf-8"))
++			Result["exact_root_passed"] = bool(Rows) and Bound and Printed == Summary and CurrentHash == Summary.get("target_list_sha256") and all(Check["exact_root_passed"] is True for Check in Checks)
++			Result["verification"] = {"summary": str(ManifestPath), "checks": Checks}
++	return Result
++
++
++def serve(Session):
++	"""One JSON request/response per line; keep the existing feedback engine warm."""
++	for Line in sys.stdin:
++		try:
++			Session.require_current_tools()
++			Request = json.loads(Line)
++			if(not isinstance(Request, dict)):
++				raise ValueError("development request must be an object")
++			Action = Request.get("action")
++			if(Action == "close"):
++				print(json.dumps({"status": "closed", "exact_root_passed": False}), flush=True)
++				return 0
++			if(Action == "trial"):
++				Result = Session.trial(Request["file"], Request["candidate"])
++			elif(Action == "save"):
++				Result = Session.save(Request["receipt"])
++			elif(Action == "probe"):
++				Result = Session.probe(Request["names"], Request.get("imports", []))
++			elif(Action == "search"):
++				Result = search_sources(Session.Runtime, Request["query"], Request.get("limit", 20))
++			elif(Action == "feedback"):
++				Result = Session.Feedback.query(Request["request"])
++			elif(Action == "restart"):
++				Session.ImportPreparationCache = {}
++				Session.Runtime.SearchPaths = []
++				Result = Session.Feedback.query({"action": "restart"})
++				Result["exact_root_passed"] = False
++			else:
++				raise ValueError("unknown development action; use search, probe, trial, save, feedback, restart or close")
++			Session.require_current_tools()
++		except (OSError, ValueError, KeyError, TypeError, ProtocolFailure, subprocess.TimeoutExpired) as Error:
++			Result = {"status": "incomplete", "reason": str(Error), "exact_root_passed": False}
++		print(json.dumps(Result, ensure_ascii=True), flush=True)
++	return 0
++
++
++def make_parser():
++	Parser = argparse.ArgumentParser(description=__doc__)
++	Parser.add_argument("--project", required=True)
++	Parser.add_argument("--output", required=True)
++	Parser.add_argument("--lean", default="lean")
++	Parser.add_argument("--lake", default="lake")
++	Parser.add_argument("--direct", action="store_true")
++	Parser.add_argument("--timeout", type=float, default=60)
++	Sub = Parser.add_subparsers(dest="action", required=True)
++	Search = Sub.add_parser("search")
++	Search.add_argument("--query", required=True)
++	Search.add_argument("--limit", type=int, default=20)
++	Search.add_argument("--probe", action="store_true")
++	Probe = Sub.add_parser("probe")
++	Probe.add_argument("--name", action="append", required=True)
++	Probe.add_argument("--import", dest="imports", action="append", default=[])
++	Trial = Sub.add_parser("trial")
++	Trial.add_argument("--file", required=True)
++	Trial.add_argument("--candidate", required=True)
++	Trial.add_argument("--backend", choices=("auto", "cli", "lsp"), default="auto")
++	Serve = Sub.add_parser("serve")
++	Serve.add_argument("--backend", choices=("auto", "cli", "lsp"), default="auto")
++	Save = Sub.add_parser("save")
++	Save.add_argument("--receipt", required=True)
++	for Name in ("verify", "start"):
++		Part = Sub.add_parser(Name)
++		Part.add_argument("--targets", required=True)
++		Part.add_argument("--target-id")
++		if(Name == "start"):
++			Part.add_argument("--job-id", required=True)
++			Part.add_argument("--job-timeout", type=float)
++	Status = Sub.add_parser("status")
++	Status.add_argument("--job-id", required=True)
++	Routes = Sub.add_parser("routes")
++	Routes.add_argument("--graph", required=True)
++	Routes.add_argument("--root", required=True)
++	Routes.add_argument("--root-manifest")
++	return Parser
++
++
++def main():
++	Arguments = make_parser().parse_args()
++	Runtime = LeanRuntime(Arguments.project, Arguments.output, Arguments.lean, Arguments.lake, Arguments.direct)
++	Session = None
++	try:
++		if(not Runtime.Root.is_dir()):
++			raise ValueError("project directory does not exist")
++		Session = DevelopSession(Runtime, Arguments.timeout, getattr(Arguments, "backend", "auto"))
++		if(Arguments.action == "serve"):
++			return serve(Session)
++		if(Arguments.action == "search"):
++			Result = search_sources(Runtime, Arguments.query, Arguments.limit)
++			if(Arguments.probe):
++				for Item in Result["matches"]:
++					if(Item.get("candidate_name")):
++						Item["interface"] = Session.probe([Item["candidate_name"]], [Item["module"]])
++			write_json(Runtime.LogDir / "search-result.json", Result)
++		elif(Arguments.action == "probe"):
++			Result = Session.probe(Arguments.name, Arguments.imports)
++		elif(Arguments.action == "trial"):
++			Result = Session.trial(Arguments.file, Arguments.candidate)
++		elif(Arguments.action == "save"):
++			Result = Session.save(Arguments.receipt)
++		elif(Arguments.action == "verify"):
++			Result = verify_targets(Arguments)
++		elif(Arguments.action == "start"):
++			Result = start_verification(Arguments)
++		elif(Arguments.action == "status"):
++			Result = verification_status(Arguments)
++		else:
++			Result = evaluate_routes(json.loads(Path(Arguments.graph).read_text(encoding="utf-8")), Arguments.root, Arguments.root_manifest)
++		# ASCII JSON is portable to native Windows hosts whose stdout defaults to GBK.
++		print(json.dumps(Result, ensure_ascii=True, indent="\t"))
++		return 1 if Result.get("status") in ("incomplete", "candidate_incomplete") or (Arguments.action == "verify" and not Result["exact_root_passed"]) else 0
++	except (OSError, ValueError, KeyError, TypeError, ProtocolFailure, subprocess.TimeoutExpired) as Error:
++		print(json.dumps({"status": "incomplete", "reason": str(Error), "exact_root_passed": False}, ensure_ascii=True))
++		return 2
++	finally:
++		if(Session is not None):
++			Session.close()
++
++
++if(__name__ == "__main__"):
++	raise SystemExit(main())
+--- baseline/plugins/lean-verify/scripts/lean_evidence.py
++++ source/plugins/lean-verify/scripts/lean_evidence.py
+@@ -10,7 +10,7 @@
+ import uuid
+ from pathlib import Path
+ 
+-from lean_runtime import CONFIGURATION_NAMES, HEADER_PROBE, RUNTIME_BINARY_NAMES, LeanRuntime, hash_json, host_path, named_hashes, sha256_file, snapshot_exclusions, source_snapshot, tool_path
++from lean_runtime import CONFIGURATION_NAMES, HEADER_PROBE, RUNTIME_BINARY_NAMES, LeanRuntime, bound_input_changes, hash_json, host_path, named_hashes, sha256_file, snapshot_exclusions, source_snapshot, tool_path
+ 
+ TOOL_NAMES = ("verify_lean_project.py", "lean_runtime.py", "lean_evidence.py", "LeanVerifyProbe.lean.template", "lake_build_guard.py", "run_manifest.schema.json")
+ 
+@@ -86,6 +86,7 @@
+ 			raise ValueError("missing exact expected statement binding")
+ 		if(hash_json(Contract) != Evidence["contract_sha256"]):
+ 			raise ValueError("contract receipt mismatch")
++		Reasons.extend(bound_input_changes(Root, Contract))
+ 		Initial = Manifest["input_hashes"]
+ 		if(not Initial or Target["file"] not in Initial or hash_json(Initial) != Evidence["input_sha256"]):
+ 			raise ValueError("target source has no input receipt")
+--- baseline/plugins/lean-verify/scripts/lean_feedback.py
++++ source/plugins/lean-verify/scripts/lean_feedback.py
+@@ -15,7 +15,7 @@
+ from pathlib import Path
+ from urllib.parse import quote
+ 
+-from lean_runtime import ArtifactHashCache, LeanRuntime, full_output, hash_bytes, hash_json, host_path, now_iso, process_identity, result_status, sha256_file, source_snapshot, tool_path, windows_executable, write_json
++from lean_runtime import ArtifactHashCache, LeanRuntime, background_options, full_output, hash_bytes, hash_json, host_path, now_iso, process_identity, result_status, sha256_file, source_snapshot, tool_path, windows_executable, write_json
+ 
+ 
+ class ProtocolFailure(RuntimeError):
+@@ -43,7 +43,7 @@
+ 		self.ProtocolLog = (self.LogDir / "protocol.jsonl").open("a", encoding="utf-8")
+ 		self.LogLock = threading.Lock()
+ 		self.ErrorLog = (self.LogDir / "stderr.log").open("wb")
+-		self.Process = subprocess.Popen(Runtime.Command + ["--server"], cwd=Runtime.Root, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.ErrorLog, env=Runtime.command_env())
++		self.Process = subprocess.Popen(Runtime.Command + ["--server"], cwd=Runtime.Root, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.ErrorLog, env=Runtime.command_env(), **background_options())
+ 		self.Reader = threading.Thread(target=self.read_messages, daemon=True)
+ 		self.Reader.start()
+ 		self.Identity = {"session_id": self.SessionId, "pid": self.Process.pid, "process_identity": process_identity(self.Process.pid), "protocol_log": str(self.LogDir / "protocol.jsonl"), "stderr_log": str(self.LogDir / "stderr.log")}
+--- baseline/plugins/lean-verify/scripts/lean_runtime.py
++++ source/plugins/lean-verify/scripts/lean_runtime.py
+@@ -89,6 +89,12 @@
+ def executable_path(Name):
+ 	Found = shutil.which(Name)
+ 	return str(Path(Found).absolute()) if Found else Name
++
++
++def background_options(Platform=None):
++	"""Native Windows background commands must not create console windows."""
++	Platform = os.name if Platform is None else Platform
++	return {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)} if Platform == "nt" else {}
+ 
+ 
+ def windows_executable(Command):
+@@ -215,6 +221,21 @@
+ 	return Files
+ 
+ 
++def bound_input_changes(Root, Contract):
++	"""Optional exact-contract bindings for source prose and non-Lean target lists."""
++	Bindings = Contract.get("input_file_hashes", {})
++	if(not isinstance(Bindings, dict)):
++		raise ValueError("contract input_file_hashes must map actual paths to SHA-256 values")
++	Changed = []
++	for Name, Digest in Bindings.items():
++		if(not isinstance(Name, str) or not Name or not isinstance(Digest, str) or not re.fullmatch(r"[a-f0-9]{64}", Digest)):
++			raise ValueError("invalid exact-contract input file binding")
++		FilePath = (Path(Root) / Name).resolve()
++		if(not FilePath.is_file() or sha256_file(FilePath) != Digest):
++			Changed.append("contract_input:" + Name)
++	return Changed
++
++
+ def result_status(Result):
+ 	if(Result.get("status")):
+ 		return Result["status"]
+@@ -248,7 +269,7 @@
+ 	write_json(JobPath, Result)
+ 	with OutputPath.open("wb") as Output, ErrorPath.open("wb") as Error:
+ 		try:
+-			Process = subprocess.Popen(Command, cwd=str(Cwd), stdout=Output, stderr=Error, stdin=subprocess.PIPE if InputText is not None else subprocess.DEVNULL, env=Env, start_new_session=os.name == "posix")
++			Process = subprocess.Popen(Command, cwd=str(Cwd), stdout=Output, stderr=Error, stdin=subprocess.PIPE if InputText is not None else subprocess.DEVNULL, env=Env, start_new_session=os.name == "posix", **background_options())
+ 			Result.update({"pid": Process.pid, "process_identity": process_identity(Process.pid)})
+ 			write_json(JobPath, Result)
+ 			try:
+@@ -262,7 +283,7 @@
+ 					except ProcessLookupError:
+ 						pass
+ 				elif(os.name == "nt"):
+-					subprocess.run(["taskkill", "/PID", str(Process.pid), "/T", "/F"], capture_output=True, timeout=10)
++					subprocess.run(["taskkill", "/PID", str(Process.pid), "/T", "/F"], capture_output=True, timeout=10, **background_options())
+ 				try:
+ 					Process.wait(timeout=5)
+ 					Result["cleanup"] = "unconfirmed_windows_children" if os.name != "nt" and windows_executable(Command) else "process_group_stopped"
+--- baseline/plugins/lean-verify/scripts/tests/test_lean_develop.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop.py
+@@ -0,0 +1,205 @@
++#!/usr/bin/env python3
++"""Portable development controls; synthetic feedback is not compiler evidence."""
++
++from __future__ import annotations
++
++import json
++import io
++import os
++from pathlib import Path
++import sys
++import tempfile
++import subprocess
++import unittest
++from unittest.mock import patch
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from lean_develop import DevelopSession, declarations_in_file, feedback_passed, load_targets, make_parser, project_file, search_sources, serve, tool_hashes, verify_targets, workflow_module
++from lean_runtime import LeanRuntime, background_options, bound_input_changes, full_output, hash_bytes, hash_json, run, sha256_file, source_snapshot, write_json
++from lean_feedback import ProtocolFailure
++
++
++class DevelopControls(unittest.TestCase):
++	def setUp(self):
++		self.Temp = tempfile.TemporaryDirectory(prefix="develop-unit-", dir=os.environ.get("LEAN_VERIFY_TEST_TMPDIR"))
++		self.Base = Path(self.Temp.name).resolve()
++		self.Root = self.Base / "project"
++		self.Root.mkdir()
++		self.Output = self.Base / "output"
++		self.Output.mkdir()
++		self.Runtime = LeanRuntime(self.Root, self.Output, "missing-lean", "missing-lake", True)
++		self.Runtime.Environment = {"sha256": "environment-fixture"}
++
++	def tearDown(self):
++		self.Temp.cleanup()
++
++	def targets(self, Items):
++		PathValue = self.Root / "targets.json"
++		write_json(PathValue, {"targets": Items})
++		return PathValue
++
++	def test_empty_missing_duplicate_or_uncompared_targets_rejected(self):
++		Target = {"id": "one", "file": "Main.lean", "declaration": "goal", "expected_type": "∀ n : Nat, n = n"}
++		for Items in ([], [dict(Target, expected_type="")], [dict(Target, declaration="missing name")], [Target, Target]):
++			with self.subTest(Items=Items), self.assertRaises(ValueError):
++				load_targets(self.Root, self.targets(Items))
++		with self.assertRaises(ValueError):
++			load_targets(self.Root, self.targets([Target]), "absent")
++		Targets, Digest = load_targets(self.Root, self.targets([Target]))
++		self.assertEqual(Targets[0][1]["expected_type"], Target["expected_type"])
++		self.assertEqual(Digest, sha256_file(self.Root / "targets.json"))
++
++	def test_destination_cannot_escape_project_or_use_package_tree(self):
++		for Name in ("../Escape.lean", ".lake/packages/pkg/Source.lean", "notes.md"):
++			with self.assertRaises(ValueError):
++				project_file(self.Root, Name)
++
++	def test_empty_candidate_rejected_and_native_gbk_json_output(self):
++		Candidate = self.Output / "Empty.lean"
++		Candidate.write_text("\n  \n", encoding="utf-8")
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		try:
++			with self.assertRaisesRegex(ValueError, "nonempty"):
++				Session.trial("Main.lean", Candidate)
++		finally:
++			Session.close()
++		(self.Root / "Main.lean").write_text("-- ℝ unicode fixture\ntheorem result (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		Script = Path(__file__).resolve().parents[1] / "lean_develop.py"
++		Command = [sys.executable, str(Script), "--project", str(self.Root), "--output", str(self.Output), "--direct", "--lean", "missing-lean", "--lake", "missing-lake", "search", "--query", "unicode"]
++		Result = subprocess.run(Command, capture_output=True, env=dict(os.environ, PYTHONIOENCODING="gbk"), timeout=45)
++		self.assertEqual(Result.returncode, 0, Result.stderr.decode("ascii", errors="replace"))
++		Data = json.loads(Result.stdout.decode("ascii"))
++		self.assertIn("ℝ", Data["matches"][0]["text"])
++
++	def test_lsp_stale_errors_and_unavailable_are_incomplete(self):
++		for Data in ({"status": "stale"}, {"status": "unavailable"}, {"status": "timeout"}, {"status": "complete", "diagnostics": [{"severity": 1}]}, {"status": "passed", "diagnostics": [{"severity": "error"}]}):
++			self.assertFalse(feedback_passed(Data))
++		self.assertTrue(feedback_passed({"status": "complete", "diagnostics": [{"severity": 2}]}))
++
++	def test_import_protocol_failure_retains_incomplete_candidate_receipt(self):
++		Candidate = self.Output / "Candidate.lean"
++		Candidate.write_text("theorem result (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		with patch.object(Session, "prepare_imports", return_value=[{"status": "passed", "exit_code": 0}]), patch.object(Session, "import_identity", side_effect=ProtocolFailure("module prefix unavailable")):
++			Result = Session.trial("Main.lean", Candidate)
++		self.assertEqual(Result["status"], "candidate_incomplete")
++		self.assertFalse(Result["exact_root_passed"])
++		self.assertIn("module prefix", Result["feedback"]["reason"])
++		self.assertTrue(Path(Result["receipt"]).is_file())
++		Session.close()
++
++	def test_bound_prose_and_target_list_changes_invalidate(self):
++		Source = self.Root / "contract.md"
++		Source.write_text("for every natural number", encoding="utf-8")
++		Contract = {"input_file_hashes": {str(Source): sha256_file(Source)}}
++		self.assertEqual(bound_input_changes(self.Root, Contract), [])
++		Source.write_text("for one natural number", encoding="utf-8")
++		self.assertTrue(bound_input_changes(self.Root, Contract))
++		Source.unlink()
++		self.assertTrue(bound_input_changes(self.Root, Contract))
++		with self.assertRaises(ValueError):
++			bound_input_changes(self.Root, {"input_file_hashes": {"path": "not-a-hash"}})
++
++	def test_namespace_locations_and_cross_project_mathlib_search(self):
++		Local = self.Root / "Main.lean"
++		Local.write_text("namespace Example\nsection\n/- theorem fake : False -/\nlemma shared_result (n : Nat) : n = n := rfl\nend\nend Example\n", encoding="utf-8")
++		Package = self.Root / ".lake/packages/mathlib"
++		(Package / "Mathlib").mkdir(parents=True)
++		(Package / "Mathlib/Fixture.lean").write_text("lemma shared_result (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		write_json(self.Root / "lake-manifest.json", {"packages": [{"name": "mathlib", "rev": "frozen-fixture"}]})
++		Records = declarations_in_file(Local)
++		self.assertEqual([Item["candidate_name"] for Item in Records], ["Example.shared_result"])
++		self.assertEqual(Records[0]["declaration_line"], 4)
++		for Engine in (None, __import__("shutil").which("rg")):
++			with patch("lean_develop.shutil.which", return_value=Engine):
++				Result = search_sources(self.Runtime, "shared_result", 10)
++			self.assertEqual({Item["scope"] for Item in Result["matches"]}, {"project", "mathlib"})
++			self.assertFalse(Result["exact_root_passed"])
++
++	def receipt(self, Status="passed"):
++		Candidate = self.Output / "Candidate.lean"
++		Candidate.write_text("theorem result (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		Receipt = {"schema": "lean-development-trial/v1", "project_root": str(self.Root), "file": "Main.lean", "candidate": str(Candidate), "candidate_sha256": sha256_file(Candidate), "disk_sha256": None, "input_hashes": source_snapshot(self.Root), "environment_sha256": "environment-fixture", "import_artifacts": {}, "tool_hashes": tool_hashes(), "feedback": {"status": Status}, "search_paths": []}
++		Receipt["receipt_sha256"] = hash_json(Receipt)
++		ReceiptPath = self.Output / "trial.json"
++		write_json(ReceiptPath, Receipt)
++		return ReceiptPath
++
++	def test_save_rejects_stale_buffer_destination_source_and_candidate(self):
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		for Change in ("feedback", "destination", "source", "candidate"):
++			with self.subTest(Change=Change):
++				ReceiptPath = self.receipt("stale" if Change == "feedback" else "passed")
++				if(Change == "destination"):
++					(self.Root / "Main.lean").write_text("changed destination")
++				elif(Change == "source"):
++					(self.Root / "Dependency.lean").write_text("changed dependency")
++				elif(Change == "candidate"):
++					(self.Output / "Candidate.lean").write_text("changed candidate")
++				with self.assertRaises(ValueError):
++					Session.save(ReceiptPath)
++				for Name in ("Main.lean", "Dependency.lean"):
++					(self.Root / Name).unlink(missing_ok=True)
++		Session.close()
++
++	def test_completed_job_or_written_report_not_inferred_as_root(self):
++		Target = {"id": "one", "file": "Main.lean", "declaration": "result", "expected_type": "∀ n : Nat, n = n"}
++		Arguments = make_parser().parse_args(["--project", str(self.Root), "--output", str(self.Output), "verify", "--targets", str(self.targets([Target]))])
++		Manifest = {"exact_root_passed": False, "machine": {"status": "passed"}, "root_closure": {"status": "target_mismatch"}, "semantic": {"status": "not_supplied"}}
++		ManifestPath = self.Output / "negative.json"
++		write_json(ManifestPath, Manifest)
++		with patch("lean_develop.verify_project", return_value=(Manifest, ManifestPath)), patch("lean_develop.recheck_manifest", return_value={"exact_root_passed": False}):
++			Result = verify_targets(Arguments)
++		self.assertEqual(Result["status"], "incomplete")
++		self.assertFalse(Result["exact_root_passed"])
++
++	def test_workflow_adapter_reuses_actual_local_job_interface(self):
++		Workflow = workflow_module()
++		self.assertTrue(callable(Workflow.start_job))
++		self.assertTrue(callable(Workflow.job_status))
++		self.assertTrue(callable(Workflow.atomic_write))
++
++	def test_windows_background_flags_and_actual_child_has_no_console(self):
++		self.assertEqual(background_options("nt"), {"creationflags": 0x08000000})
++		self.assertEqual(background_options("posix"), {})
++		Workflow = workflow_module()
++		self.assertEqual(Workflow.hidden_child_options("nt"), {"creationflags": 0x08000000})
++		self.assertEqual(Workflow.hidden_child_options("posix"), {})
++		if(os.name == "nt"):
++			Result = run([sys.executable, "-c", "import ctypes; print(ctypes.windll.kernel32.GetConsoleWindow())"], self.Root, log_dir=self.Output)
++			self.assertEqual(Result["status"], "passed", Result)
++			self.assertEqual(full_output(Result).strip(), "0")
++
++	def test_warm_server_keeps_failed_requests_incomplete_and_continues(self):
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		Output = io.StringIO()
++		Requests = 'not JSON\n{"action":"unknown"}\n{"action":"restart"}\n{"action":"close"}\n'
++		with patch("lean_develop.sys.stdin", io.StringIO(Requests)), patch("lean_develop.sys.stdout", Output):
++			self.assertEqual(serve(Session), 0)
++		Responses = [json.loads(Line) for Line in Output.getvalue().splitlines()]
++		self.assertEqual([Item["status"] for Item in Responses], ["incomplete", "incomplete", "restarted", "closed"])
++		self.assertTrue(all(Item["exact_root_passed"] is False for Item in Responses))
++		Session.close()
++
++	def test_loaded_python_identity_rejects_real_source_change_until_new_process(self):
++		ToolSource = self.Output / "loaded-tool-fixture.py"
++		ToolSource.write_text("VERSION = 1\n", encoding="utf-8")
++		Loaded = {ToolSource.name: sha256_file(ToolSource)}
++		with patch("lean_develop.LOADED_TOOL_HASHES", Loaded), patch("lean_develop.tool_hashes", side_effect=lambda: {ToolSource.name: sha256_file(ToolSource)}):
++			Session = DevelopSession(self.Runtime, Backend="cli")
++			ToolSource.write_text("VERSION = 2\n", encoding="utf-8")
++			with self.assertRaisesRegex(ValueError, "new Python process"):
++				Session.trial("Main.lean", "not-read-before-identity-check")
++			with self.assertRaisesRegex(ValueError, "new Python process"):
++				DevelopSession(self.Runtime, Backend="cli")
++			Output = io.StringIO()
++			with patch("lean_develop.sys.stdin", io.StringIO('{"action":"restart"}\n')), patch("lean_develop.sys.stdout", Output):
++				serve(Session)
++			Result = json.loads(Output.getvalue())
++			self.assertEqual(Result["status"], "incomplete")
++			self.assertFalse(Result["exact_root_passed"])
++			Session.close()
++
++
++if(__name__ == "__main__"):
++	unittest.main()
+--- baseline/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
+@@ -0,0 +1,221 @@
++#!/usr/bin/env python3
++"""Opt-in actual compiler integration for the same generic development entrance."""
++
++from __future__ import annotations
++
++import json
++import os
++from pathlib import Path
++import sys
++import tempfile
++import subprocess
++import time
++import unittest
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from lean_develop import DevelopSession, make_parser, start_verification, verification_status, verify_targets
++from lean_evidence import recheck_manifest
++from lean_runtime import LeanRuntime, background_options, sha256_file, write_json
++
++LEAN = os.environ.get("LEAN_VERIFY_REAL_LEAN")
++LAKE = os.environ.get("LEAN_VERIFY_REAL_LAKE", "lake")
++
++
++@unittest.skipUnless(LEAN, "set LEAN_VERIFY_REAL_LEAN for actual compiler integration")
++class RealDevelopControls(unittest.TestCase):
++	@classmethod
++	def setUpClass(Class):
++		Class.Temp = tempfile.TemporaryDirectory(prefix="develop-real-", dir=os.environ.get("LEAN_VERIFY_TEST_TMPDIR"))
++		Class.Base = Path(Class.Temp.name).resolve()
++		Class.Results = []
++		Class.Counter = 0
++
++	@classmethod
++	def tearDownClass(Class):
++		Output = os.environ.get("LEAN_DEVELOP_TEST_REPORT")
++		if(Output):
++			write_json(Output, {"scope": "generic actual Lean development fixture; no SL or full Mathlib build", "results": Class.Results})
++		if(os.environ.get("LEAN_VERIFY_KEEP_TEST_ARTIFACTS")):
++			Class.Temp._finalizer.detach()
++		else:
++			Class.Temp.cleanup()
++
++	def project(self):
++		type(self).Counter += 1
++		Base = self.Base / str(self.Counter)
++		Root = Base / "project"
++		Root.mkdir(parents=True)
++		(Root / "lean-toolchain").write_text("leanprover/lean4:v4.31.0\n", encoding="utf-8")
++		Output = Base / "output"
++		Runtime = LeanRuntime(Root, Output, LEAN, LAKE, True)
++		self.assertIn("4.31.0", Runtime.environment()["lean_version"])
++		return Root, Output, Runtime
++
++	def arguments(self, Root, Output, Targets, Action="verify", Extra=()):
++		return make_parser().parse_args(["--project", str(Root), "--output", str(Output), "--lean", LEAN, "--lake", LAKE, "--direct", "--timeout", "60", Action, "--targets", str(Targets), *Extra])
++
++	def target_list(self, Root, Expected="∀ n : Nat, n + 0 = n", Declaration="Generic.result"):
++		PathValue = Root / "targets.json"
++		write_json(PathValue, {"targets": [{"id": "natural-addition", "file": "Main.lean", "declaration": Declaration, "expected_type": Expected}]})
++		return PathValue
++
++	def test_candidate_failure_revision_save_new_target_and_old_entry(self):
++		Root, Output, Runtime = self.project()
++		Candidate = Root.parent / "Candidate.lean"
++		Candidate.write_text("namespace Generic\ntheorem result (n : Nat) : n + 0 = n := by\n  exact Nat.zero_add n\nend Generic\n", encoding="utf-8")
++		Session = DevelopSession(Runtime, 60, "cli")
++		try:
++			Probe = Session.probe(["Nat.add_zero"], [])
++			self.assertEqual(Probe["status"], "checked", Probe)
++			self.assertIn("Nat", Probe["declarations"][0]["actual_type"])
++			Bad = Session.trial("Main.lean", Candidate)
++			# Nat.zero_add has a different syntactic expression but Lean may reduce both.
++			if(Bad["status"] == "candidate_checked"):
++				Candidate.write_text("namespace Generic\ntheorem result (n : Nat) : n + 0 = n := by\n  exact False.elim (by contradiction)\nend Generic\n", encoding="utf-8")
++				Bad = Session.trial("Main.lean", Candidate)
++			self.assertEqual(Bad["status"], "candidate_incomplete", Bad)
++			with self.assertRaises(ValueError):
++				Session.save(Bad["receipt"])
++			Candidate.write_text("namespace Generic\ntheorem result (n : Nat) : n + 0 = n := by\n  exact Nat.add_zero n\nend Generic\n", encoding="utf-8")
++			Good = Session.trial("Main.lean", Candidate)
++			self.assertEqual(Good["status"], "candidate_checked", Good)
++			Saved = Session.save(Good["receipt"])
++			self.assertFalse(Saved["exact_root_passed"])
++			self.assertEqual((Root / "Main.lean").read_bytes(), Candidate.read_bytes())
++		finally:
++			Session.close()
++		Targets = self.target_list(Root)
++		Result = verify_targets(self.arguments(Root, Output, Targets))
++		self.assertTrue(Result["exact_root_passed"], Result)
++		Manifest = Result["targets"][0]["manifest"]
++		self.assertTrue(recheck_manifest(Manifest)["exact_root_passed"])
++		# The existing entry still works, without this tool's orchestration.
++		from verify_lean_project import make_parser as old_parser, verify_project
++		Arguments = old_parser().parse_args(["--project", str(Root), "--output", str(Output / "old-entry"), "--lean", LEAN, "--lake", LAKE, "--direct", "--target-file", "Main.lean", "--declaration", "Generic.result", "--expected-type", "∀ n : Nat, n + 0 = n", "--strict-exit"])
++		Old, _ = verify_project(Arguments)
++		self.assertTrue(Old["exact_root_passed"], Old)
++		write_json(Targets, {"targets": [{"id": "natural-addition", "file": "Main.lean", "declaration": "Generic.result", "expected_type": "∀ n : Nat, 0 + n = n"}]})
++		Stale = recheck_manifest(Manifest)
++		self.assertFalse(Stale["exact_root_passed"])
++		self.assertTrue(any("contract_input:" in Reason for Reason in Stale["reasons"]))
++		self.Results.append({"test": self.id(), "probe": Probe, "failed_trial": Bad, "revised_trial": Good, "save": Saved, "verification": Result, "contract_changed": Stale})
++
++	def test_wrong_extra_hypotheses_missing_roots_and_transitive_assumptions(self):
++		Root, Output, _ = self.project()
++		Cases = [
++			("theorem wrong (n : Nat) (h : n = 0) : n + 0 = n := Nat.add_zero n\n", "wrong", "∀ n : Nat, n + 0 = n"),
++			("theorem leaf (n : Nat) : n + 0 = n := Nat.add_zero n\n", "missing_root", "∀ n : Nat, n + 0 = n"),
++			("theorem unproved : False := by sorry\ndef hidden : False := unproved\ntheorem wrong (n : Nat) : n + 0 = n := False.elim hidden\n", "wrong", "∀ n : Nat, n + 0 = n"),
++			("axiom extra : False\ndef hidden : False := extra\ntheorem wrong (n : Nat) : n + 0 = n := False.elim hidden\n", "wrong", "∀ n : Nat, n + 0 = n"),
++			("def model : Prop := True\ntheorem wrong : model := True.intro\n", "wrong", "∀ n : Nat, n + 0 = n")]
++		for Index, (Code, Declaration, Expected) in enumerate(Cases):
++			with self.subTest(Index=Index):
++				(Root / "Main.lean").write_text(Code, encoding="utf-8")
++				Targets = self.target_list(Root, Expected, Declaration)
++				Result = verify_targets(self.arguments(Root, Output / str(Index), Targets))
++				self.assertFalse(Result["exact_root_passed"], Result)
++				self.Results.append({"test": self.id(), "case": Index, "verification": Result})
++
++	def test_actual_buffer_freshness_and_unavailable_compiler(self):
++		Root, Output, Runtime = self.project()
++		Candidate = Root.parent / "Candidate.lean"
++		Candidate.write_text("theorem result (n : Nat) : n = n := rfl\n", encoding="utf-8")
++		Session = DevelopSession(Runtime, 60, "cli")
++		try:
++			Trial = Session.trial("Main.lean", Candidate)
++			self.assertEqual(Trial["status"], "candidate_checked", Trial)
++			(Root / "Dependency.lean").write_text("def changed : Nat := 1\n", encoding="utf-8")
++			with self.assertRaisesRegex(ValueError, "source or configuration changed"):
++				Session.save(Trial["receipt"])
++		finally:
++			Session.close()
++		Missing = DevelopSession(LeanRuntime(Root, Output / "missing", str(Root / "missing-lean"), str(Root / "missing-lake"), True), 1, "cli")
++		try:
++			Trial = Missing.trial("Main.lean", Candidate)
++			self.assertEqual(Trial["status"], "candidate_incomplete")
++			self.assertFalse(Trial["exact_root_passed"])
++		finally:
++			Missing.close()
++		self.Results.append({"test": self.id(), "unavailable": Trial})
++
++	def test_real_workflow_resume_and_duplicate_dispatch(self):
++		Root, Output, _ = self.project()
++		(Root / "Main.lean").write_text("namespace Generic\ntheorem result (n : Nat) : n + 0 = n := Nat.add_zero n\nend Generic\n", encoding="utf-8")
++		Targets = self.target_list(Root)
++		Arguments = self.arguments(Root, Output, Targets, "start", ("--job-id", "generic-root", "--job-timeout", "120"))
++		Started = start_verification(Arguments)
++		Duplicate = start_verification(Arguments)
++		self.assertTrue(Started["dispatched"])
++		self.assertFalse(Duplicate["dispatched"])
++		StatusArgs = make_parser().parse_args(["--project", str(Root), "--output", str(Output), "status", "--job-id", "generic-root"])
++		Deadline = time.monotonic() + 150
++		while(time.monotonic() < Deadline):
++			Status = verification_status(StatusArgs)
++			if(Status["state"] not in ("STARTING", "RUNNING")):
++				break
++			time.sleep(0.2)
++		self.assertEqual(Status["state"], "SUCCEEDED", Status)
++		self.assertTrue(Status["exact_root_passed"], Status)
++		self.Results.append({"test": self.id(), "dispatch": Started, "duplicate": Duplicate, "resumed": Status})
++
++	def test_actual_warm_entrance_and_target_extension(self):
++		Root, Output, _ = self.project()
++		(Root / "Pair/Left").mkdir(parents=True)
++		(Root / "Pair/Right").mkdir(parents=True)
++		(Root / "Pair/Left/One.lean").write_text("namespace Generic\ntheorem helper (n : Nat) : n + 0 = n := Nat.add_zero n\nend Generic\n", encoding="utf-8")
++		(Root / "Pair/Right/Two.lean").write_text("namespace Generic\ntheorem second_helper (n : Nat) : n = n := rfl\nend Generic\n", encoding="utf-8")
++		Candidate = Root.parent / "Candidate.lean"
++		Code = "import Pair.Left.One\nimport Pair.Right.Two\nnamespace Generic\ntheorem result (n : Nat) : n + 0 = n := (helper n).trans (second_helper n)\nend Generic\n"
++		Candidate.write_text(Code.replace("(helper n)", "(Nat.zero_add n)"), encoding="utf-8")
++		Script = Path(__file__).resolve().parents[1] / "lean_develop.py"
++		ErrorPath = Root.parent / "serve.stderr.log"
++		Responses = []
++		with ErrorPath.open("wb") as ErrorLog:
++			Process = subprocess.Popen([sys.executable, str(Script), "--project", str(Root), "--output", str(Output), "--lean", LEAN, "--lake", LAKE, "--direct", "--timeout", "60", "serve", "--backend", "cli"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=ErrorLog, text=True, encoding="utf-8", env=dict(os.environ, PYTHONIOENCODING="gbk"), **background_options())
++			def request(Data):
++				Process.stdin.write(json.dumps(Data) + "\n")
++				Process.stdin.flush()
++				Line = Process.stdout.readline()
++				self.assertTrue(Line, ErrorPath.read_text(encoding="utf-8", errors="replace"))
++				Response = json.loads(Line)
++				Responses.append(Response)
++				return Response
++			try:
++				Bad = request({"action": "trial", "file": "Main.lean", "candidate": str(Candidate)})
++				self.assertEqual(Bad["status"], "candidate_incomplete", Bad)
++				Candidate.write_text(Code, encoding="utf-8")
++				Good = request({"action": "trial", "file": "Main.lean", "candidate": str(Candidate)})
++				self.assertEqual(Good["status"], "candidate_checked", Good)
++				Receipt = json.loads(Path(Good["receipt"]).read_text(encoding="utf-8"))
++				self.assertTrue(any(Item.get("kind") == "development_import_cache" for Item in Receipt["preparation_commands"]))
++				self.assertEqual(request({"action": "save", "receipt": Good["receipt"]})["status"], "saved")
++				request({"action": "close"})
++				self.assertEqual(Process.wait(timeout=10), 0)
++			finally:
++				if(Process.poll() is None):
++					Process.kill()
++					Process.wait(timeout=10)
++				Process.stdin.close()
++				Process.stdout.close()
++		Targets = self.target_list(Root)
++		First = verify_targets(self.arguments(Root, Output / "first-root", Targets))
++		self.assertTrue(First["exact_root_passed"], First)
++		Candidate.write_text(Code + "namespace Generic\ntheorem extended (n : Nat) : n + 0 + 0 = n := by\n  exact (result (n + 0)).trans (result n)\nend Generic\n", encoding="utf-8")
++		Session = DevelopSession(LeanRuntime(Root, Output / "extension", LEAN, LAKE, True), 60, "cli")
++		try:
++			Extended = Session.trial("Main.lean", Candidate)
++			self.assertEqual(Extended["status"], "candidate_checked", Extended)
++			Session.save(Extended["receipt"])
++		finally:
++			Session.close()
++		ListData = json.loads(Targets.read_text(encoding="utf-8"))
++		ListData["targets"].append({"id": "addition-composition", "file": "Main.lean", "declaration": "Generic.extended", "expected_type": "∀ n : Nat, n + 0 + 0 = n"})
++		write_json(Targets, ListData)
++		Expanded = verify_targets(self.arguments(Root, Output / "two-roots", Targets))
++		self.assertTrue(Expanded["exact_root_passed"], Expanded)
++		self.assertEqual(len(Expanded["targets"]), 2)
++		self.Results.append({"test": self.id(), "warm_responses": Responses, "first_root": First, "extension_trial": Extended, "expanded_targets": Expanded})
++
++
++if(__name__ == "__main__"):
++	unittest.main()
+--- baseline/plugins/lean-verify/scripts/tests/test_v2_verifier.py
++++ source/plugins/lean-verify/scripts/tests/test_v2_verifier.py
+@@ -14,7 +14,7 @@
+ from unittest.mock import patch
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+-from lean_runtime import aggregate_results, full_output, hash_json, process_identity, run, scan_file, sha256_file, write_json
++from lean_runtime import aggregate_results, background_options, full_output, hash_json, process_identity, run, scan_file, sha256_file, write_json
+ from lake_build_guard import acquire, release
+ from lean_routes import evaluate_routes
+ from verify_lean_project import make_parser, verify_project
+@@ -68,7 +68,7 @@
+ 		with patch("lean_runtime.subprocess.Popen", return_value=TimedProcess()), patch(CleanupTarget) as Cleanup:
+ 			Result = run(["mock"], self.Root, timeout=0.1, log_dir=self.Root / "logs")
+ 		if(os.name == "nt"):
+-			Cleanup.assert_called_once_with(["taskkill", "/PID", str(TimedProcess.pid), "/T", "/F"], capture_output=True, timeout=10)
++			Cleanup.assert_called_once_with(["taskkill", "/PID", str(TimedProcess.pid), "/T", "/F"], capture_output=True, timeout=10, **background_options())
+ 		else:
+ 			Cleanup.assert_called_once_with(TimedProcess.pid, signal.SIGKILL)
+ 		self.assertEqual(Result["status"], "timeout")
+--- baseline/plugins/lean-verify/scripts/verify_lean_project.py
++++ source/plugins/lean-verify/scripts/verify_lean_project.py
+@@ -13,7 +13,7 @@
+ import uuid
+ from pathlib import Path
+ 
+-from lean_runtime import LeanRuntime, aggregate_results, full_output, hash_json, host_path, mask_lean_source, now_iso, result_status, run, scan_file, sha256_file, snapshot_exclusions, source_snapshot, tool_path, write_json
++from lean_runtime import LeanRuntime, aggregate_results, bound_input_changes, full_output, hash_json, host_path, mask_lean_source, now_iso, result_status, run, scan_file, sha256_file, snapshot_exclusions, source_snapshot, tool_path, write_json
+ from lake_build_guard import acquire, release
+ from lean_evidence import TOOL_NAMES, bind_receipt
+ 
+@@ -303,13 +303,17 @@
+ 	if(Arguments.universes):
+ 		Contract["universes"] = Arguments.universes.split(",")
+ 	if(Arguments.expect_manifest):
+-		Previous = json.loads(Path(Arguments.expect_manifest).read_text(encoding="utf-8"))["target"]
++		PreviousManifest = json.loads(Path(Arguments.expect_manifest).read_text(encoding="utf-8"))
++		Previous = PreviousManifest["target"]
+ 		for Key in ("file", "declaration", "expected_type", "universes"):
+ 			Contract.setdefault(Key, Previous.get(Key))
+ 		for Key in ("semantic_sha256", "semantic_environment_sha256", "definition_hashes", "type_sha256"):
+ 			if(not Previous.get(Key) and Key != "definition_hashes"):
+ 				raise ValueError("previous manifest lacks a usable target identity")
+ 			Contract[Key] = Previous[Key]
++		if("input_file_hashes" in PreviousManifest["evidence"]["contract"]):
++			Contract["input_file_hashes"] = PreviousManifest["evidence"]["contract"]["input_file_hashes"]
++	BoundInputChanges = bound_input_changes(Root, Contract)
+ 	Environment = Runtime.environment() if Arguments.build or Contract else {"lean_version": None, "lake_version": None, "lean_status": "not_probed", "lake_status": "not_probed", "scope": "source scan; no runtime launched"}
+ 	Build = None
+ 	Target = None
+@@ -345,6 +349,7 @@
+ 			release(Root, Guard["token"])
+ 	Final = source_snapshot(Root, Exclusions)
+ 	Changed = sorted(Name for Name in set(Initial) | set(Final) if Initial.get(Name) != Final.get(Name))
++	Changed += sorted(set(BoundInputChanges + bound_input_changes(Root, Contract)))
+ 	ArtifactChanges = []
+ 	if(Target and Target.get("status") == "checked"):
+ 		for Name, Item in Target["import_artifacts"].items():
+--- baseline/plugins/lean-verify/skills/lean-verify/SKILL.md
++++ source/plugins/lean-verify/skills/lean-verify/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: lean-verify
+-description: Use Lean 4 compiler feedback during research and verify a precise formal target against its intended mathematical statement. Check execution, target identity, transitive axioms and semantic scope, preserving reproducible evidence and reusable reviews.
++description: Develop Lean 4 proofs with local lemma discovery, actual interface probes and candidate feedback, then verify precise roots against independent intended statements. Preserve exact target, transitive axiom, freshness and semantic-review checks.
+ ---
+ 
+ # Lean verification
+@@ -8,6 +8,10 @@
+ Use Lean where it helps the mathematics: test a local lemma, formalize a bridge,
+ inspect a goal or verify a root theorem. A small target needs no node ledger.
+ For commands and result formats, read [the verification tools](references/v2-verification.md).
++For lemma discovery, candidate trial/save, nonempty target lists or durable
++per-root work, read [proof development](references/v2-development.md) and use
++`scripts/lean_develop.py`. The agent writes the proofs and independent expected
++types; the development tool delegates final checks to the existing verifier.
+ 
+ Distinguish four questions:
+ 
+--- baseline/plugins/lean-verify/skills/lean-verify/references/v2-development.md
++++ source/plugins/lean-verify/skills/lean-verify/references/v2-development.md
+@@ -0,0 +1,174 @@
++# Proof development with the pinned project
++
++`scripts/lean_develop.py` connects source discovery, interface experiments,
++candidate feedback, atomic saving and the existing exact-root verifier. The
++host agent makes mathematical decisions and supplies proof candidates. The
++tool runs installed local Lean; it has no model or automatic theorem generator.
++Select this source tree or a separate development install explicitly. Editing
++this repository does not change an already loaded skill or global installation.
++
++## Discover and try interfaces
++
++All global arguments precede the subcommand. Use the project's existing pinned
++Lean/Lake, and add `--direct` to use prepared artifacts without package fetching.
++
++```bash
++python scripts/lean_develop.py --project PROJECT --output LOGS \
++  --lean LEAN --lake LAKE --direct search --query hasDerivAt --limit 20
++python scripts/lean_develop.py --project PROJECT --output LOGS \
++  --lean LEAN --lake LAKE --direct probe --import MODULE --name Namespace.lemma
++```
++
++Search uses local `rg`, with a standard-library fallback, over current project
++sources and the mathlib package named by `lake-manifest.json`. It returns actual
++paths, source hashes, line numbers and modules. Names inferred from source
++namespace structure are candidates. Comments, private declarations, macros
++and unusual syntax can make inference incomplete. A search hit establishes
++neither an installed API nor a proof. `--probe` checks inferred candidates;
++explicit `probe` is preferable for a selected interface.
++
++The probe compiles current local imports into disposable output directories,
++then asks the actual Lean environment for the declaration's full type, universe
++parameters and defining module. Failed or missing APIs retain real compiler
++logs and return incomplete. Use these results to write a smaller experiment or
++choose another route while retaining the mathematical target.
++
++## Construct, inspect, revise and save
++
++Write a complete candidate file outside the source destination, then:
++
++```bash
++python scripts/lean_develop.py --project PROJECT --output LOGS \
++  --lean LEAN --lake LAKE --direct --timeout 120 trial \
++  --file Topic/Result.lean --candidate CANDIDATE --backend cli
++python scripts/lean_develop.py --project PROJECT --output LOGS \
++  --lean LEAN --lake LAKE --direct save --receipt TRIAL_JSON
++```
++
++`trial` accepts new destinations and prepares project-local imports using the
++existing isolated compiler. It delegates to `FeedbackSession`: `auto` prefers
++LSP and falls back to CLI; `cli` gives real diagnostics; `lsp` keeps unavailable
++or stale feedback incomplete. For persistent goals, hover and unsaved-buffer
++experiments, use the existing JSON-lines `lean_feedback.py` session. Python
++callers may retain `DevelopSession` to keep that same feedback engine warm.
++
++To keep discovery, trials and saving in one live process, run the same global
++arguments followed by `serve --backend auto` (or `cli`). Send one JSON object
++per line; each response is one JSON line, including explicit incomplete results.
++
++```json
++{"action":"probe","names":["Namespace.lemma"],"imports":["Module"]}
++{"action":"trial","file":"Topic/Result.lean","candidate":"CANDIDATE"}
++{"action":"save","receipt":"TRIAL_JSON_FROM_PREVIOUS_RESPONSE"}
++{"action":"feedback","request":{"action":"goals","file":"Topic/Result.lean","line":10,"character":2}}
++{"action":"restart"}
++{"action":"close"}
++```
++
++Successive unsaved candidates can reuse current local import preparation after
++checking source, environment, artifact hashes and current module resolution.
++The feedback engine retains its existing LSP version/dependency checks. Restart
++discards the development cache and LSP session. `close` releases the live
++session; final `verify` remains a separate exact-root operation. CLI responses
++use ASCII-safe JSON so native Windows GBK stdout can carry Unicode types.
++The process captures its loaded Python-tool hashes. A later source-code change
++keeps further requests incomplete until a new Python process is started;
++restarting only LSP cannot reload Python or relabel old code with new hashes.
++Native Windows Lean/Lake/LSP/search commands use hidden background processes;
++the workflow retains its detached supervisor and hides child console windows.
++POSIX process-group behavior is retained.
++
++Each trial freezes candidate bytes and records disk/source/configuration,
++runtime, loaded-artifact and tool identities. `save` rechecks all of them,
++including current import resolution, and uses the workflow's atomic writer.
++Source edits by another collaborator make the old trial stale; rerun it against
++the current state before saving. Error, unavailable, timeout and stale feedback
++cannot authorize saving. Successfully saving a file leaves exact-root closure
++pending; warnings and imported unproved assumptions are checked at final roots.
++
++## Independently authored target list
++
++Keep one nonempty list of intended formal roots with the project's existing
++results mapping. Each entry requires `id`, `file`, `declaration` and a full
++`expected_type` written from the source contract before checking the candidate.
++
++```json
++{
++  "targets": [
++    {
++      "id": "natural-addition",
++      "file": "Main.lean",
++      "declaration": "Example.result",
++      "expected_type": "∀ n : Nat, n + 0 = n",
++      "universes": []
++    }
++  ]
++}
++```
++
++Optional existing identity fields pass through to the exact verifier. Optional
++`input_file_hashes` binds actual informal sources or other non-Lean input paths
++to SHA-256 values; relative paths are resolved in the project. The adapter also
++binds the original target-list file, so changing the intended roots invalidates
++old receipts without rewriting them. Optional `semantic_audit` points to an
++existing review, subject to the verifier's separate current binding checks.
++
++```bash
++python scripts/lean_develop.py --project PROJECT --output EVIDENCE \
++  --lean LEAN --lake LAKE --direct --timeout 300 verify --targets TARGETS_JSON
++```
++
++`--target-id` selects one declared root. Missing IDs, empty lists and absent
++expected types are rejected. Every selected root invokes `verify_lean_project`
++and then `lean_evidence`; the combined exit is nonzero for any incomplete root.
++The adapter never derives an intended type from the candidate or sets success
++on its own. It writes `development-result.json` with paths to the unchanged v2
++verification manifests, exact closure, actual machine state and separate
++semantic-review state. A successful implication proves its recorded conditional
++scope. Automatic checks cannot establish every informal semantic match,
++nonempty carrier or satisfiable hypothesis; review those explicitly.
++
++## Decompose, compose and continue
++
++For complex goals, `routes --graph GRAPH --root ID [--root-manifest MANIFEST]`
++delegates to `lean_routes.py`. Record typed leaves, reusable checked lemmas and
++AND/OR alternatives, then write a Lean application of the selected route as an
++ordinary candidate. Trial/save/verify the actual root declaration. Route
++readiness, closed leaves and cycles have the existing meanings; a missing root
++remains incomplete. There is no parallel workflow language or graph-based proof
++acceptance.
++
++For checks that must survive an interrupted client:
++
++```bash
++python scripts/lean_develop.py --project PROJECT --output EVIDENCE \
++  --lean LEAN --lake LAKE --direct --timeout 300 start \
++  --targets TARGETS_JSON --target-id natural-addition --job-id root-check-01
++python scripts/lean_develop.py --project PROJECT --output EVIDENCE \
++  status --job-id root-check-01
++```
++
++`start` uses the existing `research_state.py` local supervisor, binds current
++sources and a project-local target list and retains its real job ID. Repeating
++the same request returns the existing job rather than dispatching it again.
++Use a new ID for a changed request. `status` reopens recorded state and logs;
++only a finished successful job with matching current inputs, bound output and
++fresh exact-root manifests can report a checked root. Unknown or interrupted
++jobs remain incomplete and keep their original process identity and logs for
++inspection. Exit code 0 or process completion alone establishes no theorem.
++
++## Tests and limits
++
++From the marketplace root, run `test_lean_develop.py` with standard unittest
++discovery. Opt-in `test_lean_develop_real.py` uses `LEAN_VERIFY_REAL_LEAN` and
++`LEAN_VERIFY_REAL_LAKE`, and preserves generic fixture evidence under
++`LEAN_VERIFY_TEST_TMPDIR` with `LEAN_VERIFY_KEEP_TEST_ARTIFACTS=1` and
++`LEAN_DEVELOP_TEST_REPORT`. This fixture covers actual interface/diagnostic
++feedback, revision, save, exact verification, target extension and job recovery;
++it contains no research-specific constants or objects.
++
++Run the retained `test_v2_verifier.py`, `test_v2_lean_real.py` and repository
++`scripts/validate_all.py` too. Local platform runs apply only to the tested
++platform. CI configuration is not evidence that CI ran. Neither generic fixtures
++nor a single research integration establish universal speedup. Compare the same
++task and environment using retained failed trials and real compiler operations.
+--- baseline/plugins/lean-verify/skills/lean-verify/references/v2-verification.md
++++ source/plugins/lean-verify/skills/lean-verify/references/v2-verification.md
+@@ -34,6 +34,10 @@
+ 
+ A contract may also pin `definition_hashes`, `type_sha256`,
+ `environment_sha256`, or `semantic_sha256` from an earlier extraction.
++Optional `input_file_hashes` maps actual informal-source or target-list paths to
++SHA-256 values. Both verification and saved-evidence rechecking require those
++bytes to remain current. Relative paths are resolved in the project; these
++bindings extend the existing exact contract rather than changing v2 verdicts.
+ `--expect-manifest previous/run-manifest.json` binds an observed statement
+ version, including its definitions and environment. This provides mechanical
+ identity, not a new human judgment about its meaning. Definitions with the same
+@@ -155,6 +159,10 @@
+ 
+ ## Reusable feedback
+ 
++For a connected discovery/candidate/save/root workflow, read
++[proof development](v2-development.md). Existing verification and feedback
++entrypoints remain available independently.
++
+ ```bash
+ python scripts/lean_feedback.py --project /path/to/lean-project \
+   --output /path/to/feedback-logs
+--- baseline/plugins/manage-math-research-program/.codex-plugin/plugin.json
++++ source/plugins/manage-math-research-program/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "manage-math-research-program",
+-  "version": "2.0.1",
++  "version": "2.0.2",
+   "description": "Read literature into versioned sources and reusable tool cards, add searchable agent annotations, compare research experience and maintain a human editable understanding page. Use the Blueprint receiver for canonical accepted knowledge when present.",
+   "author": {
+     "name": "xsoc1"
+--- baseline/plugins/manage-math-research-program/skills/manage-math-research-program/references/v2-review.md
++++ source/plugins/manage-math-research-program/skills/manage-math-research-program/references/v2-review.md
+@@ -35,6 +35,12 @@
+ `message`. Save the actual invocation and response in a JSON object with keys
+ `tool`, `arguments`, `result`; `tool` is `multi_agent_v1__spawn_agent`.
+ 
++The current `collaboration.spawn_agent` adapter is also accepted. Save its
++actual `task_name`, `fork_turns:"none"`, exact `message`, and returned canonical
++`result.task_name`. The canonical task path remains the reviewer identity;
++the storage directory uses a path-safe digest. Preserve the native fields
++instead of inventing an old UUID or converting them to the legacy adapter.
++
+ ```text
+ python REVIEW --project PROJECT dispatch --packet PACKET --spawn-transcript spawn.json
+ ```
+@@ -47,6 +53,12 @@
+ 
+ The reviewer returns one JSON object as specified in the emitted prompt. Save
+ the actual `wait_agent` result, including `status[agent_id].completed`, then:
++
++For the current collaboration adapter, save the actual delivered message as
++`message_type:"FINAL_ANSWER"`, `task_name` (recipient parent), `sender` (the
++dispatched canonical task), and `payload` (complete original JSON report text).
++`wait_agent` availability notifications and ordinary messages contain no final
++review and cannot complete a bundle. Missing completion remains pending.
+ 
+ ```text
+ python REVIEW --project PROJECT receive --bundle BUNDLE --completion-transcript completion.json
+--- baseline/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/research_review.py
++++ source/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/research_review.py
+@@ -167,21 +167,36 @@
+ 
+ 
+ def check_spawn(PacketPath, Packet, Spawn):
+-	if(not isinstance(Spawn, dict) or Spawn.get("tool") != "multi_agent_v1__spawn_agent"):
++	if(not isinstance(Spawn, dict) or Spawn.get("tool") not in ("multi_agent_v1__spawn_agent", "collaboration.spawn_agent")):
+ 		raise ValueError("only the explicit Codex fresh-context tool adapter is supported")
+ 	Arguments, Result = Spawn.get("arguments", {}), Spawn.get("result", {})
+ 	if(not isinstance(Arguments, dict) or not isinstance(Result, dict)):
+ 		raise ValueError("invalid spawn arguments or result")
+-	if(Arguments.get("fork_context") is not False):
+-		raise ValueError("review dispatch must explicitly use fork_context=false")
+ 	if(Arguments.get("message") != reviewer_prompt(PacketPath) or "items" in Arguments):
+ 		raise ValueError("dispatch does not match the frozen minimal review prompt")
+-	Agent = Result.get("agent_id")
+-	if(not isinstance(Agent, str) or not re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", Agent)):
+-		raise ValueError("dispatch has no native agent identity")
++	if(Spawn["tool"] == "multi_agent_v1__spawn_agent"):
++		if(Arguments.get("fork_context") is not False):
++			raise ValueError("review dispatch must explicitly use fork_context=false")
++		Agent = Result.get("agent_id")
++		if(not isinstance(Agent, str) or not re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", Agent)):
++			raise ValueError("dispatch has no native agent identity")
++	else:
++		if(Arguments.get("fork_turns") != "none"):
++			raise ValueError("review dispatch must explicitly use fork_turns=none")
++		Agent = Result.get("task_name")
++		TaskName = Arguments.get("task_name")
++		if(not isinstance(TaskName, str) or not re.fullmatch(r"[a-z0-9_]+", TaskName) or not isinstance(Agent, str) or not re.fullmatch(r"/root(?:/[a-z0-9_]+)+", Agent) or Agent.rsplit("/", 1)[-1] != TaskName):
++			raise ValueError("dispatch has no matching native canonical task identity")
++		if("agent_id" in Result or "fork_context" in Arguments):
++			raise ValueError("do not synthesize legacy identity or context fields for the collaboration adapter")
+ 	if(Agent in Packet.get("author_ids", [])):
+ 		raise ValueError("an author cannot verify their own packet")
+ 	return Agent
++
++
++def agent_storage_id(Agent):
++	# Retain old UUID paths; canonical task paths are identities, not filesystem paths.
++	return "task-" + library.digest(Agent.encode("utf-8")) if Agent.startswith("/") else Agent
+ 
+ 
+ def record_dispatch(project, PacketPath, Spawn):
+@@ -189,12 +204,12 @@
+ 	PacketPath = bound_path(Project, str(PacketPath))
+ 	Packet, Hash = check_packet(Project, PacketPath)
+ 	Agent = check_spawn(PacketPath, Packet, Spawn)
+-	Folder = review_root(Project) / "runs" / (Hash + "-" + Agent)
++	Folder = review_root(Project) / "runs" / (Hash + "-" + agent_storage_id(Agent))
+ 	Dispatch = dict(schema="research-review-dispatch/v1", trust=TRUST,
+ 		packet=library.relative(Project, PacketPath), packet_sha256=Hash, reviewer_id=Agent,
+ 		spawn_sha256=library.digest(library.json_bytes(Spawn)))
+ 	with library.writer_lock(library.library_root(Project)):
+-		library.immutable_write(review_root(Project) / "identities" / (Agent + ".json"),
++		library.immutable_write(review_root(Project) / "identities" / (agent_storage_id(Agent) + ".json"),
+ 			library.json_bytes(dict(packet_sha256=Hash, spawn_sha256=Dispatch["spawn_sha256"])))
+ 		library.immutable_write(Folder / "spawn.json", library.json_bytes(Spawn))
+ 		library.immutable_write(Folder / "dispatch.json", library.json_bytes(Dispatch))
+@@ -204,11 +219,17 @@
+ def completion_report(Completion, Agent):
+ 	if(not isinstance(Completion, dict)):
+ 		raise ValueError("completion must be the tool result object")
+-	Result = Completion.get("status", {}).get(Agent)
+-	if(not isinstance(Result, dict) or not isinstance(Result.get("completed"), str)):
+-		raise ValueError("no completed response from the dispatched reviewer")
++	if(Agent.startswith("/")):
++		if(Completion.get("message_type") != "FINAL_ANSWER" or Completion.get("sender") != Agent or Completion.get("task_name") != Agent.rsplit("/", 1)[0] or not isinstance(Completion.get("payload"), str)):
++			raise ValueError("no actual FINAL_ANSWER from the dispatched canonical task")
++		CompletedText = Completion["payload"]
++	else:
++		Result = Completion.get("status", {}).get(Agent)
++		if(not isinstance(Result, dict) or not isinstance(Result.get("completed"), str)):
++			raise ValueError("no completed response from the dispatched reviewer")
++		CompletedText = Result["completed"]
+ 	try:
+-		Report = json.loads(Result["completed"], object_pairs_hook=unique_object)
++		Report = json.loads(CompletedText, object_pairs_hook=unique_object)
+ 	except (ValueError, TypeError) as Error:
+ 		raise ValueError("reviewer completion must contain the complete JSON report") from Error
+ 	if(not isinstance(Report, dict)):
+@@ -259,7 +280,7 @@
+ 	Agent = check_spawn(PacketPath, Packet, json.loads(SpawnRaw, object_pairs_hook=unique_object))
+ 	if(Agent != Dispatch.get("reviewer_id")):
+ 		raise ValueError("dispatch reviewer identity changed")
+-	Identity = read_json(review_root(Project) / "identities" / (Agent + ".json"))
++	Identity = read_json(review_root(Project) / "identities" / (agent_storage_id(Agent) + ".json"))
+ 	if(Identity != dict(packet_sha256=Hash, spawn_sha256=Dispatch["spawn_sha256"])):
+ 		raise ValueError("reviewer identity was rebound to different evidence")
+ 	return Folder, Dispatch, Packet, Hash
+--- baseline/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests/test_research_review.py
++++ source/plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests/test_research_review.py
+@@ -59,6 +59,53 @@
+ 		with self.assertRaises(ValueError):
+ 			review.record_dispatch(self.Project, self.Project / self.Packet["packet"], self.Spawn)
+ 
++	def modern_spawn(self):
++		return dict(tool="collaboration.spawn_agent", arguments=dict(task_name="fresh_review", fork_turns="none", message=self.Packet["prompt"]), result=dict(task_name="/root/fresh_review"))
++
++	def modern_completion(self):
++		return dict(message_type="FINAL_ANSWER", task_name="/root", sender="/root/fresh_review", payload=json.dumps(self.report()))
++
++	def test_canonical_task_adapter_preserves_native_identity_and_requires_final(self):
++		Spawn = self.modern_spawn()
++		Dispatch = review.record_dispatch(self.Project, self.Project / self.Packet["packet"], Spawn)
++		self.assertEqual(Dispatch["reviewer_id"], "/root/fresh_review")
++		self.assertNotIn("/root/", Dispatch["bundle"])
++		with self.assertRaises((ValueError, OSError)):
++			review.verify_review_bundle(self.Project, Dispatch["bundle"])
++		Result = review.receive_review(self.Project, Dispatch["bundle"], self.modern_completion())
++		self.assertEqual(Result["verdict"], "APPROVED")
++		self.assertEqual(Result["reviewer_id"], "/root/fresh_review")
++
++	def test_canonical_task_adapter_rejects_inheritance_forged_ids_and_no_return(self):
++		for Field, Value in [("fork_turns", None), ("fork_turns", "all"), ("fork_turns", "0"), ("fork_context", False)]:
++			Spawn = self.modern_spawn()
++			Spawn["arguments"][Field] = Value
++			with self.assertRaises(ValueError):
++				review.record_dispatch(self.Project, self.Project / self.Packet["packet"], Spawn)
++		for Agent in (self.Agent, "/root/other_review", "/root/../fresh_review", "/root/fresh_review/"):
++			Spawn = self.modern_spawn()
++			Spawn["result"]["task_name"] = Agent
++			with self.assertRaises(ValueError):
++				review.record_dispatch(self.Project, self.Project / self.Packet["packet"], Spawn)
++		Spawn = self.modern_spawn()
++		Spawn["result"]["agent_id"] = self.Agent
++		with self.assertRaises(ValueError):
++			review.record_dispatch(self.Project, self.Project / self.Packet["packet"], Spawn)
++		for Field, Value in [("message_type", "MESSAGE"), ("sender", "/root/other_review"), ("task_name", "/root/other_parent"), ("payload", None)]:
++			Completion = self.modern_completion()
++			Completion[Field] = Value
++			with self.assertRaises(ValueError):
++				review.completion_report(Completion, "/root/fresh_review")
++		with self.assertRaises(ValueError):
++			review.completion_report(dict(status={"/root/fresh_review": dict(completed=json.dumps(self.report()))}), "/root/fresh_review")
++
++	def test_canonical_author_cannot_verify_self(self):
++		Packet = review.create_packet(self.Project, dict(self.Spec, author_ids=["/root/fresh_review"]))
++		Spawn = self.modern_spawn()
++		Spawn["arguments"]["message"] = Packet["prompt"]
++		with self.assertRaises(ValueError):
++			review.record_dispatch(self.Project, self.Project / Packet["packet"], Spawn)
++
+ 	def test_prompt_contamination_and_wrong_agent_rejected(self):
+ 		self.Spawn["arguments"]["message"] += " The author says everything is correct."
+ 		with self.assertRaises(ValueError):
+--- baseline/plugins/math-research-workflow/.codex-plugin/plugin.json
++++ source/plugins/math-research-workflow/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "math-research-workflow",
+-  "version": "2.0.1",
++  "version": "2.0.2",
+   "description": "Support long-running mathematics research with concise guidance, reusable knowledge and optional Lean verification. Choose research methods and collaboration freely; preserve useful understanding and continue across sessions.",
+   "author": {
+     "name": "xsoc1"
+--- baseline/plugins/math-research-workflow/scripts/research_state.py
++++ source/plugins/math-research-workflow/scripts/research_state.py
+@@ -24,6 +24,11 @@
+ import time
+ 
+ UNCHECKED = object()
++
++
++def hidden_child_options(Platform=None):
++	Platform = os.name if Platform is None else Platform
++	return dict(creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)) if Platform == "nt" else {}
+ 
+ 
+ def retry_io(Action):
+@@ -440,7 +445,7 @@
+ 			with Stdout.open("wb") as Out, Stderr.open("wb") as Err:
+ 				try:
+ 					Process = subprocess.Popen(Record["command"], cwd=inside(Root, Record["cwd"]),
+-						stdin=subprocess.DEVNULL, stdout=Out, stderr=Err)
++						stdin=subprocess.DEVNULL, stdout=Out, stderr=Err, **hidden_child_options())
+ 				except OSError as Error:
+ 					update_job(Root, JobId, dict(state="FAILED_TO_START", error=str(Error), completed_at=utc_now()))
+ 					return
+--- baseline/tests/test_research_state.py
++++ source/tests/test_research_state.py
+@@ -118,6 +118,13 @@
+ 		self.assertIn("partial", (self.Project / Record["stdout"]).read_text())
+ 		state.start_job(self.Project, "missing", [str(self.Project / "absent-executable")])
+ 		self.assertEqual(self.wait_job("missing")["state"], "FAILED_TO_START")
++
++	@unittest.skipUnless(os.name == "nt", "actual Windows console API control")
++	def test_background_job_child_has_no_console_window(self):
++		self.start("hidden-child", "import ctypes; print(ctypes.windll.kernel32.GetConsoleWindow())")
++		Record = self.wait_job("hidden-child")
++		self.assertEqual(Record["state"], "SUCCEEDED")
++		self.assertEqual((self.Project / Record["stdout"]).read_text().strip(), "0")
+ 
+ 	def test_pid_reuse_is_unknown_and_never_dispatches(self):
+ 		state.create_job(self.Project, "orphan", dict(kind="local", command=["unused"], cwd=".", inputs={}, timeout_seconds=None))

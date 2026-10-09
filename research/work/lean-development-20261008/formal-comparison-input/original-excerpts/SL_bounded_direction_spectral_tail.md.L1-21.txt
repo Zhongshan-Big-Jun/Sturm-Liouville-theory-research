@@ -1,0 +1,23 @@
+{"original_path": "docs/SL_bounded_direction_spectral_tail.md", "original_sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f", "line_start": 1, "line_end": 21}
+
+# 有界真实密度方向的 Parseval 剩余能量与两侧谱尾界
+
+本轮活动解析补证. 解析证明、有限数值诊断和区间输入认证是不同的证据; 当前审查状态见第十六轮交付报告. 本命题不使用第十五轮删项扩展, 也不要求驻点或 ND.
+
+## 1. 精确对象和量词
+
+固定长度 L>0, 实可测密度 0<m<=rho<=M<infinity 及实方向 h in L-infinity(0,L). 采用真实 DD 问题
+
+\[
+-u_k''=\lambda_k\rho u_k,\quad u_k(0)=u_k(L)=0,
+\qquad \int_0^L\rho u_k^2=1.
+\]
+
+模态选为实数, 按完整谱的一基指标排序 0<lambda_1<lambda_2<.... 特征值 lambda 与频率 sqrt(lambda) 不可混用. 内积对第一变量线性. 置
+
+\[
+c_{kl}=\int_0^L h u_k u_l,\qquad
+J_k=\int_0^L\frac{h^2}{\rho}u_k^2,\qquad
+E_{k,N}=J_k-\sum_{l=1}^N|c_{kl}|^2.
+\tag{1}
+\]

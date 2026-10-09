@@ -1,0 +1,65 @@
+{
+  "schema": "review-native-execution-recovery/v1",
+  "reviewer_canonical_task": "/root/plugin_review_v2",
+  "packet_sha256": "5e98a16d78949e397e42b429a05b03ab0c475b54818140b9c03a55ab42483ede",
+  "source_scope": "Only the supplied frozen packet snapshots; ordinary temporary runtime fixtures. No experiment was rerun for preservation.",
+  "source_payload": "reproduce.py preserves the original inline Python -c payload from the earlier PowerShell here-string; no original .py file existed.",
+  "original_call": "exec-command-call.json",
+  "original_call_workdir_argument": "omitted",
+  "effective_cwd_from_original_turn_context": "F:\\LaTeX\\BVE research",
+  "python_executable": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+  "lean_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+  "lake_executable": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+  "native_session_id": 88416,
+  "original_native_process_pid": null,
+  "pid_availability": "Not captured in the recoverable original call/result summaries. No PID was inferred or invented.",
+  "original_start_timestamp": null,
+  "start_timestamp_availability": "No explicit execution start/end UTC timestamps were returned for these original commands. Preservation time is recorded separately in manifest.json.",
+  "original_initial_result": {
+    "chunk_id": "025591",
+    "wall_time_seconds": 10.0046962,
+    "session_id": 88416,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "original_intermediate_wait_results": [
+    {
+      "call": {
+        "session_id": 88416,
+        "chars": "",
+        "yield_time_ms": 1000,
+        "max_output_tokens": 6500
+      },
+      "result": {
+        "chunk_id": "f075fc",
+        "wall_time_seconds": 5.0019571,
+        "session_id": 88416,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "original_terminal_wait": {
+    "tool": "write_stdin",
+    "arguments": {
+      "session_id": 88416,
+      "chars": "",
+      "yield_time_ms": 1000,
+      "max_output_tokens": 7000
+    },
+    "result": {
+      "chunk_id": "c63e51",
+      "wall_time_seconds": 0.0000096,
+      "exit_code": 0,
+      "original_token_count": 548,
+      "output": "{\r\n  \"scope\": \"Independent actual Lean run on copies of only supplied source snapshots; only disposable verifier tool changed\",\r\n  \"changed_tool\": \"lake_build_guard.py\",\r\n  \"before_tool_sha256\": \"ad8107677112126a6ff9c2f6ed4ed7019960f8357306f4b69e98047ff2d0c4f0\",\r\n  \"after_tool_sha256\": \"6d73a0a6a0a5288dca3c97d6b77c583206ab119c2a9b426f356f36f447e7450b\",\r\n  \"tool_list\": [\r\n    \"lean_develop.py\",\r\n    \"lean_feedback.py\",\r\n    \"lean_runtime.py\",\r\n    \"verify_lean_project.py\",\r\n    \"lean_evidence.py\",\r\n    \"lean_routes.py\",\r\n    \"LeanVerifyProbe.lean.template\"\r\n  ],\r\n  \"observed_terminal_checks\": [\r\n    true,\r\n    true\r\n  ],\r\n  \"returned_status\": \"verified\",\r\n  \"returned_exact_root_passed\": true,\r\n  \"row_passed\": [\r\n    true,\r\n    true\r\n  ],\r\n  \"batch\": {\r\n    \"current\": true,\r\n    \"changed\": [],\r\n    \"input_snapshot\": \"C:\\\\Users\\\\HuangZY\\\\AppData\\\\Local\\\\Temp\\\\review-v2-tools-fgn7i3ji\\\\output\\\\batch-inputs.json\",\r\n    \"input_snapshot_sha256\": \"5e05e85202049e6d0e2e7d1bab392fb1b0ce461b8c7032eb351c0928ed3f5bb9\",\r\n    \"scope\": \"declared inputs/version and listed evidence observed stable across terminal rechecks; no OS-wide filesystem transaction\"\r\n  },\r\n  \"post_rechecks\": [\r\n    {\r\n      \"status\": \"stale\",\r\n      \"snapshot_current\": false,\r\n      \"exact_root_passed\": false,\r\n      \"declaration\": \"first\",\r\n      \"semantic_sha256\": \"5aa4e54da73cea9800290c20a000aa0b225e7249791545d20201bbc02741df63\",\r\n      \"manifest_sha256\": \"08c429534cdf600ae5a811389f09a5f3b804242ca7a88a206c832f2fd6b16851\",\r\n      \"reasons\": [\r\n        \"tool:lake_build_guard.py\"\r\n      ],\r\n      \"scope\": \"saved evidence and current Lean module resolution checked; no new kernel proof replay\"\r\n    },\r\n    {\r\n      \"status\": \"stale\",\r\n      \"snapshot_current\": false,\r\n      \"exact_root_passed\": false,\r\n      \"declaration\": \"second\",\r\n      \"semantic_sha256\": \"ae1b79856f0b769ce10d701df4a7a0aaa3413a071494f9e9a2446b473f8b5ba0\",\r\n      \"manifest_sha256\": \"1256919f78ac1c0ddb3c05d250e5f6a193b823ce9ea2f34538c238154f02026a\",\r\n      \"reasons\": [\r\n        \"tool:lake_build_guard.py\"\r\n      ],\r\n      \"scope\": \"saved evidence and current Lean module resolution checked; no new kernel proof replay\"\r\n    }\r\n  ]\r\n}\r\n"
+    }
+  },
+  "original_exit_code": 0,
+  "original_output_file": "original-output.txt",
+  "output_recovery": "The earlier decoded exec_command/write_stdin output field was an indented JSON summary. Its complete values, order and observed CRLF text are recovered from this agent's existing review context; no rerun, additional compiler output, or new observation was substituted.",
+  "original_split_logs": {
+    "available": false,
+    "reason": "Lean stdout/stderr/job/manifest files and source fixtures were inside TemporaryDirectory and were cleaned when the original programs exited. They were not copied before cleanup and are unavailable now. The native tool exposed combined output; separate top-level stdout/stderr streams and their original raw-file hashes were not captured. Missing logs were not recreated."
+  }
+}

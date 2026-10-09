@@ -1,0 +1,54 @@
+{"original_path": "docs/SL_ratio_proof.tex", "original_sha256": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21", "line_start": 44, "line_end": 95}
+
+由常密度的高频序列直接达到极限, 有限指标不取等.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+设 $1\leq R<\infty$, 记
+\[
+ \mathcal M_R=\{\rho\in L^\infty(0,1):1\leq\rho\leq R\ \text{a.e.}\},
+\]
+并记 $\mathcal S_R$ 为有限分段常数子类, $\mathcal{PC}_R$ 为分段连续子类.
+密度按几乎处处相等识别, 跳点的单点取值不影响谱. 对 $\rho\in\mathcal M_R$, 考虑
+\begin{equation}
+	-y''(x) = \lambda \rho(x) y(x), \qquad y(0) = y(1) = 0 .
+\end{equation}
+方程按弱意义理解; 特征函数属于 $H^2(0,1)\cap H^1_0(0,1)$,
+实际有 $u\in W^{2,\infty}(0,1)\subset C^1[0,1]$.
+记 $\lambda_1(\rho) < \lambda_2(\rho) < \cdots$ 为特征值
+(正则 SL 问题, 简单谱, 第 $m$ 个特征函数恰有 $m-1$ 个内零点).\footnote{Sturm 振荡理论: 特征值严格递增且简单, 特征函数节点数随指标递增.}
+定义
+\begin{equation}
+	\nu(R) := \sup_{\rho} \frac{\lambda_2(\rho)}{\lambda_1(\rho)},
+	\qquad
+	\mu(R) := \inf_{\rho} \frac{\lambda_2(\rho)}{\lambda_1(\rho)} .
+\end{equation}
+此处上下确界均取遍 $\mathcal M_R$. 下述连续性说明换成另外两类时值不变.
+
+\begin{proposition}[谱连续性、密度逼近与极值存在]\label{prop:compactness}
+若 $\rho_j,\rho\in\mathcal M_R$ 且 $\rho_j\rightharpoonup^*\rho$ 于 $L^\infty$,
+则对每个固定的 $k$, $\lambda_k(\rho_j)\to\lambda_k(\rho)$.
+$L^1$ 收敛也有此结论. 每个固定编号的特征值比在 $\mathcal M_R$ 上达到最大和最小值,
+且它在 $\mathcal S_R,\mathcal{PC}_R,\mathcal M_R$ 上的上、下确界相同.
+\end{proposition}
+
+\begin{proof}
+在 $H=H^1_0(0,1)$ 上取内积 $(u,v)_H=\int_0^1u'v'$, 定义紧正自伴算子
+\[
+ (T_\rho u,v)_H=\int_0^1\rho uv.
+\]
+紧性来自 $H\hookrightarrow L^2$ 的紧嵌入, 其正特征值依次为 $1/\lambda_k(\rho)$.
+$H$ 的单位球在 $C[0,1]$ 中相对紧: $|u(x)|\leq\|u'\|_2$ 且
+$|u(x)-u(y)|\leq\|u'\|_2|x-y|^{1/2}$. 因此乘积族
+$\{uv:\|u\|_H,\|v\|_H\leq1\}$ 在 $L^1$ 中相对紧.
+弱星收敛给出对每个这样的乘积的积分收敛; $\|\rho_j-\rho\|_\infty\leq2R$
+及有限网论证使收敛在乘积族上一致. 故
+\[
+ \|T_{\rho_j}-T_\rho\|
+ =\sup_{\|u\|_H,\|v\|_H\leq1}\left|\int_0^1(\rho_j-\rho)uv\right|\longrightarrow0.
+\]
+紧自伴算子的极小极大原理给出每个正特征值的连续性, 取倒数得到所述结论.
+若为 $L^1$ 收敛, 则直接有 $\|T_{\rho_j}-T_\rho\|\leq\|\rho_j-\rho\|_1$.

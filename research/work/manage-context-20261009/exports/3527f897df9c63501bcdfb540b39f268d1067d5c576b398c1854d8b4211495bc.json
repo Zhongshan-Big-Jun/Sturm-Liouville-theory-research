@@ -1,0 +1,667 @@
+{
+	"canonical_modified": false,
+	"context": {
+		"objects": {
+			"family": "original sparse monomial-difference family",
+			"scalar_field": "complex"
+		},
+		"problem_ids": [
+			"A10"
+		]
+	},
+	"coverage": {
+		"changed_paths": [],
+		"depth": 1,
+		"index_verdict": "RETRIEVAL_ONLY",
+		"limitations": [
+			"Declared relations and indexed card roots only.",
+			"Unknown dependencies are not an empty impact closure.",
+			"Relevance and matching fields do not prove mathematical applicability."
+		],
+		"max_material_chars": 48000,
+		"selected": 3,
+		"total_matches": 2
+	},
+	"entries": [
+		{
+			"path": "sources/research_map.md",
+			"reading_hint": "Read the current opening, then the named materials; history is not task state.",
+			"sha256": "bc928148aa649725436e9570b7ff437e851a8cce8b3f329787d253e21ce9c2d0"
+		}
+	],
+	"follow_up": [],
+	"historical": [],
+	"index_path": "index/after.json",
+	"inputs": {
+		"cards/sl-integer-replacement.md": "f1f6fe173ddbb1442dde63af832f06777366a0f93027ee1e2d35f238f9759236",
+		"cards/sl-krein-model.md": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+		"cards/sl-original-family-obstruction.md": "401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0",
+		"evidence/library/card-bindings-required.json": "d5d6edf07184f1eefe67ecc9bebfcd9cd07a9daef72490bee0918ab11d000f61",
+		"evidence/library/card-bindings/catalog.json": "b62837fb3b2ea306d1c094999a6b8377eeff52aac282685808ec6d163a209c1d",
+		"evidence/library/corrections-journal.json": "e98ed3776a64b174c27c33096c4b116460fc53925b71628e999671c7dc4328bc",
+		"evidence/library/corrections-required.json": "969bef7cab8abc6d1c1a58958811a747c6f4efbab6b633d82c60b30bc16299b8",
+		"index/after.json": "d844a203a4b84c4705a4d9e9906bc79cec5e5a1a0e63440a7e13d59b034b1c2d",
+		"sources/SL_cofinite_all_orders.tex": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9",
+		"sources/SL_full_window_deletions_and_finite_constraints.md": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+		"sources/SL_integer_left_definite_riesz_systems.md": "786ae7ec05f2b6bc4b781b94315a34cc2e2683da8d04acbb5af0ab37dab4f568",
+		"sources/research_map.md": "bc928148aa649725436e9570b7ff437e851a8cce8b3f329787d253e21ce9c2d0"
+	},
+	"materials": [
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "Fixed c>0; true complex Krein power domain H_c^r=D(K_c^(r/2)).",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Each fixed integer r>=0. For r>=1, use 2 ceil(r/2) low Hermite lifts; odd r needs r+1 lifts.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Degree-independent Riesz bounds may depend on c and r. The r=0 case is the standard orthonormal Legendre basis.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Approximation rates additionally require the stated weighted coefficients with t>=0.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"Fixed c>0; true complex Krein power domain H_c^r=D(K_c^(r/2)).",
+					"Each fixed integer r>=0. For r>=1, use 2 ceil(r/2) low Hermite lifts; odd r needs r+1 lifts.",
+					"Degree-independent Riesz bounds may depend on c and r. The r=0 case is the standard orthonormal Legendre basis.",
+					"Approximation rates additionally require the stated weighted coefficients with t>=0."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [
+					"Noninteger orders and constants uniform as c tends to zero remain separate.",
+					"This replacement does not make the original sparse monomial-difference family a Riesz basis."
+				],
+				"scope_axes": [
+					{
+						"axis": "family",
+						"field": "objects",
+						"recorded": "boundary-compatible Hermite-Legendre replacement",
+						"requested": "original sparse monomial-difference family",
+						"state": "DIFFERENT_RECORDED_SCOPE_CHECK_BRIDGE"
+					},
+					{
+						"axis": "scalar_field",
+						"field": "objects",
+						"recorded": "complex",
+						"requested": "complex",
+						"state": "TEXT_EQUAL_NOT_ENTAILMENT"
+					}
+				],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"Fixed c>0; true complex Krein power domain H_c^r=D(K_c^(r/2)).",
+				"Each fixed integer r>=0. For r>=1, use 2 ceil(r/2) low Hermite lifts; odd r needs r+1 lifts.",
+				"Degree-independent Riesz bounds may depend on c and r. The r=0 case is the standard orthonormal Legendre basis.",
+				"Approximation rates additionally require the stated weighted coefficients with t>=0."
+			],
+			"content": "# 整数阶 Riesz 替代坐标\n固定 c>0 与每个非负整数 r, 在实际复幂域中重建边界相容的 Hermite-Legendre 坐标. 奇数阶的低提升数为 r+1; 常数对次数一致, 对 c 和 r 可依赖. s=0 独立采用标准 Legendre 基. 原稀疏族删除 p6 仍稠密, 所以非零逐项缩放与重排不能把原族变成 Schauder/Riesz 基. 这是不同对象的替代, 非整数和 c趋零一致性未完成.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [
+				{
+					"location": "cards/sl-krein-model.md",
+					"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164"
+				}
+			],
+			"dependencies_known": true,
+			"dependency_coverage": "DECLARED_EDGES_ONLY",
+			"evidence": [],
+			"evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE",
+			"experience": {},
+			"field_provenance": {
+				"aliases": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"conditions": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"missing_bridges": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"parameter_scope": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"relations": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"tool_types": {
+					"body_sha256": "5c92eac6b3af407bc259aba8ebc057db890a63d6578acc2a774ce3be5e7800b0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "tool",
+			"lean": [],
+			"missing_bridges": [
+				"Noninteger orders and constants uniform as c tends to zero remain separate.",
+				"This replacement does not make the original sparse monomial-difference family a Riesz basis."
+			],
+			"objects": {
+				"family": "boundary-compatible Hermite-Legendre replacement",
+				"scalar_field": "complex",
+				"space": "D(K_c^(r/2))"
+			},
+			"parameter_scope": {
+				"c": "fixed positive",
+				"r": "nonnegative integer"
+			},
+			"path": "cards/sl-integer-replacement.md",
+			"problem_ids": [
+				"A10"
+			],
+			"relations": [
+				{
+					"basis": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"locator": "Section 1 and integer-domain proof",
+						"path": "sources/SL_integer_left_definite_riesz_systems.md",
+						"reference_reuse_allowed": true,
+						"sha256": "786ae7ec05f2b6bc4b781b94315a34cc2e2683da8d04acbb5af0ab37dab4f568",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"binding_current": true,
+					"impact_eligible": true,
+					"kind": "mathematical_dependency",
+					"origin": "AUTHOR_SUPPLIED_RELATION",
+					"reuse_allowed": true,
+					"target": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"path": "cards/sl-krein-model.md",
+						"reference_reuse_allowed": true,
+						"reuse_allowed": true,
+						"role": "card",
+						"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"trust": "AUTHOR_SUPPLIED_NOT_AN_INFERRED_PROOF_EDGE"
+				}
+			],
+			"relevance_reasons": [
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "body",
+					"terms": [
+						"整数阶",
+						"riesz"
+					],
+					"weight": 3
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "title",
+					"terms": [
+						"整数阶",
+						"riesz"
+					],
+					"weight": 6
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "aliases",
+					"terms": [
+						"整数阶",
+						"riesz"
+					],
+					"weight": 8
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "source_locators",
+					"terms": [
+						"riesz"
+					],
+					"weight": 2
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "conditions",
+					"terms": [
+						"riesz"
+					],
+					"weight": 2
+				},
+				{
+					"basis": "EXPLICIT_FIELD_TEXT_MATCH_NOT_IMPLICATION",
+					"context_mentions": [
+						"A10"
+					],
+					"field": "problem_ids",
+					"weight": 12
+				}
+			],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "f1f6fe173ddbb1442dde63af832f06777366a0f93027ee1e2d35f238f9759236",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Sections 1,2,4,7; r=0 paragraph after (18)",
+					"origin_path": "docs/SL_integer_left_definite_riesz_systems.md",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "sources/SL_integer_left_definite_riesz_systems.md",
+					"read_coverage": "Sections 1,2,4,7 and the r=0 paragraph checked for this retrieval contract",
+					"reference_reuse_allowed": true,
+					"sha256": "786ae7ec05f2b6bc4b781b94315a34cc2e2683da8d04acbb5af0ab37dab4f568",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 整数阶 Riesz 替代坐标 固定 c>0 与每个非负整数 r, 在实际复幂域中重建边界相容的 Hermite-Legendre 坐标. 奇数阶的低提升数为 r+1; 常数对次数一致, 对 c 和 r 可依赖. s=0 独立采用标准 Legendre 基. 原稀疏族删除 p6 仍稠密, 所以非零逐项缩放与重排不能把原族变成 Schauder/Riesz 基. 这是不同对象的替代, 非整数和 c趋零一致性未完成.",
+			"title": "整数阶 Hermite-Legendre Riesz 替代系",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/f1f6fe173ddbb1442dde63af832f06777366a0f93027ee1e2d35f238f9759236.md"
+		},
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+					"Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [],
+				"scope_axes": [
+					{
+						"axis": "family",
+						"field": "objects",
+						"recorded": "original sparse monomial-difference family",
+						"requested": "original sparse monomial-difference family",
+						"state": "TEXT_EQUAL_NOT_ENTAILMENT"
+					},
+					{
+						"axis": "scalar_field",
+						"field": "objects",
+						"recorded": "complex",
+						"requested": "complex",
+						"state": "TEXT_EQUAL_NOT_ENTAILMENT"
+					}
+				],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+				"Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis."
+			],
+			"content": "# 原族和替代族不同\n余有限删项分类给出删除 p6 仍稠密, 这排除了原族的 Schauder/Riesz 基性质. 整数 Hermite-Legendre 系另行构造, 不把这个障碍改成原族已解决.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [],
+			"dependencies_known": false,
+			"dependency_coverage": "UNKNOWN_NOT_EMPTY_CLOSURE",
+			"evidence": [],
+			"evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE",
+			"experience": {},
+			"field_provenance": {
+				"aliases": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"conditions": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"tool_types": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "tool",
+			"lean": [],
+			"missing_bridges": [],
+			"objects": {
+				"family": "original sparse monomial-difference family",
+				"scalar_field": "complex"
+			},
+			"parameter_scope": [],
+			"path": "cards/sl-original-family-obstruction.md",
+			"problem_ids": [
+				"A12",
+				"A10"
+			],
+			"relations": [],
+			"relevance_reasons": [
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "body",
+					"terms": [
+						"riesz"
+					],
+					"weight": 3
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "aliases",
+					"terms": [
+						"riesz"
+					],
+					"weight": 8
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "conditions",
+					"terms": [
+						"riesz"
+					],
+					"weight": 2
+				},
+				{
+					"basis": "EXPLICIT_FIELD_TEXT_MATCH_NOT_IMPLICATION",
+					"context_mentions": [
+						"A10"
+					],
+					"field": "problem_ids",
+					"weight": 12
+				},
+				{
+					"basis": "EXPLICIT_FIELD_TEXT_MATCH_NOT_IMPLICATION",
+					"context_mentions": [
+						{
+							"family": "original sparse monomial-difference family",
+							"scalar_field": "complex"
+						}
+					],
+					"field": "objects",
+					"weight": 12
+				}
+			],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"locator": "Cofinite closure theorem and p6 consequence",
+					"origin_path": "docs/SL_cofinite_all_orders.tex",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "sources/SL_cofinite_all_orders.tex",
+					"read_coverage": "Current theorem pointers and A12 scope in research_map checked; full proof not reread in this maintenance",
+					"sha256": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9"
+				}
+			],
+			"summary": "# 原族和替代族不同 余有限删项分类给出删除 p6 仍稠密, 这排除了原族的 Schauder/Riesz 基性质. 整数 Hermite-Legendre 系另行构造, 不把这个障碍改成原族已解决.",
+			"title": "原稀疏族的非基障碍",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0.md"
+		},
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+					"D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+					"H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [],
+				"scope_axes": [
+					{
+						"axis": "family",
+						"field": "objects",
+						"recorded": null,
+						"requested": "original sparse monomial-difference family",
+						"state": "NOT_RECORDED"
+					},
+					{
+						"axis": "scalar_field",
+						"field": "objects",
+						"recorded": "complex",
+						"requested": "complex",
+						"state": "TEXT_EQUAL_NOT_ENTAILMENT"
+					}
+				],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+				"D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+				"H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments."
+			],
+			"content": "# 定义先于名称\n空间是实际自伴正 Krein 算子的复幂域. 不能把普通 Sobolev 空间、实积分模型或有限维多项式子空间直接当作同一目标. 原族成员窗口为 0<=s<7/2; 它不是整个算子幂域存在的范围限制.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [],
+			"dependencies_known": false,
+			"dependency_coverage": "UNKNOWN_NOT_EMPTY_CLOSURE",
+			"evidence": [],
+			"evidence_status": "CANDIDATE",
+			"experience": {},
+			"field_provenance": {
+				"conditions": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"kind": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "definition",
+			"lean": [],
+			"missing_bridges": [],
+			"objects": {
+				"scalar_field": "complex",
+				"space": "D(K_c^(s/2))"
+			},
+			"parameter_scope": [],
+			"path": "cards/sl-krein-model.md",
+			"problem_ids": [
+				"A1"
+			],
+			"relations": [],
+			"relevance_reasons": [],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Section 0 exact model",
+					"path": "sources/SL_full_window_deletions_and_finite_constraints.md",
+					"read_coverage": "Section 0 checked",
+					"reference_reuse_allowed": true,
+					"sha256": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 定义先于名称 空间是实际自伴正 Krein 算子的复幂域. 不能把普通 Sobolev 空间、实积分模型或有限维多项式子空间直接当作同一目标. 原族成员窗口为 0<=s<7/2; 它不是整个算子幂域存在的范围限制.",
+			"title": "真实复 Krein 幂域定义",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164.md"
+		}
+	],
+	"query": "整数阶 Riesz",
+	"reading_order": [
+		"cards/sl-krein-model.md",
+		"cards/sl-integer-replacement.md",
+		"cards/sl-original-family-obstruction.md"
+	],
+	"refresh_basis": "Current card/source/entry bytes and live authoritative correction state.",
+	"schema": "research-context/v1",
+	"trust": "REBUILDABLE_KNOWLEDGE_VIEW_NOT_PROOF_OR_BLIND_REVIEW",
+	"view_sha256": "3527f897df9c63501bcdfb540b39f268d1067d5c576b398c1854d8b4211495bc",
+	"workflow_state_modified": false
+}

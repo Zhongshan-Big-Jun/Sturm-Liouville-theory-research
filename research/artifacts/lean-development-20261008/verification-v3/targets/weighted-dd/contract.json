@@ -1,0 +1,18 @@
+{
+	"file": "SLVerified.lean",
+	"declaration": "SLVerified.weighted_dd_root",
+	"expected_type": "(∀ (Length : ℝ) (LengthPos : 0 < Length) (Rho : SL.Weighted.Density Length) (Value : ℝ → ℂ) (Regular : ContinuousOn Value (Set.Icc 0 Length)), ‖SL.Weighted.weighted_vector Rho Value Regular‖ ^ 2 = SL.Weighted.mass Length Rho.value Value) ∧\n    (∀ (Length Rho : ℝ) (Index : ℕ) (LengthPos : 0 < Length) (RhoPos : 0 < Rho) (IndexPos : 0 < Index), 0 < SL.Weighted.ConstantDD.frequency Length Rho Index ∧ SL.Weighted.ConstantDD.eigenvalue Length Rho Index = SL.Weighted.ConstantDD.frequency Length Rho Index ^ 2 ∧ SL.Weighted.NormalizedEigenfunction SL.Weighted.Boundary.DD Length (fun _ => Rho) (SL.Weighted.ConstantDD.eigenvalue Length Rho Index) (SL.Weighted.ConstantDD.solution Length Rho Index RhoPos) ∧ ‖SL.Weighted.ConstantDD.eigenvector Length Rho Index RhoPos‖ ^ 2 = 1)",
+	"universes": [],
+	"input_file_hashes": {
+		"../docs/SL_H2_arbitrary_deletion_proof.md": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686",
+		"../docs/SL_h2_completeness_proof.tex": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+		"../docs/SL_ratio_proof.tex": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21",
+		"../docs/SL_inf_ratio_proof.tex": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b",
+		"../docs/SL_bounded_direction_spectral_tail.md": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f",
+		"../research/artifacts/lean-development-20261008/source-contracts/krein.md": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95",
+		"../research/artifacts/lean-development-20261008/source-contracts/weighted.md": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77",
+		"../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9",
+		"../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725",
+		"F:\\LaTeX\\BVE research\\lean-proof\\targets.json": "44297ba1adaac752ff00a552c36d100c00417421e87d211f4bbf4302eb011ae3"
+	}
+}

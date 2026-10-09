@@ -1,0 +1,96 @@
+{
+	"checked_paths": [
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/environment.json",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Analysis/IntervalL2.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/AuditRound5.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/IntegralConstruction.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/IntegralDomain.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/LinearDomain.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/PolynomialBridge.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/PolynomialEnergy.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Krein/WeakDerivative.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Weighted/ConstantDD.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Weighted/L2Bridge.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SL/Weighted/Model.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/SLVerified.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/lake-manifest.json",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/lakefile.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/blind-input/source/lean-toolchain",
+		"research/work/lean-development-20261008/formal-comparison-input/formal-readback-completion.json",
+		"research/work/lean-development-20261008/formal-comparison-input/formal-readback-final.json",
+		"research/work/lean-development-20261008/formal-comparison-input/formal-readback-received.json",
+		"research/work/lean-development-20261008/formal-comparison-input/intended-contracts/krein-independent-types.json",
+		"research/work/lean-development-20261008/formal-comparison-input/intended-contracts/krein.md",
+		"research/work/lean-development-20261008/formal-comparison-input/intended-contracts/weighted-l2.md",
+		"research/work/lean-development-20261008/formal-comparison-input/intended-contracts/weighted.md",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_H2_arbitrary_deletion_proof.md.L9-28.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_bounded_direction_spectral_tail.md.L1-21.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_bounded_direction_spectral_tail.md.L99-106.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_inf_ratio_proof.tex.L24-57.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_inf_ratio_proof.tex.L73-95.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-excerpts/SL_ratio_proof.tex.L44-95.txt",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Analysis/IntervalL2.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/AuditRound5.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/IntegralConstruction.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/IntegralDomain.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/LinearDomain.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/PolynomialBridge.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/PolynomialEnergy.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Krein/WeakDerivative.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Weighted/ConstantDD.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Weighted/L2Bridge.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SL/Weighted/Model.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/SLVerified.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/lake-manifest.json",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/lakefile.lean",
+		"research/work/lean-development-20261008/formal-comparison-input/original-source/lean-toolchain",
+		"research/work/lean-development-20261008/formal-comparison-input/targets.json",
+		"research/work/lean-development-20261008/formal-comparison-input/types/krein-domain.json",
+		"research/work/lean-development-20261008/formal-comparison-input/types/krein-polynomial.json",
+		"research/work/lean-development-20261008/formal-comparison-input/types/weighted-dd.json"
+	],
+	"claim_results": [
+		{
+			"id": "krein-domain",
+			"reason": "完整源码声明、定义、独立合同及已完成盲读在数学语义上相符. IntegralRepresentative 的假设只有闭区间连续性、Second 的 MemLp2 和两条重构恒等式; 真导数与几乎处处二阶导数另行推导. 连续代表相等扩展到闭端点, First 的唯一性由内部导数唯一性再经连续性延拓得到, Second 的唯一性为几乎处处等式, 因而 boundary 与 -Second+c Value 作用均与 L2 类代表无关. 加法、复数数乘及零多项式提供实际域子空间; 任意 MemLp2 Second 与任意复初值的构造没有假设连续 Second 或域边界条件. 弱恒等式使用从积分重构证明的坐标绝对连续性. 八项根声明与 targets.json 的预期类型在消除空白后逐字相同. 但 types/krein-domain.json 的 actual_type 含 18 个 ⋯, 包括 (∀ (c : ⋯) (F G : ⋯), ...) 和整体后续命题的省略; 抽取中没有 operator_linear、from_l2_second 或 ContDiff. 因此当前标为 unabridged 的编译器类型证据不能支持所要求的全部实际编译类型及 binder 比对. 未发现需修改的数学源码结论, 退回原因是当前证据缺项.",
+			"verdict": "CHANGES_REQUIRED"
+		},
+		{
+			"id": "krein-polynomial",
+			"reason": "源码与独立合同及原始摘录一致: residues 正是两个原端点边界残差, 每个实多项式以实际 p,p',p'' 经 FTC 构造积分代表, 算子类作用为 -p''+c p. 原 p0=1、p1=X 和两个高次族的系数、指数均一致; m≥2 保证实系数分母非零, 证明量化所有这样的自然数而没有有限截止. Green 公式真正使用分部积分, 端点项化为 (p(1)-p(-1))²/2; 反转 Mathlib 内积的两个参数给出源文本第一变量线性约定. c 量化所有实数, 公式没有暗含任意 c 的正性结论. 四项源码根类型与预期类型在消除空白后逐字相同. 但 types/krein-polynomial.json 的 actual_type 含 16 个 ⋯, 奇族部分已出现 (∀ (m : ⋯), ⋯ → ...), 且整个最终能量合取项被省略; 抽取不含 p_odd 或 first_linear_inner. 当前证据不能完成这些编译后命题的全部 binder 和类型独立比对.",
+			"verdict": "CHANGES_REQUIRED"
+		},
+		{
+			"id": "weighted-dd",
+			"reason": "完整编译器类型抽取没有 ⋯, 两部分的量词及标准类型实例与源码、预期合同和盲读相符. 一般模型保留任意全局可测实密度及区间上几乎处处的正有限上下界, 没有连续性或有限分段假设; 上界用于测度控制及实际 MemLp2 成员证明, 下界用于将 ofReal/toNNReal 权重还原为质量积分中的有符号实密度. Length>0 明确保留在质量范数桥中. 常密度部分量化所有实 Length>0、Rho>0 和自然数 Index>0. k=Index*pi/Length、omega=k/sqrt(Rho)、lambda=omega² 的定义分开; 实际正弦函数及余弦速度证明了两条导数公式, 再由可积性和 FTC 构造 Solution 的两条积分恒等式. DD 两端条件、质量1及真实加权 L2 商范数平方1均另行证明. 参数假设有 Length=Rho=1、Index=1 的实例, 质量1与 norm²=1 分别排除零函数和零商向量. DN 在此只定义边界谓词. 本批准覆盖这一明确增量, 不建立完整谱分类、排序、完备性或一般密度谱存在.",
+			"verdict": "APPROVED"
+		}
+	],
+	"findings": [
+		{
+			"claim_ids": [
+				"krein-domain",
+				"krein-polynomial"
+			],
+			"id": "truncated-compiler-types",
+			"paths": [
+				"research/work/lean-development-20261008/formal-comparison-input/types/krein-domain.json",
+				"research/work/lean-development-20261008/formal-comparison-input/types/krein-polynomial.json"
+			],
+			"problem": "两份当前 actual-unabridged-compiler-type-extract 实际含 Lean 打印省略符 ⋯, 且省略覆盖实质性量词类型及整个后续合取项. matched/definitionally_equal 元数据不能替代本次要求独立检查的完整类型内容.",
+			"requested_change": "补充由同一冻结源码身份产生、无打印省略的完整编译器类型证据, 或提供可逐项检查并绑定全部根合取项的完整类型抽取; 随新快照重新冻结审查包. 无需据此改动数学定理源码."
+		}
+	],
+	"limitations": [
+		"48 个输入快照的 SHA256 均与 packet.json 相符; packet.json 的实际 SHA256 已现场计算.",
+		"逐一独立重做注释词法移除后, 所有对应原源码与盲读源码完全相等; 变换确实只移除注释并保留其他字符.",
+		"完成回执的 payload 与 formal-readback-final.json 内容相等; 接收记录中的 16 个绑定哈希均与本包盲读快照相符. 这些核对验证冻结材料一致性, 不独立验证记录所述外部调用事件.",
+		"未运行 Lean 编译、内核检查或现场传递公理审计. 三份抽取报告的公理为 propext、Classical.choice、Quot.sound, 但原始机器抽取文件及完整机器清单没有作为输入提供.",
+		"Mathlib 与其他依赖仅提供版本清单. 未读取未供给的依赖源码、编译对象或工作树; 清单固定 Mathlib fabf563a7c95a166b8d7b6efca11c8b4dc9d911f 和 Lean v4.31.0.",
+		"原数学材料仅核对本包提供的摘录, 未读取原完整文档. 对源码进行了证明结构及语义检查, 不将该检查视为重新执行编译.",
+		"逆向经典弱 H2 等价、自伴性、严格正性、闭性、逆与真幂域、密度与完整谱、一般密度谱存在、DN 显式族、B11 谱尾及 ND/G1/global extrema 均保持在本次批准范围外."
+	],
+	"packet_sha256": "558d7ead8db3c3a4959b0244d4371ecf9fbd904c3036d0a884a651269cff95b6",
+	"readback": "独立源码比对确认: Krein 根的八项分别是 Value 的内部真导数、First 的几乎处处真导数、同一 L2 类的 Second 几乎处处唯一性、任意实 c 下的加法与任意复标量线性、任意 MemLp2 Second 和任意复初值的构造、闭区间参数化, 以及任意实连续线性坐标 Q 与全局 C1 端点为零测试函数 Phi 的两条弱导数积分恒等式. 多项式根的四项分别是所有零 residues 实多项式的域成员、任意实 c 下实际算子作用、p0/p1 与所有 m≥2 的两族成员、第一变量线性的真实 L2 Green 能量等式. 加权根的两项分别是任意正长度和任意 Density 下连续复值函数的加权商范数质量桥, 以及所有正长度、正常密度和正自然数指数的显式 DD 归一化积分解与单位商向量. 这三份完整源码根声明均与预期类型相符. 两份 Krein 编译后类型抽取的省略阻止对全部实际编译 binder 的最终独立回读; 加权编译后类型内容完整.",
+	"verdict": "CHANGES_REQUIRED"
+}

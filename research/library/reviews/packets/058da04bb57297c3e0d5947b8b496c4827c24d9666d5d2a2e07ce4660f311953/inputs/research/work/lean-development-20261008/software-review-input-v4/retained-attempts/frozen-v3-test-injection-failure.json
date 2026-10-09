@@ -1,0 +1,145 @@
+{
+  "scope": "actual frozen-v3 test fixture injection failure, not a product true acceptance",
+  "original_log": "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status.log",
+  "original_log_sha256": "b1e3f03b659cfb8234f51b5b1ac9b5af579b14a4666bc6e4548da1fd242fb61d",
+  "frozen_fixture_sha256": "4adb43288a5d165b18bc1becf060841e565726eeba1dcfb7f335abe12200d397",
+  "failure_reason": "Path.read_bytes hook matched the first workflow.job_status stdout hash read, before the common Before snapshot; intended late injection was not isolated. Product exact_root_passed was false and both actual rechecks were stale; test wrongly required common batch-current to be false for an edit already present before that boundary. Gate injection on completion of every actual terminal recheck and execute only once.",
+  "actual_returned_status": {
+    "child_identity": "134359547277259090",
+    "child_pid": 38940,
+    "command": [
+      "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+      "-X",
+      "utf8",
+      "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status\\replica\\plugins\\lean-verify\\scripts\\lean_develop.py",
+      "--project",
+      "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status\\status\\project",
+      "--output",
+      "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status\\status\\output",
+      "--lean",
+      "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+      "--lake",
+      "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+      "--timeout",
+      "90.0",
+      "--direct",
+      "verify",
+      "--targets",
+      "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status\\status\\project\\targets.json"
+    ],
+    "completed_at": "2026-10-08T17:39:53.412224+00:00",
+    "created_at": "2026-10-08T17:38:47.547586+00:00",
+    "cwd": ".",
+    "descendants_may_still_run": false,
+    "execution_inputs_after": {
+      "Src/First.lean": {
+        "resolved_path": "Src/First.lean",
+        "sha256": "e753a6bd6eb4b088b7e13840ba0ef55a3be7757225198e5de91599761d4a0557"
+      },
+      "Src/Second.lean": {
+        "resolved_path": "Src/Second.lean",
+        "sha256": "8437c1fadfc4af71c1cc1540d257c715044d72446448549effe855e99f2284e9"
+      },
+      "lean-toolchain": {
+        "resolved_path": "lean-toolchain",
+        "sha256": "465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832"
+      },
+      "targets.json": {
+        "resolved_path": "targets.json",
+        "sha256": "7bbf8b5d3218fb40bb9b4a9fd6dc88b33c0efde01715beb8cd608a7abb34a93e"
+      }
+    },
+    "execution_inputs_before": {
+      "Src/First.lean": {
+        "resolved_path": "Src/First.lean",
+        "sha256": "e753a6bd6eb4b088b7e13840ba0ef55a3be7757225198e5de91599761d4a0557"
+      },
+      "Src/Second.lean": {
+        "resolved_path": "Src/Second.lean",
+        "sha256": "8437c1fadfc4af71c1cc1540d257c715044d72446448549effe855e99f2284e9"
+      },
+      "lean-toolchain": {
+        "resolved_path": "lean-toolchain",
+        "sha256": "465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832"
+      },
+      "targets.json": {
+        "resolved_path": "targets.json",
+        "sha256": "7bbf8b5d3218fb40bb9b4a9fd6dc88b33c0efde01715beb8cd608a7abb34a93e"
+      }
+    },
+    "exit_code": 0,
+    "input_mismatch_detected": false,
+    "inputs": {
+      "Src/First.lean": {
+        "resolved_path": "Src/First.lean",
+        "sha256": "e753a6bd6eb4b088b7e13840ba0ef55a3be7757225198e5de91599761d4a0557"
+      },
+      "Src/Second.lean": {
+        "resolved_path": "Src/Second.lean",
+        "sha256": "8437c1fadfc4af71c1cc1540d257c715044d72446448549effe855e99f2284e9"
+      },
+      "lean-toolchain": {
+        "resolved_path": "lean-toolchain",
+        "sha256": "465c68148dd061230368e3cbe5d1d2973069172b48b684c928ef1a665b627832"
+      },
+      "targets.json": {
+        "resolved_path": "targets.json",
+        "sha256": "7bbf8b5d3218fb40bb9b4a9fd6dc88b33c0efde01715beb8cd608a7abb34a93e"
+      }
+    },
+    "job_id": "tool-status",
+    "kind": "local",
+    "request_sha256": "7aabc526fe3e85edd5f15c718bfbcf99541b6f2fc13e2755daf19577d714eaaf",
+    "schema": "research-job/v2",
+    "started_at": "2026-10-08T17:38:47.712524+00:00",
+    "state": "SUCCEEDED",
+    "stderr": ".research-state/jobs/tool-status.stderr.log",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": ".research-state/jobs/tool-status.stdout.log",
+    "stdout_sha256": "47eff7a0819e390fc577713ed17baf26b3e0d1bb1e5fea3d0a14301a0dc24523",
+    "supervisor_identity": "134359547275544762",
+    "supervisor_pid": 40452,
+    "timeout_seconds": 360.0,
+    "updated_at": "2026-10-08T17:39:53.427224+00:00",
+    "inputs_match": true,
+    "changed_inputs": [],
+    "result_evidence_matches": true,
+    "observed_inputs_match_request": true,
+    "recorded_inputs_match_current": true,
+    "result_applies_to_current_inputs": null,
+    "applicability_scope": "Recorded hashes and observed boundaries only. Arbitrary commands and external observations do not certify immutable execution inputs or mathematical applicability.",
+    "mathematical_verdict": "NOT_INFERRED_FROM_JOB_STATUS",
+    "supervisor_log": ".research-state/jobs/tool-status.supervisor.log",
+    "exact_root_passed": false,
+    "verification": {
+      "summary": "F:\\tools\\lean-joint-20261008\\plugin\\develop-real-ujv1jh5r\\7\\tool-status\\status\\output\\development-result.json",
+      "checks": [
+        {
+          "status": "stale",
+          "snapshot_current": false,
+          "exact_root_passed": false,
+          "declaration": "first",
+          "semantic_sha256": "5aa4e54da73cea9800290c20a000aa0b225e7249791545d20201bbc02741df63",
+          "manifest_sha256": "c17ac35697592b46436fbefef67cfb2164b681a9d1304abdef7f452f2e238314",
+          "reasons": [
+            "source:Src\\First.lean"
+          ],
+          "scope": "saved evidence and current Lean module resolution checked; no new kernel proof replay"
+        },
+        {
+          "status": "stale",
+          "snapshot_current": false,
+          "exact_root_passed": false,
+          "declaration": "second",
+          "semantic_sha256": "ae1b79856f0b769ce10d701df4a7a0aaa3413a071494f9e9a2446b473f8b5ba0",
+          "manifest_sha256": "12fbbaa847a47081a6df2759b9733d00b74152841f90a53fb6d916e99c890fa6",
+          "reasons": [
+            "source:Src\\First.lean"
+          ],
+          "scope": "saved evidence and current Lean module resolution checked; no new kernel proof replay"
+        }
+      ],
+      "batch_current": true
+    }
+  }
+}

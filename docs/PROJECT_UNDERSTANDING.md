@@ -214,3 +214,57 @@ Müntz定理进入项目时，算子像是三个幂的规定组合。扩大为�
 固定 n 的候选谱显示了另一种可复用结构: 把相位根变为嵌套 Jacobi 矩阵的最小特征值, 通过主子矩阵、末行递推和显式试探向量证明严格单调与极限. 这证明的是选定平衡配置的 c_n; 全局极大子还必须证明具有该块宽结构. 不能从“候选有完整解析谱”跳到“候选全局最优”.
 
 实际独立检验、纠错传播及数值与局部 Lean 的边界见[第九轮报告](../reports/proof-audit-round9-20260923/REPORT.md). 综合文稿的整文件哈希变化还会使无关数学段落的旧审查失效; 续接必须核对精确依赖及当前检索摘要, 不能只检查卡片数量.
+
+
+<!-- research-understanding:v2:start -->
+<!-- research-understanding-sha256:c6dee4f65e34d123d9ba76060fa83e725021acc70e40eb050e516458a21dddfa -->
+
+## Evidence and candidate explanations
+
+This section assembles recorded statements. It does not establish their mathematical validity.
+Write questions, intuition and decisions outside the generated markers.
+
+### 从有界密度方向到移动界面的缺桥
+
+[research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md](<../research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md>)
+
+- Reported evidence: RESEARCH_NOTE
+- Outcome: partial
+- Failure kind: not recorded
+- Scope: 真实 DD, 正有界密度; 有界乘法方向与内部移动接口分别记录.
+- Recorded conclusion: 有界 h 的谱尾成立, 但它遗漏界面分布方向的拓扑与有限二阶路径项.
+- Mechanism: 相同驻点方程不能识别二阶路径; f(a_i)=0 不消去 f'(a_i).
+- Transformations: 固定实际方向与归一化
+- Reconsider when: 得到真实接口路径可微性和带误差控制的集中极限.
+- Not applicable to: 不否定有界方向公式或所有集中方法.
+- Sources: [docs/SL_bounded_direction_spectral_tail.md](<SL_bounded_direction_spectral_tail.md>) [CURRENT]
+- Sources: [research/artifacts/proof-audit-round9-20260923/analytic-repair.md](<../research/artifacts/proof-audit-round9-20260923/analytic-repair.md>) [CURRENT]
+
+### Green 窄脉冲旧理由的反例与重开条件
+
+[research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md](<../research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md>)
+
+- Reported evidence: RESEARCH_NOTE
+- Outcome: failed
+- Failure kind: counterexample
+- Scope: 一维正则 DD, 去简单极点核, 总变差一致有界且支持集中; 带符号总质量另需收敛.
+- Recorded conclusion: 该理由被有限连续核及常密度单位质量中点极限否定; 整类集中方法仍可重开.
+- Mechanism: 一维约化核连续有界; 总变差有界本身不保证带符号质量收敛.
+- Transformations: 固定实际方向与归一化
+- Reconsider when: 先通过常密度和不等块宽反例标定, 再加入界面有限项与严格余项.
+- Not applicable to: 不是所有集中方法的永久否定; 不是 G1 已解决.
+- Sources: [research/artifacts/proof-audit-round9-20260923/analytic-repair.md](<../research/artifacts/proof-audit-round9-20260923/analytic-repair.md>) [CURRENT]
+
+### Candidate route comparison
+
+[research/library/comparisons/53cbd301bb92255a28785953ce4cd230b3367cd1fd6c8cea5cc007650e90136d.json](<../research/library/comparisons/53cbd301bb92255a28785953ce4cd230b3367cd1fd6c8cea5cc007650e90136d.json>)
+
+- Input [research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md](<../research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md>): CURRENT
+- Input [research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md](<../research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md>): CURRENT
+
+- Candidate explanation: 两条路线都需要固定实际方向的拓扑、归一化和二阶路径项. 这解释有界 h 尾界为何不能直接解决移动接口, 也解释窄脉冲发散理由的失败; 尚不是统一理论.
+- Scope: 当前一维正则 DD 和内部有限接口; 不推广到高维或无界总质量.
+- Testable prediction: 常密度单位脉冲标定应给有限源极限; 直接接口二阶差分与线性密度路径的集中极限若不计有限 f' 项, 可能不一致.
+- Proposed test: 先核对 V3 的常密度极限, 再针对一条合法内部线性接口路径检查 V4 的有限项和集中余项.
+
+<!-- research-understanding:v2:end -->

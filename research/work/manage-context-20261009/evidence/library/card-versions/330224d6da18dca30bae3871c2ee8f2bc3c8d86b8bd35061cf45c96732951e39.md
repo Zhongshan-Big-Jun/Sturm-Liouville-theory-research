@@ -1,0 +1,5 @@
+---
+{"aliases": ["G2 ND G1 全局", "all exact zeros"], "conditions": ["Fixed n>=2, SUP or INF alternating 1/R pattern, ordered 2n interfaces in (0,1), F_sigma(R,x)=0.", "Every finite Rmax>1: there exists eta(n,Rmax)>0 valid for all 1<=R<=Rmax, including R=1 and R decreasing to 1.", "No bound uniform in n or Rmax and no effective numeric eta are claimed."], "evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE", "missing_bridges": ["All-zero ND and G1 are still open; G2 alone is not unconditional uniqueness."], "problem_ids": ["B4"], "sources": [{"locator": "Section 1 theorem; Section 7 conditional continuation", "origin_path": "docs/SL_G2_compactness_proof.md", "origin_project": "F:\\LaTeX\\BVE research", "path": "sources/SL_G2_compactness_proof.md", "read_coverage": "Definitions, theorem and conditional Section 7 checked", "sha256": "3e81f40a67467269e2f75eca653d90cf3d69791c8701da800071ddd3d21186e9"}], "title": "G2 全部精确零点的紧 R 正块宽", "tool_id": "sl-g2", "tool_types": ["result"]}
+---
+# G2 的确切范围
+全部残差精确零点在每个紧 R 区间有统一正块宽, 不先筛选符号相容子集. 这补齐紧性; 没有证明 ND、G1 或无条件全局唯一性.

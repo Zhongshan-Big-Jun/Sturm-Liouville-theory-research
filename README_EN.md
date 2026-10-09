@@ -42,3 +42,8 @@ G2 does not prove ND/G1 or unconditional global uniqueness. Riesz results concer
 | Completed work, unresolved items and publication evidence | [RESUME](state/RESUME.md) |
 
 Proof, independent review, software tests, library reception, Blueprint reception, Lean and publication are separate states. [Lean status](lean-proof/STATUS.md) and the exact declarations/code/logs delimit formalization. Reports for [R14](reports/proof-audit-round14-20261004/REPORT.md), [R15](reports/proof-audit-round15-20261005/REPORT.md) and [R16](reports/proof-audit-round16-20261006/REPORT.md) preserve scoped outcomes and failed reviews. Pre-organization entries remain in the [snapshot manifest](docs/history/entry-snapshots-20261008.json), and full conversations in the [session log](state/AGENTS_SESSION_LOG.md). Most detailed research notes are in Chinese or mixed Chinese and English.
+
+
+## Recent Lean and research reuse increment
+
+Scoped complex interval L2/Krein/weighted-DD formalization and three exact roots are paired with task-focused retrieval, bounded knowledge and route comparison. [Lean evidence and lossless restoration](research/artifacts/lean-development-20261008/PUBLICATION.md) and [actual five-case integration](research/artifacts/manage-context-20261009/README.md) preserve scope and open bridges.

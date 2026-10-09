@@ -1,0 +1,36 @@
+{"original_path": "docs/SL_inf_ratio_proof.tex", "original_sha256": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b", "line_start": 24, "line_end": 57}
+
+\begin{abstract}
+本文解决概述文档 (SL\_spectral\_topics\_summary.tex) 开放问题第 1 条:
+对 Dirichlet 加权弦问题
+\begin{equation}
+	-y'' = \lambda \rho(x) y \quad (0 < x < L), \qquad y(0) = y(L) = 0,
+\end{equation}
+其中 $0 < a \le \rho \le A$ 为可测 (或逐段连续、逐段常数) 密度, 证明
+\begin{equation}
+	\inf_{n \ge 1} \inf_{\rho} \frac{\lambda_{n+1}}{\lambda_n} = 1,
+\end{equation}
+且下确界不被达到 (对一切 $n, \rho$ 比值严格大于 $1$).
+证明只需两步: (i) 特征值严格单增 (Sturm 振荡), 故比值恒 $> 1$;
+(ii) 加权 Weyl 定律 $\lambda_n = \bigl(\frac{n\pi}{L_\rho}\bigr)^2(1+o(1))$,
+$L_\rho = \int_0^L \sqrt{\rho(x)}\,dx$, 对每个固定 $\rho$ 立即给出比值 $\to 1$.
+对 Keller--Mahar--Willner 的逐段常数类, 我们给出自足的初等证明
+(Prufer 相角 + 阶梯逼近); 对一般 $L^1$ 密度引用 Atkinson--Mingarelli
+\cite{am1987} 的计数函数渐近. 数值验证见脚本
+\path{scripts/op01_inf_ratio.py} 与 \path{scripts/op01_weyl_check.py}.
+\end{abstract}
+
+\tableofcontents
+
+\section{记号与问题}
+
+固定区间 $[0,L]$, 容许密度类
+\[
+	\mathcal P(a,A) = \{\rho \in L^\infty(0,L): a \le \rho(x) \le A \text{ a.e.}\},
+	\qquad 0 < a \le A < \infty.
+\]
+对 $\rho \in \mathcal P(a,A)$, 问题 (1) 的 Dirichlet 谱记为
+$0 < \lambda_1(\rho) < \lambda_2(\rho) < \cdots \to \infty$.
+特征值单增且每个 $\lambda_n$ 单重 (经典 Sturm--Liouville 理论:
+$\rho > 0$ a.e. 时基础解系零点交错, 谱单重, 见 \cite{ls}).
+

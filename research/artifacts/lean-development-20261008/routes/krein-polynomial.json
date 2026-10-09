@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "krein-all-boundary-polynomial-members",
+      "declaration": "SL.Krein.polynomial_mem_domain",
+      "expected_type": "∀ (p : Polynomial ℝ), SL.AuditRound5.residues p = 0 → SL.Krein.polynomial_L2 p ∈ SL.Krein.domain",
+      "semantic_sha256": "b04ef2a9dad7dfbc1686adf99ba2d9cac8682875bbc4b527bb620da89b1de62c",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-polynomial-actual-Kc",
+      "declaration": "SL.Krein.operator_on_polynomial",
+      "expected_type": "∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.operator c (SL.Krein.polynomial_domain p hp) = SL.Krein.polynomial_L2 (-p.derivative.derivative + Polynomial.C c * p)",
+      "semantic_sha256": "f0fef96edaeeeb7c7ae7f113deb2e0e5d7cf6ab2f6237c5f07a620c5ef5f9370",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-original-family-all-members",
+      "declaration": "SL.Krein.original_family_mem_domain",
+      "expected_type": "SL.Krein.polynomial_L2 SL.AuditRound5.p_zero ∈ SL.Krein.domain ∧ SL.Krein.polynomial_L2 SL.AuditRound5.p_one ∈ SL.Krein.domain ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_even m) ∈ SL.Krein.domain) ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_odd m) ∈ SL.Krein.domain)",
+      "semantic_sha256": "5052e3d0e83686f508758eaedd6552983ffd4a86793ac46fb3291a095609fb9f",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-polynomial-L2-energy",
+      "declaration": "SL.Krein.operator_polynomial_energy",
+      "expected_type": "∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.first_linear_inner (SL.Krein.operator c (SL.Krein.polynomial_domain p hp)) (SL.Krein.polynomial_L2 p) = (((∫ x in (-1 : ℝ)..1, (p.derivative.eval x) ^ 2) + c * (∫ x in (-1 : ℝ)..1, (p.eval x) ^ 2) - (p.eval 1 - p.eval (-1)) ^ 2 / 2 : ℝ) : ℂ)",
+      "semantic_sha256": "4e43b00acbba98bcd297f6e45b4a2fefefca97130fd44581799df6e2bced7856",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-polynomial",
+      "declaration": "SLVerified.krein_polynomial_root",
+      "expected_type": "(∀ (p : Polynomial ℝ), SL.AuditRound5.residues p = 0 → SL.Krein.polynomial_L2 p ∈ SL.Krein.domain) ∧\n    (∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.operator c (SL.Krein.polynomial_domain p hp) = SL.Krein.polynomial_L2 (-p.derivative.derivative + Polynomial.C c * p)) ∧\n    (SL.Krein.polynomial_L2 SL.AuditRound5.p_zero ∈ SL.Krein.domain ∧ SL.Krein.polynomial_L2 SL.AuditRound5.p_one ∈ SL.Krein.domain ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_even m) ∈ SL.Krein.domain) ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_odd m) ∈ SL.Krein.domain)) ∧\n    (∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.first_linear_inner (SL.Krein.operator c (SL.Krein.polynomial_domain p hp)) (SL.Krein.polynomial_L2 p) = (((∫ x in (-1 : ℝ)..1, (p.derivative.eval x) ^ 2) + c * (∫ x in (-1 : ℝ)..1, (p.eval x) ^ 2) - (p.eval 1 - p.eval (-1)) ^ 2 / 2 : ℝ) : ℂ))",
+      "semantic_sha256": "158763806cdd2ccff9b886a496ce104a9fcadd6d6da730ee788bff4f8fea1ba5",
+      "routes": [
+        {
+          "id": "conjunction-of-existing-lemmas",
+          "statement_sha256": "158763806cdd2ccff9b886a496ce104a9fcadd6d6da730ee788bff4f8fea1ba5",
+          "dependencies": [
+            "krein-all-boundary-polynomial-members",
+            "krein-polynomial-actual-Kc",
+            "krein-original-family-all-members",
+            "krein-polynomial-L2-energy"
+          ],
+          "application_source": "lean-proof/SLVerified.lean"
+        }
+      ],
+      "materialized_source": "lean-proof/SLVerified.lean"
+    }
+  ],
+  "scope": "Dependency decomposition and actual application source. Leaf identities do not imply proof evidence. The saved compiled root alone closes the requested formal declaration."
+}

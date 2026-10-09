@@ -1,0 +1,983 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "Lean verification run manifest v2",
+	"$comment": "Authoritative schema: scripts/run_manifest.schema.json. assets/verification_output.schema.json is an identical compatibility entry. Legacy human audit reports use assets/verification_output.v1.schema.json.",
+	"$defs": {
+		"sha256": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$"
+		},
+		"expected_statement": {
+			"type": "object",
+			"required": [
+				"type_expression",
+				"universes",
+				"binder_kinds",
+				"axioms",
+				"dependencies",
+				"semantic_dependencies",
+				"semantic_modules",
+				"definition_hashes",
+				"type_sha256",
+				"semantic_sha256",
+				"semantic_environment_sha256"
+			],
+			"properties": {
+				"type_expression": {},
+				"universes": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"binder_kinds": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					}
+				},
+				"axioms": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"dependencies": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"semantic_dependencies": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"semantic_modules": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"definition_hashes": {
+					"type": "object",
+					"additionalProperties": {
+						"$ref": "#/$defs/sha256"
+					}
+				},
+				"type_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				},
+				"semantic_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				},
+				"semantic_environment_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"required": [
+		"schema_version",
+		"run_id",
+		"generated_at",
+		"project_root",
+		"report_sha256",
+		"input_hashes",
+		"machine_verification_passed",
+		"exact_root_passed",
+		"environment",
+		"build",
+		"machine",
+		"target",
+		"semantic",
+		"root_closure",
+		"evidence"
+	],
+	"properties": {
+		"schema_version": {
+			"const": 2
+		},
+		"run_id": {
+			"type": "string",
+			"minLength": 1
+		},
+		"generated_at": {
+			"type": "string",
+			"minLength": 1
+		},
+		"project_root": {
+			"type": "string",
+			"minLength": 1
+		},
+		"report_sha256": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$"
+		},
+		"input_hashes": {
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/$defs/sha256"
+			}
+		},
+		"machine_verification_passed": {
+			"type": "boolean"
+		},
+		"exact_root_passed": {
+			"type": "boolean"
+		},
+		"environment": {
+			"type": "object"
+		},
+		"build": {
+			"anyOf": [
+				{
+					"type": "null"
+				},
+				{
+					"type": "object",
+					"required": [
+						"mode",
+						"status",
+						"exit_code",
+						"commands"
+					],
+					"properties": {
+						"mode": {
+							"enum": [
+								"declaration",
+								"targets",
+								"full"
+							]
+						},
+						"status": {
+							"type": "string",
+							"minLength": 1
+						},
+						"exit_code": {
+							"type": [
+								"integer",
+								"null"
+							]
+						},
+						"commands": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": [
+									"status",
+									"exit_code"
+								],
+								"properties": {
+									"status": {
+										"type": "string",
+										"minLength": 1
+									},
+									"exit_code": {
+										"type": [
+											"integer",
+											"null"
+										]
+									}
+								},
+								"allOf": [
+									{
+										"if": {
+											"properties": {
+												"status": {
+													"const": "passed"
+												}
+											}
+										},
+										"then": {
+											"type": "object",
+											"required": [
+												"command",
+												"job_record",
+												"stdout_log",
+												"stderr_log",
+												"stdout_sha256",
+												"stderr_sha256"
+											],
+											"properties": {
+												"command": {
+													"type": "array",
+													"minItems": 1,
+													"items": {
+														"type": "string",
+														"minLength": 1
+													}
+												},
+												"job_record": {
+													"type": "string",
+													"minLength": 1
+												},
+												"stdout_log": {
+													"type": "string",
+													"minLength": 1
+												},
+												"stderr_log": {
+													"type": "string",
+													"minLength": 1
+												},
+												"stdout_sha256": {
+													"type": "string",
+													"pattern": "^[a-f0-9]{64}$"
+												},
+												"stderr_sha256": {
+													"type": "string",
+													"pattern": "^[a-f0-9]{64}$"
+												}
+											}
+										}
+									}
+								]
+							}
+						}
+					}
+				}
+			]
+		},
+		"machine": {
+			"type": "object",
+			"required": [
+				"status",
+				"execution_passed",
+				"scope",
+				"missing_files"
+			],
+			"properties": {
+				"status": {
+					"type": "string",
+					"minLength": 1
+				},
+				"execution_passed": {
+					"type": "boolean"
+				},
+				"scope": {
+					"type": "string",
+					"minLength": 1
+				},
+				"missing_files": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				}
+			}
+		},
+		"target": {
+			"anyOf": [
+				{
+					"type": "null"
+				},
+				{
+					"type": "object",
+					"required": [
+						"status"
+					],
+					"properties": {
+						"status": {
+							"type": "string",
+							"minLength": 1
+						}
+					},
+					"allOf": [
+						{
+							"if": {
+								"properties": {
+									"status": {
+										"const": "checked"
+									}
+								}
+							},
+							"then": {
+								"type": "object",
+								"required": [
+									"file",
+									"module",
+									"declaration",
+									"actual_type",
+									"type_expression",
+									"universes",
+									"binder_kinds",
+									"axioms",
+									"dependencies",
+									"semantic_dependencies",
+									"semantic_modules",
+									"imported_modules",
+									"import_artifacts",
+									"missing_artifacts",
+									"imports_changed_during_check",
+									"comparison",
+									"extraction_file",
+									"definition_hashes",
+									"type_sha256",
+									"semantic_sha256",
+									"environment_sha256",
+									"semantic_environment_sha256",
+									"unexpected_axioms",
+									"unsafe_dependencies",
+									"unknown_dependencies",
+									"identity_mismatches",
+									"expected_statement",
+									"loaded_module_count",
+									"module_inventory_scope"
+								],
+								"properties": {
+									"file": {
+										"type": "string",
+										"minLength": 1
+									},
+									"module": {
+										"type": "string",
+										"minLength": 1
+									},
+									"declaration": {
+										"type": "string",
+										"minLength": 1
+									},
+									"actual_type": {
+										"type": "string",
+										"minLength": 1
+									},
+									"type_expression": {},
+									"universes": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"binder_kinds": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										}
+									},
+									"axioms": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"dependencies": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"type": "object"
+										}
+									},
+									"semantic_dependencies": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"semantic_modules": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"imported_modules": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"type": "object",
+											"required": [
+												"module",
+												"olean"
+											],
+											"properties": {
+												"module": {
+													"type": "string",
+													"minLength": 1
+												},
+												"olean": {
+													"type": "string",
+													"minLength": 1
+												}
+											}
+										}
+									},
+									"import_artifacts": {
+										"type": "object",
+										"additionalProperties": {
+											"type": "object",
+											"required": [
+												"path",
+												"sha256",
+												"mtime_ns"
+											],
+											"properties": {
+												"path": {
+													"type": "string",
+													"minLength": 1
+												},
+												"sha256": {
+													"type": "string",
+													"pattern": "^[a-f0-9]{64}$"
+												},
+												"mtime_ns": {
+													"type": "integer"
+												}
+											}
+										}
+									},
+									"missing_artifacts": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"imports_changed_during_check": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"comparison": {
+										"type": "object",
+										"required": [
+											"status"
+										],
+										"properties": {
+											"status": {
+												"enum": [
+													"matched",
+													"mismatched",
+													"not_requested"
+												]
+											}
+										}
+									},
+									"extraction_file": {
+										"type": "string",
+										"minLength": 1
+									},
+									"definition_hashes": {
+										"type": "object",
+										"additionalProperties": {
+											"$ref": "#/$defs/sha256"
+										}
+									},
+									"type_sha256": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"semantic_sha256": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"environment_sha256": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"semantic_environment_sha256": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"unexpected_axioms": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"unsafe_dependencies": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"unknown_dependencies": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"identity_mismatches": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									},
+									"expected_statement": {
+										"anyOf": [
+											{
+												"type": "null"
+											},
+											{
+												"$ref": "#/$defs/expected_statement"
+											}
+										]
+									},
+									"loaded_module_count": {
+										"type": "integer",
+										"minimum": 1
+									},
+									"module_inventory_scope": {
+										"const": "loaded_environment"
+									}
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		"semantic": {
+			"type": "object",
+			"required": [
+				"status",
+				"reused"
+			],
+			"properties": {
+				"status": {
+					"enum": [
+						"not_reviewed",
+						"reviewed",
+						"stale",
+						"not_accepted",
+						"unavailable"
+					]
+				},
+				"reused": {
+					"type": "boolean"
+				}
+			}
+		},
+		"root_closure": {
+			"type": "object",
+			"required": [
+				"status",
+				"exact_root_passed"
+			],
+			"properties": {
+				"status": {
+					"enum": [
+						"not_requested",
+						"incomplete",
+						"open",
+						"target_mismatch",
+						"declaration_closed_uncompared",
+						"closed"
+					]
+				},
+				"exact_root_passed": {
+					"type": "boolean"
+				}
+			}
+		},
+		"evidence": {
+			"type": "object",
+			"required": [
+				"status",
+				"run_directory",
+				"input_sha256",
+				"tool_hashes",
+				"contract",
+				"contract_sha256",
+				"snapshot_sha256",
+				"snapshot_exclusions",
+				"compiled_artifacts",
+				"extraction_sha256",
+				"generated_sources",
+				"changed_inputs",
+				"changed_imports",
+				"changed_tools"
+			],
+			"properties": {
+				"status": {
+					"enum": [
+						"current",
+						"stale"
+					]
+				},
+				"run_directory": {
+					"type": "string",
+					"minLength": 1
+				},
+				"input_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				},
+				"tool_hashes": {
+					"type": "object",
+					"required": [
+						"verify_lean_project.py",
+						"lean_runtime.py",
+						"lean_evidence.py",
+						"LeanVerifyProbe.lean.template",
+						"lake_build_guard.py",
+						"run_manifest.schema.json"
+					],
+					"properties": {
+						"verify_lean_project.py": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						"lean_runtime.py": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						"lean_evidence.py": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						"LeanVerifyProbe.lean.template": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						"lake_build_guard.py": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						"run_manifest.schema.json": {
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						}
+					},
+					"additionalProperties": false
+				},
+				"contract": {
+					"type": "object"
+				},
+				"contract_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				},
+				"snapshot_sha256": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				},
+				"snapshot_exclusions": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"compiled_artifacts": {
+					"type": "object",
+					"additionalProperties": {
+						"$ref": "#/$defs/sha256"
+					}
+				},
+				"extraction_sha256": {
+					"anyOf": [
+						{
+							"type": "string",
+							"pattern": "^[a-f0-9]{64}$"
+						},
+						{
+							"type": "null"
+						}
+					]
+				},
+				"generated_sources": {
+					"type": "object",
+					"additionalProperties": {
+						"$ref": "#/$defs/sha256"
+					}
+				},
+				"changed_inputs": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				},
+				"changed_imports": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					}
+				},
+				"changed_tools": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"minLength": 1
+					},
+					"uniqueItems": true
+				}
+			}
+		}
+	},
+	"allOf": [
+		{
+			"if": {
+				"properties": {
+					"exact_root_passed": {
+						"const": true
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"machine_verification_passed": {
+						"const": true
+					},
+					"machine": {
+						"properties": {
+							"status": {
+								"const": "passed"
+							},
+							"execution_passed": {
+								"const": true
+							},
+							"scope": {
+								"const": "exact_declaration"
+							},
+							"missing_files": {
+								"maxItems": 0
+							}
+						}
+					},
+					"build": {
+						"type": "object",
+						"properties": {
+							"mode": {
+								"const": "declaration"
+							},
+							"status": {
+								"const": "passed"
+							},
+							"exit_code": {
+								"const": 0
+							},
+							"commands": {
+								"minItems": 5
+							}
+						}
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"const": "checked"
+							},
+							"expected_type": {
+								"type": "string",
+								"minLength": 1
+							},
+							"unexpected_axioms": {
+								"maxItems": 0
+							},
+							"unsafe_dependencies": {
+								"maxItems": 0
+							},
+							"unknown_dependencies": {
+								"maxItems": 0
+							},
+							"identity_mismatches": {
+								"maxItems": 0
+							},
+							"missing_artifacts": {
+								"maxItems": 0
+							},
+							"imports_changed_during_check": {
+								"maxItems": 0
+							},
+							"comparison": {
+								"type": "object",
+								"required": [
+									"status",
+									"definitionally_equal",
+									"universe_parameters_match",
+									"binder_kinds_match"
+								],
+								"properties": {
+									"status": {
+										"const": "matched"
+									},
+									"definitionally_equal": {
+										"const": true
+									},
+									"universe_parameters_match": {
+										"const": true
+									},
+									"binder_kinds_match": {
+										"const": true
+									}
+								}
+							},
+							"expected_statement": {
+								"$ref": "#/$defs/expected_statement"
+							}
+						},
+						"required": [
+							"expected_type",
+							"expected_statement"
+						]
+					},
+					"environment": {
+						"type": "object",
+						"required": [
+							"sha256",
+							"prefix",
+							"lean_status",
+							"lean_version",
+							"configuration_hashes",
+							"binary_hashes"
+						],
+						"properties": {
+							"sha256": {
+								"type": "string",
+								"pattern": "^[a-f0-9]{64}$"
+							},
+							"prefix": {
+								"type": "string",
+								"minLength": 1
+							},
+							"lean_status": {
+								"const": "passed"
+							},
+							"lean_version": {
+								"type": "string",
+								"minLength": 1
+							},
+							"configuration_hashes": {
+								"type": "object",
+								"additionalProperties": {
+									"$ref": "#/$defs/sha256"
+								}
+							},
+							"binary_hashes": {
+								"type": "object",
+								"additionalProperties": {
+									"$ref": "#/$defs/sha256"
+								},
+								"minProperties": 1
+							}
+						}
+					},
+					"root_closure": {
+						"properties": {
+							"status": {
+								"const": "closed"
+							},
+							"exact_root_passed": {
+								"const": true
+							}
+						}
+					},
+					"evidence": {
+						"properties": {
+							"status": {
+								"const": "current"
+							},
+							"contract": {
+								"type": "object",
+								"required": [
+									"file",
+									"declaration",
+									"expected_type"
+								],
+								"properties": {
+									"file": {
+										"type": "string",
+										"minLength": 1
+									},
+									"declaration": {
+										"type": "string",
+										"minLength": 1
+									},
+									"expected_type": {
+										"type": "string",
+										"minLength": 1
+									},
+									"universes": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"minLength": 1
+										},
+										"uniqueItems": true
+									}
+								}
+							},
+							"compiled_artifacts": {
+								"minProperties": 2
+							},
+							"generated_sources": {
+								"type": "object",
+								"required": [
+									"LeanVerifyProbe.lean",
+									"InspectRoot.lean",
+									"DiscoverImports.lean"
+								],
+								"properties": {
+									"LeanVerifyProbe.lean": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"InspectRoot.lean": {
+										"type": "string",
+										"pattern": "^[a-f0-9]{64}$"
+									},
+									"DiscoverImports.lean": {
+										"$ref": "#/$defs/sha256"
+									}
+								}
+							},
+							"extraction_sha256": {
+								"type": "string",
+								"pattern": "^[a-f0-9]{64}$"
+							},
+							"changed_inputs": {
+								"maxItems": 0
+							},
+							"changed_imports": {
+								"maxItems": 0
+							},
+							"changed_tools": {
+								"maxItems": 0
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}

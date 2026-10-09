@@ -1,5 +1,13 @@
 # Formalization progress (scaffold register)
 
+<!-- lean-joint-current:start -->
+## 2026-10-09 Formal and draft entries
+
+[SLVerified](SLVerified.lean) contains three proved, nonempty independent contract roots from [targets](targets.json), with 8/4/2 conjunction components. Strict v3 exact machine checks and final v4 current-input status recheck passed. Fresh actual-type blind readback, a different original-source/contract comparison and software correction review were separately APPROVED and received. The post-execution semantic binding remains separate from immutable machine manifests. [Source pairing and replay](../research/artifacts/lean-development-20261008/README.md) records exact executable versions and review limits.
+
+[SLDrafts](SLDrafts.lean) imports twelve existing scaffold/hole modules; it was not separately built. The original default SL glob remains full and its actual build failed at the protected B3 scaffold's unterminated comment, while SLVerified built successfully. The historical scaffold register below does not inherit acceptance from the new roots. Reverse classical weak H2, real powers, full spectra/completeness and downstream problem chains remain open. No global installation, canonical/library acceptance, commit or publication was performed.
+<!-- lean-joint-current:end -->
+
 This file tracks Lean scaffolds for partial/structural results.  Scaffolds are
 **not** formally verified; they record declarations, open obligations, and the
 intended statements.

@@ -1,0 +1,166 @@
+{
+  "schema": "joint-lean-plugin-correction-execution/v1",
+  "recorded_at": "2026-10-08T16:48:56.699547+00:00",
+  "scope": "actual software correction checks; no independent approval, canonical acceptance, installation or publication inferred",
+  "runtime": {
+    "host": "native Windows",
+    "python": "C:\\Users\\HuangZY\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "lean": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+    "lake": "C:\\Users\\HuangZY\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+    "python_dependency_path": "F:\\tools\\lean-joint-20261008\\plugin\\test-deps",
+    "dependencies_scope": "isolated --target install of jsonschema and PyYAML; no global environment or plugin installation"
+  },
+  "freeze": {
+    "root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2",
+    "manifest": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2\\SOURCE-MANIFEST.json",
+      "sha256": "87103153b231d947fb0ace9a52ac28c9ffb1d7b12d084e8cebff8415063994a0"
+    },
+    "verified_file_count": 240,
+    "working_source_bytes_match": true,
+    "component_versions": {
+      "lean-verify": "2.1.1",
+      "manage-math-research-program": "2.0.2",
+      "math-research-workflow": "2.0.2",
+      "rigorous-open-math-research": "2.0.1"
+    },
+    "changed_from_v1": [
+      "plugins/lean-verify/.codex-plugin/plugin.json",
+      "plugins/lean-verify/scripts/lean_develop.py",
+      "plugins/lean-verify/scripts/tests/test_lean_develop.py",
+      "plugins/lean-verify/scripts/tests/test_lean_develop_real.py",
+      "plugins/lean-verify/skills/lean-verify/references/changelog.md",
+      "plugins/lean-verify/skills/lean-verify/references/v2-development.md"
+    ]
+  },
+  "suites": {
+    "new_portable": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-development-portable.log",
+      "sha256": "1b8c353a2b5e188d31eccdc815f508db8db14020fe9bd0a5d224126427a824b2",
+      "status": "passed",
+      "count": 17,
+      "execution_root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2",
+      "elapsed_seconds": 5.955
+    },
+    "retained_portable": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-retained-portable.log",
+      "sha256": "2d40712ecc7c35c85e2809e44be05f6422e5750e2c6fb72b8429bdc3778260ec",
+      "status": "passed",
+      "count": 12,
+      "execution_root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2",
+      "elapsed_seconds": 1.91
+    },
+    "generic_actual_lean": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-development-real.log",
+      "sha256": "5b3248aa12930cc3bd1479e4f7b1e13bdec427a35d833caf85d63c12bdbecd78",
+      "status": "passed",
+      "count": 7,
+      "execution_root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2",
+      "elapsed_seconds": 769.063
+    },
+    "workflow": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-workflow.log",
+      "sha256": "0e6e040ed2d8c033a617e86d64226408fb0bf73be6d8b8c80791ee670702ee25",
+      "status": "passed",
+      "count": 28,
+      "execution_root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2",
+      "elapsed_seconds": 10.449
+    },
+    "repository_validator": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-validate.log",
+      "sha256": "87a901617aa9797c31639b52478388f36d74e044a4a8f5478e9dbcf76477e158",
+      "status": "passed",
+      "count": 81,
+      "execution_root": "F:\\tools\\lean-joint-20261008\\plugin\\source-freeze-v2"
+    }
+  },
+  "raw_actual_results": {
+    "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-v2-development-real.json",
+    "sha256": "54676720d5437b98f2e01bcc5c7560ba07afebe5ab0ab89445c1bf6d5b5faa4c"
+  },
+  "corrected_race_cases": [
+    {
+      "test": "test_lean_develop_real.RealDevelopControls.test_actual_batch_rechecks_share_one_input_version",
+      "timing": "second_target",
+      "save_error": null,
+      "batch_exact_root_passed": false,
+      "observed_terminal_checks": [
+        false,
+        true
+      ]
+    },
+    {
+      "test": "test_lean_develop_real.RealDevelopControls.test_actual_batch_rechecks_share_one_input_version",
+      "timing": "after_terminal_rechecks",
+      "save_error": null,
+      "batch_exact_root_passed": false,
+      "observed_terminal_checks": [
+        true,
+        true
+      ]
+    },
+    {
+      "test": "test_lean_develop_real.RealDevelopControls.test_actual_save_rechecks_dependency_after_import_query",
+      "timing": null,
+      "save_error": "source or configuration changed during save; run a fresh trial",
+      "batch_exact_root_passed": null,
+      "observed_terminal_checks": []
+    }
+  ],
+  "original_defects": {
+    "independent_review": {
+      "path": "F:\\LaTeX\\BVE research\\research\\artifacts\\lean-development-20261008\\reviews\\software-v1-final.json",
+      "sha256": "7f119f43595d9a27746e86c29a0f1a2c64e08ef1a61ccbc80d38eadde9a24098"
+    },
+    "verdict": "CHANGES_REQUIRED",
+    "independent_author_reproduction": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\review-v1-race-reproduction\\REPRODUCTION.json",
+      "sha256": "cff4efc2b5e673accfe2d15c105b06fb34e161df4fd015d184b4d4eb60ab4af2"
+    },
+    "save_race": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\review-v1-race-reproduction\\save-race.json",
+      "sha256": "0ed84170526f74383d6e0f1d177ce8a99fcc0fd88a34c113c8afa97491b099c5"
+    },
+    "batch_race": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\review-v1-race-reproduction\\batch-race.json",
+      "sha256": "5f76ffee02d8fc36e0c64a3c594507f565345f65668ff323d5a36e6ca2505a86"
+    },
+    "execution_log": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\review-v1-races.log",
+      "sha256": "a670e940798ea6cadcb0ef2300f8799ae5de222f29c6a39911b034009743cbb8"
+    },
+    "original_v1_evidence": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\TESTS.json",
+      "sha256": "9dc148c8c39cb9a0f36eadc3a8939d334df48987e27902a1d4a8fcbc626d6f84"
+    },
+    "note": "v1 tests passed but fresh review exposed real save and batch races; v1 source and records remain unchanged, approval is not inherited"
+  },
+  "retained_earlier_execution": {
+    "retained_real15": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\frozen-retained-real.log",
+      "sha256": "2870db52c6b9ffcf4a406e53a891a5c288f1e373c316e28269b536f9433ec1d5"
+    },
+    "manage87": {
+      "path": "F:\\tools\\lean-joint-20261008\\plugin\\manage-all.log",
+      "sha256": "b1486795b465927cd42e926b0aa8fcfdee6f7f4ce90c472fdf24066dc807781c"
+    },
+    "binding": "all retained verifier/evidence/runtime/feedback/route/review/workflow execution sources and their test sources are byte-identical between v1 and v2; these suites were executed earlier on that code, not rerun as v2 or relabeled as correction acceptance",
+    "unchanged_file_count": 234
+  },
+  "rich_analysis_cost": {
+    "source": "coordinator's actual current SL v2 execution observation",
+    "first_declaration_json_approx_mb": 218,
+    "first_run_manifest_approx_gb": 1.4,
+    "python_ram_approx_gb": 4.8,
+    "meaning": "retained strict expression/dependency extraction and repeated manifest embedding can be expensive; generic timings do not establish universal speedup; frozen v2 and binding scope unchanged"
+  },
+  "limits": [
+    "before/after observations of declared sources, inputs, versions and listed evidence are not an OS-wide filesystem transaction",
+    "no Linux or WSL live execution",
+    "no cloud CI",
+    "no universal timing or speedup result",
+    "rich analysis roots can require very large extraction/manifest bytes and substantial Python memory",
+    "software fixtures do not prove the research theorem or complete Mathlib compatibility",
+    "fresh correction review must still dispatch and complete separately"
+  ]
+}

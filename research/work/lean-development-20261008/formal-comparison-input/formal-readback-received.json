@@ -1,0 +1,69 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "62e24d99172baaa36d6cf00fd949574074f42c1af88bb26723d373835a7f9fbc",
+  "reviewer_id": "/root/formal_readback",
+  "bindings": {
+    "research/work/lean-development-20261008/formal-readback-input/environment.json": "7c1699fef6b2c5e65f9fcdabcd45e6e3768af9f39dc8697980c8adeaaef403a5",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Analysis/IntervalL2.lean": "0ad515bf062e6dcc56ccf8ddb02620497ceeb4121117b743268d5b130adfb60c",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/AuditRound5.lean": "72f6f406f4cd12697b76f568664f9dcc2064feae2427b407f56cb6e9b38ae241",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/IntegralConstruction.lean": "cf1ec63db63e46cd4f4e71f7113e3b5e7ad0d3ed5de62db90619ff5cc546d881",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/IntegralDomain.lean": "6c9d292cb5b4bdc836acbef7ecacc32a53f3d9277ee24c4d457ccfb9a660713e",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/LinearDomain.lean": "e54aa86308d2d7b43daba85c49d8b3c9e5073885cff9f80908e59abd4721a09a",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/PolynomialBridge.lean": "421aa2028f3199391235301961d72a896d34c3a239f8fbb042be5d26a1ab5958",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/PolynomialEnergy.lean": "248f09a831ccda818c9b875f0a9ee5d31270e40988166ed7e740960e7a07d2f9",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/WeakDerivative.lean": "7d2d9bf7b8d69fbe117d947c49aaeb35e1845d2c2a57a3a3e1e2a3a7e49bead9",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/ConstantDD.lean": "d16f80ae4d1f099644944a60492be0800886d51cb93c62738b26e748121d9853",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/L2Bridge.lean": "7d1eb0836c47b51ddcb6763d0bb19b7b25318c44239f791d924eb54656ab9f90",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/Model.lean": "e1305b717566bfcd400ceefdaf6017be387d9b1b755251f21151dd6cd9d3710d",
+    "research/work/lean-development-20261008/formal-readback-input/source/SLVerified.lean": "66066713d627133841d55cd9493af2193b547f60afc76abb6631cf36231118d9",
+    "research/work/lean-development-20261008/formal-readback-input/source/lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+    "research/work/lean-development-20261008/formal-readback-input/source/lakefile.lean": "ba0667cbf4cc02075a9547ad5d28e77243f5d2cc81fd8a5e7966fa8bb32af09f",
+    "research/work/lean-development-20261008/formal-readback-input/source/lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263"
+  },
+  "claims": [
+    {
+      "id": "krein-domain",
+      "reason": "已完成声明及其定义的独立语义回读. 八个合取项分别量化积分代表、内部点、几乎处处点、相同 L2 类的代表、任意实参数 c、复标量、任意 L2 二阶项与初值、任意实连续线性坐标及全局 C1 端点为零的测试函数. 导数结论的内部点范围、二阶项相等的几乎处处范围、重构等式的闭区间范围均可由冻结定义确定. APPROVED 仅表示本次 formal-readback 完成.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "krein-polynomial",
+      "reason": "已完成四个合取项及相关定义的回读. 多项式系数域为实数, 算子参数 c 为任意实数, 边界假设恰为两个 residues 同时为零. 高次族只量化 m ≥ 2, 因而实际声明排除了系数 m/(m−1) 的零分母情形. 能量公式使用第一变量线性的复内积, 右边为实积分表达式的复嵌入. APPROVED 仅表示本次 formal-readback 完成.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "weighted-dd",
+      "reason": "已完成两个合取项的回读. 一般密度部分量化 Length > 0、给定 Density 及闭区间连续的复值函数, 结论为加权 L2 范数平方与质量积分相等. 常密度部分另量化 Rho > 0 和正自然数 Index, 结论为明确正弦构造的正频率、定义的频率平方、DD 归一化积分解及其 L2 类范数平方为 1. 这两部分的密度与参数范围没有混合. APPROVED 仅表示本次 formal-readback 完成.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/work/lean-development-20261008/formal-readback-input/environment.json",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Analysis/IntervalL2.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/AuditRound5.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/IntegralConstruction.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/IntegralDomain.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/LinearDomain.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/PolynomialBridge.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/PolynomialEnergy.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Krein/WeakDerivative.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/ConstantDD.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/L2Bridge.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SL/Weighted/Model.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/SLVerified.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/lake-manifest.json",
+    "research/work/lean-development-20261008/formal-readback-input/source/lakefile.lean",
+    "research/work/lean-development-20261008/formal-readback-input/source/lean-toolchain"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/62e24d99172baaa36d6cf00fd949574074f42c1af88bb26723d373835a7f9fbc-task-8ea3407d2a73d9aaf980217778c1188a7f3d751856b2049d1dd7c0c5f48c2666",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "本次仅进行了冻结声明和定义的语义回读以及输入 SHA256 核对; 16 个输入快照的实际哈希均与 packet.json 相符.",
+    "未运行 Lean 编译、内核检查或传递公理审计. 本批准不构成证明编译成功、无额外公理或完整形式化的验收.",
+    "外部 Mathlib 与其依赖只提供了版本清单, 没有提供其源码、编译对象或构建回执. 清单将 Mathlib 固定为 fabf563a7c95a166b8d7b6efca11c8b4dc9d911f, toolchain 为 leanprover/lean4:v4.31.0; 未现场验证这些依赖的运行状态.",
+    "environment.json 声明部分源码经过仅移除注释的变换. 原始源码没有作为输入提供, 因此未独立核验变换前后是否仅有注释变化.",
+    "没有读取或比较作者的预期定理、工作树、对话、历史判决或外部材料."
+  ]
+}

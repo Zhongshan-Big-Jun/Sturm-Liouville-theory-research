@@ -1,5 +1,35 @@
 # 当前续接
 
+2026-10-09后续: 用户已授权本轮Lean/manage最新增量上传. [范围与无损证据还原](../research/artifacts/lean-development-20261008/PUBLICATION.md) 及本机F:/tools/joint-publication-20261009/DELIVERY.json记录实际发布身份; 既有数学/安装/接收状态分开.
+
+<!-- manage-context-current:20261009 -->
+更新于2026-10-09. manage2.1.0的问题知识复用本地增量已完成. [本轮结果与重放](../research/artifacts/manage-context-20261009/README.md) -> [精确源码/实跑/独审身份](../research/artifacts/manage-context-20261009/SOURCE-PAIRING.json). 使用冻结v13开发源码, 全局安装缓存未升级. 122项便携121通过/1缺材料Q9跳过, source Q9另实跑通过, 库/gateway/validate81通过. 五问正向v5与当前软件v13分别新上下文APPROVED且经原receiver接收, 所审版本/范围分开; 原退回与未完成中止保留.
+
+已登记两条有范围经验与weighted-DD局部Lean候选, 主索引不改, 原34项隔离及whole-file下游义务不释放. 当前知识视图保留条件、来源读取覆盖、未知依赖与缺桥; 相关性/字段相同/软件批准都不作数学证明. 理解页人的原字节保留. 下一次数学使用应核对自己的对象/量词和缺桥. repair仍有泛化建议且未直接取回所有替代, 可使用精确历史ID替代导航; 整数问预算可能省略前置并给指针, 按需继续读原文. 不自动重启旧研究.
+
+Lean默认未知, weighted-DD的现有收据重查/语义身份另列, 不重编全库/重放目标证明. 前轮三根与开放的逆向弱域桥、完整谱、B11及ND/G1仍见[Lean入口](../research/artifacts/lean-development-20261008/README.md). 本次无新job/Q/R或预算, 未提交/推送/发布/全局安装/canonical; 后续发布需本次明确授权. 最终范围保护在本轮入口留证.
+
+以下保留前轮续接原字节作为历史, 其当时当前标题与阶段描述不表示本轮状态.
+
+---
+
+# 当前续接
+
+<!-- lean-joint-current:20261008 -->
+更新于2026-10-09. 本轮真实研究 Lean/插件联合增量已本地完成, 未提交/推送/发布/全局安装或 canonical/工具库接收. 三个实际根及10主题模块见 [SLVerified](../lean-proof/SLVerified.lean) 和 [准确范围](../lean-proof/STATUS.md). [源码配对与重放](../research/artifacts/lean-development-20261008/README.md) 为本轮直接续接入口.
+
+job `sl-exact-roots-v3-20261009` 实际SUCCEEDED/exit0, 三根exact=true. 最终v4新入口已对同字节根完成trial/save, 再重查该已完成job: 全部current/exact=true, 无重复派发. v3实际执行与v4最终运行代码30份SHA一致, v4只改测试注入fixture; 原真实15项为v3实际通过, v4新增11/便携21+12/workflow28/validate81实际通过, manage87只沿用原相同源执行.
+
+完整实际类型盲读 `/root/formal_readback_v3`, 不同身份原文/合同语义比对 `/root/formal_comparison_v3`, 软件修补 `/root/plugin_review_v4` 均真实fork_turns=none, APPROVED并由既有receiver接收. 原长类型退回、软件v1/v2退回、真实复现及测试失败均保留; 原机器manifest不改, 后续语义绑定分开记录. 没有当前运行中的本轮Lean job, 不重启已完成任务.
+
+默认旧全库build失败于原B3第56行未闭合注释; 独立正式入口build成功, SLDrafts未单独构建. 原53份SL源、134原untracked、旧脏稿与canonical/库存保护. 后续由逆向弱H2/全复域能量/自伴正性/真逆幂域接A10/A1/A12/A11; weighted由一般谱存在与完整谱/排序接B11/谱比/谱隙. ND/G1/无条件唯一等开放问题不导入公理.
+
+以下保留上一轮导航/发布的历史续接, 其中当时的未派发、预算和范围描述不作为本轮状态.
+
+---
+
+# 当前续接
+
 更新于 2026-10-08. 本轮仓库入口与状态整理已完成本地修改和验证; 用户后续要求“上传”, 明确授权本轮精确范围的提交与双远端交付. 项目数学状态以 [问题地图](../research_map.md) 和 [按问题阅读](../docs/research-guide.md) 为准.
 
 ## 先读这些文件

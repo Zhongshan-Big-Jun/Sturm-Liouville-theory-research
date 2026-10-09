@@ -42,3 +42,8 @@
 | 最新完成工作, 未完成事项及历史发布证据 | [RESUME](state/RESUME.md) |
 
 数学证明, 独立审查, 软件测试, 工具库接收, Blueprint 接收, Lean 与远端发布分别登记. [Lean 状态](lean-proof/STATUS.md) 和对应声明的代码/日志界定形式化范围. [R14](reports/proof-audit-round14-20261004/REPORT.md), [R15](reports/proof-audit-round15-20261005/REPORT.md), [R16](reports/proof-audit-round16-20261006/REPORT.md) 保留各轮真实结果和失败回执; 整理前的入口原文在 [历史快照清单](docs/history/entry-snapshots-20261008.json), 完整对话在 [会话日志](state/AGENTS_SESSION_LOG.md).
+
+
+## 最近的 Lean 与知识复用增量
+
+真实区间复L2/Krein/加权DD局部形式化及三个精确合取根, 与面向当前问题的检索、知识包和经验复用已完成有范围验证. [Lean与证据还原](research/artifacts/lean-development-20261008/PUBLICATION.md), [五问实际使用与限制](research/artifacts/manage-context-20261009/README.md) 分别说明范围和开放连接.

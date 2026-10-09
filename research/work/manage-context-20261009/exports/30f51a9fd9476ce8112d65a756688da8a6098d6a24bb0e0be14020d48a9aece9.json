@@ -1,0 +1,818 @@
+{
+	"annotation_basis": {},
+	"canonical_modified": false,
+	"context": {
+		"problem_ids": [
+			"A11"
+		]
+	},
+	"coverage": {
+		"changed_paths": [],
+		"depth": 1,
+		"index_verdict": "RETRIEVAL_ONLY",
+		"limitations": [
+			"Declared relations and indexed card roots only.",
+			"Unknown dependencies are not an empty impact closure.",
+			"Relevance and matching fields do not prove mathematical applicability."
+		],
+		"max_material_chars": 48000,
+		"selected": 4,
+		"total_matches": 3
+	},
+	"entries": [
+		{
+			"path": "sources/research_map.md",
+			"reading_hint": "Read the current opening, then the named materials; history is not task state.",
+			"sha256": "bc928148aa649725436e9570b7ff437e851a8cce8b3f329787d253e21ce9c2d0"
+		}
+	],
+	"follow_up": [],
+	"historical": [],
+	"index_path": "index/after.json",
+	"inputs": {
+		"cards/sl-arbitrary-deletion.md": "e2b6533d7ea9fe4567ae6d62ba7eb4c744d91ba5ea71e48fdc86679989619a75",
+		"cards/sl-cofinite-trace.md": "335e4ccf6d12da4c432d431c8cdebaff42d09ae41f7414b8368875b9dcf3e6e4",
+		"cards/sl-krein-model.md": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+		"cards/sl-original-family-obstruction.md": "401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0",
+		"evidence/library/card-bindings-required.json": "d5d6edf07184f1eefe67ecc9bebfcd9cd07a9daef72490bee0918ab11d000f61",
+		"evidence/library/card-bindings/catalog.json": "b62837fb3b2ea306d1c094999a6b8377eeff52aac282685808ec6d163a209c1d",
+		"evidence/library/corrections-journal.json": "e98ed3776a64b174c27c33096c4b116460fc53925b71628e999671c7dc4328bc",
+		"evidence/library/corrections-required.json": "969bef7cab8abc6d1c1a58958811a747c6f4efbab6b633d82c60b30bc16299b8",
+		"index/after.json": "d844a203a4b84c4705a4d9e9906bc79cec5e5a1a0e63440a7e13d59b034b1c2d",
+		"sources/SL_cofinite_all_orders.tex": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9",
+		"sources/SL_full_window_deletions_and_finite_constraints.md": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+		"sources/research_map.md": "bc928148aa649725436e9570b7ff437e851a8cce8b3f329787d253e21ce9c2d0"
+	},
+	"materials": [
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "Fixed c>0, complex H_c^s=D(K_c^(s/2)), 0<=s<7/2, arbitrary N subset {0,1,4,5,...}.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Even and odd reciprocal sums both divergent: closure equals the intersection of omitted continuous-center-trace kernels.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "I(s)={}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Equality thresholds belong to the side with fewer traces.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Density iff I(s) subset N and both parity reciprocal sums diverge.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "If either sum converges the codimension is infinite; this does not describe every element of that closure.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"Fixed c>0, complex H_c^s=D(K_c^(s/2)), 0<=s<7/2, arbitrary N subset {0,1,4,5,...}.",
+					"Even and odd reciprocal sums both divergent: closure equals the intersection of omitted continuous-center-trace kernels.",
+					"I(s)={}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Equality thresholds belong to the side with fewer traces.",
+					"Density iff I(s) subset N and both parity reciprocal sums diverge.",
+					"If either sum converges the codimension is infinite; this does not describe every element of that closure."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [
+					"Full elementwise description of convergent-side closures remains open.",
+					"Do not exchange closure with interpolation or infer difference-family density from a larger monomial family."
+				],
+				"scope_axes": [],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"Fixed c>0, complex H_c^s=D(K_c^(s/2)), 0<=s<7/2, arbitrary N subset {0,1,4,5,...}.",
+				"Even and odd reciprocal sums both divergent: closure equals the intersection of omitted continuous-center-trace kernels.",
+				"I(s)={}, {0}, {0,1}, {0,1,4} on [0,1/2], (1/2,3/2], (3/2,5/2], (5/2,7/2). Equality thresholds belong to the side with fewer traces.",
+				"Density iff I(s) subset N and both parity reciprocal sums diverge.",
+				"If either sum converges the codimension is infinite; this does not describe every element of that closure."
+			],
+			"content": "# 任意删项的三个结论\n密度充要判据、两支倒数和都发散时的精确闭包、任一收敛时的无限余维分别记录. 前两项已在固定 c 的成员窗口闭合; 收敛侧所有元素的完整描述仍未完成. s=1/2,3/2,5/2 必须采用较少的连续中心迹. 不把余有限结论当成任意删项的完整描述.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [
+				{
+					"location": "cards/sl-cofinite-trace.md",
+					"sha256": "335e4ccf6d12da4c432d431c8cdebaff42d09ae41f7414b8368875b9dcf3e6e4"
+				},
+				{
+					"location": "cards/sl-krein-model.md",
+					"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164"
+				}
+			],
+			"dependencies_known": true,
+			"dependency_coverage": "DECLARED_EDGES_ONLY",
+			"evidence": [],
+			"evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE",
+			"experience": {},
+			"field_provenance": {
+				"aliases": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"conditions": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"missing_bridges": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"parameter_scope": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"relations": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"tool_types": {
+					"body_sha256": "c71a2913209783d6818441e45182f3e4b8a411a9010082451a1e49208e002625",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "tool",
+			"lean": [],
+			"lexical_match": true,
+			"match_kind": "QUERY_TEXT",
+			"missing_bridges": [
+				"Full elementwise description of convergent-side closures remains open.",
+				"Do not exchange closure with interpolation or infer difference-family density from a larger monomial family."
+			],
+			"objects": {
+				"family": "original sparse monomial-difference family",
+				"scalar_field": "complex",
+				"space": "D(K_c^(s/2))"
+			},
+			"parameter_scope": {
+				"c": "fixed positive",
+				"retained_set": "arbitrary",
+				"s": "0<=s<7/2"
+			},
+			"path": "cards/sl-arbitrary-deletion.md",
+			"problem_ids": [
+				"A11"
+			],
+			"query_match": true,
+			"relations": [
+				{
+					"basis": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"locator": "Section 0 inputs 1-3 and Theorem 1 proof",
+						"path": "sources/SL_full_window_deletions_and_finite_constraints.md",
+						"reference_reuse_allowed": true,
+						"sha256": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"binding_current": true,
+					"impact_eligible": true,
+					"kind": "mathematical_dependency",
+					"origin": "AUTHOR_SUPPLIED_RELATION",
+					"reuse_allowed": true,
+					"target": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"path": "cards/sl-krein-model.md",
+						"reference_reuse_allowed": true,
+						"reuse_allowed": true,
+						"role": "card",
+						"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"trust": "AUTHOR_SUPPLIED_NOT_AN_INFERRED_PROOF_EDGE"
+				},
+				{
+					"basis": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"locator": "Section 0 inputs 1-3 and Theorem 1 proof",
+						"path": "sources/SL_full_window_deletions_and_finite_constraints.md",
+						"reference_reuse_allowed": true,
+						"sha256": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"binding_current": true,
+					"impact_eligible": true,
+					"kind": "mathematical_dependency",
+					"origin": "AUTHOR_SUPPLIED_RELATION",
+					"reuse_allowed": true,
+					"target": {
+						"binding_state": "CURRENT",
+						"correction_state": {
+							"issues": [],
+							"reuse_allowed": true,
+							"status": "clear"
+						},
+						"path": "cards/sl-cofinite-trace.md",
+						"reference_reuse_allowed": true,
+						"reuse_allowed": true,
+						"role": "card",
+						"sha256": "335e4ccf6d12da4c432d431c8cdebaff42d09ae41f7414b8368875b9dcf3e6e4",
+						"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+					},
+					"trust": "AUTHOR_SUPPLIED_NOT_AN_INFERRED_PROOF_EDGE"
+				}
+			],
+			"relevance_reasons": [
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "body",
+					"query_terms": [
+						"任意",
+						"删项"
+					],
+					"terms": [
+						"任意",
+						"删项"
+					],
+					"weight": 3
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "title",
+					"query_terms": [
+						"任意",
+						"删项"
+					],
+					"terms": [
+						"任意",
+						"删项"
+					],
+					"weight": 6
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "aliases",
+					"query_terms": [
+						"任意",
+						"删项"
+					],
+					"terms": [
+						"任意",
+						"删项"
+					],
+					"weight": 8
+				},
+				{
+					"basis": "EXPLICIT_FIELD_TEXT_MATCH_NOT_IMPLICATION",
+					"context_mentions": [
+						"A11"
+					],
+					"context_only": false,
+					"field": "problem_ids",
+					"weight": 36
+				}
+			],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "e2b6533d7ea9fe4567ae6d62ba7eb4c744d91ba5ea71e48fdc86679989619a75",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Input section and Theorem 1, equations (1),(2)",
+					"origin_path": "docs/SL_full_window_deletions_and_finite_constraints.md",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "sources/SL_full_window_deletions_and_finite_constraints.md",
+					"read_coverage": "Lines 1-130 and current scope statement checked",
+					"reference_reuse_allowed": true,
+					"sha256": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 任意删项的三个结论 密度充要判据、两支倒数和都发散时的精确闭包、任一收敛时的无限余维分别记录. 前两项已在固定 c 的成员窗口闭合; 收敛侧所有元素的完整描述仍未完成. s=1/2,3/2,5/2 必须采用较少的连续中心迹. 不把余有限结论当成任意删项的完整描述.",
+			"title": "任意删项: 全窗口密度判据与发散侧闭包",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/e2b6533d7ea9fe4567ae6d62ba7eb4c744d91ba5ea71e48fdc86679989619a75.md"
+		},
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "c>0 fixed, 0<=s<7/2, cofinite retained original indices.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Essential indices are {},{0},{0,1},{0,1,4} on [0,1/2],(1/2,3/2],(3/2,5/2],(5/2,7/2).",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "The omitted essential indices impose f(0),f'(0),f''(0), respectively; codimension equals their count.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "This cofinite input alone is not a theorem for arbitrary infinite deletions.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"c>0 fixed, 0<=s<7/2, cofinite retained original indices.",
+					"Essential indices are {},{0},{0,1},{0,1,4} on [0,1/2],(1/2,3/2],(3/2,5/2],(5/2,7/2).",
+					"The omitted essential indices impose f(0),f'(0),f''(0), respectively; codimension equals their count.",
+					"This cofinite input alone is not a theorem for arbitrary infinite deletions."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [],
+				"scope_axes": [],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"c>0 fixed, 0<=s<7/2, cofinite retained original indices.",
+				"Essential indices are {},{0},{0,1},{0,1,4} on [0,1/2],(1/2,3/2],(3/2,5/2],(5/2,7/2).",
+				"The omitted essential indices impose f(0),f'(0),f''(0), respectively; codimension equals their count.",
+				"This cofinite input alone is not a theorem for arbitrary infinite deletions."
+			],
+			"content": "# 余有限前置引理\n三个临界值使用较少连续迹的一侧. A11 的任意删项发散侧使用这一余有限闭包输入, 另需 H4 值全纯唯一性和收敛侧 Cauchy Gram 距离论证. 这里没有按关键词推导它们.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [],
+			"dependencies_known": false,
+			"dependency_coverage": "UNKNOWN_NOT_EMPTY_CLOSURE",
+			"evidence": [],
+			"evidence_status": "CANDIDATE",
+			"experience": {},
+			"field_provenance": {
+				"conditions": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"kind": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "5224e49d71b664e67cbc23c787cb8e9b9188da08eb6bedcc5a4861a51966f1dc",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "result",
+			"lean": [],
+			"lexical_match": true,
+			"match_kind": "QUERY_TEXT",
+			"missing_bridges": [],
+			"objects": [],
+			"parameter_scope": [],
+			"path": "cards/sl-cofinite-trace.md",
+			"problem_ids": [
+				"A12"
+			],
+			"query_match": true,
+			"relations": [],
+			"relevance_reasons": [
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "body",
+					"query_terms": [
+						"任意",
+						"删项"
+					],
+					"terms": [
+						"任意",
+						"删项"
+					],
+					"weight": 3
+				},
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "title",
+					"query_terms": [
+						"删项"
+					],
+					"terms": [
+						"删项"
+					],
+					"weight": 6
+				}
+			],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "335e4ccf6d12da4c432d431c8cdebaff42d09ae41f7414b8368875b9dcf3e6e4",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Theorem 1 and Sections 8-10",
+					"path": "sources/SL_cofinite_all_orders.tex",
+					"read_coverage": "Theorem statement and critical-threshold contract crosschecked through current A11 input and map",
+					"reference_reuse_allowed": true,
+					"sha256": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 余有限前置引理 三个临界值使用较少连续迹的一侧. A11 的任意删项发散侧使用这一余有限闭包输入, 另需 H4 值全纯唯一性和收敛侧 Cauchy Gram 距离论证. 这里没有按关键词推导它们.",
+			"title": "余有限删项的中心迹闭包",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/335e4ccf6d12da4c432d431c8cdebaff42d09ae41f7414b8368875b9dcf3e6e4.md"
+		},
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+					"Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [],
+				"scope_axes": [],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"Fixed c>0 and 0<=s<7/2, original family in H_c^s.",
+				"Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis."
+			],
+			"content": "# 原族和替代族不同\n余有限删项分类给出删除 p6 仍稠密, 这排除了原族的 Schauder/Riesz 基性质. 整数 Hermite-Legendre 系另行构造, 不把这个障碍改成原族已解决.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [],
+			"dependencies_known": false,
+			"dependency_coverage": "UNKNOWN_NOT_EMPTY_CLOSURE",
+			"evidence": [],
+			"evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE",
+			"experience": {},
+			"field_provenance": {
+				"aliases": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"conditions": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"tool_types": {
+					"body_sha256": "ba296fcd39701f39588f948d95961e0feb476c922f41ad68f2b7c7893576c2f0",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "tool",
+			"lean": [],
+			"lexical_match": true,
+			"match_kind": "QUERY_TEXT",
+			"missing_bridges": [],
+			"objects": {
+				"family": "original sparse monomial-difference family",
+				"scalar_field": "complex"
+			},
+			"parameter_scope": [],
+			"path": "cards/sl-original-family-obstruction.md",
+			"problem_ids": [
+				"A12",
+				"A10"
+			],
+			"query_match": true,
+			"relations": [],
+			"relevance_reasons": [
+				{
+					"basis": "CURRENT_BYTES_OR_CURRENT_ANNOTATION",
+					"field": "body",
+					"query_terms": [
+						"删项"
+					],
+					"terms": [
+						"删项"
+					],
+					"weight": 3
+				}
+			],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Cofinite closure theorem and p6 consequence",
+					"origin_path": "docs/SL_cofinite_all_orders.tex",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "sources/SL_cofinite_all_orders.tex",
+					"read_coverage": "Current theorem pointers and A12 scope in research_map checked; full proof not reread in this maintenance",
+					"reference_reuse_allowed": true,
+					"sha256": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 原族和替代族不同 余有限删项分类给出删除 p6 仍稠密, 这排除了原族的 Schauder/Riesz 基性质. 整数 Hermite-Legendre 系另行构造, 不把这个障碍改成原族已解决.",
+			"title": "原稀疏族的非基障碍",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/401f32cddea0465f6679c7a7c66874e91170c6dc1704a5d0f917026a81060cf0.md"
+		},
+		{
+			"annotations": [],
+			"applicability_check": {
+				"condition_mentions": [
+					{
+						"condition": "c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+						"mentioned_in_context": false,
+						"proved": false
+					},
+					{
+						"condition": "H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments.",
+						"mentioned_in_context": false,
+						"proved": false
+					}
+				],
+				"conditions": [
+					"c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+					"D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+					"H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments."
+				],
+				"conditions_state": "CURRENT_AUTHOR_FIELD",
+				"implication_checked": false,
+				"missing_bridges": [],
+				"scope_axes": [],
+				"status": "HOST_MUST_CHECK_ORIGINAL_STATEMENT"
+			},
+			"conditions": [
+				"c>0 fixed, complex L2(-1,1), K_c f=-f''+cf.",
+				"D(K_c)={f in H2: f'(1)=f'(-1)=(f(1)-f(-1))/2}.",
+				"H_c^s=D(K_c^(s/2)) with norm ||K_c^(s/2)f||_2; identifying it with ordinary H^s needs boundary/domain arguments."
+			],
+			"content": "# 定义先于名称\n空间是实际自伴正 Krein 算子的复幂域. 不能把普通 Sobolev 空间、实积分模型或有限维多项式子空间直接当作同一目标. 原族成员窗口为 0<=s<7/2; 它不是整个算子幂域存在的范围限制.\n",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"coverage": {
+				"complete_body": true,
+				"end_line": 2,
+				"start_line": 1
+			},
+			"dependencies": [],
+			"dependencies_known": false,
+			"dependency_coverage": "UNKNOWN_NOT_EMPTY_CLOSURE",
+			"evidence": [],
+			"evidence_status": "CANDIDATE",
+			"experience": {},
+			"field_provenance": {
+				"conditions": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"kind": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"objects": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"problem_ids": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"sources": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "d926545d3755ad85dc36f052a2f67036258a0228b7ad6d6f6bf9d87b17787e34",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"historical_metadata": {},
+			"kind": "definition",
+			"lean": [],
+			"lexical_match": false,
+			"match_kind": "EXPLICIT_RELATION",
+			"missing_bridges": [],
+			"objects": {
+				"scalar_field": "complex",
+				"space": "D(K_c^(s/2))"
+			},
+			"parameter_scope": [],
+			"path": "cards/sl-krein-model.md",
+			"problem_ids": [
+				"A1"
+			],
+			"query_match": false,
+			"relations": [],
+			"relevance_reasons": [],
+			"resources": [],
+			"reuse_allowed": true,
+			"scope": "UNSPECIFIED",
+			"sha256": "e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"correction_state": {
+						"issues": [],
+						"reuse_allowed": true,
+						"status": "clear"
+					},
+					"locator": "Section 0 exact model",
+					"path": "sources/SL_full_window_deletions_and_finite_constraints.md",
+					"read_coverage": "Section 0 checked",
+					"reference_reuse_allowed": true,
+					"sha256": "75c3664fcd6b0091fc1097eaa49fd1ad1577390859fbe7bcb4690494fe8fa99b",
+					"trust": "BYTE_BINDING_ONLY_REVALIDATE_SOURCE"
+				}
+			],
+			"summary": "# 定义先于名称 空间是实际自伴正 Krein 算子的复幂域. 不能把普通 Sobolev 空间、实积分模型或有限维多项式子空间直接当作同一目标. 原族成员窗口为 0<=s<7/2; 它不是整个算子幂域存在的范围限制.",
+			"title": "真实复 Krein 幂域定义",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION",
+			"version": "evidence/library/card-versions/e6e412ba1ad964b166fa2ac146a493db2b7a219a229fb6c4d4ac26ee6c636164.md"
+		}
+	],
+	"producer": {
+		"code_epoch": "FRESH_PROCESS_SOURCE_SNAPSHOT",
+		"name": "manage-math-research-program",
+		"python": "3.10.11",
+		"script_hashes": {
+			"research_context.py": "486d4f7f89218db7bacae8dd47ae3de78e9d22acd9e27efaac9268d202eaa3aa",
+			"research_corrections.py": "b4170bde920260148d887ce4fd5f7af7137357a10e83f2abc8ee6fc9b5eb1f96",
+			"research_experience.py": "aa156bb93da8ac47cae35c3cf93d6349a562c65e6c8a20188e907bc9db11c6bd",
+			"research_library.py": "f00d0c498d95294fd2e879b978ea38a55cb8155db7ef85491be06caec7615207",
+			"research_review.py": "15bd6e7870c62585af0a5bd32c192608ab070ba9926cf9dda3118962c0a0d412"
+		},
+		"version": "2.1.0"
+	},
+	"query": "任意 删项",
+	"reading_order": [
+		"cards/sl-krein-model.md",
+		"cards/sl-arbitrary-deletion.md",
+		"cards/sl-cofinite-trace.md",
+		"cards/sl-original-family-obstruction.md"
+	],
+	"refresh_basis": "Current card/source/entry bytes, annotation membership and live authoritative correction state.",
+	"schema": "research-context/v1",
+	"trust": "REBUILDABLE_KNOWLEDGE_VIEW_NOT_PROOF_OR_BLIND_REVIEW",
+	"view_sha256": "30f51a9fd9476ce8112d65a756688da8a6098d6a24bb0e0be14020d48a9aece9",
+	"workflow_state_modified": false
+}

@@ -1,0 +1,25 @@
+{"original_path": "docs/SL_inf_ratio_proof.tex", "original_sha256": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b", "line_start": 73, "line_end": 95}
+
+	($n \to \infty$).
+\end{theorem}
+
+\begin{proof}
+	\textbf{下界 $> 1$ 且不为 1.} 特征值严格递增: $\lambda_{n+1} > \lambda_n$,
+	故 $\lambda_{n+1}/\lambda_n > 1$ (Sturm 第二比较定理给出第 $n$ 个特征函数
+	恰有 $n-1$ 个内零点, 零点数随 $n$ 严格增加, 故特征值严格增加).
+
+	\textbf{比值趋于 1.} 由加权 Weyl 定律 (定理 \ref{thm:weyl}): 对固定
+	$\rho \in \mathcal P(a,A)$,
+	\[
+		\lambda_n = \Bigl(\frac{n\pi}{L_\rho}\Bigr)^2 (1 + o(1)),
+		\qquad L_\rho = \int_0^L \sqrt{\rho(x)}\,dx.
+	\]
+	因此
+	\[
+		\frac{\lambda_{n+1}}{\lambda_n}
+		= \Bigl(\frac{n+1}{n}\Bigr)^2 \cdot \frac{1+o(1)}{1+o(1)} \to 1.
+	\]
+	结合严格大于 $1$, 对固定 $\rho$ 有 $\inf_n \lambda_{n+1}/\lambda_n = 1$;
+	再对 $\rho$ 取下确界仍为 $1$. \qed
+\end{proof}
+

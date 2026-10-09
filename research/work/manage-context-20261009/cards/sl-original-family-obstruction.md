@@ -1,0 +1,5 @@
+---
+{"aliases": ["原稀疏 Riesz", "delete p6"], "conditions": ["Fixed c>0 and 0<=s<7/2, original family in H_c^s.", "Deletion of p6 leaves a dense span; no nonzero scaling/reordering is a Schauder or Riesz basis."], "evidence_status": "SOURCE_SCOPED_RETRIEVAL_CANDIDATE_NOT_NEW_ACCEPTANCE", "objects": {"family": "original sparse monomial-difference family", "scalar_field": "complex"}, "problem_ids": ["A12", "A10"], "sources": [{"locator": "Cofinite closure theorem and p6 consequence", "origin_path": "docs/SL_cofinite_all_orders.tex", "origin_project": "F:\\LaTeX\\BVE research", "path": "sources/SL_cofinite_all_orders.tex", "read_coverage": "Current theorem pointers and A12 scope in research_map checked; full proof not reread in this maintenance", "sha256": "11dd413cfa17a2ceaa9b2d1544cf1a2d4950f4fcf4a0533a1057cd1b7ca868b9"}], "title": "原稀疏族的非基障碍", "tool_id": "sl-original-family-obstruction", "tool_types": ["result"]}
+---
+# 原族和替代族不同
+余有限删项分类给出删除 p6 仍稠密, 这排除了原族的 Schauder/Riesz 基性质. 整数 Hermite-Legendre 系另行构造, 不把这个障碍改成原族已解决.

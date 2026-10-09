@@ -1,0 +1,359 @@
+{
+	"accepted_graph_modified": false,
+	"dimensions": {
+		"admissible_class": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"有界实 h 与 delta/delta-prime 方向不同."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"一维规则核与总变差有界脉冲."
+				]
+			}
+		],
+		"complementary_lemma": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"证明集中极限、分布路径可微性及有限 f' 项的组合与余项."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"在真实切空间上证明有限矩阵符号和集中余项."
+				]
+			}
+		],
+		"completed_steps": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"Parseval 有界方向两侧尾界."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"lambda1''趋于6*pi^2, lambda2''趋于0, Q趋于-3*pi^2 的源证明."
+				]
+			}
+		],
+		"failure_location": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"将 h 的有界乘法公式直接代入移动接口."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"假设一维 Green 对角发散."
+				]
+			}
+		],
+		"key_assumptions": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"正密度, 简单 DD 模态, 完整排序."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"rho=1 标定, 单位质量脉冲集中到 1/2."
+				]
+			}
+		],
+		"lost_information": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"集中方向的统一性和 ddot rho 路径项."
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"核有限性、总质量及移动界面的二阶项."
+				]
+			}
+		],
+		"target": [
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+				"recorded": [
+					"界面 Hessian/G1"
+				]
+			},
+			{
+				"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+				"recorded": [
+					"借 Green 发散证明界面 Hessian/G1 定号"
+				]
+			}
+		]
+	},
+	"hypotheses": [
+		{
+			"evidence": [
+				{
+					"locator": "V3-V4",
+					"path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+					"sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0"
+				},
+				{
+					"locator": "Final scope",
+					"path": "docs/SL_bounded_direction_spectral_tail.md",
+					"sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"
+				}
+			],
+			"evidence_coverage": "AUTHOR_REFERENCES_NOT_PROOF",
+			"explanation": "两条路线都需要固定实际方向的拓扑、归一化和二阶路径项. 这解释有界 h 尾界为何不能直接解决移动接口, 也解释窄脉冲发散理由的失败; 尚不是统一理论.",
+			"falsifier": "满足完整假设却与规定有限项或源极限不符的可复现实例.",
+			"origin": "AUTHOR_SUPPLIED",
+			"prediction": "常密度单位脉冲标定应给有限源极限; 直接接口二阶差分与线性密度路径的集中极限若不计有限 f' 项, 可能不一致.",
+			"scope": "当前一维正则 DD 和内部有限接口; 不推广到高维或无界总质量.",
+			"status": "CANDIDATE_EXPLANATION",
+			"test": "先核对 V3 的常密度极限, 再针对一条合法内部线性接口路径检查 V4 的有限项和集中余项.",
+			"validated": false
+		}
+	],
+	"interpretation": "Shared labels are exact text matches, not inferred equivalence or mathematical evidence.",
+	"kind": "route_comparison",
+	"next_checks": [
+		{
+			"complementary_lemma": [
+				"证明集中极限、分布路径可微性及有限 f' 项的组合与余项."
+			],
+			"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+			"reconsider_when": [
+				"得到真实接口路径可微性和带误差控制的集中极限."
+			]
+		},
+		{
+			"complementary_lemma": [
+				"在真实切空间上证明有限矩阵符号和集中余项."
+			],
+			"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+			"reconsider_when": [
+				"先通过常密度和不等块宽反例标定, 再加入界面有限项与严格余项."
+			]
+		}
+	],
+	"reuse_allowed": true,
+	"routes": [
+		{
+			"conditions": "真实 DD, 正有界密度; 有界乘法方向与内部移动接口分别记录.",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"evidence": [],
+			"evidence_status": "RESEARCH_NOTE",
+			"experience": {
+				"admissible_class": [
+					"有界实 h 与 delta/delta-prime 方向不同."
+				],
+				"complementary_lemma": [
+					"证明集中极限、分布路径可微性及有限 f' 项的组合与余项."
+				],
+				"completed_steps": [
+					"Parseval 有界方向两侧尾界."
+				],
+				"conclusion": "有界 h 的谱尾成立, 但它遗漏界面分布方向的拓扑与有限二阶路径项.",
+				"failure_kind": null,
+				"failure_location": [
+					"将 h 的有界乘法公式直接代入移动接口."
+				],
+				"key_assumptions": [
+					"正密度, 简单 DD 模态, 完整排序."
+				],
+				"lost_information": [
+					"集中方向的统一性和 ddot rho 路径项."
+				],
+				"mechanism": "相同驻点方程不能识别二阶路径; f(a_i)=0 不消去 f'(a_i).",
+				"not_applicable_to": [
+					"不否定有界方向公式或所有集中方法."
+				],
+				"outcome": "partial",
+				"question": "有界方向谱尾能否支撑移动界面的 G1?",
+				"reconsider_when": [
+					"得到真实接口路径可微性和带误差控制的集中极限."
+				],
+				"scope": "真实 DD, 正有界密度; 有界乘法方向与内部移动接口分别记录.",
+				"target": [
+					"界面 Hessian/G1"
+				],
+				"transformations": [
+					"固定实际方向与归一化"
+				]
+			},
+			"field_provenance": {
+				"conditions": {
+					"body_sha256": "c76d3c6843d9a473afd6e27b6db8922ebc8832985244178b196679e6a5a3f03a",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "c76d3c6843d9a473afd6e27b6db8922ebc8832985244178b196679e6a5a3f03a",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"experience": {
+					"body_sha256": "c76d3c6843d9a473afd6e27b6db8922ebc8832985244178b196679e6a5a3f03a",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"kind": {
+					"body_sha256": "c76d3c6843d9a473afd6e27b6db8922ebc8832985244178b196679e6a5a3f03a",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "c76d3c6843d9a473afd6e27b6db8922ebc8832985244178b196679e6a5a3f03a",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"lean": [],
+			"metadata_status": "VALID",
+			"path": "research/artifacts/manage-context-20261009/cards/sl-bounded-to-interface-route.md",
+			"resources": [],
+			"reuse_allowed": true,
+			"sha256": "5899697b623f0d1372c35275e00575d4f01e3020291daae47ae54411f7b5d6d5",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"locator": "Final scope",
+					"origin_path": "docs/SL_bounded_direction_spectral_tail.md",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "docs/SL_bounded_direction_spectral_tail.md",
+					"read_coverage": "Final scope checked",
+					"sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"
+				},
+				{
+					"binding_state": "CURRENT",
+					"locator": "V4",
+					"origin_path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+					"read_coverage": "V4 checked",
+					"sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0"
+				}
+			],
+			"summary": "# 从有界密度方向到移动界面的缺桥 ## Question - 有界方向谱尾能否支撑移动界面的 G1? ## Conclusion - 有界 h 的谱尾成立, 但它遗漏界面分布方向的拓扑与有限二阶路径项. ## Scope - 真实 DD, 正有界密度; 有界乘法方向与内部移动接口分别记录. ## Mechanism - 相同驻点方程不能识别二阶路径; f(a_i)=0 不消去 f'(a_i). ## Transformations - 固定实际方向与归一化 ## Reconsider when - 得到真实接口路径可微性和带误差控制的集中极限. ## Not applicable to - 不否定有界方向公式或所有集中方法.",
+			"title": "从有界密度方向到移动界面的缺桥",
+			"tool_id": "sl-bounded-to-interface-route",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION"
+		},
+		{
+			"conditions": "一维正则 DD, 去简单极点核, 总变差一致有界且支持集中; 带符号总质量另需收敛.",
+			"correction_state": {
+				"issues": [],
+				"reuse_allowed": true,
+				"status": "clear"
+			},
+			"evidence": [],
+			"evidence_status": "RESEARCH_NOTE",
+			"experience": {
+				"admissible_class": [
+					"一维规则核与总变差有界脉冲."
+				],
+				"complementary_lemma": [
+					"在真实切空间上证明有限矩阵符号和集中余项."
+				],
+				"completed_steps": [
+					"lambda1''趋于6*pi^2, lambda2''趋于0, Q趋于-3*pi^2 的源证明."
+				],
+				"conclusion": "该理由被有限连续核及常密度单位质量中点极限否定; 整类集中方法仍可重开.",
+				"failure_kind": "counterexample",
+				"failure_location": [
+					"假设一维 Green 对角发散."
+				],
+				"key_assumptions": [
+					"rho=1 标定, 单位质量脉冲集中到 1/2."
+				],
+				"lost_information": [
+					"核有限性、总质量及移动界面的二阶项."
+				],
+				"mechanism": "一维约化核连续有界; 总变差有界本身不保证带符号质量收敛.",
+				"not_applicable_to": [
+					"不是所有集中方法的永久否定; 不是 G1 已解决."
+				],
+				"outcome": "failed",
+				"question": "窄脉冲是否使一维约化 Green 对角必然发散?",
+				"reconsider_when": [
+					"先通过常密度和不等块宽反例标定, 再加入界面有限项与严格余项."
+				],
+				"scope": "一维正则 DD, 去简单极点核, 总变差一致有界且支持集中; 带符号总质量另需收敛.",
+				"target": [
+					"借 Green 发散证明界面 Hessian/G1 定号"
+				],
+				"transformations": [
+					"固定实际方向与归一化"
+				]
+			},
+			"field_provenance": {
+				"conditions": {
+					"body_sha256": "e7e16a6240c1b53abe78da7cd1c9cf39013b8ff2bafc73d792f71db57d43439d",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"evidence_status": {
+					"body_sha256": "e7e16a6240c1b53abe78da7cd1c9cf39013b8ff2bafc73d792f71db57d43439d",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"experience": {
+					"body_sha256": "e7e16a6240c1b53abe78da7cd1c9cf39013b8ff2bafc73d792f71db57d43439d",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"kind": {
+					"body_sha256": "e7e16a6240c1b53abe78da7cd1c9cf39013b8ff2bafc73d792f71db57d43439d",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				},
+				"title": {
+					"body_sha256": "e7e16a6240c1b53abe78da7cd1c9cf39013b8ff2bafc73d792f71db57d43439d",
+					"origin": "author_explicit",
+					"state": "CURRENT_AUTHOR_FIELD"
+				}
+			},
+			"lean": [],
+			"metadata_status": "VALID",
+			"path": "research/artifacts/manage-context-20261009/cards/sl-pulse-obstruction-route.md",
+			"resources": [],
+			"reuse_allowed": true,
+			"sha256": "5112a3188cee1bc2141a13411ad812c76a7f748e914283bacc038f08a7715b48",
+			"sources": [
+				{
+					"binding_state": "CURRENT",
+					"locator": "V3-V4",
+					"origin_path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+					"origin_project": "F:\\LaTeX\\BVE research",
+					"path": "research/artifacts/proof-audit-round9-20260923/analytic-repair.md",
+					"read_coverage": "V3-V4 checked",
+					"sha256": "cb26b534c5a163d6409de3393db6c79bdb73fc6a5ea7a2036d52e44ea4bb9be0"
+				}
+			],
+			"summary": "# Green 窄脉冲旧理由的反例与重开条件 ## Question - 窄脉冲是否使一维约化 Green 对角必然发散? ## Conclusion - 该理由被有限连续核及常密度单位质量中点极限否定; 整类集中方法仍可重开. ## Scope - 一维正则 DD, 去简单极点核, 总变差一致有界且支持集中; 带符号总质量另需收敛. ## Mechanism - 一维约化核连续有界; 总变差有界本身不保证带符号质量收敛. ## Transformations - 固定实际方向与归一化 ## Reconsider when - 先通过常密度和不等块宽反例标定, 再加入界面有限项与严格余项. ## Not applicable to - 不是所有集中方法的永久否定; 不是 G1 已解决.",
+			"title": "Green 窄脉冲旧理由的反例与重开条件",
+			"tool_id": "sl-pulse-obstruction-route",
+			"trust": "RETRIEVAL_ONLY_REVALIDATE_APPLICATION"
+		}
+	],
+	"schema_version": 2,
+	"shared_transformations": [
+		"固定实际方向与归一化"
+	],
+	"status": "CANDIDATE_COMPARISON"
+}

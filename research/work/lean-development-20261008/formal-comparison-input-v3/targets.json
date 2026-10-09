@@ -1,0 +1,212 @@
+{
+  "schema": "lean-research-target-list/v1",
+  "research_baseline": "f3b78f402497c6a2ecdf8e53770fe84bab308198",
+  "plugin_baseline": "9e0da0c37bf2ecc62d30061888ebbbdb0d86846f",
+  "interpretation": "Contracts authored from intended mathematics before composing these roots. No stored completed flags; actual status is read from the listed verifier output.",
+  "targets": [
+    {
+      "id": "krein-domain",
+      "file": "SLVerified.lean",
+      "declaration": "SLVerified.krein_domain_root",
+      "expected_type": "(∀ (R : SL.Krein.IntegralRepresentative) {x : ℝ}, x ∈ Set.Ioo (-1) 1 → HasDerivAt R.Value (R.First x) x) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative), ∀ᵐ x ∂SL.Krein.intervalMeasure, HasDerivAt R.First (R.Second x) x) ∧\n    (∀ (R S : SL.Krein.IntegralRepresentative), R.to_L2 = S.to_L2 → R.Second =ᵐ[SL.Krein.intervalMeasure] S.Second) ∧\n    (∀ (c : ℝ) (F G : SL.Krein.domain_submodule), SL.Krein.operator_linear c (F + G) = SL.Krein.operator_linear c F + SL.Krein.operator_linear c G) ∧\n    (∀ (c : ℝ) (a : ℂ) (F : SL.Krein.domain_submodule), SL.Krein.operator_linear c (a • F) = a • SL.Krein.operator_linear c F) ∧\n    (∀ (F : ℝ → ℂ) (HF : MeasureTheory.MemLp F 2 SL.Krein.intervalMeasure) (a b : ℂ), (SL.Krein.from_l2_second F HF a b).Value (-1) = b ∧ (SL.Krein.from_l2_second F HF a b).First (-1) = a ∧ (SL.Krein.from_l2_second F HF a b).Second = F) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative), Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).Value R.Value (Set.Icc (-1) 1) ∧ Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).First R.First (Set.Icc (-1) 1)) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative) (Q : ℂ →L[ℝ] ℝ) (Phi : ℝ → ℝ), ContDiff ℝ 1 Phi → Phi (-1) = 0 → Phi 1 = 0 → (∫ x in (-1 : ℝ)..1, Q (R.Value x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.First x) * Phi x) ∧ (∫ x in (-1 : ℝ)..1, Q (R.First x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.Second x) * Phi x))",
+      "universes": [],
+      "problem_ids": [
+        "A1",
+        "A10",
+        "A11",
+        "A12"
+      ],
+      "source_versions": [
+        {
+          "path": "../docs/SL_H2_arbitrary_deletion_proof.md",
+          "sha256": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686"
+        },
+        {
+          "path": "../docs/SL_h2_completeness_proof.tex",
+          "sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d"
+        },
+        {
+          "path": "../docs/SL_ratio_proof.tex",
+          "sha256": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21"
+        },
+        {
+          "path": "../docs/SL_inf_ratio_proof.tex",
+          "sha256": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b"
+        },
+        {
+          "path": "../docs/SL_bounded_direction_spectral_tail.md",
+          "sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein.md",
+          "sha256": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted.md",
+          "sha256": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md",
+          "sha256": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json",
+          "sha256": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+        }
+      ],
+      "scope": "Complex L2(-1,1), all integral representatives with arbitrary L2 Second, genuine derivatives/weak identities, unique Second class, and complex linear domain operator; no spectrum or fractional powers.",
+      "remaining_connections": [
+        "Reverse equivalence to classical weak H2, self-adjointness/positivity/closedness and actual inverse/power domains",
+        "Complete spectra, full and retained-family density, general-density eigenfunction existence, DN family, B11 spectral-tail and global extrema chains",
+        "No ND/G1 or uniqueness assumptions are promoted into unconditional results"
+      ],
+      "input_file_hashes": {
+        "../docs/SL_H2_arbitrary_deletion_proof.md": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686",
+        "../docs/SL_h2_completeness_proof.tex": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+        "../docs/SL_ratio_proof.tex": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21",
+        "../docs/SL_inf_ratio_proof.tex": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b",
+        "../docs/SL_bounded_direction_spectral_tail.md": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein.md": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted.md": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+      },
+      "verification_output": "../research/artifacts/lean-development-20261008/verification-v3/targets/krein-domain/run-manifest.json"
+    },
+    {
+      "id": "krein-polynomial",
+      "file": "SLVerified.lean",
+      "declaration": "SLVerified.krein_polynomial_root",
+      "expected_type": "(∀ (p : Polynomial ℝ), SL.AuditRound5.residues p = 0 → SL.Krein.polynomial_L2 p ∈ SL.Krein.domain) ∧\n    (∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.operator c (SL.Krein.polynomial_domain p hp) = SL.Krein.polynomial_L2 (-p.derivative.derivative + Polynomial.C c * p)) ∧\n    (SL.Krein.polynomial_L2 SL.AuditRound5.p_zero ∈ SL.Krein.domain ∧ SL.Krein.polynomial_L2 SL.AuditRound5.p_one ∈ SL.Krein.domain ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_even m) ∈ SL.Krein.domain) ∧ (∀ m : ℕ, 2 ≤ m → SL.Krein.polynomial_L2 (SL.AuditRound5.p_odd m) ∈ SL.Krein.domain)) ∧\n    (∀ (p : Polynomial ℝ) (hp : SL.AuditRound5.residues p = 0) (c : ℝ), SL.Krein.first_linear_inner (SL.Krein.operator c (SL.Krein.polynomial_domain p hp)) (SL.Krein.polynomial_L2 p) = (((∫ x in (-1 : ℝ)..1, (p.derivative.eval x) ^ 2) + c * (∫ x in (-1 : ℝ)..1, (p.eval x) ^ 2) - (p.eval 1 - p.eval (-1)) ^ 2 / 2 : ℝ) : ℂ))",
+      "universes": [],
+      "problem_ids": [
+        "A1",
+        "A11",
+        "A12"
+      ],
+      "source_versions": [
+        {
+          "path": "../docs/SL_H2_arbitrary_deletion_proof.md",
+          "sha256": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686"
+        },
+        {
+          "path": "../docs/SL_h2_completeness_proof.tex",
+          "sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d"
+        },
+        {
+          "path": "../docs/SL_ratio_proof.tex",
+          "sha256": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21"
+        },
+        {
+          "path": "../docs/SL_inf_ratio_proof.tex",
+          "sha256": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b"
+        },
+        {
+          "path": "../docs/SL_bounded_direction_spectral_tail.md",
+          "sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein.md",
+          "sha256": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted.md",
+          "sha256": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md",
+          "sha256": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json",
+          "sha256": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+        }
+      ],
+      "scope": "All real boundary polynomials including both complete original index families (m>=2) and p0,p1: genuine domain membership, actual Kc action and polynomial Green energy; not full Hilbert-space density.",
+      "remaining_connections": [
+        "Reverse equivalence to classical weak H2, self-adjointness/positivity/closedness and actual inverse/power domains",
+        "Complete spectra, full and retained-family density, general-density eigenfunction existence, DN family, B11 spectral-tail and global extrema chains",
+        "No ND/G1 or uniqueness assumptions are promoted into unconditional results"
+      ],
+      "input_file_hashes": {
+        "../docs/SL_H2_arbitrary_deletion_proof.md": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686",
+        "../docs/SL_h2_completeness_proof.tex": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+        "../docs/SL_ratio_proof.tex": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21",
+        "../docs/SL_inf_ratio_proof.tex": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b",
+        "../docs/SL_bounded_direction_spectral_tail.md": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein.md": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted.md": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+      },
+      "verification_output": "../research/artifacts/lean-development-20261008/verification-v3/targets/krein-polynomial/run-manifest.json"
+    },
+    {
+      "id": "weighted-dd",
+      "file": "SLVerified.lean",
+      "declaration": "SLVerified.weighted_dd_root",
+      "expected_type": "(∀ (Length : ℝ) (LengthPos : 0 < Length) (Rho : SL.Weighted.Density Length) (Value : ℝ → ℂ) (Regular : ContinuousOn Value (Set.Icc 0 Length)), ‖SL.Weighted.weighted_vector Rho Value Regular‖ ^ 2 = SL.Weighted.mass Length Rho.value Value) ∧\n    (∀ (Length Rho : ℝ) (Index : ℕ) (LengthPos : 0 < Length) (RhoPos : 0 < Rho) (IndexPos : 0 < Index), 0 < SL.Weighted.ConstantDD.frequency Length Rho Index ∧ SL.Weighted.ConstantDD.eigenvalue Length Rho Index = SL.Weighted.ConstantDD.frequency Length Rho Index ^ 2 ∧ SL.Weighted.NormalizedEigenfunction SL.Weighted.Boundary.DD Length (fun _ => Rho) (SL.Weighted.ConstantDD.eigenvalue Length Rho Index) (SL.Weighted.ConstantDD.solution Length Rho Index RhoPos) ∧ ‖SL.Weighted.ConstantDD.eigenvector Length Rho Index RhoPos‖ ^ 2 = 1)",
+      "universes": [],
+      "problem_ids": [
+        "B2",
+        "B11"
+      ],
+      "source_versions": [
+        {
+          "path": "../docs/SL_H2_arbitrary_deletion_proof.md",
+          "sha256": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686"
+        },
+        {
+          "path": "../docs/SL_h2_completeness_proof.tex",
+          "sha256": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d"
+        },
+        {
+          "path": "../docs/SL_ratio_proof.tex",
+          "sha256": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21"
+        },
+        {
+          "path": "../docs/SL_inf_ratio_proof.tex",
+          "sha256": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b"
+        },
+        {
+          "path": "../docs/SL_bounded_direction_spectral_tail.md",
+          "sha256": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein.md",
+          "sha256": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted.md",
+          "sha256": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md",
+          "sha256": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9"
+        },
+        {
+          "path": "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json",
+          "sha256": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+        }
+      ],
+      "scope": "Any bounded positive measurable density: continuous functions in weighted complex L2 with exact mass/norm bridge. Constant positive density, all Length>0 and one-based n>=1: positive omega, lambda=omega^2, actual normalized DD solution and unit quotient vector; no complete-spectrum assertion.",
+      "remaining_connections": [
+        "Reverse equivalence to classical weak H2, self-adjointness/positivity/closedness and actual inverse/power domains",
+        "Complete spectra, full and retained-family density, general-density eigenfunction existence, DN family, B11 spectral-tail and global extrema chains",
+        "No ND/G1 or uniqueness assumptions are promoted into unconditional results"
+      ],
+      "input_file_hashes": {
+        "../docs/SL_H2_arbitrary_deletion_proof.md": "507f220a264e03b52f61025853db93612ea79365f09eef3c787346811628b686",
+        "../docs/SL_h2_completeness_proof.tex": "f679150677f87217f4e6ab047163b7d32631ab6780b503db4fedac9c23b0b71d",
+        "../docs/SL_ratio_proof.tex": "5269b9f4d4433f65ef57a8143311d1ea41c23c46f4a2006b4f25a535f253af21",
+        "../docs/SL_inf_ratio_proof.tex": "6bdd1a2992498568cf4d5f7d22bddf92c3433ce53a19ee9bc2d955f684a1b80b",
+        "../docs/SL_bounded_direction_spectral_tail.md": "d5b0309d89650ec7322a45133d4c6794e7199a773b2bcebae7ffc99ee0d3868f",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein.md": "60b85fef565c6e1d6f35f432a39deaf2a6f9d7b48193fe040cd9f08dc3a96a95",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted.md": "575f232f9b712cd57ad3278b93b817885a5db0bea8a8eef83fc8cbec921e1f77",
+        "../research/artifacts/lean-development-20261008/source-contracts/weighted-l2.md": "3e173d2895a76b9604d661e1ca7e68c05532219bbc578322126d1b2d72af59a9",
+        "../research/artifacts/lean-development-20261008/source-contracts/krein-independent-types.json": "6c8e7e5a8089980f4802aa3dc5bda0db747a6ebdebb6aeb63ed47edd354c2725"
+      },
+      "verification_output": "../research/artifacts/lean-development-20261008/verification-v3/targets/weighted-dd/run-manifest.json"
+    }
+  ]
+}

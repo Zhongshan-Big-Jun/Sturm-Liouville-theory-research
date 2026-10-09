@@ -1,5 +1,17 @@
 # lean-proof
 
+<!-- lean-joint-current:start -->
+## 2026-10-09 真实模型与证明开发联合增量
+
+非空正式入口 [SLVerified](SLVerified.lean) 与独立预写合同 [targets](targets.json) 已由既有验证器通过三个真实合成根, 每根含 8/4/2 项. 10 个主题模块从 [区间复 L2](SL/Analysis/IntervalL2.lean) 到 [Krein 积分代表域](SL/Krein/IntegralDomain.lean)、复线性/任意 L2 Second 构造/正向弱导数及 [多项式 Green 能量](SL/Krein/PolynomialEnergy.lean), 另含 [任意可测正有界密度](SL/Weighted/Model.lean)、[加权 L2 范数桥](SL/Weighted/L2Bridge.lean) 和 [所有正常密度 DD 指标](SL/Weighted/ConstantDD.lean). 根是实际应用已证引理的合取证明, 没有新增研究公理.
+
+[机器汇总](../research/artifacts/lean-development-20261008/verification-v3/development-result.json) 为 exact=true; 最终插件 v4 入口已完成真实 trial/save 与全部 current recheck. 完整类型盲读、另人原文合同比对和软件修补审查均由全新上下文 APPROVED 并经既有接收. 它们的范围与真实 source pairing、重放命令见 [联调入口](../research/artifacts/lean-development-20261008/README.md). 机器 manifest 的执行时 not_reviewed 字段不重写, 后来的 [语义身份绑定](../research/artifacts/lean-development-20261008/semantic-review-v3/binding-results.json) 单独保存.
+
+`lake build SLVerified` 实跑成功; 原默认 `lake build` 实跑失败于原 B3 草稿第56行未闭合注释, 原 SL.+ 全范围和 53 旧源保留. [SLDrafts](SLDrafts.lean) 汇总 12 旧草稿且未单独构建. 本轮仅本地, 未提交/推送/安装或 canonical/工具库接收.
+
+当前尚未建立逆向经典弱 H2 等价、全复域能量、自伴正性、真逆与 Hc 幂域. 多项式能量仅覆盖实多项式复化. 加权模型保持任意正有界可测密度, 常 DD 解不建立一般密度谱存在或完整谱/排序/完备性; DN 显式族未证. 按这些依赖接 A10/A1/A12/A11 和 B11/谱比/谱隙, ND/G1/全局唯一性保持开放. 下方保留历史条目, 旧 Completeness 的 ContinuousOn 前提没有升级为一般 L2 结论.
+<!-- lean-joint-current:end -->
+
 ## 2026-09-26 第十二轮局部形式化
 
 新增 [AuditRound12.lean](SL/AuditRound12.lean): 对任意自然数 n（含0）和实矩阵，建立真实配对/递增坐标 Equiv、反转与交错符号、基的 Gram 矩阵、sqrt(2) 归一化、原 K 与 SKS 的镜像压缩交换、奇秩一项存留及 n=1 反例。22 个作者定义/缩写，10 个主要定理含九项根，完整导出59声明。独立完整盲读与另一个新会话的实际 Lean 执行/契约比对通过；公理闭包仅 propext、Classical.choice、Quot.sound。首轮含省略号的导出和 INCOMPLETE 回执保留。见[第十二轮报告](../reports/proof-audit-round12-20260926/REPORT.md)。

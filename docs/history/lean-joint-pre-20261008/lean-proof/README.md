@@ -1,0 +1,121 @@
+# lean-proof
+
+## 2026-09-26 第十二轮局部形式化
+
+新增 [AuditRound12.lean](SL/AuditRound12.lean): 对任意自然数 n（含0）和实矩阵，建立真实配对/递增坐标 Equiv、反转与交错符号、基的 Gram 矩阵、sqrt(2) 归一化、原 K 与 SKS 的镜像压缩交换、奇秩一项存留及 n=1 反例。22 个作者定义/缩写，10 个主要定理含九项根，完整导出59声明。独立完整盲读与另一个新会话的实际 Lean 执行/契约比对通过；公理闭包仅 propext、Classical.choice、Quot.sound。首轮含省略号的导出和 INCOMPLETE 回执保留。见[第十二轮报告](../reports/proof-audit-round12-20260926/REPORT.md)。
+
+压缩交换不以 K 对称或与反转对易为前提；不变子空间分块另需对易。新文件补上自身配对模型到递增坐标的桥梁，不追改旧源或宣称旧命题新增全模型认证。未形式化 Green/ODE、相位单调性、数值 Python、惯性指标/Sylvester 定律或全局 G1。原52份SL源和依赖保持原字节，未作全库Lake构建或canonical接收。
+
+## 2026-09-26 第十一轮局部形式化
+
+新增 [AuditRound11.lean](SL/AuditRound11.lean): 成对实坐标中的反射/和差变换、条件反对易交叉块和对易对角块、detJ=(-1)^n detC detD、仿射反射增量, 以及显式偶/奇边界矩阵的行列式与唯一实修正. 14个具名定理含13项显式合取根, 12个定义/缩写, 全部导出37项声明. 37项盲读与另一个全新会话的实际重编译、精确根/公理检查及语义比对分别通过. 根公理仅propext、Classical.choice、Quot.sound. 见[第十一轮报告](../reports/proof-audit-round11-20260926/REPORT.md).
+
+`Fin n ⊕ Fin n`的第二半按镜像配对顺序, 不是直接递增的物理接口索引; 此置换桥梁尚未形式化. JP=-PJ是条件. 边界矩阵由条目定义, 未形式化其多项式迹来源、复数桥梁、Sobolev核心、临界迹或余有限分类. 没有完整ODE/Python形式化、全库Lake构建或canonical接收; 原51份SL源保持原字节. 历史条目保留其当时范围.
+
+## 2026-09-25 第十轮局部形式化
+
+新增 [AuditRound10.lean](SL/AuditRound10.lean)：真实 Fin(2*n) 坐标反转、互补正交投影、仿射反射扰动，以及非负半轴上显式连续/严格单调/逐项括区前提下的唯一相位根与指标排序。22个具名定理、6个定义/缩写，完整导出38项声明（含辅助项），21项显式合取根。Windows PE Lean4.31.0的固定快照精确根检查、三个错误目标及其否定正证明、全声明盲读和另一个新会话的实际重编译/语义检验分别留证。根公理仅propext、Classical.choice、Quot.sound。见[第十轮报告](../reports/proof-audit-round10-20260925/REPORT.md)。
+
+相位条件仍是前提；指标可包含0且可跳号，逐项括区不可省略。未形式化Sturm ODE、相位提升、谱指标识别、比较界、浮点/区间误差、Python实现、物理接口可行性或全局极值。保留原50份SL源码及原环境字节，未运行全工程Lake build。首次根检查因开发目录变化被判stale，原记录不改写。
+
+
+Sturm-Liouville 理论研究项目的 Lean 4 + mathlib 形式化工程.
+每个文件在文件头注释中标明其形式化的源文档 (docs/SL_*.tex).
+
+**形式化总览与诚实状态**: 见 [STATUS.md](STATUS.md) (完整状态矩阵: 每个已证结果 -> 形式化状态).
+结论: 目前只形式化了已证结果的一部分 (H^2 完备性证明线完整, H^3 代数核心与解析 H1 矩上界 + FTC 胶水/H1 内积识别已绿, H^s 传输算子闭式与传输约化已绿, 稳定性门槛线 Thm 2.2/2.3 核心已绿, 三阶递推线闭式/固定点/比值/分类/变差常数(第三解)已绿, Krein c->0 退化极限多项式级与 n>=4 一般 Θ 增长已绿, 比值证明线平衡相位三角闭式 + 三段转移矩阵/secular 方程已绿, 固定 n 交替配置反射对称 (J-共轭) 已绿, 稠密性准则矩刻画代数核心 (DensenessCriteria) 已绿, 间距线 n=1 对称线代数核心 (SymlineTensionRatio: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 rho<=rho0, 含 gamma_0* 存在性/位置与 Lemma ys2 证书自由形式化, SymlineKeyLemma (P1/P2 对数导数界与 W0 引理证书自由代数核心) 与 SymlineUniqueZero (KEY LEMMA 装配核心: 唯一零点/符号结论, 端点符号/相位分支/导数恒等式为分析钩子) 已绿, 其余已证定理未开始).
+义务级审计 (会话 66-69): [audit_report.md](audit_report.md) + [verification.json](verification.json) (O1-O24).
+
+## 目录结构
+
+```
+lean-proof/
+├── README.md         本文件 (入口)
+├── STATUS.md         形式化状态总表 + 路线图
+├── audit_report.md   义务级审计报告 (lean-verify, 会话 66-69)
+├── verification.json 结构化验证裁决 (lean-verify schema)
+├── lakefile.lean     Lake 工程文件 (globs := #[`SL.+])
+├── lean-toolchain    Lean 4.31.0 / mathlib v4.31.0
+├── run-manifest.json 机器验证记录 (lean-verify 扫描 + lake build)
+└── SL/
+    ├── Basic.lean            命名空间骨架
+    ├── MomentGrowth.lean     增长引理 (H^2 证明线)
+    ├── KcPolynomial.lean     K_c 多项式系数恒等式 (H^2 证明线)
+    ├── StabilityGrowth.lean  定量增长引理, 一般系数, 任意线性有序域 (稳定性证明线)
+    ├── Stability.lean       稳定性定理 Thm 2.2 泛函核心 + 尖锐性 Thm 2.3 级数 (稳定性证明线)
+    ├── MomentRecurrence.lean 线性泛函矩递推 + 缩放引理, Q 上 (H^2 证明线)
+    ├── MomentBound.lean      L2 矩上界 |mu_k| <= ||g||_2 sqrt(2/(2k+1)) (H^2 证明线)
+    ├── Completeness.lean     H^2 完备性收尾: 湮灭 + Weierstrass 结论 (H^2 证明线)
+    ├── H3Completeness.lean   H^3 矩跳变/缩放/增长/湮灭代数核心 + 上界实例化 (H^3 证明线)
+    ├── H3MomentBound.lean    H^3 解析 H1 矩上界 (Cauchy-Schwarz, 积分形式) (H^3 证明线)
+    ├── H1Isometry.lean       FTC 胶水 + H1 内积识别 + 正定核心 (H^3 证明线)
+    ├── TransferOperator.lean K_c^{-r} x^k 传输算子闭式 + K_c 双射 (H^s 证明线)
+    ├── HsOrthogonalSystems.lean 传输约化: Q_n=K_c^{-r} P_n/K_n 正交与次数约化 + Legendre 闭式 + aSeq (H^s 证明线)
+    ├── BalancedPhase.lean    平衡相位三角闭式 (比值证明线)
+    ├── TransferMatrix.lean   三段转移矩阵乘积/secular 方程 + 平凡不等式 (比值证明线)
+    ├── ReflectionSymmetry.lean 固定 n 交替配置 J-共轭反射对称 F_n(pi-y)=F_n(y) (固定 n 比值线)
+    ├── DensenessCriteria.lean   稠密性准则矩刻画: 稀疏基正交性 <-> 矩条件 (稠密性准则线)
+
+    ├── ProjectionDensity.lean    DensBC O1 Theorem 1 抽象核: 连续满射把稠密集映到像中稠密集 + 正交投影密度 (DensBC O1)
+    ├── DensBCEmpty.lean       DensBC O1 Lemma 6.1 抽象核: 空候选族闭包张成空间为 {0}, 稠密则 V={0} (DensBC O1)    ├── SymlineTensionRatio.lean  对称线张力比代数核心: P1/P2 比较引理 + FeEquiv/ρ 等价 + 张力比链 + gamma_0*/Lemma ys2 (间距线 n=1)
+
+    ├── DensBC_O1_Scaffold.lean       DensBC O1 Theorems 2-5 + O1′ placeholder scaffold (-- SCAFFOLD, sorry)
+    ├── LeftDefDensity_Scaffold.lean  left-definite density L1′-L5 + O1′LD scaffold (-- SCAFFOLD, sorry)
+    ├── HsOperatorDomain_Scaffold.lean    H^s operator-domain scaffold (-- SCAFFOLD, sorry)
+    ├── MinDirectionAudit_Scaffold.lean  min-direction audit scaffold (-- SCAFFOLD, sorry)
+    ├── A6Root1RationalNoGo_Scaffold.lean   A6 root-1 rational no-go scaffold (-- SCAFFOLD, sorry)
+    ├── B3FixedN_Scaffold.lean               B3 fixed-n ratio structure + 2n-root count scaffold (-- SCAFFOLD, sorry)
+    ├── DensBCO1p3BandShift.lean            DensBC O1' banded-shift H_shift(m,lambda) scaffold (-- SCAFFOLD, sorry)
+    ├── DensBCO1p3WeightedShift_Scaffold.lean DensBC O1' weighted-shift H_{beta,lambda} scaffold (-- SCAFFOLD, sorry)
+    ├── O1pLD_L2_Scaffold.lean            O1'LD L^2-descent scaffold (-- SCAFFOLD, sorry)
+    ├── B3GeneralAlternatingChebyshev_Scaffold.lean B3 general alternating Chebyshev scaffold (-- SCAFFOLD, sorry)
+    ├── formalization_progress.md      scaffold register    ├── SymlineKeyLemma.lean     对称线 KEY LEMMA 代数核心: P1/P2 对数导数界 + W0 引理 + gamma_0(q) 单调 (间距线 n=1)
+    ├── SymlineUniqueZero.lean    对称线 KEY LEMMA 装配核心: 唯一零点/符号结论 + 端点代数核心 (间距线 n=1)
+    ├── ThirdOrder.lean       三阶递推一般框架: 固定点等价 + 精确降阶 (三阶递推线)
+    ├── ThirdOrderClosedForms.lean  偶/奇闭式验证 + 固定点轨迹 + 比值恒等式 (三阶递推线)
+    ├── ThirdOrderClassification.lean  Theorem 1 反向分类: 轨迹 => beta in {1,-1}/{3,1} (三阶递推线)
+    ├── ThirdOrderMinimal.lean   变差常数/第三解: W/sumW/sInd + 定理 5 代数核心 + 定理 3 反向 (三阶递推线)
+    ├── KreinDegenerateLimit.lean  Krein c->0 退化极限 (多项式级): radical/低模范数/发散/span 分解 (Krein 极限线)
+    └── KreinHighGrowth.lean       Krein n>=4 一般 Θ 增长: aSeq 上下界 + ||K_n||^2 -> +infinity (Krein 极限线)
+```
+## 构建与验证
+
+```text
+lake build                          # 构建整个包 (首跑需编译 mathlib)
+lake env lean SL/<File>.lean        # 单文件检查
+python <lean-verify>/scripts/verify_lean_project.py --project . --build
+                                    # sorry/axiom 扫描 + 构建 (输出 run-manifest.json)
+```
+
+## 命名空间
+
+所有文件位于 `SL` 命名空间, 子命名空间按主题 (MomentGrowth / KcPolynomial /
+StabilityGrowth / Stability / MomentRecurrence / MomentBound / Completeness /
+H3Completeness / H3MomentBound / H1Isometry / Transfer / HsOrthogonalSystems / BalancedPhase / ThirdOrder /
+ThirdOrderClosedForms / ThirdOrderClassification / ThirdOrderMinimal / TransferMatrix /
+ReflectionSymmetry / DensenessCriteria / ProjectionDensity / DensBCEmpty /  SymlineTensionRatio / SymlineKeyLemma / SymlineUniqueZero / KreinDegenerateLimit / KreinHighGrowth).
+新文件保持同名命名空间, 更新 STATUS.md 状态矩阵.
+
+## 规则
+
+- 只形式化源文档中严格证明的结果; 数值证据/猜想不得作为定理声明.
+- 每个文件头注明源文档与覆盖范围; 修改文件后重跑 verify + 更新 STATUS.md.
+- 不引入 `sorry`/`admit`/`axiom`; 引入外部定理 (文献结果) 需在注释中登记来源与依赖.
+- 泛型引理 (如 StabilityGrowth) 使用 mathlib v4.31 的非捆绑有序域组合
+  `[Field K] [LinearOrder K] [IsStrictOrderedRing K]` (LinearOrderedField 已弃用).
+- Windows 下避免 PowerShell `Set-Content -Encoding UTF8` 写入文件 (会加 BOM, lean 报
+  "expected token"); 用 Python `write_text(..., encoding='utf-8')` 或
+  `[System.IO.File]::WriteAllText(..., UTF8Encoding($false))`.
+
+## Scaffolds
+
+- Partial/structural results have `-- SCAFFOLD` Lean files with `sorry`; they are NOT formally verified.
+- A6 root-1 rational no-go scaffold: `SL/A6Root1RationalNoGo_Scaffold.lean`.
+- B3 fixed-n ratio structure / 2n-root count scaffold: `SL/B3FixedN_Scaffold.lean`.
+- DensBC O1' banded-shift scaffold: `SL/DensBCO1p3BandShift.lean`.
+- DensBC O1' weighted-shift scaffold: `SL/DensBCO1p3WeightedShift_Scaffold.lean`.
+- O1'LD L^2-descent scaffold: `SL/O1pLD_L2_Scaffold.lean`.
+- B3 general alternating Chebyshev scaffold: `SL/B3GeneralAlternatingChebyshev_Scaffold.lean`.
+- n=2 symmetric INF odd-sector first-zero scaffold: `SL/KpOddFirstZero_Scaffold.lean`.
+- DensBC O1' banded-shift extension scaffold: `SL/DensBCO1p3BandShift.lean` (stable H_shift(m,lambda), bandwidth m>=1).
+- See `formalization_progress.md`.

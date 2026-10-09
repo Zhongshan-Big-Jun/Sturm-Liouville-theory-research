@@ -1,0 +1,93 @@
+{
+  "nodes": [
+    {
+      "id": "krein-value-genuine-derivative",
+      "declaration": "SL.Krein.IntegralRepresentative.value_has_deriv",
+      "expected_type": "∀ (R : SL.Krein.IntegralRepresentative) {x : ℝ}, x ∈ Set.Ioo (-1) 1 → HasDerivAt R.Value (R.First x) x",
+      "semantic_sha256": "bc9b832c0292683290a4b6330f3b5c5caa9a79c1c1bcd6b3a4f4b57099af5385",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-second-genuine-ae-derivative",
+      "declaration": "SL.Krein.IntegralRepresentative.first_has_deriv_ae",
+      "expected_type": "∀ (R : SL.Krein.IntegralRepresentative), ∀ᵐ x ∂SL.Krein.intervalMeasure, HasDerivAt R.First (R.Second x) x",
+      "semantic_sha256": "a6bf683676ff86829095e8d83045540caa2eb4a09868c80e275db69f29a5ae91",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-second-class-unique",
+      "declaration": "SL.Krein.IntegralRepresentative.second_eq_ae",
+      "expected_type": "∀ (R S : SL.Krein.IntegralRepresentative), R.to_L2 = S.to_L2 → R.Second =ᵐ[SL.Krein.intervalMeasure] S.Second",
+      "semantic_sha256": "8c1e8047ee88a08e76f3141a163094ce46ef3ddc5d66a7a8325f8ed0556df2c5",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-operator-additive",
+      "declaration": "SL.Krein.operator_linear_add",
+      "expected_type": "∀ (c : ℝ) (F G : SL.Krein.domain_submodule), SL.Krein.operator_linear c (F + G) = SL.Krein.operator_linear c F + SL.Krein.operator_linear c G",
+      "semantic_sha256": "210879bbdafa7d5e1971d15095ddaafba964c24f02d34b342c75e9442b5f6732",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-operator-complex-linear",
+      "declaration": "SL.Krein.operator_linear_smul",
+      "expected_type": "∀ (c : ℝ) (a : ℂ) (F : SL.Krein.domain_submodule), SL.Krein.operator_linear c (a • F) = a • SL.Krein.operator_linear c F",
+      "semantic_sha256": "0df217beae2ae30860126d9101f77782e05d27593508376f3dee81f16d734062",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-arbitrary-L2-second-construction",
+      "declaration": "SL.Krein.from_l2_second_initial",
+      "expected_type": "∀ (F : ℝ → ℂ) (HF : MeasureTheory.MemLp F 2 SL.Krein.intervalMeasure) (a b : ℂ), (SL.Krein.from_l2_second F HF a b).Value (-1) = b ∧ (SL.Krein.from_l2_second F HF a b).First (-1) = a ∧ (SL.Krein.from_l2_second F HF a b).Second = F",
+      "semantic_sha256": "59225614e18e436ebd7086872ef97e804768ec239973e821cac2b0053ff0b800",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-integral-representative-parameterization",
+      "declaration": "SL.Krein.representative_parameterization",
+      "expected_type": "∀ (R : SL.Krein.IntegralRepresentative), Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).Value R.Value (Set.Icc (-1) 1) ∧ Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).First R.First (Set.Icc (-1) 1)",
+      "semantic_sha256": "563043e6a82d77bcd1afa36c8cfc23b7627a120e0a89bc4024e6e9a7551b7fd7",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-weak-first-and-second-derivatives",
+      "declaration": "SL.Krein.IntegralRepresentative.weak_derivative_pair",
+      "expected_type": "∀ (R : SL.Krein.IntegralRepresentative) (Q : ℂ →L[ℝ] ℝ) (Phi : ℝ → ℝ), ContDiff ℝ 1 Phi → Phi (-1) = 0 → Phi 1 = 0 → (∫ x in (-1 : ℝ)..1, Q (R.Value x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.First x) * Phi x) ∧ (∫ x in (-1 : ℝ)..1, Q (R.First x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.Second x) * Phi x)",
+      "semantic_sha256": "0949bbbf08b3a778ab7e5a2f6467e9558433eaa3130ec6203a2baec336b93e95",
+      "identity_scope": "independently written statement text only; no standalone exact evidence requested",
+      "source_lemma": true
+    },
+    {
+      "id": "krein-domain",
+      "declaration": "SLVerified.krein_domain_root",
+      "expected_type": "(∀ (R : SL.Krein.IntegralRepresentative) {x : ℝ}, x ∈ Set.Ioo (-1) 1 → HasDerivAt R.Value (R.First x) x) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative), ∀ᵐ x ∂SL.Krein.intervalMeasure, HasDerivAt R.First (R.Second x) x) ∧\n    (∀ (R S : SL.Krein.IntegralRepresentative), R.to_L2 = S.to_L2 → R.Second =ᵐ[SL.Krein.intervalMeasure] S.Second) ∧\n    (∀ (c : ℝ) (F G : SL.Krein.domain_submodule), SL.Krein.operator_linear c (F + G) = SL.Krein.operator_linear c F + SL.Krein.operator_linear c G) ∧\n    (∀ (c : ℝ) (a : ℂ) (F : SL.Krein.domain_submodule), SL.Krein.operator_linear c (a • F) = a • SL.Krein.operator_linear c F) ∧\n    (∀ (F : ℝ → ℂ) (HF : MeasureTheory.MemLp F 2 SL.Krein.intervalMeasure) (a b : ℂ), (SL.Krein.from_l2_second F HF a b).Value (-1) = b ∧ (SL.Krein.from_l2_second F HF a b).First (-1) = a ∧ (SL.Krein.from_l2_second F HF a b).Second = F) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative), Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).Value R.Value (Set.Icc (-1) 1) ∧ Set.EqOn (SL.Krein.from_l2_second R.Second R.SecondMemLp (R.First (-1)) (R.Value (-1))).First R.First (Set.Icc (-1) 1)) ∧\n    (∀ (R : SL.Krein.IntegralRepresentative) (Q : ℂ →L[ℝ] ℝ) (Phi : ℝ → ℝ), ContDiff ℝ 1 Phi → Phi (-1) = 0 → Phi 1 = 0 → (∫ x in (-1 : ℝ)..1, Q (R.Value x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.First x) * Phi x) ∧ (∫ x in (-1 : ℝ)..1, Q (R.First x) * deriv Phi x) = -(∫ x in (-1 : ℝ)..1, Q (R.Second x) * Phi x))",
+      "semantic_sha256": "45ef92a63929b8a7fe92f0c53995c12caa7cfc46dd9c93d035b3abb47c1f7753",
+      "routes": [
+        {
+          "id": "conjunction-of-existing-lemmas",
+          "statement_sha256": "45ef92a63929b8a7fe92f0c53995c12caa7cfc46dd9c93d035b3abb47c1f7753",
+          "dependencies": [
+            "krein-value-genuine-derivative",
+            "krein-second-genuine-ae-derivative",
+            "krein-second-class-unique",
+            "krein-operator-additive",
+            "krein-operator-complex-linear",
+            "krein-arbitrary-L2-second-construction",
+            "krein-integral-representative-parameterization",
+            "krein-weak-first-and-second-derivatives"
+          ],
+          "application_source": "lean-proof/SLVerified.lean"
+        }
+      ],
+      "materialized_source": "lean-proof/SLVerified.lean"
+    }
+  ],
+  "scope": "Dependency decomposition and actual application source. Leaf identities do not imply proof evidence. The saved compiled root alone closes the requested formal declaration."
+}

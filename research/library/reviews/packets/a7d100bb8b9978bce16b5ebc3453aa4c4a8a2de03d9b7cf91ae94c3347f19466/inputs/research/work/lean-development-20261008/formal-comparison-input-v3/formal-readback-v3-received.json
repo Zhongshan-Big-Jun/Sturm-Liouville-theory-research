@@ -1,0 +1,83 @@
+{
+  "verdict": "APPROVED",
+  "packet_sha256": "10f022551c373aeaec0ea99e591ec97ff6f63791d98ae827546dd153ac6f5ba8",
+  "reviewer_id": "/root/formal_readback_v3",
+  "bindings": {
+    "research/work/lean-development-20261008/formal-readback-input-v3/environment.json": "7c1699fef6b2c5e65f9fcdabcd45e6e3768af9f39dc8697980c8adeaaef403a5",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/complete_type_view.py": "fb2e75b58a3b3c686d7af90ee78b1afc9ce8ef2b054660d643ac7cf2a4e9c57f",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/krein-domain.json": "9c764b2f26f179e26e1b4afa9df5a83b37372b1b2556a2ddec0fe1206ba2c73b",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/krein-polynomial.json": "5bdb97c0047d88d594e3414005633bb0b989074a303eba46b042c37d33282179",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/weighted-dd.json": "7ad92eb27178a7c88fa7ac3edcdf4faa0d724cab68fa21905505b50973337259",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Analysis/IntervalL2.lean": "0ad515bf062e6dcc56ccf8ddb02620497ceeb4121117b743268d5b130adfb60c",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/AuditRound5.lean": "72f6f406f4cd12697b76f568664f9dcc2064feae2427b407f56cb6e9b38ae241",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/IntegralConstruction.lean": "cf1ec63db63e46cd4f4e71f7113e3b5e7ad0d3ed5de62db90619ff5cc546d881",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/IntegralDomain.lean": "6c9d292cb5b4bdc836acbef7ecacc32a53f3d9277ee24c4d457ccfb9a660713e",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/LinearDomain.lean": "e54aa86308d2d7b43daba85c49d8b3c9e5073885cff9f80908e59abd4721a09a",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/PolynomialBridge.lean": "421aa2028f3199391235301961d72a896d34c3a239f8fbb042be5d26a1ab5958",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/PolynomialEnergy.lean": "248f09a831ccda818c9b875f0a9ee5d31270e40988166ed7e740960e7a07d2f9",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/WeakDerivative.lean": "7d2d9bf7b8d69fbe117d947c49aaeb35e1845d2c2a57a3a3e1e2a3a7e49bead9",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/ConstantDD.lean": "d16f80ae4d1f099644944a60492be0800886d51cb93c62738b26e748121d9853",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/L2Bridge.lean": "7d1eb0836c47b51ddcb6763d0bb19b7b25318c44239f791d924eb54656ab9f90",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/Model.lean": "e1305b717566bfcd400ceefdaf6017be387d9b1b755251f21151dd6cd9d3710d",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SLVerified.lean": "66066713d627133841d55cd9493af2193b547f60afc76abb6631cf36231118d9",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lake-manifest.json": "57c82d09c3f77369b970cbe731234298f22d67d5f0e76c93436a72792cecd041",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lakefile.lean": "ba0667cbf4cc02075a9547ad5d28e77243f5d2cc81fd8a5e7966fa8bb32af09f",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lean-toolchain": "e0a7032ab1976a37a3e1e823816b4f490d462c1e864b21e1999c33cdac76e263",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/krein-domain.json": "784c8037f22563f1424e97feeb5ca8c209d4406c941e605a9ca57b132dd6cf99",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/krein-polynomial.json": "d44dd4599347e8cb886682e86fa8f17a7a53109304d369af2579f35db37d606a",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/weighted-dd.json": "e0b2ca120ecd5ca11d4b02e68bbf1531de2dfb00a64275bc03a836e3cee50ee2"
+  },
+  "claims": [
+    {
+      "id": "krein-domain",
+      "reason": "完整实际类型可读. 独立重建括号共享视图得到与 actual_type 逐字符相同的文本, 文本 SHA256 与视图一致, 未发现省略符. 八个合取分支的全部数学量词和条件已读回, 包括隐式实变量 x, 任意实参数 c, 任意复标量 a, MemLp 证明参数, 连续实线性映射 Q 和全局 C1 测试函数 Phi. 点态导数仅在开区间断言, 二阶导数身份仅为区间测度下几乎处处身份, 重构一致性仅覆盖闭区间. 未发现本次盲读范围内的剩余问题.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "krein-polynomial",
+      "reason": "实际类型及所用定义完整, 共享视图独立重建与 actual_type 完全一致且无省略符. 四个合取分支限定于实系数多项式, 端点残差为零, 任意实参数 c, 高阶族的自然数指标 m≥2. 已明确算子结果属于 L2 而非再次属于算子域, 能量恒等式使用第一变量线性的复内积并保留负端点项. 本次范围内没有缺失量词或不明确的定义.",
+      "verdict": "APPROVED"
+    },
+    {
+      "id": "weighted-dd",
+      "reason": "两个合取分支及其实际类型完整, 共享视图独立重建与 actual_type 完全一致且无省略符. 一般范数桥量化所有正长度、有界且几乎处处有正下界的可测密度及闭区间连续复函数. 常密度分支量化所有正长度、正常密度及正自然数指标, 明确排除零指标. 已展开 NormalizedEigenfunction 和 Solution 的积分方程、DD 条件及质量归一化含义. 没有将命名的 eigenvector 读成已证明完整谱或某个自伴 Hilbert 空间算子的特征向量关系.",
+      "verdict": "APPROVED"
+    }
+  ],
+  "checked_paths": [
+    "research/work/lean-development-20261008/formal-readback-input-v3/environment.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/complete_type_view.py",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/krein-domain.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/krein-polynomial.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/presentation/weighted-dd.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Analysis/IntervalL2.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/AuditRound5.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/IntegralConstruction.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/IntegralDomain.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/LinearDomain.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/PolynomialBridge.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/PolynomialEnergy.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Krein/WeakDerivative.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/ConstantDD.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/L2Bridge.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SL/Weighted/Model.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/SLVerified.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lake-manifest.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lakefile.lean",
+    "research/work/lean-development-20261008/formal-readback-input-v3/source/lean-toolchain",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/krein-domain.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/krein-polynomial.json",
+    "research/work/lean-development-20261008/formal-readback-input-v3/types/weighted-dd.json"
+  ],
+  "kind": "formal-readback",
+  "trust": "COORDINATOR_ATTESTED_TOOL_TRANSCRIPT",
+  "bundle": "research/library/reviews/runs/10f022551c373aeaec0ea99e591ec97ff6f63791d98ae827546dd153ac6f5ba8-task-f1301fb9b3c9461217e8b91e9fdedb505e518bc82046304eba6f28313df713a4",
+  "formalization": "NOT_INFERRED_FROM_REVIEW_APPROVAL",
+  "limitations": [
+    "本次只完成 formal-readback: 翻译冻结声明及相关定义, 未读取或比较作者意图、expected type 或未供应的审查结论.",
+    "23 份输入快照的 SHA256 均与 packet.json 一致; environment.json 中供应源码的哈希也均与相应快照一致. 三份完整类型的括号共享视图均经过独立无损重建检查. 这些检查不替代 Lean 内核证明检查.",
+    "未重新运行 Lean 或 Lake. 包内没有完整严格机器验收 manifest、提取程序及全部已加载依赖源码, 因而未独立重验编译器提取的来源身份、完整导入闭包或传递公理审计. 三份类型摘录均列出 propext、Classical.choice、Quot.sound; 这里只报告该供应字段.",
+    "环境声明部分源码仅移除了注释. 未供应原始源码字节, 因而无法独立验证该转换确实只改变注释.",
+    "本结论不建立积分代表与独立 Sobolev H2 定义的双向等价、自伴性、算子真幂域、完整谱、谱完备性或其他未列入三个根声明的结果."
+  ]
+}

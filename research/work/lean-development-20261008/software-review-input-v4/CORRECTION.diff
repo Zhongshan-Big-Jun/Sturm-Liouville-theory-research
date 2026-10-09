@@ -1,0 +1,672 @@
+--- baseline-v2/plugins/lean-verify/.codex-plugin/plugin.json
++++ source/plugins/lean-verify/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "lean-verify",
+-  "version": "2.1.1",
++  "version": "2.1.2",
+   "description": "Develop Lean proofs with local lemma discovery, actual interface probes and fresh candidate feedback, then use exact declaration, transitive axiom and intended-scope verification with durable research jobs.",
+   "author": {
+     "name": "xsoc1"
+--- baseline-v2/plugins/lean-verify/scripts/LeanVerifyProbe.lean.template
++++ source/plugins/lean-verify/scripts/LeanVerifyProbe.lean.template
+@@ -104,8 +104,14 @@
+ 	let Used := dependency_closure Environment [ActualName]
+ 	let SemanticUsed := semantic_closure Environment Info.type.getUsedConstants.toList
+ 	let FullType ← liftTermElabM <| withOptions
+-		(fun Options => Options.setBool `pp.all true |>.setBool `pp.universes true |>.setBool `pp.explicit true)
+-		(do return (← ppExpr Info.type).pretty)
++		(fun Options => Options.setBool `pp.all true |>.setBool `pp.universes true |>.setBool `pp.explicit true
++			|>.setBool `pp.deepTerms true |>.setBool `pp.proofs true
++			|>.set `pp.maxSteps (10000000 : Nat) |>.set `maxRecDepth (8192 : Nat))
++		(do
++			let Printed := (← ppExpr Info.type).pretty
++			if Printed.contains '⋯' then
++				throwError "type pretty-printing omitted terms; complete readable type unavailable"
++			return Printed)
+ 	let mut Comparison := Json.mkObj [("status", toJson "not_requested")]
+ 	let mut ExpectedStatement := Json.null
+ 	if let some ExpectedName := ExpectedName then
+--- baseline-v2/plugins/lean-verify/scripts/lean_develop.py
++++ source/plugins/lean-verify/scripts/lean_develop.py
+@@ -21,13 +21,14 @@
+ 
+ from lean_feedback import FeedbackSession, ProtocolFailure
+ from lean_runtime import LeanRuntime, aggregate_results, background_options, full_output, hash_bytes, hash_json, mask_lean_source, now_iso, result_status, sha256_file, source_snapshot, tool_path, write_json
+-from lean_evidence import recheck_manifest
++from lean_evidence import TOOL_NAMES, recheck_manifest
+ from lean_routes import evaluate_routes
+ from verify_lean_project import compile_local_tree, make_parser as verifier_parser, source_imports, valid_name, verify_project
+ 
+ 
+ SCRIPT_DIR = Path(__file__).resolve().parent
+-DEVELOP_TOOLS = ("lean_develop.py", "lean_feedback.py", "lean_runtime.py", "verify_lean_project.py", "lean_evidence.py", "lean_routes.py", "LeanVerifyProbe.lean.template")
++DEVELOP_TOOLS = tuple(dict.fromkeys(("lean_develop.py", "lean_feedback.py", "lean_routes.py", *TOOL_NAMES)))
++TYPE_PRINT_OPTIONS = "Options.setBool `pp.all true |>.setBool `pp.universes true |>.setBool `pp.explicit true |>.setBool `pp.deepTerms true |>.setBool `pp.proofs true |>.set `pp.maxSteps (10000000 : Nat) |>.set `maxRecDepth (8192 : Nat)"
+ DECLARATION = re.compile(r"\b(theorem|lemma|def|abbrev|opaque|axiom|structure|inductive)\s+([\w.']+)", re.UNICODE)
+ 
+ 
+@@ -44,9 +45,16 @@
+ def project_file(Root, Name):
+ 	Root = Path(Root).resolve()
+ 	FilePath = (Root / Name).resolve()
+-	if(not FilePath.is_relative_to(Root) or FilePath.is_relative_to(Root / ".lake") or FilePath.suffix != ".lean"):
+-		raise ValueError("candidate destination must be a project-local Lean source outside .lake")
++	if(not FilePath.is_relative_to(Root) or any(FilePath.is_relative_to(Root / Name) for Name in (".lake", ".git", ".lean-verify", "__pycache__")) or FilePath.suffix != ".lean"):
++		raise ValueError("candidate destination must be a project-local Lean source outside excluded generated/package directories")
+ 	return FilePath
++
++
++def development_layout(Root, Output):
++	Root, Output = Path(Root).resolve(), Path(Output).resolve()
++	if(Output.is_relative_to(Root) or Root.is_relative_to(Output)):
++		raise ValueError("development output must be outside the project and cannot be its ancestor; in-project output is unsupported")
++	return Root, Output
+ 
+ 
+ def tool_hashes():
+@@ -201,6 +209,7 @@
+ 
+ class DevelopSession:
+ 	def __init__(self, Runtime, Timeout=60, Backend="auto"):
++		development_layout(Runtime.Root, Runtime.LogDir)
+ 		self.LoadedToolHashes = dict(LOADED_TOOL_HASHES)
+ 		self.require_current_tools()
+ 		self.Runtime = Runtime
+@@ -212,6 +221,8 @@
+ 		self.Feedback.close()
+ 
+ 	def require_current_tools(self):
++		if(hasattr(self, "Runtime")):
++			development_layout(self.Runtime.Root, self.Runtime.LogDir)
+ 		if(tool_hashes() != self.LoadedToolHashes):
+ 			raise ValueError("development code changed since process load; start a new Python process (LSP restart does not reload Python)")
+ 
+@@ -346,7 +357,7 @@
+ 		Code = "import Lean\n" + "".join("import " + Name + "\n" for Name in Imports)
+ 		Code += "open Lean Elab Command Meta\n"
+ 		for Name in Names:
+-			Code += ("run_cmd do\n  let Environment := (← getEnv).setExporting false\n  let Name := `" + Name + "\n  let some Info := Environment.checked.get.find? Name | throwError \"requested declaration is absent\"\n  let FullType ← liftTermElabM <| withOptions (fun Options => Options.setBool `pp.all true |>.setBool `pp.universes true |>.setBool `pp.explicit true) (do return (← ppExpr Info.type).pretty)\n  let Module := (Environment.getModuleIdxFor? Name).bind fun Index => Environment.header.moduleNames[Index.toNat]?\n  IO.println (\"LEAN_DEVELOP_DECL \" ++ (Json.mkObj [(\"name\", toJson Name.toString), (\"actual_type\", toJson FullType), (\"module\", toJson (Module.map Lean.Name.toString)), (\"universes\", toJson (Info.levelParams.map Lean.Name.toString))]).compress)\n")
++			Code += ("run_cmd do\n  let Environment := (← getEnv).setExporting false\n  let Name := `" + Name + "\n  let some Info := Environment.checked.get.find? Name | throwError \"requested declaration is absent\"\n  let FullType ← liftTermElabM <| withOptions (fun Options => " + TYPE_PRINT_OPTIONS + ") (do\n    let Printed := (← ppExpr Info.type).pretty\n    if Printed.contains '⋯' then throwError \"type pretty-printing omitted terms; complete readable type unavailable\"\n    return Printed)\n  let Module := (Environment.getModuleIdxFor? Name).bind fun Index => Environment.header.moduleNames[Index.toNat]?\n  IO.println (\"LEAN_DEVELOP_DECL \" ++ (Json.mkObj [(\"name\", toJson Name.toString), (\"actual_type\", toJson FullType), (\"module\", toJson (Module.map Lean.Name.toString)), (\"universes\", toJson (Info.levelParams.map Lean.Name.toString))]).compress)\n")
+ 		Source.write_text(Code, encoding="utf-8", newline="\n")
+ 		Commands = self.prepare_imports(Source, Directory)
+ 		if(aggregate_results(Commands)["status"] == "passed"):
+@@ -356,7 +367,8 @@
+ 			for Line in full_output(Commands[-1]).splitlines():
+ 				if(Line.startswith("LEAN_DEVELOP_DECL ")):
+ 					Declarations.append(json.loads(Line[len("LEAN_DEVELOP_DECL "):]))
+-		Result = {"status": "checked" if aggregate_results(Commands)["status"] == "passed" and len(Declarations) == len(Names) else "incomplete", "declarations": Declarations, "probe_source": str(Source), "commands": Commands, "environment_sha256": self.Runtime.environment()["sha256"], "exact_root_passed": False, "scope": "actual installed-environment type/interface query; not a proof"}
++		Readable = all(isinstance(Item.get("actual_type"), str) and Item["actual_type"].strip() and "⋯" not in Item["actual_type"] for Item in Declarations)
++		Result = {"status": "checked" if aggregate_results(Commands)["status"] == "passed" and len(Declarations) == len(Names) and Readable else "incomplete", "declarations": Declarations, "probe_source": str(Source), "commands": Commands, "environment_sha256": self.Runtime.environment()["sha256"], "exact_root_passed": False, "scope": "actual installed-environment type/interface query; not a proof"}
+ 		if(tool_hashes() != self.LoadedToolHashes):
+ 			Result.update(status="incomplete", reason="development code changed during the interface probe; start a new Python process")
+ 		write_json(Directory / "probe.json", Result)
+@@ -365,6 +377,7 @@
+ 
+ def batch_input_snapshot(Runtime, ListPath, Targets):
+ 	"""Observed declared inputs/version, not an OS-wide filesystem transaction."""
++	development_layout(Runtime.Root, Runtime.LogDir)
+ 	Runtime.Environment = None
+ 	Environment = Runtime.environment()
+ 	Paths = {Path(ListPath).resolve()}
+@@ -375,14 +388,14 @@
+ 		Paths.update((Runtime.Root / Name).resolve() for Name in Bindings)
+ 		if(Item.get("semantic_audit")):
+ 			Paths.add((Runtime.Root / Item["semantic_audit"]).resolve())
+-	return {"environment_sha256": Environment["sha256"], "tool_hashes": tool_hashes(),
+-		"bound_files": {str(PathValue): sha256_file(PathValue) if PathValue.is_file() else None for PathValue in sorted(Paths)},
+-		"sources": source_snapshot(Runtime.Root, [Runtime.LogDir])}
+-
+-
+-def batch_evidence_snapshot(Rows):
++	Files = {str(PathValue): sha256_file(PathValue) if PathValue.is_file() else None for PathValue in sorted(Paths)}
++	Sources = source_snapshot(Runtime.Root)
++	return {"environment_sha256": Environment["sha256"], "bound_files": Files, "sources": Sources, "tool_hashes": tool_hashes()}
++
++
++def batch_evidence_snapshot(Rows, ExtraPaths=()):
+ 	"""Keep already listed evidence bytes stable across the terminal recheck pass."""
+-	Paths = set()
++	Paths = {Path(Name) for Name in ExtraPaths}
+ 	for Row in Rows:
+ 		ManifestPath = Path(Row["manifest"])
+ 		Paths.add(ManifestPath)
+@@ -403,7 +416,7 @@
+ 
+ 
+ def verify_targets(Arguments):
+-	Root, Output = Path(Arguments.project).resolve(), Path(Arguments.output).resolve()
++	Root, Output = development_layout(Arguments.project, Arguments.output)
+ 	Targets, ListHash = load_targets(Root, Arguments.targets, Arguments.target_id)
+ 	ListPath = Path(Arguments.targets).resolve()
+ 	Runtime = LeanRuntime(Root, Output, Arguments.lean, Arguments.lake, Arguments.direct)
+@@ -452,18 +465,18 @@
+ 
+ 
+ def start_verification(Arguments):
+-	Root = Path(Arguments.project).resolve()
++	Root, Output = development_layout(Arguments.project, Arguments.output)
+ 	Targets, _ = load_targets(Root, Arguments.targets, Arguments.target_id)
+ 	ListPath = Path(Arguments.targets).resolve()
+ 	if(not ListPath.is_relative_to(Root)):
+ 		raise ValueError("durable verification requires a project-local target list so the existing workflow can bind it")
+-	Command = [sys.executable, "-X", "utf8", str(Path(__file__).resolve()), "--project", str(Root), "--output", str(Path(Arguments.output).resolve()), "--lean", Arguments.lean, "--lake", Arguments.lake, "--timeout", str(Arguments.timeout)]
++	Command = [sys.executable, "-X", "utf8", str(Path(__file__).resolve()), "--project", str(Root), "--output", str(Output), "--lean", Arguments.lean, "--lake", Arguments.lake, "--timeout", str(Arguments.timeout)]
+ 	if(Arguments.direct):
+ 		Command.append("--direct")
+ 	Command += ["verify", "--targets", str(ListPath)]
+ 	if(Arguments.target_id):
+ 		Command += ["--target-id", Arguments.target_id]
+-	Inputs = list(source_snapshot(Root, [Arguments.output])) + [str(ListPath.relative_to(Root))]
++	Inputs = list(source_snapshot(Root)) + [str(ListPath.relative_to(Root))]
+ 	for _, _, Item in Targets:
+ 		if(Item.get("semantic_audit")):
+ 			Inputs.append(Item["semantic_audit"])
+@@ -473,30 +486,47 @@
+ 
+ 
+ def verification_status(Arguments):
+-	Result = workflow_module().job_status(Arguments.project, Arguments.job_id)
++	Root, Output = development_layout(Arguments.project, Arguments.output)
++	Workflow = workflow_module()
++	Result = Workflow.job_status(Root, Arguments.job_id)
+ 	Result["exact_root_passed"] = False
+-	ManifestPath = Path(Arguments.output).resolve() / "development-result.json"
++	ManifestPath = Output / "development-result.json"
+ 	if(Result["state"] == "SUCCEEDED" and Result.get("recorded_inputs_match_current") and ManifestPath.is_file()):
+-		Summary = json.loads(ManifestPath.read_text(encoding="utf-8"))
++		SummaryRaw = ManifestPath.read_bytes()
++		Summary = json.loads(SummaryRaw)
+ 		Command = Result.get("command", [])
+ 		ListPath = Summary.get("target_list")
+-		if(ListPath and ListPath in Command and "--output" in Command and Path(Command[Command.index("--output") + 1]).resolve() == Path(Arguments.output).resolve()):
+-			Targets, CurrentHash = load_targets(Arguments.project, ListPath, Command[Command.index("--target-id") + 1] if "--target-id" in Command else None)
++		if(ListPath and ListPath in Command and "--output" in Command and Path(Command[Command.index("--output") + 1]).resolve() == Output):
++			Targets, CurrentHash = load_targets(Root, ListPath, Command[Command.index("--target-id") + 1] if "--target-id" in Command else None)
+ 			Rows = Summary.get("targets", [])
+-			Runtime = LeanRuntime(Arguments.project, Arguments.output, Command[Command.index("--lean") + 1], Command[Command.index("--lake") + 1], "--direct" in Command)
++			Runtime = LeanRuntime(Root, Output, Command[Command.index("--lean") + 1], Command[Command.index("--lake") + 1], "--direct" in Command)
++			StdoutPath = Root / Result["stdout"]
++			ExtraPaths = [ManifestPath, StdoutPath]
++			if(Result.get("stderr")):
++				ExtraPaths.append(Root / Result["stderr"])
++			JobPath = Workflow.job_path(Root, Arguments.job_id)
++			if(JobPath.is_file()):
++				ExtraPaths.append(JobPath)
+ 			Before = batch_input_snapshot(Runtime, ListPath, Targets)
+-			EvidenceBefore = batch_evidence_snapshot(Rows)
++			EvidenceBefore = batch_evidence_snapshot(Rows, ExtraPaths)
+ 			Checks = [recheck_manifest(Item["manifest"]) for Item in Rows]
+-			EvidenceAfter = batch_evidence_snapshot(Rows)
++			ById = {Id: Contract for Id, Contract, _ in Targets}
++			Bound = len(Rows) == len(Targets) and {Item["id"] for Item in Rows} == set(ById) and EvidenceBefore.get(str(ManifestPath)) == hash_bytes(SummaryRaw)
++			for Item in Rows:
++				ManifestRaw = Path(Item["manifest"]).read_bytes()
++				Manifest = json.loads(ManifestRaw)
++				Contract = Manifest["evidence"]["contract"]
++				Bound = Bound and Item["manifest_sha256"] == hash_bytes(ManifestRaw) == EvidenceBefore.get(Item["manifest"]) and Item["id"] in ById and all(Contract.get(Key) == Value for Key, Value in ById.get(Item["id"], {}).items() if Key != "input_file_hashes") and Contract.get("input_file_hashes", {}).get(ListPath) == CurrentHash
++			PrintedRaw = StdoutPath.read_bytes()
++			Printed = json.loads(PrintedRaw)
++			Bound = Bound and hash_bytes(PrintedRaw) == EvidenceBefore.get(str(StdoutPath)) and (not Result.get("stdout_sha256") or hash_bytes(PrintedRaw) == Result["stdout_sha256"])
++			CurrentJob = Workflow.job_status(Root, Arguments.job_id)
++			Bound = Bound and CurrentJob.get("recorded_inputs_match_current") and all(CurrentJob.get(Key) == Result.get(Key) for Key in ("state", "command", "inputs", "stdout_sha256", "stderr_sha256"))
++			# Manifest/contract/stdout/job reads can be large. Complete them before
++			# the final evidence and common-input observations, never after them.
++			EvidenceAfter = batch_evidence_snapshot(Rows, ExtraPaths)
+ 			After = batch_input_snapshot(Runtime, ListPath, Targets)
+ 			Stable = Before == After and EvidenceBefore == EvidenceAfter and After["tool_hashes"] == LOADED_TOOL_HASHES and After["bound_files"].get(ListPath) == CurrentHash
+-			ById = {Id: Contract for Id, Contract, _ in Targets}
+-			Bound = len(Rows) == len(Targets) and {Item["id"] for Item in Rows} == set(ById)
+-			for Item in Rows:
+-				Manifest = json.loads(Path(Item["manifest"]).read_text(encoding="utf-8"))
+-				Contract = Manifest["evidence"]["contract"]
+-				Bound = Bound and Item["manifest_sha256"] == sha256_file(Item["manifest"]) and Item["id"] in ById and all(Contract.get(Key) == Value for Key, Value in ById.get(Item["id"], {}).items() if Key != "input_file_hashes") and Contract.get("input_file_hashes", {}).get(ListPath) == CurrentHash
+-			Printed = json.loads((Path(Arguments.project).resolve() / Result["stdout"]).read_text(encoding="utf-8"))
+ 			Result["exact_root_passed"] = bool(Rows) and Bound and Stable and Printed == Summary and CurrentHash == Summary.get("target_list_sha256") and all(Check["exact_root_passed"] is True for Check in Checks)
+ 			Result["verification"] = {"summary": str(ManifestPath), "checks": Checks, "batch_current": Stable}
+ 	return Result
+--- /dev/null
++++ source/plugins/lean-verify/scripts/tests/develop_tool_race_fixture.py
+@@ -0,0 +1,126 @@
++#!/usr/bin/env python3
++"""Real compiler race fixture in a disposable copy, never the frozen source."""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++import shutil
++import sys
++import time
++from unittest.mock import patch
++
++
++Mode, BaseValue, Lean, Lake = sys.argv[1:]
++Base = Path(BaseValue).resolve()
++Scripts = Path(__file__).resolve().parents[1]
++Replica = Base / "replica"
++if(Replica.exists()):
++	raise SystemExit("preserve existing race fixture")
++for Component in ("lean-verify", "math-research-workflow"):
++	shutil.copytree(Scripts.parents[1] / Component / "scripts", Replica / "plugins" / Component / "scripts", ignore=shutil.ignore_patterns("tests", "__pycache__", "*.pyc"))
++sys.path.insert(0, str(Replica / "plugins/lean-verify/scripts"))
++import lean_develop as develop
++from lean_evidence import recheck_manifest
++from lean_runtime import write_json
++
++
++def project(Name):
++	Root = Base / Name / "project"
++	(Root / "Src").mkdir(parents=True)
++	(Root / "lean-toolchain").write_text("leanprover/lean4:v4.31.0\n", encoding="utf-8")
++	(Root / "Src/First.lean").write_text("theorem first (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++	(Root / "Src/Second.lean").write_text("theorem second (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++	Targets = Root / "targets.json"
++	write_json(Targets, {"targets": [{"id": "first", "file": "Src/First.lean", "declaration": "first", "expected_type": "∀ n : Nat, n + 0 = n"}, {"id": "second", "file": "Src/Second.lean", "declaration": "second", "expected_type": "∀ n : Nat, n + 0 = n"}]})
++	return Root, Root.parent / "output", Targets
++
++
++def arguments(Root, Output, Action, Extra):
++	return develop.make_parser().parse_args(["--project", str(Root), "--output", str(Output), "--lean", Lean, "--lake", Lake, "--direct", "--timeout", "90", Action, *Extra])
++
++
++Results = []
++if(Mode == "verify"):
++	for ToolName in ("lake_build_guard.py", "run_manifest.schema.json"):
++		Root, Output, Targets = project(ToolName.replace(".", "-"))
++		Tool = Path(develop.__file__).parent / ToolName
++		RawTool = Tool.read_bytes()
++		Checks = []
++		def actual_recheck_then_tool_edit(PathValue):
++			Check = recheck_manifest(PathValue)
++			Checks.append(Check)
++			if(len(Checks) == 2):
++				Tool.write_bytes(RawTool + b"\n")
++			return Check
++		try:
++			with patch("lean_develop.recheck_manifest", side_effect=actual_recheck_then_tool_edit):
++				Result = develop.verify_targets(arguments(Root, Output, "verify", ["--targets", str(Targets)]))
++			assert len(Checks) == 2 and all(Check["exact_root_passed"] for Check in Checks), Checks
++			assert not Result["exact_root_passed"] and "tool_hashes" in Result["batch"]["changed"], Result
++			assert all(not Item["exact_root_passed"] for Item in Result["targets"]), Result
++			Final = [recheck_manifest(Item["manifest"]) for Item in Result["targets"]]
++			assert all(any("tool:" + ToolName == Reason for Reason in Item["reasons"]) for Item in Final), Final
++			Results.append({"case": ToolName, "actual_checks_before_edit": Checks, "verification": Result, "actual_post_edit_checks": Final})
++		finally:
++			Tool.write_bytes(RawTool)
++elif(Mode == "status"):
++	Root, Output, Targets = project("status")
++	Started = develop.start_verification(arguments(Root, Output, "start", ["--targets", str(Targets), "--job-id", "tool-status", "--job-timeout", "360"]))
++	StatusArguments = arguments(Root, Output, "status", ["--job-id", "tool-status"])
++	Deadline = time.monotonic() + 420
++	while(time.monotonic() < Deadline):
++		Baseline = develop.verification_status(StatusArguments)
++		if(Baseline["state"] not in ("STARTING", "RUNNING")):
++			break
++		time.sleep(0.2)
++	assert Baseline["state"] == "SUCCEEDED" and Baseline["exact_root_passed"], Baseline
++	Rows = json.loads((Output / "development-result.json").read_bytes())["targets"]
++	Results.append({"case": "actual successful durable job", "dispatch": Started, "status": Baseline})
++	for ToolName in ("lake_build_guard.py", "run_manifest.schema.json"):
++		Tool = Path(develop.__file__).parent / ToolName
++		RawTool = Tool.read_bytes()
++		Checks = []
++		def actual_recheck_then_tool_edit(PathValue):
++			Check = recheck_manifest(PathValue)
++			Checks.append(Check)
++			if(len(Checks) == 2):
++				Tool.write_bytes(RawTool + b"\n")
++			return Check
++		try:
++			with patch("lean_develop.recheck_manifest", side_effect=actual_recheck_then_tool_edit):
++				Status = develop.verification_status(StatusArguments)
++			assert len(Checks) == 2 and all(Check["exact_root_passed"] for Check in Checks), Checks
++			assert not Status["exact_root_passed"] and not Status["verification"]["batch_current"], Status
++			Final = [recheck_manifest(Item["manifest"]) for Item in Rows]
++			assert all(any("tool:" + ToolName == Reason for Reason in Item["reasons"]) for Item in Final), Final
++			Results.append({"case": "status late " + ToolName, "actual_checks_before_edit": Checks, "status": Status, "actual_post_edit_checks": Final})
++		finally:
++			Tool.write_bytes(RawTool)
++	StdoutPath = Root / Baseline["stdout"]
++	ReadBytes = Path.read_bytes
++	for Changed in (Root / "Src/First.lean", Output / "development-result.json"):
++		Raw = Changed.read_bytes()
++		Events, Checks = [], []
++		def actual_recheck_before_binding_edit(PathValue):
++			Check = recheck_manifest(PathValue)
++			Checks.append(Check)
++			return Check
++		def stdout_read_then_edit(PathValue):
++			Result = ReadBytes(PathValue)
++			if(PathValue == StdoutPath and len(Checks) == len(Rows) and not Events):
++				Changed.write_bytes(b"theorem first : False := by sorry\n" if Changed.suffix == ".lean" else Raw + b"\n")
++				Events.append({"edit_after_actual_stdout_read": str(Changed)})
++			return Result
++		try:
++			with patch.object(Path, "read_bytes", stdout_read_then_edit), patch("lean_develop.recheck_manifest", side_effect=actual_recheck_before_binding_edit):
++				Status = develop.verification_status(StatusArguments)
++			assert Events and not Status["exact_root_passed"] and not Status["verification"]["batch_current"], Status
++			assert all(Check["exact_root_passed"] for Check in Status["verification"]["checks"]), Status
++			Results.append({"case": "late binding read " + str(Changed), "events": Events, "status": Status})
++		finally:
++			Changed.write_bytes(Raw)
++else:
++	raise ValueError("fixture mode must be verify or status")
++write_json(Base / "REPORT.json", {"scope": "real compiler and durable job in disposable tool replica; original source never edited", "results": Results})
++print(json.dumps({"mode": Mode, "cases": len(Results), "report": str(Base / "REPORT.json")}))
+--- baseline-v2/plugins/lean-verify/scripts/tests/test_lean_develop.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop.py
+@@ -14,7 +14,9 @@
+ from unittest.mock import patch
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+-from lean_develop import DevelopSession, declarations_in_file, feedback_passed, load_targets, make_parser, project_file, search_sources, serve, tool_hashes, verification_status, verify_targets, workflow_module
++from lean_develop import DEVELOP_TOOLS, DevelopSession, declarations_in_file, development_layout, feedback_passed, load_targets, make_parser, project_file, search_sources, serve, start_verification, tool_hashes, verification_status, verify_targets, workflow_module
++from lean_evidence import TOOL_NAMES
++from verify_lean_project import derive_target
+ from lean_runtime import LeanRuntime, background_options, bound_input_changes, full_output, hash_bytes, hash_json, run, sha256_file, source_snapshot, write_json
+ from lean_feedback import ProtocolFailure
+ 
+@@ -50,9 +52,54 @@
+ 		self.assertEqual(Digest, sha256_file(self.Root / "targets.json"))
+ 
+ 	def test_destination_cannot_escape_project_or_use_package_tree(self):
+-		for Name in ("../Escape.lean", ".lake/packages/pkg/Source.lean", "notes.md"):
++		for Name in ("../Escape.lean", ".lake/packages/pkg/Source.lean", ".git/Main.lean", ".lean-verify/Main.lean", "__pycache__/Main.lean", "notes.md"):
+ 			with self.assertRaises(ValueError):
+ 				project_file(self.Root, Name)
++
++	def test_overlapping_outputs_rejected_before_trial_save_verify_start_or_status(self):
++		Target = {"id": "one", "file": "Src/Main.lean", "declaration": "result", "expected_type": "∀ n : Nat, n = n"}
++		Targets = self.targets([Target])
++		for Output in (self.Root, self.Base, self.Root / "generated", self.Root / "Src"):
++			with self.subTest(Output=Output):
++				with self.assertRaisesRegex(ValueError, "outside the project"):
++					development_layout(self.Root, Output)
++				with self.assertRaisesRegex(ValueError, "outside the project"):
++					DevelopSession(LeanRuntime(self.Root, Output, "missing", "missing", True))
++				for Action in ("verify", "start", "status"):
++					Extra = ["--job-id", "not-started"] if Action in ("start", "status") else []
++					if(Action != "status"):
++						Extra += ["--targets", str(Targets)]
++					Arguments = make_parser().parse_args(["--project", str(self.Root), "--output", str(Output), Action, *Extra])
++					with self.assertRaisesRegex(ValueError, "outside the project"):
++						{"verify": verify_targets, "start": start_verification, "status": verification_status}[Action](Arguments)
++		Session = DevelopSession(self.Runtime, Backend="cli")
++		Receipt = self.receipt()
++		self.Runtime.LogDir = self.Root
++		try:
++			with self.assertRaisesRegex(ValueError, "outside the project"):
++				Session.save(Receipt)
++			self.assertFalse((self.Root / "Main.lean").exists())
++		finally:
++			Session.close()
++
++	def test_tool_epoch_covers_every_strict_verifier_tool(self):
++		self.assertTrue(set(TOOL_NAMES).issubset(DEVELOP_TOOLS))
++		self.assertEqual(set(DEVELOP_TOOLS), set(tool_hashes()))
++		for ToolName in ("lake_build_guard.py", "run_manifest.schema.json"):
++			with self.subTest(ToolName=ToolName):
++				Current = dict(tool_hashes())
++				Loaded = dict(Current)
++				with patch("lean_develop.LOADED_TOOL_HASHES", Loaded), patch("lean_develop.tool_hashes", side_effect=lambda: dict(Current)):
++					Session = DevelopSession(self.Runtime, Backend="cli")
++					Current[ToolName] = hash_bytes(b"changed after process load")
++					with self.assertRaisesRegex(ValueError, "new Python process"):
++						Session.save("not-read-before-identity-check")
++					Session.close()
++
++	def test_truncated_or_absent_readable_type_cannot_be_derived(self):
++		for ActualType in (None, "", "∀ n : Nat, ⋯"):
++			with self.subTest(ActualType=ActualType), self.assertRaisesRegex(ValueError, "complete readable type"):
++				derive_target({"actual_type": ActualType}, {}, {})
+ 
+ 	def test_empty_candidate_rejected_and_native_gbk_json_output(self):
+ 		Candidate = self.Output / "Empty.lean"
+@@ -218,9 +265,10 @@
+ 		return Targets, Arguments, verify_fixture, recheck_fixture
+ 
+ 	def test_batch_rechecks_have_common_source_list_and_bound_input_epoch(self):
+-		for Timing in ("second_target", "terminal_source", "terminal_list", "terminal_bound_input", "terminal_evidence"):
++		for Timing in ("second_target", "terminal_source", "terminal_list", "terminal_bound_input", "terminal_evidence", "terminal_guard", "terminal_schema"):
+ 			with self.subTest(Timing=Timing):
+ 				Targets, Arguments, Verify, Recheck = self.positive_batch_fixture()
++				CurrentTools = tool_hashes()
+ 				Calls = []
+ 				def verify_with_edit(Args):
+ 					Calls.append("verify")
+@@ -239,8 +287,10 @@
+ 							(self.Root / "statement.txt").write_text("changed independent statement", encoding="utf-8")
+ 						elif(Timing == "terminal_evidence"):
+ 							(self.Output / "first.json").write_text("{}", encoding="utf-8")
++						elif(Timing in ("terminal_guard", "terminal_schema")):
++							CurrentTools["lake_build_guard.py" if Timing == "terminal_guard" else "run_manifest.schema.json"] = hash_bytes(b"changed during terminal rechecks")
+ 					return Result
+-				with patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.verify_project", side_effect=verify_with_edit), patch("lean_develop.recheck_manifest", side_effect=recheck_with_edit):
++				with patch("lean_develop.tool_hashes", side_effect=lambda: dict(CurrentTools)), patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.verify_project", side_effect=verify_with_edit), patch("lean_develop.recheck_manifest", side_effect=recheck_with_edit):
+ 					Result = verify_targets(Arguments)
+ 				self.assertEqual(Result["status"], "incomplete", Result)
+ 				self.assertFalse(Result["batch"]["current"], Result)
+@@ -268,6 +318,26 @@
+ 		self.assertFalse(Result["exact_root_passed"], Result)
+ 		self.assertFalse(Result["verification"]["batch_current"])
+ 
++	def test_job_status_final_snapshot_follows_slow_binding_reads(self):
++		Targets, Arguments, Verify, Recheck = self.positive_batch_fixture()
++		with patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.verify_project", side_effect=Verify), patch("lean_develop.recheck_manifest", side_effect=Recheck):
++			Summary = verify_targets(Arguments)
++		Stdout = self.Root / "stdout.json"
++		write_json(Stdout, Summary)
++		Command = [sys.executable, "lean_develop.py", "--project", str(self.Root), "--output", str(self.Output), "--lean", "lean", "--lake", "lake", "verify", "--targets", str(Targets)]
++		Job = {"state": "SUCCEEDED", "recorded_inputs_match_current": True, "command": Command, "stdout": "stdout.json"}
++		Workflow = workflow_module()
++		ReadBytes = Path.read_bytes
++		def stdout_read_then_source_edit(PathValue):
++			Raw = ReadBytes(PathValue)
++			if(PathValue == Stdout):
++				(self.Root / "First.lean").write_text("theorem first : False := by sorry\n", encoding="utf-8")
++			return Raw
++		with patch.object(Path, "read_bytes", stdout_read_then_source_edit), patch.object(Workflow, "job_status", return_value=Job), patch("lean_develop.workflow_module", return_value=Workflow), patch("lean_develop.LeanRuntime.environment", return_value={"sha256": "portable-environment"}), patch("lean_develop.recheck_manifest", side_effect=Recheck):
++			Result = verification_status(make_parser().parse_args(["--project", str(self.Root), "--output", str(self.Output), "status", "--job-id", "batch"]))
++		self.assertFalse(Result["exact_root_passed"], Result)
++		self.assertFalse(Result["verification"]["batch_current"])
++
+ 	def test_workflow_adapter_reuses_actual_local_job_interface(self):
+ 		Workflow = workflow_module()
+ 		self.assertTrue(callable(Workflow.start_job))
+--- baseline-v2/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
++++ source/plugins/lean-verify/scripts/tests/test_lean_develop_real.py
+@@ -14,7 +14,7 @@
+ from unittest.mock import patch
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+-from lean_develop import DevelopSession, make_parser, start_verification, verification_status, verify_targets
++from lean_develop import TYPE_PRINT_OPTIONS, DevelopSession, make_parser, start_verification, verification_status, verify_targets
+ from lean_evidence import recheck_manifest
+ from lean_runtime import LeanRuntime, background_options, sha256_file, write_json
+ from verify_lean_project import verify_project
+@@ -279,6 +279,88 @@
+ 				Terminal = [recheck_manifest(Item["manifest"]) for Item in Result["targets"]]
+ 				self.Results.append({"test": self.id(), "timing": Timing, "verification": Result, "actual_post_batch_rechecks": Terminal})
+ 
++	def test_actual_nested_candidate_rejects_overlapping_output_save_and_batch(self):
++		Root, Output, Runtime = self.project()
++		(Root / "Src").mkdir()
++		Helper = Root / "Src/Helper.lean"
++		Helper.write_text("theorem helper (n : Nat) : n + 0 = n := Nat.add_zero n\n", encoding="utf-8")
++		Candidate = Root.parent / "Candidate.lean"
++		Candidate.write_text("import Src.Helper\ntheorem result (n : Nat) : n + 0 = n := helper n\n", encoding="utf-8")
++		Session = DevelopSession(Runtime, 60, "cli")
++		try:
++			Trial = Session.trial("Src/Main.lean", Candidate)
++			self.assertEqual(Trial["status"], "candidate_checked", Trial)
++			Helper.write_text("theorem helper : False := by sorry\n", encoding="utf-8")
++			Runtime.LogDir = Root
++			with self.assertRaisesRegex(ValueError, "outside the project") as Failure:
++				Session.save(Trial["receipt"])
++			self.assertFalse((Root / "Src/Main.lean").exists())
++			self.assertFalse(Path(Trial["receipt"]).with_name("save.json").exists())
++			Targets = Root / "targets.json"
++			write_json(Targets, {"targets": [{"id": "nested", "file": "Src/Helper.lean", "declaration": "helper", "expected_type": "∀ n : Nat, n + 0 = n"}]})
++			for BadOutput in (Root, Root.parent, Root / "generated", Root / "Src"):
++				with self.subTest(Output=BadOutput), self.assertRaisesRegex(ValueError, "outside the project"):
++					verify_targets(self.arguments(Root, BadOutput, Targets))
++			self.Results.append({"test": self.id(), "actual_nested_trial": Trial, "save_rejected": str(Failure.exception), "destination_created": False, "overlapping_batch_outputs_rejected": [str(Root), str(Root.parent), str(Root / "generated"), str(Root / "Src")]})
++		finally:
++			Session.close()
++
++	def run_tool_race_fixture(self, Mode):
++		Root, _, _ = self.project()
++		Base = Root.parent / ("tool-" + Mode)
++		Fixture = Path(__file__).with_name("develop_tool_race_fixture.py")
++		Log = Root.parent / ("tool-" + Mode + ".log")
++		with Log.open("wb") as Stream:
++			Process = subprocess.run([sys.executable, "-X", "utf8", str(Fixture), Mode, str(Base), LEAN, LAKE], stdout=Stream, stderr=subprocess.STDOUT, timeout=900, **background_options())
++		self.assertEqual(Process.returncode, 0, Log.read_text(encoding="utf-8", errors="replace")[-8000:])
++		Report = json.loads((Base / "REPORT.json").read_bytes())
++		self.Results.append({"test": self.id(), "fixture_command": Process.args, "log": str(Log), "report": Report})
++
++	def test_actual_verify_rejects_every_late_strict_tool_change(self):
++		self.run_tool_race_fixture("verify")
++
++	def test_actual_status_rejects_late_tool_and_binding_read_changes(self):
++		self.run_tool_race_fixture("status")
++
++	def test_actual_long_type_is_complete_in_probe_and_strict_extraction(self):
++		Root, Output, Runtime = self.project()
++		def balanced(Depth):
++			if(Depth == 0):
++				return "n + 0 = n", "Nat.add_zero n"
++			Type, Proof = balanced(Depth - 1)
++			return "(" + Type + ") ∧ (" + Type + ")", "And.intro (" + Proof + ") (" + Proof + ")"
++		Type, Proof = balanced(9)
++		(Root / "Main.lean").write_text("namespace Long\ntheorem result (n : Nat) : " + Type + " := " + Proof + "\nend Long\n", encoding="utf-8")
++		Session = DevelopSession(Runtime, 90, "cli")
++		try:
++			Probe = Session.probe(["Long.result"], ["Main"])
++			self.assertEqual(Probe["status"], "checked", Probe)
++			Readable = Probe["declarations"][0]["actual_type"]
++			self.assertNotIn("⋯", Readable)
++			self.assertEqual(Readable.count("Eq"), 512)
++			with patch("lean_develop.TYPE_PRINT_OPTIONS", TYPE_PRINT_OPTIONS.replace("10000000", "1")):
++				Limited = Session.probe(["Long.result"], ["Main"])
++			self.assertEqual(Limited["status"], "incomplete", Limited)
++			self.assertFalse(Limited["exact_root_passed"])
++		finally:
++			Session.close()
++		Targets = self.target_list(Root, "∀ n : Nat, " + Type, "Long.result")
++		Result = verify_targets(self.arguments(Root, Output / "strict", Targets))
++		self.assertTrue(Result["exact_root_passed"], Result)
++		Manifest = json.loads(Path(Result["targets"][0]["manifest"]).read_bytes())
++		Target = Manifest["target"]
++		self.assertNotIn("⋯", Target["actual_type"])
++		self.assertEqual(Target["actual_type"].count("Eq"), 512)
++		for Tree in (Target["type_expression"], Target["expected_statement"]["type_expression"]):
++			Stack, Count = [Tree], 0
++			while(Stack):
++				Node = Stack.pop()
++				if(isinstance(Node, list)):
++					Count += int(len(Node) == 2 and Node[0] == "const" and isinstance(Node[1], list) and Node[1][0] == "Eq")
++					Stack.extend(Node)
++			self.assertEqual(Count, 512)
++		self.Results.append({"test": self.id(), "balanced_equality_leaves": 512, "full_probe": Probe, "limited_probe": Limited, "strict_verification": Result, "strict_actual_type": Target["actual_type"], "actual_and_expected_encoded_equality_count": 512})
++
+ 
+ if(__name__ == "__main__"):
+ 	unittest.main()
+--- baseline-v2/plugins/lean-verify/scripts/verify_lean_project.py
++++ source/plugins/lean-verify/scripts/verify_lean_project.py
+@@ -190,6 +190,8 @@
+ 
+ def derive_target(Target, Environment, Contract):
+ 	Target = dict(Target)
++	if(not isinstance(Target.get("actual_type"), str) or not Target["actual_type"].strip() or "⋯" in Target["actual_type"]):
++		raise ValueError("complete readable type unavailable; replay with the supported pretty-printing options")
+ 	Modules = [Item["module"] for Item in Target["imported_modules"]]
+ 	if(Target.get("module_inventory_scope") != "loaded_environment" or Target.get("loaded_module_count") != len(Modules) or len(set(Modules)) != len(Modules)):
+ 		raise ValueError("incomplete loaded-module inventory; replay is required")
+--- baseline-v2/plugins/lean-verify/skills/lean-verify/references/changelog.md
++++ source/plugins/lean-verify/skills/lean-verify/references/changelog.md
+@@ -1,4 +1,18 @@
+ # Release history
++
++## 2.1.2 (local correction, 2026-10-09)
++
++Require the development entrance's output directory to be outside the project
++and not its ancestor; reject every project-internal output rather than exclude
++project source subtrees. Include the strict verifier's complete tool set in
++loaded and common identities, including the build guard and manifest schema.
++Finish status manifest/contract/stdout/job reads before final freshness checks
++and bind the summary and job-output bytes across that pass. Increase supported
++type-printing limits in development and strict probes and reject readable
++types containing Lean's omission marker. Complete encoded expressions and
++dependency bindings remain required. Original v1/v2 negative reviews and
++actual reproductions remain preserved; this entry asserts no review approval,
++installation, release or universal speedup.
+ 
+ ## 2.1.1 (local correction, 2026-10-09)
+ 
+--- baseline-v2/plugins/lean-verify/skills/lean-verify/references/v2-development.md
++++ source/plugins/lean-verify/skills/lean-verify/references/v2-development.md
+@@ -11,6 +11,13 @@
+ 
+ All global arguments precede the subcommand. Use the project's existing pinned
+ Lean/Lake, and add `--direct` to use prepared artifacts without package fetching.
++For this development entrance, `--output` must be outside the project and cannot
++be a project ancestor. The project itself and every project-internal directory
++are rejected for all actions, including trial/save, verify, start and status.
++Use a sibling evidence directory; do not place generated output over source
++subtrees. The older standalone verifier/feedback entry points retain their
++existing layout behavior. Source destinations cannot use directories excluded
++from project snapshots, such as `.lake`, `.git` or `.lean-verify`.
+ 
+ ```bash
+ python scripts/lean_develop.py --project PROJECT --output LOGS \
+@@ -32,6 +39,18 @@
+ parameters and defining module. Failed or missing APIs retain real compiler
+ logs and return incomplete. Use these results to write a smaller experiment or
+ choose another route while retaining the mathematical target.
++
++Development and strict probes keep `pp.all`, `pp.universes` and `pp.explicit`,
++enable `pp.deepTerms` and `pp.proofs`, and use `pp.maxSteps=10000000` with
++`maxRecDepth=8192` during readable type printing. These options were checked
++against native Lean 4.31.0 and its
++[pinned option definitions](https://github.com/leanprover/lean4/blob/v4.31.0/src/Lean/PrettyPrinter/Delaborator/Options.lean)
++and [delaborator implementation](https://github.com/leanprover/lean4/blob/v4.31.0/src/Lean/PrettyPrinter/Delaborator/Basic.lean).
++`pp.maxDepth` is unavailable there, and `pp.maxSteps=0` immediately omits terms.
++The limits remain finite. Any compiler failure or remaining `⋯` keeps the probe
++incomplete, and strict derivation/evidence recheck also rejects omitted readable
++types. The complete encoded `type_expression` and transitive bindings are
++retained separately; the readable string does not replace their hashes.
+ 
+ ## Construct, inspect, revise and save
+ 
+@@ -74,6 +93,9 @@
+ The process captures its loaded Python-tool hashes. A later source-code change
+ keeps further requests incomplete until a new Python process is started;
+ restarting only LSP cannot reload Python or relabel old code with new hashes.
++That identity includes every existing `lean_evidence.TOOL_NAMES` entry, including
++`lake_build_guard.py` and `run_manifest.schema.json`, as well as the development,
++feedback and route tools. Final verify/status snapshots bind the same full set.
+ Native Windows Lean/Lake/LSP/search commands use hidden background processes;
+ the workflow retains its detached supervisor and hides child console windows.
+ POSIX process-group behavior is retained.
+@@ -172,6 +194,10 @@
+ inspection. Exit code 0 or process completion alone establishes no theorem.
+ The terminal status rechecks also require common declared bindings to remain
+ stable across the complete manifest pass.
++All manifest, contract, stdout and job reads finish before the final evidence
++and input snapshots. Summary, job record and stdout/stderr bytes also participate
++in the evidence stability check. These are observed boundaries, with the same
++post-observation filesystem limitation described above.
+ 
+ ## Tests and limits
+ 
+@@ -188,3 +214,7 @@
+ platform. CI configuration is not evidence that CI ran. Neither generic fixtures
+ nor a single research integration establish universal speedup. Compare the same
+ task and environment using retained failed trials and real compiler operations.
++Rich analysis targets can produce very large complete expression/dependency
++records and manifests. The joint research run observed roughly 218 MB of
++declaration extraction, 1.4 GB of manifest data and 4.8 GB of Python memory for
++one root. Generic fixture timings do not predict those evidence costs.

@@ -1,5 +1,25 @@
 # Lean lemma index (auto-generated)
 
+<!-- lean-joint-current:start -->
+## 2026-10-09 Current model declarations
+
+| Declaration | Actual source and scope |
+| --- | --- |
+| `SLVerified.krein_domain_root` | [Formal root](SLVerified.lean), 8-component complex L2 integral-domain increment |
+| `SL.Krein.boundary_invariant`, `operator_eq_action` | [IntegralDomain](SL/Krein/IntegralDomain.lean), genuine class-independent traces/action |
+| `SL.Krein.operator_linear` | [LinearDomain](SL/Krein/LinearDomain.lean), actual complex linear map on domain |
+| `SL.Krein.from_l2_second`, `representative_parameterization` | [IntegralConstruction](SL/Krein/IntegralConstruction.lean), all MemLp2 Second and complex initial values |
+| `SL.Krein.IntegralRepresentative.weak_derivative_pair` | [WeakDerivative](SL/Krein/WeakDerivative.lean), coordinate AC and actual weak integration identities |
+| `SLVerified.krein_polynomial_root` | [Formal root](SLVerified.lean), 4-component polynomial-domain/action/energy increment |
+| `SL.Krein.polynomial_mem_domain`, `operator_on_polynomial` | [PolynomialBridge](SL/Krein/PolynomialBridge.lean), all real boundary polynomials |
+| `SL.Krein.operator_polynomial_energy` | [PolynomialEnergy](SL/Krein/PolynomialEnergy.lean), real-polynomial complexifications and all real c |
+| `SLVerified.weighted_dd_root` | [Formal root](SLVerified.lean), general-density norm bridge plus all constant DD modes |
+| `SL.Weighted.weighted_norm_eq_mass` | [L2Bridge](SL/Weighted/L2Bridge.lean), arbitrary positive bounded measurable density |
+| `SL.Weighted.ConstantDD.constant_dd_l2_root` | [ConstantDD](SL/Weighted/ConstantDD.lean), all positive length/density/index, actual solution and unit L2 vector |
+
+These are actual declarations, not standalone exact-leaf receipts. Three composed roots have current v3 strict machine evidence, final v4 status recheck and separately accepted fresh semantic reviews. This does not create standalone exact-leaf receipts or close the open mathematical connections. Open connections and the nonempty independent contracts are in [targets.json](targets.json) and [STATUS](STATUS.md).
+<!-- lean-joint-current:end -->
+
 ## 2026-09-26 AuditRound12 additions
 
 32 authored declarations; complete 59-entry export includes generated helpers. All n including zero, real matrices, actual coordinate Equiv, normalized compression and odd rank-one algebra. [Scope and independent execution](../reports/proof-audit-round12-20260926/REPORT.md).

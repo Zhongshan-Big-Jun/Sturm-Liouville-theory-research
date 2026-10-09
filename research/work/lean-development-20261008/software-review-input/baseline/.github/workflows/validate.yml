@@ -1,0 +1,121 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install validation dependencies
+        run: pip install pyyaml
+      - name: Validate repository layout
+        run: python scripts/validate_all.py
+
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Smoke test lean-verify scanner
+        run: python tests/smoke_lean_verify.py
+      - name: Smoke test pipeline gate
+        run: python tests/smoke_pipeline_gate.py
+      - name: Smoke test scoped pipeline gate
+        run: python tests/smoke_scoped_pipeline.py
+      - name: Smoke test Blueprint runtime gateway
+        run: python tests/smoke_blueprint_gateway.py
+      - name: Smoke test cross-root formalization handoff
+        run: python tests/smoke_formalization_handoff.py
+      - name: Smoke test closure-first fast close
+        run: python tests/smoke_closure_first.py
+      - name: Smoke test interruption handoff
+        run: python tests/smoke_handoff.py
+      - name: Smoke test quota checkpoint and resume
+        run: python tests/smoke_checkpoint_resume.py
+      - name: Smoke test whiteboard gate
+        run: python tests/smoke_whiteboard.py
+      - name: Smoke test workflow doctor
+        run: python tests/smoke_doctor.py
+      - name: Smoke test multi-remote sync
+        run: python tests/smoke_sync_remotes.py
+      - name: Smoke test nested repositories
+        run: python tests/smoke_nested_repo.py
+      - name: Smoke test formalization decisions
+        run: python tests/smoke_formalization.py
+      - name: Smoke test Lean build guard
+        run: python tests/smoke_lake_build_guard.py
+
+  maintenance-runtime:
+    env:
+      # Archived review packets preserve full source paths and exceed MAX_PATH.
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: core.longpaths
+      GIT_CONFIG_VALUE_0: "true"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install behavior test dependencies
+        run: pip install pyyaml jsonschema
+      - name: Test source reading, annotation and pointers
+        run: python -X utf8 tests/smoke_research_library.py
+      - name: Test recovery and quota observation
+        run: python -X utf8 tests/smoke_recovery_status.py
+      - name: Test durable 2.0 research continuity
+        run: python -X utf8 tests/test_research_state.py
+      - name: Test 2.0 library and research experience
+        run: python -X utf8 -m unittest discover -s plugins/manage-math-research-program/skills/manage-math-research-program/scripts/tests -p "test_*.py"
+      - name: Test 2.0 Lean execution and evidence handling
+        run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_v2_verifier.py"
+      - name: Test metric comparisons
+        run: python -X utf8 tests/smoke_performance_metrics.py
+      - name: Test skill source diagnostics
+        run: python -X utf8 tests/smoke_skill_sources.py
+
+  lean-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install schema test dependency
+        run: pip install jsonschema
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tests/fixtures/lean-v2-runtime
+          auto-config: "false"
+          build: "false"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "false"
+          use-github-cache: "false"
+      - name: Verify real Lean targets and interactive feedback
+        env:
+          LEAN_VERIFY_REAL_LEAN: lean
+          LEAN_VERIFY_REAL_LAKE: lake
+          LEAN_VERIFY_TEST_TMPDIR: ${{ runner.temp }}
+          LEAN_VERIFY_TEST_REPORT: ${{ runner.temp }}/lean-controls.json
+          LEAN_VERIFY_KEEP_TEST_ARTIFACTS: "1"
+        run: python -X utf8 -m unittest discover -s plugins/lean-verify/scripts/tests -p "test_v2_lean_real.py" -v
+      - name: Retain actual compiler evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-controls
+          path: |
+            ${{ runner.temp }}/lean-controls.json
+            ${{ runner.temp }}/real-*
